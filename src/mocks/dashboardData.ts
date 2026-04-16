@@ -241,9 +241,6 @@ export const branches: BranchOption[] = [
 
 export const navItems = [
   { key: "home",        icon: "ri-home-5-line",        labelEn: "Home",              labelAr: "الرئيسية",           route: "/dashboard",                        group: "main" },
-  { key: "calendar",    icon: "ri-calendar-line",      labelEn: "Calendar",          labelAr: "التقويم",            route: "/dashboard/calendar",                 group: "main" },
-  { key: "upload",      icon: "ri-upload-cloud-2-line",labelEn: "Upload Events File",labelAr: "رفع ملف الأحداث",   route: "/dashboard/batch-upload",            group: "main" },
-  { key: "events",      icon: "ri-list-check-2",       labelEn: "Event List",        labelAr: "قائمة الأحداث",     route: "/dashboard/event-list",             group: "main" },
   { key: "national-security", icon: "ri-shield-star-line", labelEn: "National Security", labelAr: "الأمن الوطني",      route: "/dashboard/national-security",      group: "admin" },
   { key: "command",     icon: "ri-radar-line",         labelEn: "Command Center",    labelAr: "مركز القيادة",       route: "/dashboard/command-center",         group: "admin" },
   { key: "risk",        icon: "ri-shield-cross-line",  labelEn: "Risk Assessment",   labelAr: "تقييم المخاطر",      route: "/dashboard/risk-assessment",        group: "admin" },

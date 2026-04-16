@@ -35,12 +35,14 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
     return activeNav === item.key && location.pathname === "/dashboard";
   };
 
-  // Group items
+  // Group items — skip groups that have no items
   const groups = ["main", "modules", "admin"] as const;
-  const grouped = groups.map((g) => ({
-    group: g,
-    items: navItems.filter((n) => n.group === g),
-  }));
+  const grouped = groups
+    .map((g) => ({
+      group: g,
+      items: navItems.filter((n) => n.group === g),
+    }))
+    .filter(({ items }) => items.length > 0);
 
   return (
     <aside
