@@ -5,9 +5,6 @@ import Footer from "@/components/feature/Footer";
 import HeroSection from "./components/HeroSection";
 import ServicesSection from "./components/ServicesSection";
 import DataStreamsSection from "./components/DataStreamsSection";
-import ApiSection from "./components/ApiSection";
-import HospitalitySection from "./components/HospitalitySection";
-import AboutSection from "./components/AboutSection";
 
 const Home = () => {
   useEffect(() => {
@@ -29,9 +26,6 @@ const Home = () => {
       <ServicesSection type="core" />
       <ServicesSection type="extended" />
       <DataStreamsSection />
-      <HospitalitySection />
-      <ApiSection />
-      <AboutSection />
       <Footer />
     </div>
   );

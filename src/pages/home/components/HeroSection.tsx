@@ -164,14 +164,6 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Subtitle */}
-        <p className="text-base md:text-lg text-gray-400 font-['Inter'] max-w-2xl mb-2 leading-relaxed animate-fade-in" style={{ animationDelay: "0.3s" }}>
-          {t("hero.subtitle")}
-        </p>
-        <p className="text-sm md:text-base text-gray-500 font-['Cairo'] max-w-xl mb-6 leading-relaxed">
-          {t("hero.arabicTitle")}
-        </p>
-
         {/* Tagline */}
         <div className="flex items-center gap-3 mb-8 animate-fade-in" style={{ animationDelay: "0.4s" }}>
           <div className="h-px w-12 bg-cyan-400/50" />
@@ -186,32 +178,6 @@ const HeroSection = () => {
         <p className="text-gray-400 text-sm md:text-base max-w-2xl mb-10 leading-relaxed font-['Inter'] animate-fade-in" style={{ animationDelay: "0.5s" }}>
           {t("hero.description")}
         </p>
-
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row items-center gap-4 mb-6 animate-fade-in" style={{ animationDelay: "0.6s" }}>
-          <button
-            onClick={() => scrollTo("#core-services")}
-            className="flex items-center gap-2 px-6 py-3 bg-cyan-400 text-[#060D1A] font-semibold rounded-md hover:bg-cyan-300 transition-all duration-200 whitespace-nowrap cursor-pointer text-sm"
-          >
-            <i className="ri-grid-line" />
-            {t("hero.exploreServices")}
-          </button>
-          <button
-            onClick={() => scrollTo("#api-integration")}
-            className="flex items-center gap-2 px-6 py-3 border border-cyan-500/60 text-cyan-400 font-semibold rounded-md hover:bg-cyan-500/10 transition-all duration-200 whitespace-nowrap cursor-pointer text-sm"
-          >
-            <i className="ri-code-s-slash-line" />
-            {t("hero.apiDocs")}
-          </button>
-          <button
-            onClick={() => scrollTo("#about")}
-            className="flex items-center gap-2 px-6 py-3 border border-green-500/50 text-green-400 font-semibold rounded-md hover:bg-green-500/10 transition-all duration-200 whitespace-nowrap cursor-pointer text-sm"
-          >
-            <i className="ri-hotel-line" />
-            {t("hero.hospitalityApp")}
-            <span className="text-xs text-green-500/70 font-normal hidden sm:inline">— {t("hero.hospitalityNote")}</span>
-          </button>
-        </div>
 
         {/* Animated Counters */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-3xl mt-8 animate-fade-in" style={{ animationDelay: "0.7s" }}>
