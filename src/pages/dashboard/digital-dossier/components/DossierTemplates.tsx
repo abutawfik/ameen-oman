@@ -6,8 +6,8 @@ interface Props {
 }
 
 const categoryConfig: Record<string, { label: string; color: string; icon: string }> = {
-  full:          { label: "Full Intelligence", color: "#F87171", icon: "ri-file-shield-2-line" },
-  investigation: { label: "Investigation",     color: "#FB923C", icon: "ri-search-eye-line" },
+  full:          { label: "Full Intelligence", color: "#C94A5E", icon: "ri-file-shield-2-line" },
+  investigation: { label: "Investigation",     color: "#C98A1B", icon: "ri-search-eye-line" },
   financial:     { label: "Financial Crime",   color: "#4ADE80", icon: "ri-bank-card-line" },
   border:        { label: "Border & Travel",   color: "#60A5FA", icon: "ri-passport-line" },
   compliance:    { label: "Compliance",        color: "#34D399", icon: "ri-shield-check-line" },
@@ -22,7 +22,7 @@ const DossierTemplates = ({ isAr, onUseTemplate }: Props) => {
           <h3 className="text-white text-sm font-bold font-['Inter']">Report Templates</h3>
           <p className="text-gray-600 text-xs font-['Inter'] mt-0.5">Pre-configured templates for common intelligence scenarios</p>
         </div>
-        <button className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-['Inter'] cursor-pointer transition-colors whitespace-nowrap" style={{ background: "rgba(181,142,60,0.08)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>
+        <button className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-['Inter'] cursor-pointer transition-colors whitespace-nowrap" style={{ background: "rgba(184,138,60,0.08)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}>
           <i className="ri-add-line" />
           New Template
         </button>
@@ -40,7 +40,7 @@ const DossierTemplates = ({ isAr, onUseTemplate }: Props) => {
             <div
               key={template.id}
               className="rounded-xl p-5 flex flex-col gap-4"
-              style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.12)" }}
+              style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.12)" }}
             >
               {/* Header */}
               <div className="flex items-start gap-3">
@@ -99,7 +99,7 @@ const DossierTemplates = ({ isAr, onUseTemplate }: Props) => {
               </div>
 
               {/* Footer */}
-              <div className="flex items-center justify-between pt-2 border-t" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
+              <div className="flex items-center justify-between pt-2 border-t" style={{ borderColor: "rgba(184,138,60,0.08)" }}>
                 <div className="text-[10px] font-['JetBrains_Mono'] text-gray-700">
                   <span>By {template.createdBy}</span>
                   <span className="mx-1">·</span>
@@ -108,7 +108,7 @@ const DossierTemplates = ({ isAr, onUseTemplate }: Props) => {
                 <button
                   onClick={() => onUseTemplate(template)}
                   className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold font-['Inter'] cursor-pointer transition-all whitespace-nowrap"
-                  style={{ background: "#D4A84B", color: "#0B1220", boxShadow: "0 0 12px rgba(181,142,60,0.2)" }}
+                  style={{ background: "#D6B47E", color: "#051428", boxShadow: "0 0 12px rgba(184,138,60,0.2)" }}
                 >
                   <i className="ri-file-add-line" />
                   Use Template
@@ -120,7 +120,7 @@ const DossierTemplates = ({ isAr, onUseTemplate }: Props) => {
       </div>
 
       {/* Usage stats */}
-      <div className="rounded-xl p-5" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.12)" }}>
+      <div className="rounded-xl p-5" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.12)" }}>
         <h4 className="text-white text-sm font-bold font-['Inter'] mb-4">Template Usage Statistics</h4>
         <div className="space-y-3">
           {dossierTemplates.sort((a, b) => b.usageCount - a.usageCount).map((t) => (

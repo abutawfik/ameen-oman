@@ -28,9 +28,9 @@ const SlaCountdown = ({ deadline, isAr = false, compact = false }: Props) => {
   const critical = diffMs > 0 && diffMs < 5 * 60_000;
   const warn = diffMs > 0 && diffMs < 15 * 60_000 && !critical;
 
-  const color = breached ? "#F87171" : critical ? "#F87171" : warn ? "#FB923C" : "#D4A84B";
-  const bg = breached || critical ? "rgba(248,113,113,0.12)" : warn ? "rgba(251,146,60,0.12)" : "rgba(181,142,60,0.1)";
-  const borderCol = breached || critical ? "rgba(248,113,113,0.4)" : warn ? "rgba(251,146,60,0.4)" : "rgba(181,142,60,0.3)";
+  const color = breached ? "#C94A5E" : critical ? "#C94A5E" : warn ? "#C98A1B" : "#D6B47E";
+  const bg = breached || critical ? "rgba(201,74,94,0.12)" : warn ? "rgba(201,138,27,0.12)" : "rgba(184,138,60,0.1)";
+  const borderCol = breached || critical ? "rgba(201,74,94,0.4)" : warn ? "rgba(201,138,27,0.4)" : "rgba(184,138,60,0.3)";
 
   const label = breached
     ? isAr

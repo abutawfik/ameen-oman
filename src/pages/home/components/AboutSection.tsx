@@ -21,8 +21,8 @@ const AboutSection = () => {
   };
 
   return (
-    <section id="about" className="py-20 md:py-28 relative" style={{ background: "#0B1220" }}>
-      <div className="absolute inset-0 opacity-10" style={{ backgroundImage: `linear-gradient(rgba(181,142,60,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,0.1) 1px, transparent 1px)`, backgroundSize: "80px 80px" }} />
+    <section id="about" className="py-20 md:py-28 relative" style={{ background: "#051428" }}>
+      <div className="absolute inset-0 opacity-10" style={{ backgroundImage: `linear-gradient(rgba(184,138,60,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.1) 1px, transparent 1px)`, backgroundSize: "80px 80px" }} />
       <div className="relative z-10 max-w-[1400px] mx-auto px-4 md:px-8">
         <div className="text-center mb-14">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gold-500/30 bg-gold-500/5 mb-4">
@@ -37,11 +37,11 @@ const AboutSection = () => {
           {/* Info cards */}
           <div className="flex flex-col gap-5">
             {[
-              { titleKey: "about.ropTitle", descKey: "about.ropDesc", icon: "ri-shield-star-line", color: "#D4A84B" },
+              { titleKey: "about.ropTitle", descKey: "about.ropDesc", icon: "ri-shield-star-line", color: "#D6B47E" },
               { titleKey: "about.ibordersTitle", descKey: "about.ibordersDesc", icon: "ri-global-line", color: "#4ADE80" },
               { titleKey: "about.missionTitle", descKey: "about.missionDesc", icon: "ri-focus-3-line", color: "#FACC15" },
             ].map((card) => (
-              <div key={card.titleKey} className="flex gap-4 p-5 rounded-xl border" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
+              <div key={card.titleKey} className="flex gap-4 p-5 rounded-xl border" style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}>
                 <div className="w-10 h-10 flex items-center justify-center rounded-lg flex-shrink-0" style={{ background: card.color + "15", border: `1px solid ${card.color}33` }}>
                   <i className={`${card.icon} text-lg`} style={{ color: card.color }} />
                 </div>
@@ -52,12 +52,12 @@ const AboutSection = () => {
               </div>
             ))}
             {/* Contact info */}
-            <div className="p-5 rounded-xl border" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)" }}>
+            <div className="p-5 rounded-xl border" style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.12)" }}>
               <h3 className="text-white font-bold text-base font-['Inter'] mb-3">{t("about.contactTitle")}</h3>
               <p className="text-gray-400 text-sm mb-4 font-['Inter']">{t("about.contactDesc")}</p>
               <div className="space-y-2">
                 {[
-                  { icon: "ri-phone-line", text: t("footer.phone"), color: "#D4A84B" },
+                  { icon: "ri-phone-line", text: t("footer.phone"), color: "#D6B47E" },
                   { icon: "ri-mail-line", text: t("footer.email"), color: "#4ADE80" },
                   { icon: "ri-map-pin-line", text: t("footer.address"), color: "#FACC15" },
                 ].map((item) => (
@@ -73,7 +73,7 @@ const AboutSection = () => {
           </div>
 
           {/* Contact Form */}
-          <div className="p-6 rounded-xl border" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.2)", backdropFilter: "blur(12px)" }}>
+          <div className="p-6 rounded-xl border" style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.2)", backdropFilter: "blur(12px)" }}>
             <h3 className="text-white font-bold text-lg font-['Inter'] mb-5 flex items-center gap-2">
               <i className="ri-mail-send-line text-gold-400" />
               {t("about.contactTitle")}
@@ -103,7 +103,7 @@ const AboutSection = () => {
                 </div>
                 <div>
                   <label className="block text-gray-400 text-xs mb-1.5 font-['Inter']">{t("about.form.subject")}</label>
-                  <select name="subject" className="w-full px-3 py-2.5 rounded-lg text-sm text-white outline-none font-['Inter'] cursor-pointer" style={{ background: "rgba(20,29,46,0.95)", border: "1px solid rgba(255,255,255,0.1)" }}>
+                  <select name="subject" className="w-full px-3 py-2.5 rounded-lg text-sm text-white outline-none font-['Inter'] cursor-pointer" style={{ background: "rgba(10,37,64,0.95)", border: "1px solid rgba(255,255,255,0.1)" }}>
                     <option value="">{t("about.form.subjectPlaceholder")}</option>
                     {Array.isArray(subjects) && subjects.map((s, i) => <option key={i} value={s}>{s}</option>)}
                   </select>
@@ -113,7 +113,7 @@ const AboutSection = () => {
                   <textarea name="message" required rows={4} maxLength={500} placeholder={t("about.form.messagePlaceholder")} className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none resize-none font-['Inter']" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)" }} />
                 </div>
                 {status === "error" && <p className="text-red-400 text-xs font-['Inter']">{t("about.form.error")}</p>}
-                <button type="submit" disabled={status === "sending"} className="w-full flex items-center justify-center gap-2 py-3 bg-gold-400 text-[#0B1220] font-semibold rounded-md hover:bg-gold-300 transition-colors duration-200 cursor-pointer text-sm font-['Inter'] disabled:opacity-60">
+                <button type="submit" disabled={status === "sending"} className="w-full flex items-center justify-center gap-2 py-3 bg-gold-400 text-[#051428] font-semibold rounded-md hover:bg-gold-300 transition-colors duration-200 cursor-pointer text-sm font-['Inter'] disabled:opacity-60">
                   <i className="ri-send-plane-line" />
                   {status === "sending" ? t("about.form.sending") : t("about.form.submit")}
                 </button>

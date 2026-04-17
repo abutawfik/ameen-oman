@@ -53,7 +53,7 @@ const FieldReportForm = ({ isAr, onBack }: Props) => {
           <p className="text-gray-400 text-sm font-['Inter']">{isAr ? "تم إرسال التقرير إلى مركز القيادة" : "Report sent to Command Center"}</p>
           <p className="text-gray-600 text-xs font-['JetBrains_Mono'] mt-1">RPT-2025-{Math.floor(Math.random() * 90000 + 10000)}</p>
         </div>
-        <button onClick={onBack} className="px-6 py-3 rounded-2xl text-sm font-bold font-['Inter'] cursor-pointer" style={{ background: "#D4A84B", color: "#0B1220" }}>
+        <button onClick={onBack} className="px-6 py-3 rounded-2xl text-sm font-bold font-['Inter'] cursor-pointer" style={{ background: "#D6B47E", color: "#051428" }}>
           {isAr ? "العودة للوحة التحكم" : "Back to Dashboard"}
         </button>
       </div>
@@ -74,7 +74,7 @@ const FieldReportForm = ({ isAr, onBack }: Props) => {
       {/* Person */}
       <div>
         <label className="text-gray-500 text-[10px] uppercase tracking-wider font-['JetBrains_Mono'] block mb-1.5">{isAr ? "الشخص" : "Person"}</label>
-        <div className="flex items-center gap-2 px-3 py-2.5 rounded-2xl" style={{ background: "rgba(20,29,46,0.9)", border: "1.5px solid rgba(181,142,60,0.25)" }}>
+        <div className="flex items-center gap-2 px-3 py-2.5 rounded-2xl" style={{ background: "rgba(10,37,64,0.9)", border: "1.5px solid rgba(184,138,60,0.25)" }}>
           <i className="ri-user-line text-gold-400 text-sm flex-shrink-0" />
           <span className="text-white text-xs font-['JetBrains_Mono'] flex-1 truncate">{personRef}</span>
           <button className="text-gold-400 text-xs font-['JetBrains_Mono'] cursor-pointer whitespace-nowrap">{isAr ? "تغيير" : "Change"}</button>
@@ -84,7 +84,7 @@ const FieldReportForm = ({ isAr, onBack }: Props) => {
       {/* Location */}
       <div>
         <label className="text-gray-500 text-[10px] uppercase tracking-wider font-['JetBrains_Mono'] block mb-1.5">{isAr ? "الموقع" : "Location"}</label>
-        <div className="flex items-center gap-2 px-3 py-2.5 rounded-2xl" style={{ background: "rgba(20,29,46,0.9)", border: "1.5px solid rgba(181,142,60,0.25)" }}>
+        <div className="flex items-center gap-2 px-3 py-2.5 rounded-2xl" style={{ background: "rgba(10,37,64,0.9)", border: "1.5px solid rgba(184,138,60,0.25)" }}>
           <i className="ri-map-pin-line text-gold-400 text-sm flex-shrink-0" />
           <input
             type="text"
@@ -106,9 +106,9 @@ const FieldReportForm = ({ isAr, onBack }: Props) => {
               onClick={() => setEncounterType(t)}
               className="px-2 py-2 rounded-xl text-xs font-['Inter'] cursor-pointer transition-all text-left"
               style={{
-                background: encounterType === t ? "rgba(181,142,60,0.12)" : "rgba(20,29,46,0.8)",
-                color: encounterType === t ? "#D4A84B" : "#6B7280",
-                border: encounterType === t ? "1px solid rgba(181,142,60,0.35)" : "1px solid rgba(255,255,255,0.06)",
+                background: encounterType === t ? "rgba(184,138,60,0.12)" : "rgba(10,37,64,0.8)",
+                color: encounterType === t ? "#D6B47E" : "#6B7280",
+                border: encounterType === t ? "1px solid rgba(184,138,60,0.35)" : "1px solid rgba(255,255,255,0.06)",
               }}
             >
               {t}
@@ -127,7 +127,7 @@ const FieldReportForm = ({ isAr, onBack }: Props) => {
               onClick={() => setOutcome(o)}
               className="px-2 py-2 rounded-xl text-xs font-['Inter'] cursor-pointer transition-all text-left"
               style={{
-                background: outcome === o ? "rgba(74,222,128,0.1)" : "rgba(20,29,46,0.8)",
+                background: outcome === o ? "rgba(74,222,128,0.1)" : "rgba(10,37,64,0.8)",
                 color: outcome === o ? "#4ADE80" : "#6B7280",
                 border: outcome === o ? "1px solid rgba(74,222,128,0.3)" : "1px solid rgba(255,255,255,0.06)",
               }}
@@ -145,13 +145,13 @@ const FieldReportForm = ({ isAr, onBack }: Props) => {
           <button
             onClick={() => setPhotoCount((c) => Math.min(c + 1, 5))}
             className="flex items-center gap-2 px-4 py-2.5 rounded-2xl text-sm font-['Inter'] cursor-pointer flex-1"
-            style={{ background: "rgba(20,29,46,0.9)", border: "1.5px solid rgba(181,142,60,0.25)", color: "#D4A84B" }}
+            style={{ background: "rgba(10,37,64,0.9)", border: "1.5px solid rgba(184,138,60,0.25)", color: "#D6B47E" }}
           >
             <i className="ri-camera-line text-base" />
             {isAr ? "التقاط صورة" : "Capture Photo"}
           </button>
           {photoCount > 0 && (
-            <div className="flex items-center gap-1 px-3 py-2.5 rounded-2xl" style={{ background: "rgba(181,142,60,0.08)", border: "1px solid rgba(181,142,60,0.2)" }}>
+            <div className="flex items-center gap-1 px-3 py-2.5 rounded-2xl" style={{ background: "rgba(184,138,60,0.08)", border: "1px solid rgba(184,138,60,0.2)" }}>
               <i className="ri-image-line text-gold-400 text-sm" />
               <span className="text-gold-400 text-sm font-bold font-['JetBrains_Mono']">{photoCount}</span>
             </div>
@@ -166,14 +166,14 @@ const FieldReportForm = ({ isAr, onBack }: Props) => {
           onClick={handleRecord}
           className="w-full flex items-center justify-center gap-3 py-3 rounded-2xl text-sm font-bold font-['Inter'] cursor-pointer transition-all"
           style={{
-            background: recording ? "rgba(181,142,60,0.15)" : "rgba(20,29,46,0.9)",
-            border: recording ? "1.5px solid #D4A84B" : "1.5px solid rgba(181,142,60,0.25)",
-            color: recording ? "#D4A84B" : "#6B7280",
+            background: recording ? "rgba(184,138,60,0.15)" : "rgba(10,37,64,0.9)",
+            border: recording ? "1.5px solid #D6B47E" : "1.5px solid rgba(184,138,60,0.25)",
+            color: recording ? "#D6B47E" : "#6B7280",
           }}
         >
           {recording ? (
             <>
-              <div className="w-3 h-3 rounded-full bg-gold-400 animate-pulse" style={{ boxShadow: "0 0 8px #D4A84B" }} />
+              <div className="w-3 h-3 rounded-full bg-gold-400 animate-pulse" style={{ boxShadow: "0 0 8px #D6B47E" }} />
               <span className="font-['JetBrains_Mono']">{String(Math.floor(recordingTime / 60)).padStart(2, "0")}:{String(recordingTime % 60).padStart(2, "0")}</span>
               <span>{isAr ? "جارٍ التسجيل — اضغط للإيقاف" : "Recording — Tap to stop"}</span>
             </>
@@ -195,7 +195,7 @@ const FieldReportForm = ({ isAr, onBack }: Props) => {
           placeholder={isAr ? "وصف المواجهة..." : "Describe the encounter..."}
           rows={4}
           className="w-full px-3 py-2.5 rounded-2xl text-sm font-['Inter'] resize-none"
-          style={{ background: "rgba(20,29,46,0.9)", border: "1.5px solid rgba(181,142,60,0.2)", color: "#D1D5DB", outline: "none" }}
+          style={{ background: "rgba(10,37,64,0.9)", border: "1.5px solid rgba(184,138,60,0.2)", color: "#D1D5DB", outline: "none" }}
         />
         <p className="text-gray-700 text-[10px] font-['JetBrains_Mono'] text-right mt-1">{narrative.length}/500</p>
       </div>
@@ -206,8 +206,8 @@ const FieldReportForm = ({ isAr, onBack }: Props) => {
         disabled={!encounterType || !outcome || !narrative || submitting}
         className="w-full flex items-center justify-center gap-2 py-4 rounded-2xl text-sm font-black font-['Inter'] cursor-pointer transition-all mb-2"
         style={{
-          background: (!encounterType || !outcome || !narrative) ? "rgba(181,142,60,0.1)" : "#D4A84B",
-          color: (!encounterType || !outcome || !narrative) ? "rgba(181,142,60,0.4)" : "#0B1220",
+          background: (!encounterType || !outcome || !narrative) ? "rgba(184,138,60,0.1)" : "#D6B47E",
+          color: (!encounterType || !outcome || !narrative) ? "rgba(184,138,60,0.4)" : "#051428",
           cursor: (!encounterType || !outcome || !narrative) ? "not-allowed" : "pointer",
         }}
       >

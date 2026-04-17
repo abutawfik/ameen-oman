@@ -34,7 +34,7 @@ const SENTIMENT_CONFIG: Record<Sentiment, { color: string; label: string; labelA
   positive: { color: "#4ADE80", label: "Positive", labelAr: "إيجابي", icon: "ri-emotion-happy-line" },
   neutral:  { color: "#9CA3AF", label: "Neutral",  labelAr: "محايد",  icon: "ri-emotion-normal-line" },
   negative: { color: "#FACC15", label: "Negative", labelAr: "سلبي",   icon: "ri-emotion-unhappy-line" },
-  threat:   { color: "#F87171", label: "Threat",   labelAr: "تهديد",  icon: "ri-alarm-warning-line" },
+  threat:   { color: "#C94A5E", label: "Threat",   labelAr: "تهديد",  icon: "ri-alarm-warning-line" },
 };
 
 const INITIAL_POSTS: Post[] = [
@@ -96,12 +96,12 @@ const OSINTPostFeed = ({ isAr }: Props) => {
           <button key={f.id} type="button" onClick={() => setFilter(f.id)}
             className="px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer transition-all whitespace-nowrap"
             style={{
-              background: filter === f.id ? (f.id === "elevated" ? "rgba(248,113,113,0.15)" : "rgba(181,142,60,0.15)") : "rgba(255,255,255,0.04)",
-              border: `1px solid ${filter === f.id ? (f.id === "elevated" ? "rgba(248,113,113,0.35)" : "rgba(181,142,60,0.35)") : "rgba(255,255,255,0.08)"}`,
-              color: filter === f.id ? (f.id === "elevated" ? "#F87171" : "#D4A84B") : "#6B7280",
+              background: filter === f.id ? (f.id === "elevated" ? "rgba(201,74,94,0.15)" : "rgba(184,138,60,0.15)") : "rgba(255,255,255,0.04)",
+              border: `1px solid ${filter === f.id ? (f.id === "elevated" ? "rgba(201,74,94,0.35)" : "rgba(184,138,60,0.35)") : "rgba(255,255,255,0.08)"}`,
+              color: filter === f.id ? (f.id === "elevated" ? "#C94A5E" : "#D6B47E") : "#6B7280",
             }}>
             {isAr ? f.labelAr : f.label}
-            {f.id === "elevated" && <span className="ml-1.5 px-1 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(248,113,113,0.2)", color: "#F87171", fontSize: "9px" }}>
+            {f.id === "elevated" && <span className="ml-1.5 px-1 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(201,74,94,0.2)", color: "#C94A5E", fontSize: "9px" }}>
               {posts.filter((p) => p.elevated).length}
             </span>}
           </button>
@@ -120,14 +120,14 @@ const OSINTPostFeed = ({ isAr }: Props) => {
           return (
             <div key={post.id} className="rounded-2xl border p-5 transition-all"
               style={{
-                background: post.elevated ? "rgba(248,113,113,0.04)" : "rgba(20,29,46,0.8)",
-                borderColor: post.elevated ? "rgba(248,113,113,0.3)" : "rgba(181,142,60,0.1)",
+                background: post.elevated ? "rgba(201,74,94,0.04)" : "rgba(10,37,64,0.8)",
+                borderColor: post.elevated ? "rgba(201,74,94,0.3)" : "rgba(184,138,60,0.1)",
                 backdropFilter: "blur(12px)",
-                borderLeft: post.elevated ? "4px solid #F87171" : "4px solid transparent",
+                borderLeft: post.elevated ? "4px solid #C94A5E" : "4px solid transparent",
               }}>
               {/* Elevated alert */}
               {post.elevated && (
-                <div className="flex items-center gap-2 mb-3 px-3 py-2 rounded-xl" style={{ background: "rgba(248,113,113,0.08)", border: "1px solid rgba(248,113,113,0.2)" }}>
+                <div className="flex items-center gap-2 mb-3 px-3 py-2 rounded-xl" style={{ background: "rgba(201,74,94,0.08)", border: "1px solid rgba(201,74,94,0.2)" }}>
                   <i className="ri-alarm-warning-line text-red-400 text-xs" />
                   <span className="text-red-400 text-xs font-semibold">{isAr ? "تنبيه مرتفع:" : "Elevated Alert:"} {isAr ? post.elevatedReasonAr : post.elevatedReason}</span>
                 </div>
@@ -156,7 +156,7 @@ const OSINTPostFeed = ({ isAr }: Props) => {
                     <div className="flex gap-1.5 flex-wrap">
                       {post.matchedKeywords.map((kw) => (
                         <span key={kw} className="px-2 py-0.5 rounded-full text-xs font-bold font-['JetBrains_Mono']"
-                          style={{ background: "rgba(181,142,60,0.12)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>
+                          style={{ background: "rgba(184,138,60,0.12)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}>
                           {kw}
                         </span>
                       ))}

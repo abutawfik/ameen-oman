@@ -157,9 +157,9 @@ const RoamingServiceForm = ({ isAr, onCancel }: Props) => {
                   { key: "sms",   label: "SMS Roaming",   labelAr: "تجوال الرسائل",   value: smsRoaming,   set: setSmsRoaming,   icon: "ri-message-2-line" },
                 ].map((svc) => (
                   <div key={svc.key} className="flex items-center justify-between p-2.5 rounded-lg border"
-                    style={{ background: svc.value === "enabled" ? "rgba(181,142,60,0.05)" : "rgba(255,255,255,0.02)", borderColor: svc.value === "enabled" ? "rgba(181,142,60,0.2)" : "rgba(255,255,255,0.06)" }}>
+                    style={{ background: svc.value === "enabled" ? "rgba(184,138,60,0.05)" : "rgba(255,255,255,0.02)", borderColor: svc.value === "enabled" ? "rgba(184,138,60,0.2)" : "rgba(255,255,255,0.06)" }}>
                     <div className="flex items-center gap-2">
-                      <i className={`${svc.icon} text-sm`} style={{ color: svc.value === "enabled" ? "#D4A84B" : "#6B7280" }} />
+                      <i className={`${svc.icon} text-sm`} style={{ color: svc.value === "enabled" ? "#D6B47E" : "#6B7280" }} />
                       <span className="text-xs font-semibold font-['Inter']" style={{ color: svc.value === "enabled" ? "#D1D5DB" : "#6B7280" }}>
                         {isAr ? svc.labelAr : svc.label}
                       </span>
@@ -193,14 +193,14 @@ const RoamingServiceForm = ({ isAr, onCancel }: Props) => {
             {selectedCountries.length > 0 && (
               <div
                 className="p-4 rounded-xl border"
-                style={{ background: "rgba(181,142,60,0.04)", borderColor: "rgba(181,142,60,0.15)" }}
+                style={{ background: "rgba(184,138,60,0.04)", borderColor: "rgba(184,138,60,0.15)" }}
               >
                 <p className="text-gray-400 text-xs mb-2 font-['Inter']">
                   {isAr ? "ملخص التغطية" : "Coverage Summary"}
                 </p>
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 flex items-center justify-center rounded-xl flex-shrink-0"
-                    style={{ background: "rgba(181,142,60,0.12)", border: "1px solid rgba(181,142,60,0.25)" }}>
+                    style={{ background: "rgba(184,138,60,0.12)", border: "1px solid rgba(184,138,60,0.25)" }}>
                     <i className="ri-earth-line text-gold-400 text-lg" />
                   </div>
                   <div>

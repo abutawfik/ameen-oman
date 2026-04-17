@@ -17,31 +17,31 @@ import { useBrandFonts } from "@/brand/typography";
 
 // ── Inline brand tokens (hex from tokens.css) ───────────────────────────────
 const C = {
-  midnight900: "#05080F",
-  midnight800: "#0B1220",
-  midnight700: "#141D2E",
-  midnight600: "#1C2740",
-  midnight500: "#2A3654",
-  midnight400: "#3E4A6B",
-  midnight300: "#5A6787",
-  midnight200: "#8B95B0",
+  midnight900: "#020A14",
+  midnight800: "#051428",
+  midnight700: "#0A2540",
+  midnight600: "#10325A",
+  midnight500: "#1A4578",
+  midnight400: "#2C5F8F",
+  midnight300: "#4A7AA8",
+  midnight200: "#7A9CBF",
 
   ivory000: "#FFFFFF",
-  ivory100: "#F5EFE3",
-  ivory200: "#EFE7D3",
-  ivory300: "#E7DEC7",
-  ivory400: "#DAD0B8",
+  ivory100: "#F8F5F0",
+  ivory200: "#EFE8D7",
+  ivory300: "#EAE2CF",
+  ivory400: "#E0D8C5",
   ivory700: "#8A8374",
   ivory800: "#6B6457",
 
-  gold400: "#D4A84B",
+  gold400: "#D6B47E",
   gold500: "#C99C48",
-  gold600: "#B58E3C",
+  gold600: "#B88A3C",
   gold700: "#96732C",
 
-  omanRed500: "#B32830",
-  omanRed600: "#9A1F24",
-  omanRed700: "#831B1F",
+  omanRed500: "#A52844",
+  omanRed600: "#8A1F3C",
+  omanRed700: "#701832",
 } as const;
 
 const LOCALE_KEY = "ameen:locale";
@@ -182,7 +182,7 @@ const LoginPage = () => {
           padding: "4rem 3rem",
           color: C.ivory100,
           background:
-            `radial-gradient(ellipse at top, rgba(154,31,36,0.22), transparent 70%), ` +
+            `radial-gradient(ellipse at top, rgba(201,74,94,0.22), transparent 70%), ` +
             `linear-gradient(180deg, ${C.midnight800}, ${C.midnight900})`,
         }}
       >
@@ -193,8 +193,8 @@ const LoginPage = () => {
             position: "absolute",
             inset: 0,
             backgroundImage:
-              `linear-gradient(rgba(181,142,60,0.06) 1px, transparent 1px), ` +
-              `linear-gradient(90deg, rgba(181,142,60,0.06) 1px, transparent 1px)`,
+              `linear-gradient(rgba(184,138,60,0.06) 1px, transparent 1px), ` +
+              `linear-gradient(90deg, rgba(184,138,60,0.06) 1px, transparent 1px)`,
             backgroundSize: "40px 40px",
             pointerEvents: "none",
           }}
@@ -210,8 +210,8 @@ const LoginPage = () => {
               gap: 8,
               padding: "0.375rem 0.875rem",
               borderRadius: 9999,
-              border: `1px solid rgba(181,142,60,0.45)`,
-              background: "rgba(181,142,60,0.1)",
+              border: `1px solid rgba(184,138,60,0.45)`,
+              background: "rgba(184,138,60,0.1)",
               color: C.gold400,
               fontFamily: fonts.mono,
               fontSize: "0.6875rem",
@@ -239,7 +239,7 @@ const LoginPage = () => {
             <BrandLogo variant="stacked" tone="light" size="lg" isAr={isAr} />
           </div>
 
-          {/* Tagline — primary in display italic (EN) or Readex Pro 500 (AR) */}
+          {/* Tagline — primary in display italic (EN) or Cairo 500 (AR) */}
           <div style={{ maxWidth: 440 }}>
             <div
               style={{
@@ -277,7 +277,7 @@ const LoginPage = () => {
             position: "relative",
             zIndex: 1,
             paddingTop: "2rem",
-            borderTop: `1px solid rgba(181,142,60,0.2)`,
+            borderTop: `1px solid rgba(184,138,60,0.2)`,
             color: C.midnight200,
             fontFamily: fonts.sans,
             fontSize: "0.75rem",
@@ -376,7 +376,7 @@ const LoginPage = () => {
                   cursor: ssoRedirecting ? "wait" : "pointer",
                   opacity: ssoRedirecting ? 0.8 : 1,
                   transition: "filter 150ms",
-                  boxShadow: "0 2px 6px rgba(5,8,15,0.15)",
+                  boxShadow: "0 2px 6px rgba(2,10,20,0.15)",
                 }}
                 onMouseEnter={(e) => { if (!ssoRedirecting) e.currentTarget.style.filter = "brightness(1.15)"; }}
                 onMouseLeave={(e) => { e.currentTarget.style.filter = "none"; }}
@@ -525,8 +525,8 @@ const LoginPage = () => {
                       fontFamily: fonts.sans,
                       fontSize: "0.8125rem",
                       color: C.omanRed600,
-                      background: "rgba(154,31,36,0.08)",
-                      border: `1px solid rgba(154,31,36,0.3)`,
+                      background: "rgba(201,74,94,0.08)",
+                      border: `1px solid rgba(201,74,94,0.3)`,
                       borderRadius: 6,
                     }}
                   >
@@ -554,18 +554,18 @@ const LoginPage = () => {
                     border: "none",
                     cursor: loading ? "wait" : "pointer",
                     opacity: loading ? 0.85 : 1,
-                    boxShadow: "0 2px 8px rgba(154,31,36,0.28)",
+                    boxShadow: "0 2px 8px rgba(201,74,94,0.28)",
                     transition: "filter 150ms, box-shadow 150ms",
                   }}
                   onMouseEnter={(e) => {
                     if (!loading) {
                       e.currentTarget.style.filter = "brightness(1.08)";
-                      e.currentTarget.style.boxShadow = "0 4px 14px rgba(154,31,36,0.38)";
+                      e.currentTarget.style.boxShadow = "0 4px 14px rgba(201,74,94,0.38)";
                     }
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.filter = "none";
-                    e.currentTarget.style.boxShadow = "0 2px 8px rgba(154,31,36,0.28)";
+                    e.currentTarget.style.boxShadow = "0 2px 8px rgba(201,74,94,0.28)";
                   }}
                 >
                   {loading ? t.submitLoading : t.submit}
@@ -693,7 +693,7 @@ const LoginPage = () => {
                     fontWeight: 600,
                     border: "none",
                     cursor: otp.length === 6 && !loading ? "pointer" : "not-allowed",
-                    boxShadow: otp.length === 6 ? "0 2px 8px rgba(154,31,36,0.28)" : "none",
+                    boxShadow: otp.length === 6 ? "0 2px 8px rgba(201,74,94,0.28)" : "none",
                     transition: "filter 150ms",
                   }}
                 >

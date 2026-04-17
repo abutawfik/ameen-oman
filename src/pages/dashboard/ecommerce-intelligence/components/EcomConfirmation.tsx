@@ -41,7 +41,7 @@ const EcomConfirmation = ({ isAr, eventType, eventTypeAr, color, icon, onReset }
       {/* Confirmation code */}
       <div
         className="flex items-center gap-3 px-6 py-4 rounded-2xl mb-3"
-        style={{ background: "rgba(181,142,60,0.06)", border: "1px solid rgba(181,142,60,0.2)" }}
+        style={{ background: "rgba(184,138,60,0.06)", border: "1px solid rgba(184,138,60,0.2)" }}
       >
         <i className="ri-qr-code-line text-gold-400 text-xl" />
         <div className="text-left">
@@ -54,7 +54,7 @@ const EcomConfirmation = ({ isAr, eventType, eventTypeAr, color, icon, onReset }
           type="button"
           onClick={() => { navigator.clipboard.writeText(code); setCopied(true); }}
           className="ml-2 w-8 h-8 flex items-center justify-center rounded-lg cursor-pointer transition-colors"
-          style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}
+          style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.2)" }}
         >
           <i className={`${copied ? "ri-check-line text-green-400" : "ri-file-copy-line text-gold-400"} text-sm`} />
         </button>
@@ -70,9 +70,9 @@ const EcomConfirmation = ({ isAr, eventType, eventTypeAr, color, icon, onReset }
           type="button"
           onClick={onReset}
           className="flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold cursor-pointer transition-colors whitespace-nowrap font-['Inter']"
-          style={{ background: "#D4A84B", color: "#0B1220" }}
+          style={{ background: "#D6B47E", color: "#051428" }}
           onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C99C48"; }}
-          onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#D4A84B"; }}
+          onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#D6B47E"; }}
         >
           <i className="ri-add-line" />
           {isAr ? "إرسال حدث جديد" : "Submit Another Event"}

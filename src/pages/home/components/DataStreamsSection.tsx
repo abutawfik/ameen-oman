@@ -3,11 +3,11 @@ import i18n from "@/i18n";
 
 // ─── Brand tokens (inline to avoid JIT utility misses) ───────────────────────
 const C = {
-  midnight800: "#0B1220",
-  midnight900: "#05080F",
-  ivory100:    "#F5EFE3",
-  ivory200:    "#EFE7D3",
-  gold400:     "#D4A84B",
+  midnight800: "#051428",
+  midnight900: "#020A14",
+  ivory100:    "#F8F5F0",
+  ivory200:    "#EFE8D7",
+  gold400:     "#D6B47E",
 };
 
 const FF_DISPLAY = "'Cormorant Garamond', Georgia, serif";
@@ -17,15 +17,15 @@ const FF_MONO    = "'JetBrains Mono', ui-monospace, monospace";
 
 // ─── Category palette — per style-guide `--cat-*` tokens ─────────────────────
 const CAT = {
-  core:      { color: "#2466A3", label: "Core Intelligence",   labelAr: "الاستخبارات الأساسية" },
-  mobility:  { color: "#D25A2A", label: "Mobility",             labelAr: "التنقل" },
+  core:      { color: "#2C5F8F", label: "Core Intelligence",   labelAr: "الاستخبارات الأساسية" },
+  mobility:  { color: "#C94A5E", label: "Mobility",             labelAr: "التنقل" },
   commerce:  { color: "#1F7A8C", label: "Commerce",             labelAr: "التجارة" },
-  financial: { color: "#0E7C66", label: "Financial",            labelAr: "المالية" },
-  health:    { color: "#B32830", label: "Health",               labelAr: "الصحة" },
+  financial: { color: "#14786A", label: "Financial",            labelAr: "المالية" },
+  health:    { color: "#A52844", label: "Health",               labelAr: "الصحة" },
   utility:   { color: "#C98A1B", label: "Utility",              labelAr: "المرافق" },
   education: { color: "#6B4FAE", label: "Education",            labelAr: "التعليم" },
-  labor:     { color: "#4F9A35", label: "Labor",                labelAr: "العمل" },
-  customs:   { color: "#9A1F24", label: "Customs",              labelAr: "الجمارك" },
+  labor:     { color: "#4A8E3A", label: "Labor",                labelAr: "العمل" },
+  customs:   { color: "#8A1F3C", label: "Customs",              labelAr: "الجمارك" },
   maritime:  { color: "#2C5F8F", label: "Maritime",             labelAr: "البحرية" },
   postal:    { color: "#A8547A", label: "Postal",               labelAr: "البريد" },
   digital:   { color: "#8A6C1B", label: "Digital",              labelAr: "رقمي" },
@@ -93,7 +93,7 @@ const DataStreamsSection = () => {
         className="absolute inset-0 pointer-events-none"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(181,142,60,1) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,1) 1px, transparent 1px)",
+            "linear-gradient(rgba(184,138,60,1) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,1) 1px, transparent 1px)",
           backgroundSize: "40px 40px",
           opacity: 0.04,
         }}
@@ -107,8 +107,8 @@ const DataStreamsSection = () => {
             style={{
               padding: "0.25rem 0.875rem",
               borderRadius: 9999,
-              border: "1px solid rgba(181,142,60,0.35)",
-              background: "rgba(181,142,60,0.08)",
+              border: "1px solid rgba(184,138,60,0.35)",
+              background: "rgba(184,138,60,0.08)",
               fontFamily: FF_MONO,
               fontSize: "0.6875rem",
               letterSpacing: "0.15em",
@@ -157,9 +157,9 @@ const DataStreamsSection = () => {
                   position: "relative",
                   background: "rgba(20,29,46,0.7)",
                   borderLeft: `3px solid ${cat.color}`,
-                  borderTop: "1px solid rgba(181,142,60,0.08)",
-                  borderRight: "1px solid rgba(181,142,60,0.08)",
-                  borderBottom: "1px solid rgba(181,142,60,0.08)",
+                  borderTop: "1px solid rgba(184,138,60,0.08)",
+                  borderRight: "1px solid rgba(184,138,60,0.08)",
+                  borderBottom: "1px solid rgba(184,138,60,0.08)",
                   borderRadius: 8,
                   padding: 20,
                   display: "flex",
@@ -169,7 +169,7 @@ const DataStreamsSection = () => {
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = "translateY(-2px)";
-                  e.currentTarget.style.boxShadow = "0 12px 20px rgba(5,8,15,0.35)";
+                  e.currentTarget.style.boxShadow = "0 12px 20px rgba(2,10,20,0.35)";
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = "";
@@ -239,7 +239,7 @@ const DataStreamsSection = () => {
                     alignItems: "center",
                     marginTop: "auto",
                     paddingTop: "0.5rem",
-                    borderTop: "1px solid rgba(181,142,60,0.12)",
+                    borderTop: "1px solid rgba(184,138,60,0.12)",
                   }}
                 >
                   <span style={{ fontFamily: FF_SANS, fontSize: "0.75rem", fontWeight: 500, color: C.gold400 }}>

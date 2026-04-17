@@ -4,11 +4,11 @@ import { STREAMS, STREAM_CATEGORIES } from "@/mocks/streamsCatalog";
 
 // ─── Brand tokens ────────────────────────────────────────────────────────────
 const C = {
-  midnight800: "#0B1220",
-  midnight900: "#05080F",
-  ivory100:    "#F5EFE3",
-  ivory200:    "#EFE7D3",
-  gold400:     "#D4A84B",
+  midnight800: "#051428",
+  midnight900: "#020A14",
+  ivory100:    "#F8F5F0",
+  ivory200:    "#EFE8D7",
+  gold400:     "#D6B47E",
 };
 
 interface Stage {
@@ -132,7 +132,7 @@ const DataFlowArchitecture = () => {
         className="absolute inset-0 pointer-events-none"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(181,142,60,1) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,1) 1px, transparent 1px)",
+            "linear-gradient(rgba(184,138,60,1) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,1) 1px, transparent 1px)",
           backgroundSize: "40px 40px",
           opacity: 0.04,
         }}
@@ -146,8 +146,8 @@ const DataFlowArchitecture = () => {
             style={{
               padding: "0.25rem 0.875rem",
               borderRadius: 9999,
-              border: "1px solid rgba(181,142,60,0.35)",
-              background: "rgba(181,142,60,0.08)",
+              border: "1px solid rgba(184,138,60,0.35)",
+              background: "rgba(184,138,60,0.08)",
               fontFamily: mono,
               fontSize: "0.6875rem",
               letterSpacing: "0.15em",
@@ -213,8 +213,8 @@ const DataFlowArchitecture = () => {
                   ref={(el) => { stageRefs.current[i] = el; }}
                   style={{
                     listStyle: "none",
-                    background: "rgba(11,18,32,0.7)",
-                    border: "1px solid rgba(181,142,60,0.25)",
+                    background: "rgba(5,20,40,0.7)",
+                    border: "1px solid rgba(184,138,60,0.25)",
                     borderRadius: 8,
                     padding: 20,
                     display: "flex",
@@ -246,7 +246,7 @@ const DataFlowArchitecture = () => {
                       width: 40,
                       height: 40,
                       borderRadius: 8,
-                      background: "rgba(181,142,60,0.1)",
+                      background: "rgba(184,138,60,0.1)",
                       color: C.gold400,
                       display: "flex",
                       alignItems: "center",
@@ -355,8 +355,8 @@ const DataFlowArchitecture = () => {
         <div
           style={{
             marginTop: "2.5rem",
-            background: "rgba(11,18,32,0.5)",
-            border: "1px solid rgba(181,142,60,0.15)",
+            background: "rgba(5,20,40,0.5)",
+            border: "1px solid rgba(184,138,60,0.15)",
             borderRadius: 12,
             padding: 16,
           }}

@@ -8,7 +8,7 @@ const CATEGORIES = [
     icon: "ri-cpu-line",
     label: "Electronics",
     labelAr: "الإلكترونيات",
-    color: "#D4A84B",
+    color: "#D6B47E",
     count: 89,
     trend: "+12%",
     trendUp: false,
@@ -27,7 +27,7 @@ const CATEGORIES = [
     icon: "ri-flask-line",
     label: "Chemicals",
     labelAr: "المواد الكيميائية",
-    color: "#F87171",
+    color: "#C94A5E",
     count: 14,
     trend: "+3",
     trendUp: false,
@@ -45,7 +45,7 @@ const CATEGORIES = [
     icon: "ri-radio-line",
     label: "Communication Devices",
     labelAr: "أجهزة الاتصال",
-    color: "#FB923C",
+    color: "#C98A1B",
     count: 22,
     trend: "+5",
     trendUp: false,
@@ -119,8 +119,8 @@ const CATEGORIES = [
 const riskColor = (r: "low" | "medium" | "high" | "critical") => {
   if (r === "low") return "#4ADE80";
   if (r === "medium") return "#FACC15";
-  if (r === "high") return "#FB923C";
-  return "#F87171";
+  if (r === "high") return "#C98A1B";
+  return "#C94A5E";
 };
 
 const ItemCategoryMonitor = ({ isAr }: Props) => {
@@ -138,7 +138,7 @@ const ItemCategoryMonitor = ({ isAr }: Props) => {
             onClick={() => setSelected(selected === cat.id ? null : cat.id)}
             className="relative rounded-2xl border p-5 text-left cursor-pointer transition-all overflow-hidden"
             style={{
-              background: selected === cat.id ? `${cat.color}10` : "rgba(20,29,46,0.8)",
+              background: selected === cat.id ? `${cat.color}10` : "rgba(10,37,64,0.8)",
               borderColor: selected === cat.id ? `${cat.color}50` : `${cat.color}20`,
               backdropFilter: "blur(12px)",
             }}
@@ -149,7 +149,7 @@ const ItemCategoryMonitor = ({ isAr }: Props) => {
                 <div className="w-10 h-10 flex items-center justify-center rounded-xl" style={{ background: `${cat.color}15`, border: `1px solid ${cat.color}30` }}>
                   <i className={`${cat.icon} text-lg`} style={{ color: cat.color }} />
                 </div>
-                <div className="flex items-center gap-1 px-2 py-0.5 rounded-full" style={{ background: "rgba(248,113,113,0.1)" }}>
+                <div className="flex items-center gap-1 px-2 py-0.5 rounded-full" style={{ background: "rgba(201,74,94,0.1)" }}>
                   <i className="ri-arrow-up-line text-red-400 text-xs" />
                   <span className="text-red-400 text-xs font-bold font-['JetBrains_Mono']">{cat.trend}</span>
                 </div>
@@ -172,7 +172,7 @@ const ItemCategoryMonitor = ({ isAr }: Props) => {
 
       {/* Detail panel */}
       {selectedCat && (
-        <div className="rounded-2xl border p-6" style={{ background: "rgba(20,29,46,0.9)", borderColor: `${selectedCat.color}30`, backdropFilter: "blur(16px)" }}>
+        <div className="rounded-2xl border p-6" style={{ background: "rgba(10,37,64,0.9)", borderColor: `${selectedCat.color}30`, backdropFilter: "blur(16px)" }}>
           <div className="flex items-center justify-between mb-5">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 flex items-center justify-center rounded-xl" style={{ background: `${selectedCat.color}15`, border: `1px solid ${selectedCat.color}30` }}>

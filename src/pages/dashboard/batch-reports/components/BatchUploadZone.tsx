@@ -117,7 +117,7 @@ const BatchUploadZone = ({ isAr, onProcessingComplete }: Props) => {
     <div className="space-y-6">
       {/* Template download + entity selector */}
       <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border p-5"
-        style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
+        style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}>
         <div>
           <h3 className="text-white font-bold text-sm mb-1">{isAr ? "قالب الرفع" : "Upload Template"}</h3>
           <p className="text-gray-500 text-xs">{isAr ? "اختر نوع الكيان لتنزيل القالب المناسب" : "Select entity type to download the matching template"}</p>
@@ -125,14 +125,14 @@ const BatchUploadZone = ({ isAr, onProcessingComplete }: Props) => {
         <div className="flex flex-wrap items-center gap-3">
           <select value={entityType} onChange={(e) => setEntityType(e.target.value)}
             className="px-3 py-2 rounded-lg border text-sm cursor-pointer outline-none"
-            style={{ background: "rgba(11,18,32,0.8)", borderColor: "rgba(181,142,60,0.2)", color: "#D1D5DB", minWidth: "180px" }}>
+            style={{ background: "rgba(5,20,40,0.8)", borderColor: "rgba(184,138,60,0.2)", color: "#D1D5DB", minWidth: "180px" }}>
             {ENTITY_TEMPLATES.map((t) => (
               <option key={t.value} value={t.value}>{isAr ? t.labelAr : t.label}</option>
             ))}
           </select>
           <button type="button"
             className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold cursor-pointer whitespace-nowrap transition-opacity hover:opacity-80"
-            style={{ background: "transparent", border: "1px solid #D4A84B", color: "#D4A84B" }}>
+            style={{ background: "transparent", border: "1px solid #D6B47E", color: "#D6B47E" }}>
             <i className="ri-download-2-line text-sm" />
             {isAr ? "تنزيل القالب" : "Download Template"}
           </button>
@@ -153,13 +153,13 @@ const BatchUploadZone = ({ isAr, onProcessingComplete }: Props) => {
         onClick={() => fileInputRef.current?.click()}
         className="relative rounded-2xl border-2 border-dashed p-12 flex flex-col items-center justify-center cursor-pointer transition-all"
         style={{
-          borderColor: isDragging ? "#D4A84B" : "rgba(181,142,60,0.25)",
-          background: isDragging ? "rgba(181,142,60,0.06)" : "rgba(20,29,46,0.6)",
+          borderColor: isDragging ? "#D6B47E" : "rgba(184,138,60,0.25)",
+          background: isDragging ? "rgba(184,138,60,0.06)" : "rgba(10,37,64,0.6)",
           backdropFilter: "blur(12px)",
         }}>
         <input ref={fileInputRef} type="file" multiple accept=".csv,.xls,.xlsx" className="hidden" onChange={handleFileInput} />
         <div className="w-16 h-16 flex items-center justify-center rounded-2xl mb-4"
-          style={{ background: isDragging ? "rgba(181,142,60,0.15)" : "rgba(181,142,60,0.08)", border: `1px solid ${isDragging ? "#D4A84B" : "rgba(181,142,60,0.2)"}` }}>
+          style={{ background: isDragging ? "rgba(184,138,60,0.15)" : "rgba(184,138,60,0.08)", border: `1px solid ${isDragging ? "#D6B47E" : "rgba(184,138,60,0.2)"}` }}>
           <i className={`ri-upload-cloud-2-line text-3xl ${isDragging ? "text-gold-300" : "text-gold-400"}`} />
         </div>
         <p className="text-white font-bold text-lg mb-1">{isAr ? "أسقط الملفات هنا" : "Drop files here"}</p>
@@ -167,7 +167,7 @@ const BatchUploadZone = ({ isAr, onProcessingComplete }: Props) => {
         <div className="flex items-center gap-3">
           {["CSV", "XLS", "XLSX"].map((fmt) => (
             <span key={fmt} className="px-2.5 py-1 rounded-full text-xs font-bold font-['JetBrains_Mono']"
-              style={{ background: "rgba(181,142,60,0.08)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>
+              style={{ background: "rgba(184,138,60,0.08)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}>
               {fmt}
             </span>
           ))}
@@ -180,11 +180,11 @@ const BatchUploadZone = ({ isAr, onProcessingComplete }: Props) => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {files.map((file) => (
             <div key={file.id} className="rounded-2xl border p-4 flex items-start gap-4"
-              style={{ background: "rgba(20,29,46,0.8)", borderColor: file.done ? "rgba(74,222,128,0.2)" : "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
+              style={{ background: "rgba(10,37,64,0.8)", borderColor: file.done ? "rgba(74,222,128,0.2)" : "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}>
               <div className="w-10 h-10 flex items-center justify-center rounded-xl flex-shrink-0"
-                style={{ background: file.done ? "rgba(74,222,128,0.1)" : "rgba(181,142,60,0.1)", border: `1px solid ${file.done ? "rgba(74,222,128,0.3)" : "rgba(181,142,60,0.2)"}` }}>
+                style={{ background: file.done ? "rgba(74,222,128,0.1)" : "rgba(184,138,60,0.1)", border: `1px solid ${file.done ? "rgba(74,222,128,0.3)" : "rgba(184,138,60,0.2)"}` }}>
                 <i className={`${file.name.endsWith(".csv") ? "ri-file-text-line" : "ri-file-excel-2-line"} text-base`}
-                  style={{ color: file.done ? "#4ADE80" : "#D4A84B" }} />
+                  style={{ color: file.done ? "#4ADE80" : "#D6B47E" }} />
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between mb-1">
@@ -197,14 +197,14 @@ const BatchUploadZone = ({ isAr, onProcessingComplete }: Props) => {
                 </div>
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-gray-500 text-xs">{file.size}</span>
-                  <span className="text-xs font-['JetBrains_Mono']" style={{ color: file.done ? "#4ADE80" : "#D4A84B" }}>
+                  <span className="text-xs font-['JetBrains_Mono']" style={{ color: file.done ? "#4ADE80" : "#D6B47E" }}>
                     {file.done ? (isAr ? "مكتمل" : "Done") : file.speed}
                   </span>
                 </div>
                 {/* Progress bar */}
                 <div className="h-1.5 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
                   <div className="h-full rounded-full transition-all duration-300"
-                    style={{ width: `${file.progress}%`, background: file.done ? "#4ADE80" : "linear-gradient(90deg, #D4A84B, #38BDF8)" }} />
+                    style={{ width: `${file.progress}%`, background: file.done ? "#4ADE80" : "linear-gradient(90deg, #D6B47E, #38BDF8)" }} />
                 </div>
                 <div className="flex items-center justify-between mt-1">
                   <span className="text-gray-600 text-xs font-['JetBrains_Mono']">{file.progress}%</span>
@@ -222,7 +222,7 @@ const BatchUploadZone = ({ isAr, onProcessingComplete }: Props) => {
           <button type="button" onClick={handleProceed}
             disabled={!files.every((f) => f.done) || processing}
             className="flex items-center gap-2 px-6 py-2.5 rounded-lg text-sm font-bold cursor-pointer whitespace-nowrap transition-opacity disabled:opacity-40"
-            style={{ background: "#D4A84B", color: "#0B1220" }}>
+            style={{ background: "#D6B47E", color: "#051428" }}>
             <i className="ri-send-plane-line text-sm" />
             {isAr ? "المتابعة" : "Proceed"}
           </button>
@@ -240,15 +240,15 @@ const BatchUploadZone = ({ isAr, onProcessingComplete }: Props) => {
 
       {/* Processing modal */}
       {processing && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center" style={{ background: "rgba(11,18,32,0.85)", backdropFilter: "blur(8px)" }}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center" style={{ background: "rgba(5,20,40,0.85)", backdropFilter: "blur(8px)" }}>
           <div className="rounded-2xl border p-8 w-full max-w-md mx-4 text-center"
-            style={{ background: "rgba(20,29,46,0.95)", borderColor: "rgba(181,142,60,0.25)", backdropFilter: "blur(20px)" }}>
+            style={{ background: "rgba(10,37,64,0.95)", borderColor: "rgba(184,138,60,0.25)", backdropFilter: "blur(20px)" }}>
             {/* Spinner */}
             <div className="w-16 h-16 mx-auto mb-5 relative">
               <div className="absolute inset-0 rounded-full border-2 border-transparent animate-spin"
-                style={{ borderTopColor: "#D4A84B", borderRightColor: "rgba(181,142,60,0.3)" }} />
+                style={{ borderTopColor: "#D6B47E", borderRightColor: "rgba(184,138,60,0.3)" }} />
               <div className="absolute inset-2 rounded-full flex items-center justify-center"
-                style={{ background: "rgba(181,142,60,0.08)" }}>
+                style={{ background: "rgba(184,138,60,0.08)" }}>
                 <i className="ri-upload-cloud-2-line text-gold-400 text-xl" />
               </div>
             </div>
@@ -264,7 +264,7 @@ const BatchUploadZone = ({ isAr, onProcessingComplete }: Props) => {
             <div className="flex items-center justify-center gap-2">
               {PROCESSING_STEPS.map((_, i) => (
                 <div key={i} className="w-2 h-2 rounded-full transition-all"
-                  style={{ background: i <= processingStep ? "#D4A84B" : "rgba(255,255,255,0.1)" }} />
+                  style={{ background: i <= processingStep ? "#D6B47E" : "rgba(255,255,255,0.1)" }} />
               ))}
             </div>
           </div>

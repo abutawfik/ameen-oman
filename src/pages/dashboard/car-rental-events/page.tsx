@@ -27,7 +27,7 @@ const EVENT_CARDS: EventCard[] = [
     labelAr: "حجز مركبة",
     desc: "Register a new vehicle booking with full renter and document details",
     descAr: "تسجيل حجز مركبة جديد مع تفاصيل المستأجر والوثائق",
-    color: "#D4A84B",
+    color: "#D6B47E",
     code: "CAR_BOOK",
   },
   {
@@ -57,7 +57,7 @@ const EVENT_CARDS: EventCard[] = [
     labelAr: "إعادة مركبة",
     desc: "Complete return with condition assessment, charges and final invoice",
     descAr: "إتمام الإعادة مع تقييم الحالة والرسوم والفاتورة النهائية",
-    color: "#FB923C",
+    color: "#C98A1B",
     code: "CAR_DROPOFF",
   },
 ];
@@ -79,7 +79,7 @@ const CarRentalEventsPage = () => {
   return (
     <div
       className="min-h-screen font-['Inter']"
-      style={{ background: "#0B1220" }}
+      style={{ background: "#051428" }}
       dir={isAr ? "rtl" : "ltr"}
     >
       {/* Background grid */}
@@ -87,8 +87,8 @@ const CarRentalEventsPage = () => {
         className="fixed inset-0 pointer-events-none opacity-[0.035]"
         style={{
           backgroundImage: `
-            linear-gradient(rgba(181,142,60,1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(181,142,60,1) 1px, transparent 1px)
+            linear-gradient(rgba(184,138,60,1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(184,138,60,1) 1px, transparent 1px)
           `,
           backgroundSize: "50px 50px",
         }}
@@ -98,8 +98,8 @@ const CarRentalEventsPage = () => {
       <header
         className="sticky top-0 z-40 flex items-center justify-between px-6 py-3 border-b"
         style={{
-          background: "rgba(11,18,32,0.97)",
-          borderColor: "rgba(181,142,60,0.1)",
+          background: "rgba(5,20,40,0.97)",
+          borderColor: "rgba(184,138,60,0.1)",
           backdropFilter: "blur(16px)",
         }}
       >
@@ -127,7 +127,7 @@ const CarRentalEventsPage = () => {
           <div className="flex items-center gap-2.5">
             <div
               className="w-8 h-8 flex items-center justify-center rounded-lg"
-              style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}
+              style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.2)" }}
             >
               <i className="ri-car-line text-gold-400 text-sm" />
             </div>
@@ -138,7 +138,7 @@ const CarRentalEventsPage = () => {
                 </span>
                 <span
                   className="px-2 py-0.5 rounded-full text-xs font-bold font-['JetBrains_Mono']"
-                  style={{ background: "rgba(181,142,60,0.1)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}
+                  style={{ background: "rgba(184,138,60,0.1)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}
                 >
                   Al-Ameen PORTAL
                 </span>
@@ -184,7 +184,7 @@ const CarRentalEventsPage = () => {
               <div className="flex items-center gap-2 mb-2">
                 <div
                   className="w-1 h-6 rounded-full"
-                  style={{ background: "linear-gradient(to bottom, #D4A84B, transparent)" }}
+                  style={{ background: "linear-gradient(to bottom, #D6B47E, transparent)" }}
                 />
                 <h1 className="text-white text-2xl font-bold">
                   {isAr ? "اختر نوع الحدث" : "Select Event Type"}
@@ -205,8 +205,8 @@ const CarRentalEventsPage = () => {
                   onClick={() => handleSwitchEvent(card.id)}
                   className="group relative rounded-2xl border p-6 text-left cursor-pointer transition-all duration-300 flex flex-col gap-4"
                   style={{
-                    background: "rgba(20,29,46,0.85)",
-                    borderColor: "rgba(181,142,60,0.1)",
+                    background: "rgba(10,37,64,0.85)",
+                    borderColor: "rgba(184,138,60,0.1)",
                     backdropFilter: "blur(16px)",
                   }}
                   onMouseEnter={(e) => {
@@ -218,8 +218,8 @@ const CarRentalEventsPage = () => {
                   }}
                   onMouseLeave={(e) => {
                     const el = e.currentTarget as HTMLButtonElement;
-                    el.style.borderColor = "rgba(181,142,60,0.1)";
-                    el.style.background = "rgba(20,29,46,0.85)";
+                    el.style.borderColor = "rgba(184,138,60,0.1)";
+                    el.style.background = "rgba(10,37,64,0.85)";
                     el.style.boxShadow = "none";
                     el.style.transform = "translateY(0)";
                   }}
@@ -259,7 +259,7 @@ const CarRentalEventsPage = () => {
             {/* Info note */}
             <div
               className="flex items-start gap-3 px-5 py-4 rounded-xl border"
-              style={{ background: "rgba(181,142,60,0.03)", borderColor: "rgba(181,142,60,0.12)" }}
+              style={{ background: "rgba(184,138,60,0.03)", borderColor: "rgba(184,138,60,0.12)" }}
             >
               <i className="ri-information-line text-gold-400 text-sm mt-0.5 flex-shrink-0" />
               <p className="text-gray-500 text-sm">
@@ -277,7 +277,7 @@ const CarRentalEventsPage = () => {
             {/* Tab switcher */}
             <div
               className="flex gap-1 p-1 rounded-xl mb-6 overflow-x-auto"
-              style={{ background: "rgba(20,29,46,0.85)", border: "1px solid rgba(181,142,60,0.08)" }}
+              style={{ background: "rgba(10,37,64,0.85)", border: "1px solid rgba(184,138,60,0.08)" }}
             >
               {EVENT_CARDS.map((card) => (
                 <button

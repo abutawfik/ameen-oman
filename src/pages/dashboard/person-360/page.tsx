@@ -46,13 +46,13 @@ const Person360Page = () => {
   const alertCount = mockTimeline.filter((e) => e.isAlert).length;
 
   return (
-    <div className="flex flex-col h-full" style={{ background: "#0B1220" }}>
+    <div className="flex flex-col h-full" style={{ background: "#051428" }}>
       {/* Background grid */}
       <div className="fixed inset-0 pointer-events-none z-0 opacity-[0.03]">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="p360-grid" width="40" height="40" patternUnits="userSpaceOnUse">
-              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#D4A84B" strokeWidth="0.5" />
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#D6B47E" strokeWidth="0.5" />
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#p360-grid)" />
@@ -64,7 +64,7 @@ const Person360Page = () => {
         {/* Page header */}
         <div
           className="flex items-center justify-between px-6 py-3 border-b flex-shrink-0"
-          style={{ borderColor: "rgba(181,142,60,0.1)", background: "rgba(20,29,46,0.6)" }}
+          style={{ borderColor: "rgba(184,138,60,0.1)", background: "rgba(10,37,64,0.6)" }}
         >
           <div className="flex items-center gap-3">
             <button
@@ -78,7 +78,7 @@ const Person360Page = () => {
             <div className="flex items-center gap-2">
               <div
                 className="w-7 h-7 flex items-center justify-center rounded-lg"
-                style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.3)" }}
+                style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.3)" }}
               >
                 <i className="ri-user-search-line text-gold-400 text-sm" />
               </div>
@@ -98,7 +98,7 @@ const Person360Page = () => {
             {alertCount > 0 && (
               <div
                 className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg"
-                style={{ background: "rgba(248,113,113,0.1)", border: "1px solid rgba(248,113,113,0.3)" }}
+                style={{ background: "rgba(201,74,94,0.1)", border: "1px solid rgba(201,74,94,0.3)" }}
               >
                 <i className="ri-alert-fill text-red-400 text-sm" />
                 <span className="text-red-400 text-xs font-bold font-['JetBrains_Mono']">
@@ -109,14 +109,14 @@ const Person360Page = () => {
             {/* Actions */}
             <button
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-['JetBrains_Mono'] cursor-pointer transition-colors whitespace-nowrap"
-              style={{ background: "rgba(181,142,60,0.05)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}
+              style={{ background: "rgba(184,138,60,0.05)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}
             >
               <i className="ri-share-forward-line" />
               {isAr ? "مشاركة" : "Share"}
             </button>
             <button
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-['JetBrains_Mono'] cursor-pointer transition-colors whitespace-nowrap"
-              style={{ background: "rgba(251,146,60,0.1)", color: "#FB923C", border: "1px solid rgba(251,146,60,0.2)" }}
+              style={{ background: "rgba(201,138,27,0.1)", color: "#C98A1B", border: "1px solid rgba(201,138,27,0.2)" }}
             >
               <i className="ri-flag-line" />
               {isAr ? "تصعيد" : "Escalate"}
@@ -124,7 +124,7 @@ const Person360Page = () => {
             <button
               onClick={handleGenerateDossier}
               className="flex items-center gap-1.5 px-4 py-1.5 rounded-lg text-xs font-bold font-['Inter'] cursor-pointer transition-all whitespace-nowrap"
-              style={{ background: "#D4A84B", color: "#0B1220", boxShadow: "0 0 16px rgba(181,142,60,0.25)" }}
+              style={{ background: "#D6B47E", color: "#051428", boxShadow: "0 0 16px rgba(184,138,60,0.25)" }}
             >
               <i className="ri-file-pdf-line" />
               {isAr ? "إنشاء ملف شامل" : "Generate Dossier"}
@@ -133,7 +133,7 @@ const Person360Page = () => {
         </div>
 
         {/* Scrollable content */}
-        <div className="flex-1 overflow-y-auto px-6 py-5 space-y-5" style={{ scrollbarWidth: "thin", scrollbarColor: "rgba(181,142,60,0.2) transparent" }}>
+        <div className="flex-1 overflow-y-auto px-6 py-5 space-y-5" style={{ scrollbarWidth: "thin", scrollbarColor: "rgba(184,138,60,0.2) transparent" }}>
 
           {/* Identity Card */}
           <IdentityCard person={mockPerson} isAr={isAr} />
@@ -142,8 +142,8 @@ const Person360Page = () => {
           <div
             className="rounded-xl p-5"
             style={{
-              background: "rgba(20,29,46,0.8)",
-              border: "1px solid rgba(181,142,60,0.15)",
+              background: "rgba(10,37,64,0.8)",
+              border: "1px solid rgba(184,138,60,0.15)",
               backdropFilter: "blur(12px)",
             }}
           >
@@ -156,16 +156,16 @@ const Person360Page = () => {
           </div>
 
           {/* Section tabs */}
-          <div className="flex items-center gap-1 p-1 rounded-xl" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.1)" }}>
+          <div className="flex items-center gap-1 p-1 rounded-xl" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.1)" }}>
             {sections.map((s) => (
               <button
                 key={s.key}
                 onClick={() => setActiveSection(s.key as typeof activeSection)}
                 className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-['Inter'] font-medium cursor-pointer transition-all duration-200 whitespace-nowrap"
                 style={{
-                  background: activeSection === s.key ? "rgba(181,142,60,0.12)" : "transparent",
-                  color: activeSection === s.key ? "#D4A84B" : "#6B7280",
-                  border: activeSection === s.key ? "1px solid rgba(181,142,60,0.25)" : "1px solid transparent",
+                  background: activeSection === s.key ? "rgba(184,138,60,0.12)" : "transparent",
+                  color: activeSection === s.key ? "#D6B47E" : "#6B7280",
+                  border: activeSection === s.key ? "1px solid rgba(184,138,60,0.25)" : "1px solid transparent",
                 }}
               >
                 <i className={`${s.icon} text-sm`} />
@@ -173,7 +173,7 @@ const Person360Page = () => {
                 {s.key === "timeline" && alertCount > 0 && (
                   <span
                     className="px-1.5 py-0.5 rounded-full text-[10px] font-bold font-['JetBrains_Mono']"
-                    style={{ background: "rgba(248,113,113,0.2)", color: "#F87171" }}
+                    style={{ background: "rgba(201,74,94,0.2)", color: "#C94A5E" }}
                   >
                     {alertCount}
                   </span>
@@ -221,23 +221,23 @@ const Person360Page = () => {
 
       {/* Dossier Generation Modal */}
       {showDossierModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center" style={{ background: "rgba(11,18,32,0.85)", backdropFilter: "blur(8px)" }}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center" style={{ background: "rgba(5,20,40,0.85)", backdropFilter: "blur(8px)" }}>
           <div
             className="w-full max-w-md rounded-2xl p-8 flex flex-col items-center gap-5"
             style={{
-              background: "rgba(20,29,46,0.95)",
-              border: "1px solid rgba(181,142,60,0.3)",
-              boxShadow: "0 0 60px rgba(181,142,60,0.1)",
+              background: "rgba(10,37,64,0.95)",
+              border: "1px solid rgba(184,138,60,0.3)",
+              boxShadow: "0 0 60px rgba(184,138,60,0.1)",
             }}
           >
             {dossierGenerating ? (
               <>
                 <div className="relative w-20 h-20">
                   <svg className="w-full h-full -rotate-90" viewBox="0 0 80 80">
-                    <circle cx="40" cy="40" r="34" fill="none" stroke="rgba(181,142,60,0.1)" strokeWidth="6" />
+                    <circle cx="40" cy="40" r="34" fill="none" stroke="rgba(184,138,60,0.1)" strokeWidth="6" />
                     <circle
                       cx="40" cy="40" r="34" fill="none"
-                      stroke="#D4A84B" strokeWidth="6"
+                      stroke="#D6B47E" strokeWidth="6"
                       strokeDasharray="213"
                       strokeDashoffset="53"
                       strokeLinecap="round"
@@ -267,7 +267,7 @@ const Person360Page = () => {
                     <div key={step.label} className="flex items-center gap-2">
                       <div
                         className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0"
-                        style={{ background: step.done ? "rgba(74,222,128,0.2)" : "rgba(181,142,60,0.1)", border: `1px solid ${step.done ? "#4ADE80" : "rgba(181,142,60,0.3)"}` }}
+                        style={{ background: step.done ? "rgba(74,222,128,0.2)" : "rgba(184,138,60,0.1)", border: `1px solid ${step.done ? "#4ADE80" : "rgba(184,138,60,0.3)"}` }}
                       >
                         {step.done
                           ? <i className="ri-check-line text-green-400 text-[10px]" />
@@ -310,7 +310,7 @@ const Person360Page = () => {
                   </button>
                   <button
                     className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-bold font-['Inter'] cursor-pointer transition-all"
-                    style={{ background: "#D4A84B", color: "#0B1220", boxShadow: "0 0 16px rgba(181,142,60,0.25)" }}
+                    style={{ background: "#D6B47E", color: "#051428", boxShadow: "0 0 16px rgba(184,138,60,0.25)" }}
                     onClick={() => setShowDossierModal(false)}
                   >
                     <i className="ri-download-line" />

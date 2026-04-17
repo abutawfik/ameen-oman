@@ -200,10 +200,10 @@ const EsimActivatedForm = ({ isAr, onCancel }: Props) => {
             {/* eSIM status badge */}
             <div
               className="flex items-center gap-3 p-4 rounded-xl border"
-              style={{ background: "rgba(181,142,60,0.05)", borderColor: "rgba(181,142,60,0.2)" }}
+              style={{ background: "rgba(184,138,60,0.05)", borderColor: "rgba(184,138,60,0.2)" }}
             >
               <div className="w-10 h-10 flex items-center justify-center rounded-xl flex-shrink-0"
-                style={{ background: "rgba(181,142,60,0.12)", border: "1px solid rgba(181,142,60,0.25)" }}>
+                style={{ background: "rgba(184,138,60,0.12)", border: "1px solid rgba(184,138,60,0.25)" }}>
                 <i className="ri-phone-line text-gold-400 text-lg" />
               </div>
               <div>

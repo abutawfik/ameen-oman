@@ -6,15 +6,15 @@ interface Props {
 }
 
 const STATUS_CONFIG = {
-  active:     { color: "#D4A84B", bg: "rgba(181,142,60,0.1)",  label: "Active",     labelAr: "نشط" },
+  active:     { color: "#D6B47E", bg: "rgba(184,138,60,0.1)",  label: "Active",     labelAr: "نشط" },
   monitoring: { color: "#FACC15", bg: "rgba(250,204,21,0.1)",  label: "Monitoring", labelAr: "مراقبة" },
-  escalated:  { color: "#F87171", bg: "rgba(248,113,113,0.1)", label: "Escalated",  labelAr: "مُصعَّد" },
+  escalated:  { color: "#C94A5E", bg: "rgba(201,74,94,0.1)", label: "Escalated",  labelAr: "مُصعَّد" },
   closed:     { color: "#4ADE80", bg: "rgba(74,222,128,0.1)",  label: "Closed",     labelAr: "مغلق" },
 };
 
 const PRIORITY_CONFIG = {
-  critical: { color: "#F87171", label: "Critical", labelAr: "حرج" },
-  high:     { color: "#FB923C", label: "High",     labelAr: "عالٍ" },
+  critical: { color: "#C94A5E", label: "Critical", labelAr: "حرج" },
+  high:     { color: "#C98A1B", label: "High",     labelAr: "عالٍ" },
   medium:   { color: "#FACC15", label: "Medium",   labelAr: "متوسط" },
 };
 
@@ -26,12 +26,12 @@ const ActiveInvestigations = ({ isAr }: Props) => {
 
   return (
     <div className="rounded-2xl border overflow-hidden"
-      style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
+      style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}>
       {/* Header */}
-      <div className="flex items-center justify-between px-5 py-4 border-b" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
+      <div className="flex items-center justify-between px-5 py-4 border-b" style={{ borderColor: "rgba(184,138,60,0.08)" }}>
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 flex items-center justify-center rounded-xl"
-            style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+            style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.2)" }}>
             <i className="ri-search-eye-line text-gold-400 text-sm" />
           </div>
           <div>
@@ -45,9 +45,9 @@ const ActiveInvestigations = ({ isAr }: Props) => {
             <button key={f} type="button" onClick={() => setFilter(f)}
               className="px-2.5 py-1 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap transition-all"
               style={{
-                background: filter === f ? "rgba(181,142,60,0.12)" : "transparent",
-                border: `1px solid ${filter === f ? "rgba(181,142,60,0.25)" : "transparent"}`,
-                color: filter === f ? "#D4A84B" : "#6B7280",
+                background: filter === f ? "rgba(184,138,60,0.12)" : "transparent",
+                border: `1px solid ${filter === f ? "rgba(184,138,60,0.25)" : "transparent"}`,
+                color: filter === f ? "#D6B47E" : "#6B7280",
               }}>
               {f === "all" ? (isAr ? "الكل" : "All") : f === "escalated" ? (isAr ? "مُصعَّد" : "Escalated") : f === "active" ? (isAr ? "نشط" : "Active") : (isAr ? "مراقبة" : "Monitoring")}
             </button>
@@ -56,14 +56,14 @@ const ActiveInvestigations = ({ isAr }: Props) => {
       </div>
 
       {/* KPI row */}
-      <div className="grid grid-cols-4 divide-x" style={{ borderBottom: "1px solid rgba(181,142,60,0.08)", borderColor: "rgba(181,142,60,0.08)" }}>
+      <div className="grid grid-cols-4 divide-x" style={{ borderBottom: "1px solid rgba(184,138,60,0.08)", borderColor: "rgba(184,138,60,0.08)" }}>
         {[
-          { label: isAr ? "إجمالي" : "Total",     value: activeInvestigations.length,                                          color: "#D4A84B" },
-          { label: isAr ? "مُصعَّد" : "Escalated", value: activeInvestigations.filter((i) => i.status === "escalated").length,  color: "#F87171" },
-          { label: isAr ? "مواضيع" : "Subjects",  value: activeInvestigations.reduce((a, i) => a + i.subjects, 0),             color: "#FB923C" },
+          { label: isAr ? "إجمالي" : "Total",     value: activeInvestigations.length,                                          color: "#D6B47E" },
+          { label: isAr ? "مُصعَّد" : "Escalated", value: activeInvestigations.filter((i) => i.status === "escalated").length,  color: "#C94A5E" },
+          { label: isAr ? "مواضيع" : "Subjects",  value: activeInvestigations.reduce((a, i) => a + i.subjects, 0),             color: "#C98A1B" },
           { label: isAr ? "مصادر" : "Streams",    value: [...new Set(activeInvestigations.flatMap((i) => i.streams))].length,  color: "#A78BFA" },
         ].map((s) => (
-          <div key={s.label} className="px-4 py-3 text-center" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
+          <div key={s.label} className="px-4 py-3 text-center" style={{ borderColor: "rgba(184,138,60,0.08)" }}>
             <div className="text-xl font-black font-['JetBrains_Mono']" style={{ color: s.color }}>{s.value}</div>
             <div className="text-gray-500 text-xs">{s.label}</div>
           </div>
@@ -71,7 +71,7 @@ const ActiveInvestigations = ({ isAr }: Props) => {
       </div>
 
       {/* Investigation list */}
-      <div className="divide-y" style={{ borderColor: "rgba(181,142,60,0.04)" }}>
+      <div className="divide-y" style={{ borderColor: "rgba(184,138,60,0.04)" }}>
         {filtered.map((inv) => {
           const statusCfg = STATUS_CONFIG[inv.status];
           const priorityCfg = PRIORITY_CONFIG[inv.priority];
@@ -106,7 +106,7 @@ const ActiveInvestigations = ({ isAr }: Props) => {
                   </div>
                   <div className="flex flex-col items-end gap-1 flex-shrink-0">
                     <div className="text-2xl font-black font-['JetBrains_Mono']"
-                      style={{ color: inv.riskScore >= 80 ? "#F87171" : inv.riskScore >= 60 ? "#FB923C" : "#FACC15" }}>
+                      style={{ color: inv.riskScore >= 80 ? "#C94A5E" : inv.riskScore >= 60 ? "#C98A1B" : "#FACC15" }}>
                       {inv.riskScore}
                     </div>
                     <span className="text-gray-600 text-xs">{isAr ? "درجة المخاطر" : "risk score"}</span>
@@ -136,7 +136,7 @@ const ActiveInvestigations = ({ isAr }: Props) => {
                 <div className="flex items-center gap-1.5 mt-2 flex-wrap">
                   {inv.streams.map((s) => (
                     <span key={s} className="px-2 py-0.5 rounded-full text-xs"
-                      style={{ background: "rgba(181,142,60,0.06)", color: "#9CA3AF", border: "1px solid rgba(181,142,60,0.1)" }}>
+                      style={{ background: "rgba(184,138,60,0.06)", color: "#9CA3AF", border: "1px solid rgba(184,138,60,0.1)" }}>
                       {s}
                     </span>
                   ))}
@@ -146,7 +146,7 @@ const ActiveInvestigations = ({ isAr }: Props) => {
               {/* Expanded detail */}
               {isSelected && (
                 <div className="px-5 py-4 border-t"
-                  style={{ background: "rgba(11,18,32,0.8)", borderColor: "rgba(181,142,60,0.08)" }}>
+                  style={{ background: "rgba(5,20,40,0.8)", borderColor: "rgba(184,138,60,0.08)" }}>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
                     {[
                       { label: isAr ? "قائد القضية" : "Case Lead",    value: inv.lead },
@@ -155,7 +155,7 @@ const ActiveInvestigations = ({ isAr }: Props) => {
                       { label: isAr ? "آخر تحديث" : "Last Update",    value: inv.lastUpdate },
                     ].map((d) => (
                       <div key={d.label} className="px-3 py-2 rounded-lg"
-                        style={{ background: "rgba(181,142,60,0.04)", border: "1px solid rgba(181,142,60,0.08)" }}>
+                        style={{ background: "rgba(184,138,60,0.04)", border: "1px solid rgba(184,138,60,0.08)" }}>
                         <div className="text-gray-500 text-xs mb-0.5">{d.label}</div>
                         <div className="text-white text-xs font-semibold font-['JetBrains_Mono']">{d.value}</div>
                       </div>
@@ -164,7 +164,7 @@ const ActiveInvestigations = ({ isAr }: Props) => {
                   <div className="flex items-center gap-2">
                     <button type="button"
                       className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold cursor-pointer whitespace-nowrap"
-                      style={{ background: "#D4A84B", color: "#0B1220" }}>
+                      style={{ background: "#D6B47E", color: "#051428" }}>
                       <i className="ri-eye-line text-xs" />
                       {isAr ? "فتح القضية" : "Open Case"}
                     </button>
@@ -176,7 +176,7 @@ const ActiveInvestigations = ({ isAr }: Props) => {
                     </button>
                     <button type="button"
                       className="flex items-center gap-2 px-4 py-2 rounded-lg border text-xs font-bold cursor-pointer whitespace-nowrap"
-                      style={{ background: "transparent", borderColor: "rgba(251,146,60,0.3)", color: "#FB923C" }}>
+                      style={{ background: "transparent", borderColor: "rgba(201,138,27,0.3)", color: "#C98A1B" }}>
                       <i className="ri-arrow-up-line text-xs" />
                       {isAr ? "تصعيد" : "Escalate"}
                     </button>

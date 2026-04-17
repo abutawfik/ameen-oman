@@ -27,15 +27,15 @@ const USERS: User[] = [
 ];
 
 const ROLE_CONFIG = {
-  admin:    { label: "Admin",    labelAr: "مسؤول",   color: "#F87171", bg: "rgba(248,113,113,0.1)",  border: "rgba(248,113,113,0.25)" },
-  operator: { label: "Operator", labelAr: "مشغّل",   color: "#D4A84B", bg: "rgba(181,142,60,0.1)",   border: "rgba(181,142,60,0.25)" },
+  admin:    { label: "Admin",    labelAr: "مسؤول",   color: "#C94A5E", bg: "rgba(201,74,94,0.1)",  border: "rgba(201,74,94,0.25)" },
+  operator: { label: "Operator", labelAr: "مشغّل",   color: "#D6B47E", bg: "rgba(184,138,60,0.1)",   border: "rgba(184,138,60,0.25)" },
   viewer:   { label: "Viewer",   labelAr: "مشاهد",   color: "#9CA3AF", bg: "rgba(156,163,175,0.1)",  border: "rgba(156,163,175,0.25)" },
 };
 
 const STATUS_CONFIG = {
   active:    { label: "Active",    labelAr: "نشط",     color: "#4ADE80" },
   inactive:  { label: "Inactive",  labelAr: "غير نشط", color: "#9CA3AF" },
-  suspended: { label: "Suspended", labelAr: "موقوف",   color: "#F87171" },
+  suspended: { label: "Suspended", labelAr: "موقوف",   color: "#C94A5E" },
 };
 
 const ManageUsers = ({ isAr }: Props) => {
@@ -80,12 +80,12 @@ const ManageUsers = ({ isAr }: Props) => {
       {/* Stats */}
       <div className="grid grid-cols-3 gap-4">
         {[
-          { label: isAr ? "إجمالي المستخدمين" : "Total Users", value: users.length, color: "#D4A84B" },
+          { label: isAr ? "إجمالي المستخدمين" : "Total Users", value: users.length, color: "#D6B47E" },
           { label: isAr ? "نشط" : "Active", value: users.filter((u) => u.status === "active").length, color: "#4ADE80" },
-          { label: isAr ? "موقوف" : "Suspended", value: users.filter((u) => u.status === "suspended").length, color: "#F87171" },
+          { label: isAr ? "موقوف" : "Suspended", value: users.filter((u) => u.status === "suspended").length, color: "#C94A5E" },
         ].map((s) => (
           <div key={s.label} className="rounded-xl border p-4 flex items-center gap-3"
-            style={{ background: "rgba(20,29,46,0.8)", borderColor: `${s.color}20`, backdropFilter: "blur(12px)" }}>
+            style={{ background: "rgba(10,37,64,0.8)", borderColor: `${s.color}20`, backdropFilter: "blur(12px)" }}>
             <span className="text-3xl font-black font-['JetBrains_Mono']" style={{ color: s.color }}>{s.value}</span>
             <span className="text-gray-400 text-xs">{s.label}</span>
           </div>
@@ -96,7 +96,7 @@ const ManageUsers = ({ isAr }: Props) => {
       <div className="flex flex-wrap items-center gap-3">
         <select value={filterRole} onChange={(e) => setFilterRole(e.target.value)}
           className="px-3 py-2 rounded-lg border text-sm cursor-pointer outline-none"
-          style={{ background: "rgba(11,18,32,0.8)", borderColor: "rgba(181,142,60,0.15)", color: "#D1D5DB", minWidth: "130px" }}>
+          style={{ background: "rgba(5,20,40,0.8)", borderColor: "rgba(184,138,60,0.15)", color: "#D1D5DB", minWidth: "130px" }}>
           <option value="all">{isAr ? "كل الأدوار" : "All Roles"}</option>
           <option value="admin">{isAr ? "مسؤول" : "Admin"}</option>
           <option value="operator">{isAr ? "مشغّل" : "Operator"}</option>
@@ -107,11 +107,11 @@ const ManageUsers = ({ isAr }: Props) => {
           <input type="text" value={search} onChange={(e) => setSearch(e.target.value)}
             placeholder={isAr ? "بحث عن مستخدم..." : "Search users..."}
             className="w-full pl-9 pr-3 py-2 rounded-lg border text-sm outline-none"
-            style={{ background: "rgba(11,18,32,0.8)", borderColor: "rgba(181,142,60,0.15)", color: "#D1D5DB" }} />
+            style={{ background: "rgba(5,20,40,0.8)", borderColor: "rgba(184,138,60,0.15)", color: "#D1D5DB" }} />
         </div>
         <button type="button" onClick={() => setShowAddForm(true)}
           className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold cursor-pointer whitespace-nowrap"
-          style={{ background: "#D4A84B", color: "#0B1220" }}>
+          style={{ background: "#D6B47E", color: "#051428" }}>
           <i className="ri-user-add-line text-sm" />
           {isAr ? "إضافة مستخدم" : "Add User"}
         </button>
@@ -120,7 +120,7 @@ const ManageUsers = ({ isAr }: Props) => {
       {/* Add user form */}
       {showAddForm && (
         <div className="rounded-2xl border p-5"
-          style={{ background: "rgba(11,18,32,0.95)", borderColor: "rgba(181,142,60,0.2)", backdropFilter: "blur(16px)" }}>
+          style={{ background: "rgba(5,20,40,0.95)", borderColor: "rgba(184,138,60,0.2)", backdropFilter: "blur(16px)" }}>
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-white font-bold text-sm">{isAr ? "إضافة مستخدم جديد" : "Add New User"}</h3>
             <button type="button" onClick={() => setShowAddForm(false)}
@@ -140,14 +140,14 @@ const ManageUsers = ({ isAr }: Props) => {
                   onChange={(e) => setNewUser((prev) => ({ ...prev, [field.key]: e.target.value }))}
                   placeholder={field.placeholder}
                   className="w-full px-3 py-2 rounded-lg border text-sm outline-none focus:border-gold-400 transition-colors"
-                  style={{ background: "rgba(11,18,32,0.8)", borderColor: "rgba(181,142,60,0.15)", color: "#D1D5DB" }} />
+                  style={{ background: "rgba(5,20,40,0.8)", borderColor: "rgba(184,138,60,0.15)", color: "#D1D5DB" }} />
               </div>
             ))}
             <div>
               <label className="text-gray-500 text-xs font-['JetBrains_Mono'] uppercase tracking-wider block mb-1">{isAr ? "الدور" : "Role"}</label>
               <select value={newUser.role} onChange={(e) => setNewUser((prev) => ({ ...prev, role: e.target.value as User["role"] }))}
                 className="w-full px-3 py-2 rounded-lg border text-sm cursor-pointer outline-none"
-                style={{ background: "rgba(11,18,32,0.8)", borderColor: "rgba(181,142,60,0.15)", color: "#D1D5DB" }}>
+                style={{ background: "rgba(5,20,40,0.8)", borderColor: "rgba(184,138,60,0.15)", color: "#D1D5DB" }}>
                 <option value="admin">{isAr ? "مسؤول" : "Admin"}</option>
                 <option value="operator">{isAr ? "مشغّل" : "Operator"}</option>
                 <option value="viewer">{isAr ? "مشاهد" : "Viewer"}</option>
@@ -157,7 +157,7 @@ const ManageUsers = ({ isAr }: Props) => {
               <label className="text-gray-500 text-xs font-['JetBrains_Mono'] uppercase tracking-wider block mb-1">{isAr ? "الوحدة" : "Module Access"}</label>
               <select value={newUser.module} onChange={(e) => setNewUser((prev) => ({ ...prev, module: e.target.value }))}
                 className="w-full px-3 py-2 rounded-lg border text-sm cursor-pointer outline-none"
-                style={{ background: "rgba(11,18,32,0.8)", borderColor: "rgba(181,142,60,0.15)", color: "#D1D5DB" }}>
+                style={{ background: "rgba(5,20,40,0.8)", borderColor: "rgba(184,138,60,0.15)", color: "#D1D5DB" }}>
                 <option>All Modules</option>
                 <option>Hotel, Car Rental</option>
                 <option>Mobile, Financial</option>
@@ -170,7 +170,7 @@ const ManageUsers = ({ isAr }: Props) => {
           <div className="flex items-center gap-3">
             <button type="button" onClick={handleAddUser}
               className="px-5 py-2 rounded-lg text-sm font-bold cursor-pointer whitespace-nowrap"
-              style={{ background: "#D4A84B", color: "#0B1220" }}>
+              style={{ background: "#D6B47E", color: "#051428" }}>
               {isAr ? "إضافة" : "Add User"}
             </button>
             <button type="button" onClick={() => setShowAddForm(false)}
@@ -184,11 +184,11 @@ const ManageUsers = ({ isAr }: Props) => {
 
       {/* Users table */}
       <div className="rounded-2xl border overflow-hidden"
-        style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
+        style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}>
         <div className="overflow-x-auto">
           <table className="w-full min-w-[800px]">
             <thead>
-              <tr style={{ background: "rgba(181,142,60,0.05)", borderBottom: "1px solid rgba(181,142,60,0.1)" }}>
+              <tr style={{ background: "rgba(184,138,60,0.05)", borderBottom: "1px solid rgba(184,138,60,0.1)" }}>
                 {[
                   isAr ? "المستخدم" : "User",
                   isAr ? "الدور" : "Role",
@@ -208,11 +208,11 @@ const ManageUsers = ({ isAr }: Props) => {
                 const statusCfg = STATUS_CONFIG[user.status];
                 return (
                   <tr key={user.id} className="border-b transition-colors"
-                    style={{ background: idx % 2 === 0 ? "rgba(20,29,46,0.6)" : "rgba(11,18,32,0.4)", borderColor: "rgba(181,142,60,0.05)" }}>
+                    style={{ background: idx % 2 === 0 ? "rgba(10,37,64,0.6)" : "rgba(5,20,40,0.4)", borderColor: "rgba(184,138,60,0.05)" }}>
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-3">
                         <div className="w-8 h-8 flex items-center justify-center rounded-full flex-shrink-0"
-                          style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+                          style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.2)" }}>
                           <span className="text-gold-400 text-xs font-bold">{user.name.split(" ").map((n) => n[0]).join("").slice(0, 2)}</span>
                         </div>
                         <div>
@@ -248,13 +248,13 @@ const ManageUsers = ({ isAr }: Props) => {
                       <div className="flex items-center gap-2">
                         <button type="button" onClick={() => setEditUser(user)}
                           className="w-7 h-7 flex items-center justify-center rounded-lg cursor-pointer transition-colors"
-                          style={{ background: "rgba(181,142,60,0.08)", color: "#D4A84B" }}
+                          style={{ background: "rgba(184,138,60,0.08)", color: "#D6B47E" }}
                           title={isAr ? "تعديل" : "Edit"}>
                           <i className="ri-edit-line text-xs" />
                         </button>
                         <button type="button" onClick={() => toggleStatus(user.id)}
                           className="w-7 h-7 flex items-center justify-center rounded-lg cursor-pointer transition-colors"
-                          style={{ background: user.status === "active" ? "rgba(248,113,113,0.08)" : "rgba(74,222,128,0.08)", color: user.status === "active" ? "#F87171" : "#4ADE80" }}
+                          style={{ background: user.status === "active" ? "rgba(201,74,94,0.08)" : "rgba(74,222,128,0.08)", color: user.status === "active" ? "#C94A5E" : "#4ADE80" }}
                           title={user.status === "active" ? (isAr ? "تعطيل" : "Deactivate") : (isAr ? "تفعيل" : "Activate")}>
                           <i className={`${user.status === "active" ? "ri-user-unfollow-line" : "ri-user-follow-line"} text-xs`} />
                         </button>
@@ -270,9 +270,9 @@ const ManageUsers = ({ isAr }: Props) => {
 
       {/* Edit modal */}
       {editUser && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center" style={{ background: "rgba(11,18,32,0.85)", backdropFilter: "blur(8px)" }}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center" style={{ background: "rgba(5,20,40,0.85)", backdropFilter: "blur(8px)" }}>
           <div className="rounded-2xl border p-6 w-full max-w-md mx-4"
-            style={{ background: "rgba(20,29,46,0.98)", borderColor: "rgba(181,142,60,0.25)", backdropFilter: "blur(20px)" }}>
+            style={{ background: "rgba(10,37,64,0.98)", borderColor: "rgba(184,138,60,0.25)", backdropFilter: "blur(20px)" }}>
             <div className="flex items-center justify-between mb-5">
               <h3 className="text-white font-bold">{isAr ? "تعديل المستخدم" : "Edit User"}</h3>
               <button type="button" onClick={() => setEditUser(null)}
@@ -286,13 +286,13 @@ const ManageUsers = ({ isAr }: Props) => {
                 <label className="text-gray-500 text-xs font-['JetBrains_Mono'] uppercase tracking-wider block mb-1">{isAr ? "الاسم" : "Name"}</label>
                 <input type="text" defaultValue={editUser.name}
                   className="w-full px-3 py-2 rounded-lg border text-sm outline-none focus:border-gold-400"
-                  style={{ background: "rgba(11,18,32,0.8)", borderColor: "rgba(181,142,60,0.15)", color: "#D1D5DB" }} />
+                  style={{ background: "rgba(5,20,40,0.8)", borderColor: "rgba(184,138,60,0.15)", color: "#D1D5DB" }} />
               </div>
               <div>
                 <label className="text-gray-500 text-xs font-['JetBrains_Mono'] uppercase tracking-wider block mb-1">{isAr ? "الدور" : "Role"}</label>
                 <select defaultValue={editUser.role}
                   className="w-full px-3 py-2 rounded-lg border text-sm cursor-pointer outline-none"
-                  style={{ background: "rgba(11,18,32,0.8)", borderColor: "rgba(181,142,60,0.15)", color: "#D1D5DB" }}>
+                  style={{ background: "rgba(5,20,40,0.8)", borderColor: "rgba(184,138,60,0.15)", color: "#D1D5DB" }}>
                   <option value="admin">{isAr ? "مسؤول" : "Admin"}</option>
                   <option value="operator">{isAr ? "مشغّل" : "Operator"}</option>
                   <option value="viewer">{isAr ? "مشاهد" : "Viewer"}</option>
@@ -302,7 +302,7 @@ const ManageUsers = ({ isAr }: Props) => {
             <div className="flex items-center gap-3 mt-5">
               <button type="button" onClick={() => setEditUser(null)}
                 className="px-5 py-2 rounded-lg text-sm font-bold cursor-pointer whitespace-nowrap"
-                style={{ background: "#D4A84B", color: "#0B1220" }}>
+                style={{ background: "#D6B47E", color: "#051428" }}>
                 {isAr ? "حفظ" : "Save Changes"}
               </button>
               <button type="button" onClick={() => setEditUser(null)}

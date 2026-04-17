@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { trendData, lastWeekTrendData } from '@/mocks/predictiveAnalyticsData';
 
 const CATEGORIES = [
-  { key: 'arrival',       label: 'Arrival',       color: '#D4A84B' },
+  { key: 'arrival',       label: 'Arrival',       color: '#D6B47E' },
   { key: 'financial',     label: 'Financial',     color: '#4ADE80' },
-  { key: 'identity',      label: 'Identity',      color: '#F87171' },
+  { key: 'identity',      label: 'Identity',      color: '#C94A5E' },
   { key: 'accommodation', label: 'Accommodation', color: '#FACC15' },
   { key: 'employment',    label: 'Employment',    color: '#F9A8D4' },
   { key: 'maritime',      label: 'Maritime',      color: '#60A5FA' },
@@ -52,7 +52,7 @@ export default function TrendCharts() {
   return (
     <div
       className="rounded-xl border border-gold-500/20 p-5"
-      style={{ background: 'rgba(20,29,46,0.8)' }}
+      style={{ background: 'rgba(10,37,64,0.8)' }}
     >
       <div className="flex items-start justify-between mb-3">
         <div>
@@ -61,15 +61,15 @@ export default function TrendCharts() {
         </div>
         <div className="flex items-center gap-3">
           {/* View mode toggle */}
-          <div className="flex items-center gap-1 p-0.5 rounded-lg border border-gold-500/20" style={{ background: 'rgba(11,18,32,0.5)' }}>
+          <div className="flex items-center gap-1 p-0.5 rounded-lg border border-gold-500/20" style={{ background: 'rgba(5,20,40,0.5)' }}>
             {(['stacked', 'compare'] as ViewMode[]).map(m => (
               <button
                 key={m}
                 onClick={() => setViewMode(m)}
                 className="px-2.5 py-1 rounded-md text-xs transition-all cursor-pointer whitespace-nowrap"
                 style={{
-                  background: viewMode === m ? '#D4A84B' : 'transparent',
-                  color: viewMode === m ? '#0B1220' : '#9CA3AF',
+                  background: viewMode === m ? '#D6B47E' : 'transparent',
+                  color: viewMode === m ? '#051428' : '#9CA3AF',
                 }}
               >
                 {m === 'stacked' ? 'Stacked' : 'Compare'}
@@ -139,7 +139,7 @@ export default function TrendCharts() {
                 {isHovered && (
                   <div
                     className="absolute z-20 rounded-lg border border-gold-500/30 p-2.5 pointer-events-none"
-                    style={{ background: 'rgba(20,29,46,0.98)', bottom: CHART_H + 32, left: '50%', transform: 'translateX(-50%)', minWidth: 130 }}
+                    style={{ background: 'rgba(10,37,64,0.98)', bottom: CHART_H + 32, left: '50%', transform: 'translateX(-50%)', minWidth: 130 }}
                   >
                     <p className="text-white font-semibold text-xs mb-1.5">{day.label} — {total} triggers</p>
                     {activeCats.map(c => (
@@ -165,7 +165,7 @@ export default function TrendCharts() {
                       height: maxVal > 0 ? (total / maxVal) * CHART_H : 2,
                       minHeight: 2,
                       opacity: isHovered ? 1 : 0.82,
-                      outline: isHovered ? '1px solid rgba(181,142,60,0.5)' : 'none',
+                      outline: isHovered ? '1px solid rgba(184,138,60,0.5)' : 'none',
                     }}
                   >
                     {activeCats.map(cat => {
@@ -186,7 +186,7 @@ export default function TrendCharts() {
                       className="flex-1 rounded-t-sm transition-all"
                       style={{
                         height: maxVal > 0 ? (total / maxVal) * CHART_H : 2,
-                        background: '#D4A84B',
+                        background: '#D6B47E',
                         opacity: isHovered ? 1 : 0.8,
                         minHeight: 2,
                       }}
@@ -223,7 +223,7 @@ export default function TrendCharts() {
           {
             label: 'vs Last Week',
             value: `${changePct > 0 ? '+' : ''}${changePct}%`,
-            color: changePct > 0 ? '#F87171' : '#4ADE80',
+            color: changePct > 0 ? '#C94A5E' : '#4ADE80',
             icon: changePct > 0 ? 'ri-arrow-up-line' : 'ri-arrow-down-line',
           },
           {
@@ -235,14 +235,14 @@ export default function TrendCharts() {
           {
             label: 'Peak Day',
             value: peakDay,
-            color: '#D4A84B',
+            color: '#D6B47E',
             icon: 'ri-calendar-line',
           },
         ].map(stat => (
           <div
             key={stat.label}
             className="rounded-lg px-3 py-2 text-center border border-gold-500/10"
-            style={{ background: 'rgba(181,142,60,0.04)' }}
+            style={{ background: 'rgba(184,138,60,0.04)' }}
           >
             <div className="flex items-center justify-center gap-1">
               <i className={`${stat.icon} text-xs`} style={{ color: stat.color }} />

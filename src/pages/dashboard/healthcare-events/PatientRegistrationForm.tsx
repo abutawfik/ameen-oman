@@ -83,7 +83,7 @@ const PatientRegistrationForm = ({ isAr, onCancel }: Props) => {
     }, 1800);
   };
 
-  if (confirmed) return <HltConfirmation refNumber={refNumber} eventType={isAr ? "تسجيل مريض" : "Patient Registration"} eventCode="HLT_PATIENT" color="#F87171" isAr={isAr} onReset={() => { setConfirmed(false); setAutoFilled(false); }} />;
+  if (confirmed) return <HltConfirmation refNumber={refNumber} eventType={isAr ? "تسجيل مريض" : "Patient Registration"} eventCode="HLT_PATIENT" color="#C94A5E" isAr={isAr} onReset={() => { setConfirmed(false); setAutoFilled(false); }} />;
 
   return (
     <div className="space-y-5">
@@ -91,7 +91,7 @@ const PatientRegistrationForm = ({ isAr, onCancel }: Props) => {
 
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
         {/* Event Info */}
-        <SectionCard title={isAr ? "معلومات الزيارة" : "Visit Information"} icon="ri-hospital-line" accentColor="#F87171">
+        <SectionCard title={isAr ? "معلومات الزيارة" : "Visit Information"} icon="ri-hospital-line" accentColor="#C94A5E">
           <div className="space-y-4">
             <div className="grid grid-cols-2 gap-3">
               <FormField label={isAr ? "المنشأة الصحية" : "Health Facility"} required>

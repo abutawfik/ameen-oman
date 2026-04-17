@@ -22,13 +22,13 @@ const ThreatIntelPage = () => {
   const onlineSources = feedSources.filter(s => s.status === "online").length;
 
   return (
-    <div className="flex flex-col h-full" style={{ background: "#0B1220" }}>
+    <div className="flex flex-col h-full" style={{ background: "#051428" }}>
       {/* Background grid */}
       <div className="fixed inset-0 pointer-events-none z-0 opacity-[0.025]">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="ti-grid" width="40" height="40" patternUnits="userSpaceOnUse">
-              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#F87171" strokeWidth="0.5" />
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#C94A5E" strokeWidth="0.5" />
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#ti-grid)" />
@@ -37,9 +37,9 @@ const ThreatIntelPage = () => {
 
       <div className="flex-1 flex flex-col overflow-hidden relative z-10">
         {/* Page header */}
-        <div className="flex items-center justify-between px-6 py-3 border-b flex-shrink-0" style={{ borderColor: "rgba(248,113,113,0.15)", background: "rgba(20,29,46,0.6)" }}>
+        <div className="flex items-center justify-between px-6 py-3 border-b flex-shrink-0" style={{ borderColor: "rgba(201,74,94,0.15)", background: "rgba(10,37,64,0.6)" }}>
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(248,113,113,0.1)", border: "1px solid rgba(248,113,113,0.3)" }}>
+            <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(201,74,94,0.1)", border: "1px solid rgba(201,74,94,0.3)" }}>
               <i className="ri-bug-line text-red-400 text-sm" />
             </div>
             <div>
@@ -49,7 +49,7 @@ const ThreatIntelPage = () => {
           </div>
           <div className="flex items-center gap-3">
             {criticalCount > 0 && (
-              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg animate-pulse" style={{ background: "rgba(248,113,113,0.1)", border: "1px solid rgba(248,113,113,0.3)" }}>
+              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg animate-pulse" style={{ background: "rgba(201,74,94,0.1)", border: "1px solid rgba(201,74,94,0.3)" }}>
                 <i className="ri-alarm-warning-line text-red-400 text-xs" />
                 <span className="text-red-400 text-xs font-bold font-['JetBrains_Mono']">{criticalCount} CRITICAL ACTIVE</span>
               </div>
@@ -62,15 +62,15 @@ const ThreatIntelPage = () => {
         </div>
 
         {/* KPI bar */}
-        <div className="grid grid-cols-5 gap-0 border-b flex-shrink-0" style={{ borderColor: "rgba(248,113,113,0.08)" }}>
+        <div className="grid grid-cols-5 gap-0 border-b flex-shrink-0" style={{ borderColor: "rgba(201,74,94,0.08)" }}>
           {[
-            { label: "Total IOCs",        value: iocEntries.length.toString(),                                                icon: "ri-database-line",       color: "#D4A84B" },
-            { label: "Critical Active",   value: criticalCount.toString(),                                                    icon: "ri-alarm-warning-line",  color: "#F87171" },
+            { label: "Total IOCs",        value: iocEntries.length.toString(),                                                icon: "ri-database-line",       color: "#D6B47E" },
+            { label: "Critical Active",   value: criticalCount.toString(),                                                    icon: "ri-alarm-warning-line",  color: "#C94A5E" },
             { label: "Dark Web Mentions", value: "6",                                                                         icon: "ri-ghost-line",          color: "#A78BFA" },
-            { label: "Threat Actors",     value: "4",                                                                         icon: "ri-spy-line",            color: "#FB923C" },
+            { label: "Threat Actors",     value: "4",                                                                         icon: "ri-spy-line",            color: "#C98A1B" },
             { label: "Feed Sources",      value: `${onlineSources}/${feedSources.length}`,                                    icon: "ri-rss-line",            color: "#4ADE80" },
           ].map((kpi, i) => (
-            <div key={kpi.label} className="flex items-center gap-3 px-5 py-3" style={{ borderRight: i < 4 ? "1px solid rgba(248,113,113,0.08)" : "none" }}>
+            <div key={kpi.label} className="flex items-center gap-3 px-5 py-3" style={{ borderRight: i < 4 ? "1px solid rgba(201,74,94,0.08)" : "none" }}>
               <div className="w-8 h-8 flex items-center justify-center rounded-lg flex-shrink-0" style={{ background: `${kpi.color}15` }}>
                 <i className={`${kpi.icon} text-sm`} style={{ color: kpi.color }} />
               </div>
@@ -83,22 +83,22 @@ const ThreatIntelPage = () => {
         </div>
 
         {/* Tabs */}
-        <div className="flex items-center gap-1 px-6 py-3 border-b flex-shrink-0" style={{ borderColor: "rgba(248,113,113,0.08)" }}>
+        <div className="flex items-center gap-1 px-6 py-3 border-b flex-shrink-0" style={{ borderColor: "rgba(201,74,94,0.08)" }}>
           {tabs.map((tab) => (
             <button
               key={tab.key}
               onClick={() => setActiveTab(tab.key)}
               className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-['Inter'] cursor-pointer transition-all whitespace-nowrap"
               style={{
-                background: activeTab === tab.key ? "rgba(248,113,113,0.1)" : "transparent",
-                color: activeTab === tab.key ? "#F87171" : "#6B7280",
-                border: activeTab === tab.key ? "1px solid rgba(248,113,113,0.25)" : "1px solid transparent",
+                background: activeTab === tab.key ? "rgba(201,74,94,0.1)" : "transparent",
+                color: activeTab === tab.key ? "#C94A5E" : "#6B7280",
+                border: activeTab === tab.key ? "1px solid rgba(201,74,94,0.25)" : "1px solid transparent",
               }}
             >
               <i className={`${tab.icon} text-sm`} />
               {tab.label}
               {tab.badge && (
-                <span className="text-[10px] px-1.5 py-0.5 rounded-full font-['JetBrains_Mono']" style={{ background: activeTab === tab.key ? "rgba(248,113,113,0.2)" : "rgba(255,255,255,0.08)", color: activeTab === tab.key ? "#F87171" : "#6B7280" }}>
+                <span className="text-[10px] px-1.5 py-0.5 rounded-full font-['JetBrains_Mono']" style={{ background: activeTab === tab.key ? "rgba(201,74,94,0.2)" : "rgba(255,255,255,0.08)", color: activeTab === tab.key ? "#C94A5E" : "#6B7280" }}>
                   {tab.badge}
                 </span>
               )}
@@ -107,7 +107,7 @@ const ThreatIntelPage = () => {
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto px-6 py-5" style={{ scrollbarWidth: "thin", scrollbarColor: "rgba(248,113,113,0.2) transparent" }}>
+        <div className="flex-1 overflow-y-auto px-6 py-5" style={{ scrollbarWidth: "thin", scrollbarColor: "rgba(201,74,94,0.2) transparent" }}>
           {activeTab === "ioc"     && <IocFeed isAr={isAr} />}
           {activeTab === "darkweb" && <DarkWebMonitor isAr={isAr} />}
           {activeTab === "actors"  && <ThreatActors isAr={isAr} />}

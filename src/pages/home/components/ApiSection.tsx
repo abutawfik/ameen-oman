@@ -5,17 +5,17 @@ const ApiSection = () => {
   const { t } = useTranslation();
 
   const features = [
-    { key: "auth", icon: "ri-key-line", color: "#D4A84B" },
+    { key: "auth", icon: "ri-key-line", color: "#D6B47E" },
     { key: "tls", icon: "ri-lock-line", color: "#4ADE80" },
     { key: "rate", icon: "ri-speed-line", color: "#FACC15" },
-    { key: "webhook", icon: "ri-webhook-line", color: "#FB923C" },
+    { key: "webhook", icon: "ri-webhook-line", color: "#C98A1B" },
     { key: "sandbox", icon: "ri-test-tube-line", color: "#A78BFA" },
     { key: "support", icon: "ri-customer-service-2-line", color: "#F9A8D4" },
   ];
 
   return (
-    <section id="api-integration" className="py-20 md:py-28 relative" style={{ background: "#0B1220" }}>
-      <div className="absolute inset-0 opacity-10" style={{ backgroundImage: `linear-gradient(rgba(181,142,60,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,0.1) 1px, transparent 1px)`, backgroundSize: "80px 80px" }} />
+    <section id="api-integration" className="py-20 md:py-28 relative" style={{ background: "#051428" }}>
+      <div className="absolute inset-0 opacity-10" style={{ backgroundImage: `linear-gradient(rgba(184,138,60,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.1) 1px, transparent 1px)`, backgroundSize: "80px 80px" }} />
       <div className="relative z-10 max-w-[1400px] mx-auto px-4 md:px-8">
         {/* Header */}
         <div className="text-center mb-14">
@@ -29,9 +29,9 @@ const ApiSection = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
           {/* B2B API */}
-          <div className="rounded-xl p-6 border" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.2)", backdropFilter: "blur(12px)" }}>
+          <div className="rounded-xl p-6 border" style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.2)", backdropFilter: "blur(12px)" }}>
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 flex items-center justify-center rounded-lg" style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.3)" }}>
+              <div className="w-10 h-10 flex items-center justify-center rounded-lg" style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.3)" }}>
                 <i className="ri-code-s-slash-line text-gold-400 text-lg" />
               </div>
               <h3 className="text-white font-bold text-lg font-['Inter']">{t("api.b2bTitle")}</h3>
@@ -51,7 +51,7 @@ const ApiSection = () => {
 
           {/* Portal + Steps */}
           <div className="flex flex-col gap-6">
-            <div className="rounded-xl p-6 border" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.2)", backdropFilter: "blur(12px)" }}>
+            <div className="rounded-xl p-6 border" style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.2)", backdropFilter: "blur(12px)" }}>
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 flex items-center justify-center rounded-lg" style={{ background: "rgba(74,222,128,0.1)", border: "1px solid rgba(74,222,128,0.3)" }}>
                   <i className="ri-window-line text-green-400 text-lg" />
@@ -62,7 +62,7 @@ const ApiSection = () => {
             </div>
 
             {/* Integration Steps */}
-            <div className="rounded-xl p-6 border" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.15)", backdropFilter: "blur(12px)" }}>
+            <div className="rounded-xl p-6 border" style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.15)", backdropFilter: "blur(12px)" }}>
               <p className="text-gray-500 text-xs font-['JetBrains_Mono'] uppercase tracking-widest mb-4">{t("api.getStarted")}</p>
               <div className="space-y-3">
                 {integrationSteps.map((s) => (
@@ -84,7 +84,7 @@ const ApiSection = () => {
         {/* Features Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-10">
           {features.map((f) => (
-            <div key={f.key} className="flex flex-col items-center text-center p-4 rounded-xl border" style={{ background: "rgba(20,29,46,0.6)", borderColor: "rgba(255,255,255,0.06)" }}>
+            <div key={f.key} className="flex flex-col items-center text-center p-4 rounded-xl border" style={{ background: "rgba(10,37,64,0.6)", borderColor: "rgba(255,255,255,0.06)" }}>
               <div className="w-10 h-10 flex items-center justify-center mb-3">
                 <i className={`${f.icon} text-xl`} style={{ color: f.color }} />
               </div>
@@ -96,7 +96,7 @@ const ApiSection = () => {
 
         {/* CTA */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <button className="flex items-center gap-2 px-6 py-3 bg-gold-400 text-[#0B1220] font-semibold rounded-md hover:bg-gold-300 transition-colors duration-200 whitespace-nowrap cursor-pointer text-sm">
+          <button className="flex items-center gap-2 px-6 py-3 bg-gold-400 text-[#051428] font-semibold rounded-md hover:bg-gold-300 transition-colors duration-200 whitespace-nowrap cursor-pointer text-sm">
             <i className="ri-send-plane-line" />
             {t("api.requestAccess")}
           </button>

@@ -76,7 +76,7 @@ const RestrictedItemForm = ({ isAr, onCancel }: Props) => {
         isAr={isAr}
         eventType="Restricted Item Purchase"
         eventTypeAr="شراء عنصر مقيّد"
-        color="#F87171"
+        color="#C94A5E"
         icon="ri-forbid-line"
         onReset={() => setSubmitted(false)}
       />
@@ -93,7 +93,7 @@ const RestrictedItemForm = ({ isAr, onCancel }: Props) => {
       />
 
       {/* Critical alert */}
-      <div className="flex items-center gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(248,113,113,0.06)", borderColor: "rgba(248,113,113,0.3)" }}>
+      <div className="flex items-center gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(201,74,94,0.06)", borderColor: "rgba(201,74,94,0.3)" }}>
         <i className="ri-alarm-warning-line text-red-400 text-lg" />
         <div>
           <p className="text-red-400 text-sm font-bold font-['Inter']">
@@ -151,7 +151,7 @@ const RestrictedItemForm = ({ isAr, onCancel }: Props) => {
       </SectionCard>
 
       {/* Restricted Item Details */}
-      <SectionCard title={isAr ? "تفاصيل العنصر المقيّد" : "Restricted Item Details"} icon="ri-forbid-line" accentColor="#F87171">
+      <SectionCard title={isAr ? "تفاصيل العنصر المقيّد" : "Restricted Item Details"} icon="ri-forbid-line" accentColor="#C94A5E">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <FormField label={isAr ? "فئة العنصر المقيّد" : "Restricted Item Category"} required>
             <SelectInput value={restrictedCategory} onChange={(e) => setRestrictedCategory(e.target.value)} options={RESTRICTED_CATEGORIES} placeholder={isAr ? "اختر الفئة" : "Select category"} />
@@ -206,7 +206,7 @@ const RestrictedItemForm = ({ isAr, onCancel }: Props) => {
             </div>
           )}
           {hasLicense === "no" && (
-            <div className="flex items-center gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(248,113,113,0.06)", borderColor: "rgba(248,113,113,0.25)" }}>
+            <div className="flex items-center gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(201,74,94,0.06)", borderColor: "rgba(201,74,94,0.25)" }}>
               <i className="ri-close-circle-line text-red-400" />
               <p className="text-red-400 text-sm font-['Inter']">
                 {isAr ? "شراء بدون ترخيص — سيتم تصعيد هذا الحدث تلقائياً" : "Unlicensed purchase — this event will be automatically escalated"}
@@ -241,7 +241,7 @@ const RestrictedItemForm = ({ isAr, onCancel }: Props) => {
       </SectionCard>
 
       {/* Risk Assessment */}
-      <SectionCard title={isAr ? "تقييم المخاطر الفوري" : "Immediate Risk Assessment"} icon="ri-alarm-warning-line" accentColor="#F87171">
+      <SectionCard title={isAr ? "تقييم المخاطر الفوري" : "Immediate Risk Assessment"} icon="ri-alarm-warning-line" accentColor="#C94A5E">
         <div className="space-y-4">
           <FormField label={isAr ? "مستوى الخطر الفوري" : "Immediate Risk Level"} required>
             <RadioGroup
@@ -265,7 +265,7 @@ const RestrictedItemForm = ({ isAr, onCancel }: Props) => {
               placeholder={isAr ? "أي معلومات إضافية ذات صلة..." : "Any additional relevant information..."}
               className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none transition-all resize-none font-['Inter']"
               style={{ background: "#0F1923", border: "1px solid rgba(255,255,255,0.08)" }}
-              onFocus={(e) => { e.target.style.borderColor = "#D4A84B"; }}
+              onFocus={(e) => { e.target.style.borderColor = "#D6B47E"; }}
               onBlur={(e) => { e.target.style.borderColor = "rgba(255,255,255,0.08)"; }}
             />
             <p className="text-gray-600 text-xs mt-1 text-right font-['JetBrains_Mono']">{additionalNotes.length}/500</p>

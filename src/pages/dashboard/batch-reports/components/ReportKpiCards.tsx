@@ -27,7 +27,7 @@ const ReportKpiCards = ({ isAr, dateRange }: Props) => {
       trend: "+8.4%",
       trendUp: true,
       icon: "ri-calendar-check-line",
-      color: "#D4A84B",
+      color: "#D6B47E",
       sub: isAr ? "جميع الوحدات" : "All modules",
     },
     {
@@ -54,7 +54,7 @@ const ReportKpiCards = ({ isAr, dateRange }: Props) => {
       trend: "+12.1%",
       trendUp: true,
       icon: "ri-user-line",
-      color: "#FB923C",
+      color: "#C98A1B",
       sub: isAr ? "هويات مميزة" : "Distinct identities",
     },
   ];
@@ -63,7 +63,7 @@ const ReportKpiCards = ({ isAr, dateRange }: Props) => {
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
       {cards.map((c) => (
         <div key={c.label} className="relative rounded-2xl border p-5 overflow-hidden"
-          style={{ background: "rgba(20,29,46,0.8)", borderColor: `${c.color}25`, backdropFilter: "blur(12px)" }}>
+          style={{ background: "rgba(10,37,64,0.8)", borderColor: `${c.color}25`, backdropFilter: "blur(12px)" }}>
           <div className="absolute inset-0 opacity-5" style={{ background: `radial-gradient(circle at top right, ${c.color}, transparent 70%)` }} />
           <div className="relative z-10">
             <div className="flex items-center justify-between mb-3">
@@ -72,7 +72,7 @@ const ReportKpiCards = ({ isAr, dateRange }: Props) => {
                 <i className={`${c.icon} text-base`} style={{ color: c.color }} />
               </div>
               <div className="flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-['JetBrains_Mono']"
-                style={{ background: c.trendUp ? "rgba(74,222,128,0.1)" : "rgba(248,113,113,0.1)", color: c.trendUp ? "#4ADE80" : "#F87171" }}>
+                style={{ background: c.trendUp ? "rgba(74,222,128,0.1)" : "rgba(201,74,94,0.1)", color: c.trendUp ? "#4ADE80" : "#C94A5E" }}>
                 <i className={`${c.trendUp ? "ri-arrow-up-line" : "ri-arrow-down-line"} text-xs`} />
                 {c.trend}
               </div>
@@ -88,10 +88,10 @@ const ReportKpiCards = ({ isAr, dateRange }: Props) => {
 
       {/* Batch vs Individual donut */}
       <div className="col-span-2 lg:col-span-4 rounded-2xl border p-5"
-        style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
+        style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}>
         <div className="flex items-center gap-3 mb-4">
           <div className="w-8 h-8 flex items-center justify-center rounded-lg"
-            style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+            style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.2)" }}>
             <i className="ri-pie-chart-line text-gold-400 text-sm" />
           </div>
           <h3 className="text-white font-bold text-sm">{isAr ? "دُفعة مقابل فردي" : "Batch vs Individual Submission"}</h3>
@@ -101,7 +101,7 @@ const ReportKpiCards = ({ isAr, dateRange }: Props) => {
           <div className="relative w-24 h-24 flex-shrink-0">
             <svg viewBox="0 0 36 36" className="w-full h-full -rotate-90">
               <circle cx="18" cy="18" r="15.9" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="3" />
-              <circle cx="18" cy="18" r="15.9" fill="none" stroke="#D4A84B" strokeWidth="3"
+              <circle cx="18" cy="18" r="15.9" fill="none" stroke="#D6B47E" strokeWidth="3"
                 strokeDasharray="62 38" strokeLinecap="round" />
               <circle cx="18" cy="18" r="15.9" fill="none" stroke="#4ADE80" strokeWidth="3"
                 strokeDasharray="38 62" strokeDashoffset="-62" strokeLinecap="round" />
@@ -113,7 +113,7 @@ const ReportKpiCards = ({ isAr, dateRange }: Props) => {
           </div>
           <div className="flex flex-wrap gap-6">
             {[
-              { label: isAr ? "رفع دُفعة" : "Batch Upload", pct: "62%", count: "29,940", color: "#D4A84B" },
+              { label: isAr ? "رفع دُفعة" : "Batch Upload", pct: "62%", count: "29,940", color: "#D6B47E" },
               { label: isAr ? "إرسال فردي" : "Individual Submit", pct: "38%", count: "18,351", color: "#4ADE80" },
             ].map((item) => (
               <div key={item.label} className="flex items-center gap-3">

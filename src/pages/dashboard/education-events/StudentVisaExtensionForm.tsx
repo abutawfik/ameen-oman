@@ -43,8 +43,8 @@ const StudentVisaExtensionForm = ({ isAr, onCancel }: Props) => {
     }, 1100);
   };
 
-  const standingColor = (s: string) => s === "Excellent" ? "#4ADE80" : s === "Good" ? "#D4A84B" : "#FB923C";
-  const attendanceColor = (a: number) => a >= 80 ? "#4ADE80" : a >= 70 ? "#FACC15" : "#F87171";
+  const standingColor = (s: string) => s === "Excellent" ? "#4ADE80" : s === "Good" ? "#D6B47E" : "#C98A1B";
+  const attendanceColor = (a: number) => a >= 80 ? "#4ADE80" : a >= 70 ? "#FACC15" : "#C94A5E";
   const isEligible = studentData && studentData.attendance >= 70 && studentData.standing !== "Suspended";
 
   const handleSave = () => { setSaving(true); setTimeout(() => { setSaving(false); setRefCode(genRef()); setConfirmed(true); }, 1500); };
@@ -64,7 +64,7 @@ const StudentVisaExtensionForm = ({ isAr, onCancel }: Props) => {
               <p className="text-gray-600 text-xs mt-1">{isAr ? "جرّب: STU-2024-1001 أو STU-2025-0088" : "Try: STU-2024-1001 or STU-2025-0088"}</p>
             </FormField>
             {lookupError && (
-              <div className="flex items-center gap-2 px-3 py-2 rounded-lg" style={{ background: "rgba(248,113,113,0.08)", border: "1px solid rgba(248,113,113,0.2)" }}>
+              <div className="flex items-center gap-2 px-3 py-2 rounded-lg" style={{ background: "rgba(201,74,94,0.08)", border: "1px solid rgba(201,74,94,0.2)" }}>
                 <i className="ri-close-circle-line text-red-400 text-sm" /><span className="text-red-400 text-xs">{lookupError}</span>
               </div>
             )}
@@ -99,7 +99,7 @@ const StudentVisaExtensionForm = ({ isAr, onCancel }: Props) => {
                   <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: `${standingColor(studentData.standing)}15`, color: standingColor(studentData.standing) }}>{studentData.standing}</span>
                 </div>
                 {!isEligible && (
-                  <div className="flex items-start gap-2 px-3 py-2 rounded-lg" style={{ background: "rgba(248,113,113,0.08)", border: "1px solid rgba(248,113,113,0.2)" }}>
+                  <div className="flex items-start gap-2 px-3 py-2 rounded-lg" style={{ background: "rgba(201,74,94,0.08)", border: "1px solid rgba(201,74,94,0.2)" }}>
                     <i className="ri-alarm-warning-line text-red-400 text-xs mt-0.5 flex-shrink-0" />
                     <p className="text-red-400 text-xs">{isAr ? "الطالب غير مؤهل للتمديد — نسبة الحضور أقل من 70%" : "Student not eligible — attendance below 70%"}</p>
                   </div>
@@ -120,7 +120,7 @@ const StudentVisaExtensionForm = ({ isAr, onCancel }: Props) => {
             <FormField label={isAr ? "تاريخ انتهاء التأشيرة الجديدة" : "New Visa Expiry Date"} required>
               <TextInput type="date" value={newVisaExpiry} onChange={(e) => setNewVisaExpiry(e.target.value)} />
             </FormField>
-            <div className="flex items-start gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(181,142,60,0.04)", borderColor: "rgba(181,142,60,0.15)" }}>
+            <div className="flex items-start gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(184,138,60,0.04)", borderColor: "rgba(184,138,60,0.15)" }}>
               <i className="ri-information-line text-gold-400 text-sm mt-0.5 flex-shrink-0" />
               <p className="text-gray-400 text-xs">{isAr ? "Al-Ameen يتحقق تلقائياً من نسبة الحضور والوضع الأكاديمي قبل الموافقة على التمديد." : "Al-Ameen auto-verifies attendance % and academic standing before approving the extension."}</p>
             </div>

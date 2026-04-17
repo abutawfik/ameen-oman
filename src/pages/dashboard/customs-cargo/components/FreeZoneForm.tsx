@@ -27,10 +27,10 @@ const FreeZoneForm = ({ isAr, onSubmit }: Props) => {
   };
 
   const inputClass = "w-full bg-transparent border rounded-lg px-3 py-2.5 text-white text-sm font-['Inter'] focus:outline-none focus:border-gold-400 transition-colors placeholder-gray-600";
-  const inputStyle = { borderColor: "rgba(181,142,60,0.2)", background: "rgba(255,255,255,0.03)" };
+  const inputStyle = { borderColor: "rgba(184,138,60,0.2)", background: "rgba(255,255,255,0.03)" };
   const labelClass = "block text-gray-400 text-xs font-['Inter'] mb-1.5";
   const sectionClass = "rounded-xl p-5 space-y-4";
-  const sectionStyle = { background: "rgba(20,29,46,0.6)", border: "1px solid rgba(181,142,60,0.1)" };
+  const sectionStyle = { background: "rgba(10,37,64,0.6)", border: "1px solid rgba(184,138,60,0.1)" };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
@@ -45,9 +45,9 @@ const FreeZoneForm = ({ isAr, onSubmit }: Props) => {
             <button key={m} type="button" onClick={() => setMovement(m)}
               className="flex-1 py-3 rounded-xl text-sm font-['Inter'] font-semibold transition-all cursor-pointer flex items-center justify-center gap-2"
               style={{
-                background: movement === m ? (m === "in" ? "rgba(181,142,60,0.15)" : "rgba(74,222,128,0.15)") : "rgba(255,255,255,0.03)",
-                color: movement === m ? (m === "in" ? "#D4A84B" : "#4ADE80") : "#6B7280",
-                border: `1px solid ${movement === m ? (m === "in" ? "#D4A84B" : "#4ADE80") : "rgba(255,255,255,0.08)"}`,
+                background: movement === m ? (m === "in" ? "rgba(184,138,60,0.15)" : "rgba(74,222,128,0.15)") : "rgba(255,255,255,0.03)",
+                color: movement === m ? (m === "in" ? "#D6B47E" : "#4ADE80") : "#6B7280",
+                border: `1px solid ${movement === m ? (m === "in" ? "#D6B47E" : "#4ADE80") : "rgba(255,255,255,0.08)"}`,
               }}>
               <i className={m === "in" ? "ri-login-box-line" : "ri-logout-box-line"} />
               {m === "in"
@@ -121,11 +121,11 @@ const FreeZoneForm = ({ isAr, onSubmit }: Props) => {
             onFocus={() => setShowHsDropdown(true)} />
           {showHsDropdown && hsSearch && (
             <div className="absolute z-20 w-full mt-1 rounded-xl overflow-hidden shadow-2xl"
-              style={{ background: "#141D2E", border: "1px solid rgba(181,142,60,0.2)" }}>
+              style={{ background: "#0A2540", border: "1px solid rgba(184,138,60,0.2)" }}>
               {filteredHs.slice(0, 5).map((h) => (
                 <button key={h.code} type="button"
                   className="w-full text-left px-4 py-3 hover:bg-gold-400/10 transition-colors border-b"
-                  style={{ borderColor: "rgba(181,142,60,0.06)" }}
+                  style={{ borderColor: "rgba(184,138,60,0.06)" }}
                   onClick={() => { setHsSearch(h.code); setShowHsDropdown(false); }}>
                   <span className="text-gold-400 text-sm font-bold font-['JetBrains_Mono']">{h.code}</span>
                   <span className="text-gray-300 text-sm font-['Inter'] ml-2">{h.descriptionEn}</span>
@@ -167,12 +167,12 @@ const FreeZoneForm = ({ isAr, onSubmit }: Props) => {
       <div className="flex items-center justify-end gap-3 pt-2">
         <button type="button"
           className="px-6 py-2.5 rounded-lg text-sm font-['Inter'] font-medium cursor-pointer whitespace-nowrap transition-all"
-          style={{ border: "1px solid rgba(181,142,60,0.3)", color: "#D4A84B", background: "transparent" }}>
+          style={{ border: "1px solid rgba(184,138,60,0.3)", color: "#D6B47E", background: "transparent" }}>
           {isAr ? "حفظ مسودة" : "Save Draft"}
         </button>
         <button type="submit" disabled={submitting}
           className="px-8 py-2.5 rounded-lg text-sm font-['Inter'] font-bold cursor-pointer whitespace-nowrap transition-all flex items-center gap-2"
-          style={{ background: submitting ? "rgba(181,142,60,0.5)" : "#D4A84B", color: "#0B1220" }}>
+          style={{ background: submitting ? "rgba(184,138,60,0.5)" : "#D6B47E", color: "#051428" }}>
           {submitting ? (
             <><i className="ri-loader-4-line animate-spin" />{isAr ? "جارٍ الإرسال..." : "Submitting..."}</>
           ) : (

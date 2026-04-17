@@ -6,8 +6,8 @@ interface RiskScoreGaugeProps {
 const getScoreColor = (score: number) => {
   if (score <= 25) return "#4ADE80";
   if (score <= 50) return "#FACC15";
-  if (score <= 75) return "#FB923C";
-  return "#F87171";
+  if (score <= 75) return "#C98A1B";
+  return "#C94A5E";
 };
 
 const getScoreLabel = (score: number, isAr: boolean) => {

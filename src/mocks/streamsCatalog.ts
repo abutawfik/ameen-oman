@@ -10,15 +10,15 @@
 
 // Category palette — aligned with `--cat-*` tokens in al-ameen-brand/style-guide.
 export const STREAM_CATEGORIES = {
-  core:      { color: "#2466A3", label: "Core Intelligence",   labelAr: "الاستخبارات الأساسية" },
-  mobility:  { color: "#D25A2A", label: "Mobility",             labelAr: "التنقل" },
+  core:      { color: "#2C5F8F", label: "Core Intelligence",   labelAr: "الاستخبارات الأساسية" },
+  mobility:  { color: "#C94A5E", label: "Mobility",             labelAr: "التنقل" },
   commerce:  { color: "#1F7A8C", label: "Commerce",             labelAr: "التجارة" },
-  financial: { color: "#0E7C66", label: "Financial",            labelAr: "المالية" },
-  health:    { color: "#B32830", label: "Health",               labelAr: "الصحة" },
+  financial: { color: "#14786A", label: "Financial",            labelAr: "المالية" },
+  health:    { color: "#A52844", label: "Health",               labelAr: "الصحة" },
   utility:   { color: "#C98A1B", label: "Utility",              labelAr: "المرافق" },
   education: { color: "#6B4FAE", label: "Education",            labelAr: "التعليم" },
-  labor:     { color: "#4F9A35", label: "Labor",                labelAr: "العمل" },
-  customs:   { color: "#9A1F24", label: "Customs",              labelAr: "الجمارك" },
+  labor:     { color: "#4A8E3A", label: "Labor",                labelAr: "العمل" },
+  customs:   { color: "#8A1F3C", label: "Customs",              labelAr: "الجمارك" },
   maritime:  { color: "#2C5F8F", label: "Maritime",             labelAr: "البحرية" },
   postal:    { color: "#A8547A", label: "Postal",               labelAr: "البريد" },
   digital:   { color: "#8A6C1B", label: "Digital",              labelAr: "رقمي" },

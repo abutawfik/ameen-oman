@@ -28,7 +28,7 @@ const CROSS_STREAM: CrossStreamEvent[] = [
 
 const statusColor = (s: CrossStreamEvent["status"]) => {
   if (s === "checked-in") return "#4ADE80";
-  if (s === "flagged") return "#F87171";
+  if (s === "flagged") return "#C94A5E";
   return "#FACC15";
 };
 
@@ -39,19 +39,19 @@ const statusLabel = (s: CrossStreamEvent["status"], isAr: boolean) => {
 };
 
 const eventBadgeColor = (e: string) => {
-  if (e === "ENTRY") return "#D4A84B";
+  if (e === "ENTRY") return "#D6B47E";
   if (e === "HOTEL_CHECKIN") return "#4ADE80";
-  if (e === "CAR_RENTAL") return "#FB923C";
+  if (e === "CAR_RENTAL") return "#C98A1B";
   if (e === "SIM_PURCHASE") return "#A78BFA";
   return "#9CA3AF";
 };
 
 const CrossStreamPanel = ({ isAr }: Props) => {
   return (
-    <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.15)", backdropFilter: "blur(12px)" }}>
-      <div className="flex items-center justify-between px-6 py-4 border-b" style={{ borderColor: "rgba(181,142,60,0.1)" }}>
+    <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.15)", backdropFilter: "blur(12px)" }}>
+      <div className="flex items-center justify-between px-6 py-4 border-b" style={{ borderColor: "rgba(184,138,60,0.1)" }}>
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+          <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.2)" }}>
             <i className="ri-links-line text-gold-400 text-sm" />
           </div>
           <div>
@@ -59,7 +59,7 @@ const CrossStreamPanel = ({ isAr }: Props) => {
             <p className="text-gray-500 text-xs">{isAr ? "ربط دخول الحدود بجميع الأحداث اللاحقة داخل البلاد" : "Linking border entry to all subsequent in-country events"}</p>
           </div>
         </div>
-        <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border" style={{ background: "rgba(248,113,113,0.08)", borderColor: "rgba(248,113,113,0.2)" }}>
+        <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border" style={{ background: "rgba(201,74,94,0.08)", borderColor: "rgba(201,74,94,0.2)" }}>
           <i className="ri-alarm-warning-line text-red-400 text-xs" />
           <span className="text-red-400 text-xs font-bold font-['JetBrains_Mono']">
             {CROSS_STREAM.filter(c => c.status === "flagged").length} {isAr ? "تنبيه" : "FLAGGED"}
@@ -68,7 +68,7 @@ const CrossStreamPanel = ({ isAr }: Props) => {
       </div>
 
       {/* Rule banner */}
-      <div className="flex items-center gap-3 px-6 py-3 border-b" style={{ background: "rgba(248,113,113,0.04)", borderColor: "rgba(248,113,113,0.1)" }}>
+      <div className="flex items-center gap-3 px-6 py-3 border-b" style={{ background: "rgba(201,74,94,0.04)", borderColor: "rgba(201,74,94,0.1)" }}>
         <i className="ri-information-line text-red-400 text-sm flex-shrink-0" />
         <p className="text-gray-400 text-xs">
           {isAr
@@ -77,7 +77,7 @@ const CrossStreamPanel = ({ isAr }: Props) => {
         </p>
       </div>
 
-      <div className="divide-y" style={{ borderColor: "rgba(181,142,60,0.06)" }}>
+      <div className="divide-y" style={{ borderColor: "rgba(184,138,60,0.06)" }}>
         {CROSS_STREAM.map((rec) => {
           const color = statusColor(rec.status);
           return (

@@ -26,13 +26,13 @@ const DivingRegistrationForm = ({ isAr, onCancel }: Props) => {
     setAutoFilled(true);
   };
   const handleSave = () => { setSaving(true); setTimeout(() => { setSaving(false); setRefNumber(`AMN-MAR-${Date.now()}-${Math.floor(Math.random() * 9000) + 1000}`); setConfirmed(true); }, 1800); };
-  if (confirmed) return <MarConfirmation refNumber={refNumber} eventType={isAr ? "تسجيل غوص" : "Diving Registration"} eventCode="MAR_DIVING" color="#FB923C" isAr={isAr} onReset={() => { setConfirmed(false); setAutoFilled(false); }} />;
+  if (confirmed) return <MarConfirmation refNumber={refNumber} eventType={isAr ? "تسجيل غوص" : "Diving Registration"} eventCode="MAR_DIVING" color="#C98A1B" isAr={isAr} onReset={() => { setConfirmed(false); setAutoFilled(false); }} />;
 
   return (
     <div className="space-y-5">
       <TipBanner text={isAr ? "يجب التحقق من شهادة الغوص والصلاحية الطبية قبل التسجيل." : "Diving certification and medical fitness must be verified before registration."} color="amber" />
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
-        <SectionCard title={isAr ? "تفاصيل الغوص" : "Diving Details"} icon="ri-water-flash-line" accentColor="#FB923C">
+        <SectionCard title={isAr ? "تفاصيل الغوص" : "Diving Details"} icon="ri-water-flash-line" accentColor="#C98A1B">
           <div className="space-y-4">
             <div className="grid grid-cols-2 gap-3">
               <FormField label={isAr ? "مستوى الشهادة" : "Cert Level"} required><SelectInput options={CERT_LEVELS} placeholder={isAr ? "اختر" : "Select"} value={certLevel} onChange={(e) => setCertLevel(e.target.value)} /></FormField>

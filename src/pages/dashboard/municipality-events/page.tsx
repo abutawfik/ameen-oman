@@ -28,9 +28,9 @@ const EVENT_CARDS: EventCard[] = [
     labelAr: "بدء إيجار",
     desc: "Register a new rental agreement with full property, owner and tenant details",
     descAr: "تسجيل عقد إيجار جديد مع تفاصيل العقار والمالك والمستأجر",
-    color: "#D4A84B",
-    bgColor: "rgba(181,142,60,0.08)",
-    borderColor: "rgba(181,142,60,0.25)",
+    color: "#D6B47E",
+    bgColor: "rgba(184,138,60,0.08)",
+    borderColor: "rgba(184,138,60,0.25)",
     code: "MUN_START_RENTAL",
   },
   {
@@ -52,9 +52,9 @@ const EVENT_CARDS: EventCard[] = [
     labelAr: "إنهاء إيجار",
     desc: "Terminate a rental agreement with reason, forwarding address and deposit settlement",
     descAr: "إنهاء عقد إيجار مع السبب وعنوان المراسلة وتسوية التأمين",
-    color: "#F87171",
-    bgColor: "rgba(248,113,113,0.08)",
-    borderColor: "rgba(248,113,113,0.25)",
+    color: "#C94A5E",
+    bgColor: "rgba(201,74,94,0.08)",
+    borderColor: "rgba(201,74,94,0.25)",
     code: "MUN_STOP_RENTAL",
   },
 ];
@@ -66,11 +66,11 @@ const MunicipalityEventsPage = () => {
   const activeCard = EVENT_CARDS.find((c) => c.id === activeEvent);
 
   return (
-    <div className="min-h-screen font-['Inter']" style={{ background: "#0B1220" }} dir={isAr ? "rtl" : "ltr"}>
+    <div className="min-h-screen font-['Inter']" style={{ background: "#051428" }} dir={isAr ? "rtl" : "ltr"}>
       <div
         className="fixed inset-0 pointer-events-none"
         style={{
-          backgroundImage: `linear-gradient(rgba(181,142,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,0.03) 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(rgba(184,138,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.03) 1px, transparent 1px)`,
           backgroundSize: "40px 40px",
         }}
       />
@@ -78,7 +78,7 @@ const MunicipalityEventsPage = () => {
       {/* Header */}
       <header
         className="sticky top-0 z-40 flex items-center justify-between px-6 py-3 border-b"
-        style={{ background: "rgba(11,18,32,0.95)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}
+        style={{ background: "rgba(5,20,40,0.95)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}
       >
         <div className="flex items-center gap-4">
           <button
@@ -93,13 +93,13 @@ const MunicipalityEventsPage = () => {
             {activeEvent ? (isAr ? "العودة" : "Back") : (isAr ? "لوحة التحكم" : "Dashboard")}
           </button>
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+            <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.2)" }}>
               <i className="ri-building-2-line text-gold-400 text-sm" />
             </div>
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-white font-bold text-sm">{isAr ? "أحداث إيجار البلدية" : "Municipality Property Rental"}</span>
-                <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(181,142,60,0.12)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>
+                <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(184,138,60,0.12)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}>
                   Al-Ameen Portal
                 </span>
               </div>
@@ -128,7 +128,7 @@ const MunicipalityEventsPage = () => {
           <>
             <div className="mb-8">
               <div className="flex items-center gap-3 mb-3">
-                <div className="w-10 h-10 flex items-center justify-center rounded-xl" style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+                <div className="w-10 h-10 flex items-center justify-center rounded-xl" style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.2)" }}>
                   <i className="ri-building-2-line text-gold-400" />
                 </div>
                 <div>
@@ -145,7 +145,7 @@ const MunicipalityEventsPage = () => {
                   type="button"
                   onClick={() => setActiveEvent(card.id)}
                   className="group relative rounded-2xl border p-6 text-left cursor-pointer transition-all duration-300 flex flex-col gap-4"
-                  style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}
+                  style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}
                   onMouseEnter={(e) => {
                     const el = e.currentTarget as HTMLButtonElement;
                     el.style.borderColor = card.borderColor;
@@ -155,8 +155,8 @@ const MunicipalityEventsPage = () => {
                   }}
                   onMouseLeave={(e) => {
                     const el = e.currentTarget as HTMLButtonElement;
-                    el.style.borderColor = "rgba(181,142,60,0.12)";
-                    el.style.background = "rgba(20,29,46,0.8)";
+                    el.style.borderColor = "rgba(184,138,60,0.12)";
+                    el.style.background = "rgba(10,37,64,0.8)";
                     el.style.boxShadow = "none";
                     el.style.transform = "translateY(0)";
                   }}
@@ -182,7 +182,7 @@ const MunicipalityEventsPage = () => {
             </div>
 
             {/* Info banner */}
-            <div className="flex items-start gap-3 px-5 py-4 rounded-xl border" style={{ background: "rgba(181,142,60,0.04)", borderColor: "rgba(181,142,60,0.15)" }}>
+            <div className="flex items-start gap-3 px-5 py-4 rounded-xl border" style={{ background: "rgba(184,138,60,0.04)", borderColor: "rgba(184,138,60,0.15)" }}>
               <i className="ri-information-line text-gold-400 text-sm mt-0.5 flex-shrink-0" />
               <p className="text-gray-400 text-sm font-['Inter']">
                 {isAr
@@ -206,7 +206,7 @@ const MunicipalityEventsPage = () => {
             </div>
 
             {/* Tab switcher */}
-            <div className="flex gap-1 p-1 rounded-xl mb-6 overflow-x-auto" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.1)" }}>
+            <div className="flex gap-1 p-1 rounded-xl mb-6 overflow-x-auto" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.1)" }}>
               {EVENT_CARDS.map((card) => (
                 <button
                   key={card.id}

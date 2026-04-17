@@ -360,15 +360,15 @@ const SimPurchaseForm = ({ isAr, onCancel }: Props) => {
         {(intlCalling || dataRoaming || intlSms || mobileMoney) && (
           <div
             className="mt-4 flex flex-wrap gap-2 p-3 rounded-xl border"
-            style={{ background: "rgba(181,142,60,0.04)", borderColor: "rgba(181,142,60,0.15)" }}
+            style={{ background: "rgba(184,138,60,0.04)", borderColor: "rgba(184,138,60,0.15)" }}
           >
             <span className="text-gray-500 text-xs font-['Inter'] w-full mb-1">
               {isAr ? "الخدمات المفعّلة:" : "Active services:"}
             </span>
-            {intlCalling && <span className="px-2 py-0.5 rounded-full text-xs font-semibold font-['Inter']" style={{ background: "rgba(181,142,60,0.12)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.25)" }}>{isAr ? "مكالمات دولية" : "Intl Calling"}</span>}
-            {dataRoaming && <span className="px-2 py-0.5 rounded-full text-xs font-semibold font-['Inter']" style={{ background: "rgba(181,142,60,0.12)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.25)" }}>{isAr ? "تجوال البيانات" : "Data Roaming"}</span>}
-            {intlSms && <span className="px-2 py-0.5 rounded-full text-xs font-semibold font-['Inter']" style={{ background: "rgba(181,142,60,0.12)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.25)" }}>{isAr ? "رسائل دولية" : "Intl SMS"}</span>}
-            {mobileMoney && <span className="px-2 py-0.5 rounded-full text-xs font-semibold font-['Inter']" style={{ background: "rgba(181,142,60,0.12)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.25)" }}>{isAr ? "محفظة إلكترونية" : "Mobile Money"}</span>}
+            {intlCalling && <span className="px-2 py-0.5 rounded-full text-xs font-semibold font-['Inter']" style={{ background: "rgba(184,138,60,0.12)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.25)" }}>{isAr ? "مكالمات دولية" : "Intl Calling"}</span>}
+            {dataRoaming && <span className="px-2 py-0.5 rounded-full text-xs font-semibold font-['Inter']" style={{ background: "rgba(184,138,60,0.12)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.25)" }}>{isAr ? "تجوال البيانات" : "Data Roaming"}</span>}
+            {intlSms && <span className="px-2 py-0.5 rounded-full text-xs font-semibold font-['Inter']" style={{ background: "rgba(184,138,60,0.12)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.25)" }}>{isAr ? "رسائل دولية" : "Intl SMS"}</span>}
+            {mobileMoney && <span className="px-2 py-0.5 rounded-full text-xs font-semibold font-['Inter']" style={{ background: "rgba(184,138,60,0.12)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.25)" }}>{isAr ? "محفظة إلكترونية" : "Mobile Money"}</span>}
           </div>
         )}
       </SectionCard>

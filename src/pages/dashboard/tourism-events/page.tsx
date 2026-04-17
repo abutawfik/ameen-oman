@@ -8,9 +8,9 @@ import AdventureActivityForm from "./AdventureActivityForm";
 type EventType = "attraction" | "tour" | "adventure";
 
 const EVENT_CARDS = [
-  { id: "attraction" as EventType, icon: "ri-ticket-2-line", label: "Attraction Entry", labelAr: "دخول معلم سياحي", desc: "Record visitor entry to tourist attractions, museums and cultural sites", descAr: "تسجيل دخول الزوار إلى المعالم السياحية والمتاحف والمواقع الثقافية", color: "#D4A84B", code: "TOR_ATTRACTION" },
+  { id: "attraction" as EventType, icon: "ri-ticket-2-line", label: "Attraction Entry", labelAr: "دخول معلم سياحي", desc: "Record visitor entry to tourist attractions, museums and cultural sites", descAr: "تسجيل دخول الزوار إلى المعالم السياحية والمتاحف والمواقع الثقافية", color: "#D6B47E", code: "TOR_ATTRACTION" },
   { id: "tour" as EventType, icon: "ri-map-2-line", label: "Tour Booking", labelAr: "حجز جولة سياحية", desc: "Register tour bookings with operator license, guide details and group info", descAr: "تسجيل حجوزات الجولات مع رخصة المشغل وتفاصيل المرشد والمجموعة", color: "#4ADE80", code: "TOR_BOOKING" },
-  { id: "adventure" as EventType, icon: "ri-run-line", label: "Adventure Activity", labelAr: "نشاط مغامرة", desc: "Register adventure activities with risk level, waiver and certification", descAr: "تسجيل أنشطة المغامرة مع مستوى المخاطر وإخلاء المسؤولية والشهادة", color: "#FB923C", code: "TOR_ADVENTURE" },
+  { id: "adventure" as EventType, icon: "ri-run-line", label: "Adventure Activity", labelAr: "نشاط مغامرة", desc: "Register adventure activities with risk level, waiver and certification", descAr: "تسجيل أنشطة المغامرة مع مستوى المخاطر وإخلاء المسؤولية والشهادة", color: "#C98A1B", code: "TOR_ADVENTURE" },
 ];
 
 const TourismEventsPage = () => {
@@ -22,21 +22,21 @@ const TourismEventsPage = () => {
   const handleSwitch = (id: EventType) => { setActiveEvent(id); setFormKey(k => k + 1); };
 
   return (
-    <div className="min-h-screen font-['Inter']" style={{ background: "#0B1220" }} dir={isAr ? "rtl" : "ltr"}>
-      <div className="fixed inset-0 pointer-events-none" style={{ backgroundImage: `linear-gradient(rgba(181,142,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,0.03) 1px, transparent 1px)`, backgroundSize: "40px 40px" }} />
-      <header className="sticky top-0 z-40 flex items-center justify-between px-6 py-3 border-b" style={{ background: "rgba(11,18,32,0.95)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
+    <div className="min-h-screen font-['Inter']" style={{ background: "#051428" }} dir={isAr ? "rtl" : "ltr"}>
+      <div className="fixed inset-0 pointer-events-none" style={{ backgroundImage: `linear-gradient(rgba(184,138,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.03) 1px, transparent 1px)`, backgroundSize: "40px 40px" }} />
+      <header className="sticky top-0 z-40 flex items-center justify-between px-6 py-3 border-b" style={{ background: "rgba(5,20,40,0.95)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}>
         <div className="flex items-center gap-4">
           <button type="button" onClick={() => activeEvent ? setActiveEvent(null) : navigate("/dashboard")} className="flex items-center gap-2 px-3 py-1.5 rounded-lg border text-sm font-semibold cursor-pointer whitespace-nowrap transition-colors" style={{ background: "transparent", borderColor: "rgba(255,255,255,0.1)", color: "#9CA3AF" }} onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "#D1D5DB"; }} onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "#9CA3AF"; }}>
             <i className={isAr ? "ri-arrow-right-line" : "ri-arrow-left-line"} />{activeEvent ? (isAr ? "العودة" : "Back") : (isAr ? "لوحة التحكم" : "Dashboard")}
           </button>
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+            <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.2)" }}>
               <i className="ri-map-pin-line text-gold-400 text-sm" />
             </div>
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-white font-bold text-sm">{isAr ? "أحداث السياحة" : "Tourism Events"}</span>
-                <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(181,142,60,0.12)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>Al-Ameen Portal</span>
+                <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(184,138,60,0.12)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}>Al-Ameen Portal</span>
               </div>
               <p className="text-gray-500 text-xs">{isAr ? "المعالم السياحية والجولات والأنشطة" : "Attractions, Tours & Activities"}</p>
             </div>
@@ -61,9 +61,9 @@ const TourismEventsPage = () => {
               {EVENT_CARDS.map(card => (
                 <button key={card.id} type="button" onClick={() => handleSwitch(card.id)}
                   className="group relative rounded-2xl border p-6 text-left cursor-pointer transition-all duration-300 flex flex-col gap-4"
-                  style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}
+                  style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}
                   onMouseEnter={(e) => { const el = e.currentTarget as HTMLButtonElement; el.style.borderColor = `${card.color}50`; el.style.background = `${card.color}08`; el.style.boxShadow = `0 0 30px ${card.color}18`; el.style.transform = "translateY(-2px)"; }}
-                  onMouseLeave={(e) => { const el = e.currentTarget as HTMLButtonElement; el.style.borderColor = "rgba(181,142,60,0.12)"; el.style.background = "rgba(20,29,46,0.8)"; el.style.boxShadow = "none"; el.style.transform = "translateY(0)"; }}
+                  onMouseLeave={(e) => { const el = e.currentTarget as HTMLButtonElement; el.style.borderColor = "rgba(184,138,60,0.12)"; el.style.background = "rgba(10,37,64,0.8)"; el.style.boxShadow = "none"; el.style.transform = "translateY(0)"; }}
                 >
                   <div className="w-14 h-14 flex items-center justify-center rounded-2xl" style={{ background: `${card.color}12`, border: `1px solid ${card.color}30` }}>
                     <i className={`${card.icon} text-2xl`} style={{ color: card.color }} />
@@ -79,7 +79,7 @@ const TourismEventsPage = () => {
                 </button>
               ))}
             </div>
-            <div className="flex items-start gap-3 px-5 py-4 rounded-xl border" style={{ background: "rgba(181,142,60,0.04)", borderColor: "rgba(181,142,60,0.15)" }}>
+            <div className="flex items-start gap-3 px-5 py-4 rounded-xl border" style={{ background: "rgba(184,138,60,0.04)", borderColor: "rgba(184,138,60,0.15)" }}>
               <i className="ri-information-line text-gold-400 text-sm mt-0.5 flex-shrink-0" />
               <p className="text-gray-400 text-sm">{isAr ? "جميع أحداث السياحة تُرسَل فوراً إلى Al-Ameen. الأنشطة عالية المخاطر تتطلب توقيع إخلاء مسؤولية." : "All tourism events are submitted instantly to Al-Ameen. High-risk activities require a signed waiver."}</p>
             </div>
@@ -87,7 +87,7 @@ const TourismEventsPage = () => {
         )}
         {activeEvent && (
           <>
-            <div className="flex gap-1 p-1 rounded-xl mb-6 overflow-x-auto" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.1)" }}>
+            <div className="flex gap-1 p-1 rounded-xl mb-6 overflow-x-auto" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.1)" }}>
               {EVENT_CARDS.map(card => (
                 <button key={card.id} type="button" onClick={() => handleSwitch(card.id)}
                   className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap transition-all flex-shrink-0"

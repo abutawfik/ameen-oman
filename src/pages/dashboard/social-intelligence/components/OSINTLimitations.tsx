@@ -4,10 +4,10 @@ const OSINTLimitations = ({ isAr }: Props) => {
   const limitations = [
     { icon: "ri-lock-line", color: "#9CA3AF", title: isAr ? "الحسابات الخاصة غير متاحة" : "Private Accounts Not Accessible", desc: isAr ? "لا يمكن الوصول إلى المحتوى الخاص. Tier 1+2 يعمل فقط على البيانات العامة والمرتبطة بالهاتف." : "Private content cannot be accessed. Tier 1+2 operates only on public data and phone-linked metadata." },
     { icon: "ri-time-line", color: "#FACC15", title: isAr ? "حدود معدل API" : "Platform API Rate Limits", desc: isAr ? "المنصات تفرض حدوداً على الاستعلامات. ليس في الوقت الفعلي — فترة التحديث قابلة للتهيئة (5 دقائق - 1 ساعة)." : "Platforms impose query limits. Not real-time — refresh interval configurable (5min–1hr)." },
-    { icon: "ri-user-unfollow-line", color: "#FB923C", title: isAr ? "معدل إصابة ~70%" : "~70% Phone Lookup Hit Rate", desc: isAr ? "لا يمكن ضمان تطابق الهوية. بعض الأرقام لا تُربط بحسابات اجتماعية. التحقق اليدوي مطلوب." : "Identity match cannot be guaranteed. Some numbers don't link to social accounts. Manual verification required." },
-    { icon: "ri-eye-off-line", color: "#F87171", title: isAr ? "لا تعرف على الوجه" : "No Facial Recognition", desc: isAr ? "Tier 1+2 لا يتضمن تعرفاً على الوجه. صور الملف الشخصي لا تُحلَّل تلقائياً." : "Tier 1+2 does not include facial recognition. Profile photos are not automatically analyzed." },
+    { icon: "ri-user-unfollow-line", color: "#C98A1B", title: isAr ? "معدل إصابة ~70%" : "~70% Phone Lookup Hit Rate", desc: isAr ? "لا يمكن ضمان تطابق الهوية. بعض الأرقام لا تُربط بحسابات اجتماعية. التحقق اليدوي مطلوب." : "Identity match cannot be guaranteed. Some numbers don't link to social accounts. Manual verification required." },
+    { icon: "ri-eye-off-line", color: "#C94A5E", title: isAr ? "لا تعرف على الوجه" : "No Facial Recognition", desc: isAr ? "Tier 1+2 لا يتضمن تعرفاً على الوجه. صور الملف الشخصي لا تُحلَّل تلقائياً." : "Tier 1+2 does not include facial recognition. Profile photos are not automatically analyzed." },
     { icon: "ri-shield-check-line", color: "#4ADE80", title: isAr ? "البيانات العامة فقط" : "Public Data Only", desc: isAr ? "جميع البيانات المجمّعة من مصادر عامة أو مرتبطة بأرقام هواتف مُقدَّمة من تدفق SIM. لا اختراق للخصوصية." : "All data collected from public sources or linked to phone numbers provided by SIM stream. No privacy breach." },
-    { icon: "ri-database-2-line", color: "#D4A84B", title: isAr ? "تحليل استرجاعي" : "Retrospective Analysis", desc: isAr ? "التحليل يعمل على البيانات التاريخية. لا مراقبة في الوقت الفعلي لحسابات بعينها." : "Analysis operates on historical data. No real-time surveillance of specific accounts." },
+    { icon: "ri-database-2-line", color: "#D6B47E", title: isAr ? "تحليل استرجاعي" : "Retrospective Analysis", desc: isAr ? "التحليل يعمل على البيانات التاريخية. لا مراقبة في الوقت الفعلي لحسابات بعينها." : "Analysis operates on historical data. No real-time surveillance of specific accounts." },
   ];
 
   const apiSources = [
@@ -22,7 +22,7 @@ const OSINTLimitations = ({ isAr }: Props) => {
   return (
     <div className="space-y-6">
       {/* Limitations grid */}
-      <div className="rounded-2xl border p-6" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
+      <div className="rounded-2xl border p-6" style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}>
         <div className="flex items-center gap-3 mb-5">
           <div className="w-9 h-9 flex items-center justify-center rounded-xl" style={{ background: "rgba(250,204,21,0.1)", border: "1px solid rgba(250,204,21,0.2)" }}>
             <i className="ri-information-line text-yellow-400" />
@@ -48,8 +48,8 @@ const OSINTLimitations = ({ isAr }: Props) => {
       </div>
 
       {/* API sources */}
-      <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
-        <div className="px-6 py-4 border-b" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
+      <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}>
+        <div className="px-6 py-4 border-b" style={{ borderColor: "rgba(184,138,60,0.08)" }}>
           <h3 className="text-white font-bold text-sm">{isAr ? "مصادر API المتكاملة" : "Integrated API Sources"}</h3>
           <p className="text-gray-500 text-xs mt-0.5">{isAr ? "خدمات البحث والمراقبة المستخدمة" : "Lookup and monitoring services in use"}</p>
         </div>

@@ -30,9 +30,9 @@ const EVENT_CARDS: EventCard[] = [
     labelAr: "صرف عملة",
     desc: "Record foreign currency exchange with full customer identity and transaction details",
     descAr: "تسجيل معاملة صرف عملة أجنبية مع هوية العميل وتفاصيل المعاملة",
-    color: "#D4A84B",
-    bgColor: "rgba(181,142,60,0.08)",
-    borderColor: "rgba(181,142,60,0.25)",
+    color: "#D6B47E",
+    bgColor: "rgba(184,138,60,0.08)",
+    borderColor: "rgba(184,138,60,0.25)",
     code: "FIN_EXCHANGE",
   },
   {
@@ -54,9 +54,9 @@ const EVENT_CARDS: EventCard[] = [
     labelAr: "تحويل بنكي",
     desc: "Submit international wire transfer with sender, recipient and auto-flagging for high-risk",
     descAr: "إرسال تحويل بنكي دولي مع المُرسِل والمستفيد والإبلاغ التلقائي للمخاطر",
-    color: "#FB923C",
-    bgColor: "rgba(251,146,60,0.08)",
-    borderColor: "rgba(251,146,60,0.25)",
+    color: "#C98A1B",
+    bgColor: "rgba(201,138,27,0.08)",
+    borderColor: "rgba(201,138,27,0.25)",
     code: "FIN_WIRE",
     badge: "AUTO-FLAG",
   },
@@ -67,9 +67,9 @@ const EVENT_CARDS: EventCard[] = [
     labelAr: "نقد كبير",
     desc: "Report large cash deposits or withdrawals above 5000 LCY per AML requirements",
     descAr: "الإبلاغ عن إيداعات أو سحوبات نقدية كبيرة فوق 5000 LCY وفق متطلبات AML",
-    color: "#F87171",
-    bgColor: "rgba(248,113,113,0.08)",
-    borderColor: "rgba(248,113,113,0.25)",
+    color: "#C94A5E",
+    bgColor: "rgba(201,74,94,0.08)",
+    borderColor: "rgba(201,74,94,0.25)",
     code: "FIN_CASH",
     badge: ">5000 LCY",
   },
@@ -82,11 +82,11 @@ const FinancialEventsPage = () => {
   const activeCard = EVENT_CARDS.find((c) => c.id === activeEvent);
 
   return (
-    <div className="min-h-screen font-['Inter']" style={{ background: "#0B1220" }} dir={isAr ? "rtl" : "ltr"}>
+    <div className="min-h-screen font-['Inter']" style={{ background: "#051428" }} dir={isAr ? "rtl" : "ltr"}>
       <div
         className="fixed inset-0 pointer-events-none"
         style={{
-          backgroundImage: `linear-gradient(rgba(181,142,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,0.03) 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(rgba(184,138,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.03) 1px, transparent 1px)`,
           backgroundSize: "40px 40px",
         }}
       />
@@ -94,7 +94,7 @@ const FinancialEventsPage = () => {
       {/* Header */}
       <header
         className="sticky top-0 z-40 flex items-center justify-between px-6 py-3 border-b"
-        style={{ background: "rgba(11,18,32,0.95)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}
+        style={{ background: "rgba(5,20,40,0.95)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}
       >
         <div className="flex items-center gap-4">
           <button
@@ -109,13 +109,13 @@ const FinancialEventsPage = () => {
             {activeEvent ? (isAr ? "العودة" : "Back") : (isAr ? "لوحة التحكم" : "Dashboard")}
           </button>
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+            <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.2)" }}>
               <i className="ri-bank-line text-gold-400 text-sm" />
             </div>
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-white font-bold text-sm">{isAr ? "أحداث الخدمات المالية" : "Financial Services Events"}</span>
-                <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(181,142,60,0.12)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>
+                <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(184,138,60,0.12)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}>
                   Al-Ameen Portal
                 </span>
               </div>
@@ -124,7 +124,7 @@ const FinancialEventsPage = () => {
           </div>
         </div>
         <div className="flex items-center gap-3">
-          <div className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full border" style={{ background: "rgba(248,113,113,0.06)", borderColor: "rgba(248,113,113,0.2)" }}>
+          <div className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full border" style={{ background: "rgba(201,74,94,0.06)", borderColor: "rgba(201,74,94,0.2)" }}>
             <i className="ri-shield-check-line text-red-400 text-xs" />
             <span className="text-red-400 text-xs font-semibold font-['JetBrains_Mono']">AML/KYC Active</span>
           </div>
@@ -148,7 +148,7 @@ const FinancialEventsPage = () => {
           <>
             <div className="mb-8">
               <div className="flex items-center gap-3 mb-3">
-                <div className="w-10 h-10 flex items-center justify-center rounded-xl" style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+                <div className="w-10 h-10 flex items-center justify-center rounded-xl" style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.2)" }}>
                   <i className="ri-bank-line text-gold-400" />
                 </div>
                 <div>
@@ -165,7 +165,7 @@ const FinancialEventsPage = () => {
                   type="button"
                   onClick={() => setActiveEvent(card.id)}
                   className="group relative rounded-2xl border p-6 text-left cursor-pointer transition-all duration-300 flex flex-col gap-4"
-                  style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}
+                  style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}
                   onMouseEnter={(e) => {
                     const el = e.currentTarget as HTMLButtonElement;
                     el.style.borderColor = card.borderColor;
@@ -175,8 +175,8 @@ const FinancialEventsPage = () => {
                   }}
                   onMouseLeave={(e) => {
                     const el = e.currentTarget as HTMLButtonElement;
-                    el.style.borderColor = "rgba(181,142,60,0.12)";
-                    el.style.background = "rgba(20,29,46,0.8)";
+                    el.style.borderColor = "rgba(184,138,60,0.12)";
+                    el.style.background = "rgba(10,37,64,0.8)";
                     el.style.boxShadow = "none";
                     el.style.transform = "translateY(0)";
                   }}
@@ -209,7 +209,7 @@ const FinancialEventsPage = () => {
               ))}
             </div>
 
-            <div className="flex items-start gap-3 px-5 py-4 rounded-xl border" style={{ background: "rgba(248,113,113,0.04)", borderColor: "rgba(248,113,113,0.15)" }}>
+            <div className="flex items-start gap-3 px-5 py-4 rounded-xl border" style={{ background: "rgba(201,74,94,0.04)", borderColor: "rgba(201,74,94,0.15)" }}>
               <i className="ri-shield-check-line text-red-400 text-sm mt-0.5 flex-shrink-0" />
               <p className="text-gray-400 text-sm font-['Inter']">
                 {isAr
@@ -232,7 +232,7 @@ const FinancialEventsPage = () => {
               </div>
             </div>
 
-            <div className="flex gap-1 p-1 rounded-xl mb-6 overflow-x-auto" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.1)" }}>
+            <div className="flex gap-1 p-1 rounded-xl mb-6 overflow-x-auto" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.1)" }}>
               {EVENT_CARDS.map((card) => (
                 <button
                   key={card.id}

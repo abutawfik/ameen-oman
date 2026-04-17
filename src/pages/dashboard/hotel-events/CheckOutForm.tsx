@@ -84,7 +84,7 @@ const CheckOutForm = ({ isAr, onCancel, onSaved }: Props) => {
     return (
       <SuccessScreen
         icon="ri-logout-box-line"
-        color="#FB923C"
+        color="#C98A1B"
         titleEn="Check-Out Event Saved!"
         titleAr="تم حفظ حدث تسجيل الخروج!"
         isAr={isAr}
@@ -99,7 +99,7 @@ const CheckOutForm = ({ isAr, onCancel, onSaved }: Props) => {
       <div className="flex items-center gap-3">
         <div
           className="w-10 h-10 flex items-center justify-center rounded-xl"
-          style={{ background: "rgba(251,146,60,0.1)", border: "1px solid rgba(251,146,60,0.3)" }}
+          style={{ background: "rgba(201,138,27,0.1)", border: "1px solid rgba(201,138,27,0.3)" }}
         >
           <i className="ri-logout-box-line text-orange-400 text-xl" />
         </div>
@@ -114,7 +114,7 @@ const CheckOutForm = ({ isAr, onCancel, onSaved }: Props) => {
       {/* ── Two-column: Event Info (left) + Travel Doc (right) ── */}
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
         {/* LEFT — Event Info */}
-        <SectionCard title={t.eventInfo} icon="ri-calendar-event-line" accentColor="#FB923C">
+        <SectionCard title={t.eventInfo} icon="ri-calendar-event-line" accentColor="#C98A1B">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <FormField label={t.branch} required>
               <SelectInput
@@ -172,7 +172,7 @@ const CheckOutForm = ({ isAr, onCancel, onSaved }: Props) => {
                 />
                 <span
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold font-['JetBrains_Mono']"
-                  style={{ color: "#D4A84B" }}
+                  style={{ color: "#D6B47E" }}
                 >
                   LCY
                 </span>

@@ -8,24 +8,24 @@ interface Props {
 }
 
 const priorityConfig = {
-  critical: { color: "#F87171", bg: "rgba(248,113,113,0.12)", border: "rgba(248,113,113,0.4)", label: "CRITICAL", labelAr: "حرج" },
-  high:     { color: "#FB923C", bg: "rgba(251,146,60,0.1)",   border: "rgba(251,146,60,0.35)",  label: "HIGH",     labelAr: "عالٍ" },
+  critical: { color: "#C94A5E", bg: "rgba(201,74,94,0.12)", border: "rgba(201,74,94,0.4)", label: "CRITICAL", labelAr: "حرج" },
+  high:     { color: "#C98A1B", bg: "rgba(201,138,27,0.1)",   border: "rgba(201,138,27,0.35)",  label: "HIGH",     labelAr: "عالٍ" },
   medium:   { color: "#FACC15", bg: "rgba(250,204,21,0.1)",   border: "rgba(250,204,21,0.3)",   label: "MEDIUM",   labelAr: "متوسط" },
-  low:      { color: "#D4A84B", bg: "rgba(181,142,60,0.06)",  border: "rgba(181,142,60,0.2)",   label: "LOW",      labelAr: "منخفض" },
+  low:      { color: "#D6B47E", bg: "rgba(184,138,60,0.06)",  border: "rgba(184,138,60,0.2)",   label: "LOW",      labelAr: "منخفض" },
 };
 
 const statusConfig = {
-  "new":       { color: "#F87171", label: "NEW",      labelAr: "جديد" },
+  "new":       { color: "#C94A5E", label: "NEW",      labelAr: "جديد" },
   "en-route":  { color: "#FACC15", label: "EN ROUTE", labelAr: "في الطريق" },
-  "on-scene":  { color: "#FB923C", label: "ON SCENE", labelAr: "في الموقع" },
+  "on-scene":  { color: "#C98A1B", label: "ON SCENE", labelAr: "في الموقع" },
   "resolved":  { color: "#4ADE80", label: "RESOLVED", labelAr: "محلول" },
-  "escalated": { color: "#F87171", label: "ESCALATED",labelAr: "مُصعَّد" },
+  "escalated": { color: "#C94A5E", label: "ESCALATED",labelAr: "مُصعَّد" },
 };
 
 const officerStatusColors: Record<string, string> = {
   "on-duty": "#4ADE80",
   "en-route": "#FACC15",
-  "on-scene": "#FB923C",
+  "on-scene": "#C98A1B",
   "off-duty": "#6B7280",
 };
 
@@ -62,11 +62,11 @@ const FieldDashboard = ({ isAr, onAlertTap, onSearch }: Props) => {
 
       {/* Officer status bar */}
       <div className="mx-3 mt-3 rounded-2xl p-3"
-        style={{ background: "rgba(20,29,46,0.9)", border: "1px solid rgba(181,142,60,0.2)" }}>
+        style={{ background: "rgba(10,37,64,0.9)", border: "1px solid rgba(184,138,60,0.2)" }}>
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
-              style={{ background: "rgba(181,142,60,0.15)", border: "1.5px solid rgba(181,142,60,0.4)" }}>
+              style={{ background: "rgba(184,138,60,0.15)", border: "1.5px solid rgba(184,138,60,0.4)" }}>
               <i className="ri-shield-star-fill text-gold-400 text-sm" />
             </div>
             <div>
@@ -81,12 +81,12 @@ const FieldDashboard = ({ isAr, onAlertTap, onSearch }: Props) => {
           <div className="flex items-center gap-1.5">
             <button onClick={() => setShowTeam(!showTeam)}
               className="w-8 h-8 flex items-center justify-center rounded-xl cursor-pointer"
-              style={{ background: showTeam ? "rgba(181,142,60,0.15)" : "rgba(255,255,255,0.05)", border: "1px solid rgba(181,142,60,0.2)" }}>
+              style={{ background: showTeam ? "rgba(184,138,60,0.15)" : "rgba(255,255,255,0.05)", border: "1px solid rgba(184,138,60,0.2)" }}>
               <i className="ri-team-line text-gold-400 text-sm" />
             </button>
             <button onClick={() => setShowSOS(true)}
               className="w-8 h-8 flex items-center justify-center rounded-xl cursor-pointer"
-              style={{ background: "rgba(248,113,113,0.15)", border: "1px solid rgba(248,113,113,0.4)" }}>
+              style={{ background: "rgba(201,74,94,0.15)", border: "1px solid rgba(201,74,94,0.4)" }}>
               <i className="ri-alarm-warning-fill text-red-400 text-sm" />
             </button>
           </div>
@@ -95,7 +95,7 @@ const FieldDashboard = ({ isAr, onAlertTap, onSearch }: Props) => {
         <div className="flex items-center gap-2">
           <span className="text-gray-600 text-[9px] font-['JetBrains_Mono']">{currentOfficer.shiftStart}</span>
           <div className="flex-1 h-1 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
-            <div className="h-full rounded-full" style={{ width: `${shiftProgress()}%`, background: "linear-gradient(90deg, #D4A84B, #4ADE80)" }} />
+            <div className="h-full rounded-full" style={{ width: `${shiftProgress()}%`, background: "linear-gradient(90deg, #D6B47E, #4ADE80)" }} />
           </div>
           <span className="text-gray-600 text-[9px] font-['JetBrains_Mono']">{currentOfficer.shiftEnd}</span>
         </div>
@@ -112,7 +112,7 @@ const FieldDashboard = ({ isAr, onAlertTap, onSearch }: Props) => {
       {/* Team panel */}
       {showTeam && (
         <div className="mx-3 mt-2 rounded-2xl p-3"
-          style={{ background: "rgba(20,29,46,0.9)", border: "1px solid rgba(181,142,60,0.15)" }}>
+          style={{ background: "rgba(10,37,64,0.9)", border: "1px solid rgba(184,138,60,0.15)" }}>
           <p className="text-gray-500 text-[9px] uppercase tracking-wider font-['JetBrains_Mono'] mb-2">
             {isAr ? "فريق القطاع" : "Sector Team"}
           </p>
@@ -133,9 +133,9 @@ const FieldDashboard = ({ isAr, onAlertTap, onSearch }: Props) => {
 
       {/* Active Alerts Hero */}
       <div className="mx-3 mt-3 rounded-2xl p-4 relative overflow-hidden"
-        style={{ background: "rgba(248,113,113,0.1)", border: "2px solid rgba(248,113,113,0.4)" }}>
+        style={{ background: "rgba(201,74,94,0.1)", border: "2px solid rgba(201,74,94,0.4)" }}>
         <div className="absolute inset-0 opacity-5">
-          <svg width="100%" height="100%"><defs><pattern id="fd-grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="#F87171" strokeWidth="0.5"/></pattern></defs><rect width="100%" height="100%" fill="url(#fd-grid)"/></svg>
+          <svg width="100%" height="100%"><defs><pattern id="fd-grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="#C94A5E" strokeWidth="0.5"/></pattern></defs><rect width="100%" height="100%" fill="url(#fd-grid)"/></svg>
         </div>
         <div className="flex items-center justify-between relative z-10">
           <div>
@@ -155,7 +155,7 @@ const FieldDashboard = ({ isAr, onAlertTap, onSearch }: Props) => {
           </div>
           <div className="flex flex-col gap-2 items-end">
             <div className="w-12 h-12 rounded-full flex items-center justify-center"
-              style={{ background: "rgba(248,113,113,0.15)", border: "2px solid rgba(248,113,113,0.5)" }}>
+              style={{ background: "rgba(201,74,94,0.15)", border: "2px solid rgba(201,74,94,0.5)" }}>
               <i className="ri-alarm-warning-fill text-red-400 text-xl" />
             </div>
             <div className="flex gap-1">
@@ -175,7 +175,7 @@ const FieldDashboard = ({ isAr, onAlertTap, onSearch }: Props) => {
       {/* Quick Search */}
       <div className="mx-3 mt-3">
         <div className="flex items-center gap-3 px-4 py-3 rounded-2xl cursor-pointer"
-          style={{ background: "rgba(20,29,46,0.9)", border: "1.5px solid rgba(181,142,60,0.35)" }}
+          style={{ background: "rgba(10,37,64,0.9)", border: "1.5px solid rgba(184,138,60,0.35)" }}
           onClick={onSearch}>
           <i className="ri-search-line text-gold-400 text-lg flex-shrink-0" />
           <span className="text-gray-500 text-sm font-['Inter']">
@@ -183,7 +183,7 @@ const FieldDashboard = ({ isAr, onAlertTap, onSearch }: Props) => {
           </span>
           <div className="ml-auto flex items-center gap-1.5 flex-shrink-0">
             <div className="w-7 h-7 flex items-center justify-center rounded-xl"
-              style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.25)" }}>
+              style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.25)" }}>
               <i className="ri-camera-line text-gold-400 text-sm" />
             </div>
           </div>
@@ -196,9 +196,9 @@ const FieldDashboard = ({ isAr, onAlertTap, onSearch }: Props) => {
           <button key={f} onClick={() => setActiveFilter(f)}
             className="flex-1 py-1.5 rounded-xl text-[10px] font-bold font-['JetBrains_Mono'] uppercase cursor-pointer transition-all"
             style={{
-              background: activeFilter === f ? (f === "all" ? "rgba(181,142,60,0.15)" : priorityConfig[f as keyof typeof priorityConfig]?.bg || "rgba(181,142,60,0.15)") : "rgba(20,29,46,0.6)",
-              color: activeFilter === f ? (f === "all" ? "#D4A84B" : priorityConfig[f as keyof typeof priorityConfig]?.color || "#D4A84B") : "#4B5563",
-              border: `1px solid ${activeFilter === f ? (f === "all" ? "rgba(181,142,60,0.3)" : priorityConfig[f as keyof typeof priorityConfig]?.border || "rgba(181,142,60,0.3)") : "rgba(255,255,255,0.05)"}`,
+              background: activeFilter === f ? (f === "all" ? "rgba(184,138,60,0.15)" : priorityConfig[f as keyof typeof priorityConfig]?.bg || "rgba(184,138,60,0.15)") : "rgba(10,37,64,0.6)",
+              color: activeFilter === f ? (f === "all" ? "#D6B47E" : priorityConfig[f as keyof typeof priorityConfig]?.color || "#D6B47E") : "#4B5563",
+              border: `1px solid ${activeFilter === f ? (f === "all" ? "rgba(184,138,60,0.3)" : priorityConfig[f as keyof typeof priorityConfig]?.border || "rgba(184,138,60,0.3)") : "rgba(255,255,255,0.05)"}`,
             }}>
             {f === "all" ? (isAr ? "الكل" : "All") : f.slice(0,3)}
           </button>
@@ -220,7 +220,7 @@ const FieldDashboard = ({ isAr, onAlertTap, onSearch }: Props) => {
             const cfg = priorityConfig[loc.alertLevel];
             return (
               <div key={loc.id} className="flex-shrink-0 px-3 py-2 rounded-xl cursor-pointer"
-                style={{ background: "rgba(20,29,46,0.8)", border: `1px solid ${cfg.border}`, minWidth: "130px" }}>
+                style={{ background: "rgba(10,37,64,0.8)", border: `1px solid ${cfg.border}`, minWidth: "130px" }}>
                 <div className="flex items-center gap-1.5 mb-1">
                   <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: cfg.color }} />
                   <span className="text-white text-[10px] font-['Inter'] font-semibold truncate">{isAr ? loc.nameAr : loc.name}</span>
@@ -247,7 +247,7 @@ const FieldDashboard = ({ isAr, onAlertTap, onSearch }: Props) => {
             return (
               <div key={alert.id}
                 className="flex items-start gap-3 px-3 py-3 rounded-xl cursor-pointer active:scale-[0.98] transition-transform"
-                style={{ background: "rgba(20,29,46,0.8)", borderLeft: `3px solid ${cfg.color}`, border: `1px solid rgba(255,255,255,0.06)`, borderLeftWidth: "3px" }}
+                style={{ background: "rgba(10,37,64,0.8)", borderLeft: `3px solid ${cfg.color}`, border: `1px solid rgba(255,255,255,0.06)`, borderLeftWidth: "3px" }}
                 onClick={() => onAlertTap(alert)}>
                 <div className="w-10 h-10 rounded-xl overflow-hidden flex-shrink-0"
                   style={{ border: `1.5px solid ${cfg.color}44` }}>
@@ -289,13 +289,13 @@ const FieldDashboard = ({ isAr, onAlertTap, onSearch }: Props) => {
       {/* SOS Modal */}
       {showSOS && (
         <div className="absolute inset-0 z-50 flex items-center justify-center p-6"
-          style={{ background: "rgba(11,18,32,0.95)" }}>
+          style={{ background: "rgba(5,20,40,0.95)" }}>
           <div className="w-full rounded-3xl p-6 text-center"
-            style={{ background: "rgba(20,29,46,0.98)", border: "2px solid rgba(248,113,113,0.5)" }}>
+            style={{ background: "rgba(10,37,64,0.98)", border: "2px solid rgba(201,74,94,0.5)" }}>
             {sosConfirmed ? (
               <div className="flex flex-col items-center gap-3">
                 <div className="w-16 h-16 rounded-full flex items-center justify-center"
-                  style={{ background: "rgba(248,113,113,0.2)", border: "2px solid #F87171" }}>
+                  style={{ background: "rgba(201,74,94,0.2)", border: "2px solid #C94A5E" }}>
                   <i className="ri-check-line text-red-400 text-3xl" />
                 </div>
                 <p className="text-red-400 font-black font-['Inter'] text-lg">SOS SENT</p>
@@ -305,7 +305,7 @@ const FieldDashboard = ({ isAr, onAlertTap, onSearch }: Props) => {
             ) : (
               <>
                 <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 animate-pulse"
-                  style={{ background: "rgba(248,113,113,0.2)", border: "2px solid #F87171" }}>
+                  style={{ background: "rgba(201,74,94,0.2)", border: "2px solid #C94A5E" }}>
                   <i className="ri-alarm-warning-fill text-red-400 text-3xl" />
                 </div>
                 <p className="text-white font-black font-['Inter'] text-lg mb-1">
@@ -322,7 +322,7 @@ const FieldDashboard = ({ isAr, onAlertTap, onSearch }: Props) => {
                   </button>
                   <button onClick={handleSOS}
                     className="flex-1 py-3 rounded-2xl text-sm font-black font-['Inter'] cursor-pointer"
-                    style={{ background: "#F87171", color: "#0B1220" }}>
+                    style={{ background: "#C94A5E", color: "#051428" }}>
                     {isAr ? "إرسال SOS" : "SEND SOS"}
                   </button>
                 </div>

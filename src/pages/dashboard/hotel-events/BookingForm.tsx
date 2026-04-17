@@ -74,7 +74,7 @@ const BookingForm = ({ isAr, onCancel, onSaved }: Props) => {
     return (
       <SuccessScreen
         icon="ri-calendar-check-line"
-        color="#D4A84B"
+        color="#D6B47E"
         titleEn="Booking Event Saved!"
         titleAr="تم حفظ الحجز!"
         isAr={isAr}
@@ -89,7 +89,7 @@ const BookingForm = ({ isAr, onCancel, onSaved }: Props) => {
       <div className="flex items-center gap-3">
         <div
           className="w-10 h-10 flex items-center justify-center rounded-xl"
-          style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.3)" }}
+          style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.3)" }}
         >
           <i className="ri-calendar-line text-gold-400 text-xl" />
         </div>
@@ -108,16 +108,16 @@ const BookingForm = ({ isAr, onCancel, onSaved }: Props) => {
               onClick={() => { if (p < part || p === 1) setPart(p); }}
               className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold transition-all cursor-pointer whitespace-nowrap font-['Inter'] border"
               style={{
-                background: part === p ? "rgba(181,142,60,0.12)" : part > p ? "rgba(74,222,128,0.08)" : "rgba(20,29,46,0.6)",
-                borderColor: part === p ? "rgba(181,142,60,0.35)" : part > p ? "rgba(74,222,128,0.25)" : "rgba(255,255,255,0.06)",
-                color: part === p ? "#D4A84B" : part > p ? "#4ADE80" : "#4B5563",
+                background: part === p ? "rgba(184,138,60,0.12)" : part > p ? "rgba(74,222,128,0.08)" : "rgba(10,37,64,0.6)",
+                borderColor: part === p ? "rgba(184,138,60,0.35)" : part > p ? "rgba(74,222,128,0.25)" : "rgba(255,255,255,0.06)",
+                color: part === p ? "#D6B47E" : part > p ? "#4ADE80" : "#4B5563",
               }}
             >
               <div
                 className="w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold"
                 style={{
-                  background: part === p ? "#D4A84B" : part > p ? "#4ADE80" : "rgba(255,255,255,0.08)",
-                  color: part === p || part > p ? "#0B1220" : "#6B7280",
+                  background: part === p ? "#D6B47E" : part > p ? "#4ADE80" : "rgba(255,255,255,0.08)",
+                  color: part === p || part > p ? "#051428" : "#6B7280",
                 }}
               >
                 {part > p ? <i className="ri-check-line text-xs" /> : p}
@@ -191,9 +191,9 @@ const BookingForm = ({ isAr, onCancel, onSaved }: Props) => {
               type="button"
               onClick={() => setPart(2)}
               className="flex items-center gap-2 px-6 py-2.5 rounded-lg text-sm font-bold cursor-pointer whitespace-nowrap font-['Inter'] transition-colors"
-              style={{ background: "#D4A84B", color: "#0B1220" }}
+              style={{ background: "#D6B47E", color: "#051428" }}
               onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C99C48"; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#D4A84B"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#D6B47E"; }}
             >
               {t.next}
               <i className="ri-arrow-right-line" />

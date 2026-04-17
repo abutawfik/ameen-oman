@@ -133,7 +133,7 @@ const VehicleDropOffForm = ({ isAr, onCancel }: Props) => {
         refNumber={refNumber}
         eventType={isAr ? "إعادة مركبة" : "Vehicle Drop-Off"}
         eventCode="CAR_DROPOFF"
-        color="#FB923C"
+        color="#C98A1B"
         isAr={isAr}
         onReset={() => { setConfirmed(false); setBookingRef(""); setPlate(""); setRenterName(""); setAutoFilled(false); setFinalInvoice(""); }}
       />
@@ -185,7 +185,7 @@ const VehicleDropOffForm = ({ isAr, onCancel }: Props) => {
 
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
         {/* LEFT — Return Details */}
-        <SectionCard title={t.returnDetails} icon="ri-parking-box-line" accentColor="#FB923C">
+        <SectionCard title={t.returnDetails} icon="ri-parking-box-line" accentColor="#C98A1B">
           <div className="space-y-4">
             <div className="grid grid-cols-2 gap-3">
               <FormField label={t.branch} required>
@@ -245,7 +245,7 @@ const VehicleDropOffForm = ({ isAr, onCancel }: Props) => {
             {totalKm && (
               <div
                 className="flex items-center gap-3 px-4 py-2.5 rounded-xl border"
-                style={{ background: "rgba(181,142,60,0.04)", borderColor: "rgba(181,142,60,0.15)" }}
+                style={{ background: "rgba(184,138,60,0.04)", borderColor: "rgba(184,138,60,0.15)" }}
               >
                 <i className="ri-route-line text-gold-400 text-sm" />
                 <span className="text-gray-400 text-xs font-['Inter']">{t.totalDist}</span>
@@ -273,17 +273,17 @@ const VehicleDropOffForm = ({ isAr, onCancel }: Props) => {
             <div
               className="flex items-center gap-3 px-4 py-3 rounded-xl border"
               style={{
-                background: condition === "good" ? "rgba(74,222,128,0.04)" : condition === "minor" ? "rgba(250,204,21,0.04)" : "rgba(248,113,113,0.04)",
-                borderColor: condition === "good" ? "rgba(74,222,128,0.18)" : condition === "minor" ? "rgba(250,204,21,0.18)" : "rgba(248,113,113,0.18)",
+                background: condition === "good" ? "rgba(74,222,128,0.04)" : condition === "minor" ? "rgba(250,204,21,0.04)" : "rgba(201,74,94,0.04)",
+                borderColor: condition === "good" ? "rgba(74,222,128,0.18)" : condition === "minor" ? "rgba(250,204,21,0.18)" : "rgba(201,74,94,0.18)",
               }}
             >
               <i
                 className={`text-lg ${condition === "good" ? "ri-checkbox-circle-line" : condition === "minor" ? "ri-alert-line" : "ri-error-warning-line"}`}
-                style={{ color: condition === "good" ? "#4ADE80" : condition === "minor" ? "#FACC15" : "#F87171" }}
+                style={{ color: condition === "good" ? "#4ADE80" : condition === "minor" ? "#FACC15" : "#C94A5E" }}
               />
               <span
                 className="text-sm font-semibold font-['Inter']"
-                style={{ color: condition === "good" ? "#4ADE80" : condition === "minor" ? "#FACC15" : "#F87171" }}
+                style={{ color: condition === "good" ? "#4ADE80" : condition === "minor" ? "#FACC15" : "#C94A5E" }}
               >
                 {condition === "good"
                   ? (isAr ? "المركبة في حالة جيدة" : "Vehicle returned in good condition")
@@ -302,7 +302,7 @@ const VehicleDropOffForm = ({ isAr, onCancel }: Props) => {
                   onChange={(e) => setDamageNotes(e.target.value)}
                   className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none transition-all duration-200 font-['Inter'] resize-none"
                   style={{ background: "#0F1923", border: "1px solid rgba(255,255,255,0.08)" }}
-                  onFocus={(e) => { e.target.style.borderColor = "#D4A84B"; e.target.style.boxShadow = "0 0 0 2px rgba(181,142,60,0.08)"; }}
+                  onFocus={(e) => { e.target.style.borderColor = "#D6B47E"; e.target.style.boxShadow = "0 0 0 2px rgba(184,138,60,0.08)"; }}
                   onBlur={(e) => { e.target.style.borderColor = "rgba(255,255,255,0.08)"; e.target.style.boxShadow = "none"; }}
                 />
               </FormField>
@@ -327,7 +327,7 @@ const VehicleDropOffForm = ({ isAr, onCancel }: Props) => {
                     onChange={(e) => { setChargeAmount(e.target.value); calcFinalInvoice(rentalTotal, e.target.value); }}
                     className="font-['JetBrains_Mono'] pr-12"
                   />
-                  <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold font-['JetBrains_Mono']" style={{ color: "#D4A84B" }}>LCY</span>
+                  <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold font-['JetBrains_Mono']" style={{ color: "#D6B47E" }}>LCY</span>
                 </div>
               </FormField>
             )}
@@ -345,16 +345,16 @@ const VehicleDropOffForm = ({ isAr, onCancel }: Props) => {
                       autoFilled={autoFilled && !!rentalTotal}
                       className="font-['JetBrains_Mono'] pr-12"
                     />
-                    <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold font-['JetBrains_Mono']" style={{ color: "#D4A84B" }}>LCY</span>
+                    <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold font-['JetBrains_Mono']" style={{ color: "#D6B47E" }}>LCY</span>
                   </div>
                 </FormField>
                 <FormField label={t.finalInvoice}>
                   <div
                     className="w-full px-3 py-2.5 rounded-lg text-sm font-bold font-['JetBrains_Mono'] flex items-center justify-between"
                     style={{
-                      background: "rgba(181,142,60,0.06)",
-                      border: "1px solid rgba(181,142,60,0.2)",
-                      color: "#D4A84B",
+                      background: "rgba(184,138,60,0.06)",
+                      border: "1px solid rgba(184,138,60,0.2)",
+                      color: "#D6B47E",
                       minHeight: "42px",
                     }}
                   >

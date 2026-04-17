@@ -64,14 +64,14 @@ const DisconnectionForm = ({ isAr, onCancel }: Props) => {
     setTimeout(() => { setSaving(false); setSubmitted(true); }, 1400);
   };
 
-  if (submitted) return <UtilConfirmation isAr={isAr} onReset={() => setSubmitted(false)} eventLabel="Service Disconnection" eventLabelAr="قطع الخدمة" eventColor="#F87171" />;
+  if (submitted) return <UtilConfirmation isAr={isAr} onReset={() => setSubmitted(false)} eventLabel="Service Disconnection" eventLabelAr="قطع الخدمة" eventColor="#C94A5E" />;
 
   const isHighRisk = reason === "non_payment" || reason === "violation";
 
   return (
     <div className="space-y-5">
       {/* Warning banner */}
-      <div className="flex items-start gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(248,113,113,0.06)", borderColor: "rgba(248,113,113,0.2)" }}>
+      <div className="flex items-start gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(201,74,94,0.06)", borderColor: "rgba(201,74,94,0.2)" }}>
         <i className="ri-error-warning-line text-red-400 text-sm mt-0.5 flex-shrink-0" />
         <p className="text-gray-400 text-xs">
           {isAr
@@ -88,9 +88,9 @@ const DisconnectionForm = ({ isAr, onCancel }: Props) => {
               <TextInput placeholder="ACC-XXXX-XXXX" value={accountNumber} onChange={(e) => setAccountNumber(e.target.value)} className="font-['JetBrains_Mono'] flex-1" />
               <button type="button" onClick={handleLookup}
                 className="flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap"
-                style={{ background: "#D4A84B", color: "#0B1220" }}
+                style={{ background: "#D6B47E", color: "#051428" }}
                 onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C99C48"; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#D4A84B"; }}>
+                onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#D6B47E"; }}>
                 {lookingUp ? <i className="ri-loader-4-line animate-spin" /> : <i className="ri-search-line" />}
                 {isAr ? "بحث" : "Lookup"}
               </button>
@@ -98,15 +98,15 @@ const DisconnectionForm = ({ isAr, onCancel }: Props) => {
           </FormField>
 
           {accountInfo && (
-            <div className="rounded-xl border p-4" style={{ background: "rgba(20,29,46,0.6)", borderColor: "rgba(181,142,60,0.15)" }}>
+            <div className="rounded-xl border p-4" style={{ background: "rgba(10,37,64,0.6)", borderColor: "rgba(184,138,60,0.15)" }}>
               <div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
                 {[
                   { label: isAr ? "صاحب الحساب" : "Account Holder", value: accountInfo.holderName, color: "#FFFFFF" },
-                  { label: isAr ? "نوع الخدمة" : "Service Type", value: accountInfo.serviceType, color: "#D4A84B" },
+                  { label: isAr ? "نوع الخدمة" : "Service Type", value: accountInfo.serviceType, color: "#D6B47E" },
                   { label: isAr ? "المزود" : "Provider", value: accountInfo.provider, color: "#D1D5DB" },
                   { label: isAr ? "العنوان" : "Address", value: accountInfo.address, color: "#D1D5DB" },
-                  { label: isAr ? "رقم العداد" : "Meter Number", value: accountInfo.meterNumber, color: "#D4A84B" },
-                  { label: isAr ? "الرصيد المستحق" : "Outstanding Balance", value: `${accountInfo.outstandingBalance} LCY`, color: accountInfo.outstandingBalance > 0 ? "#F87171" : "#4ADE80" },
+                  { label: isAr ? "رقم العداد" : "Meter Number", value: accountInfo.meterNumber, color: "#D6B47E" },
+                  { label: isAr ? "الرصيد المستحق" : "Outstanding Balance", value: `${accountInfo.outstandingBalance} LCY`, color: accountInfo.outstandingBalance > 0 ? "#C94A5E" : "#4ADE80" },
                 ].map((item) => (
                   <div key={item.label}>
                     <p className="text-gray-500 text-xs">{item.label}</p>
@@ -132,7 +132,7 @@ const DisconnectionForm = ({ isAr, onCancel }: Props) => {
           </div>
 
           {isHighRisk && (
-            <div className="flex items-start gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(248,113,113,0.06)", borderColor: "rgba(248,113,113,0.2)" }}>
+            <div className="flex items-start gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(201,74,94,0.06)", borderColor: "rgba(201,74,94,0.2)" }}>
               <i className="ri-alarm-warning-line text-red-400 text-sm mt-0.5 flex-shrink-0" />
               <p className="text-red-400 text-xs font-semibold">
                 {isAr ? "تنبيه: هذا السبب يُبلَّغ تلقائياً إلى Al-Ameen للمراجعة." : "Alert: This reason is auto-reported to Al-Ameen for review."}
@@ -157,7 +157,7 @@ const DisconnectionForm = ({ isAr, onCancel }: Props) => {
               onChange={(e) => setNotes(e.target.value)}
               className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none resize-none font-['Inter']"
               style={{ background: "#0F1923", border: "1px solid rgba(255,255,255,0.08)" }}
-              onFocus={(e) => { e.target.style.borderColor = "#D4A84B"; }}
+              onFocus={(e) => { e.target.style.borderColor = "#D6B47E"; }}
               onBlur={(e) => { e.target.style.borderColor = "rgba(255,255,255,0.08)"; }}
             />
           </FormField>
@@ -166,7 +166,7 @@ const DisconnectionForm = ({ isAr, onCancel }: Props) => {
           <button type="button" onClick={() => setConfirmed((v) => !v)}
             className="flex items-center gap-3 cursor-pointer w-full text-left">
             <div className="w-5 h-5 rounded border-2 flex items-center justify-center flex-shrink-0 transition-all"
-              style={{ borderColor: confirmed ? "#F87171" : "rgba(255,255,255,0.2)", background: confirmed ? "rgba(248,113,113,0.15)" : "transparent" }}>
+              style={{ borderColor: confirmed ? "#C94A5E" : "rgba(255,255,255,0.2)", background: confirmed ? "rgba(201,74,94,0.15)" : "transparent" }}>
               {confirmed && <i className="ri-check-line text-red-400 text-xs" />}
             </div>
             <span className="text-gray-400 text-xs">{isAr ? "أؤكد أن هذا الإجراء مصرح به وأن جميع البيانات صحيحة" : "I confirm this action is authorized and all data is accurate"}</span>
@@ -182,9 +182,9 @@ const DisconnectionForm = ({ isAr, onCancel }: Props) => {
         </button>
         <button type="button" onClick={handleSubmit} disabled={!confirmed || saving}
           className="flex items-center gap-2 px-6 py-2.5 rounded-lg text-sm font-bold cursor-pointer whitespace-nowrap disabled:opacity-40"
-          style={{ background: "#F87171", color: "#0B1220" }}
+          style={{ background: "#C94A5E", color: "#051428" }}
           onMouseEnter={(e) => { if (confirmed) (e.currentTarget as HTMLButtonElement).style.background = "#EF4444"; }}
-          onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#F87171"; }}>
+          onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C94A5E"; }}>
           {saving ? <i className="ri-loader-4-line animate-spin" /> : <i className="ri-shut-down-line" />}
           {isAr ? "تأكيد القطع" : "Confirm Disconnection"}
         </button>

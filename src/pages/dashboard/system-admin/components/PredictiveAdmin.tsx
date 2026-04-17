@@ -2,10 +2,10 @@ import { useState } from "react";
 import { patternRules, type PatternRule } from "@/mocks/systemAdminData";
 
 const severityConfig: Record<string, { color: string; bg: string }> = {
-  critical: { color: "#F87171", bg: "rgba(248,113,113,0.12)" },
-  high:     { color: "#FB923C", bg: "rgba(251,146,60,0.12)" },
+  critical: { color: "#C94A5E", bg: "rgba(201,74,94,0.12)" },
+  high:     { color: "#C98A1B", bg: "rgba(201,138,27,0.12)" },
   medium:   { color: "#FACC15", bg: "rgba(250,204,21,0.12)" },
-  low:      { color: "#D4A84B", bg: "rgba(181,142,60,0.12)" },
+  low:      { color: "#D6B47E", bg: "rgba(184,138,60,0.12)" },
 };
 
 const PredictiveAdmin = () => {
@@ -46,13 +46,13 @@ const PredictiveAdmin = () => {
       {/* Model Performance Overview */}
       <div className="grid grid-cols-5 gap-3">
         {[
-          { label: "Active Rules", value: String(activeCount), sub: `of ${rules.length} total`, color: "#D4A84B", icon: "ri-git-branch-line" },
+          { label: "Active Rules", value: String(activeCount), sub: `of ${rules.length} total`, color: "#D6B47E", icon: "ri-git-branch-line" },
           { label: "Avg Precision", value: `${avgPrecision}%`, sub: "true positive rate", color: "#4ADE80", icon: "ri-focus-3-line" },
           { label: "Avg Recall", value: `${avgRecall}%`, sub: "sensitivity", color: "#A78BFA", icon: "ri-radar-line" },
-          { label: "F1 Score", value: `${f1Score}%`, sub: "harmonic mean", color: "#D4A84B", icon: "ri-bar-chart-grouped-line" },
+          { label: "F1 Score", value: `${f1Score}%`, sub: "harmonic mean", color: "#D6B47E", icon: "ri-bar-chart-grouped-line" },
           { label: "Avg False Positive", value: `${avgFPR}%`, sub: "false positive rate", color: "#FACC15", icon: "ri-error-warning-line" },
         ].map((s) => (
-          <div key={s.label} className="rounded-xl p-4" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.12)" }}>
+          <div key={s.label} className="rounded-xl p-4" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.12)" }}>
             <div className="flex items-center gap-2 mb-2">
               <div className="w-7 h-7 flex items-center justify-center rounded-lg" style={{ background: `${s.color}18` }}>
                 <i className={`${s.icon} text-sm`} style={{ color: s.color }} />
@@ -66,14 +66,14 @@ const PredictiveAdmin = () => {
       </div>
 
       {/* Metrics Charts */}
-      <div className="rounded-xl p-5" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.12)" }}>
+      <div className="rounded-xl p-5" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.12)" }}>
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-white font-semibold text-sm font-['Inter']">
             <i className="ri-bar-chart-horizontal-line mr-2 text-gold-400" />Rule Performance Metrics
           </h3>
           <div className="flex gap-1.5">
             {[
-              { id: "precision", label: "Precision", color: "#D4A84B" },
+              { id: "precision", label: "Precision", color: "#D6B47E" },
               { id: "fpr", label: "False Positive Rate", color: "#FACC15" },
               { id: "recall", label: "Recall", color: "#A78BFA" },
             ].map((tab) => (
@@ -94,8 +94,8 @@ const PredictiveAdmin = () => {
             const val = activeMetricTab === "precision" ? rule.precision : activeMetricTab === "fpr" ? rule.falsePositiveRate : rule.recall;
             const maxVal = activeMetricTab === "fpr" ? 25 : 100;
             const color = activeMetricTab === "fpr"
-              ? (val > 15 ? "#F87171" : val > 8 ? "#FACC15" : "#4ADE80")
-              : activeMetricTab === "precision" ? "#D4A84B" : "#A78BFA";
+              ? (val > 15 ? "#C94A5E" : val > 8 ? "#FACC15" : "#4ADE80")
+              : activeMetricTab === "precision" ? "#D6B47E" : "#A78BFA";
             const sc = severityConfig[rule.severity];
             return (
               <div key={rule.id} className="flex items-center gap-3">
@@ -125,7 +125,7 @@ const PredictiveAdmin = () => {
             {categories.map((c) => (
               <button key={c} onClick={() => setFilterCategory(c)}
                 className="px-3 py-1.5 rounded-full text-xs font-semibold cursor-pointer whitespace-nowrap capitalize"
-                style={{ background: filterCategory === c ? "#D4A84B" : "rgba(255,255,255,0.04)", color: filterCategory === c ? "#0B1220" : "#9CA3AF", border: filterCategory === c ? "none" : "1px solid rgba(255,255,255,0.06)" }}>
+                style={{ background: filterCategory === c ? "#D6B47E" : "rgba(255,255,255,0.04)", color: filterCategory === c ? "#051428" : "#9CA3AF", border: filterCategory === c ? "none" : "1px solid rgba(255,255,255,0.06)" }}>
                 {c === "all" ? "All Categories" : c}
               </button>
             ))}
@@ -136,7 +136,7 @@ const PredictiveAdmin = () => {
               return (
                 <button key={s} onClick={() => setFilterSeverity(s)}
                   className="px-3 py-1.5 rounded-full text-xs font-semibold cursor-pointer whitespace-nowrap capitalize"
-                  style={{ background: filterSeverity === s ? (sc?.bg || "rgba(181,142,60,0.12)") : "rgba(255,255,255,0.04)", color: filterSeverity === s ? (sc?.color || "#D4A84B") : "#9CA3AF", border: filterSeverity === s ? "none" : "1px solid rgba(255,255,255,0.06)" }}>
+                  style={{ background: filterSeverity === s ? (sc?.bg || "rgba(184,138,60,0.12)") : "rgba(255,255,255,0.04)", color: filterSeverity === s ? (sc?.color || "#D6B47E") : "#9CA3AF", border: filterSeverity === s ? "none" : "1px solid rgba(255,255,255,0.06)" }}>
                   {s === "all" ? "All Severity" : s}
                 </button>
               );
@@ -146,19 +146,19 @@ const PredictiveAdmin = () => {
             <span className="text-gray-600 text-xs font-['Inter']">Sort by:</span>
             <select value={sortBy} onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
               className="px-3 py-1.5 rounded-lg text-xs outline-none cursor-pointer"
-              style={{ background: "rgba(20,29,46,0.9)", border: "1px solid rgba(181,142,60,0.2)", color: "#D1D5DB" }}>
-              <option value="triggeredTotal" style={{ background: "#141D2E" }}>Total Triggers</option>
-              <option value="triggeredToday" style={{ background: "#141D2E" }}>Today&apos;s Triggers</option>
-              <option value="falsePositiveRate" style={{ background: "#141D2E" }}>False Positive Rate</option>
-              <option value="precision" style={{ background: "#141D2E" }}>Precision</option>
+              style={{ background: "rgba(10,37,64,0.9)", border: "1px solid rgba(184,138,60,0.2)", color: "#D1D5DB" }}>
+              <option value="triggeredTotal" style={{ background: "#0A2540" }}>Total Triggers</option>
+              <option value="triggeredToday" style={{ background: "#0A2540" }}>Today&apos;s Triggers</option>
+              <option value="falsePositiveRate" style={{ background: "#0A2540" }}>False Positive Rate</option>
+              <option value="precision" style={{ background: "#0A2540" }}>Precision</option>
             </select>
           </div>
         </div>
 
         {/* Table */}
-        <div className="rounded-xl overflow-hidden" style={{ border: "1px solid rgba(181,142,60,0.12)" }}>
+        <div className="rounded-xl overflow-hidden" style={{ border: "1px solid rgba(184,138,60,0.12)" }}>
           <div className="grid px-4 py-3 text-xs font-semibold uppercase tracking-wider font-['Inter'] text-gray-600"
-            style={{ background: "rgba(181,142,60,0.04)", gridTemplateColumns: "2fr 1fr 1fr 1fr 1fr 1fr 1fr 70px" }}>
+            style={{ background: "rgba(184,138,60,0.04)", gridTemplateColumns: "2fr 1fr 1fr 1fr 1fr 1fr 1fr 70px" }}>
             <span>Rule</span><span>Category</span><span>Severity</span><span>Today</span><span>Total</span><span>Precision</span><span>FP Rate</span><span className="text-center">Enable</span>
           </div>
 
@@ -182,24 +182,24 @@ const PredictiveAdmin = () => {
                   <span className="text-white text-xs font-['JetBrains_Mono']">{rule.triggeredTotal.toLocaleString()}</span>
                   <div className="flex items-center gap-1.5">
                     <div className="w-12 h-1.5 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
-                      <div className="h-full rounded-full" style={{ width: `${rule.precision}%`, background: "#D4A84B" }} />
+                      <div className="h-full rounded-full" style={{ width: `${rule.precision}%`, background: "#D6B47E" }} />
                     </div>
                     <span className="text-gold-400 text-xs font-['JetBrains_Mono']">{rule.precision}%</span>
                   </div>
-                  <span className="text-xs font-['JetBrains_Mono']" style={{ color: rule.falsePositiveRate > 15 ? "#F87171" : rule.falsePositiveRate > 8 ? "#FACC15" : "#4ADE80" }}>
+                  <span className="text-xs font-['JetBrains_Mono']" style={{ color: rule.falsePositiveRate > 15 ? "#C94A5E" : rule.falsePositiveRate > 8 ? "#FACC15" : "#4ADE80" }}>
                     {rule.falsePositiveRate}%
                   </span>
                   <div className="flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
                     <button onClick={() => toggleRule(rule.id)}
                       className="relative inline-flex items-center w-9 h-5 rounded-full transition-colors cursor-pointer"
-                      style={{ background: rule.enabled ? "#D4A84B" : "rgba(255,255,255,0.1)" }}>
+                      style={{ background: rule.enabled ? "#D6B47E" : "rgba(255,255,255,0.1)" }}>
                       <span className="inline-block w-3 h-3 rounded-full bg-white transition-transform" style={{ transform: rule.enabled ? "translateX(20px)" : "translateX(3px)" }} />
                     </button>
                   </div>
                 </div>
 
                 {isExpanded && (
-                  <div className="px-4 pb-4 pt-3" style={{ background: "rgba(181,142,60,0.02)", borderTop: "1px solid rgba(181,142,60,0.06)" }}>
+                  <div className="px-4 pb-4 pt-3" style={{ background: "rgba(184,138,60,0.02)", borderTop: "1px solid rgba(184,138,60,0.06)" }}>
                     <div className="grid grid-cols-4 gap-4 mb-3">
                       <div>
                         <p className="text-gray-500 text-xs uppercase tracking-wider font-['Inter'] mb-1">Condition Logic</p>
@@ -209,7 +209,7 @@ const PredictiveAdmin = () => {
                         <p className="text-gray-500 text-xs uppercase tracking-wider font-['Inter'] mb-2">Precision</p>
                         <div className="flex items-center gap-2">
                           <div className="flex-1 h-2 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
-                            <div className="h-full rounded-full" style={{ width: `${rule.precision}%`, background: "#D4A84B" }} />
+                            <div className="h-full rounded-full" style={{ width: `${rule.precision}%`, background: "#D6B47E" }} />
                           </div>
                           <span className="text-gold-400 text-xs font-['JetBrains_Mono']">{rule.precision}%</span>
                         </div>
@@ -227,16 +227,16 @@ const PredictiveAdmin = () => {
                         <p className="text-gray-500 text-xs uppercase tracking-wider font-['Inter'] mb-2">False Positive Rate</p>
                         <div className="flex items-center gap-2">
                           <div className="flex-1 h-2 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
-                            <div className="h-full rounded-full" style={{ width: `${Math.min(rule.falsePositiveRate * 4, 100)}%`, background: rule.falsePositiveRate > 15 ? "#F87171" : rule.falsePositiveRate > 8 ? "#FACC15" : "#4ADE80" }} />
+                            <div className="h-full rounded-full" style={{ width: `${Math.min(rule.falsePositiveRate * 4, 100)}%`, background: rule.falsePositiveRate > 15 ? "#C94A5E" : rule.falsePositiveRate > 8 ? "#FACC15" : "#4ADE80" }} />
                           </div>
-                          <span className="text-xs font-['JetBrains_Mono']" style={{ color: rule.falsePositiveRate > 15 ? "#F87171" : rule.falsePositiveRate > 8 ? "#FACC15" : "#4ADE80" }}>{rule.falsePositiveRate}%</span>
+                          <span className="text-xs font-['JetBrains_Mono']" style={{ color: rule.falsePositiveRate > 15 ? "#C94A5E" : rule.falsePositiveRate > 8 ? "#FACC15" : "#4ADE80" }}>{rule.falsePositiveRate}%</span>
                         </div>
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
                       <button onClick={() => setEditingId(editingId === rule.id ? null : rule.id)}
                         className="px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap"
-                        style={{ background: "#D4A84B", color: "#0B1220" }}>
+                        style={{ background: "#D6B47E", color: "#051428" }}>
                         <i className="ri-edit-line mr-1" />Edit Rule
                       </button>
                       <button className="px-3 py-1.5 rounded-lg text-xs cursor-pointer whitespace-nowrap"
@@ -248,7 +248,7 @@ const PredictiveAdmin = () => {
                         <i className="ri-history-line mr-1" />Trigger History
                       </button>
                       <button className="px-3 py-1.5 rounded-lg text-xs cursor-pointer whitespace-nowrap"
-                        style={{ background: "rgba(248,113,113,0.1)", color: "#F87171", border: "1px solid rgba(248,113,113,0.2)" }}>
+                        style={{ background: "rgba(201,74,94,0.1)", color: "#C94A5E", border: "1px solid rgba(201,74,94,0.2)" }}>
                         <i className="ri-delete-bin-line mr-1" />Delete
                       </button>
                       <div className="ml-auto flex items-center gap-2">
@@ -259,13 +259,13 @@ const PredictiveAdmin = () => {
                       </div>
                     </div>
                     {editingId === rule.id && (
-                      <div className="mt-3 p-3 rounded-lg" style={{ background: "rgba(181,142,60,0.04)", border: "1px solid rgba(181,142,60,0.15)" }}>
+                      <div className="mt-3 p-3 rounded-lg" style={{ background: "rgba(184,138,60,0.04)", border: "1px solid rgba(184,138,60,0.15)" }}>
                         <p className="text-gold-400 text-xs font-semibold font-['Inter'] mb-2">Edit Rule Conditions</p>
                         <textarea defaultValue={rule.conditions} rows={2}
                           className="w-full px-3 py-2 rounded-lg text-xs outline-none resize-none"
-                          style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(181,142,60,0.2)", color: "#D4A84B", fontFamily: "'JetBrains Mono', monospace" }} />
+                          style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(184,138,60,0.2)", color: "#D6B47E", fontFamily: "'JetBrains Mono', monospace" }} />
                         <div className="flex gap-2 mt-2">
-                          <button className="px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap" style={{ background: "#D4A84B", color: "#0B1220" }}>Save Changes</button>
+                          <button className="px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap" style={{ background: "#D6B47E", color: "#051428" }}>Save Changes</button>
                           <button onClick={() => setEditingId(null)} className="px-3 py-1.5 rounded-lg text-xs cursor-pointer" style={{ background: "rgba(255,255,255,0.05)", color: "#9CA3AF" }}>Cancel</button>
                         </div>
                       </div>

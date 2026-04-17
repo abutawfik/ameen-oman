@@ -8,7 +8,7 @@ const Footer = () => {
   };
 
   return (
-    <footer style={{ background: "#030810", borderTop: "1px solid rgba(181,142,60,0.15)" }}>
+    <footer style={{ background: "#030810", borderTop: "1px solid rgba(184,138,60,0.15)" }}>
       <div className="max-w-[1400px] mx-auto px-4 md:px-8 py-14">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
           {/* Brand */}
@@ -17,12 +17,12 @@ const Footer = () => {
               <div
                 className="w-10 h-10 flex items-center justify-center flex-shrink-0"
                 style={{
-                  background: "rgba(181,142,60,0.08)",
-                  border: "1.5px solid rgba(181,142,60,0.4)",
+                  background: "rgba(184,138,60,0.08)",
+                  border: "1.5px solid rgba(184,138,60,0.4)",
                   clipPath: "polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%)",
                 }}
               >
-                <span className="text-lg font-black" style={{ color: "#D4A84B", fontFamily: "Inter, sans-serif" }}>A</span>
+                <span className="text-lg font-black" style={{ color: "#D6B47E", fontFamily: "Inter, sans-serif" }}>A</span>
               </div>
               <div>
                 <p className="text-white font-bold text-base font-['Inter'] tracking-widest">Al-Ameen</p>
@@ -63,7 +63,7 @@ const Footer = () => {
             <p className="text-white font-semibold text-sm font-['Inter'] mb-4">{t("footer.contact")}</p>
             <div className="space-y-3">
               {[
-                { icon: "ri-phone-line", text: t("footer.phone"), color: "#D4A84B" },
+                { icon: "ri-phone-line", text: t("footer.phone"), color: "#D6B47E" },
                 { icon: "ri-mail-line", text: t("footer.email"), color: "#4ADE80" },
                 { icon: "ri-map-pin-line", text: t("footer.address"), color: "#FACC15" },
               ].map((item) => (

@@ -6,8 +6,8 @@ interface LogoProps {
 
 // Core hexagonal shield with stylized A + eye/lens motif
 export const AmeenShield = ({ size = 64, light = false }: { size?: number; light?: boolean }) => {
-  const cyan = "#D4A84B";
-  const dark = light ? "#0B1220" : "#0B1220";
+  const cyan = "#D6B47E";
+  const dark = light ? "#051428" : "#051428";
   const bg = light ? "white" : "transparent";
 
   return (
@@ -15,7 +15,7 @@ export const AmeenShield = ({ size = 64, light = false }: { size?: number; light
       {/* Outer hexagon shield — double line */}
       <polygon
         points="50,4 93,27 93,73 50,96 7,73 7,27"
-        fill={light ? "white" : "rgba(20,29,46,0.95)"}
+        fill={light ? "white" : "rgba(10,37,64,0.95)"}
         stroke={cyan}
         strokeWidth="2.5"
       />
@@ -30,7 +30,7 @@ export const AmeenShield = ({ size = 64, light = false }: { size?: number; light
       {/* Subtle inner glow fill */}
       <polygon
         points="50,9 88,30 88,70 50,91 12,70 12,30"
-        fill={light ? "rgba(181,142,60,0.05)" : "rgba(181,142,60,0.06)"}
+        fill={light ? "rgba(184,138,60,0.05)" : "rgba(184,138,60,0.06)"}
       />
 
       {/* Stylized A — two diagonal strokes meeting at apex */}
@@ -45,7 +45,7 @@ export const AmeenShield = ({ size = 64, light = false }: { size?: number; light
       {/* Iris */}
       <circle cx="50" cy="55" r="2.8" fill={cyan} />
       {/* Pupil */}
-      <circle cx="50" cy="55" r="1.2" fill={light ? "white" : "#0B1220"} />
+      <circle cx="50" cy="55" r="1.2" fill={light ? "white" : "#051428"} />
 
       {/* Corner accent dots — networked nodes */}
       {[
@@ -70,13 +70,13 @@ export const AmeenShield = ({ size = 64, light = false }: { size?: number; light
 // Hospitality leaf accent
 export const HospitalityLeaf = ({ size = 16 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 16 16" fill="none">
-    <path d="M8 14 C4 10 2 6 4 3 C6 1 10 2 12 5 C14 8 12 12 8 14Z" fill="#D4A84B" opacity="0.7" />
-    <path d="M8 14 L8 7" stroke="#D4A84B" strokeWidth="1" strokeLinecap="round" />
+    <path d="M8 14 C4 10 2 6 4 3 C6 1 10 2 12 5 C14 8 12 12 8 14Z" fill="#D6B47E" opacity="0.7" />
+    <path d="M8 14 L8 7" stroke="#D6B47E" strokeWidth="1" strokeLinecap="round" />
   </svg>
 );
 
 const AmeenLogo = ({ variant = "full", size = 64, className = "" }: LogoProps) => {
-  const cyan = "#D4A84B";
+  const cyan = "#D6B47E";
 
   if (variant === "icon") {
     return (
@@ -131,10 +131,10 @@ const AmeenLogo = ({ variant = "full", size = 64, className = "" }: LogoProps) =
       <div className={`flex flex-col items-center gap-2 ${className}`}>
         <AmeenShield size={size} light />
         <div className="text-center">
-          <div className="font-black tracking-widest uppercase" style={{ color: "#0B1220", fontSize: size * 0.22, fontFamily: "'Inter', sans-serif", letterSpacing: "0.18em" }}>
+          <div className="font-black tracking-widest uppercase" style={{ color: "#051428", fontSize: size * 0.22, fontFamily: "'Inter', sans-serif", letterSpacing: "0.18em" }}>
             Al-Ameen
           </div>
-          <div className="font-bold" style={{ color: "#0B1220", fontSize: size * 0.14, fontFamily: "'Noto Kufi Arabic', 'Arial', sans-serif", opacity: 0.7 }}>
+          <div className="font-bold" style={{ color: "#051428", fontSize: size * 0.14, fontFamily: "'Noto Kufi Arabic', 'Arial', sans-serif", opacity: 0.7 }}>
             أمين
           </div>
           <div className="font-medium mt-1" style={{ color: "#374151", fontSize: size * 0.1, fontFamily: "'Inter', sans-serif", letterSpacing: "0.08em" }}>
@@ -150,7 +150,7 @@ const AmeenLogo = ({ variant = "full", size = 64, className = "" }: LogoProps) =
       <div className={`flex items-center gap-4 ${className}`}>
         {/* Police Emblem placeholder */}
         <div className="flex flex-col items-center">
-          <div className="rounded-full flex items-center justify-center" style={{ width: size * 0.7, height: size * 0.7, background: "rgba(181,142,60,0.08)", border: "2px solid rgba(181,142,60,0.3)" }}>
+          <div className="rounded-full flex items-center justify-center" style={{ width: size * 0.7, height: size * 0.7, background: "rgba(184,138,60,0.08)", border: "2px solid rgba(184,138,60,0.3)" }}>
             <span style={{ color: cyan, fontSize: size * 0.22, fontFamily: "'JetBrains Mono', monospace", fontWeight: 900 }}>NP</span>
           </div>
           <div style={{ color: "#9CA3AF", fontSize: size * 0.1, fontFamily: "'Inter', sans-serif", marginTop: 4, letterSpacing: "0.05em" }}>
@@ -158,7 +158,7 @@ const AmeenLogo = ({ variant = "full", size = 64, className = "" }: LogoProps) =
           </div>
         </div>
         {/* Divider */}
-        <div style={{ width: 1, height: size * 0.8, background: "rgba(181,142,60,0.25)" }} />
+        <div style={{ width: 1, height: size * 0.8, background: "rgba(184,138,60,0.25)" }} />
         {/* Al-Ameen */}
         <div className="flex flex-col items-center gap-1">
           <AmeenShield size={size * 0.65} />

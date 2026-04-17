@@ -6,15 +6,15 @@ interface Props {
   onBack: () => void;
 }
 
-const riskColors = { low: "#4ADE80", medium: "#FACC15", high: "#FB923C", critical: "#F87171" };
+const riskColors = { low: "#4ADE80", medium: "#FACC15", high: "#C98A1B", critical: "#C94A5E" };
 
 const watchlistTypeColors: Record<string, string> = {
-  national_security: "#F87171",
+  national_security: "#C94A5E",
   interpol: "#A78BFA",
   financial: "#FACC15",
-  employment: "#FB923C",
-  overstay: "#FB923C",
-  custom: "#D4A84B",
+  employment: "#C98A1B",
+  overstay: "#C98A1B",
+  custom: "#D6B47E",
 };
 
 const PersonLookup = ({ isAr, onBack }: Props) => {
@@ -76,7 +76,7 @@ const PersonLookup = ({ isAr, onBack }: Props) => {
       <div className="px-3 pt-3 pb-2 flex-shrink-0">
         <div className="flex items-center gap-2">
           <div className="flex-1 flex items-center gap-2 px-3 py-2.5 rounded-2xl"
-            style={{ background: "rgba(20,29,46,0.9)", border: "1.5px solid rgba(181,142,60,0.35)" }}>
+            style={{ background: "rgba(10,37,64,0.9)", border: "1.5px solid rgba(184,138,60,0.35)" }}>
             <i className="ri-search-line text-gold-400 text-base flex-shrink-0" />
             <input type="text" value={query}
               onChange={(e) => setQuery(e.target.value)}
@@ -91,7 +91,7 @@ const PersonLookup = ({ isAr, onBack }: Props) => {
           </div>
           <button onClick={handleScan}
             className="w-11 h-11 flex items-center justify-center rounded-2xl cursor-pointer flex-shrink-0"
-            style={{ background: scanning ? "rgba(181,142,60,0.2)" : "rgba(181,142,60,0.1)", border: "1.5px solid rgba(181,142,60,0.4)" }}>
+            style={{ background: scanning ? "rgba(184,138,60,0.2)" : "rgba(184,138,60,0.1)", border: "1.5px solid rgba(184,138,60,0.4)" }}>
             {scanning
               ? <div className="w-4 h-4 rounded-full border-2 border-gold-400 border-t-transparent animate-spin" />
               : <i className="ri-camera-line text-gold-400 text-lg" />}
@@ -99,7 +99,7 @@ const PersonLookup = ({ isAr, onBack }: Props) => {
         </div>
         {scanning && (
           <div className="mt-2 flex items-center gap-2 px-3 py-2 rounded-xl"
-            style={{ background: "rgba(181,142,60,0.06)", border: "1px solid rgba(181,142,60,0.2)" }}>
+            style={{ background: "rgba(184,138,60,0.06)", border: "1px solid rgba(184,138,60,0.2)" }}>
             <div className="w-1.5 h-1.5 rounded-full bg-gold-400 animate-pulse" />
             <span className="text-gold-400 text-xs font-['JetBrains_Mono']">{isAr ? "جارٍ قراءة MRZ..." : "Reading MRZ passport chip..."}</span>
           </div>
@@ -107,7 +107,7 @@ const PersonLookup = ({ isAr, onBack }: Props) => {
         {!found && !scanning && (
           <button onClick={handleSearch}
             className="mt-2 w-full py-2.5 rounded-2xl text-sm font-bold font-['Inter'] cursor-pointer"
-            style={{ background: "#D4A84B", color: "#0B1220" }}>
+            style={{ background: "#D6B47E", color: "#051428" }}>
             {isAr ? "بحث" : "Search"}
           </button>
         )}
@@ -118,7 +118,7 @@ const PersonLookup = ({ isAr, onBack }: Props) => {
         <div className="flex-1 overflow-y-auto px-3 pb-4" style={{ scrollbarWidth: "none" }}>
           {/* Identity header */}
           <div className="rounded-2xl p-3 mb-2"
-            style={{ background: "rgba(20,29,46,0.9)", border: `1.5px solid ${riskColor}44` }}>
+            style={{ background: "rgba(10,37,64,0.9)", border: `1.5px solid ${riskColor}44` }}>
             <div className="flex items-start gap-3">
               <div className="relative flex-shrink-0">
                 <div className="w-14 h-14 rounded-xl overflow-hidden"
@@ -127,7 +127,7 @@ const PersonLookup = ({ isAr, onBack }: Props) => {
                 </div>
                 {/* Watchlist badge */}
                 <div className="absolute -top-1 -right-1 w-5 h-5 rounded-full flex items-center justify-center"
-                  style={{ background: "#F87171", border: "1.5px solid #0B1220" }}>
+                  style={{ background: "#C94A5E", border: "1.5px solid #051428" }}>
                   <i className="ri-eye-fill text-[8px] text-white" />
                 </div>
               </div>
@@ -136,14 +136,14 @@ const PersonLookup = ({ isAr, onBack }: Props) => {
                 <p className="text-gray-400 text-xs font-['Cairo'] mt-0.5">{person.nameAr}</p>
                 <div className="flex items-center gap-1.5 mt-1 flex-wrap">
                   <span className="text-[9px] font-['JetBrains_Mono'] px-1.5 py-0.5 rounded-full"
-                    style={{ background: "rgba(181,142,60,0.1)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>
+                    style={{ background: "rgba(184,138,60,0.1)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}>
                     {person.docType}: {person.docNumber}
                   </span>
                   <span className="text-[10px] font-['Inter']">{person.nationalityFlag} {person.nationality}</span>
                 </div>
                 {/* Watchlist warning */}
                 <div className="flex items-center gap-1 mt-1.5 px-2 py-1 rounded-lg"
-                  style={{ background: "rgba(248,113,113,0.12)", border: "1px solid rgba(248,113,113,0.3)" }}>
+                  style={{ background: "rgba(201,74,94,0.12)", border: "1px solid rgba(201,74,94,0.3)" }}>
                   <i className="ri-alarm-warning-fill text-red-400 text-[10px]" />
                   <span className="text-red-400 text-[9px] font-bold font-['JetBrains_Mono']">
                     {mockWatchlistHits.length} WATCHLIST HITS
@@ -165,8 +165,8 @@ const PersonLookup = ({ isAr, onBack }: Props) => {
               <button key={tab.key} onClick={() => setActiveTab(tab.key)}
                 className="flex-1 flex items-center justify-center gap-1 py-2 rounded-xl text-[10px] font-bold font-['JetBrains_Mono'] cursor-pointer transition-all"
                 style={{
-                  background: activeTab === tab.key ? "#D4A84B" : "rgba(20,29,46,0.8)",
-                  color: activeTab === tab.key ? "#0B1220" : "#6B7280",
+                  background: activeTab === tab.key ? "#D6B47E" : "rgba(10,37,64,0.8)",
+                  color: activeTab === tab.key ? "#051428" : "#6B7280",
                   border: activeTab === tab.key ? "none" : "1px solid rgba(255,255,255,0.06)",
                 }}>
                 <i className={`${tab.icon} text-xs`} />
@@ -178,18 +178,18 @@ const PersonLookup = ({ isAr, onBack }: Props) => {
           {/* Identity tab */}
           {activeTab === "identity" && (
             <div className="rounded-2xl p-3 mb-3"
-              style={{ background: "rgba(20,29,46,0.9)", border: "1px solid rgba(255,255,255,0.06)" }}>
+              style={{ background: "rgba(10,37,64,0.9)", border: "1px solid rgba(255,255,255,0.06)" }}>
               <div className="grid grid-cols-2 gap-2 mb-3">
                 {[
                   { k: isAr ? "العمر" : "Age", v: `${person.age} yrs` },
                   { k: isAr ? "الجنس" : "Gender", v: person.gender },
                   { k: isAr ? "الحالة" : "Status", v: isAr ? "داخل البلاد" : "In-Country", color: "#4ADE80" },
-                  { k: isAr ? "التنبيهات" : "Alerts", v: `${person.patternAlerts}`, color: "#F87171" },
+                  { k: isAr ? "التنبيهات" : "Alerts", v: `${person.patternAlerts}`, color: "#C94A5E" },
                   { k: isAr ? "تاريخ الميلاد" : "DOB", v: person.dob },
                   { k: isAr ? "نوع الوثيقة" : "Doc Type", v: person.docType },
                 ].map((f) => (
                   <div key={f.k} className="px-2.5 py-2 rounded-xl"
-                    style={{ background: "rgba(11,18,32,0.6)", border: "1px solid rgba(255,255,255,0.05)" }}>
+                    style={{ background: "rgba(5,20,40,0.6)", border: "1px solid rgba(255,255,255,0.05)" }}>
                     <p className="text-gray-600 text-[9px] font-['JetBrains_Mono'] uppercase">{f.k}</p>
                     <p className="text-sm font-bold font-['JetBrains_Mono'] mt-0.5"
                       style={{ color: f.color || "#D1D5DB" }}>{f.v}</p>
@@ -197,7 +197,7 @@ const PersonLookup = ({ isAr, onBack }: Props) => {
                 ))}
               </div>
               <div className="flex items-center gap-2 px-2.5 py-2 rounded-xl"
-                style={{ background: "rgba(11,18,32,0.6)", border: "1px solid rgba(181,142,60,0.1)" }}>
+                style={{ background: "rgba(5,20,40,0.6)", border: "1px solid rgba(184,138,60,0.1)" }}>
                 <i className="ri-map-pin-line text-gold-400 text-sm flex-shrink-0" />
                 <div>
                   <p className="text-gray-600 text-[9px] font-['JetBrains_Mono'] uppercase">{isAr ? "آخر موقع" : "Last Location"}</p>
@@ -212,7 +212,7 @@ const PersonLookup = ({ isAr, onBack }: Props) => {
             <div className="space-y-2 mb-3">
               {mockWatchlistHits.map((hit, i) => (
                 <div key={i} className="rounded-2xl p-3"
-                  style={{ background: "rgba(20,29,46,0.9)", border: `1px solid ${watchlistTypeColors[hit.listType]}30` }}>
+                  style={{ background: "rgba(10,37,64,0.9)", border: `1px solid ${watchlistTypeColors[hit.listType]}30` }}>
                   <div className="flex items-start gap-2">
                     <div className="w-7 h-7 flex items-center justify-center rounded-lg flex-shrink-0"
                       style={{ background: `${watchlistTypeColors[hit.listType]}18` }}>
@@ -234,7 +234,7 @@ const PersonLookup = ({ isAr, onBack }: Props) => {
                 </div>
               ))}
               <div className="px-3 py-2.5 rounded-xl"
-                style={{ background: "rgba(248,113,113,0.08)", border: "1px solid rgba(248,113,113,0.2)" }}>
+                style={{ background: "rgba(201,74,94,0.08)", border: "1px solid rgba(201,74,94,0.2)" }}>
                 <p className="text-red-400 text-[10px] font-bold font-['JetBrains_Mono'] mb-1">
                   <i className="ri-alert-fill mr-1" />FIELD OFFICER INSTRUCTIONS
                 </p>
@@ -248,10 +248,10 @@ const PersonLookup = ({ isAr, onBack }: Props) => {
           {/* Events tab */}
           {activeTab === "events" && (
             <div className="rounded-2xl p-3 mb-3"
-              style={{ background: "rgba(20,29,46,0.9)", border: "1px solid rgba(255,255,255,0.06)" }}>
+              style={{ background: "rgba(10,37,64,0.9)", border: "1px solid rgba(255,255,255,0.06)" }}>
               <div className="relative">
                 <div className="absolute left-3 top-0 bottom-0 w-px"
-                  style={{ background: "linear-gradient(to bottom, rgba(181,142,60,0.5), transparent)" }} />
+                  style={{ background: "linear-gradient(to bottom, rgba(184,138,60,0.5), transparent)" }} />
                 <div className="space-y-3">
                   {person.recentEvents.map((ev, i) => (
                     <div key={i} className="flex items-start gap-3 pl-8 relative">
@@ -263,7 +263,7 @@ const PersonLookup = ({ isAr, onBack }: Props) => {
                         <div className="flex items-center gap-1.5 mb-0.5">
                           {ev.isAlert && (
                             <span className="text-[9px] font-bold font-['JetBrains_Mono'] px-1 py-0.5 rounded"
-                              style={{ background: "rgba(248,113,113,0.15)", color: "#F87171" }}>
+                              style={{ background: "rgba(201,74,94,0.15)", color: "#C94A5E" }}>
                               ALERT
                             </span>
                           )}
@@ -285,7 +285,7 @@ const PersonLookup = ({ isAr, onBack }: Props) => {
               {!biometricDone && !runningBiometric && (
                 <button onClick={handleBiometric}
                   className="w-full flex flex-col items-center gap-3 py-6 rounded-2xl cursor-pointer"
-                  style={{ background: "rgba(20,29,46,0.9)", border: "1.5px dashed rgba(181,142,60,0.3)" }}>
+                  style={{ background: "rgba(10,37,64,0.9)", border: "1.5px dashed rgba(184,138,60,0.3)" }}>
                   <i className="ri-fingerprint-line text-gold-400 text-3xl" />
                   <p className="text-white text-sm font-bold font-['Inter']">
                     {isAr ? "تشغيل المطابقة البيومترية" : "Run Biometric Match"}
@@ -297,7 +297,7 @@ const PersonLookup = ({ isAr, onBack }: Props) => {
               )}
               {runningBiometric && (
                 <div className="flex flex-col items-center gap-3 py-6 rounded-2xl"
-                  style={{ background: "rgba(20,29,46,0.9)", border: "1px solid rgba(181,142,60,0.2)" }}>
+                  style={{ background: "rgba(10,37,64,0.9)", border: "1px solid rgba(184,138,60,0.2)" }}>
                   <div className="w-12 h-12 rounded-full border-2 border-gold-400 border-t-transparent animate-spin" />
                   <p className="text-gold-400 text-sm font-['JetBrains_Mono']">
                     {isAr ? "جارٍ المطابقة البيومترية..." : "Running biometric match..."}
@@ -306,7 +306,7 @@ const PersonLookup = ({ isAr, onBack }: Props) => {
               )}
               {biometricDone && mockBiometricResults.map((result, i) => (
                 <div key={i} className="rounded-2xl p-3"
-                  style={{ background: "rgba(20,29,46,0.9)", border: "1px solid rgba(74,222,128,0.3)" }}>
+                  style={{ background: "rgba(10,37,64,0.9)", border: "1px solid rgba(74,222,128,0.3)" }}>
                   <div className="flex items-center gap-3">
                     <div className="w-9 h-9 flex items-center justify-center rounded-xl flex-shrink-0"
                       style={{ background: "rgba(74,222,128,0.15)" }}>
@@ -332,7 +332,7 @@ const PersonLookup = ({ isAr, onBack }: Props) => {
           <div className="space-y-2">
             <button onClick={() => setConfirmSighting(true)}
               className="w-full flex items-center justify-center gap-2 py-3 rounded-2xl text-sm font-bold font-['Inter'] cursor-pointer transition-all"
-              style={{ background: confirmSighting ? "rgba(181,142,60,0.2)" : "#D4A84B", color: confirmSighting ? "#D4A84B" : "#0B1220", border: confirmSighting ? "1.5px solid #D4A84B" : "none" }}>
+              style={{ background: confirmSighting ? "rgba(184,138,60,0.2)" : "#D6B47E", color: confirmSighting ? "#D6B47E" : "#051428", border: confirmSighting ? "1.5px solid #D6B47E" : "none" }}>
               <i className={confirmSighting ? "ri-checkbox-circle-fill" : "ri-eye-line"} />
               {confirmSighting ? (isAr ? "تم تأكيد الرؤية ✓" : "Sighting Confirmed ✓") : (isAr ? "تأكيد الرؤية" : "Confirm Sighting")}
             </button>
@@ -345,7 +345,7 @@ const PersonLookup = ({ isAr, onBack }: Props) => {
               </button>
               <button onClick={() => setReportCreated(true)}
                 className="flex items-center justify-center gap-1.5 py-2.5 rounded-2xl text-xs font-bold font-['Inter'] cursor-pointer"
-                style={{ background: reportCreated ? "rgba(248,113,113,0.15)" : "rgba(248,113,113,0.1)", color: "#F87171", border: `1.5px solid ${reportCreated ? "#F87171" : "rgba(248,113,113,0.3)"}` }}>
+                style={{ background: reportCreated ? "rgba(201,74,94,0.15)" : "rgba(201,74,94,0.1)", color: "#C94A5E", border: `1.5px solid ${reportCreated ? "#C94A5E" : "rgba(201,74,94,0.3)"}` }}>
                 <i className={reportCreated ? "ri-checkbox-circle-fill" : "ri-file-text-line"} />
                 {reportCreated ? (isAr ? "تم ✓" : "Created ✓") : (isAr ? "إنشاء تقرير" : "Create Report")}
               </button>
@@ -358,7 +358,7 @@ const PersonLookup = ({ isAr, onBack }: Props) => {
       {!found && !scanning && (
         <div className="flex-1 flex flex-col items-center justify-center gap-3 px-6">
           <div className="w-16 h-16 rounded-full flex items-center justify-center"
-            style={{ background: "rgba(181,142,60,0.06)", border: "1px solid rgba(181,142,60,0.15)" }}>
+            style={{ background: "rgba(184,138,60,0.06)", border: "1px solid rgba(184,138,60,0.15)" }}>
             <i className="ri-user-search-line text-gold-400/40 text-3xl" />
           </div>
           <p className="text-gray-600 text-sm font-['Inter'] text-center">

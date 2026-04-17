@@ -57,7 +57,7 @@ const PackageReceiptForm = ({ isAr, onCancel }: Props) => {
   return (
     <div className="space-y-5">
       {(isHighValue || isRestrictedCategory) && (
-        <div className="flex items-start gap-3 px-5 py-4 rounded-xl border" style={{ background: "rgba(251,146,60,0.06)", borderColor: "rgba(251,146,60,0.2)" }}>
+        <div className="flex items-start gap-3 px-5 py-4 rounded-xl border" style={{ background: "rgba(201,138,27,0.06)", borderColor: "rgba(201,138,27,0.2)" }}>
           <i className="ri-alarm-warning-line text-orange-400 text-sm mt-0.5 flex-shrink-0" />
           <div>
             <p className="text-orange-400 text-xs font-bold mb-0.5">{isAr ? "تنبيه Al-Ameen" : "Al-Ameen Alert"}</p>
@@ -109,7 +109,7 @@ const PackageReceiptForm = ({ isAr, onCancel }: Props) => {
               <FormField label={isAr ? "حالة التخليص الجمركي" : "Customs Status"} required>
                 <SelectInput options={CUSTOMS_STATUS} placeholder={isAr ? "اختر الحالة" : "Select status"} value={customsStatus} onChange={(e) => setCustomsStatus(e.target.value)} />
               </FormField>
-              <div className="flex items-start gap-3 px-3 py-3 rounded-lg" style={{ background: "rgba(181,142,60,0.04)", border: "1px solid rgba(181,142,60,0.12)" }}>
+              <div className="flex items-start gap-3 px-3 py-3 rounded-lg" style={{ background: "rgba(184,138,60,0.04)", border: "1px solid rgba(184,138,60,0.12)" }}>
                 <i className="ri-information-line text-gold-400 text-sm mt-0.5 flex-shrink-0" />
                 <p className="text-gray-400 text-xs">{isAr ? "Al-Ameen يربط بيانات الطرد بسجلات الجمارك والمستلم تلقائياً." : "Al-Ameen auto-links package data with customs records and recipient profile."}</p>
               </div>
@@ -136,7 +136,7 @@ const PackageReceiptForm = ({ isAr, onCancel }: Props) => {
                   onChange={(e) => setNotes(e.target.value)}
                   className="w-full px-3 py-2 rounded-lg text-sm text-white placeholder-gray-600 outline-none resize-none"
                   style={{ background: "#0F1923", border: "1px solid rgba(255,255,255,0.08)", fontFamily: "Inter" }}
-                  onFocus={(e) => { e.target.style.borderColor = "#D4A84B"; }}
+                  onFocus={(e) => { e.target.style.borderColor = "#D6B47E"; }}
                   onBlur={(e) => { e.target.style.borderColor = "rgba(255,255,255,0.08)"; }}
                 />
                 <p className="text-gray-600 text-xs mt-1 text-right">{notes.length}/500</p>

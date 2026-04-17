@@ -57,7 +57,7 @@ const TerminationForm = ({ isAr, onCancel }: Props) => {
     setTimeout(() => { setSaving(false); setSubmitted(true); }, 1400);
   };
 
-  if (submitted) return <EmpConfirmation isAr={isAr} onReset={() => setSubmitted(false)} eventLabel="Employment Termination" eventLabelAr="إنهاء العمل" eventColor="#F87171" eventIcon="ri-user-unfollow-line" />;
+  if (submitted) return <EmpConfirmation isAr={isAr} onReset={() => setSubmitted(false)} eventLabel="Employment Termination" eventLabelAr="إنهاء العمل" eventColor="#C94A5E" eventIcon="ri-user-unfollow-line" />;
 
   const isAbsconding = reason === "absconding";
   const isDeportation = reason === "deportation";
@@ -66,7 +66,7 @@ const TerminationForm = ({ isAr, onCancel }: Props) => {
   return (
     <div className="space-y-5">
       {/* Warning */}
-      <div className="flex items-start gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(248,113,113,0.06)", borderColor: "rgba(248,113,113,0.2)" }}>
+      <div className="flex items-start gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(201,74,94,0.06)", borderColor: "rgba(201,74,94,0.2)" }}>
         <i className="ri-error-warning-line text-red-400 text-sm mt-0.5 flex-shrink-0" />
         <p className="text-gray-400 text-xs">
           {isAr
@@ -83,16 +83,16 @@ const TerminationForm = ({ isAr, onCancel }: Props) => {
               <TextInput placeholder="WP-XXXX-XXXXXXXX" value={permitNumber} onChange={(e) => setPermitNumber(e.target.value)} className="font-['JetBrains_Mono'] flex-1" />
               <button type="button" onClick={handleLookup}
                 className="flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap"
-                style={{ background: "#D4A84B", color: "#0B1220" }}
+                style={{ background: "#D6B47E", color: "#051428" }}
                 onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C99C48"; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#D4A84B"; }}>
+                onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#D6B47E"; }}>
                 {lookingUp ? <i className="ri-loader-4-line animate-spin" /> : <i className="ri-search-line" />}
                 {isAr ? "بحث" : "Lookup"}
               </button>
             </div>
           </FormField>
           {permitInfo && (
-            <div className="rounded-xl border p-4" style={{ background: "rgba(20,29,46,0.6)", borderColor: "rgba(181,142,60,0.15)" }}>
+            <div className="rounded-xl border p-4" style={{ background: "rgba(10,37,64,0.6)", borderColor: "rgba(184,138,60,0.15)" }}>
               <div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
                 {[
                   { label: isAr ? "حامل التصريح" : "Permit Holder", value: permitInfo.holderName },
@@ -125,7 +125,7 @@ const TerminationForm = ({ isAr, onCancel }: Props) => {
           </div>
 
           {isHighRisk && (
-            <div className="flex items-start gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(248,113,113,0.08)", borderColor: "rgba(248,113,113,0.25)" }}>
+            <div className="flex items-start gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(201,74,94,0.08)", borderColor: "rgba(201,74,94,0.25)" }}>
               <i className="ri-alarm-warning-line text-red-400 text-sm mt-0.5 flex-shrink-0" />
               <div>
                 <p className="text-red-400 text-xs font-bold mb-0.5">
@@ -160,7 +160,7 @@ const TerminationForm = ({ isAr, onCancel }: Props) => {
           <button type="button" onClick={() => setConfirmed((v) => !v)}
             className="flex items-center gap-3 cursor-pointer w-full text-left">
             <div className="w-5 h-5 rounded border-2 flex items-center justify-center flex-shrink-0 transition-all"
-              style={{ borderColor: confirmed ? "#F87171" : "rgba(255,255,255,0.2)", background: confirmed ? "rgba(248,113,113,0.15)" : "transparent" }}>
+              style={{ borderColor: confirmed ? "#C94A5E" : "rgba(255,255,255,0.2)", background: confirmed ? "rgba(201,74,94,0.15)" : "transparent" }}>
               {confirmed && <i className="ri-check-line text-red-400 text-xs" />}
             </div>
             <span className="text-gray-400 text-xs">{isAr ? "أؤكد أن هذا الإجراء مصرح به وأن جميع البيانات صحيحة" : "I confirm this action is authorized and all data is accurate"}</span>
@@ -176,9 +176,9 @@ const TerminationForm = ({ isAr, onCancel }: Props) => {
         </button>
         <button type="button" onClick={handleSubmit} disabled={!confirmed || saving}
           className="flex items-center gap-2 px-6 py-2.5 rounded-lg text-sm font-bold cursor-pointer whitespace-nowrap disabled:opacity-40"
-          style={{ background: "#F87171", color: "#0B1220" }}
+          style={{ background: "#C94A5E", color: "#051428" }}
           onMouseEnter={(e) => { if (confirmed) (e.currentTarget as HTMLButtonElement).style.background = "#EF4444"; }}
-          onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#F87171"; }}>
+          onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C94A5E"; }}>
           {saving ? <i className="ri-loader-4-line animate-spin" /> : <i className="ri-user-unfollow-line" />}
           {isAr ? "تأكيد الإنهاء" : "Confirm Termination"}
         </button>

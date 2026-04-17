@@ -11,8 +11,8 @@ export const inputStyle = {
 
 export const focusHandlers = {
   onFocus: (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    e.target.style.borderColor = "#D4A84B";
-    e.target.style.boxShadow = "0 0 0 2px rgba(181,142,60,0.08)";
+    e.target.style.borderColor = "#D6B47E";
+    e.target.style.boxShadow = "0 0 0 2px rgba(184,138,60,0.08)";
   },
   onBlur: (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     e.target.style.borderColor = "rgba(255,255,255,0.08)";
@@ -80,17 +80,17 @@ export const SelectInput = ({ options, placeholder, className = "", ...props }: 
 
 // ─── SectionCard ──────────────────────────────────────────────────────────────
 export const SectionCard = ({
-  title, icon, children, className = "", accentColor = "#D4A84B",
+  title, icon, children, className = "", accentColor = "#D6B47E",
 }: {
   title: string; icon?: string; children: React.ReactNode; className?: string; accentColor?: string;
 }) => (
   <div
     className={`rounded-2xl border p-5 ${className}`}
     style={{
-      background: "rgba(20,29,46,0.85)",
-      borderColor: "rgba(181,142,60,0.12)",
+      background: "rgba(10,37,64,0.85)",
+      borderColor: "rgba(184,138,60,0.12)",
       backdropFilter: "blur(16px)",
-      boxShadow: "inset 0 1px 0 rgba(181,142,60,0.04)",
+      boxShadow: "inset 0 1px 0 rgba(184,138,60,0.04)",
     }}
   >
     {title && (
@@ -113,8 +113,8 @@ export const SectionCard = ({
 // ─── TipBanner ────────────────────────────────────────────────────────────────
 export const TipBanner = ({ text, color = "amber" }: { text: string; color?: "amber" | "cyan" | "green" }) => {
   const colors = {
-    amber: { bg: "rgba(251,146,60,0.06)", border: "rgba(251,146,60,0.22)", text: "#FB923C", icon: "ri-information-line" },
-    cyan:  { bg: "rgba(181,142,60,0.06)",  border: "rgba(181,142,60,0.22)",  text: "#D4A84B", icon: "ri-lightbulb-flash-line" },
+    amber: { bg: "rgba(201,138,27,0.06)", border: "rgba(201,138,27,0.22)", text: "#C98A1B", icon: "ri-information-line" },
+    cyan:  { bg: "rgba(184,138,60,0.06)",  border: "rgba(184,138,60,0.22)",  text: "#D6B47E", icon: "ri-lightbulb-flash-line" },
     green: { bg: "rgba(74,222,128,0.06)",  border: "rgba(74,222,128,0.22)",  text: "#4ADE80", icon: "ri-checkbox-circle-line" },
   };
   const c = colors[color];
@@ -146,14 +146,14 @@ export const RadioGroup = ({
         onClick={() => onChange(opt.value)}
         className="flex items-center gap-2 px-3 py-2 rounded-lg border text-xs font-semibold transition-all cursor-pointer font-['Inter'] whitespace-nowrap"
         style={{
-          background: value === opt.value ? "rgba(181,142,60,0.12)" : "#0F1923",
-          borderColor: value === opt.value ? "#D4A84B" : "rgba(255,255,255,0.08)",
-          color: value === opt.value ? "#D4A84B" : "#6B7280",
+          background: value === opt.value ? "rgba(184,138,60,0.12)" : "#0F1923",
+          borderColor: value === opt.value ? "#D6B47E" : "rgba(255,255,255,0.08)",
+          color: value === opt.value ? "#D6B47E" : "#6B7280",
         }}
       >
         <div
           className="w-3.5 h-3.5 rounded-full border-2 flex items-center justify-center flex-shrink-0"
-          style={{ borderColor: value === opt.value ? "#D4A84B" : "#374151" }}
+          style={{ borderColor: value === opt.value ? "#D6B47E" : "#374151" }}
         >
           {value === opt.value && <div className="w-1.5 h-1.5 rounded-full bg-gold-400" />}
         </div>
@@ -185,7 +185,7 @@ export const ExpiryDateInput = ({
           className={inputBase}
           style={{
             ...inputStyle,
-            ...(near ? { borderColor: "rgba(251,146,60,0.6)", background: "rgba(251,146,60,0.05)" } : {}),
+            ...(near ? { borderColor: "rgba(201,138,27,0.6)", background: "rgba(201,138,27,0.05)" } : {}),
           }}
           onFocus={focusHandlers.onFocus as React.FocusEventHandler<HTMLInputElement>}
           onBlur={focusHandlers.onBlur as React.FocusEventHandler<HTMLInputElement>}
@@ -234,7 +234,7 @@ export const ScannerWidget = ({
           <div className={`w-1.5 h-1.5 rounded-full ${connected ? "bg-green-400 animate-pulse" : "bg-red-400"}`} />
           <span
             className="text-xs font-semibold font-['JetBrains_Mono']"
-            style={{ color: connected ? "#4ADE80" : "#F87171" }}
+            style={{ color: connected ? "#4ADE80" : "#C94A5E" }}
           >
             {connected
               ? (isAr ? "Regula متصل" : "Regula Connected")
@@ -301,9 +301,9 @@ export const FormActions = ({
       onClick={onSave}
       disabled={saving || disabled}
       className="flex items-center gap-2 px-6 py-2.5 rounded-lg text-sm font-bold transition-colors cursor-pointer whitespace-nowrap font-['Inter'] disabled:opacity-60"
-      style={{ background: "#D4A84B", color: "#0B1220" }}
+      style={{ background: "#D6B47E", color: "#051428" }}
       onMouseEnter={(e) => { if (!saving) (e.currentTarget as HTMLButtonElement).style.background = "#C99C48"; }}
-      onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#D4A84B"; }}
+      onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#D6B47E"; }}
     >
       {saving ? <i className="ri-loader-4-line animate-spin" /> : <i className="ri-save-line" />}
       {isAr ? "حفظ الحدث" : saveLabel}
@@ -327,7 +327,7 @@ export const SuccessScreen = ({
     <p className="text-white font-bold text-xl font-['Inter'] mb-2">{isAr ? titleAr : titleEn}</p>
     <div
       className="flex items-center gap-2 px-4 py-2 rounded-lg mt-1"
-      style={{ background: "rgba(181,142,60,0.06)", border: "1px solid rgba(181,142,60,0.15)" }}
+      style={{ background: "rgba(184,138,60,0.06)", border: "1px solid rgba(184,138,60,0.15)" }}
     >
       <i className="ri-checkbox-circle-line text-gold-400 text-sm" />
       <span className="text-gold-400 text-sm font-['JetBrains_Mono'] tracking-widest">
@@ -345,9 +345,9 @@ export const LookupButton = ({ onClick, isAr, loading = false }: { onClick: () =
     onClick={onClick}
     disabled={loading}
     className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap font-['Inter'] transition-colors disabled:opacity-60"
-    style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.25)", color: "#D4A84B" }}
-    onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(181,142,60,0.18)"; }}
-    onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(181,142,60,0.1)"; }}
+    style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.25)", color: "#D6B47E" }}
+    onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(184,138,60,0.18)"; }}
+    onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(184,138,60,0.1)"; }}
   >
     {loading ? <i className="ri-loader-4-line animate-spin" /> : <i className="ri-search-line" />}
     {isAr ? "بحث" : "Lookup"}

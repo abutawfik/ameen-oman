@@ -8,9 +8,9 @@ interface Props {
 
 const statusMeta: Record<string, { color: string; bg: string; label: string; labelAr: string }> = {
   healthy:  { color: "#4ADE80", bg: "rgba(74,222,128,0.1)",  label: "HEALTHY",  labelAr: "سليم" },
-  degraded: { color: "#FB923C", bg: "rgba(251,146,60,0.1)",  label: "DEGRADED", labelAr: "متدهور" },
+  degraded: { color: "#C98A1B", bg: "rgba(201,138,27,0.1)",  label: "DEGRADED", labelAr: "متدهور" },
   stale:    { color: "#FACC15", bg: "rgba(250,204,21,0.1)",  label: "STALE",    labelAr: "قديم" },
-  down:     { color: "#F87171", bg: "rgba(248,113,113,0.1)", label: "DOWN",     labelAr: "متوقف" },
+  down:     { color: "#C94A5E", bg: "rgba(201,74,94,0.1)", label: "DOWN",     labelAr: "متوقف" },
 };
 
 // Compact source-status chip. Used in Supervisor's source-health grid and
@@ -22,8 +22,8 @@ const SourceChip = ({ source, isAr = false, compact = false }: Props) => {
     <div
       className="flex items-center gap-2.5 px-3 py-2 rounded-lg border"
       style={{
-        background: "rgba(20,29,46,0.65)",
-        borderColor: "rgba(181,142,60,0.12)",
+        background: "rgba(10,37,64,0.65)",
+        borderColor: "rgba(184,138,60,0.12)",
       }}
     >
       <div

@@ -56,13 +56,13 @@ const BoatRentalForm = ({ isAr, onCancel }: Props) => {
     setTimeout(() => { setSaving(false); setRefNumber(`AMN-MAR-${Date.now()}-${Math.floor(Math.random() * 9000) + 1000}`); setConfirmed(true); }, 1800);
   };
 
-  if (confirmed) return <MarConfirmation refNumber={refNumber} eventType={isAr ? "تأجير قارب" : "Boat Rental"} eventCode="MAR_BOAT" color="#D4A84B" isAr={isAr} onReset={() => { setConfirmed(false); setAutoFilled(false); }} />;
+  if (confirmed) return <MarConfirmation refNumber={refNumber} eventType={isAr ? "تأجير قارب" : "Boat Rental"} eventCode="MAR_BOAT" color="#D6B47E" isAr={isAr} onReset={() => { setConfirmed(false); setAutoFilled(false); }} />;
 
   return (
     <div className="space-y-5">
       <TipBanner text={isAr ? "تأكد من صحة رخصة الملاحة البحرية وبيانات السفينة قبل الإرسال." : "Verify marine license and vessel details before submission."} color="cyan" />
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
-        <SectionCard title={isAr ? "تفاصيل القارب والإيجار" : "Vessel & Rental Details"} icon="ri-ship-line" accentColor="#D4A84B">
+        <SectionCard title={isAr ? "تفاصيل القارب والإيجار" : "Vessel & Rental Details"} icon="ri-ship-line" accentColor="#D6B47E">
           <div className="space-y-4">
             <FormField label={isAr ? "رخصة الملاحة البحرية" : "Marine License No."} required>
               <TextInput placeholder="MRL-XXXXXXXX" value={marineLicense} onChange={(e) => setMarineLicense(e.target.value)} className="font-['JetBrains_Mono']" />
@@ -113,13 +113,13 @@ const BoatRentalForm = ({ isAr, onCancel }: Props) => {
             <FormField label={isAr ? "رقم الوثيقة" : "Doc Number"} required>
               <div className="flex gap-2">
                 <TextInput placeholder="ID / Passport" value={p.docNumber} onChange={(e) => updatePassenger(p.id, "docNumber", e.target.value)} className="flex-1 font-['JetBrains_Mono']" />
-                <button type="button" onClick={() => removePassenger(p.id)} className="px-3 py-2 rounded-lg border text-xs cursor-pointer" style={{ background: "rgba(248,113,113,0.06)", borderColor: "rgba(248,113,113,0.2)", color: "#F87171" }}><i className="ri-close-line" /></button>
+                <button type="button" onClick={() => removePassenger(p.id)} className="px-3 py-2 rounded-lg border text-xs cursor-pointer" style={{ background: "rgba(201,74,94,0.06)", borderColor: "rgba(201,74,94,0.2)", color: "#C94A5E" }}><i className="ri-close-line" /></button>
               </div>
             </FormField>
           </div>
         </SectionCard>
       ))}
-      <button type="button" onClick={addPassenger} className="w-full flex items-center justify-center gap-2 py-3 rounded-xl border-2 border-dashed text-sm font-semibold cursor-pointer transition-all" style={{ borderColor: "rgba(181,142,60,0.2)", color: "#D4A84B", background: "rgba(181,142,60,0.03)" }} onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(181,142,60,0.4)"; }} onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(181,142,60,0.2)"; }}>
+      <button type="button" onClick={addPassenger} className="w-full flex items-center justify-center gap-2 py-3 rounded-xl border-2 border-dashed text-sm font-semibold cursor-pointer transition-all" style={{ borderColor: "rgba(184,138,60,0.2)", color: "#D6B47E", background: "rgba(184,138,60,0.03)" }} onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(184,138,60,0.4)"; }} onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(184,138,60,0.2)"; }}>
         <i className="ri-user-add-line" />{isAr ? "إضافة راكب" : "Add Passenger"}
       </button>
       <FormActions onCancel={onCancel} onSave={handleSave} saveLabel={isAr ? "تأكيد تأجير القارب" : "Confirm Boat Rental"} isAr={isAr} saving={saving} />

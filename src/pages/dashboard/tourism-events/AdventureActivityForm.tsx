@@ -22,7 +22,7 @@ const ACTIVITY_TYPES = [
 const RISK_LEVELS = [
   { value: "low",    label: "Low",    color: "#4ADE80" },
   { value: "medium", label: "Medium", color: "#FACC15" },
-  { value: "high",   label: "High",   color: "#FB923C" },
+  { value: "high",   label: "High",   color: "#C98A1B" },
 ];
 
 const emptyPersonal = (): PersonalData => ({ firstName: "", lastName: "", gender: "", dob: "", nationality: "", placeOfBirth: "", countryOfResidence: "", email: "", primaryContact: "", secondaryContact: "" });
@@ -64,13 +64,13 @@ const AdventureActivityForm = ({ isAr, onCancel }: Props) => {
     setTimeout(() => { setSaving(false); setRefNumber(`AMN-TOR-${Date.now()}-${Math.floor(Math.random() * 9000) + 1000}`); setConfirmed(true); }, 1800);
   };
 
-  if (confirmed) return <TorConfirmation refNumber={refNumber} eventType={isAr ? "نشاط مغامرة" : "Adventure Activity"} eventCode="TOR_ADVENTURE" color="#FB923C" isAr={isAr} onReset={() => { setConfirmed(false); setAutoFilled(false); }} />;
+  if (confirmed) return <TorConfirmation refNumber={refNumber} eventType={isAr ? "نشاط مغامرة" : "Adventure Activity"} eventCode="TOR_ADVENTURE" color="#C98A1B" isAr={isAr} onReset={() => { setConfirmed(false); setAutoFilled(false); }} />;
 
   return (
     <div className="space-y-5">
       <TipBanner text={isAr ? "الأنشطة عالية المخاطر تتطلب توقيع إخلاء مسؤولية وشهادة معتمدة." : "High-risk activities require a signed waiver and valid certification."} color="amber" />
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
-        <SectionCard title={isAr ? "تفاصيل النشاط" : "Activity Details"} icon="ri-run-line" accentColor="#FB923C">
+        <SectionCard title={isAr ? "تفاصيل النشاط" : "Activity Details"} icon="ri-run-line" accentColor="#C98A1B">
           <div className="space-y-4">
             <div className="grid grid-cols-2 gap-3">
               <FormField label={isAr ? "نوع النشاط" : "Activity Type"} required>

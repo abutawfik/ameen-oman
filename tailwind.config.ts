@@ -1,8 +1,9 @@
 /**
- * Al-Ameen brand v1.0 Tailwind config
- * Palette: Oman sovereign — navy / red / gold / ivory
- * Source of truth mirrors al-ameen-brand/tokens/tokens.css
- * Keep this file in sync with that token sheet.
+ * Al-Ameen brand v1.1 Tailwind config
+ * Palette: Majlis Azure — ocean / brass / persian rose / alabaster
+ * Key names (midnight/oman/gold/ivory) preserved for code compatibility;
+ * hex values swapped to the Majlis Azure palette. Source of truth:
+ * /al-ameen-brand/tokens/tokens.css
  */
 
 /** @type {import('tailwindcss').Config} */
@@ -15,78 +16,81 @@ export default {
   theme: {
     extend: {
       colors: {
-        // ── Brand core ──
+        // ── Dark canvas ramp (was "midnight" — now Ocean, key name preserved) ──
         midnight: {
-          50:  "#F0F2F7",
-          100: "#B8BFD0",
-          200: "#8B95B0",
-          300: "#5A6787",
-          400: "#3E4A6B",
-          500: "#2A3654",
-          600: "#1C2740",
-          700: "#141D2E",
-          800: "#0B1220",
-          900: "#05080F",
+          50:  "#E8EEF5",
+          100: "#B0C5DB",
+          200: "#7A9CBF",
+          300: "#4A7AA8",
+          400: "#2C5F8F",
+          500: "#1A4578",
+          600: "#10325A", // raised
+          700: "#0A2540", // card · PRIMARY action
+          800: "#051428", // shell
+          900: "#020A14",
         },
+        // ── Alert ramp (was "oman red" — now Persian Rose, key name preserved) ──
         oman: {
-          50:  "#FDF0F2",
-          100: "#FADDE0",
-          200: "#F0A0A7",
-          300: "#E06570",
-          400: "#CC4049",
-          500: "#B32830",
-          600: "#9A1F24", // primary Oman royal red
-          700: "#831B1F",
-          800: "#6B1519",
-          900: "#4A0F13",
+          50:  "#FAEEF0",
+          100: "#F5D8DE",
+          200: "#E8A3B0",
+          300: "#D66878",
+          400: "#C94A5E", // alert · high
+          500: "#A52844",
+          600: "#8A1F3C", // critical · destructive
+          700: "#701832",
+          800: "#5A1428",
+          900: "#3A0D1E",
         },
+        // ── Ceremonial accent (was "gold" — now Brass, key name preserved) ──
         gold: {
           50:  "#FBF6EA",
           100: "#F4E5C4",
           200: "#E8CF9A",
           300: "#DDB96B",
-          400: "#D4A84B",
+          400: "#D6B47E",
           500: "#C99C48",
-          600: "#B58E3C", // frankincense gold — ceremonial accent
+          600: "#B88A3C", // brass accent
           700: "#96732C",
           800: "#7A5C22",
           900: "#5A4418",
         },
+        // ── Light canvas (was "ivory" — now Alabaster, key name preserved) ──
         ivory: {
           50:  "#FFFFFF",
-          100: "#FAF6EC",
-          200: "#F5EFE3", // desert ivory canvas
-          300: "#EFE7D3",
-          400: "#E7DEC7",
-          500: "#DAD0B8",
+          100: "#FBF8F0",
+          200: "#F8F5F0", // alabaster canvas
+          300: "#EFE8D7",
+          400: "#EAE2CF",
+          500: "#E0D8C5",
           600: "#C4BCA8",
           700: "#A9A193",
           800: "#8A8374",
           900: "#4A453B",
         },
 
-        // ── Semantic risk tiers (match tokens.css risk palette) ──
+        // ── Semantic risk tiers (Majlis Azure) ──
         risk: {
-          clear:    "#0E7C66",
-          low:      "#4F9A35",
+          clear:    "#14786A",
+          low:      "#4A8E3A",
           elevated: "#C98A1B",
-          high:     "#D25A2A",
-          critical: "#9A1F24",
+          high:     "#C94A5E",
+          critical: "#8A1F3C",
         },
 
-        // ── Stream category tokens (12 hues for intelligence streams) ──
+        // ── Stream category tokens (Majlis Azure) ──
         cat: {
-          core:      "#2466A3",
-          mobility:  "#D25A2A",
-          financial: "#0E7C66",
-          health:    "#B32830",
+          core:      "#2C5F8F",
+          mobility:  "#C94A5E",
+          financial: "#14786A",
+          health:    "#8A1F3C",
           utility:   "#C98A1B",
           education: "#6B4FAE",
-          labor:     "#4F9A35",
+          labor:     "#4A8E3A",
           commerce:  "#1F7A8C",
           digital:   "#8A6C1B",
-          customs:   "#9A1F24",
-          maritime:  "#2C5F8F",
+          customs:   "#701832",
+          maritime:  "#0A2540",
           postal:    "#A8547A",
         },
       },
@@ -111,14 +115,14 @@ export default {
         "7xl": ["4.5rem",    { lineHeight: "4.75rem", letterSpacing: "-0.03em" }],
       },
       boxShadow: {
-        xs:   "0 1px 2px rgba(5, 8, 15, 0.06)",
-        sm:   "0 1px 3px rgba(5, 8, 15, 0.08), 0 1px 2px rgba(5, 8, 15, 0.06)",
-        md:   "0 4px 8px rgba(5, 8, 15, 0.08), 0 2px 4px rgba(5, 8, 15, 0.06)",
-        lg:   "0 12px 20px rgba(5, 8, 15, 0.10), 0 4px 8px rgba(5, 8, 15, 0.06)",
-        xl:   "0 20px 40px rgba(5, 8, 15, 0.14), 0 8px 16px rgba(5, 8, 15, 0.08)",
-        "2xl":"0 32px 64px rgba(5, 8, 15, 0.18)",
-        gold: "0 0 0 1px rgba(181, 142, 60, 0.4), 0 4px 16px rgba(181, 142, 60, 0.2)",
-        risk: "0 0 0 1px rgba(154, 31, 36, 0.4), 0 4px 16px rgba(154, 31, 36, 0.2)",
+        xs:   "0 1px 2px rgba(2, 10, 20, 0.06)",
+        sm:   "0 1px 3px rgba(2, 10, 20, 0.08), 0 1px 2px rgba(2, 10, 20, 0.06)",
+        md:   "0 4px 8px rgba(2, 10, 20, 0.08), 0 2px 4px rgba(2, 10, 20, 0.06)",
+        lg:   "0 12px 20px rgba(2, 10, 20, 0.10), 0 4px 8px rgba(2, 10, 20, 0.06)",
+        xl:   "0 20px 40px rgba(2, 10, 20, 0.14), 0 8px 16px rgba(2, 10, 20, 0.08)",
+        "2xl":"0 32px 64px rgba(2, 10, 20, 0.18)",
+        gold: "0 0 0 1px rgba(184, 138, 60, 0.4), 0 4px 16px rgba(184, 138, 60, 0.2)",
+        risk: "0 0 0 1px rgba(201, 74, 94, 0.4), 0 4px 16px rgba(201, 74, 94, 0.2)",
       },
       borderRadius: {
         xs: "2px", sm: "4px", md: "6px", lg: "8px", xl: "12px", "2xl": "16px",
@@ -131,10 +135,10 @@ export default {
         emph: "cubic-bezier(0.2, 0.8, 0.2, 1)",
       },
       backgroundImage: {
-        "gold-gradient":     "linear-gradient(180deg, #D4A84B 0%, #B58E3C 100%)",
-        "oman-gradient":     "linear-gradient(180deg, #B32830 0%, #9A1F24 100%)",
-        "midnight-gradient": "linear-gradient(180deg, #141D2E 0%, #0B1220 100%)",
-        "grid-line":         "linear-gradient(rgba(181,142,60,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,0.08) 1px, transparent 1px)",
+        "gold-gradient":     "linear-gradient(180deg, #D6B47E 0%, #B88A3C 100%)",
+        "oman-gradient":     "linear-gradient(180deg, #C94A5E 0%, #8A1F3C 100%)",
+        "midnight-gradient": "linear-gradient(180deg, #0A2540 0%, #051428 100%)",
+        "grid-line":         "linear-gradient(rgba(184,138,60,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.08) 1px, transparent 1px)",
       },
       backgroundSize: {
         grid: "40px 40px",

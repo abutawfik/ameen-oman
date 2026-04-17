@@ -97,8 +97,8 @@ const DashboardTitleBar = ({ isAr, onToggleLang, onToggleAr }: Props) => {
       className="flex items-center justify-between px-4 md:px-6 flex-shrink-0 relative z-30"
       style={{
         height: 64,
-        background: "rgba(11,18,32,0.9)",
-        borderBottom: "1px solid rgba(181,142,60,0.15)",
+        background: "rgba(5,20,40,0.9)",
+        borderBottom: "1px solid rgba(184,138,60,0.15)",
         backdropFilter: "blur(16px)",
         WebkitBackdropFilter: "blur(16px)",
         position: "sticky",
@@ -119,7 +119,7 @@ const DashboardTitleBar = ({ isAr, onToggleLang, onToggleAr }: Props) => {
               fontFamily: fonts.mono,
               fontSize: "0.75rem",
               letterSpacing: "0.08em",
-              color: "#D4A84B",
+              color: "#D6B47E",
               textTransform: "uppercase",
               opacity: 0.9,
             }}
@@ -135,8 +135,8 @@ const DashboardTitleBar = ({ isAr, onToggleLang, onToggleAr }: Props) => {
         <div
           className="hidden lg:flex flex-col items-end px-3 py-1 rounded-md"
           style={{
-            background: "rgba(181,142,60,0.04)",
-            border: "1px solid rgba(181,142,60,0.12)",
+            background: "rgba(184,138,60,0.04)",
+            border: "1px solid rgba(184,138,60,0.12)",
           }}
         >
           <span
@@ -144,7 +144,7 @@ const DashboardTitleBar = ({ isAr, onToggleLang, onToggleAr }: Props) => {
               fontFamily: fonts.mono,
               fontSize: "0.75rem",
               fontWeight: 700,
-              color: "#D4A84B",
+              color: "#D6B47E",
               lineHeight: 1.1,
               letterSpacing: "0.04em",
             }}
@@ -171,14 +171,14 @@ const DashboardTitleBar = ({ isAr, onToggleLang, onToggleAr }: Props) => {
           className="flex items-center justify-center px-3 h-8 rounded-full cursor-pointer transition-colors"
           style={{
             background: "transparent",
-            border: "1px solid rgba(181,142,60,0.35)",
-            color: "#D4A84B",
+            border: "1px solid rgba(184,138,60,0.35)",
+            color: "#D6B47E",
             fontFamily: fonts.mono,
             fontSize: "0.6875rem",
             fontWeight: 700,
             letterSpacing: "0.08em",
           }}
-          onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(181,142,60,0.08)")}
+          onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(184,138,60,0.08)")}
           onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
         >
           {isAr ? "EN" : "AR"}
@@ -190,18 +190,18 @@ const DashboardTitleBar = ({ isAr, onToggleLang, onToggleAr }: Props) => {
             type="button"
             onClick={() => { setNotifOpen(!notifOpen); setUserOpen(false); }}
             className="relative w-9 h-9 flex items-center justify-center rounded-full cursor-pointer transition-colors"
-            style={{ border: "1px solid rgba(181,142,60,0.3)", background: "transparent" }}
-            onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(181,142,60,0.08)")}
+            style={{ border: "1px solid rgba(184,138,60,0.3)", background: "transparent" }}
+            onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(184,138,60,0.08)")}
             onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
             aria-label={isAr ? "الإشعارات" : "Notifications"}
           >
-            <i className="ri-notification-3-line text-lg" style={{ color: "#D4A84B" }} />
+            <i className="ri-notification-3-line text-lg" style={{ color: "#D6B47E" }} />
             {totalBadge > 0 && (
               <span
                 className={`absolute -top-1 min-w-[18px] h-[18px] flex items-center justify-center rounded-full text-[10px] font-bold px-1 ${isAr ? "-left-1" : "-right-1"}`}
                 style={{
-                  background: criticalCount > 0 ? "#9A1F24" : "#D4A84B",
-                  color: "#0B1220",
+                  background: criticalCount > 0 ? "#8A1F3C" : "#D6B47E",
+                  color: "#051428",
                   fontFamily: fonts.mono,
                 }}
               >
@@ -213,23 +213,23 @@ const DashboardTitleBar = ({ isAr, onToggleLang, onToggleAr }: Props) => {
             <div
               className={`absolute top-full mt-2 w-80 rounded-xl overflow-hidden z-50 ${isAr ? "left-0" : "right-0"}`}
               style={{
-                background: "rgba(20,29,46,0.98)",
-                border: "1px solid rgba(181,142,60,0.25)",
+                background: "rgba(10,37,64,0.98)",
+                border: "1px solid rgba(184,138,60,0.25)",
                 backdropFilter: "blur(16px)",
               }}
             >
               <div
                 className="px-4 py-3 flex items-center justify-between"
-                style={{ borderBottom: "1px solid rgba(245,239,227,0.05)" }}
+                style={{ borderBottom: "1px solid rgba(248,245,240,0.05)" }}
               >
-                <p className="text-sm font-semibold" style={{ color: "#F5EFE3", fontFamily: fonts.sans }}>
+                <p className="text-sm font-semibold" style={{ color: "#F8F5F0", fontFamily: fonts.sans }}>
                   {isAr ? "الإشعارات" : "Notifications"}
                 </p>
                 <button
                   type="button"
                   onClick={() => { setNotifOpen(false); navigate("/dashboard/notifications"); }}
                   className="text-xs cursor-pointer hover:underline"
-                  style={{ color: "#D4A84B", fontFamily: fonts.mono }}
+                  style={{ color: "#D6B47E", fontFamily: fonts.mono }}
                 >
                   {isAr ? "عرض الكل" : "View All"}
                 </button>
@@ -237,16 +237,16 @@ const DashboardTitleBar = ({ isAr, onToggleLang, onToggleAr }: Props) => {
               {criticalCount > 0 && (
                 <div
                   className="flex items-center gap-2 px-4 py-2.5 cursor-pointer"
-                  style={{ background: "rgba(154,31,36,0.1)", borderBottom: "1px solid rgba(245,239,227,0.05)" }}
+                  style={{ background: "rgba(201,74,94,0.1)", borderBottom: "1px solid rgba(248,245,240,0.05)" }}
                   onClick={() => { setNotifOpen(false); navigate("/dashboard/notifications"); }}
                 >
-                  <div className="w-2 h-2 rounded-full animate-pulse flex-shrink-0" style={{ background: "#9A1F24" }} />
-                  <span className="text-xs font-bold" style={{ color: "#F87171", fontFamily: fonts.mono }}>
+                  <div className="w-2 h-2 rounded-full animate-pulse flex-shrink-0" style={{ background: "#8A1F3C" }} />
+                  <span className="text-xs font-bold" style={{ color: "#C94A5E", fontFamily: fonts.mono }}>
                     {criticalCount} {isAr ? "تنبيه حرج" : "CRITICAL alerts"}
                   </span>
                   <i
                     className={`${isAr ? "ri-arrow-left-line" : "ri-arrow-right-line"} text-xs ms-auto`}
-                    style={{ color: "#F87171" }}
+                    style={{ color: "#C94A5E" }}
                   />
                 </div>
               )}
@@ -255,8 +255,8 @@ const DashboardTitleBar = ({ isAr, onToggleLang, onToggleAr }: Props) => {
                   key={n.id}
                   className="flex items-start gap-3 px-4 py-3 cursor-pointer"
                   style={{
-                    background: n.read ? "transparent" : "rgba(181,142,60,0.04)",
-                    borderBottom: "1px solid rgba(245,239,227,0.05)",
+                    background: n.read ? "transparent" : "rgba(184,138,60,0.04)",
+                    borderBottom: "1px solid rgba(248,245,240,0.05)",
                   }}
                 >
                   <div
@@ -268,7 +268,7 @@ const DashboardTitleBar = ({ isAr, onToggleLang, onToggleAr }: Props) => {
                   <div className="flex-1 min-w-0">
                     <p
                       className="text-xs font-semibold"
-                      style={{ color: n.read ? "rgba(239,231,211,0.7)" : "#F5EFE3", fontFamily: fonts.sans }}
+                      style={{ color: n.read ? "rgba(239,231,211,0.7)" : "#F8F5F0", fontFamily: fonts.sans }}
                     >
                       {isAr ? n.titleAr : n.title}
                     </p>
@@ -281,15 +281,15 @@ const DashboardTitleBar = ({ isAr, onToggleLang, onToggleAr }: Props) => {
                   )}
                 </div>
               ))}
-              <div className="px-4 py-2.5" style={{ borderTop: "1px solid rgba(245,239,227,0.05)" }}>
+              <div className="px-4 py-2.5" style={{ borderTop: "1px solid rgba(248,245,240,0.05)" }}>
                 <button
                   type="button"
                   onClick={() => { setNotifOpen(false); navigate("/dashboard/notifications"); }}
                   className="w-full py-2 rounded-lg text-xs font-semibold cursor-pointer transition-colors"
                   style={{
-                    background: "rgba(181,142,60,0.1)",
-                    color: "#D4A84B",
-                    border: "1px solid rgba(181,142,60,0.25)",
+                    background: "rgba(184,138,60,0.1)",
+                    color: "#D6B47E",
+                    border: "1px solid rgba(184,138,60,0.25)",
                     fontFamily: fonts.sans,
                   }}
                 >
@@ -306,14 +306,14 @@ const DashboardTitleBar = ({ isAr, onToggleLang, onToggleAr }: Props) => {
             type="button"
             onClick={() => { setUserOpen(!userOpen); setNotifOpen(false); }}
             className="flex items-center gap-2 px-2 py-1 rounded-lg cursor-pointer transition-colors"
-            onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(245,239,227,0.04)")}
+            onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(248,245,240,0.04)")}
             onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
           >
             <div
               className="w-8 h-8 flex items-center justify-center rounded-full"
-              style={{ background: "rgba(181,142,60,0.15)", border: "1px solid rgba(181,142,60,0.35)" }}
+              style={{ background: "rgba(184,138,60,0.15)", border: "1px solid rgba(184,138,60,0.35)" }}
             >
-              <span className="text-xs font-bold" style={{ color: "#D4A84B", fontFamily: fonts.sans }}>
+              <span className="text-xs font-bold" style={{ color: "#D6B47E", fontFamily: fonts.sans }}>
                 AA
               </span>
             </div>
@@ -326,8 +326,8 @@ const DashboardTitleBar = ({ isAr, onToggleLang, onToggleAr }: Props) => {
             <div
               className={`absolute top-full mt-1 w-48 rounded-xl overflow-hidden z-50 ${isAr ? "left-0" : "right-0"}`}
               style={{
-                background: "rgba(20,29,46,0.98)",
-                border: "1px solid rgba(181,142,60,0.25)",
+                background: "rgba(10,37,64,0.98)",
+                border: "1px solid rgba(184,138,60,0.25)",
                 backdropFilter: "blur(16px)",
               }}
             >
@@ -340,12 +340,12 @@ const DashboardTitleBar = ({ isAr, onToggleLang, onToggleAr }: Props) => {
                   key={item.icon}
                   type="button"
                   className="w-full flex items-center gap-3 px-4 py-2.5 cursor-pointer transition-colors"
-                  style={{ borderBottom: "1px solid rgba(245,239,227,0.05)" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(245,239,227,0.04)")}
+                  style={{ borderBottom: "1px solid rgba(248,245,240,0.05)" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(248,245,240,0.04)")}
                   onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
                 >
                   <i className={`${item.icon} text-sm`} style={{ color: "rgba(239,231,211,0.7)" }} />
-                  <span className="text-xs" style={{ color: "#EFE7D3", fontFamily: fonts.sans }}>
+                  <span className="text-xs" style={{ color: "#EFE8D7", fontFamily: fonts.sans }}>
                     {isAr ? item.labelAr : item.labelEn}
                   </span>
                 </button>
@@ -353,11 +353,11 @@ const DashboardTitleBar = ({ isAr, onToggleLang, onToggleAr }: Props) => {
               <a
                 href="/login"
                 className="w-full flex items-center gap-3 px-4 py-2.5 cursor-pointer transition-colors"
-                onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(154,31,36,0.1)")}
+                onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(201,74,94,0.1)")}
                 onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
               >
-                <i className="ri-logout-box-line text-sm" style={{ color: "#F87171" }} />
-                <span className="text-xs" style={{ color: "#F87171", fontFamily: fonts.sans }}>
+                <i className="ri-logout-box-line text-sm" style={{ color: "#C94A5E" }} />
+                <span className="text-xs" style={{ color: "#C94A5E", fontFamily: fonts.sans }}>
                   {isAr ? "تسجيل الخروج" : "Logout"}
                 </span>
               </a>

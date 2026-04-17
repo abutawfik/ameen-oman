@@ -64,8 +64,8 @@ const ANOMALIES: Anomaly[] = [
   },
 ];
 
-const severityColor = (s: Anomaly["severity"]) => s === "medium" ? "#FACC15" : s === "high" ? "#FB923C" : "#F87171";
-const statusColor = (s: Anomaly["status"]) => s === "open" ? "#F87171" : s === "investigating" ? "#FACC15" : "#4ADE80";
+const severityColor = (s: Anomaly["severity"]) => s === "medium" ? "#FACC15" : s === "high" ? "#C98A1B" : "#C94A5E";
+const statusColor = (s: Anomaly["status"]) => s === "open" ? "#C94A5E" : s === "investigating" ? "#FACC15" : "#4ADE80";
 const statusLabel = (s: Anomaly["status"], isAr: boolean) => s === "open" ? (isAr ? "مفتوح" : "Open") : s === "investigating" ? (isAr ? "قيد التحقيق" : "Investigating") : (isAr ? "محلول" : "Resolved");
 
 const typeIcon = (t: Anomaly["type"]) => {
@@ -88,7 +88,7 @@ const typeLabel = (t: Anomaly["type"], isAr: boolean) => {
 };
 
 const streamColor = (s: string) => {
-  const map: Record<string, string> = { TRANSPORT: "#D4A84B", BORDER: "#A78BFA", HOTEL: "#FB923C", MUNICIPALITY: "#4ADE80", UTILITY: "#FACC15", MOBILE: "#F87171", FINANCIAL: "#4ADE80" };
+  const map: Record<string, string> = { TRANSPORT: "#D6B47E", BORDER: "#A78BFA", HOTEL: "#C98A1B", MUNICIPALITY: "#4ADE80", UTILITY: "#FACC15", MOBILE: "#C94A5E", FINANCIAL: "#4ADE80" };
   return map[s] || "#9CA3AF";
 };
 
@@ -99,10 +99,10 @@ const TransportAnomalies = ({ isAr }: Props) => {
   );
 
   return (
-    <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(248,113,113,0.2)", backdropFilter: "blur(12px)" }}>
-      <div className="flex items-center justify-between px-6 py-4 border-b" style={{ borderColor: "rgba(248,113,113,0.12)" }}>
+    <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(201,74,94,0.2)", backdropFilter: "blur(12px)" }}>
+      <div className="flex items-center justify-between px-6 py-4 border-b" style={{ borderColor: "rgba(201,74,94,0.12)" }}>
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(248,113,113,0.1)", border: "1px solid rgba(248,113,113,0.25)" }}>
+          <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(201,74,94,0.1)", border: "1px solid rgba(201,74,94,0.25)" }}>
             <i className="ri-alarm-warning-line text-red-400 text-sm" />
           </div>
           <div>
@@ -110,7 +110,7 @@ const TransportAnomalies = ({ isAr }: Props) => {
             <p className="text-gray-500 text-xs">{isAr ? "أنماط تنقل مشبوهة — تحليل متقاطع" : "Suspicious movement patterns — cross-stream analysis"}</p>
           </div>
         </div>
-        <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border" style={{ background: "rgba(248,113,113,0.08)", borderColor: "rgba(248,113,113,0.2)" }}>
+        <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border" style={{ background: "rgba(201,74,94,0.08)", borderColor: "rgba(201,74,94,0.2)" }}>
           <div className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse" />
           <span className="text-red-400 text-xs font-bold font-['JetBrains_Mono']">{ANOMALIES.filter(a => statuses[a.id] === "open").length} {isAr ? "مفتوح" : "OPEN"}</span>
         </div>
@@ -228,7 +228,7 @@ const TransportAnomalies = ({ isAr }: Props) => {
             </div>
           ) : (
             <div className="flex flex-col items-center justify-center h-full min-h-[280px] text-center">
-              <div className="w-14 h-14 flex items-center justify-center rounded-2xl mb-4" style={{ background: "rgba(248,113,113,0.08)", border: "1px solid rgba(248,113,113,0.15)" }}>
+              <div className="w-14 h-14 flex items-center justify-center rounded-2xl mb-4" style={{ background: "rgba(201,74,94,0.08)", border: "1px solid rgba(201,74,94,0.15)" }}>
                 <i className="ri-alarm-warning-line text-red-400 text-2xl" />
               </div>
               <p className="text-gray-400 text-sm">{isAr ? "اختر شذوذاً لعرض التفاصيل" : "Select an anomaly to view details"}</p>

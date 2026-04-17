@@ -32,7 +32,7 @@ const CrossEntityTimeline = ({ events, isAr }: CrossEntityTimelineProps) => {
   const riskBadge = (risk: TimelineEvent["risk"]) => {
     if (risk === "flagged") return (
       <span className="flex items-center gap-1 px-1.5 py-0.5 rounded-full font-bold"
-        style={{ background: "rgba(248,113,113,0.1)", color: "#F87171", border: "1px solid rgba(248,113,113,0.25)", fontSize: "9px" }}>
+        style={{ background: "rgba(201,74,94,0.1)", color: "#C94A5E", border: "1px solid rgba(201,74,94,0.25)", fontSize: "9px" }}>
         <i className="ri-shield-cross-line" style={{ fontSize: "8px" }} />
         {isAr ? "مُبلَّغ" : "FLAGGED"}
       </span>
@@ -57,7 +57,7 @@ const CrossEntityTimeline = ({ events, isAr }: CrossEntityTimelineProps) => {
     <div className="relative">
       {/* Vertical cyan line */}
       <div className="absolute top-0 bottom-0 w-0.5 rounded-full"
-        style={{ left: "19px", background: "linear-gradient(to bottom, rgba(181,142,60,0.7), rgba(181,142,60,0.05))" }} />
+        style={{ left: "19px", background: "linear-gradient(to bottom, rgba(184,138,60,0.7), rgba(184,138,60,0.05))" }} />
 
       <div className="space-y-0.5">
         {events.map((ev) => {

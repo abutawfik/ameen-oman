@@ -82,14 +82,14 @@ const MobileFieldPage = () => {
     >
       {/* Background grid */}
       <div className="fixed inset-0 pointer-events-none opacity-[0.04]">
-        <svg width="100%" height="100%"><defs><pattern id="mf-bg" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="#D4A84B" strokeWidth="0.5"/></pattern></defs><rect width="100%" height="100%" fill="url(#mf-bg)"/></svg>
+        <svg width="100%" height="100%"><defs><pattern id="mf-bg" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="#D6B47E" strokeWidth="0.5"/></pattern></defs><rect width="100%" height="100%" fill="url(#mf-bg)"/></svg>
       </div>
 
       {/* Desktop context label */}
       <div className="hidden lg:flex flex-col items-center gap-6 mr-12 max-w-xs">
         <div className="text-center">
           <div className="flex items-center gap-2 justify-center mb-3">
-            <div className="w-8 h-8 flex items-center justify-center rounded-xl" style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.3)" }}>
+            <div className="w-8 h-8 flex items-center justify-center rounded-xl" style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.3)" }}>
               <i className="ri-smartphone-line text-gold-400 text-base" />
             </div>
             <span className="text-gold-400 font-black text-lg font-['Inter'] tracking-widest">Al-Ameen Mobile</span>
@@ -107,7 +107,7 @@ const MobileFieldPage = () => {
             { icon: "ri-user-search-line", text: "MRZ passport scanning" },
             { icon: "ri-alarm-warning-line",text: "Auto-escalation integration" },
           ].map((f) => (
-            <div key={f.text} className="flex items-center gap-2.5 px-3 py-2 rounded-xl" style={{ background: "rgba(20,29,46,0.6)", border: "1px solid rgba(181,142,60,0.08)" }}>
+            <div key={f.text} className="flex items-center gap-2.5 px-3 py-2 rounded-xl" style={{ background: "rgba(10,37,64,0.6)", border: "1px solid rgba(184,138,60,0.08)" }}>
               <i className={`${f.icon} text-gold-400 text-sm flex-shrink-0`} />
               <span className="text-gray-400 text-xs font-['Inter']">{f.text}</span>
             </div>
@@ -125,7 +125,7 @@ const MobileFieldPage = () => {
           <button
             onClick={() => setIsAr(!isAr)}
             className="px-3 py-2 rounded-xl text-xs font-bold font-['JetBrains_Mono'] cursor-pointer"
-            style={{ background: "rgba(181,142,60,0.08)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}
+            style={{ background: "rgba(184,138,60,0.08)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}
           >
             {isAr ? "EN" : "AR"}
           </button>
@@ -140,8 +140,8 @@ const MobileFieldPage = () => {
           height: "844px",
           borderRadius: "50px",
           background: "#0A0F1A",
-          border: "2px solid rgba(181,142,60,0.25)",
-          boxShadow: "0 0 60px rgba(181,142,60,0.08), 0 40px 80px rgba(0,0,0,0.8), inset 0 0 0 1px rgba(255,255,255,0.04)",
+          border: "2px solid rgba(184,138,60,0.25)",
+          boxShadow: "0 0 60px rgba(184,138,60,0.08), 0 40px 80px rgba(0,0,0,0.8), inset 0 0 0 1px rgba(255,255,255,0.04)",
           overflow: "hidden",
         }}
       >
@@ -162,7 +162,7 @@ const MobileFieldPage = () => {
         {/* RED CLASSIFICATION BANNER */}
         <div
           className="absolute z-50 flex items-center justify-center gap-2"
-          style={{ top: "44px", left: 0, right: 0, height: "22px", background: "rgba(220,38,38,0.95)", backdropFilter: "blur(4px)" }}
+          style={{ top: "44px", left: 0, right: 0, height: "22px", background: "rgba(138,31,60,0.95)", backdropFilter: "blur(4px)" }}
         >
           <i className="ri-shield-fill text-white text-[10px]" />
           <span className="text-white text-[9px] font-black font-['JetBrains_Mono'] uppercase tracking-widest">
@@ -174,7 +174,7 @@ const MobileFieldPage = () => {
         {/* Main content area */}
         <div
           className="absolute flex flex-col"
-          style={{ top: "66px", left: 0, right: 0, bottom: screen !== "lock" ? "80px" : 0, background: "#0B1220" }}
+          style={{ top: "66px", left: 0, right: 0, bottom: screen !== "lock" ? "80px" : 0, background: "#051428" }}
         >
           {/* Offline banner */}
           {!isOnline && screen !== "lock" && (
@@ -195,10 +195,10 @@ const MobileFieldPage = () => {
 
           {/* LOCK SCREEN */}
           {screen === "lock" && (
-            <div className="flex flex-col items-center justify-center h-full px-8 gap-6" style={{ background: "#0B1220" }}>
+            <div className="flex flex-col items-center justify-center h-full px-8 gap-6" style={{ background: "#051428" }}>
               {/* Police emblem */}
               <div className="flex flex-col items-center gap-2">
-                <div className="w-16 h-16 rounded-full flex items-center justify-center" style={{ background: "rgba(181,142,60,0.1)", border: "2px solid rgba(181,142,60,0.4)", boxShadow: "0 0 24px rgba(181,142,60,0.15)" }}>
+                <div className="w-16 h-16 rounded-full flex items-center justify-center" style={{ background: "rgba(184,138,60,0.1)", border: "2px solid rgba(184,138,60,0.4)", boxShadow: "0 0 24px rgba(184,138,60,0.15)" }}>
                   <i className="ri-shield-star-fill text-gold-400 text-3xl" />
                 </div>
                 <p className="text-gold-400 font-black text-xl font-['Inter'] tracking-widest">Al-Ameen</p>
@@ -214,8 +214,8 @@ const MobileFieldPage = () => {
                 <div
                   className="w-16 h-16 rounded-full flex items-center justify-center transition-all"
                   style={{
-                    background: biometricDone ? "rgba(74,222,128,0.2)" : "rgba(181,142,60,0.08)",
-                    border: biometricDone ? "2px solid #4ADE80" : "2px solid rgba(181,142,60,0.3)",
+                    background: biometricDone ? "rgba(74,222,128,0.2)" : "rgba(184,138,60,0.08)",
+                    border: biometricDone ? "2px solid #4ADE80" : "2px solid rgba(184,138,60,0.3)",
                     boxShadow: biometricDone ? "0 0 20px rgba(74,222,128,0.4)" : "none",
                   }}
                 >
@@ -236,8 +236,8 @@ const MobileFieldPage = () => {
                       key={i}
                       className="w-3 h-3 rounded-full transition-all"
                       style={{
-                        background: i < pin.length ? (pinError ? "#F87171" : "#D4A84B") : "rgba(255,255,255,0.1)",
-                        boxShadow: i < pin.length && !pinError ? "0 0 8px #D4A84B" : "none",
+                        background: i < pin.length ? (pinError ? "#C94A5E" : "#D6B47E") : "rgba(255,255,255,0.1)",
+                        boxShadow: i < pin.length && !pinError ? "0 0 8px #D6B47E" : "none",
                       }}
                     />
                   ))}
@@ -251,8 +251,8 @@ const MobileFieldPage = () => {
                       onClick={() => d === "⌫" ? setPin((p) => p.slice(0, -1)) : d ? handlePinInput(d) : undefined}
                       className="h-14 rounded-2xl flex items-center justify-center text-xl font-bold font-['JetBrains_Mono'] cursor-pointer transition-all active:scale-95"
                       style={{
-                        background: d ? "rgba(20,29,46,0.8)" : "transparent",
-                        color: d === "⌫" ? "#F87171" : "#D1D5DB",
+                        background: d ? "rgba(10,37,64,0.8)" : "transparent",
+                        color: d === "⌫" ? "#C94A5E" : "#D1D5DB",
                         border: d ? "1px solid rgba(255,255,255,0.08)" : "none",
                       }}
                     >
@@ -303,7 +303,7 @@ const MobileFieldPage = () => {
         {screen !== "lock" && (
           <div
             className="absolute bottom-0 left-0 right-0 flex items-center justify-around px-2 pt-2 pb-4"
-            style={{ background: "rgba(11,18,32,0.98)", borderTop: "1px solid rgba(181,142,60,0.12)", backdropFilter: "blur(12px)", height: "80px" }}
+            style={{ background: "rgba(5,20,40,0.98)", borderTop: "1px solid rgba(184,138,60,0.12)", backdropFilter: "blur(12px)", height: "80px" }}
           >
             {navItems.map((item) => {
               const isActive = screen === item.key || (screen === "dashboard" && item.key === "dashboard");
@@ -312,19 +312,19 @@ const MobileFieldPage = () => {
                   key={item.key}
                   onClick={() => { setScreen(item.key); setSelectedAlert(null); resetLockTimer(); }}
                   className="flex flex-col items-center gap-1 px-3 py-1 rounded-2xl cursor-pointer transition-all relative"
-                  style={{ color: isActive ? "#D4A84B" : "#4B5563" }}
+                  style={{ color: isActive ? "#D6B47E" : "#4B5563" }}
                 >
                   {/* Alert badge on home */}
                   {item.key === "dashboard" && criticalCount > 0 && (
-                    <div className="absolute -top-1 -right-1 w-4 h-4 rounded-full flex items-center justify-center" style={{ background: "#F87171" }}>
+                    <div className="absolute -top-1 -right-1 w-4 h-4 rounded-full flex items-center justify-center" style={{ background: "#C94A5E" }}>
                       <span className="text-[9px] font-bold text-white font-['JetBrains_Mono']">{criticalCount}</span>
                     </div>
                   )}
                   <div
                     className="w-10 h-10 flex items-center justify-center rounded-2xl transition-all"
                     style={{
-                      background: isActive ? "rgba(181,142,60,0.12)" : "transparent",
-                      border: isActive ? "1px solid rgba(181,142,60,0.25)" : "1px solid transparent",
+                      background: isActive ? "rgba(184,138,60,0.12)" : "transparent",
+                      border: isActive ? "1px solid rgba(184,138,60,0.25)" : "1px solid transparent",
                     }}
                   >
                     <i className={`${item.icon} text-xl`} />
@@ -343,7 +343,7 @@ const MobileFieldPage = () => {
           <button
             onClick={() => { setScreen("dashboard"); setSelectedAlert(null); resetLockTimer(); }}
             className="absolute z-50 flex items-center gap-1.5 cursor-pointer"
-            style={{ top: "72px", left: "16px", color: "#D4A84B" }}
+            style={{ top: "72px", left: "16px", color: "#D6B47E" }}
           >
             <i className="ri-arrow-left-line text-base" />
             <span className="text-xs font-['Inter'] font-semibold">{isAr ? "رجوع" : "Back"}</span>
@@ -369,7 +369,7 @@ const MobileFieldPage = () => {
 
       {/* Right side info panel */}
       <div className="hidden xl:flex flex-col gap-4 ml-12 max-w-xs">
-        <div className="rounded-2xl p-4" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.15)" }}>
+        <div className="rounded-2xl p-4" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.15)" }}>
           <p className="text-gold-400 text-xs font-bold font-['JetBrains_Mono'] uppercase tracking-wider mb-3">Navigation</p>
           <div className="space-y-2 text-xs font-['Inter'] text-gray-400">
             <p>🔐 <strong className="text-white">Lock Screen</strong> — PIN: 1234 or tap fingerprint</p>
@@ -380,7 +380,7 @@ const MobileFieldPage = () => {
             <p>⚡ <strong className="text-white">Tap any alert</strong> — Full detail + status update</p>
           </div>
         </div>
-        <div className="rounded-2xl p-4" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(248,113,113,0.2)" }}>
+        <div className="rounded-2xl p-4" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(201,74,94,0.2)" }}>
           <p className="text-red-400 text-xs font-bold font-['JetBrains_Mono'] uppercase tracking-wider mb-2">Auto-Escalation</p>
           <div className="space-y-1.5 text-xs font-['JetBrains_Mono'] text-gray-500">
             <p><span className="text-yellow-400">T+30min</span> En Route → no On Scene → auto-escalate</p>

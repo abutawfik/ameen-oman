@@ -20,7 +20,7 @@ const NodeDetailPanel = ({ node, edges, nodes, isAr, onClose, onSelectNode }: Pr
   }).filter(c => c.node);
 
   const riskBadge = (risk: string) => {
-    const colors: Record<string, string> = { low: "#4ADE80", medium: "#FACC15", high: "#FB923C", critical: "#F87171" };
+    const colors: Record<string, string> = { low: "#4ADE80", medium: "#FACC15", high: "#C98A1B", critical: "#C94A5E" };
     return (
       <span
         className="px-1.5 py-0.5 rounded text-[10px] font-['JetBrains_Mono'] font-bold uppercase"
@@ -34,12 +34,12 @@ const NodeDetailPanel = ({ node, edges, nodes, isAr, onClose, onSelectNode }: Pr
   return (
     <div
       className="flex flex-col h-full"
-      style={{ background: "rgba(20,29,46,0.95)" }}
+      style={{ background: "rgba(10,37,64,0.95)" }}
     >
       {/* Header */}
       <div
         className="flex items-center gap-3 px-4 py-3 border-b flex-shrink-0"
-        style={{ borderColor: "rgba(181,142,60,0.12)", background: "rgba(181,142,60,0.04)" }}
+        style={{ borderColor: "rgba(184,138,60,0.12)", background: "rgba(184,138,60,0.04)" }}
       >
         <div
           className="w-10 h-10 flex items-center justify-center rounded-full flex-shrink-0"
@@ -67,7 +67,7 @@ const NodeDetailPanel = ({ node, edges, nodes, isAr, onClose, onSelectNode }: Pr
         {/* Stats row */}
         <div className="grid grid-cols-3 gap-2">
           {[
-            { label: isAr ? "الدرجة" : "Degree", value: node.degree || 0, color: "#D4A84B" },
+            { label: isAr ? "الدرجة" : "Degree", value: node.degree || 0, color: "#D6B47E" },
             { label: isAr ? "الوساطة" : "Betweenness", value: `${Math.round((node.betweenness || 0) * 100)}%`, color: "#A78BFA" },
             { label: isAr ? "المجتمع" : "Community", value: node.community || 1, color: "#4ADE80" },
           ].map((stat, i) => (
@@ -89,7 +89,7 @@ const NodeDetailPanel = ({ node, edges, nodes, isAr, onClose, onSelectNode }: Pr
                 <span
                   key={s}
                   className="px-2 py-0.5 rounded text-[10px] font-['JetBrains_Mono']"
-                  style={{ background: "rgba(181,142,60,0.08)", border: "1px solid rgba(181,142,60,0.2)", color: "#D4A84B" }}
+                  style={{ background: "rgba(184,138,60,0.08)", border: "1px solid rgba(184,138,60,0.2)", color: "#D6B47E" }}
                 >
                   {s}
                 </span>
@@ -149,7 +149,7 @@ const NodeDetailPanel = ({ node, edges, nodes, isAr, onClose, onSelectNode }: Pr
                     </div>
                   </div>
                   <div className="flex flex-col items-end gap-0.5 flex-shrink-0">
-                    <span className="text-[10px] font-['JetBrains_Mono']" style={{ color: edge.confidence >= 90 ? "#4ADE80" : edge.confidence >= 70 ? "#FACC15" : "#FB923C" }}>
+                    <span className="text-[10px] font-['JetBrains_Mono']" style={{ color: edge.confidence >= 90 ? "#4ADE80" : edge.confidence >= 70 ? "#FACC15" : "#C98A1B" }}>
                       {edge.confidence}%
                     </span>
                     <span className="w-1.5 h-1.5 rounded-full" style={{ background: riskColors[other.risk] }} />
@@ -162,17 +162,17 @@ const NodeDetailPanel = ({ node, edges, nodes, isAr, onClose, onSelectNode }: Pr
       </div>
 
       {/* Actions */}
-      <div className="p-3 border-t flex gap-2 flex-shrink-0" style={{ borderColor: "rgba(181,142,60,0.1)" }}>
+      <div className="p-3 border-t flex gap-2 flex-shrink-0" style={{ borderColor: "rgba(184,138,60,0.1)" }}>
         <button
           className="flex-1 py-2 rounded-lg text-xs font-['Inter'] font-semibold cursor-pointer transition-colors"
-          style={{ background: "#D4A84B", color: "#0B1220" }}
+          style={{ background: "#D6B47E", color: "#051428" }}
         >
           <i className="ri-user-search-line mr-1" />
           {isAr ? "ملف 360°" : "360° Profile"}
         </button>
         <button
           className="flex-1 py-2 rounded-lg text-xs font-['Inter'] cursor-pointer transition-colors"
-          style={{ background: "rgba(248,113,113,0.1)", border: "1px solid rgba(248,113,113,0.2)", color: "#F87171" }}
+          style={{ background: "rgba(201,74,94,0.1)", border: "1px solid rgba(201,74,94,0.2)", color: "#C94A5E" }}
         >
           <i className="ri-eye-line mr-1" />
           {isAr ? "مراقبة" : "Watchlist"}

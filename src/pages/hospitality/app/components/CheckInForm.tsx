@@ -143,7 +143,7 @@ export default function CheckInForm({ lang, onCancel }: Props) {
         {/* LEFT — Event Info */}
         <div
           className="rounded-xl border border-gold-500/20 p-5 space-y-4"
-          style={{ background: 'rgba(20,29,46,0.8)' }}
+          style={{ background: 'rgba(10,37,64,0.8)' }}
         >
           <h3 className="text-gold-400 font-semibold text-sm uppercase tracking-wider">
             {isAr ? 'معلومات الحدث' : 'Event Info'}
@@ -161,10 +161,10 @@ export default function CheckInForm({ lang, onCancel }: Props) {
             </div>
             <div>
               <label className={labelCls}>{isAr ? 'الغرفة' : 'Room'}</label>
-              <select value={room} onChange={e => setRoom(e.target.value)} className={inputCls()} style={{ background: 'rgba(20,29,46,0.9)' }}>
-                <option value="" style={{ background: '#141D2E' }}>{isAr ? 'اختر غرفة' : 'Select room'}</option>
+              <select value={room} onChange={e => setRoom(e.target.value)} className={inputCls()} style={{ background: 'rgba(10,37,64,0.9)' }}>
+                <option value="" style={{ background: '#0A2540' }}>{isAr ? 'اختر غرفة' : 'Select room'}</option>
                 {rooms.filter(r => r.status === 'available' || r.status === 'reserved').map(r => (
-                  <option key={r.id} value={r.number} style={{ background: '#141D2E' }}>
+                  <option key={r.id} value={r.number} style={{ background: '#0A2540' }}>
                     {r.number} — {r.type} ({r.rateOMR} OMR)
                   </option>
                 ))}
@@ -175,16 +175,16 @@ export default function CheckInForm({ lang, onCancel }: Props) {
           <div className="grid grid-cols-2 gap-3">
             <div>
               <label className={labelCls}>{isAr ? 'طريقة الدفع' : 'Payment'}</label>
-              <select value={payment} onChange={e => setPayment(e.target.value)} className={inputCls()} style={{ background: 'rgba(20,29,46,0.9)' }}>
-                {PAYMENT_METHODS.map(p => <option key={p} value={p} style={{ background: '#141D2E' }}>{p}</option>)}
+              <select value={payment} onChange={e => setPayment(e.target.value)} className={inputCls()} style={{ background: 'rgba(10,37,64,0.9)' }}>
+                {PAYMENT_METHODS.map(p => <option key={p} value={p} style={{ background: '#0A2540' }}>{p}</option>)}
               </select>
             </div>
             <div>
               <label className={labelCls}>{isAr ? 'نوع البطاقة' : 'Card Type'}</label>
-              <select value={cardType} onChange={e => setCardType(e.target.value)} className={inputCls()} style={{ background: 'rgba(20,29,46,0.9)' }}
+              <select value={cardType} onChange={e => setCardType(e.target.value)} className={inputCls()} style={{ background: 'rgba(10,37,64,0.9)' }}
                 disabled={payment === 'Cash' || payment === 'Bank Transfer' || payment === 'Corporate Account'}
               >
-                {CARD_TYPES.map(c => <option key={c} value={c} style={{ background: '#141D2E' }}>{c}</option>)}
+                {CARD_TYPES.map(c => <option key={c} value={c} style={{ background: '#0A2540' }}>{c}</option>)}
               </select>
             </div>
           </div>
@@ -215,7 +215,7 @@ export default function CheckInForm({ lang, onCancel }: Props) {
         {/* RIGHT — Travel Document */}
         <div
           className="rounded-xl border border-gold-500/20 p-5 space-y-4"
-          style={{ background: 'rgba(20,29,46,0.8)' }}
+          style={{ background: 'rgba(10,37,64,0.8)' }}
         >
           <h3 className="text-gold-400 font-semibold text-sm uppercase tracking-wider">
             {isAr ? 'وثيقة السفر' : 'Travel Document'}
@@ -224,14 +224,14 @@ export default function CheckInForm({ lang, onCancel }: Props) {
           <div className="grid grid-cols-2 gap-3">
             <div>
               <label className={labelCls}>{isAr ? 'حالة الحامل' : 'Holder Status'}</label>
-              <select value={holderStatus} onChange={e => setHolderStatus(e.target.value)} className={inputCls()} style={{ background: 'rgba(20,29,46,0.9)' }}>
-                {HOLDER_STATUS.map(s => <option key={s} value={s} style={{ background: '#141D2E' }}>{s}</option>)}
+              <select value={holderStatus} onChange={e => setHolderStatus(e.target.value)} className={inputCls()} style={{ background: 'rgba(10,37,64,0.9)' }}>
+                {HOLDER_STATUS.map(s => <option key={s} value={s} style={{ background: '#0A2540' }}>{s}</option>)}
               </select>
             </div>
             <div>
               <label className={labelCls}>{isAr ? 'نوع الوثيقة' : 'Doc Type'}</label>
-              <select value={docType} onChange={e => setDocType(e.target.value)} className={inputCls()} style={{ background: 'rgba(20,29,46,0.9)' }}>
-                {DOC_TYPES.map(d => <option key={d} value={d} style={{ background: '#141D2E' }}>{d}</option>)}
+              <select value={docType} onChange={e => setDocType(e.target.value)} className={inputCls()} style={{ background: 'rgba(10,37,64,0.9)' }}>
+                {DOC_TYPES.map(d => <option key={d} value={d} style={{ background: '#0A2540' }}>{d}</option>)}
               </select>
             </div>
           </div>
@@ -244,9 +244,9 @@ export default function CheckInForm({ lang, onCancel }: Props) {
           <div className="grid grid-cols-2 gap-3">
             <div>
               <label className={labelCls}>{isAr ? 'دولة الإصدار' : 'Issuing Country'}</label>
-              <select value={issuingCountry} onChange={e => setIssuingCountry(e.target.value)} className={inputCls(!!issuingCountry)} style={{ background: 'rgba(20,29,46,0.9)' }}>
-                <option value="" style={{ background: '#141D2E' }}>—</option>
-                {COUNTRIES.map(c => <option key={c} value={c} style={{ background: '#141D2E' }}>{c}</option>)}
+              <select value={issuingCountry} onChange={e => setIssuingCountry(e.target.value)} className={inputCls(!!issuingCountry)} style={{ background: 'rgba(10,37,64,0.9)' }}>
+                <option value="" style={{ background: '#0A2540' }}>—</option>
+                {COUNTRIES.map(c => <option key={c} value={c} style={{ background: '#0A2540' }}>{c}</option>)}
               </select>
             </div>
             <div>
@@ -276,7 +276,7 @@ export default function CheckInForm({ lang, onCancel }: Props) {
       {/* Personal Details */}
       <div
         className="rounded-xl border border-gold-500/20 p-5 mt-5 space-y-4"
-        style={{ background: 'rgba(20,29,46,0.8)' }}
+        style={{ background: 'rgba(10,37,64,0.8)' }}
       >
         <h3 className="text-gold-400 font-semibold text-sm uppercase tracking-wider">
           {isAr ? 'البيانات الشخصية' : 'Personal Details'}
@@ -293,8 +293,8 @@ export default function CheckInForm({ lang, onCancel }: Props) {
           </div>
           <div>
             <label className={labelCls}>{isAr ? 'الجنس' : 'Gender'}</label>
-            <select value={gender} onChange={e => setGender(e.target.value)} className={inputCls(!!gender)} style={{ background: 'rgba(20,29,46,0.9)' }}>
-              {['Male', 'Female'].map(g => <option key={g} value={g} style={{ background: '#141D2E' }}>{g}</option>)}
+            <select value={gender} onChange={e => setGender(e.target.value)} className={inputCls(!!gender)} style={{ background: 'rgba(10,37,64,0.9)' }}>
+              {['Male', 'Female'].map(g => <option key={g} value={g} style={{ background: '#0A2540' }}>{g}</option>)}
             </select>
           </div>
           <div>
@@ -306,9 +306,9 @@ export default function CheckInForm({ lang, onCancel }: Props) {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           <div>
             <label className={labelCls}>{isAr ? 'الجنسية' : 'Nationality'}</label>
-            <select value={nationality} onChange={e => setNationality(e.target.value)} className={inputCls(!!nationality)} style={{ background: 'rgba(20,29,46,0.9)' }}>
-              <option value="" style={{ background: '#141D2E' }}>—</option>
-              {COUNTRIES.map(c => <option key={c} value={c} style={{ background: '#141D2E' }}>{c}</option>)}
+            <select value={nationality} onChange={e => setNationality(e.target.value)} className={inputCls(!!nationality)} style={{ background: 'rgba(10,37,64,0.9)' }}>
+              <option value="" style={{ background: '#0A2540' }}>—</option>
+              {COUNTRIES.map(c => <option key={c} value={c} style={{ background: '#0A2540' }}>{c}</option>)}
             </select>
           </div>
           <div>
@@ -352,7 +352,7 @@ export default function CheckInForm({ lang, onCancel }: Props) {
           <button
             onClick={handleSave}
             className="px-6 py-2.5 rounded-lg text-sm font-semibold cursor-pointer transition-all whitespace-nowrap"
-            style={{ background: saved ? '#4ADE80' : '#D4A84B', color: '#0B1220' }}
+            style={{ background: saved ? '#4ADE80' : '#D6B47E', color: '#051428' }}
           >
             {saved ? (
               <span className="flex items-center gap-2"><i className="ri-checkbox-circle-line" />{isAr ? 'تم الحفظ!' : 'Saved!'}</span>

@@ -6,16 +6,16 @@ interface Props {
 }
 
 const priorityConfig = {
-  critical: { color: "#F87171", label: "CRITICAL", labelAr: "حرج" },
-  high:     { color: "#FB923C", label: "HIGH",     labelAr: "عالٍ" },
+  critical: { color: "#C94A5E", label: "CRITICAL", labelAr: "حرج" },
+  high:     { color: "#C98A1B", label: "HIGH",     labelAr: "عالٍ" },
   medium:   { color: "#FACC15", label: "MEDIUM",   labelAr: "متوسط" },
-  low:      { color: "#D4A84B", label: "LOW",      labelAr: "منخفض" },
+  low:      { color: "#D6B47E", label: "LOW",      labelAr: "منخفض" },
 };
 
 const officerStatusColors: Record<string, string> = {
   "on-duty": "#4ADE80",
   "en-route": "#FACC15",
-  "on-scene": "#FB923C",
+  "on-scene": "#C98A1B",
   "off-duty": "#6B7280",
 };
 
@@ -44,7 +44,7 @@ const FieldMap = ({ isAr }: Props) => {
       {/* Map controls */}
       <div className="flex items-center gap-2 px-3 pt-3 pb-2 flex-shrink-0">
         <div className="flex items-center gap-1 p-1 rounded-xl flex-1"
-          style={{ background: "rgba(20,29,46,0.9)", border: "1px solid rgba(181,142,60,0.15)" }}>
+          style={{ background: "rgba(10,37,64,0.9)", border: "1px solid rgba(184,138,60,0.15)" }}>
           {([
             { key: "alerts" as const, labelEn: "Alerts", labelAr: "التنبيهات" },
             { key: "officers" as const, labelEn: "Officers", labelAr: "الضباط" },
@@ -53,9 +53,9 @@ const FieldMap = ({ isAr }: Props) => {
             <button key={l.key} onClick={() => setMapLayer(l.key)}
               className="flex-1 py-1.5 rounded-lg text-[10px] font-['Inter'] font-medium cursor-pointer transition-all"
               style={{
-                background: mapLayer === l.key ? "rgba(181,142,60,0.12)" : "transparent",
-                color: mapLayer === l.key ? "#D4A84B" : "#6B7280",
-                border: mapLayer === l.key ? "1px solid rgba(181,142,60,0.25)" : "1px solid transparent",
+                background: mapLayer === l.key ? "rgba(184,138,60,0.12)" : "transparent",
+                color: mapLayer === l.key ? "#D6B47E" : "#6B7280",
+                border: mapLayer === l.key ? "1px solid rgba(184,138,60,0.25)" : "1px solid transparent",
               }}>
               {isAr ? l.labelAr : l.labelEn}
             </button>
@@ -63,11 +63,11 @@ const FieldMap = ({ isAr }: Props) => {
         </div>
         <button onClick={() => setShowLegend(!showLegend)}
           className="w-9 h-9 flex items-center justify-center rounded-xl cursor-pointer"
-          style={{ background: showLegend ? "rgba(181,142,60,0.15)" : "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.25)" }}>
+          style={{ background: showLegend ? "rgba(184,138,60,0.15)" : "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.25)" }}>
           <i className="ri-information-line text-gold-400 text-base" />
         </button>
         <button className="w-9 h-9 flex items-center justify-center rounded-xl cursor-pointer"
-          style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.25)" }}>
+          style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.25)" }}>
           <i className="ri-crosshair-2-line text-gold-400 text-base" />
         </button>
       </div>
@@ -75,7 +75,7 @@ const FieldMap = ({ isAr }: Props) => {
       {/* Legend */}
       {showLegend && (
         <div className="mx-3 mb-2 p-3 rounded-xl"
-          style={{ background: "rgba(20,29,46,0.95)", border: "1px solid rgba(181,142,60,0.15)" }}>
+          style={{ background: "rgba(10,37,64,0.95)", border: "1px solid rgba(184,138,60,0.15)" }}>
           <div className="grid grid-cols-2 gap-1.5">
             {mapLayer === "alerts" ? (
               Object.entries(priorityConfig).map(([k, v]) => (
@@ -98,14 +98,14 @@ const FieldMap = ({ isAr }: Props) => {
 
       {/* Map area */}
       <div className="mx-3 rounded-2xl overflow-hidden relative flex-shrink-0"
-        style={{ height: "260px", border: "1px solid rgba(181,142,60,0.2)" }}>
+        style={{ height: "260px", border: "1px solid rgba(184,138,60,0.2)" }}>
         <img
           src="https://readdy.ai/api/search-image?query=dark%20satellite%20map%20of%20Muscat%20Oman%20city%20aerial%20view%2C%20dark%20navy%20tones%2C%20street%20grid%20visible%2C%20intelligence%20surveillance%20aesthetic%2C%20minimal%20labels&width=400&height=260&seq=field-map-main-v2&orientation=landscape"
           alt="Map" className="w-full h-full object-cover opacity-35" />
 
         {/* Grid overlay */}
         <svg className="absolute inset-0 w-full h-full opacity-10">
-          <defs><pattern id="fm-grid" width="30" height="30" patternUnits="userSpaceOnUse"><path d="M 30 0 L 0 0 0 30" fill="none" stroke="#D4A84B" strokeWidth="0.4"/></pattern></defs>
+          <defs><pattern id="fm-grid" width="30" height="30" patternUnits="userSpaceOnUse"><path d="M 30 0 L 0 0 0 30" fill="none" stroke="#D6B47E" strokeWidth="0.4"/></pattern></defs>
           <rect width="100%" height="100%" fill="url(#fm-grid)"/>
         </svg>
 
@@ -113,7 +113,7 @@ const FieldMap = ({ isAr }: Props) => {
         {mapLayer === "sectors" && (
           <>
             <div className="absolute rounded-xl opacity-20"
-              style={{ left: "15%", top: "20%", width: "35%", height: "40%", background: "#D4A84B", border: "1px solid #D4A84B" }} />
+              style={{ left: "15%", top: "20%", width: "35%", height: "40%", background: "#D6B47E", border: "1px solid #D6B47E" }} />
             <div className="absolute rounded-xl opacity-20"
               style={{ left: "52%", top: "25%", width: "35%", height: "40%", background: "#4ADE80", border: "1px solid #4ADE80" }} />
             <div className="absolute text-[9px] font-bold font-['JetBrains_Mono'] text-gold-400"
@@ -127,7 +127,7 @@ const FieldMap = ({ isAr }: Props) => {
         <div className="absolute" style={{ left: "48%", top: "52%" }}>
           <div className="relative">
             <div className="w-5 h-5 rounded-full bg-gold-400 flex items-center justify-center"
-              style={{ boxShadow: "0 0 16px #D4A84B, 0 0 32px rgba(181,142,60,0.4)" }}>
+              style={{ boxShadow: "0 0 16px #D6B47E, 0 0 32px rgba(184,138,60,0.4)" }}>
               <i className="ri-user-fill text-[8px] text-black" />
             </div>
             <div className="absolute inset-0 rounded-full bg-gold-400 animate-ping opacity-30" />
@@ -162,7 +162,7 @@ const FieldMap = ({ isAr }: Props) => {
               </div>
               {officer && (
                 <div className="absolute -top-5 left-1/2 -translate-x-1/2 whitespace-nowrap px-1 py-0.5 rounded text-[8px] font-['JetBrains_Mono']"
-                  style={{ background: "rgba(11,18,32,0.9)", color, border: `1px solid ${color}40` }}>
+                  style={{ background: "rgba(5,20,40,0.9)", color, border: `1px solid ${color}40` }}>
                   {officer.badge}
                 </div>
               )}
@@ -173,7 +173,7 @@ const FieldMap = ({ isAr }: Props) => {
         {/* Legend overlay */}
         <div className="absolute top-2 left-2 flex flex-col gap-1">
           <div className="flex items-center gap-1 px-2 py-1 rounded-lg"
-            style={{ background: "rgba(11,18,32,0.85)" }}>
+            style={{ background: "rgba(5,20,40,0.85)" }}>
             <div className="w-2 h-2 rounded-full bg-gold-400" />
             <span className="text-gold-400 text-[9px] font-['JetBrains_Mono']">{isAr ? "موقعك" : "You"}</span>
           </div>
@@ -182,11 +182,11 @@ const FieldMap = ({ isAr }: Props) => {
         {/* Stats overlay */}
         <div className="absolute top-2 right-2 flex flex-col gap-1">
           <div className="px-2 py-1 rounded-lg text-[9px] font-['JetBrains_Mono']"
-            style={{ background: "rgba(11,18,32,0.85)", color: "#F87171" }}>
+            style={{ background: "rgba(5,20,40,0.85)", color: "#C94A5E" }}>
             {fieldAlerts.filter(a => a.priority === "critical").length} CRITICAL
           </div>
           <div className="px-2 py-1 rounded-lg text-[9px] font-['JetBrains_Mono']"
-            style={{ background: "rgba(11,18,32,0.85)", color: "#4ADE80" }}>
+            style={{ background: "rgba(5,20,40,0.85)", color: "#4ADE80" }}>
             {fieldOfficers.filter(o => o.status !== "off-duty").length} OFFICERS
           </div>
         </div>
@@ -194,7 +194,7 @@ const FieldMap = ({ isAr }: Props) => {
         {/* Popup */}
         {selectedLoc && (
           <div className="absolute bottom-2 left-2 right-2 rounded-xl p-3"
-            style={{ background: "rgba(20,29,46,0.97)", border: `1px solid ${priorityConfig[selectedLoc.alertLevel].color}44` }}>
+            style={{ background: "rgba(10,37,64,0.97)", border: `1px solid ${priorityConfig[selectedLoc.alertLevel].color}44` }}>
             <div className="flex items-start justify-between gap-2">
               <div className="flex-1 min-w-0">
                 <p className="text-white text-xs font-bold font-['Inter'] truncate">{isAr ? selectedLoc.nameAr : selectedLoc.name}</p>
@@ -210,7 +210,7 @@ const FieldMap = ({ isAr }: Props) => {
               </div>
               <div className="flex items-center gap-1.5 flex-shrink-0">
                 <button className="flex items-center gap-1 px-2 py-1 rounded-lg text-[10px] font-['JetBrains_Mono'] cursor-pointer"
-                  style={{ background: "rgba(181,142,60,0.1)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.25)" }}>
+                  style={{ background: "rgba(184,138,60,0.1)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.25)" }}>
                   <i className="ri-navigation-line text-[10px]" />
                   {isAr ? "توجيه" : "Navigate"}
                 </button>
@@ -233,7 +233,7 @@ const FieldMap = ({ isAr }: Props) => {
             <div className="space-y-2">
               {fieldOfficers.map((off) => (
                 <div key={off.id} className="flex items-center gap-3 px-3 py-2.5 rounded-xl"
-                  style={{ background: "rgba(20,29,46,0.8)", border: `1px solid ${officerStatusColors[off.status]}22` }}>
+                  style={{ background: "rgba(10,37,64,0.8)", border: `1px solid ${officerStatusColors[off.status]}22` }}>
                   <div className="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0"
                     style={{ background: `${officerStatusColors[off.status]}15`, border: `1px solid ${officerStatusColors[off.status]}33` }}>
                     <i className="ri-shield-fill text-sm" style={{ color: officerStatusColors[off.status] }} />
@@ -262,7 +262,7 @@ const FieldMap = ({ isAr }: Props) => {
                 return (
                   <div key={loc.id}
                     className="flex items-center gap-3 px-3 py-2.5 rounded-xl cursor-pointer active:scale-[0.98] transition-transform"
-                    style={{ background: "rgba(20,29,46,0.8)", border: `1px solid ${cfg.color}22` }}
+                    style={{ background: "rgba(10,37,64,0.8)", border: `1px solid ${cfg.color}22` }}
                     onClick={() => setSelectedLoc(loc)}>
                     <div className="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0"
                       style={{ background: `${cfg.color}15`, border: `1px solid ${cfg.color}33` }}>

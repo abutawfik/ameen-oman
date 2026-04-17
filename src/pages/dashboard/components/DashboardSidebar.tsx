@@ -50,8 +50,8 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
       className="flex flex-col flex-shrink-0 border-r transition-all duration-300"
       style={{
         width: collapsed ? "64px" : "220px",
-        background: "#141D2E", // midnight-700
-        borderColor: "rgba(181,142,60,0.1)",
+        background: "#0A2540", // midnight-700
+        borderColor: "rgba(184,138,60,0.1)",
         minHeight: "100%",
       }}
     >
@@ -59,7 +59,7 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
       {!collapsed && (
         <div
           className="px-4 py-4 border-b flex flex-col gap-2"
-          style={{ borderColor: "rgba(181,142,60,0.08)" }}
+          style={{ borderColor: "rgba(184,138,60,0.08)" }}
         >
           <BrandLogo variant="horizontal" tone="light" size="sm" showTagline isAr={isAr} />
           {isAr && (
@@ -68,7 +68,7 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
                 fontFamily: "'Cairo', 'Tajawal', 'IBM Plex Sans Arabic', sans-serif",
                 fontWeight: 500,
                 fontSize: "0.6875rem",
-                color: "#D4A84B",
+                color: "#D6B47E",
                 direction: "rtl",
                 paddingInlineStart: 36,
               }}
@@ -81,10 +81,10 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
 
       {/* User info */}
       {!collapsed && (
-        <div className="px-4 py-5 border-b" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
+        <div className="px-4 py-5 border-b" style={{ borderColor: "rgba(184,138,60,0.08)" }}>
           <div className="flex items-center gap-3 mb-3">
             <div className="w-10 h-10 flex items-center justify-center rounded-full flex-shrink-0"
-              style={{ background: "rgba(181,142,60,0.15)", border: "2px solid rgba(181,142,60,0.4)" }}>
+              style={{ background: "rgba(184,138,60,0.15)", border: "2px solid rgba(184,138,60,0.4)" }}>
               <span className="text-gold-400 text-sm font-black font-['Inter']">AA</span>
             </div>
             <div className="min-w-0">
@@ -114,7 +114,7 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
       )}
 
       {collapsed && (
-        <div className="flex justify-center py-4 border-b" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
+        <div className="flex justify-center py-4 border-b" style={{ borderColor: "rgba(184,138,60,0.08)" }}>
           <BrandLogo variant="mark" tone="light" size="sm" isAr={isAr} />
         </div>
       )}
@@ -132,7 +132,7 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
               </div>
             )}
             {collapsed && group !== "main" && (
-              <div className="mx-3 my-2 border-t" style={{ borderColor: "rgba(181,142,60,0.08)" }} />
+              <div className="mx-3 my-2 border-t" style={{ borderColor: "rgba(184,138,60,0.08)" }} />
             )}
 
             {items.map((item) => {
@@ -143,8 +143,8 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
                   onClick={() => handleNavClick(item)}
                   className="w-full flex items-center gap-3 px-4 py-2.5 transition-all duration-150 cursor-pointer relative group"
                   style={{
-                    background: isActive ? "rgba(181,142,60,0.1)" : "transparent",
-                    color: isActive ? "#D4A84B" : "#8B95B0",
+                    background: isActive ? "rgba(184,138,60,0.1)" : "transparent",
+                    color: isActive ? "#D6B47E" : "#7A9CBF",
                   }}
                   title={collapsed ? (isAr ? item.labelAr : item.labelEn) : undefined}
                 >
@@ -174,7 +174,7 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
                       className={`absolute px-2 py-1 rounded-md text-xs text-ivory-100 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 font-['Inter'] ${
                         isAr ? "right-full mr-2" : "left-full ml-2"
                       }`}
-                      style={{ background: "rgba(20,29,46,0.95)", border: "1px solid rgba(181,142,60,0.25)" }}
+                      style={{ background: "rgba(20,29,46,0.95)", border: "1px solid rgba(184,138,60,0.25)" }}
                     >
                       {isAr ? item.labelAr : item.labelEn}
                     </div>
@@ -187,18 +187,18 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
       </nav>
 
       {/* Bottom: Network status + collapse toggle + sign out */}
-      <div className="border-t p-3" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
+      <div className="border-t p-3" style={{ borderColor: "rgba(184,138,60,0.08)" }}>
         {!collapsed && (
           <div className="flex items-center gap-2 mb-3 px-1">
-            <div className="w-2 h-2 rounded-full animate-pulse flex-shrink-0" style={{ background: "#4F9A35" }} />
-            <span className="text-xs font-mono" style={{ color: "#4F9A35" }}>
+            <div className="w-2 h-2 rounded-full animate-pulse flex-shrink-0" style={{ background: "#4A8E3A" }} />
+            <span className="text-xs font-mono" style={{ color: "#4A8E3A" }}>
               {isAr ? "متصل بالشبكة" : "Network Online"}
             </span>
           </div>
         )}
         {collapsed && (
           <div className="flex justify-center mb-3">
-            <div className="w-2 h-2 rounded-full animate-pulse" style={{ background: "#4F9A35" }} />
+            <div className="w-2 h-2 rounded-full animate-pulse" style={{ background: "#4A8E3A" }} />
           </div>
         )}
         <button
@@ -214,7 +214,7 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
         </button>
 
         {/* Divider between collapse toggle and sign-out */}
-        <div className="my-3 border-t" style={{ borderColor: "rgba(181,142,60,0.08)" }} />
+        <div className="my-3 border-t" style={{ borderColor: "rgba(184,138,60,0.08)" }} />
 
         {/* Sign out button — brand oman-red gradient (kept prominent) */}
         {!collapsed ? (

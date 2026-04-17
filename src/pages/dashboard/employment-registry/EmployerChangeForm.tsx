@@ -77,19 +77,19 @@ const EmployerChangeForm = ({ isAr, onCancel }: Props) => {
               <TextInput placeholder="WP-XXXX-XXXXXXXX" value={oldPermit} onChange={(e) => setOldPermit(e.target.value)} className="font-['JetBrains_Mono'] flex-1" />
               <button type="button" onClick={handleLookup}
                 className="flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap"
-                style={{ background: "#D4A84B", color: "#0B1220" }}
+                style={{ background: "#D6B47E", color: "#051428" }}
                 onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C99C48"; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#D4A84B"; }}>
+                onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#D6B47E"; }}>
                 {lookingUp ? <i className="ri-loader-4-line animate-spin" /> : <i className="ri-search-line" />}
                 {isAr ? "بحث" : "Lookup"}
               </button>
             </div>
           </FormField>
           {oldPermitInfo && (
-            <div className="rounded-xl border p-4" style={{ background: oldPermitInfo.status === "active" ? "rgba(74,222,128,0.06)" : "rgba(248,113,113,0.06)", borderColor: oldPermitInfo.status === "active" ? "rgba(74,222,128,0.2)" : "rgba(248,113,113,0.2)" }}>
+            <div className="rounded-xl border p-4" style={{ background: oldPermitInfo.status === "active" ? "rgba(74,222,128,0.06)" : "rgba(201,74,94,0.06)", borderColor: oldPermitInfo.status === "active" ? "rgba(74,222,128,0.2)" : "rgba(201,74,94,0.2)" }}>
               <div className="flex items-center gap-2 mb-3">
                 <div className={`w-2 h-2 rounded-full ${oldPermitInfo.status === "active" ? "bg-green-400 animate-pulse" : "bg-red-400"}`} />
-                <span className="text-xs font-bold font-['JetBrains_Mono']" style={{ color: oldPermitInfo.status === "active" ? "#4ADE80" : "#F87171" }}>{oldPermitInfo.status.toUpperCase()}</span>
+                <span className="text-xs font-bold font-['JetBrains_Mono']" style={{ color: oldPermitInfo.status === "active" ? "#4ADE80" : "#C94A5E" }}>{oldPermitInfo.status.toUpperCase()}</span>
               </div>
               <div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
                 {[
@@ -108,7 +108,7 @@ const EmployerChangeForm = ({ isAr, onCancel }: Props) => {
             </div>
           )}
           {oldPermitInfo === null && oldPermit && !lookingUp && (
-            <div className="flex items-center gap-2 px-4 py-3 rounded-xl border" style={{ background: "rgba(248,113,113,0.06)", borderColor: "rgba(248,113,113,0.2)" }}>
+            <div className="flex items-center gap-2 px-4 py-3 rounded-xl border" style={{ background: "rgba(201,74,94,0.06)", borderColor: "rgba(201,74,94,0.2)" }}>
               <i className="ri-error-warning-line text-red-400 text-sm" />
               <span className="text-red-400 text-sm">{isAr ? "لم يتم العثور على التصريح" : "Permit not found"}</span>
             </div>
@@ -162,7 +162,7 @@ const EmployerChangeForm = ({ isAr, onCancel }: Props) => {
             <textarea rows={3} placeholder={isAr ? "أي ملاحظات إضافية..." : "Any additional notes..."} value={notes} onChange={(e) => setNotes(e.target.value)}
               className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none resize-none font-['Inter']"
               style={{ background: "#0F1923", border: "1px solid rgba(255,255,255,0.08)" }}
-              onFocus={(e) => { e.target.style.borderColor = "#D4A84B"; }}
+              onFocus={(e) => { e.target.style.borderColor = "#D6B47E"; }}
               onBlur={(e) => { e.target.style.borderColor = "rgba(255,255,255,0.08)"; }} />
           </FormField>
         </div>

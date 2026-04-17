@@ -96,9 +96,9 @@ const RenewRentalForm = ({ isAr, onCancel }: Props) => {
                   type="button"
                   onClick={handleLookup}
                   className="flex items-center gap-1.5 px-4 py-2.5 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap transition-colors"
-                  style={{ background: "rgba(181,142,60,0.12)", border: "1px solid rgba(181,142,60,0.3)", color: "#D4A84B" }}
-                  onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(181,142,60,0.2)"; }}
-                  onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(181,142,60,0.12)"; }}
+                  style={{ background: "rgba(184,138,60,0.12)", border: "1px solid rgba(184,138,60,0.3)", color: "#D6B47E" }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(184,138,60,0.2)"; }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(184,138,60,0.12)"; }}
                 >
                   <i className="ri-search-line text-xs" />{isAr ? "بحث" : "Lookup"}
                 </button>
@@ -112,7 +112,7 @@ const RenewRentalForm = ({ isAr, onCancel }: Props) => {
             </div>
           )}
           {lookupError && (
-            <div className="flex items-center gap-2 px-3 py-2 rounded-lg border" style={{ background: "rgba(248,113,113,0.06)", borderColor: "rgba(248,113,113,0.2)" }}>
+            <div className="flex items-center gap-2 px-3 py-2 rounded-lg border" style={{ background: "rgba(201,74,94,0.06)", borderColor: "rgba(201,74,94,0.2)" }}>
               <i className="ri-close-circle-line text-red-400 text-sm" />
               <span className="text-red-400 text-xs font-semibold">{isAr ? "لم يُعثر على العقد" : "Agreement not found"}</span>
             </div>
@@ -149,7 +149,7 @@ const RenewRentalForm = ({ isAr, onCancel }: Props) => {
                 maxLength={500}
                 className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none transition-all duration-200 resize-none"
                 style={{ background: "#0F1923", border: "1px solid rgba(255,255,255,0.08)", fontFamily: "Inter, sans-serif" }}
-                onFocus={(e) => { e.target.style.borderColor = "#D4A84B"; e.target.style.boxShadow = "0 0 0 2px rgba(181,142,60,0.08)"; }}
+                onFocus={(e) => { e.target.style.borderColor = "#D6B47E"; e.target.style.boxShadow = "0 0 0 2px rgba(184,138,60,0.08)"; }}
                 onBlur={(e) => { e.target.style.borderColor = "rgba(255,255,255,0.08)"; e.target.style.boxShadow = "none"; }}
               />
               <p className="text-gray-600 text-xs mt-1 text-right font-['JetBrains_Mono']">{renewalNotes.length}/500</p>
@@ -179,13 +179,13 @@ const RenewRentalForm = ({ isAr, onCancel }: Props) => {
               <div
                 className="flex items-center gap-3 px-4 py-3 rounded-xl border"
                 style={{
-                  background: rentDiff.up ? "rgba(251,146,60,0.05)" : "rgba(74,222,128,0.05)",
-                  borderColor: rentDiff.up ? "rgba(251,146,60,0.2)" : "rgba(74,222,128,0.2)",
+                  background: rentDiff.up ? "rgba(201,138,27,0.05)" : "rgba(74,222,128,0.05)",
+                  borderColor: rentDiff.up ? "rgba(201,138,27,0.2)" : "rgba(74,222,128,0.2)",
                 }}
               >
                 <i className={`${rentDiff.up ? "ri-arrow-up-line text-orange-400" : "ri-arrow-down-line text-green-400"} text-lg`} />
                 <div>
-                  <p className="font-bold text-sm font-['JetBrains_Mono']" style={{ color: rentDiff.up ? "#FB923C" : "#4ADE80" }}>
+                  <p className="font-bold text-sm font-['JetBrains_Mono']" style={{ color: rentDiff.up ? "#C98A1B" : "#4ADE80" }}>
                     {rentDiff.up ? "+" : ""}{rentDiff.diff} LCY ({rentDiff.up ? "+" : ""}{rentDiff.pct}%)
                   </p>
                   <p className="text-gray-500 text-xs">{isAr ? "تغيير الإيجار" : "Rent change"}</p>
@@ -217,7 +217,7 @@ const RenewRentalForm = ({ isAr, onCancel }: Props) => {
                   maxLength={500}
                   className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none transition-all duration-200 resize-none"
                   style={{ background: "#0F1923", border: "1px solid rgba(255,255,255,0.08)", fontFamily: "Inter, sans-serif" }}
-                  onFocus={(e) => { e.target.style.borderColor = "#D4A84B"; e.target.style.boxShadow = "0 0 0 2px rgba(181,142,60,0.08)"; }}
+                  onFocus={(e) => { e.target.style.borderColor = "#D6B47E"; e.target.style.boxShadow = "0 0 0 2px rgba(184,138,60,0.08)"; }}
                   onBlur={(e) => { e.target.style.borderColor = "rgba(255,255,255,0.08)"; e.target.style.boxShadow = "none"; }}
                 />
               </FormField>

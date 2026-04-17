@@ -33,9 +33,9 @@ const EVENT_CARDS: EventCard[] = [
     labelAr: "شراء شريحة SIM",
     desc: "Register new SIM sale with full subscriber, document and device details",
     descAr: "تسجيل بيع شريحة جديدة مع بيانات المشترك والوثائق والجهاز",
-    color: "#D4A84B",
-    bgColor: "rgba(181,142,60,0.08)",
-    borderColor: "rgba(181,142,60,0.25)",
+    color: "#D6B47E",
+    bgColor: "rgba(184,138,60,0.08)",
+    borderColor: "rgba(184,138,60,0.25)",
     code: "MOB_SIM_PURCHASE",
   },
   {
@@ -69,12 +69,12 @@ const EVENT_CARDS: EventCard[] = [
     labelAr: "إغلاق شريحة SIM",
     desc: "Permanently close SIM with final balance, number recycling and porting options",
     descAr: "إغلاق الشريحة نهائياً مع الرصيد وإعادة تدوير الرقم وخيارات النقل",
-    color: "#F87171",
-    bgColor: "rgba(248,113,113,0.08)",
-    borderColor: "rgba(248,113,113,0.25)",
+    color: "#C94A5E",
+    bgColor: "rgba(201,74,94,0.08)",
+    borderColor: "rgba(201,74,94,0.25)",
     code: "MOB_SIM_CLOSED",
     badge: "FINAL",
-    badgeColor: "#F87171",
+    badgeColor: "#C94A5E",
   },
   {
     id: "esim-activated",
@@ -95,9 +95,9 @@ const EVENT_CARDS: EventCard[] = [
     labelAr: "خدمة التجوال",
     desc: "Activate international roaming with destination countries, package and duration",
     descAr: "تفعيل التجوال الدولي مع الدول المقصودة والباقة والمدة",
-    color: "#FB923C",
-    bgColor: "rgba(251,146,60,0.08)",
-    borderColor: "rgba(251,146,60,0.25)",
+    color: "#C98A1B",
+    bgColor: "rgba(201,138,27,0.08)",
+    borderColor: "rgba(201,138,27,0.25)",
     code: "MOB_ROAMING",
   },
 ];
@@ -114,7 +114,7 @@ const MobileEventsPage = () => {
   return (
     <div
       className="min-h-screen font-['Inter']"
-      style={{ background: "#0B1220" }}
+      style={{ background: "#051428" }}
       dir={isAr ? "rtl" : "ltr"}
     >
       {/* Background grid */}
@@ -122,8 +122,8 @@ const MobileEventsPage = () => {
         className="fixed inset-0 pointer-events-none"
         style={{
           backgroundImage: `
-            linear-gradient(rgba(181,142,60,0.03) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(181,142,60,0.03) 1px, transparent 1px)
+            linear-gradient(rgba(184,138,60,0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(184,138,60,0.03) 1px, transparent 1px)
           `,
           backgroundSize: "40px 40px",
         }}
@@ -132,7 +132,7 @@ const MobileEventsPage = () => {
       {/* Header */}
       <header
         className="sticky top-0 z-40 flex items-center justify-between px-6 py-3 border-b"
-        style={{ background: "rgba(11,18,32,0.95)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}
+        style={{ background: "rgba(5,20,40,0.95)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}
       >
         <div className="flex items-center gap-4">
           <button
@@ -150,7 +150,7 @@ const MobileEventsPage = () => {
           <div className="flex items-center gap-2">
             <div
               className="w-8 h-8 flex items-center justify-center rounded-lg"
-              style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}
+              style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.2)" }}
             >
               <i className="ri-sim-card-2-line text-gold-400 text-sm" />
             </div>
@@ -161,7 +161,7 @@ const MobileEventsPage = () => {
                 </span>
                 <span
                   className="px-2 py-0.5 rounded-full text-xs font-bold"
-                  style={{ background: "rgba(181,142,60,0.12)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}
+                  style={{ background: "rgba(184,138,60,0.12)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}
                 >
                   Al-Ameen Portal
                 </span>
@@ -229,8 +229,8 @@ const MobileEventsPage = () => {
                   onClick={() => setActiveEvent(card.id)}
                   className="group relative rounded-2xl border p-6 text-left cursor-pointer transition-all duration-300 flex flex-col gap-4"
                   style={{
-                    background: "rgba(20,29,46,0.8)",
-                    borderColor: "rgba(181,142,60,0.12)",
+                    background: "rgba(10,37,64,0.8)",
+                    borderColor: "rgba(184,138,60,0.12)",
                     backdropFilter: "blur(12px)",
                   }}
                   onMouseEnter={(e) => {
@@ -242,8 +242,8 @@ const MobileEventsPage = () => {
                   }}
                   onMouseLeave={(e) => {
                     const el = e.currentTarget as HTMLButtonElement;
-                    el.style.borderColor = "rgba(181,142,60,0.12)";
-                    el.style.background = "rgba(20,29,46,0.8)";
+                    el.style.borderColor = "rgba(184,138,60,0.12)";
+                    el.style.background = "rgba(10,37,64,0.8)";
                     el.style.boxShadow = "none";
                     el.style.transform = "translateY(0)";
                   }}
@@ -329,7 +329,7 @@ const MobileEventsPage = () => {
             {/* Tab switcher */}
             <div
               className="flex gap-1 p-1 rounded-xl mb-6 overflow-x-auto"
-              style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.1)" }}
+              style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.1)" }}
             >
               {EVENT_CARDS.map((card) => (
                 <button

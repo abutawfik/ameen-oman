@@ -16,7 +16,7 @@ const activityTypeLabels: Record<string, { en: string; ar: string }> = {
 const syncStatusConfig = {
   success: { color: '#4ADE80', bg: 'rgba(74,222,128,0.1)',  icon: 'ri-cloud-fill',        label: 'Synced',  labelAr: 'تمت المزامنة' },
   pending: { color: '#FACC15', bg: 'rgba(250,204,21,0.1)',  icon: 'ri-cloud-line',         label: 'Pending', labelAr: 'معلق' },
-  failed:  { color: '#F87171', bg: 'rgba(248,113,113,0.1)', icon: 'ri-cloud-off-line',     label: 'Failed',  labelAr: 'فشل' },
+  failed:  { color: '#C94A5E', bg: 'rgba(201,74,94,0.1)', icon: 'ri-cloud-off-line',     label: 'Failed',  labelAr: 'فشل' },
 };
 
 export default function HospitalityDashboard({ lang, onNav }: Props) {
@@ -34,16 +34,16 @@ export default function HospitalityDashboard({ lang, onNav }: Props) {
 
   const KPI_DATA = [
     { key: 'checkin',     labelEn: 'New Check-In',      labelAr: 'تسجيل وصول جديد',  value: inHouse,    icon: 'ri-login-box-line',     color: '#4ADE80', navKey: 'checkin',     actionEn: 'Check-In',  actionAr: 'تسجيل دخول' },
-    { key: 'checkout',    labelEn: 'Check-Out',          labelAr: 'تسجيل مغادرة',     value: departures, icon: 'ri-logout-box-line',    color: '#FB923C', navKey: 'checkout',    actionEn: 'Check-Out', actionAr: 'تسجيل خروج' },
-    { key: 'booking',     labelEn: 'New Booking',        labelAr: 'حجز جديد',          value: arrivals,   icon: 'ri-calendar-check-line',color: '#D4A84B', navKey: 'new-booking', actionEn: 'New Booking',actionAr: 'حجز جديد' },
+    { key: 'checkout',    labelEn: 'Check-Out',          labelAr: 'تسجيل مغادرة',     value: departures, icon: 'ri-logout-box-line',    color: '#C98A1B', navKey: 'checkout',    actionEn: 'Check-Out', actionAr: 'تسجيل خروج' },
+    { key: 'booking',     labelEn: 'New Booking',        labelAr: 'حجز جديد',          value: arrivals,   icon: 'ri-calendar-check-line',color: '#D6B47E', navKey: 'new-booking', actionEn: 'New Booking',actionAr: 'حجز جديد' },
     { key: 'changeroom',  labelEn: 'Change Room',        labelAr: 'تغيير الغرفة',      value: 2,          icon: 'ri-door-line',          color: '#FACC15', navKey: 'changeroom',  actionEn: 'Change Room',actionAr: 'تغيير غرفة' },
   ];
 
   const roomStatusConfig = {
     available:   { color: '#4ADE80', bg: 'rgba(74,222,128,0.15)',  label: 'Available',    labelAr: 'متاحة' },
-    occupied:    { color: '#D4A84B', bg: 'rgba(181,142,60,0.15)',  label: 'Occupied',     labelAr: 'مشغولة' },
+    occupied:    { color: '#D6B47E', bg: 'rgba(184,138,60,0.15)',  label: 'Occupied',     labelAr: 'مشغولة' },
     reserved:    { color: '#FACC15', bg: 'rgba(250,204,21,0.15)',  label: 'Reserved',     labelAr: 'محجوزة' },
-    maintenance: { color: '#F87171', bg: 'rgba(248,113,113,0.15)', label: 'Maintenance',  labelAr: 'صيانة' },
+    maintenance: { color: '#C94A5E', bg: 'rgba(201,74,94,0.15)', label: 'Maintenance',  labelAr: 'صيانة' },
   };
 
   return (
@@ -54,7 +54,7 @@ export default function HospitalityDashboard({ lang, onNav }: Props) {
           <div
             key={kpi.key}
             className="rounded-xl border border-gold-500/15 p-4 flex flex-col gap-3"
-            style={{ background: 'rgba(20,29,46,0.8)' }}
+            style={{ background: 'rgba(10,37,64,0.8)' }}
           >
             <div className="flex items-start justify-between">
               <div>
@@ -73,7 +73,7 @@ export default function HospitalityDashboard({ lang, onNav }: Props) {
             <button
               onClick={() => onNav(kpi.navKey)}
               className="w-full py-1.5 rounded-lg text-xs font-semibold cursor-pointer transition-all whitespace-nowrap"
-              style={{ background: '#D4A84B', color: '#0B1220' }}
+              style={{ background: '#D6B47E', color: '#051428' }}
             >
               {isAr ? kpi.actionAr : kpi.actionEn}
             </button>
@@ -86,7 +86,7 @@ export default function HospitalityDashboard({ lang, onNav }: Props) {
         {/* Occupancy gauge */}
         <div
           className="rounded-xl border border-gold-500/15 p-4"
-          style={{ background: 'rgba(20,29,46,0.8)' }}
+          style={{ background: 'rgba(10,37,64,0.8)' }}
         >
           <p className="text-gray-400 text-xs uppercase tracking-wider mb-3">
             {isAr ? 'نسبة الإشغال' : 'Occupancy Rate'}
@@ -96,10 +96,10 @@ export default function HospitalityDashboard({ lang, onNav }: Props) {
           <div className="flex items-center justify-center mb-4">
             <div className="relative w-28 h-28">
               <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
-                <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(181,142,60,0.1)" strokeWidth="8" />
+                <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(184,138,60,0.1)" strokeWidth="8" />
                 <circle
                   cx="50" cy="50" r="40" fill="none"
-                  stroke="#D4A84B" strokeWidth="8"
+                  stroke="#D6B47E" strokeWidth="8"
                   strokeLinecap="round"
                   strokeDasharray={`${occupancyPct * 2.51} 251`}
                   style={{ transition: 'stroke-dasharray 1s ease' }}
@@ -115,9 +115,9 @@ export default function HospitalityDashboard({ lang, onNav }: Props) {
           <div className="space-y-2">
             {[
               { label: isAr ? 'متاحة' : 'Available',   value: available,    color: '#4ADE80' },
-              { label: isAr ? 'مشغولة' : 'Occupied',   value: occupied,     color: '#D4A84B' },
+              { label: isAr ? 'مشغولة' : 'Occupied',   value: occupied,     color: '#D6B47E' },
               { label: isAr ? 'محجوزة' : 'Reserved',   value: reserved,     color: '#FACC15' },
-              { label: isAr ? 'صيانة' : 'Maintenance', value: maintenance,  color: '#F87171' },
+              { label: isAr ? 'صيانة' : 'Maintenance', value: maintenance,  color: '#C94A5E' },
             ].map(s => (
               <div key={s.label} className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
@@ -133,7 +133,7 @@ export default function HospitalityDashboard({ lang, onNav }: Props) {
         {/* Room grid */}
         <div
           className="col-span-2 rounded-xl border border-gold-500/15 p-4"
-          style={{ background: 'rgba(20,29,46,0.8)' }}
+          style={{ background: 'rgba(10,37,64,0.8)' }}
         >
           <div className="flex items-center justify-between mb-3">
             <p className="text-gray-400 text-xs uppercase tracking-wider">
@@ -190,7 +190,7 @@ export default function HospitalityDashboard({ lang, onNav }: Props) {
       {/* Bottom row: Activity + Sync log */}
       <div
         className="rounded-xl border border-gold-500/20"
-        style={{ background: 'rgba(20,29,46,0.8)' }}
+        style={{ background: 'rgba(10,37,64,0.8)' }}
       >
         {/* Tab header */}
         <div className="flex items-center justify-between px-4 pt-4 pb-0 border-b border-gold-500/10">
@@ -204,8 +204,8 @@ export default function HospitalityDashboard({ lang, onNav }: Props) {
                 onClick={() => setActiveTab(tab.key as 'activity' | 'sync')}
                 className="px-4 py-2 text-xs font-medium cursor-pointer transition-all whitespace-nowrap border-b-2"
                 style={{
-                  color: activeTab === tab.key ? '#D4A84B' : '#6B7280',
-                  borderBottomColor: activeTab === tab.key ? '#D4A84B' : 'transparent',
+                  color: activeTab === tab.key ? '#D6B47E' : '#6B7280',
+                  borderBottomColor: activeTab === tab.key ? '#D6B47E' : 'transparent',
                 }}
               >
                 {isAr ? tab.ar : tab.en}
@@ -227,7 +227,7 @@ export default function HospitalityDashboard({ lang, onNav }: Props) {
                 <div
                   key={act.id}
                   className="flex items-center gap-3 px-3 py-2.5 rounded-lg border border-transparent hover:border-gold-500/15 cursor-pointer transition-all"
-                  style={{ background: 'rgba(181,142,60,0.02)' }}
+                  style={{ background: 'rgba(184,138,60,0.02)' }}
                 >
                   <div
                     className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
@@ -263,7 +263,7 @@ export default function HospitalityDashboard({ lang, onNav }: Props) {
                   <div
                     key={log.id}
                     className="flex items-center gap-3 px-3 py-2.5 rounded-lg"
-                    style={{ background: 'rgba(181,142,60,0.02)', border: '1px solid rgba(181,142,60,0.06)' }}
+                    style={{ background: 'rgba(184,138,60,0.02)', border: '1px solid rgba(184,138,60,0.06)' }}
                   >
                     <div
                       className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0"

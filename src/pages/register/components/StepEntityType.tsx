@@ -20,7 +20,7 @@ export const entityTypes: EntityTypeItem[] = [
     title: "Hotel Intelligence", titleAr: "الاستخبارات الفندقية",
     description: "Hotels, resorts, serviced apartments submitting guest booking and movement data.",
     descriptionAr: "الفنادق والمنتجعات والشقق المفروشة التي تقدم بيانات الحجز وتنقل النزلاء.",
-    badge: "core", badgeColor: "#D4A84B", categoryColor: "#D4A84B",
+    badge: "core", badgeColor: "#D6B47E", categoryColor: "#D6B47E",
   },
   {
     id: "car-rental", icon: "ri-car-line", streamNum: "02",
@@ -28,7 +28,7 @@ export const entityTypes: EntityTypeItem[] = [
     title: "Car Rental Monitoring", titleAr: "مراقبة تأجير السيارات",
     description: "Licensed vehicle rental operators submitting rental lifecycle events.",
     descriptionAr: "شركات تأجير السيارات المرخصة التي تقدم أحداث دورة حياة التأجير.",
-    badge: "core", badgeColor: "#D4A84B", categoryColor: "#D4A84B",
+    badge: "core", badgeColor: "#D6B47E", categoryColor: "#D6B47E",
   },
   {
     id: "mobile", icon: "ri-sim-card-line", streamNum: "03",
@@ -36,7 +36,7 @@ export const entityTypes: EntityTypeItem[] = [
     title: "Mobile Operators", titleAr: "مشغلو الاتصالات",
     description: "Telecom operators submitting SIM, IMEI, eSIM and roaming events.",
     descriptionAr: "مشغلو الاتصالات الذين يقدمون أحداث الشريحة وIMEI وeSIM والتجوال.",
-    badge: "core", badgeColor: "#D4A84B", categoryColor: "#D4A84B",
+    badge: "core", badgeColor: "#D6B47E", categoryColor: "#D6B47E",
   },
   {
     id: "municipality", icon: "ri-government-line", streamNum: "04",
@@ -44,7 +44,7 @@ export const entityTypes: EntityTypeItem[] = [
     title: "Municipality Registry", titleAr: "سجل البلديات",
     description: "Municipal authorities submitting property lease lifecycle events.",
     descriptionAr: "السلطات البلدية التي تقدم أحداث دورة حياة عقود الإيجار.",
-    badge: "core", badgeColor: "#D4A84B", categoryColor: "#D4A84B",
+    badge: "core", badgeColor: "#D6B47E", categoryColor: "#D6B47E",
   },
   {
     id: "payment", icon: "ri-bank-card-line", streamNum: "05",
@@ -68,7 +68,7 @@ export const entityTypes: EntityTypeItem[] = [
     title: "Health Interactions", titleAr: "التفاعلات الصحية",
     description: "Hospitals and clinics submitting patient registration and health events.",
     descriptionAr: "المستشفيات والعيادات التي تقدم أحداث تسجيل المرضى والصحة.",
-    badge: "extended", badgeColor: "#F87171", categoryColor: "#F87171",
+    badge: "extended", badgeColor: "#C94A5E", categoryColor: "#C94A5E",
   },
   {
     id: "utility", icon: "ri-flashlight-line", streamNum: "08",
@@ -84,7 +84,7 @@ export const entityTypes: EntityTypeItem[] = [
     title: "Public Transport", titleAr: "النقل العام",
     description: "Bus and taxi operators submitting journey and route pattern data.",
     descriptionAr: "مشغلو الحافلات والتاكسي الذين يقدمون بيانات الرحلات وأنماط المسارات.",
-    badge: "extended", badgeColor: "#FB923C", categoryColor: "#FB923C",
+    badge: "extended", badgeColor: "#C98A1B", categoryColor: "#C98A1B",
   },
   {
     id: "education", icon: "ri-graduation-cap-line", streamNum: "10",
@@ -146,7 +146,7 @@ const StepEntityType = ({ selected, onSelect, isAr }: Props) => {
         onClick={() => onSelect(et.id)}
         className="flex flex-col items-start p-4 rounded-xl border text-left transition-all duration-200 cursor-pointer group"
         style={{
-          background: isSelected ? et.badgeColor + "0D" : "rgba(20,29,46,0.7)",
+          background: isSelected ? et.badgeColor + "0D" : "rgba(10,37,64,0.7)",
           borderColor: isSelected ? et.badgeColor + "80" : "rgba(255,255,255,0.07)",
           boxShadow: isSelected ? `0 0 20px ${et.badgeColor}12` : "none",
         }}
@@ -233,14 +233,14 @@ const StepEntityType = ({ selected, onSelect, isAr }: Props) => {
       {/* Core streams */}
       <div className="mb-6">
         <div className="flex items-center gap-2 mb-3">
-          <div className="h-px flex-1" style={{ background: "rgba(181,142,60,0.15)" }} />
+          <div className="h-px flex-1" style={{ background: "rgba(184,138,60,0.15)" }} />
           <span
             className="text-xs font-['JetBrains_Mono'] tracking-widest px-3 py-1 rounded-full"
-            style={{ color: "#D4A84B", background: "rgba(181,142,60,0.08)", border: "1px solid rgba(181,142,60,0.2)" }}
+            style={{ color: "#D6B47E", background: "rgba(184,138,60,0.08)", border: "1px solid rgba(184,138,60,0.2)" }}
           >
             {isAr ? "4 مصادر أساسية" : "4 CORE STREAMS"}
           </span>
-          <div className="h-px flex-1" style={{ background: "rgba(181,142,60,0.15)" }} />
+          <div className="h-px flex-1" style={{ background: "rgba(184,138,60,0.15)" }} />
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           {coreTypes.map(renderCard)}

@@ -60,13 +60,13 @@ const CourseRegistrationForm = ({ isAr, onCancel }: Props) => {
 
   const handleSave = () => { setSaving(true); setTimeout(() => { setSaving(false); setRefCode(genRef()); setConfirmed(true); }, 1500); };
 
-  if (confirmed) return <EduConfirmation refNumber={refCode} eventType={isAr ? "تسجيل مقررات" : "Course Registration"} eventCode="AMN-EDU-CRS" color="#D4A84B" isAr={isAr} onReset={() => setConfirmed(false)} />;
+  if (confirmed) return <EduConfirmation refNumber={refCode} eventType={isAr ? "تسجيل مقررات" : "Course Registration"} eventCode="AMN-EDU-CRS" color="#D6B47E" isAr={isAr} onReset={() => setConfirmed(false)} />;
 
   return (
     <div className="space-y-5">
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
         {/* Student Lookup */}
-        <SectionCard title={isAr ? "بحث عن الطالب" : "Student Lookup"} icon="ri-user-search-line" accentColor="#D4A84B">
+        <SectionCard title={isAr ? "بحث عن الطالب" : "Student Lookup"} icon="ri-user-search-line" accentColor="#D6B47E">
           <div className="space-y-4">
             <FormField label={isAr ? "رقم الطالب" : "Student ID"} required>
               <div className="flex gap-2">
@@ -76,13 +76,13 @@ const CourseRegistrationForm = ({ isAr, onCancel }: Props) => {
               <p className="text-gray-600 text-xs mt-1">{isAr ? "جرّب: STU-2024-1001 أو STU-2024-2234" : "Try: STU-2024-1001 or STU-2024-2234"}</p>
             </FormField>
             {lookupError && (
-              <div className="flex items-center gap-2 px-3 py-2 rounded-lg" style={{ background: "rgba(248,113,113,0.08)", border: "1px solid rgba(248,113,113,0.2)" }}>
+              <div className="flex items-center gap-2 px-3 py-2 rounded-lg" style={{ background: "rgba(201,74,94,0.08)", border: "1px solid rgba(201,74,94,0.2)" }}>
                 <i className="ri-close-circle-line text-red-400 text-sm" />
                 <span className="text-red-400 text-xs">{lookupError}</span>
               </div>
             )}
             {studentData && (
-              <div className="space-y-2 px-4 py-4 rounded-xl" style={{ background: "rgba(181,142,60,0.04)", border: "1px solid rgba(181,142,60,0.15)" }}>
+              <div className="space-y-2 px-4 py-4 rounded-xl" style={{ background: "rgba(184,138,60,0.04)", border: "1px solid rgba(184,138,60,0.15)" }}>
                 <div className="flex items-center gap-2 mb-2">
                   <i className="ri-checkbox-circle-line text-gold-400 text-sm" />
                   <span className="text-gold-400 text-xs font-bold">{isAr ? "تم العثور على الطالب" : "Student Found"}</span>
@@ -118,16 +118,16 @@ const CourseRegistrationForm = ({ isAr, onCancel }: Props) => {
               return (
                 <button key={course.value} type="button" onClick={() => toggleCourse(course.value)}
                   className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left cursor-pointer transition-all"
-                  style={{ background: isSelected ? "rgba(181,142,60,0.08)" : "rgba(255,255,255,0.03)", border: `1px solid ${isSelected ? "rgba(181,142,60,0.3)" : "rgba(255,255,255,0.06)"}` }}>
-                  <div className="w-5 h-5 flex items-center justify-center rounded flex-shrink-0" style={{ background: isSelected ? "#D4A84B" : "rgba(255,255,255,0.06)", border: `1px solid ${isSelected ? "#D4A84B" : "rgba(255,255,255,0.1)"}` }}>
+                  style={{ background: isSelected ? "rgba(184,138,60,0.08)" : "rgba(255,255,255,0.03)", border: `1px solid ${isSelected ? "rgba(184,138,60,0.3)" : "rgba(255,255,255,0.06)"}` }}>
+                  <div className="w-5 h-5 flex items-center justify-center rounded flex-shrink-0" style={{ background: isSelected ? "#D6B47E" : "rgba(255,255,255,0.06)", border: `1px solid ${isSelected ? "#D6B47E" : "rgba(255,255,255,0.1)"}` }}>
                     {isSelected && <i className="ri-check-line text-xs text-gray-900" />}
                   </div>
-                  <span className="text-xs font-['JetBrains_Mono']" style={{ color: isSelected ? "#D4A84B" : "#9CA3AF" }}>{course.label}</span>
+                  <span className="text-xs font-['JetBrains_Mono']" style={{ color: isSelected ? "#D6B47E" : "#9CA3AF" }}>{course.label}</span>
                 </button>
               );
             })}
             {totalCredits > 18 && (
-              <div className="flex items-center gap-2 px-3 py-2 rounded-lg" style={{ background: "rgba(251,146,60,0.08)", border: "1px solid rgba(251,146,60,0.2)" }}>
+              <div className="flex items-center gap-2 px-3 py-2 rounded-lg" style={{ background: "rgba(201,138,27,0.08)", border: "1px solid rgba(201,138,27,0.2)" }}>
                 <i className="ri-alarm-warning-line text-orange-400 text-xs" />
                 <span className="text-orange-400 text-xs">{isAr ? "تجاوزت الحد الأقصى (18 ساعة)" : "Exceeds max credit load (18 credits)"}</span>
               </div>

@@ -31,7 +31,7 @@ const OriginLeagueTable = ({
   return (
     <div
       className="rounded-xl border p-4"
-      style={{ background: "rgba(20,29,46,0.65)", borderColor: "rgba(181,142,60,0.12)" }}
+      style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.12)" }}
     >
       {(title || subtitle) && (
         <div className="mb-3">
@@ -77,7 +77,7 @@ const OriginLeagueTable = ({
               </span>
               <span
                 className="col-span-2 text-right text-xs font-bold font-['JetBrains_Mono']"
-                style={{ color: flaggedRate > 20 ? "#F87171" : flaggedRate > 10 ? "#FB923C" : "#9CA3AF" }}
+                style={{ color: flaggedRate > 20 ? "#C94A5E" : flaggedRate > 10 ? "#C98A1B" : "#9CA3AF" }}
               >
                 {o.flagged24h}
               </span>

@@ -126,7 +126,7 @@ const SimDeactivatedForm = ({ isAr, onCancel }: Props) => {
             {isSuspicious && selectedReason && (
               <div
                 className="flex items-center gap-3 px-4 py-3 rounded-xl border"
-                style={{ background: "rgba(248,113,113,0.06)", borderColor: "rgba(248,113,113,0.25)" }}
+                style={{ background: "rgba(201,74,94,0.06)", borderColor: "rgba(201,74,94,0.25)" }}
               >
                 <i className="ri-alert-line text-red-400 text-lg flex-shrink-0" />
                 <div>
@@ -157,7 +157,7 @@ const SimDeactivatedForm = ({ isAr, onCancel }: Props) => {
                 onChange={(e) => setNotes(e.target.value)}
                 className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none transition-all duration-200 font-['Inter'] resize-none"
                 style={{ background: "#0F1923", border: "1px solid rgba(255,255,255,0.08)" }}
-                onFocus={(e) => { e.target.style.borderColor = "#D4A84B"; e.target.style.boxShadow = "0 0 0 2px rgba(181,142,60,0.08)"; }}
+                onFocus={(e) => { e.target.style.borderColor = "#D6B47E"; e.target.style.boxShadow = "0 0 0 2px rgba(184,138,60,0.08)"; }}
                 onBlur={(e) => { e.target.style.borderColor = "rgba(255,255,255,0.08)"; e.target.style.boxShadow = "none"; }}
               />
             </FormField>
@@ -193,26 +193,26 @@ const SimDeactivatedForm = ({ isAr, onCancel }: Props) => {
             <div
               className="flex items-center gap-3 p-4 rounded-xl border"
               style={{
-                background: deactivationType === "temporary" ? "rgba(250,204,21,0.05)" : "rgba(248,113,113,0.05)",
-                borderColor: deactivationType === "temporary" ? "rgba(250,204,21,0.2)" : "rgba(248,113,113,0.2)",
+                background: deactivationType === "temporary" ? "rgba(250,204,21,0.05)" : "rgba(201,74,94,0.05)",
+                borderColor: deactivationType === "temporary" ? "rgba(250,204,21,0.2)" : "rgba(201,74,94,0.2)",
               }}
             >
               <div
                 className="w-10 h-10 flex items-center justify-center rounded-xl flex-shrink-0"
                 style={{
-                  background: deactivationType === "temporary" ? "rgba(250,204,21,0.12)" : "rgba(248,113,113,0.12)",
-                  border: `1px solid ${deactivationType === "temporary" ? "rgba(250,204,21,0.25)" : "rgba(248,113,113,0.25)"}`,
+                  background: deactivationType === "temporary" ? "rgba(250,204,21,0.12)" : "rgba(201,74,94,0.12)",
+                  border: `1px solid ${deactivationType === "temporary" ? "rgba(250,204,21,0.25)" : "rgba(201,74,94,0.25)"}`,
                 }}
               >
                 <i
                   className={`${deactivationType === "temporary" ? "ri-pause-circle-line" : "ri-close-circle-line"} text-lg`}
-                  style={{ color: deactivationType === "temporary" ? "#FACC15" : "#F87171" }}
+                  style={{ color: deactivationType === "temporary" ? "#FACC15" : "#C94A5E" }}
                 />
               </div>
               <div>
                 <p
                   className="font-bold text-sm font-['Inter']"
-                  style={{ color: deactivationType === "temporary" ? "#FACC15" : "#F87171" }}
+                  style={{ color: deactivationType === "temporary" ? "#FACC15" : "#C94A5E" }}
                 >
                   {deactivationType === "temporary"
                     ? (isAr ? "إيقاف مؤقت" : "Temporary Deactivation")

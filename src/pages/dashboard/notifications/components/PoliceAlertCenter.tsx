@@ -6,10 +6,10 @@ interface Props {
 }
 
 const priorityConfig: Record<NotifPriority, { label: string; labelAr: string; color: string; bg: string; border: string; icon: string }> = {
-  critical: { label: "CRITICAL", labelAr: "حرج",    color: "#F87171", bg: "rgba(248,113,113,0.08)", border: "rgba(248,113,113,0.35)", icon: "ri-alarm-warning-fill" },
-  high:     { label: "HIGH",     labelAr: "عالٍ",   color: "#FB923C", bg: "rgba(251,146,60,0.08)",  border: "rgba(251,146,60,0.35)",  icon: "ri-error-warning-fill" },
+  critical: { label: "CRITICAL", labelAr: "حرج",    color: "#C94A5E", bg: "rgba(201,74,94,0.08)", border: "rgba(201,74,94,0.35)", icon: "ri-alarm-warning-fill" },
+  high:     { label: "HIGH",     labelAr: "عالٍ",   color: "#C98A1B", bg: "rgba(201,138,27,0.08)",  border: "rgba(201,138,27,0.35)",  icon: "ri-error-warning-fill" },
   medium:   { label: "MEDIUM",   labelAr: "متوسط",  color: "#FACC15", bg: "rgba(250,204,21,0.08)",  border: "rgba(250,204,21,0.35)",  icon: "ri-information-fill" },
-  low:      { label: "LOW",      labelAr: "منخفض",  color: "#D4A84B", bg: "rgba(181,142,60,0.05)",  border: "rgba(181,142,60,0.2)",   icon: "ri-notification-3-fill" },
+  low:      { label: "LOW",      labelAr: "منخفض",  color: "#D6B47E", bg: "rgba(184,138,60,0.05)",  border: "rgba(184,138,60,0.2)",   icon: "ri-notification-3-fill" },
 };
 
 const PoliceAlertCenter = ({ isAr }: Props) => {
@@ -46,14 +46,14 @@ const PoliceAlertCenter = ({ isAr }: Props) => {
   return (
     <div className="flex flex-col h-full">
       {/* Header */}
-      <div className="px-5 py-4 border-b flex-shrink-0" style={{ borderColor: "rgba(181,142,60,0.12)" }}>
+      <div className="px-5 py-4 border-b flex-shrink-0" style={{ borderColor: "rgba(184,138,60,0.12)" }}>
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-3">
             <div
               className="w-8 h-8 flex items-center justify-center rounded-lg flex-shrink-0"
-              style={{ background: criticalCount > 0 ? "rgba(248,113,113,0.15)" : "rgba(181,142,60,0.1)", border: `1px solid ${criticalCount > 0 ? "rgba(248,113,113,0.4)" : "rgba(181,142,60,0.3)"}` }}
+              style={{ background: criticalCount > 0 ? "rgba(201,74,94,0.15)" : "rgba(184,138,60,0.1)", border: `1px solid ${criticalCount > 0 ? "rgba(201,74,94,0.4)" : "rgba(184,138,60,0.3)"}` }}
             >
-              <i className="ri-alarm-warning-line text-sm" style={{ color: criticalCount > 0 ? "#F87171" : "#D4A84B" }} />
+              <i className="ri-alarm-warning-line text-sm" style={{ color: criticalCount > 0 ? "#C94A5E" : "#D6B47E" }} />
             </div>
             <div>
               <h2 className="text-white text-sm font-bold font-['Inter']">{isAr ? "مركز تنبيهات الشرطة" : "Police Alert Center"}</h2>
@@ -66,7 +66,7 @@ const PoliceAlertCenter = ({ isAr }: Props) => {
             <button
               onClick={acknowledgeAll}
               className="text-xs px-3 py-1.5 rounded-lg cursor-pointer font-['JetBrains_Mono'] whitespace-nowrap"
-              style={{ color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)", background: "rgba(181,142,60,0.05)" }}
+              style={{ color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)", background: "rgba(184,138,60,0.05)" }}
             >
               {isAr ? "تأكيد الكل" : "Ack All"}
             </button>
@@ -98,7 +98,7 @@ const PoliceAlertCenter = ({ isAr }: Props) => {
       </div>
 
       {/* Priority filter tabs */}
-      <div className="flex items-center gap-1 px-4 py-2 border-b flex-shrink-0" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
+      <div className="flex items-center gap-1 px-4 py-2 border-b flex-shrink-0" style={{ borderColor: "rgba(184,138,60,0.08)" }}>
         {priorityFilters.map((f) => (
           <button
             key={f.key}
@@ -106,13 +106,13 @@ const PoliceAlertCenter = ({ isAr }: Props) => {
             className="px-3 py-1.5 rounded-lg text-xs font-['JetBrains_Mono'] cursor-pointer transition-all whitespace-nowrap"
             style={{
               background: filterPriority === f.key
-                ? f.key === "all" ? "rgba(181,142,60,0.1)" : `${priorityConfig[f.key as NotifPriority]?.bg}`
+                ? f.key === "all" ? "rgba(184,138,60,0.1)" : `${priorityConfig[f.key as NotifPriority]?.bg}`
                 : "transparent",
               color: filterPriority === f.key
-                ? f.key === "all" ? "#D4A84B" : priorityConfig[f.key as NotifPriority]?.color
+                ? f.key === "all" ? "#D6B47E" : priorityConfig[f.key as NotifPriority]?.color
                 : "#6B7280",
               border: filterPriority === f.key
-                ? f.key === "all" ? "1px solid rgba(181,142,60,0.2)" : `1px solid ${priorityConfig[f.key as NotifPriority]?.border}`
+                ? f.key === "all" ? "1px solid rgba(184,138,60,0.2)" : `1px solid ${priorityConfig[f.key as NotifPriority]?.border}`
                 : "1px solid transparent",
             }}
           >
@@ -122,7 +122,7 @@ const PoliceAlertCenter = ({ isAr }: Props) => {
       </div>
 
       {/* Alert list */}
-      <div className="flex-1 overflow-y-auto" style={{ scrollbarWidth: "thin", scrollbarColor: "rgba(181,142,60,0.15) transparent" }}>
+      <div className="flex-1 overflow-y-auto" style={{ scrollbarWidth: "thin", scrollbarColor: "rgba(184,138,60,0.15) transparent" }}>
         {filtered.map((alert) => {
           const cfg = priorityConfig[alert.priority];
           const isExpanded = expandedId === alert.id;
@@ -214,14 +214,14 @@ const PoliceAlertCenter = ({ isAr }: Props) => {
                   )}
                   <button
                     className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-['JetBrains_Mono'] cursor-pointer transition-colors whitespace-nowrap"
-                    style={{ background: "rgba(181,142,60,0.05)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}
+                    style={{ background: "rgba(184,138,60,0.05)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}
                   >
                     <i className="ri-user-add-line" />
                     {isAr ? "تعيين" : "Assign"}
                   </button>
                   <button
                     className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-['JetBrains_Mono'] cursor-pointer transition-colors whitespace-nowrap"
-                    style={{ background: "rgba(251,146,60,0.08)", color: "#FB923C", border: "1px solid rgba(251,146,60,0.2)" }}
+                    style={{ background: "rgba(201,138,27,0.08)", color: "#C98A1B", border: "1px solid rgba(201,138,27,0.2)" }}
                   >
                     <i className="ri-arrow-up-line" />
                     {isAr ? "تصعيد" : "Escalate"}

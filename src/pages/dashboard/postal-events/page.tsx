@@ -24,7 +24,7 @@ const EVENT_CARDS: EventCard[] = [
     id: "pobox", icon: "ri-mail-line", label: "PO Box Registration", labelAr: "تسجيل صندوق بريد",
     desc: "Register a new PO Box — box number, size, duration, account holder travel document and personal details",
     descAr: "تسجيل صندوق بريد جديد — رقم الصندوق، الحجم، المدة، وثيقة السفر والبيانات الشخصية",
-    color: "#D4A84B", code: "AMN-PST-POBOX", stats: "1,284 active boxes", statsAr: "1,284 صندوق نشط",
+    color: "#D6B47E", code: "AMN-PST-POBOX", stats: "1,284 active boxes", statsAr: "1,284 صندوق نشط",
   },
   {
     id: "package", icon: "ri-box-3-line", label: "Package Receipt", labelAr: "استلام طرد",
@@ -52,11 +52,11 @@ const PostalEventsPage = () => {
   const handleSelect = (id: "pobox" | "package") => { setActiveEvent(id); setFormKey(k => k + 1); };
 
   return (
-    <div className="min-h-screen font-['Inter']" style={{ background: "#0B1220" }}>
-      <div className="fixed inset-0 pointer-events-none" style={{ backgroundImage: `linear-gradient(rgba(181,142,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,0.03) 1px, transparent 1px)`, backgroundSize: "40px 40px" }} />
+    <div className="min-h-screen font-['Inter']" style={{ background: "#051428" }}>
+      <div className="fixed inset-0 pointer-events-none" style={{ backgroundImage: `linear-gradient(rgba(184,138,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.03) 1px, transparent 1px)`, backgroundSize: "40px 40px" }} />
 
       {/* Header */}
-      <header className="sticky top-0 z-40 flex items-center justify-between px-6 py-3 border-b" style={{ background: "rgba(11,18,32,0.95)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
+      <header className="sticky top-0 z-40 flex items-center justify-between px-6 py-3 border-b" style={{ background: "rgba(5,20,40,0.95)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}>
         <div className="flex items-center gap-4">
           <button type="button" onClick={() => navigate("/dashboard")}
             className="flex items-center gap-2 px-3 py-1.5 rounded-lg border text-sm font-semibold cursor-pointer whitespace-nowrap transition-colors"
@@ -66,20 +66,20 @@ const PostalEventsPage = () => {
             <i className={isAr ? "ri-arrow-right-line" : "ri-arrow-left-line"} />{isAr ? "لوحة التحكم" : "Dashboard"}
           </button>
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+            <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.2)" }}>
               <i className="ri-mail-send-line text-gold-400 text-sm" />
             </div>
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-white font-bold text-sm">{isAr ? "أحداث البريد" : "Postal Events"}</span>
-                <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(181,142,60,0.12)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>Al-Ameen</span>
+                <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(184,138,60,0.12)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}>Al-Ameen</span>
               </div>
               <p className="text-gray-500 text-xs">{isAr ? "تسجيل صناديق البريد والطرود الواردة" : "PO Box registration & incoming package tracking"}</p>
             </div>
           </div>
         </div>
         <div className="flex items-center gap-3">
-          <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-lg border" style={{ background: "rgba(181,142,60,0.04)", borderColor: "rgba(181,142,60,0.12)" }}>
+          <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-lg border" style={{ background: "rgba(184,138,60,0.04)", borderColor: "rgba(184,138,60,0.12)" }}>
             <i className="ri-time-line text-gold-400 text-xs" />
             <span className="text-gold-400 text-xs font-bold font-['JetBrains_Mono']">{timeStr}</span>
           </div>
@@ -100,8 +100,8 @@ const PostalEventsPage = () => {
           {activeEvent && (
             <button type="button" onClick={() => setActiveEvent(null)}
               className="flex items-center gap-2 px-4 py-2 rounded-lg border text-sm font-semibold cursor-pointer whitespace-nowrap transition-colors"
-              style={{ background: "transparent", borderColor: "rgba(181,142,60,0.2)", color: "#D4A84B" }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(181,142,60,0.06)"; }}
+              style={{ background: "transparent", borderColor: "rgba(184,138,60,0.2)", color: "#D6B47E" }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(184,138,60,0.06)"; }}
               onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "transparent"; }}>
               <i className="ri-arrow-left-line" />{isAr ? "العودة" : "Back"}
             </button>
@@ -114,12 +114,12 @@ const PostalEventsPage = () => {
             {/* Stats bar */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
               {[
-                { label: isAr ? "صناديق نشطة" : "Active PO Boxes", value: "1,284", icon: "ri-mail-line", color: "#D4A84B" },
+                { label: isAr ? "صناديق نشطة" : "Active PO Boxes", value: "1,284", icon: "ri-mail-line", color: "#D6B47E" },
                 { label: isAr ? "طرود اليوم" : "Packages Today", value: "342", icon: "ri-box-3-line", color: "#4ADE80" },
                 { label: isAr ? "قيد الجمارك" : "Customs Pending", value: "18", icon: "ri-shield-check-line", color: "#FACC15" },
-                { label: isAr ? "قيمة عالية" : "High-Value Pkgs", value: "7", icon: "ri-money-dollar-circle-line", color: "#F87171" },
+                { label: isAr ? "قيمة عالية" : "High-Value Pkgs", value: "7", icon: "ri-money-dollar-circle-line", color: "#C94A5E" },
               ].map((stat) => (
-                <div key={stat.label} className="relative rounded-2xl border p-5 overflow-hidden" style={{ background: "rgba(20,29,46,0.8)", borderColor: `${stat.color}25`, backdropFilter: "blur(12px)" }}>
+                <div key={stat.label} className="relative rounded-2xl border p-5 overflow-hidden" style={{ background: "rgba(10,37,64,0.8)", borderColor: `${stat.color}25`, backdropFilter: "blur(12px)" }}>
                   <div className="absolute inset-0 opacity-5" style={{ background: `radial-gradient(circle at top right, ${stat.color}, transparent 70%)` }} />
                   <div className="relative z-10 flex items-center gap-3">
                     <div className="w-10 h-10 flex items-center justify-center rounded-xl" style={{ background: `${stat.color}15`, border: `1px solid ${stat.color}30` }}>
@@ -139,9 +139,9 @@ const PostalEventsPage = () => {
               {EVENT_CARDS.map(card => (
                 <button key={card.id} type="button" onClick={() => handleSelect(card.id)}
                   className="group relative rounded-2xl border p-7 text-left cursor-pointer transition-all duration-300 flex flex-col gap-5"
-                  style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}
+                  style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}
                   onMouseEnter={(e) => { const el = e.currentTarget as HTMLButtonElement; el.style.borderColor = `${card.color}50`; el.style.background = `${card.color}08`; el.style.transform = "translateY(-3px)"; }}
-                  onMouseLeave={(e) => { const el = e.currentTarget as HTMLButtonElement; el.style.borderColor = "rgba(181,142,60,0.12)"; el.style.background = "rgba(20,29,46,0.8)"; el.style.transform = "translateY(0)"; }}>
+                  onMouseLeave={(e) => { const el = e.currentTarget as HTMLButtonElement; el.style.borderColor = "rgba(184,138,60,0.12)"; el.style.background = "rgba(10,37,64,0.8)"; el.style.transform = "translateY(0)"; }}>
                   <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" style={{ background: `radial-gradient(circle at top left, ${card.color}06, transparent 60%)` }} />
                   <div className="relative z-10 flex items-start justify-between">
                     <div className="w-16 h-16 flex items-center justify-center rounded-2xl" style={{ background: `${card.color}12`, border: `1px solid ${card.color}30` }}>
@@ -162,20 +162,20 @@ const PostalEventsPage = () => {
             </div>
 
             {/* Recent events */}
-            <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
-              <div className="flex items-center gap-3 px-6 py-4 border-b" style={{ borderColor: "rgba(181,142,60,0.1)" }}>
-                <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+            <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}>
+              <div className="flex items-center gap-3 px-6 py-4 border-b" style={{ borderColor: "rgba(184,138,60,0.1)" }}>
+                <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.2)" }}>
                   <i className="ri-history-line text-gold-400 text-sm" />
                 </div>
                 <h3 className="text-white font-bold text-sm">{isAr ? "الأحداث الأخيرة" : "Recent Events"}</h3>
               </div>
-              <div className="divide-y" style={{ borderColor: "rgba(181,142,60,0.06)" }}>
+              <div className="divide-y" style={{ borderColor: "rgba(184,138,60,0.06)" }}>
                 {[
-                  { ref: "AMN-PST-4821", type: isAr ? "تسجيل صندوق بريد" : "PO Box Registration", detail: isAr ? "صندوق PO-88234 — حجم M — فرع مركزي" : "Box PO-88234 — Size M — Central Branch", time: "3 min ago", color: "#D4A84B", icon: "ri-mail-line" },
+                  { ref: "AMN-PST-4821", type: isAr ? "تسجيل صندوق بريد" : "PO Box Registration", detail: isAr ? "صندوق PO-88234 — حجم M — فرع مركزي" : "Box PO-88234 — Size M — Central Branch", time: "3 min ago", color: "#D6B47E", icon: "ri-mail-line" },
                   { ref: "AMN-PST-4820", type: isAr ? "استلام طرد" : "Package Receipt", detail: isAr ? "طرد من الإمارات — 2.3 كجم — 145.000 LCY" : "Package from UAE — 2.3 kg — 145.000 LCY", time: "11 min ago", color: "#4ADE80", icon: "ri-box-3-line" },
                   { ref: "AMN-PST-4819", type: isAr ? "استلام طرد" : "Package Receipt", detail: isAr ? "طرد من الصين — إلكترونيات — قيد الجمارك" : "Package from China — Electronics — Customs Pending", time: "28 min ago", color: "#FACC15", icon: "ri-box-3-line" },
-                  { ref: "AMN-PST-4818", type: isAr ? "تسجيل صندوق بريد" : "PO Box Registration", detail: isAr ? "صندوق PO-77891 — حجم L — فرع شمالي" : "Box PO-77891 — Size L — Northern Branch", time: "45 min ago", color: "#D4A84B", icon: "ri-mail-line" },
-                  { ref: "AMN-PST-4817", type: isAr ? "استلام طرد" : "Package Receipt", detail: isAr ? "طرد من المملكة المتحدة — 8,500 LCY — مراجعة مطلوبة" : "Package from UK — 8,500 LCY — Review Required", time: "1 hr ago", color: "#F87171", icon: "ri-box-3-line" },
+                  { ref: "AMN-PST-4818", type: isAr ? "تسجيل صندوق بريد" : "PO Box Registration", detail: isAr ? "صندوق PO-77891 — حجم L — فرع شمالي" : "Box PO-77891 — Size L — Northern Branch", time: "45 min ago", color: "#D6B47E", icon: "ri-mail-line" },
+                  { ref: "AMN-PST-4817", type: isAr ? "استلام طرد" : "Package Receipt", detail: isAr ? "طرد من المملكة المتحدة — 8,500 LCY — مراجعة مطلوبة" : "Package from UK — 8,500 LCY — Review Required", time: "1 hr ago", color: "#C94A5E", icon: "ri-box-3-line" },
                 ].map((ev) => (
                   <div key={ev.ref} className="flex items-center gap-4 px-6 py-3 hover:bg-white/[0.02] transition-colors">
                     <div className="w-8 h-8 flex items-center justify-center rounded-lg flex-shrink-0" style={{ background: `${ev.color}12`, border: `1px solid ${ev.color}20` }}>

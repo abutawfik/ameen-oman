@@ -18,24 +18,24 @@ type ActiveView =
 const BRANCHES = ['Main Branch — Muscat', 'Salalah Branch', 'Sohar Branch'];
 
 const statusConfig = {
-  confirmed:   { color: '#D4A84B', bg: 'rgba(181,142,60,0.1)',  label: 'Confirmed',   labelAr: 'مؤكد' },
+  confirmed:   { color: '#D6B47E', bg: 'rgba(184,138,60,0.1)',  label: 'Confirmed',   labelAr: 'مؤكد' },
   checked_in:  { color: '#4ADE80', bg: 'rgba(74,222,128,0.1)',  label: 'Checked In',  labelAr: 'مسجل دخول' },
   checked_out: { color: '#9CA3AF', bg: 'rgba(156,163,175,0.1)', label: 'Checked Out', labelAr: 'مسجل خروج' },
-  cancelled:   { color: '#F87171', bg: 'rgba(248,113,113,0.1)', label: 'Cancelled',   labelAr: 'ملغي' },
-  no_show:     { color: '#FB923C', bg: 'rgba(251,146,60,0.1)',  label: 'No Show',     labelAr: 'لم يحضر' },
+  cancelled:   { color: '#C94A5E', bg: 'rgba(201,74,94,0.1)', label: 'Cancelled',   labelAr: 'ملغي' },
+  no_show:     { color: '#C98A1B', bg: 'rgba(201,138,27,0.1)',  label: 'No Show',     labelAr: 'لم يحضر' },
 };
 
 const syncStatusConfig = {
   success: { color: '#4ADE80', bg: 'rgba(74,222,128,0.1)',  icon: 'ri-cloud-fill',     label: 'Synced',  labelAr: 'تمت المزامنة' },
   pending: { color: '#FACC15', bg: 'rgba(250,204,21,0.1)',  icon: 'ri-cloud-line',     label: 'Pending', labelAr: 'معلق' },
-  failed:  { color: '#F87171', bg: 'rgba(248,113,113,0.1)', icon: 'ri-cloud-off-line', label: 'Failed',  labelAr: 'فشل' },
+  failed:  { color: '#C94A5E', bg: 'rgba(201,74,94,0.1)', icon: 'ri-cloud-off-line', label: 'Failed',  labelAr: 'فشل' },
 };
 
 const roomStatusConfig = {
   available:   { color: '#4ADE80', bg: 'rgba(74,222,128,0.12)',  label: 'Available',   labelAr: 'متاحة' },
-  occupied:    { color: '#D4A84B', bg: 'rgba(181,142,60,0.12)',  label: 'Occupied',    labelAr: 'مشغولة' },
+  occupied:    { color: '#D6B47E', bg: 'rgba(184,138,60,0.12)',  label: 'Occupied',    labelAr: 'مشغولة' },
   reserved:    { color: '#FACC15', bg: 'rgba(250,204,21,0.12)',  label: 'Reserved',    labelAr: 'محجوزة' },
-  maintenance: { color: '#F87171', bg: 'rgba(248,113,113,0.12)', label: 'Maintenance', labelAr: 'صيانة' },
+  maintenance: { color: '#C94A5E', bg: 'rgba(201,74,94,0.12)', label: 'Maintenance', labelAr: 'صيانة' },
 };
 
 export default function HospitalityAppPage() {
@@ -95,14 +95,14 @@ export default function HospitalityAppPage() {
   return (
     <div
       className="flex flex-col h-screen overflow-hidden"
-      style={{ background: '#0B1220', fontFamily: "'Inter', sans-serif" }}
+      style={{ background: '#051428', fontFamily: "'Inter', sans-serif" }}
       dir={isAr ? 'rtl' : 'ltr'}
     >
       {/* Grid texture */}
       <div
         className="fixed inset-0 pointer-events-none z-0"
         style={{
-          backgroundImage: `linear-gradient(rgba(181,142,60,0.022) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,0.022) 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(rgba(184,138,60,0.022) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.022) 1px, transparent 1px)`,
           backgroundSize: '40px 40px',
         }}
       />
@@ -129,7 +129,7 @@ export default function HospitalityAppPage() {
       {/* Title bar */}
       <div
         className="relative z-20 flex items-center justify-between px-4 py-0 border-b border-gold-500/15 shrink-0"
-        style={{ background: 'rgba(11,18,32,0.99)', minHeight: 46 }}
+        style={{ background: 'rgba(5,20,40,0.99)', minHeight: 46 }}
       >
         <div className="flex items-center gap-3 h-full">
           {/* Window controls */}
@@ -157,7 +157,7 @@ export default function HospitalityAppPage() {
           <div className="flex items-center gap-2">
             <div
               className="w-6 h-6 rounded-lg flex items-center justify-center shrink-0"
-              style={{ background: 'rgba(181,142,60,0.1)' }}
+              style={{ background: 'rgba(184,138,60,0.1)' }}
             >
               <i className="ri-shield-star-fill text-gold-400" style={{ fontSize: 12 }} />
             </div>
@@ -187,7 +187,7 @@ export default function HospitalityAppPage() {
             <button
               onClick={() => setBranchOpen(o => !o)}
               className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-gold-500/15 text-gray-400 text-xs hover:border-gold-500/30 cursor-pointer transition-colors whitespace-nowrap"
-              style={{ background: 'rgba(20,29,46,0.8)' }}
+              style={{ background: 'rgba(10,37,64,0.8)' }}
             >
               <i className="ri-map-pin-line text-gold-400" style={{ fontSize: 10 }} />
               {branch.split(' — ')[0]}
@@ -196,14 +196,14 @@ export default function HospitalityAppPage() {
             {branchOpen && (
               <div
                 className="absolute top-full mt-1 left-0 rounded-xl border border-gold-500/20 py-1 z-50 min-w-52"
-                style={{ background: 'rgba(20,29,46,0.98)', backdropFilter: 'blur(12px)' }}
+                style={{ background: 'rgba(10,37,64,0.98)', backdropFilter: 'blur(12px)' }}
               >
                 {BRANCHES.map(b => (
                   <button
                     key={b}
                     onClick={() => { setBranch(b); setBranchOpen(false); }}
                     className="w-full text-left px-3 py-2 text-xs hover:bg-gold-500/8 cursor-pointer transition-colors whitespace-nowrap flex items-center gap-2"
-                    style={{ color: b === branch ? '#D4A84B' : '#9CA3AF' }}
+                    style={{ color: b === branch ? '#D6B47E' : '#9CA3AF' }}
                   >
                     {b === branch && <i className="ri-check-line text-gold-400" style={{ fontSize: 11 }} />}
                     {b !== branch && <span className="w-3" />}
@@ -225,9 +225,9 @@ export default function HospitalityAppPage() {
           <div
             className="hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded-lg border text-xs"
             style={{
-              borderColor: 'rgba(181,142,60,0.2)',
-              background: 'rgba(181,142,60,0.05)',
-              color: '#D4A84B',
+              borderColor: 'rgba(184,138,60,0.2)',
+              background: 'rgba(184,138,60,0.05)',
+              color: '#D6B47E',
             }}
           >
             <span className="w-1.5 h-1.5 rounded-full bg-gold-400 animate-pulse" />
@@ -239,12 +239,12 @@ export default function HospitalityAppPage() {
             onClick={() => setIsOffline(o => !o)}
             className="flex items-center gap-1.5 px-2 py-1 rounded border text-xs cursor-pointer transition-all whitespace-nowrap"
             style={{
-              borderColor: isOffline ? 'rgba(248,113,113,0.35)' : 'rgba(74,222,128,0.25)',
-              color: isOffline ? '#F87171' : '#4ADE80',
-              background: isOffline ? 'rgba(248,113,113,0.07)' : 'rgba(74,222,128,0.05)',
+              borderColor: isOffline ? 'rgba(201,74,94,0.35)' : 'rgba(74,222,128,0.25)',
+              color: isOffline ? '#C94A5E' : '#4ADE80',
+              background: isOffline ? 'rgba(201,74,94,0.07)' : 'rgba(74,222,128,0.05)',
             }}
           >
-            <span className="w-1.5 h-1.5 rounded-full" style={{ background: isOffline ? '#F87171' : '#4ADE80' }} />
+            <span className="w-1.5 h-1.5 rounded-full" style={{ background: isOffline ? '#C94A5E' : '#4ADE80' }} />
             {isOffline ? (isAr ? 'غير متصل' : 'Offline') : (isAr ? 'متصل' : 'Online')}
           </button>
 
@@ -260,7 +260,7 @@ export default function HospitalityAppPage() {
           <div className="flex items-center gap-2">
             <div
               className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold"
-              style={{ background: 'rgba(181,142,60,0.12)', color: '#D4A84B', border: '1px solid rgba(181,142,60,0.25)' }}
+              style={{ background: 'rgba(184,138,60,0.12)', color: '#D6B47E', border: '1px solid rgba(184,138,60,0.25)' }}
             >
               {user.initials || 'U'}
             </div>
@@ -356,9 +356,9 @@ export default function HospitalityAppPage() {
                       onClick={() => setEventFilter(f)}
                       className="px-3 py-1.5 rounded-lg text-xs border cursor-pointer transition-all whitespace-nowrap"
                       style={{
-                        borderColor: eventFilter === f ? 'rgba(181,142,60,0.5)' : 'rgba(181,142,60,0.15)',
-                        color: eventFilter === f ? '#D4A84B' : '#6B7280',
-                        background: eventFilter === f ? 'rgba(181,142,60,0.08)' : 'transparent',
+                        borderColor: eventFilter === f ? 'rgba(184,138,60,0.5)' : 'rgba(184,138,60,0.15)',
+                        color: eventFilter === f ? '#D6B47E' : '#6B7280',
+                        background: eventFilter === f ? 'rgba(184,138,60,0.08)' : 'transparent',
                       }}
                     >
                       {f}
@@ -366,7 +366,7 @@ export default function HospitalityAppPage() {
                   ))}
                 </div>
               </div>
-              <div className="rounded-xl border border-gold-500/15 overflow-hidden" style={{ background: 'rgba(20,29,46,0.8)' }}>
+              <div className="rounded-xl border border-gold-500/15 overflow-hidden" style={{ background: 'rgba(10,37,64,0.8)' }}>
                 <table className="w-full text-xs">
                   <thead>
                     <tr className="border-b border-gold-500/10">
@@ -425,7 +425,7 @@ export default function HospitalityAppPage() {
                 </div>
                 <div
                   className="flex items-center gap-2 px-3 py-2 rounded-xl border border-gold-500/20"
-                  style={{ background: 'rgba(181,142,60,0.05)' }}
+                  style={{ background: 'rgba(184,138,60,0.05)' }}
                 >
                   <span className="w-2 h-2 rounded-full bg-gold-400 animate-pulse" />
                   <span className="text-gold-400 text-xs">{isAr ? 'الخادم: api.ameen.ameen.gov' : 'Server: api.ameen.ameen.gov'}</span>
@@ -437,16 +437,16 @@ export default function HospitalityAppPage() {
                 {[
                   { label: isAr ? 'تمت المزامنة' : 'Synced',  value: syncLogs.filter(l => l.status === 'success').length, color: '#4ADE80' },
                   { label: isAr ? 'معلق' : 'Pending',          value: syncLogs.filter(l => l.status === 'pending').length, color: '#FACC15' },
-                  { label: isAr ? 'فشل' : 'Failed',            value: syncLogs.filter(l => l.status === 'failed').length,  color: '#F87171' },
+                  { label: isAr ? 'فشل' : 'Failed',            value: syncLogs.filter(l => l.status === 'failed').length,  color: '#C94A5E' },
                 ].map(s => (
-                  <div key={s.label} className="rounded-xl border border-gold-500/10 px-4 py-3 text-center" style={{ background: 'rgba(20,29,46,0.8)' }}>
+                  <div key={s.label} className="rounded-xl border border-gold-500/10 px-4 py-3 text-center" style={{ background: 'rgba(10,37,64,0.8)' }}>
                     <p className="font-mono font-bold text-2xl" style={{ color: s.color }}>{s.value}</p>
                     <p className="text-gray-500 text-xs mt-0.5">{s.label}</p>
                   </div>
                 ))}
               </div>
 
-              <div className="rounded-xl border border-gold-500/15 overflow-hidden" style={{ background: 'rgba(20,29,46,0.8)' }}>
+              <div className="rounded-xl border border-gold-500/15 overflow-hidden" style={{ background: 'rgba(10,37,64,0.8)' }}>
                 <table className="w-full text-xs">
                   <thead>
                     <tr className="border-b border-gold-500/10">
@@ -486,7 +486,7 @@ export default function HospitalityAppPage() {
                 <h2 className="text-white font-bold text-lg">{isAr ? 'إدارة المستخدمين' : 'Manage Users'}</h2>
                 <button
                   className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium cursor-pointer whitespace-nowrap"
-                  style={{ background: '#D4A84B', color: '#0B1220' }}
+                  style={{ background: '#D6B47E', color: '#051428' }}
                 >
                   <i className="ri-user-add-line" />
                   {isAr ? 'إضافة مستخدم' : 'Add User'}
@@ -494,12 +494,12 @@ export default function HospitalityAppPage() {
               </div>
               <div className="grid grid-cols-3 gap-4">
                 {[
-                  { name: 'Salim Al-Rashidi',  nameAr: 'سالم الراشدي',  role: 'Admin',     initials: 'SR', color: '#D4A84B', lastLogin: '14:32 Today',  status: 'active' },
+                  { name: 'Salim Al-Rashidi',  nameAr: 'سالم الراشدي',  role: 'Admin',     initials: 'SR', color: '#D6B47E', lastLogin: '14:32 Today',  status: 'active' },
                   { name: 'Maryam Al-Balushi', nameAr: 'مريم البلوشي',  role: 'Reception', initials: 'MB', color: '#4ADE80', lastLogin: '13:15 Today',  status: 'active' },
                   { name: 'Tariq Al-Amri',     nameAr: 'طارق العامري',  role: 'Viewer',    initials: 'TA', color: '#9CA3AF', lastLogin: '09:00 Today',  status: 'active' },
                   { name: 'Huda Al-Farsi',     nameAr: 'هدى الفارسية',  role: 'Reception', initials: 'HF', color: '#4ADE80', lastLogin: '2 days ago',   status: 'inactive' },
                 ].map(u => (
-                  <div key={u.initials} className="rounded-xl border border-gold-500/15 p-4" style={{ background: 'rgba(20,29,46,0.8)' }}>
+                  <div key={u.initials} className="rounded-xl border border-gold-500/15 p-4" style={{ background: 'rgba(10,37,64,0.8)' }}>
                     <div className="flex items-center gap-3 mb-3">
                       <div
                         className="w-11 h-11 rounded-full flex items-center justify-center font-bold text-sm border-2"
@@ -550,13 +550,13 @@ export default function HospitalityAppPage() {
                   { q: isAr ? 'كيف أوصل الماسح الضوئي؟' : 'How do I connect the scanner?', a: isAr ? 'وصّل ماسح Regula عبر USB. سيتم الكشف عنه تلقائياً. يمكن إعادة الإعداد من إعدادات النظام.' : 'Connect the Regula scanner via USB. It will be auto-detected. Re-setup is available in system settings.' },
                   { q: isAr ? 'كيف أرفع ملف أحداث؟' : 'How do I upload a batch file?', a: isAr ? 'انتقل إلى "رفع ملف الأحداث"، حمّل القالب، ثم ارفع ملف CSV أو Excel.' : 'Go to "Upload Events File", download the template, then upload your CSV or Excel file.' },
                 ].map((item, i) => (
-                  <div key={i} className="rounded-xl border border-gold-500/15 p-4" style={{ background: 'rgba(20,29,46,0.8)' }}>
+                  <div key={i} className="rounded-xl border border-gold-500/15 p-4" style={{ background: 'rgba(10,37,64,0.8)' }}>
                     <p className="text-white font-semibold text-sm mb-1.5">{item.q}</p>
                     <p className="text-gray-400 text-sm leading-relaxed">{item.a}</p>
                   </div>
                 ))}
               </div>
-              <div className="mt-5 rounded-xl border border-gold-500/20 p-4" style={{ background: 'rgba(181,142,60,0.04)' }}>
+              <div className="mt-5 rounded-xl border border-gold-500/20 p-4" style={{ background: 'rgba(184,138,60,0.04)' }}>
                 <p className="text-gold-400 font-semibold text-sm mb-2">{isAr ? 'الدعم الفني' : 'Technical Support'}</p>
                 <div className="space-y-1">
                   <p className="text-gray-400 text-xs"><i className="ri-mail-line mr-2 text-gold-500/60" />support@ameen.ameen.gov</p>

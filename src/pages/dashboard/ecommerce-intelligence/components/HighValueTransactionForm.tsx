@@ -76,7 +76,7 @@ const HighValueTransactionForm = ({ isAr, onCancel }: Props) => {
         isAr={isAr}
         eventType="High-Value Transaction"
         eventTypeAr="معاملة عالية القيمة"
-        color="#FB923C"
+        color="#C98A1B"
         icon="ri-money-dollar-circle-line"
         onReset={() => setSubmitted(false)}
       />
@@ -126,7 +126,7 @@ const HighValueTransactionForm = ({ isAr, onCancel }: Props) => {
       </SectionCard>
 
       {/* Transaction Details */}
-      <SectionCard title={isAr ? "تفاصيل المعاملة" : "Transaction Details"} icon="ri-money-dollar-circle-line" accentColor="#FB923C">
+      <SectionCard title={isAr ? "تفاصيل المعاملة" : "Transaction Details"} icon="ri-money-dollar-circle-line" accentColor="#C98A1B">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <FormField label={isAr ? "فئة العنصر" : "Item Category"} required>
             <SelectInput value={itemCategory} onChange={(e) => setItemCategory(e.target.value)} options={ITEM_CATEGORIES} placeholder={isAr ? "اختر الفئة" : "Select category"} />
@@ -177,7 +177,7 @@ const HighValueTransactionForm = ({ isAr, onCancel }: Props) => {
 
         {/* High-value indicator */}
         {isHighValue && (
-          <div className="mt-4 flex items-center gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(251,146,60,0.06)", borderColor: "rgba(251,146,60,0.25)" }}>
+          <div className="mt-4 flex items-center gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(201,138,27,0.06)", borderColor: "rgba(201,138,27,0.25)" }}>
             <i className="ri-alarm-warning-line text-orange-400" />
             <p className="text-orange-400 text-sm font-['Inter']">
               {isAr
@@ -238,7 +238,7 @@ const HighValueTransactionForm = ({ isAr, onCancel }: Props) => {
               placeholder={isAr ? "أي معلومات إضافية ذات صلة..." : "Any additional relevant information..."}
               className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none transition-all resize-none font-['Inter']"
               style={{ background: "#0F1923", border: "1px solid rgba(255,255,255,0.08)" }}
-              onFocus={(e) => { e.target.style.borderColor = "#D4A84B"; }}
+              onFocus={(e) => { e.target.style.borderColor = "#D6B47E"; }}
               onBlur={(e) => { e.target.style.borderColor = "rgba(255,255,255,0.08)"; }}
             />
             <p className="text-gray-600 text-xs mt-1 text-right font-['JetBrains_Mono']">{additionalNotes.length}/500</p>

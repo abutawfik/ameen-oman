@@ -8,7 +8,7 @@ const USERS = [
 ];
 
 const ROLE_COLORS: Record<string, string> = {
-  Admin: '#D4A84B', Reception: '#4ADE80', Viewer: '#9CA3AF',
+  Admin: '#D6B47E', Reception: '#4ADE80', Viewer: '#9CA3AF',
 };
 
 export default function HospitalityLoginPage() {
@@ -40,7 +40,7 @@ export default function HospitalityLoginPage() {
   return (
     <div
       className="min-h-screen flex overflow-hidden"
-      style={{ background: '#0B1220', fontFamily: "'Inter', sans-serif" }}
+      style={{ background: '#051428', fontFamily: "'Inter', sans-serif" }}
       dir={isAr ? 'rtl' : 'ltr'}
     >
       {/* Grid texture */}
@@ -48,8 +48,8 @@ export default function HospitalityLoginPage() {
         className="fixed inset-0 pointer-events-none z-0"
         style={{
           backgroundImage: `
-            linear-gradient(rgba(181,142,60,0.035) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(181,142,60,0.035) 1px, transparent 1px)
+            linear-gradient(rgba(184,138,60,0.035) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(184,138,60,0.035) 1px, transparent 1px)
           `,
           backgroundSize: '44px 44px',
         }}
@@ -58,12 +58,12 @@ export default function HospitalityLoginPage() {
       {/* Left panel — branding */}
       <div
         className="hidden lg:flex flex-col justify-between w-[420px] shrink-0 relative z-10 p-10 border-r border-gold-500/10"
-        style={{ background: 'rgba(20,29,46,0.6)' }}
+        style={{ background: 'rgba(10,37,64,0.6)' }}
       >
         {/* Top glow */}
         <div
           className="absolute top-0 left-0 right-0 h-1 pointer-events-none"
-          style={{ background: 'linear-gradient(90deg, transparent, #D4A84B, transparent)' }}
+          style={{ background: 'linear-gradient(90deg, transparent, #D6B47E, transparent)' }}
         />
 
         <div>
@@ -71,7 +71,7 @@ export default function HospitalityLoginPage() {
           <div className="flex items-center gap-4 mb-10">
             <div
               className="w-16 h-16 rounded-2xl flex items-center justify-center border-2 border-gold-500/30 shrink-0"
-              style={{ background: 'rgba(181,142,60,0.08)' }}
+              style={{ background: 'rgba(184,138,60,0.08)' }}
             >
               <i className="ri-shield-star-fill text-gold-400 text-3xl" />
             </div>
@@ -108,7 +108,7 @@ export default function HospitalityLoginPage() {
               <div key={f.icon} className="flex items-center gap-3">
                 <div
                   className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0"
-                  style={{ background: 'rgba(181,142,60,0.1)' }}
+                  style={{ background: 'rgba(184,138,60,0.1)' }}
                 >
                   <i className={`${f.icon} text-gold-400`} style={{ fontSize: 13 }} />
                 </div>
@@ -133,14 +133,14 @@ export default function HospitalityLoginPage() {
         {/* Radial glow */}
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ background: 'radial-gradient(ellipse 50% 60% at 60% 50%, rgba(181,142,60,0.05) 0%, transparent 70%)' }}
+          style={{ background: 'radial-gradient(ellipse 50% 60% at 60% 50%, rgba(184,138,60,0.05) 0%, transparent 70%)' }}
         />
 
         {/* Lang toggle */}
         <button
           onClick={() => setLang(l => l === 'en' ? 'ar' : 'en')}
           className="absolute top-5 right-5 px-3 py-1.5 rounded-lg border border-gold-500/25 text-gold-400 text-xs cursor-pointer hover:bg-gold-500/10 transition-colors whitespace-nowrap z-10"
-          style={{ background: 'rgba(20,29,46,0.8)' }}
+          style={{ background: 'rgba(10,37,64,0.8)' }}
         >
           {isAr ? 'English' : 'عربي'}
         </button>
@@ -150,7 +150,7 @@ export default function HospitalityLoginPage() {
           <div className="lg:hidden flex items-center gap-3 mb-8 justify-center">
             <div
               className="w-12 h-12 rounded-xl flex items-center justify-center border border-gold-500/30"
-              style={{ background: 'rgba(181,142,60,0.08)' }}
+              style={{ background: 'rgba(184,138,60,0.08)' }}
             >
               <i className="ri-shield-star-fill text-gold-400 text-xl" />
             </div>
@@ -164,15 +164,15 @@ export default function HospitalityLoginPage() {
           <div
             className="rounded-2xl border border-gold-500/20 p-8 relative"
             style={{
-              background: 'rgba(20,29,46,0.92)',
+              background: 'rgba(10,37,64,0.92)',
               backdropFilter: 'blur(20px)',
-              boxShadow: '0 0 60px rgba(181,142,60,0.07), 0 0 120px rgba(181,142,60,0.03)',
+              boxShadow: '0 0 60px rgba(184,138,60,0.07), 0 0 120px rgba(184,138,60,0.03)',
             }}
           >
             {/* Top accent line */}
             <div
               className="absolute top-0 left-8 right-8 h-0.5 rounded-full"
-              style={{ background: 'linear-gradient(90deg, transparent, #D4A84B, transparent)' }}
+              style={{ background: 'linear-gradient(90deg, transparent, #D6B47E, transparent)' }}
             />
 
             <div className="mb-6">
@@ -242,7 +242,7 @@ export default function HospitalityLoginPage() {
               {error && (
                 <div
                   className="flex items-center gap-2 px-3 py-2.5 rounded-xl text-xs"
-                  style={{ background: 'rgba(248,113,113,0.1)', color: '#F87171', border: '1px solid rgba(248,113,113,0.2)' }}
+                  style={{ background: 'rgba(201,74,94,0.1)', color: '#C94A5E', border: '1px solid rgba(201,74,94,0.2)' }}
                 >
                   <i className="ri-error-warning-line text-sm shrink-0" />
                   {error}
@@ -255,8 +255,8 @@ export default function HospitalityLoginPage() {
                 disabled={loading}
                 className="w-full py-3 rounded-xl font-semibold text-sm transition-all cursor-pointer whitespace-nowrap mt-1"
                 style={{
-                  background: loading ? 'rgba(181,142,60,0.5)' : '#D4A84B',
-                  color: '#0B1220',
+                  background: loading ? 'rgba(184,138,60,0.5)' : '#D6B47E',
+                  color: '#051428',
                 }}
               >
                 {loading ? (
@@ -276,7 +276,7 @@ export default function HospitalityLoginPage() {
             {/* Role selector hint */}
             <div
               className="mt-5 rounded-xl p-3 border border-gold-500/10"
-              style={{ background: 'rgba(181,142,60,0.03)' }}
+              style={{ background: 'rgba(184,138,60,0.03)' }}
             >
               <p className="text-gray-600 text-xs mb-2 uppercase tracking-wider">{isAr ? 'بيانات تجريبية' : 'Demo Credentials'}</p>
               <div className="space-y-1.5">
@@ -309,7 +309,7 @@ export default function HospitalityLoginPage() {
             {/* Bottom accent */}
             <div
               className="absolute bottom-0 left-8 right-8 h-0.5 rounded-full"
-              style={{ background: 'linear-gradient(90deg, transparent, rgba(181,142,60,0.3), transparent)' }}
+              style={{ background: 'linear-gradient(90deg, transparent, rgba(184,138,60,0.3), transparent)' }}
             />
           </div>
 

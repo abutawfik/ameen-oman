@@ -1,17 +1,17 @@
 import AmeenLogo, { AmeenShield } from "./AmeenLogo";
 
-const cyan = "#D4A84B";
+const cyan = "#D6B47E";
 
 // ── Login Screen Mockup ──────────────────────────────────────────────────────
 const LoginMockup = () => (
-  <div className="rounded-xl overflow-hidden" style={{ background: "#0B1220", border: "1px solid rgba(181,142,60,0.2)", aspectRatio: "16/10" }}>
+  <div className="rounded-xl overflow-hidden" style={{ background: "#051428", border: "1px solid rgba(184,138,60,0.2)", aspectRatio: "16/10" }}>
     <div className="h-full flex flex-col items-center justify-center p-6 relative">
-      <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: "linear-gradient(rgba(181,142,60,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,0.025) 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
+      <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: "linear-gradient(rgba(184,138,60,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.025) 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
       <div className="relative z-10 flex flex-col items-center gap-4 w-full max-w-xs">
         <AmeenLogo variant="full" size={56} />
         <div className="w-full space-y-2 mt-2">
-          <div className="h-8 rounded-lg" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(181,142,60,0.2)" }} />
-          <div className="h-8 rounded-lg" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(181,142,60,0.2)" }} />
+          <div className="h-8 rounded-lg" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(184,138,60,0.2)" }} />
+          <div className="h-8 rounded-lg" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(184,138,60,0.2)" }} />
           <div className="h-8 rounded-lg" style={{ background: cyan }} />
         </div>
         <p className="text-gray-700 text-xs font-['JetBrains_Mono']">CLASSIFIED — AUTHORIZED ACCESS ONLY</p>
@@ -25,7 +25,7 @@ const LetterheadMockup = () => (
   <div className="rounded-xl overflow-hidden" style={{ background: "#F8FAFC", border: "1px solid rgba(0,0,0,0.08)", aspectRatio: "16/10" }}>
     <div className="h-full flex flex-col">
       {/* Header bar */}
-      <div className="flex items-center justify-between px-6 py-3" style={{ background: "#0B1220", borderBottom: `3px solid ${cyan}` }}>
+      <div className="flex items-center justify-between px-6 py-3" style={{ background: "#051428", borderBottom: `3px solid ${cyan}` }}>
         <AmeenLogo variant="compact" size={40} />
         <div className="text-right">
           <p style={{ color: "#9CA3AF", fontSize: "9px", fontFamily: "'JetBrains_Mono', monospace" }}>ROYAL OMAN POLICE</p>
@@ -58,7 +58,7 @@ const EmailSignatureMockup = () => (
       <div className="flex items-center gap-4 pb-3 mb-3" style={{ borderBottom: `2px solid ${cyan}` }}>
         <AmeenShield size={40} light />
         <div>
-          <p style={{ color: "#0B1220", fontSize: "13px", fontWeight: 700, fontFamily: "'Inter', sans-serif" }}>Ahmed Al-Amri</p>
+          <p style={{ color: "#051428", fontSize: "13px", fontWeight: 700, fontFamily: "'Inter', sans-serif" }}>Ahmed Al-Amri</p>
           <p style={{ color: "#374151", fontSize: "10px", fontFamily: "'Inter', sans-serif" }}>Senior Intelligence Analyst</p>
           <p style={{ color: "#6B7280", fontSize: "10px", fontFamily: "'Inter', sans-serif" }}>National Police — Al-Ameen Platform</p>
         </div>
@@ -85,9 +85,9 @@ const EmailSignatureMockup = () => (
 
 // ── App Splash Screen ────────────────────────────────────────────────────────
 const SplashMockup = () => (
-  <div className="rounded-xl overflow-hidden" style={{ background: "#0B1220", border: "1px solid rgba(181,142,60,0.2)", aspectRatio: "9/16", maxHeight: "280px" }}>
+  <div className="rounded-xl overflow-hidden" style={{ background: "#051428", border: "1px solid rgba(184,138,60,0.2)", aspectRatio: "9/16", maxHeight: "280px" }}>
     <div className="h-full flex flex-col items-center justify-center gap-4 relative">
-      <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: "radial-gradient(ellipse at 50% 40%, rgba(181,142,60,0.08) 0%, transparent 60%)" }} />
+      <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: "radial-gradient(ellipse at 50% 40%, rgba(184,138,60,0.08) 0%, transparent 60%)" }} />
       <div className="relative z-10 flex flex-col items-center gap-3">
         <AmeenShield size={64} />
         <div className="text-center">
@@ -103,16 +103,16 @@ const SplashMockup = () => (
 
 // ── ID Badge Mockup ──────────────────────────────────────────────────────────
 const IDBadgeMockup = () => (
-  <div className="rounded-xl overflow-hidden" style={{ background: "#0B1220", border: "1px solid rgba(181,142,60,0.25)", aspectRatio: "5/8", maxHeight: "280px" }}>
+  <div className="rounded-xl overflow-hidden" style={{ background: "#051428", border: "1px solid rgba(184,138,60,0.25)", aspectRatio: "5/8", maxHeight: "280px" }}>
     <div className="h-full flex flex-col">
       {/* Top bar */}
-      <div className="px-3 py-2 flex items-center justify-between" style={{ background: "rgba(181,142,60,0.08)", borderBottom: `1px solid rgba(181,142,60,0.2)` }}>
+      <div className="px-3 py-2 flex items-center justify-between" style={{ background: "rgba(184,138,60,0.08)", borderBottom: `1px solid rgba(184,138,60,0.2)` }}>
         <AmeenShield size={22} />
         <p style={{ color: cyan, fontSize: "7px", fontFamily: "'JetBrains_Mono', monospace", letterSpacing: "0.1em" }}>Al-Ameen</p>
       </div>
       {/* Photo area */}
       <div className="flex-1 flex flex-col items-center justify-center gap-2 px-3 py-2">
-        <div className="rounded-lg" style={{ width: 48, height: 56, background: "rgba(181,142,60,0.08)", border: "1px solid rgba(181,142,60,0.2)" }} />
+        <div className="rounded-lg" style={{ width: 48, height: 56, background: "rgba(184,138,60,0.08)", border: "1px solid rgba(184,138,60,0.2)" }} />
         <div className="text-center">
           <p style={{ color: "#FFFFFF", fontSize: "9px", fontWeight: 700, fontFamily: "'Inter', sans-serif" }}>Ahmed Al-Amri</p>
           <p style={{ color: cyan, fontSize: "7px", fontFamily: "'Inter', sans-serif" }}>Senior Analyst</p>
@@ -121,13 +121,13 @@ const IDBadgeMockup = () => (
         {/* Barcode placeholder */}
         <div className="flex gap-0.5 mt-1">
           {Array.from({ length: 20 }).map((_, i) => (
-            <div key={i} style={{ width: 1.5, height: 12, background: i % 3 === 0 ? cyan : "rgba(181,142,60,0.3)" }} />
+            <div key={i} style={{ width: 1.5, height: 12, background: i % 3 === 0 ? cyan : "rgba(184,138,60,0.3)" }} />
           ))}
         </div>
       </div>
       {/* Bottom */}
-      <div className="px-3 py-1.5 text-center" style={{ background: "rgba(181,142,60,0.05)", borderTop: "1px solid rgba(181,142,60,0.1)" }}>
-        <p style={{ color: "#F87171", fontSize: "6px", fontFamily: "'JetBrains_Mono', monospace", letterSpacing: "0.05em" }}>CLASSIFIED — DO NOT DUPLICATE</p>
+      <div className="px-3 py-1.5 text-center" style={{ background: "rgba(184,138,60,0.05)", borderTop: "1px solid rgba(184,138,60,0.1)" }}>
+        <p style={{ color: "#C94A5E", fontSize: "6px", fontFamily: "'JetBrains_Mono', monospace", letterSpacing: "0.05em" }}>CLASSIFIED — DO NOT DUPLICATE</p>
       </div>
     </div>
   </div>
@@ -135,14 +135,14 @@ const IDBadgeMockup = () => (
 
 // ── Vehicle Decal Mockup ─────────────────────────────────────────────────────
 const VehicleDecalMockup = () => (
-  <div className="rounded-xl overflow-hidden flex items-center justify-center" style={{ background: "#0B1220", border: "1px solid rgba(181,142,60,0.2)", aspectRatio: "16/6" }}>
+  <div className="rounded-xl overflow-hidden flex items-center justify-center" style={{ background: "#051428", border: "1px solid rgba(184,138,60,0.2)", aspectRatio: "16/6" }}>
     <div className="flex items-center gap-6 px-8">
       <AmeenShield size={52} />
       <div>
         <p className="font-black tracking-widest uppercase" style={{ color: cyan, fontSize: "22px", fontFamily: "'Inter', sans-serif", letterSpacing: "0.25em" }}>Al-Ameen</p>
         <p style={{ color: "#9CA3AF", fontSize: "9px", fontFamily: "'Inter', sans-serif", letterSpacing: "0.15em" }}>ROYAL OMAN POLICE — INTELLIGENCE UNIT</p>
       </div>
-      <div style={{ width: 1, height: 40, background: "rgba(181,142,60,0.2)" }} />
+      <div style={{ width: 1, height: 40, background: "rgba(184,138,60,0.2)" }} />
       <p style={{ color: "#6B7280", fontSize: "11px", fontFamily: "'Noto Kufi Arabic', 'Arial', sans-serif" }}>الحارس الأمين للوطن</p>
     </div>
   </div>
@@ -150,11 +150,11 @@ const VehicleDecalMockup = () => (
 
 // ── Presentation Slide ───────────────────────────────────────────────────────
 const PresentationSlideMockup = () => (
-  <div className="rounded-xl overflow-hidden" style={{ background: "#0B1220", border: "1px solid rgba(181,142,60,0.2)", aspectRatio: "16/9" }}>
+  <div className="rounded-xl overflow-hidden" style={{ background: "#051428", border: "1px solid rgba(184,138,60,0.2)", aspectRatio: "16/9" }}>
     <div className="h-full flex flex-col relative">
-      <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: "linear-gradient(rgba(181,142,60,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,0.02) 1px, transparent 1px)", backgroundSize: "20px 20px" }} />
+      <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: "linear-gradient(rgba(184,138,60,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.02) 1px, transparent 1px)", backgroundSize: "20px 20px" }} />
       {/* Top bar */}
-      <div className="flex items-center justify-between px-6 py-3 relative z-10" style={{ borderBottom: "1px solid rgba(181,142,60,0.1)" }}>
+      <div className="flex items-center justify-between px-6 py-3 relative z-10" style={{ borderBottom: "1px solid rgba(184,138,60,0.1)" }}>
         <AmeenLogo variant="compact" size={36} />
         <p style={{ color: "#6B7280", fontSize: "9px", fontFamily: "'JetBrains_Mono', monospace" }}>CONFIDENTIAL — FOR OFFICIAL USE ONLY</p>
       </div>
@@ -167,16 +167,16 @@ const PresentationSlideMockup = () => (
         </div>
       </div>
       {/* Bottom bar */}
-      <div className="h-1" style={{ background: `linear-gradient(90deg, ${cyan}, rgba(181,142,60,0.2))` }} />
+      <div className="h-1" style={{ background: `linear-gradient(90deg, ${cyan}, rgba(184,138,60,0.2))` }} />
     </div>
   </div>
 );
 
 // ── Brand Guidelines Cover ───────────────────────────────────────────────────
 const GuidelinesCoverMockup = () => (
-  <div className="rounded-xl overflow-hidden" style={{ background: "#0B1220", border: "1px solid rgba(181,142,60,0.2)", aspectRatio: "3/4", maxHeight: "280px" }}>
+  <div className="rounded-xl overflow-hidden" style={{ background: "#051428", border: "1px solid rgba(184,138,60,0.2)", aspectRatio: "3/4", maxHeight: "280px" }}>
     <div className="h-full flex flex-col items-center justify-between p-5 relative">
-      <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: "radial-gradient(ellipse at 50% 60%, rgba(181,142,60,0.06) 0%, transparent 65%)" }} />
+      <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: "radial-gradient(ellipse at 50% 60%, rgba(184,138,60,0.06) 0%, transparent 65%)" }} />
       <div className="relative z-10 w-full flex justify-end">
         <p style={{ color: "#6B7280", fontSize: "8px", fontFamily: "'JetBrains_Mono', monospace" }}>2025 EDITION</p>
       </div>

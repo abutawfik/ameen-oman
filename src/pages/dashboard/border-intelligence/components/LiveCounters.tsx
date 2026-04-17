@@ -24,15 +24,15 @@ const LiveCounters = ({ isAr }: Props) => {
 
   const counters = [
     { label: isAr ? "الوصول اليوم" : "Arrivals Today", labelSub: isAr ? "دخول مسجّل" : "Registered entries", value: arrivals, icon: "ri-login-box-line", color: "#4ADE80", trend: "+12%", up: true },
-    { label: isAr ? "المغادرة اليوم" : "Departures Today", labelSub: isAr ? "خروج مسجّل" : "Registered exits", value: departures, icon: "ri-logout-box-line", color: "#D4A84B", trend: "+8%", up: true },
+    { label: isAr ? "المغادرة اليوم" : "Departures Today", labelSub: isAr ? "خروج مسجّل" : "Registered exits", value: departures, icon: "ri-logout-box-line", color: "#D6B47E", trend: "+8%", up: true },
     { label: isAr ? "تأشيرات صادرة" : "Visas Issued", labelSub: isAr ? "عبر بوابة eVisa" : "Via eVisa portal", value: visaIssued, icon: "ri-file-check-line", color: "#A78BFA", trend: "+5%", up: true },
-    { label: isAr ? "تجاوز الإقامة" : "Overstay Detected", labelSub: isAr ? "يتطلب إجراء" : "Requires action", value: overstay, icon: "ri-alarm-warning-line", color: "#F87171", trend: "+3", up: false },
+    { label: isAr ? "تجاوز الإقامة" : "Overstay Detected", labelSub: isAr ? "يتطلب إجراء" : "Requires action", value: overstay, icon: "ri-alarm-warning-line", color: "#C94A5E", trend: "+3", up: false },
   ];
 
   return (
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
       {counters.map((c) => (
-        <div key={c.label} className="relative rounded-2xl border p-5 overflow-hidden" style={{ background: "rgba(20,29,46,0.8)", borderColor: `${c.color}25`, backdropFilter: "blur(12px)" }}>
+        <div key={c.label} className="relative rounded-2xl border p-5 overflow-hidden" style={{ background: "rgba(10,37,64,0.8)", borderColor: `${c.color}25`, backdropFilter: "blur(12px)" }}>
           <div className="absolute inset-0 opacity-5" style={{ background: `radial-gradient(circle at top right, ${c.color}, transparent 70%)` }} />
           <div className="relative z-10">
             <div className="flex items-center justify-between mb-3">
@@ -40,7 +40,7 @@ const LiveCounters = ({ isAr }: Props) => {
                 <i className={`${c.icon} text-base`} style={{ color: c.color }} />
               </div>
               <div className={`flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-['JetBrains_Mono']`}
-                style={{ background: c.up ? "rgba(74,222,128,0.1)" : "rgba(248,113,113,0.1)", color: c.up ? "#4ADE80" : "#F87171" }}>
+                style={{ background: c.up ? "rgba(74,222,128,0.1)" : "rgba(201,74,94,0.1)", color: c.up ? "#4ADE80" : "#C94A5E" }}>
                 <i className={c.up ? "ri-arrow-up-line text-xs" : "ri-arrow-up-line text-xs"} />
                 {c.trend}
               </div>

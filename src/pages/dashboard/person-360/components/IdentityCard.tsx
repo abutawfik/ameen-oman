@@ -9,8 +9,8 @@ interface Props {
 const riskColors: Record<string, string> = {
   low: "#4ADE80",
   medium: "#FACC15",
-  high: "#FB923C",
-  critical: "#F87171",
+  high: "#C98A1B",
+  critical: "#C94A5E",
 };
 
 const statusConfig: Record<string, { label: string; labelAr: string; color: string; icon: string }> = {
@@ -71,7 +71,7 @@ const IdentityCard = ({ person, isAr }: Props) => {
     <div
       className="rounded-xl p-5 flex flex-col lg:flex-row gap-5"
       style={{
-        background: "rgba(20,29,46,0.8)",
+        background: "rgba(10,37,64,0.8)",
         border: `1px solid ${riskColor}30`,
         backdropFilter: "blur(12px)",
         boxShadow: `0 0 40px ${riskColor}08`,
@@ -89,7 +89,7 @@ const IdentityCard = ({ person, isAr }: Props) => {
           {/* Status dot */}
           <div
             className="absolute -bottom-2 -right-2 w-7 h-7 rounded-full flex items-center justify-center border-2"
-            style={{ background: status.color, borderColor: "#0B1220", boxShadow: `0 0 10px ${status.color}` }}
+            style={{ background: status.color, borderColor: "#051428", boxShadow: `0 0 10px ${status.color}` }}
           >
             <i className={`${status.icon} text-xs text-black`} />
           </div>
@@ -101,14 +101,14 @@ const IdentityCard = ({ person, isAr }: Props) => {
         </div>
         <div
           className="px-3 py-1 rounded-full text-xs font-['JetBrains_Mono'] font-bold"
-          style={{ background: "rgba(181,142,60,0.1)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.3)" }}
+          style={{ background: "rgba(184,138,60,0.1)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.3)" }}
         >
           {person.id}
         </div>
         {/* Classification */}
         <div
           className="px-2 py-0.5 rounded text-[9px] font-['JetBrains_Mono'] font-bold tracking-widest"
-          style={{ background: "rgba(248,113,113,0.1)", color: "#F87171", border: "1px solid rgba(248,113,113,0.2)" }}
+          style={{ background: "rgba(201,74,94,0.1)", color: "#C94A5E", border: "1px solid rgba(201,74,94,0.2)" }}
         >
           RESTRICTED
         </div>
@@ -145,8 +145,8 @@ const IdentityCard = ({ person, isAr }: Props) => {
         <div
           className="flex items-center gap-3 p-3 rounded-lg mb-3"
           style={{
-            background: visaExpirySoon ? "rgba(248,113,113,0.08)" : "rgba(181,142,60,0.05)",
-            border: `1px solid ${visaExpirySoon ? "rgba(248,113,113,0.3)" : "rgba(181,142,60,0.15)"}`,
+            background: visaExpirySoon ? "rgba(201,74,94,0.08)" : "rgba(184,138,60,0.05)",
+            border: `1px solid ${visaExpirySoon ? "rgba(201,74,94,0.3)" : "rgba(184,138,60,0.15)"}`,
           }}
         >
           <i className={`ri-visa-line text-sm ${visaExpirySoon ? "text-red-400" : "text-gold-400"}`} />
@@ -157,7 +157,7 @@ const IdentityCard = ({ person, isAr }: Props) => {
           {visaExpirySoon ? (
             <span
               className="text-xs font-bold font-['JetBrains_Mono'] px-2 py-0.5 rounded-full animate-pulse"
-              style={{ background: "rgba(248,113,113,0.2)", color: "#F87171" }}
+              style={{ background: "rgba(201,74,94,0.2)", color: "#C94A5E" }}
             >
               {daysToExpiry}d LEFT
             </span>
@@ -172,7 +172,7 @@ const IdentityCard = ({ person, isAr }: Props) => {
         </div>
 
         {/* Last Location */}
-        <div className="pt-3 border-t" style={{ borderColor: "rgba(181,142,60,0.1)" }}>
+        <div className="pt-3 border-t" style={{ borderColor: "rgba(184,138,60,0.1)" }}>
           <div className="flex items-center gap-2 mb-2">
             <i className="ri-map-pin-line text-gold-400 text-sm" />
             <span className="text-gray-400 text-xs uppercase tracking-wider font-['JetBrains_Mono']">
@@ -185,14 +185,14 @@ const IdentityCard = ({ person, isAr }: Props) => {
             <button
               onClick={() => setMapExpanded(!mapExpanded)}
               className="text-xs px-2.5 py-1 rounded cursor-pointer transition-colors font-['JetBrains_Mono'] flex items-center gap-1"
-              style={{ color: "#D4A84B", border: "1px solid rgba(181,142,60,0.3)", background: "rgba(181,142,60,0.05)" }}
+              style={{ color: "#D6B47E", border: "1px solid rgba(184,138,60,0.3)", background: "rgba(184,138,60,0.05)" }}
             >
               <i className={`${mapExpanded ? "ri-map-pin-2-line" : "ri-map-2-line"} text-xs`} />
               {mapExpanded ? (isAr ? "إخفاء" : "Hide Map") : (isAr ? "عرض الخريطة" : "View Map")}
             </button>
           </div>
           {mapExpanded && (
-            <div className="mt-3 rounded-lg overflow-hidden" style={{ height: "180px", border: "1px solid rgba(181,142,60,0.2)" }}>
+            <div className="mt-3 rounded-lg overflow-hidden" style={{ height: "180px", border: "1px solid rgba(184,138,60,0.2)" }}>
               <iframe
                 title="Last Known Location"
                 width="100%"
@@ -209,7 +209,7 @@ const IdentityCard = ({ person, isAr }: Props) => {
       {/* Risk Gauge + Stats */}
       <div
         className="flex flex-col items-center justify-start flex-shrink-0 lg:pl-5 lg:border-l gap-4"
-        style={{ borderColor: "rgba(181,142,60,0.1)" }}
+        style={{ borderColor: "rgba(184,138,60,0.1)" }}
       >
         <p className="text-gray-500 text-xs uppercase tracking-widest font-['JetBrains_Mono']">
           {isAr ? "درجة المخاطرة" : "Risk Score"}
@@ -218,8 +218,8 @@ const IdentityCard = ({ person, isAr }: Props) => {
 
         <div className="w-full space-y-2 mt-1">
           {[
-            { label: "Pattern Alerts",   labelAr: "تنبيهات الأنماط",  value: "8",           color: "#F87171" },
-            { label: "Active Streams",   labelAr: "التدفقات النشطة",  value: "12/15",       color: "#D4A84B" },
+            { label: "Pattern Alerts",   labelAr: "تنبيهات الأنماط",  value: "8",           color: "#C94A5E" },
+            { label: "Active Streams",   labelAr: "التدفقات النشطة",  value: "12/15",       color: "#D6B47E" },
             { label: "Days In-Country",  labelAr: "أيام داخل البلاد", value: `${daysInCountry}`, color: "#FACC15" },
             { label: "Connections",      labelAr: "الاتصالات",        value: "7",           color: "#A78BFA" },
           ].map((stat) => (
@@ -234,14 +234,14 @@ const IdentityCard = ({ person, isAr }: Props) => {
         <div className="w-full space-y-1.5 mt-1">
           <button
             className="w-full flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-['JetBrains_Mono'] cursor-pointer transition-all whitespace-nowrap"
-            style={{ background: "rgba(248,113,113,0.1)", color: "#F87171", border: "1px solid rgba(248,113,113,0.25)" }}
+            style={{ background: "rgba(201,74,94,0.1)", color: "#C94A5E", border: "1px solid rgba(201,74,94,0.25)" }}
           >
             <i className="ri-flag-line text-xs" />
             {isAr ? "تصعيد" : "Escalate"}
           </button>
           <button
             className="w-full flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-['JetBrains_Mono'] cursor-pointer transition-all whitespace-nowrap"
-            style={{ background: "rgba(181,142,60,0.08)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}
+            style={{ background: "rgba(184,138,60,0.08)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}
           >
             <i className="ri-team-line text-xs" />
             {isAr ? "نشر فريق ميداني" : "Deploy Field Team"}

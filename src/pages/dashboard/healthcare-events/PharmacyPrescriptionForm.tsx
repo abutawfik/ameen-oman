@@ -9,7 +9,7 @@ import HltConfirmation from "./components/HltConfirmation";
 const MED_CATEGORIES = [
   { value: "standard",   label: "Standard",   labelAr: "عادي",    color: "#4ADE80" },
   { value: "controlled", label: "Controlled", labelAr: "مضبوط",   color: "#FACC15" },
-  { value: "narcotic",   label: "Narcotic",   labelAr: "مخدر",    color: "#F87171" },
+  { value: "narcotic",   label: "Narcotic",   labelAr: "مخدر",    color: "#C94A5E" },
 ];
 
 const emptyPersonal = (): PersonalData => ({
@@ -67,7 +67,7 @@ const PharmacyPrescriptionForm = ({ isAr, onCancel }: Props) => {
   return (
     <div className="space-y-5">
       {isControlled && (
-        <div className="flex items-start gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(248,113,113,0.06)", borderColor: "rgba(248,113,113,0.25)" }}>
+        <div className="flex items-start gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(201,74,94,0.06)", borderColor: "rgba(201,74,94,0.25)" }}>
           <i className="ri-alert-line text-red-400 text-sm mt-0.5 flex-shrink-0" />
           <p className="text-red-400 text-sm font-['Inter']">
             {isAr ? "تنبيه: الأدوية المضبوطة والمخدرة تُبلَّغ تلقائياً إلى Al-Ameen وتتطلب موافقة إضافية." : "Alert: Controlled and narcotic medications are auto-reported to Al-Ameen and require additional approval."}
@@ -160,7 +160,7 @@ const PharmacyPrescriptionForm = ({ isAr, onCancel }: Props) => {
                 maxLength={500}
                 className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none transition-all duration-200 resize-none font-['Inter']"
                 style={{ background: "#0F1923", border: "1px solid rgba(255,255,255,0.08)" }}
-                onFocus={(e) => { e.target.style.borderColor = "#D4A84B"; e.target.style.boxShadow = "0 0 0 2px rgba(181,142,60,0.08)"; }}
+                onFocus={(e) => { e.target.style.borderColor = "#D6B47E"; e.target.style.boxShadow = "0 0 0 2px rgba(184,138,60,0.08)"; }}
                 onBlur={(e) => { e.target.style.borderColor = "rgba(255,255,255,0.08)"; e.target.style.boxShadow = "none"; }}
               />
             </FormField>

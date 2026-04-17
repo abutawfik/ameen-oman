@@ -89,15 +89,15 @@ const StepIntegration = ({ method, onSelect, apiData, onApiChange, isAr, entityT
           onClick={() => onSelect("portal")}
           className="flex flex-col items-start p-5 rounded-xl border text-left transition-all duration-200 cursor-pointer"
           style={{
-            background: method === "portal" ? "rgba(181,142,60,0.06)" : "rgba(20,29,46,0.7)",
-            borderColor: method === "portal" ? "rgba(181,142,60,0.5)" : "rgba(255,255,255,0.08)",
-            boxShadow: method === "portal" ? "0 0 24px rgba(181,142,60,0.08)" : "none",
+            background: method === "portal" ? "rgba(184,138,60,0.06)" : "rgba(10,37,64,0.7)",
+            borderColor: method === "portal" ? "rgba(184,138,60,0.5)" : "rgba(255,255,255,0.08)",
+            boxShadow: method === "portal" ? "0 0 24px rgba(184,138,60,0.08)" : "none",
           }}
         >
           <div className="flex items-center justify-between w-full mb-4">
             <div
               className="w-12 h-12 flex items-center justify-center rounded-xl"
-              style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.25)" }}
+              style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.25)" }}
             >
               <i className="ri-window-line text-gold-400 text-2xl" />
             </div>
@@ -122,9 +122,9 @@ const StepIntegration = ({ method, onSelect, apiData, onApiChange, isAr, entityT
           onClick={() => onSelect("api")}
           className="flex flex-col items-start p-5 rounded-xl border text-left transition-all duration-200 cursor-pointer relative"
           style={{
-            background: method === "api" ? "rgba(181,142,60,0.06)" : "rgba(20,29,46,0.7)",
-            borderColor: method === "api" ? "rgba(181,142,60,0.5)" : "rgba(255,255,255,0.08)",
-            boxShadow: method === "api" ? "0 0 24px rgba(181,142,60,0.08)" : "none",
+            background: method === "api" ? "rgba(184,138,60,0.06)" : "rgba(10,37,64,0.7)",
+            borderColor: method === "api" ? "rgba(184,138,60,0.5)" : "rgba(255,255,255,0.08)",
+            boxShadow: method === "api" ? "0 0 24px rgba(184,138,60,0.08)" : "none",
           }}
         >
           {isCore && (
@@ -138,7 +138,7 @@ const StepIntegration = ({ method, onSelect, apiData, onApiChange, isAr, entityT
           <div className="flex items-center justify-between w-full mb-4">
             <div
               className="w-12 h-12 flex items-center justify-center rounded-xl"
-              style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.25)" }}
+              style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.25)" }}
             >
               <i className="ri-code-s-slash-line text-gold-400 text-2xl" />
             </div>
@@ -163,7 +163,7 @@ const StepIntegration = ({ method, onSelect, apiData, onApiChange, isAr, entityT
       {method === "api" && (
         <div
           className="p-5 rounded-xl border space-y-5"
-          style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.15)" }}
+          style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.15)" }}
         >
           <p className="text-gray-400 text-xs font-semibold uppercase tracking-widest font-['JetBrains_Mono'] flex items-center gap-2">
             <i className="ri-settings-3-line text-gold-400" />
@@ -193,7 +193,7 @@ const StepIntegration = ({ method, onSelect, apiData, onApiChange, isAr, entityT
               <button
                 onClick={generateKey}
                 className="px-4 py-2 rounded-lg text-xs font-semibold cursor-pointer transition-colors font-['Inter'] whitespace-nowrap"
-                style={{ background: "rgba(181,142,60,0.12)", border: "1px solid rgba(181,142,60,0.3)", color: "#D4A84B" }}
+                style={{ background: "rgba(184,138,60,0.12)", border: "1px solid rgba(184,138,60,0.3)", color: "#D6B47E" }}
               >
                 {keyGenerated ? t.regenerate : t.generate}
               </button>
@@ -237,7 +237,7 @@ const StepIntegration = ({ method, onSelect, apiData, onApiChange, isAr, entityT
               placeholder={t.webhookPh}
               className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none font-['Inter']"
               style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}
-              onFocus={(e) => (e.target.style.borderColor = "rgba(181,142,60,0.5)")}
+              onFocus={(e) => (e.target.style.borderColor = "rgba(184,138,60,0.5)")}
               onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.08)")}
             />
           </div>
@@ -251,7 +251,7 @@ const StepIntegration = ({ method, onSelect, apiData, onApiChange, isAr, entityT
               placeholder={t.ipPh}
               className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none font-['Inter']"
               style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}
-              onFocus={(e) => (e.target.style.borderColor = "rgba(181,142,60,0.5)")}
+              onFocus={(e) => (e.target.style.borderColor = "rgba(184,138,60,0.5)")}
               onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.08)")}
             />
           </div>
@@ -263,7 +263,7 @@ const StepIntegration = ({ method, onSelect, apiData, onApiChange, isAr, entityT
               {[
                 { tier: "Standard", desc: "1,000 req/hr", color: "#4ADE80", note: isAr ? "للجهات الصغيرة" : "Small entities" },
                 { tier: "Enhanced", desc: "10,000 req/hr", color: "#FACC15", note: isAr ? "للجهات المتوسطة" : "Medium entities" },
-                { tier: "Enterprise", desc: isAr ? "غير محدود" : "Unlimited", color: "#D4A84B", note: isAr ? "للجهات الكبيرة" : "Large entities" },
+                { tier: "Enterprise", desc: isAr ? "غير محدود" : "Unlimited", color: "#D6B47E", note: isAr ? "للجهات الكبيرة" : "Large entities" },
               ].map((r) => (
                 <button
                   key={r.tier}
@@ -288,7 +288,7 @@ const StepIntegration = ({ method, onSelect, apiData, onApiChange, isAr, entityT
       {method === "portal" && (
         <div
           className="p-5 rounded-xl border"
-          style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)" }}
+          style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.12)" }}
         >
           <p className="text-gray-400 text-xs font-semibold uppercase tracking-widest mb-3 font-['JetBrains_Mono'] flex items-center gap-2">
             <i className="ri-information-line text-gold-400" />

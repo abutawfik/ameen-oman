@@ -8,14 +8,14 @@ interface Props {
 }
 
 const alertColors: Record<string, string> = {
-  critical: "#F87171",
-  high:     "#FB923C",
+  critical: "#C94A5E",
+  high:     "#C98A1B",
   medium:   "#FACC15",
 };
 
 const alertBg: Record<string, string> = {
-  critical: "rgba(248,113,113,0.07)",
-  high:     "rgba(251,146,60,0.07)",
+  critical: "rgba(201,74,94,0.07)",
+  high:     "rgba(201,138,27,0.07)",
   medium:   "rgba(250,204,21,0.07)",
 };
 
@@ -50,7 +50,7 @@ const MovementTimeline = ({ events, streamFilter, isAr }: Props) => {
   return (
     <div
       className="rounded-xl p-5"
-      style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.15)", backdropFilter: "blur(12px)" }}
+      style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.15)", backdropFilter: "blur(12px)" }}
     >
       {/* Header */}
       <div className="flex items-center justify-between mb-5 flex-wrap gap-3">
@@ -60,14 +60,14 @@ const MovementTimeline = ({ events, streamFilter, isAr }: Props) => {
           </h3>
           <span
             className="px-2 py-0.5 rounded-full text-xs font-['JetBrains_Mono'] font-bold"
-            style={{ background: "rgba(181,142,60,0.1)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}
+            style={{ background: "rgba(184,138,60,0.1)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}
           >
             {filtered.length} {isAr ? "حدث" : "events"}
           </span>
           {alertCount > 0 && (
             <span
               className="px-2 py-0.5 rounded-full text-xs font-['JetBrains_Mono'] font-bold"
-              style={{ background: "rgba(248,113,113,0.1)", color: "#F87171", border: "1px solid rgba(248,113,113,0.2)" }}
+              style={{ background: "rgba(201,74,94,0.1)", color: "#C94A5E", border: "1px solid rgba(201,74,94,0.2)" }}
             >
               {alertCount} {isAr ? "تنبيه" : "alerts"}
             </span>
@@ -75,7 +75,7 @@ const MovementTimeline = ({ events, streamFilter, isAr }: Props) => {
           {criticalCount > 0 && (
             <span
               className="px-2 py-0.5 rounded-full text-xs font-['JetBrains_Mono'] font-bold animate-pulse"
-              style={{ background: "rgba(248,113,113,0.15)", color: "#F87171", border: "1px solid rgba(248,113,113,0.4)" }}
+              style={{ background: "rgba(201,74,94,0.15)", color: "#C94A5E", border: "1px solid rgba(201,74,94,0.4)" }}
             >
               {criticalCount} CRITICAL
             </span>
@@ -85,9 +85,9 @@ const MovementTimeline = ({ events, streamFilter, isAr }: Props) => {
           onClick={() => setShowAlertsOnly(!showAlertsOnly)}
           className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-['JetBrains_Mono'] cursor-pointer transition-all whitespace-nowrap"
           style={{
-            background: showAlertsOnly ? "rgba(248,113,113,0.15)" : "rgba(255,255,255,0.03)",
-            color: showAlertsOnly ? "#F87171" : "#6B7280",
-            border: showAlertsOnly ? "1px solid rgba(248,113,113,0.3)" : "1px solid rgba(255,255,255,0.06)",
+            background: showAlertsOnly ? "rgba(201,74,94,0.15)" : "rgba(255,255,255,0.03)",
+            color: showAlertsOnly ? "#C94A5E" : "#6B7280",
+            border: showAlertsOnly ? "1px solid rgba(201,74,94,0.3)" : "1px solid rgba(255,255,255,0.06)",
           }}
         >
           <i className="ri-alert-line" />
@@ -100,7 +100,7 @@ const MovementTimeline = ({ events, streamFilter, isAr }: Props) => {
         {/* Vertical cyan line */}
         <div
           className="absolute left-6 top-3 bottom-3 w-0.5"
-          style={{ background: "linear-gradient(to bottom, rgba(181,142,60,0.8), rgba(181,142,60,0.1))" }}
+          style={{ background: "linear-gradient(to bottom, rgba(184,138,60,0.8), rgba(184,138,60,0.1))" }}
         />
 
         <div className="space-y-2">
@@ -194,7 +194,7 @@ const MovementTimeline = ({ events, streamFilter, isAr }: Props) => {
                         <div className="col-span-full flex gap-2 mt-2 pt-2 border-t" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
                           <button
                             className="px-3 py-1.5 rounded-lg text-xs font-['JetBrains_Mono'] cursor-pointer whitespace-nowrap"
-                            style={{ background: "#D4A84B", color: "#0B1220" }}
+                            style={{ background: "#D6B47E", color: "#051428" }}
                           >
                             <i className="ri-check-line mr-1" />Confirm Alert
                           </button>

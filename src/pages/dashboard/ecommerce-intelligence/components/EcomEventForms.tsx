@@ -32,7 +32,7 @@ const EVENT_TYPES: {
   {
     id: "highvalue",
     icon: "ri-money-dollar-circle-line",
-    color: "#FB923C",
+    color: "#C98A1B",
     label: "High-Value Transaction",
     labelAr: "معاملة عالية القيمة",
     desc: "Single purchase above configurable threshold by category",
@@ -41,13 +41,13 @@ const EVENT_TYPES: {
   {
     id: "restricted",
     icon: "ri-forbid-line",
-    color: "#F87171",
+    color: "#C94A5E",
     label: "Restricted Item Purchase",
     labelAr: "شراء عنصر مقيّد",
     desc: "Surveillance equipment, chemicals, drones, jammers",
     descAr: "معدات مراقبة، مواد كيميائية، طائرات مسيّرة، أجهزة تشويش",
     badge: "IMMEDIATE",
-    badgeColor: "#F87171",
+    badgeColor: "#C94A5E",
   },
   {
     id: "shipping",
@@ -61,7 +61,7 @@ const EVENT_TYPES: {
   {
     id: "pattern",
     icon: "ri-exchange-line",
-    color: "#D4A84B",
+    color: "#D6B47E",
     label: "Payment Pattern",
     labelAr: "نمط الدفع",
     desc: "Multiple cards, structuring, location mismatch, high velocity",
@@ -95,7 +95,7 @@ const EcomEventForms = ({ isAr }: Props) => {
       </div>
 
       {/* Data source note */}
-      <div className="flex items-start gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(181,142,60,0.04)", borderColor: "rgba(181,142,60,0.15)" }}>
+      <div className="flex items-start gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(184,138,60,0.04)", borderColor: "rgba(184,138,60,0.15)" }}>
         <i className="ri-information-line text-gold-400 mt-0.5" />
         <div>
           <p className="text-gold-400 text-sm font-semibold font-['Inter'] mb-0.5">
@@ -118,7 +118,7 @@ const EcomEventForms = ({ isAr }: Props) => {
             onClick={() => setSelectedType(evt.id)}
             className="relative rounded-2xl border p-6 text-left cursor-pointer transition-all overflow-hidden group"
             style={{
-              background: "rgba(20,29,46,0.8)",
+              background: "rgba(10,37,64,0.8)",
               borderColor: `${evt.color}25`,
               backdropFilter: "blur(12px)",
             }}
@@ -128,7 +128,7 @@ const EcomEventForms = ({ isAr }: Props) => {
             }}
             onMouseLeave={(e) => {
               (e.currentTarget as HTMLButtonElement).style.borderColor = `${evt.color}25`;
-              (e.currentTarget as HTMLButtonElement).style.background = "rgba(20,29,46,0.8)";
+              (e.currentTarget as HTMLButtonElement).style.background = "rgba(10,37,64,0.8)";
             }}
           >
             {/* Glow */}
@@ -179,9 +179,9 @@ const EcomEventForms = ({ isAr }: Props) => {
       </div>
 
       {/* Confirmation code format */}
-      <div className="rounded-2xl border p-5" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
+      <div className="rounded-2xl border p-5" style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}>
         <div className="flex items-center gap-3 mb-3">
-          <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+          <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.2)" }}>
             <i className="ri-qr-code-line text-gold-400 text-sm" />
           </div>
           <h3 className="text-white font-bold text-sm font-['Inter']">
@@ -190,8 +190,8 @@ const EcomEventForms = ({ isAr }: Props) => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {[
-            { code: "AMN-ECM-YYYYMMDD-XXXX", label: isAr ? "تنسيق الرمز القياسي" : "Standard code format", color: "#D4A84B" },
-            { code: "AMN-ECM-20260405-0247", label: isAr ? "مثال: شراء مقيّد" : "Example: Restricted purchase", color: "#F87171" },
+            { code: "AMN-ECM-YYYYMMDD-XXXX", label: isAr ? "تنسيق الرمز القياسي" : "Standard code format", color: "#D6B47E" },
+            { code: "AMN-ECM-20260405-0247", label: isAr ? "مثال: شراء مقيّد" : "Example: Restricted purchase", color: "#C94A5E" },
             { code: "AMN-ECM-20260405-0246", label: isAr ? "مثال: شراء بالجملة" : "Example: Bulk purchase", color: "#FACC15" },
           ].map((ex) => (
             <div key={ex.code} className="flex items-center gap-3 px-4 py-3 rounded-xl" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>

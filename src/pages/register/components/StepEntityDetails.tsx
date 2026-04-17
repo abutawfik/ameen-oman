@@ -20,10 +20,10 @@ interface Props {
 
 const inputBase = "w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none transition-all font-['Inter']";
 const inputStyle = { background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" };
-const selectStyle = { background: "rgba(20,29,46,0.95)", border: "1px solid rgba(255,255,255,0.08)" };
+const selectStyle = { background: "rgba(10,37,64,0.95)", border: "1px solid rgba(255,255,255,0.08)" };
 
 const onFocusCyan = (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-  e.target.style.borderColor = "rgba(181,142,60,0.5)";
+  e.target.style.borderColor = "rgba(184,138,60,0.5)";
 };
 const onBlurDefault = (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
   e.target.style.borderColor = "rgba(255,255,255,0.08)";
@@ -222,7 +222,7 @@ const StepEntityDetails = ({ entityType, data, onChange, isAr }: Props) => {
             {isChain && (
               <div
                 className="p-4 rounded-xl border"
-                style={{ background: "rgba(181,142,60,0.04)", borderColor: "rgba(181,142,60,0.2)" }}
+                style={{ background: "rgba(184,138,60,0.04)", borderColor: "rgba(184,138,60,0.2)" }}
               >
                 <div className="flex items-center gap-2 mb-3">
                   <i className="ri-building-4-line text-gold-400 text-sm" />

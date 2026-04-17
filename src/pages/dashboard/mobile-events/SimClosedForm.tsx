@@ -194,7 +194,7 @@ const SimClosedForm = ({ isAr, onCancel }: Props) => {
             {/* Closure warning */}
             <div
               className="flex items-start gap-3 px-4 py-3 rounded-xl border"
-              style={{ background: "rgba(248,113,113,0.05)", borderColor: "rgba(248,113,113,0.2)" }}
+              style={{ background: "rgba(201,74,94,0.05)", borderColor: "rgba(201,74,94,0.2)" }}
             >
               <i className="ri-error-warning-line text-red-400 text-sm mt-0.5 flex-shrink-0" />
               <p className="text-gray-400 text-xs font-['Inter']">

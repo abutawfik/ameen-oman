@@ -6,7 +6,7 @@ interface Props {
 }
 
 const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-const listColors = ['#F87171', '#FB923C', '#FACC15', '#FB923C', '#A78BFA', '#D4A84B'];
+const listColors = ['#C94A5E', '#C98A1B', '#FACC15', '#C98A1B', '#A78BFA', '#D6B47E'];
 
 const WatchlistAnalytics = ({ isAr }: Props) => {
   const [hoveredBar, setHoveredBar] = useState<string | null>(null);
@@ -17,10 +17,10 @@ const WatchlistAnalytics = ({ isAr }: Props) => {
   const maxResponseTime = Math.max(...responseTimeData.map(d => d.time));
 
   const kpis = [
-    { label: 'Total Hits This Week', labelAr: 'إجمالي التطابقات هذا الأسبوع', value: '646', delta: '+12%', up: true, color: '#D4A84B', icon: 'ri-alarm-warning-line' },
+    { label: 'Total Hits This Week', labelAr: 'إجمالي التطابقات هذا الأسبوع', value: '646', delta: '+12%', up: true, color: '#D6B47E', icon: 'ri-alarm-warning-line' },
     { label: 'Hit Rate', labelAr: 'معدل التطابق', value: `${watchlistStats.hitRate}%`, delta: '+2.1%', up: true, color: '#4ADE80', icon: 'ri-percent-line' },
     { label: 'Avg Response Time', labelAr: 'متوسط وقت الاستجابة', value: watchlistStats.avgResponseTime, delta: '-0.8m', up: true, color: '#FACC15', icon: 'ri-timer-line' },
-    { label: 'Near-Match Rate', labelAr: 'معدل التطابق القريب', value: '13.6%', delta: '+1.2%', up: false, color: '#FB923C', icon: 'ri-focus-3-line' },
+    { label: 'Near-Match Rate', labelAr: 'معدل التطابق القريب', value: '13.6%', delta: '+1.2%', up: false, color: '#C98A1B', icon: 'ri-focus-3-line' },
   ];
 
   return (
@@ -29,14 +29,14 @@ const WatchlistAnalytics = ({ isAr }: Props) => {
       <div className="grid grid-cols-4 gap-4">
         {kpis.map(k => (
           <div key={k.label} className="rounded-xl p-4"
-            style={{ background: 'rgba(20,29,46,0.8)', border: '1px solid rgba(181,142,60,0.12)' }}>
+            style={{ background: 'rgba(10,37,64,0.8)', border: '1px solid rgba(184,138,60,0.12)' }}>
             <div className="flex items-center justify-between mb-2">
               <div className="w-8 h-8 flex items-center justify-center rounded-lg"
                 style={{ background: `${k.color}18` }}>
                 <i className={`${k.icon} text-sm`} style={{ color: k.color }} />
               </div>
               <span className="text-xs font-['JetBrains_Mono'] px-2 py-0.5 rounded-full"
-                style={{ background: k.up ? 'rgba(74,222,128,0.1)' : 'rgba(248,113,113,0.1)', color: k.up ? '#4ADE80' : '#F87171' }}>
+                style={{ background: k.up ? 'rgba(74,222,128,0.1)' : 'rgba(201,74,94,0.1)', color: k.up ? '#4ADE80' : '#C94A5E' }}>
                 {k.delta}
               </span>
             </div>
@@ -49,7 +49,7 @@ const WatchlistAnalytics = ({ isAr }: Props) => {
       <div className="grid grid-cols-2 gap-5">
         {/* Hit Frequency by List */}
         <div className="rounded-xl p-4"
-          style={{ background: 'rgba(20,29,46,0.8)', border: '1px solid rgba(181,142,60,0.12)' }}>
+          style={{ background: 'rgba(10,37,64,0.8)', border: '1px solid rgba(184,138,60,0.12)' }}>
           <h3 className="text-white font-semibold font-['Inter'] text-sm mb-4">
             {isAr ? 'تكرار التطابقات حسب القائمة (7 أيام)' : 'Hit Frequency by Watchlist (7 Days)'}
           </h3>
@@ -89,7 +89,7 @@ const WatchlistAnalytics = ({ isAr }: Props) => {
 
         {/* Stream Hits */}
         <div className="rounded-xl p-4"
-          style={{ background: 'rgba(20,29,46,0.8)', border: '1px solid rgba(181,142,60,0.12)' }}>
+          style={{ background: 'rgba(10,37,64,0.8)', border: '1px solid rgba(184,138,60,0.12)' }}>
           <h3 className="text-white font-semibold font-['Inter'] text-sm mb-4">
             {isAr ? 'التطابقات حسب التدفق' : 'Hits by Data Stream'}
           </h3>
@@ -123,7 +123,7 @@ const WatchlistAnalytics = ({ isAr }: Props) => {
       <div className="grid grid-cols-2 gap-5">
         {/* Response Time Chart */}
         <div className="rounded-xl p-4"
-          style={{ background: 'rgba(20,29,46,0.8)', border: '1px solid rgba(181,142,60,0.12)' }}>
+          style={{ background: 'rgba(10,37,64,0.8)', border: '1px solid rgba(184,138,60,0.12)' }}>
           <h3 className="text-white font-semibold font-['Inter'] text-sm mb-4">
             {isAr ? 'متوسط وقت الاستجابة (دقائق)' : 'Avg Response Time (minutes)'}
           </h3>
@@ -134,7 +134,7 @@ const WatchlistAnalytics = ({ isAr }: Props) => {
                 <div className="w-full rounded-t-lg transition-all"
                   style={{
                     height: `${(d.time / maxResponseTime) * 100}%`,
-                    background: d.time > 5.5 ? '#F87171' : d.time > 4.5 ? '#FACC15' : '#4ADE80',
+                    background: d.time > 5.5 ? '#C94A5E' : d.time > 4.5 ? '#FACC15' : '#4ADE80',
                     opacity: 0.8,
                     minHeight: '8px',
                   }} />
@@ -142,11 +142,11 @@ const WatchlistAnalytics = ({ isAr }: Props) => {
               </div>
             ))}
           </div>
-          <div className="flex items-center gap-4 mt-3 pt-3 border-t" style={{ borderColor: 'rgba(181,142,60,0.08)' }}>
+          <div className="flex items-center gap-4 mt-3 pt-3 border-t" style={{ borderColor: 'rgba(184,138,60,0.08)' }}>
             {[
               { label: '< 4.5m (Good)', color: '#4ADE80' },
               { label: '4.5–5.5m (OK)', color: '#FACC15' },
-              { label: '> 5.5m (Slow)', color: '#F87171' },
+              { label: '> 5.5m (Slow)', color: '#C94A5E' },
             ].map(l => (
               <div key={l.label} className="flex items-center gap-1.5">
                 <div className="w-2 h-2 rounded-full" style={{ background: l.color }} />
@@ -158,7 +158,7 @@ const WatchlistAnalytics = ({ isAr }: Props) => {
 
         {/* Geographic Distribution */}
         <div className="rounded-xl p-4"
-          style={{ background: 'rgba(20,29,46,0.8)', border: '1px solid rgba(181,142,60,0.12)' }}>
+          style={{ background: 'rgba(10,37,64,0.8)', border: '1px solid rgba(184,138,60,0.12)' }}>
           <h3 className="text-white font-semibold font-['Inter'] text-sm mb-4">
             {isAr ? 'التوزيع الجغرافي للتطابقات' : 'Geographic Distribution of Hits'}
           </h3>
@@ -184,10 +184,10 @@ const WatchlistAnalytics = ({ isAr }: Props) => {
           </div>
 
           <div className="mt-4 pt-4 border-t grid grid-cols-2 gap-3"
-            style={{ borderColor: 'rgba(181,142,60,0.08)' }}>
+            style={{ borderColor: 'rgba(184,138,60,0.08)' }}>
             {[
-              { label: 'Most Active Target', labelAr: 'الهدف الأكثر نشاطاً', value: 'Omar F. Al-Zadjali', color: '#F87171' },
-              { label: 'Most Active List', labelAr: 'القائمة الأكثر نشاطاً', value: 'Employment Violation', color: '#FB923C' },
+              { label: 'Most Active Target', labelAr: 'الهدف الأكثر نشاطاً', value: 'Omar F. Al-Zadjali', color: '#C94A5E' },
+              { label: 'Most Active List', labelAr: 'القائمة الأكثر نشاطاً', value: 'Employment Violation', color: '#C98A1B' },
             ].map(s => (
               <div key={s.label} className="p-3 rounded-xl"
                 style={{ background: `${s.color}08`, border: `1px solid ${s.color}20` }}>

@@ -218,7 +218,7 @@ export const darkWebMentions: DarkWebMention[] = [
     id: "dw-001",
     platform: "Tor Forum — AlphaBay Mirror",
     platformIcon: "ri-ghost-line",
-    platformColor: "#F87171",
+    platformColor: "#C94A5E",
     content: "New shipment arriving via Muttrah Port next week. Contact via encrypted channel. Customs officer confirmed.",
     author: "shadow_trader_99",
     timestamp: "2025-04-05 23:41",
@@ -234,7 +234,7 @@ export const darkWebMentions: DarkWebMention[] = [
     id: "dw-002",
     platform: "Telegram — Encrypted Channel",
     platformIcon: "ri-telegram-line",
-    platformColor: "#FB923C",
+    platformColor: "#C98A1B",
     content: "تم الحصول على وثائق هوية عُمانية. السعر 500 دولار للمجموعة. التواصل عبر الرسائل المشفرة.",
     author: "doc_seller_gulf",
     timestamp: "2025-04-05 18:22",
@@ -250,7 +250,7 @@ export const darkWebMentions: DarkWebMention[] = [
     id: "dw-003",
     platform: "Dark Web Forum — RaidForums Mirror",
     platformIcon: "ri-skull-line",
-    platformColor: "#F87171",
+    platformColor: "#C94A5E",
     content: "Selling database dump: 50,000 Omani nationals PII. Includes passport numbers, addresses, phone numbers. BTC only.",
     author: "data_broker_x",
     timestamp: "2025-04-04 14:55",
@@ -372,12 +372,12 @@ export const threatActors: ThreatActor[] = [
 ];
 
 export const feedSources: ThreatFeedSource[] = [
-  { id: "fs-001", name: "Internal SIEM",         type: "internal",    status: "online",   lastSync: "2 min ago",  iocCount: 1247, reliability: 98, color: "#D4A84B", icon: "ri-server-line" },
+  { id: "fs-001", name: "Internal SIEM",         type: "internal",    status: "online",   lastSync: "2 min ago",  iocCount: 1247, reliability: 98, color: "#D6B47E", icon: "ri-server-line" },
   { id: "fs-002", name: "VirusTotal",             type: "commercial",  status: "online",   lastSync: "5 min ago",  iocCount: 8934, reliability: 94, color: "#4ADE80", icon: "ri-shield-check-line" },
   { id: "fs-003", name: "OSINT Aggregator",       type: "osint",       status: "online",   lastSync: "12 min ago", iocCount: 3421, reliability: 78, color: "#FACC15", icon: "ri-global-line" },
-  { id: "fs-004", name: "Dark Web Monitor",       type: "darkweb",     status: "online",   lastSync: "8 min ago",  iocCount: 567,  reliability: 71, color: "#F87171", icon: "ri-ghost-line" },
+  { id: "fs-004", name: "Dark Web Monitor",       type: "darkweb",     status: "online",   lastSync: "8 min ago",  iocCount: 567,  reliability: 71, color: "#C94A5E", icon: "ri-ghost-line" },
   { id: "fs-005", name: "Blockchain Analytics",   type: "commercial",  status: "online",   lastSync: "3 min ago",  iocCount: 2341, reliability: 91, color: "#A78BFA", icon: "ri-coin-line" },
-  { id: "fs-006", name: "GCC Intel Sharing",      type: "government",  status: "degraded", lastSync: "1 hr ago",   iocCount: 891,  reliability: 88, color: "#FB923C", icon: "ri-government-line" },
+  { id: "fs-006", name: "GCC Intel Sharing",      type: "government",  status: "degraded", lastSync: "1 hr ago",   iocCount: 891,  reliability: 88, color: "#C98A1B", icon: "ri-government-line" },
   { id: "fs-007", name: "Interpol I-24/7",        type: "government",  status: "online",   lastSync: "15 min ago", iocCount: 4123, reliability: 96, color: "#38BDF8", icon: "ri-shield-star-line" },
   { id: "fs-008", name: "Telegram Monitor",       type: "osint",       status: "online",   lastSync: "1 min ago",  iocCount: 234,  reliability: 65, color: "#F9A8D4", icon: "ri-telegram-line" },
 ];

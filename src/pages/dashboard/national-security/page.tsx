@@ -45,16 +45,16 @@ const NationalSecurityDashboard = () => {
 
   const TABS: { id: Tab; icon: string; label: string; labelAr: string; badge?: number; badgeColor?: string }[] = [
     { id: "overview",       icon: "ri-shield-star-line",   label: "Threat Overview",       labelAr: "نظرة عامة على التهديد" },
-    { id: "investigations", icon: "ri-search-eye-line",    label: "Investigations",         labelAr: "التحقيقات",            badge: openInvestigations, badgeColor: "#D4A84B" },
-    { id: "watchlist",      icon: "ri-eye-line",           label: "Watchlist Hits",         labelAr: "إصابات قائمة المراقبة", badge: confirmedHits,      badgeColor: "#F87171" },
+    { id: "investigations", icon: "ri-search-eye-line",    label: "Investigations",         labelAr: "التحقيقات",            badge: openInvestigations, badgeColor: "#D6B47E" },
+    { id: "watchlist",      icon: "ri-eye-line",           label: "Watchlist Hits",         labelAr: "إصابات قائمة المراقبة", badge: confirmedHits,      badgeColor: "#C94A5E" },
     { id: "correlations",   icon: "ri-git-merge-line",     label: "Cross-Stream Alerts",    labelAr: "تنبيهات متقاطعة",      badge: newCorrelations,    badgeColor: "#A78BFA" },
   ];
 
   return (
-    <div className="min-h-screen font-['Inter']" style={{ background: "#0B1220" }} dir={isAr ? "rtl" : "ltr"}>
+    <div className="min-h-screen font-['Inter']" style={{ background: "#051428" }} dir={isAr ? "rtl" : "ltr"}>
       {/* Grid texture */}
       <div className="fixed inset-0 pointer-events-none" style={{
-        backgroundImage: `linear-gradient(rgba(181,142,60,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,0.02) 1px, transparent 1px)`,
+        backgroundImage: `linear-gradient(rgba(184,138,60,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.02) 1px, transparent 1px)`,
         backgroundSize: "40px 40px",
       }} />
 
@@ -64,7 +64,7 @@ const NationalSecurityDashboard = () => {
 
       {/* CLASSIFICATION BANNER */}
       <div className="w-full py-1.5 px-6 flex items-center justify-between"
-        style={{ background: "#7F1D1D", borderBottom: "1px solid rgba(248,113,113,0.4)" }}>
+        style={{ background: "#7F1D1D", borderBottom: "1px solid rgba(201,74,94,0.4)" }}>
         <div className="flex items-center gap-3">
           <i className="ri-shield-keyhole-line text-red-300 text-sm" />
           <span className="text-white text-xs font-bold tracking-widest uppercase font-['JetBrains_Mono']">
@@ -80,7 +80,7 @@ const NationalSecurityDashboard = () => {
 
       {/* Header */}
       <header className="sticky top-0 z-40 flex items-center justify-between px-6 py-3 border-b"
-        style={{ background: "rgba(11,18,32,0.97)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
+        style={{ background: "rgba(5,20,40,0.97)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}>
         <div className="flex items-center gap-4">
           <button type="button" onClick={() => navigate("/dashboard")}
             className="flex items-center gap-2 px-3 py-1.5 rounded-lg border text-sm font-semibold cursor-pointer whitespace-nowrap transition-colors"
@@ -120,7 +120,7 @@ const NationalSecurityDashboard = () => {
 
           {/* Clock */}
           <div className="hidden lg:flex flex-col items-end px-3 py-1.5 rounded-lg border"
-            style={{ background: "rgba(181,142,60,0.04)", borderColor: "rgba(181,142,60,0.12)" }}>
+            style={{ background: "rgba(184,138,60,0.04)", borderColor: "rgba(184,138,60,0.12)" }}>
             <span className="text-gold-400 text-sm font-black font-['JetBrains_Mono']">{timeStr}</span>
             <span className="text-gray-600 text-xs font-['JetBrains_Mono']">{dateStr}</span>
           </div>
@@ -129,7 +129,7 @@ const NationalSecurityDashboard = () => {
           {criticalAlerts > 0 && (
             <button type="button" onClick={() => setActiveTab("correlations")}
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border cursor-pointer animate-pulse"
-              style={{ background: "rgba(248,113,113,0.08)", borderColor: "rgba(248,113,113,0.3)" }}>
+              style={{ background: "rgba(201,74,94,0.08)", borderColor: "rgba(201,74,94,0.3)" }}>
               <i className="ri-alarm-warning-line text-red-400 text-xs" />
               <span className="text-red-400 text-xs font-bold font-['JetBrains_Mono']">{criticalAlerts} CRITICAL</span>
             </button>
@@ -137,7 +137,7 @@ const NationalSecurityDashboard = () => {
 
           {/* Role */}
           <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border"
-            style={{ background: "rgba(248,113,113,0.08)", borderColor: "rgba(248,113,113,0.2)" }}>
+            style={{ background: "rgba(201,74,94,0.08)", borderColor: "rgba(201,74,94,0.2)" }}>
             <i className="ri-shield-star-line text-red-400 text-xs" />
             <span className="text-red-400 text-xs font-bold">{isAr ? "مسؤول أمن" : "SEC ADMIN"}</span>
           </div>
@@ -148,14 +148,14 @@ const NationalSecurityDashboard = () => {
 
       {/* Tab bar */}
       <div className="sticky top-[89px] z-30 flex items-center gap-1 px-6 py-2 border-b overflow-x-auto"
-        style={{ background: "rgba(11,18,32,0.95)", borderColor: "rgba(181,142,60,0.08)", backdropFilter: "blur(12px)" }}>
+        style={{ background: "rgba(5,20,40,0.95)", borderColor: "rgba(184,138,60,0.08)", backdropFilter: "blur(12px)" }}>
         {TABS.map((tab) => (
           <button key={tab.id} type="button" onClick={() => setActiveTab(tab.id)}
             className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap transition-all flex-shrink-0"
             style={{
-              background: activeTab === tab.id ? "rgba(181,142,60,0.12)" : "transparent",
-              border: `1px solid ${activeTab === tab.id ? "rgba(181,142,60,0.25)" : "transparent"}`,
-              color: activeTab === tab.id ? "#D4A84B" : "#6B7280",
+              background: activeTab === tab.id ? "rgba(184,138,60,0.12)" : "transparent",
+              border: `1px solid ${activeTab === tab.id ? "rgba(184,138,60,0.25)" : "transparent"}`,
+              color: activeTab === tab.id ? "#D6B47E" : "#6B7280",
             }}>
             <i className={`${tab.icon} text-xs`} />
             {isAr ? tab.labelAr : tab.label}
@@ -181,13 +181,13 @@ const NationalSecurityDashboard = () => {
               {[
                 { label: isAr ? "مستوى التهديد" : "Threat Level",       value: isAr ? cfg.labelAr : currentThreatLevel, color: cfg.color,   icon: "ri-shield-star-line",    mono: false },
                 { label: isAr ? "مؤشر التهديد" : "Threat Index",        value: `${threatScore}/100`,                    color: cfg.color,   icon: "ri-pulse-line",          mono: true  },
-                { label: isAr ? "تحقيقات نشطة" : "Active Investigations",value: openInvestigations,                     color: "#D4A84B",   icon: "ri-search-eye-line",     mono: false },
-                { label: isAr ? "إصابات مؤكدة" : "Confirmed Hits",      value: confirmedHits,                           color: "#F87171",   icon: "ri-eye-line",            mono: false },
+                { label: isAr ? "تحقيقات نشطة" : "Active Investigations",value: openInvestigations,                     color: "#D6B47E",   icon: "ri-search-eye-line",     mono: false },
+                { label: isAr ? "إصابات مؤكدة" : "Confirmed Hits",      value: confirmedHits,                           color: "#C94A5E",   icon: "ri-eye-line",            mono: false },
                 { label: isAr ? "ارتباطات جديدة" : "New Correlations",  value: newCorrelations,                         color: "#A78BFA",   icon: "ri-git-merge-line",      mono: false },
                 { label: isAr ? "أحداث اليوم" : "Events Today",         value: liveEvents.toLocaleString(),             color: "#4ADE80",   icon: "ri-database-line",       mono: true  },
               ].map((s, i) => (
                 <div key={i} className="relative rounded-2xl border p-4 overflow-hidden"
-                  style={{ background: "rgba(20,29,46,0.8)", borderColor: `${s.color}25`, backdropFilter: "blur(12px)" }}>
+                  style={{ background: "rgba(10,37,64,0.8)", borderColor: `${s.color}25`, backdropFilter: "blur(12px)" }}>
                   <div className="absolute inset-0 opacity-5"
                     style={{ background: `radial-gradient(circle at top right, ${s.color}, transparent 70%)` }} />
                   <div className="relative z-10">
@@ -219,7 +219,7 @@ const NationalSecurityDashboard = () => {
               <div className="lg:col-span-2 space-y-6">
                 {/* Cross-stream correlation preview */}
                 <div className="rounded-2xl border overflow-hidden"
-                  style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(167,139,250,0.15)", backdropFilter: "blur(12px)" }}>
+                  style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(167,139,250,0.15)", backdropFilter: "blur(12px)" }}>
                   <div className="flex items-center justify-between px-5 py-3 border-b" style={{ borderColor: "rgba(167,139,250,0.08)" }}>
                     <div className="flex items-center gap-3">
                       <div className="w-7 h-7 flex items-center justify-center rounded-lg"
@@ -234,9 +234,9 @@ const NationalSecurityDashboard = () => {
                       {isAr ? "عرض الكل" : "View All"} →
                     </button>
                   </div>
-                  <div className="divide-y" style={{ borderColor: "rgba(181,142,60,0.04)" }}>
+                  <div className="divide-y" style={{ borderColor: "rgba(184,138,60,0.04)" }}>
                     {correlationAlerts.slice(0, 3).map((alert) => {
-                      const sevColor = alert.severity === "critical" ? "#F87171" : alert.severity === "high" ? "#FB923C" : "#FACC15";
+                      const sevColor = alert.severity === "critical" ? "#C94A5E" : alert.severity === "high" ? "#C98A1B" : "#FACC15";
                       return (
                         <div key={alert.id} className="flex items-center gap-4 px-5 py-3 hover:bg-white/[0.02] transition-colors cursor-pointer"
                           onClick={() => setActiveTab("correlations")}>
@@ -267,22 +267,22 @@ const NationalSecurityDashboard = () => {
 
                 {/* Watchlist hit summary */}
                 <div className="rounded-2xl border overflow-hidden"
-                  style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(248,113,113,0.15)", backdropFilter: "blur(12px)" }}>
-                  <div className="flex items-center justify-between px-5 py-3 border-b" style={{ borderColor: "rgba(248,113,113,0.08)" }}>
+                  style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(201,74,94,0.15)", backdropFilter: "blur(12px)" }}>
+                  <div className="flex items-center justify-between px-5 py-3 border-b" style={{ borderColor: "rgba(201,74,94,0.08)" }}>
                     <div className="flex items-center gap-3">
                       <div className="w-7 h-7 flex items-center justify-center rounded-lg"
-                        style={{ background: "rgba(248,113,113,0.1)", border: "1px solid rgba(248,113,113,0.2)" }}>
+                        style={{ background: "rgba(201,74,94,0.1)", border: "1px solid rgba(201,74,94,0.2)" }}>
                         <i className="ri-eye-line text-red-400 text-xs" />
                       </div>
                       <span className="text-white font-bold text-sm">{isAr ? "أحدث إصابات قائمة المراقبة" : "Latest Watchlist Hits"}</span>
                     </div>
                     <button type="button" onClick={() => setActiveTab("watchlist")}
                       className="text-xs font-semibold cursor-pointer whitespace-nowrap"
-                      style={{ color: "#F87171" }}>
+                      style={{ color: "#C94A5E" }}>
                       {isAr ? "عرض الكل" : "View All"} →
                     </button>
                   </div>
-                  <div className="divide-y" style={{ borderColor: "rgba(181,142,60,0.04)" }}>
+                  <div className="divide-y" style={{ borderColor: "rgba(184,138,60,0.04)" }}>
                     {watchlistHits.filter((h) => h.status === "confirmed").slice(0, 4).map((hit) => (
                       <div key={hit.id} className="flex items-center gap-3 px-5 py-3 hover:bg-white/[0.02] transition-colors cursor-pointer"
                         onClick={() => setActiveTab("watchlist")}>
@@ -311,10 +311,10 @@ const NationalSecurityDashboard = () => {
 
                 {/* Stream threat matrix */}
                 <div className="rounded-2xl border overflow-hidden"
-                  style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
-                  <div className="flex items-center gap-3 px-5 py-3 border-b" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
+                  style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}>
+                  <div className="flex items-center gap-3 px-5 py-3 border-b" style={{ borderColor: "rgba(184,138,60,0.08)" }}>
                     <div className="w-7 h-7 flex items-center justify-center rounded-lg"
-                      style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+                      style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.2)" }}>
                       <i className="ri-grid-line text-gold-400 text-xs" />
                     </div>
                     <span className="text-white font-bold text-sm">{isAr ? "مصفوفة التهديد — 16 مصدر" : "Threat Matrix — 16 Streams"}</span>
@@ -322,10 +322,10 @@ const NationalSecurityDashboard = () => {
                   <div className="p-5">
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
                       {streamThreatScores.map((s) => {
-                        const scoreColor = s.score >= 70 ? "#F87171" : s.score >= 50 ? "#FB923C" : s.score >= 30 ? "#FACC15" : "#4ADE80";
+                        const scoreColor = s.score >= 70 ? "#C94A5E" : s.score >= 50 ? "#C98A1B" : s.score >= 30 ? "#FACC15" : "#4ADE80";
                         return (
                           <div key={s.stream} className="p-3 rounded-xl cursor-pointer hover:bg-white/[0.03] transition-colors"
-                            style={{ background: "rgba(11,18,32,0.6)", border: `1px solid ${scoreColor}15` }}>
+                            style={{ background: "rgba(5,20,40,0.6)", border: `1px solid ${scoreColor}15` }}>
                             <div className="flex items-center justify-between mb-2">
                               <div className="w-6 h-6 flex items-center justify-center rounded-md"
                                 style={{ background: `${s.color}12`, border: `1px solid ${s.color}20` }}>

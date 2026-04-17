@@ -4,9 +4,9 @@ import { topRules, alertQueue, type TopRule } from '@/mocks/predictiveAnalyticsD
 type SortKey = 'count7d' | 'count30d' | 'truePositiveRate';
 
 const categoryColors: Record<string, string> = {
-  Arrival:       '#D4A84B',
+  Arrival:       '#D6B47E',
   Financial:     '#4ADE80',
-  Identity:      '#F87171',
+  Identity:      '#C94A5E',
   Accommodation: '#FACC15',
   Employment:    '#F9A8D4',
   Maritime:      '#60A5FA',
@@ -30,7 +30,7 @@ export default function TopRulesTable() {
   const tpColor = (rate: number) => {
     if (rate >= 85) return '#4ADE80';
     if (rate >= 70) return '#FACC15';
-    return '#FB923C';
+    return '#C98A1B';
   };
 
   const getExampleCases = (ruleId: string) =>
@@ -39,7 +39,7 @@ export default function TopRulesTable() {
   return (
     <div
       className="rounded-xl border border-gold-500/20 p-5"
-      style={{ background: 'rgba(20,29,46,0.8)' }}
+      style={{ background: 'rgba(10,37,64,0.8)' }}
     >
       <div className="flex items-center justify-between mb-4">
         <div>
@@ -53,9 +53,9 @@ export default function TopRulesTable() {
               onClick={() => setSortKey(key)}
               className="px-2.5 py-1 rounded-md border transition-all cursor-pointer whitespace-nowrap"
               style={{
-                borderColor: sortKey === key ? '#D4A84B' : 'rgba(181,142,60,0.2)',
-                background: sortKey === key ? 'rgba(181,142,60,0.15)' : 'transparent',
-                color: sortKey === key ? '#D4A84B' : '#9CA3AF',
+                borderColor: sortKey === key ? '#D6B47E' : 'rgba(184,138,60,0.2)',
+                background: sortKey === key ? 'rgba(184,138,60,0.15)' : 'transparent',
+                color: sortKey === key ? '#D6B47E' : '#9CA3AF',
               }}
             >
               {key === 'count7d' ? '7d Triggers' : key === 'count30d' ? '30d Triggers' : 'TP Rate'}
@@ -84,7 +84,7 @@ export default function TopRulesTable() {
               <tr
                 key={rule.id}
                 className="border-b border-gold-500/5 hover:bg-gold-500/5 cursor-pointer transition-colors"
-                style={{ background: selectedRule?.id === rule.id ? 'rgba(181,142,60,0.06)' : 'transparent' }}
+                style={{ background: selectedRule?.id === rule.id ? 'rgba(184,138,60,0.06)' : 'transparent' }}
                 onClick={() => setSelectedRule(selectedRule?.id === rule.id ? null : rule)}
               >
                 <td className="py-2.5 pr-3">
@@ -115,7 +115,7 @@ export default function TopRulesTable() {
                       <div
                         key={s}
                         className="w-4 h-4 flex items-center justify-center rounded"
-                        style={{ background: 'rgba(181,142,60,0.1)' }}
+                        style={{ background: 'rgba(184,138,60,0.1)' }}
                         title={s}
                       >
                         <i className={`${streamIcons[s] || 'ri-database-line'} text-gold-400`} style={{ fontSize: 8 }} />
@@ -162,7 +162,7 @@ export default function TopRulesTable() {
       {selectedRule && (
         <div
           className="mt-4 rounded-xl border border-gold-500/20 p-4"
-          style={{ background: 'rgba(181,142,60,0.03)' }}
+          style={{ background: 'rgba(184,138,60,0.03)' }}
         >
           <div className="flex items-start justify-between mb-3">
             <div>
@@ -180,14 +180,14 @@ export default function TopRulesTable() {
               <p className="text-gray-500 text-xs uppercase tracking-wider">Rule Performance</p>
               <div className="grid grid-cols-3 gap-2">
                 {[
-                  { label: '7d Triggers', value: selectedRule.count7d, color: '#D4A84B' },
+                  { label: '7d Triggers', value: selectedRule.count7d, color: '#D6B47E' },
                   { label: '30d Triggers', value: selectedRule.count30d, color: '#9CA3AF' },
                   { label: 'True Positive', value: `${selectedRule.truePositiveRate}%`, color: tpColor(selectedRule.truePositiveRate) },
                 ].map(s => (
                   <div
                     key={s.label}
                     className="rounded-lg p-2.5 border border-gold-500/10 text-center"
-                    style={{ background: 'rgba(20,29,46,0.6)' }}
+                    style={{ background: 'rgba(10,37,64,0.6)' }}
                   >
                     <p className="font-mono font-bold text-sm" style={{ color: s.color }}>{s.value}</p>
                     <p className="text-gray-500 text-xs mt-0.5">{s.label}</p>
@@ -201,7 +201,7 @@ export default function TopRulesTable() {
                     <span
                       key={s}
                       className="flex items-center gap-1 px-2 py-0.5 rounded-full border border-gold-500/20 text-gold-400"
-                      style={{ background: 'rgba(181,142,60,0.08)', fontSize: 10 }}
+                      style={{ background: 'rgba(184,138,60,0.08)', fontSize: 10 }}
                     >
                       <i className={`${streamIcons[s] || 'ri-database-line'}`} style={{ fontSize: 9 }} />
                       {s}
@@ -220,7 +220,7 @@ export default function TopRulesTable() {
                     <div
                       key={c.id}
                       className="rounded-lg border border-gold-500/15 p-2.5 flex items-center gap-3"
-                      style={{ background: 'rgba(20,29,46,0.6)' }}
+                      style={{ background: 'rgba(10,37,64,0.6)' }}
                     >
                       <div
                         className="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold shrink-0"
@@ -234,7 +234,7 @@ export default function TopRulesTable() {
                       </div>
                       <span
                         className="font-mono font-bold text-sm shrink-0"
-                        style={{ color: c.score >= 80 ? '#F87171' : c.score >= 60 ? '#FB923C' : '#FACC15' }}
+                        style={{ color: c.score >= 80 ? '#C94A5E' : c.score >= 60 ? '#C98A1B' : '#FACC15' }}
                       >
                         {c.score}
                       </span>
@@ -244,14 +244,14 @@ export default function TopRulesTable() {
               ) : (
                 <div className="space-y-2">
                   {[
-                    { name: 'Tariq Al-Mansouri', doc: 'PK-8823401', score: 87, initials: 'TM', color: '#D4A84B' },
+                    { name: 'Tariq Al-Mansouri', doc: 'PK-8823401', score: 87, initials: 'TM', color: '#D6B47E' },
                     { name: 'Ravi Krishnamurthy', doc: 'IN-7823401', score: 93, initials: 'RK', color: '#4ADE80' },
-                    { name: 'Chen Wei', doc: 'CN-3345891', score: 74, initials: 'CW', color: '#FB923C' },
+                    { name: 'Chen Wei', doc: 'CN-3345891', score: 74, initials: 'CW', color: '#C98A1B' },
                   ].map(c => (
                     <div
                       key={c.doc}
                       className="rounded-lg border border-gold-500/15 p-2.5 flex items-center gap-3"
-                      style={{ background: 'rgba(20,29,46,0.6)' }}
+                      style={{ background: 'rgba(10,37,64,0.6)' }}
                     >
                       <div
                         className="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold shrink-0"
@@ -265,7 +265,7 @@ export default function TopRulesTable() {
                       </div>
                       <span
                         className="font-mono font-bold text-sm shrink-0"
-                        style={{ color: c.score >= 80 ? '#F87171' : '#FB923C' }}
+                        style={{ color: c.score >= 80 ? '#C94A5E' : '#C98A1B' }}
                       >
                         {c.score}
                       </span>

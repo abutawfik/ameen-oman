@@ -29,7 +29,7 @@ const INITIAL_TRIPS: TripRecord[] = [
 ];
 
 const typeIcon = (t: TripRecord["type"]) => t === "bus" ? "ri-bus-line" : t === "taxi" ? "ri-taxi-line" : "ri-car-line";
-const typeColor = (t: TripRecord["type"]) => t === "bus" ? "#D4A84B" : t === "taxi" ? "#4ADE80" : "#A78BFA";
+const typeColor = (t: TripRecord["type"]) => t === "bus" ? "#D6B47E" : t === "taxi" ? "#4ADE80" : "#A78BFA";
 const matchIcon = (m: TripRecord["matchMethod"]) => {
   if (m === "transit-card") return "ri-bank-card-line";
   if (m === "phone") return "ri-smartphone-line";
@@ -74,10 +74,10 @@ const RecentTripsFeed = ({ isAr }: Props) => {
   });
 
   return (
-    <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.15)", backdropFilter: "blur(12px)" }}>
-      <div className="flex items-center justify-between px-6 py-4 border-b flex-wrap gap-3" style={{ borderColor: "rgba(181,142,60,0.1)" }}>
+    <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.15)", backdropFilter: "blur(12px)" }}>
+      <div className="flex items-center justify-between px-6 py-4 border-b flex-wrap gap-3" style={{ borderColor: "rgba(184,138,60,0.1)" }}>
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+          <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.2)" }}>
             <i className="ri-pulse-line text-gold-400 text-sm" />
           </div>
           <div>
@@ -90,9 +90,9 @@ const RecentTripsFeed = ({ isAr }: Props) => {
             <button key={f} type="button" onClick={() => setFilter(f)}
               className="px-3 py-1 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap transition-all"
               style={{
-                background: filter === f ? (f === "flagged" ? "rgba(248,113,113,0.15)" : "rgba(181,142,60,0.15)") : "rgba(255,255,255,0.04)",
-                border: `1px solid ${filter === f ? (f === "flagged" ? "rgba(248,113,113,0.4)" : "rgba(181,142,60,0.4)") : "rgba(255,255,255,0.08)"}`,
-                color: filter === f ? (f === "flagged" ? "#F87171" : "#D4A84B") : "#6B7280",
+                background: filter === f ? (f === "flagged" ? "rgba(201,74,94,0.15)" : "rgba(184,138,60,0.15)") : "rgba(255,255,255,0.04)",
+                border: `1px solid ${filter === f ? (f === "flagged" ? "rgba(201,74,94,0.4)" : "rgba(184,138,60,0.4)") : "rgba(255,255,255,0.08)"}`,
+                color: filter === f ? (f === "flagged" ? "#C94A5E" : "#D6B47E") : "#6B7280",
               }}>
               {f === "all" ? (isAr ? "الكل" : "All") : f === "bus" ? (isAr ? "حافلة" : "Bus") : f === "taxi" ? (isAr ? "تاكسي" : "Taxi") : f === "ride-hail" ? (isAr ? "توصيل" : "Ride-Hail") : (isAr ? "مُبلَّغ" : "Flagged")}
             </button>
@@ -104,12 +104,12 @@ const RecentTripsFeed = ({ isAr }: Props) => {
         </div>
       </div>
 
-      <div className="divide-y overflow-y-auto" style={{ borderColor: "rgba(181,142,60,0.06)", maxHeight: "420px" }}>
+      <div className="divide-y overflow-y-auto" style={{ borderColor: "rgba(184,138,60,0.06)", maxHeight: "420px" }}>
         {filtered.map((trip) => {
           const color = typeColor(trip.type);
           return (
             <div key={trip.id} className="flex items-center gap-4 px-6 py-3 hover:bg-white/[0.02] transition-colors"
-              style={{ borderLeft: trip.flagged ? "3px solid #F87171" : "3px solid transparent" }}>
+              style={{ borderLeft: trip.flagged ? "3px solid #C94A5E" : "3px solid transparent" }}>
               <div className="w-8 h-8 flex items-center justify-center rounded-lg flex-shrink-0" style={{ background: `${color}12`, border: `1px solid ${color}20` }}>
                 <i className={`${typeIcon(trip.type)} text-sm`} style={{ color }} />
               </div>

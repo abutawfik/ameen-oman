@@ -17,20 +17,20 @@ const TIME_SERIES = [
 ];
 
 const DONUT_DATA = [
-  { label: "Hotel Events",       labelAr: "أحداث الفنادق",    pct: 22, color: "#D4A84B" },
+  { label: "Hotel Events",       labelAr: "أحداث الفنادق",    pct: 22, color: "#D6B47E" },
   { label: "Mobile Operators",   labelAr: "مشغلو الاتصالات",  pct: 19, color: "#4ADE80" },
   { label: "Financial Services", labelAr: "الخدمات المالية",  pct: 16, color: "#FACC15" },
   { label: "Border Intelligence",labelAr: "استخبارات الحدود", pct: 11, color: "#60A5FA" },
-  { label: "Car Rental",         labelAr: "تأجير السيارات",   pct: 9,  color: "#FB923C" },
+  { label: "Car Rental",         labelAr: "تأجير السيارات",   pct: 9,  color: "#C98A1B" },
   { label: "Employment",         labelAr: "التوظيف",           pct: 8,  color: "#F9A8D4" },
   { label: "Other Modules",      labelAr: "وحدات أخرى",       pct: 15, color: "#A78BFA" },
 ];
 
 const NATIONALITIES = [
-  { nat: "Omani",      natAr: "عُماني",    count: 18420, pct: 38, color: "#D4A84B" },
+  { nat: "Omani",      natAr: "عُماني",    count: 18420, pct: 38, color: "#D6B47E" },
   { nat: "Indian",     natAr: "هندي",      count: 9840,  pct: 20, color: "#4ADE80" },
   { nat: "Pakistani",  natAr: "باكستاني",  count: 5820,  pct: 12, color: "#FACC15" },
-  { nat: "Bangladeshi",natAr: "بنغلاديشي", count: 3890,  pct: 8,  color: "#FB923C" },
+  { nat: "Bangladeshi",natAr: "بنغلاديشي", count: 3890,  pct: 8,  color: "#C98A1B" },
   { nat: "British",    natAr: "بريطاني",   count: 2940,  pct: 6,  color: "#A78BFA" },
   { nat: "Filipino",   natAr: "فلبيني",    count: 2450,  pct: 5,  color: "#F9A8D4" },
   { nat: "Other",      natAr: "أخرى",      count: 4931,  pct: 11, color: "#6B7280" },
@@ -47,11 +47,11 @@ const HEATMAP: number[][] = Array.from({ length: 7 }, (_, d) =>
 );
 
 const heatColor = (val: number) => {
-  if (val < 20) return "rgba(181,142,60,0.05)";
-  if (val < 40) return "rgba(181,142,60,0.15)";
-  if (val < 60) return "rgba(181,142,60,0.35)";
-  if (val < 80) return "rgba(181,142,60,0.6)";
-  return "rgba(181,142,60,0.9)";
+  if (val < 20) return "rgba(184,138,60,0.05)";
+  if (val < 40) return "rgba(184,138,60,0.15)";
+  if (val < 60) return "rgba(184,138,60,0.35)";
+  if (val < 80) return "rgba(184,138,60,0.6)";
+  return "rgba(184,138,60,0.9)";
 };
 
 const ReportCharts = ({ isAr }: Props) => {
@@ -63,16 +63,16 @@ const ReportCharts = ({ isAr }: Props) => {
     <div className="space-y-6">
       {/* Events Over Time */}
       <div className="rounded-2xl border p-6"
-        style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
+        style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}>
         <div className="flex items-center gap-3 mb-5">
           <div className="w-8 h-8 flex items-center justify-center rounded-lg"
-            style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+            style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.2)" }}>
             <i className="ri-line-chart-line text-gold-400 text-sm" />
           </div>
           <h3 className="text-white font-bold text-sm">{isAr ? "الأحداث عبر الزمن" : "Events Over Time"}</h3>
           <div className="ml-auto flex flex-wrap gap-3">
             {[
-              { label: "Hotel", labelAr: "فنادق", color: "#D4A84B" },
+              { label: "Hotel", labelAr: "فنادق", color: "#D6B47E" },
               { label: "Mobile", labelAr: "اتصالات", color: "#4ADE80" },
               { label: "Financial", labelAr: "مالية", color: "#FACC15" },
               { label: "Border", labelAr: "حدود", color: "#60A5FA" },
@@ -93,7 +93,7 @@ const ReportCharts = ({ isAr }: Props) => {
               <div key={d.day} className="flex-1 flex flex-col items-center gap-1">
                 <div className="w-full flex flex-col-reverse rounded-t-sm overflow-hidden" style={{ height: `${scale(total)}%` }}>
                   {[
-                    { val: d.hotel, color: "#D4A84B" },
+                    { val: d.hotel, color: "#D6B47E" },
                     { val: d.mobile, color: "#4ADE80" },
                     { val: d.financial, color: "#FACC15" },
                     { val: d.border, color: "#60A5FA" },
@@ -113,10 +113,10 @@ const ReportCharts = ({ isAr }: Props) => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Event Type Distribution */}
         <div className="rounded-2xl border p-6"
-          style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
+          style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}>
           <div className="flex items-center gap-3 mb-5">
             <div className="w-8 h-8 flex items-center justify-center rounded-lg"
-              style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+              style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.2)" }}>
               <i className="ri-donut-chart-line text-gold-400 text-sm" />
             </div>
             <h3 className="text-white font-bold text-sm">{isAr ? "توزيع أنواع الأحداث" : "Event Type Distribution"}</h3>
@@ -160,10 +160,10 @@ const ReportCharts = ({ isAr }: Props) => {
 
         {/* Nationality Breakdown */}
         <div className="rounded-2xl border p-6"
-          style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
+          style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}>
           <div className="flex items-center gap-3 mb-5">
             <div className="w-8 h-8 flex items-center justify-center rounded-lg"
-              style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+              style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.2)" }}>
               <i className="ri-flag-line text-gold-400 text-sm" />
             </div>
             <h3 className="text-white font-bold text-sm">{isAr ? "توزيع الجنسيات" : "Nationality Breakdown"}</h3>
@@ -190,17 +190,17 @@ const ReportCharts = ({ isAr }: Props) => {
 
       {/* Peak Hours Heatmap */}
       <div className="rounded-2xl border p-6"
-        style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
+        style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}>
         <div className="flex items-center gap-3 mb-5">
           <div className="w-8 h-8 flex items-center justify-center rounded-lg"
-            style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+            style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.2)" }}>
             <i className="ri-fire-line text-gold-400 text-sm" />
           </div>
           <h3 className="text-white font-bold text-sm">{isAr ? "خريطة ساعات الذروة" : "Peak Hours Heatmap"}</h3>
           <div className="ml-auto flex items-center gap-2">
             <span className="text-gray-600 text-xs">{isAr ? "منخفض" : "Low"}</span>
             {[0.05, 0.15, 0.35, 0.6, 0.9].map((op) => (
-              <div key={op} className="w-4 h-4 rounded-sm" style={{ background: `rgba(181,142,60,${op})` }} />
+              <div key={op} className="w-4 h-4 rounded-sm" style={{ background: `rgba(184,138,60,${op})` }} />
             ))}
             <span className="text-gray-600 text-xs">{isAr ? "مرتفع" : "High"}</span>
           </div>
@@ -224,10 +224,10 @@ const ReportCharts = ({ isAr }: Props) => {
                     onMouseEnter={() => setHoveredCell({ d, h })}
                     onMouseLeave={() => setHoveredCell(null)}
                     className="flex-1 h-5 rounded-sm cursor-pointer transition-all relative"
-                    style={{ background: heatColor(val), border: hoveredCell?.d === d && hoveredCell?.h === h ? "1px solid #D4A84B" : "1px solid transparent" }}>
+                    style={{ background: heatColor(val), border: hoveredCell?.d === d && hoveredCell?.h === h ? "1px solid #D6B47E" : "1px solid transparent" }}>
                     {hoveredCell?.d === d && hoveredCell?.h === h && (
                       <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 px-2 py-1 rounded text-xs whitespace-nowrap z-10 pointer-events-none"
-                        style={{ background: "rgba(11,18,32,0.95)", border: "1px solid rgba(181,142,60,0.3)", color: "#D4A84B", fontSize: "9px" }}>
+                        style={{ background: "rgba(5,20,40,0.95)", border: "1px solid rgba(184,138,60,0.3)", color: "#D6B47E", fontSize: "9px" }}>
                         {DAYS[d]} {HOURS[h]}: {val}%
                       </div>
                     )}

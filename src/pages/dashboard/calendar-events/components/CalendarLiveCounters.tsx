@@ -24,7 +24,7 @@ const CalendarLiveCounters = ({ isAr }: Props) => {
       sub: isAr ? "جميع الوحدات" : "All modules",
       value: totalToday,
       icon: "ri-calendar-check-line",
-      color: "#D4A84B",
+      color: "#D6B47E",
       trend: "+8%",
       trendUp: true,
     },
@@ -42,7 +42,7 @@ const CalendarLiveCounters = ({ isAr }: Props) => {
       sub: isAr ? "إعادة الإرسال متاحة" : "Re-submit available",
       value: failed,
       icon: "ri-close-circle-line",
-      color: "#F87171",
+      color: "#C94A5E",
       trend: "+2",
       trendUp: false,
     },
@@ -61,7 +61,7 @@ const CalendarLiveCounters = ({ isAr }: Props) => {
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
       {stats.map((s) => (
         <div key={s.label} className="relative rounded-2xl border p-5 overflow-hidden"
-          style={{ background: "rgba(20,29,46,0.8)", borderColor: `${s.color}25`, backdropFilter: "blur(12px)" }}>
+          style={{ background: "rgba(10,37,64,0.8)", borderColor: `${s.color}25`, backdropFilter: "blur(12px)" }}>
           {/* Glow bg */}
           <div className="absolute inset-0 opacity-5 pointer-events-none"
             style={{ background: `radial-gradient(circle at top right, ${s.color}, transparent 70%)` }} />
@@ -74,8 +74,8 @@ const CalendarLiveCounters = ({ isAr }: Props) => {
               </div>
               <div className="flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-['JetBrains_Mono']"
                 style={{
-                  background: s.trendUp ? "rgba(74,222,128,0.1)" : "rgba(248,113,113,0.1)",
-                  color: s.trendUp ? "#4ADE80" : "#F87171",
+                  background: s.trendUp ? "rgba(74,222,128,0.1)" : "rgba(201,74,94,0.1)",
+                  color: s.trendUp ? "#4ADE80" : "#C94A5E",
                 }}>
                 <i className={`${s.trendUp ? "ri-arrow-up-line" : "ri-arrow-down-line"} text-xs`} />
                 {s.trend}

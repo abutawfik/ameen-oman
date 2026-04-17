@@ -6,13 +6,13 @@ interface Props {
 }
 
 const SEV_CONFIG = {
-  critical: { color: "#F87171", bg: "rgba(248,113,113,0.1)", border: "rgba(248,113,113,0.3)", label: "Critical", labelAr: "حرج" },
-  high:     { color: "#FB923C", bg: "rgba(251,146,60,0.1)",  border: "rgba(251,146,60,0.3)",  label: "High",     labelAr: "عالٍ" },
+  critical: { color: "#C94A5E", bg: "rgba(201,74,94,0.1)", border: "rgba(201,74,94,0.3)", label: "Critical", labelAr: "حرج" },
+  high:     { color: "#C98A1B", bg: "rgba(201,138,27,0.1)",  border: "rgba(201,138,27,0.3)",  label: "High",     labelAr: "عالٍ" },
   medium:   { color: "#FACC15", bg: "rgba(250,204,21,0.1)",  border: "rgba(250,204,21,0.3)",  label: "Medium",   labelAr: "متوسط" },
 };
 
 const STATUS_CONFIG = {
-  new:       { color: "#F87171", label: "New",       labelAr: "جديد" },
+  new:       { color: "#C94A5E", label: "New",       labelAr: "جديد" },
   reviewing: { color: "#FACC15", label: "Reviewing", labelAr: "قيد المراجعة" },
   actioned:  { color: "#4ADE80", label: "Actioned",  labelAr: "تم الإجراء" },
 };
@@ -28,9 +28,9 @@ const CrossStreamCorrelation = ({ isAr }: Props) => {
 
   return (
     <div className="rounded-2xl border overflow-hidden"
-      style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
+      style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}>
       {/* Header */}
-      <div className="flex items-center justify-between px-5 py-4 border-b" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
+      <div className="flex items-center justify-between px-5 py-4 border-b" style={{ borderColor: "rgba(184,138,60,0.08)" }}>
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 flex items-center justify-center rounded-xl"
             style={{ background: "rgba(167,139,250,0.1)", border: "1px solid rgba(167,139,250,0.2)" }}>
@@ -59,7 +59,7 @@ const CrossStreamCorrelation = ({ isAr }: Props) => {
       </div>
 
       {/* Correlation alerts */}
-      <div className="divide-y" style={{ borderColor: "rgba(181,142,60,0.04)" }}>
+      <div className="divide-y" style={{ borderColor: "rgba(184,138,60,0.04)" }}>
         {filtered.map((alert) => {
           const sevCfg = SEV_CONFIG[alert.severity];
           const statusCfg = STATUS_CONFIG[alert.status];
@@ -121,7 +121,7 @@ const CrossStreamCorrelation = ({ isAr }: Props) => {
               {/* Expanded */}
               {isSelected && (
                 <div className="px-5 py-4 border-t"
-                  style={{ background: "rgba(11,18,32,0.8)", borderColor: "rgba(181,142,60,0.08)" }}>
+                  style={{ background: "rgba(5,20,40,0.8)", borderColor: "rgba(184,138,60,0.08)" }}>
                   {/* Correlation visualization */}
                   <div className="mb-4 p-4 rounded-xl" style={{ background: "rgba(167,139,250,0.04)", border: "1px solid rgba(167,139,250,0.1)" }}>
                     <p className="text-gray-500 text-xs font-semibold uppercase tracking-wider mb-3">{isAr ? "تصور الارتباط" : "Correlation Visualization"}</p>
@@ -157,7 +157,7 @@ const CrossStreamCorrelation = ({ isAr }: Props) => {
                   <div className="flex items-center gap-2 flex-wrap">
                     <button type="button"
                       className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold cursor-pointer whitespace-nowrap"
-                      style={{ background: "#D4A84B", color: "#0B1220" }}>
+                      style={{ background: "#D6B47E", color: "#051428" }}>
                       <i className="ri-search-eye-line text-xs" />
                       {isAr ? "فتح تحقيق" : "Open Investigation"}
                     </button>
@@ -169,7 +169,7 @@ const CrossStreamCorrelation = ({ isAr }: Props) => {
                     </button>
                     <button type="button"
                       className="flex items-center gap-2 px-4 py-2 rounded-lg border text-xs font-bold cursor-pointer whitespace-nowrap"
-                      style={{ background: "transparent", borderColor: "rgba(181,142,60,0.2)", color: "#D4A84B" }}>
+                      style={{ background: "transparent", borderColor: "rgba(184,138,60,0.2)", color: "#D6B47E" }}>
                       <i className="ri-git-branch-line text-xs" />
                       {isAr ? "تحليل الروابط" : "Link Analysis"}
                     </button>
@@ -182,7 +182,7 @@ const CrossStreamCorrelation = ({ isAr }: Props) => {
       </div>
 
       {/* Footer */}
-      <div className="flex items-center justify-between px-5 py-3 border-t" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
+      <div className="flex items-center justify-between px-5 py-3 border-t" style={{ borderColor: "rgba(184,138,60,0.08)" }}>
         <div className="flex items-center gap-2">
           <div className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse" />
           <span className="text-gray-600 text-xs font-['JetBrains_Mono']">

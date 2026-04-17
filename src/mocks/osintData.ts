@@ -23,10 +23,10 @@ export type Classification = "public" | "internal" | "restricted" | "classified"
 
 export const CLASSIFICATION_META: Record<Classification, { color: string; bg: string; label: string; labelAr: string }> = {
   // Al-Ameen brand v1.0 classification palette — semantic tokens
-  public:     { color: "#2466A3", bg: "rgba(36,102,163,0.1)",  label: "PUBLIC",     labelAr: "عام" },      // info blue
-  internal:   { color: "#4F9A35", bg: "rgba(79,154,53,0.1)",   label: "INTERNAL",   labelAr: "داخلي" },    // olive
-  restricted: { color: "#B58E3C", bg: "rgba(181,142,60,0.12)", label: "RESTRICTED", labelAr: "مقيّد" },    // frankincense gold — ceremonial
-  classified: { color: "#9A1F24", bg: "rgba(154,31,36,0.1)",   label: "CLASSIFIED", labelAr: "سرّي" },     // oman red
+  public:     { color: "#4A7AA8", bg: "rgba(74,122,168,0.1)",  label: "PUBLIC",     labelAr: "عام" },      // ocean info
+  internal:   { color: "#4A8E3A", bg: "rgba(74,142,58,0.1)",   label: "INTERNAL",   labelAr: "داخلي" },    // olive
+  restricted: { color: "#B88A3C", bg: "rgba(184,138,60,0.12)", label: "RESTRICTED", labelAr: "مقيّد" },    // frankincense gold — ceremonial
+  classified: { color: "#8A1F3C", bg: "rgba(201,74,94,0.1)",   label: "CLASSIFIED", labelAr: "سرّي" },     // oman red
 };
 
 // ─────────────────────────────────────────────────────────────────────────
@@ -52,7 +52,7 @@ export const DEFAULT_SUB_SCORE_WEIGHTS: SubScoreWeight[] = [
     labelAr: "العقوبات / الشخصيات السياسية",
     defaultWeight: 15,
     weight: 15,
-    color: "#F87171",
+    color: "#C94A5E",
     icon: "ri-shield-cross-line",
     primarySources: ["OpenSanctions"],
     method: "Deterministic match + fuzzy entity resolution",
@@ -63,7 +63,7 @@ export const DEFAULT_SUB_SCORE_WEIGHTS: SubScoreWeight[] = [
     labelAr: "المخاطر الجيوسياسية",
     defaultWeight: 12,
     weight: 12,
-    color: "#FB923C",
+    color: "#C98A1B",
     icon: "ri-global-line",
     primarySources: ["GDELT", "ACLED", "Advisories"],
     method: "Rolling 7-day conflict intensity score",
@@ -118,7 +118,7 @@ export const DEFAULT_SUB_SCORE_WEIGHTS: SubScoreWeight[] = [
     labelAr: "الكفيل / الكيان",
     defaultWeight: 10,
     weight: 10,
-    color: "#D4A84B",
+    color: "#D6B47E",
     icon: "ri-organization-chart",
     primarySources: ["OpenCorporates", "OpenSanctions"],
     method: "Personalized PageRank (decay 0.5)",
@@ -185,7 +185,7 @@ export const OSINT_SOURCES: OsintSource[] = [
     records24h: 18420,
     signalContribution: "UN/OFAC/EU/UK lists, PEP exposure",
     endpoint: "data.opensanctions.org/datasets/latest/default/entities.ftm.json",
-    color: "#F87171",
+    color: "#C94A5E",
     sourceType: "osint",
     classification: "public",
   },
@@ -203,7 +203,7 @@ export const OSINT_SOURCES: OsintSource[] = [
     records24h: 94322,
     signalContribution: "Country-of-origin conflict intensity, unrest signal",
     endpoint: "api.gdeltproject.org/api/v2/doc/doc",
-    color: "#FB923C",
+    color: "#C98A1B",
     sourceType: "osint",
     classification: "public",
   },
@@ -221,7 +221,7 @@ export const OSINT_SOURCES: OsintSource[] = [
     records24h: 1284,
     signalContribution: "Conflict event density, actor proximity, location risk",
     endpoint: "api.acleddata.com/acled/read",
-    color: "#FB923C",
+    color: "#C98A1B",
     sourceType: "osint",
     classification: "public",
   },
@@ -293,7 +293,7 @@ export const OSINT_SOURCES: OsintSource[] = [
     records24h: 84,
     signalContribution: "Origin-country advisory level alignment",
     endpoint: "travel.state.gov, gov.uk/foreign-travel-advice",
-    color: "#D4A84B",
+    color: "#D6B47E",
     sourceType: "osint",
     classification: "public",
   },
@@ -311,7 +311,7 @@ export const OSINT_SOURCES: OsintSource[] = [
     records24h: 612,
     signalContribution: "Sponsor entity resolution, beneficial ownership",
     endpoint: "api.opencorporates.com/v0.4",
-    color: "#D4A84B",
+    color: "#D6B47E",
     sourceType: "osint",
     classification: "public",
   },
@@ -355,7 +355,7 @@ export const INTERNAL_STREAMS: OsintSource[] = [
     records24h: 34820,
     signalContribution: "Arrival/departure stamps, dwell time, overstays",
     endpoint: "int.rop.om/borders/entry-exit",
-    color: "#D4A84B",
+    color: "#D6B47E",
     sourceType: "internal",
     classification: "internal",
   },
@@ -445,7 +445,7 @@ export const INTERNAL_STREAMS: OsintSource[] = [
     records24h: 4280,
     signalContribution: "SIM activation time, device-traveler linkage",
     endpoint: "int.rop.om/telecom/sim-activations",
-    color: "#F87171",
+    color: "#C94A5E",
     sourceType: "internal",
     classification: "restricted",
   },
@@ -463,7 +463,7 @@ export const INTERNAL_STREAMS: OsintSource[] = [
     records24h: 1240,
     signalContribution: "Vehicle rental first-use, identity cross-check",
     endpoint: "int.rop.om/mobility/rentals",
-    color: "#FB923C",
+    color: "#C98A1B",
     sourceType: "internal",
     classification: "internal",
   },
@@ -499,7 +499,7 @@ export const INTERNAL_STREAMS: OsintSource[] = [
     records24h: 2180,
     signalContribution: "Declared employer validation, work permit status",
     endpoint: "int.rop.om/mol/employment",
-    color: "#D4A84B",
+    color: "#D6B47E",
     sourceType: "internal",
     classification: "internal",
   },
@@ -713,11 +713,11 @@ const band = (score: number): RiskBand => {
 
 export const SCORE_BAND_META: Record<RiskBand, { labelEn: string; labelAr: string; color: string }> = {
   // Al-Ameen brand v1.0 risk palette (from tokens.css)
-  critical:   { labelEn: "CRITICAL",   labelAr: "حرج",     color: "#9A1F24" }, // oman red
-  high:       { labelEn: "HIGH",       labelAr: "مرتفع",   color: "#D25A2A" }, // ember
+  critical:   { labelEn: "CRITICAL",   labelAr: "حرج",     color: "#8A1F3C" }, // oman red
+  high:       { labelEn: "HIGH",       labelAr: "مرتفع",   color: "#C94A5E" }, // ember
   elevated:   { labelEn: "ELEVATED",   labelAr: "مرتفع جزئياً", color: "#C98A1B" }, // amber
   borderline: { labelEn: "BORDERLINE", labelAr: "حدّي",    color: "#C98A1B" }, // amber (same amber band, label differs)
-  low:        { labelEn: "LOW",        labelAr: "منخفض",   color: "#4F9A35" }, // olive
+  low:        { labelEn: "LOW",        labelAr: "منخفض",   color: "#4A8E3A" }, // olive
 };
 
 // Default sources expected by every record — used for sourcesAvailable default.
@@ -1392,7 +1392,7 @@ const apis4 = "2026-04-17T01:30:00Z";
 const apis5 = "2026-04-16T18:40:00Z";
 const apis6 = "2026-04-17T09:15:00Z";
 
-const ICON_APIS   = { icon: "ri-flight-land-line",    color: "#D4A84B" };
+const ICON_APIS   = { icon: "ri-flight-land-line",    color: "#D6B47E" };
 const ICON_HOTEL  = { icon: "ri-hotel-line",          color: "#F59E0B" };
 const ICON_SIM    = { icon: "ri-sim-card-2-line",     color: "#EC4899" };
 const ICON_RENTAL = { icon: "ri-car-line",            color: "#6B4FAE" };

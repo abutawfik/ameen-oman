@@ -24,7 +24,7 @@ const EcomLiveCounters = ({ isAr }: Props) => {
       sub: isAr ? "من المعالجين والبنوك" : "From processors & banks",
       value: flaggedTx,
       icon: "ri-flag-line",
-      color: "#D4A84B",
+      color: "#D6B47E",
       trend: "+11%",
       trendUp: true,
     },
@@ -42,7 +42,7 @@ const EcomLiveCounters = ({ isAr }: Props) => {
       sub: isAr ? "قائمة المراقبة" : "Monitored items list",
       value: restrictedItems,
       icon: "ri-forbid-line",
-      color: "#F87171",
+      color: "#C94A5E",
       trend: "+2",
       trendUp: false,
     },
@@ -51,7 +51,7 @@ const EcomLiveCounters = ({ isAr }: Props) => {
       sub: isAr ? "شحنات دولية مشبوهة" : "Suspicious intl. shipments",
       value: shippingAlerts,
       icon: "ri-ship-line",
-      color: "#FB923C",
+      color: "#C98A1B",
       trend: "+1",
       trendUp: false,
     },
@@ -63,7 +63,7 @@ const EcomLiveCounters = ({ isAr }: Props) => {
         <div
           key={s.label}
           className="relative rounded-2xl border p-5 overflow-hidden"
-          style={{ background: "rgba(20,29,46,0.8)", borderColor: `${s.color}25`, backdropFilter: "blur(12px)" }}
+          style={{ background: "rgba(10,37,64,0.8)", borderColor: `${s.color}25`, backdropFilter: "blur(12px)" }}
         >
           <div className="absolute inset-0 opacity-5" style={{ background: `radial-gradient(circle at top right, ${s.color}, transparent 70%)` }} />
           <div className="relative z-10">
@@ -74,8 +74,8 @@ const EcomLiveCounters = ({ isAr }: Props) => {
               <div
                 className="flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-['JetBrains_Mono']"
                 style={{
-                  background: s.trendUp ? "rgba(74,222,128,0.1)" : "rgba(248,113,113,0.1)",
-                  color: s.trendUp ? "#4ADE80" : "#F87171",
+                  background: s.trendUp ? "rgba(74,222,128,0.1)" : "rgba(201,74,94,0.1)",
+                  color: s.trendUp ? "#4ADE80" : "#C94A5E",
                 }}
               >
                 <i className={s.trendUp ? "ri-arrow-up-line text-xs" : "ri-arrow-up-line text-xs"} />

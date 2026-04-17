@@ -78,7 +78,7 @@ const PaymentPatternForm = ({ isAr, onCancel }: Props) => {
         isAr={isAr}
         eventType="Payment Pattern Alert"
         eventTypeAr="تنبيه نمط الدفع"
-        color="#D4A84B"
+        color="#D6B47E"
         icon="ri-exchange-line"
         onReset={() => setSubmitted(false)}
       />
@@ -127,7 +127,7 @@ const PaymentPatternForm = ({ isAr, onCancel }: Props) => {
       </SectionCard>
 
       {/* Pattern Type */}
-      <SectionCard title={isAr ? "نوع النمط المشبوه" : "Suspicious Pattern Type"} icon="ri-exchange-line" accentColor="#D4A84B">
+      <SectionCard title={isAr ? "نوع النمط المشبوه" : "Suspicious Pattern Type"} icon="ri-exchange-line" accentColor="#D6B47E">
         <FormField label={isAr ? "نوع النمط" : "Pattern Type"} required>
           <SelectInput
             value={patternType}
@@ -196,9 +196,9 @@ const PaymentPatternForm = ({ isAr, onCancel }: Props) => {
             type="button"
             onClick={addCard}
             className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold cursor-pointer transition-colors whitespace-nowrap font-['Inter']"
-            style={{ background: "rgba(181,142,60,0.08)", border: "1px solid rgba(181,142,60,0.2)", color: "#D4A84B" }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(181,142,60,0.15)"; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(181,142,60,0.08)"; }}
+            style={{ background: "rgba(184,138,60,0.08)", border: "1px solid rgba(184,138,60,0.2)", color: "#D6B47E" }}
+            onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(184,138,60,0.15)"; }}
+            onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(184,138,60,0.08)"; }}
           >
             <i className="ri-add-line" />
             {isAr ? "إضافة بطاقة" : "Add Card"}
@@ -239,7 +239,7 @@ const PaymentPatternForm = ({ isAr, onCancel }: Props) => {
       </SectionCard>
 
       {/* Location Anomaly */}
-      <SectionCard title={isAr ? "شذوذ الموقع" : "Location Anomaly"} icon="ri-map-pin-line" accentColor="#FB923C">
+      <SectionCard title={isAr ? "شذوذ الموقع" : "Location Anomaly"} icon="ri-map-pin-line" accentColor="#C98A1B">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <FormField label={isAr ? "المدينة المُسجَّلة" : "Registered City"}>
             <TextInput value={registeredCity} onChange={(e) => setRegisteredCity(e.target.value)} placeholder={isAr ? "مدينة الإقامة المُسجَّلة" : "Registered residence city"} />
@@ -282,7 +282,7 @@ const PaymentPatternForm = ({ isAr, onCancel }: Props) => {
               placeholder={isAr ? "أي معلومات إضافية ذات صلة..." : "Any additional relevant information..."}
               className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none transition-all resize-none font-['Inter']"
               style={{ background: "#0F1923", border: "1px solid rgba(255,255,255,0.08)" }}
-              onFocus={(e) => { e.target.style.borderColor = "#D4A84B"; }}
+              onFocus={(e) => { e.target.style.borderColor = "#D6B47E"; }}
               onBlur={(e) => { e.target.style.borderColor = "rgba(255,255,255,0.08)"; }}
             />
             <p className="text-gray-600 text-xs mt-1 text-right font-['JetBrains_Mono']">{additionalNotes.length}/500</p>

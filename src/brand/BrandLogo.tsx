@@ -18,14 +18,14 @@ import { useBrandFonts } from "./typography";
 
 // ── Tokens — kept inline so the component has zero dependency on Tailwind. ──
 const TOKENS = {
-  ivory100: "#F5EFE3",
-  ivory200: "#EFE7D3",
-  gold400:  "#D4A84B",
+  ivory100: "#F8F5F0",
+  ivory200: "#EFE8D7",
+  gold400:  "#D6B47E",
   gold500:  "#C99C48",
-  gold600:  "#B58E3C",
-  midnight700: "#141D2E",
-  midnight800: "#0B1220",
-  omanRed600:  "#9A1F24",
+  gold600:  "#B88A3C",
+  midnight700: "#0A2540",
+  midnight800: "#051428",
+  omanRed600:  "#8A1F3C",
 } as const;
 
 export type BrandLogoVariant = "horizontal" | "stacked" | "mark";

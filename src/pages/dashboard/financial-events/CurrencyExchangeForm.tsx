@@ -129,7 +129,7 @@ const CurrencyExchangeForm = ({ isAr, onCancel }: Props) => {
             </div>
 
             {/* Exchange visual */}
-            <div className="rounded-xl border p-4" style={{ background: "rgba(0,0,0,0.3)", borderColor: "rgba(181,142,60,0.12)" }}>
+            <div className="rounded-xl border p-4" style={{ background: "rgba(0,0,0,0.3)", borderColor: "rgba(184,138,60,0.12)" }}>
               <div className="flex items-end gap-3">
                 <div className="flex-1">
                   <p className="text-gray-500 text-xs mb-2">{isAr ? "من" : "From"}</p>
@@ -145,7 +145,7 @@ const CurrencyExchangeForm = ({ isAr, onCancel }: Props) => {
                   </div>
                 </div>
                 <div className="flex flex-col items-center pb-2 flex-shrink-0">
-                  <div className="w-9 h-9 flex items-center justify-center rounded-full" style={{ background: "rgba(181,142,60,0.12)", border: "1px solid rgba(181,142,60,0.25)" }}>
+                  <div className="w-9 h-9 flex items-center justify-center rounded-full" style={{ background: "rgba(184,138,60,0.12)", border: "1px solid rgba(184,138,60,0.25)" }}>
                     <i className="ri-arrow-left-right-line text-gold-400 text-sm" />
                   </div>
                 </div>
@@ -159,7 +159,7 @@ const CurrencyExchangeForm = ({ isAr, onCancel }: Props) => {
                       value={toAmount}
                       onChange={(e) => setToAmount(e.target.value)}
                       className="font-['JetBrains_Mono']"
-                      style={{ color: "#D4A84B" }}
+                      style={{ color: "#D6B47E" }}
                     />
                   </div>
                 </div>

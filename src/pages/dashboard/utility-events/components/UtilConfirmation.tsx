@@ -32,7 +32,7 @@ const UtilConfirmation = ({ isAr, onReset, eventLabel, eventLabelAr, eventColor 
 
   return (
     <div className="flex flex-col items-center justify-center py-16 px-6">
-      <div className="w-full max-w-lg rounded-2xl border p-8 text-center" style={{ background: "rgba(20,29,46,0.9)", borderColor: `${eventColor}30`, backdropFilter: "blur(16px)", boxShadow: `0 0 40px ${eventColor}10` }}>
+      <div className="w-full max-w-lg rounded-2xl border p-8 text-center" style={{ background: "rgba(10,37,64,0.9)", borderColor: `${eventColor}30`, backdropFilter: "blur(16px)", boxShadow: `0 0 40px ${eventColor}10` }}>
         {/* Checkmark */}
         <div className="relative w-20 h-20 mx-auto mb-6 flex items-center justify-center">
           <div className="absolute inset-0 rounded-full animate-ping opacity-20" style={{ background: eventColor }} />
@@ -45,7 +45,7 @@ const UtilConfirmation = ({ isAr, onReset, eventLabel, eventLabelAr, eventColor 
         <p className="text-gray-400 text-sm mb-6">{isAr ? eventLabelAr : eventLabel}</p>
 
         {/* Reference code */}
-        <div className="px-5 py-4 rounded-xl border mb-6" style={{ background: "rgba(255,255,255,0.03)", borderColor: "rgba(181,142,60,0.15)" }}>
+        <div className="px-5 py-4 rounded-xl border mb-6" style={{ background: "rgba(255,255,255,0.03)", borderColor: "rgba(184,138,60,0.15)" }}>
           <p className="text-gray-500 text-xs mb-1">{isAr ? "رمز المرجع" : "Reference Code"}</p>
           <p className="text-2xl font-black font-['JetBrains_Mono']" style={{ color: eventColor }}>{refCode}</p>
         </div>
@@ -83,7 +83,7 @@ const UtilConfirmation = ({ isAr, onReset, eventLabel, eventLabelAr, eventColor 
           <button type="button"
             onClick={() => window.history.back()}
             className="flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-bold cursor-pointer whitespace-nowrap"
-            style={{ background: eventColor, color: "#0B1220" }}>
+            style={{ background: eventColor, color: "#051428" }}>
             <i className="ri-dashboard-3-line" />
             {isAr ? "لوحة التحكم" : "Dashboard"}
           </button>

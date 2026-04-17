@@ -8,7 +8,7 @@ interface Props {
 const statusConfig = {
   accepted: { color: "#4ADE80", bg: "rgba(74,222,128,0.1)", labelEn: "Accepted", labelAr: "مقبول" },
   pending:  { color: "#FACC15", bg: "rgba(250,204,21,0.1)",  labelEn: "Pending",  labelAr: "معلق" },
-  rejected: { color: "#F87171", bg: "rgba(248,113,113,0.1)", labelEn: "Rejected", labelAr: "مرفوض" },
+  rejected: { color: "#C94A5E", bg: "rgba(201,74,94,0.1)", labelEn: "Rejected", labelAr: "مرفوض" },
 };
 
 // Lightweight Arabic-ization of the canned English relative-time strings in mock data
@@ -30,7 +30,7 @@ const EventFeed = ({ entityType, isAr }: Props) => {
 
   return (
     <div className="flex flex-col h-full rounded-xl border overflow-hidden"
-      style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
+      style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}>
       {/* Header */}
       <div className="flex items-center justify-between px-5 py-4 border-b flex-shrink-0"
         style={{ borderColor: "rgba(255,255,255,0.06)" }}>

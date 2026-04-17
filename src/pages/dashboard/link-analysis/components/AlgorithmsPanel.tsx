@@ -116,7 +116,7 @@ const AlgorithmsPanel = ({
       icon: "ri-route-line",
       label: isAr ? "أقصر مسار" : "Shortest Path",
       desc: isAr ? "اختر عقدتين → إيجاد المسار" : "Select 2 nodes → find path",
-      color: "#D4A84B",
+      color: "#D6B47E",
       action: findShortestPath,
       requiresSelection: true,
     },
@@ -134,7 +134,7 @@ const AlgorithmsPanel = ({
       icon: "ri-bubble-chart-line",
       label: isAr ? "الأكثر اتصالاً" : "Most Connected",
       desc: isAr ? "إبراز العقد المحورية" : "Highlight hub nodes by degree",
-      color: "#FB923C",
+      color: "#C98A1B",
       action: findMostConnected,
       requiresSelection: false,
     },
@@ -153,7 +153,7 @@ const AlgorithmsPanel = ({
       icon: "ri-alert-line",
       label: isAr ? "الشذوذ" : "Anomaly Detection",
       desc: isAr ? "إبراز أنماط الاتصال غير العادية" : "Highlight unusual connectivity",
-      color: "#F87171",
+      color: "#C94A5E",
       action: findAnomalies,
       requiresSelection: false,
     },
@@ -178,7 +178,7 @@ const AlgorithmsPanel = ({
       style={{ scrollbarWidth: "none" }}
     >
       {/* Header */}
-      <div className="px-4 py-3 border-b flex-shrink-0" style={{ borderColor: "rgba(181,142,60,0.1)" }}>
+      <div className="px-4 py-3 border-b flex-shrink-0" style={{ borderColor: "rgba(184,138,60,0.1)" }}>
         <h3 className="text-white text-sm font-bold font-['Inter']">
           {isAr ? "خوارزميات الرسم البياني" : "Graph Algorithms"}
         </h3>
@@ -218,7 +218,7 @@ const AlgorithmsPanel = ({
         {pathResult && (
           <div
             className="p-2.5 rounded-lg text-xs font-['JetBrains_Mono']"
-            style={{ background: "rgba(181,142,60,0.06)", border: "1px solid rgba(181,142,60,0.2)", color: "#D4A84B" }}
+            style={{ background: "rgba(184,138,60,0.06)", border: "1px solid rgba(184,138,60,0.2)", color: "#D6B47E" }}
           >
             {pathResult}
           </div>
@@ -229,7 +229,7 @@ const AlgorithmsPanel = ({
           <button
             onClick={() => { onClearHighlights(); setActiveAlgo(null); setPathResult(null); }}
             className="w-full py-2 rounded-lg text-xs font-['Inter'] cursor-pointer transition-colors"
-            style={{ background: "rgba(248,113,113,0.08)", border: "1px solid rgba(248,113,113,0.2)", color: "#F87171" }}
+            style={{ background: "rgba(201,74,94,0.08)", border: "1px solid rgba(201,74,94,0.2)", color: "#C94A5E" }}
           >
             <i className="ri-close-circle-line mr-1.5" />
             {isAr ? "مسح التمييز" : "Clear Highlights"}
@@ -254,7 +254,7 @@ const AlgorithmsPanel = ({
               value={confidenceThreshold}
               onChange={e => onConfidenceChange(Number(e.target.value))}
               className="w-full h-1.5 rounded-full cursor-pointer appearance-none"
-              style={{ accentColor: "#D4A84B", background: `linear-gradient(to right, #D4A84B ${confidenceThreshold}%, rgba(255,255,255,0.1) ${confidenceThreshold}%)` }}
+              style={{ accentColor: "#D6B47E", background: `linear-gradient(to right, #D6B47E ${confidenceThreshold}%, rgba(255,255,255,0.1) ${confidenceThreshold}%)` }}
             />
           </div>
 
@@ -268,9 +268,9 @@ const AlgorithmsPanel = ({
                   onClick={() => onEdgeFilterChange(et.key)}
                   className="px-2 py-0.5 rounded text-[10px] font-['Inter'] cursor-pointer transition-colors whitespace-nowrap"
                   style={{
-                    background: activeEdgeFilter === et.key ? "rgba(181,142,60,0.15)" : "rgba(255,255,255,0.04)",
-                    color: activeEdgeFilter === et.key ? "#D4A84B" : "#6B7280",
-                    border: `1px solid ${activeEdgeFilter === et.key ? "rgba(181,142,60,0.3)" : "rgba(255,255,255,0.06)"}`,
+                    background: activeEdgeFilter === et.key ? "rgba(184,138,60,0.15)" : "rgba(255,255,255,0.04)",
+                    color: activeEdgeFilter === et.key ? "#D6B47E" : "#6B7280",
+                    border: `1px solid ${activeEdgeFilter === et.key ? "rgba(184,138,60,0.3)" : "rgba(255,255,255,0.06)"}`,
                   }}
                 >
                   {isAr ? et.labelAr : et.label}
@@ -297,7 +297,7 @@ const AlgorithmsPanel = ({
               value={temporalRange[0]}
               onChange={e => setTemporalRange([Number(e.target.value), temporalRange[1]])}
               className="w-full h-1.5 rounded-full cursor-pointer appearance-none"
-              style={{ accentColor: "#D4A84B" }}
+              style={{ accentColor: "#D6B47E" }}
             />
             <input
               type="range"
@@ -306,7 +306,7 @@ const AlgorithmsPanel = ({
               value={temporalRange[1]}
               onChange={e => setTemporalRange([temporalRange[0], Number(e.target.value)])}
               className="w-full h-1.5 rounded-full cursor-pointer appearance-none"
-              style={{ accentColor: "#D4A84B" }}
+              style={{ accentColor: "#D6B47E" }}
             />
           </div>
           <div className="flex justify-between mt-1">

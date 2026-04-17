@@ -6,8 +6,8 @@ const TIERS = [
     tier: 1,
     label: 'Tier 1 — Dashboard Queue',
     icon: 'ri-dashboard-line',
-    color: '#D4A84B',
-    bg: 'rgba(181,142,60,0.1)',
+    color: '#D6B47E',
+    bg: 'rgba(184,138,60,0.1)',
     description: 'All pattern-triggered alerts land here. Analysts review and action within 30 minutes.',
     threshold: null,
     count: alertQueue.filter(a => a.tier === 1).length,
@@ -16,8 +16,8 @@ const TIERS = [
     tier: 2,
     label: 'Tier 2 — Mobile Push',
     icon: 'ri-smartphone-line',
-    color: '#FB923C',
-    bg: 'rgba(251,146,60,0.1)',
+    color: '#C98A1B',
+    bg: 'rgba(201,138,27,0.1)',
     description: 'Critical alerts (score >75) auto-push to field officers\' Al-Ameen Mobile app.',
     threshold: '>30 min unactioned',
     count: alertQueue.filter(a => a.tier === 2).length,
@@ -26,8 +26,8 @@ const TIERS = [
     tier: 3,
     label: 'Tier 3 — Command Escalation',
     icon: 'ri-alarm-warning-line',
-    color: '#F87171',
-    bg: 'rgba(248,113,113,0.1)',
+    color: '#C94A5E',
+    bg: 'rgba(201,74,94,0.1)',
     description: 'Unactioned alerts escalate through duty officer → supervisor → command.',
     threshold: '>120 min unactioned',
     count: alertQueue.filter(a => a.tier === 3).length,
@@ -38,7 +38,7 @@ const ESCALATION_STEPS = [
   {
     time: '0 min',
     label: 'Alert Created',
-    color: '#D4A84B',
+    color: '#D6B47E',
     icon: 'ri-alert-line',
     desc: 'Pattern rule triggered, alert enters Tier 1 queue. Analyst notified.',
     action: 'Analyst reviews',
@@ -54,7 +54,7 @@ const ESCALATION_STEPS = [
   {
     time: 'T+60 min',
     label: 'Supervisor Escalation',
-    color: '#FB923C',
+    color: '#C98A1B',
     icon: 'ri-arrow-up-circle-line',
     desc: 'Amber banner raised. Supervisor notified via mobile push. SLA breach logged.',
     action: 'Supervisor notified',
@@ -62,7 +62,7 @@ const ESCALATION_STEPS = [
   {
     time: 'T+120 min',
     label: 'Command Escalation',
-    color: '#F87171',
+    color: '#C94A5E',
     icon: 'ri-alarm-warning-fill',
     desc: 'Red escalation — Command Center notified. Mandatory response required. Incident logged.',
     action: 'Command mandatory response',
@@ -82,7 +82,7 @@ export default function EscalationTimeline() {
           <div
             key={tier.tier}
             className="rounded-xl border p-5 relative overflow-hidden"
-            style={{ background: 'rgba(20,29,46,0.8)', borderColor: `${tier.color}30` }}
+            style={{ background: 'rgba(10,37,64,0.8)', borderColor: `${tier.color}30` }}
           >
             <div
               className="absolute top-0 left-0 w-1 h-full rounded-l-xl"
@@ -125,21 +125,21 @@ export default function EscalationTimeline() {
       {ACTIVE_ESCALATIONS.length > 0 && (
         <div
           className="rounded-xl border border-orange-500/25 p-5"
-          style={{ background: 'rgba(20,29,46,0.8)' }}
+          style={{ background: 'rgba(10,37,64,0.8)' }}
         >
           <div className="flex items-center gap-2 mb-3">
             <span className="w-2 h-2 rounded-full bg-orange-400 animate-pulse" />
             <h3 className="text-white font-semibold text-sm">Active Escalations</h3>
             <span
               className="px-2 py-0.5 rounded-full text-xs font-bold"
-              style={{ background: 'rgba(251,146,60,0.15)', color: '#FB923C' }}
+              style={{ background: 'rgba(201,138,27,0.15)', color: '#C98A1B' }}
             >
               {ACTIVE_ESCALATIONS.length}
             </span>
           </div>
           <div className="space-y-2">
             {ACTIVE_ESCALATIONS.map(alert => {
-              const levelColors = ['', '#FACC15', '#FB923C', '#F87171'];
+              const levelColors = ['', '#FACC15', '#C98A1B', '#C94A5E'];
               const levelLabels = ['', 'Auto-Assigned', 'Supervisor', 'Command'];
               const color = levelColors[alert.escalationLevel];
               return (
@@ -175,7 +175,7 @@ export default function EscalationTimeline() {
                   </span>
                   <span
                     className="font-mono font-bold text-sm shrink-0"
-                    style={{ color: alert.score >= 80 ? '#F87171' : '#FB923C' }}
+                    style={{ color: alert.score >= 80 ? '#C94A5E' : '#C98A1B' }}
                   >
                     {alert.score}
                   </span>
@@ -189,14 +189,14 @@ export default function EscalationTimeline() {
       {/* Escalation timeline */}
       <div
         className="rounded-xl border border-gold-500/20 p-5"
-        style={{ background: 'rgba(20,29,46,0.8)' }}
+        style={{ background: 'rgba(10,37,64,0.8)' }}
       >
         <h3 className="text-white font-semibold text-sm mb-5">Auto-Escalation Timeline</h3>
         <div className="relative">
           {/* Timeline line */}
           <div
             className="absolute left-6 top-6 bottom-6 w-0.5"
-            style={{ background: 'linear-gradient(to bottom, #D4A84B, #FACC15, #FB923C, #F87171)' }}
+            style={{ background: 'linear-gradient(to bottom, #D6B47E, #FACC15, #C98A1B, #C94A5E)' }}
           />
 
           <div className="space-y-5">
@@ -209,7 +209,7 @@ export default function EscalationTimeline() {
                 <div
                   className="w-12 h-12 rounded-full flex items-center justify-center shrink-0 z-10 border-2 transition-all"
                   style={{
-                    background: activeStep === i ? `${step.color}20` : 'rgba(20,29,46,0.95)',
+                    background: activeStep === i ? `${step.color}20` : 'rgba(10,37,64,0.95)',
                     borderColor: step.color,
                   }}
                 >
@@ -242,7 +242,7 @@ export default function EscalationTimeline() {
       {/* Feedback loop */}
       <div
         className="rounded-xl border border-gold-500/20 p-5"
-        style={{ background: 'rgba(20,29,46,0.8)' }}
+        style={{ background: 'rgba(10,37,64,0.8)' }}
       >
         <div className="flex items-center justify-between mb-4">
           <div>
@@ -260,15 +260,15 @@ export default function EscalationTimeline() {
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
           {[
-            { label: 'Total Decisions', value: feedbackStats.totalDecisions.toLocaleString(), color: '#D4A84B', icon: 'ri-checkbox-multiple-line' },
+            { label: 'Total Decisions', value: feedbackStats.totalDecisions.toLocaleString(), color: '#D6B47E', icon: 'ri-checkbox-multiple-line' },
             { label: 'Confirmed (TP)', value: `${feedbackStats.confirmed} (${feedbackStats.confirmedPct}%)`, color: '#4ADE80', icon: 'ri-check-double-line' },
             { label: 'Dismissed (FP)', value: `${feedbackStats.dismissed} (${feedbackStats.dismissedPct}%)`, color: '#9CA3AF', icon: 'ri-close-circle-line' },
-            { label: 'Escalated', value: `${feedbackStats.escalated} (${feedbackStats.escalatedPct}%)`, color: '#FB923C', icon: 'ri-arrow-up-circle-line' },
+            { label: 'Escalated', value: `${feedbackStats.escalated} (${feedbackStats.escalatedPct}%)`, color: '#C98A1B', icon: 'ri-arrow-up-circle-line' },
           ].map(stat => (
             <div
               key={stat.label}
               className="rounded-lg p-3 border border-gold-500/10"
-              style={{ background: 'rgba(181,142,60,0.04)' }}
+              style={{ background: 'rgba(184,138,60,0.04)' }}
             >
               <div className="flex items-center gap-2 mb-1">
                 <i className={`${stat.icon} text-sm`} style={{ color: stat.color }} />
@@ -288,7 +288,7 @@ export default function EscalationTimeline() {
           <div className="h-3 rounded-full overflow-hidden flex">
             <div className="h-full transition-all" style={{ width: `${feedbackStats.confirmedPct}%`, background: '#4ADE80' }} />
             <div className="h-full transition-all" style={{ width: `${feedbackStats.dismissedPct}%`, background: '#6B7280' }} />
-            <div className="h-full transition-all" style={{ width: `${feedbackStats.escalatedPct}%`, background: '#FB923C' }} />
+            <div className="h-full transition-all" style={{ width: `${feedbackStats.escalatedPct}%`, background: '#C98A1B' }} />
           </div>
           <div className="flex items-center gap-4 mt-1.5 text-xs">
             <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-green-400" />Confirmed TP</span>
@@ -309,7 +309,7 @@ export default function EscalationTimeline() {
                     className="w-full rounded-t-sm"
                     style={{
                       height: `${(val / maxV) * 40}px`,
-                      background: i === feedbackStats.weeklyDecisions.length - 1 ? '#D4A84B' : 'rgba(181,142,60,0.3)',
+                      background: i === feedbackStats.weeklyDecisions.length - 1 ? '#D6B47E' : 'rgba(184,138,60,0.3)',
                     }}
                   />
                   <span className="text-gray-600 font-mono" style={{ fontSize: 8 }}>

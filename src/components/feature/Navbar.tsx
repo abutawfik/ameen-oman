@@ -7,11 +7,11 @@ import { useBrandFonts } from "@/brand/typography";
 // ─── Inline brand tokens — never depend on JIT utilities for brand-critical
 //     chrome. These are the same values as the style-guide `.topnav`. ─────────
 const C = {
-  ivory100: "#F5EFE3",
-  ivory200: "#EFE7D3",
-  gold400:  "#D4A84B",
-  omanRed600: "#9A1F24",
-  omanRed500: "#B32830",
+  ivory100: "#F8F5F0",
+  ivory200: "#EFE8D7",
+  gold400:  "#D6B47E",
+  omanRed600: "#8A1F3C",
+  omanRed500: "#A52844",
   bgPanel:  "rgba(11,18,32,0.9)",
   bgPanelSolid: "rgba(11,18,32,0.98)",
 };
@@ -60,7 +60,7 @@ const Navbar = () => {
         background: C.bgPanel,
         backdropFilter: "blur(16px)",
         WebkitBackdropFilter: "blur(16px)",
-        borderBottom: `1px solid ${scrolled ? "rgba(181,142,60,0.25)" : "rgba(181,142,60,0.15)"}`,
+        borderBottom: `1px solid ${scrolled ? "rgba(184,138,60,0.25)" : "rgba(184,138,60,0.15)"}`,
       }}
     >
       <div className="max-w-[1400px] mx-auto px-4 md:px-8">
@@ -133,11 +133,11 @@ const Navbar = () => {
                 color: C.gold400,
                 fontFamily: "'JetBrains Mono', monospace",
                 background: "transparent",
-                border: "1px solid rgba(181,142,60,0.35)",
+                border: "1px solid rgba(184,138,60,0.35)",
                 borderRadius: 4,
                 transition: "background 150ms",
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(181,142,60,0.1)")}
+              onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(184,138,60,0.1)")}
               onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
             >
               {t("nav.language")}
@@ -158,8 +158,8 @@ const Navbar = () => {
                 borderRadius: 6,
                 whiteSpace: "nowrap",
                 boxShadow: hoverLogin
-                  ? "0 4px 16px rgba(154,31,36,0.35)"
-                  : "0 1px 2px rgba(154,31,36,0.25)",
+                  ? "0 4px 16px rgba(201,74,94,0.35)"
+                  : "0 1px 2px rgba(201,74,94,0.25)",
                 filter: hoverLogin ? "brightness(1.08)" : "none",
                 transition: "filter 150ms, box-shadow 150ms",
               }}
@@ -177,7 +177,7 @@ const Navbar = () => {
                 height: 40,
                 color: C.ivory200,
                 background: "transparent",
-                border: "1px solid rgba(181,142,60,0.25)",
+                border: "1px solid rgba(184,138,60,0.25)",
                 borderRadius: 4,
               }}
             >
@@ -193,7 +193,7 @@ const Navbar = () => {
           className="lg:hidden"
           style={{
             background: C.bgPanelSolid,
-            borderTop: "1px solid rgba(181,142,60,0.25)",
+            borderTop: "1px solid rgba(184,138,60,0.25)",
             padding: "1rem",
           }}
         >
@@ -226,7 +226,7 @@ const Navbar = () => {
                 color: C.gold400,
                 fontFamily: "'JetBrains Mono', monospace",
                 background: "transparent",
-                border: "1px solid rgba(181,142,60,0.35)",
+                border: "1px solid rgba(184,138,60,0.35)",
                 borderRadius: 4,
               }}
             >

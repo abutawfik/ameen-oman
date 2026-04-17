@@ -17,9 +17,9 @@ interface Props {
 }
 
 const severitySlaColor: Record<string, string> = {
-  CRITICAL: "#DC2626",
-  HIGH:     "#F87171",
-  MEDIUM:   "#FB923C",
+  CRITICAL: "#8A1F3C",
+  HIGH:     "#C94A5E",
+  MEDIUM:   "#C98A1B",
   LOW:      "#FACC15",
 };
 
@@ -41,7 +41,7 @@ const ManagerHome = ({ isAr }: Props) => {
         label: isAr ? "قضايا مُغلقة · 30ي" : "Cases closed · 30d",
         value: totalClosed.toLocaleString(),
         icon: "ri-inbox-archive-line",
-        color: "#D4A84B",
+        color: "#D6B47E",
         spark: PROGRAM_KPIS_30D.map((d) => d.cases_closed),
         deltaPct: 6.4,
       },
@@ -49,7 +49,7 @@ const ManagerHome = ({ isAr }: Props) => {
         label: isAr ? "تهديدات مؤكدة" : "Confirmed threats",
         value: totalThreats.toLocaleString(),
         icon: "ri-shield-cross-line",
-        color: "#F87171",
+        color: "#C94A5E",
         spark: PROGRAM_KPIS_30D.map((d) => d.confirmed_threats),
         deltaPct: 3.1,
         deltaDirHint: "down_is_good" as const,
@@ -58,7 +58,7 @@ const ManagerHome = ({ isAr }: Props) => {
         label: isAr ? "نسبة الإيجابيات الكاذبة" : "False-positive rate",
         value: `${fpRate.toFixed(1)}%`,
         icon: "ri-question-mark",
-        color: "#FB923C",
+        color: "#C98A1B",
         spark: PROGRAM_KPIS_30D.map((d) => (d.false_positives / d.cases_closed) * 100),
         deltaPct: -4.2,
         deltaDirHint: "down_is_good" as const,
@@ -137,7 +137,7 @@ const ManagerHome = ({ isAr }: Props) => {
       <div className="grid grid-cols-1 xl:grid-cols-12 gap-4">
         <div
           className="xl:col-span-7 rounded-xl border p-4"
-          style={{ background: "rgba(20,29,46,0.65)", borderColor: "rgba(181,142,60,0.12)" }}
+          style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.12)" }}
         >
           <div className="flex items-center justify-between mb-3">
             <div>
@@ -150,15 +150,15 @@ const ManagerHome = ({ isAr }: Props) => {
             </div>
             <div className="flex items-center gap-3 text-[11px] font-['JetBrains_Mono']">
               <span className="flex items-center gap-1.5">
-                <span className="w-2.5 h-2.5 rounded-sm" style={{ background: "#D4A84B" }} />
+                <span className="w-2.5 h-2.5 rounded-sm" style={{ background: "#D6B47E" }} />
                 <span className="text-gray-400">closed</span>
               </span>
               <span className="flex items-center gap-1.5">
-                <span className="w-2.5 h-2.5 rounded-sm" style={{ background: "#F87171" }} />
+                <span className="w-2.5 h-2.5 rounded-sm" style={{ background: "#C94A5E" }} />
                 <span className="text-gray-400">threats</span>
               </span>
               <span className="flex items-center gap-1.5">
-                <span className="w-2.5 h-2.5 rounded-sm" style={{ background: "#FB923C" }} />
+                <span className="w-2.5 h-2.5 rounded-sm" style={{ background: "#C98A1B" }} />
                 <span className="text-gray-400">FP</span>
               </span>
             </div>
@@ -168,33 +168,33 @@ const ManagerHome = ({ isAr }: Props) => {
               <AreaChart data={weeklyTrend} margin={{ top: 8, right: 16, left: 0, bottom: 0 }}>
                 <defs>
                   <linearGradient id="g-closed" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#D4A84B" stopOpacity={0.5} />
-                    <stop offset="95%" stopColor="#D4A84B" stopOpacity={0.05} />
+                    <stop offset="5%" stopColor="#D6B47E" stopOpacity={0.5} />
+                    <stop offset="95%" stopColor="#D6B47E" stopOpacity={0.05} />
                   </linearGradient>
                   <linearGradient id="g-threats" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#F87171" stopOpacity={0.55} />
-                    <stop offset="95%" stopColor="#F87171" stopOpacity={0.05} />
+                    <stop offset="5%" stopColor="#C94A5E" stopOpacity={0.55} />
+                    <stop offset="95%" stopColor="#C94A5E" stopOpacity={0.05} />
                   </linearGradient>
                   <linearGradient id="g-fp" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#FB923C" stopOpacity={0.5} />
-                    <stop offset="95%" stopColor="#FB923C" stopOpacity={0.05} />
+                    <stop offset="5%" stopColor="#C98A1B" stopOpacity={0.5} />
+                    <stop offset="95%" stopColor="#C98A1B" stopOpacity={0.05} />
                   </linearGradient>
                 </defs>
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(181,142,60,0.08)" />
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(184,138,60,0.08)" />
                 <XAxis dataKey="week" stroke="#6B7280" tick={{ fontSize: 11, fontFamily: "JetBrains Mono" }} />
                 <YAxis stroke="#6B7280" tick={{ fontSize: 11, fontFamily: "JetBrains Mono" }} />
                 <Tooltip
                   contentStyle={{
-                    background: "#141D2E",
-                    border: "1px solid rgba(181,142,60,0.3)",
+                    background: "#0A2540",
+                    border: "1px solid rgba(184,138,60,0.3)",
                     borderRadius: 8,
                     fontSize: 12,
                     fontFamily: "JetBrains Mono",
                   }}
                 />
-                <Area type="monotone" dataKey="cases_closed"      stroke="#D4A84B" strokeWidth={2} fill="url(#g-closed)"  />
-                <Area type="monotone" dataKey="confirmed_threats" stroke="#F87171" strokeWidth={2} fill="url(#g-threats)" />
-                <Area type="monotone" dataKey="false_positives"   stroke="#FB923C" strokeWidth={2} fill="url(#g-fp)"      />
+                <Area type="monotone" dataKey="cases_closed"      stroke="#D6B47E" strokeWidth={2} fill="url(#g-closed)"  />
+                <Area type="monotone" dataKey="confirmed_threats" stroke="#C94A5E" strokeWidth={2} fill="url(#g-threats)" />
+                <Area type="monotone" dataKey="false_positives"   stroke="#C98A1B" strokeWidth={2} fill="url(#g-fp)"      />
               </AreaChart>
             </ResponsiveContainer>
           </div>
@@ -203,7 +203,7 @@ const ManagerHome = ({ isAr }: Props) => {
         {/* Contribution Mix */}
         <div
           className="xl:col-span-5 rounded-xl border p-4"
-          style={{ background: "rgba(20,29,46,0.65)", borderColor: "rgba(181,142,60,0.12)" }}
+          style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.12)" }}
         >
           <div className="mb-3">
             <h3 className="text-white text-sm font-bold">
@@ -216,22 +216,22 @@ const ManagerHome = ({ isAr }: Props) => {
           <div className="h-72">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={CONTRIBUTION_MIX_7D} margin={{ top: 8, right: 16, left: 0, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(181,142,60,0.08)" />
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(184,138,60,0.08)" />
                 <XAxis dataKey="day" stroke="#6B7280" tick={{ fontSize: 11, fontFamily: "JetBrains Mono" }} />
                 <YAxis stroke="#6B7280" tick={{ fontSize: 11, fontFamily: "JetBrains Mono" }} />
                 <Tooltip
                   contentStyle={{
-                    background: "#141D2E",
-                    border: "1px solid rgba(181,142,60,0.3)",
+                    background: "#0A2540",
+                    border: "1px solid rgba(184,138,60,0.3)",
                     borderRadius: 8,
                     fontSize: 12,
                     fontFamily: "JetBrains Mono",
                   }}
                 />
                 <Legend iconType="square" wrapperStyle={{ fontSize: 11, fontFamily: "JetBrains Mono", color: "#9CA3AF" }} />
-                <Bar dataKey="rules"     stackId="a" fill="#D4A84B" />
+                <Bar dataKey="rules"     stackId="a" fill="#D6B47E" />
                 <Bar dataKey="ml"        stackId="a" fill="#6B4FAE" />
-                <Bar dataKey="watchlist" stackId="a" fill="#FB923C" />
+                <Bar dataKey="watchlist" stackId="a" fill="#C98A1B" />
                 <Bar dataKey="manual"    stackId="a" fill="#4ADE80" />
               </BarChart>
             </ResponsiveContainer>
@@ -253,7 +253,7 @@ const ManagerHome = ({ isAr }: Props) => {
         {/* Model governance card */}
         <div
           className="rounded-xl border p-4"
-          style={{ background: "rgba(20,29,46,0.65)", borderColor: "rgba(181,142,60,0.12)" }}
+          style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.12)" }}
         >
           <div className="flex items-center gap-2 mb-3">
             <i className="ri-cpu-line text-[#6B4FAE]" />
@@ -263,7 +263,7 @@ const ManagerHome = ({ isAr }: Props) => {
             <GovernanceRow
               label={isAr ? "النسخة النشطة" : "Active version"}
               value={MODEL_GOVERNANCE.activeVersion}
-              color="#D4A84B"
+              color="#D6B47E"
             />
             <GovernanceRow
               label={isAr ? "النسخة السابقة" : "Previous version"}
@@ -282,8 +282,8 @@ const ManagerHome = ({ isAr }: Props) => {
                 MODEL_GOVERNANCE.drift.status === "ok"
                   ? "#4ADE80"
                   : MODEL_GOVERNANCE.drift.status === "watch"
-                    ? "#FB923C"
-                    : "#F87171"
+                    ? "#C98A1B"
+                    : "#C94A5E"
               }
             />
             <GovernanceRow
@@ -294,7 +294,7 @@ const ManagerHome = ({ isAr }: Props) => {
             <GovernanceRow
               label={isAr ? "إنذارات عدالة" : "Fairness flags"}
               value={MODEL_GOVERNANCE.drift.nationalityFairnessFlags.toString()}
-              color={MODEL_GOVERNANCE.drift.nationalityFairnessFlags === 0 ? "#4ADE80" : "#F87171"}
+              color={MODEL_GOVERNANCE.drift.nationalityFairnessFlags === 0 ? "#4ADE80" : "#C94A5E"}
             />
             <GovernanceRow
               label={isAr ? "آخر إعادة تدريب" : "Last retrain"}
@@ -304,7 +304,7 @@ const ManagerHome = ({ isAr }: Props) => {
             <GovernanceRow
               label={isAr ? "المراجعة التالية" : "Next review"}
               value={MODEL_GOVERNANCE.nextScheduledReview}
-              color="#D4A84B"
+              color="#D6B47E"
             />
           </div>
         </div>
@@ -312,9 +312,9 @@ const ManagerHome = ({ isAr }: Props) => {
         {/* Operational SLAs — monthly */}
         <div
           className="rounded-xl border"
-          style={{ background: "rgba(20,29,46,0.65)", borderColor: "rgba(181,142,60,0.12)" }}
+          style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.12)" }}
         >
-          <div className="px-4 py-3 border-b" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
+          <div className="px-4 py-3 border-b" style={{ borderColor: "rgba(184,138,60,0.08)" }}>
             <h3 className="text-white text-sm font-bold">{isAr ? "SLA تشغيلية · شهر" : "Operational SLAs · month"}</h3>
             <p className="text-gray-500 text-[11px] font-['JetBrains_Mono']">
               {isAr ? "نسبة الالتزام حسب الشدة" : "met % by severity"}

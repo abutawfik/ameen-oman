@@ -8,14 +8,14 @@ import EventListTable from "./components/EventListTable";
 type Tab = "calendar" | "eventlist";
 
 const ENTITY_OPTIONS = [
-  { value: "hotel",        labelEn: "Hotel Events",        labelAr: "أحداث الفنادق",       icon: "ri-hotel-line",         color: "#D4A84B" },
+  { value: "hotel",        labelEn: "Hotel Events",        labelAr: "أحداث الفنادق",       icon: "ri-hotel-line",         color: "#D6B47E" },
   { value: "car-rental",   labelEn: "Car Rental",          labelAr: "تأجير السيارات",       icon: "ri-car-line",           color: "#4ADE80" },
   { value: "mobile",       labelEn: "Mobile Operators",    labelAr: "مشغلو الاتصالات",      icon: "ri-sim-card-line",      color: "#A78BFA" },
   { value: "municipality", labelEn: "Municipality",        labelAr: "البلديات",              icon: "ri-government-line",    color: "#FACC15" },
   { value: "financial",    labelEn: "Financial Services",  labelAr: "الخدمات المالية",      icon: "ri-bank-card-line",     color: "#4ADE80" },
   { value: "border",       labelEn: "Border Intelligence", labelAr: "استخبارات الحدود",     icon: "ri-passport-line",      color: "#60A5FA" },
   { value: "utility",      labelEn: "Utility Events",      labelAr: "أحداث المرافق",        icon: "ri-flashlight-line",    color: "#FACC15" },
-  { value: "transport",    labelEn: "Transport Intel",     labelAr: "استخبارات النقل",      icon: "ri-bus-line",           color: "#FB923C" },
+  { value: "transport",    labelEn: "Transport Intel",     labelAr: "استخبارات النقل",      icon: "ri-bus-line",           color: "#C98A1B" },
   { value: "employment",   labelEn: "Employment Registry", labelAr: "سجل التوظيف",          icon: "ri-briefcase-line",     color: "#F9A8D4" },
   { value: "ecommerce",    labelEn: "E-Commerce Intel",    labelAr: "استخبارات التجارة",    icon: "ri-shopping-cart-line", color: "#34D399" },
   { value: "social",       labelEn: "Social Intel",        labelAr: "استخبارات التواصل",    icon: "ri-global-line",        color: "#38BDF8" },
@@ -43,16 +43,16 @@ const CalendarEventsPage = () => {
   const selectedEntity = ENTITY_OPTIONS.find((e) => e.value === entityType) || ENTITY_OPTIONS[0];
 
   return (
-    <div className="min-h-screen font-['Inter']" style={{ background: "#0B1220" }} dir={isAr ? "rtl" : "ltr"}>
+    <div className="min-h-screen font-['Inter']" style={{ background: "#051428" }} dir={isAr ? "rtl" : "ltr"}>
       {/* Grid texture */}
       <div className="fixed inset-0 pointer-events-none z-0" style={{
-        backgroundImage: `linear-gradient(rgba(181,142,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,0.03) 1px, transparent 1px)`,
+        backgroundImage: `linear-gradient(rgba(184,138,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.03) 1px, transparent 1px)`,
         backgroundSize: "40px 40px",
       }} />
 
       {/* Header */}
       <header className="sticky top-0 z-40 flex items-center justify-between px-6 py-3 border-b"
-        style={{ background: "rgba(11,18,32,0.97)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(16px)" }}>
+        style={{ background: "rgba(5,20,40,0.97)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(16px)" }}>
         <div className="flex items-center gap-4">
           <button type="button" onClick={() => navigate("/dashboard")}
             className="flex items-center gap-2 px-3 py-1.5 rounded-lg border text-sm font-semibold cursor-pointer whitespace-nowrap transition-colors"
@@ -65,14 +65,14 @@ const CalendarEventsPage = () => {
 
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 flex items-center justify-center rounded-lg"
-              style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.25)" }}>
+              style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.25)" }}>
               <i className="ri-calendar-line text-gold-400 text-sm" />
             </div>
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-white font-bold text-sm">{isAr ? "التقويم وقائمة الأحداث" : "Calendar & Event List"}</span>
                 <span className="px-2 py-0.5 rounded-full text-xs font-bold"
-                  style={{ background: "rgba(181,142,60,0.12)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>
+                  style={{ background: "rgba(184,138,60,0.12)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}>
                   Al-Ameen
                 </span>
               </div>
@@ -84,7 +84,7 @@ const CalendarEventsPage = () => {
         <div className="flex items-center gap-3">
           {/* Live clock */}
           <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-lg border"
-            style={{ background: "rgba(181,142,60,0.04)", borderColor: "rgba(181,142,60,0.12)" }}>
+            style={{ background: "rgba(184,138,60,0.04)", borderColor: "rgba(184,138,60,0.12)" }}>
             <i className="ri-time-line text-gold-400 text-xs" />
             <span className="text-gold-400 text-xs font-bold font-['JetBrains_Mono']">{timeStr}</span>
           </div>
@@ -101,8 +101,8 @@ const CalendarEventsPage = () => {
             </button>
             {showEntityDropdown && (
               <div className="absolute right-0 top-full mt-1 w-60 rounded-xl border overflow-hidden z-50"
-                style={{ background: "rgba(11,18,32,0.99)", borderColor: "rgba(181,142,60,0.2)", backdropFilter: "blur(20px)" }}>
-                <div className="px-3 py-2 border-b" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
+                style={{ background: "rgba(5,20,40,0.99)", borderColor: "rgba(184,138,60,0.2)", backdropFilter: "blur(20px)" }}>
+                <div className="px-3 py-2 border-b" style={{ borderColor: "rgba(184,138,60,0.08)" }}>
                   <span className="text-gray-600 text-xs font-['JetBrains_Mono'] uppercase tracking-wider">
                     {isAr ? "اختر الوحدة" : "Select Module"}
                   </span>
@@ -139,14 +139,14 @@ const CalendarEventsPage = () => {
 
       {/* Tab bar */}
       <div className="sticky top-[57px] z-30 flex items-center gap-1 px-6 py-2 border-b overflow-x-auto"
-        style={{ background: "rgba(11,18,32,0.92)", borderColor: "rgba(181,142,60,0.08)", backdropFilter: "blur(12px)" }}>
+        style={{ background: "rgba(5,20,40,0.92)", borderColor: "rgba(184,138,60,0.08)", backdropFilter: "blur(12px)" }}>
         {TABS.map((tab) => (
           <button key={tab.id} type="button" onClick={() => setActiveTab(tab.id)}
             className="flex items-center gap-2 px-5 py-2 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap transition-all flex-shrink-0"
             style={{
-              background: activeTab === tab.id ? "rgba(181,142,60,0.12)" : "transparent",
-              border: `1px solid ${activeTab === tab.id ? "rgba(181,142,60,0.25)" : "transparent"}`,
-              color: activeTab === tab.id ? "#D4A84B" : "#6B7280",
+              background: activeTab === tab.id ? "rgba(184,138,60,0.12)" : "transparent",
+              border: `1px solid ${activeTab === tab.id ? "rgba(184,138,60,0.25)" : "transparent"}`,
+              color: activeTab === tab.id ? "#D6B47E" : "#6B7280",
             }}>
             <i className={`${tab.icon} text-xs`} />
             {isAr ? tab.labelAr : tab.label}
@@ -181,13 +181,13 @@ const CalendarEventsPage = () => {
               <div className="flex items-center gap-2">
                 <button type="button"
                   className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold cursor-pointer whitespace-nowrap transition-opacity hover:opacity-90"
-                  style={{ background: "#D4A84B", color: "#0B1220" }}>
+                  style={{ background: "#D6B47E", color: "#051428" }}>
                   <i className="ri-add-line text-sm" />
                   {isAr ? "إضافة حدث" : "Add Event"}
                 </button>
                 <button type="button"
                   className="flex items-center gap-2 px-4 py-2 rounded-lg border text-sm font-semibold cursor-pointer whitespace-nowrap transition-colors"
-                  style={{ background: "transparent", borderColor: "rgba(181,142,60,0.3)", color: "#D4A84B" }}>
+                  style={{ background: "transparent", borderColor: "rgba(184,138,60,0.3)", color: "#D6B47E" }}>
                   <i className="ri-download-2-line text-sm" />
                   {isAr ? "تصدير" : "Export"}
                 </button>
@@ -198,17 +198,17 @@ const CalendarEventsPage = () => {
             <CalendarGrid isAr={isAr} entityType={entityType} />
 
             {/* Legend guide card */}
-            <div className="rounded-2xl border p-5" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
+            <div className="rounded-2xl border p-5" style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}>
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-8 h-8 flex items-center justify-center rounded-lg"
-                  style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+                  style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.2)" }}>
                   <i className="ri-information-line text-gold-400 text-sm" />
                 </div>
                 <h3 className="text-white font-bold text-sm">{isAr ? "دليل التقويم" : "Calendar Guide"}</h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {[
-                  { icon: "ri-mouse-line",          color: "#D4A84B", title: isAr ? "انقر على يوم" : "Click a Day",       desc: isAr ? "انقر على أي يوم لعرض الأحداث والإجراءات السريعة" : "Click any day to see events and quick actions for that date" },
+                  { icon: "ri-mouse-line",          color: "#D6B47E", title: isAr ? "انقر على يوم" : "Click a Day",       desc: isAr ? "انقر على أي يوم لعرض الأحداث والإجراءات السريعة" : "Click any day to see events and quick actions for that date" },
                   { icon: "ri-circle-fill",          color: "#4ADE80", title: isAr ? "نقاط ملونة" : "Colored Dots",       desc: isAr ? "كل لون يمثل نوع حدث مختلف — راجع المفتاح أعلى التقويم" : "Each color represents a different event type — see legend above" },
                   { icon: "ri-calendar-check-line",  color: "#FACC15", title: isAr ? "اليوم الحالي" : "Current Day",      desc: isAr ? "اليوم الحالي محاط بحلقة سماوية مضيئة للتمييز السريع" : "Current day has a glowing cyan ring for quick identification" },
                 ].map((item) => (
@@ -243,7 +243,7 @@ const CalendarEventsPage = () => {
               </div>
               <div className="flex items-center gap-2">
                 <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg border"
-                  style={{ background: "rgba(181,142,60,0.04)", borderColor: "rgba(181,142,60,0.12)" }}>
+                  style={{ background: "rgba(184,138,60,0.04)", borderColor: "rgba(184,138,60,0.12)" }}>
                   <i className="ri-qr-code-line text-gold-400 text-xs" />
                   <span className="text-gold-400 text-xs font-['JetBrains_Mono']">AMN-EVT-20260405</span>
                 </div>

@@ -120,10 +120,10 @@ const ThreatLevelGauge = ({ isAr }: Props) => {
 
       {/* 7-day trend */}
       <div className="rounded-2xl border p-5"
-        style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
+        style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}>
         <div className="flex items-center gap-2 mb-4">
           <div className="w-6 h-6 flex items-center justify-center rounded-lg"
-            style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+            style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.2)" }}>
             <i className="ri-line-chart-line text-gold-400 text-xs" />
           </div>
           <span className="text-white font-bold text-sm">{isAr ? "اتجاه 7 أيام" : "7-Day Trend"}</span>
@@ -142,7 +142,7 @@ const ThreatLevelGauge = ({ isAr }: Props) => {
                   }}>
                   {/* Tooltip */}
                   <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 px-2 py-1 rounded text-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10"
-                    style={{ background: "rgba(11,18,32,0.95)", border: "1px solid rgba(181,142,60,0.2)", color: lvlCfg.color }}>
+                    style={{ background: "rgba(5,20,40,0.95)", border: "1px solid rgba(184,138,60,0.2)", color: lvlCfg.color }}>
                     {h.score} — {isAr ? lvlCfg.labelAr : h.level}
                   </div>
                 </div>
@@ -155,17 +155,17 @@ const ThreatLevelGauge = ({ isAr }: Props) => {
 
       {/* Stream threat scores */}
       <div className="rounded-2xl border overflow-hidden"
-        style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
-        <div className="flex items-center gap-2 px-5 py-3 border-b" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
+        style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}>
+        <div className="flex items-center gap-2 px-5 py-3 border-b" style={{ borderColor: "rgba(184,138,60,0.08)" }}>
           <div className="w-6 h-6 flex items-center justify-center rounded-lg"
-            style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+            style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.2)" }}>
             <i className="ri-bar-chart-2-line text-gold-400 text-xs" />
           </div>
           <span className="text-white font-bold text-sm">{isAr ? "درجات التهديد حسب المصدر" : "Threat Score by Stream"}</span>
         </div>
         <div className="p-4 space-y-2.5">
           {streamThreatScores.slice(0, 8).map((s) => {
-            const scoreColor = s.score >= 70 ? "#F87171" : s.score >= 50 ? "#FB923C" : s.score >= 30 ? "#FACC15" : "#4ADE80";
+            const scoreColor = s.score >= 70 ? "#C94A5E" : s.score >= 50 ? "#C98A1B" : s.score >= 30 ? "#FACC15" : "#4ADE80";
             return (
               <div key={s.stream} className="flex items-center gap-3">
                 <div className="w-5 h-5 flex items-center justify-center flex-shrink-0">
@@ -181,7 +181,7 @@ const ThreatLevelGauge = ({ isAr }: Props) => {
                   <i className={`text-xs ${s.trend === "up" ? "ri-arrow-up-line text-red-400" : s.trend === "down" ? "ri-arrow-down-line text-green-400" : "ri-subtract-line text-gray-600"}`} />
                   {s.alerts > 0 && (
                     <span className="px-1 py-0.5 rounded text-xs font-bold font-['JetBrains_Mono']"
-                      style={{ background: "rgba(248,113,113,0.12)", color: "#F87171", fontSize: "8px" }}>
+                      style={{ background: "rgba(201,74,94,0.12)", color: "#C94A5E", fontSize: "8px" }}>
                       {s.alerts}
                     </span>
                   )}
@@ -194,21 +194,21 @@ const ThreatLevelGauge = ({ isAr }: Props) => {
 
       {/* Active threat indicators */}
       <div className="rounded-2xl border overflow-hidden"
-        style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
-        <div className="flex items-center gap-2 px-5 py-3 border-b" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
+        style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}>
+        <div className="flex items-center gap-2 px-5 py-3 border-b" style={{ borderColor: "rgba(184,138,60,0.08)" }}>
           <div className="w-6 h-6 flex items-center justify-center rounded-lg"
-            style={{ background: "rgba(248,113,113,0.1)", border: "1px solid rgba(248,113,113,0.2)" }}>
+            style={{ background: "rgba(201,74,94,0.1)", border: "1px solid rgba(201,74,94,0.2)" }}>
             <i className="ri-alarm-warning-line text-red-400 text-xs" />
           </div>
           <span className="text-white font-bold text-sm">{isAr ? "مؤشرات التهديد النشطة" : "Active Threat Indicators"}</span>
           <span className="ml-auto px-2 py-0.5 rounded-full text-xs font-bold font-['JetBrains_Mono']"
-            style={{ background: "rgba(248,113,113,0.12)", color: "#F87171" }}>
+            style={{ background: "rgba(201,74,94,0.12)", color: "#C94A5E" }}>
             {threatIndicators.length}
           </span>
         </div>
-        <div className="divide-y" style={{ borderColor: "rgba(181,142,60,0.04)" }}>
+        <div className="divide-y" style={{ borderColor: "rgba(184,138,60,0.04)" }}>
           {threatIndicators.map((ti) => {
-            const sevColor = ti.severity === "critical" ? "#F87171" : ti.severity === "high" ? "#FB923C" : ti.severity === "medium" ? "#FACC15" : "#4ADE80";
+            const sevColor = ti.severity === "critical" ? "#C94A5E" : ti.severity === "high" ? "#C98A1B" : ti.severity === "medium" ? "#FACC15" : "#4ADE80";
             return (
               <div key={ti.id} className="flex items-start gap-3 px-4 py-3 hover:bg-white/[0.02] transition-colors cursor-pointer">
                 <div className="w-6 h-6 flex items-center justify-center rounded-md flex-shrink-0 mt-0.5"

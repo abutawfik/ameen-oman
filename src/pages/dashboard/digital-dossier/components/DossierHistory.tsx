@@ -7,9 +7,9 @@ interface Props {
 
 const statusConfig: Record<DossierStatus, { color: string; bg: string; label: string; icon: string }> = {
   draft:      { color: "#9CA3AF", bg: "rgba(156,163,175,0.1)", label: "Draft",      icon: "ri-draft-line" },
-  generating: { color: "#D4A84B", bg: "rgba(181,142,60,0.1)",  label: "Generating", icon: "ri-loader-4-line" },
+  generating: { color: "#D6B47E", bg: "rgba(184,138,60,0.1)",  label: "Generating", icon: "ri-loader-4-line" },
   ready:      { color: "#4ADE80", bg: "rgba(74,222,128,0.1)",  label: "Ready",      icon: "ri-checkbox-circle-line" },
-  expired:    { color: "#FB923C", bg: "rgba(251,146,60,0.1)",  label: "Expired",    icon: "ri-time-line" },
+  expired:    { color: "#C98A1B", bg: "rgba(201,138,27,0.1)",  label: "Expired",    icon: "ri-time-line" },
   archived:   { color: "#6B7280", bg: "rgba(107,114,128,0.1)", label: "Archived",   icon: "ri-archive-line" },
 };
 
@@ -25,7 +25,7 @@ const DossierHistory = ({ isAr }: Props) => {
   });
 
   const riskColors: Record<string, string> = {
-    low: "#4ADE80", medium: "#FACC15", high: "#FB923C", critical: "#F87171",
+    low: "#4ADE80", medium: "#FACC15", high: "#C98A1B", critical: "#C94A5E",
   };
 
   return (
@@ -42,7 +42,7 @@ const DossierHistory = ({ isAr }: Props) => {
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search by subject or reference..."
               className="w-full pl-9 pr-4 py-2 rounded-lg text-sm font-['Inter'] outline-none"
-              style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(181,142,60,0.15)", color: "#E5E7EB" }}
+              style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(184,138,60,0.15)", color: "#E5E7EB" }}
             />
           </div>
           <div className="flex gap-1.5">
@@ -52,9 +52,9 @@ const DossierHistory = ({ isAr }: Props) => {
                 onClick={() => setStatusFilter(s)}
                 className="px-3 py-2 rounded-lg text-xs font-['Inter'] cursor-pointer transition-all whitespace-nowrap capitalize"
                 style={{
-                  background: statusFilter === s ? "rgba(181,142,60,0.1)" : "rgba(255,255,255,0.03)",
-                  color: statusFilter === s ? "#D4A84B" : "#6B7280",
-                  border: statusFilter === s ? "1px solid rgba(181,142,60,0.25)" : "1px solid rgba(255,255,255,0.06)",
+                  background: statusFilter === s ? "rgba(184,138,60,0.1)" : "rgba(255,255,255,0.03)",
+                  color: statusFilter === s ? "#D6B47E" : "#6B7280",
+                  border: statusFilter === s ? "1px solid rgba(184,138,60,0.25)" : "1px solid rgba(255,255,255,0.06)",
                 }}
               >
                 {s === "all" ? "All" : statusConfig[s as DossierStatus].label}
@@ -66,12 +66,12 @@ const DossierHistory = ({ isAr }: Props) => {
         {/* Stats row */}
         <div className="grid grid-cols-4 gap-3">
           {[
-            { label: "Total Generated", value: generatedDossiers.length, color: "#D4A84B" },
+            { label: "Total Generated", value: generatedDossiers.length, color: "#D6B47E" },
             { label: "Ready", value: generatedDossiers.filter((d) => d.status === "ready").length, color: "#4ADE80" },
-            { label: "Expired", value: generatedDossiers.filter((d) => d.status === "expired").length, color: "#FB923C" },
+            { label: "Expired", value: generatedDossiers.filter((d) => d.status === "expired").length, color: "#C98A1B" },
             { label: "Total Downloads", value: generatedDossiers.reduce((s, d) => s + d.downloadCount, 0), color: "#A78BFA" },
           ].map((stat) => (
-            <div key={stat.label} className="p-3 rounded-xl" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.1)" }}>
+            <div key={stat.label} className="p-3 rounded-xl" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.1)" }}>
               <p className="text-2xl font-bold font-['JetBrains_Mono']" style={{ color: stat.color }}>{stat.value}</p>
               <p className="text-gray-600 text-xs font-['Inter'] mt-0.5">{stat.label}</p>
             </div>
@@ -90,8 +90,8 @@ const DossierHistory = ({ isAr }: Props) => {
                 onClick={() => setSelectedDossier(isSelected ? null : dossier)}
                 className="w-full p-4 rounded-xl cursor-pointer transition-all text-left"
                 style={{
-                  background: isSelected ? "rgba(181,142,60,0.06)" : "rgba(20,29,46,0.8)",
-                  border: isSelected ? "1px solid rgba(181,142,60,0.25)" : "1px solid rgba(181,142,60,0.1)",
+                  background: isSelected ? "rgba(184,138,60,0.06)" : "rgba(10,37,64,0.8)",
+                  border: isSelected ? "1px solid rgba(184,138,60,0.25)" : "1px solid rgba(184,138,60,0.1)",
                 }}
               >
                 <div className="flex items-start gap-4">
@@ -125,14 +125,14 @@ const DossierHistory = ({ isAr }: Props) => {
                     <div className="flex items-center gap-1.5">
                       <span className="text-xs font-['JetBrains_Mono'] text-gray-600">{dossier.streamCount} streams</span>
                       {dossier.alertCount > 0 && (
-                        <span className="px-1.5 py-0.5 rounded text-[10px] font-bold font-['JetBrains_Mono']" style={{ background: "rgba(248,113,113,0.15)", color: "#F87171" }}>
+                        <span className="px-1.5 py-0.5 rounded text-[10px] font-bold font-['JetBrains_Mono']" style={{ background: "rgba(201,74,94,0.15)", color: "#C94A5E" }}>
                           {dossier.alertCount} alerts
                         </span>
                       )}
                     </div>
                     {dossier.status === "ready" && (
                       <div className="flex gap-1.5">
-                        <button className="px-2.5 py-1 rounded text-[11px] font-['Inter'] cursor-pointer transition-colors whitespace-nowrap" style={{ background: "rgba(181,142,60,0.08)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>
+                        <button className="px-2.5 py-1 rounded text-[11px] font-['Inter'] cursor-pointer transition-colors whitespace-nowrap" style={{ background: "rgba(184,138,60,0.08)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}>
                           <i className="ri-eye-line mr-1" />View
                         </button>
                         <button className="px-2.5 py-1 rounded text-[11px] font-['Inter'] cursor-pointer transition-colors whitespace-nowrap" style={{ background: "rgba(74,222,128,0.08)", color: "#4ADE80", border: "1px solid rgba(74,222,128,0.2)" }}>
@@ -145,15 +145,15 @@ const DossierHistory = ({ isAr }: Props) => {
 
                 {/* Expanded audit log */}
                 {isSelected && (
-                  <div className="mt-4 pt-4 border-t" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
+                  <div className="mt-4 pt-4 border-t" style={{ borderColor: "rgba(184,138,60,0.08)" }}>
                     <p className="text-gray-600 text-[10px] font-['JetBrains_Mono'] mb-2">AUDIT TRAIL</p>
                     <div className="space-y-1.5">
                       {dossier.auditLog.map((entry, idx) => (
                         <div key={idx} className="flex items-center gap-3 text-xs font-['JetBrains_Mono']">
                           <span className="text-gray-700 w-32 flex-shrink-0">{entry.timestamp}</span>
                           <span className="px-1.5 py-0.5 rounded text-[10px]" style={{
-                            background: entry.action === "Generated" ? "rgba(181,142,60,0.1)" : entry.action === "Downloaded" ? "rgba(74,222,128,0.1)" : entry.action === "Expired" ? "rgba(251,146,60,0.1)" : "rgba(156,163,175,0.1)",
-                            color: entry.action === "Generated" ? "#D4A84B" : entry.action === "Downloaded" ? "#4ADE80" : entry.action === "Expired" ? "#FB923C" : "#9CA3AF",
+                            background: entry.action === "Generated" ? "rgba(184,138,60,0.1)" : entry.action === "Downloaded" ? "rgba(74,222,128,0.1)" : entry.action === "Expired" ? "rgba(201,138,27,0.1)" : "rgba(156,163,175,0.1)",
+                            color: entry.action === "Generated" ? "#D6B47E" : entry.action === "Downloaded" ? "#4ADE80" : entry.action === "Expired" ? "#C98A1B" : "#9CA3AF",
                           }}>
                             {entry.action}
                           </span>

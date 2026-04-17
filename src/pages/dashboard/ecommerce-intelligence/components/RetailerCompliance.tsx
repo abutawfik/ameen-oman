@@ -21,14 +21,14 @@ const ONLINE_PLATFORMS = [
 const statusColor = (s: "active" | "warning" | "offline") => {
   if (s === "active") return "#4ADE80";
   if (s === "warning") return "#FACC15";
-  return "#F87171";
+  return "#C94A5E";
 };
 
 const qualityColor = (q: number) => {
   if (q >= 90) return "#4ADE80";
   if (q >= 70) return "#FACC15";
-  if (q >= 40) return "#FB923C";
-  return "#F87171";
+  if (q >= 40) return "#C98A1B";
+  return "#C94A5E";
 };
 
 const RetailerCompliance = ({ isAr }: Props) => {
@@ -39,10 +39,10 @@ const RetailerCompliance = ({ isAr }: Props) => {
         {[
           { label: isAr ? "متصل" : "Online", value: RETAILERS.filter((r) => r.status === "active").length, color: "#4ADE80", icon: "ri-wifi-line" },
           { label: isAr ? "تحذير" : "Warning", value: RETAILERS.filter((r) => r.status === "warning").length, color: "#FACC15", icon: "ri-alert-line" },
-          { label: isAr ? "غير متصل" : "Offline", value: RETAILERS.filter((r) => r.status === "offline").length, color: "#F87171", icon: "ri-wifi-off-line" },
-          { label: isAr ? "متوسط الجودة" : "Avg Quality", value: `${Math.round(RETAILERS.filter((r) => r.status === "active").reduce((a, r) => a + r.dataQuality, 0) / RETAILERS.filter((r) => r.status === "active").length)}%`, color: "#D4A84B", icon: "ri-bar-chart-line" },
+          { label: isAr ? "غير متصل" : "Offline", value: RETAILERS.filter((r) => r.status === "offline").length, color: "#C94A5E", icon: "ri-wifi-off-line" },
+          { label: isAr ? "متوسط الجودة" : "Avg Quality", value: `${Math.round(RETAILERS.filter((r) => r.status === "active").reduce((a, r) => a + r.dataQuality, 0) / RETAILERS.filter((r) => r.status === "active").length)}%`, color: "#D6B47E", icon: "ri-bar-chart-line" },
         ].map((s) => (
-          <div key={s.label} className="rounded-xl border p-4 text-center" style={{ background: "rgba(20,29,46,0.8)", borderColor: `${s.color}20`, backdropFilter: "blur(12px)" }}>
+          <div key={s.label} className="rounded-xl border p-4 text-center" style={{ background: "rgba(10,37,64,0.8)", borderColor: `${s.color}20`, backdropFilter: "blur(12px)" }}>
             <div className="w-8 h-8 flex items-center justify-center rounded-lg mx-auto mb-2" style={{ background: `${s.color}12` }}>
               <i className={`${s.icon} text-sm`} style={{ color: s.color }} />
             </div>
@@ -53,8 +53,8 @@ const RetailerCompliance = ({ isAr }: Props) => {
       </div>
 
       {/* Retailer table */}
-      <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
-        <div className="px-6 py-4 border-b" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
+      <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}>
+        <div className="px-6 py-4 border-b" style={{ borderColor: "rgba(184,138,60,0.08)" }}>
           <h3 className="text-white font-bold text-sm">{isAr ? "تقارير تجار التجزئة" : "Retailer Reporting Status"}</h3>
           <p className="text-gray-500 text-xs mt-0.5">{isAr ? "التجار المسجّلون في نظام Al-Ameen" : "Retailers registered in Al-Ameen system"}</p>
         </div>
@@ -104,7 +104,7 @@ const RetailerCompliance = ({ isAr }: Props) => {
                       <div className="flex gap-1 flex-wrap">
                         {r.categories.map((cat) => (
                           <span key={cat} className="px-1.5 py-0.5 rounded text-xs font-['JetBrains_Mono']"
-                            style={{ background: "rgba(181,142,60,0.08)", color: "#D4A84B", fontSize: "9px" }}>{cat}</span>
+                            style={{ background: "rgba(184,138,60,0.08)", color: "#D6B47E", fontSize: "9px" }}>{cat}</span>
                         ))}
                       </div>
                     </td>
@@ -125,8 +125,8 @@ const RetailerCompliance = ({ isAr }: Props) => {
       </div>
 
       {/* Online platforms */}
-      <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
-        <div className="px-6 py-4 border-b" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
+      <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}>
+        <div className="px-6 py-4 border-b" style={{ borderColor: "rgba(184,138,60,0.08)" }}>
           <h3 className="text-white font-bold text-sm">{isAr ? "المنصات الإلكترونية" : "Online Platforms"}</h3>
           <p className="text-gray-500 text-xs mt-0.5">{isAr ? "منصات التجارة الإلكترونية العاملة في عُمان" : "E-commerce platforms operating in Oman"}</p>
         </div>
@@ -141,7 +141,7 @@ const RetailerCompliance = ({ isAr }: Props) => {
                   <span className="text-xs font-semibold" style={{ color: sc }}>{p.status.toUpperCase()}</span>
                 </div>
                 <div className="text-white text-sm font-bold mb-1 leading-tight">{p.name}</div>
-                <div className="text-2xl font-black font-['JetBrains_Mono'] mb-1" style={{ color: "#D4A84B" }}>{p.eventsToday}</div>
+                <div className="text-2xl font-black font-['JetBrains_Mono'] mb-1" style={{ color: "#D6B47E" }}>{p.eventsToday}</div>
                 <div className="text-gray-500 text-xs mb-2">{isAr ? "أحداث اليوم" : "events today"}</div>
                 <div className="flex items-center gap-2">
                   <div className="flex-1 h-1 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>

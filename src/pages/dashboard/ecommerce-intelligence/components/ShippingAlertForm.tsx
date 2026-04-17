@@ -169,7 +169,7 @@ const ShippingAlertForm = ({ isAr, onCancel }: Props) => {
 
         {/* High-risk origin alert */}
         {isHighRiskOrigin && (
-          <div className="mt-4 flex items-center gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(248,113,113,0.06)", borderColor: "rgba(248,113,113,0.3)" }}>
+          <div className="mt-4 flex items-center gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(201,74,94,0.06)", borderColor: "rgba(201,74,94,0.3)" }}>
             <i className="ri-alarm-warning-line text-red-400" />
             <p className="text-red-400 text-sm font-['Inter']">
               {isAr ? "بلد المنشأ مُصنَّف عالي المخاطر — سيتم تصعيد هذا الحدث تلقائياً" : "Origin country is classified high-risk — this event will be automatically escalated"}
@@ -221,7 +221,7 @@ const ShippingAlertForm = ({ isAr, onCancel }: Props) => {
       </SectionCard>
 
       {/* Flag & Risk */}
-      <SectionCard title={isAr ? "تفاصيل التنبيه" : "Flag Details"} icon="ri-flag-line" accentColor="#F87171">
+      <SectionCard title={isAr ? "تفاصيل التنبيه" : "Flag Details"} icon="ri-flag-line" accentColor="#C94A5E">
         <div className="space-y-4">
           <FormField label={isAr ? "سبب التنبيه" : "Flag Reason"} required>
             <SelectInput
@@ -261,7 +261,7 @@ const ShippingAlertForm = ({ isAr, onCancel }: Props) => {
               placeholder={isAr ? "أي معلومات إضافية ذات صلة..." : "Any additional relevant information..."}
               className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none transition-all resize-none font-['Inter']"
               style={{ background: "#0F1923", border: "1px solid rgba(255,255,255,0.08)" }}
-              onFocus={(e) => { e.target.style.borderColor = "#D4A84B"; }}
+              onFocus={(e) => { e.target.style.borderColor = "#D6B47E"; }}
               onBlur={(e) => { e.target.style.borderColor = "rgba(255,255,255,0.08)"; }}
             />
             <p className="text-gray-600 text-xs mt-1 text-right font-['JetBrains_Mono']">{additionalNotes.length}/500</p>

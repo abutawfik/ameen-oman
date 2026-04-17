@@ -39,11 +39,11 @@ export default function ChangeRoomForm({ lang, onCancel }: Props) {
       </div>
 
       {/* Lookup */}
-      <div className="rounded-xl border border-gold-500/20 p-5 mb-5" style={{ background: 'rgba(20,29,46,0.8)' }}>
+      <div className="rounded-xl border border-gold-500/20 p-5 mb-5" style={{ background: 'rgba(10,37,64,0.8)' }}>
         <h3 className="text-gold-400 font-semibold text-sm uppercase tracking-wider mb-4">{isAr ? 'بحث عن الحجز' : 'Booking Lookup'}</h3>
         <div className="flex gap-3">
           <input type="text" value={bookingRef} onChange={e => setBookingRef(e.target.value)} placeholder="BK-2025-001 / Room No. / Doc No." className={`${inputCls} flex-1`} />
-          <button onClick={lookup} className="px-5 py-2.5 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap" style={{ background: '#D4A84B', color: '#0B1220' }}>
+          <button onClick={lookup} className="px-5 py-2.5 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap" style={{ background: '#D6B47E', color: '#051428' }}>
             {isAr ? 'بحث' : 'Lookup'}
           </button>
         </div>
@@ -63,14 +63,14 @@ export default function ChangeRoomForm({ lang, onCancel }: Props) {
       </div>
 
       {/* New room + details */}
-      <div className="rounded-xl border border-gold-500/20 p-5 mb-5 space-y-4" style={{ background: 'rgba(20,29,46,0.8)' }}>
+      <div className="rounded-xl border border-gold-500/20 p-5 mb-5 space-y-4" style={{ background: 'rgba(10,37,64,0.8)' }}>
         <h3 className="text-gold-400 font-semibold text-sm uppercase tracking-wider">{isAr ? 'تفاصيل التغيير' : 'Change Details'}</h3>
         <div>
           <label className={labelCls}>{isAr ? 'الغرفة الجديدة' : 'New Room'}</label>
-          <select value={newRoom} onChange={e => setNewRoom(e.target.value)} className={inputCls} style={{ background: 'rgba(20,29,46,0.9)' }}>
-            <option value="" style={{ background: '#141D2E' }}>{isAr ? 'اختر غرفة' : 'Select new room'}</option>
+          <select value={newRoom} onChange={e => setNewRoom(e.target.value)} className={inputCls} style={{ background: 'rgba(10,37,64,0.9)' }}>
+            <option value="" style={{ background: '#0A2540' }}>{isAr ? 'اختر غرفة' : 'Select new room'}</option>
             {rooms.filter(r => r.status === 'available').map(r => (
-              <option key={r.id} value={r.number} style={{ background: '#141D2E' }}>{r.number} — {r.type} — Floor {r.floor} ({r.rateOMR} OMR)</option>
+              <option key={r.id} value={r.number} style={{ background: '#0A2540' }}>{r.number} — {r.type} — Floor {r.floor} ({r.rateOMR} OMR)</option>
             ))}
           </select>
         </div>
@@ -97,7 +97,7 @@ export default function ChangeRoomForm({ lang, onCancel }: Props) {
         </div>
         <div className="flex items-center gap-3">
           <button onClick={onCancel} className="px-5 py-2.5 rounded-lg text-sm border border-gray-600 text-gray-300 hover:border-gray-400 cursor-pointer transition-all whitespace-nowrap">{isAr ? 'إلغاء' : 'Cancel'}</button>
-          <button onClick={handleSave} className="px-6 py-2.5 rounded-lg text-sm font-semibold cursor-pointer transition-all whitespace-nowrap" style={{ background: saved ? '#4ADE80' : '#D4A84B', color: '#0B1220' }}>
+          <button onClick={handleSave} className="px-6 py-2.5 rounded-lg text-sm font-semibold cursor-pointer transition-all whitespace-nowrap" style={{ background: saved ? '#4ADE80' : '#D6B47E', color: '#051428' }}>
             {saved ? <span className="flex items-center gap-2"><i className="ri-checkbox-circle-line" />{isAr ? 'تم!' : 'Done!'}</span> : <span><i className="ri-save-line mr-1" />{isAr ? 'حفظ + مزامنة أمين' : 'Save + Sync to Al-Ameen'}</span>}
           </button>
         </div>

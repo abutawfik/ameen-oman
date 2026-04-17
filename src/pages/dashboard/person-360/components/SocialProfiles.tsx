@@ -8,7 +8,7 @@ interface Props {
 
 const statusConfig: Record<string, { label: string; labelAr: string; color: string }> = {
   active:    { label: "Active",    labelAr: "نشط",   color: "#4ADE80" },
-  suspended: { label: "Suspended", labelAr: "موقوف", color: "#F87171" },
+  suspended: { label: "Suspended", labelAr: "موقوف", color: "#C94A5E" },
   private:   { label: "Private",   labelAr: "خاص",   color: "#FACC15" },
 };
 
@@ -20,7 +20,7 @@ const SocialProfiles = ({ profiles, isAr }: Props) => {
   return (
     <div
       className="rounded-xl p-5"
-      style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.15)", backdropFilter: "blur(12px)" }}
+      style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.15)", backdropFilter: "blur(12px)" }}
     >
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
@@ -29,14 +29,14 @@ const SocialProfiles = ({ profiles, isAr }: Props) => {
           </h3>
           <span
             className="px-2 py-0.5 rounded-full text-xs font-['JetBrains_Mono']"
-            style={{ background: "rgba(181,142,60,0.1)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}
+            style={{ background: "rgba(184,138,60,0.1)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}
           >
             {profiles.length} {isAr ? "منصة" : "platforms"}
           </span>
           {flaggedCount > 0 && (
             <span
               className="px-2 py-0.5 rounded-full text-xs font-['JetBrains_Mono'] font-bold"
-              style={{ background: "rgba(248,113,113,0.1)", color: "#F87171", border: "1px solid rgba(248,113,113,0.2)" }}
+              style={{ background: "rgba(201,74,94,0.1)", color: "#C94A5E", border: "1px solid rgba(201,74,94,0.2)" }}
             >
               {flaggedCount} {isAr ? "مُبلَّغ" : "flagged"}
             </span>
@@ -44,7 +44,7 @@ const SocialProfiles = ({ profiles, isAr }: Props) => {
         </div>
         <div
           className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-['JetBrains_Mono']"
-          style={{ background: "rgba(251,146,60,0.08)", color: "#FB923C", border: "1px solid rgba(251,146,60,0.2)" }}
+          style={{ background: "rgba(201,138,27,0.08)", color: "#C98A1B", border: "1px solid rgba(201,138,27,0.2)" }}
         >
           <i className="ri-eye-line text-xs" />
           {isAr ? "مراقبة نشطة" : "Active Monitoring"}
@@ -74,11 +74,11 @@ const SocialProfiles = ({ profiles, isAr }: Props) => {
               key={profile.platform}
               className="rounded-xl p-4 flex flex-col gap-3 relative cursor-pointer transition-all"
               style={{
-                background: profile.flagged ? "rgba(248,113,113,0.06)" : "rgba(11,18,32,0.6)",
+                background: profile.flagged ? "rgba(201,74,94,0.06)" : "rgba(5,20,40,0.6)",
                 border: profile.flagged
-                  ? "1px solid rgba(248,113,113,0.3)"
+                  ? "1px solid rgba(201,74,94,0.3)"
                   : isExpanded
-                    ? "1px solid rgba(181,142,60,0.3)"
+                    ? "1px solid rgba(184,138,60,0.3)"
                     : "1px solid rgba(255,255,255,0.06)",
               }}
               onClick={() => setExpandedProfile(isExpanded ? null : profile.platform)}
@@ -87,7 +87,7 @@ const SocialProfiles = ({ profiles, isAr }: Props) => {
               {profile.flagged && (
                 <div
                   className="absolute top-2 right-2 px-1.5 py-0.5 rounded text-[9px] font-bold font-['JetBrains_Mono'] flex items-center gap-1"
-                  style={{ background: "rgba(248,113,113,0.2)", color: "#F87171" }}
+                  style={{ background: "rgba(201,74,94,0.2)", color: "#C94A5E" }}
                 >
                   <i className="ri-flag-fill" style={{ fontSize: 9 }} />
                   {isAr ? "مُبلَّغ" : "FLAGGED"}
@@ -137,7 +137,7 @@ const SocialProfiles = ({ profiles, isAr }: Props) => {
               {profile.flagged && isExpanded && profile.flagReason && (
                 <div
                   className="rounded-lg p-2.5 border border-red-500/20"
-                  style={{ background: "rgba(248,113,113,0.06)" }}
+                  style={{ background: "rgba(201,74,94,0.06)" }}
                 >
                   <p className="text-red-400 text-[10px] font-bold font-['JetBrains_Mono'] mb-1 uppercase tracking-wider">
                     {isAr ? "سبب التبليغ" : "Flag Reason"}
@@ -159,9 +159,9 @@ const SocialProfiles = ({ profiles, isAr }: Props) => {
                 href={profile.profileUrl}
                 className="flex items-center justify-center gap-1 py-1.5 rounded-lg text-[10px] font-['JetBrains_Mono'] cursor-pointer transition-colors"
                 style={{
-                  background: "rgba(181,142,60,0.05)",
-                  color: "#D4A84B",
-                  border: "1px solid rgba(181,142,60,0.2)",
+                  background: "rgba(184,138,60,0.05)",
+                  color: "#D6B47E",
+                  border: "1px solid rgba(184,138,60,0.2)",
                   textDecoration: "none",
                 }}
                 onClick={e => e.stopPropagation()}

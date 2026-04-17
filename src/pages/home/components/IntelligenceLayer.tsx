@@ -11,12 +11,12 @@ import {
 
 // ─── Brand tokens (inline — same pattern used across the public landing) ─────
 const C = {
-  midnight800: "#0B1220",
-  midnight900: "#05080F",
-  ivory100:    "#F5EFE3",
-  ivory200:    "#EFE7D3",
-  gold400:     "#D4A84B",
-  omanRed:     "#9A1F24",
+  midnight800: "#051428",
+  midnight900: "#020A14",
+  ivory100:    "#F8F5F0",
+  ivory200:    "#EFE8D7",
+  gold400:     "#D6B47E",
+  omanRed:     "#8A1F3C",
 };
 
 type TabKey = "core" | "extended" | "all";
@@ -51,7 +51,7 @@ const IntelligenceLayer = () => {
         className="absolute inset-0 pointer-events-none"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(181,142,60,1) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,1) 1px, transparent 1px)",
+            "linear-gradient(rgba(184,138,60,1) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,1) 1px, transparent 1px)",
           backgroundSize: "40px 40px",
           opacity: 0.05,
         }}
@@ -65,8 +65,8 @@ const IntelligenceLayer = () => {
             style={{
               padding: "0.25rem 0.875rem",
               borderRadius: 9999,
-              border: "1px solid rgba(181,142,60,0.35)",
-              background: "rgba(181,142,60,0.08)",
+              border: "1px solid rgba(184,138,60,0.35)",
+              background: "rgba(184,138,60,0.08)",
               fontFamily: mono,
               fontSize: "0.6875rem",
               letterSpacing: "0.15em",
@@ -134,10 +134,10 @@ const IntelligenceLayer = () => {
                   fontWeight: 500,
                   letterSpacing: "0.02em",
                   transition: "all 150ms",
-                  background: active ? "rgba(154,31,36,0.1)" : "transparent",
+                  background: active ? "rgba(201,74,94,0.1)" : "transparent",
                   border: active
-                    ? "1px solid rgba(154,31,36,0.3)"
-                    : "1px solid rgba(181,142,60,0.2)",
+                    ? "1px solid rgba(201,74,94,0.3)"
+                    : "1px solid rgba(184,138,60,0.2)",
                   color: active ? C.omanRed : C.gold400,
                 }}
               >
@@ -168,12 +168,12 @@ const IntelligenceLayer = () => {
                 style={{
                   position: "relative",
                   textAlign: isAr ? "right" : "left",
-                  background: "rgba(20,29,46,0.7)",
+                  background: "rgba(10,37,64,0.7)",
                   // Category rail flips to the logical leading edge in RTL.
                   borderInlineStart: `3px solid ${cat.color}`,
-                  borderTop: "1px solid rgba(181,142,60,0.08)",
-                  borderInlineEnd: "1px solid rgba(181,142,60,0.08)",
-                  borderBottom: "1px solid rgba(181,142,60,0.08)",
+                  borderTop: "1px solid rgba(184,138,60,0.08)",
+                  borderInlineEnd: "1px solid rgba(184,138,60,0.08)",
+                  borderBottom: "1px solid rgba(184,138,60,0.08)",
                   borderRadius: 8,
                   padding: 20,
                   display: "flex",
@@ -185,7 +185,7 @@ const IntelligenceLayer = () => {
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = "translateY(-2px)";
-                  e.currentTarget.style.boxShadow = "0 12px 20px rgba(5,8,15,0.35)";
+                  e.currentTarget.style.boxShadow = "0 12px 20px rgba(2,10,20,0.35)";
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = "";
@@ -270,7 +270,7 @@ const IntelligenceLayer = () => {
                     alignItems: "center",
                     marginTop: "auto",
                     paddingTop: "0.5rem",
-                    borderTop: "1px solid rgba(181,142,60,0.12)",
+                    borderTop: "1px solid rgba(184,138,60,0.12)",
                   }}
                 >
                   <span style={{ fontFamily: sans, fontSize: "0.75rem", fontWeight: 500, color: C.gold400 }}>

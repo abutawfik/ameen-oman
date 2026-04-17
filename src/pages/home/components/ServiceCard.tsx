@@ -35,9 +35,9 @@ const ServiceCard = ({
     <div
       className="relative flex flex-col rounded-xl border transition-all duration-300 hover:-translate-y-1 cursor-default group"
       style={{
-        background: "rgba(20,29,46,0.8)",
+        background: "rgba(10,37,64,0.8)",
         backdropFilter: "blur(12px)",
-        borderColor: "rgba(181,142,60,0.12)",
+        borderColor: "rgba(184,138,60,0.12)",
         animationDelay: `${index * 60}ms`,
       }}
       onMouseEnter={(e) => {
@@ -45,7 +45,7 @@ const ServiceCard = ({
         (e.currentTarget as HTMLDivElement).style.boxShadow = `0 0 18px ${badgeColor}10`;
       }}
       onMouseLeave={(e) => {
-        (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(181,142,60,0.12)";
+        (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(184,138,60,0.12)";
         (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
       }}
     >

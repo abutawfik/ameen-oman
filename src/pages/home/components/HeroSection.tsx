@@ -4,10 +4,10 @@ import i18n from "@/i18n";
 // ─── Brand token constants — inline hex so we never depend on JIT-compiled
 //     utility classes. These mirror al-ameen-brand/style-guide.html. ───────────
 const C = {
-  midnight800: "#0B1220",
-  ivory100:    "#F5EFE3",
-  ivory200:    "#EFE7D3",
-  gold400:     "#D4A84B",
+  midnight800: "#051428",
+  ivory100:    "#F8F5F0",
+  ivory200:    "#EFE8D7",
+  gold400:     "#D6B47E",
   gold500:     "#C99C48",
 };
 
@@ -25,7 +25,7 @@ const HeroSection = () => {
       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
       style={{
         // Ceremonial hero background — radial royal-red glow over midnight canvas.
-        background: `radial-gradient(ellipse at top, rgba(154,31,36,0.15), transparent 60%), ${C.midnight800}`,
+        background: `radial-gradient(ellipse at top, rgba(201,74,94,0.15), transparent 60%), ${C.midnight800}`,
       }}
     >
       {/* Gold-dashed grid tracery overlay — 40px grid, 5% opacity */}
@@ -34,7 +34,7 @@ const HeroSection = () => {
         className="absolute inset-0 pointer-events-none"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(181,142,60,1) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,1) 1px, transparent 1px)",
+            "linear-gradient(rgba(184,138,60,1) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,1) 1px, transparent 1px)",
           backgroundSize: "40px 40px",
           opacity: 0.05,
         }}
@@ -45,7 +45,7 @@ const HeroSection = () => {
         aria-hidden
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: "radial-gradient(ellipse 80% 60% at 50% 45%, rgba(181,142,60,0.08) 0%, transparent 70%)",
+          background: "radial-gradient(ellipse 80% 60% at 50% 45%, rgba(184,138,60,0.08) 0%, transparent 70%)",
         }}
       />
 
@@ -56,8 +56,8 @@ const HeroSection = () => {
           className="inline-flex items-center gap-2 mb-8 animate-fade-in"
           style={{
             padding: "0.375rem 1rem",
-            background: "rgba(181,142,60,0.1)",
-            border: "1px solid rgba(181,142,60,0.35)",
+            background: "rgba(184,138,60,0.1)",
+            border: "1px solid rgba(184,138,60,0.35)",
             borderRadius: "9999px",
             fontSize: "0.6875rem",
             fontWeight: 600,
@@ -88,7 +88,7 @@ const HeroSection = () => {
             style={{
               width: 96,
               height: 96,
-              filter: "drop-shadow(0 8px 24px rgba(181,142,60,0.25))",
+              filter: "drop-shadow(0 8px 24px rgba(184,138,60,0.25))",
             }}
           />
         </div>

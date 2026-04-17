@@ -62,15 +62,15 @@ export const livePatternStats = {
 
 export const streamLabels = [
   { key: 'border',       label: 'Border',       short: 'BRD', color: '#60A5FA' },
-  { key: 'hotel',        label: 'Hotel',        short: 'HTL', color: '#D4A84B' },
+  { key: 'hotel',        label: 'Hotel',        short: 'HTL', color: '#D6B47E' },
   { key: 'mobile',       label: 'Mobile',       short: 'MOB', color: '#A78BFA' },
   { key: 'car',          label: 'Car Rental',   short: 'CAR', color: '#34D399' },
   { key: 'financial',    label: 'Financial',    short: 'FIN', color: '#4ADE80' },
   { key: 'employment',   label: 'Employment',   short: 'EMP', color: '#F9A8D4' },
   { key: 'utility',      label: 'Utility',      short: 'UTL', color: '#FACC15' },
-  { key: 'transport',    label: 'Transport',    short: 'TRN', color: '#FB923C' },
+  { key: 'transport',    label: 'Transport',    short: 'TRN', color: '#C98A1B' },
   { key: 'ecommerce',    label: 'E-Commerce',   short: 'ECM', color: '#38BDF8' },
-  { key: 'social',       label: 'Social/OSINT', short: 'SOC', color: '#F87171' },
+  { key: 'social',       label: 'Social/OSINT', short: 'SOC', color: '#C94A5E' },
   { key: 'municipality', label: 'Municipality', short: 'MUN', color: '#6EE7B7' },
   { key: 'education',    label: 'Education',    short: 'EDU', color: '#C4B5FD' },
   { key: 'health',       label: 'Health',       short: 'HLT', color: '#FCA5A5' },
@@ -230,7 +230,7 @@ export const alertQueue: PatternAlert[] = [
     tier: 1, priority: 'critical', location: 'Capital International Airport',
     triggerDescription: 'Arrived via Capital Airport 6h ago. No hotel check-in detected. SIM purchased 2h after arrival. Car rental booked under different name.',
     suggestedAction: 'Dispatch field team to last known location. Cross-check SIM IMEI with hotel registry.',
-    escalationLevel: 0, photoInitials: 'TM', photoColor: '#D4A84B',
+    escalationLevel: 0, photoInitials: 'TM', photoColor: '#D6B47E',
   },
   {
     id: 'ALT-2026-002', ruleId: 'R002', ruleName: 'SIM Swapping', ruleCategory: 'Identity',
@@ -274,7 +274,7 @@ export const alertQueue: PatternAlert[] = [
     tier: 1, priority: 'high', location: 'Capital CBD',
     triggerDescription: 'Cash deposit 12,500 OMR within 48h of arrival. Multiple currency exchanges same week. Hotel check-in paid cash.',
     suggestedAction: 'Request source of funds documentation. Cross-check with customs declaration.',
-    escalationLevel: 1, photoInitials: 'CW', photoColor: '#FB923C',
+    escalationLevel: 1, photoInitials: 'CW', photoColor: '#C98A1B',
   },
   {
     id: 'ALT-2026-006', ruleId: 'R008', ruleName: 'Rapid Setup', ruleCategory: 'Arrival',
@@ -296,7 +296,7 @@ export const alertQueue: PatternAlert[] = [
     tier: 3, priority: 'critical', location: 'Old Town District, Capital City',
     triggerDescription: 'Document inconsistency across 4 streams. Different DOB in employment vs border records. Financial account under different name variant. OSINT match to flagged alias.',
     suggestedAction: 'Immediate detention for identity verification. Escalate to CID.',
-    escalationLevel: 3, photoInitials: 'AH', photoColor: '#F87171',
+    escalationLevel: 3, photoInitials: 'AH', photoColor: '#C94A5E',
   },
   {
     id: 'ALT-2026-008', ruleId: 'R009', ruleName: 'OSINT Alert', ruleCategory: 'Identity',

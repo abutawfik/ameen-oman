@@ -18,23 +18,23 @@ const MunConfirmation = ({ refNumber, eventType, isAr, onReset, dashboardPath = 
   return (
     <div
       className="rounded-2xl border p-10 flex flex-col items-center text-center"
-      style={{ background: "rgba(20,29,46,0.9)", borderColor: "rgba(181,142,60,0.25)", backdropFilter: "blur(16px)" }}
+      style={{ background: "rgba(10,37,64,0.9)", borderColor: "rgba(184,138,60,0.25)", backdropFilter: "blur(16px)" }}
     >
       {/* Checkmark */}
       <div className="relative mb-6">
         <div
           className="w-20 h-20 flex items-center justify-center rounded-full"
           style={{
-            background: "rgba(181,142,60,0.1)",
-            border: "2px solid rgba(181,142,60,0.4)",
-            boxShadow: "0 0 40px rgba(181,142,60,0.15)",
+            background: "rgba(184,138,60,0.1)",
+            border: "2px solid rgba(184,138,60,0.4)",
+            boxShadow: "0 0 40px rgba(184,138,60,0.15)",
           }}
         >
           <i className="ri-checkbox-circle-line text-4xl text-gold-400" />
         </div>
         <div
           className="absolute inset-0 rounded-full animate-ping"
-          style={{ background: "rgba(181,142,60,0.06)", animationDuration: "2s" }}
+          style={{ background: "rgba(184,138,60,0.06)", animationDuration: "2s" }}
         />
       </div>
 
@@ -48,7 +48,7 @@ const MunConfirmation = ({ refNumber, eventType, isAr, onReset, dashboardPath = 
       {/* Reference number */}
       <div
         className="px-6 py-4 rounded-xl border mb-6 w-full max-w-sm"
-        style={{ background: "rgba(181,142,60,0.05)", borderColor: "rgba(181,142,60,0.2)" }}
+        style={{ background: "rgba(184,138,60,0.05)", borderColor: "rgba(184,138,60,0.2)" }}
       >
         <p className="text-gray-500 text-xs mb-1 font-['Inter']">{isAr ? "رقم المرجع" : "Reference Number"}</p>
         <p className="text-gold-400 text-xl font-bold font-['JetBrains_Mono'] tracking-wider">{refNumber}</p>
@@ -62,17 +62,17 @@ const MunConfirmation = ({ refNumber, eventType, isAr, onReset, dashboardPath = 
               <div
                 className="w-7 h-7 flex items-center justify-center rounded-full text-xs font-bold"
                 style={{
-                  background: i === 0 ? "rgba(181,142,60,0.2)" : "rgba(255,255,255,0.05)",
-                  border: `1px solid ${i === 0 ? "rgba(181,142,60,0.5)" : "rgba(255,255,255,0.1)"}`,
-                  color: i === 0 ? "#D4A84B" : "#6B7280",
+                  background: i === 0 ? "rgba(184,138,60,0.2)" : "rgba(255,255,255,0.05)",
+                  border: `1px solid ${i === 0 ? "rgba(184,138,60,0.5)" : "rgba(255,255,255,0.1)"}`,
+                  color: i === 0 ? "#D6B47E" : "#6B7280",
                 }}
               >
                 {i === 0 ? <i className="ri-check-line text-xs" /> : i + 1}
               </div>
-              <span className="text-xs whitespace-nowrap" style={{ color: i === 0 ? "#D4A84B" : "#6B7280" }}>{step}</span>
+              <span className="text-xs whitespace-nowrap" style={{ color: i === 0 ? "#D6B47E" : "#6B7280" }}>{step}</span>
             </div>
             {i < steps.length - 1 && (
-              <div className="w-8 h-px mb-4" style={{ background: i === 0 ? "rgba(181,142,60,0.3)" : "rgba(255,255,255,0.08)" }} />
+              <div className="w-8 h-px mb-4" style={{ background: i === 0 ? "rgba(184,138,60,0.3)" : "rgba(255,255,255,0.08)" }} />
             )}
           </div>
         ))}
@@ -83,8 +83,8 @@ const MunConfirmation = ({ refNumber, eventType, isAr, onReset, dashboardPath = 
           type="button"
           onClick={onReset}
           className="flex items-center gap-2 px-5 py-2.5 rounded-lg border text-sm font-semibold cursor-pointer whitespace-nowrap font-['Inter'] transition-colors"
-          style={{ background: "transparent", borderColor: "rgba(181,142,60,0.3)", color: "#D4A84B" }}
-          onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(181,142,60,0.08)"; }}
+          style={{ background: "transparent", borderColor: "rgba(184,138,60,0.3)", color: "#D6B47E" }}
+          onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(184,138,60,0.08)"; }}
           onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "transparent"; }}
         >
           <i className="ri-add-line" />{isAr ? "حدث جديد" : "New Event"}
@@ -93,9 +93,9 @@ const MunConfirmation = ({ refNumber, eventType, isAr, onReset, dashboardPath = 
           type="button"
           onClick={() => navigate(dashboardPath)}
           className="flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-bold cursor-pointer whitespace-nowrap font-['Inter'] transition-colors"
-          style={{ background: "#D4A84B", color: "#0B1220" }}
+          style={{ background: "#D6B47E", color: "#051428" }}
           onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C99C48"; }}
-          onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#D4A84B"; }}
+          onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#D6B47E"; }}
         >
           <i className="ri-dashboard-line" />{isAr ? "لوحة التحكم" : "Dashboard"}
         </button>

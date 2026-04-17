@@ -49,23 +49,23 @@ const WatchlistPage = () => {
   };
 
   return (
-    <div className="flex flex-col h-full" style={{ background: '#0B1220' }}>
+    <div className="flex flex-col h-full" style={{ background: '#051428' }}>
       {/* Grid texture */}
       <div className="fixed inset-0 pointer-events-none z-0"
         style={{
-          backgroundImage: 'linear-gradient(rgba(181,142,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,0.03) 1px, transparent 1px)',
+          backgroundImage: 'linear-gradient(rgba(184,138,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.03) 1px, transparent 1px)',
           backgroundSize: '40px 40px',
         }} />
 
       <div className="flex-1 flex flex-col overflow-hidden relative z-10">
         {/* Page header */}
         <div className="flex-shrink-0 px-6 pt-5 pb-4 border-b"
-          style={{ borderColor: 'rgba(181,142,60,0.08)' }}>
+          style={{ borderColor: 'rgba(184,138,60,0.08)' }}>
           <div className="flex items-center justify-between mb-4">
             <div>
               <div className="flex items-center gap-3 mb-1">
                 <div className="w-8 h-8 flex items-center justify-center rounded-xl"
-                  style={{ background: 'rgba(248,113,113,0.15)' }}>
+                  style={{ background: 'rgba(201,74,94,0.15)' }}>
                   <i className="ri-eye-line text-red-400 text-base" />
                 </div>
                 <h1 className="text-white font-black font-['Inter'] text-xl tracking-tight">
@@ -82,7 +82,7 @@ const WatchlistPage = () => {
             {/* Live alert badge */}
             {liveAlerts > 0 && (
               <div className="flex items-center gap-3 px-4 py-2.5 rounded-xl animate-pulse"
-                style={{ background: 'rgba(248,113,113,0.1)', border: '1px solid rgba(248,113,113,0.3)' }}>
+                style={{ background: 'rgba(201,74,94,0.1)', border: '1px solid rgba(201,74,94,0.3)' }}>
                 <div className="w-2 h-2 rounded-full bg-red-400" />
                 <span className="text-red-400 font-bold font-['JetBrains_Mono'] text-sm">
                   {liveAlerts} {isAr ? 'تنبيهات جديدة' : 'NEW ALERTS'}
@@ -102,9 +102,9 @@ const WatchlistPage = () => {
                 onClick={() => setActiveTab(tab.key as Tab)}
                 className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold font-['Inter'] whitespace-nowrap cursor-pointer transition-all"
                 style={{
-                  background: activeTab === tab.key ? '#D4A84B' : 'rgba(20,29,46,0.6)',
-                  color: activeTab === tab.key ? '#0B1220' : '#9CA3AF',
-                  border: activeTab === tab.key ? 'none' : '1px solid rgba(181,142,60,0.08)',
+                  background: activeTab === tab.key ? '#D6B47E' : 'rgba(10,37,64,0.6)',
+                  color: activeTab === tab.key ? '#051428' : '#9CA3AF',
+                  border: activeTab === tab.key ? 'none' : '1px solid rgba(184,138,60,0.08)',
                 }}>
                 <i className={`${tab.icon} text-sm`} />
                 {isAr ? tab.labelAr : tab.label}
@@ -113,7 +113,7 @@ const WatchlistPage = () => {
             {activeTab === 'target' && (
               <button
                 className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold font-['Inter'] whitespace-nowrap cursor-pointer"
-                style={{ background: '#D4A84B', color: '#0B1220' }}>
+                style={{ background: '#D6B47E', color: '#051428' }}>
                 <i className="ri-user-search-line text-sm" />
                 {isAr ? 'تفاصيل الهدف' : 'Target Detail'}
               </button>

@@ -58,7 +58,7 @@ export interface SavedWorkspace {
 }
 
 export const nodeTypeConfig: Record<NodeType, { icon: string; color: string; shape: string; labelEn: string; labelAr: string }> = {
-  person:       { icon: "ri-user-line",           color: "#D4A84B", shape: "circle",   labelEn: "Person",        labelAr: "شخص" },
+  person:       { icon: "ri-user-line",           color: "#D6B47E", shape: "circle",   labelEn: "Person",        labelAr: "شخص" },
   organization: { icon: "ri-building-2-line",     color: "#A78BFA", shape: "hexagon",  labelEn: "Organization",  labelAr: "منظمة" },
   location:     { icon: "ri-map-pin-line",         color: "#4ADE80", shape: "pin",      labelEn: "Location",      labelAr: "موقع" },
   vehicle:      { icon: "ri-car-line",             color: "#FACC15", shape: "diamond",  labelEn: "Vehicle",       labelAr: "مركبة" },
@@ -72,15 +72,15 @@ export const nodeTypeConfig: Record<NodeType, { icon: string; color: string; sha
 export const edgeTypeConfig: Record<EdgeType, { color: string; dash?: boolean; labelEn: string; labelAr: string }> = {
   "employer":       { color: "#A78BFA", labelEn: "Employer",         labelAr: "صاحب عمل" },
   "tenant":         { color: "#2DD4BF", labelEn: "Tenant",           labelAr: "مستأجر" },
-  "co-guest":       { color: "#D4A84B", labelEn: "Co-Guest",         labelAr: "نزيل مشترك" },
+  "co-guest":       { color: "#D6B47E", labelEn: "Co-Guest",         labelAr: "نزيل مشترك" },
   "co-driver":      { color: "#FACC15", labelEn: "Co-Driver",        labelAr: "سائق مشترك" },
   "family":         { color: "#F472B6", labelEn: "Family",           labelAr: "عائلة" },
   "wire-transfer":  { color: "#4ADE80", labelEn: "Wire Transfer",    labelAr: "تحويل بنكي" },
   "payment":        { color: "#FCD34D", labelEn: "Payment",          labelAr: "دفع" },
-  "rental":         { color: "#FB923C", labelEn: "Rental Contract",  labelAr: "عقد إيجار" },
+  "rental":         { color: "#C98A1B", labelEn: "Rental Contract",  labelAr: "عقد إيجار" },
   "shared-phone":   { color: "#60A5FA", dash: true, labelEn: "Shared Phone",    labelAr: "هاتف مشترك" },
   "shared-imei":    { color: "#38BDF8", dash: true, labelEn: "Shared IMEI",     labelAr: "IMEI مشترك" },
-  "same-hotel":     { color: "#D4A84B", dash: true, labelEn: "Same Hotel",      labelAr: "نفس الفندق" },
+  "same-hotel":     { color: "#D6B47E", dash: true, labelEn: "Same Hotel",      labelAr: "نفس الفندق" },
   "same-property":  { color: "#2DD4BF", dash: true, labelEn: "Same Property",   labelAr: "نفس العقار" },
   "same-workplace": { color: "#A78BFA", dash: true, labelEn: "Same Workplace",  labelAr: "نفس مكان العمل" },
   "whatsapp-group": { color: "#4ADE80", dash: true, labelEn: "WhatsApp Group",  labelAr: "مجموعة واتساب" },
@@ -89,8 +89,8 @@ export const edgeTypeConfig: Record<EdgeType, { color: string; dash?: boolean; l
 export const riskColors: Record<RiskLevel, string> = {
   low:      "#4ADE80",
   medium:   "#FACC15",
-  high:     "#FB923C",
-  critical: "#F87171",
+  high:     "#C98A1B",
+  critical: "#C94A5E",
 };
 
 export const initialNodes: GraphNode[] = [
@@ -225,6 +225,6 @@ export const savedWorkspaces: SavedWorkspace[] = [
 ];
 
 export const mockAnnotations: Annotation[] = [
-  { id: "a1", x: 460, y: 200, text: "Key hub — 8 connections. Possible money laundering via Gulf Star.", author: "Ahmed Al-Amri", timestamp: "2025-04-05 09:14", color: "#F87171" },
+  { id: "a1", x: 460, y: 200, text: "Key hub — 8 connections. Possible money laundering via Gulf Star.", author: "Ahmed Al-Amri", timestamp: "2025-04-05 09:14", color: "#C94A5E" },
   { id: "a2", x: 700, y: 460, text: "OMR 120K transfer on 14 Feb — investigate source of funds.", author: "Fatima Al-Zadjali", timestamp: "2025-04-04 14:32", color: "#FACC15" },
 ];

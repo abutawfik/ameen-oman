@@ -1,15 +1,15 @@
 const colorPalette = [
-  { name: "Cyan — Primary",    hex: "#D4A84B", role: "Interactive elements, highlights, active states, logo mark",  group: "brand" },
-  { name: "Navy Black",        hex: "#0B1220", role: "Primary background, authority, command",                       group: "brand" },
+  { name: "Cyan — Primary",    hex: "#D6B47E", role: "Interactive elements, highlights, active states, logo mark",  group: "brand" },
+  { name: "Navy Black",        hex: "#051428", role: "Primary background, authority, command",                       group: "brand" },
   { name: "Hover Cyan",        hex: "#0EA5E9", role: "Hover states, secondary interactive",                          group: "brand" },
-  { name: "Glass Panel",       hex: "rgba(20,29,46,0.8)", role: "Card/panel backgrounds with glassmorphism",         group: "brand" },
+  { name: "Glass Panel",       hex: "rgba(10,37,64,0.8)", role: "Card/panel backgrounds with glassmorphism",         group: "brand" },
   { name: "White",             hex: "#FFFFFF", role: "Primary headings, high-emphasis text",                         group: "text" },
   { name: "Light Gray",        hex: "#D1D5DB", role: "Body text, descriptions",                                      group: "text" },
   { name: "Muted Gray",        hex: "#9CA3AF", role: "Secondary text, captions, metadata",                           group: "text" },
   { name: "Low Risk — Green",  hex: "#4ADE80", role: "Low risk indicators, success states, active status",           group: "semantic" },
   { name: "Medium — Yellow",   hex: "#FACC15", role: "Medium risk, warnings, pending states",                        group: "semantic" },
-  { name: "High — Orange",     hex: "#FB923C", role: "High risk, elevated alerts",                                   group: "semantic" },
-  { name: "Critical — Red",    hex: "#F87171", role: "Critical risk, errors, rejected states",                       group: "semantic" },
+  { name: "High — Orange",     hex: "#C98A1B", role: "High risk, elevated alerts",                                   group: "semantic" },
+  { name: "Critical — Red",    hex: "#C94A5E", role: "Critical risk, errors, rejected states",                       group: "semantic" },
 ];
 
 const typeScale = [
@@ -24,12 +24,12 @@ const typeScale = [
 ];
 
 const dosDonts = [
-  { type: "do",   text: "Use cyan (#D4A84B) as the sole accent color on dark backgrounds" },
+  { type: "do",   text: "Use cyan (#D6B47E) as the sole accent color on dark backgrounds" },
   { type: "do",   text: "Maintain minimum 4.5:1 contrast ratio for all body text" },
   { type: "do",   text: "Use Noto Kufi Arabic for all Arabic text — never substitute" },
   { type: "do",   text: "Present bilingual content with English left, Arabic right (RTL)" },
   { type: "do",   text: "Use the shield mark at minimum 24px for digital, 8mm for print" },
-  { type: "do",   text: "Apply glassmorphism (rgba(20,29,46,0.8)) for all card surfaces" },
+  { type: "do",   text: "Apply glassmorphism (rgba(10,37,64,0.8)) for all card surfaces" },
   { type: "dont", text: "Never use blue or purple — these are explicitly prohibited" },
   { type: "dont", text: "Never place the logo on a busy photographic background without overlay" },
   { type: "dont", text: "Never stretch, rotate, or alter the shield proportions" },
@@ -48,8 +48,8 @@ const voiceExamples = [
 const BrandGuidelines = () => (
   <div className="space-y-8">
     {/* Brand Philosophy */}
-    <div className="rounded-2xl p-8 relative overflow-hidden" style={{ background: "rgba(20,29,46,0.9)", border: "1px solid rgba(181,142,60,0.2)" }}>
-      <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: "radial-gradient(ellipse at 20% 50%, rgba(181,142,60,0.05) 0%, transparent 60%)" }} />
+    <div className="rounded-2xl p-8 relative overflow-hidden" style={{ background: "rgba(10,37,64,0.9)", border: "1px solid rgba(184,138,60,0.2)" }}>
+      <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: "radial-gradient(ellipse at 20% 50%, rgba(184,138,60,0.05) 0%, transparent 60%)" }} />
       <div className="relative z-10 grid grid-cols-2 gap-8">
         <div>
           <p className="text-xs text-gold-400 uppercase tracking-widest font-['JetBrains_Mono'] mb-3">Brand Philosophy</p>
@@ -75,7 +75,7 @@ const BrandGuidelines = () => (
               { role: "Entity Operators",        desc: "Hotels, car rentals, telecoms — submitting events via the platform" },
               { role: "System Integrators",      desc: "Technical teams building API integrations" },
             ].map((a) => (
-              <div key={a.role} className="p-3 rounded-lg" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(181,142,60,0.08)" }}>
+              <div key={a.role} className="p-3 rounded-lg" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(184,138,60,0.08)" }}>
                 <p className="text-white text-xs font-semibold font-['Inter']">{a.role}</p>
                 <p className="text-gray-500 text-xs font-['Inter'] mt-0.5">{a.desc}</p>
               </div>
@@ -97,8 +97,8 @@ const BrandGuidelines = () => (
             {colorPalette.filter((c) => c.group === group).map((color) => {
               const isGlass = color.hex.startsWith("rgba");
               return (
-                <div key={color.name} className="rounded-xl overflow-hidden" style={{ border: "1px solid rgba(181,142,60,0.1)" }}>
-                  <div className="h-16 relative" style={{ background: isGlass ? color.hex : color.hex, border: isGlass ? "1px dashed rgba(181,142,60,0.3)" : "none" }}>
+                <div key={color.name} className="rounded-xl overflow-hidden" style={{ border: "1px solid rgba(184,138,60,0.1)" }}>
+                  <div className="h-16 relative" style={{ background: isGlass ? color.hex : color.hex, border: isGlass ? "1px dashed rgba(184,138,60,0.3)" : "none" }}>
                     {isGlass && (
                       <div className="absolute inset-0 flex items-center justify-center">
                         <span className="text-gold-400 text-xs font-['JetBrains_Mono'] opacity-60">glass</span>
@@ -110,7 +110,7 @@ const BrandGuidelines = () => (
                       </div>
                     )}
                   </div>
-                  <div className="p-3" style={{ background: "rgba(20,29,46,0.8)" }}>
+                  <div className="p-3" style={{ background: "rgba(10,37,64,0.8)" }}>
                     <p className="text-white text-xs font-semibold font-['Inter'] mb-0.5">{color.name}</p>
                     <p className="text-gold-400 text-xs font-['JetBrains_Mono'] mb-1">{color.hex}</p>
                     <p className="text-gray-600 text-xs font-['Inter'] leading-tight">{color.role}</p>
@@ -134,7 +134,7 @@ const BrandGuidelines = () => (
           { name: "Noto Kufi Arabic", role: "Arabic — Primary UI", sample: "أمين — الحارس الأمين للوطن", weight: "400–700" },
           { name: "JetBrains Mono", role: "Monospace — Data & Code", sample: "AMN-HTL-2025-04891 | 09:41:22", weight: "400–700" },
         ].map((font) => (
-          <div key={font.name} className="p-4 rounded-xl" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.1)" }}>
+          <div key={font.name} className="p-4 rounded-xl" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.1)" }}>
             <div className="flex items-center justify-between mb-2">
               <p className="text-gold-400 text-xs font-semibold font-['JetBrains_Mono']">{font.name}</p>
               <span className="text-gray-600 text-xs font-['Inter']">{font.weight}</span>
@@ -146,9 +146,9 @@ const BrandGuidelines = () => (
           </div>
         ))}
       </div>
-      <div className="rounded-xl overflow-hidden" style={{ border: "1px solid rgba(181,142,60,0.1)" }}>
+      <div className="rounded-xl overflow-hidden" style={{ border: "1px solid rgba(184,138,60,0.1)" }}>
         <div className="grid px-4 py-2 text-xs font-semibold uppercase tracking-wider text-gray-600 font-['Inter']"
-          style={{ background: "rgba(181,142,60,0.04)", gridTemplateColumns: "1fr 1.2fr 1.2fr 1.5fr 2fr" }}>
+          style={{ background: "rgba(184,138,60,0.04)", gridTemplateColumns: "1fr 1.2fr 1.2fr 1.5fr 2fr" }}>
           <span>Scale</span><span>Size</span><span>Weight</span><span>Usage</span><span>Sample</span>
         </div>
         {typeScale.map((t, i) => (
@@ -171,7 +171,7 @@ const BrandGuidelines = () => (
       </h2>
       <div className="space-y-3">
         {voiceExamples.map((ex) => (
-          <div key={ex.label} className="rounded-xl p-4" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.1)" }}>
+          <div key={ex.label} className="rounded-xl p-4" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.1)" }}>
             <p className="text-gold-400 text-xs font-semibold font-['JetBrains_Mono'] uppercase tracking-wider mb-3">{ex.label}</p>
             <div className="grid grid-cols-2 gap-3">
               <div className="p-3 rounded-lg" style={{ background: "rgba(74,222,128,0.06)", border: "1px solid rgba(74,222,128,0.2)" }}>
@@ -181,7 +181,7 @@ const BrandGuidelines = () => (
                 </div>
                 <p className="text-gray-300 text-sm font-['Inter']">{ex.good}</p>
               </div>
-              <div className="p-3 rounded-lg" style={{ background: "rgba(248,113,113,0.06)", border: "1px solid rgba(248,113,113,0.2)" }}>
+              <div className="p-3 rounded-lg" style={{ background: "rgba(201,74,94,0.06)", border: "1px solid rgba(201,74,94,0.2)" }}>
                 <div className="flex items-center gap-1.5 mb-2">
                   <i className="ri-close-line text-red-400 text-xs" />
                   <span className="text-red-400 text-xs font-semibold font-['Inter']">Don&apos;t</span>
@@ -213,7 +213,7 @@ const BrandGuidelines = () => (
             ))}
           </div>
         </div>
-        <div className="rounded-xl p-5" style={{ background: "rgba(248,113,113,0.04)", border: "1px solid rgba(248,113,113,0.15)" }}>
+        <div className="rounded-xl p-5" style={{ background: "rgba(201,74,94,0.04)", border: "1px solid rgba(201,74,94,0.15)" }}>
           <p className="text-red-400 text-sm font-semibold font-['Inter'] mb-3">
             <i className="ri-close-circle-line mr-2" />Don&apos;t
           </p>

@@ -87,13 +87,13 @@ export const countries: string[] = [
 ];
 
 export const customsKpis: CustomsKpi[] = [
-  { label: "Declarations Today",   labelAr: "إقرارات اليوم",        value: "1,847", delta: "+12%", deltaUp: true,  icon: "ri-file-list-3-line",     color: "#D4A84B" },
+  { label: "Declarations Today",   labelAr: "إقرارات اليوم",        value: "1,847", delta: "+12%", deltaUp: true,  icon: "ri-file-list-3-line",     color: "#D6B47E" },
   { label: "Import Declarations",  labelAr: "إقرارات الاستيراد",    value: "1,203", delta: "+8%",  deltaUp: true,  icon: "ri-download-2-line",      color: "#4ADE80" },
   { label: "Export Declarations",  labelAr: "إقرارات التصدير",      value: "489",   delta: "+5%",  deltaUp: true,  icon: "ri-upload-2-line",        color: "#A78BFA" },
   { label: "Transit Movements",    labelAr: "حركات العبور",          value: "134",   delta: "+3%",  deltaUp: true,  icon: "ri-arrow-left-right-line",color: "#FACC15" },
   { label: "Free Zone Movements",  labelAr: "حركات المناطق الحرة",  value: "312",   delta: "+18%", deltaUp: true,  icon: "ri-store-2-line",         color: "#38BDF8" },
-  { label: "Seizures Today",       labelAr: "ضبوط اليوم",           value: "7",     delta: "+2",   deltaUp: false, icon: "ri-shield-cross-line",    color: "#F87171" },
-  { label: "Red Channel",          labelAr: "القناة الحمراء",        value: "43",    delta: "+6",   deltaUp: false, icon: "ri-alarm-warning-line",   color: "#FB923C" },
+  { label: "Seizures Today",       labelAr: "ضبوط اليوم",           value: "7",     delta: "+2",   deltaUp: false, icon: "ri-shield-cross-line",    color: "#C94A5E" },
+  { label: "Red Channel",          labelAr: "القناة الحمراء",        value: "43",    delta: "+6",   deltaUp: false, icon: "ri-alarm-warning-line",   color: "#C98A1B" },
   { label: "Duty Collected (LCY)", labelAr: "الرسوم المحصلة",       value: "284,500", delta: "+9%", deltaUp: true, icon: "ri-money-dollar-circle-line", color: "#FACC15" },
 ];
 

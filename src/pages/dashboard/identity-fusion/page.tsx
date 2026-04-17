@@ -17,7 +17,7 @@ const kpiStats = [
     value: '284,912',
     delta: '+1,247 today',
     deltaAr: '+1,247 اليوم',
-    color: '#D4A84B',
+    color: '#D6B47E',
     icon: 'ri-user-follow-line',
   },
   {
@@ -44,7 +44,7 @@ const kpiStats = [
     value: String(mergeCandidates.filter(c => c.status === 'pending').length),
     delta: 'Awaiting analyst',
     deltaAr: 'بانتظار المحلل',
-    color: '#FB923C',
+    color: '#C98A1B',
     icon: 'ri-time-line',
   },
   {
@@ -75,14 +75,14 @@ export default function IdentityFusionPage() {
   return (
     <div
       className="min-h-screen flex flex-col"
-      style={{ background: '#0B1220', fontFamily: "'Inter', sans-serif" }}
+      style={{ background: '#051428', fontFamily: "'Inter', sans-serif" }}
       dir={isAr ? 'rtl' : 'ltr'}
     >
       {/* Grid texture */}
       <div
         className="fixed inset-0 pointer-events-none z-0 opacity-15"
         style={{
-          backgroundImage: 'linear-gradient(rgba(181,142,60,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,0.12) 1px, transparent 1px)',
+          backgroundImage: 'linear-gradient(rgba(184,138,60,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.12) 1px, transparent 1px)',
           backgroundSize: '50px 50px',
         }}
       />
@@ -90,14 +90,14 @@ export default function IdentityFusionPage() {
       {/* Header */}
       <div
         className="relative z-10 border-b border-gold-500/15 px-6 py-5"
-        style={{ background: 'rgba(11,18,32,0.98)' }}
+        style={{ background: 'rgba(5,20,40,0.98)' }}
       >
         <div className="flex items-start justify-between">
           <div>
             <div className="flex items-center gap-3 mb-1">
               <div
                 className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
-                style={{ background: 'rgba(181,142,60,0.1)', border: '1px solid rgba(181,142,60,0.3)' }}
+                style={{ background: 'rgba(184,138,60,0.1)', border: '1px solid rgba(184,138,60,0.3)' }}
               >
                 <i className="ri-fingerprint-line text-gold-400 text-xl" />
               </div>
@@ -128,7 +128,7 @@ export default function IdentityFusionPage() {
             {/* Active rules */}
             <div
               className="flex items-center gap-2 px-3 py-2 rounded-xl border border-gold-500/20"
-              style={{ background: 'rgba(181,142,60,0.04)' }}
+              style={{ background: 'rgba(184,138,60,0.04)' }}
             >
               <i className="ri-git-branch-line text-gold-400 text-xs" />
               <span className="text-gold-400 text-xs font-['JetBrains_Mono']">
@@ -144,7 +144,7 @@ export default function IdentityFusionPage() {
             <div
               key={kpi.labelEn}
               className="rounded-xl border p-3 flex items-center gap-3"
-              style={{ background: 'rgba(20,29,46,0.7)', borderColor: `${kpi.color}18` }}
+              style={{ background: 'rgba(10,37,64,0.7)', borderColor: `${kpi.color}18` }}
             >
               <div
                 className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0"
@@ -171,21 +171,21 @@ export default function IdentityFusionPage() {
       {/* Tab bar */}
       <div
         className="relative z-10 flex items-center gap-1 px-6 border-b border-gold-500/10"
-        style={{ background: 'rgba(11,18,32,0.95)' }}
+        style={{ background: 'rgba(5,20,40,0.95)' }}
       >
         {tabs.map(tab => (
           <button
             key={tab.key}
             onClick={() => setActiveTab(tab.key)}
             className="relative flex items-center gap-2 px-4 py-3.5 text-sm font-medium cursor-pointer transition-all whitespace-nowrap font-['Inter']"
-            style={{ color: activeTab === tab.key ? '#D4A84B' : '#6B7280' }}
+            style={{ color: activeTab === tab.key ? '#D6B47E' : '#6B7280' }}
           >
             <i className={`${tab.icon} text-sm`} />
             {isAr ? tab.labelAr : tab.labelEn}
             {tab.key === 'queue' && pendingCount > 0 && (
               <span
                 className="px-1.5 py-0.5 rounded-full text-xs font-mono"
-                style={{ background: 'rgba(251,146,60,0.15)', color: '#FB923C' }}
+                style={{ background: 'rgba(201,138,27,0.15)', color: '#C98A1B' }}
               >
                 {pendingCount}
               </span>

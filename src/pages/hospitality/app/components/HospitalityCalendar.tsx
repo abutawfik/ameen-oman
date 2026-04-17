@@ -4,9 +4,9 @@ import { bookings } from '@/mocks/hospitalityData';
 interface Props { lang: 'en' | 'ar'; onNav: (key: string) => void; }
 
 const EVENT_COLORS: Record<string, string> = {
-  confirmed: '#D4A84B',
+  confirmed: '#D6B47E',
   checked_in: '#4ADE80',
-  checked_out: '#FB923C',
+  checked_out: '#C98A1B',
 };
 
 const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
@@ -45,9 +45,9 @@ export default function HospitalityCalendar({ lang, onNav }: Props) {
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-2 text-xs">
             {[
-              { color: '#D4A84B', label: isAr ? 'مؤكد' : 'Confirmed' },
+              { color: '#D6B47E', label: isAr ? 'مؤكد' : 'Confirmed' },
               { color: '#4ADE80', label: isAr ? 'دخول' : 'Check-In' },
-              { color: '#FB923C', label: isAr ? 'خروج' : 'Check-Out' },
+              { color: '#C98A1B', label: isAr ? 'خروج' : 'Check-Out' },
             ].map(l => (
               <span key={l.label} className="flex items-center gap-1">
                 <span className="w-2 h-2 rounded-full" style={{ background: l.color }} />
@@ -58,7 +58,7 @@ export default function HospitalityCalendar({ lang, onNav }: Props) {
         </div>
       </div>
 
-      <div className="rounded-xl border border-gold-500/20 overflow-hidden" style={{ background: 'rgba(20,29,46,0.8)' }}>
+      <div className="rounded-xl border border-gold-500/20 overflow-hidden" style={{ background: 'rgba(10,37,64,0.8)' }}>
         {/* Month nav */}
         <div className="flex items-center justify-between px-5 py-4 border-b border-gold-500/10">
           <button onClick={prevMonth} className="w-8 h-8 flex items-center justify-center rounded-lg border border-gold-500/20 text-gold-400 hover:bg-gold-500/10 cursor-pointer transition-colors">
@@ -93,14 +93,14 @@ export default function HospitalityCalendar({ lang, onNav }: Props) {
                 key={day}
                 onClick={() => { setSelectedDay(day); if (events.length > 0) setPopup(true); }}
                 className="h-20 border-b border-r border-gold-500/5 p-1.5 cursor-pointer hover:bg-gold-500/5 transition-colors relative"
-                style={{ background: isSelected ? 'rgba(181,142,60,0.08)' : undefined }}
+                style={{ background: isSelected ? 'rgba(184,138,60,0.08)' : undefined }}
               >
                 <div className="flex items-center justify-between mb-1">
                   <span
                     className="text-xs font-mono font-medium w-6 h-6 flex items-center justify-center rounded-full"
                     style={{
-                      background: isToday ? '#D4A84B' : 'transparent',
-                      color: isToday ? '#0B1220' : '#9CA3AF',
+                      background: isToday ? '#D6B47E' : 'transparent',
+                      color: isToday ? '#051428' : '#9CA3AF',
                     }}
                   >
                     {day}
@@ -131,12 +131,12 @@ export default function HospitalityCalendar({ lang, onNav }: Props) {
       {popup && selectedDay && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center"
-          style={{ background: 'rgba(11,18,32,0.85)' }}
+          style={{ background: 'rgba(5,20,40,0.85)' }}
           onClick={() => setPopup(false)}
         >
           <div
             className="rounded-2xl border border-gold-500/30 p-6 w-full max-w-md"
-            style={{ background: 'rgba(20,29,46,0.98)' }}
+            style={{ background: 'rgba(10,37,64,0.98)' }}
             onClick={e => e.stopPropagation()}
           >
             <div className="flex items-center justify-between mb-4">
@@ -150,7 +150,7 @@ export default function HospitalityCalendar({ lang, onNav }: Props) {
 
             <div className="space-y-2 mb-4">
               {selectedEvents.map(ev => (
-                <div key={ev.id} className="flex items-center gap-3 px-3 py-2.5 rounded-lg border border-gold-500/10" style={{ background: 'rgba(181,142,60,0.04)' }}>
+                <div key={ev.id} className="flex items-center gap-3 px-3 py-2.5 rounded-lg border border-gold-500/10" style={{ background: 'rgba(184,138,60,0.04)' }}>
                   <span className="text-lg">{ev.nationalityFlag}</span>
                   <div className="flex-1">
                     <p className="text-white text-sm font-medium">{ev.guestName}</p>

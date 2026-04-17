@@ -9,8 +9,8 @@ const coreCards = [
     descKey: "services.core.hotel.description",
     eventsKey: "services.core.hotel.events",
     badgeType: "core" as const,
-    badgeColor: "#D4A84B",
-    categoryColor: "#D4A84B",
+    badgeColor: "#D6B47E",
+    categoryColor: "#D6B47E",
     streamNum: "01",
   },
   {
@@ -20,8 +20,8 @@ const coreCards = [
     descKey: "services.core.carRental.description",
     eventsKey: "services.core.carRental.events",
     badgeType: "core" as const,
-    badgeColor: "#D4A84B",
-    categoryColor: "#D4A84B",
+    badgeColor: "#D6B47E",
+    categoryColor: "#D6B47E",
     streamNum: "02",
   },
   {
@@ -31,8 +31,8 @@ const coreCards = [
     descKey: "services.core.mobile.description",
     eventsKey: "services.core.mobile.events",
     badgeType: "core" as const,
-    badgeColor: "#D4A84B",
-    categoryColor: "#D4A84B",
+    badgeColor: "#D6B47E",
+    categoryColor: "#D6B47E",
     streamNum: "03",
   },
   {
@@ -42,8 +42,8 @@ const coreCards = [
     descKey: "services.core.municipality.description",
     eventsKey: "services.core.municipality.events",
     badgeType: "core" as const,
-    badgeColor: "#D4A84B",
-    categoryColor: "#D4A84B",
+    badgeColor: "#D6B47E",
+    categoryColor: "#D6B47E",
     streamNum: "04",
   },
 ];
@@ -78,8 +78,8 @@ const extendedCards = [
     descKey: "services.extended.health.description",
     eventsKey: "services.extended.health.events",
     badgeType: "extended" as const,
-    badgeColor: "#F87171",
-    categoryColor: "#F87171",
+    badgeColor: "#C94A5E",
+    categoryColor: "#C94A5E",
     streamNum: "07",
   },
   {
@@ -100,8 +100,8 @@ const extendedCards = [
     descKey: "services.extended.transport.description",
     eventsKey: "services.extended.transport.events",
     badgeType: "extended" as const,
-    badgeColor: "#FB923C",
-    categoryColor: "#FB923C",
+    badgeColor: "#C98A1B",
+    categoryColor: "#C98A1B",
     streamNum: "09",
   },
   {
@@ -166,8 +166,8 @@ const extendedCards = [
     descKey: "services.extended.marine.description",
     eventsKey: "services.extended.marine.events",
     badgeType: "extended" as const,
-    badgeColor: "#D4A84B",
-    categoryColor: "#D4A84B",
+    badgeColor: "#D6B47E",
+    categoryColor: "#D6B47E",
     streamNum: "15",
   },
   {
@@ -194,19 +194,19 @@ const ServicesSection = ({ type }: ServicesSectionProps) => {
   const sectionTitle = type === "core" ? "Core Streams" : "Extended Streams";
   const sectionTitleAr = type === "core" ? "المصادر الأساسية" : "المصادر الموسعة";
   const count = type === "core" ? "4" : "12";
-  const badgeColor = type === "core" ? "#D4A84B" : "#4ADE80";
+  const badgeColor = type === "core" ? "#D6B47E" : "#4ADE80";
 
   return (
     <section
       id={sectionId}
       className="py-20 md:py-28 relative"
-      style={{ background: "#0B1220" }}
+      style={{ background: "#051428" }}
     >
       {/* Subtle grid */}
       <div
         className="absolute inset-0 opacity-10"
         style={{
-          backgroundImage: `linear-gradient(rgba(181,142,60,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,0.1) 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(rgba(184,138,60,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.1) 1px, transparent 1px)`,
           backgroundSize: "80px 80px",
         }}
       />

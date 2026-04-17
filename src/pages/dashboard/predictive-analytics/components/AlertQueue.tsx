@@ -2,25 +2,25 @@ import { useState } from 'react';
 import { alertQueue, streamLabels, type PatternAlert } from '@/mocks/predictiveAnalyticsData';
 
 const priorityConfig = {
-  critical: { color: '#F87171', border: '#F87171', label: 'CRITICAL', bg: 'rgba(248,113,113,0.12)' },
-  high:     { color: '#FB923C', border: '#FB923C', label: 'HIGH',     bg: 'rgba(251,146,60,0.12)' },
+  critical: { color: '#C94A5E', border: '#C94A5E', label: 'CRITICAL', bg: 'rgba(201,74,94,0.12)' },
+  high:     { color: '#C98A1B', border: '#C98A1B', label: 'HIGH',     bg: 'rgba(201,138,27,0.12)' },
   medium:   { color: '#FACC15', border: '#FACC15', label: 'MEDIUM',   bg: 'rgba(250,204,21,0.12)' },
-  low:      { color: '#D4A84B', border: '#D4A84B', label: 'LOW',      bg: 'rgba(181,142,60,0.12)' },
+  low:      { color: '#D6B47E', border: '#D6B47E', label: 'LOW',      bg: 'rgba(184,138,60,0.12)' },
 };
 
 const statusConfig = {
-  open:      { color: '#F87171', label: 'Open',      bg: 'rgba(248,113,113,0.12)' },
+  open:      { color: '#C94A5E', label: 'Open',      bg: 'rgba(201,74,94,0.12)' },
   assigned:  { color: '#FACC15', label: 'Assigned',  bg: 'rgba(250,204,21,0.12)' },
   confirmed: { color: '#4ADE80', label: 'Confirmed', bg: 'rgba(74,222,128,0.12)' },
   dismissed: { color: '#9CA3AF', label: 'Dismissed', bg: 'rgba(156,163,175,0.12)' },
-  escalated: { color: '#FB923C', label: 'Escalated', bg: 'rgba(251,146,60,0.12)' },
+  escalated: { color: '#C98A1B', label: 'Escalated', bg: 'rgba(201,138,27,0.12)' },
 };
 
 const escalationBanners = [
   null,
   { color: '#FACC15', bg: 'rgba(250,204,21,0.08)', icon: 'ri-time-line',         text: 'Auto-assigned to duty officer (>30 min unactioned)' },
-  { color: '#FB923C', bg: 'rgba(251,146,60,0.08)', icon: 'ri-alarm-warning-line', text: 'Escalated to supervisor (>60 min unactioned)' },
-  { color: '#F87171', bg: 'rgba(248,113,113,0.1)', icon: 'ri-alert-fill',         text: 'RED ESCALATION — Command notified (>120 min)' },
+  { color: '#C98A1B', bg: 'rgba(201,138,27,0.08)', icon: 'ri-alarm-warning-line', text: 'Escalated to supervisor (>60 min unactioned)' },
+  { color: '#C94A5E', bg: 'rgba(201,74,94,0.1)', icon: 'ri-alert-fill',         text: 'RED ESCALATION — Command notified (>120 min)' },
 ];
 
 const streamIcons: Record<string, string> = {
@@ -93,7 +93,7 @@ export default function AlertQueue({ filterPriority, filterStatus }: Props) {
       {feedback && (
         <div
           className="fixed top-16 right-6 z-50 flex items-center gap-2 px-4 py-2.5 rounded-lg border border-green-500/30 text-green-400 text-sm font-medium"
-          style={{ background: 'rgba(20,29,46,0.98)' }}
+          style={{ background: 'rgba(10,37,64,0.98)' }}
         >
           <i className="ri-checkbox-circle-line" />
           {feedback.action}
@@ -103,7 +103,7 @@ export default function AlertQueue({ filterPriority, filterStatus }: Props) {
       {/* Bulk actions bar */}
       <div
         className="flex items-center gap-3 px-4 py-2.5 rounded-lg border border-gold-500/15"
-        style={{ background: 'rgba(20,29,46,0.8)' }}
+        style={{ background: 'rgba(10,37,64,0.8)' }}
       >
         <input
           type="checkbox"
@@ -136,7 +136,7 @@ export default function AlertQueue({ filterPriority, filterStatus }: Props) {
       {filtered.length === 0 && (
         <div
           className="text-center py-16 rounded-xl border border-gold-500/10"
-          style={{ background: 'rgba(20,29,46,0.6)' }}
+          style={{ background: 'rgba(10,37,64,0.6)' }}
         >
           <i className="ri-shield-check-line text-4xl mb-3 block text-gold-500/30" />
           <p className="text-gray-400 text-sm">No alerts match the current filters</p>
@@ -157,8 +157,8 @@ export default function AlertQueue({ filterPriority, filterStatus }: Props) {
             key={alert.id}
             className="rounded-xl border transition-all duration-200"
             style={{
-              background: isSelected ? 'rgba(181,142,60,0.05)' : 'rgba(20,29,46,0.8)',
-              borderColor: isSelected ? '#D4A84B' : `${pc.border}35`,
+              background: isSelected ? 'rgba(184,138,60,0.05)' : 'rgba(10,37,64,0.8)',
+              borderColor: isSelected ? '#D6B47E' : `${pc.border}35`,
               borderLeftWidth: 3,
               borderLeftColor: pc.border,
             }}
@@ -239,8 +239,8 @@ export default function AlertQueue({ filterPriority, filterStatus }: Props) {
               <div
                 className="w-9 h-9 rounded-full flex items-center justify-center font-mono font-bold text-xs shrink-0 border-2"
                 style={{
-                  borderColor: alert.score >= 80 ? '#F87171' : alert.score >= 60 ? '#FB923C' : '#FACC15',
-                  color: alert.score >= 80 ? '#F87171' : alert.score >= 60 ? '#FB923C' : '#FACC15',
+                  borderColor: alert.score >= 80 ? '#C94A5E' : alert.score >= 60 ? '#C98A1B' : '#FACC15',
+                  color: alert.score >= 80 ? '#C94A5E' : alert.score >= 60 ? '#C98A1B' : '#FACC15',
                   background: 'transparent',
                 }}
               >
@@ -276,7 +276,7 @@ export default function AlertQueue({ filterPriority, filterStatus }: Props) {
             {isExpanded && (
               <div
                 className="px-4 pb-4 border-t border-gold-500/10 pt-4"
-                style={{ background: 'rgba(181,142,60,0.02)' }}
+                style={{ background: 'rgba(184,138,60,0.02)' }}
               >
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
                   {/* Left: trigger info */}
@@ -289,7 +289,7 @@ export default function AlertQueue({ filterPriority, filterStatus }: Props) {
                       <p className="text-gray-500 text-xs uppercase tracking-wider mb-1.5">Suggested Action</p>
                       <div
                         className="rounded-lg p-3 border border-gold-500/15"
-                        style={{ background: 'rgba(181,142,60,0.05)' }}
+                        style={{ background: 'rgba(184,138,60,0.05)' }}
                       >
                         <p className="text-gold-300 text-sm">{alert.suggestedAction}</p>
                       </div>
@@ -306,7 +306,7 @@ export default function AlertQueue({ filterPriority, filterStatus }: Props) {
                         <p className="text-gray-500 text-xs uppercase tracking-wider mb-1">Rule Category</p>
                         <span
                           className="text-xs px-2 py-0.5 rounded-full"
-                          style={{ background: 'rgba(181,142,60,0.1)', color: '#D4A84B' }}
+                          style={{ background: 'rgba(184,138,60,0.1)', color: '#D6B47E' }}
                         >
                           {alert.ruleCategory}
                         </span>
@@ -363,7 +363,7 @@ export default function AlertQueue({ filterPriority, filterStatus }: Props) {
                         <button
                           onClick={() => doAction(alert.id, 'confirmed', 'Alert confirmed — case created')}
                           className="flex items-center justify-center gap-1.5 py-2.5 rounded-lg text-xs font-semibold cursor-pointer transition-all whitespace-nowrap"
-                          style={{ background: '#D4A84B', color: '#0B1220' }}
+                          style={{ background: '#D6B47E', color: '#051428' }}
                         >
                           <i className="ri-check-double-line" />Confirm (TP)
                         </button>
@@ -381,13 +381,13 @@ export default function AlertQueue({ filterPriority, filterStatus }: Props) {
                         <button
                           onClick={() => doAction(alert.id, 'escalated', 'Alert escalated to senior officer')}
                           className="flex items-center justify-center gap-1.5 py-2.5 rounded-lg text-xs font-medium border cursor-pointer transition-all whitespace-nowrap"
-                          style={{ borderColor: '#FB923C', color: '#FB923C', background: 'rgba(251,146,60,0.06)' }}
+                          style={{ borderColor: '#C98A1B', color: '#C98A1B', background: 'rgba(201,138,27,0.06)' }}
                         >
                           <i className="ri-arrow-up-circle-line" />Escalate
                         </button>
                         <button
                           className="col-span-2 flex items-center justify-center gap-1.5 py-2.5 rounded-lg text-xs font-semibold cursor-pointer transition-all whitespace-nowrap"
-                          style={{ background: 'rgba(248,113,113,0.12)', color: '#F87171', border: '1px solid rgba(248,113,113,0.3)' }}
+                          style={{ background: 'rgba(201,74,94,0.12)', color: '#C94A5E', border: '1px solid rgba(201,74,94,0.3)' }}
                         >
                           <i className="ri-team-line" />Deploy Field Team
                         </button>
@@ -397,7 +397,7 @@ export default function AlertQueue({ filterPriority, filterStatus }: Props) {
                     {/* Tier indicator */}
                     <div
                       className="rounded-lg p-3 border border-gold-500/10"
-                      style={{ background: 'rgba(20,29,46,0.6)' }}
+                      style={{ background: 'rgba(10,37,64,0.6)' }}
                     >
                       <p className="text-gray-500 text-xs uppercase tracking-wider mb-2">Escalation Tier</p>
                       <div className="flex items-center gap-2">
@@ -406,9 +406,9 @@ export default function AlertQueue({ filterPriority, filterStatus }: Props) {
                             <div
                               className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold border-2"
                               style={{
-                                borderColor: alert.tier >= t ? (t === 3 ? '#F87171' : t === 2 ? '#FB923C' : '#D4A84B') : 'rgba(75,85,99,0.5)',
-                                background: alert.tier >= t ? (t === 3 ? 'rgba(248,113,113,0.15)' : t === 2 ? 'rgba(251,146,60,0.15)' : 'rgba(181,142,60,0.15)') : 'transparent',
-                                color: alert.tier >= t ? (t === 3 ? '#F87171' : t === 2 ? '#FB923C' : '#D4A84B') : '#4B5563',
+                                borderColor: alert.tier >= t ? (t === 3 ? '#C94A5E' : t === 2 ? '#C98A1B' : '#D6B47E') : 'rgba(75,85,99,0.5)',
+                                background: alert.tier >= t ? (t === 3 ? 'rgba(201,74,94,0.15)' : t === 2 ? 'rgba(201,138,27,0.15)' : 'rgba(184,138,60,0.15)') : 'transparent',
+                                color: alert.tier >= t ? (t === 3 ? '#C94A5E' : t === 2 ? '#C98A1B' : '#D6B47E') : '#4B5563',
                               }}
                             >
                               {t}
@@ -424,7 +424,7 @@ export default function AlertQueue({ filterPriority, filterStatus }: Props) {
                     {/* Feedback loop note */}
                     <div
                       className="rounded-lg p-3 border border-gold-500/10"
-                      style={{ background: 'rgba(181,142,60,0.03)' }}
+                      style={{ background: 'rgba(184,138,60,0.03)' }}
                     >
                       <div className="flex items-start gap-2">
                         <i className="ri-loop-left-line text-gold-400 text-sm mt-0.5" />

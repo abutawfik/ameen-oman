@@ -80,20 +80,20 @@ const MarinaDockingForm = ({ isAr, onCancel }: Props) => {
       </div>
       <PersonalDetailsSection data={personal} onChange={(k, v) => setPersonal(p => ({ ...p, [k]: v }))} isAr={isAr} autoFilled={autoFilled} />
       {crew.map((c, idx) => (
-        <SectionCard key={c.id} title={`${isAr ? "فرد الطاقم" : "Crew Member"} #${idx + 1}`} icon="ri-user-line" accentColor="#D4A84B">
+        <SectionCard key={c.id} title={`${isAr ? "فرد الطاقم" : "Crew Member"} #${idx + 1}`} icon="ri-user-line" accentColor="#D6B47E">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <FormField label={isAr ? "الاسم" : "Name"} required><TextInput placeholder={isAr ? "الاسم الكامل" : "Full name"} value={c.name} onChange={(e) => updateCrew(c.id, "name", e.target.value)} /></FormField>
             <FormField label={isAr ? "الجنسية" : "Nationality"} required><SelectInput options={COUNTRIES} placeholder={isAr ? "اختر" : "Select"} value={c.nationality} onChange={(e) => updateCrew(c.id, "nationality", e.target.value)} /></FormField>
             <FormField label={isAr ? "الدور / المنصب" : "Role / Position"} required>
               <div className="flex gap-2">
                 <TextInput placeholder={isAr ? "مثال: ربان" : "e.g. Captain"} value={c.role} onChange={(e) => updateCrew(c.id, "role", e.target.value)} className="flex-1" />
-                <button type="button" onClick={() => removeCrew(c.id)} className="px-3 py-2 rounded-lg border text-xs cursor-pointer" style={{ background: "rgba(248,113,113,0.06)", borderColor: "rgba(248,113,113,0.2)", color: "#F87171" }}><i className="ri-close-line" /></button>
+                <button type="button" onClick={() => removeCrew(c.id)} className="px-3 py-2 rounded-lg border text-xs cursor-pointer" style={{ background: "rgba(201,74,94,0.06)", borderColor: "rgba(201,74,94,0.2)", color: "#C94A5E" }}><i className="ri-close-line" /></button>
               </div>
             </FormField>
           </div>
         </SectionCard>
       ))}
-      <button type="button" onClick={addCrew} className="w-full flex items-center justify-center gap-2 py-3 rounded-xl border-2 border-dashed text-sm font-semibold cursor-pointer transition-all" style={{ borderColor: "rgba(181,142,60,0.2)", color: "#D4A84B", background: "rgba(181,142,60,0.03)" }} onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(181,142,60,0.4)"; }} onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(181,142,60,0.2)"; }}>
+      <button type="button" onClick={addCrew} className="w-full flex items-center justify-center gap-2 py-3 rounded-xl border-2 border-dashed text-sm font-semibold cursor-pointer transition-all" style={{ borderColor: "rgba(184,138,60,0.2)", color: "#D6B47E", background: "rgba(184,138,60,0.03)" }} onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(184,138,60,0.4)"; }} onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(184,138,60,0.2)"; }}>
         <i className="ri-user-add-line" />{isAr ? "إضافة فرد طاقم" : "Add Crew Member"}
       </button>
       <FormActions onCancel={onCancel} onSave={handleSave} saveLabel={isAr ? "تسجيل الرسو" : "Register Docking"} isAr={isAr} saving={saving} />

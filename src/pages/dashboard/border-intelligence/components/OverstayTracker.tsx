@@ -29,8 +29,8 @@ const OVERSTAY_DATA: OverstayRecord[] = [
 
 const statusColor = (status: OverstayRecord["status"]) => {
   if (status === "amber") return "#FACC15";
-  if (status === "red") return "#FB923C";
-  return "#F87171";
+  if (status === "red") return "#C98A1B";
+  return "#C94A5E";
 };
 
 const statusLabel = (status: OverstayRecord["status"], isAr: boolean) => {
@@ -41,10 +41,10 @@ const statusLabel = (status: OverstayRecord["status"], isAr: boolean) => {
 
 const OverstayTracker = ({ isAr }: Props) => {
   return (
-    <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(248,113,113,0.2)", backdropFilter: "blur(12px)" }}>
-      <div className="flex items-center justify-between px-6 py-4 border-b" style={{ borderColor: "rgba(248,113,113,0.12)" }}>
+    <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(201,74,94,0.2)", backdropFilter: "blur(12px)" }}>
+      <div className="flex items-center justify-between px-6 py-4 border-b" style={{ borderColor: "rgba(201,74,94,0.12)" }}>
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(248,113,113,0.1)", border: "1px solid rgba(248,113,113,0.25)" }}>
+          <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(201,74,94,0.1)", border: "1px solid rgba(201,74,94,0.25)" }}>
             <i className="ri-alarm-warning-line text-red-400 text-sm" />
           </div>
           <div>
@@ -52,7 +52,7 @@ const OverstayTracker = ({ isAr }: Props) => {
             <p className="text-gray-500 text-xs">{isAr ? "أشخاص تجاوزوا صلاحية التأشيرة" : "Persons past visa expiry date"}</p>
           </div>
         </div>
-        <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border" style={{ background: "rgba(248,113,113,0.08)", borderColor: "rgba(248,113,113,0.2)" }}>
+        <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border" style={{ background: "rgba(201,74,94,0.08)", borderColor: "rgba(201,74,94,0.2)" }}>
           <div className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse" />
           <span className="text-red-400 text-xs font-bold font-['JetBrains_Mono']">{OVERSTAY_DATA.length} {isAr ? "حالة" : "CASES"}</span>
         </div>

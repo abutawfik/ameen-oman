@@ -28,16 +28,16 @@ const SeizureForm = ({ isAr, onSubmit }: Props) => {
   };
 
   const inputClass = "w-full bg-transparent border rounded-lg px-3 py-2.5 text-white text-sm font-['Inter'] focus:outline-none focus:border-gold-400 transition-colors placeholder-gray-600";
-  const inputStyle = { borderColor: "rgba(181,142,60,0.2)", background: "rgba(255,255,255,0.03)" };
+  const inputStyle = { borderColor: "rgba(184,138,60,0.2)", background: "rgba(255,255,255,0.03)" };
   const labelClass = "block text-gray-400 text-xs font-['Inter'] mb-1.5";
   const sectionClass = "rounded-xl p-5 space-y-4";
-  const sectionStyle = { background: "rgba(20,29,46,0.6)", border: "1px solid rgba(181,142,60,0.1)" };
+  const sectionStyle = { background: "rgba(10,37,64,0.6)", border: "1px solid rgba(184,138,60,0.1)" };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
       {/* Warning Banner */}
       <div className="rounded-xl p-4 flex items-start gap-3"
-        style={{ background: "rgba(248,113,113,0.08)", border: "1px solid rgba(248,113,113,0.3)" }}>
+        style={{ background: "rgba(201,74,94,0.08)", border: "1px solid rgba(201,74,94,0.3)" }}>
         <i className="ri-alarm-warning-line text-red-400 text-xl flex-shrink-0 mt-0.5" />
         <div>
           <p className="text-red-400 text-sm font-semibold font-['Inter']">
@@ -97,19 +97,19 @@ const SeizureForm = ({ isAr, onSubmit }: Props) => {
               onClick={() => toggleReason(reason.id)}
               className="flex items-center gap-3 p-3 rounded-lg text-left transition-all cursor-pointer"
               style={{
-                background: selectedReasons.includes(reason.id) ? "rgba(248,113,113,0.12)" : "rgba(255,255,255,0.02)",
-                border: `1px solid ${selectedReasons.includes(reason.id) ? "rgba(248,113,113,0.4)" : "rgba(255,255,255,0.06)"}`,
+                background: selectedReasons.includes(reason.id) ? "rgba(201,74,94,0.12)" : "rgba(255,255,255,0.02)",
+                border: `1px solid ${selectedReasons.includes(reason.id) ? "rgba(201,74,94,0.4)" : "rgba(255,255,255,0.06)"}`,
               }}
             >
               <div className="w-5 h-5 rounded flex items-center justify-center flex-shrink-0"
                 style={{
-                  background: selectedReasons.includes(reason.id) ? "#F87171" : "transparent",
-                  border: `2px solid ${selectedReasons.includes(reason.id) ? "#F87171" : "rgba(248,113,113,0.3)"}`,
+                  background: selectedReasons.includes(reason.id) ? "#C94A5E" : "transparent",
+                  border: `2px solid ${selectedReasons.includes(reason.id) ? "#C94A5E" : "rgba(201,74,94,0.3)"}`,
                 }}>
-                {selectedReasons.includes(reason.id) && <i className="ri-check-line text-xs text-[#0B1220]" />}
+                {selectedReasons.includes(reason.id) && <i className="ri-check-line text-xs text-[#051428]" />}
               </div>
               <span className="text-sm font-['Inter']"
-                style={{ color: selectedReasons.includes(reason.id) ? "#F87171" : "#9CA3AF" }}>
+                style={{ color: selectedReasons.includes(reason.id) ? "#C94A5E" : "#9CA3AF" }}>
                 {isAr ? reason.labelAr : reason.labelEn}
               </span>
             </button>
@@ -174,7 +174,7 @@ const SeizureForm = ({ isAr, onSubmit }: Props) => {
         </h3>
         <div
           className="border-2 border-dashed rounded-xl p-8 text-center cursor-pointer transition-all"
-          style={{ borderColor: "rgba(248,113,113,0.3)", background: "rgba(248,113,113,0.04)" }}
+          style={{ borderColor: "rgba(201,74,94,0.3)", background: "rgba(201,74,94,0.04)" }}
           onClick={() => setPhotoCount((c) => Math.min(c + 1, 10))}
         >
           <i className="ri-upload-cloud-2-line text-3xl text-red-400/50 mb-2" />
@@ -207,12 +207,12 @@ const SeizureForm = ({ isAr, onSubmit }: Props) => {
       <div className="flex items-center justify-end gap-3 pt-2">
         <button type="button"
           className="px-6 py-2.5 rounded-lg text-sm font-['Inter'] font-medium cursor-pointer whitespace-nowrap transition-all"
-          style={{ border: "1px solid rgba(248,113,113,0.3)", color: "#F87171", background: "transparent" }}>
+          style={{ border: "1px solid rgba(201,74,94,0.3)", color: "#C94A5E", background: "transparent" }}>
           {isAr ? "حفظ مسودة" : "Save Draft"}
         </button>
         <button type="submit" disabled={submitting}
           className="px-8 py-2.5 rounded-lg text-sm font-['Inter'] font-bold cursor-pointer whitespace-nowrap transition-all flex items-center gap-2"
-          style={{ background: submitting ? "rgba(248,113,113,0.5)" : "#F87171", color: "#0B1220" }}>
+          style={{ background: submitting ? "rgba(201,74,94,0.5)" : "#C94A5E", color: "#051428" }}>
           {submitting ? (
             <><i className="ri-loader-4-line animate-spin" />{isAr ? "جارٍ الإرسال..." : "Submitting..."}</>
           ) : (

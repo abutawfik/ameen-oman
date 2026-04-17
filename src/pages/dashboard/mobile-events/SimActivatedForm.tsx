@@ -182,7 +182,7 @@ const SimActivatedForm = ({ isAr, onCancel }: Props) => {
             {iccid && (
               <div
                 className="p-3 rounded-xl border"
-                style={{ background: "rgba(181,142,60,0.04)", borderColor: "rgba(181,142,60,0.15)" }}
+                style={{ background: "rgba(184,138,60,0.04)", borderColor: "rgba(184,138,60,0.15)" }}
               >
                 <p className="text-gray-500 text-xs mb-1 font-['Inter']">ICCID</p>
                 <p className="text-gold-400 font-bold text-sm font-['JetBrains_Mono'] tracking-wider break-all">

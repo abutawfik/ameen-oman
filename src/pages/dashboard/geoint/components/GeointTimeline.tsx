@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { movementPoints, geoSubjects, type MovementPoint } from "@/mocks/geointData";
 
-const subjectColors = ["#D4A84B", "#F87171", "#A78BFA", "#4ADE80", "#FB923C"];
+const subjectColors = ["#D6B47E", "#C94A5E", "#A78BFA", "#4ADE80", "#C98A1B"];
 
 const GeointTimeline = () => {
   const [selectedSubjectId, setSelectedSubjectId] = useState<string | null>(null);
@@ -43,8 +43,8 @@ const GeointTimeline = () => {
         {/* KPI mini cards */}
         <div className="grid grid-cols-2 gap-2">
           {[
-            { label: "Events", value: filteredPoints.length, color: "#D4A84B", icon: "ri-pulse-line" },
-            { label: "Risk Flags", value: riskFlagged, color: "#F87171", icon: "ri-flag-line" },
+            { label: "Events", value: filteredPoints.length, color: "#D6B47E", icon: "ri-pulse-line" },
+            { label: "Risk Flags", value: riskFlagged, color: "#C94A5E", icon: "ri-flag-line" },
             { label: "Streams", value: uniqueStreams.length, color: "#A78BFA", icon: "ri-git-branch-line" },
             { label: "Locations", value: uniqueLocations.length, color: "#4ADE80", icon: "ri-map-pin-line" },
           ].map((stat) => (
@@ -59,7 +59,7 @@ const GeointTimeline = () => {
         </div>
 
         {/* Subject filter */}
-        <div className="rounded-xl p-3" style={{ background: "#0D1B2E", border: "1px solid rgba(181,142,60,0.1)" }}>
+        <div className="rounded-xl p-3" style={{ background: "#0D1B2E", border: "1px solid rgba(184,138,60,0.1)" }}>
           <p className="text-gray-500 text-xs font-['JetBrains_Mono'] uppercase tracking-wider mb-2">Filter by Subject</p>
           <div className="space-y-1">
             <button
@@ -89,13 +89,13 @@ const GeointTimeline = () => {
         </div>
 
         {/* Stream breakdown */}
-        <div className="rounded-xl p-3" style={{ background: "#0D1B2E", border: "1px solid rgba(181,142,60,0.1)" }}>
+        <div className="rounded-xl p-3" style={{ background: "#0D1B2E", border: "1px solid rgba(184,138,60,0.1)" }}>
           <p className="text-gray-500 text-xs font-['JetBrains_Mono'] uppercase tracking-wider mb-2">Stream Breakdown</p>
           <div className="space-y-1.5">
             {uniqueStreams.map((stream) => {
               const count = filteredPoints.filter((p) => p.stream === stream).length;
               const pct = Math.round((count / filteredPoints.length) * 100);
-              const color = filteredPoints.find((p) => p.stream === stream)?.streamColor ?? "#D4A84B";
+              const color = filteredPoints.find((p) => p.stream === stream)?.streamColor ?? "#D6B47E";
               return (
                 <div key={stream}>
                   <div className="flex items-center justify-between mb-0.5">
@@ -118,14 +118,14 @@ const GeointTimeline = () => {
           <div key={date} className="mb-6">
             {/* Date header */}
             <div className="flex items-center gap-3 mb-3">
-              <div className="h-px flex-1" style={{ background: "rgba(181,142,60,0.1)" }} />
+              <div className="h-px flex-1" style={{ background: "rgba(184,138,60,0.1)" }} />
               <span className="text-xs font-['JetBrains_Mono'] text-gold-400/60 uppercase tracking-wider px-2">{date}</span>
-              <div className="h-px flex-1" style={{ background: "rgba(181,142,60,0.1)" }} />
+              <div className="h-px flex-1" style={{ background: "rgba(184,138,60,0.1)" }} />
             </div>
 
             <div className="relative">
               {/* Vertical line */}
-              <div className="absolute left-5 top-0 bottom-0 w-px" style={{ background: "rgba(181,142,60,0.1)" }} />
+              <div className="absolute left-5 top-0 bottom-0 w-px" style={{ background: "rgba(184,138,60,0.1)" }} />
 
               <div className="space-y-3">
                 {points.map((point) => {
@@ -138,7 +138,7 @@ const GeointTimeline = () => {
                         className="w-10 h-10 flex items-center justify-center rounded-full flex-shrink-0 z-10 cursor-pointer"
                         style={{
                           background: `${point.streamColor}15`,
-                          border: `2px solid ${point.riskFlag ? "#F87171" : point.streamColor}60`,
+                          border: `2px solid ${point.riskFlag ? "#C94A5E" : point.streamColor}60`,
                           color: point.streamColor,
                         }}
                         onClick={() => setExpandedPoint(isExpanded ? null : point.id)}
@@ -150,8 +150,8 @@ const GeointTimeline = () => {
                       <div
                         className="flex-1 rounded-xl p-3 cursor-pointer transition-all"
                         style={{
-                          background: isExpanded ? "rgba(181,142,60,0.04)" : "rgba(255,255,255,0.02)",
-                          border: `1px solid ${isExpanded ? "rgba(181,142,60,0.2)" : "rgba(255,255,255,0.06)"}`,
+                          background: isExpanded ? "rgba(184,138,60,0.04)" : "rgba(255,255,255,0.02)",
+                          border: `1px solid ${isExpanded ? "rgba(184,138,60,0.2)" : "rgba(255,255,255,0.06)"}`,
                         }}
                         onClick={() => setExpandedPoint(isExpanded ? null : point.id)}
                       >
@@ -162,7 +162,7 @@ const GeointTimeline = () => {
                               <span className="text-white text-xs font-['Inter']">{point.eventType}</span>
                               {point.riskFlag && (
                                 <span className="px-1.5 py-0.5 rounded-full text-xs font-['JetBrains_Mono'] font-bold"
-                                  style={{ background: "rgba(248,113,113,0.15)", color: "#F87171" }}>
+                                  style={{ background: "rgba(201,74,94,0.15)", color: "#C94A5E" }}>
                                   RISK
                                 </span>
                               )}
@@ -179,7 +179,7 @@ const GeointTimeline = () => {
                         </div>
 
                         {isExpanded && (
-                          <div className="mt-3 pt-3 border-t" style={{ borderColor: "rgba(181,142,60,0.1)" }}>
+                          <div className="mt-3 pt-3 border-t" style={{ borderColor: "rgba(184,138,60,0.1)" }}>
                             <div className="grid grid-cols-2 gap-3">
                               <div>
                                 <p className="text-gray-600 text-xs font-['JetBrains_Mono'] mb-0.5">Subject</p>
@@ -196,7 +196,7 @@ const GeointTimeline = () => {
                             </div>
                             <div className="flex gap-2 mt-3">
                               <button className="px-3 py-1.5 rounded-lg text-xs font-['Inter'] cursor-pointer transition-all hover:opacity-80"
-                                style={{ background: "rgba(181,142,60,0.12)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.25)" }}>
+                                style={{ background: "rgba(184,138,60,0.12)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.25)" }}>
                                 <i className="ri-map-pin-line mr-1" />View on Map
                               </button>
                               <button className="px-3 py-1.5 rounded-lg text-xs font-['Inter'] cursor-pointer transition-all hover:opacity-80"

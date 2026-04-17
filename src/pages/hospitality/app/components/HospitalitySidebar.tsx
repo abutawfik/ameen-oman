@@ -11,7 +11,7 @@ interface Props {
 }
 
 const ROLE_COLORS: Record<string, string> = {
-  Admin: '#D4A84B', Reception: '#4ADE80', Viewer: '#9CA3AF',
+  Admin: '#D6B47E', Reception: '#4ADE80', Viewer: '#9CA3AF',
 };
 
 export default function HospitalitySidebar({ activeKey, onNav, lang, collapsed, isOffline, pendingSync }: Props) {
@@ -41,17 +41,17 @@ export default function HospitalitySidebar({ activeKey, onNav, lang, collapsed, 
         onClick={() => onNav(item.key)}
         className="w-full flex items-center gap-3 px-3 py-2.5 transition-all cursor-pointer relative group"
         style={{
-          background: isActive ? 'rgba(181,142,60,0.1)' : 'transparent',
-          borderLeft: isAr ? 'none' : (isActive ? '2px solid #D4A84B' : '2px solid transparent'),
-          borderRight: isAr ? (isActive ? '2px solid #D4A84B' : '2px solid transparent') : 'none',
+          background: isActive ? 'rgba(184,138,60,0.1)' : 'transparent',
+          borderLeft: isAr ? 'none' : (isActive ? '2px solid #D6B47E' : '2px solid transparent'),
+          borderRight: isAr ? (isActive ? '2px solid #D6B47E' : '2px solid transparent') : 'none',
         }}
         title={collapsed ? (isAr ? item.labelAr : item.labelEn) : undefined}
       >
         <div className="w-5 h-5 flex items-center justify-center shrink-0">
-          <i className={`${item.icon} text-sm`} style={{ color: isActive ? '#D4A84B' : '#6B7280' }} />
+          <i className={`${item.icon} text-sm`} style={{ color: isActive ? '#D6B47E' : '#6B7280' }} />
         </div>
         {!collapsed && (
-          <span className="text-xs font-medium truncate" style={{ color: isActive ? '#D4A84B' : '#9CA3AF' }}>
+          <span className="text-xs font-medium truncate" style={{ color: isActive ? '#D6B47E' : '#9CA3AF' }}>
             {isAr ? item.labelAr : item.labelEn}
           </span>
         )}
@@ -82,7 +82,7 @@ export default function HospitalitySidebar({ activeKey, onNav, lang, collapsed, 
         width: collapsed ? 52 : 220,
         minWidth: collapsed ? 52 : 220,
         borderRight: isAr ? 'none' : undefined,
-        borderLeft: isAr ? '1px solid rgba(181,142,60,0.15)' : undefined,
+        borderLeft: isAr ? '1px solid rgba(184,138,60,0.15)' : undefined,
       }}
     >
       {/* User section */}
@@ -132,8 +132,8 @@ export default function HospitalitySidebar({ activeKey, onNav, lang, collapsed, 
           <div className="grid grid-cols-2 gap-1.5">
             {[
               { key: 'checkin',     icon: 'ri-login-box-line',     color: '#4ADE80', en: 'Check-In',  ar: 'دخول' },
-              { key: 'checkout',    icon: 'ri-logout-box-line',    color: '#FB923C', en: 'Check-Out', ar: 'خروج' },
-              { key: 'new-booking', icon: 'ri-calendar-check-line',color: '#D4A84B', en: 'Booking',   ar: 'حجز' },
+              { key: 'checkout',    icon: 'ri-logout-box-line',    color: '#C98A1B', en: 'Check-Out', ar: 'خروج' },
+              { key: 'new-booking', icon: 'ri-calendar-check-line',color: '#D6B47E', en: 'Booking',   ar: 'حجز' },
               { key: 'changeroom',  icon: 'ri-door-line',          color: '#FACC15', en: 'Change Rm', ar: 'تغيير' },
             ].map(a => (
               <button
@@ -184,12 +184,12 @@ export default function HospitalitySidebar({ activeKey, onNav, lang, collapsed, 
         <div className="flex items-center gap-2">
           <div
             className="w-2 h-2 rounded-full shrink-0"
-            style={{ background: isOffline ? '#F87171' : '#4ADE80' }}
+            style={{ background: isOffline ? '#C94A5E' : '#4ADE80' }}
           />
           {!collapsed && (
             <span className="text-gray-600 text-xs">
               {isAr ? 'الشبكة: ' : 'Network: '}
-              <span style={{ color: isOffline ? '#F87171' : '#4ADE80' }}>
+              <span style={{ color: isOffline ? '#C94A5E' : '#4ADE80' }}>
                 {isOffline ? (isAr ? 'غير متصل' : 'Offline') : (isAr ? 'متصل' : 'Online')}
               </span>
               {isOffline && pendingSync > 0 && (

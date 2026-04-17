@@ -54,7 +54,7 @@ const KpiTile = ({ label, value, icon, color, deltaPct, deltaDirHint = "up_is_go
   return (
     <div
       className="relative rounded-xl border p-4 flex flex-col min-w-0 overflow-hidden min-h-[120px]"
-      style={{ background: "rgba(20,29,46,0.65)", borderColor: "rgba(181,142,60,0.12)" }}
+      style={{ background: "rgba(20,29,46,0.65)", borderColor: "rgba(184,138,60,0.12)" }}
     >
       {/* Sparkline — absolute background, 40% height at the bottom, faint */}
       {sparkData.length > 1 && (

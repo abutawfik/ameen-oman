@@ -2,8 +2,8 @@ import { useState } from "react";
 import { hotspots, type Hotspot } from "@/mocks/geointData";
 
 const intensityConfig = {
-  critical: { color: "#F87171", bg: "rgba(248,113,113,0.15)", border: "rgba(248,113,113,0.4)", label: "CRITICAL", pulse: true },
-  high:     { color: "#FB923C", bg: "rgba(251,146,60,0.12)",  border: "rgba(251,146,60,0.35)",  label: "HIGH",     pulse: true },
+  critical: { color: "#C94A5E", bg: "rgba(201,74,94,0.15)", border: "rgba(201,74,94,0.4)", label: "CRITICAL", pulse: true },
+  high:     { color: "#C98A1B", bg: "rgba(201,138,27,0.12)",  border: "rgba(201,138,27,0.35)",  label: "HIGH",     pulse: true },
   medium:   { color: "#FACC15", bg: "rgba(250,204,21,0.10)",  border: "rgba(250,204,21,0.30)",  label: "MEDIUM",   pulse: false },
   low:      { color: "#4ADE80", bg: "rgba(74,222,128,0.08)",  border: "rgba(74,222,128,0.25)",  label: "LOW",      pulse: false },
 };
@@ -51,9 +51,9 @@ const HotspotClustering = () => {
                   color: cfg.color,
                   borderColor: cfg.border,
                 } : filterIntensity === lvl ? {
-                  background: "rgba(181,142,60,0.15)",
-                  color: "#D4A84B",
-                  borderColor: "rgba(181,142,60,0.4)",
+                  background: "rgba(184,138,60,0.15)",
+                  color: "#D6B47E",
+                  borderColor: "rgba(184,138,60,0.4)",
                 } : {}}
               >
                 {lvl.toUpperCase()}
@@ -67,11 +67,11 @@ const HotspotClustering = () => {
         </div>
 
         {/* SVG Map */}
-        <div className="relative flex-1 rounded-xl overflow-hidden" style={{ background: "#0D1B2E", border: "1px solid rgba(181,142,60,0.15)", minHeight: "380px" }}>
+        <div className="relative flex-1 rounded-xl overflow-hidden" style={{ background: "#0D1B2E", border: "1px solid rgba(184,138,60,0.15)", minHeight: "380px" }}>
           <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-full">
             <defs>
               <pattern id="hsgrid" width="40" height="40" patternUnits="userSpaceOnUse">
-                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(181,142,60,0.04)" strokeWidth="1" />
+                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(184,138,60,0.04)" strokeWidth="1" />
               </pattern>
               {Object.entries(intensityConfig).map(([key, cfg]) => (
                 <radialGradient key={key} id={`glow-${key}`} cx="50%" cy="50%" r="50%">
@@ -85,11 +85,11 @@ const HotspotClustering = () => {
             {/* Water */}
             <path
               d="M 0 400 Q 150 380 300 390 Q 450 400 550 375 Q 650 350 750 365 Q 850 380 900 360 L 900 460 L 0 460 Z"
-              fill="rgba(181,142,60,0.04)"
-              stroke="rgba(181,142,60,0.08)"
+              fill="rgba(184,138,60,0.04)"
+              stroke="rgba(184,138,60,0.08)"
               strokeWidth="1"
             />
-            <text x="820" y="440" fill="rgba(181,142,60,0.15)" fontSize="9" textAnchor="middle">Gulf of Oman</text>
+            <text x="820" y="440" fill="rgba(184,138,60,0.15)" fontSize="9" textAnchor="middle">Gulf of Oman</text>
 
             {/* Hotspot clusters */}
             {filtered.map((hs) => {
@@ -129,7 +129,7 @@ const HotspotClustering = () => {
                   </text>
                   {/* Subject count badge */}
                   <g transform={`translate(${x + r * 0.6}, ${y - r * 0.6})`}>
-                    <circle r="9" fill="#141D2E" stroke={cfg.color} strokeWidth="1" />
+                    <circle r="9" fill="#0A2540" stroke={cfg.color} strokeWidth="1" />
                     <text textAnchor="middle" y="4" fontSize="7" fill={cfg.color} fontWeight="bold">{hs.subjectCount}</text>
                   </g>
                 </g>
@@ -138,8 +138,8 @@ const HotspotClustering = () => {
 
             {/* Legend */}
             <g transform="translate(10, 10)">
-              <rect width="120" height="100" rx="4" fill="rgba(20,29,46,0.85)" stroke="rgba(181,142,60,0.15)" strokeWidth="1" />
-              <text x="10" y="16" fill="rgba(181,142,60,0.7)" fontSize="8" fontWeight="bold" letterSpacing="1">INTENSITY</text>
+              <rect width="120" height="100" rx="4" fill="rgba(10,37,64,0.85)" stroke="rgba(184,138,60,0.15)" strokeWidth="1" />
+              <text x="10" y="16" fill="rgba(184,138,60,0.7)" fontSize="8" fontWeight="bold" letterSpacing="1">INTENSITY</text>
               {Object.entries(intensityConfig).map(([key, cfg], i) => (
                 <g key={key} transform={`translate(10, ${22 + i * 18})`}>
                   <circle cx="5" cy="5" r="5" fill={cfg.bg} stroke={cfg.color} strokeWidth="1" />
@@ -194,7 +194,7 @@ const HotspotClustering = () => {
               <div className="flex flex-wrap gap-1.5">
                 {selectedHotspot.streams.map((s) => (
                   <span key={s} className="px-2 py-0.5 rounded-full text-xs font-['Inter']"
-                    style={{ background: "rgba(181,142,60,0.1)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>
+                    style={{ background: "rgba(184,138,60,0.1)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}>
                     {s}
                   </span>
                 ))}
@@ -208,24 +208,24 @@ const HotspotClustering = () => {
 
             <div className="flex gap-2 mt-3">
               <button className="flex-1 py-2 rounded-lg text-xs font-['Inter'] font-medium cursor-pointer transition-all hover:opacity-80"
-                style={{ background: "rgba(181,142,60,0.15)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.3)" }}>
+                style={{ background: "rgba(184,138,60,0.15)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.3)" }}>
                 <i className="ri-focus-3-line mr-1" />Investigate
               </button>
               <button className="flex-1 py-2 rounded-lg text-xs font-['Inter'] font-medium cursor-pointer transition-all hover:opacity-80"
-                style={{ background: "rgba(248,113,113,0.1)", color: "#F87171", border: "1px solid rgba(248,113,113,0.25)" }}>
+                style={{ background: "rgba(201,74,94,0.1)", color: "#C94A5E", border: "1px solid rgba(201,74,94,0.25)" }}>
                 <i className="ri-alarm-warning-line mr-1" />Alert
               </button>
             </div>
           </div>
         ) : (
-          <div className="rounded-xl p-3" style={{ background: "#0D1B2E", border: "1px solid rgba(181,142,60,0.1)" }}>
+          <div className="rounded-xl p-3" style={{ background: "#0D1B2E", border: "1px solid rgba(184,138,60,0.1)" }}>
             <p className="text-gray-500 text-xs font-['JetBrains_Mono'] uppercase tracking-wider mb-2">Click a cluster to inspect</p>
             <div className="grid grid-cols-2 gap-2">
-              <div className="rounded-lg p-2.5 text-center" style={{ background: "rgba(248,113,113,0.08)", border: "1px solid rgba(248,113,113,0.2)" }}>
+              <div className="rounded-lg p-2.5 text-center" style={{ background: "rgba(201,74,94,0.08)", border: "1px solid rgba(201,74,94,0.2)" }}>
                 <p className="text-red-400 text-lg font-['JetBrains_Mono'] font-bold">{hotspots.filter((h) => h.intensity === "critical").length}</p>
                 <p className="text-gray-500 text-xs">Critical</p>
               </div>
-              <div className="rounded-lg p-2.5 text-center" style={{ background: "rgba(251,146,60,0.08)", border: "1px solid rgba(251,146,60,0.2)" }}>
+              <div className="rounded-lg p-2.5 text-center" style={{ background: "rgba(201,138,27,0.08)", border: "1px solid rgba(201,138,27,0.2)" }}>
                 <p className="text-orange-400 text-lg font-['JetBrains_Mono'] font-bold">{hotspots.filter((h) => h.intensity === "high").length}</p>
                 <p className="text-gray-500 text-xs">High</p>
               </div>

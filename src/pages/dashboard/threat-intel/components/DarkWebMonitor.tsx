@@ -2,8 +2,8 @@ import { useState } from "react";
 import { darkWebMentions, feedSources, type DarkWebMention } from "@/mocks/threatIntelData";
 
 const severityColors = {
-  critical: "#F87171",
-  high: "#FB923C",
+  critical: "#C94A5E",
+  high: "#C98A1B",
   medium: "#FACC15",
   low: "#4ADE80",
 };
@@ -67,8 +67,8 @@ const DarkWebMonitor = ({ isAr }: Props) => {
               <button key={s} onClick={() => setFilterSeverity(s)}
                 className="px-2 py-1 rounded text-[10px] font-['Inter'] cursor-pointer transition-all whitespace-nowrap"
                 style={{
-                  background: filterSeverity === s ? "rgba(181,142,60,0.1)" : "transparent",
-                  color: filterSeverity === s ? "#D4A84B" : "#6B7280",
+                  background: filterSeverity === s ? "rgba(184,138,60,0.1)" : "transparent",
+                  color: filterSeverity === s ? "#D6B47E" : "#6B7280",
                 }}>
                 {s === "all" ? "All" : s.charAt(0).toUpperCase() + s.slice(1)}
               </button>
@@ -116,7 +116,7 @@ const DarkWebMonitor = ({ isAr }: Props) => {
             {mention.keywords.length > 0 && (
               <div className="flex flex-wrap gap-1 mt-2">
                 {mention.keywords.map((kw) => (
-                  <span key={kw} className="text-[9px] px-1.5 py-0.5 rounded font-['JetBrains_Mono']" style={{ background: "rgba(248,113,113,0.1)", color: "#F87171" }}>
+                  <span key={kw} className="text-[9px] px-1.5 py-0.5 rounded font-['JetBrains_Mono']" style={{ background: "rgba(201,74,94,0.1)", color: "#C94A5E" }}>
                     {kw}
                   </span>
                 ))}
@@ -170,7 +170,7 @@ const DarkWebMonitor = ({ isAr }: Props) => {
                   <p className="text-gray-600 text-[10px] font-['JetBrains_Mono'] mb-1">LINKED IOCs</p>
                   <div className="space-y-1">
                     {selectedMention.linkedIocs.map((iocId) => (
-                      <div key={iocId} className="flex items-center gap-2 px-2 py-1 rounded" style={{ background: "rgba(181,142,60,0.06)" }}>
+                      <div key={iocId} className="flex items-center gap-2 px-2 py-1 rounded" style={{ background: "rgba(184,138,60,0.06)" }}>
                         <i className="ri-link text-gold-400 text-xs" />
                         <span className="text-gold-400 text-[10px] font-['JetBrains_Mono']">{iocId.toUpperCase()}</span>
                       </div>
@@ -179,10 +179,10 @@ const DarkWebMonitor = ({ isAr }: Props) => {
                 </div>
               )}
               <div className="flex gap-2">
-                <button className="flex-1 py-2 rounded-lg text-xs font-['Inter'] cursor-pointer whitespace-nowrap" style={{ background: "rgba(248,113,113,0.1)", color: "#F87171", border: "1px solid rgba(248,113,113,0.2)" }}>
+                <button className="flex-1 py-2 rounded-lg text-xs font-['Inter'] cursor-pointer whitespace-nowrap" style={{ background: "rgba(201,74,94,0.1)", color: "#C94A5E", border: "1px solid rgba(201,74,94,0.2)" }}>
                   <i className="ri-alarm-warning-line mr-1" />Escalate
                 </button>
-                <button className="flex-1 py-2 rounded-lg text-xs font-['Inter'] cursor-pointer whitespace-nowrap" style={{ background: "rgba(181,142,60,0.08)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>
+                <button className="flex-1 py-2 rounded-lg text-xs font-['Inter'] cursor-pointer whitespace-nowrap" style={{ background: "rgba(184,138,60,0.08)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}>
                   <i className="ri-file-add-line mr-1" />Add to Case
                 </button>
               </div>
@@ -190,7 +190,7 @@ const DarkWebMonitor = ({ isAr }: Props) => {
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center h-64 text-center">
-            <div className="w-12 h-12 flex items-center justify-center rounded-full mb-3" style={{ background: "rgba(248,113,113,0.1)" }}>
+            <div className="w-12 h-12 flex items-center justify-center rounded-full mb-3" style={{ background: "rgba(201,74,94,0.1)" }}>
               <i className="ri-ghost-line text-red-400 text-xl" />
             </div>
             <p className="text-gray-600 text-sm font-['Inter']">Select a mention to view details</p>
@@ -202,14 +202,14 @@ const DarkWebMonitor = ({ isAr }: Props) => {
           <p className="text-gray-600 text-[10px] font-['JetBrains_Mono'] mb-2">HOT KEYWORDS (24H)</p>
           <div className="flex flex-wrap gap-1.5">
             {[
-              { word: "Muttrah Port", count: 8, color: "#F87171" },
-              { word: "customs", count: 6, color: "#FB923C" },
+              { word: "Muttrah Port", count: 8, color: "#C94A5E" },
+              { word: "customs", count: 6, color: "#C98A1B" },
               { word: "Oman", count: 14, color: "#FACC15" },
-              { word: "passport", count: 5, color: "#F87171" },
+              { word: "passport", count: 5, color: "#C94A5E" },
               { word: "BTC", count: 9, color: "#4ADE80" },
-              { word: "credentials", count: 4, color: "#F87171" },
-              { word: "Salalah", count: 3, color: "#FB923C" },
-              { word: "Police", count: 4, color: "#F87171" },
+              { word: "credentials", count: 4, color: "#C94A5E" },
+              { word: "Salalah", count: 3, color: "#C98A1B" },
+              { word: "Police", count: 4, color: "#C94A5E" },
               { word: "money mule", count: 3, color: "#FACC15" },
               { word: "database", count: 5, color: "#A78BFA" },
             ].map((kw) => (

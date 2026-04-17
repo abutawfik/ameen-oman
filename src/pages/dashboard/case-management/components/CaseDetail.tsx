@@ -3,15 +3,15 @@ import { type InvestigationCase } from "@/mocks/caseManagementData";
 import CaseTimeline from "./CaseTimeline";
 
 const priorityConfig = {
-  critical: { color: "#F87171", bg: "rgba(248,113,113,0.1)" },
-  high:     { color: "#FB923C", bg: "rgba(251,146,60,0.1)" },
+  critical: { color: "#C94A5E", bg: "rgba(201,74,94,0.1)" },
+  high:     { color: "#C98A1B", bg: "rgba(201,138,27,0.1)" },
   medium:   { color: "#FACC15", bg: "rgba(250,204,21,0.1)" },
   low:      { color: "#4ADE80", bg: "rgba(74,222,128,0.1)" },
 };
 
 const classificationColors: Record<string, string> = {
-  "TOP SECRET":   "#F87171",
-  "SECRET":       "#FB923C",
+  "TOP SECRET":   "#C94A5E",
+  "SECRET":       "#C98A1B",
   "CONFIDENTIAL": "#FACC15",
   "RESTRICTED":   "#4ADE80",
   "UNCLASSIFIED": "#9CA3AF",
@@ -69,9 +69,9 @@ const CaseDetail = ({ caseData, isAr }: Props) => {
           <button key={t.key} onClick={() => setSubTab(t.key)}
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-['Inter'] cursor-pointer transition-all whitespace-nowrap"
             style={{
-              background: subTab === t.key ? "rgba(181,142,60,0.1)" : "transparent",
-              color: subTab === t.key ? "#D4A84B" : "#6B7280",
-              border: subTab === t.key ? "1px solid rgba(181,142,60,0.25)" : "1px solid transparent",
+              background: subTab === t.key ? "rgba(184,138,60,0.1)" : "transparent",
+              color: subTab === t.key ? "#D6B47E" : "#6B7280",
+              border: subTab === t.key ? "1px solid rgba(184,138,60,0.25)" : "1px solid transparent",
             }}>
             <i className={`${t.icon} text-xs`} />
             {t.label}
@@ -80,7 +80,7 @@ const CaseDetail = ({ caseData, isAr }: Props) => {
       </div>
 
       {/* Content */}
-      <div className="flex-1 overflow-y-auto p-4" style={{ scrollbarWidth: "thin", scrollbarColor: "rgba(181,142,60,0.2) transparent" }}>
+      <div className="flex-1 overflow-y-auto p-4" style={{ scrollbarWidth: "thin", scrollbarColor: "rgba(184,138,60,0.2) transparent" }}>
         {subTab === "overview" && (
           <div className="space-y-4">
             <div className="p-3 rounded-xl" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
@@ -105,7 +105,7 @@ const CaseDetail = ({ caseData, isAr }: Props) => {
                       <p className="text-gray-600 text-[10px] font-['Inter']">{s.nationality} · {s.role}</p>
                     </div>
                     <div className="text-right flex-shrink-0">
-                      <p className="font-bold font-['JetBrains_Mono'] text-sm" style={{ color: s.riskScore >= 90 ? "#F87171" : s.riskScore >= 75 ? "#FB923C" : "#FACC15" }}>{s.riskScore}</p>
+                      <p className="font-bold font-['JetBrains_Mono'] text-sm" style={{ color: s.riskScore >= 90 ? "#C94A5E" : s.riskScore >= 75 ? "#C98A1B" : "#FACC15" }}>{s.riskScore}</p>
                       <p className="text-gray-700 text-[10px]">{s.linkedStreams} streams</p>
                     </div>
                   </div>
@@ -117,7 +117,7 @@ const CaseDetail = ({ caseData, isAr }: Props) => {
               <p className="text-gray-600 text-[10px] font-['JetBrains_Mono'] mb-2">INVESTIGATION TEAM</p>
               <div className="flex flex-wrap gap-2">
                 {[caseData.leadOfficer, ...caseData.team].map((member) => (
-                  <span key={member} className="text-xs px-2.5 py-1 rounded-lg font-['Inter']" style={{ background: "rgba(181,142,60,0.06)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.15)" }}>
+                  <span key={member} className="text-xs px-2.5 py-1 rounded-lg font-['Inter']" style={{ background: "rgba(184,138,60,0.06)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.15)" }}>
                     {member}
                   </span>
                 ))}
@@ -169,7 +169,7 @@ const CaseDetail = ({ caseData, isAr }: Props) => {
         {subTab === "notes" && (
           <div className="space-y-3">
             {caseData.notes.map((note) => (
-              <div key={note.id} className="p-3 rounded-xl" style={{ background: note.pinned ? "rgba(181,142,60,0.04)" : "rgba(255,255,255,0.02)", border: `1px solid ${note.pinned ? "rgba(181,142,60,0.2)" : "rgba(255,255,255,0.06)"}` }}>
+              <div key={note.id} className="p-3 rounded-xl" style={{ background: note.pinned ? "rgba(184,138,60,0.04)" : "rgba(255,255,255,0.02)", border: `1px solid ${note.pinned ? "rgba(184,138,60,0.2)" : "rgba(255,255,255,0.06)"}` }}>
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-2">
                     {note.pinned && <i className="ri-pushpin-line text-gold-400 text-xs" />}
@@ -188,7 +188,7 @@ const CaseDetail = ({ caseData, isAr }: Props) => {
                 className="w-full bg-transparent text-white text-xs font-['Inter'] outline-none resize-none placeholder-gray-700"
               />
               <div className="flex justify-end mt-2">
-                <button className="px-4 py-1.5 rounded-lg text-xs font-['Inter'] cursor-pointer whitespace-nowrap" style={{ background: "rgba(181,142,60,0.1)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>
+                <button className="px-4 py-1.5 rounded-lg text-xs font-['Inter'] cursor-pointer whitespace-nowrap" style={{ background: "rgba(184,138,60,0.1)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}>
                   Add Note
                 </button>
               </div>

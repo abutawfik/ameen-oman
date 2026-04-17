@@ -17,8 +17,8 @@ const KpiCards = ({ entityType, isAr }: Props) => {
           key={card.key}
           className="flex flex-col p-5 rounded-xl border transition-all duration-200 hover:-translate-y-0.5 group"
           style={{
-            background: "rgba(20,29,46,0.8)",
-            borderColor: "rgba(181,142,60,0.12)",
+            background: "rgba(10,37,64,0.8)",
+            borderColor: "rgba(184,138,60,0.12)",
             backdropFilter: "blur(12px)",
           }}
           onMouseEnter={(e) => {
@@ -26,7 +26,7 @@ const KpiCards = ({ entityType, isAr }: Props) => {
             (e.currentTarget as HTMLDivElement).style.boxShadow = `0 0 20px ${card.color}0A`;
           }}
           onMouseLeave={(e) => {
-            (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(181,142,60,0.12)";
+            (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(184,138,60,0.12)";
             (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
           }}
         >
@@ -38,8 +38,8 @@ const KpiCards = ({ entityType, isAr }: Props) => {
             </div>
             <div className={`flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-['JetBrains_Mono']`}
               style={{
-                background: card.deltaUp ? "rgba(74,222,128,0.1)" : "rgba(248,113,113,0.1)",
-                color: card.deltaUp ? "#4ADE80" : "#F87171",
+                background: card.deltaUp ? "rgba(74,222,128,0.1)" : "rgba(201,74,94,0.1)",
+                color: card.deltaUp ? "#4ADE80" : "#C94A5E",
               }}>
               <i className={card.deltaUp ? "ri-arrow-up-line text-xs" : "ri-arrow-down-line text-xs"} />
               {card.delta}
@@ -83,7 +83,7 @@ const KpiCards = ({ entityType, isAr }: Props) => {
               }}
               onMouseEnter={(e) => {
                 (e.currentTarget as HTMLButtonElement).style.background = card.color;
-                (e.currentTarget as HTMLButtonElement).style.color = "#0B1220";
+                (e.currentTarget as HTMLButtonElement).style.color = "#051428";
               }}
               onMouseLeave={(e) => {
                 (e.currentTarget as HTMLButtonElement).style.background = card.color + "15";

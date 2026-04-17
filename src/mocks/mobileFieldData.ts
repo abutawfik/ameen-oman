@@ -212,10 +212,10 @@ export const mockFieldPerson: FieldPerson = {
   patternAlerts: 5,
   recentEvents: [
     { stream: "Border",    streamIcon: "ri-passport-line",      streamColor: "#60A5FA", datetime: "2025-03-15 06:42", description: "Border Entry — Capital Airport T1",         location: "Capital Airport",    isAlert: false },
-    { stream: "Hotel",     streamIcon: "ri-hotel-line",         streamColor: "#D4A84B", datetime: "2025-03-15 11:30", description: "Check-In — Grand Hyatt Capital",            location: "Coastal District",   isAlert: false },
+    { stream: "Hotel",     streamIcon: "ri-hotel-line",         streamColor: "#D6B47E", datetime: "2025-03-15 11:30", description: "Check-In — Grand Hyatt Capital",            location: "Coastal District",   isAlert: false },
     { stream: "Mobile",    streamIcon: "ri-sim-card-line",      streamColor: "#A78BFA", datetime: "2025-03-16 10:22", description: "2nd SIM Purchase — Second Telecom West",    location: "West District",      isAlert: true  },
     { stream: "Financial", streamIcon: "ri-bank-card-line",     streamColor: "#4ADE80", datetime: "2025-03-22 10:15", description: "2,500 Cash Withdrawal",                     location: "West District ATM",  isAlert: true  },
-    { stream: "Hotel",     streamIcon: "ri-hotel-line",         streamColor: "#D4A84B", datetime: "2025-03-18 14:30", description: "Same-Day Hotel Switch — Capital Hills",     location: "Capital Hills",      isAlert: true  },
+    { stream: "Hotel",     streamIcon: "ri-hotel-line",         streamColor: "#D6B47E", datetime: "2025-03-18 14:30", description: "Same-Day Hotel Switch — Capital Hills",     location: "Capital Hills",      isAlert: true  },
   ],
 };
 

@@ -69,7 +69,7 @@ const LargeCashForm = ({ isAr, onCancel }: Props) => {
   const amountNum = parseFloat(amount) || 0;
   const isAboveThreshold = amountNum >= 5000;
   const riskLevel = amountNum >= 50000 ? "critical" : amountNum >= 20000 ? "high" : amountNum >= 5000 ? "medium" : "low";
-  const riskColors: Record<string, string> = { critical: "#F87171", high: "#FB923C", medium: "#FACC15", low: "#4ADE80" };
+  const riskColors: Record<string, string> = { critical: "#C94A5E", high: "#C98A1B", medium: "#FACC15", low: "#4ADE80" };
   const riskLabels: Record<string, string> = {
     critical: isAr ? "حرج" : "CRITICAL",
     high: isAr ? "مرتفع" : "HIGH",

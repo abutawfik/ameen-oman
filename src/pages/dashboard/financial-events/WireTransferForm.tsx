@@ -99,7 +99,7 @@ const WireTransferForm = ({ isAr, onCancel }: Props) => {
   return (
     <div className="space-y-5">
       {/* Amber auto-flag note */}
-      <div className="flex items-start gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(251,146,60,0.06)", borderColor: "rgba(251,146,60,0.25)" }}>
+      <div className="flex items-start gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(201,138,27,0.06)", borderColor: "rgba(201,138,27,0.25)" }}>
         <i className="ri-alarm-warning-line text-orange-400 text-sm mt-0.5 flex-shrink-0" />
         <p className="text-orange-400 text-sm font-['Inter']">
           {isAr
@@ -110,7 +110,7 @@ const WireTransferForm = ({ isAr, onCancel }: Props) => {
 
       {/* Live flag indicator */}
       {isFlagged && (
-        <div className="flex items-center gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(248,113,113,0.08)", borderColor: "rgba(248,113,113,0.3)" }}>
+        <div className="flex items-center gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(201,74,94,0.08)", borderColor: "rgba(201,74,94,0.3)" }}>
           <div className="w-2.5 h-2.5 rounded-full bg-red-400 animate-pulse flex-shrink-0" />
           <p className="text-red-400 text-sm font-bold font-['Inter']">
             {isAr ? "هذه المعاملة مُبلَّغ عنها تلقائياً" : "This transaction is auto-flagged"}
@@ -165,7 +165,7 @@ const WireTransferForm = ({ isAr, onCancel }: Props) => {
                 </FormField>
               </div>
               {amount && (
-                <div className="flex items-center gap-2 px-3 py-2 rounded-lg border" style={{ background: "rgba(181,142,60,0.05)", borderColor: "rgba(181,142,60,0.2)" }}>
+                <div className="flex items-center gap-2 px-3 py-2 rounded-lg border" style={{ background: "rgba(184,138,60,0.05)", borderColor: "rgba(184,138,60,0.2)" }}>
                   <i className="ri-exchange-dollar-line text-gold-400 text-sm" />
                   <span className="text-gray-400 text-xs">{isAr ? "ما يعادل تقريباً:" : "Approx. equivalent:"}</span>
                   <span className="text-gold-400 font-bold text-sm font-['JetBrains_Mono']">LCY {amountLCY.toFixed(3)}</span>

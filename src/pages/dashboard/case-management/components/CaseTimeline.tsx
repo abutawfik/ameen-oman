@@ -5,14 +5,14 @@ const streamColors: Record<string, string> = {
   Financial:   "#4ADE80",
   Border:      "#60A5FA",
   Mobile:      "#A78BFA",
-  Hotel:       "#D4A84B",
-  Transport:   "#FB923C",
+  Hotel:       "#D6B47E",
+  Transport:   "#C98A1B",
   Social:      "#38BDF8",
   Employment:  "#F9A8D4",
   Customs:     "#FCD34D",
   Marine:      "#7DD3FC",
-  HUMINT:      "#F87171",
-  "Internal SIEM": "#D4A84B",
+  HUMINT:      "#C94A5E",
+  "Internal SIEM": "#D6B47E",
 };
 
 const streamIcons: Record<string, string> = {
@@ -30,8 +30,8 @@ const streamIcons: Record<string, string> = {
 };
 
 const significanceConfig = {
-  critical: { color: "#F87171", size: "w-4 h-4" },
-  high:     { color: "#FB923C", size: "w-3.5 h-3.5" },
+  critical: { color: "#C94A5E", size: "w-4 h-4" },
+  high:     { color: "#C98A1B", size: "w-3.5 h-3.5" },
   medium:   { color: "#FACC15", size: "w-3 h-3" },
   low:      { color: "#4ADE80", size: "w-2.5 h-2.5" },
 };
@@ -51,18 +51,18 @@ const CaseTimeline = ({ caseData, isAr }: Props) => {
   return (
     <div className="flex gap-4 h-full">
       {/* Timeline */}
-      <div className="flex-1 overflow-y-auto" style={{ scrollbarWidth: "thin", scrollbarColor: "rgba(181,142,60,0.2) transparent" }}>
+      <div className="flex-1 overflow-y-auto" style={{ scrollbarWidth: "thin", scrollbarColor: "rgba(184,138,60,0.2) transparent" }}>
         {/* Stream filter */}
         <div className="flex items-center gap-2 mb-4 flex-wrap">
           <button onClick={() => setFilterStream("all")}
             className="px-3 py-1.5 rounded-lg text-xs font-['Inter'] cursor-pointer transition-all whitespace-nowrap"
-            style={{ background: filterStream === "all" ? "rgba(181,142,60,0.1)" : "rgba(255,255,255,0.04)", color: filterStream === "all" ? "#D4A84B" : "#6B7280", border: `1px solid ${filterStream === "all" ? "rgba(181,142,60,0.3)" : "rgba(255,255,255,0.06)"}` }}>
+            style={{ background: filterStream === "all" ? "rgba(184,138,60,0.1)" : "rgba(255,255,255,0.04)", color: filterStream === "all" ? "#D6B47E" : "#6B7280", border: `1px solid ${filterStream === "all" ? "rgba(184,138,60,0.3)" : "rgba(255,255,255,0.06)"}` }}>
             All Streams
           </button>
           {streams.map((s) => (
             <button key={s} onClick={() => setFilterStream(s)}
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-['Inter'] cursor-pointer transition-all whitespace-nowrap"
-              style={{ background: filterStream === s ? `${streamColors[s] || "#D4A84B"}15` : "rgba(255,255,255,0.04)", color: filterStream === s ? (streamColors[s] || "#D4A84B") : "#6B7280", border: `1px solid ${filterStream === s ? (streamColors[s] || "#D4A84B") + "40" : "rgba(255,255,255,0.06)"}` }}>
+              style={{ background: filterStream === s ? `${streamColors[s] || "#D6B47E"}15` : "rgba(255,255,255,0.04)", color: filterStream === s ? (streamColors[s] || "#D6B47E") : "#6B7280", border: `1px solid ${filterStream === s ? (streamColors[s] || "#D6B47E") + "40" : "rgba(255,255,255,0.06)"}` }}>
               <i className={`${streamIcons[s] || "ri-database-line"} text-xs`} />
               {s}
             </button>
@@ -72,12 +72,12 @@ const CaseTimeline = ({ caseData, isAr }: Props) => {
         {/* Timeline events */}
         <div className="relative">
           {/* Vertical line */}
-          <div className="absolute left-5 top-0 bottom-0 w-px" style={{ background: "rgba(181,142,60,0.15)" }} />
+          <div className="absolute left-5 top-0 bottom-0 w-px" style={{ background: "rgba(184,138,60,0.15)" }} />
 
           <div className="space-y-1">
             {filtered.map((event, idx) => {
               const sig = significanceConfig[event.significance];
-              const color = streamColors[event.stream] || "#D4A84B";
+              const color = streamColors[event.stream] || "#D6B47E";
               const icon = streamIcons[event.stream] || "ri-database-line";
               const isSelected = selectedEvent?.id === event.id;
 
@@ -149,7 +149,7 @@ const CaseTimeline = ({ caseData, isAr }: Props) => {
               <div>
                 <p className="text-gray-600 text-[10px] font-['JetBrains_Mono'] mb-1">LINKED EVIDENCE</p>
                 {selectedEvent.linkedEvidence.map((ev) => (
-                  <div key={ev} className="flex items-center gap-2 px-2 py-1 rounded" style={{ background: "rgba(181,142,60,0.06)" }}>
+                  <div key={ev} className="flex items-center gap-2 px-2 py-1 rounded" style={{ background: "rgba(184,138,60,0.06)" }}>
                     <i className="ri-attachment-line text-gold-400 text-xs" />
                     <span className="text-gold-400 text-[10px] font-['JetBrains_Mono']">{ev.toUpperCase()}</span>
                   </div>
@@ -157,7 +157,7 @@ const CaseTimeline = ({ caseData, isAr }: Props) => {
               </div>
             )}
             <div className="flex gap-2">
-              <button className="flex-1 py-1.5 rounded-lg text-[10px] font-['Inter'] cursor-pointer whitespace-nowrap" style={{ background: "rgba(181,142,60,0.08)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>
+              <button className="flex-1 py-1.5 rounded-lg text-[10px] font-['Inter'] cursor-pointer whitespace-nowrap" style={{ background: "rgba(184,138,60,0.08)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}>
                 Add Note
               </button>
               <button className="flex-1 py-1.5 rounded-lg text-[10px] font-['Inter'] cursor-pointer whitespace-nowrap" style={{ background: "rgba(167,139,250,0.08)", color: "#A78BFA", border: "1px solid rgba(167,139,250,0.2)" }}>

@@ -13,8 +13,8 @@ type Tab = "phase1" | "phase2" | "config";
 const getScoreColor = (score: number) => {
   if (score <= 25) return "#4ADE80";
   if (score <= 50) return "#FACC15";
-  if (score <= 75) return "#FB923C";
-  return "#F87171";
+  if (score <= 75) return "#C98A1B";
+  return "#C94A5E";
 };
 
 const FLAG_CATEGORY_ICONS: Record<string, string> = {
@@ -85,21 +85,21 @@ const RiskAssessmentPage = () => {
   const dismissedPersons = filteredPersons.filter((p) => dismissedIds.has(p.id));
 
   const TABS = [
-    { id: "phase1" as Tab, icon: "ri-toggle-line",       label: "Phase 1 — Binary Flag",    labelAr: "المرحلة 1 — تنبيه ثنائي",   badge: pendingPersons.length, badgeColor: "#F87171" },
+    { id: "phase1" as Tab, icon: "ri-toggle-line",       label: "Phase 1 — Binary Flag",    labelAr: "المرحلة 1 — تنبيه ثنائي",   badge: pendingPersons.length, badgeColor: "#C94A5E" },
     { id: "phase2" as Tab, icon: "ri-bar-chart-2-line",  label: "Phase 2 — Weighted Score",  labelAr: "المرحلة 2 — درجة موزونة",   badge: 0, badgeColor: "" },
     { id: "config" as Tab, icon: "ri-equalizer-line",    label: "Score Configuration",       labelAr: "إعداد الدرجات",              badge: 0, badgeColor: "" },
   ];
 
   return (
-    <div className="min-h-screen font-['Inter']" style={{ background: "#0B1220" }} dir={isAr ? "rtl" : "ltr"}>
+    <div className="min-h-screen font-['Inter']" style={{ background: "#051428" }} dir={isAr ? "rtl" : "ltr"}>
       {/* Grid texture */}
       <div className="fixed inset-0 pointer-events-none" style={{
-        backgroundImage: `linear-gradient(rgba(181,142,60,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,0.025) 1px, transparent 1px)`,
+        backgroundImage: `linear-gradient(rgba(184,138,60,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.025) 1px, transparent 1px)`,
         backgroundSize: "40px 40px"
       }} />
 
       {/* Classification banner */}
-      <div className="w-full py-1.5 px-6 flex items-center justify-between" style={{ background: "#7F1D1D", borderBottom: "1px solid rgba(248,113,113,0.4)" }}>
+      <div className="w-full py-1.5 px-6 flex items-center justify-between" style={{ background: "#7F1D1D", borderBottom: "1px solid rgba(201,74,94,0.4)" }}>
         <div className="flex items-center gap-3">
           <i className="ri-shield-keyhole-line text-red-300 text-sm" />
           <span className="text-white text-xs font-bold tracking-widest uppercase font-['JetBrains_Mono']">
@@ -111,7 +111,7 @@ const RiskAssessmentPage = () => {
 
       {/* Header */}
       <header className="sticky top-0 z-40 flex items-center justify-between px-6 py-3 border-b"
-        style={{ background: "rgba(11,18,32,0.97)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
+        style={{ background: "rgba(5,20,40,0.97)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}>
         <div className="flex items-center gap-4">
           <button type="button" onClick={() => navigate("/dashboard")}
             className="flex items-center gap-2 px-3 py-1.5 rounded-lg border text-sm font-semibold cursor-pointer whitespace-nowrap"
@@ -121,7 +121,7 @@ const RiskAssessmentPage = () => {
           </button>
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 flex items-center justify-center rounded-xl flex-shrink-0"
-              style={{ background: "rgba(248,113,113,0.1)", border: "2px solid rgba(248,113,113,0.3)" }}>
+              style={{ background: "rgba(201,74,94,0.1)", border: "2px solid rgba(201,74,94,0.3)" }}>
               <i className="ri-shield-cross-line text-red-400 text-base" />
             </div>
             <div>
@@ -129,7 +129,7 @@ const RiskAssessmentPage = () => {
                 <span className="text-gold-400 font-black text-base tracking-wide">Al-Ameen</span>
                 <span className="text-white font-bold text-sm">{isAr ? "تقييم المخاطر" : "Risk Assessment"}</span>
                 <span className="px-2 py-0.5 rounded-full text-xs font-bold"
-                  style={{ background: "rgba(248,113,113,0.15)", color: "#F87171", border: "1px solid rgba(248,113,113,0.3)" }}>
+                  style={{ background: "rgba(201,74,94,0.15)", color: "#C94A5E", border: "1px solid rgba(201,74,94,0.3)" }}>
                   {isAr ? "سري" : "SECRET"}
                 </span>
               </div>
@@ -140,13 +140,13 @@ const RiskAssessmentPage = () => {
 
         <div className="flex items-center gap-3">
           <div className="hidden lg:flex flex-col items-end px-3 py-1.5 rounded-lg border"
-            style={{ background: "rgba(181,142,60,0.04)", borderColor: "rgba(181,142,60,0.12)" }}>
+            style={{ background: "rgba(184,138,60,0.04)", borderColor: "rgba(184,138,60,0.12)" }}>
             <span className="text-gold-400 text-sm font-black font-['JetBrains_Mono']">{timeStr}</span>
             <span className="text-gray-600 text-xs font-['JetBrains_Mono']">{dateStr}</span>
           </div>
           {pendingPersons.length > 0 && (
             <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border animate-pulse"
-              style={{ background: "rgba(248,113,113,0.08)", borderColor: "rgba(248,113,113,0.3)" }}>
+              style={{ background: "rgba(201,74,94,0.08)", borderColor: "rgba(201,74,94,0.3)" }}>
               <i className="ri-alarm-warning-line text-red-400 text-xs" />
               <span className="text-red-400 text-xs font-bold font-['JetBrains_Mono']">{pendingPersons.length} {isAr ? "معلق" : "PENDING"}</span>
             </div>
@@ -156,14 +156,14 @@ const RiskAssessmentPage = () => {
 
       {/* Tab bar */}
       <div className="sticky top-[89px] z-30 flex items-center gap-1 px-6 py-2 border-b overflow-x-auto"
-        style={{ background: "rgba(11,18,32,0.95)", borderColor: "rgba(181,142,60,0.08)", backdropFilter: "blur(12px)" }}>
+        style={{ background: "rgba(5,20,40,0.95)", borderColor: "rgba(184,138,60,0.08)", backdropFilter: "blur(12px)" }}>
         {TABS.map((tab) => (
           <button key={tab.id} type="button" onClick={() => setActiveTab(tab.id)}
             className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap transition-all flex-shrink-0"
             style={{
-              background: activeTab === tab.id ? "rgba(181,142,60,0.12)" : "transparent",
-              border: `1px solid ${activeTab === tab.id ? "rgba(181,142,60,0.25)" : "transparent"}`,
-              color: activeTab === tab.id ? "#D4A84B" : "#6B7280",
+              background: activeTab === tab.id ? "rgba(184,138,60,0.12)" : "transparent",
+              border: `1px solid ${activeTab === tab.id ? "rgba(184,138,60,0.25)" : "transparent"}`,
+              color: activeTab === tab.id ? "#D6B47E" : "#6B7280",
             }}>
             <i className={`${tab.icon} text-xs`} />
             {isAr ? tab.labelAr : tab.label}
@@ -195,9 +195,9 @@ const RiskAssessmentPage = () => {
               {/* Risk filter */}
               <div className="flex items-center gap-1">
                 {([
-                  { id: "all",      label: isAr ? "الكل" : "All",       color: "#D4A84B" },
-                  { id: "critical", label: isAr ? "حرج" : "Critical",   color: "#F87171" },
-                  { id: "high",     label: isAr ? "عالٍ" : "High",      color: "#FB923C" },
+                  { id: "all",      label: isAr ? "الكل" : "All",       color: "#D6B47E" },
+                  { id: "critical", label: isAr ? "حرج" : "Critical",   color: "#C94A5E" },
+                  { id: "high",     label: isAr ? "عالٍ" : "High",      color: "#C98A1B" },
                   { id: "medium",   label: isAr ? "متوسط" : "Medium",   color: "#FACC15" },
                   { id: "low",      label: isAr ? "منخفض" : "Low",      color: "#4ADE80" },
                 ] as const).map((f) => (
@@ -217,13 +217,13 @@ const RiskAssessmentPage = () => {
             {/* Stats row */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {[
-                { label: isAr ? "معلق" : "Pending Review",  value: pendingPersons.length,   color: "#F87171", icon: "ri-time-line" },
-                { label: isAr ? "مؤكد" : "Confirmed",       value: confirmedPersons.length, color: "#D4A84B", icon: "ri-checkbox-circle-line" },
+                { label: isAr ? "معلق" : "Pending Review",  value: pendingPersons.length,   color: "#C94A5E", icon: "ri-time-line" },
+                { label: isAr ? "مؤكد" : "Confirmed",       value: confirmedPersons.length, color: "#D6B47E", icon: "ri-checkbox-circle-line" },
                 { label: isAr ? "مرفوض" : "Dismissed",      value: dismissedPersons.length, color: "#4ADE80", icon: "ri-close-circle-line" },
                 { label: isAr ? "إجمالي" : "Total Assessed", value: persons.length,          color: "#A78BFA", icon: "ri-shield-line" },
               ].map((s) => (
                 <div key={s.label} className="rounded-xl border p-4 flex items-center gap-3"
-                  style={{ background: "rgba(20,29,46,0.8)", borderColor: `${s.color}20`, backdropFilter: "blur(12px)" }}>
+                  style={{ background: "rgba(10,37,64,0.8)", borderColor: `${s.color}20`, backdropFilter: "blur(12px)" }}>
                   <div className="w-8 h-8 flex items-center justify-center rounded-lg flex-shrink-0"
                     style={{ background: `${s.color}12`, border: `1px solid ${s.color}20` }}>
                     <i className={`${s.icon} text-sm`} style={{ color: s.color }} />
@@ -240,7 +240,7 @@ const RiskAssessmentPage = () => {
             <div className="space-y-3">
               {pendingPersons.length === 0 && (
                 <div className="rounded-2xl border p-10 flex flex-col items-center gap-3"
-                  style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.08)" }}>
+                  style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.08)" }}>
                   <i className="ri-shield-check-line text-green-400 text-3xl" />
                   <p className="text-white font-bold">{isAr ? "لا توجد تنبيهات معلقة" : "No pending flags"}</p>
                   <p className="text-gray-500 text-sm">{isAr ? "جميع الأحداث تمت مراجعتها" : "All events have been reviewed"}</p>
@@ -252,7 +252,7 @@ const RiskAssessmentPage = () => {
                   <div key={person.id}
                     onClick={() => setSelectedPerson(person)}
                     className="rounded-2xl border cursor-pointer transition-all overflow-hidden group"
-                    style={{ background: "rgba(20,29,46,0.8)", borderColor: `${scoreColor}20`, backdropFilter: "blur(12px)", borderLeft: `4px solid ${scoreColor}` }}>
+                    style={{ background: "rgba(10,37,64,0.8)", borderColor: `${scoreColor}20`, backdropFilter: "blur(12px)", borderLeft: `4px solid ${scoreColor}` }}>
                     <div className="flex items-center gap-4 px-5 py-4 flex-wrap">
                       {/* Photo */}
                       <div className="relative flex-shrink-0">
@@ -260,7 +260,7 @@ const RiskAssessmentPage = () => {
                           className="w-12 h-12 rounded-xl object-cover object-top"
                           style={{ border: `2px solid ${scoreColor}30` }} />
                         <div className="absolute -bottom-1 -right-1 w-4 h-4 flex items-center justify-center rounded-full"
-                          style={{ background: scoreColor, border: "2px solid #0B1220" }}>
+                          style={{ background: scoreColor, border: "2px solid #051428" }}>
                           <i className="ri-shield-cross-line text-white" style={{ fontSize: "7px" }} />
                         </div>
                       </div>
@@ -359,8 +359,8 @@ const RiskAssessmentPage = () => {
               {[
                 { range: "0 – 25",  label: isAr ? "منخفض" : "Low",      color: "#4ADE80", icon: "ri-shield-check-line",  count: persons.filter((p) => p.riskScore <= 25).length },
                 { range: "26 – 50", label: isAr ? "متوسط" : "Medium",   color: "#FACC15", icon: "ri-shield-line",        count: persons.filter((p) => p.riskScore > 25 && p.riskScore <= 50).length },
-                { range: "51 – 75", label: isAr ? "عالٍ" : "High",      color: "#FB923C", icon: "ri-shield-flash-line",  count: persons.filter((p) => p.riskScore > 50 && p.riskScore <= 75).length },
-                { range: "76 – 100",label: isAr ? "حرج" : "Critical",   color: "#F87171", icon: "ri-shield-cross-line",  count: persons.filter((p) => p.riskScore > 75).length },
+                { range: "51 – 75", label: isAr ? "عالٍ" : "High",      color: "#C98A1B", icon: "ri-shield-flash-line",  count: persons.filter((p) => p.riskScore > 50 && p.riskScore <= 75).length },
+                { range: "76 – 100",label: isAr ? "حرج" : "Critical",   color: "#C94A5E", icon: "ri-shield-cross-line",  count: persons.filter((p) => p.riskScore > 75).length },
               ].map((level) => (
                 <div key={level.range} className="rounded-xl border p-4"
                   style={{ background: `${level.color}06`, borderColor: `${level.color}20` }}>

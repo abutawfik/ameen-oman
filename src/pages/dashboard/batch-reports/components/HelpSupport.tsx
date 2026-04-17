@@ -42,14 +42,14 @@ const FAQS = [
 ];
 
 const GUIDES = [
-  { icon: "ri-file-pdf-line",    color: "#F87171", title: "Al-Ameen User Manual v3.2",       titleAr: "دليل مستخدم Al-Ameen v3.2",       size: "4.2 MB", type: "PDF" },
+  { icon: "ri-file-pdf-line",    color: "#C94A5E", title: "Al-Ameen User Manual v3.2",       titleAr: "دليل مستخدم Al-Ameen v3.2",       size: "4.2 MB", type: "PDF" },
   { icon: "ri-file-excel-2-line",color: "#4ADE80", title: "Batch Upload Template Guide",  titleAr: "دليل قالب رفع الدُفعة",        size: "1.1 MB", type: "XLSX" },
-  { icon: "ri-file-text-line",   color: "#D4A84B", title: "API Integration Specification",titleAr: "مواصفات تكامل API",             size: "2.8 MB", type: "PDF" },
+  { icon: "ri-file-text-line",   color: "#D6B47E", title: "API Integration Specification",titleAr: "مواصفات تكامل API",             size: "2.8 MB", type: "PDF" },
   { icon: "ri-file-text-line",   color: "#FACC15", title: "Data Dictionary v2.1",         titleAr: "قاموس البيانات v2.1",           size: "0.9 MB", type: "PDF" },
 ];
 
 const VIDEOS = [
-  { icon: "ri-play-circle-line", color: "#D4A84B", title: "Getting Started with Al-Ameen",   titleAr: "البدء مع Al-Ameen",               duration: "8:24" },
+  { icon: "ri-play-circle-line", color: "#D6B47E", title: "Getting Started with Al-Ameen",   titleAr: "البدء مع Al-Ameen",               duration: "8:24" },
   { icon: "ri-play-circle-line", color: "#4ADE80", title: "Batch Upload Walkthrough",     titleAr: "شرح رفع الدُفعة",              duration: "12:15" },
   { icon: "ri-play-circle-line", color: "#FACC15", title: "Reports & Analytics Deep Dive",titleAr: "تعمق في التقارير والتحليلات",  duration: "18:42" },
   { icon: "ri-play-circle-line", color: "#A78BFA", title: "Person 360 Profile Tutorial",  titleAr: "شرح ملف الشخص 360",            duration: "10:08" },
@@ -71,9 +71,9 @@ const HelpSupport = ({ isAr }: Props) => {
     <div className="space-y-6">
       {/* Emergency hotline */}
       <div className="flex flex-wrap items-center gap-4 px-5 py-4 rounded-2xl border"
-        style={{ background: "rgba(248,113,113,0.06)", borderColor: "rgba(248,113,113,0.2)" }}>
+        style={{ background: "rgba(201,74,94,0.06)", borderColor: "rgba(201,74,94,0.2)" }}>
         <div className="w-10 h-10 flex items-center justify-center rounded-xl flex-shrink-0"
-          style={{ background: "rgba(248,113,113,0.12)", border: "1px solid rgba(248,113,113,0.3)" }}>
+          style={{ background: "rgba(201,74,94,0.12)", border: "1px solid rgba(201,74,94,0.3)" }}>
           <i className="ri-phone-line text-red-400 text-lg" />
         </div>
         <div className="flex-1">
@@ -94,21 +94,21 @@ const HelpSupport = ({ isAr }: Props) => {
 
       {/* FAQ */}
       <div className="rounded-2xl border overflow-hidden"
-        style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
-        <div className="flex items-center gap-3 px-6 py-4 border-b" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
+        style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}>
+        <div className="flex items-center gap-3 px-6 py-4 border-b" style={{ borderColor: "rgba(184,138,60,0.08)" }}>
           <div className="w-8 h-8 flex items-center justify-center rounded-lg"
-            style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+            style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.2)" }}>
             <i className="ri-question-answer-line text-gold-400 text-sm" />
           </div>
           <h3 className="text-white font-bold text-sm">{isAr ? "الأسئلة الشائعة" : "Frequently Asked Questions"}</h3>
         </div>
-        <div className="divide-y" style={{ borderColor: "rgba(181,142,60,0.06)" }}>
+        <div className="divide-y" style={{ borderColor: "rgba(184,138,60,0.06)" }}>
           {FAQS.map((faq, i) => (
             <div key={i}>
               <button type="button"
                 onClick={() => setOpenFaq(openFaq === i ? null : i)}
                 className="w-full flex items-center justify-between px-6 py-4 cursor-pointer transition-colors text-left"
-                style={{ background: openFaq === i ? "rgba(181,142,60,0.04)" : "transparent" }}
+                style={{ background: openFaq === i ? "rgba(184,138,60,0.04)" : "transparent" }}
                 onMouseEnter={(e) => { if (openFaq !== i) (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.02)"; }}
                 onMouseLeave={(e) => { if (openFaq !== i) (e.currentTarget as HTMLButtonElement).style.background = "transparent"; }}>
                 <span className="text-white text-sm font-semibold text-left">{isAr ? faq.qAr : faq.q}</span>
@@ -128,15 +128,15 @@ const HelpSupport = ({ isAr }: Props) => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* User Guides */}
         <div className="rounded-2xl border overflow-hidden"
-          style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
-          <div className="flex items-center gap-3 px-5 py-4 border-b" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
+          style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}>
+          <div className="flex items-center gap-3 px-5 py-4 border-b" style={{ borderColor: "rgba(184,138,60,0.08)" }}>
             <div className="w-8 h-8 flex items-center justify-center rounded-lg"
-              style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+              style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.2)" }}>
               <i className="ri-book-open-line text-gold-400 text-sm" />
             </div>
             <h3 className="text-white font-bold text-sm">{isAr ? "أدلة المستخدم" : "User Guides"}</h3>
           </div>
-          <div className="divide-y" style={{ borderColor: "rgba(181,142,60,0.06)" }}>
+          <div className="divide-y" style={{ borderColor: "rgba(184,138,60,0.06)" }}>
             {GUIDES.map((g) => (
               <div key={g.title} className="flex items-center gap-3 px-5 py-3 cursor-pointer transition-colors"
                 onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.02)"; }}
@@ -151,7 +151,7 @@ const HelpSupport = ({ isAr }: Props) => {
                 </div>
                 <button type="button"
                   className="flex items-center gap-1 px-2.5 py-1 rounded-lg border text-xs cursor-pointer whitespace-nowrap"
-                  style={{ background: "transparent", borderColor: "rgba(181,142,60,0.2)", color: "#D4A84B" }}>
+                  style={{ background: "transparent", borderColor: "rgba(184,138,60,0.2)", color: "#D6B47E" }}>
                   <i className="ri-download-2-line text-xs" />
                   {isAr ? "تنزيل" : "Download"}
                 </button>
@@ -162,15 +162,15 @@ const HelpSupport = ({ isAr }: Props) => {
 
         {/* Video Tutorials */}
         <div className="rounded-2xl border overflow-hidden"
-          style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
-          <div className="flex items-center gap-3 px-5 py-4 border-b" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
+          style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}>
+          <div className="flex items-center gap-3 px-5 py-4 border-b" style={{ borderColor: "rgba(184,138,60,0.08)" }}>
             <div className="w-8 h-8 flex items-center justify-center rounded-lg"
-              style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+              style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.2)" }}>
               <i className="ri-video-line text-gold-400 text-sm" />
             </div>
             <h3 className="text-white font-bold text-sm">{isAr ? "دروس الفيديو" : "Video Tutorials"}</h3>
           </div>
-          <div className="divide-y" style={{ borderColor: "rgba(181,142,60,0.06)" }}>
+          <div className="divide-y" style={{ borderColor: "rgba(184,138,60,0.06)" }}>
             {VIDEOS.map((v) => (
               <div key={v.title} className="flex items-center gap-3 px-5 py-3 cursor-pointer transition-colors"
                 onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.02)"; }}
@@ -185,7 +185,7 @@ const HelpSupport = ({ isAr }: Props) => {
                 </div>
                 <button type="button"
                   className="flex items-center gap-1 px-2.5 py-1 rounded-lg border text-xs cursor-pointer whitespace-nowrap"
-                  style={{ background: "transparent", borderColor: "rgba(181,142,60,0.2)", color: "#D4A84B" }}>
+                  style={{ background: "transparent", borderColor: "rgba(184,138,60,0.2)", color: "#D6B47E" }}>
                   <i className="ri-play-line text-xs" />
                   {isAr ? "مشاهدة" : "Watch"}
                 </button>
@@ -197,10 +197,10 @@ const HelpSupport = ({ isAr }: Props) => {
 
       {/* Support Ticket Form */}
       <div className="rounded-2xl border p-6"
-        style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
+        style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}>
         <div className="flex items-center gap-3 mb-5">
           <div className="w-8 h-8 flex items-center justify-center rounded-lg"
-            style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+            style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.2)" }}>
             <i className="ri-customer-service-2-line text-gold-400 text-sm" />
           </div>
           <h3 className="text-white font-bold text-sm">{isAr ? "تذكرة دعم" : "Support Ticket"}</h3>
@@ -222,13 +222,13 @@ const HelpSupport = ({ isAr }: Props) => {
                 <input type="text" value={ticketForm.subject} onChange={(e) => setTicketForm((p) => ({ ...p, subject: e.target.value }))}
                   placeholder={isAr ? "وصف موجز للمشكلة" : "Brief description of issue"}
                   className="w-full px-3 py-2 rounded-lg border text-sm outline-none focus:border-gold-400 transition-colors"
-                  style={{ background: "rgba(11,18,32,0.8)", borderColor: "rgba(181,142,60,0.15)", color: "#D1D5DB" }} />
+                  style={{ background: "rgba(5,20,40,0.8)", borderColor: "rgba(184,138,60,0.15)", color: "#D1D5DB" }} />
               </div>
               <div>
                 <label className="text-gray-500 text-xs font-['JetBrains_Mono'] uppercase tracking-wider block mb-1">{isAr ? "الأولوية" : "Priority"}</label>
                 <select value={ticketForm.priority} onChange={(e) => setTicketForm((p) => ({ ...p, priority: e.target.value }))}
                   className="w-full px-3 py-2 rounded-lg border text-sm cursor-pointer outline-none"
-                  style={{ background: "rgba(11,18,32,0.8)", borderColor: "rgba(181,142,60,0.15)", color: "#D1D5DB" }}>
+                  style={{ background: "rgba(5,20,40,0.8)", borderColor: "rgba(184,138,60,0.15)", color: "#D1D5DB" }}>
                   <option value="low">{isAr ? "منخفضة" : "Low"}</option>
                   <option value="medium">{isAr ? "متوسطة" : "Medium"}</option>
                   <option value="high">{isAr ? "عالية" : "High"}</option>
@@ -242,12 +242,12 @@ const HelpSupport = ({ isAr }: Props) => {
                 rows={4} maxLength={500}
                 placeholder={isAr ? "اشرح المشكلة بالتفصيل..." : "Describe the issue in detail..."}
                 className="w-full px-3 py-2 rounded-lg border text-sm outline-none focus:border-gold-400 transition-colors resize-none"
-                style={{ background: "rgba(11,18,32,0.8)", borderColor: "rgba(181,142,60,0.15)", color: "#D1D5DB" }} />
+                style={{ background: "rgba(5,20,40,0.8)", borderColor: "rgba(184,138,60,0.15)", color: "#D1D5DB" }} />
               <div className="text-right text-gray-600 text-xs mt-1">{ticketForm.description.length}/500</div>
             </div>
             <button type="submit"
               className="flex items-center gap-2 px-6 py-2.5 rounded-lg text-sm font-bold cursor-pointer whitespace-nowrap"
-              style={{ background: "#D4A84B", color: "#0B1220" }}>
+              style={{ background: "#D6B47E", color: "#051428" }}>
               <i className="ri-send-plane-line text-sm" />
               {isAr ? "إرسال التذكرة" : "Submit Ticket"}
             </button>

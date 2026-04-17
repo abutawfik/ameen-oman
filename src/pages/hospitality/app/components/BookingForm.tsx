@@ -60,7 +60,7 @@ export default function BookingForm({ lang, onCancel }: Props) {
           <button
             onClick={() => setIsCorporate(c => !c)}
             className="relative w-10 h-5 rounded-full transition-colors cursor-pointer"
-            style={{ background: isCorporate ? '#D4A84B' : '#374151' }}
+            style={{ background: isCorporate ? '#D6B47E' : '#374151' }}
           >
             <div className="absolute top-0.5 w-4 h-4 rounded-full bg-white transition-all" style={{ left: isCorporate ? '22px' : '2px' }} />
           </button>
@@ -73,7 +73,7 @@ export default function BookingForm({ lang, onCancel }: Props) {
       </div>
 
       {/* Part 1 — Personal + Corporate */}
-      <div className="rounded-xl border border-gold-500/20 p-5 mb-5 space-y-4" style={{ background: 'rgba(20,29,46,0.8)' }}>
+      <div className="rounded-xl border border-gold-500/20 p-5 mb-5 space-y-4" style={{ background: 'rgba(10,37,64,0.8)' }}>
         <h3 className="text-gold-400 font-semibold text-sm uppercase tracking-wider">{isAr ? 'الجزء الأول — البيانات الشخصية' : 'Part 1 — Personal Details'}</h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           <div>
@@ -86,8 +86,8 @@ export default function BookingForm({ lang, onCancel }: Props) {
           </div>
           <div>
             <label className={labelCls}>{isAr ? 'الجنس' : 'Gender'}</label>
-            <select value={gender} onChange={e => setGender(e.target.value)} className={inputCls} style={{ background: 'rgba(20,29,46,0.9)' }}>
-              {['Male', 'Female'].map(g => <option key={g} value={g} style={{ background: '#141D2E' }}>{g}</option>)}
+            <select value={gender} onChange={e => setGender(e.target.value)} className={inputCls} style={{ background: 'rgba(10,37,64,0.9)' }}>
+              {['Male', 'Female'].map(g => <option key={g} value={g} style={{ background: '#0A2540' }}>{g}</option>)}
             </select>
           </div>
           <div>
@@ -98,9 +98,9 @@ export default function BookingForm({ lang, onCancel }: Props) {
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
           <div>
             <label className={labelCls}>{isAr ? 'الجنسية' : 'Nationality'}</label>
-            <select value={nationality} onChange={e => setNationality(e.target.value)} className={inputCls} style={{ background: 'rgba(20,29,46,0.9)' }}>
-              <option value="" style={{ background: '#141D2E' }}>—</option>
-              {COUNTRIES.map(c => <option key={c} value={c} style={{ background: '#141D2E' }}>{c}</option>)}
+            <select value={nationality} onChange={e => setNationality(e.target.value)} className={inputCls} style={{ background: 'rgba(10,37,64,0.9)' }}>
+              <option value="" style={{ background: '#0A2540' }}>—</option>
+              {COUNTRIES.map(c => <option key={c} value={c} style={{ background: '#0A2540' }}>{c}</option>)}
             </select>
           </div>
           <div>
@@ -136,14 +136,14 @@ export default function BookingForm({ lang, onCancel }: Props) {
 
       {/* Part 2 — Event + Travel Doc */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-5">
-        <div className="rounded-xl border border-gold-500/20 p-5 space-y-4" style={{ background: 'rgba(20,29,46,0.8)' }}>
+        <div className="rounded-xl border border-gold-500/20 p-5 space-y-4" style={{ background: 'rgba(10,37,64,0.8)' }}>
           <h3 className="text-gold-400 font-semibold text-sm uppercase tracking-wider">{isAr ? 'الجزء الثاني — تفاصيل الحجز' : 'Part 2 — Booking Details'}</h3>
           <div>
             <label className={labelCls}>{isAr ? 'الغرفة' : 'Room'}</label>
-            <select value={room} onChange={e => setRoom(e.target.value)} className={inputCls} style={{ background: 'rgba(20,29,46,0.9)' }}>
-              <option value="" style={{ background: '#141D2E' }}>{isAr ? 'اختر غرفة' : 'Select room'}</option>
+            <select value={room} onChange={e => setRoom(e.target.value)} className={inputCls} style={{ background: 'rgba(10,37,64,0.9)' }}>
+              <option value="" style={{ background: '#0A2540' }}>{isAr ? 'اختر غرفة' : 'Select room'}</option>
               {rooms.filter(r => r.status === 'available').map(r => (
-                <option key={r.id} value={r.number} style={{ background: '#141D2E' }}>{r.number} — {r.type} ({r.rateOMR} OMR/night)</option>
+                <option key={r.id} value={r.number} style={{ background: '#0A2540' }}>{r.number} — {r.type} ({r.rateOMR} OMR/night)</option>
               ))}
             </select>
           </div>
@@ -168,20 +168,20 @@ export default function BookingForm({ lang, onCancel }: Props) {
             </div>
             <div>
               <label className={labelCls}>{isAr ? 'الدفع' : 'Payment'}</label>
-              <select value={payment} onChange={e => setPayment(e.target.value)} className={inputCls} style={{ background: 'rgba(20,29,46,0.9)' }}>
-                {PAYMENT_METHODS.map(p => <option key={p} value={p} style={{ background: '#141D2E' }}>{p}</option>)}
+              <select value={payment} onChange={e => setPayment(e.target.value)} className={inputCls} style={{ background: 'rgba(10,37,64,0.9)' }}>
+                {PAYMENT_METHODS.map(p => <option key={p} value={p} style={{ background: '#0A2540' }}>{p}</option>)}
               </select>
             </div>
           </div>
         </div>
 
-        <div className="rounded-xl border border-gold-500/20 p-5 space-y-4" style={{ background: 'rgba(20,29,46,0.8)' }}>
+        <div className="rounded-xl border border-gold-500/20 p-5 space-y-4" style={{ background: 'rgba(10,37,64,0.8)' }}>
           <h3 className="text-gold-400 font-semibold text-sm uppercase tracking-wider">{isAr ? 'وثيقة السفر' : 'Travel Document'}</h3>
           <div className="grid grid-cols-2 gap-3">
             <div>
               <label className={labelCls}>{isAr ? 'نوع الوثيقة' : 'Doc Type'}</label>
-              <select value={docType} onChange={e => setDocType(e.target.value)} className={inputCls} style={{ background: 'rgba(20,29,46,0.9)' }}>
-                {DOC_TYPES.map(d => <option key={d} value={d} style={{ background: '#141D2E' }}>{d}</option>)}
+              <select value={docType} onChange={e => setDocType(e.target.value)} className={inputCls} style={{ background: 'rgba(10,37,64,0.9)' }}>
+                {DOC_TYPES.map(d => <option key={d} value={d} style={{ background: '#0A2540' }}>{d}</option>)}
               </select>
             </div>
             <div>
@@ -191,9 +191,9 @@ export default function BookingForm({ lang, onCancel }: Props) {
           </div>
           <div>
             <label className={labelCls}>{isAr ? 'دولة الإصدار' : 'Issuing Country'}</label>
-            <select value={issuingCountry} onChange={e => setIssuingCountry(e.target.value)} className={inputCls} style={{ background: 'rgba(20,29,46,0.9)' }}>
-              <option value="" style={{ background: '#141D2E' }}>—</option>
-              {COUNTRIES.map(c => <option key={c} value={c} style={{ background: '#141D2E' }}>{c}</option>)}
+            <select value={issuingCountry} onChange={e => setIssuingCountry(e.target.value)} className={inputCls} style={{ background: 'rgba(10,37,64,0.9)' }}>
+              <option value="" style={{ background: '#0A2540' }}>—</option>
+              {COUNTRIES.map(c => <option key={c} value={c} style={{ background: '#0A2540' }}>{c}</option>)}
             </select>
           </div>
           <div>
@@ -210,7 +210,7 @@ export default function BookingForm({ lang, onCancel }: Props) {
         </div>
         <div className="flex items-center gap-3">
           <button onClick={onCancel} className="px-5 py-2.5 rounded-lg text-sm border border-gray-600 text-gray-300 hover:border-gray-400 cursor-pointer transition-all whitespace-nowrap">{isAr ? 'إلغاء' : 'Cancel'}</button>
-          <button onClick={handleSave} className="px-6 py-2.5 rounded-lg text-sm font-semibold cursor-pointer transition-all whitespace-nowrap" style={{ background: saved ? '#4ADE80' : '#D4A84B', color: '#0B1220' }}>
+          <button onClick={handleSave} className="px-6 py-2.5 rounded-lg text-sm font-semibold cursor-pointer transition-all whitespace-nowrap" style={{ background: saved ? '#4ADE80' : '#D6B47E', color: '#051428' }}>
             {saved ? <span className="flex items-center gap-2"><i className="ri-checkbox-circle-line" />{isAr ? 'تم!' : 'Saved!'}</span> : <span><i className="ri-save-line mr-1" />{isAr ? 'حفظ + مزامنة أمين' : 'Save + Sync to Al-Ameen'}</span>}
           </button>
         </div>

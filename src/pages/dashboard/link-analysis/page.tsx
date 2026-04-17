@@ -13,7 +13,7 @@ import AlgorithmsPanel from "./components/AlgorithmsPanel";
 import NodeDetailPanel from "./components/NodeDetailPanel";
 import SaveSharePanel from "./components/SaveSharePanel";
 
-const COMMUNITY_PALETTE = ["#D4A84B", "#A78BFA", "#4ADE80", "#FB923C", "#F472B6", "#FCD34D"];
+const COMMUNITY_PALETTE = ["#D6B47E", "#A78BFA", "#4ADE80", "#C98A1B", "#F472B6", "#FCD34D"];
 
 const LinkAnalysisPage = () => {
   const navigate = useNavigate();
@@ -249,12 +249,12 @@ const LinkAnalysisPage = () => {
   return (
     <div
       className="flex flex-col h-screen overflow-hidden"
-      style={{ background: "#0B1220", fontFamily: "Inter, Cairo, sans-serif" }}
+      style={{ background: "#051428", fontFamily: "Inter, Cairo, sans-serif" }}
     >
       {/* Top bar */}
       <div
         className="flex items-center gap-3 px-4 py-2.5 border-b flex-shrink-0"
-        style={{ background: "rgba(20,29,46,0.98)", borderColor: "rgba(181,142,60,0.12)" }}
+        style={{ background: "rgba(10,37,64,0.98)", borderColor: "rgba(184,138,60,0.12)" }}
       >
         <button
           onClick={() => navigate("/dashboard")}
@@ -283,8 +283,8 @@ const LinkAnalysisPage = () => {
           {[
             { color: "#4ADE80", label: isAr ? "منخفض" : "Low" },
             { color: "#FACC15", label: isAr ? "متوسط" : "Medium" },
-            { color: "#FB923C", label: isAr ? "عالٍ" : "High" },
-            { color: "#F87171", label: isAr ? "حرج" : "Critical" },
+            { color: "#C98A1B", label: isAr ? "عالٍ" : "High" },
+            { color: "#C94A5E", label: isAr ? "حرج" : "Critical" },
           ].map(r => (
             <div key={r.label} className="flex items-center gap-1">
               <div className="w-2 h-2 rounded-full" style={{ background: r.color }} />
@@ -294,7 +294,7 @@ const LinkAnalysisPage = () => {
         </div>
 
         <div className="ml-auto flex items-center gap-2">
-          <div className="flex items-center gap-1.5 px-2 py-1 rounded" style={{ background: "rgba(181,142,60,0.06)", border: "1px solid rgba(181,142,60,0.15)" }}>
+          <div className="flex items-center gap-1.5 px-2 py-1 rounded" style={{ background: "rgba(184,138,60,0.06)", border: "1px solid rgba(184,138,60,0.15)" }}>
             <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
             <span className="text-green-400 text-[10px] font-['JetBrains_Mono']">
               {isAr ? "متصل بقاعدة البيانات" : "DB Connected"}
@@ -303,7 +303,7 @@ const LinkAnalysisPage = () => {
           <button
             onClick={() => i18n.changeLanguage(isAr ? "en" : "ar")}
             className="w-8 h-8 flex items-center justify-center rounded-full border text-xs font-bold cursor-pointer transition-colors font-['JetBrains_Mono']"
-            style={{ borderColor: "rgba(181,142,60,0.3)", color: "#D4A84B" }}
+            style={{ borderColor: "rgba(184,138,60,0.3)", color: "#D6B47E" }}
           >
             {isAr ? "EN" : "AR"}
           </button>
@@ -340,7 +340,7 @@ const LinkAnalysisPage = () => {
         {/* Left panel: Algorithms */}
         <div
           className="w-64 flex-shrink-0 border-r flex flex-col overflow-hidden"
-          style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.1)" }}
+          style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.1)" }}
         >
           <AlgorithmsPanel
             isAr={isAr}
@@ -387,11 +387,11 @@ const LinkAnalysisPage = () => {
         {/* Right panel */}
         <div
           className="w-72 flex-shrink-0 border-l flex flex-col overflow-hidden"
-          style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.1)" }}
+          style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.1)" }}
         >
           {/* Right panel tab switcher */}
           {!detailNode && (
-            <div className="flex border-b flex-shrink-0" style={{ borderColor: "rgba(181,142,60,0.1)" }}>
+            <div className="flex border-b flex-shrink-0" style={{ borderColor: "rgba(184,138,60,0.1)" }}>
               {[
                 { key: "algorithms" as const, icon: "ri-cpu-line", label: isAr ? "الخوارزميات" : "Algorithms" },
                 { key: "save" as const, icon: "ri-folder-line", label: isAr ? "الحفظ" : "Save & Share" },
@@ -401,8 +401,8 @@ const LinkAnalysisPage = () => {
                   onClick={() => setRightPanelTab(tab.key)}
                   className="flex-1 flex items-center justify-center gap-1.5 py-2.5 text-xs font-['Inter'] cursor-pointer transition-colors"
                   style={{
-                    color: rightPanelTab === tab.key ? "#D4A84B" : "#6B7280",
-                    borderBottom: rightPanelTab === tab.key ? "2px solid #D4A84B" : "2px solid transparent",
+                    color: rightPanelTab === tab.key ? "#D6B47E" : "#6B7280",
+                    borderBottom: rightPanelTab === tab.key ? "2px solid #D6B47E" : "2px solid transparent",
                   }}
                 >
                   <i className={`${tab.icon} text-sm`} />
@@ -425,7 +425,7 @@ const LinkAnalysisPage = () => {
             ) : rightPanelTab === "algorithms" ? (
               <div className="h-full overflow-y-auto" style={{ scrollbarWidth: "none" }}>
                 {/* Node type legend */}
-                <div className="p-3 border-b" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
+                <div className="p-3 border-b" style={{ borderColor: "rgba(184,138,60,0.08)" }}>
                   <p className="text-gray-600 text-[10px] font-bold tracking-widest font-['JetBrains_Mono'] uppercase mb-2">
                     {isAr ? "أنواع العقد" : "NODE TYPES"}
                   </p>
@@ -507,7 +507,7 @@ const LinkAnalysisPage = () => {
       {toast && (
         <div
           className="fixed bottom-6 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full text-sm font-['Inter'] z-[400] transition-all"
-          style={{ background: "rgba(20,29,46,0.95)", border: "1px solid rgba(181,142,60,0.3)", color: "#D4A84B" }}
+          style={{ background: "rgba(10,37,64,0.95)", border: "1px solid rgba(184,138,60,0.3)", color: "#D6B47E" }}
         >
           <i className="ri-checkbox-circle-line mr-2" />
           {toast}

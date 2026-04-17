@@ -54,7 +54,7 @@ export interface TestResult {
 
 export const CATEGORY_META: Record<RuleCategory, { label: string; labelAr: string; icon: string; color: string }> = {
   arrival:       { label: "Arrival Patterns",    labelAr: "أنماط الوصول",      icon: "ri-passport-line",        color: "#60A5FA" },
-  accommodation: { label: "Accommodation",        labelAr: "الإقامة",            icon: "ri-hotel-line",           color: "#D4A84B" },
+  accommodation: { label: "Accommodation",        labelAr: "الإقامة",            icon: "ri-hotel-line",           color: "#D6B47E" },
   financial:     { label: "Financial",            labelAr: "المالية",            icon: "ri-bank-card-line",       color: "#4ADE80" },
   identity:      { label: "Identity",             labelAr: "الهوية",             icon: "ri-fingerprint-line",     color: "#A78BFA" },
   employment:    { label: "Employment",           labelAr: "التوظيف",            icon: "ri-briefcase-line",       color: "#F9A8D4" },
@@ -65,8 +65,8 @@ export const CATEGORY_META: Record<RuleCategory, { label: string; labelAr: strin
 export const RISK_CONFIG: Record<RiskLevel, { color: string; bg: string; border: string; label: string; labelAr: string }> = {
   low:      { color: "#4ADE80", bg: "rgba(74,222,128,0.08)",   border: "rgba(74,222,128,0.25)",   label: "Low",      labelAr: "منخفض" },
   medium:   { color: "#FACC15", bg: "rgba(250,204,21,0.08)",   border: "rgba(250,204,21,0.25)",   label: "Medium",   labelAr: "متوسط" },
-  high:     { color: "#FB923C", bg: "rgba(251,146,60,0.08)",   border: "rgba(251,146,60,0.25)",   label: "High",     labelAr: "عالٍ"  },
-  critical: { color: "#F87171", bg: "rgba(248,113,113,0.08)",  border: "rgba(248,113,113,0.25)",  label: "Critical", labelAr: "حرج"   },
+  high:     { color: "#C98A1B", bg: "rgba(201,138,27,0.08)",   border: "rgba(201,138,27,0.25)",   label: "High",     labelAr: "عالٍ"  },
+  critical: { color: "#C94A5E", bg: "rgba(201,74,94,0.08)",  border: "rgba(201,74,94,0.25)",  label: "Critical", labelAr: "حرج"   },
 };
 
 export const PRE_BUILT_RULES: PatternRule[] = [

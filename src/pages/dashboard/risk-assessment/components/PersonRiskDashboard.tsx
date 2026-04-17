@@ -12,8 +12,8 @@ interface PersonRiskDashboardProps {
 const getScoreColor = (score: number) => {
   if (score <= 25) return "#4ADE80";
   if (score <= 50) return "#FACC15";
-  if (score <= 75) return "#FB923C";
-  return "#F87171";
+  if (score <= 75) return "#C98A1B";
+  return "#C94A5E";
 };
 
 const getScoreLabel = (score: number, isAr: boolean) => {
@@ -43,7 +43,7 @@ const PersonRiskDashboard = ({ persons, isAr }: PersonRiskDashboardProps) => {
             <button key={p.id} type="button" onClick={() => setSelectedId(p.id)}
               className="flex items-center gap-3 px-4 py-2.5 rounded-xl border cursor-pointer transition-all"
               style={{
-                background: isSelected ? `${c}08` : "rgba(20,29,46,0.6)",
+                background: isSelected ? `${c}08` : "rgba(10,37,64,0.6)",
                 borderColor: isSelected ? `${c}30` : "rgba(255,255,255,0.06)",
                 boxShadow: isSelected ? `0 0 12px ${c}10` : "none",
               }}>
@@ -67,7 +67,7 @@ const PersonRiskDashboard = ({ persons, isAr }: PersonRiskDashboardProps) => {
         <div className="space-y-4">
           {/* Gauge card */}
           <div className="rounded-2xl border p-5 flex flex-col items-center gap-4"
-            style={{ background: "rgba(20,29,46,0.8)", borderColor: `${scoreColor}20`, backdropFilter: "blur(12px)" }}>
+            style={{ background: "rgba(10,37,64,0.8)", borderColor: `${scoreColor}20`, backdropFilter: "blur(12px)" }}>
             <div className="flex items-center gap-3 self-start w-full">
               <img src={person.photo} alt={person.name} className="w-10 h-10 rounded-xl object-cover object-top flex-shrink-0" />
               <div className="flex-1 min-w-0">
@@ -125,7 +125,7 @@ const PersonRiskDashboard = ({ persons, isAr }: PersonRiskDashboardProps) => {
           </div>
 
           {/* Score history */}
-          <div className="rounded-2xl border p-4" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.1)", backdropFilter: "blur(12px)" }}>
+          <div className="rounded-2xl border p-4" style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.1)", backdropFilter: "blur(12px)" }}>
             <h4 className="text-white font-bold text-xs mb-3">{isAr ? "تطور الدرجة (12 شهراً)" : "Score Evolution (12 months)"}</h4>
             <div className="relative" style={{ height: "80px" }}>
               <svg width="100%" height="80" viewBox="0 0 300 80" preserveAspectRatio="none">
@@ -155,12 +155,12 @@ const PersonRiskDashboard = ({ persons, isAr }: PersonRiskDashboardProps) => {
           </div>
 
           {/* Event summary */}
-          <div className="rounded-2xl border p-4" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.1)", backdropFilter: "blur(12px)" }}>
+          <div className="rounded-2xl border p-4" style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.1)", backdropFilter: "blur(12px)" }}>
             <h4 className="text-white font-bold text-xs mb-3">{isAr ? "ملخص الأحداث" : "Event Summary"}</h4>
             <div className="space-y-2">
               {[
-                { label: isAr ? "إجمالي الأحداث" : "Total Events",       value: person.timeline.length,                                    color: "#D4A84B", icon: "ri-pulse-line" },
-                { label: isAr ? "مُبلَّغة" : "Flagged",                   value: person.timeline.filter((t) => t.risk === "flagged").length, color: "#F87171", icon: "ri-shield-cross-line" },
+                { label: isAr ? "إجمالي الأحداث" : "Total Events",       value: person.timeline.length,                                    color: "#D6B47E", icon: "ri-pulse-line" },
+                { label: isAr ? "مُبلَّغة" : "Flagged",                   value: person.timeline.filter((t) => t.risk === "flagged").length, color: "#C94A5E", icon: "ri-shield-cross-line" },
                 { label: isAr ? "للمراجعة" : "Under Review",              value: person.timeline.filter((t) => t.risk === "review").length,  color: "#FACC15", icon: "ri-eye-line" },
                 { label: isAr ? "سليمة" : "Clear",                        value: person.timeline.filter((t) => t.risk === "clear").length,   color: "#4ADE80", icon: "ri-shield-check-line" },
               ].map((s) => (
@@ -177,7 +177,7 @@ const PersonRiskDashboard = ({ persons, isAr }: PersonRiskDashboardProps) => {
         </div>
 
         {/* CENTER: Stream breakdown */}
-        <div className="rounded-2xl border p-5" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.1)", backdropFilter: "blur(12px)" }}>
+        <div className="rounded-2xl border p-5" style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.1)", backdropFilter: "blur(12px)" }}>
           <div className="flex items-center gap-2 mb-4">
             <i className="ri-bar-chart-2-line text-gold-400 text-sm" />
             <h4 className="text-white font-bold text-sm">{isAr ? "تفصيل حسب التدفق" : "Breakdown by Stream"}</h4>
@@ -195,7 +195,7 @@ const PersonRiskDashboard = ({ persons, isAr }: PersonRiskDashboardProps) => {
                     <span className="text-gray-300 text-xs flex-1">{isAr ? s.streamAr : s.stream}</span>
                     <div className="flex items-center gap-1.5">
                       {s.multiplier > 1 && (
-                        <span className="text-xs font-bold font-['JetBrains_Mono']" style={{ color: "#F87171", fontSize: "9px" }}>×{s.multiplier}</span>
+                        <span className="text-xs font-bold font-['JetBrains_Mono']" style={{ color: "#C94A5E", fontSize: "9px" }}>×{s.multiplier}</span>
                       )}
                       <span className="text-xs font-black font-['JetBrains_Mono']" style={{ color: s.color }}>{s.contribution.toFixed(1)}</span>
                     </div>
@@ -206,7 +206,7 @@ const PersonRiskDashboard = ({ persons, isAr }: PersonRiskDashboardProps) => {
                   </div>
                   {s.multiplierReason && (
                     <p className="text-gray-700 ml-8 mt-0.5 flex items-center gap-1" style={{ fontSize: "9px" }}>
-                      <i className="ri-arrow-up-line" style={{ color: "#F87171", fontSize: "8px" }} />
+                      <i className="ri-arrow-up-line" style={{ color: "#C94A5E", fontSize: "8px" }} />
                       {s.multiplierReason}
                     </p>
                   )}
@@ -216,7 +216,7 @@ const PersonRiskDashboard = ({ persons, isAr }: PersonRiskDashboardProps) => {
           </div>
 
           {/* Total */}
-          <div className="mt-5 pt-4 border-t" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
+          <div className="mt-5 pt-4 border-t" style={{ borderColor: "rgba(184,138,60,0.08)" }}>
             <div className="flex items-center justify-between">
               <span className="text-gray-400 text-xs font-semibold">{isAr ? "إجمالي الدرجة" : "Total Score"}</span>
               <span className="text-sm font-black font-['JetBrains_Mono']" style={{ color: scoreColor }}>{person.riskScore} / 100</span>
@@ -235,12 +235,12 @@ const PersonRiskDashboard = ({ persons, isAr }: PersonRiskDashboardProps) => {
         </div>
 
         {/* RIGHT: Timeline */}
-        <div className="rounded-2xl border p-5 flex flex-col" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.1)", backdropFilter: "blur(12px)" }}>
+        <div className="rounded-2xl border p-5 flex flex-col" style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.1)", backdropFilter: "blur(12px)" }}>
           <div className="flex items-center gap-2 mb-4 flex-shrink-0">
             <i className="ri-time-line text-gold-400 text-sm" />
             <h4 className="text-white font-bold text-sm">{isAr ? "الأحداث المساهمة" : "Contributing Events"}</h4>
             <span className="px-2 py-0.5 rounded-full text-xs font-bold ml-auto"
-              style={{ background: "rgba(181,142,60,0.08)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.15)" }}>
+              style={{ background: "rgba(184,138,60,0.08)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.15)" }}>
               {person.timeline.length}
             </span>
           </div>

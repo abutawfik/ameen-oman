@@ -8,16 +8,16 @@ interface Props {
 const channelColors: Record<string, string> = {
   green:   "#4ADE80",
   yellow:  "#FACC15",
-  red:     "#F87171",
+  red:     "#C94A5E",
   pending: "#9CA3AF",
 };
 
 const typeLabels: Record<string, { en: string; ar: string; icon: string; color: string }> = {
-  import:   { en: "Import",        ar: "استيراد",    icon: "ri-download-2-line",       color: "#D4A84B" },
+  import:   { en: "Import",        ar: "استيراد",    icon: "ri-download-2-line",       color: "#D6B47E" },
   export:   { en: "Export",        ar: "تصدير",      icon: "ri-upload-2-line",         color: "#4ADE80" },
   transit:  { en: "Transit",       ar: "عبور",       icon: "ri-arrow-left-right-line", color: "#FACC15" },
   freezone: { en: "Free Zone",     ar: "منطقة حرة",  icon: "ri-store-2-line",          color: "#38BDF8" },
-  seizure:  { en: "Seizure",       ar: "ضبط",        icon: "ri-shield-cross-line",     color: "#F87171" },
+  seizure:  { en: "Seizure",       ar: "ضبط",        icon: "ri-shield-cross-line",     color: "#C94A5E" },
   personal: { en: "Personal Effects", ar: "أمتعة شخصية", icon: "ri-luggage-cart-line", color: "#A78BFA" },
 };
 
@@ -38,8 +38,8 @@ const CustomsLiveCounters = ({ isAr }: Props) => {
             key={kpi.label}
             className="rounded-xl p-4 flex flex-col gap-2"
             style={{
-              background: "rgba(20,29,46,0.8)",
-              border: "1px solid rgba(181,142,60,0.12)",
+              background: "rgba(10,37,64,0.8)",
+              border: "1px solid rgba(184,138,60,0.12)",
               backdropFilter: "blur(12px)",
             }}
           >
@@ -50,8 +50,8 @@ const CustomsLiveCounters = ({ isAr }: Props) => {
               <span
                 className="text-xs font-['JetBrains_Mono'] font-semibold px-1.5 py-0.5 rounded"
                 style={{
-                  color: kpi.deltaUp ? "#4ADE80" : "#F87171",
-                  background: kpi.deltaUp ? "rgba(74,222,128,0.1)" : "rgba(248,113,113,0.1)",
+                  color: kpi.deltaUp ? "#4ADE80" : "#C94A5E",
+                  background: kpi.deltaUp ? "rgba(74,222,128,0.1)" : "rgba(201,74,94,0.1)",
                 }}
               >
                 {kpi.delta}
@@ -70,7 +70,7 @@ const CustomsLiveCounters = ({ isAr }: Props) => {
       {/* Channel Distribution */}
       <div
         className="rounded-xl p-5"
-        style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.12)" }}
+        style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.12)" }}
       >
         <h3 className="text-white text-sm font-semibold font-['Inter'] mb-4">
           {isAr ? "توزيع قنوات الفحص" : "Inspection Channel Distribution"}
@@ -79,7 +79,7 @@ const CustomsLiveCounters = ({ isAr }: Props) => {
           {[
             { label: "Green Channel", labelAr: "القناة الخضراء", value: 1204, pct: 65, color: "#4ADE80", desc: "Auto-cleared", descAr: "تخليص تلقائي" },
             { label: "Yellow Review",  labelAr: "المراجعة الصفراء", value: 489, pct: 26, color: "#FACC15", desc: "Document review", descAr: "مراجعة وثائق" },
-            { label: "Red Inspection", labelAr: "الفحص الأحمر",   value: 154, pct: 9,  color: "#F87171", desc: "Physical inspection", descAr: "فحص مادي" },
+            { label: "Red Inspection", labelAr: "الفحص الأحمر",   value: 154, pct: 9,  color: "#C94A5E", desc: "Physical inspection", descAr: "فحص مادي" },
           ].map((ch) => (
             <div key={ch.label} className="text-center">
               <div className="relative w-16 h-16 mx-auto mb-2">
@@ -109,7 +109,7 @@ const CustomsLiveCounters = ({ isAr }: Props) => {
       {/* Recent Declarations Feed */}
       <div
         className="rounded-xl p-5"
-        style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.12)" }}
+        style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.12)" }}
       >
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-white text-sm font-semibold font-['Inter']">
@@ -163,14 +163,14 @@ const CustomsLiveCounters = ({ isAr }: Props) => {
       {/* Port Activity */}
       <div
         className="rounded-xl p-5"
-        style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.12)" }}
+        style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.12)" }}
       >
         <h3 className="text-white text-sm font-semibold font-['Inter'] mb-4">
           {isAr ? "نشاط المنافذ" : "Port Activity"}
         </h3>
         <div className="space-y-3">
           {[
-            { name: "Capital International Airport", nameAr: "مطار العاصمة الدولي",    count: 612, pct: 33, color: "#D4A84B" },
+            { name: "Capital International Airport", nameAr: "مطار العاصمة الدولي",    count: 612, pct: 33, color: "#D6B47E" },
             { name: "Capital Seaport",               nameAr: "الميناء البحري للعاصمة", count: 489, pct: 26, color: "#4ADE80" },
             { name: "Northern Port",                 nameAr: "الميناء الشمالي",         count: 334, pct: 18, color: "#A78BFA" },
             { name: "Eastern Land Crossing",         nameAr: "المنفذ البري الشرقي",     count: 223, pct: 12, color: "#FACC15" },

@@ -68,8 +68,8 @@ export default function BatchUpload({ lang }: Props) {
 
   const statusConfig = {
     success:    { color: '#4ADE80', label: 'Success',    labelAr: 'نجح' },
-    error:      { color: '#F87171', label: 'Error',      labelAr: 'خطأ' },
-    processing: { color: '#D4A84B', label: 'Processing', labelAr: 'جارٍ' },
+    error:      { color: '#C94A5E', label: 'Error',      labelAr: 'خطأ' },
+    processing: { color: '#D6B47E', label: 'Processing', labelAr: 'جارٍ' },
     pending:    { color: '#FACC15', label: 'Pending',    labelAr: 'معلق' },
   };
 
@@ -81,9 +81,9 @@ export default function BatchUpload({ lang }: Props) {
       </div>
 
       {/* Template download */}
-      <div className="rounded-xl border border-gold-500/20 p-4 mb-5 flex items-center justify-between" style={{ background: 'rgba(20,29,46,0.8)' }}>
+      <div className="rounded-xl border border-gold-500/20 p-4 mb-5 flex items-center justify-between" style={{ background: 'rgba(10,37,64,0.8)' }}>
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: 'rgba(181,142,60,0.1)' }}>
+          <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: 'rgba(184,138,60,0.1)' }}>
             <i className="ri-file-excel-2-line text-gold-400 text-lg" />
           </div>
           <div>
@@ -100,8 +100,8 @@ export default function BatchUpload({ lang }: Props) {
       <div
         className="rounded-xl border-2 border-dashed p-10 text-center mb-5 cursor-pointer transition-all"
         style={{
-          borderColor: dragging ? '#D4A84B' : 'rgba(181,142,60,0.2)',
-          background: dragging ? 'rgba(181,142,60,0.06)' : 'rgba(20,29,46,0.5)',
+          borderColor: dragging ? '#D6B47E' : 'rgba(184,138,60,0.2)',
+          background: dragging ? 'rgba(184,138,60,0.06)' : 'rgba(10,37,64,0.5)',
         }}
         onDragOver={e => { e.preventDefault(); setDragging(true); }}
         onDragLeave={() => setDragging(false)}
@@ -115,7 +115,7 @@ export default function BatchUpload({ lang }: Props) {
           className="hidden"
           onChange={e => { if (e.target.files?.[0]) handleFile(e.target.files[0]); }}
         />
-        <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4" style={{ background: 'rgba(181,142,60,0.1)' }}>
+        <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4" style={{ background: 'rgba(184,138,60,0.1)' }}>
           <i className="ri-upload-cloud-2-line text-gold-400 text-3xl" />
         </div>
         <p className="text-white font-semibold mb-1">
@@ -130,16 +130,16 @@ export default function BatchUpload({ lang }: Props) {
       {processing && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center"
-          style={{ background: 'rgba(11,18,32,0.85)' }}
+          style={{ background: 'rgba(5,20,40,0.85)' }}
         >
-          <div className="rounded-2xl border border-gold-500/30 p-8 w-full max-w-sm text-center" style={{ background: 'rgba(20,29,46,0.98)' }}>
-            <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: 'rgba(181,142,60,0.1)' }}>
+          <div className="rounded-2xl border border-gold-500/30 p-8 w-full max-w-sm text-center" style={{ background: 'rgba(10,37,64,0.98)' }}>
+            <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: 'rgba(184,138,60,0.1)' }}>
               <i className="ri-loader-4-line text-gold-400 text-3xl animate-spin" />
             </div>
             <h3 className="text-white font-semibold mb-1">{isAr ? 'جارٍ المعالجة...' : 'Processing...'}</h3>
             <p className="text-gray-400 text-sm mb-4 truncate">{processedFile}</p>
-            <div className="h-2 rounded-full overflow-hidden mb-2" style={{ background: 'rgba(181,142,60,0.1)' }}>
-              <div className="h-full rounded-full transition-all duration-150" style={{ width: `${progress}%`, background: '#D4A84B' }} />
+            <div className="h-2 rounded-full overflow-hidden mb-2" style={{ background: 'rgba(184,138,60,0.1)' }}>
+              <div className="h-full rounded-full transition-all duration-150" style={{ width: `${progress}%`, background: '#D6B47E' }} />
             </div>
             <p className="text-gold-400 font-mono text-sm">{progress}%</p>
           </div>
@@ -147,7 +147,7 @@ export default function BatchUpload({ lang }: Props) {
       )}
 
       {/* Upload history */}
-      <div className="rounded-xl border border-gold-500/20 overflow-hidden" style={{ background: 'rgba(20,29,46,0.8)' }}>
+      <div className="rounded-xl border border-gold-500/20 overflow-hidden" style={{ background: 'rgba(10,37,64,0.8)' }}>
         <div className="px-5 py-3 border-b border-gold-500/10">
           <h3 className="text-white font-semibold text-sm">{isAr ? 'سجل الرفع' : 'Upload History'}</h3>
         </div>
@@ -172,7 +172,7 @@ export default function BatchUpload({ lang }: Props) {
                   </td>
                   <td className="py-3 px-4 font-mono text-gray-300">{row.rows}</td>
                   <td className="py-3 px-4 font-mono text-green-400">{row.synced}</td>
-                  <td className="py-3 px-4 font-mono" style={{ color: row.errors > 0 ? '#F87171' : '#6B7280' }}>{row.errors}</td>
+                  <td className="py-3 px-4 font-mono" style={{ color: row.errors > 0 ? '#C94A5E' : '#6B7280' }}>{row.errors}</td>
                   <td className="py-3 px-4">
                     <span className="flex items-center gap-1.5 text-xs" style={{ color: sc.color }}>
                       <span className="w-1.5 h-1.5 rounded-full" style={{ background: sc.color }} />

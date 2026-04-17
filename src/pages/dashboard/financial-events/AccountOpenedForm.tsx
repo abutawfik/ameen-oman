@@ -94,7 +94,7 @@ const AccountOpenedForm = ({ isAr, onCancel }: Props) => {
     );
 
   const riskLevel = pep === "yes" ? "critical" : intlTransfer ? "medium" : "low";
-  const riskColors: Record<string, string> = { critical: "#F87171", medium: "#FB923C", low: "#4ADE80" };
+  const riskColors: Record<string, string> = { critical: "#C94A5E", medium: "#C98A1B", low: "#4ADE80" };
   const riskLabels: Record<string, string> = {
     critical: isAr ? "حرج" : "CRITICAL",
     medium: isAr ? "متوسط" : "MEDIUM",
@@ -149,8 +149,8 @@ const AccountOpenedForm = ({ isAr, onCancel }: Props) => {
               {/* International Transfer toggle */}
               <div className="flex items-center justify-between p-3 rounded-xl border" style={{ background: "rgba(255,255,255,0.02)", borderColor: "rgba(255,255,255,0.08)" }}>
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: intlTransfer ? "rgba(181,142,60,0.12)" : "rgba(255,255,255,0.04)", border: `1px solid ${intlTransfer ? "rgba(181,142,60,0.3)" : "rgba(255,255,255,0.08)"}` }}>
-                    <i className="ri-send-plane-line text-sm" style={{ color: intlTransfer ? "#D4A84B" : "#6B7280" }} />
+                  <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: intlTransfer ? "rgba(184,138,60,0.12)" : "rgba(255,255,255,0.04)", border: `1px solid ${intlTransfer ? "rgba(184,138,60,0.3)" : "rgba(255,255,255,0.08)"}` }}>
+                    <i className="ri-send-plane-line text-sm" style={{ color: intlTransfer ? "#D6B47E" : "#6B7280" }} />
                   </div>
                   <div>
                     <p className="text-white text-sm font-semibold">{isAr ? "التحويل الدولي" : "International Transfer"}</p>
@@ -161,7 +161,7 @@ const AccountOpenedForm = ({ isAr, onCancel }: Props) => {
                   type="button"
                   onClick={() => setIntlTransfer((v) => !v)}
                   className="relative w-11 h-6 rounded-full transition-all duration-300 cursor-pointer flex-shrink-0"
-                  style={{ background: intlTransfer ? "#D4A84B" : "rgba(255,255,255,0.1)" }}
+                  style={{ background: intlTransfer ? "#D6B47E" : "rgba(255,255,255,0.1)" }}
                 >
                   <div
                     className="absolute top-0.5 w-5 h-5 rounded-full transition-all duration-300"
@@ -183,7 +183,7 @@ const AccountOpenedForm = ({ isAr, onCancel }: Props) => {
               </FormField>
 
               {pep === "yes" && (
-                <div className="flex items-start gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(248,113,113,0.06)", borderColor: "rgba(248,113,113,0.25)" }}>
+                <div className="flex items-start gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(201,74,94,0.06)", borderColor: "rgba(201,74,94,0.25)" }}>
                   <i className="ri-alert-line text-red-400 text-sm mt-0.5 flex-shrink-0" />
                   <p className="text-gray-400 text-xs">
                     {isAr ? "تنبيه: يتطلب فتح حساب PEP موافقة إدارة الامتثال." : "Alert: PEP account opening requires Compliance Management approval."}
@@ -192,7 +192,7 @@ const AccountOpenedForm = ({ isAr, onCancel }: Props) => {
               )}
 
               {/* Auto Risk Level */}
-              <div className="p-4 rounded-xl border" style={{ background: "rgba(181,142,60,0.04)", borderColor: "rgba(181,142,60,0.15)" }}>
+              <div className="p-4 rounded-xl border" style={{ background: "rgba(184,138,60,0.04)", borderColor: "rgba(184,138,60,0.15)" }}>
                 <p className="text-gray-500 text-xs mb-2">{isAr ? "مستوى المخاطر التلقائي" : "Auto Risk Level"}</p>
                 <div className="flex items-center gap-2">
                   <div className="flex-1 h-2 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>

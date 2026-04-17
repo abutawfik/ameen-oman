@@ -65,7 +65,7 @@ const PermitRenewalForm = ({ isAr, onCancel }: Props) => {
 
   if (submitted) return <EmpConfirmation isAr={isAr} onReset={() => setSubmitted(false)} eventLabel="Permit Renewal" eventLabelAr="تجديد التصريح" eventColor="#FACC15" eventIcon="ri-refresh-line" />;
 
-  const statusColor = (s: PermitInfo["status"]) => s === "active" ? "#4ADE80" : s === "expiring_soon" ? "#FACC15" : "#F87171";
+  const statusColor = (s: PermitInfo["status"]) => s === "active" ? "#4ADE80" : s === "expiring_soon" ? "#FACC15" : "#C94A5E";
   const statusLabel = (s: PermitInfo["status"]) => s === "active" ? (isAr ? "نشط" : "Active") : s === "expiring_soon" ? (isAr ? "ينتهي قريباً" : "Expiring Soon") : (isAr ? "منتهي" : "Expired");
 
   return (
@@ -78,9 +78,9 @@ const PermitRenewalForm = ({ isAr, onCancel }: Props) => {
               <TextInput placeholder="WP-XXXX-XXXXXXXX" value={permitNumber} onChange={(e) => setPermitNumber(e.target.value)} className="font-['JetBrains_Mono'] flex-1" />
               <button type="button" onClick={handleLookup}
                 className="flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap"
-                style={{ background: "#D4A84B", color: "#0B1220" }}
+                style={{ background: "#D6B47E", color: "#051428" }}
                 onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C99C48"; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#D4A84B"; }}>
+                onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#D6B47E"; }}>
                 {lookingUp ? <i className="ri-loader-4-line animate-spin" /> : <i className="ri-search-line" />}
                 {isAr ? "بحث" : "Lookup"}
               </button>
@@ -88,7 +88,7 @@ const PermitRenewalForm = ({ isAr, onCancel }: Props) => {
           </FormField>
 
           {permitInfo && (
-            <div className="rounded-xl border p-4" style={{ background: "rgba(20,29,46,0.6)", borderColor: "rgba(181,142,60,0.15)" }}>
+            <div className="rounded-xl border p-4" style={{ background: "rgba(10,37,64,0.6)", borderColor: "rgba(184,138,60,0.15)" }}>
               <div className="flex items-center gap-2 mb-3">
                 <div className="w-2 h-2 rounded-full" style={{ background: statusColor(permitInfo.status) }} />
                 <span className="text-xs font-bold font-['JetBrains_Mono']" style={{ color: statusColor(permitInfo.status) }}>{statusLabel(permitInfo.status)}</span>
@@ -127,7 +127,7 @@ const PermitRenewalForm = ({ isAr, onCancel }: Props) => {
             <button type="button" onClick={() => setSalaryChanged((v) => !v)}
               className="flex items-center gap-3 cursor-pointer mb-3">
               <div className="relative w-10 h-5 rounded-full transition-all duration-300"
-                style={{ background: salaryChanged ? "#D4A84B" : "rgba(255,255,255,0.1)" }}>
+                style={{ background: salaryChanged ? "#D6B47E" : "rgba(255,255,255,0.1)" }}>
                 <div className="absolute top-0.5 w-4 h-4 rounded-full bg-white transition-all duration-300 shadow-sm"
                   style={{ left: salaryChanged ? "calc(100% - 18px)" : "2px" }} />
               </div>
@@ -145,7 +145,7 @@ const PermitRenewalForm = ({ isAr, onCancel }: Props) => {
             <button type="button" onClick={() => setTitleChanged((v) => !v)}
               className="flex items-center gap-3 cursor-pointer mb-3">
               <div className="relative w-10 h-5 rounded-full transition-all duration-300"
-                style={{ background: titleChanged ? "#D4A84B" : "rgba(255,255,255,0.1)" }}>
+                style={{ background: titleChanged ? "#D6B47E" : "rgba(255,255,255,0.1)" }}>
                 <div className="absolute top-0.5 w-4 h-4 rounded-full bg-white transition-all duration-300 shadow-sm"
                   style={{ left: titleChanged ? "calc(100% - 18px)" : "2px" }} />
               </div>
@@ -164,7 +164,7 @@ const PermitRenewalForm = ({ isAr, onCancel }: Props) => {
               <p className="text-yellow-400 text-xs font-bold mb-2">{isAr ? "ملخص التجديد" : "Renewal Summary"}</p>
               <div className="grid grid-cols-3 gap-3">
                 {[
-                  { label: isAr ? "الانتهاء الحالي" : "Current Expiry", value: permitInfo.currentExpiry, color: "#F87171" },
+                  { label: isAr ? "الانتهاء الحالي" : "Current Expiry", value: permitInfo.currentExpiry, color: "#C94A5E" },
                   { label: isAr ? "الانتهاء الجديد" : "New Expiry", value: newExpiry, color: "#4ADE80" },
                   { label: isAr ? "رقم التجديد" : "Renewal #", value: String(permitInfo.renewalCount + 1), color: "#FACC15" },
                 ].map((item) => (

@@ -24,11 +24,11 @@ const DISCHARGE_STATUSES = [
 ];
 
 const TRIAGE_LEVELS = [
-  { value: "1", label: "1 — Resuscitation",  color: "#F87171" },
-  { value: "2", label: "2 — Emergent",       color: "#FB923C" },
+  { value: "1", label: "1 — Resuscitation",  color: "#C94A5E" },
+  { value: "2", label: "2 — Emergent",       color: "#C98A1B" },
   { value: "3", label: "3 — Urgent",         color: "#FACC15" },
   { value: "4", label: "4 — Less Urgent",    color: "#4ADE80" },
-  { value: "5", label: "5 — Non-Urgent",     color: "#D4A84B" },
+  { value: "5", label: "5 — Non-Urgent",     color: "#D6B47E" },
 ];
 
 const emptyPersonal = (): PersonalData => ({
@@ -83,7 +83,7 @@ const EmergencyVisitForm = ({ isAr, onCancel }: Props) => {
 
   const selectedTriage = TRIAGE_LEVELS.find(t => t.value === triageLevel);
 
-  if (confirmed) return <HltConfirmation refNumber={refNumber} eventType={isAr ? "زيارة طارئة" : "Emergency Visit"} eventCode="HLT_EMERGENCY" color="#FB923C" isAr={isAr} onReset={() => { setConfirmed(false); setAutoFilled(false); }} />;
+  if (confirmed) return <HltConfirmation refNumber={refNumber} eventType={isAr ? "زيارة طارئة" : "Emergency Visit"} eventCode="HLT_EMERGENCY" color="#C98A1B" isAr={isAr} onReset={() => { setConfirmed(false); setAutoFilled(false); }} />;
 
   return (
     <div className="space-y-5">
@@ -91,7 +91,7 @@ const EmergencyVisitForm = ({ isAr, onCancel }: Props) => {
 
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
         {/* Emergency Details */}
-        <SectionCard title={isAr ? "تفاصيل الطوارئ" : "Emergency Details"} icon="ri-heart-pulse-line" accentColor="#FB923C">
+        <SectionCard title={isAr ? "تفاصيل الطوارئ" : "Emergency Details"} icon="ri-heart-pulse-line" accentColor="#C98A1B">
           <div className="space-y-4">
             <FormField label={isAr ? "المنشأة الصحية" : "Health Facility"} required>
               <SelectInput options={BRANCHES} placeholder={isAr ? "اختر المنشأة" : "Select facility"} value={facility} onChange={(e) => setFacility(e.target.value)} />
@@ -141,7 +141,7 @@ const EmergencyVisitForm = ({ isAr, onCancel }: Props) => {
                 maxLength={500}
                 className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none transition-all duration-200 resize-none font-['Inter']"
                 style={{ background: "#0F1923", border: "1px solid rgba(255,255,255,0.08)" }}
-                onFocus={(e) => { e.target.style.borderColor = "#D4A84B"; e.target.style.boxShadow = "0 0 0 2px rgba(181,142,60,0.08)"; }}
+                onFocus={(e) => { e.target.style.borderColor = "#D6B47E"; e.target.style.boxShadow = "0 0 0 2px rgba(184,138,60,0.08)"; }}
                 onBlur={(e) => { e.target.style.borderColor = "rgba(255,255,255,0.08)"; e.target.style.boxShadow = "none"; }}
               />
             </FormField>
@@ -189,7 +189,7 @@ const EmergencyVisitForm = ({ isAr, onCancel }: Props) => {
             <FormField label={isAr ? "رقم الهاتف" : "Phone"}>
               <div className="flex gap-2">
                 <TextInput type="tel" placeholder="+XXX XXXX XXXX" value={person.phone} onChange={(e) => updatePerson(person.id, "phone", e.target.value)} className="flex-1 font-['JetBrains_Mono']" />
-                <button type="button" onClick={() => removePerson(person.id)} className="px-3 py-2 rounded-lg border text-xs cursor-pointer" style={{ background: "rgba(248,113,113,0.06)", borderColor: "rgba(248,113,113,0.2)", color: "#F87171" }}>
+                <button type="button" onClick={() => removePerson(person.id)} className="px-3 py-2 rounded-lg border text-xs cursor-pointer" style={{ background: "rgba(201,74,94,0.06)", borderColor: "rgba(201,74,94,0.2)", color: "#C94A5E" }}>
                   <i className="ri-close-line" />
                 </button>
               </div>
@@ -202,9 +202,9 @@ const EmergencyVisitForm = ({ isAr, onCancel }: Props) => {
         type="button"
         onClick={addPerson}
         className="w-full flex items-center justify-center gap-2 py-3 rounded-xl border-2 border-dashed text-sm font-semibold cursor-pointer transition-all"
-        style={{ borderColor: "rgba(181,142,60,0.2)", color: "#D4A84B", background: "rgba(181,142,60,0.03)" }}
-        onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(181,142,60,0.4)"; (e.currentTarget as HTMLButtonElement).style.background = "rgba(181,142,60,0.06)"; }}
-        onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(181,142,60,0.2)"; (e.currentTarget as HTMLButtonElement).style.background = "rgba(181,142,60,0.03)"; }}
+        style={{ borderColor: "rgba(184,138,60,0.2)", color: "#D6B47E", background: "rgba(184,138,60,0.03)" }}
+        onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(184,138,60,0.4)"; (e.currentTarget as HTMLButtonElement).style.background = "rgba(184,138,60,0.06)"; }}
+        onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(184,138,60,0.2)"; (e.currentTarget as HTMLButtonElement).style.background = "rgba(184,138,60,0.03)"; }}
       >
         <i className="ri-user-add-line" />{isAr ? "إضافة مرافق" : "Add Accompanying Person"}
       </button>

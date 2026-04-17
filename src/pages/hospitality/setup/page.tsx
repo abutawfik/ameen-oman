@@ -122,14 +122,14 @@ export default function SetupWizardPage() {
   return (
     <div
       className="min-h-screen flex flex-col"
-      style={{ background: '#0B1220', fontFamily: "'Inter', sans-serif" }}
+      style={{ background: '#051428', fontFamily: "'Inter', sans-serif" }}
       dir={isAr ? 'rtl' : 'ltr'}
     >
       {/* Grid texture */}
       <div
         className="fixed inset-0 pointer-events-none"
         style={{
-          backgroundImage: `linear-gradient(rgba(181,142,60,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,0.025) 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(rgba(184,138,60,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.025) 1px, transparent 1px)`,
           backgroundSize: '40px 40px',
         }}
       />
@@ -137,7 +137,7 @@ export default function SetupWizardPage() {
       {/* Title bar */}
       <div
         className="relative z-10 flex items-center justify-between px-5 py-3 border-b border-gold-500/15 shrink-0"
-        style={{ background: 'rgba(11,18,32,0.98)' }}
+        style={{ background: 'rgba(5,20,40,0.98)' }}
       >
         <div className="flex items-center gap-3">
           <div className="flex gap-1.5">
@@ -148,7 +148,7 @@ export default function SetupWizardPage() {
           <div className="w-px h-4 bg-gray-700" />
           <div
             className="w-6 h-6 rounded-lg flex items-center justify-center"
-            style={{ background: 'rgba(181,142,60,0.1)' }}
+            style={{ background: 'rgba(184,138,60,0.1)' }}
           >
             <i className="ri-shield-star-fill text-gold-400" style={{ fontSize: 12 }} />
           </div>
@@ -157,7 +157,7 @@ export default function SetupWizardPage() {
           <span className="text-gold-400/50 text-sm" style={{ fontFamily: 'serif' }}>الأمين للضيافة</span>
           <span
             className="px-2 py-0.5 rounded-lg text-xs font-mono"
-            style={{ background: 'rgba(181,142,60,0.1)', color: '#D4A84B' }}
+            style={{ background: 'rgba(184,138,60,0.1)', color: '#D6B47E' }}
           >
             SETUP WIZARD
           </span>
@@ -180,7 +180,7 @@ export default function SetupWizardPage() {
           <div className="flex items-center gap-3 mb-8">
             <div
               className="w-12 h-12 rounded-2xl flex items-center justify-center border-2 border-gold-500/25 shrink-0"
-              style={{ background: 'rgba(181,142,60,0.08)' }}
+              style={{ background: 'rgba(184,138,60,0.08)' }}
             >
               <i className="ri-hotel-line text-gold-400 text-xl" />
             </div>
@@ -200,22 +200,22 @@ export default function SetupWizardPage() {
                   key={s.n}
                   className="flex items-start gap-3 p-3 rounded-xl transition-all"
                   style={{
-                    background: isActive ? 'rgba(181,142,60,0.08)' : 'transparent',
-                    border: isActive ? '1px solid rgba(181,142,60,0.2)' : '1px solid transparent',
+                    background: isActive ? 'rgba(184,138,60,0.08)' : 'transparent',
+                    border: isActive ? '1px solid rgba(184,138,60,0.2)' : '1px solid transparent',
                   }}
                 >
                   {/* Step circle */}
                   <div
                     className="w-8 h-8 rounded-full flex items-center justify-center border-2 shrink-0 mt-0.5 transition-all"
                     style={{
-                      background: isDone ? '#D4A84B' : isActive ? 'rgba(181,142,60,0.15)' : 'rgba(20,29,46,0.8)',
-                      borderColor: isDone || isActive ? '#D4A84B' : 'rgba(181,142,60,0.15)',
+                      background: isDone ? '#D6B47E' : isActive ? 'rgba(184,138,60,0.15)' : 'rgba(10,37,64,0.8)',
+                      borderColor: isDone || isActive ? '#D6B47E' : 'rgba(184,138,60,0.15)',
                     }}
                   >
                     {isDone ? (
-                      <i className="ri-check-line text-sm font-bold" style={{ color: '#0B1220' }} />
+                      <i className="ri-check-line text-sm font-bold" style={{ color: '#051428' }} />
                     ) : (
-                      <i className={`${s.icon} text-sm`} style={{ color: isActive ? '#D4A84B' : '#4B5563' }} />
+                      <i className={`${s.icon} text-sm`} style={{ color: isActive ? '#D6B47E' : '#4B5563' }} />
                     )}
                   </div>
 
@@ -243,7 +243,7 @@ export default function SetupWizardPage() {
           {/* Bottom note */}
           <div
             className="mt-6 rounded-xl p-3 border border-gold-500/15"
-            style={{ background: 'rgba(181,142,60,0.04)' }}
+            style={{ background: 'rgba(184,138,60,0.04)' }}
           >
             <div className="flex items-center gap-2 mb-1">
               <i className="ri-information-line text-gold-400 text-sm" />
@@ -263,19 +263,19 @@ export default function SetupWizardPage() {
             {/* Step panel */}
             <div
               className="rounded-2xl border border-gold-500/20 p-7 relative"
-              style={{ background: 'rgba(20,29,46,0.85)', backdropFilter: 'blur(12px)' }}
+              style={{ background: 'rgba(10,37,64,0.85)', backdropFilter: 'blur(12px)' }}
             >
               {/* Top accent */}
               <div
                 className="absolute top-0 left-8 right-8 h-0.5 rounded-full"
-                style={{ background: 'linear-gradient(90deg, transparent, #D4A84B, transparent)' }}
+                style={{ background: 'linear-gradient(90deg, transparent, #D6B47E, transparent)' }}
               />
 
               {/* Step header */}
               <div className="flex items-center gap-3 mb-6">
                 <div
                   className="w-10 h-10 rounded-xl flex items-center justify-center border border-gold-500/30"
-                  style={{ background: 'rgba(181,142,60,0.1)' }}
+                  style={{ background: 'rgba(184,138,60,0.1)' }}
                 >
                   <i className={`${STEPS[step - 1].icon} text-gold-400 text-lg`} />
                 </div>
@@ -331,8 +331,8 @@ export default function SetupWizardPage() {
                   <div className="grid grid-cols-3 gap-4">
                     <div>
                       <label className={labelCls}>{isAr ? 'المدينة' : 'City'}</label>
-                      <select value={city} onChange={e => setCity(e.target.value)} className={`${inputCls} cursor-pointer`} style={{ background: 'rgba(20,29,46,0.9)' }}>
-                        {CITIES.map(c => <option key={c} value={c} style={{ background: '#141D2E' }}>{c}</option>)}
+                      <select value={city} onChange={e => setCity(e.target.value)} className={`${inputCls} cursor-pointer`} style={{ background: 'rgba(10,37,64,0.9)' }}>
+                        {CITIES.map(c => <option key={c} value={c} style={{ background: '#0A2540' }}>{c}</option>)}
                       </select>
                     </div>
                     <div>
@@ -358,13 +358,13 @@ export default function SetupWizardPage() {
                         onChange={e => setAmeenRegNumber(e.target.value)}
                         placeholder="AMN-HTL-2024-00891"
                         className={`${inputCls} font-mono`}
-                        style={{ paddingLeft: isAr ? 12 : 36, paddingRight: isAr ? 36 : 12, color: '#D4A84B' }}
+                        style={{ paddingLeft: isAr ? 12 : 36, paddingRight: isAr ? 36 : 12, color: '#D6B47E' }}
                       />
                     </div>
                   </div>
 
                   {/* Chain toggle */}
-                  <div className="rounded-xl border border-gold-500/15 p-4" style={{ background: 'rgba(181,142,60,0.03)' }}>
+                  <div className="rounded-xl border border-gold-500/15 p-4" style={{ background: 'rgba(184,138,60,0.03)' }}>
                     <div className="flex items-center justify-between mb-3">
                       <div>
                         <p className="text-white text-sm font-medium">{isAr ? 'فندق سلسلة' : 'Chain Hotel'}</p>
@@ -373,7 +373,7 @@ export default function SetupWizardPage() {
                       <button
                         onClick={() => setIsChain(c => !c)}
                         className="relative w-10 h-5 rounded-full transition-colors cursor-pointer shrink-0"
-                        style={{ background: isChain ? '#D4A84B' : '#374151' }}
+                        style={{ background: isChain ? '#D6B47E' : '#374151' }}
                       >
                         <div className="absolute top-0.5 w-4 h-4 rounded-full bg-white transition-all" style={{ left: isChain ? '22px' : '2px' }} />
                       </button>
@@ -401,14 +401,14 @@ export default function SetupWizardPage() {
                     <p className="text-gray-400 text-sm">{isAr ? 'أضف غرف فندقك' : 'Add your hotel rooms'}</p>
                     <span
                       className="px-2.5 py-1 rounded-lg font-mono text-sm"
-                      style={{ background: 'rgba(181,142,60,0.1)', color: '#D4A84B' }}
+                      style={{ background: 'rgba(184,138,60,0.1)', color: '#D6B47E' }}
                     >
                       {rooms.length} {isAr ? 'غرفة' : 'rooms'}
                     </span>
                   </div>
 
                   {/* Bulk add */}
-                  <div className="rounded-xl border border-gold-500/15 p-4 mb-4" style={{ background: 'rgba(181,142,60,0.03)' }}>
+                  <div className="rounded-xl border border-gold-500/15 p-4 mb-4" style={{ background: 'rgba(184,138,60,0.03)' }}>
                     <p className="text-gray-500 text-xs uppercase tracking-wider mb-3">{isAr ? 'إضافة جماعية' : 'Bulk Add'}</p>
                     <div className="flex items-end gap-3">
                       <div className="flex-1">
@@ -421,14 +421,14 @@ export default function SetupWizardPage() {
                       </div>
                       <div className="flex-1">
                         <label className="block text-gray-600 text-xs mb-1">{isAr ? 'النوع' : 'Type'}</label>
-                        <select value={bulkType} onChange={e => setBulkType(e.target.value)} className={`${inputCls} cursor-pointer`} style={{ background: 'rgba(20,29,46,0.9)' }}>
-                          {ROOM_TYPES.map(t => <option key={t} value={t} style={{ background: '#141D2E' }}>{t}</option>)}
+                        <select value={bulkType} onChange={e => setBulkType(e.target.value)} className={`${inputCls} cursor-pointer`} style={{ background: 'rgba(10,37,64,0.9)' }}>
+                          {ROOM_TYPES.map(t => <option key={t} value={t} style={{ background: '#0A2540' }}>{t}</option>)}
                         </select>
                       </div>
                       <button
                         onClick={bulkAdd}
                         className="px-4 py-2.5 rounded-xl text-sm font-medium cursor-pointer whitespace-nowrap transition-all"
-                        style={{ background: '#D4A84B', color: '#0B1220' }}
+                        style={{ background: '#D6B47E', color: '#051428' }}
                       >
                         <i className="ri-add-line mr-1" />{isAr ? 'إضافة' : 'Add'}
                       </button>
@@ -438,7 +438,7 @@ export default function SetupWizardPage() {
                   {/* Room list */}
                   <div className="space-y-3 max-h-72 overflow-y-auto pr-1">
                     {rooms.map(room => (
-                      <div key={room.id} className="rounded-xl border border-gold-500/12 p-3" style={{ background: 'rgba(20,29,46,0.6)' }}>
+                      <div key={room.id} className="rounded-xl border border-gold-500/12 p-3" style={{ background: 'rgba(10,37,64,0.6)' }}>
                         <div className="grid grid-cols-5 gap-2 mb-2">
                           {[
                             { label: isAr ? 'رقم' : 'No.', value: room.number, field: 'number' as const, placeholder: '101' },
@@ -463,9 +463,9 @@ export default function SetupWizardPage() {
                               value={room.type}
                               onChange={e => updateRoom(room.id, 'type', e.target.value)}
                               className="w-full rounded-lg border border-gold-500/15 text-white text-xs px-2 py-1.5 focus:outline-none cursor-pointer"
-                              style={{ background: 'rgba(20,29,46,0.9)' }}
+                              style={{ background: 'rgba(10,37,64,0.9)' }}
                             >
-                              {ROOM_TYPES.map(t => <option key={t} value={t} style={{ background: '#141D2E' }}>{t}</option>)}
+                              {ROOM_TYPES.map(t => <option key={t} value={t} style={{ background: '#0A2540' }}>{t}</option>)}
                             </select>
                           </div>
                         </div>
@@ -477,9 +477,9 @@ export default function SetupWizardPage() {
                                 onClick={() => toggleAmenity(room.id, a)}
                                 className="px-1.5 py-0.5 rounded text-xs cursor-pointer transition-all whitespace-nowrap"
                                 style={{
-                                  background: room.amenities.includes(a) ? 'rgba(181,142,60,0.12)' : 'rgba(75,85,99,0.15)',
-                                  color: room.amenities.includes(a) ? '#D4A84B' : '#6B7280',
-                                  border: `1px solid ${room.amenities.includes(a) ? 'rgba(181,142,60,0.25)' : 'transparent'}`,
+                                  background: room.amenities.includes(a) ? 'rgba(184,138,60,0.12)' : 'rgba(75,85,99,0.15)',
+                                  color: room.amenities.includes(a) ? '#D6B47E' : '#6B7280',
+                                  border: `1px solid ${room.amenities.includes(a) ? 'rgba(184,138,60,0.25)' : 'transparent'}`,
                                 }}
                               >
                                 {a}
@@ -512,18 +512,18 @@ export default function SetupWizardPage() {
                       : 'The Regula scanner enables automatic passport and ID reading at check-in, saving time and ensuring data accuracy.'}
                   </p>
 
-                  <div className="rounded-2xl border border-gold-500/20 p-6 text-center" style={{ background: 'rgba(181,142,60,0.03)' }}>
+                  <div className="rounded-2xl border border-gold-500/20 p-6 text-center" style={{ background: 'rgba(184,138,60,0.03)' }}>
                     <div
                       className="w-24 h-24 rounded-2xl flex items-center justify-center mx-auto mb-4 border-2 transition-all duration-500"
                       style={{
-                        background: scannerStatus === 'connected' ? 'rgba(74,222,128,0.12)' : scannerStatus === 'failed' ? 'rgba(248,113,113,0.12)' : 'rgba(181,142,60,0.08)',
-                        borderColor: scannerStatus === 'connected' ? '#4ADE80' : scannerStatus === 'failed' ? '#F87171' : '#D4A84B',
-                        boxShadow: scannerStatus === 'connected' ? '0 0 20px rgba(74,222,128,0.2)' : scannerStatus === 'detecting' ? '0 0 20px rgba(181,142,60,0.2)' : 'none',
+                        background: scannerStatus === 'connected' ? 'rgba(74,222,128,0.12)' : scannerStatus === 'failed' ? 'rgba(201,74,94,0.12)' : 'rgba(184,138,60,0.08)',
+                        borderColor: scannerStatus === 'connected' ? '#4ADE80' : scannerStatus === 'failed' ? '#C94A5E' : '#D6B47E',
+                        boxShadow: scannerStatus === 'connected' ? '0 0 20px rgba(74,222,128,0.2)' : scannerStatus === 'detecting' ? '0 0 20px rgba(184,138,60,0.2)' : 'none',
                       }}
                     >
                       <i
                         className={`ri-scan-line text-4xl ${scannerStatus === 'detecting' ? 'animate-pulse' : ''}`}
-                        style={{ color: scannerStatus === 'connected' ? '#4ADE80' : scannerStatus === 'failed' ? '#F87171' : '#D4A84B' }}
+                        style={{ color: scannerStatus === 'connected' ? '#4ADE80' : scannerStatus === 'failed' ? '#C94A5E' : '#D6B47E' }}
                       />
                     </div>
 
@@ -540,7 +540,7 @@ export default function SetupWizardPage() {
                         onClick={detectScanner}
                         disabled={scannerStatus === 'detecting'}
                         className="px-6 py-2.5 rounded-xl text-sm font-semibold cursor-pointer transition-all whitespace-nowrap"
-                        style={{ background: '#D4A84B', color: '#0B1220', opacity: scannerStatus === 'detecting' ? 0.6 : 1 }}
+                        style={{ background: '#D6B47E', color: '#051428', opacity: scannerStatus === 'detecting' ? 0.6 : 1 }}
                       >
                         {scannerStatus === 'detecting' ? (
                           <span className="flex items-center gap-2"><i className="ri-loader-4-line animate-spin" />{isAr ? 'جارٍ الكشف...' : 'Detecting...'}</span>
@@ -594,7 +594,7 @@ export default function SetupWizardPage() {
                       : 'This app connects to Al-Ameen Platform to automatically send event data in the background. Staff never interact with Al-Ameen directly.'}
                   </p>
 
-                  <div className="rounded-xl border border-gold-500/20 p-4" style={{ background: 'rgba(181,142,60,0.04)' }}>
+                  <div className="rounded-xl border border-gold-500/20 p-4" style={{ background: 'rgba(184,138,60,0.04)' }}>
                     <div className="flex items-start gap-3">
                       <i className="ri-information-line text-gold-400 text-base mt-0.5 shrink-0" />
                       <p className="text-gold-300 text-xs leading-relaxed">
@@ -614,7 +614,7 @@ export default function SetupWizardPage() {
                         value={serverUrl}
                         readOnly
                         className={`${inputCls} font-mono cursor-not-allowed`}
-                        style={{ paddingLeft: isAr ? 12 : 36, paddingRight: isAr ? 36 : 12, color: '#D4A84B', opacity: 0.7 }}
+                        style={{ paddingLeft: isAr ? 12 : 36, paddingRight: isAr ? 36 : 12, color: '#D6B47E', opacity: 0.7 }}
                       />
                     </div>
                   </div>
@@ -675,7 +675,7 @@ export default function SetupWizardPage() {
                   )}
 
                   {connStatus === 'failed' && (
-                    <div className="rounded-xl p-3 border border-red-500/25 text-sm" style={{ background: 'rgba(248,113,113,0.07)' }}>
+                    <div className="rounded-xl p-3 border border-red-500/25 text-sm" style={{ background: 'rgba(201,74,94,0.07)' }}>
                       <i className="ri-error-warning-line text-red-400 mr-2" />
                       <span className="text-red-400">{isAr ? 'فشل الاتصال. تحقق من مفتاح API.' : 'Connection failed. Check your API Key.'}</span>
                     </div>
@@ -698,7 +698,7 @@ export default function SetupWizardPage() {
                     <div
                       key={s.n}
                       className="w-2 h-2 rounded-full transition-all"
-                      style={{ background: step === s.n ? '#D4A84B' : step > s.n ? '#4ADE80' : '#374151' }}
+                      style={{ background: step === s.n ? '#D6B47E' : step > s.n ? '#4ADE80' : '#374151' }}
                     />
                   ))}
                 </div>
@@ -707,7 +707,7 @@ export default function SetupWizardPage() {
                   <button
                     onClick={() => setStep(s => Math.min(4, s + 1))}
                     className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold cursor-pointer transition-all whitespace-nowrap"
-                    style={{ background: '#D4A84B', color: '#0B1220' }}
+                    style={{ background: '#D6B47E', color: '#051428' }}
                   >
                     {isAr ? 'التالي' : 'Next'}<i className="ri-arrow-right-line" />
                   </button>
@@ -715,7 +715,7 @@ export default function SetupWizardPage() {
                   <button
                     onClick={finish}
                     className="flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold cursor-pointer transition-all whitespace-nowrap"
-                    style={{ background: '#D4A84B', color: '#0B1220' }}
+                    style={{ background: '#D6B47E', color: '#051428' }}
                   >
                     <i className="ri-check-line" />{isAr ? 'إنهاء الإعداد' : 'Finish Setup'}
                   </button>

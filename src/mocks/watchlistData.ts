@@ -531,12 +531,12 @@ export const geoHitsData = [
 
 export const streamHitsData = [
   { stream: 'Border Intelligence', icon: 'ri-passport-line', hits: 234, color: '#60A5FA' },
-  { stream: 'Hotel Intelligence', icon: 'ri-hotel-line', hits: 189, color: '#D4A84B' },
+  { stream: 'Hotel Intelligence', icon: 'ri-hotel-line', hits: 189, color: '#D6B47E' },
   { stream: 'Mobile Operators', icon: 'ri-sim-card-line', hits: 156, color: '#A78BFA' },
   { stream: 'Financial Services', icon: 'ri-bank-card-line', hits: 134, color: '#4ADE80' },
   { stream: 'Employment Registry', icon: 'ri-briefcase-line', hits: 112, color: '#F9A8D4' },
   { stream: 'Car Rental', icon: 'ri-car-line', hits: 89, color: '#FACC15' },
-  { stream: 'Transport Intel', icon: 'ri-bus-line', hits: 67, color: '#FB923C' },
+  { stream: 'Transport Intel', icon: 'ri-bus-line', hits: 67, color: '#C98A1B' },
   { stream: 'Municipality', icon: 'ri-government-line', hits: 45, color: '#34D399' },
 ];
 

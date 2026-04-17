@@ -172,12 +172,12 @@ const ChangeRoomForm = ({ isAr, onCancel, onSaved }: Props) => {
         {currentRoom && newRoom && (
           <div
             className="mt-5 flex items-center justify-center gap-6 p-5 rounded-xl"
-            style={{ background: "rgba(181,142,60,0.03)", border: "1px solid rgba(181,142,60,0.08)" }}
+            style={{ background: "rgba(184,138,60,0.03)", border: "1px solid rgba(184,138,60,0.08)" }}
           >
             <div className="flex flex-col items-center gap-2">
               <div
                 className="w-16 h-16 flex items-center justify-center rounded-xl"
-                style={{ background: "rgba(248,113,113,0.1)", border: "1px solid rgba(248,113,113,0.3)" }}
+                style={{ background: "rgba(201,74,94,0.1)", border: "1px solid rgba(201,74,94,0.3)" }}
               >
                 <span className="text-red-400 font-black text-xl font-['JetBrains_Mono']">{currentRoom}</span>
               </div>

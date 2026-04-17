@@ -16,7 +16,7 @@ const CaseManagementPage = () => {
   const criticalCount = cases.filter((c) => c.priority === "critical").length;
 
   return (
-    <div className="flex flex-col h-full" style={{ background: "#0B1220" }}>
+    <div className="flex flex-col h-full" style={{ background: "#051428" }}>
       <div className="fixed inset-0 pointer-events-none z-0 opacity-[0.025]">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -30,7 +30,7 @@ const CaseManagementPage = () => {
 
       <div className="flex-1 flex flex-col overflow-hidden relative z-10">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-3 border-b flex-shrink-0" style={{ borderColor: "rgba(167,139,250,0.15)", background: "rgba(20,29,46,0.6)" }}>
+        <div className="flex items-center justify-between px-6 py-3 border-b flex-shrink-0" style={{ borderColor: "rgba(167,139,250,0.15)", background: "rgba(10,37,64,0.6)" }}>
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(167,139,250,0.1)", border: "1px solid rgba(167,139,250,0.3)" }}>
               <i className="ri-folder-shield-2-line text-purple-400 text-sm" />
@@ -42,7 +42,7 @@ const CaseManagementPage = () => {
           </div>
           <div className="flex items-center gap-3">
             {escalatedCount > 0 && (
-              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg animate-pulse" style={{ background: "rgba(248,113,113,0.1)", border: "1px solid rgba(248,113,113,0.3)" }}>
+              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg animate-pulse" style={{ background: "rgba(201,74,94,0.1)", border: "1px solid rgba(201,74,94,0.3)" }}>
                 <i className="ri-arrow-up-circle-line text-red-400 text-xs" />
                 <span className="text-red-400 text-xs font-bold font-['JetBrains_Mono']">{escalatedCount} ESCALATED</span>
               </div>
@@ -58,9 +58,9 @@ const CaseManagementPage = () => {
         <div className="grid grid-cols-5 gap-0 border-b flex-shrink-0" style={{ borderColor: "rgba(167,139,250,0.08)" }}>
           {[
             { label: "Total Cases",       value: cases.length.toString(),                                          icon: "ri-folder-line",           color: "#A78BFA" },
-            { label: "Active",            value: activeCount.toString(),                                           icon: "ri-play-circle-line",      color: "#D4A84B" },
-            { label: "Escalated",         value: escalatedCount.toString(),                                        icon: "ri-arrow-up-circle-line",  color: "#F87171" },
-            { label: "Critical Priority", value: criticalCount.toString(),                                         icon: "ri-alarm-warning-line",    color: "#FB923C" },
+            { label: "Active",            value: activeCount.toString(),                                           icon: "ri-play-circle-line",      color: "#D6B47E" },
+            { label: "Escalated",         value: escalatedCount.toString(),                                        icon: "ri-arrow-up-circle-line",  color: "#C94A5E" },
+            { label: "Critical Priority", value: criticalCount.toString(),                                         icon: "ri-alarm-warning-line",    color: "#C98A1B" },
             { label: "Total Subjects",    value: cases.reduce((s, c) => s + c.subjects.length, 0).toString(),     icon: "ri-user-line",             color: "#4ADE80" },
           ].map((kpi, i) => (
             <div key={kpi.label} className="flex items-center gap-3 px-5 py-3" style={{ borderRight: i < 4 ? "1px solid rgba(167,139,250,0.08)" : "none" }}>

@@ -33,7 +33,7 @@ const EVENT_CARDS: EventCard[] = [
     labelAr: "تصريح عمل صادر",
     desc: "Register a new work permit from Ministry of Labour feed or employer submission",
     descAr: "تسجيل تصريح عمل جديد من تغذية وزارة العمل أو إدخال صاحب العمل",
-    color: "#D4A84B", bgColor: "rgba(181,142,60,0.08)", borderColor: "rgba(181,142,60,0.25)",
+    color: "#D6B47E", bgColor: "rgba(184,138,60,0.08)", borderColor: "rgba(184,138,60,0.25)",
     code: "EMP_PERMIT_ISSUED",
   },
   {
@@ -63,10 +63,10 @@ const EVENT_CARDS: EventCard[] = [
     labelAr: "إنهاء العمل",
     desc: "Record employment termination — triggers absconding monitor if no border exit",
     descAr: "تسجيل إنهاء العمل — يُفعّل مراقبة التغيب إذا لم تُسجَّل مغادرة حدودية",
-    color: "#F87171", bgColor: "rgba(248,113,113,0.08)", borderColor: "rgba(248,113,113,0.25)",
+    color: "#C94A5E", bgColor: "rgba(201,74,94,0.08)", borderColor: "rgba(201,74,94,0.25)",
     code: "EMP_TERMINATION",
     badge: "TRIGGERS MONITOR",
-    badgeColor: "#F87171",
+    badgeColor: "#C94A5E",
   },
 ];
 
@@ -86,11 +86,11 @@ const EmploymentRegistryPage = () => {
   const activeCard = EVENT_CARDS.find((c) => c.id === activeEvent);
 
   return (
-    <div className="min-h-screen font-['Inter']" style={{ background: "#0B1220" }} dir={isAr ? "rtl" : "ltr"}>
-      <div className="fixed inset-0 pointer-events-none" style={{ backgroundImage: `linear-gradient(rgba(181,142,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,0.03) 1px, transparent 1px)`, backgroundSize: "40px 40px" }} />
+    <div className="min-h-screen font-['Inter']" style={{ background: "#051428" }} dir={isAr ? "rtl" : "ltr"}>
+      <div className="fixed inset-0 pointer-events-none" style={{ backgroundImage: `linear-gradient(rgba(184,138,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.03) 1px, transparent 1px)`, backgroundSize: "40px 40px" }} />
 
       {/* Header */}
-      <header className="sticky top-0 z-40 flex items-center justify-between px-6 py-3 border-b" style={{ background: "rgba(11,18,32,0.95)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
+      <header className="sticky top-0 z-40 flex items-center justify-between px-6 py-3 border-b" style={{ background: "rgba(5,20,40,0.95)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}>
         <div className="flex items-center gap-4">
           <button type="button"
             onClick={() => { if (activeEvent) { setActiveEvent(null); } else { navigate("/dashboard?type=employment"); } }}
@@ -102,13 +102,13 @@ const EmploymentRegistryPage = () => {
             {activeEvent ? (isAr ? "العودة" : "Back") : (isAr ? "لوحة التحكم" : "Dashboard")}
           </button>
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+            <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.2)" }}>
               <i className="ri-briefcase-line text-gold-400 text-sm" />
             </div>
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-white font-bold text-sm">{isAr ? "سجل التوظيف" : "Employment Registry"}</span>
-                <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(181,142,60,0.12)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>Al-Ameen Portal</span>
+                <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(184,138,60,0.12)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}>Al-Ameen Portal</span>
               </div>
               <p className="text-gray-500 text-xs">{isAr ? "وزارة العمل · أصحاب العمل المسجّلون" : "Ministry of Labour · Registered Employers"}</p>
             </div>
@@ -116,12 +116,12 @@ const EmploymentRegistryPage = () => {
         </div>
 
         <div className="flex items-center gap-3">
-          <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-lg border" style={{ background: "rgba(181,142,60,0.04)", borderColor: "rgba(181,142,60,0.12)" }}>
+          <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-lg border" style={{ background: "rgba(184,138,60,0.04)", borderColor: "rgba(184,138,60,0.12)" }}>
             <i className="ri-time-line text-gold-400 text-xs" />
             <span className="text-gold-400 text-xs font-bold font-['JetBrains_Mono']">{timeStr}</span>
           </div>
           {/* Absconding alert */}
-          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border" style={{ background: "rgba(248,113,113,0.08)", borderColor: "rgba(248,113,113,0.2)" }}>
+          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border" style={{ background: "rgba(201,74,94,0.08)", borderColor: "rgba(201,74,94,0.2)" }}>
             <i className="ri-user-unfollow-line text-red-400 text-xs" />
             <span className="text-red-400 text-xs font-bold font-['JetBrains_Mono']">3 {isAr ? "تغيب" : "ABSCONDING"}</span>
           </div>
@@ -140,17 +140,17 @@ const EmploymentRegistryPage = () => {
       </header>
 
       {/* Tab bar */}
-      <div className="sticky top-[57px] z-30 flex items-center gap-1 px-6 py-2 border-b" style={{ background: "rgba(11,18,32,0.9)", borderColor: "rgba(181,142,60,0.08)", backdropFilter: "blur(12px)" }}>
+      <div className="sticky top-[57px] z-30 flex items-center gap-1 px-6 py-2 border-b" style={{ background: "rgba(5,20,40,0.9)", borderColor: "rgba(184,138,60,0.08)", backdropFilter: "blur(12px)" }}>
         {([
           { id: "events" as Tab, icon: "ri-file-list-3-line", label: isAr ? "أحداث التوظيف" : "Employment Events" },
-          { id: "intelligence" as Tab, icon: "ri-spy-line", label: isAr ? "الذكاء الوظيفي" : "Employment Intelligence", badge: "3", badgeColor: "#F87171" },
+          { id: "intelligence" as Tab, icon: "ri-spy-line", label: isAr ? "الذكاء الوظيفي" : "Employment Intelligence", badge: "3", badgeColor: "#C94A5E" },
         ]).map((tab) => (
           <button key={tab.id} type="button" onClick={() => { setActiveTab(tab.id); setActiveEvent(null); }}
             className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap transition-all"
             style={{
-              background: activeTab === tab.id ? "rgba(181,142,60,0.12)" : "transparent",
-              border: `1px solid ${activeTab === tab.id ? "rgba(181,142,60,0.25)" : "transparent"}`,
-              color: activeTab === tab.id ? "#D4A84B" : "#6B7280",
+              background: activeTab === tab.id ? "rgba(184,138,60,0.12)" : "transparent",
+              border: `1px solid ${activeTab === tab.id ? "rgba(184,138,60,0.25)" : "transparent"}`,
+              color: activeTab === tab.id ? "#D6B47E" : "#6B7280",
             }}>
             <i className={`${tab.icon} text-xs`} />
             {tab.label}
@@ -178,9 +178,9 @@ const EmploymentRegistryPage = () => {
               {EVENT_CARDS.map((card) => (
                 <button key={card.id} type="button" onClick={() => setActiveEvent(card.id)}
                   className="group relative rounded-2xl border p-6 text-left cursor-pointer transition-all duration-300 flex flex-col gap-4"
-                  style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}
+                  style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}
                   onMouseEnter={(e) => { const el = e.currentTarget as HTMLButtonElement; el.style.borderColor = card.borderColor; el.style.background = card.bgColor; el.style.boxShadow = `0 0 30px ${card.color}18`; el.style.transform = "translateY(-2px)"; }}
-                  onMouseLeave={(e) => { const el = e.currentTarget as HTMLButtonElement; el.style.borderColor = "rgba(181,142,60,0.12)"; el.style.background = "rgba(20,29,46,0.8)"; el.style.boxShadow = "none"; el.style.transform = "translateY(0)"; }}>
+                  onMouseLeave={(e) => { const el = e.currentTarget as HTMLButtonElement; el.style.borderColor = "rgba(184,138,60,0.12)"; el.style.background = "rgba(10,37,64,0.8)"; el.style.boxShadow = "none"; el.style.transform = "translateY(0)"; }}>
                   {card.badge && (
                     <div className="absolute top-3 right-3 px-2 py-0.5 rounded-full text-xs font-bold font-['JetBrains_Mono']"
                       style={{ background: `${card.badgeColor}20`, color: card.badgeColor, border: `1px solid ${card.badgeColor}40`, fontSize: "9px" }}>
@@ -206,16 +206,16 @@ const EmploymentRegistryPage = () => {
             </div>
 
             {/* Ministry feed note */}
-            <div className="rounded-2xl border p-5" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
+            <div className="rounded-2xl border p-5" style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}>
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+                <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.2)" }}>
                   <i className="ri-government-line text-gold-400 text-sm" />
                 </div>
                 <h3 className="text-white font-bold text-sm">{isAr ? "مصادر البيانات" : "Data Sources"}</h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {[
-                  { icon: "ri-government-line", color: "#D4A84B", title: isAr ? "وزارة العمل" : "Ministry of Labour", desc: isAr ? "تغذية API لإصدار/تجديد/إلغاء تصاريح العمل" : "API feed for work permit issuance/renewal/cancellation" },
+                  { icon: "ri-government-line", color: "#D6B47E", title: isAr ? "وزارة العمل" : "Ministry of Labour", desc: isAr ? "تغذية API لإصدار/تجديد/إلغاء تصاريح العمل" : "API feed for work permit issuance/renewal/cancellation" },
                   { icon: "ri-building-line", color: "#4ADE80", title: isAr ? "أصحاب العمل المسجّلون" : "Registered Employers", desc: isAr ? "أحداث تأهيل/إنهاء الموظفين عبر بوابة Al-Ameen أو API" : "Employee onboarding/termination events via Al-Ameen Portal or API" },
                 ].map((src) => (
                   <div key={src.title} className="flex items-start gap-3 px-4 py-3 rounded-xl" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
@@ -250,7 +250,7 @@ const EmploymentRegistryPage = () => {
             </div>
 
             {/* Tab switcher */}
-            <div className="flex gap-1 p-1 rounded-xl mb-6 overflow-x-auto" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.1)" }}>
+            <div className="flex gap-1 p-1 rounded-xl mb-6 overflow-x-auto" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.1)" }}>
               {EVENT_CARDS.map((card) => (
                 <button key={card.id} type="button" onClick={() => setActiveEvent(card.id)}
                   className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap transition-all flex-shrink-0"

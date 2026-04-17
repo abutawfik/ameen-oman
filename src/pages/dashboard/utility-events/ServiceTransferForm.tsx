@@ -77,7 +77,7 @@ const ServiceTransferForm = ({ isAr, onCancel }: Props) => {
     setTimeout(() => { setSaving(false); setSubmitted(true); }, 1400);
   };
 
-  if (submitted) return <UtilConfirmation isAr={isAr} onReset={() => setSubmitted(false)} eventLabel="Service Transfer" eventLabelAr="نقل الخدمة" eventColor="#D4A84B" />;
+  if (submitted) return <UtilConfirmation isAr={isAr} onReset={() => setSubmitted(false)} eventLabel="Service Transfer" eventLabelAr="نقل الخدمة" eventColor="#D6B47E" />;
 
   const docTypeOpts = DOC_TYPES.map((d) => ({ value: d.value, label: isAr ? (d.value === "passport" ? "جواز سفر" : d.value === "national_id" ? "بطاقة هوية" : d.value === "resident_card" ? "بطاقة إقامة" : "هوية خليجية") : d.label }));
 
@@ -91,9 +91,9 @@ const ServiceTransferForm = ({ isAr, onCancel }: Props) => {
               <TextInput placeholder="ACC-XXXX-XXXX" value={oldAccount} onChange={(e) => setOldAccount(e.target.value)} className="font-['JetBrains_Mono'] flex-1" />
               <button type="button" onClick={handleLookup}
                 className="flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap transition-colors"
-                style={{ background: "#D4A84B", color: "#0B1220" }}
+                style={{ background: "#D6B47E", color: "#051428" }}
                 onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C99C48"; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#D4A84B"; }}>
+                onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#D6B47E"; }}>
                 {lookingUp ? <i className="ri-loader-4-line animate-spin" /> : <i className="ri-search-line" />}
                 {isAr ? "بحث" : "Lookup"}
               </button>
@@ -101,10 +101,10 @@ const ServiceTransferForm = ({ isAr, onCancel }: Props) => {
           </FormField>
 
           {oldAccountInfo && (
-            <div className="rounded-xl border p-4" style={{ background: oldAccountInfo.status === "active" ? "rgba(74,222,128,0.06)" : "rgba(248,113,113,0.06)", borderColor: oldAccountInfo.status === "active" ? "rgba(74,222,128,0.2)" : "rgba(248,113,113,0.2)" }}>
+            <div className="rounded-xl border p-4" style={{ background: oldAccountInfo.status === "active" ? "rgba(74,222,128,0.06)" : "rgba(201,74,94,0.06)", borderColor: oldAccountInfo.status === "active" ? "rgba(74,222,128,0.2)" : "rgba(201,74,94,0.2)" }}>
               <div className="flex items-center gap-2 mb-3">
                 <div className={`w-2 h-2 rounded-full ${oldAccountInfo.status === "active" ? "bg-green-400 animate-pulse" : "bg-red-400"}`} />
-                <span className="text-xs font-bold font-['JetBrains_Mono']" style={{ color: oldAccountInfo.status === "active" ? "#4ADE80" : "#F87171" }}>
+                <span className="text-xs font-bold font-['JetBrains_Mono']" style={{ color: oldAccountInfo.status === "active" ? "#4ADE80" : "#C94A5E" }}>
                   {oldAccountInfo.status.toUpperCase()}
                 </span>
               </div>
@@ -125,7 +125,7 @@ const ServiceTransferForm = ({ isAr, onCancel }: Props) => {
           )}
 
           {oldAccountInfo === null && oldAccount && !lookingUp && (
-            <div className="flex items-center gap-2 px-4 py-3 rounded-xl border" style={{ background: "rgba(248,113,113,0.06)", borderColor: "rgba(248,113,113,0.2)" }}>
+            <div className="flex items-center gap-2 px-4 py-3 rounded-xl border" style={{ background: "rgba(201,74,94,0.06)", borderColor: "rgba(201,74,94,0.2)" }}>
               <i className="ri-error-warning-line text-red-400 text-sm" />
               <span className="text-red-400 text-sm">{isAr ? "لم يتم العثور على الحساب" : "Account not found"}</span>
             </div>

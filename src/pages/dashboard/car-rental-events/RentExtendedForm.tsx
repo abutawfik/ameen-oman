@@ -208,8 +208,8 @@ const RentExtendedForm = ({ isAr, onCancel }: Props) => {
             <div
               className="flex items-center justify-between p-4 rounded-xl border cursor-pointer transition-all"
               style={{
-                background: additionalInsurance ? "rgba(181,142,60,0.05)" : "rgba(255,255,255,0.02)",
-                borderColor: additionalInsurance ? "rgba(181,142,60,0.25)" : "rgba(255,255,255,0.07)",
+                background: additionalInsurance ? "rgba(184,138,60,0.05)" : "rgba(255,255,255,0.02)",
+                borderColor: additionalInsurance ? "rgba(184,138,60,0.25)" : "rgba(255,255,255,0.07)",
               }}
               onClick={() => setAdditionalInsurance((v) => !v)}
             >
@@ -217,8 +217,8 @@ const RentExtendedForm = ({ isAr, onCancel }: Props) => {
                 <div
                   className="w-9 h-9 flex items-center justify-center rounded-lg flex-shrink-0"
                   style={{
-                    background: additionalInsurance ? "rgba(181,142,60,0.1)" : "rgba(255,255,255,0.04)",
-                    border: `1px solid ${additionalInsurance ? "rgba(181,142,60,0.25)" : "rgba(255,255,255,0.07)"}`,
+                    background: additionalInsurance ? "rgba(184,138,60,0.1)" : "rgba(255,255,255,0.04)",
+                    border: `1px solid ${additionalInsurance ? "rgba(184,138,60,0.25)" : "rgba(255,255,255,0.07)"}`,
                   }}
                 >
                   <i className={`ri-shield-line text-base ${additionalInsurance ? "text-gold-400" : "text-gray-600"}`} />
@@ -230,7 +230,7 @@ const RentExtendedForm = ({ isAr, onCancel }: Props) => {
               </div>
               <div
                 className="w-11 h-6 rounded-full transition-all relative flex-shrink-0"
-                style={{ background: additionalInsurance ? "#D4A84B" : "rgba(255,255,255,0.08)" }}
+                style={{ background: additionalInsurance ? "#D6B47E" : "rgba(255,255,255,0.08)" }}
               >
                 <div
                   className="absolute top-0.5 w-5 h-5 rounded-full bg-white transition-all duration-200"
@@ -261,7 +261,7 @@ const RentExtendedForm = ({ isAr, onCancel }: Props) => {
                     autoFilled={autoFilled && !!dailyRate}
                     className="font-['JetBrains_Mono'] pr-12"
                   />
-                  <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold font-['JetBrains_Mono']" style={{ color: "#D4A84B" }}>LCY</span>
+                  <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold font-['JetBrains_Mono']" style={{ color: "#D6B47E" }}>LCY</span>
                 </div>
               </FormField>
               <FormField label={t.revisedTotal}>
@@ -272,9 +272,9 @@ const RentExtendedForm = ({ isAr, onCancel }: Props) => {
                     value={revisedTotal}
                     onChange={(e) => setRevisedTotal(e.target.value)}
                     className="font-['JetBrains_Mono'] pr-12"
-                    style={{ color: "#D4A84B" }}
+                    style={{ color: "#D6B47E" }}
                   />
-                  <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold font-['JetBrains_Mono']" style={{ color: "#D4A84B" }}>LCY</span>
+                  <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold font-['JetBrains_Mono']" style={{ color: "#D6B47E" }}>LCY</span>
                 </div>
               </FormField>
             </div>
@@ -283,7 +283,7 @@ const RentExtendedForm = ({ isAr, onCancel }: Props) => {
             {revisedTotal && (
               <div
                 className="rounded-xl p-4 border"
-                style={{ background: "rgba(181,142,60,0.03)", borderColor: "rgba(181,142,60,0.12)" }}
+                style={{ background: "rgba(184,138,60,0.03)", borderColor: "rgba(184,138,60,0.12)" }}
               >
                 <p className="text-gray-500 text-xs mb-3 font-['Inter'] uppercase tracking-wide">{t.extSummary}</p>
                 {[
@@ -299,7 +299,7 @@ const RentExtendedForm = ({ isAr, onCancel }: Props) => {
                     <span className="text-gray-500 text-xs font-['Inter']">{row.label}</span>
                     <span
                       className="text-sm font-bold font-['JetBrains_Mono']"
-                      style={{ color: row.highlight ? "#D4A84B" : "#D1D5DB" }}
+                      style={{ color: row.highlight ? "#D6B47E" : "#D1D5DB" }}
                     >
                       {row.value}
                     </span>

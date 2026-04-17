@@ -27,19 +27,19 @@ const TransportIntelligencePage = () => {
   const TABS: { id: Tab; icon: string; label: string; labelAr: string; badge?: string; badgeColor?: string }[] = [
     { id: "dashboard", icon: "ri-dashboard-3-line", label: "Overview", labelAr: "نظرة عامة" },
     { id: "movement", icon: "ri-user-location-line", label: "Person Movement", labelAr: "تنقل الأشخاص" },
-    { id: "anomalies", icon: "ri-alarm-warning-line", label: "Anomalies", labelAr: "الشذوذات", badge: "5", badgeColor: "#F87171" },
+    { id: "anomalies", icon: "ri-alarm-warning-line", label: "Anomalies", labelAr: "الشذوذات", badge: "5", badgeColor: "#C94A5E" },
     { id: "feed", icon: "ri-pulse-line", label: "Live Feed", labelAr: "التغذية المباشرة" },
     { id: "forms", icon: "ri-file-add-line", label: "Record Trip", labelAr: "تسجيل رحلة" },
     { id: "config", icon: "ri-settings-4-line", label: "Configuration", labelAr: "الإعداد" },
   ];
 
   return (
-    <div className="min-h-screen font-['Inter']" style={{ background: "#0B1220" }} dir={isAr ? "rtl" : "ltr"}>
+    <div className="min-h-screen font-['Inter']" style={{ background: "#051428" }} dir={isAr ? "rtl" : "ltr"}>
       {/* Grid texture */}
-      <div className="fixed inset-0 pointer-events-none" style={{ backgroundImage: `linear-gradient(rgba(181,142,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,0.03) 1px, transparent 1px)`, backgroundSize: "40px 40px" }} />
+      <div className="fixed inset-0 pointer-events-none" style={{ backgroundImage: `linear-gradient(rgba(184,138,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.03) 1px, transparent 1px)`, backgroundSize: "40px 40px" }} />
 
       {/* Header */}
-      <header className="sticky top-0 z-40 flex items-center justify-between px-6 py-3 border-b" style={{ background: "rgba(11,18,32,0.95)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
+      <header className="sticky top-0 z-40 flex items-center justify-between px-6 py-3 border-b" style={{ background: "rgba(5,20,40,0.95)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}>
         <div className="flex items-center gap-4">
           <button type="button" onClick={() => navigate("/dashboard?type=transport")}
             className="flex items-center gap-2 px-3 py-1.5 rounded-lg border text-sm font-semibold cursor-pointer whitespace-nowrap transition-colors"
@@ -50,13 +50,13 @@ const TransportIntelligencePage = () => {
             {isAr ? "لوحة التحكم" : "Dashboard"}
           </button>
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+            <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.2)" }}>
               <i className="ri-route-line text-gold-400 text-sm" />
             </div>
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-white font-bold text-sm">{isAr ? "ذكاء النقل العام" : "Public Transport Intelligence"}</span>
-                <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(181,142,60,0.12)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>Al-Ameen</span>
+                <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(184,138,60,0.12)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}>Al-Ameen</span>
               </div>
               <p className="text-gray-500 text-xs">{isAr ? "الحافلات الوطنية · شركات التاكسي · تطبيقات التوصيل" : "National Bus Co. · Licensed Taxis · Ride-Hail Apps"}</p>
             </div>
@@ -65,16 +65,16 @@ const TransportIntelligencePage = () => {
 
         <div className="flex items-center gap-3">
           {/* Live clock */}
-          <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-lg border" style={{ background: "rgba(181,142,60,0.04)", borderColor: "rgba(181,142,60,0.12)" }}>
+          <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-lg border" style={{ background: "rgba(184,138,60,0.04)", borderColor: "rgba(184,138,60,0.12)" }}>
             <i className="ri-time-line text-gold-400 text-xs" />
             <span className="text-gold-400 text-xs font-bold font-['JetBrains_Mono']">{timeStr}</span>
           </div>
           {/* Provider pills */}
           <div className="hidden xl:flex items-center gap-2">
             {[
-              { label: "Nat.Bus", color: "#D4A84B" },
+              { label: "Nat.Bus", color: "#D6B47E" },
               { label: "Ride-Hail A", color: "#A78BFA" },
-              { label: "Ride-Hail B", color: "#FB923C" },
+              { label: "Ride-Hail B", color: "#C98A1B" },
             ].map((p) => (
               <div key={p.label} className="flex items-center gap-1.5 px-2 py-1 rounded-full border" style={{ background: `${p.color}08`, borderColor: `${p.color}20` }}>
                 <div className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: p.color }} />
@@ -83,7 +83,7 @@ const TransportIntelligencePage = () => {
             ))}
           </div>
           {/* Anomaly badge */}
-          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border" style={{ background: "rgba(248,113,113,0.08)", borderColor: "rgba(248,113,113,0.2)" }}>
+          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border" style={{ background: "rgba(201,74,94,0.08)", borderColor: "rgba(201,74,94,0.2)" }}>
             <i className="ri-alarm-warning-line text-red-400 text-xs" />
             <span className="text-red-400 text-xs font-bold font-['JetBrains_Mono']">5 {isAr ? "شذوذ" : "ANOMALIES"}</span>
           </div>
@@ -97,14 +97,14 @@ const TransportIntelligencePage = () => {
       </header>
 
       {/* Tab bar */}
-      <div className="sticky top-[57px] z-30 flex items-center gap-1 px-6 py-2 border-b overflow-x-auto" style={{ background: "rgba(11,18,32,0.9)", borderColor: "rgba(181,142,60,0.08)", backdropFilter: "blur(12px)" }}>
+      <div className="sticky top-[57px] z-30 flex items-center gap-1 px-6 py-2 border-b overflow-x-auto" style={{ background: "rgba(5,20,40,0.9)", borderColor: "rgba(184,138,60,0.08)", backdropFilter: "blur(12px)" }}>
         {TABS.map((tab) => (
           <button key={tab.id} type="button" onClick={() => setActiveTab(tab.id)}
             className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap transition-all flex-shrink-0"
             style={{
-              background: activeTab === tab.id ? "rgba(181,142,60,0.12)" : "transparent",
-              border: `1px solid ${activeTab === tab.id ? "rgba(181,142,60,0.25)" : "transparent"}`,
-              color: activeTab === tab.id ? "#D4A84B" : "#6B7280",
+              background: activeTab === tab.id ? "rgba(184,138,60,0.12)" : "transparent",
+              border: `1px solid ${activeTab === tab.id ? "rgba(184,138,60,0.25)" : "transparent"}`,
+              color: activeTab === tab.id ? "#D6B47E" : "#6B7280",
             }}>
             <i className={`${tab.icon} text-xs`} />
             {isAr ? tab.labelAr : tab.label}
@@ -140,18 +140,18 @@ const TransportIntelligencePage = () => {
             <RouteHeatmap isAr={isAr} />
 
             {/* Cross-stream intelligence note */}
-            <div className="rounded-2xl border p-5" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
+            <div className="rounded-2xl border p-5" style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}>
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+                <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.2)" }}>
                   <i className="ri-links-line text-gold-400 text-sm" />
                 </div>
                 <h3 className="text-white font-bold text-sm">{isAr ? "قيمة التدفق المتقاطع" : "Cross-Stream Intelligence"}</h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {[
-                  { icon: "ri-store-line", color: "#F87171", title: isAr ? "سائح في منطقة صناعية" : "Tourist → Industrial Zone", desc: isAr ? "سائح بتأشيرة يأخذ الحافلة يومياً إلى المنطقة الصناعية — ليست منطقة سياحية → تنبيه" : "Tourist visa → daily bus to industrial area (not tourist area) → flag" },
-                  { icon: "ri-ghost-line", color: "#FB923C", title: isAr ? "لا عنوان + تاكسي مكثف" : "No Address + Heavy Taxi", desc: isAr ? "شخص بدون عنوان مسجّل + استخدام مكثف للتاكسي → أين ينام؟" : "Person with no registered address → heavy taxi usage → where are they sleeping?" },
-                  { icon: "ri-wifi-line", color: "#D4A84B", title: isAr ? "ربط الهاتف بالرحلة" : "Phone → Trip Linkage", desc: isAr ? "رقم الهاتف في تدفق SIM يطابق بيانات تطبيق التوصيل → هوية مؤكدة" : "Phone number in SIM stream matches ride-hail app data → confirmed identity" },
+                  { icon: "ri-store-line", color: "#C94A5E", title: isAr ? "سائح في منطقة صناعية" : "Tourist → Industrial Zone", desc: isAr ? "سائح بتأشيرة يأخذ الحافلة يومياً إلى المنطقة الصناعية — ليست منطقة سياحية → تنبيه" : "Tourist visa → daily bus to industrial area (not tourist area) → flag" },
+                  { icon: "ri-ghost-line", color: "#C98A1B", title: isAr ? "لا عنوان + تاكسي مكثف" : "No Address + Heavy Taxi", desc: isAr ? "شخص بدون عنوان مسجّل + استخدام مكثف للتاكسي → أين ينام؟" : "Person with no registered address → heavy taxi usage → where are they sleeping?" },
+                  { icon: "ri-wifi-line", color: "#D6B47E", title: isAr ? "ربط الهاتف بالرحلة" : "Phone → Trip Linkage", desc: isAr ? "رقم الهاتف في تدفق SIM يطابق بيانات تطبيق التوصيل → هوية مؤكدة" : "Phone number in SIM stream matches ride-hail app data → confirmed identity" },
                 ].map((item) => (
                   <div key={item.title} className="flex items-start gap-3 px-4 py-3 rounded-xl" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
                     <div className="w-8 h-8 flex items-center justify-center rounded-lg flex-shrink-0" style={{ background: `${item.color}12`, border: `1px solid ${item.color}20` }}>
@@ -167,16 +167,16 @@ const TransportIntelligencePage = () => {
             </div>
 
             {/* AMN-TRN codes */}
-            <div className="rounded-2xl border p-5" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
+            <div className="rounded-2xl border p-5" style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}>
               <div className="flex items-center gap-3 mb-3">
-                <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+                <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.2)" }}>
                   <i className="ri-qr-code-line text-gold-400 text-sm" />
                 </div>
                 <h3 className="text-white font-bold text-sm">{isAr ? "رموز تأكيد Al-Ameen" : "Al-Ameen Confirmation Codes"}</h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 {[
-                  { code: "AMN-TRN-20260405-4821", label: isAr ? "رحلة حافلة" : "Bus Journey", color: "#D4A84B" },
+                  { code: "AMN-TRN-20260405-4821", label: isAr ? "رحلة حافلة" : "Bus Journey", color: "#D6B47E" },
                   { code: "AMN-TRN-20260405-3247", label: isAr ? "رحلة تاكسي" : "Taxi Trip", color: "#4ADE80" },
                   { code: "AMN-TRN-20260405-8934", label: isAr ? "رحلة توصيل" : "Ride-Hail Trip", color: "#A78BFA" },
                 ].map((ex) => (

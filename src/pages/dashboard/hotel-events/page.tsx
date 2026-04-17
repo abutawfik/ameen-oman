@@ -10,8 +10,8 @@ type FormType = "checkin" | "checkout" | "booking" | "changeroom";
 
 const FORM_TABS: { key: FormType; icon: string; labelEn: string; labelAr: string; color: string; eventCode: string }[] = [
   { key: "checkin",    icon: "ri-login-box-line",    labelEn: "Check-In",    labelAr: "تسجيل دخول",  color: "#4ADE80", eventCode: "HOTEL_CHECKIN" },
-  { key: "checkout",   icon: "ri-logout-box-line",   labelEn: "Check-Out",   labelAr: "تسجيل خروج",  color: "#FB923C", eventCode: "HOTEL_CHECKOUT" },
-  { key: "booking",    icon: "ri-calendar-line",     labelEn: "Booking",     labelAr: "حجز",          color: "#D4A84B", eventCode: "HOTEL_BOOKING" },
+  { key: "checkout",   icon: "ri-logout-box-line",   labelEn: "Check-Out",   labelAr: "تسجيل خروج",  color: "#C98A1B", eventCode: "HOTEL_CHECKOUT" },
+  { key: "booking",    icon: "ri-calendar-line",     labelEn: "Booking",     labelAr: "حجز",          color: "#D6B47E", eventCode: "HOTEL_BOOKING" },
   { key: "changeroom", icon: "ri-door-line",         labelEn: "Room Change", labelAr: "تغيير غرفة",  color: "#FACC15", eventCode: "HOTEL_ROOM_CHANGE" },
 ];
 
@@ -32,12 +32,12 @@ const HotelEventsPage = () => {
   const activeTab = FORM_TABS.find((t) => t.key === activeForm)!;
 
   return (
-    <div className="min-h-screen" style={{ background: "#0B1220" }}>
+    <div className="min-h-screen" style={{ background: "#051428" }}>
       {/* Grid bg */}
-      <div className="fixed inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: `linear-gradient(rgba(181,142,60,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,0.1) 1px, transparent 1px)`, backgroundSize: "60px 60px" }} />
+      <div className="fixed inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: `linear-gradient(rgba(184,138,60,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.1) 1px, transparent 1px)`, backgroundSize: "60px 60px" }} />
 
       {/* Top bar */}
-      <header className="sticky top-0 z-30 border-b" style={{ background: "rgba(11,18,32,0.97)", borderColor: "rgba(181,142,60,0.15)", backdropFilter: "blur(12px)" }}>
+      <header className="sticky top-0 z-30 border-b" style={{ background: "rgba(5,20,40,0.97)", borderColor: "rgba(184,138,60,0.15)", backdropFilter: "blur(12px)" }}>
         <div className="max-w-[1200px] mx-auto px-4 md:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <button onClick={() => navigate("/dashboard?type=hotel")}
@@ -54,7 +54,7 @@ const HotelEventsPage = () => {
           </div>
           <div className="flex items-center gap-3">
             {/* Entity badge */}
-            <div className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-lg border" style={{ background: "rgba(181,142,60,0.05)", borderColor: "rgba(181,142,60,0.15)" }}>
+            <div className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-lg border" style={{ background: "rgba(184,138,60,0.05)", borderColor: "rgba(184,138,60,0.15)" }}>
               <i className="ri-hotel-line text-gold-400 text-xs" />
               <span className="text-gray-400 text-xs font-['Inter']">Grand Capital Hotel</span>
               <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
@@ -87,7 +87,7 @@ const HotelEventsPage = () => {
               onClick={() => { setActiveForm(tab.key); setFormKey((k) => k + 1); }}
               className="flex items-center gap-2 px-4 py-2.5 rounded-xl border text-sm font-semibold transition-all cursor-pointer whitespace-nowrap font-['Inter']"
               style={{
-                background: activeForm === tab.key ? tab.color + "15" : "rgba(20,29,46,0.7)",
+                background: activeForm === tab.key ? tab.color + "15" : "rgba(10,37,64,0.7)",
                 borderColor: activeForm === tab.key ? tab.color + "60" : "rgba(255,255,255,0.08)",
                 color: activeForm === tab.key ? tab.color : "#6B7280",
                 boxShadow: activeForm === tab.key ? `0 0 16px ${tab.color}10` : "none",

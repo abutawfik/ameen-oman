@@ -27,8 +27,8 @@ const NATIONALITIES: NationalityRow[] = [
 const riskColor = (risk: NationalityRow["risk"]) => {
   if (risk === "low") return "#4ADE80";
   if (risk === "medium") return "#FACC15";
-  if (risk === "high") return "#FB923C";
-  return "#F87171";
+  if (risk === "high") return "#C98A1B";
+  return "#C94A5E";
 };
 
 const riskLabel = (risk: NationalityRow["risk"], isAr: boolean) => {
@@ -45,10 +45,10 @@ const NationalityBreakdown = ({ isAr }: Props) => {
   const maxCount = Math.max(...NATIONALITIES.map((n) => n.count));
 
   return (
-    <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.15)", backdropFilter: "blur(12px)" }}>
-      <div className="flex items-center justify-between px-6 py-4 border-b" style={{ borderColor: "rgba(181,142,60,0.1)" }}>
+    <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.15)", backdropFilter: "blur(12px)" }}>
+      <div className="flex items-center justify-between px-6 py-4 border-b" style={{ borderColor: "rgba(184,138,60,0.1)" }}>
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+          <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.2)" }}>
             <i className="ri-global-line text-gold-400 text-sm" />
           </div>
           <div>
@@ -65,7 +65,7 @@ const NationalityBreakdown = ({ isAr }: Props) => {
           ))}
         </div>
       </div>
-      <div className="divide-y" style={{ borderColor: "rgba(181,142,60,0.06)" }}>
+      <div className="divide-y" style={{ borderColor: "rgba(184,138,60,0.06)" }}>
         {NATIONALITIES.map((nat, idx) => {
           const color = riskColor(nat.risk);
           const barWidth = (nat.count / maxCount) * 100;

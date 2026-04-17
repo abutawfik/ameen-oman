@@ -2,32 +2,32 @@ import { useState } from "react";
 import { iocEntries, type IocEntry, type IocType, type SeverityLevel, type IocStatus } from "@/mocks/threatIntelData";
 
 const severityConfig: Record<SeverityLevel, { color: string; bg: string; label: string }> = {
-  critical: { color: "#F87171", bg: "rgba(248,113,113,0.1)", label: "CRITICAL" },
-  high:     { color: "#FB923C", bg: "rgba(251,146,60,0.1)",  label: "HIGH" },
+  critical: { color: "#C94A5E", bg: "rgba(201,74,94,0.1)", label: "CRITICAL" },
+  high:     { color: "#C98A1B", bg: "rgba(201,138,27,0.1)",  label: "HIGH" },
   medium:   { color: "#FACC15", bg: "rgba(250,204,21,0.1)",  label: "MEDIUM" },
   low:      { color: "#4ADE80", bg: "rgba(74,222,128,0.1)",  label: "LOW" },
 };
 
 const statusConfig: Record<IocStatus, { color: string; label: string; icon: string }> = {
-  active:         { color: "#F87171", label: "Active",         icon: "ri-record-circle-line" },
+  active:         { color: "#C94A5E", label: "Active",         icon: "ri-record-circle-line" },
   investigating:  { color: "#FACC15", label: "Investigating",  icon: "ri-search-line" },
   mitigated:      { color: "#4ADE80", label: "Mitigated",      icon: "ri-shield-check-line" },
   false_positive: { color: "#6B7280", label: "False Positive", icon: "ri-close-circle-line" },
 };
 
 const typeConfig: Record<IocType, { icon: string; color: string; label: string }> = {
-  ip:     { icon: "ri-server-line",       color: "#D4A84B", label: "IP Address" },
+  ip:     { icon: "ri-server-line",       color: "#D6B47E", label: "IP Address" },
   domain: { icon: "ri-global-line",       color: "#A78BFA", label: "Domain" },
-  hash:   { icon: "ri-fingerprint-line",  color: "#F87171", label: "File Hash" },
+  hash:   { icon: "ri-fingerprint-line",  color: "#C94A5E", label: "File Hash" },
   email:  { icon: "ri-mail-line",         color: "#FACC15", label: "Email" },
-  url:    { icon: "ri-link",              color: "#FB923C", label: "URL" },
+  url:    { icon: "ri-link",              color: "#C98A1B", label: "URL" },
   wallet: { icon: "ri-coin-line",         color: "#4ADE80", label: "Crypto Wallet" },
   phone:  { icon: "ri-phone-line",        color: "#38BDF8", label: "Phone" },
 };
 
 const tlpConfig = {
-  RED:   { color: "#F87171", bg: "rgba(248,113,113,0.15)" },
-  AMBER: { color: "#FB923C", bg: "rgba(251,146,60,0.15)" },
+  RED:   { color: "#C94A5E", bg: "rgba(201,74,94,0.15)" },
+  AMBER: { color: "#C98A1B", bg: "rgba(201,138,27,0.15)" },
   GREEN: { color: "#4ADE80", bg: "rgba(74,222,128,0.15)" },
   WHITE: { color: "#E5E7EB", bg: "rgba(229,231,235,0.1)" },
 };
@@ -56,8 +56,8 @@ const IocFeed = ({ isAr }: Props) => {
       {/* Stats bar */}
       <div className="grid grid-cols-4 gap-3">
         {[
-          { label: "Total IOCs", value: iocEntries.length.toString(), icon: "ri-database-line", color: "#D4A84B" },
-          { label: "Critical Active", value: iocEntries.filter(i => i.severity === "critical" && i.status === "active").length.toString(), icon: "ri-alarm-warning-line", color: "#F87171" },
+          { label: "Total IOCs", value: iocEntries.length.toString(), icon: "ri-database-line", color: "#D6B47E" },
+          { label: "Critical Active", value: iocEntries.filter(i => i.severity === "critical" && i.status === "active").length.toString(), icon: "ri-alarm-warning-line", color: "#C94A5E" },
           { label: "Investigating", value: iocEntries.filter(i => i.status === "investigating").length.toString(), icon: "ri-search-eye-line", color: "#FACC15" },
           { label: "Mitigated", value: iocEntries.filter(i => i.status === "mitigated").length.toString(), icon: "ri-shield-check-line", color: "#4ADE80" },
         ].map((stat) => (
@@ -90,9 +90,9 @@ const IocFeed = ({ isAr }: Props) => {
             <button key={s} onClick={() => setSelectedSeverity(s)}
               className="px-3 py-1.5 rounded-lg text-xs font-['Inter'] cursor-pointer transition-all whitespace-nowrap"
               style={{
-                background: selectedSeverity === s ? (s === "all" ? "rgba(181,142,60,0.15)" : severityConfig[s as SeverityLevel]?.bg) : "rgba(255,255,255,0.04)",
-                color: selectedSeverity === s ? (s === "all" ? "#D4A84B" : severityConfig[s as SeverityLevel]?.color) : "#6B7280",
-                border: `1px solid ${selectedSeverity === s ? (s === "all" ? "rgba(181,142,60,0.3)" : severityConfig[s as SeverityLevel]?.color + "40") : "rgba(255,255,255,0.06)"}`,
+                background: selectedSeverity === s ? (s === "all" ? "rgba(184,138,60,0.15)" : severityConfig[s as SeverityLevel]?.bg) : "rgba(255,255,255,0.04)",
+                color: selectedSeverity === s ? (s === "all" ? "#D6B47E" : severityConfig[s as SeverityLevel]?.color) : "#6B7280",
+                border: `1px solid ${selectedSeverity === s ? (s === "all" ? "rgba(184,138,60,0.3)" : severityConfig[s as SeverityLevel]?.color + "40") : "rgba(255,255,255,0.06)"}`,
               }}>
               {s === "all" ? "All" : s.charAt(0).toUpperCase() + s.slice(1)}
             </button>
@@ -189,7 +189,7 @@ const IocFeed = ({ isAr }: Props) => {
                           <p className="text-gray-600 text-[10px] font-['JetBrains_Mono'] mb-1">LINKED STREAMS</p>
                           <div className="flex flex-wrap gap-1">
                             {ioc.linkedStreams.map((s) => (
-                              <span key={s} className="text-[10px] px-2 py-0.5 rounded font-['Inter']" style={{ background: "rgba(181,142,60,0.1)", color: "#D4A84B" }}>{s}</span>
+                              <span key={s} className="text-[10px] px-2 py-0.5 rounded font-['Inter']" style={{ background: "rgba(184,138,60,0.1)", color: "#D6B47E" }}>{s}</span>
                             ))}
                           </div>
                         </div>
@@ -220,10 +220,10 @@ const IocFeed = ({ isAr }: Props) => {
                         ))}
                       </div>
                       <div className="flex gap-2">
-                        <button className="flex-1 py-1.5 rounded-lg text-[10px] font-['Inter'] cursor-pointer transition-colors whitespace-nowrap" style={{ background: "rgba(181,142,60,0.08)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>
+                        <button className="flex-1 py-1.5 rounded-lg text-[10px] font-['Inter'] cursor-pointer transition-colors whitespace-nowrap" style={{ background: "rgba(184,138,60,0.08)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}>
                           <i className="ri-search-eye-line mr-1" />Investigate
                         </button>
-                        <button className="flex-1 py-1.5 rounded-lg text-[10px] font-['Inter'] cursor-pointer transition-colors whitespace-nowrap" style={{ background: "rgba(248,113,113,0.08)", color: "#F87171", border: "1px solid rgba(248,113,113,0.2)" }}>
+                        <button className="flex-1 py-1.5 rounded-lg text-[10px] font-['Inter'] cursor-pointer transition-colors whitespace-nowrap" style={{ background: "rgba(201,74,94,0.08)", color: "#C94A5E", border: "1px solid rgba(201,74,94,0.2)" }}>
                           <i className="ri-flag-line mr-1" />Escalate
                         </button>
                       </div>

@@ -79,8 +79,8 @@ const StepDocuments = ({ files, onFilesChange, isAr }: Props) => {
   };
 
   const getIconColor = (type: string) => {
-    if (type === "application/pdf") return "#F87171";
-    if (type.startsWith("image/")) return "#D4A84B";
+    if (type === "application/pdf") return "#C94A5E";
+    if (type.startsWith("image/")) return "#D6B47E";
     return "#9CA3AF";
   };
 
@@ -100,7 +100,7 @@ const StepDocuments = ({ files, onFilesChange, isAr }: Props) => {
               <div
                 key={i}
                 className="flex items-center gap-3 p-3 rounded-lg border"
-                style={{ background: "rgba(20,29,46,0.6)", borderColor: "rgba(255,255,255,0.06)" }}
+                style={{ background: "rgba(10,37,64,0.6)", borderColor: "rgba(255,255,255,0.06)" }}
               >
                 <div className="w-6 h-6 flex items-center justify-center flex-shrink-0">
                   <i className="ri-file-text-line text-gold-400 text-sm" />
@@ -109,8 +109,8 @@ const StepDocuments = ({ files, onFilesChange, isAr }: Props) => {
                 <span
                   className="text-xs px-1.5 py-0.5 rounded font-['Inter'] flex-shrink-0"
                   style={{
-                    background: doc.required ? "rgba(248,113,113,0.1)" : "rgba(156,163,175,0.1)",
-                    color: doc.required ? "#F87171" : "#6B7280",
+                    background: doc.required ? "rgba(201,74,94,0.1)" : "rgba(156,163,175,0.1)",
+                    color: doc.required ? "#C94A5E" : "#6B7280",
                   }}
                 >
                   {doc.required ? t.required_label : t.optional}
@@ -135,8 +135,8 @@ const StepDocuments = ({ files, onFilesChange, isAr }: Props) => {
           <div
             className="relative flex flex-col items-center justify-center p-10 rounded-xl border-2 border-dashed transition-all duration-200 cursor-pointer"
             style={{
-              borderColor: dragging ? "rgba(181,142,60,0.8)" : "rgba(181,142,60,0.3)",
-              background: dragging ? "rgba(181,142,60,0.06)" : "rgba(20,29,46,0.5)",
+              borderColor: dragging ? "rgba(184,138,60,0.8)" : "rgba(184,138,60,0.3)",
+              background: dragging ? "rgba(184,138,60,0.06)" : "rgba(10,37,64,0.5)",
             }}
             onDragOver={(e) => { e.preventDefault(); setDragging(true); }}
             onDragLeave={() => setDragging(false)}
@@ -146,8 +146,8 @@ const StepDocuments = ({ files, onFilesChange, isAr }: Props) => {
             <div
               className="w-16 h-16 flex items-center justify-center rounded-full mb-4 transition-all duration-200"
               style={{
-                background: dragging ? "rgba(181,142,60,0.15)" : "rgba(181,142,60,0.08)",
-                border: `1px solid ${dragging ? "rgba(181,142,60,0.5)" : "rgba(181,142,60,0.2)"}`,
+                background: dragging ? "rgba(184,138,60,0.15)" : "rgba(184,138,60,0.08)",
+                border: `1px solid ${dragging ? "rgba(184,138,60,0.5)" : "rgba(184,138,60,0.2)"}`,
               }}
             >
               <i className="ri-upload-cloud-2-line text-gold-400 text-3xl" />
@@ -156,7 +156,7 @@ const StepDocuments = ({ files, onFilesChange, isAr }: Props) => {
             <p className="text-gray-500 text-xs mb-3 font-['Inter']">{t.dropOr}</p>
             <span
               className="px-5 py-2 rounded-lg text-xs font-semibold font-['Inter'] cursor-pointer transition-colors"
-              style={{ background: "rgba(181,142,60,0.12)", border: "1px solid rgba(181,142,60,0.3)", color: "#D4A84B" }}
+              style={{ background: "rgba(184,138,60,0.12)", border: "1px solid rgba(184,138,60,0.3)", color: "#D6B47E" }}
             >
               {t.browse}
             </span>
@@ -175,7 +175,7 @@ const StepDocuments = ({ files, onFilesChange, isAr }: Props) => {
           {error && (
             <div
               className="flex items-center gap-2 p-3 rounded-lg border"
-              style={{ borderColor: "rgba(248,113,113,0.3)", background: "rgba(248,113,113,0.05)" }}
+              style={{ borderColor: "rgba(201,74,94,0.3)", background: "rgba(201,74,94,0.05)" }}
             >
               <i className="ri-error-warning-line text-red-400 text-sm" />
               <p className="text-red-400 text-xs font-['Inter']">{error}</p>
@@ -193,7 +193,7 @@ const StepDocuments = ({ files, onFilesChange, isAr }: Props) => {
                   <div
                     key={i}
                     className="flex items-center gap-3 p-3 rounded-lg border"
-                    style={{ background: "rgba(20,29,46,0.7)", borderColor: "rgba(181,142,60,0.15)" }}
+                    style={{ background: "rgba(10,37,64,0.7)", borderColor: "rgba(184,138,60,0.15)" }}
                   >
                     <div
                       className="w-9 h-9 flex items-center justify-center rounded-lg flex-shrink-0"

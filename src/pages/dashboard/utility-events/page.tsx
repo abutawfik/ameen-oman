@@ -32,9 +32,9 @@ const EVENT_CARDS: EventCard[] = [
     labelAr: "توصيل جديد",
     desc: "Register a new utility connection — electricity, water, internet, or bundled service",
     descAr: "تسجيل توصيل خدمة جديدة — كهرباء، مياه، إنترنت، أو مجمّع",
-    color: "#D4A84B",
-    bgColor: "rgba(181,142,60,0.08)",
-    borderColor: "rgba(181,142,60,0.25)",
+    color: "#D6B47E",
+    bgColor: "rgba(184,138,60,0.08)",
+    borderColor: "rgba(184,138,60,0.25)",
     code: "UTL_NEW_CONN",
   },
   {
@@ -56,12 +56,12 @@ const EVENT_CARDS: EventCard[] = [
     labelAr: "قطع الخدمة",
     desc: "Record a utility service disconnection with final reading and outstanding balance",
     descAr: "تسجيل قطع خدمة مرفق مع القراءة النهائية والرصيد المستحق",
-    color: "#F87171",
-    bgColor: "rgba(248,113,113,0.08)",
-    borderColor: "rgba(248,113,113,0.25)",
+    color: "#C94A5E",
+    bgColor: "rgba(201,74,94,0.08)",
+    borderColor: "rgba(201,74,94,0.25)",
     code: "UTL_DISCONN",
     badge: "IRREVERSIBLE",
-    badgeColor: "#F87171",
+    badgeColor: "#C94A5E",
   },
   {
     id: "anomaly",
@@ -70,12 +70,12 @@ const EVENT_CARDS: EventCard[] = [
     labelAr: "شذوذ الاستهلاك",
     desc: "System-generated alerts for suspicious usage patterns and cross-stream mismatches",
     descAr: "تنبيهات مُولَّدة تلقائياً لأنماط استهلاك مشبوهة وتعارضات بين التدفقات",
-    color: "#FB923C",
-    bgColor: "rgba(251,146,60,0.08)",
-    borderColor: "rgba(251,146,60,0.25)",
+    color: "#C98A1B",
+    bgColor: "rgba(201,138,27,0.08)",
+    borderColor: "rgba(201,138,27,0.25)",
     code: "UTL_ANOMALY",
     badge: "AUTO-DETECT",
-    badgeColor: "#FB923C",
+    badgeColor: "#C98A1B",
     systemGenerated: true,
   },
 ];
@@ -87,12 +87,12 @@ const UtilityEventsPage = () => {
   const activeCard = EVENT_CARDS.find((c) => c.id === activeEvent);
 
   return (
-    <div className="min-h-screen font-['Inter']" style={{ background: "#0B1220" }} dir={isAr ? "rtl" : "ltr"}>
+    <div className="min-h-screen font-['Inter']" style={{ background: "#051428" }} dir={isAr ? "rtl" : "ltr"}>
       {/* Grid texture */}
-      <div className="fixed inset-0 pointer-events-none" style={{ backgroundImage: `linear-gradient(rgba(181,142,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,0.03) 1px, transparent 1px)`, backgroundSize: "40px 40px" }} />
+      <div className="fixed inset-0 pointer-events-none" style={{ backgroundImage: `linear-gradient(rgba(184,138,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.03) 1px, transparent 1px)`, backgroundSize: "40px 40px" }} />
 
       {/* Header */}
-      <header className="sticky top-0 z-40 flex items-center justify-between px-6 py-3 border-b" style={{ background: "rgba(11,18,32,0.95)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
+      <header className="sticky top-0 z-40 flex items-center justify-between px-6 py-3 border-b" style={{ background: "rgba(5,20,40,0.95)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}>
         <div className="flex items-center gap-4">
           <button type="button"
             onClick={() => activeEvent ? setActiveEvent(null) : navigate("/dashboard?type=utility")}
@@ -104,13 +104,13 @@ const UtilityEventsPage = () => {
             {activeEvent ? (isAr ? "العودة" : "Back") : (isAr ? "لوحة التحكم" : "Dashboard")}
           </button>
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+            <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.2)" }}>
               <i className="ri-plug-line text-gold-400 text-sm" />
             </div>
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-white font-bold text-sm">{isAr ? "أحداث المرافق" : "Utility Activation Events"}</span>
-                <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(181,142,60,0.12)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>Al-Ameen Portal</span>
+                <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(184,138,60,0.12)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}>Al-Ameen Portal</span>
               </div>
               <p className="text-gray-500 text-xs">{isAr ? "الكهرباء الوطنية · المياه الوطنية · تيلكو أ · تيلكو ب" : "National Electric Co. · National Water Authority · Telco A · Telco B"}</p>
             </div>
@@ -121,10 +121,10 @@ const UtilityEventsPage = () => {
           {/* Provider status pills */}
           <div className="hidden xl:flex items-center gap-2">
             {[
-              { label: "Nat.Electric", color: "#D4A84B" },
+              { label: "Nat.Electric", color: "#D6B47E" },
               { label: "Nat.Water", color: "#4ADE80" },
               { label: "Telco A", color: "#A78BFA" },
-              { label: "Telco B", color: "#FB923C" },
+              { label: "Telco B", color: "#C98A1B" },
             ].map((p) => (
               <div key={p.label} className="flex items-center gap-1.5 px-2 py-1 rounded-full border" style={{ background: `${p.color}08`, borderColor: `${p.color}20` }}>
                 <div className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: p.color }} />
@@ -134,7 +134,7 @@ const UtilityEventsPage = () => {
           </div>
 
           {/* Active anomalies badge */}
-          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border" style={{ background: "rgba(251,146,60,0.08)", borderColor: "rgba(251,146,60,0.2)" }}>
+          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border" style={{ background: "rgba(201,138,27,0.08)", borderColor: "rgba(201,138,27,0.2)" }}>
             <i className="ri-alarm-warning-line text-orange-400 text-xs" />
             <span className="text-orange-400 text-xs font-bold font-['JetBrains_Mono']">5 {isAr ? "شذوذ" : "ANOMALIES"}</span>
           </div>
@@ -166,9 +166,9 @@ const UtilityEventsPage = () => {
               {EVENT_CARDS.map((card) => (
                 <button key={card.id} type="button" onClick={() => setActiveEvent(card.id)}
                   className="group relative rounded-2xl border p-6 text-left cursor-pointer transition-all duration-300 flex flex-col gap-4"
-                  style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}
+                  style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}
                   onMouseEnter={(e) => { const el = e.currentTarget as HTMLButtonElement; el.style.borderColor = card.borderColor; el.style.background = card.bgColor; el.style.boxShadow = `0 0 30px ${card.color}18`; el.style.transform = "translateY(-2px)"; }}
-                  onMouseLeave={(e) => { const el = e.currentTarget as HTMLButtonElement; el.style.borderColor = "rgba(181,142,60,0.12)"; el.style.background = "rgba(20,29,46,0.8)"; el.style.boxShadow = "none"; el.style.transform = "translateY(0)"; }}>
+                  onMouseLeave={(e) => { const el = e.currentTarget as HTMLButtonElement; el.style.borderColor = "rgba(184,138,60,0.12)"; el.style.background = "rgba(10,37,64,0.8)"; el.style.boxShadow = "none"; el.style.transform = "translateY(0)"; }}>
 
                   {card.badge && (
                     <div className="absolute top-3 right-3 px-2 py-0.5 rounded-full text-xs font-bold font-['JetBrains_Mono']"
@@ -204,16 +204,16 @@ const UtilityEventsPage = () => {
             </div>
 
             {/* Intelligence value note */}
-            <div className="rounded-2xl border p-5" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
+            <div className="rounded-2xl border p-5" style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}>
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+                <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.2)" }}>
                   <i className="ri-lightbulb-flash-line text-gold-400 text-sm" />
                 </div>
                 <h3 className="text-white font-bold text-sm">{isAr ? "القيمة الاستخباراتية" : "Intelligence Value"}</h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {[
-                  { icon: "ri-map-pin-line", color: "#D4A84B", title: isAr ? "الموقع الفعلي" : "Actual Location", desc: isAr ? "توصيلات المرافق تكشف أين يعيش الشخص فعلياً — غالباً مختلف عن العنوان المسجّل" : "Utility connections reveal WHERE a person actually lives — often different from registered address" },
+                  { icon: "ri-map-pin-line", color: "#D6B47E", title: isAr ? "الموقع الفعلي" : "Actual Location", desc: isAr ? "توصيلات المرافق تكشف أين يعيش الشخص فعلياً — غالباً مختلف عن العنوان المسجّل" : "Utility connections reveal WHERE a person actually lives — often different from registered address" },
                   { icon: "ri-links-line", color: "#4ADE80", title: isAr ? "التحقق المتقاطع" : "Cross-Verification", desc: isAr ? "مقارنة مع بيانات إيجار البلدية وتسجيلات الفنادق للتحقق من ادعاءات الإقامة" : "Cross-reference with Municipality rental data and hotel check-ins to verify residency claims" },
                   { icon: "ri-wifi-line", color: "#A78BFA", title: isAr ? "البصمة الرقمية" : "Digital Footprint", desc: isAr ? "اتصال الإنترنت = مرساة البصمة الرقمية. يربط الشخص بعنوان رقمي ثابت" : "Internet connection = digital footprint anchor. Links person to a fixed digital address" },
                 ].map((item) => (
@@ -247,7 +247,7 @@ const UtilityEventsPage = () => {
             </div>
 
             {/* Tab switcher */}
-            <div className="flex gap-1 p-1 rounded-xl mb-6 overflow-x-auto" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.1)" }}>
+            <div className="flex gap-1 p-1 rounded-xl mb-6 overflow-x-auto" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.1)" }}>
               {EVENT_CARDS.map((card) => (
                 <button key={card.id} type="button" onClick={() => setActiveEvent(card.id)}
                   className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap transition-all flex-shrink-0"

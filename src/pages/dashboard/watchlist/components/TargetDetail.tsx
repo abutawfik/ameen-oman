@@ -8,25 +8,25 @@ interface Props {
 }
 
 const typeConfig: Record<WatchlistType, { label: string; color: string }> = {
-  national_security: { label: 'National Security', color: '#F87171' },
-  overstay:          { label: 'Overstay', color: '#FB923C' },
+  national_security: { label: 'National Security', color: '#C94A5E' },
+  overstay:          { label: 'Overstay', color: '#C98A1B' },
   financial:         { label: 'Financial', color: '#FACC15' },
-  employment:        { label: 'Employment', color: '#FB923C' },
+  employment:        { label: 'Employment', color: '#C98A1B' },
   interpol:          { label: 'Interpol', color: '#A78BFA' },
-  custom:            { label: 'Custom', color: '#D4A84B' },
+  custom:            { label: 'Custom', color: '#D6B47E' },
 };
 
 const riskColors: Record<string, string> = {
-  critical: '#F87171',
-  high: '#FB923C',
+  critical: '#C94A5E',
+  high: '#C98A1B',
   medium: '#FACC15',
   low: '#4ADE80',
 };
 
 const statusColors: Record<string, string> = {
-  new: '#F87171',
+  new: '#C94A5E',
   acknowledged: '#FACC15',
-  escalated: '#FB923C',
+  escalated: '#C98A1B',
   closed: '#4ADE80',
 };
 
@@ -65,7 +65,7 @@ const TargetDetail = ({ isAr, targetId, onBack }: Props) => {
 
       {/* Target hero card */}
       <div className="rounded-2xl p-5"
-        style={{ background: 'rgba(20,29,46,0.8)', border: `1px solid ${riskColors[target.riskLevel]}30` }}>
+        style={{ background: 'rgba(10,37,64,0.8)', border: `1px solid ${riskColors[target.riskLevel]}30` }}>
         <div className="flex items-start gap-5">
           <div className="relative flex-shrink-0">
             <img src={target.photo} alt={target.name}
@@ -98,7 +98,7 @@ const TargetDetail = ({ isAr, targetId, onBack }: Props) => {
 
             <div className="grid grid-cols-4 gap-4 mt-4">
               {[
-                { label: 'Document', labelAr: 'الوثيقة', value: target.docNumber, sub: target.docType, color: '#D4A84B' },
+                { label: 'Document', labelAr: 'الوثيقة', value: target.docNumber, sub: target.docType, color: '#D6B47E' },
                 { label: 'Nationality', labelAr: 'الجنسية', value: target.nationality, sub: `DOB: ${target.dob}`, color: '#D1D5DB' },
                 { label: 'Phone', labelAr: 'الهاتف', value: target.phone || 'Unknown', sub: target.email || '—', color: '#4ADE80' },
                 { label: 'Employer', labelAr: 'صاحب العمل', value: target.employer, sub: `Added: ${target.addedAt}`, color: '#D1D5DB' },
@@ -115,9 +115,9 @@ const TargetDetail = ({ isAr, targetId, onBack }: Props) => {
 
         {/* Last known location */}
         <div className="mt-4 p-3 rounded-xl flex items-center gap-3"
-          style={{ background: 'rgba(181,142,60,0.05)', border: '1px solid rgba(181,142,60,0.1)' }}>
+          style={{ background: 'rgba(184,138,60,0.05)', border: '1px solid rgba(184,138,60,0.1)' }}>
           <div className="w-8 h-8 flex items-center justify-center rounded-lg flex-shrink-0"
-            style={{ background: 'rgba(181,142,60,0.15)' }}>
+            style={{ background: 'rgba(184,138,60,0.15)' }}>
             <i className="ri-map-pin-line text-gold-400 text-sm" />
           </div>
           <div className="flex-1">
@@ -129,7 +129,7 @@ const TargetDetail = ({ isAr, targetId, onBack }: Props) => {
 
         {/* Reason */}
         <div className="mt-3 p-3 rounded-xl"
-          style={{ background: 'rgba(248,113,113,0.05)', border: '1px solid rgba(248,113,113,0.15)' }}>
+          style={{ background: 'rgba(201,74,94,0.05)', border: '1px solid rgba(201,74,94,0.15)' }}>
           <p className="text-gray-400 text-xs font-['Inter'] mb-1">{isAr ? 'سبب الإضافة' : 'Reason for Watchlisting'}</p>
           <p className="text-gray-200 text-sm font-['Inter']">{target.reason}</p>
         </div>
@@ -137,11 +137,11 @@ const TargetDetail = ({ isAr, targetId, onBack }: Props) => {
         {/* Actions */}
         <div className="flex items-center gap-2 mt-4">
           <button className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold font-['Inter'] whitespace-nowrap cursor-pointer"
-            style={{ background: '#D4A84B', color: '#0B1220' }}>
+            style={{ background: '#D6B47E', color: '#051428' }}>
             <i className="ri-user-search-line" />{isAr ? 'ملف 360°' : 'View 360° Profile'}
           </button>
           <button className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold font-['Inter'] whitespace-nowrap cursor-pointer"
-            style={{ border: '1px solid rgba(181,142,60,0.3)', color: '#D4A84B' }}>
+            style={{ border: '1px solid rgba(184,138,60,0.3)', color: '#D6B47E' }}>
             <i className="ri-git-branch-line" />{isAr ? 'تحليل الروابط' : 'Link Analysis'}
           </button>
           <button className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold font-['Inter'] whitespace-nowrap cursor-pointer"
@@ -150,7 +150,7 @@ const TargetDetail = ({ isAr, targetId, onBack }: Props) => {
           </button>
           <button onClick={() => setShowSuspendModal(true)}
             className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold font-['Inter'] whitespace-nowrap cursor-pointer ml-auto"
-            style={{ border: '1px solid rgba(248,113,113,0.3)', color: '#F87171' }}>
+            style={{ border: '1px solid rgba(201,74,94,0.3)', color: '#C94A5E' }}>
             <i className="ri-pause-circle-line" />{isAr ? 'تعليق' : 'Suspend Target'}
           </button>
         </div>
@@ -158,13 +158,13 @@ const TargetDetail = ({ isAr, targetId, onBack }: Props) => {
 
       {/* Tabs */}
       <div className="flex gap-1 p-1 rounded-xl w-fit"
-        style={{ background: 'rgba(20,29,46,0.8)', border: '1px solid rgba(181,142,60,0.1)' }}>
+        style={{ background: 'rgba(10,37,64,0.8)', border: '1px solid rgba(184,138,60,0.1)' }}>
         {tabs.map(tab => (
           <button key={tab.key} onClick={() => setActiveTab(tab.key)}
             className="px-4 py-2 rounded-lg text-sm font-semibold font-['Inter'] whitespace-nowrap cursor-pointer transition-all"
             style={{
-              background: activeTab === tab.key ? '#D4A84B' : 'transparent',
-              color: activeTab === tab.key ? '#0B1220' : '#9CA3AF',
+              background: activeTab === tab.key ? '#D6B47E' : 'transparent',
+              color: activeTab === tab.key ? '#051428' : '#9CA3AF',
             }}>
             {isAr ? tab.labelAr : tab.label}
           </button>
@@ -175,14 +175,14 @@ const TargetDetail = ({ isAr, targetId, onBack }: Props) => {
       {activeTab === 'overview' && (
         <div className="grid grid-cols-2 gap-4">
           <div className="rounded-xl p-4 space-y-3"
-            style={{ background: 'rgba(20,29,46,0.8)', border: '1px solid rgba(181,142,60,0.12)' }}>
+            style={{ background: 'rgba(10,37,64,0.8)', border: '1px solid rgba(184,138,60,0.12)' }}>
             <h3 className="text-white font-semibold font-['Inter'] text-sm">
               {isAr ? 'آخر حدث' : 'Last Event'}
             </h3>
             <div className="flex items-center gap-3 p-3 rounded-xl"
-              style={{ background: 'rgba(181,142,60,0.05)', border: '1px solid rgba(181,142,60,0.1)' }}>
+              style={{ background: 'rgba(184,138,60,0.05)', border: '1px solid rgba(184,138,60,0.1)' }}>
               <div className="w-9 h-9 flex items-center justify-center rounded-xl flex-shrink-0"
-                style={{ background: 'rgba(181,142,60,0.15)' }}>
+                style={{ background: 'rgba(184,138,60,0.15)' }}>
                 <i className={`${streamIcons[target.lastEventStream] || 'ri-database-line'} text-gold-400`} />
               </div>
               <div>
@@ -204,15 +204,15 @@ const TargetDetail = ({ isAr, targetId, onBack }: Props) => {
           </div>
 
           <div className="rounded-xl p-4 space-y-3"
-            style={{ background: 'rgba(20,29,46,0.8)', border: '1px solid rgba(181,142,60,0.12)' }}>
+            style={{ background: 'rgba(10,37,64,0.8)', border: '1px solid rgba(184,138,60,0.12)' }}>
             <h3 className="text-white font-semibold font-['Inter'] text-sm">
               {isAr ? 'إحصائيات التنبيهات' : 'Alert Statistics'}
             </h3>
             <div className="grid grid-cols-2 gap-3">
               {[
-                { label: 'Total Alerts', value: target.alertCount, color: '#F87171' },
-                { label: 'This Month', value: Math.floor(target.alertCount * 0.3), color: '#FB923C' },
-                { label: 'Auto-Triggered', value: Math.floor(target.alertCount * 0.8), color: '#D4A84B' },
+                { label: 'Total Alerts', value: target.alertCount, color: '#C94A5E' },
+                { label: 'This Month', value: Math.floor(target.alertCount * 0.3), color: '#C98A1B' },
+                { label: 'Auto-Triggered', value: Math.floor(target.alertCount * 0.8), color: '#D6B47E' },
                 { label: 'Near-Matches', value: Math.floor(target.alertCount * 0.1), color: '#FACC15' },
               ].map(s => (
                 <div key={s.label} className="p-3 rounded-xl text-center"
@@ -243,18 +243,18 @@ const TargetDetail = ({ isAr, targetId, onBack }: Props) => {
 
       {activeTab === 'alerts' && (
         <div className="rounded-xl overflow-hidden"
-          style={{ background: 'rgba(20,29,46,0.8)', border: '1px solid rgba(181,142,60,0.12)' }}>
+          style={{ background: 'rgba(10,37,64,0.8)', border: '1px solid rgba(184,138,60,0.12)' }}>
           {targetAlerts.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-12 text-gray-500">
               <i className="ri-alarm-warning-line text-3xl mb-2" />
               <p className="font-['Inter'] text-sm">{isAr ? 'لا توجد تنبيهات' : 'No alerts recorded'}</p>
             </div>
           ) : (
-            <div className="divide-y" style={{ borderColor: 'rgba(181,142,60,0.05)' }}>
+            <div className="divide-y" style={{ borderColor: 'rgba(184,138,60,0.05)' }}>
               {targetAlerts.map((alert) => (
                 <div key={alert.id} className="p-4 flex items-start gap-4">
                   <div className="w-9 h-9 flex items-center justify-center rounded-xl flex-shrink-0"
-                    style={{ background: 'rgba(181,142,60,0.1)' }}>
+                    style={{ background: 'rgba(184,138,60,0.1)' }}>
                     <i className={`${alert.streamIcon} text-gold-400 text-sm`} />
                   </div>
                   <div className="flex-1 min-w-0">
@@ -262,7 +262,7 @@ const TargetDetail = ({ isAr, targetId, onBack }: Props) => {
                       <p className="text-white text-sm font-semibold font-['Inter']">{alert.eventType}</p>
                       {alert.isNearMatch && (
                         <span className="text-xs px-2 py-0.5 rounded-full font-['JetBrains_Mono']"
-                          style={{ background: 'rgba(251,146,60,0.2)', color: '#FB923C' }}>
+                          style={{ background: 'rgba(201,138,27,0.2)', color: '#C98A1B' }}>
                           NEAR MATCH {alert.confidence}%
                         </span>
                       )}
@@ -295,7 +295,7 @@ const TargetDetail = ({ isAr, targetId, onBack }: Props) => {
             const cfg = typeConfig[wl.type];
             return (
               <div key={wl.id} className="rounded-xl p-4"
-                style={{ background: 'rgba(20,29,46,0.8)', border: `1px solid ${cfg.color}30` }}>
+                style={{ background: 'rgba(10,37,64,0.8)', border: `1px solid ${cfg.color}30` }}>
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-9 h-9 flex items-center justify-center rounded-xl flex-shrink-0"
                     style={{ background: `${cfg.color}18` }}>
@@ -322,12 +322,12 @@ const TargetDetail = ({ isAr, targetId, onBack }: Props) => {
       {/* Suspend Modal */}
       {showSuspendModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4"
-          style={{ background: 'rgba(11,18,32,0.85)' }}>
+          style={{ background: 'rgba(5,20,40,0.85)' }}>
           <div className="w-full max-w-sm rounded-2xl p-6"
-            style={{ background: 'rgba(20,29,46,0.98)', border: '1px solid rgba(248,113,113,0.3)' }}>
+            style={{ background: 'rgba(10,37,64,0.98)', border: '1px solid rgba(201,74,94,0.3)' }}>
             <div className="flex items-center gap-3 mb-4">
               <div className="w-10 h-10 flex items-center justify-center rounded-xl"
-                style={{ background: 'rgba(248,113,113,0.15)' }}>
+                style={{ background: 'rgba(201,74,94,0.15)' }}>
                 <i className="ri-pause-circle-line text-red-400 text-lg" />
               </div>
               <h3 className="text-white font-bold font-['Inter']">
@@ -340,12 +340,12 @@ const TargetDetail = ({ isAr, targetId, onBack }: Props) => {
             <div className="flex gap-3">
               <button onClick={() => setShowSuspendModal(false)}
                 className="flex-1 py-2.5 rounded-xl text-sm font-semibold font-['Inter'] cursor-pointer"
-                style={{ border: '1px solid rgba(181,142,60,0.3)', color: '#D4A84B' }}>
+                style={{ border: '1px solid rgba(184,138,60,0.3)', color: '#D6B47E' }}>
                 {isAr ? 'إلغاء' : 'Cancel'}
               </button>
               <button onClick={() => setShowSuspendModal(false)}
                 className="flex-1 py-2.5 rounded-xl text-sm font-semibold font-['Inter'] cursor-pointer"
-                style={{ background: '#F87171', color: '#0B1220' }}>
+                style={{ background: '#C94A5E', color: '#051428' }}>
                 {isAr ? 'تعليق' : 'Suspend'}
               </button>
             </div>

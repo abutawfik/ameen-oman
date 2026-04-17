@@ -15,15 +15,15 @@ const FinConfirmation = ({ refNumber, eventType, isAr, onReset, flagged }: Props
     ? ["تم الإرسال", "قيد المراجعة", "مقبول"]
     : ["Submitted", "Under Review", "Accepted"];
 
-  const accentColor = flagged ? "#F87171" : "#D4A84B";
-  const accentBg = flagged ? "rgba(248,113,113,0.1)" : "rgba(181,142,60,0.1)";
-  const accentBorder = flagged ? "rgba(248,113,113,0.4)" : "rgba(181,142,60,0.4)";
-  const accentGlow = flagged ? "rgba(248,113,113,0.15)" : "rgba(181,142,60,0.15)";
+  const accentColor = flagged ? "#C94A5E" : "#D6B47E";
+  const accentBg = flagged ? "rgba(201,74,94,0.1)" : "rgba(184,138,60,0.1)";
+  const accentBorder = flagged ? "rgba(201,74,94,0.4)" : "rgba(184,138,60,0.4)";
+  const accentGlow = flagged ? "rgba(201,74,94,0.15)" : "rgba(184,138,60,0.15)";
 
   return (
     <div
       className="rounded-2xl border p-10 flex flex-col items-center text-center"
-      style={{ background: "rgba(20,29,46,0.9)", borderColor: flagged ? "rgba(248,113,113,0.3)" : "rgba(181,142,60,0.25)", backdropFilter: "blur(16px)" }}
+      style={{ background: "rgba(10,37,64,0.9)", borderColor: flagged ? "rgba(201,74,94,0.3)" : "rgba(184,138,60,0.25)", backdropFilter: "blur(16px)" }}
     >
       {/* Icon */}
       <div className="relative mb-6">
@@ -38,7 +38,7 @@ const FinConfirmation = ({ refNumber, eventType, isAr, onReset, flagged }: Props
 
       {/* Flagged badge */}
       {flagged && (
-        <div className="flex items-center gap-2 px-4 py-2 rounded-full border mb-4" style={{ background: "rgba(248,113,113,0.08)", borderColor: "rgba(248,113,113,0.3)" }}>
+        <div className="flex items-center gap-2 px-4 py-2 rounded-full border mb-4" style={{ background: "rgba(201,74,94,0.08)", borderColor: "rgba(201,74,94,0.3)" }}>
           <div className="w-2 h-2 rounded-full bg-red-400 animate-pulse" />
           <span className="text-red-400 text-xs font-bold font-['JetBrains_Mono']">
             {isAr ? "تم الإبلاغ — مُحال للمراجعة" : "FLAGGED — Referred for Review"}
@@ -91,8 +91,8 @@ const FinConfirmation = ({ refNumber, eventType, isAr, onReset, flagged }: Props
           type="button"
           onClick={onReset}
           className="flex items-center gap-2 px-5 py-2.5 rounded-lg border text-sm font-semibold cursor-pointer whitespace-nowrap font-['Inter'] transition-colors"
-          style={{ background: "transparent", borderColor: "rgba(181,142,60,0.3)", color: "#D4A84B" }}
-          onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(181,142,60,0.08)"; }}
+          style={{ background: "transparent", borderColor: "rgba(184,138,60,0.3)", color: "#D6B47E" }}
+          onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(184,138,60,0.08)"; }}
           onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "transparent"; }}
         >
           <i className="ri-add-line" />{isAr ? "حدث جديد" : "New Event"}
@@ -101,9 +101,9 @@ const FinConfirmation = ({ refNumber, eventType, isAr, onReset, flagged }: Props
           type="button"
           onClick={() => navigate("/dashboard?type=payment")}
           className="flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-bold cursor-pointer whitespace-nowrap font-['Inter'] transition-colors"
-          style={{ background: "#D4A84B", color: "#0B1220" }}
+          style={{ background: "#D6B47E", color: "#051428" }}
           onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C99C48"; }}
-          onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#D4A84B"; }}
+          onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#D6B47E"; }}
         >
           <i className="ri-dashboard-line" />{isAr ? "لوحة التحكم" : "Dashboard"}
         </button>

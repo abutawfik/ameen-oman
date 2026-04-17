@@ -19,9 +19,9 @@ const LEVELS: { value: FuelLevel; label: string; labelAr: string; pct: number }[
 
 const getFuelColor = (pct: number) => {
   if (pct >= 75) return "#4ADE80";
-  if (pct >= 50) return "#D4A84B";
+  if (pct >= 50) return "#D6B47E";
   if (pct >= 25) return "#FACC15";
-  return "#F87171";
+  return "#C94A5E";
 };
 
 const FuelGauge = ({ value, onChange, isAr }: Props) => {
@@ -31,7 +31,7 @@ const FuelGauge = ({ value, onChange, isAr }: Props) => {
   return (
     <div
       className="rounded-xl border p-4"
-      style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.15)" }}
+      style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.15)" }}
     >
       <div className="flex items-center gap-2 mb-3">
         <div className="w-6 h-6 flex items-center justify-center">

@@ -285,7 +285,7 @@ const BulkPurchaseAlertForm = ({ isAr, onCancel }: Props) => {
       </SectionCard>
 
       {/* Flag Details */}
-      <SectionCard title={isAr ? "تفاصيل التنبيه" : "Flag Details"} icon="ri-flag-line" accentColor="#F87171">
+      <SectionCard title={isAr ? "تفاصيل التنبيه" : "Flag Details"} icon="ri-flag-line" accentColor="#C94A5E">
         <div className="space-y-4">
           <FormField label={isAr ? "سبب التنبيه" : "Flag Reason"} required>
             <SelectInput
@@ -311,7 +311,7 @@ const BulkPurchaseAlertForm = ({ isAr, onCancel }: Props) => {
               placeholder={isAr ? "أي معلومات إضافية ذات صلة..." : "Any additional relevant information..."}
               className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none transition-all resize-none font-['Inter']"
               style={{ background: "#0F1923", border: "1px solid rgba(255,255,255,0.08)" }}
-              onFocus={(e) => { e.target.style.borderColor = "#D4A84B"; }}
+              onFocus={(e) => { e.target.style.borderColor = "#D6B47E"; }}
               onBlur={(e) => { e.target.style.borderColor = "rgba(255,255,255,0.08)"; }}
             />
             <p className="text-gray-600 text-xs mt-1 text-right font-['JetBrains_Mono']">{additionalNotes.length}/500</p>

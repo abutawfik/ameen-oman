@@ -215,7 +215,7 @@ const VehicleBookForm = ({ isAr, onCancel }: Props) => {
         refNumber={refNumber}
         eventType={isAr ? "حجز مركبة" : "Vehicle Booking"}
         eventCode="CAR_BOOK"
-        color="#D4A84B"
+        color="#D6B47E"
         isAr={isAr}
         onReset={() => { setConfirmed(false); setAutoFilled(false); setBookingRef(""); setPlate(""); setMake(""); setModel(""); }}
       />
@@ -520,9 +520,9 @@ const VehicleBookForm = ({ isAr, onCancel }: Props) => {
                 type="button"
                 onClick={() => removeDriver(driver.id)}
                 className="flex items-center gap-2 px-4 py-2.5 rounded-lg border text-sm font-semibold cursor-pointer whitespace-nowrap transition-colors"
-                style={{ background: "rgba(248,113,113,0.06)", borderColor: "rgba(248,113,113,0.2)", color: "#F87171" }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(248,113,113,0.12)"; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(248,113,113,0.06)"; }}
+                style={{ background: "rgba(201,74,94,0.06)", borderColor: "rgba(201,74,94,0.2)", color: "#C94A5E" }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(201,74,94,0.12)"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(201,74,94,0.06)"; }}
               >
                 <i className="ri-user-unfollow-line" />
                 {t.removeDriver}

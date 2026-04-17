@@ -46,9 +46,9 @@ const EntityNotifPanel = ({ isAr }: Props) => {
   return (
     <div className="flex flex-col h-full">
       {/* Header */}
-      <div className="flex items-center justify-between px-5 py-4 border-b flex-shrink-0" style={{ borderColor: "rgba(181,142,60,0.12)" }}>
+      <div className="flex items-center justify-between px-5 py-4 border-b flex-shrink-0" style={{ borderColor: "rgba(184,138,60,0.12)" }}>
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.3)" }}>
+          <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.3)" }}>
             <i className="ri-notification-3-line text-gold-400 text-sm" />
           </div>
           <div>
@@ -63,9 +63,9 @@ const EntityNotifPanel = ({ isAr }: Props) => {
             onClick={() => setShowPrefs(!showPrefs)}
             className="w-8 h-8 flex items-center justify-center rounded-lg cursor-pointer transition-colors"
             style={{
-              background: showPrefs ? "rgba(181,142,60,0.1)" : "rgba(255,255,255,0.03)",
-              border: showPrefs ? "1px solid rgba(181,142,60,0.3)" : "1px solid rgba(255,255,255,0.06)",
-              color: showPrefs ? "#D4A84B" : "#6B7280",
+              background: showPrefs ? "rgba(184,138,60,0.1)" : "rgba(255,255,255,0.03)",
+              border: showPrefs ? "1px solid rgba(184,138,60,0.3)" : "1px solid rgba(255,255,255,0.06)",
+              color: showPrefs ? "#D6B47E" : "#6B7280",
             }}
             title={isAr ? "التفضيلات" : "Preferences"}
           >
@@ -75,7 +75,7 @@ const EntityNotifPanel = ({ isAr }: Props) => {
             <button
               onClick={markAllRead}
               className="text-xs px-2 py-1 rounded cursor-pointer font-['JetBrains_Mono'] whitespace-nowrap"
-              style={{ color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)", background: "rgba(181,142,60,0.05)" }}
+              style={{ color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)", background: "rgba(184,138,60,0.05)" }}
             >
               {isAr ? "قراءة الكل" : "Mark all read"}
             </button>
@@ -84,7 +84,7 @@ const EntityNotifPanel = ({ isAr }: Props) => {
       </div>
 
       {/* Tabs */}
-      <div className="flex items-center gap-1 px-4 py-2 border-b flex-shrink-0" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
+      <div className="flex items-center gap-1 px-4 py-2 border-b flex-shrink-0" style={{ borderColor: "rgba(184,138,60,0.08)" }}>
         {tabs.map((tab) => {
           const count = tab.key === "all"
             ? notifications.filter((n) => !n.read).length
@@ -95,16 +95,16 @@ const EntityNotifPanel = ({ isAr }: Props) => {
               onClick={() => setActiveTab(tab.key)}
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-['Inter'] font-medium cursor-pointer transition-all whitespace-nowrap"
               style={{
-                background: activeTab === tab.key ? "rgba(181,142,60,0.1)" : "transparent",
-                color: activeTab === tab.key ? "#D4A84B" : "#6B7280",
-                border: activeTab === tab.key ? "1px solid rgba(181,142,60,0.2)" : "1px solid transparent",
+                background: activeTab === tab.key ? "rgba(184,138,60,0.1)" : "transparent",
+                color: activeTab === tab.key ? "#D6B47E" : "#6B7280",
+                border: activeTab === tab.key ? "1px solid rgba(184,138,60,0.2)" : "1px solid transparent",
               }}
             >
               {isAr ? tab.labelAr : tab.labelEn}
               {count > 0 && (
                 <span
                   className="px-1.5 py-0.5 rounded-full text-[10px] font-bold font-['JetBrains_Mono']"
-                  style={{ background: "rgba(181,142,60,0.2)", color: "#D4A84B" }}
+                  style={{ background: "rgba(184,138,60,0.2)", color: "#D6B47E" }}
                 >
                   {count}
                 </span>
@@ -116,14 +116,14 @@ const EntityNotifPanel = ({ isAr }: Props) => {
 
       {/* Preferences panel */}
       {showPrefs && (
-        <div className="border-b flex-shrink-0 overflow-y-auto" style={{ borderColor: "rgba(181,142,60,0.08)", maxHeight: "320px" }}>
+        <div className="border-b flex-shrink-0 overflow-y-auto" style={{ borderColor: "rgba(184,138,60,0.08)", maxHeight: "320px" }}>
           <div className="px-5 py-4">
             <p className="text-white text-xs font-bold font-['Inter'] uppercase tracking-wider mb-3">
               {isAr ? "تفضيلات الإشعارات" : "Notification Preferences"}
             </p>
 
             {/* Quiet hours */}
-            <div className="flex items-center justify-between mb-4 p-3 rounded-xl" style={{ background: "rgba(11,18,32,0.6)", border: "1px solid rgba(255,255,255,0.06)" }}>
+            <div className="flex items-center justify-between mb-4 p-3 rounded-xl" style={{ background: "rgba(5,20,40,0.6)", border: "1px solid rgba(255,255,255,0.06)" }}>
               <div>
                 <p className="text-white text-xs font-['Inter'] font-semibold">{isAr ? "ساعات الهدوء" : "Quiet Hours"}</p>
                 <p className="text-gray-500 text-[10px] font-['JetBrains_Mono'] mt-0.5">{quietFrom} – {quietTo}</p>
@@ -131,11 +131,11 @@ const EntityNotifPanel = ({ isAr }: Props) => {
               <button
                 onClick={() => setQuietHours(!quietHours)}
                 className="relative w-10 h-5 rounded-full transition-colors cursor-pointer flex-shrink-0"
-                style={{ background: quietHours ? "#D4A84B" : "rgba(255,255,255,0.1)" }}
+                style={{ background: quietHours ? "#D6B47E" : "rgba(255,255,255,0.1)" }}
               >
                 <div
                   className="absolute top-0.5 w-4 h-4 rounded-full transition-all"
-                  style={{ background: "#0B1220", left: quietHours ? "calc(100% - 18px)" : "2px" }}
+                  style={{ background: "#051428", left: quietHours ? "calc(100% - 18px)" : "2px" }}
                 />
               </button>
             </div>
@@ -165,8 +165,8 @@ const EntityNotifPanel = ({ isAr }: Props) => {
                             onClick={() => togglePref(type, ch)}
                             className="w-5 h-5 rounded flex items-center justify-center mx-auto cursor-pointer transition-all"
                             style={{
-                              background: channels[ch] ? "rgba(181,142,60,0.15)" : "rgba(255,255,255,0.04)",
-                              border: channels[ch] ? "1px solid rgba(181,142,60,0.4)" : "1px solid rgba(255,255,255,0.08)",
+                              background: channels[ch] ? "rgba(184,138,60,0.15)" : "rgba(255,255,255,0.04)",
+                              border: channels[ch] ? "1px solid rgba(184,138,60,0.4)" : "1px solid rgba(255,255,255,0.08)",
                             }}
                           >
                             {channels[ch] && <i className="ri-check-line text-gold-400 text-[10px]" />}
@@ -183,7 +183,7 @@ const EntityNotifPanel = ({ isAr }: Props) => {
       )}
 
       {/* Notification list */}
-      <div className="flex-1 overflow-y-auto" style={{ scrollbarWidth: "thin", scrollbarColor: "rgba(181,142,60,0.15) transparent" }}>
+      <div className="flex-1 overflow-y-auto" style={{ scrollbarWidth: "thin", scrollbarColor: "rgba(184,138,60,0.15) transparent" }}>
         {filtered.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-40 gap-2">
             <i className="ri-inbox-line text-gray-700 text-3xl" />
@@ -198,7 +198,7 @@ const EntityNotifPanel = ({ isAr }: Props) => {
                 className="flex items-start gap-3 px-5 py-4 border-b cursor-pointer transition-all hover:bg-white/[0.02]"
                 style={{
                   borderColor: "rgba(255,255,255,0.04)",
-                  background: notif.read ? "transparent" : "rgba(181,142,60,0.02)",
+                  background: notif.read ? "transparent" : "rgba(184,138,60,0.02)",
                 }}
               >
                 {/* Unread dot */}
@@ -230,7 +230,7 @@ const EntityNotifPanel = ({ isAr }: Props) => {
                   </p>
                   <div className="flex items-center gap-2 mt-1.5">
                     {notif.ref && (
-                      <span className="text-[10px] font-['JetBrains_Mono'] px-1.5 py-0.5 rounded" style={{ background: "rgba(181,142,60,0.08)", color: "#D4A84B" }}>
+                      <span className="text-[10px] font-['JetBrains_Mono'] px-1.5 py-0.5 rounded" style={{ background: "rgba(184,138,60,0.08)", color: "#D6B47E" }}>
                         {notif.ref}
                       </span>
                     )}

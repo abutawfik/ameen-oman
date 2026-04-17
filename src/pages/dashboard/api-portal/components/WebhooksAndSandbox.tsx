@@ -4,14 +4,14 @@ import { webhooks, sandboxLogs, streamGuides, type WebhookConfig } from "@/mocks
 const statusConfig: Record<string, { color: string; bg: string; icon: string }> = {
   active:  { color: "#4ADE80", bg: "rgba(74,222,128,0.1)",  icon: "ri-checkbox-circle-line" },
   paused:  { color: "#FACC15", bg: "rgba(250,204,21,0.1)",  icon: "ri-pause-circle-line" },
-  failed:  { color: "#F87171", bg: "rgba(248,113,113,0.1)", icon: "ri-close-circle-line" },
+  failed:  { color: "#C94A5E", bg: "rgba(201,74,94,0.1)", icon: "ri-close-circle-line" },
 };
 
 const resultColors: Record<string, string> = {
   accepted:   "#4ADE80",
-  rejected:   "#F87171",
+  rejected:   "#C94A5E",
   flagged:    "#FACC15",
-  processing: "#D4A84B",
+  processing: "#D6B47E",
 };
 
 const WebhooksAndSandbox = () => {
@@ -66,7 +66,7 @@ const WebhooksAndSandbox = () => {
         {sections.map((s) => (
           <button key={s.id} onClick={() => setActiveSection(s.id)}
             className="flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium cursor-pointer whitespace-nowrap transition-all"
-            style={{ background: activeSection === s.id ? "rgba(181,142,60,0.12)" : "rgba(255,255,255,0.04)", color: activeSection === s.id ? "#D4A84B" : "#6B7280", border: `1px solid ${activeSection === s.id ? "rgba(181,142,60,0.3)" : "rgba(255,255,255,0.06)"}`, fontFamily: "'Inter', sans-serif" }}>
+            style={{ background: activeSection === s.id ? "rgba(184,138,60,0.12)" : "rgba(255,255,255,0.04)", color: activeSection === s.id ? "#D6B47E" : "#6B7280", border: `1px solid ${activeSection === s.id ? "rgba(184,138,60,0.3)" : "rgba(255,255,255,0.06)"}`, fontFamily: "'Inter', sans-serif" }}>
             <i className={s.icon} />
             {s.label}
           </button>
@@ -87,14 +87,14 @@ const WebhooksAndSandbox = () => {
             </div>
             <button onClick={() => setShowAddHook(!showAddHook)}
               className="px-4 py-2 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap"
-              style={{ background: "#D4A84B", color: "#0B1220" }}>
+              style={{ background: "#D6B47E", color: "#051428" }}>
               <i className="ri-add-line mr-1" />Add Webhook
             </button>
           </div>
 
           {/* Add webhook form */}
           {showAddHook && (
-            <div className="rounded-xl p-5" style={{ background: "rgba(181,142,60,0.04)", border: "1px solid rgba(181,142,60,0.2)" }}>
+            <div className="rounded-xl p-5" style={{ background: "rgba(184,138,60,0.04)", border: "1px solid rgba(184,138,60,0.2)" }}>
               <p className="text-white text-sm font-semibold font-['Inter'] mb-4">
                 <i className="ri-webhook-line mr-2 text-gold-400" />New Webhook Endpoint
               </p>
@@ -103,13 +103,13 @@ const WebhooksAndSandbox = () => {
                   <label className="block text-xs text-gray-500 mb-1 font-['Inter'] uppercase tracking-wider">Name</label>
                   <input value={newHookName} onChange={(e) => setNewHookName(e.target.value)} placeholder="e.g. Production Events"
                     className="w-full px-3 py-2 rounded-lg text-sm outline-none"
-                    style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(181,142,60,0.2)", color: "#D1D5DB", fontFamily: "'Inter', sans-serif" }} />
+                    style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(184,138,60,0.2)", color: "#D1D5DB", fontFamily: "'Inter', sans-serif" }} />
                 </div>
                 <div>
                   <label className="block text-xs text-gray-500 mb-1 font-['Inter'] uppercase tracking-wider">Endpoint URL</label>
                   <input value={newHookUrl} onChange={(e) => setNewHookUrl(e.target.value)} placeholder="https://your-server.com/webhook"
                     className="w-full px-3 py-2 rounded-lg text-sm outline-none font-['JetBrains_Mono']"
-                    style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(181,142,60,0.2)", color: "#D1D5DB" }} />
+                    style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(184,138,60,0.2)", color: "#D1D5DB" }} />
                 </div>
               </div>
               <div className="mb-4">
@@ -118,7 +118,7 @@ const WebhooksAndSandbox = () => {
                   {allEvents.map((ev) => (
                     <button key={ev} onClick={() => toggleEvent(ev)}
                       className="px-2.5 py-1 rounded text-xs font-['JetBrains_Mono'] cursor-pointer transition-all"
-                      style={{ background: selectedEvents.includes(ev) ? "rgba(181,142,60,0.15)" : "rgba(255,255,255,0.04)", color: selectedEvents.includes(ev) ? "#D4A84B" : "#6B7280", border: `1px solid ${selectedEvents.includes(ev) ? "rgba(181,142,60,0.3)" : "rgba(255,255,255,0.06)"}` }}>
+                      style={{ background: selectedEvents.includes(ev) ? "rgba(184,138,60,0.15)" : "rgba(255,255,255,0.04)", color: selectedEvents.includes(ev) ? "#D6B47E" : "#6B7280", border: `1px solid ${selectedEvents.includes(ev) ? "rgba(184,138,60,0.3)" : "rgba(255,255,255,0.06)"}` }}>
                       {selectedEvents.includes(ev) && <i className="ri-check-line mr-1 text-xs" />}
                       {ev}
                     </button>
@@ -126,7 +126,7 @@ const WebhooksAndSandbox = () => {
                 </div>
               </div>
               <div className="flex gap-2">
-                <button onClick={() => setShowAddHook(false)} className="px-5 py-2 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap" style={{ background: "#D4A84B", color: "#0B1220" }}>
+                <button onClick={() => setShowAddHook(false)} className="px-5 py-2 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap" style={{ background: "#D6B47E", color: "#051428" }}>
                   Create Webhook
                 </button>
                 <button onClick={() => setShowAddHook(false)} className="px-5 py-2 rounded-lg text-sm cursor-pointer whitespace-nowrap" style={{ background: "rgba(255,255,255,0.05)", color: "#9CA3AF" }}>
@@ -142,7 +142,7 @@ const WebhooksAndSandbox = () => {
               const sc = statusConfig[hook.status];
               const isRevealed = revealedSecret === hook.id;
               return (
-                <div key={hook.id} className="rounded-xl p-5" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.1)" }}>
+                <div key={hook.id} className="rounded-xl p-5" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.1)" }}>
                   <div className="flex items-start gap-4">
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-2 flex-wrap">
@@ -157,7 +157,7 @@ const WebhooksAndSandbox = () => {
                       {/* Events */}
                       <div className="flex flex-wrap gap-1.5 mb-3">
                         {hook.events.map((ev) => (
-                          <span key={ev} className="px-2 py-0.5 rounded text-xs font-['JetBrains_Mono']" style={{ background: "rgba(181,142,60,0.08)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.12)" }}>
+                          <span key={ev} className="px-2 py-0.5 rounded text-xs font-['JetBrains_Mono']" style={{ background: "rgba(184,138,60,0.08)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.12)" }}>
                             {ev}
                           </span>
                         ))}
@@ -179,7 +179,7 @@ const WebhooksAndSandbox = () => {
                       <div className="grid grid-cols-3 gap-3">
                         <div>
                           <p className="text-gray-600 text-xs font-['Inter']">Success Rate</p>
-                          <p className="font-bold text-sm font-['JetBrains_Mono']" style={{ color: hook.successRate > 95 ? "#4ADE80" : hook.successRate > 80 ? "#FACC15" : "#F87171" }}>
+                          <p className="font-bold text-sm font-['JetBrains_Mono']" style={{ color: hook.successRate > 95 ? "#4ADE80" : hook.successRate > 80 ? "#FACC15" : "#C94A5E" }}>
                             {hook.successRate}%
                           </p>
                         </div>
@@ -200,10 +200,10 @@ const WebhooksAndSandbox = () => {
                         style={{ background: hook.status === "active" ? "rgba(250,204,21,0.1)" : "rgba(74,222,128,0.1)", color: hook.status === "active" ? "#FACC15" : "#4ADE80", border: `1px solid ${hook.status === "active" ? "rgba(250,204,21,0.2)" : "rgba(74,222,128,0.2)"}` }}>
                         {hook.status === "active" ? <><i className="ri-pause-line mr-1" />Pause</> : <><i className="ri-play-line mr-1" />Resume</>}
                       </button>
-                      <button className="px-3 py-1.5 rounded-lg text-xs cursor-pointer whitespace-nowrap" style={{ background: "rgba(181,142,60,0.08)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.15)" }}>
+                      <button className="px-3 py-1.5 rounded-lg text-xs cursor-pointer whitespace-nowrap" style={{ background: "rgba(184,138,60,0.08)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.15)" }}>
                         <i className="ri-send-plane-line mr-1" />Test
                       </button>
-                      <button className="px-3 py-1.5 rounded-lg text-xs cursor-pointer whitespace-nowrap" style={{ background: "rgba(248,113,113,0.08)", color: "#F87171", border: "1px solid rgba(248,113,113,0.15)" }}>
+                      <button className="px-3 py-1.5 rounded-lg text-xs cursor-pointer whitespace-nowrap" style={{ background: "rgba(201,74,94,0.08)", color: "#C94A5E", border: "1px solid rgba(201,74,94,0.15)" }}>
                         <i className="ri-delete-bin-line mr-1" />Delete
                       </button>
                     </div>
@@ -220,7 +220,7 @@ const WebhooksAndSandbox = () => {
         <div className="grid grid-cols-2 gap-4">
           {/* Left: Request builder */}
           <div className="space-y-4">
-            <div className="rounded-xl p-5" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.12)" }}>
+            <div className="rounded-xl p-5" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.12)" }}>
               <p className="text-white font-semibold text-sm font-['Inter'] mb-4">
                 <i className="ri-test-tube-line mr-2 text-yellow-400" />
                 Sandbox Request Builder
@@ -229,24 +229,24 @@ const WebhooksAndSandbox = () => {
                 <label className="block text-xs text-gray-500 mb-1 font-['Inter'] uppercase tracking-wider">Endpoint</label>
                 <select value={sandboxEndpoint} onChange={(e) => setSandboxEndpoint(e.target.value)}
                   className="w-full px-3 py-2 rounded-lg text-xs outline-none cursor-pointer font-['JetBrains_Mono']"
-                  style={{ background: "rgba(20,29,46,0.9)", border: "1px solid rgba(181,142,60,0.2)", color: "#D4A84B" }}>
-                  <option value="/v2/hotel/booking" style={{ background: "#141D2E" }}>POST /v2/hotel/booking</option>
-                  <option value="/v2/hotel/checkin" style={{ background: "#141D2E" }}>POST /v2/hotel/checkin</option>
-                  <option value="/v2/car-rental/booking" style={{ background: "#141D2E" }}>POST /v2/car-rental/booking</option>
-                  <option value="/v2/mobile/sim-purchase" style={{ background: "#141D2E" }}>POST /v2/mobile/sim-purchase</option>
-                  <option value="/v2/financial/large-cash" style={{ background: "#141D2E" }}>POST /v2/financial/large-cash</option>
-                  <option value="/v2/batch/upload" style={{ background: "#141D2E" }}>POST /v2/batch/upload</option>
+                  style={{ background: "rgba(10,37,64,0.9)", border: "1px solid rgba(184,138,60,0.2)", color: "#D6B47E" }}>
+                  <option value="/v2/hotel/booking" style={{ background: "#0A2540" }}>POST /v2/hotel/booking</option>
+                  <option value="/v2/hotel/checkin" style={{ background: "#0A2540" }}>POST /v2/hotel/checkin</option>
+                  <option value="/v2/car-rental/booking" style={{ background: "#0A2540" }}>POST /v2/car-rental/booking</option>
+                  <option value="/v2/mobile/sim-purchase" style={{ background: "#0A2540" }}>POST /v2/mobile/sim-purchase</option>
+                  <option value="/v2/financial/large-cash" style={{ background: "#0A2540" }}>POST /v2/financial/large-cash</option>
+                  <option value="/v2/batch/upload" style={{ background: "#0A2540" }}>POST /v2/batch/upload</option>
                 </select>
               </div>
               <div className="mb-3">
                 <label className="block text-xs text-gray-500 mb-1 font-['Inter'] uppercase tracking-wider">Request Body (JSON)</label>
                 <textarea value={sandboxInput} onChange={(e) => setSandboxInput(e.target.value)} rows={12}
                   className="w-full px-3 py-2 rounded-lg text-xs outline-none resize-none font-['JetBrains_Mono']"
-                  style={{ background: "rgba(0,0,0,0.3)", border: "1px solid rgba(181,142,60,0.15)", color: "#D4A84B" }} />
+                  style={{ background: "rgba(0,0,0,0.3)", border: "1px solid rgba(184,138,60,0.15)", color: "#D6B47E" }} />
               </div>
               <button onClick={runSandbox} disabled={sandboxRunning}
                 className="w-full py-2.5 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap transition-all"
-                style={{ background: sandboxRunning ? "rgba(181,142,60,0.4)" : "#D4A84B", color: "#0B1220" }}>
+                style={{ background: sandboxRunning ? "rgba(184,138,60,0.4)" : "#D6B47E", color: "#051428" }}>
                 {sandboxRunning ? <><i className="ri-loader-4-line animate-spin mr-2" />Sending to Sandbox...</> : <><i className="ri-send-plane-line mr-2" />Send to Sandbox</>}
               </button>
             </div>
@@ -255,7 +255,7 @@ const WebhooksAndSandbox = () => {
           {/* Right: Response + Logs */}
           <div className="space-y-4">
             {sandboxResult && (
-              <div className="rounded-xl p-5" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(74,222,128,0.2)" }}>
+              <div className="rounded-xl p-5" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(74,222,128,0.2)" }}>
                 <div className="flex items-center gap-2 mb-3">
                   <div className="w-2 h-2 rounded-full bg-green-400" />
                   <span className="text-green-400 text-sm font-semibold font-['JetBrains_Mono']">200 OK — 38ms</span>
@@ -268,8 +268,8 @@ const WebhooksAndSandbox = () => {
             )}
 
             {/* Request log */}
-            <div className="rounded-xl overflow-hidden" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.12)" }}>
-              <div className="px-4 py-3 border-b" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
+            <div className="rounded-xl overflow-hidden" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.12)" }}>
+              <div className="px-4 py-3 border-b" style={{ borderColor: "rgba(184,138,60,0.08)" }}>
                 <p className="text-white text-sm font-semibold font-['Inter']">
                   <i className="ri-terminal-line mr-2 text-gold-400" />
                   Request Log
@@ -279,11 +279,11 @@ const WebhooksAndSandbox = () => {
                 {sandboxLogs.map((log) => (
                   <div key={log.id} className="flex items-center gap-3 px-4 py-2.5">
                     <span className="text-gray-600 text-xs font-['JetBrains_Mono'] w-16 flex-shrink-0">{log.time}</span>
-                    <span className="px-1.5 py-0.5 rounded text-xs font-bold font-['JetBrains_Mono'] flex-shrink-0 w-10 text-center" style={{ background: log.method === "GET" ? "rgba(181,142,60,0.12)" : "rgba(74,222,128,0.12)", color: log.method === "GET" ? "#D4A84B" : "#4ADE80" }}>
+                    <span className="px-1.5 py-0.5 rounded text-xs font-bold font-['JetBrains_Mono'] flex-shrink-0 w-10 text-center" style={{ background: log.method === "GET" ? "rgba(184,138,60,0.12)" : "rgba(74,222,128,0.12)", color: log.method === "GET" ? "#D6B47E" : "#4ADE80" }}>
                       {log.method}
                     </span>
                     <span className="text-gray-400 text-xs font-['JetBrains_Mono'] flex-1 truncate">{log.path}</span>
-                    <span className="text-xs font-['JetBrains_Mono'] flex-shrink-0" style={{ color: log.status === 200 || log.status === 202 ? "#4ADE80" : "#F87171" }}>{log.status}</span>
+                    <span className="text-xs font-['JetBrains_Mono'] flex-shrink-0" style={{ color: log.status === 200 || log.status === 202 ? "#4ADE80" : "#C94A5E" }}>{log.status}</span>
                     <span className="text-gray-600 text-xs font-['JetBrains_Mono'] flex-shrink-0">{log.latency}</span>
                     <span className="px-1.5 py-0.5 rounded text-xs font-['JetBrains_Mono'] flex-shrink-0" style={{ background: `${resultColors[log.result]}18`, color: resultColors[log.result] }}>
                       {log.result}
@@ -302,7 +302,7 @@ const WebhooksAndSandbox = () => {
           {streamGuides.map((guide) => {
             const isExpanded = expandedGuide === guide.id;
             return (
-              <div key={guide.id} className="rounded-xl overflow-hidden" style={{ background: "rgba(20,29,46,0.8)", border: `1px solid ${isExpanded ? "rgba(181,142,60,0.25)" : "rgba(181,142,60,0.1)"}` }}>
+              <div key={guide.id} className="rounded-xl overflow-hidden" style={{ background: "rgba(10,37,64,0.8)", border: `1px solid ${isExpanded ? "rgba(184,138,60,0.25)" : "rgba(184,138,60,0.1)"}` }}>
                 {/* Header */}
                 <button
                   onClick={() => setExpandedGuide(isExpanded ? null : guide.id)}
@@ -314,7 +314,7 @@ const WebhooksAndSandbox = () => {
                   <div className="flex-1 text-left">
                     <div className="flex items-center gap-2">
                       <p className="text-white font-semibold text-sm font-['Inter']">{guide.stream}</p>
-                      <span className="px-2 py-0.5 rounded text-xs font-['JetBrains_Mono']" style={{ background: "rgba(181,142,60,0.08)", color: "#D4A84B" }}>{guide.code}</span>
+                      <span className="px-2 py-0.5 rounded text-xs font-['JetBrains_Mono']" style={{ background: "rgba(184,138,60,0.08)", color: "#D6B47E" }}>{guide.code}</span>
                     </div>
                     <p className="text-gray-500 text-xs font-['Inter'] mt-0.5">{guide.description}</p>
                   </div>
@@ -326,7 +326,7 @@ const WebhooksAndSandbox = () => {
 
                 {/* Expanded content */}
                 {isExpanded && (
-                  <div className="px-5 pb-5 border-t" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
+                  <div className="px-5 pb-5 border-t" style={{ borderColor: "rgba(184,138,60,0.08)" }}>
                     <div className="grid grid-cols-3 gap-4 mt-4 mb-4">
                       {[
                         { label: "Auth Method",  value: guide.authMethod },
@@ -355,7 +355,7 @@ const WebhooksAndSandbox = () => {
                     {/* Sample code */}
                     <div>
                       <p className="text-gray-500 text-xs uppercase tracking-wider font-['Inter'] mb-2">Sample Request (cURL)</p>
-                      <pre className="p-4 rounded-lg text-xs font-['JetBrains_Mono'] overflow-auto" style={{ background: "rgba(0,0,0,0.4)", border: "1px solid rgba(181,142,60,0.1)", color: "#D4A84B", maxHeight: "200px" }}>
+                      <pre className="p-4 rounded-lg text-xs font-['JetBrains_Mono'] overflow-auto" style={{ background: "rgba(0,0,0,0.4)", border: "1px solid rgba(184,138,60,0.1)", color: "#D6B47E", maxHeight: "200px" }}>
                         {guide.sampleCode}
                       </pre>
                     </div>

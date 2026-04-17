@@ -2,14 +2,14 @@ import { useState, useEffect } from "react";
 import { incidents } from "@/mocks/systemAdminData";
 
 const severityConfig: Record<string, { color: string; bg: string }> = {
-  critical: { color: "#F87171", bg: "rgba(248,113,113,0.12)" },
-  high:     { color: "#FB923C", bg: "rgba(251,146,60,0.12)" },
+  critical: { color: "#C94A5E", bg: "rgba(201,74,94,0.12)" },
+  high:     { color: "#C98A1B", bg: "rgba(201,138,27,0.12)" },
   medium:   { color: "#FACC15", bg: "rgba(250,204,21,0.12)" },
-  low:      { color: "#D4A84B", bg: "rgba(181,142,60,0.12)" },
+  low:      { color: "#D6B47E", bg: "rgba(184,138,60,0.12)" },
 };
 
 const statusConfig: Record<string, { color: string; label: string }> = {
-  open:          { color: "#F87171", label: "Open" },
+  open:          { color: "#C94A5E", label: "Open" },
   investigating: { color: "#FACC15", label: "Investigating" },
   resolved:      { color: "#4ADE80", label: "Resolved" },
 };
@@ -73,7 +73,7 @@ const GaugeRing = ({ value, max, label, unit }: { value: number; max: number; la
   const circ = 2 * Math.PI * r;
   const dash = pct * circ * 0.75;
   const gap = circ - dash;
-  const ringColor = pct < 0.4 ? "#4ADE80" : pct < 0.7 ? "#FACC15" : "#F87171";
+  const ringColor = pct < 0.4 ? "#4ADE80" : pct < 0.7 ? "#FACC15" : "#C94A5E";
   const isOk = pct < 0.5;
   return (
     <div className="flex flex-col items-center">
@@ -138,18 +138,18 @@ const SystemHealth = () => {
   return (
     <div className="space-y-4">
       {/* SLA Banner */}
-      <div className="rounded-xl p-5 flex items-center justify-between" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.2)" }}>
+      <div className="rounded-xl p-5 flex items-center justify-between" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.2)" }}>
         <div>
           <p className="text-gray-500 text-xs font-['Inter'] uppercase tracking-wider mb-1">System Uptime SLA</p>
-          <p className="text-gold-400 text-5xl font-bold font-['JetBrains_Mono']" style={{ textShadow: "0 0 30px rgba(181,142,60,0.5)" }}>99.95%</p>
+          <p className="text-gold-400 text-5xl font-bold font-['JetBrains_Mono']" style={{ textShadow: "0 0 30px rgba(184,138,60,0.5)" }}>99.95%</p>
           <p className="text-gray-500 text-xs font-['JetBrains_Mono'] mt-1">Last 30 days — Target: 99.9% ✓ Exceeding SLA</p>
         </div>
         <div className="grid grid-cols-4 gap-6 text-center">
           {[
             { label: "Uptime", value: "43d 14h", color: "#4ADE80" },
             { label: "Incidents", value: String(incidents.length), color: "#FACC15" },
-            { label: "MTTR", value: "18 min", color: "#D4A84B" },
-            { label: "Open", value: String(incidents.filter((i) => i.status !== "resolved").length), color: "#FB923C" },
+            { label: "MTTR", value: "18 min", color: "#D6B47E" },
+            { label: "Open", value: String(incidents.filter((i) => i.status !== "resolved").length), color: "#C98A1B" },
           ].map((s) => (
             <div key={s.label}>
               <p className="text-2xl font-bold font-['JetBrains_Mono']" style={{ color: s.color }}>{s.value}</p>
@@ -161,7 +161,7 @@ const SystemHealth = () => {
 
       <div className="grid grid-cols-3 gap-4">
         {/* API Response Times */}
-        <div className="col-span-2 rounded-xl p-5" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.12)" }}>
+        <div className="col-span-2 rounded-xl p-5" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.12)" }}>
           <div className="flex items-center justify-between mb-3">
             <h3 className="text-white font-semibold text-sm font-['Inter']">
               <i className="ri-speed-line mr-2 text-gold-400" />API Response Times (24h)
@@ -173,15 +173,15 @@ const SystemHealth = () => {
             </div>
           </div>
           <LineChart datasets={[
-            { data: apiData.p99, color: "#F87171", label: "p99" },
+            { data: apiData.p99, color: "#C94A5E", label: "p99" },
             { data: apiData.p95, color: "#FACC15", label: "p95" },
-            { data: apiData.p50, color: "#D4A84B", label: "p50" },
+            { data: apiData.p50, color: "#D6B47E", label: "p50" },
           ]} height={110} />
           <div className="grid grid-cols-3 gap-3 mt-3">
             {[
-              { label: "p50 (median)", value: "42ms", sub: "↓ 3ms vs yesterday", color: "#D4A84B" },
+              { label: "p50 (median)", value: "42ms", sub: "↓ 3ms vs yesterday", color: "#D6B47E" },
               { label: "p95", value: "118ms", sub: "→ Stable", color: "#FACC15" },
-              { label: "p99", value: "287ms", sub: "↑ 12ms vs yesterday", color: "#F87171" },
+              { label: "p99", value: "287ms", sub: "↑ 12ms vs yesterday", color: "#C94A5E" },
             ].map((m) => (
               <div key={m.label} className="text-center p-2.5 rounded-lg" style={{ background: "rgba(255,255,255,0.03)" }}>
                 <p className="text-xl font-bold font-['JetBrains_Mono']" style={{ color: m.color }}>{m.value}</p>
@@ -193,13 +193,13 @@ const SystemHealth = () => {
         </div>
 
         {/* Resources */}
-        <div className="rounded-xl p-5" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.12)" }}>
+        <div className="rounded-xl p-5" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.12)" }}>
           <h3 className="text-white font-semibold text-sm font-['Inter'] mb-4">
             <i className="ri-cpu-line mr-2 text-gold-400" />Resource Utilization
           </h3>
           <div className="space-y-4 mb-4">
-            <ResourceBar label="CPU" value={Math.round(cpu)} sublabel="4 cores" color={cpu > 80 ? "#F87171" : cpu > 60 ? "#FACC15" : "#4ADE80"} />
-            <ResourceBar label="Memory" value={memory} sublabel="32 GB" color="#D4A84B" />
+            <ResourceBar label="CPU" value={Math.round(cpu)} sublabel="4 cores" color={cpu > 80 ? "#C94A5E" : cpu > 60 ? "#FACC15" : "#4ADE80"} />
+            <ResourceBar label="Memory" value={memory} sublabel="32 GB" color="#D6B47E" />
             <ResourceBar label="Disk I/O" value={disk} sublabel="NVMe" color="#A78BFA" />
             <ResourceBar label="Network" value={network} sublabel="10 Gbps" color="#34D399" />
           </div>
@@ -224,7 +224,7 @@ const SystemHealth = () => {
 
       <div className="grid grid-cols-3 gap-4">
         {/* Queue Depth */}
-        <div className="rounded-xl p-5" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.12)" }}>
+        <div className="rounded-xl p-5" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.12)" }}>
           <h3 className="text-white font-semibold text-sm font-['Inter'] mb-3">
             <i className="ri-stack-line mr-2 text-gold-400" />Queue Depth (12h)
           </h3>
@@ -236,8 +236,8 @@ const SystemHealth = () => {
           <div className="grid grid-cols-2 gap-2 mt-3">
             {[
               { label: "Current", value: "342", color: "#FACC15" },
-              { label: "Peak (24h)", value: "1,247", color: "#FB923C" },
-              { label: "Avg (24h)", value: "489", color: "#D4A84B" },
+              { label: "Peak (24h)", value: "1,247", color: "#C98A1B" },
+              { label: "Avg (24h)", value: "489", color: "#D6B47E" },
               { label: "Threshold", value: "2,000", color: "#9CA3AF" },
             ].map((s) => (
               <div key={s.label} className="text-center p-2 rounded-lg" style={{ background: "rgba(255,255,255,0.02)" }}>
@@ -249,7 +249,7 @@ const SystemHealth = () => {
         </div>
 
         {/* VIS Replication */}
-        <div className="rounded-xl p-5" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.12)" }}>
+        <div className="rounded-xl p-5" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.12)" }}>
           <h3 className="text-white font-semibold text-sm font-['Inter'] mb-4">
             <i className="ri-refresh-line mr-2 text-gold-400" />Replication Lag
           </h3>
@@ -261,7 +261,7 @@ const SystemHealth = () => {
             {[
               { label: "SD1 Last Sync", value: "2 min ago", color: "#4ADE80" },
               { label: "SD2 Last Sync", value: "3 min ago", color: "#4ADE80" },
-              { label: "Sync Interval", value: "30 sec", color: "#D4A84B" },
+              { label: "Sync Interval", value: "30 sec", color: "#D6B47E" },
               { label: "Timeout Threshold", value: "300 sec", color: "#9CA3AF" },
             ].map((s) => (
               <div key={s.label} className="flex items-center justify-between">
@@ -273,7 +273,7 @@ const SystemHealth = () => {
         </div>
 
         {/* Incident Log */}
-        <div className="rounded-xl p-5" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.12)" }}>
+        <div className="rounded-xl p-5" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.12)" }}>
           <div className="flex items-center justify-between mb-3">
             <h3 className="text-white font-semibold text-sm font-['Inter']">
               <i className="ri-alarm-warning-line mr-2 text-gold-400" />Incident Log
@@ -287,7 +287,7 @@ const SystemHealth = () => {
               const isSelected = selectedIncident === inc.id;
               return (
                 <div key={inc.id} className="rounded-lg cursor-pointer transition-all"
-                  style={{ background: isSelected ? "rgba(181,142,60,0.05)" : "rgba(255,255,255,0.02)", borderLeft: `3px solid ${sc.color}`, border: isSelected ? `1px solid rgba(181,142,60,0.2)` : undefined, borderLeftWidth: "3px" }}
+                  style={{ background: isSelected ? "rgba(184,138,60,0.05)" : "rgba(255,255,255,0.02)", borderLeft: `3px solid ${sc.color}`, border: isSelected ? `1px solid rgba(184,138,60,0.2)` : undefined, borderLeftWidth: "3px" }}
                   onClick={() => setSelectedIncident(isSelected ? null : inc.id)}>
                   <div className="p-2.5">
                     <div className="flex items-start justify-between gap-2">
@@ -303,7 +303,7 @@ const SystemHealth = () => {
                   {isSelected && (
                     <div className="px-2.5 pb-2.5">
                       <div className="flex gap-2">
-                        <button className="px-2 py-1 rounded text-xs cursor-pointer whitespace-nowrap" style={{ background: "#D4A84B", color: "#0B1220" }}>Acknowledge</button>
+                        <button className="px-2 py-1 rounded text-xs cursor-pointer whitespace-nowrap" style={{ background: "#D6B47E", color: "#051428" }}>Acknowledge</button>
                         <button className="px-2 py-1 rounded text-xs cursor-pointer whitespace-nowrap" style={{ background: "rgba(255,255,255,0.05)", color: "#9CA3AF" }}>View Details</button>
                       </div>
                     </div>

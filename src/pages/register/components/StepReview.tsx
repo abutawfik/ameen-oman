@@ -24,7 +24,7 @@ const Row = ({ label, value, mono }: RowProps) =>
 const SectionCard = ({ title, icon, children }: { title: string; icon: string; children: React.ReactNode }) => (
   <div
     className="p-4 rounded-xl border"
-    style={{ background: "rgba(20,29,46,0.7)", borderColor: "rgba(181,142,60,0.12)" }}
+    style={{ background: "rgba(10,37,64,0.7)", borderColor: "rgba(184,138,60,0.12)" }}
   >
     <p className="text-gray-400 text-xs font-semibold uppercase tracking-widest mb-3 font-['JetBrains_Mono'] flex items-center gap-2">
       <i className={`${icon} text-gold-400`} />
@@ -83,13 +83,13 @@ const StepReview = ({ entityType, details, method, apiData, filesCount, isAr, on
         <div className="relative mb-6">
           <div
             className="w-24 h-24 flex items-center justify-center rounded-full"
-            style={{ background: "rgba(181,142,60,0.08)", border: "2px solid rgba(181,142,60,0.4)" }}
+            style={{ background: "rgba(184,138,60,0.08)", border: "2px solid rgba(184,138,60,0.4)" }}
           >
             <i className="ri-checkbox-circle-line text-gold-400 text-5xl" />
           </div>
           <div
             className="absolute -inset-2 rounded-full opacity-20 animate-ping"
-            style={{ border: "1px solid rgba(181,142,60,0.6)" }}
+            style={{ border: "1px solid rgba(184,138,60,0.6)" }}
           />
         </div>
 
@@ -99,12 +99,12 @@ const StepReview = ({ entityType, details, method, apiData, filesCount, isAr, on
         {/* Reference number */}
         <div
           className="px-8 py-5 rounded-2xl border mb-6"
-          style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.3)" }}
+          style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.3)" }}
         >
           <p className="text-gray-500 text-xs font-['Inter'] mb-2">{t.refLabel}</p>
           <p
             className="font-black text-3xl font-['JetBrains_Mono'] tracking-widest"
-            style={{ color: "#D4A84B", textShadow: "0 0 20px rgba(181,142,60,0.4)" }}
+            style={{ color: "#D6B47E", textShadow: "0 0 20px rgba(184,138,60,0.4)" }}
           >
             {refNumber}
           </p>
@@ -115,7 +115,7 @@ const StepReview = ({ entityType, details, method, apiData, filesCount, isAr, on
         {/* Next steps */}
         <div
           className="w-full max-w-md p-5 rounded-xl border mb-6 text-left"
-          style={{ background: "rgba(20,29,46,0.7)", borderColor: "rgba(255,255,255,0.08)" }}
+          style={{ background: "rgba(10,37,64,0.7)", borderColor: "rgba(255,255,255,0.08)" }}
         >
           <p className="text-gray-400 text-xs font-semibold uppercase tracking-widest mb-3 font-['JetBrains_Mono']">{t.nextSteps}</p>
           <div className="space-y-3">
@@ -123,7 +123,7 @@ const StepReview = ({ entityType, details, method, apiData, filesCount, isAr, on
               <div key={i} className="flex items-start gap-3">
                 <div
                   className="w-6 h-6 flex items-center justify-center rounded-full flex-shrink-0 text-xs font-bold font-['JetBrains_Mono']"
-                  style={{ background: "rgba(181,142,60,0.12)", border: "1px solid rgba(181,142,60,0.3)", color: "#D4A84B" }}
+                  style={{ background: "rgba(184,138,60,0.12)", border: "1px solid rgba(184,138,60,0.3)", color: "#D6B47E" }}
                 >
                   {i + 1}
                 </div>
@@ -136,7 +136,7 @@ const StepReview = ({ entityType, details, method, apiData, filesCount, isAr, on
         <a
           href="/login"
           className="flex items-center gap-2 px-8 py-3 rounded-xl font-semibold text-sm font-['Inter'] cursor-pointer hover:opacity-90 transition-all"
-          style={{ background: "#D4A84B", color: "#0B1220" }}
+          style={{ background: "#D6B47E", color: "#051428" }}
         >
           <i className="ri-login-box-line" />
           {t.goLogin}
@@ -201,7 +201,7 @@ const StepReview = ({ entityType, details, method, apiData, filesCount, isAr, on
           <div className="flex items-center gap-3">
             <div
               className="w-9 h-9 flex items-center justify-center rounded-lg"
-              style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}
+              style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.2)" }}
             >
               <i className={method === "api" ? "ri-code-s-slash-line text-gold-400" : "ri-window-line text-gold-400"} />
             </div>
@@ -219,7 +219,7 @@ const StepReview = ({ entityType, details, method, apiData, filesCount, isAr, on
           <div className="flex items-center gap-3">
             <div
               className="w-9 h-9 flex items-center justify-center rounded-lg"
-              style={{ background: filesCount > 0 ? "rgba(74,222,128,0.1)" : "rgba(248,113,113,0.1)", border: `1px solid ${filesCount > 0 ? "rgba(74,222,128,0.2)" : "rgba(248,113,113,0.2)"}` }}
+              style={{ background: filesCount > 0 ? "rgba(74,222,128,0.1)" : "rgba(201,74,94,0.1)", border: `1px solid ${filesCount > 0 ? "rgba(74,222,128,0.2)" : "rgba(201,74,94,0.2)"}` }}
             >
               <i className={`${filesCount > 0 ? "ri-file-check-line text-green-400" : "ri-file-warning-line text-red-400"}`} />
             </div>
@@ -233,7 +233,7 @@ const StepReview = ({ entityType, details, method, apiData, filesCount, isAr, on
       {/* Disclaimer */}
       <div
         className="p-4 rounded-xl border mb-6"
-        style={{ background: "rgba(251,146,60,0.04)", borderColor: "rgba(251,146,60,0.2)" }}
+        style={{ background: "rgba(201,138,27,0.04)", borderColor: "rgba(201,138,27,0.2)" }}
       >
         <div className="flex items-start gap-3">
           <i className="ri-shield-check-line text-orange-400 text-sm mt-0.5 flex-shrink-0" />
@@ -246,7 +246,7 @@ const StepReview = ({ entityType, details, method, apiData, filesCount, isAr, on
         onClick={onSubmit}
         disabled={submitting}
         className="w-full flex items-center justify-center gap-2 py-4 rounded-xl font-bold hover:opacity-90 transition-all duration-200 cursor-pointer text-sm font-['Inter'] disabled:opacity-60"
-        style={{ background: "#D4A84B", color: "#0B1220" }}
+        style={{ background: "#D6B47E", color: "#051428" }}
       >
         {submitting ? (
           <>

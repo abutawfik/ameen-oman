@@ -93,7 +93,7 @@ export const entityNotifications: EntityNotification[] = [
     title: "Event Rejected — Invalid Document", titleAr: "رُفض الحدث — مستند غير صالح",
     detail: "AMN-HTL-002 — Booking rejected: passport expiry date invalid. Click to resubmit.",
     detailAr: "AMN-HTL-002 — رُفض الحجز: تاريخ انتهاء جواز السفر غير صالح. انقر لإعادة الإرسال.",
-    time: "8 min ago", color: "#F87171", icon: "ri-close-circle-line", read: false, actionable: true, ref: "AMN-HTL-002",
+    time: "8 min ago", color: "#C94A5E", icon: "ri-close-circle-line", read: false, actionable: true, ref: "AMN-HTL-002",
   },
   {
     id: "n3", category: "event",
@@ -114,7 +114,7 @@ export const entityNotifications: EntityNotification[] = [
     title: "Event Rejected — Duplicate Entry", titleAr: "رُفض الحدث — إدخال مكرر",
     detail: "AMN-HTL-004 — Duplicate booking reference detected. Original: BK-88234.",
     detailAr: "AMN-HTL-004 — تم اكتشاف مرجع حجز مكرر. الأصلي: BK-88234.",
-    time: "1 hr ago", color: "#F87171", icon: "ri-close-circle-line", read: true, actionable: true, ref: "AMN-HTL-004",
+    time: "1 hr ago", color: "#C94A5E", icon: "ri-close-circle-line", read: true, actionable: true, ref: "AMN-HTL-004",
   },
   {
     id: "n6", category: "system",
@@ -128,7 +128,7 @@ export const entityNotifications: EntityNotification[] = [
     title: "API Upgraded to v2.1", titleAr: "ترقية API إلى v2.1",
     detail: "Al-Ameen API updated to version 2.1. New endpoints available. Review changelog.",
     detailAr: "تم تحديث Al-Ameen API إلى الإصدار 2.1. نقاط نهاية جديدة متاحة. راجع سجل التغييرات.",
-    time: "4 hr ago", color: "#D4A84B", icon: "ri-code-s-slash-line", read: false, actionable: true,
+    time: "4 hr ago", color: "#D6B47E", icon: "ri-code-s-slash-line", read: false, actionable: true,
   },
   {
     id: "n8", category: "system",
@@ -142,7 +142,7 @@ export const entityNotifications: EntityNotification[] = [
     title: "New User Added", titleAr: "تمت إضافة مستخدم جديد",
     detail: "User Mohammed Al-Balushi (Reception) added to your account by Admin.",
     detailAr: "تمت إضافة المستخدم محمد البلوشي (استقبال) إلى حسابك بواسطة المسؤول.",
-    time: "3 hr ago", color: "#D4A84B", icon: "ri-user-add-line", read: false, actionable: false,
+    time: "3 hr ago", color: "#D6B47E", icon: "ri-user-add-line", read: false, actionable: false,
   },
   {
     id: "n10", category: "account",
