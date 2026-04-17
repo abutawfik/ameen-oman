@@ -128,7 +128,12 @@ const HeroSection = () => {
                 color: C.ivory100,
               }}
             >
-              {isAr ? t("hero.arabicTagline") : t("hero.tagline")}
+              {/* i18n's `t("hero.tagline")` auto-resolves to the current
+                  locale's value — EN file has the English tagline under this
+                  key, AR file has الحارس الأمين للوطن. Don't branch on isAr
+                  here (that would flip to the COUNTERPART key and render the
+                  wrong language). */}
+              {t("hero.tagline")}
             </span>
             <span style={{ height: 1, width: 60, background: "linear-gradient(90deg, " + C.gold500 + ", transparent)" }} />
           </div>
