@@ -4,6 +4,7 @@ import Home from "../pages/home/page";
 import LoginPage from "../pages/login/page";
 import RegisterPage from "../pages/register/page";
 import DashboardPage from "../pages/dashboard/page";
+import DashboardLayout from "../pages/dashboard/DashboardLayout";
 import HotelEventsPage from "../pages/dashboard/hotel-events/page";
 import CarRentalEventsPage from "../pages/dashboard/car-rental-events/page";
 import MobileEventsPage from "../pages/dashboard/mobile-events/page";
@@ -63,183 +64,57 @@ const routes: RouteObject[] = [
   },
   {
     path: "/dashboard",
-    element: <DashboardPage />,
-  },
-  {
-    path: "/dashboard/hotel-events",
-    element: <HotelEventsPage />,
-  },
-  {
-    path: "/dashboard/car-rental-events",
-    element: <CarRentalEventsPage />,
-  },
-  {
-    path: "/dashboard/mobile-events",
-    element: <MobileEventsPage />,
-  },
-  {
-    path: "/dashboard/municipality-events",
-    element: <MunicipalityEventsPage />,
-  },
-  {
-    path: "/dashboard/financial-events",
-    element: <FinancialEventsPage />,
-  },
-  {
-    path: "/dashboard/border-intelligence",
-    element: <BorderIntelligencePage />,
-  },
-  {
-    path: "/dashboard/utility-events",
-    element: <UtilityEventsPage />,
-  },
-  {
-    path: "/dashboard/transport-intelligence",
-    element: <TransportIntelligencePage />,
-  },
-  {
-    path: "/dashboard/healthcare-events",
-    element: <HealthcareEventsPage />,
-  },
-  {
-    path: "/dashboard/tourism-events",
-    element: <TourismEventsPage />,
-  },
-  {
-    path: "/dashboard/marine-events",
-    element: <MarineEventsPage />,
-  },
-  {
-    path: "/dashboard/postal-events",
-    element: <PostalEventsPage />,
-  },
-  {
-    path: "/dashboard/education-events",
-    element: <EducationEventsPage />,
-  },
-  {
-    path: "/dashboard/employment-registry",
-    element: <EmploymentRegistryPage />,
-  },
-  {
-    path: "/dashboard/ecommerce-intelligence",
-    element: <EcommerceIntelligencePage />,
-  },
-  {
-    path: "/dashboard/social-intelligence",
-    element: <SocialIntelligencePage />,
-  },
-  {
-    path: "/dashboard/calendar",
-    element: <CalendarEventsPage />,
-  },
-  {
-    path: "/dashboard/event-list",
-    element: <CalendarEventsPage />,
-  },
-  {
-    path: "/dashboard/batch-upload",
-    element: <BatchReportsPage />,
-  },
-  {
-    path: "/dashboard/reports",
-    element: <BatchReportsPage />,
-  },
-  {
-    path: "/dashboard/manage-users",
-    element: <BatchReportsPage />,
-  },
-  {
-    path: "/dashboard/help",
-    element: <BatchReportsPage />,
-  },
-  {
-    path: "/dashboard/command-center",
-    element: <CommandCenterPage />,
-  },
-  {
-    path: "/dashboard/risk-assessment",
-    element: <RiskAssessmentPage />,
-  },
-  {
-    path: "/dashboard/osint-risk-engine",
-    element: <OsintRiskEnginePage />,
-  },
-  {
-    path: "/dashboard/pattern-engine",
-    element: <PatternEnginePage />,
-  },
-  {
-    path: "/dashboard/predictive-analytics",
-    element: <PredictiveAnalyticsPage />,
-  },
-  {
-    path: "/dashboard/person-360",
-    element: <Person360Page />,
-  },
-  {
-    path: "/dashboard/notifications",
-    element: <NotificationsPage />,
+    element: <DashboardLayout />,
+    children: [
+      { index: true, element: <DashboardPage /> },
+      { path: "hotel-events", element: <HotelEventsPage /> },
+      { path: "car-rental-events", element: <CarRentalEventsPage /> },
+      { path: "mobile-events", element: <MobileEventsPage /> },
+      { path: "municipality-events", element: <MunicipalityEventsPage /> },
+      { path: "financial-events", element: <FinancialEventsPage /> },
+      { path: "border-intelligence", element: <BorderIntelligencePage /> },
+      { path: "utility-events", element: <UtilityEventsPage /> },
+      { path: "transport-intelligence", element: <TransportIntelligencePage /> },
+      { path: "healthcare-events", element: <HealthcareEventsPage /> },
+      { path: "tourism-events", element: <TourismEventsPage /> },
+      { path: "marine-events", element: <MarineEventsPage /> },
+      { path: "postal-events", element: <PostalEventsPage /> },
+      { path: "education-events", element: <EducationEventsPage /> },
+      { path: "employment-registry", element: <EmploymentRegistryPage /> },
+      { path: "ecommerce-intelligence", element: <EcommerceIntelligencePage /> },
+      { path: "social-intelligence", element: <SocialIntelligencePage /> },
+      { path: "calendar", element: <CalendarEventsPage /> },
+      { path: "event-list", element: <CalendarEventsPage /> },
+      { path: "batch-upload", element: <BatchReportsPage /> },
+      { path: "reports", element: <BatchReportsPage /> },
+      { path: "manage-users", element: <BatchReportsPage /> },
+      { path: "help", element: <BatchReportsPage /> },
+      { path: "command-center", element: <CommandCenterPage /> },
+      { path: "risk-assessment", element: <RiskAssessmentPage /> },
+      { path: "osint-risk-engine", element: <OsintRiskEnginePage /> },
+      { path: "pattern-engine", element: <PatternEnginePage /> },
+      { path: "predictive-analytics", element: <PredictiveAnalyticsPage /> },
+      { path: "person-360", element: <Person360Page /> },
+      { path: "notifications", element: <NotificationsPage /> },
+      { path: "system-admin", element: <SystemAdminPage /> },
+      { path: "api-portal", element: <ApiPortalPage /> },
+      { path: "brand-identity", element: <BrandIdentityPage /> },
+      { path: "identity-fusion", element: <IdentityFusionPage /> },
+      { path: "link-analysis", element: <LinkAnalysisPage /> },
+      { path: "watchlist", element: <WatchlistPage /> },
+      { path: "customs-cargo", element: <CustomsCargoPage /> },
+      { path: "compliance-scorecard", element: <ComplianceScorecardPage /> },
+      { path: "national-security", element: <NationalSecurityPage /> },
+      { path: "digital-dossier", element: <DigitalDossierPage /> },
+      { path: "geoint", element: <GeointPage /> },
+      { path: "threat-intel", element: <ThreatIntelPage /> },
+      { path: "case-management", element: <CaseManagementPage /> },
+      { path: "executive", element: <ExecutiveDashboardPage /> },
+    ],
   },
   {
     path: "/mobile-field",
     element: <MobileFieldPage />,
-  },
-  {
-    path: "/dashboard/system-admin",
-    element: <SystemAdminPage />,
-  },
-  {
-    path: "/dashboard/api-portal",
-    element: <ApiPortalPage />,
-  },
-  {
-    path: "/dashboard/brand-identity",
-    element: <BrandIdentityPage />,
-  },
-  {
-    path: "/dashboard/identity-fusion",
-    element: <IdentityFusionPage />,
-  },
-  {
-    path: "/dashboard/link-analysis",
-    element: <LinkAnalysisPage />,
-  },
-  {
-    path: "/dashboard/watchlist",
-    element: <WatchlistPage />,
-  },
-  {
-    path: "/dashboard/customs-cargo",
-    element: <CustomsCargoPage />,
-  },
-  {
-    path: "/dashboard/compliance-scorecard",
-    element: <ComplianceScorecardPage />,
-  },
-  {
-    path: "/dashboard/national-security",
-    element: <NationalSecurityPage />,
-  },
-  {
-    path: "/dashboard/digital-dossier",
-    element: <DigitalDossierPage />,
-  },
-  {
-    path: "/dashboard/geoint",
-    element: <GeointPage />,
-  },
-  {
-    path: "/dashboard/threat-intel",
-    element: <ThreatIntelPage />,
-  },
-  {
-    path: "/dashboard/case-management",
-    element: <CaseManagementPage />,
-  },
-  {
-    path: "/dashboard/executive",
-    element: <ExecutiveDashboardPage />,
   },
   {
     path: "/hospitality/login",
