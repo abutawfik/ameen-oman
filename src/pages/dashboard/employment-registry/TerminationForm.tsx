@@ -83,16 +83,16 @@ const TerminationForm = ({ isAr, onCancel }: Props) => {
               <TextInput placeholder="WP-XXXX-XXXXXXXX" value={permitNumber} onChange={(e) => setPermitNumber(e.target.value)} className="font-['JetBrains_Mono'] flex-1" />
               <button type="button" onClick={handleLookup}
                 className="flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap"
-                style={{ background: "#22D3EE", color: "#060D1A" }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#06B6D4"; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#22D3EE"; }}>
+                style={{ background: "#D4A84B", color: "#0B1220" }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C99C48"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#D4A84B"; }}>
                 {lookingUp ? <i className="ri-loader-4-line animate-spin" /> : <i className="ri-search-line" />}
                 {isAr ? "بحث" : "Lookup"}
               </button>
             </div>
           </FormField>
           {permitInfo && (
-            <div className="rounded-xl border p-4" style={{ background: "rgba(10,22,40,0.6)", borderColor: "rgba(34,211,238,0.15)" }}>
+            <div className="rounded-xl border p-4" style={{ background: "rgba(20,29,46,0.6)", borderColor: "rgba(181,142,60,0.15)" }}>
               <div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
                 {[
                   { label: isAr ? "حامل التصريح" : "Permit Holder", value: permitInfo.holderName },
@@ -176,7 +176,7 @@ const TerminationForm = ({ isAr, onCancel }: Props) => {
         </button>
         <button type="button" onClick={handleSubmit} disabled={!confirmed || saving}
           className="flex items-center gap-2 px-6 py-2.5 rounded-lg text-sm font-bold cursor-pointer whitespace-nowrap disabled:opacity-40"
-          style={{ background: "#F87171", color: "#060D1A" }}
+          style={{ background: "#F87171", color: "#0B1220" }}
           onMouseEnter={(e) => { if (confirmed) (e.currentTarget as HTMLButtonElement).style.background = "#EF4444"; }}
           onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#F87171"; }}>
           {saving ? <i className="ri-loader-4-line animate-spin" /> : <i className="ri-user-unfollow-line" />}

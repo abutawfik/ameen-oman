@@ -73,7 +73,7 @@ export const streams: StreamConfig[] = [
     requiredFields: ["guestName", "documentNumber", "nationality", "checkInDate", "checkOutDate", "roomNumber"],
     validationRules: 12,
     icon: "ri-hotel-line",
-    color: "#22D3EE",
+    color: "#D4A84B",
   },
   {
     id: "car-rental",
@@ -86,7 +86,7 @@ export const streams: StreamConfig[] = [
     requiredFields: ["driverName", "documentNumber", "vehiclePlate", "pickupDate", "returnDate"],
     validationRules: 9,
     icon: "ri-car-line",
-    color: "#22D3EE",
+    color: "#D4A84B",
   },
   {
     id: "mobile",
@@ -99,7 +99,7 @@ export const streams: StreamConfig[] = [
     requiredFields: ["subscriberName", "documentNumber", "imei", "simSerial", "activationDate"],
     validationRules: 15,
     icon: "ri-sim-card-line",
-    color: "#22D3EE",
+    color: "#D4A84B",
   },
   {
     id: "municipality",
@@ -112,7 +112,7 @@ export const streams: StreamConfig[] = [
     requiredFields: ["tenantName", "documentNumber", "propertyId", "leaseStartDate", "leaseEndDate"],
     validationRules: 8,
     icon: "ri-government-line",
-    color: "#22D3EE",
+    color: "#D4A84B",
   },
   {
     id: "financial",

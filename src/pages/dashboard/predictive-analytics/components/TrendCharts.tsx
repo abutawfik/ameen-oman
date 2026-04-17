@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { trendData, lastWeekTrendData } from '@/mocks/predictiveAnalyticsData';
 
 const CATEGORIES = [
-  { key: 'arrival',       label: 'Arrival',       color: '#22D3EE' },
+  { key: 'arrival',       label: 'Arrival',       color: '#D4A84B' },
   { key: 'financial',     label: 'Financial',     color: '#4ADE80' },
   { key: 'identity',      label: 'Identity',      color: '#F87171' },
   { key: 'accommodation', label: 'Accommodation', color: '#FACC15' },
@@ -51,8 +51,8 @@ export default function TrendCharts() {
 
   return (
     <div
-      className="rounded-xl border border-cyan-500/20 p-5"
-      style={{ background: 'rgba(10,22,40,0.8)' }}
+      className="rounded-xl border border-gold-500/20 p-5"
+      style={{ background: 'rgba(20,29,46,0.8)' }}
     >
       <div className="flex items-start justify-between mb-3">
         <div>
@@ -61,15 +61,15 @@ export default function TrendCharts() {
         </div>
         <div className="flex items-center gap-3">
           {/* View mode toggle */}
-          <div className="flex items-center gap-1 p-0.5 rounded-lg border border-cyan-500/20" style={{ background: 'rgba(6,13,26,0.5)' }}>
+          <div className="flex items-center gap-1 p-0.5 rounded-lg border border-gold-500/20" style={{ background: 'rgba(11,18,32,0.5)' }}>
             {(['stacked', 'compare'] as ViewMode[]).map(m => (
               <button
                 key={m}
                 onClick={() => setViewMode(m)}
                 className="px-2.5 py-1 rounded-md text-xs transition-all cursor-pointer whitespace-nowrap"
                 style={{
-                  background: viewMode === m ? '#22D3EE' : 'transparent',
-                  color: viewMode === m ? '#060D1A' : '#9CA3AF',
+                  background: viewMode === m ? '#D4A84B' : 'transparent',
+                  color: viewMode === m ? '#0B1220' : '#9CA3AF',
                 }}
               >
                 {m === 'stacked' ? 'Stacked' : 'Compare'}
@@ -79,7 +79,7 @@ export default function TrendCharts() {
           {/* Summary */}
           <div className="flex items-center gap-3 text-xs">
             <div className="text-center">
-              <p className="text-cyan-400 font-mono font-bold">{thisWeekSum}</p>
+              <p className="text-gold-400 font-mono font-bold">{thisWeekSum}</p>
               <p className="text-gray-500">This Wk</p>
             </div>
             <div className="text-center">
@@ -116,7 +116,7 @@ export default function TrendCharts() {
         {[0, 0.25, 0.5, 0.75, 1].map(pct => (
           <div
             key={pct}
-            className="absolute left-0 right-0 border-t border-cyan-500/5"
+            className="absolute left-0 right-0 border-t border-gold-500/5"
             style={{ bottom: 24 + pct * CHART_H }}
           />
         ))}
@@ -138,8 +138,8 @@ export default function TrendCharts() {
                 {/* Tooltip */}
                 {isHovered && (
                   <div
-                    className="absolute z-20 rounded-lg border border-cyan-500/30 p-2.5 pointer-events-none"
-                    style={{ background: 'rgba(10,22,40,0.98)', bottom: CHART_H + 32, left: '50%', transform: 'translateX(-50%)', minWidth: 130 }}
+                    className="absolute z-20 rounded-lg border border-gold-500/30 p-2.5 pointer-events-none"
+                    style={{ background: 'rgba(20,29,46,0.98)', bottom: CHART_H + 32, left: '50%', transform: 'translateX(-50%)', minWidth: 130 }}
                   >
                     <p className="text-white font-semibold text-xs mb-1.5">{day.label} — {total} triggers</p>
                     {activeCats.map(c => (
@@ -165,7 +165,7 @@ export default function TrendCharts() {
                       height: maxVal > 0 ? (total / maxVal) * CHART_H : 2,
                       minHeight: 2,
                       opacity: isHovered ? 1 : 0.82,
-                      outline: isHovered ? '1px solid rgba(34,211,238,0.5)' : 'none',
+                      outline: isHovered ? '1px solid rgba(181,142,60,0.5)' : 'none',
                     }}
                   >
                     {activeCats.map(cat => {
@@ -186,7 +186,7 @@ export default function TrendCharts() {
                       className="flex-1 rounded-t-sm transition-all"
                       style={{
                         height: maxVal > 0 ? (total / maxVal) * CHART_H : 2,
-                        background: '#22D3EE',
+                        background: '#D4A84B',
                         opacity: isHovered ? 1 : 0.8,
                         minHeight: 2,
                       }}
@@ -212,13 +212,13 @@ export default function TrendCharts() {
 
       {viewMode === 'compare' && (
         <div className="flex items-center gap-4 text-xs mb-3">
-          <span className="flex items-center gap-1.5"><span className="w-3 h-2 rounded-sm bg-cyan-400" />This Week</span>
+          <span className="flex items-center gap-1.5"><span className="w-3 h-2 rounded-sm bg-gold-400" />This Week</span>
           <span className="flex items-center gap-1.5"><span className="w-3 h-2 rounded-sm" style={{ background: 'rgba(156,163,175,0.4)' }} />Last Week</span>
         </div>
       )}
 
       {/* Week comparison stats */}
-      <div className="mt-3 pt-3 border-t border-cyan-500/10 grid grid-cols-3 gap-3">
+      <div className="mt-3 pt-3 border-t border-gold-500/10 grid grid-cols-3 gap-3">
         {[
           {
             label: 'vs Last Week',
@@ -235,14 +235,14 @@ export default function TrendCharts() {
           {
             label: 'Peak Day',
             value: peakDay,
-            color: '#22D3EE',
+            color: '#D4A84B',
             icon: 'ri-calendar-line',
           },
         ].map(stat => (
           <div
             key={stat.label}
-            className="rounded-lg px-3 py-2 text-center border border-cyan-500/10"
-            style={{ background: 'rgba(34,211,238,0.04)' }}
+            className="rounded-lg px-3 py-2 text-center border border-gold-500/10"
+            style={{ background: 'rgba(181,142,60,0.04)' }}
           >
             <div className="flex items-center justify-center gap-1">
               <i className={`${stat.icon} text-xs`} style={{ color: stat.color }} />

@@ -96,9 +96,9 @@ const RenewRentalForm = ({ isAr, onCancel }: Props) => {
                   type="button"
                   onClick={handleLookup}
                   className="flex items-center gap-1.5 px-4 py-2.5 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap transition-colors"
-                  style={{ background: "rgba(34,211,238,0.12)", border: "1px solid rgba(34,211,238,0.3)", color: "#22D3EE" }}
-                  onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(34,211,238,0.2)"; }}
-                  onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(34,211,238,0.12)"; }}
+                  style={{ background: "rgba(181,142,60,0.12)", border: "1px solid rgba(181,142,60,0.3)", color: "#D4A84B" }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(181,142,60,0.2)"; }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(181,142,60,0.12)"; }}
                 >
                   <i className="ri-search-line text-xs" />{isAr ? "بحث" : "Lookup"}
                 </button>
@@ -149,7 +149,7 @@ const RenewRentalForm = ({ isAr, onCancel }: Props) => {
                 maxLength={500}
                 className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none transition-all duration-200 resize-none"
                 style={{ background: "#0F1923", border: "1px solid rgba(255,255,255,0.08)", fontFamily: "Inter, sans-serif" }}
-                onFocus={(e) => { e.target.style.borderColor = "#22D3EE"; e.target.style.boxShadow = "0 0 0 2px rgba(34,211,238,0.08)"; }}
+                onFocus={(e) => { e.target.style.borderColor = "#D4A84B"; e.target.style.boxShadow = "0 0 0 2px rgba(181,142,60,0.08)"; }}
                 onBlur={(e) => { e.target.style.borderColor = "rgba(255,255,255,0.08)"; e.target.style.boxShadow = "none"; }}
               />
               <p className="text-gray-600 text-xs mt-1 text-right font-['JetBrains_Mono']">{renewalNotes.length}/500</p>
@@ -217,7 +217,7 @@ const RenewRentalForm = ({ isAr, onCancel }: Props) => {
                   maxLength={500}
                   className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none transition-all duration-200 resize-none"
                   style={{ background: "#0F1923", border: "1px solid rgba(255,255,255,0.08)", fontFamily: "Inter, sans-serif" }}
-                  onFocus={(e) => { e.target.style.borderColor = "#22D3EE"; e.target.style.boxShadow = "0 0 0 2px rgba(34,211,238,0.08)"; }}
+                  onFocus={(e) => { e.target.style.borderColor = "#D4A84B"; e.target.style.boxShadow = "0 0 0 2px rgba(181,142,60,0.08)"; }}
                   onBlur={(e) => { e.target.style.borderColor = "rgba(255,255,255,0.08)"; e.target.style.boxShadow = "none"; }}
                 />
               </FormField>

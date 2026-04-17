@@ -78,7 +78,7 @@ const PaymentPatternForm = ({ isAr, onCancel }: Props) => {
         isAr={isAr}
         eventType="Payment Pattern Alert"
         eventTypeAr="تنبيه نمط الدفع"
-        color="#22D3EE"
+        color="#D4A84B"
         icon="ri-exchange-line"
         onReset={() => setSubmitted(false)}
       />
@@ -127,7 +127,7 @@ const PaymentPatternForm = ({ isAr, onCancel }: Props) => {
       </SectionCard>
 
       {/* Pattern Type */}
-      <SectionCard title={isAr ? "نوع النمط المشبوه" : "Suspicious Pattern Type"} icon="ri-exchange-line" accentColor="#22D3EE">
+      <SectionCard title={isAr ? "نوع النمط المشبوه" : "Suspicious Pattern Type"} icon="ri-exchange-line" accentColor="#D4A84B">
         <FormField label={isAr ? "نوع النمط" : "Pattern Type"} required>
           <SelectInput
             value={patternType}
@@ -196,9 +196,9 @@ const PaymentPatternForm = ({ isAr, onCancel }: Props) => {
             type="button"
             onClick={addCard}
             className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold cursor-pointer transition-colors whitespace-nowrap font-['Inter']"
-            style={{ background: "rgba(34,211,238,0.08)", border: "1px solid rgba(34,211,238,0.2)", color: "#22D3EE" }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(34,211,238,0.15)"; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(34,211,238,0.08)"; }}
+            style={{ background: "rgba(181,142,60,0.08)", border: "1px solid rgba(181,142,60,0.2)", color: "#D4A84B" }}
+            onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(181,142,60,0.15)"; }}
+            onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(181,142,60,0.08)"; }}
           >
             <i className="ri-add-line" />
             {isAr ? "إضافة بطاقة" : "Add Card"}
@@ -282,7 +282,7 @@ const PaymentPatternForm = ({ isAr, onCancel }: Props) => {
               placeholder={isAr ? "أي معلومات إضافية ذات صلة..." : "Any additional relevant information..."}
               className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none transition-all resize-none font-['Inter']"
               style={{ background: "#0F1923", border: "1px solid rgba(255,255,255,0.08)" }}
-              onFocus={(e) => { e.target.style.borderColor = "#22D3EE"; }}
+              onFocus={(e) => { e.target.style.borderColor = "#D4A84B"; }}
               onBlur={(e) => { e.target.style.borderColor = "rgba(255,255,255,0.08)"; }}
             />
             <p className="text-gray-600 text-xs mt-1 text-right font-['JetBrains_Mono']">{additionalNotes.length}/500</p>

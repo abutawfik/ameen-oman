@@ -17,7 +17,7 @@ const kpiStats = [
     value: '284,912',
     delta: '+1,247 today',
     deltaAr: '+1,247 اليوم',
-    color: '#22D3EE',
+    color: '#D4A84B',
     icon: 'ri-user-follow-line',
   },
   {
@@ -75,34 +75,34 @@ export default function IdentityFusionPage() {
   return (
     <div
       className="min-h-screen flex flex-col"
-      style={{ background: '#060D1A', fontFamily: "'Inter', sans-serif" }}
+      style={{ background: '#0B1220', fontFamily: "'Inter', sans-serif" }}
       dir={isAr ? 'rtl' : 'ltr'}
     >
       {/* Grid texture */}
       <div
         className="fixed inset-0 pointer-events-none z-0 opacity-15"
         style={{
-          backgroundImage: 'linear-gradient(rgba(34,211,238,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.12) 1px, transparent 1px)',
+          backgroundImage: 'linear-gradient(rgba(181,142,60,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,0.12) 1px, transparent 1px)',
           backgroundSize: '50px 50px',
         }}
       />
 
       {/* Header */}
       <div
-        className="relative z-10 border-b border-cyan-500/15 px-6 py-5"
-        style={{ background: 'rgba(6,13,26,0.98)' }}
+        className="relative z-10 border-b border-gold-500/15 px-6 py-5"
+        style={{ background: 'rgba(11,18,32,0.98)' }}
       >
         <div className="flex items-start justify-between">
           <div>
             <div className="flex items-center gap-3 mb-1">
               <div
                 className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
-                style={{ background: 'rgba(34,211,238,0.1)', border: '1px solid rgba(34,211,238,0.3)' }}
+                style={{ background: 'rgba(181,142,60,0.1)', border: '1px solid rgba(181,142,60,0.3)' }}
               >
-                <i className="ri-fingerprint-line text-cyan-400 text-xl" />
+                <i className="ri-fingerprint-line text-gold-400 text-xl" />
               </div>
               <div>
-                <h1 className="text-cyan-400 font-black text-2xl tracking-wide font-['Inter']">
+                <h1 className="text-gold-400 font-black text-2xl tracking-wide font-['Inter']">
                   {isAr ? 'مركز دمج الهويات' : 'Identity Fusion Center'}
                 </h1>
                 <p className="text-gray-500 text-xs font-['JetBrains_Mono'] mt-0.5">
@@ -127,11 +127,11 @@ export default function IdentityFusionPage() {
             </div>
             {/* Active rules */}
             <div
-              className="flex items-center gap-2 px-3 py-2 rounded-xl border border-cyan-500/20"
-              style={{ background: 'rgba(34,211,238,0.04)' }}
+              className="flex items-center gap-2 px-3 py-2 rounded-xl border border-gold-500/20"
+              style={{ background: 'rgba(181,142,60,0.04)' }}
             >
-              <i className="ri-git-branch-line text-cyan-400 text-xs" />
-              <span className="text-cyan-400 text-xs font-['JetBrains_Mono']">
+              <i className="ri-git-branch-line text-gold-400 text-xs" />
+              <span className="text-gold-400 text-xs font-['JetBrains_Mono']">
                 {matchingRules.filter(r => r.enabled).length} {isAr ? 'قواعد نشطة' : 'active rules'}
               </span>
             </div>
@@ -144,7 +144,7 @@ export default function IdentityFusionPage() {
             <div
               key={kpi.labelEn}
               className="rounded-xl border p-3 flex items-center gap-3"
-              style={{ background: 'rgba(10,22,40,0.7)', borderColor: `${kpi.color}18` }}
+              style={{ background: 'rgba(20,29,46,0.7)', borderColor: `${kpi.color}18` }}
             >
               <div
                 className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0"
@@ -170,15 +170,15 @@ export default function IdentityFusionPage() {
 
       {/* Tab bar */}
       <div
-        className="relative z-10 flex items-center gap-1 px-6 border-b border-cyan-500/10"
-        style={{ background: 'rgba(6,13,26,0.95)' }}
+        className="relative z-10 flex items-center gap-1 px-6 border-b border-gold-500/10"
+        style={{ background: 'rgba(11,18,32,0.95)' }}
       >
         {tabs.map(tab => (
           <button
             key={tab.key}
             onClick={() => setActiveTab(tab.key)}
             className="relative flex items-center gap-2 px-4 py-3.5 text-sm font-medium cursor-pointer transition-all whitespace-nowrap font-['Inter']"
-            style={{ color: activeTab === tab.key ? '#22D3EE' : '#6B7280' }}
+            style={{ color: activeTab === tab.key ? '#D4A84B' : '#6B7280' }}
           >
             <i className={`${tab.icon} text-sm`} />
             {isAr ? tab.labelAr : tab.labelEn}
@@ -191,7 +191,7 @@ export default function IdentityFusionPage() {
               </span>
             )}
             {activeTab === tab.key && (
-              <div className="absolute bottom-0 left-0 right-0 h-0.5 rounded-full bg-cyan-400" />
+              <div className="absolute bottom-0 left-0 right-0 h-0.5 rounded-full bg-gold-400" />
             )}
           </button>
         ))}

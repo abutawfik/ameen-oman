@@ -52,14 +52,14 @@ const POBoxRegistrationForm = ({ isAr, onCancel }: Props) => {
   };
 
   if (confirmed) return (
-    <PstConfirmation refNumber={refCode} eventType={isAr ? "تسجيل صندوق بريد" : "PO Box Registration"} eventCode="AMN-PST-POBOX" color="#22D3EE" isAr={isAr} onReset={() => setConfirmed(false)} />
+    <PstConfirmation refNumber={refCode} eventType={isAr ? "تسجيل صندوق بريد" : "PO Box Registration"} eventCode="AMN-PST-POBOX" color="#D4A84B" isAr={isAr} onReset={() => setConfirmed(false)} />
   );
 
   return (
     <div className="space-y-5">
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
         {/* Box Details */}
-        <SectionCard title={isAr ? "تفاصيل صندوق البريد" : "PO Box Details"} icon="ri-mail-line" accentColor="#22D3EE">
+        <SectionCard title={isAr ? "تفاصيل صندوق البريد" : "PO Box Details"} icon="ri-mail-line" accentColor="#D4A84B">
           <div className="space-y-4">
             <FormField label={isAr ? "رقم الصندوق" : "Box Number"} required>
               <TextInput placeholder="PO-XXXXX" value={boxNumber} onChange={(e) => setBoxNumber(e.target.value)} className="font-['JetBrains_Mono']" />
@@ -140,8 +140,8 @@ const POBoxRegistrationForm = ({ isAr, onCancel }: Props) => {
                 <span className="text-white text-xs font-semibold font-['JetBrains_Mono']">{row.value}</span>
               </div>
             ))}
-            <div className="flex items-start gap-3 px-3 py-3 rounded-lg mt-2" style={{ background: "rgba(34,211,238,0.04)", border: "1px solid rgba(34,211,238,0.15)" }}>
-              <i className="ri-shield-check-line text-cyan-400 text-sm mt-0.5 flex-shrink-0" />
+            <div className="flex items-start gap-3 px-3 py-3 rounded-lg mt-2" style={{ background: "rgba(181,142,60,0.04)", border: "1px solid rgba(181,142,60,0.15)" }}>
+              <i className="ri-shield-check-line text-gold-400 text-sm mt-0.5 flex-shrink-0" />
               <p className="text-gray-400 text-xs">{isAr ? "سيتم ربط صندوق البريد بوثيقة السفر في قاعدة بيانات AMEEN." : "PO Box will be linked to the travel document in the AMEEN database."}</p>
             </div>
           </div>

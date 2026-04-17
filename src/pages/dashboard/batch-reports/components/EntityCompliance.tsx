@@ -3,7 +3,7 @@ import { useState } from "react";
 interface Props { isAr: boolean; }
 
 const ENTITIES = [
-  { name: "Al Bustan Palace Hotel",    nameAr: "فندق البستان بالاس",       icon: "ri-hotel-line",         color: "#22D3EE", rating: "gold",   score: 98, events: 1284, rejected: 12, trend: [88,90,91,93,94,95,96,97,97,98,98,98] },
+  { name: "Al Bustan Palace Hotel",    nameAr: "فندق البستان بالاس",       icon: "ri-hotel-line",         color: "#D4A84B", rating: "gold",   score: 98, events: 1284, rejected: 12, trend: [88,90,91,93,94,95,96,97,97,98,98,98] },
   { name: "Oman Car Rental Co.",       nameAr: "شركة عُمان لتأجير السيارات",icon: "ri-car-line",           color: "#4ADE80", rating: "gold",   score: 96, events: 2103, rejected: 34, trend: [82,84,86,88,90,91,92,93,94,95,96,96] },
   { name: "Omantel",                   nameAr: "عُمانتل",                   icon: "ri-sim-card-line",      color: "#A78BFA", rating: "gold",   score: 97, events: 8412, rejected: 89, trend: [90,91,92,93,94,95,95,96,96,97,97,97] },
   { name: "Muscat Municipality",       nameAr: "بلدية مسقط",               icon: "ri-government-line",    color: "#FACC15", rating: "silver", score: 89, events: 891,  rejected: 67, trend: [78,80,81,82,83,84,85,86,87,88,89,89] },
@@ -18,7 +18,7 @@ const ENTITIES = [
 const MONTHS_SHORT = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 
 const RATING_CONFIG = {
-  gold:   { label: "Gold",   labelAr: "ذهبي",   color: "#22D3EE", icon: "ri-medal-line",   bg: "rgba(34,211,238,0.1)",  border: "rgba(34,211,238,0.25)" },
+  gold:   { label: "Gold",   labelAr: "ذهبي",   color: "#D4A84B", icon: "ri-medal-line",   bg: "rgba(181,142,60,0.1)",  border: "rgba(181,142,60,0.25)" },
   silver: { label: "Silver", labelAr: "فضي",    color: "#FACC15", icon: "ri-medal-2-line", bg: "rgba(250,204,21,0.1)",  border: "rgba(250,204,21,0.25)" },
   bronze: { label: "Bronze", labelAr: "برونزي", color: "#9CA3AF", icon: "ri-award-line",   bg: "rgba(156,163,175,0.1)", border: "rgba(156,163,175,0.25)" },
 };
@@ -51,11 +51,11 @@ const EntityCompliance = ({ isAr }: Props) => {
 
       {/* Entity table */}
       <div className="rounded-2xl border overflow-hidden"
-        style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.12)", backdropFilter: "blur(12px)" }}>
-        <div className="flex items-center gap-3 px-6 py-4 border-b" style={{ borderColor: "rgba(34,211,238,0.08)" }}>
+        style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
+        <div className="flex items-center gap-3 px-6 py-4 border-b" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
           <div className="w-8 h-8 flex items-center justify-center rounded-lg"
-            style={{ background: "rgba(34,211,238,0.1)", border: "1px solid rgba(34,211,238,0.2)" }}>
-            <i className="ri-building-line text-cyan-400 text-sm" />
+            style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+            <i className="ri-building-line text-gold-400 text-sm" />
           </div>
           <h3 className="text-white font-bold text-sm">{isAr ? "امتثال الكيانات" : "Entity Compliance"}</h3>
           <span className="text-gray-500 text-xs ml-2">{isAr ? "ملخص شهري" : "Monthly Summary"}</span>
@@ -63,7 +63,7 @@ const EntityCompliance = ({ isAr }: Props) => {
         <div className="overflow-x-auto">
           <table className="w-full min-w-[800px]">
             <thead>
-              <tr style={{ background: "rgba(34,211,238,0.04)", borderBottom: "1px solid rgba(34,211,238,0.08)" }}>
+              <tr style={{ background: "rgba(181,142,60,0.04)", borderBottom: "1px solid rgba(181,142,60,0.08)" }}>
                 {[
                   isAr ? "الكيان" : "Entity",
                   isAr ? "التصنيف" : "Rating",
@@ -86,11 +86,11 @@ const EntityCompliance = ({ isAr }: Props) => {
                     onClick={() => setSelected(selected?.name === entity.name ? null : entity)}
                     className="border-b cursor-pointer transition-colors"
                     style={{
-                      background: selected?.name === entity.name ? "rgba(34,211,238,0.05)" : idx % 2 === 0 ? "rgba(10,22,40,0.6)" : "rgba(6,13,26,0.4)",
-                      borderColor: "rgba(34,211,238,0.05)",
+                      background: selected?.name === entity.name ? "rgba(181,142,60,0.05)" : idx % 2 === 0 ? "rgba(20,29,46,0.6)" : "rgba(11,18,32,0.4)",
+                      borderColor: "rgba(181,142,60,0.05)",
                     }}
-                    onMouseEnter={(e) => { if (selected?.name !== entity.name) (e.currentTarget as HTMLElement).style.background = "rgba(34,211,238,0.03)"; }}
-                    onMouseLeave={(e) => { if (selected?.name !== entity.name) (e.currentTarget as HTMLElement).style.background = idx % 2 === 0 ? "rgba(10,22,40,0.6)" : "rgba(6,13,26,0.4)"; }}>
+                    onMouseEnter={(e) => { if (selected?.name !== entity.name) (e.currentTarget as HTMLElement).style.background = "rgba(181,142,60,0.03)"; }}
+                    onMouseLeave={(e) => { if (selected?.name !== entity.name) (e.currentTarget as HTMLElement).style.background = idx % 2 === 0 ? "rgba(20,29,46,0.6)" : "rgba(11,18,32,0.4)"; }}>
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-2">
                         <div className="w-7 h-7 flex items-center justify-center rounded-lg flex-shrink-0"
@@ -147,7 +147,7 @@ const EntityCompliance = ({ isAr }: Props) => {
       {/* Detail panel */}
       {selected && (
         <div className="rounded-2xl border p-6"
-          style={{ background: "rgba(6,13,26,0.95)", borderColor: "rgba(34,211,238,0.2)", backdropFilter: "blur(16px)" }}>
+          style={{ background: "rgba(11,18,32,0.95)", borderColor: "rgba(181,142,60,0.2)", backdropFilter: "blur(16px)" }}>
           <div className="flex items-center justify-between mb-5">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 flex items-center justify-center rounded-xl"

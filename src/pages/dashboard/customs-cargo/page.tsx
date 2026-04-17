@@ -25,7 +25,7 @@ const eventTypes: {
   descEn: string;
   descAr: string;
 }[] = [
-  { id: "import", labelEn: "Import Declaration", labelAr: "إقرار الاستيراد", icon: "ri-download-2-line", color: "#22D3EE", descEn: "Goods entering the country via any port", descAr: "بضائع تدخل البلاد عبر أي منفذ" },
+  { id: "import", labelEn: "Import Declaration", labelAr: "إقرار الاستيراد", icon: "ri-download-2-line", color: "#D4A84B", descEn: "Goods entering the country via any port", descAr: "بضائع تدخل البلاد عبر أي منفذ" },
   { id: "export", labelEn: "Export Declaration", labelAr: "إقرار التصدير", icon: "ri-upload-2-line", color: "#4ADE80", descEn: "Goods leaving the country, including re-exports", descAr: "بضائع تغادر البلاد، بما فيها إعادة التصدير" },
   { id: "transit", labelEn: "Transit / Transshipment", labelAr: "عبور / إعادة شحن", icon: "ri-arrow-left-right-line", color: "#FACC15", descEn: "Goods passing through the country to another destination", descAr: "بضائع تعبر البلاد إلى وجهة أخرى" },
   { id: "freezone", labelEn: "Free Zone Entry / Exit", labelAr: "دخول / خروج المنطقة الحرة", icon: "ri-store-2-line", color: "#38BDF8", descEn: "Goods movement in/out of free trade zones", descAr: "حركة البضائع داخل وخارج مناطق التجارة الحرة" },
@@ -34,7 +34,7 @@ const eventTypes: {
 ];
 
 const mainTabs: { id: MainTab; labelEn: string; labelAr: string; icon: string; color: string }[] = [
-  { id: "declarations", labelEn: "Declarations", labelAr: "الإقرارات", icon: "ri-file-list-3-line", color: "#22D3EE" },
+  { id: "declarations", labelEn: "Declarations", labelAr: "الإقرارات", icon: "ri-file-list-3-line", color: "#D4A84B" },
   { id: "cargo-intel", labelEn: "Cargo Intelligence", labelAr: "استخبارات الشحن", icon: "ri-bar-chart-2-line", color: "#FACC15" },
   { id: "brokers", labelEn: "Broker Registry", labelAr: "سجل الوسطاء", icon: "ri-user-star-line", color: "#4ADE80" },
   { id: "cross-stream", labelEn: "Cross-Stream Intel", labelAr: "استخبارات متعددة المصادر", icon: "ri-git-branch-line", color: "#FB923C" },
@@ -71,17 +71,17 @@ const CustomsCargoPage = () => {
   const activeEventMeta = eventTypes.find((e) => e.id === activeEvent);
 
   return (
-    <div className="flex flex-col h-full" style={{ background: "#060D1A", direction: isAr ? "rtl" : "ltr" }}>
+    <div className="flex flex-col h-full" style={{ background: "#0B1220", direction: isAr ? "rtl" : "ltr" }}>
       <div className="fixed inset-0 pointer-events-none"
-        style={{ backgroundImage: "linear-gradient(rgba(34,211,238,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.03) 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
+        style={{ backgroundImage: "linear-gradient(rgba(181,142,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,0.03) 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
 
       <div className="flex-1 flex flex-col overflow-hidden">
         <main className="flex-1 overflow-y-auto p-6">
           {/* Page Header */}
           <div className="mb-5">
             <div className="flex items-center gap-3 mb-1">
-              <div className="w-10 h-10 flex items-center justify-center rounded-xl" style={{ background: "rgba(34,211,238,0.12)", border: "1px solid rgba(34,211,238,0.25)" }}>
-                <i className="ri-ship-line text-cyan-400 text-lg" />
+              <div className="w-10 h-10 flex items-center justify-center rounded-xl" style={{ background: "rgba(181,142,60,0.12)", border: "1px solid rgba(181,142,60,0.25)" }}>
+                <i className="ri-ship-line text-gold-400 text-lg" />
               </div>
               <div>
                 <h1 className="text-white text-xl font-bold font-['Inter']">{isAr ? "الجمارك والشحن" : "Customs & Cargo"}</h1>
@@ -92,7 +92,7 @@ const CustomsCargoPage = () => {
             </div>
             <div className="flex flex-wrap gap-2 mt-3">
               {[
-                { icon: "ri-government-line", label: isAr ? "هيئة الجمارك الوطنية" : "National Customs Authority", color: "#22D3EE" },
+                { icon: "ri-government-line", label: isAr ? "هيئة الجمارك الوطنية" : "National Customs Authority", color: "#D4A84B" },
                 { icon: "ri-anchor-line", label: isAr ? "سلطات الموانئ" : "Port Authorities", color: "#4ADE80" },
                 { icon: "ri-store-2-line", label: isAr ? "مناطق التجارة الحرة" : "Free Trade Zones", color: "#38BDF8" },
                 { icon: "ri-mail-send-line", label: isAr ? "جمارك البريد" : "Postal Customs", color: "#A78BFA" },
@@ -107,7 +107,7 @@ const CustomsCargoPage = () => {
           </div>
 
           {/* Main Tab Bar */}
-          <div className="flex gap-1 p-1 rounded-xl mb-5" style={{ background: "rgba(10,22,40,0.8)", border: "1px solid rgba(34,211,238,0.1)" }}>
+          <div className="flex gap-1 p-1 rounded-xl mb-5" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.1)" }}>
             {mainTabs.map((tab) => (
               <button key={tab.id} onClick={() => setMainTab(tab.id)}
                 className="flex-1 flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg text-xs font-semibold transition-all cursor-pointer whitespace-nowrap font-['Inter']"
@@ -132,8 +132,8 @@ const CustomsCargoPage = () => {
                       <button key={evt.id} onClick={() => setActiveEvent(evt.id)}
                         className="p-4 rounded-xl text-left transition-all cursor-pointer group"
                         style={{
-                          background: activeEvent === evt.id ? `${evt.color}12` : "rgba(10,22,40,0.6)",
-                          border: `1px solid ${activeEvent === evt.id ? evt.color : "rgba(34,211,238,0.08)"}`,
+                          background: activeEvent === evt.id ? `${evt.color}12` : "rgba(20,29,46,0.6)",
+                          border: `1px solid ${activeEvent === evt.id ? evt.color : "rgba(181,142,60,0.08)"}`,
                         }}>
                         <div className="flex items-start gap-3">
                           <div className="w-9 h-9 flex items-center justify-center rounded-lg flex-shrink-0" style={{ background: `${evt.color}18` }}>
@@ -149,9 +149,9 @@ const CustomsCargoPage = () => {
                   </div>
                 )}
                 {activeEvent !== "overview" && (
-                  <div className="rounded-2xl overflow-hidden" style={{ background: "rgba(10,22,40,0.8)", border: "1px solid rgba(34,211,238,0.1)" }}>
+                  <div className="rounded-2xl overflow-hidden" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.1)" }}>
                     {!confirmation && activeEventMeta && (
-                      <div className="px-6 py-4 border-b flex items-center justify-between" style={{ borderColor: "rgba(34,211,238,0.08)" }}>
+                      <div className="px-6 py-4 border-b flex items-center justify-between" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
                         <div className="flex items-center gap-3">
                           <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: `${activeEventMeta.color}18` }}>
                             <i className={`${activeEventMeta.icon} text-sm`} style={{ color: activeEventMeta.color }} />
@@ -172,9 +172,9 @@ const CustomsCargoPage = () => {
                   </div>
                 )}
                 {activeEvent === "overview" && (
-                  <div className="rounded-2xl p-8 text-center" style={{ background: "rgba(10,22,40,0.6)", border: "1px solid rgba(34,211,238,0.08)" }}>
-                    <div className="w-16 h-16 flex items-center justify-center rounded-2xl mx-auto mb-4" style={{ background: "rgba(34,211,238,0.1)", border: "1px solid rgba(34,211,238,0.2)" }}>
-                      <i className="ri-ship-line text-3xl text-cyan-400" />
+                  <div className="rounded-2xl p-8 text-center" style={{ background: "rgba(20,29,46,0.6)", border: "1px solid rgba(181,142,60,0.08)" }}>
+                    <div className="w-16 h-16 flex items-center justify-center rounded-2xl mx-auto mb-4" style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+                      <i className="ri-ship-line text-3xl text-gold-400" />
                     </div>
                     <h3 className="text-white text-lg font-bold font-['Inter'] mb-2">{isAr ? "اختر نوع الإقرار الجمركي" : "Select Declaration Type"}</h3>
                     <p className="text-gray-500 text-sm font-['Inter']">{isAr ? "اختر أحد أنواع الإقرارات الجمركية الستة أعلاه لبدء التسجيل" : "Choose one of the six customs declaration types above to begin registration"}</p>

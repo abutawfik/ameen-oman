@@ -20,10 +20,10 @@ interface Props {
 
 const inputBase = "w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none transition-all font-['Inter']";
 const inputStyle = { background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" };
-const selectStyle = { background: "rgba(10,22,40,0.95)", border: "1px solid rgba(255,255,255,0.08)" };
+const selectStyle = { background: "rgba(20,29,46,0.95)", border: "1px solid rgba(255,255,255,0.08)" };
 
 const onFocusCyan = (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-  e.target.style.borderColor = "rgba(34,211,238,0.5)";
+  e.target.style.borderColor = "rgba(181,142,60,0.5)";
 };
 const onBlurDefault = (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
   e.target.style.borderColor = "rgba(255,255,255,0.08)";
@@ -62,7 +62,7 @@ const Input = ({ name, placeholder, value, onChange, type = "text" }: InputProps
 
 const SectionHeader = ({ label }: { label: string }) => (
   <p className="text-gray-400 text-xs font-semibold uppercase tracking-widest mb-3 font-['JetBrains_Mono'] flex items-center gap-2">
-    <span className="w-4 h-px bg-cyan-400/40 inline-block" />
+    <span className="w-4 h-px bg-gold-400/40 inline-block" />
     {label}
   </p>
 );
@@ -222,11 +222,11 @@ const StepEntityDetails = ({ entityType, data, onChange, isAr }: Props) => {
             {isChain && (
               <div
                 className="p-4 rounded-xl border"
-                style={{ background: "rgba(34,211,238,0.04)", borderColor: "rgba(34,211,238,0.2)" }}
+                style={{ background: "rgba(181,142,60,0.04)", borderColor: "rgba(181,142,60,0.2)" }}
               >
                 <div className="flex items-center gap-2 mb-3">
-                  <i className="ri-building-4-line text-cyan-400 text-sm" />
-                  <span className="text-cyan-400 text-xs font-semibold font-['Inter']">
+                  <i className="ri-building-4-line text-gold-400 text-sm" />
+                  <span className="text-gold-400 text-xs font-semibold font-['Inter']">
                     {isAr ? "إعداد متعدد الفروع" : "Multi-Property Setup"}
                   </span>
                 </div>
@@ -236,7 +236,7 @@ const StepEntityDetails = ({ entityType, data, onChange, isAr }: Props) => {
                       <button
                         type="button"
                         onClick={() => setBranchCount(Math.max(1, branchCount - 1))}
-                        className="w-8 h-8 flex items-center justify-center rounded-lg border border-white/10 text-gray-400 hover:text-cyan-400 hover:border-cyan-400/40 transition-colors cursor-pointer"
+                        className="w-8 h-8 flex items-center justify-center rounded-lg border border-white/10 text-gray-400 hover:text-gold-400 hover:border-gold-400/40 transition-colors cursor-pointer"
                       >
                         <i className="ri-subtract-line text-sm" />
                       </button>
@@ -244,7 +244,7 @@ const StepEntityDetails = ({ entityType, data, onChange, isAr }: Props) => {
                       <button
                         type="button"
                         onClick={() => setBranchCount(branchCount + 1)}
-                        className="w-8 h-8 flex items-center justify-center rounded-lg border border-white/10 text-gray-400 hover:text-cyan-400 hover:border-cyan-400/40 transition-colors cursor-pointer"
+                        className="w-8 h-8 flex items-center justify-center rounded-lg border border-white/10 text-gray-400 hover:text-gold-400 hover:border-gold-400/40 transition-colors cursor-pointer"
                       >
                         <i className="ri-add-line text-sm" />
                       </button>

@@ -60,13 +60,13 @@ const CourseRegistrationForm = ({ isAr, onCancel }: Props) => {
 
   const handleSave = () => { setSaving(true); setTimeout(() => { setSaving(false); setRefCode(genRef()); setConfirmed(true); }, 1500); };
 
-  if (confirmed) return <EduConfirmation refNumber={refCode} eventType={isAr ? "تسجيل مقررات" : "Course Registration"} eventCode="AMN-EDU-CRS" color="#22D3EE" isAr={isAr} onReset={() => setConfirmed(false)} />;
+  if (confirmed) return <EduConfirmation refNumber={refCode} eventType={isAr ? "تسجيل مقررات" : "Course Registration"} eventCode="AMN-EDU-CRS" color="#D4A84B" isAr={isAr} onReset={() => setConfirmed(false)} />;
 
   return (
     <div className="space-y-5">
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
         {/* Student Lookup */}
-        <SectionCard title={isAr ? "بحث عن الطالب" : "Student Lookup"} icon="ri-user-search-line" accentColor="#22D3EE">
+        <SectionCard title={isAr ? "بحث عن الطالب" : "Student Lookup"} icon="ri-user-search-line" accentColor="#D4A84B">
           <div className="space-y-4">
             <FormField label={isAr ? "رقم الطالب" : "Student ID"} required>
               <div className="flex gap-2">
@@ -82,10 +82,10 @@ const CourseRegistrationForm = ({ isAr, onCancel }: Props) => {
               </div>
             )}
             {studentData && (
-              <div className="space-y-2 px-4 py-4 rounded-xl" style={{ background: "rgba(34,211,238,0.04)", border: "1px solid rgba(34,211,238,0.15)" }}>
+              <div className="space-y-2 px-4 py-4 rounded-xl" style={{ background: "rgba(181,142,60,0.04)", border: "1px solid rgba(181,142,60,0.15)" }}>
                 <div className="flex items-center gap-2 mb-2">
-                  <i className="ri-checkbox-circle-line text-cyan-400 text-sm" />
-                  <span className="text-cyan-400 text-xs font-bold">{isAr ? "تم العثور على الطالب" : "Student Found"}</span>
+                  <i className="ri-checkbox-circle-line text-gold-400 text-sm" />
+                  <span className="text-gold-400 text-xs font-bold">{isAr ? "تم العثور على الطالب" : "Student Found"}</span>
                 </div>
                 {[
                   { label: isAr ? "الاسم" : "Name", value: isAr ? studentData.nameAr : studentData.name },
@@ -111,18 +111,18 @@ const CourseRegistrationForm = ({ isAr, onCancel }: Props) => {
           <div className="space-y-3">
             <div className="flex items-center justify-between mb-2">
               <span className="text-gray-400 text-xs">{isAr ? "اختر المقررات" : "Select courses"}</span>
-              <span className="text-cyan-400 text-xs font-bold font-['JetBrains_Mono']">{totalCredits} {isAr ? "ساعة معتمدة" : "credits"}</span>
+              <span className="text-gold-400 text-xs font-bold font-['JetBrains_Mono']">{totalCredits} {isAr ? "ساعة معتمدة" : "credits"}</span>
             </div>
             {COURSES.map(course => {
               const isSelected = selectedCourses.includes(course.value);
               return (
                 <button key={course.value} type="button" onClick={() => toggleCourse(course.value)}
                   className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left cursor-pointer transition-all"
-                  style={{ background: isSelected ? "rgba(34,211,238,0.08)" : "rgba(255,255,255,0.03)", border: `1px solid ${isSelected ? "rgba(34,211,238,0.3)" : "rgba(255,255,255,0.06)"}` }}>
-                  <div className="w-5 h-5 flex items-center justify-center rounded flex-shrink-0" style={{ background: isSelected ? "#22D3EE" : "rgba(255,255,255,0.06)", border: `1px solid ${isSelected ? "#22D3EE" : "rgba(255,255,255,0.1)"}` }}>
+                  style={{ background: isSelected ? "rgba(181,142,60,0.08)" : "rgba(255,255,255,0.03)", border: `1px solid ${isSelected ? "rgba(181,142,60,0.3)" : "rgba(255,255,255,0.06)"}` }}>
+                  <div className="w-5 h-5 flex items-center justify-center rounded flex-shrink-0" style={{ background: isSelected ? "#D4A84B" : "rgba(255,255,255,0.06)", border: `1px solid ${isSelected ? "#D4A84B" : "rgba(255,255,255,0.1)"}` }}>
                     {isSelected && <i className="ri-check-line text-xs text-gray-900" />}
                   </div>
-                  <span className="text-xs font-['JetBrains_Mono']" style={{ color: isSelected ? "#22D3EE" : "#9CA3AF" }}>{course.label}</span>
+                  <span className="text-xs font-['JetBrains_Mono']" style={{ color: isSelected ? "#D4A84B" : "#9CA3AF" }}>{course.label}</span>
                 </button>
               );
             })}

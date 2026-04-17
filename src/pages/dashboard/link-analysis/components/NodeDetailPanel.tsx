@@ -34,12 +34,12 @@ const NodeDetailPanel = ({ node, edges, nodes, isAr, onClose, onSelectNode }: Pr
   return (
     <div
       className="flex flex-col h-full"
-      style={{ background: "rgba(10,22,40,0.95)" }}
+      style={{ background: "rgba(20,29,46,0.95)" }}
     >
       {/* Header */}
       <div
         className="flex items-center gap-3 px-4 py-3 border-b flex-shrink-0"
-        style={{ borderColor: "rgba(34,211,238,0.12)", background: "rgba(34,211,238,0.04)" }}
+        style={{ borderColor: "rgba(181,142,60,0.12)", background: "rgba(181,142,60,0.04)" }}
       >
         <div
           className="w-10 h-10 flex items-center justify-center rounded-full flex-shrink-0"
@@ -67,7 +67,7 @@ const NodeDetailPanel = ({ node, edges, nodes, isAr, onClose, onSelectNode }: Pr
         {/* Stats row */}
         <div className="grid grid-cols-3 gap-2">
           {[
-            { label: isAr ? "الدرجة" : "Degree", value: node.degree || 0, color: "#22D3EE" },
+            { label: isAr ? "الدرجة" : "Degree", value: node.degree || 0, color: "#D4A84B" },
             { label: isAr ? "الوساطة" : "Betweenness", value: `${Math.round((node.betweenness || 0) * 100)}%`, color: "#A78BFA" },
             { label: isAr ? "المجتمع" : "Community", value: node.community || 1, color: "#4ADE80" },
           ].map((stat, i) => (
@@ -89,7 +89,7 @@ const NodeDetailPanel = ({ node, edges, nodes, isAr, onClose, onSelectNode }: Pr
                 <span
                   key={s}
                   className="px-2 py-0.5 rounded text-[10px] font-['JetBrains_Mono']"
-                  style={{ background: "rgba(34,211,238,0.08)", border: "1px solid rgba(34,211,238,0.2)", color: "#22D3EE" }}
+                  style={{ background: "rgba(181,142,60,0.08)", border: "1px solid rgba(181,142,60,0.2)", color: "#D4A84B" }}
                 >
                   {s}
                 </span>
@@ -162,10 +162,10 @@ const NodeDetailPanel = ({ node, edges, nodes, isAr, onClose, onSelectNode }: Pr
       </div>
 
       {/* Actions */}
-      <div className="p-3 border-t flex gap-2 flex-shrink-0" style={{ borderColor: "rgba(34,211,238,0.1)" }}>
+      <div className="p-3 border-t flex gap-2 flex-shrink-0" style={{ borderColor: "rgba(181,142,60,0.1)" }}>
         <button
           className="flex-1 py-2 rounded-lg text-xs font-['Inter'] font-semibold cursor-pointer transition-colors"
-          style={{ background: "#22D3EE", color: "#060D1A" }}
+          style={{ background: "#D4A84B", color: "#0B1220" }}
         >
           <i className="ri-user-search-line mr-1" />
           {isAr ? "ملف 360°" : "360° Profile"}

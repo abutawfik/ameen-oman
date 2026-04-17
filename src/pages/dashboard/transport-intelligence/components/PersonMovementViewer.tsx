@@ -66,7 +66,7 @@ const PERSONS: PersonProfile[] = [
 ];
 
 const typeIcon = (t: TripEvent["type"]) => t === "bus" ? "ri-bus-line" : t === "taxi" ? "ri-taxi-line" : "ri-car-line";
-const typeColor = (t: TripEvent["type"]) => t === "bus" ? "#22D3EE" : t === "taxi" ? "#4ADE80" : "#A78BFA";
+const typeColor = (t: TripEvent["type"]) => t === "bus" ? "#D4A84B" : t === "taxi" ? "#4ADE80" : "#A78BFA";
 const typeLabel = (t: TripEvent["type"], isAr: boolean) => {
   if (t === "bus") return isAr ? "حافلة" : "Bus";
   if (t === "taxi") return isAr ? "تاكسي" : "Taxi";
@@ -89,10 +89,10 @@ const PersonMovementViewer = ({ isAr }: Props) => {
   );
 
   return (
-    <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.15)", backdropFilter: "blur(12px)" }}>
-      <div className="flex items-center gap-3 px-6 py-4 border-b" style={{ borderColor: "rgba(34,211,238,0.1)" }}>
-        <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(34,211,238,0.1)", border: "1px solid rgba(34,211,238,0.2)" }}>
-          <i className="ri-user-location-line text-cyan-400 text-sm" />
+    <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.15)", backdropFilter: "blur(12px)" }}>
+      <div className="flex items-center gap-3 px-6 py-4 border-b" style={{ borderColor: "rgba(181,142,60,0.1)" }}>
+        <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+          <i className="ri-user-location-line text-gold-400 text-sm" />
         </div>
         <div>
           <h3 className="text-white font-bold text-sm">{isAr ? "نمط تنقل الشخص" : "Person Movement Pattern"}</h3>
@@ -102,8 +102,8 @@ const PersonMovementViewer = ({ isAr }: Props) => {
 
       <div className="flex flex-col lg:flex-row">
         {/* Person selector */}
-        <div className="w-full lg:w-64 border-b lg:border-b-0 lg:border-r flex-shrink-0" style={{ borderColor: "rgba(34,211,238,0.1)" }}>
-          <div className="p-3 border-b" style={{ borderColor: "rgba(34,211,238,0.08)" }}>
+        <div className="w-full lg:w-64 border-b lg:border-b-0 lg:border-r flex-shrink-0" style={{ borderColor: "rgba(181,142,60,0.1)" }}>
+          <div className="p-3 border-b" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
             <div className="relative">
               <i className="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-xs" />
               <input
@@ -113,12 +113,12 @@ const PersonMovementViewer = ({ isAr }: Props) => {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-8 pr-3 py-2 rounded-lg text-xs text-white placeholder-gray-600 outline-none"
                 style={{ background: "#0F1923", border: "1px solid rgba(255,255,255,0.08)" }}
-                onFocus={(e) => { e.target.style.borderColor = "#22D3EE"; }}
+                onFocus={(e) => { e.target.style.borderColor = "#D4A84B"; }}
                 onBlur={(e) => { e.target.style.borderColor = "rgba(255,255,255,0.08)"; }}
               />
             </div>
           </div>
-          <div className="divide-y overflow-y-auto" style={{ borderColor: "rgba(34,211,238,0.06)", maxHeight: "340px" }}>
+          <div className="divide-y overflow-y-auto" style={{ borderColor: "rgba(181,142,60,0.06)", maxHeight: "340px" }}>
             {filtered.map((person) => {
               const color = riskColor(person.riskLevel);
               const isActive = selectedPerson.id === person.id;
@@ -168,8 +168,8 @@ const PersonMovementViewer = ({ isAr }: Props) => {
           </div>
 
           {/* Map path visualization */}
-          <div className="relative rounded-xl mb-5 overflow-hidden" style={{ height: "160px", background: "rgba(6,13,26,0.8)", border: "1px solid rgba(34,211,238,0.1)" }}>
-            <div className="absolute inset-0" style={{ backgroundImage: `linear-gradient(rgba(34,211,238,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.03) 1px, transparent 1px)`, backgroundSize: "20px 20px" }} />
+          <div className="relative rounded-xl mb-5 overflow-hidden" style={{ height: "160px", background: "rgba(11,18,32,0.8)", border: "1px solid rgba(181,142,60,0.1)" }}>
+            <div className="absolute inset-0" style={{ backgroundImage: `linear-gradient(rgba(181,142,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,0.03) 1px, transparent 1px)`, backgroundSize: "20px 20px" }} />
             <svg className="absolute inset-0 w-full h-full">
               {selectedPerson.trips.map((trip, i) => {
                 const color = trip.flagColor || typeColor(trip.type);
@@ -211,7 +211,7 @@ const PersonMovementViewer = ({ isAr }: Props) => {
                     <div className="flex items-center gap-3 flex-wrap">
                       <span className="text-gray-500 text-xs font-['JetBrains_Mono']">{trip.time}</span>
                       {trip.route && <span className="text-gray-500 text-xs">{trip.route}</span>}
-                      <span className="text-cyan-400 text-xs font-['JetBrains_Mono']">{trip.fare.toFixed(3)} LCY</span>
+                      <span className="text-gold-400 text-xs font-['JetBrains_Mono']">{trip.fare.toFixed(3)} LCY</span>
                       {trip.payment && <span className="text-gray-500 text-xs">{trip.payment}</span>}
                     </div>
                     {trip.flag && (

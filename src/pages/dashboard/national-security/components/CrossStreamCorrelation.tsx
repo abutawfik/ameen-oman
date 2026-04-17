@@ -28,9 +28,9 @@ const CrossStreamCorrelation = ({ isAr }: Props) => {
 
   return (
     <div className="rounded-2xl border overflow-hidden"
-      style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.12)", backdropFilter: "blur(12px)" }}>
+      style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
       {/* Header */}
-      <div className="flex items-center justify-between px-5 py-4 border-b" style={{ borderColor: "rgba(34,211,238,0.08)" }}>
+      <div className="flex items-center justify-between px-5 py-4 border-b" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 flex items-center justify-center rounded-xl"
             style={{ background: "rgba(167,139,250,0.1)", border: "1px solid rgba(167,139,250,0.2)" }}>
@@ -59,7 +59,7 @@ const CrossStreamCorrelation = ({ isAr }: Props) => {
       </div>
 
       {/* Correlation alerts */}
-      <div className="divide-y" style={{ borderColor: "rgba(34,211,238,0.04)" }}>
+      <div className="divide-y" style={{ borderColor: "rgba(181,142,60,0.04)" }}>
         {filtered.map((alert) => {
           const sevCfg = SEV_CONFIG[alert.severity];
           const statusCfg = STATUS_CONFIG[alert.status];
@@ -121,7 +121,7 @@ const CrossStreamCorrelation = ({ isAr }: Props) => {
               {/* Expanded */}
               {isSelected && (
                 <div className="px-5 py-4 border-t"
-                  style={{ background: "rgba(6,13,26,0.8)", borderColor: "rgba(34,211,238,0.08)" }}>
+                  style={{ background: "rgba(11,18,32,0.8)", borderColor: "rgba(181,142,60,0.08)" }}>
                   {/* Correlation visualization */}
                   <div className="mb-4 p-4 rounded-xl" style={{ background: "rgba(167,139,250,0.04)", border: "1px solid rgba(167,139,250,0.1)" }}>
                     <p className="text-gray-500 text-xs font-semibold uppercase tracking-wider mb-3">{isAr ? "تصور الارتباط" : "Correlation Visualization"}</p>
@@ -157,7 +157,7 @@ const CrossStreamCorrelation = ({ isAr }: Props) => {
                   <div className="flex items-center gap-2 flex-wrap">
                     <button type="button"
                       className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold cursor-pointer whitespace-nowrap"
-                      style={{ background: "#22D3EE", color: "#060D1A" }}>
+                      style={{ background: "#D4A84B", color: "#0B1220" }}>
                       <i className="ri-search-eye-line text-xs" />
                       {isAr ? "فتح تحقيق" : "Open Investigation"}
                     </button>
@@ -169,7 +169,7 @@ const CrossStreamCorrelation = ({ isAr }: Props) => {
                     </button>
                     <button type="button"
                       className="flex items-center gap-2 px-4 py-2 rounded-lg border text-xs font-bold cursor-pointer whitespace-nowrap"
-                      style={{ background: "transparent", borderColor: "rgba(34,211,238,0.2)", color: "#22D3EE" }}>
+                      style={{ background: "transparent", borderColor: "rgba(181,142,60,0.2)", color: "#D4A84B" }}>
                       <i className="ri-git-branch-line text-xs" />
                       {isAr ? "تحليل الروابط" : "Link Analysis"}
                     </button>
@@ -182,7 +182,7 @@ const CrossStreamCorrelation = ({ isAr }: Props) => {
       </div>
 
       {/* Footer */}
-      <div className="flex items-center justify-between px-5 py-3 border-t" style={{ borderColor: "rgba(34,211,238,0.08)" }}>
+      <div className="flex items-center justify-between px-5 py-3 border-t" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
         <div className="flex items-center gap-2">
           <div className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse" />
           <span className="text-gray-600 text-xs font-['JetBrains_Mono']">

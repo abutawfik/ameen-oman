@@ -24,7 +24,7 @@ const EcomLiveCounters = ({ isAr }: Props) => {
       sub: isAr ? "من المعالجين والبنوك" : "From processors & banks",
       value: flaggedTx,
       icon: "ri-flag-line",
-      color: "#22D3EE",
+      color: "#D4A84B",
       trend: "+11%",
       trendUp: true,
     },
@@ -63,7 +63,7 @@ const EcomLiveCounters = ({ isAr }: Props) => {
         <div
           key={s.label}
           className="relative rounded-2xl border p-5 overflow-hidden"
-          style={{ background: "rgba(10,22,40,0.8)", borderColor: `${s.color}25`, backdropFilter: "blur(12px)" }}
+          style={{ background: "rgba(20,29,46,0.8)", borderColor: `${s.color}25`, backdropFilter: "blur(12px)" }}
         >
           <div className="absolute inset-0 opacity-5" style={{ background: `radial-gradient(circle at top right, ${s.color}, transparent 70%)` }} />
           <div className="relative z-10">

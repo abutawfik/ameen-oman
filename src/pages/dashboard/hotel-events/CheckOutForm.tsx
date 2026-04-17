@@ -172,7 +172,7 @@ const CheckOutForm = ({ isAr, onCancel, onSaved }: Props) => {
                 />
                 <span
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold font-['JetBrains_Mono']"
-                  style={{ color: "#22D3EE" }}
+                  style={{ color: "#D4A84B" }}
                 >
                   LCY
                 </span>

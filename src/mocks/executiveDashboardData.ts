@@ -65,7 +65,7 @@ export const execKpis: ExecKpi[] = [
   { id: "k2", label: "Active Investigations", value: "23", delta: "+4", deltaUp: false, icon: "ri-search-eye-line", color: "#FB923C", trend: [15, 17, 18, 19, 20, 21, 23], unit: "" },
   { id: "k3", label: "Watchlist Hits (24h)", value: "147", delta: "+18", deltaUp: false, icon: "ri-eye-line", color: "#FACC15", trend: [98, 112, 119, 124, 131, 138, 147], unit: "" },
   { id: "k4", label: "Cross-Stream Correlations", value: "38", delta: "+7", deltaUp: false, icon: "ri-git-branch-line", color: "#A78BFA", trend: [22, 25, 28, 31, 33, 35, 38], unit: "" },
-  { id: "k5", label: "Events Processed (24h)", value: "284,712", delta: "+12%", deltaUp: true, icon: "ri-database-2-line", color: "#22D3EE", trend: [210000, 225000, 241000, 255000, 263000, 271000, 284712], unit: "" },
+  { id: "k5", label: "Events Processed (24h)", value: "284,712", delta: "+12%", deltaUp: true, icon: "ri-database-2-line", color: "#D4A84B", trend: [210000, 225000, 241000, 255000, 263000, 271000, 284712], unit: "" },
   { id: "k6", label: "Dossiers Generated", value: "1,247", delta: "+89", deltaUp: true, icon: "ri-file-shield-2-line", color: "#4ADE80", trend: [980, 1050, 1100, 1150, 1180, 1210, 1247], unit: "" },
 ];
 
@@ -73,7 +73,7 @@ export const streamHealth: StreamHealthItem[] = [
   { stream: "Border Control",     icon: "ri-passport-line",        color: "#60A5FA", eventsToday: 16303, alertsToday: 23, status: "elevated", trend: "up",    coverage: 99 },
   { stream: "Financial Services", icon: "ri-bank-card-line",        color: "#4ADE80", eventsToday: 24891, alertsToday: 18, status: "elevated", trend: "up",    coverage: 98 },
   { stream: "Mobile Operators",   icon: "ri-sim-card-line",         color: "#A78BFA", eventsToday: 42103, alertsToday: 7,  status: "nominal",  trend: "stable",coverage: 97 },
-  { stream: "Hotel & Hospitality",icon: "ri-hotel-line",            color: "#22D3EE", eventsToday: 1284,  alertsToday: 3,  status: "nominal",  trend: "stable",coverage: 96 },
+  { stream: "Hotel & Hospitality",icon: "ri-hotel-line",            color: "#D4A84B", eventsToday: 1284,  alertsToday: 3,  status: "nominal",  trend: "stable",coverage: 96 },
   { stream: "Transport Intel",    icon: "ri-bus-line",              color: "#FB923C", eventsToday: 42891, alertsToday: 12, status: "elevated", trend: "up",    coverage: 94 },
   { stream: "E-Commerce",         icon: "ri-shopping-cart-line",    color: "#34D399", eventsToday: 18234, alertsToday: 9,  status: "nominal",  trend: "stable",coverage: 93 },
   { stream: "Social Intelligence",icon: "ri-global-line",           color: "#38BDF8", eventsToday: 12891, alertsToday: 67, status: "critical", trend: "up",    coverage: 88 },
@@ -81,7 +81,7 @@ export const streamHealth: StreamHealthItem[] = [
   { stream: "Customs & Cargo",    icon: "ri-ship-line",             color: "#FCD34D", eventsToday: 2341,  alertsToday: 14, status: "elevated", trend: "up",    coverage: 91 },
   { stream: "Healthcare",         icon: "ri-heart-pulse-line",      color: "#F87171", eventsToday: 1847,  alertsToday: 1,  status: "nominal",  trend: "stable",coverage: 95 },
   { stream: "Education",          icon: "ri-graduation-cap-line",   color: "#C084FC", eventsToday: 2341,  alertsToday: 1,  status: "nominal",  trend: "stable",coverage: 97 },
-  { stream: "Municipality",       icon: "ri-government-line",       color: "#67E8F9", eventsToday: 1203,  alertsToday: 0,  status: "nominal",  trend: "stable",coverage: 98 },
+  { stream: "Municipality",       icon: "ri-government-line",       color: "#DDB96B", eventsToday: 1203,  alertsToday: 0,  status: "nominal",  trend: "stable",coverage: 98 },
   { stream: "Utility Events",     icon: "ri-flashlight-line",       color: "#FACC15", eventsToday: 412,   alertsToday: 0,  status: "nominal",  trend: "stable",coverage: 99 },
   { stream: "Tourism Events",     icon: "ri-map-2-line",            color: "#86EFAC", eventsToday: 891,   alertsToday: 2,  status: "nominal",  trend: "stable",coverage: 92 },
   { stream: "Marine Events",      icon: "ri-anchor-line",           color: "#7DD3FC", eventsToday: 234,   alertsToday: 5,  status: "elevated", trend: "up",    coverage: 87 },

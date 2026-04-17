@@ -4,7 +4,7 @@ import { aliasLinks, personRecords, type AliasLink } from '@/mocks/identityFusio
 interface Props { isAr: boolean; }
 
 const linkTypeConfig: Record<string, { label: string; labelAr: string; color: string; bg: string; icon: string }> = {
-  known_alias: { label: 'Known Alias',  labelAr: 'اسم مستعار معروف', color: '#22D3EE', bg: 'rgba(34,211,238,0.1)',  icon: 'ri-user-2-line' },
+  known_alias: { label: 'Known Alias',  labelAr: 'اسم مستعار معروف', color: '#D4A84B', bg: 'rgba(181,142,60,0.1)',  icon: 'ri-user-2-line' },
   family:      { label: 'Family',       labelAr: 'عائلة',             color: '#4ADE80', bg: 'rgba(74,222,128,0.1)',  icon: 'ri-group-line' },
   associate:   { label: 'Associate',    labelAr: 'مرتبط',             color: '#FACC15', bg: 'rgba(250,204,21,0.1)',  icon: 'ri-links-line' },
   suspected:   { label: 'Suspected',    labelAr: 'مشتبه به',          color: '#F87171', bg: 'rgba(248,113,113,0.1)', icon: 'ri-alert-line' },
@@ -52,16 +52,16 @@ export default function AliasManagement({ isAr }: Props) {
               onClick={() => setSelectedPerson(person)}
               className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border cursor-pointer transition-all text-left"
               style={{
-                background: isSelected ? 'rgba(34,211,238,0.08)' : 'rgba(10,22,40,0.6)',
-                borderColor: isSelected ? 'rgba(34,211,238,0.4)' : 'rgba(255,255,255,0.06)',
+                background: isSelected ? 'rgba(181,142,60,0.08)' : 'rgba(20,29,46,0.6)',
+                borderColor: isSelected ? 'rgba(181,142,60,0.4)' : 'rgba(255,255,255,0.06)',
               }}
             >
               <div
                 className="w-9 h-9 rounded-full flex items-center justify-center font-bold text-xs shrink-0"
                 style={{
-                  background: `rgba(34,211,238,0.12)`,
-                  color: '#22D3EE',
-                  border: `1.5px solid ${isSelected ? '#22D3EE' : 'rgba(34,211,238,0.2)'}`,
+                  background: `rgba(181,142,60,0.12)`,
+                  color: '#D4A84B',
+                  border: `1.5px solid ${isSelected ? '#D4A84B' : 'rgba(181,142,60,0.2)'}`,
                 }}
               >
                 {person.initials}
@@ -75,7 +75,7 @@ export default function AliasManagement({ isAr }: Props) {
               {personLinkCount > 0 && (
                 <span
                   className="text-xs px-1.5 py-0.5 rounded-full font-mono shrink-0"
-                  style={{ background: 'rgba(34,211,238,0.1)', color: '#22D3EE' }}
+                  style={{ background: 'rgba(181,142,60,0.1)', color: '#D4A84B' }}
                 >
                   {personLinkCount}
                 </span>
@@ -89,14 +89,14 @@ export default function AliasManagement({ isAr }: Props) {
       <div className="flex-1 space-y-4">
         {/* Person header */}
         <div
-          className="rounded-xl border border-cyan-500/20 p-5"
-          style={{ background: 'rgba(10,22,40,0.8)' }}
+          className="rounded-xl border border-gold-500/20 p-5"
+          style={{ background: 'rgba(20,29,46,0.8)' }}
         >
           <div className="flex items-start justify-between">
             <div className="flex items-center gap-4">
               <div
                 className="w-14 h-14 rounded-full flex items-center justify-center font-bold text-lg shrink-0"
-                style={{ background: 'rgba(34,211,238,0.12)', color: '#22D3EE', border: '2px solid rgba(34,211,238,0.35)' }}
+                style={{ background: 'rgba(181,142,60,0.12)', color: '#D4A84B', border: '2px solid rgba(181,142,60,0.35)' }}
               >
                 {selectedPerson.initials}
               </div>
@@ -112,7 +112,7 @@ export default function AliasManagement({ isAr }: Props) {
             <button
               onClick={() => setShowAddModal(true)}
               className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap transition-all font-['Inter']"
-              style={{ background: '#22D3EE', color: '#060D1A' }}
+              style={{ background: '#D4A84B', color: '#0B1220' }}
             >
               <i className="ri-add-line" />
               {isAr ? 'إضافة اسم مستعار' : 'Add Alias'}
@@ -125,10 +125,10 @@ export default function AliasManagement({ isAr }: Props) {
               <div
                 key={i}
                 className="flex items-center gap-2 px-3 py-1.5 rounded-lg"
-                style={{ background: 'rgba(34,211,238,0.06)', border: '1px solid rgba(34,211,238,0.15)' }}
+                style={{ background: 'rgba(181,142,60,0.06)', border: '1px solid rgba(181,142,60,0.15)' }}
               >
-                <i className="ri-file-text-line text-cyan-400/60 text-xs" />
-                <span className="text-cyan-400/80 text-xs font-['JetBrains_Mono']">{doc.type}: {doc.number}</span>
+                <i className="ri-file-text-line text-gold-400/60 text-xs" />
+                <span className="text-gold-400/80 text-xs font-['JetBrains_Mono']">{doc.type}: {doc.number}</span>
               </div>
             ))}
             {selectedPerson.phones.map((ph, i) => (
@@ -155,8 +155,8 @@ export default function AliasManagement({ isAr }: Props) {
 
           {personLinks.length === 0 ? (
             <div
-              className="rounded-xl border border-dashed border-cyan-500/20 p-8 text-center"
-              style={{ background: 'rgba(10,22,40,0.4)' }}
+              className="rounded-xl border border-dashed border-gold-500/20 p-8 text-center"
+              style={{ background: 'rgba(20,29,46,0.4)' }}
             >
               <i className="ri-user-unfollow-line text-gray-600 text-3xl mb-2 block" />
               <p className="text-gray-500 text-sm font-['Inter']">
@@ -172,7 +172,7 @@ export default function AliasManagement({ isAr }: Props) {
                   <div
                     key={link.id}
                     className="rounded-xl border p-4 transition-all"
-                    style={{ background: 'rgba(10,22,40,0.8)', borderColor: `${tc.color}20` }}
+                    style={{ background: 'rgba(20,29,46,0.8)', borderColor: `${tc.color}20` }}
                   >
                     <div className="flex items-start justify-between">
                       <div className="flex items-center gap-3">
@@ -221,10 +221,10 @@ export default function AliasManagement({ isAr }: Props) {
       {showAddModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(4px)' }}>
           <div
-            className="w-full max-w-md rounded-2xl border border-cyan-500/25 overflow-hidden"
-            style={{ background: 'rgba(10,22,40,0.98)' }}
+            className="w-full max-w-md rounded-2xl border border-gold-500/25 overflow-hidden"
+            style={{ background: 'rgba(20,29,46,0.98)' }}
           >
-            <div className="flex items-center justify-between px-6 py-4 border-b border-cyan-500/15">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-gold-500/15">
               <h3 className="text-white font-bold text-base font-['Inter']">
                 {isAr ? 'إضافة اسم مستعار أو رابط' : 'Add Alias or Link'}
               </h3>
@@ -243,7 +243,7 @@ export default function AliasManagement({ isAr }: Props) {
                   onChange={e => setNewAlias(p => ({ ...p, name: e.target.value }))}
                   placeholder={isAr ? 'أدخل الاسم المستعار' : 'Enter alias name'}
                   className="w-full px-3 py-2.5 rounded-xl text-sm text-white placeholder-gray-600 outline-none font-['Inter']"
-                  style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(34,211,238,0.2)' }}
+                  style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(181,142,60,0.2)' }}
                 />
               </div>
               <div>
@@ -254,7 +254,7 @@ export default function AliasManagement({ isAr }: Props) {
                   value={newAlias.type}
                   onChange={e => setNewAlias(p => ({ ...p, type: e.target.value }))}
                   className="w-full px-3 py-2.5 rounded-xl text-sm text-white outline-none cursor-pointer font-['Inter']"
-                  style={{ background: 'rgba(10,22,40,0.9)', border: '1px solid rgba(34,211,238,0.2)' }}
+                  style={{ background: 'rgba(20,29,46,0.9)', border: '1px solid rgba(181,142,60,0.2)' }}
                 >
                   {Object.entries(linkTypeConfig).map(([k, v]) => (
                     <option key={k} value={k}>{isAr ? v.labelAr : v.label}</option>
@@ -272,21 +272,21 @@ export default function AliasManagement({ isAr }: Props) {
                   rows={3}
                   maxLength={500}
                   className="w-full px-3 py-2.5 rounded-xl text-sm text-white placeholder-gray-600 outline-none resize-none font-['Inter']"
-                  style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(34,211,238,0.2)' }}
+                  style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(181,142,60,0.2)' }}
                 />
               </div>
             </div>
             <div className="flex items-center justify-end gap-3 px-6 py-4 border-t border-white/5">
               <button
                 onClick={() => setShowAddModal(false)}
-                className="px-4 py-2 rounded-lg text-sm border border-cyan-500/25 text-cyan-400 hover:bg-cyan-500/8 cursor-pointer transition-colors whitespace-nowrap font-['Inter']"
+                className="px-4 py-2 rounded-lg text-sm border border-gold-500/25 text-gold-400 hover:bg-gold-500/8 cursor-pointer transition-colors whitespace-nowrap font-['Inter']"
               >
                 {isAr ? 'إلغاء' : 'Cancel'}
               </button>
               <button
                 onClick={handleAddAlias}
                 className="px-5 py-2 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap font-['Inter']"
-                style={{ background: '#22D3EE', color: '#060D1A' }}
+                style={{ background: '#D4A84B', color: '#0B1220' }}
               >
                 {isAr ? 'إضافة' : 'Add Link'}
               </button>

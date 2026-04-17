@@ -39,7 +39,7 @@ const statusLabel = (s: CrossStreamEvent["status"], isAr: boolean) => {
 };
 
 const eventBadgeColor = (e: string) => {
-  if (e === "ENTRY") return "#22D3EE";
+  if (e === "ENTRY") return "#D4A84B";
   if (e === "HOTEL_CHECKIN") return "#4ADE80";
   if (e === "CAR_RENTAL") return "#FB923C";
   if (e === "SIM_PURCHASE") return "#A78BFA";
@@ -48,11 +48,11 @@ const eventBadgeColor = (e: string) => {
 
 const CrossStreamPanel = ({ isAr }: Props) => {
   return (
-    <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.15)", backdropFilter: "blur(12px)" }}>
-      <div className="flex items-center justify-between px-6 py-4 border-b" style={{ borderColor: "rgba(34,211,238,0.1)" }}>
+    <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.15)", backdropFilter: "blur(12px)" }}>
+      <div className="flex items-center justify-between px-6 py-4 border-b" style={{ borderColor: "rgba(181,142,60,0.1)" }}>
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(34,211,238,0.1)", border: "1px solid rgba(34,211,238,0.2)" }}>
-            <i className="ri-links-line text-cyan-400 text-sm" />
+          <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+            <i className="ri-links-line text-gold-400 text-sm" />
           </div>
           <div>
             <h3 className="text-white font-bold text-sm">{isAr ? "قيمة التدفق المتقاطع" : "Cross-Stream Intelligence"}</h3>
@@ -77,7 +77,7 @@ const CrossStreamPanel = ({ isAr }: Props) => {
         </p>
       </div>
 
-      <div className="divide-y" style={{ borderColor: "rgba(34,211,238,0.06)" }}>
+      <div className="divide-y" style={{ borderColor: "rgba(181,142,60,0.06)" }}>
         {CROSS_STREAM.map((rec) => {
           const color = statusColor(rec.status);
           return (
@@ -92,7 +92,7 @@ const CrossStreamPanel = ({ isAr }: Props) => {
                 </div>
                 <div className="flex items-center gap-3 mb-2 flex-wrap">
                   <div className="flex items-center gap-1">
-                    <i className="ri-login-box-line text-cyan-400 text-xs" />
+                    <i className="ri-login-box-line text-gold-400 text-xs" />
                     <span className="text-gray-400 text-xs">{rec.entryPoint}</span>
                     <span className="text-gray-600 text-xs font-['JetBrains_Mono']">@ {rec.entryTime}</span>
                   </div>

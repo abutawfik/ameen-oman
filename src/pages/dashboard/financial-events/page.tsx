@@ -30,9 +30,9 @@ const EVENT_CARDS: EventCard[] = [
     labelAr: "صرف عملة",
     desc: "Record foreign currency exchange with full customer identity and transaction details",
     descAr: "تسجيل معاملة صرف عملة أجنبية مع هوية العميل وتفاصيل المعاملة",
-    color: "#22D3EE",
-    bgColor: "rgba(34,211,238,0.08)",
-    borderColor: "rgba(34,211,238,0.25)",
+    color: "#D4A84B",
+    bgColor: "rgba(181,142,60,0.08)",
+    borderColor: "rgba(181,142,60,0.25)",
     code: "FIN_EXCHANGE",
   },
   {
@@ -82,11 +82,11 @@ const FinancialEventsPage = () => {
   const activeCard = EVENT_CARDS.find((c) => c.id === activeEvent);
 
   return (
-    <div className="min-h-screen font-['Inter']" style={{ background: "#060D1A" }} dir={isAr ? "rtl" : "ltr"}>
+    <div className="min-h-screen font-['Inter']" style={{ background: "#0B1220" }} dir={isAr ? "rtl" : "ltr"}>
       <div
         className="fixed inset-0 pointer-events-none"
         style={{
-          backgroundImage: `linear-gradient(rgba(34,211,238,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.03) 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(rgba(181,142,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,0.03) 1px, transparent 1px)`,
           backgroundSize: "40px 40px",
         }}
       />
@@ -94,7 +94,7 @@ const FinancialEventsPage = () => {
       {/* Header */}
       <header
         className="sticky top-0 z-40 flex items-center justify-between px-6 py-3 border-b"
-        style={{ background: "rgba(6,13,26,0.95)", borderColor: "rgba(34,211,238,0.12)", backdropFilter: "blur(12px)" }}
+        style={{ background: "rgba(11,18,32,0.95)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}
       >
         <div className="flex items-center gap-4">
           <button
@@ -109,13 +109,13 @@ const FinancialEventsPage = () => {
             {activeEvent ? (isAr ? "العودة" : "Back") : (isAr ? "لوحة التحكم" : "Dashboard")}
           </button>
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(34,211,238,0.1)", border: "1px solid rgba(34,211,238,0.2)" }}>
-              <i className="ri-bank-line text-cyan-400 text-sm" />
+            <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+              <i className="ri-bank-line text-gold-400 text-sm" />
             </div>
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-white font-bold text-sm">{isAr ? "أحداث الخدمات المالية" : "Financial Services Events"}</span>
-                <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(34,211,238,0.12)", color: "#22D3EE", border: "1px solid rgba(34,211,238,0.2)" }}>
+                <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(181,142,60,0.12)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>
                   AL-AMEEN Portal
                 </span>
               </div>
@@ -148,8 +148,8 @@ const FinancialEventsPage = () => {
           <>
             <div className="mb-8">
               <div className="flex items-center gap-3 mb-3">
-                <div className="w-10 h-10 flex items-center justify-center rounded-xl" style={{ background: "rgba(34,211,238,0.1)", border: "1px solid rgba(34,211,238,0.2)" }}>
-                  <i className="ri-bank-line text-cyan-400" />
+                <div className="w-10 h-10 flex items-center justify-center rounded-xl" style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+                  <i className="ri-bank-line text-gold-400" />
                 </div>
                 <div>
                   <h1 className="text-white text-2xl font-bold">{isAr ? "أحداث الخدمات المالية" : "Financial Services Events"}</h1>
@@ -165,7 +165,7 @@ const FinancialEventsPage = () => {
                   type="button"
                   onClick={() => setActiveEvent(card.id)}
                   className="group relative rounded-2xl border p-6 text-left cursor-pointer transition-all duration-300 flex flex-col gap-4"
-                  style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.12)", backdropFilter: "blur(12px)" }}
+                  style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}
                   onMouseEnter={(e) => {
                     const el = e.currentTarget as HTMLButtonElement;
                     el.style.borderColor = card.borderColor;
@@ -175,8 +175,8 @@ const FinancialEventsPage = () => {
                   }}
                   onMouseLeave={(e) => {
                     const el = e.currentTarget as HTMLButtonElement;
-                    el.style.borderColor = "rgba(34,211,238,0.12)";
-                    el.style.background = "rgba(10,22,40,0.8)";
+                    el.style.borderColor = "rgba(181,142,60,0.12)";
+                    el.style.background = "rgba(20,29,46,0.8)";
                     el.style.boxShadow = "none";
                     el.style.transform = "translateY(0)";
                   }}
@@ -195,7 +195,7 @@ const FinancialEventsPage = () => {
                   <div className="flex-1">
                     <div className="flex items-start justify-between gap-2 mb-1">
                       <h3 className="text-white font-bold text-base">{isAr ? card.labelAr : card.label}</h3>
-                      <i className="ri-arrow-right-up-line text-gray-600 group-hover:text-cyan-400 transition-colors flex-shrink-0 mt-0.5" />
+                      <i className="ri-arrow-right-up-line text-gray-600 group-hover:text-gold-400 transition-colors flex-shrink-0 mt-0.5" />
                     </div>
                     <p className="text-gray-500 text-xs leading-relaxed">{isAr ? card.descAr : card.desc}</p>
                   </div>
@@ -232,7 +232,7 @@ const FinancialEventsPage = () => {
               </div>
             </div>
 
-            <div className="flex gap-1 p-1 rounded-xl mb-6 overflow-x-auto" style={{ background: "rgba(10,22,40,0.8)", border: "1px solid rgba(34,211,238,0.1)" }}>
+            <div className="flex gap-1 p-1 rounded-xl mb-6 overflow-x-auto" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.1)" }}>
               {EVENT_CARDS.map((card) => (
                 <button
                   key={card.id}

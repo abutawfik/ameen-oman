@@ -40,32 +40,23 @@ const Navbar = () => {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-[rgba(6,13,26,0.95)] backdrop-blur-md border-b border-cyan-500/20"
+          ? "bg-[rgba(11,18,32,0.95)] backdrop-blur-md border-b border-gold-500/25"
           : "bg-transparent"
       }`}
     >
       <div className="max-w-[1400px] mx-auto px-4 md:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
+          {/* Logo — brand horizontal lockup */}
           <a
             href="#home"
             onClick={(e) => { e.preventDefault(); scrollTo("#home"); }}
             className="flex items-center gap-3 cursor-pointer"
           >
-            <div
-              className="w-10 h-10 flex items-center justify-center flex-shrink-0"
-              style={{
-                background: "rgba(34,211,238,0.08)",
-                border: "1.5px solid rgba(34,211,238,0.4)",
-                clipPath: "polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%)",
-              }}
-            >
-              <span className="text-lg font-black" style={{ color: "#22D3EE", fontFamily: "Inter, sans-serif" }}>A</span>
-            </div>
-            <div className="flex flex-col leading-tight">
-              <span className="text-white font-bold text-base tracking-widest font-['Inter']">Al-Ameen</span>
-              <span className="text-cyan-400 text-xs font-['Cairo'] tracking-wide">الامين</span>
-            </div>
+            <img
+              src="/brand/al-ameen-primary-horizontal.svg"
+              alt="Al-Ameen"
+              className="h-9 md:h-10 object-contain"
+            />
           </a>
 
           {/* Desktop Nav */}
@@ -75,10 +66,10 @@ const Navbar = () => {
                 key={link.key}
                 href={link.href}
                 onClick={(e) => { e.preventDefault(); scrollTo(link.href); }}
-                className="px-3 py-2 text-sm text-gray-300 hover:text-cyan-400 transition-colors duration-200 cursor-pointer whitespace-nowrap font-['Inter'] relative group"
+                className="px-3 py-2 text-sm text-ivory-200 hover:text-gold-400 transition-colors duration-200 cursor-pointer whitespace-nowrap font-['Inter'] relative group"
               >
                 {t(`nav.${link.key}`)}
-                <span className="absolute bottom-0 left-0 w-0 h-px bg-cyan-400 group-hover:w-full transition-all duration-300" />
+                <span className="absolute bottom-0 left-0 w-0 h-px bg-gold-400 group-hover:w-full transition-all duration-300" />
               </a>
             ))}
           </div>
@@ -87,17 +78,20 @@ const Navbar = () => {
           <div className="flex items-center gap-3">
             <button
               onClick={toggleLang}
-              className="hidden md:flex items-center justify-center w-10 h-10 rounded-full border border-cyan-500/50 text-cyan-400 text-sm font-bold hover:bg-cyan-500/10 transition-colors duration-200 font-['JetBrains_Mono'] cursor-pointer"
+              className="hidden md:flex items-center justify-center w-10 h-10 rounded-full border border-gold-500/50 text-gold-400 text-sm font-bold hover:bg-gold-500/10 transition-colors duration-200 font-mono cursor-pointer"
             >
               {t("nav.language")}
             </button>
-            <a href="/login" className="hidden md:flex items-center gap-2 px-4 py-2 bg-cyan-400 text-[#060D1A] text-sm font-semibold rounded-md hover:bg-cyan-300 transition-colors duration-200 whitespace-nowrap cursor-pointer">
+            <a
+              href="/login"
+              className="hidden md:flex items-center gap-2 px-4 py-2 bg-oman-600 hover:bg-oman-700 text-ivory-100 text-sm font-semibold rounded-md transition-colors duration-200 whitespace-nowrap cursor-pointer"
+            >
               <i className="ri-login-box-line text-sm" />
               {t("nav.portalLogin")}
             </a>
             {/* Mobile hamburger */}
             <button
-              className="lg:hidden w-10 h-10 flex items-center justify-center text-gray-300 hover:text-cyan-400 cursor-pointer"
+              className="lg:hidden w-10 h-10 flex items-center justify-center text-ivory-200 hover:text-gold-400 cursor-pointer"
               onClick={() => setMobileOpen(!mobileOpen)}
             >
               <i className={`text-xl ${mobileOpen ? "ri-close-line" : "ri-menu-3-line"}`} />
@@ -108,13 +102,13 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="lg:hidden bg-[rgba(6,13,26,0.98)] border-t border-cyan-500/20 px-4 py-4">
+        <div className="lg:hidden bg-[rgba(11,18,32,0.98)] border-t border-gold-500/25 px-4 py-4">
           {navLinks.map((link) => (
             <a
               key={link.key}
               href={link.href}
               onClick={(e) => { e.preventDefault(); scrollTo(link.href); }}
-              className="block py-3 text-gray-300 hover:text-cyan-400 border-b border-white/5 text-sm cursor-pointer"
+              className="block py-3 text-ivory-200 hover:text-gold-400 border-b border-ivory-100/5 text-sm cursor-pointer"
             >
               {t(`nav.${link.key}`)}
             </a>
@@ -122,11 +116,11 @@ const Navbar = () => {
           <div className="flex items-center gap-3 mt-4">
             <button
               onClick={toggleLang}
-              className="flex items-center justify-center w-10 h-10 rounded-full border border-cyan-500/50 text-cyan-400 text-sm font-bold cursor-pointer"
+              className="flex items-center justify-center w-10 h-10 rounded-full border border-gold-500/50 text-gold-400 text-sm font-bold cursor-pointer"
             >
               {t("nav.language")}
             </button>
-            <a href="/login" className="flex items-center gap-2 px-4 py-2 bg-cyan-400 text-[#060D1A] text-sm font-semibold rounded-md cursor-pointer">
+            <a href="/login" className="flex items-center gap-2 px-4 py-2 bg-oman-600 hover:bg-oman-700 text-ivory-100 text-sm font-semibold rounded-md cursor-pointer">
               <i className="ri-login-box-line" />
               {t("nav.portalLogin")}
             </a>

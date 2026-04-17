@@ -18,20 +18,20 @@ const NotificationsPage = () => {
   const criticalPolice = policeAlerts.filter((a) => a.priority === "critical" && !a.acknowledged).length;
 
   const tabs: { key: MainTab; icon: string; labelEn: string; labelAr: string; badge?: number; badgeColor?: string }[] = [
-    { key: "entity",        icon: "ri-notification-3-line",  labelEn: "Entity Notifications", labelAr: "إشعارات الكيان",    badge: unreadEntity, badgeColor: "#22D3EE" },
+    { key: "entity",        icon: "ri-notification-3-line",  labelEn: "Entity Notifications", labelAr: "إشعارات الكيان",    badge: unreadEntity, badgeColor: "#D4A84B" },
     { key: "police-alerts", icon: "ri-alarm-warning-line",   labelEn: "Police Alert Center",  labelAr: "مركز تنبيهات الشرطة",  badge: unackPolice,  badgeColor: criticalPolice > 0 ? "#F87171" : "#FB923C" },
     { key: "comms",         icon: "ri-chat-3-line",          labelEn: "Communication Hub",    labelAr: "مركز الاتصالات",    badge: 0 },
     { key: "rules",         icon: "ri-git-branch-line",      labelEn: "Alert Rules",          labelAr: "قواعد التنبيه",     badge: 0 },
   ];
 
   return (
-    <div className="flex flex-col h-full" style={{ background: "#060D1A" }}>
+    <div className="flex flex-col h-full" style={{ background: "#0B1220" }}>
       {/* Background grid */}
       <div className="fixed inset-0 pointer-events-none z-0 opacity-[0.03]">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="notif-grid" width="40" height="40" patternUnits="userSpaceOnUse">
-              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#22D3EE" strokeWidth="0.5" />
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#D4A84B" strokeWidth="0.5" />
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#notif-grid)" />
@@ -42,11 +42,11 @@ const NotificationsPage = () => {
         {/* Page header */}
         <div
           className="flex items-center justify-between px-6 py-3 border-b flex-shrink-0"
-          style={{ borderColor: "rgba(34,211,238,0.1)", background: "rgba(10,22,40,0.5)" }}
+          style={{ borderColor: "rgba(181,142,60,0.1)", background: "rgba(20,29,46,0.5)" }}
         >
           <div className="flex items-center gap-3">
-            <div className="w-7 h-7 flex items-center justify-center rounded-lg" style={{ background: "rgba(34,211,238,0.1)", border: "1px solid rgba(34,211,238,0.3)" }}>
-              <i className="ri-notification-3-line text-cyan-400 text-sm" />
+            <div className="w-7 h-7 flex items-center justify-center rounded-lg" style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.3)" }}>
+              <i className="ri-notification-3-line text-gold-400 text-sm" />
             </div>
             <div>
               <h1 className="text-white text-sm font-bold font-['Inter']">
@@ -61,7 +61,7 @@ const NotificationsPage = () => {
           {/* Summary stats */}
           <div className="flex items-center gap-3">
             {[
-              { label: "Unread", labelAr: "غير مقروء", value: unreadEntity, color: "#22D3EE" },
+              { label: "Unread", labelAr: "غير مقروء", value: unreadEntity, color: "#D4A84B" },
               { label: "Unack'd", labelAr: "غير مؤكد", value: unackPolice, color: "#FB923C" },
               { label: "Critical", labelAr: "حرج", value: criticalPolice, color: "#F87171" },
             ].map((stat) => (
@@ -74,16 +74,16 @@ const NotificationsPage = () => {
         </div>
 
         {/* Main tabs */}
-        <div className="flex items-center gap-1 px-6 py-2 border-b flex-shrink-0" style={{ borderColor: "rgba(34,211,238,0.08)", background: "rgba(6,13,26,0.4)" }}>
+        <div className="flex items-center gap-1 px-6 py-2 border-b flex-shrink-0" style={{ borderColor: "rgba(181,142,60,0.08)", background: "rgba(11,18,32,0.4)" }}>
           {tabs.map((tab) => (
             <button
               key={tab.key}
               onClick={() => setActiveTab(tab.key)}
               className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-['Inter'] font-medium cursor-pointer transition-all whitespace-nowrap"
               style={{
-                background: activeTab === tab.key ? "rgba(34,211,238,0.1)" : "transparent",
-                color: activeTab === tab.key ? "#22D3EE" : "#6B7280",
-                border: activeTab === tab.key ? "1px solid rgba(34,211,238,0.25)" : "1px solid transparent",
+                background: activeTab === tab.key ? "rgba(181,142,60,0.1)" : "transparent",
+                color: activeTab === tab.key ? "#D4A84B" : "#6B7280",
+                border: activeTab === tab.key ? "1px solid rgba(181,142,60,0.25)" : "1px solid transparent",
               }}
             >
               <i className={`${tab.icon} text-sm`} />

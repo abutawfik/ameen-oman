@@ -9,7 +9,7 @@ const priorityConfig: Record<CasePriority, { color: string; bg: string }> = {
 };
 
 const statusConfig: Record<CaseStatus, { color: string; icon: string; label: string }> = {
-  active:    { color: "#22D3EE", icon: "ri-play-circle-line",   label: "Active" },
+  active:    { color: "#D4A84B", icon: "ri-play-circle-line",   label: "Active" },
   pending:   { color: "#FACC15", icon: "ri-time-line",          label: "Pending" },
   escalated: { color: "#F87171", icon: "ri-arrow-up-circle-line",label: "Escalated" },
   closed:    { color: "#4ADE80", icon: "ri-checkbox-circle-line",  label: "Closed" },
@@ -63,8 +63,8 @@ const CaseList = ({ selectedCaseId, onSelectCase, isAr }: Props) => {
             <button key={s} onClick={() => setFilterStatus(s)}
               className="px-2 py-1 rounded text-[10px] font-['Inter'] cursor-pointer transition-all whitespace-nowrap"
               style={{
-                background: filterStatus === s ? "rgba(34,211,238,0.1)" : "transparent",
-                color: filterStatus === s ? "#22D3EE" : "#6B7280",
+                background: filterStatus === s ? "rgba(181,142,60,0.1)" : "transparent",
+                color: filterStatus === s ? "#D4A84B" : "#6B7280",
               }}>
               {s === "all" ? "All" : statusConfig[s as CaseStatus]?.label}
             </button>
@@ -73,7 +73,7 @@ const CaseList = ({ selectedCaseId, onSelectCase, isAr }: Props) => {
       </div>
 
       {/* Case list */}
-      <div className="flex-1 overflow-y-auto" style={{ scrollbarWidth: "thin", scrollbarColor: "rgba(34,211,238,0.2) transparent" }}>
+      <div className="flex-1 overflow-y-auto" style={{ scrollbarWidth: "thin", scrollbarColor: "rgba(181,142,60,0.2) transparent" }}>
         {filtered.map((c) => {
           const pri = priorityConfig[c.priority];
           const stat = statusConfig[c.status];
@@ -86,8 +86,8 @@ const CaseList = ({ selectedCaseId, onSelectCase, isAr }: Props) => {
               className="w-full text-left p-3 border-b cursor-pointer transition-all"
               style={{
                 borderColor: "rgba(255,255,255,0.04)",
-                background: isSelected ? "rgba(34,211,238,0.06)" : "transparent",
-                borderLeft: isSelected ? "2px solid #22D3EE" : "2px solid transparent",
+                background: isSelected ? "rgba(181,142,60,0.06)" : "transparent",
+                borderLeft: isSelected ? "2px solid #D4A84B" : "2px solid transparent",
               }}
             >
               <div className="flex items-start gap-2 mb-1.5">
@@ -126,7 +126,7 @@ const CaseList = ({ selectedCaseId, onSelectCase, isAr }: Props) => {
 
       {/* New case button */}
       <div className="p-3 border-t" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
-        <button className="w-full flex items-center justify-center gap-2 py-2 rounded-lg text-xs font-['Inter'] cursor-pointer transition-all whitespace-nowrap" style={{ background: "rgba(34,211,238,0.08)", color: "#22D3EE", border: "1px solid rgba(34,211,238,0.2)" }}>
+        <button className="w-full flex items-center justify-center gap-2 py-2 rounded-lg text-xs font-['Inter'] cursor-pointer transition-all whitespace-nowrap" style={{ background: "rgba(181,142,60,0.08)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>
           <i className="ri-add-line" />
           New Investigation
         </button>

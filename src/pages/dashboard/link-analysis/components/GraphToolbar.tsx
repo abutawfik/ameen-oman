@@ -49,7 +49,7 @@ const GraphToolbar = ({
   return (
     <div
       className="flex items-center gap-1 px-3 py-2 border-b flex-shrink-0 flex-wrap"
-      style={{ background: "rgba(10,22,40,0.95)", borderColor: "rgba(34,211,238,0.12)" }}
+      style={{ background: "rgba(20,29,46,0.95)", borderColor: "rgba(181,142,60,0.12)" }}
     >
       {/* Left: Main tools */}
       <div className="flex items-center gap-1">
@@ -58,7 +58,7 @@ const GraphToolbar = ({
           <button
             onClick={() => { setShowAddNode(!showAddNode); setShowLayout(false); setShowSearch(false); }}
             className="flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-['Inter'] font-semibold transition-colors cursor-pointer whitespace-nowrap"
-            style={{ background: showAddNode ? "#22D3EE" : "rgba(34,211,238,0.1)", color: showAddNode ? "#060D1A" : "#22D3EE", border: "1px solid rgba(34,211,238,0.3)" }}
+            style={{ background: showAddNode ? "#D4A84B" : "rgba(181,142,60,0.1)", color: showAddNode ? "#0B1220" : "#D4A84B", border: "1px solid rgba(181,142,60,0.3)" }}
           >
             <i className="ri-add-circle-line" />
             {isAr ? "إضافة عقدة" : "Add Node"}
@@ -66,7 +66,7 @@ const GraphToolbar = ({
           {showAddNode && (
             <div
               className="absolute top-full left-0 mt-1 rounded-lg overflow-hidden z-50 w-52"
-              style={{ background: "rgba(10,22,40,0.98)", border: "1px solid rgba(34,211,238,0.2)" }}
+              style={{ background: "rgba(20,29,46,0.98)", border: "1px solid rgba(181,142,60,0.2)" }}
             >
               {nodeTypes.map(([type, cfg]) => (
                 <button
@@ -97,7 +97,7 @@ const GraphToolbar = ({
           {showSearch && (
             <div
               className="absolute top-full left-0 mt-1 rounded-lg z-50 p-2 w-64"
-              style={{ background: "rgba(10,22,40,0.98)", border: "1px solid rgba(34,211,238,0.2)" }}
+              style={{ background: "rgba(20,29,46,0.98)", border: "1px solid rgba(181,142,60,0.2)" }}
             >
               <form onSubmit={handleSearch} className="flex gap-2">
                 <input
@@ -106,12 +106,12 @@ const GraphToolbar = ({
                   onChange={e => setSearchVal(e.target.value)}
                   placeholder={isAr ? "ابحث عن شخص أو منظمة..." : "Search person, org, phone..."}
                   className="flex-1 px-2 py-1.5 rounded text-xs text-white placeholder-gray-600 outline-none font-['Inter']"
-                  style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(34,211,238,0.2)" }}
+                  style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(181,142,60,0.2)" }}
                 />
                 <button
                   type="submit"
                   className="px-2 py-1.5 rounded text-xs cursor-pointer"
-                  style={{ background: "#22D3EE", color: "#060D1A" }}
+                  style={{ background: "#D4A84B", color: "#0B1220" }}
                 >
                   <i className="ri-search-line" />
                 </button>
@@ -133,7 +133,7 @@ const GraphToolbar = ({
           {showLayout && (
             <div
               className="absolute top-full left-0 mt-1 rounded-lg overflow-hidden z-50 w-44"
-              style={{ background: "rgba(10,22,40,0.98)", border: "1px solid rgba(34,211,238,0.2)" }}
+              style={{ background: "rgba(20,29,46,0.98)", border: "1px solid rgba(181,142,60,0.2)" }}
             >
               {layouts.map(l => (
                 <button
@@ -142,7 +142,7 @@ const GraphToolbar = ({
                   className="w-full flex items-center gap-2 px-3 py-2 hover:bg-white/5 transition-colors cursor-pointer text-left"
                 >
                   <div className="w-5 h-5 flex items-center justify-center">
-                    <i className={`${l.icon} text-sm text-cyan-400`} />
+                    <i className={`${l.icon} text-sm text-gold-400`} />
                   </div>
                   <span className="text-xs text-gray-300 font-['Inter']">{isAr ? l.labelAr : l.label}</span>
                 </button>
@@ -166,9 +166,9 @@ const GraphToolbar = ({
             title={btn.label}
             className="flex items-center gap-1 px-2 py-1.5 rounded text-xs transition-colors cursor-pointer whitespace-nowrap"
             style={{
-              background: btn.active ? "rgba(34,211,238,0.15)" : "rgba(255,255,255,0.04)",
-              color: btn.active ? "#22D3EE" : "#6B7280",
-              border: `1px solid ${btn.active ? "rgba(34,211,238,0.3)" : "rgba(255,255,255,0.06)"}`,
+              background: btn.active ? "rgba(181,142,60,0.15)" : "rgba(255,255,255,0.04)",
+              color: btn.active ? "#D4A84B" : "#6B7280",
+              border: `1px solid ${btn.active ? "rgba(181,142,60,0.3)" : "rgba(255,255,255,0.06)"}`,
             }}
           >
             <i className={`${btn.icon} text-sm`} />
@@ -201,7 +201,7 @@ const GraphToolbar = ({
       <div className="ml-auto flex items-center gap-3">
         {selectedCount > 0 && (
           <div className="flex items-center gap-2">
-            <span className="text-xs font-['JetBrains_Mono']" style={{ color: "#22D3EE" }}>
+            <span className="text-xs font-['JetBrains_Mono']" style={{ color: "#D4A84B" }}>
               {selectedCount} {isAr ? "محدد" : "selected"}
             </span>
             <button
@@ -214,10 +214,10 @@ const GraphToolbar = ({
         )}
         <div className="flex items-center gap-3 text-xs font-['JetBrains_Mono']">
           <span style={{ color: "#9CA3AF" }}>
-            <span style={{ color: "#22D3EE" }}>{nodeCount}</span> {isAr ? "عقدة" : "nodes"}
+            <span style={{ color: "#D4A84B" }}>{nodeCount}</span> {isAr ? "عقدة" : "nodes"}
           </span>
           <span style={{ color: "#9CA3AF" }}>
-            <span style={{ color: "#22D3EE" }}>{edgeCount}</span> {isAr ? "رابط" : "edges"}
+            <span style={{ color: "#D4A84B" }}>{edgeCount}</span> {isAr ? "رابط" : "edges"}
           </span>
         </div>
       </div>

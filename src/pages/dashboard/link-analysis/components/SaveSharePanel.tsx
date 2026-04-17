@@ -31,12 +31,12 @@ const SaveSharePanel = ({
     critical: "#F87171",
     high: "#FB923C",
     medium: "#FACC15",
-    hotel: "#22D3EE",
+    hotel: "#D4A84B",
     mobile: "#A78BFA",
   };
 
   const historyItems = [
-    { action: isAr ? "تشغيل أقصر مسار" : "Ran Shortest Path", time: "2 min ago", icon: "ri-route-line", color: "#22D3EE" },
+    { action: isAr ? "تشغيل أقصر مسار" : "Ran Shortest Path", time: "2 min ago", icon: "ri-route-line", color: "#D4A84B" },
     { action: isAr ? "إضافة عقدة: حساب بنكي" : "Added Node: Bank Account", time: "8 min ago", icon: "ri-add-circle-line", color: "#4ADE80" },
     { action: isAr ? "اكتشاف المجتمعات" : "Community Detection Run", time: "15 min ago", icon: "ri-group-line", color: "#A78BFA" },
     { action: isAr ? "توسيع 2 خطوة من أحمد" : "2-hop Expand from Ahmed", time: "22 min ago", icon: "ri-git-branch-line", color: "#FB923C" },
@@ -46,7 +46,7 @@ const SaveSharePanel = ({
   return (
     <div className="flex flex-col h-full">
       {/* Tabs */}
-      <div className="flex border-b flex-shrink-0" style={{ borderColor: "rgba(34,211,238,0.1)" }}>
+      <div className="flex border-b flex-shrink-0" style={{ borderColor: "rgba(181,142,60,0.1)" }}>
         {[
           { key: "workspaces" as const, label: isAr ? "مساحات العمل" : "Workspaces", icon: "ri-folder-line" },
           { key: "annotations" as const, label: isAr ? "الملاحظات" : "Annotations", icon: "ri-sticky-note-line" },
@@ -57,8 +57,8 @@ const SaveSharePanel = ({
             onClick={() => setActiveTab(tab.key)}
             className="flex-1 flex items-center justify-center gap-1 py-2.5 text-xs font-['Inter'] cursor-pointer transition-colors"
             style={{
-              color: activeTab === tab.key ? "#22D3EE" : "#6B7280",
-              borderBottom: activeTab === tab.key ? "2px solid #22D3EE" : "2px solid transparent",
+              color: activeTab === tab.key ? "#D4A84B" : "#6B7280",
+              borderBottom: activeTab === tab.key ? "2px solid #D4A84B" : "2px solid transparent",
             }}
           >
             <i className={`${tab.icon} text-sm`} />
@@ -74,9 +74,9 @@ const SaveSharePanel = ({
             {/* Current workspace stats */}
             <div
               className="p-3 rounded-lg"
-              style={{ background: "rgba(34,211,238,0.06)", border: "1px solid rgba(34,211,238,0.15)" }}
+              style={{ background: "rgba(181,142,60,0.06)", border: "1px solid rgba(181,142,60,0.15)" }}
             >
-              <p className="text-cyan-400 text-xs font-semibold font-['Inter'] mb-2">
+              <p className="text-gold-400 text-xs font-semibold font-['Inter'] mb-2">
                 {isAr ? "مساحة العمل الحالية" : "Current Workspace"}
               </p>
               <div className="flex gap-4">
@@ -97,7 +97,7 @@ const SaveSharePanel = ({
                 <button
                   onClick={() => setShowSaveModal(true)}
                   className="flex-1 py-1.5 rounded text-xs font-['Inter'] font-semibold cursor-pointer"
-                  style={{ background: "#22D3EE", color: "#060D1A" }}
+                  style={{ background: "#D4A84B", color: "#0B1220" }}
                 >
                   <i className="ri-save-line mr-1" />
                   {isAr ? "حفظ" : "Save"}
@@ -215,7 +215,7 @@ const SaveSharePanel = ({
         <div className="fixed inset-0 z-[300] flex items-center justify-center" style={{ background: "rgba(0,0,0,0.7)" }}>
           <div
             className="w-80 rounded-xl p-5"
-            style={{ background: "rgba(10,22,40,0.98)", border: "1px solid rgba(34,211,238,0.25)" }}
+            style={{ background: "rgba(20,29,46,0.98)", border: "1px solid rgba(181,142,60,0.25)" }}
           >
             <h3 className="text-white text-sm font-bold font-['Inter'] mb-4">
               {isAr ? "حفظ مساحة العمل" : "Save Workspace"}
@@ -233,13 +233,13 @@ const SaveSharePanel = ({
                   onChange={e => setSaveName(e.target.value)}
                   placeholder={isAr ? "اسم مساحة العمل..." : "Workspace name..."}
                   className="w-full px-3 py-2 rounded-lg text-sm text-white placeholder-gray-600 outline-none mb-4 font-['Inter']"
-                  style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(34,211,238,0.2)" }}
+                  style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(181,142,60,0.2)" }}
                 />
                 <div className="flex gap-2">
                   <button
                     onClick={handleSave}
                     className="flex-1 py-2 rounded-lg text-sm font-['Inter'] font-semibold cursor-pointer"
-                    style={{ background: "#22D3EE", color: "#060D1A" }}
+                    style={{ background: "#D4A84B", color: "#0B1220" }}
                   >
                     {isAr ? "حفظ" : "Save"}
                   </button>

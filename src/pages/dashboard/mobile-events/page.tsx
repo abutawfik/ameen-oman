@@ -33,9 +33,9 @@ const EVENT_CARDS: EventCard[] = [
     labelAr: "شراء شريحة SIM",
     desc: "Register new SIM sale with full subscriber, document and device details",
     descAr: "تسجيل بيع شريحة جديدة مع بيانات المشترك والوثائق والجهاز",
-    color: "#22D3EE",
-    bgColor: "rgba(34,211,238,0.08)",
-    borderColor: "rgba(34,211,238,0.25)",
+    color: "#D4A84B",
+    bgColor: "rgba(181,142,60,0.08)",
+    borderColor: "rgba(181,142,60,0.25)",
     code: "MOB_SIM_PURCHASE",
   },
   {
@@ -114,7 +114,7 @@ const MobileEventsPage = () => {
   return (
     <div
       className="min-h-screen font-['Inter']"
-      style={{ background: "#060D1A" }}
+      style={{ background: "#0B1220" }}
       dir={isAr ? "rtl" : "ltr"}
     >
       {/* Background grid */}
@@ -122,8 +122,8 @@ const MobileEventsPage = () => {
         className="fixed inset-0 pointer-events-none"
         style={{
           backgroundImage: `
-            linear-gradient(rgba(34,211,238,0.03) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(34,211,238,0.03) 1px, transparent 1px)
+            linear-gradient(rgba(181,142,60,0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(181,142,60,0.03) 1px, transparent 1px)
           `,
           backgroundSize: "40px 40px",
         }}
@@ -132,7 +132,7 @@ const MobileEventsPage = () => {
       {/* Header */}
       <header
         className="sticky top-0 z-40 flex items-center justify-between px-6 py-3 border-b"
-        style={{ background: "rgba(6,13,26,0.95)", borderColor: "rgba(34,211,238,0.12)", backdropFilter: "blur(12px)" }}
+        style={{ background: "rgba(11,18,32,0.95)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}
       >
         <div className="flex items-center gap-4">
           <button
@@ -150,9 +150,9 @@ const MobileEventsPage = () => {
           <div className="flex items-center gap-2">
             <div
               className="w-8 h-8 flex items-center justify-center rounded-lg"
-              style={{ background: "rgba(34,211,238,0.1)", border: "1px solid rgba(34,211,238,0.2)" }}
+              style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}
             >
-              <i className="ri-sim-card-2-line text-cyan-400 text-sm" />
+              <i className="ri-sim-card-2-line text-gold-400 text-sm" />
             </div>
             <div>
               <div className="flex items-center gap-2">
@@ -161,7 +161,7 @@ const MobileEventsPage = () => {
                 </span>
                 <span
                   className="px-2 py-0.5 rounded-full text-xs font-bold"
-                  style={{ background: "rgba(34,211,238,0.12)", color: "#22D3EE", border: "1px solid rgba(34,211,238,0.2)" }}
+                  style={{ background: "rgba(181,142,60,0.12)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}
                 >
                   AMEEN Portal
                 </span>
@@ -229,8 +229,8 @@ const MobileEventsPage = () => {
                   onClick={() => setActiveEvent(card.id)}
                   className="group relative rounded-2xl border p-6 text-left cursor-pointer transition-all duration-300 flex flex-col gap-4"
                   style={{
-                    background: "rgba(10,22,40,0.8)",
-                    borderColor: "rgba(34,211,238,0.12)",
+                    background: "rgba(20,29,46,0.8)",
+                    borderColor: "rgba(181,142,60,0.12)",
                     backdropFilter: "blur(12px)",
                   }}
                   onMouseEnter={(e) => {
@@ -242,8 +242,8 @@ const MobileEventsPage = () => {
                   }}
                   onMouseLeave={(e) => {
                     const el = e.currentTarget as HTMLButtonElement;
-                    el.style.borderColor = "rgba(34,211,238,0.12)";
-                    el.style.background = "rgba(10,22,40,0.8)";
+                    el.style.borderColor = "rgba(181,142,60,0.12)";
+                    el.style.background = "rgba(20,29,46,0.8)";
                     el.style.boxShadow = "none";
                     el.style.transform = "translateY(0)";
                   }}
@@ -272,7 +272,7 @@ const MobileEventsPage = () => {
                       <h3 className="text-white font-bold text-base leading-tight">
                         {isAr ? card.labelAr : card.label}
                       </h3>
-                      <i className="ri-arrow-right-up-line text-gray-600 group-hover:text-cyan-400 transition-colors flex-shrink-0 mt-0.5" />
+                      <i className="ri-arrow-right-up-line text-gray-600 group-hover:text-gold-400 transition-colors flex-shrink-0 mt-0.5" />
                     </div>
                     <p className="text-gray-500 text-xs leading-relaxed">
                       {isAr ? card.descAr : card.desc}
@@ -329,7 +329,7 @@ const MobileEventsPage = () => {
             {/* Tab switcher */}
             <div
               className="flex gap-1 p-1 rounded-xl mb-6 overflow-x-auto"
-              style={{ background: "rgba(10,22,40,0.8)", border: "1px solid rgba(34,211,238,0.1)" }}
+              style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.1)" }}
             >
               {EVENT_CARDS.map((card) => (
                 <button

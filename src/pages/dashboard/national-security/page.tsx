@@ -45,16 +45,16 @@ const NationalSecurityDashboard = () => {
 
   const TABS: { id: Tab; icon: string; label: string; labelAr: string; badge?: number; badgeColor?: string }[] = [
     { id: "overview",       icon: "ri-shield-star-line",   label: "Threat Overview",       labelAr: "نظرة عامة على التهديد" },
-    { id: "investigations", icon: "ri-search-eye-line",    label: "Investigations",         labelAr: "التحقيقات",            badge: openInvestigations, badgeColor: "#22D3EE" },
+    { id: "investigations", icon: "ri-search-eye-line",    label: "Investigations",         labelAr: "التحقيقات",            badge: openInvestigations, badgeColor: "#D4A84B" },
     { id: "watchlist",      icon: "ri-eye-line",           label: "Watchlist Hits",         labelAr: "إصابات قائمة المراقبة", badge: confirmedHits,      badgeColor: "#F87171" },
     { id: "correlations",   icon: "ri-git-merge-line",     label: "Cross-Stream Alerts",    labelAr: "تنبيهات متقاطعة",      badge: newCorrelations,    badgeColor: "#A78BFA" },
   ];
 
   return (
-    <div className="min-h-screen font-['Inter']" style={{ background: "#060D1A" }} dir={isAr ? "rtl" : "ltr"}>
+    <div className="min-h-screen font-['Inter']" style={{ background: "#0B1220" }} dir={isAr ? "rtl" : "ltr"}>
       {/* Grid texture */}
       <div className="fixed inset-0 pointer-events-none" style={{
-        backgroundImage: `linear-gradient(rgba(34,211,238,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.02) 1px, transparent 1px)`,
+        backgroundImage: `linear-gradient(rgba(181,142,60,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,0.02) 1px, transparent 1px)`,
         backgroundSize: "40px 40px",
       }} />
 
@@ -80,7 +80,7 @@ const NationalSecurityDashboard = () => {
 
       {/* Header */}
       <header className="sticky top-0 z-40 flex items-center justify-between px-6 py-3 border-b"
-        style={{ background: "rgba(6,13,26,0.97)", borderColor: "rgba(34,211,238,0.12)", backdropFilter: "blur(12px)" }}>
+        style={{ background: "rgba(11,18,32,0.97)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
         <div className="flex items-center gap-4">
           <button type="button" onClick={() => navigate("/dashboard")}
             className="flex items-center gap-2 px-3 py-1.5 rounded-lg border text-sm font-semibold cursor-pointer whitespace-nowrap transition-colors"
@@ -96,7 +96,7 @@ const NationalSecurityDashboard = () => {
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-cyan-400 font-black text-base tracking-wide">AMEEN</span>
+                <span className="text-gold-400 font-black text-base tracking-wide">AMEEN</span>
                 <span className="text-white font-bold text-sm">{isAr ? "لوحة الأمن الوطني" : "National Security Dashboard"}</span>
                 <span className="px-2 py-0.5 rounded-full text-xs font-bold animate-pulse"
                   style={{ background: cfg.bg, color: cfg.color, border: `1px solid ${cfg.border}` }}>
@@ -120,8 +120,8 @@ const NationalSecurityDashboard = () => {
 
           {/* Clock */}
           <div className="hidden lg:flex flex-col items-end px-3 py-1.5 rounded-lg border"
-            style={{ background: "rgba(34,211,238,0.04)", borderColor: "rgba(34,211,238,0.12)" }}>
-            <span className="text-cyan-400 text-sm font-black font-['JetBrains_Mono']">{timeStr}</span>
+            style={{ background: "rgba(181,142,60,0.04)", borderColor: "rgba(181,142,60,0.12)" }}>
+            <span className="text-gold-400 text-sm font-black font-['JetBrains_Mono']">{timeStr}</span>
             <span className="text-gray-600 text-xs font-['JetBrains_Mono']">{dateStr}</span>
           </div>
 
@@ -148,14 +148,14 @@ const NationalSecurityDashboard = () => {
 
       {/* Tab bar */}
       <div className="sticky top-[89px] z-30 flex items-center gap-1 px-6 py-2 border-b overflow-x-auto"
-        style={{ background: "rgba(6,13,26,0.95)", borderColor: "rgba(34,211,238,0.08)", backdropFilter: "blur(12px)" }}>
+        style={{ background: "rgba(11,18,32,0.95)", borderColor: "rgba(181,142,60,0.08)", backdropFilter: "blur(12px)" }}>
         {TABS.map((tab) => (
           <button key={tab.id} type="button" onClick={() => setActiveTab(tab.id)}
             className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap transition-all flex-shrink-0"
             style={{
-              background: activeTab === tab.id ? "rgba(34,211,238,0.12)" : "transparent",
-              border: `1px solid ${activeTab === tab.id ? "rgba(34,211,238,0.25)" : "transparent"}`,
-              color: activeTab === tab.id ? "#22D3EE" : "#6B7280",
+              background: activeTab === tab.id ? "rgba(181,142,60,0.12)" : "transparent",
+              border: `1px solid ${activeTab === tab.id ? "rgba(181,142,60,0.25)" : "transparent"}`,
+              color: activeTab === tab.id ? "#D4A84B" : "#6B7280",
             }}>
             <i className={`${tab.icon} text-xs`} />
             {isAr ? tab.labelAr : tab.label}
@@ -181,13 +181,13 @@ const NationalSecurityDashboard = () => {
               {[
                 { label: isAr ? "مستوى التهديد" : "Threat Level",       value: isAr ? cfg.labelAr : currentThreatLevel, color: cfg.color,   icon: "ri-shield-star-line",    mono: false },
                 { label: isAr ? "مؤشر التهديد" : "Threat Index",        value: `${threatScore}/100`,                    color: cfg.color,   icon: "ri-pulse-line",          mono: true  },
-                { label: isAr ? "تحقيقات نشطة" : "Active Investigations",value: openInvestigations,                     color: "#22D3EE",   icon: "ri-search-eye-line",     mono: false },
+                { label: isAr ? "تحقيقات نشطة" : "Active Investigations",value: openInvestigations,                     color: "#D4A84B",   icon: "ri-search-eye-line",     mono: false },
                 { label: isAr ? "إصابات مؤكدة" : "Confirmed Hits",      value: confirmedHits,                           color: "#F87171",   icon: "ri-eye-line",            mono: false },
                 { label: isAr ? "ارتباطات جديدة" : "New Correlations",  value: newCorrelations,                         color: "#A78BFA",   icon: "ri-git-merge-line",      mono: false },
                 { label: isAr ? "أحداث اليوم" : "Events Today",         value: liveEvents.toLocaleString(),             color: "#4ADE80",   icon: "ri-database-line",       mono: true  },
               ].map((s, i) => (
                 <div key={i} className="relative rounded-2xl border p-4 overflow-hidden"
-                  style={{ background: "rgba(10,22,40,0.8)", borderColor: `${s.color}25`, backdropFilter: "blur(12px)" }}>
+                  style={{ background: "rgba(20,29,46,0.8)", borderColor: `${s.color}25`, backdropFilter: "blur(12px)" }}>
                   <div className="absolute inset-0 opacity-5"
                     style={{ background: `radial-gradient(circle at top right, ${s.color}, transparent 70%)` }} />
                   <div className="relative z-10">
@@ -219,7 +219,7 @@ const NationalSecurityDashboard = () => {
               <div className="lg:col-span-2 space-y-6">
                 {/* Cross-stream correlation preview */}
                 <div className="rounded-2xl border overflow-hidden"
-                  style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(167,139,250,0.15)", backdropFilter: "blur(12px)" }}>
+                  style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(167,139,250,0.15)", backdropFilter: "blur(12px)" }}>
                   <div className="flex items-center justify-between px-5 py-3 border-b" style={{ borderColor: "rgba(167,139,250,0.08)" }}>
                     <div className="flex items-center gap-3">
                       <div className="w-7 h-7 flex items-center justify-center rounded-lg"
@@ -234,7 +234,7 @@ const NationalSecurityDashboard = () => {
                       {isAr ? "عرض الكل" : "View All"} →
                     </button>
                   </div>
-                  <div className="divide-y" style={{ borderColor: "rgba(34,211,238,0.04)" }}>
+                  <div className="divide-y" style={{ borderColor: "rgba(181,142,60,0.04)" }}>
                     {correlationAlerts.slice(0, 3).map((alert) => {
                       const sevColor = alert.severity === "critical" ? "#F87171" : alert.severity === "high" ? "#FB923C" : "#FACC15";
                       return (
@@ -267,7 +267,7 @@ const NationalSecurityDashboard = () => {
 
                 {/* Watchlist hit summary */}
                 <div className="rounded-2xl border overflow-hidden"
-                  style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(248,113,113,0.15)", backdropFilter: "blur(12px)" }}>
+                  style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(248,113,113,0.15)", backdropFilter: "blur(12px)" }}>
                   <div className="flex items-center justify-between px-5 py-3 border-b" style={{ borderColor: "rgba(248,113,113,0.08)" }}>
                     <div className="flex items-center gap-3">
                       <div className="w-7 h-7 flex items-center justify-center rounded-lg"
@@ -282,7 +282,7 @@ const NationalSecurityDashboard = () => {
                       {isAr ? "عرض الكل" : "View All"} →
                     </button>
                   </div>
-                  <div className="divide-y" style={{ borderColor: "rgba(34,211,238,0.04)" }}>
+                  <div className="divide-y" style={{ borderColor: "rgba(181,142,60,0.04)" }}>
                     {watchlistHits.filter((h) => h.status === "confirmed").slice(0, 4).map((hit) => (
                       <div key={hit.id} className="flex items-center gap-3 px-5 py-3 hover:bg-white/[0.02] transition-colors cursor-pointer"
                         onClick={() => setActiveTab("watchlist")}>
@@ -311,11 +311,11 @@ const NationalSecurityDashboard = () => {
 
                 {/* Stream threat matrix */}
                 <div className="rounded-2xl border overflow-hidden"
-                  style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.12)", backdropFilter: "blur(12px)" }}>
-                  <div className="flex items-center gap-3 px-5 py-3 border-b" style={{ borderColor: "rgba(34,211,238,0.08)" }}>
+                  style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
+                  <div className="flex items-center gap-3 px-5 py-3 border-b" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
                     <div className="w-7 h-7 flex items-center justify-center rounded-lg"
-                      style={{ background: "rgba(34,211,238,0.1)", border: "1px solid rgba(34,211,238,0.2)" }}>
-                      <i className="ri-grid-line text-cyan-400 text-xs" />
+                      style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+                      <i className="ri-grid-line text-gold-400 text-xs" />
                     </div>
                     <span className="text-white font-bold text-sm">{isAr ? "مصفوفة التهديد — 16 مصدر" : "Threat Matrix — 16 Streams"}</span>
                   </div>
@@ -325,7 +325,7 @@ const NationalSecurityDashboard = () => {
                         const scoreColor = s.score >= 70 ? "#F87171" : s.score >= 50 ? "#FB923C" : s.score >= 30 ? "#FACC15" : "#4ADE80";
                         return (
                           <div key={s.stream} className="p-3 rounded-xl cursor-pointer hover:bg-white/[0.03] transition-colors"
-                            style={{ background: "rgba(6,13,26,0.6)", border: `1px solid ${scoreColor}15` }}>
+                            style={{ background: "rgba(11,18,32,0.6)", border: `1px solid ${scoreColor}15` }}>
                             <div className="flex items-center justify-between mb-2">
                               <div className="w-6 h-6 flex items-center justify-center rounded-md"
                                 style={{ background: `${s.color}12`, border: `1px solid ${s.color}20` }}>

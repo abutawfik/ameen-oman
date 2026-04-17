@@ -88,7 +88,7 @@ const typeLabel = (t: Anomaly["type"], isAr: boolean) => {
 };
 
 const streamColor = (s: string) => {
-  const map: Record<string, string> = { TRANSPORT: "#22D3EE", BORDER: "#A78BFA", HOTEL: "#FB923C", MUNICIPALITY: "#4ADE80", UTILITY: "#FACC15", MOBILE: "#F87171", FINANCIAL: "#4ADE80" };
+  const map: Record<string, string> = { TRANSPORT: "#D4A84B", BORDER: "#A78BFA", HOTEL: "#FB923C", MUNICIPALITY: "#4ADE80", UTILITY: "#FACC15", MOBILE: "#F87171", FINANCIAL: "#4ADE80" };
   return map[s] || "#9CA3AF";
 };
 
@@ -99,7 +99,7 @@ const TransportAnomalies = ({ isAr }: Props) => {
   );
 
   return (
-    <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(248,113,113,0.2)", backdropFilter: "blur(12px)" }}>
+    <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(248,113,113,0.2)", backdropFilter: "blur(12px)" }}>
       <div className="flex items-center justify-between px-6 py-4 border-b" style={{ borderColor: "rgba(248,113,113,0.12)" }}>
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(248,113,113,0.1)", border: "1px solid rgba(248,113,113,0.25)" }}>

@@ -44,17 +44,17 @@ const PersonalEffectsForm = ({ isAr, onSubmit }: Props) => {
     }, 1200);
   };
 
-  const inputClass = "w-full bg-transparent border rounded-lg px-3 py-2.5 text-white text-sm font-['Inter'] focus:outline-none focus:border-cyan-400 transition-colors placeholder-gray-600";
-  const inputStyle = { borderColor: "rgba(34,211,238,0.2)", background: "rgba(255,255,255,0.03)" };
+  const inputClass = "w-full bg-transparent border rounded-lg px-3 py-2.5 text-white text-sm font-['Inter'] focus:outline-none focus:border-gold-400 transition-colors placeholder-gray-600";
+  const inputStyle = { borderColor: "rgba(181,142,60,0.2)", background: "rgba(255,255,255,0.03)" };
   const labelClass = "block text-gray-400 text-xs font-['Inter'] mb-1.5";
   const sectionClass = "rounded-xl p-5 space-y-4";
-  const sectionStyle = { background: "rgba(10,22,40,0.6)", border: "1px solid rgba(34,211,238,0.1)" };
+  const sectionStyle = { background: "rgba(20,29,46,0.6)", border: "1px solid rgba(181,142,60,0.1)" };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
       {/* Type */}
       <div className={sectionClass} style={sectionStyle}>
-        <h3 className="text-cyan-400 text-sm font-semibold font-['Inter'] flex items-center gap-2">
+        <h3 className="text-gold-400 text-sm font-semibold font-['Inter'] flex items-center gap-2">
           <i className="ri-luggage-cart-line" />
           {isAr ? "نوع الأمتعة الشخصية" : "Personal Effects Type"}
         </h3>
@@ -63,9 +63,9 @@ const PersonalEffectsForm = ({ isAr, onSubmit }: Props) => {
             <button key={t} type="button" onClick={() => setAccompanied(t)}
               className="flex-1 py-3 rounded-xl text-sm font-['Inter'] font-semibold transition-all cursor-pointer flex items-center justify-center gap-2"
               style={{
-                background: accompanied === t ? "rgba(34,211,238,0.15)" : "rgba(255,255,255,0.03)",
-                color: accompanied === t ? "#22D3EE" : "#6B7280",
-                border: `1px solid ${accompanied === t ? "#22D3EE" : "rgba(255,255,255,0.08)"}`,
+                background: accompanied === t ? "rgba(181,142,60,0.15)" : "rgba(255,255,255,0.03)",
+                color: accompanied === t ? "#D4A84B" : "#6B7280",
+                border: `1px solid ${accompanied === t ? "#D4A84B" : "rgba(255,255,255,0.08)"}`,
               }}>
               <i className={t === "accompanied" ? "ri-user-line" : "ri-box-3-line"} />
               {t === "accompanied"
@@ -78,7 +78,7 @@ const PersonalEffectsForm = ({ isAr, onSubmit }: Props) => {
 
       {/* Owner Details */}
       <div className={sectionClass} style={sectionStyle}>
-        <h3 className="text-cyan-400 text-sm font-semibold font-['Inter'] flex items-center gap-2">
+        <h3 className="text-gold-400 text-sm font-semibold font-['Inter'] flex items-center gap-2">
           <i className="ri-user-line" />
           {isAr ? "بيانات المالك" : "Owner Details"}
         </h3>
@@ -123,13 +123,13 @@ const PersonalEffectsForm = ({ isAr, onSubmit }: Props) => {
       {/* Items List */}
       <div className={sectionClass} style={sectionStyle}>
         <div className="flex items-center justify-between">
-          <h3 className="text-cyan-400 text-sm font-semibold font-['Inter'] flex items-center gap-2">
+          <h3 className="text-gold-400 text-sm font-semibold font-['Inter'] flex items-center gap-2">
             <i className="ri-list-check-2" />
             {isAr ? "قائمة الأمتعة والمقتنيات" : "Items List"}
           </h3>
           <button type="button" onClick={addItem}
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-['Inter'] font-medium cursor-pointer transition-all whitespace-nowrap"
-            style={{ background: "rgba(34,211,238,0.1)", color: "#22D3EE", border: "1px solid rgba(34,211,238,0.2)" }}>
+            style={{ background: "rgba(181,142,60,0.1)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>
             <i className="ri-add-line" />
             {isAr ? "إضافة عنصر" : "Add Item"}
           </button>
@@ -175,11 +175,11 @@ const PersonalEffectsForm = ({ isAr, onSubmit }: Props) => {
 
         {/* Total */}
         <div className="flex items-center justify-between p-3 rounded-lg"
-          style={{ background: "rgba(34,211,238,0.06)", border: "1px solid rgba(34,211,238,0.15)" }}>
+          style={{ background: "rgba(181,142,60,0.06)", border: "1px solid rgba(181,142,60,0.15)" }}>
           <span className="text-gray-300 text-sm font-['Inter']">
             {isAr ? "إجمالي القيمة التقديرية" : "Total Estimated Value"}
           </span>
-          <span className="text-cyan-400 text-lg font-bold font-['JetBrains_Mono']">
+          <span className="text-gold-400 text-lg font-bold font-['JetBrains_Mono']">
             {totalValue.toFixed(3)} LCY
           </span>
         </div>
@@ -187,7 +187,7 @@ const PersonalEffectsForm = ({ isAr, onSubmit }: Props) => {
 
       {/* Customs Assessment */}
       <div className={sectionClass} style={sectionStyle}>
-        <h3 className="text-cyan-400 text-sm font-semibold font-['Inter'] flex items-center gap-2">
+        <h3 className="text-gold-400 text-sm font-semibold font-['Inter'] flex items-center gap-2">
           <i className="ri-scales-3-line" />
           {isAr ? "التقييم الجمركي" : "Customs Assessment"}
         </h3>
@@ -212,12 +212,12 @@ const PersonalEffectsForm = ({ isAr, onSubmit }: Props) => {
       <div className="flex items-center justify-end gap-3 pt-2">
         <button type="button"
           className="px-6 py-2.5 rounded-lg text-sm font-['Inter'] font-medium cursor-pointer whitespace-nowrap transition-all"
-          style={{ border: "1px solid rgba(34,211,238,0.3)", color: "#22D3EE", background: "transparent" }}>
+          style={{ border: "1px solid rgba(181,142,60,0.3)", color: "#D4A84B", background: "transparent" }}>
           {isAr ? "حفظ مسودة" : "Save Draft"}
         </button>
         <button type="submit" disabled={submitting}
           className="px-8 py-2.5 rounded-lg text-sm font-['Inter'] font-bold cursor-pointer whitespace-nowrap transition-all flex items-center gap-2"
-          style={{ background: submitting ? "rgba(34,211,238,0.5)" : "#22D3EE", color: "#060D1A" }}>
+          style={{ background: submitting ? "rgba(181,142,60,0.5)" : "#D4A84B", color: "#0B1220" }}>
           {submitting ? (
             <><i className="ri-loader-4-line animate-spin" />{isAr ? "جارٍ الإرسال..." : "Submitting..."}</>
           ) : (

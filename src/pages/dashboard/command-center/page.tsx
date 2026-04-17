@@ -7,7 +7,7 @@ type Tab = "live" | "entities" | "alerts" | "replication" | "audit";
 // ── MOCK DATA ──────────────────────────────────────────────────────────────────
 
 const LIVE_FEED_SEED = [
-  { id: "f1",  time: "14:32:07", entity: "Hotel",       entityIcon: "ri-hotel-line",         entityColor: "#22D3EE", name: "Ahmed Al-Rashidi",    nat: "OM", event: "Check-In",          risk: "clear",    ref: "HTL-2026-04891", detail: "Room 204, Al Bustan Palace, 3 nights" },
+  { id: "f1",  time: "14:32:07", entity: "Hotel",       entityIcon: "ri-hotel-line",         entityColor: "#D4A84B", name: "Ahmed Al-Rashidi",    nat: "OM", event: "Check-In",          risk: "clear",    ref: "HTL-2026-04891", detail: "Room 204, Al Bustan Palace, 3 nights" },
   { id: "f2",  time: "14:31:55", entity: "Border",      entityIcon: "ri-passport-line",      entityColor: "#60A5FA", name: "Reza Tehrani",        nat: "IR", event: "Entry Recorded",    risk: "flagged",  ref: "BRD-2026-44891", detail: "Muscat Airport T1 — Watchlist match" },
   { id: "f3",  time: "14:31:44", entity: "Financial",   entityIcon: "ri-bank-card-line",     entityColor: "#4ADE80", name: "Al-Rashidi Trading",  nat: "OM", event: "Wire Transfer",     risk: "review",   ref: "PAY-2026-88234", detail: "OMR 45,000 → HSBC London" },
   { id: "f4",  time: "14:31:30", entity: "Mobile",      entityIcon: "ri-sim-card-line",      entityColor: "#A78BFA", name: "Unknown Subject",     nat: "PK", event: "SIM Activation",    risk: "review",   ref: "MOB-2026-19234", detail: "3rd SIM this month — same IMEI" },
@@ -17,12 +17,12 @@ const LIVE_FEED_SEED = [
   { id: "f8",  time: "14:30:40", entity: "Transport",   entityIcon: "ri-bus-line",           entityColor: "#FB923C", name: "Carlos Mendez",       nat: "ES", event: "Route Flagged",     risk: "review",   ref: "TRN-2026-55232", detail: "Repeated stops near restricted zone" },
   { id: "f9",  time: "14:30:28", entity: "Social",      entityIcon: "ri-global-line",        entityColor: "#38BDF8", name: "Anonymous",           nat: "??", event: "Keyword Alert",     risk: "flagged",  ref: "SOC-2026-99233", detail: "High-priority keyword — public post" },
   { id: "f10", time: "14:30:15", entity: "Utility",     entityIcon: "ri-flashlight-line",    entityColor: "#FACC15", name: "Hamad Al-Zadjali",    nat: "OM", event: "New Connection",    risk: "clear",    ref: "UTL-2026-11234", detail: "Villa 45, Al Azaiba, 3-phase" },
-  { id: "f11", time: "14:30:02", entity: "Municipality",entityIcon: "ri-government-line",    entityColor: "#22D3EE", name: "Layla Al-Hinai",      nat: "OM", event: "Lease Start",       risk: "clear",    ref: "MUN-2026-03421", detail: "Villa 12, Al Khuwair, 12 months" },
+  { id: "f11", time: "14:30:02", entity: "Municipality",entityIcon: "ri-government-line",    entityColor: "#D4A84B", name: "Layla Al-Hinai",      nat: "OM", event: "Lease Start",       risk: "clear",    ref: "MUN-2026-03421", detail: "Villa 12, Al Khuwair, 12 months" },
   { id: "f12", time: "14:29:50", entity: "Border",      entityIcon: "ri-passport-line",      entityColor: "#60A5FA", name: "Unknown Subject",     nat: "PK", event: "Overstay Alert",    risk: "flagged",  ref: "BRD-2026-44888", detail: "Visa expired 3 days ago" },
 ];
 
 const ENTITIES_DATA = [
-  { id: "ENT-001", name: "Al Bustan Palace Hotel",    nameAr: "فندق البستان بالاس",       type: "Hotel",        typeIcon: "ri-hotel-line",         color: "#22D3EE", status: "active",    integration: "API",    events: 1284, lastActivity: "14:32:07" },
+  { id: "ENT-001", name: "Al Bustan Palace Hotel",    nameAr: "فندق البستان بالاس",       type: "Hotel",        typeIcon: "ri-hotel-line",         color: "#D4A84B", status: "active",    integration: "API",    events: 1284, lastActivity: "14:32:07" },
   { id: "ENT-002", name: "Oman Car Rental Co.",       nameAr: "شركة عُمان لتأجير السيارات",type: "Car Rental",   typeIcon: "ri-car-line",           color: "#4ADE80", status: "active",    integration: "API",    events: 2103, lastActivity: "14:31:44" },
   { id: "ENT-003", name: "Omantel",                   nameAr: "عُمانتل",                  type: "Mobile",       typeIcon: "ri-sim-card-line",      color: "#A78BFA", status: "active",    integration: "API",    events: 8412, lastActivity: "14:32:01" },
   { id: "ENT-004", name: "Muscat Municipality",       nameAr: "بلدية مسقط",              type: "Municipality", typeIcon: "ri-government-line",    color: "#FACC15", status: "active",    integration: "Portal", events: 891,  lastActivity: "14:29:50" },
@@ -87,11 +87,11 @@ const PRIORITY_CONFIG = {
   critical: { color: "#F87171", bg: "rgba(248,113,113,0.08)", border: "rgba(248,113,113,0.3)", label: "Critical", labelAr: "حرج" },
   high:     { color: "#FB923C", bg: "rgba(251,146,60,0.08)",  border: "rgba(251,146,60,0.3)",  label: "High",     labelAr: "عالٍ" },
   medium:   { color: "#FACC15", bg: "rgba(250,204,21,0.08)",  border: "rgba(250,204,21,0.3)",  label: "Medium",   labelAr: "متوسط" },
-  low:      { color: "#22D3EE", bg: "rgba(34,211,238,0.08)",  border: "rgba(34,211,238,0.3)",  label: "Low",      labelAr: "منخفض" },
+  low:      { color: "#D4A84B", bg: "rgba(181,142,60,0.08)",  border: "rgba(181,142,60,0.3)",  label: "Low",      labelAr: "منخفض" },
 };
 
 const ACTION_COLORS: Record<string, string> = {
-  VIEW: "#22D3EE", ASSIGN: "#4ADE80", ESCALATE: "#F87171", EXPORT: "#A78BFA",
+  VIEW: "#D4A84B", ASSIGN: "#4ADE80", ESCALATE: "#F87171", EXPORT: "#A78BFA",
   RESOLVE: "#4ADE80", LOGIN: "#9CA3AF", SEARCH: "#FACC15", CONFIG: "#FB923C",
 };
 
@@ -170,10 +170,10 @@ const CommandCenterPage = () => {
   ];
 
   return (
-    <div className="min-h-screen font-['Inter']" style={{ background: "#060D1A" }} dir={isAr ? "rtl" : "ltr"}>
+    <div className="min-h-screen font-['Inter']" style={{ background: "#0B1220" }} dir={isAr ? "rtl" : "ltr"}>
       {/* Grid texture */}
       <div className="fixed inset-0 pointer-events-none" style={{
-        backgroundImage: `linear-gradient(rgba(34,211,238,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.025) 1px, transparent 1px)`,
+        backgroundImage: `linear-gradient(rgba(181,142,60,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,0.025) 1px, transparent 1px)`,
         backgroundSize: "40px 40px"
       }} />
 
@@ -194,7 +194,7 @@ const CommandCenterPage = () => {
 
       {/* Header */}
       <header className="sticky top-0 z-40 flex items-center justify-between px-6 py-3 border-b"
-        style={{ background: "rgba(6,13,26,0.97)", borderColor: "rgba(34,211,238,0.12)", backdropFilter: "blur(12px)" }}>
+        style={{ background: "rgba(11,18,32,0.97)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
         <div className="flex items-center gap-4">
           <button type="button" onClick={() => navigate("/dashboard")}
             className="flex items-center gap-2 px-3 py-1.5 rounded-lg border text-sm font-semibold cursor-pointer whitespace-nowrap transition-colors"
@@ -208,12 +208,12 @@ const CommandCenterPage = () => {
           {/* Logo + Title */}
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 flex items-center justify-center rounded-xl flex-shrink-0"
-              style={{ background: "rgba(34,211,238,0.1)", border: "2px solid rgba(34,211,238,0.3)" }}>
-              <i className="ri-radar-line text-cyan-400 text-base" />
+              style={{ background: "rgba(181,142,60,0.1)", border: "2px solid rgba(181,142,60,0.3)" }}>
+              <i className="ri-radar-line text-gold-400 text-base" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-cyan-400 font-black text-base tracking-wide">AMEEN</span>
+                <span className="text-gold-400 font-black text-base tracking-wide">AMEEN</span>
                 <span className="text-white font-bold text-sm">{isAr ? "مركز القيادة" : "Command Center"}</span>
                 <span className="px-2 py-0.5 rounded-full text-xs font-bold"
                   style={{ background: "rgba(248,113,113,0.15)", color: "#F87171", border: "1px solid rgba(248,113,113,0.3)" }}>
@@ -228,8 +228,8 @@ const CommandCenterPage = () => {
         <div className="flex items-center gap-3">
           {/* Clock */}
           <div className="hidden lg:flex flex-col items-end px-3 py-1.5 rounded-lg border"
-            style={{ background: "rgba(34,211,238,0.04)", borderColor: "rgba(34,211,238,0.12)" }}>
-            <span className="text-cyan-400 text-sm font-black font-['JetBrains_Mono']">{timeStr}</span>
+            style={{ background: "rgba(181,142,60,0.04)", borderColor: "rgba(181,142,60,0.12)" }}>
+            <span className="text-gold-400 text-sm font-black font-['JetBrains_Mono']">{timeStr}</span>
             <span className="text-gray-600 text-xs font-['JetBrains_Mono']">{dateStr}</span>
           </div>
 
@@ -263,14 +263,14 @@ const CommandCenterPage = () => {
 
       {/* Tab bar */}
       <div className="sticky top-[89px] z-30 flex items-center gap-1 px-6 py-2 border-b overflow-x-auto"
-        style={{ background: "rgba(6,13,26,0.95)", borderColor: "rgba(34,211,238,0.08)", backdropFilter: "blur(12px)" }}>
+        style={{ background: "rgba(11,18,32,0.95)", borderColor: "rgba(181,142,60,0.08)", backdropFilter: "blur(12px)" }}>
         {TABS.map((tab) => (
           <button key={tab.id} type="button" onClick={() => setActiveTab(tab.id)}
             className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap transition-all flex-shrink-0"
             style={{
-              background: activeTab === tab.id ? "rgba(34,211,238,0.12)" : "transparent",
-              border: `1px solid ${activeTab === tab.id ? "rgba(34,211,238,0.25)" : "transparent"}`,
-              color: activeTab === tab.id ? "#22D3EE" : "#6B7280",
+              background: activeTab === tab.id ? "rgba(181,142,60,0.12)" : "transparent",
+              border: `1px solid ${activeTab === tab.id ? "rgba(181,142,60,0.25)" : "transparent"}`,
+              color: activeTab === tab.id ? "#D4A84B" : "#6B7280",
             }}>
             <i className={`${tab.icon} text-xs`} />
             {isAr ? tab.labelAr : tab.label}
@@ -294,7 +294,7 @@ const CommandCenterPage = () => {
             {/* ROW 1 — Counters */}
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-3">
               {[
-                { label: isAr ? "أحداث اليوم" : "Live Events Today",    value: liveEvents,        color: "#22D3EE", icon: "ri-pulse-line",          mono: true,  large: true },
+                { label: isAr ? "أحداث اليوم" : "Live Events Today",    value: liveEvents,        color: "#D4A84B", icon: "ri-pulse-line",          mono: true,  large: true },
                 { label: isAr ? "حدث/ساعة" : "Events / Hour",           value: eventsPerHour,     color: "#4ADE80", icon: "ri-speed-line",          mono: true,  large: false },
                 { label: isAr ? "كيانات نشطة" : "Active Entities",      value: 11,                color: "#A78BFA", icon: "ri-building-line",       mono: false, large: false },
                 { label: isAr ? "تنبيهات المخاطر" : "Risk Alerts",      value: openAlerts,        color: "#F87171", icon: "ri-alarm-warning-line",  mono: false, large: false },
@@ -303,7 +303,7 @@ const CommandCenterPage = () => {
                 { label: isAr ? "مغادرة اليوم" : "Border Departures",   value: borderDepartures,  color: "#FB923C", icon: "ri-logout-circle-line",  mono: true,  large: false },
               ].map((s, i) => (
                 <div key={i} className="relative rounded-2xl border p-4 overflow-hidden"
-                  style={{ background: "rgba(10,22,40,0.8)", borderColor: `${s.color}25`, backdropFilter: "blur(12px)" }}>
+                  style={{ background: "rgba(20,29,46,0.8)", borderColor: `${s.color}25`, backdropFilter: "blur(12px)" }}>
                   <div className="absolute inset-0 opacity-5" style={{ background: `radial-gradient(circle at top right, ${s.color}, transparent 70%)` }} />
                   <div className="relative z-10">
                     <div className="w-7 h-7 flex items-center justify-center rounded-lg mb-2"
@@ -325,12 +325,12 @@ const CommandCenterPage = () => {
 
             {/* ROW 2 — Live Feed */}
             <div className="rounded-2xl border overflow-hidden"
-              style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.12)", backdropFilter: "blur(12px)" }}>
-              <div className="flex items-center justify-between px-5 py-3 border-b" style={{ borderColor: "rgba(34,211,238,0.08)" }}>
+              style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
+              <div className="flex items-center justify-between px-5 py-3 border-b" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
                 <div className="flex items-center gap-3">
                   <div className="w-7 h-7 flex items-center justify-center rounded-lg"
-                    style={{ background: "rgba(34,211,238,0.1)", border: "1px solid rgba(34,211,238,0.2)" }}>
-                    <i className="ri-pulse-line text-cyan-400 text-xs" />
+                    style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+                    <i className="ri-pulse-line text-gold-400 text-xs" />
                   </div>
                   <span className="text-white font-bold text-sm">{isAr ? "التغذية المباشرة" : "Live Event Feed"}</span>
                   <div className="flex items-center gap-1">
@@ -341,7 +341,7 @@ const CommandCenterPage = () => {
                 {/* Filter toggles */}
                 <div className="flex items-center gap-1">
                   {[
-                    { id: "all",     label: isAr ? "الكل" : "All",      color: "#22D3EE" },
+                    { id: "all",     label: isAr ? "الكل" : "All",      color: "#D4A84B" },
                     { id: "flagged", label: isAr ? "مُبلَّغ" : "Flagged", color: "#F87171" },
                     { id: "review",  label: isAr ? "مراجعة" : "Review",  color: "#FACC15" },
                     { id: "clear",   label: isAr ? "سليم" : "Clear",     color: "#4ADE80" },
@@ -358,7 +358,7 @@ const CommandCenterPage = () => {
                   ))}
                 </div>
               </div>
-              <div ref={feedRef} className="divide-y overflow-y-auto" style={{ maxHeight: "320px", borderColor: "rgba(34,211,238,0.04)" }}>
+              <div ref={feedRef} className="divide-y overflow-y-auto" style={{ maxHeight: "320px", borderColor: "rgba(181,142,60,0.04)" }}>
                 {filteredFeed.map((item) => (
                   <div key={item.id} className="flex items-center gap-3 px-5 py-2.5 hover:bg-white/[0.02] transition-colors cursor-pointer">
                     <span className="text-gray-600 text-xs font-['JetBrains_Mono'] flex-shrink-0 w-16">{item.time}</span>
@@ -400,26 +400,26 @@ const CommandCenterPage = () => {
 
             {/* ROW 3 — Oman Map */}
             <div className="rounded-2xl border overflow-hidden"
-              style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.12)", backdropFilter: "blur(12px)" }}>
-              <div className="flex items-center justify-between px-5 py-3 border-b" style={{ borderColor: "rgba(34,211,238,0.08)" }}>
+              style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
+              <div className="flex items-center justify-between px-5 py-3 border-b" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
                 <div className="flex items-center gap-3">
                   <div className="w-7 h-7 flex items-center justify-center rounded-lg"
-                    style={{ background: "rgba(34,211,238,0.1)", border: "1px solid rgba(34,211,238,0.2)" }}>
-                    <i className="ri-map-2-line text-cyan-400 text-xs" />
+                    style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+                    <i className="ri-map-2-line text-gold-400 text-xs" />
                   </div>
                   <span className="text-white font-bold text-sm">{isAr ? "خريطة عُمان — كثافة الأحداث" : "Oman — Event Density Map"}</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="flex items-center gap-1.5">
-                    <div className="w-3 h-3 rounded-sm" style={{ background: "rgba(34,211,238,0.15)" }} />
+                    <div className="w-3 h-3 rounded-sm" style={{ background: "rgba(181,142,60,0.15)" }} />
                     <span className="text-gray-500 text-xs">{isAr ? "منخفض" : "Low"}</span>
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <div className="w-3 h-3 rounded-sm" style={{ background: "rgba(34,211,238,0.5)" }} />
+                    <div className="w-3 h-3 rounded-sm" style={{ background: "rgba(181,142,60,0.5)" }} />
                     <span className="text-gray-500 text-xs">{isAr ? "متوسط" : "Medium"}</span>
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <div className="w-3 h-3 rounded-sm" style={{ background: "#22D3EE" }} />
+                    <div className="w-3 h-3 rounded-sm" style={{ background: "#D4A84B" }} />
                     <span className="text-gray-500 text-xs">{isAr ? "مرتفع" : "High"}</span>
                   </div>
                   <div className="flex items-center gap-1.5">
@@ -428,15 +428,15 @@ const CommandCenterPage = () => {
                   </div>
                 </div>
               </div>
-              <div className="relative" style={{ height: "380px", background: "rgba(6,13,26,0.6)" }}>
+              <div className="relative" style={{ height: "380px", background: "rgba(11,18,32,0.6)" }}>
                 {/* Map background grid */}
                 <div className="absolute inset-0" style={{
-                  backgroundImage: `linear-gradient(rgba(34,211,238,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.04) 1px, transparent 1px)`,
+                  backgroundImage: `linear-gradient(rgba(181,142,60,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,0.04) 1px, transparent 1px)`,
                   backgroundSize: "20px 20px"
                 }} />
                 {/* Oman outline hint */}
                 <div className="absolute inset-0 flex items-center justify-center opacity-5">
-                  <i className="ri-map-2-line text-cyan-400" style={{ fontSize: "200px" }} />
+                  <i className="ri-map-2-line text-gold-400" style={{ fontSize: "200px" }} />
                 </div>
                 {/* Governorate dots */}
                 {GOVERNORATES.map((gov, i) => {
@@ -449,7 +449,7 @@ const CommandCenterPage = () => {
                       className="absolute cursor-pointer transition-all"
                       style={{ left: `${gov.x}%`, top: `${gov.y}%`, transform: "translate(-50%,-50%)" }}>
                       <div className="rounded-full"
-                        style={{ width: size, height: size, background: `rgba(34,211,238,${opacity})`, border: `1px solid rgba(34,211,238,${opacity + 0.2})` }} />
+                        style={{ width: size, height: size, background: `rgba(181,142,60,${opacity})`, border: `1px solid rgba(181,142,60,${opacity + 0.2})` }} />
                       {gov.flagged > 0 && (
                         <div className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-red-400 animate-pulse border border-red-600" />
                       )}
@@ -471,9 +471,9 @@ const CommandCenterPage = () => {
                 {/* Hover tooltip */}
                 {hoveredGov && (
                   <div className="absolute z-20 px-3 py-2 rounded-xl border pointer-events-none"
-                    style={{ left: `${hoveredGov.x + 3}%`, top: `${hoveredGov.y - 8}%`, background: "rgba(6,13,26,0.95)", borderColor: "rgba(34,211,238,0.3)", minWidth: "140px" }}>
+                    style={{ left: `${hoveredGov.x + 3}%`, top: `${hoveredGov.y - 8}%`, background: "rgba(11,18,32,0.95)", borderColor: "rgba(181,142,60,0.3)", minWidth: "140px" }}>
                     <p className="text-white text-xs font-bold">{isAr ? hoveredGov.nameAr : hoveredGov.name}</p>
-                    <p className="text-cyan-400 text-xs font-['JetBrains_Mono']">{isAr ? "الكثافة:" : "Density:"} {hoveredGov.density}%</p>
+                    <p className="text-gold-400 text-xs font-['JetBrains_Mono']">{isAr ? "الكثافة:" : "Density:"} {hoveredGov.density}%</p>
                     {hoveredGov.flagged > 0 && (
                       <p className="text-red-400 text-xs font-['JetBrains_Mono']">{isAr ? "مُبلَّغ:" : "Flagged:"} {hoveredGov.flagged}</p>
                     )}
@@ -488,7 +488,7 @@ const CommandCenterPage = () => {
 
             {/* ROW 3.5 — Cargo Intelligence Widget */}
             <div className="rounded-2xl border overflow-hidden"
-              style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(252,211,77,0.2)", backdropFilter: "blur(12px)" }}>
+              style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(252,211,77,0.2)", backdropFilter: "blur(12px)" }}>
               <div className="flex items-center justify-between px-5 py-3 border-b" style={{ borderColor: "rgba(252,211,77,0.1)" }}>
                 <div className="flex items-center gap-3">
                   <div className="w-7 h-7 flex items-center justify-center rounded-lg"
@@ -516,7 +516,7 @@ const CommandCenterPage = () => {
                     { label: isAr ? "قناة حمراء" : "Red Channel",        value: "9",        color: "#F87171", icon: "ri-alert-line",               sub: "Held for inspection" },
                     { label: isAr ? "رسوم محصلة" : "Duty Collected",     value: "OMR 4.2M", color: "#4ADE80", icon: "ri-bank-line",                sub: "Today" },
                   ].map((s) => (
-                    <div key={s.label} className="p-3 rounded-xl" style={{ background: "rgba(6,13,26,0.6)", border: `1px solid ${s.color}18` }}>
+                    <div key={s.label} className="p-3 rounded-xl" style={{ background: "rgba(11,18,32,0.6)", border: `1px solid ${s.color}18` }}>
                       <div className="flex items-center gap-2 mb-1.5">
                         <div className="w-6 h-6 flex items-center justify-center rounded-md" style={{ background: `${s.color}15` }}>
                           <i className={`${s.icon} text-xs`} style={{ color: s.color }} />
@@ -544,7 +544,7 @@ const CommandCenterPage = () => {
                       { code: "2710", desc: "Petroleum oils & preparations",       risk: "high",     score: 68, seizures: 6,  color: "#FB923C" },
                     ].map((hs) => (
                       <div key={hs.code} className="flex items-center gap-3 px-3 py-2 rounded-lg"
-                        style={{ background: "rgba(6,13,26,0.5)", border: `1px solid ${hs.color}15` }}>
+                        style={{ background: "rgba(11,18,32,0.5)", border: `1px solid ${hs.color}15` }}>
                         <span className="text-xs font-bold font-['JetBrains_Mono'] w-10 flex-shrink-0" style={{ color: hs.color }}>{hs.code}</span>
                         <span className="text-gray-300 text-xs font-['Inter'] flex-1 truncate">{hs.desc}</span>
                         <div className="flex items-center gap-2 flex-shrink-0">
@@ -568,15 +568,15 @@ const CommandCenterPage = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {/* Entity Ranking */}
               <div className="rounded-2xl border overflow-hidden"
-                style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.12)", backdropFilter: "blur(12px)" }}>
-                <div className="flex items-center gap-3 px-5 py-3 border-b" style={{ borderColor: "rgba(34,211,238,0.08)" }}>
+                style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
+                <div className="flex items-center gap-3 px-5 py-3 border-b" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
                   <div className="w-7 h-7 flex items-center justify-center rounded-lg"
-                    style={{ background: "rgba(34,211,238,0.1)", border: "1px solid rgba(34,211,238,0.2)" }}>
-                    <i className="ri-trophy-line text-cyan-400 text-xs" />
+                    style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+                    <i className="ri-trophy-line text-gold-400 text-xs" />
                   </div>
                   <span className="text-white font-bold text-sm">{isAr ? "ترتيب الكيانات" : "Entity Ranking"}</span>
                 </div>
-                <div className="divide-y" style={{ borderColor: "rgba(34,211,238,0.04)" }}>
+                <div className="divide-y" style={{ borderColor: "rgba(181,142,60,0.04)" }}>
                   {ENTITIES_DATA.filter((e) => e.status === "active").sort((a, b) => b.events - a.events).slice(0, 7).map((e, i) => (
                     <div key={e.id} className="flex items-center gap-3 px-5 py-2.5">
                       <span className="text-gray-600 text-xs font-bold font-['JetBrains_Mono'] w-5 flex-shrink-0">#{i + 1}</span>
@@ -600,8 +600,8 @@ const CommandCenterPage = () => {
 
               {/* Risk Summary */}
               <div className="rounded-2xl border overflow-hidden"
-                style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.12)", backdropFilter: "blur(12px)" }}>
-                <div className="flex items-center gap-3 px-5 py-3 border-b" style={{ borderColor: "rgba(34,211,238,0.08)" }}>
+                style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
+                <div className="flex items-center gap-3 px-5 py-3 border-b" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
                   <div className="w-7 h-7 flex items-center justify-center rounded-lg"
                     style={{ background: "rgba(248,113,113,0.1)", border: "1px solid rgba(248,113,113,0.2)" }}>
                     <i className="ri-shield-cross-line text-red-400 text-xs" />
@@ -612,7 +612,7 @@ const CommandCenterPage = () => {
                   {/* Stats row */}
                   <div className="grid grid-cols-3 gap-3">
                     {[
-                      { label: isAr ? "تقييمات" : "Assessments", value: alerts.length, color: "#22D3EE" },
+                      { label: isAr ? "تقييمات" : "Assessments", value: alerts.length, color: "#D4A84B" },
                       { label: isAr ? "مُبلَّغ" : "Flagged", value: alerts.filter((a) => a.priority === "critical" || a.priority === "high").length, color: "#F87171" },
                       { label: isAr ? "مراجعة معلقة" : "Pending Review", value: alerts.filter((a) => a.status === "open").length, color: "#FACC15" },
                     ].map((s) => (
@@ -675,18 +675,18 @@ const CommandCenterPage = () => {
                 { label: isAr ? "معلق" : "Pending",   value: ENTITIES_DATA.filter((e) => e.status === "pending").length,   color: "#FACC15" },
               ].map((s) => (
                 <div key={s.label} className="rounded-xl border p-4 flex items-center gap-3"
-                  style={{ background: "rgba(10,22,40,0.8)", borderColor: `${s.color}20` }}>
+                  style={{ background: "rgba(20,29,46,0.8)", borderColor: `${s.color}20` }}>
                   <span className="text-3xl font-black font-['JetBrains_Mono']" style={{ color: s.color }}>{s.value}</span>
                   <span className="text-gray-400 text-sm">{s.label}</span>
                 </div>
               ))}
             </div>
             <div className="rounded-2xl border overflow-hidden"
-              style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.12)", backdropFilter: "blur(12px)" }}>
+              style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
               <div className="overflow-x-auto">
                 <table className="w-full min-w-[900px]">
                   <thead>
-                    <tr style={{ background: "rgba(34,211,238,0.05)", borderBottom: "1px solid rgba(34,211,238,0.1)" }}>
+                    <tr style={{ background: "rgba(181,142,60,0.05)", borderBottom: "1px solid rgba(181,142,60,0.1)" }}>
                       {[isAr?"المعرف":"Entity ID", isAr?"الاسم":"Name", isAr?"النوع":"Type", isAr?"الحالة":"Status", isAr?"التكامل":"Integration", isAr?"الأحداث":"Events", isAr?"آخر نشاط":"Last Activity"].map((h) => (
                         <th key={h} className="px-4 py-3 text-left text-xs font-bold font-['JetBrains_Mono'] uppercase tracking-wider text-gray-500">{h}</th>
                       ))}
@@ -697,7 +697,7 @@ const CommandCenterPage = () => {
                       const statusColor = e.status === "active" ? "#4ADE80" : e.status === "suspended" ? "#F87171" : "#FACC15";
                       return (
                         <tr key={e.id} className="border-b transition-colors"
-                          style={{ background: idx % 2 === 0 ? "rgba(10,22,40,0.6)" : "rgba(6,13,26,0.4)", borderColor: "rgba(34,211,238,0.05)" }}>
+                          style={{ background: idx % 2 === 0 ? "rgba(20,29,46,0.6)" : "rgba(11,18,32,0.4)", borderColor: "rgba(181,142,60,0.05)" }}>
                           <td className="px-4 py-3"><span className="text-gray-500 text-xs font-['JetBrains_Mono']">{e.id}</span></td>
                           <td className="px-4 py-3">
                             <div className="flex items-center gap-2">
@@ -717,7 +717,7 @@ const CommandCenterPage = () => {
                           </td>
                           <td className="px-4 py-3">
                             <span className="px-2 py-0.5 rounded-full text-xs font-bold"
-                              style={{ background: e.integration === "API" ? "rgba(34,211,238,0.1)" : "rgba(167,139,250,0.1)", color: e.integration === "API" ? "#22D3EE" : "#A78BFA", border: `1px solid ${e.integration === "API" ? "rgba(34,211,238,0.2)" : "rgba(167,139,250,0.2)"}` }}>
+                              style={{ background: e.integration === "API" ? "rgba(181,142,60,0.1)" : "rgba(167,139,250,0.1)", color: e.integration === "API" ? "#D4A84B" : "#A78BFA", border: `1px solid ${e.integration === "API" ? "rgba(181,142,60,0.2)" : "rgba(167,139,250,0.2)"}` }}>
                               {e.integration}
                             </span>
                           </td>
@@ -760,14 +760,14 @@ const CommandCenterPage = () => {
                       onClick={() => setSelectedAlert(isSelected ? null : alert)}
                       className="rounded-2xl border cursor-pointer transition-all overflow-hidden"
                       style={{
-                        background: isSelected ? "rgba(34,211,238,0.04)" : "rgba(10,22,40,0.8)",
-                        borderColor: isSelected ? "rgba(34,211,238,0.25)" : cfg.border,
+                        background: isSelected ? "rgba(181,142,60,0.04)" : "rgba(20,29,46,0.8)",
+                        borderColor: isSelected ? "rgba(181,142,60,0.25)" : cfg.border,
                         borderLeft: `4px solid ${cfg.color}`,
                         backdropFilter: "blur(12px)",
                       }}>
                       <div className="flex items-center gap-4 px-5 py-3 flex-wrap">
                         <span className="text-gray-500 text-xs font-['JetBrains_Mono'] flex-shrink-0">{alert.ts}</span>
-                        <span className="text-cyan-400 text-xs font-bold font-['JetBrains_Mono'] flex-shrink-0">{alert.id}</span>
+                        <span className="text-gold-400 text-xs font-bold font-['JetBrains_Mono'] flex-shrink-0">{alert.id}</span>
                         <span className="px-2 py-0.5 rounded-full text-xs font-bold flex-shrink-0"
                           style={{ background: cfg.bg, color: cfg.color, border: `1px solid ${cfg.border}` }}>
                           {isAr ? cfg.labelAr : cfg.label}
@@ -799,14 +799,14 @@ const CommandCenterPage = () => {
                     {/* Expanded detail */}
                     {isSelected && (
                       <div className="rounded-b-2xl border border-t-0 px-5 py-4"
-                        style={{ background: "rgba(6,13,26,0.95)", borderColor: "rgba(34,211,238,0.15)" }}>
+                        style={{ background: "rgba(11,18,32,0.95)", borderColor: "rgba(181,142,60,0.15)" }}>
                         <p className="text-gray-300 text-sm mb-4">{alert.detail}</p>
                         <div className="flex flex-wrap items-center gap-3 mb-4">
                           {alert.status !== "resolved" && (
                             <>
                               <button type="button" onClick={() => resolveAlert(alert.id)}
                                 className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold cursor-pointer whitespace-nowrap"
-                                style={{ background: "#22D3EE", color: "#060D1A" }}>
+                                style={{ background: "#D4A84B", color: "#0B1220" }}>
                                 <i className="ri-checkbox-circle-line text-xs" />
                                 {isAr ? "حل" : "Resolve"}
                               </button>
@@ -830,10 +830,10 @@ const CommandCenterPage = () => {
                           <input type="text" value={alertNote} onChange={(e) => setAlertNote(e.target.value)}
                             placeholder={isAr ? "إضافة ملاحظة..." : "Add note..."}
                             className="flex-1 px-3 py-2 rounded-lg border text-xs outline-none"
-                            style={{ background: "rgba(6,13,26,0.8)", borderColor: "rgba(34,211,238,0.15)", color: "#D1D5DB" }} />
+                            style={{ background: "rgba(11,18,32,0.8)", borderColor: "rgba(181,142,60,0.15)", color: "#D1D5DB" }} />
                           <button type="button" onClick={() => setAlertNote("")}
                             className="px-3 py-2 rounded-lg text-xs font-bold cursor-pointer whitespace-nowrap"
-                            style={{ background: "rgba(34,211,238,0.1)", color: "#22D3EE", border: "1px solid rgba(34,211,238,0.2)" }}>
+                            style={{ background: "rgba(181,142,60,0.1)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>
                             {isAr ? "حفظ" : "Save"}
                           </button>
                         </div>
@@ -864,12 +864,12 @@ const CommandCenterPage = () => {
                 const lagColor = rl.lag < 1 ? "#4ADE80" : rl.lag < 3 ? "#FACC15" : "#F87171";
                 return (
                   <div key={rl.id} className="rounded-2xl border overflow-hidden"
-                    style={{ background: "rgba(10,22,40,0.8)", borderColor: lagOk ? "rgba(34,211,238,0.15)" : "rgba(248,113,113,0.3)", backdropFilter: "blur(12px)" }}>
-                    <div className="flex items-center justify-between px-5 py-4 border-b" style={{ borderColor: "rgba(34,211,238,0.08)" }}>
+                    style={{ background: "rgba(20,29,46,0.8)", borderColor: lagOk ? "rgba(181,142,60,0.15)" : "rgba(248,113,113,0.3)", backdropFilter: "blur(12px)" }}>
+                    <div className="flex items-center justify-between px-5 py-4 border-b" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
                       <div className="flex items-center gap-3">
                         <div className="w-9 h-9 flex items-center justify-center rounded-xl"
-                          style={{ background: lagOk ? "rgba(34,211,238,0.1)" : "rgba(248,113,113,0.1)", border: `1px solid ${lagOk ? "rgba(34,211,238,0.2)" : "rgba(248,113,113,0.3)"}` }}>
-                          <i className="ri-server-line text-sm" style={{ color: lagOk ? "#22D3EE" : "#F87171" }} />
+                          style={{ background: lagOk ? "rgba(181,142,60,0.1)" : "rgba(248,113,113,0.1)", border: `1px solid ${lagOk ? "rgba(181,142,60,0.2)" : "rgba(248,113,113,0.3)"}` }}>
+                          <i className="ri-server-line text-sm" style={{ color: lagOk ? "#D4A84B" : "#F87171" }} />
                         </div>
                         <div>
                           <div className="flex items-center gap-2">
@@ -893,7 +893,7 @@ const CommandCenterPage = () => {
                           <div className="text-gray-500 text-xs">{isAr ? "وقت التأخر" : "Lag Time"}</div>
                         </div>
                         <div className="px-4 py-3 rounded-xl" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
-                          <div className="text-2xl font-black font-['JetBrains_Mono'] text-cyan-400">{rl.events.toLocaleString()}</div>
+                          <div className="text-2xl font-black font-['JetBrains_Mono'] text-gold-400">{rl.events.toLocaleString()}</div>
                           <div className="text-gray-500 text-xs">{isAr ? "إجمالي الأحداث" : "Total Events"}</div>
                         </div>
                       </div>
@@ -937,17 +937,17 @@ const CommandCenterPage = () => {
             </div>
             {/* Sync summary */}
             <div className="rounded-2xl border p-5"
-              style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.12)", backdropFilter: "blur(12px)" }}>
+              style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-8 h-8 flex items-center justify-center rounded-lg"
-                  style={{ background: "rgba(34,211,238,0.1)", border: "1px solid rgba(34,211,238,0.2)" }}>
-                  <i className="ri-refresh-line text-cyan-400 text-sm" />
+                  style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+                  <i className="ri-refresh-line text-gold-400 text-sm" />
                 </div>
                 <h3 className="text-white font-bold text-sm">{isAr ? "ملخص المزامنة" : "Sync Summary"}</h3>
               </div>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {[
-                  { label: isAr ? "الأحداث الرئيسية" : "Primary Events",  value: liveEvents.toLocaleString(), color: "#22D3EE" },
+                  { label: isAr ? "الأحداث الرئيسية" : "Primary Events",  value: liveEvents.toLocaleString(), color: "#D4A84B" },
                   { label: isAr ? "أحداث RES-A" : "RES-A Events",         value: rl1Events.toLocaleString(),  color: "#4ADE80" },
                   { label: isAr ? "أحداث RES-B" : "RES-B Events",         value: rl2Events.toLocaleString(),  color: "#A78BFA" },
                   { label: isAr ? "الفجوة القصوى" : "Max Gap",            value: `${Math.abs(liveEvents - rl2Events)}`, color: rl2Lag > 5 ? "#F87171" : "#FACC15" },
@@ -980,18 +980,18 @@ const CommandCenterPage = () => {
                 </div>
                 <button type="button"
                   className="flex items-center gap-2 px-4 py-2 rounded-lg border text-xs font-bold cursor-pointer whitespace-nowrap"
-                  style={{ background: "transparent", borderColor: "rgba(34,211,238,0.3)", color: "#22D3EE" }}>
+                  style={{ background: "transparent", borderColor: "rgba(181,142,60,0.3)", color: "#D4A84B" }}>
                   <i className="ri-download-2-line text-xs" />
                   {isAr ? "تصدير موقّع رقمياً" : "Export (Digitally Signed)"}
                 </button>
               </div>
             </div>
             <div className="rounded-2xl border overflow-hidden"
-              style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.12)", backdropFilter: "blur(12px)" }}>
+              style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
               <div className="overflow-x-auto">
                 <table className="w-full min-w-[900px]">
                   <thead>
-                    <tr style={{ background: "rgba(34,211,238,0.05)", borderBottom: "1px solid rgba(34,211,238,0.1)" }}>
+                    <tr style={{ background: "rgba(181,142,60,0.05)", borderBottom: "1px solid rgba(181,142,60,0.1)" }}>
                       {[isAr?"الطابع الزمني":"Timestamp", isAr?"المستخدم":"User", isAr?"الإجراء":"Action", isAr?"الهدف":"Target", isAr?"عنوان IP":"IP Address", isAr?"التفاصيل":"Details"].map((h) => (
                         <th key={h} className="px-4 py-3 text-left text-xs font-bold font-['JetBrains_Mono'] uppercase tracking-wider text-gray-500">{h}</th>
                       ))}
@@ -1000,13 +1000,13 @@ const CommandCenterPage = () => {
                   <tbody>
                     {AUDIT_DATA.map((entry, idx) => (
                       <tr key={entry.id} className="border-b transition-colors"
-                        style={{ background: idx % 2 === 0 ? "rgba(10,22,40,0.6)" : "rgba(6,13,26,0.4)", borderColor: "rgba(34,211,238,0.05)" }}>
+                        style={{ background: idx % 2 === 0 ? "rgba(20,29,46,0.6)" : "rgba(11,18,32,0.4)", borderColor: "rgba(181,142,60,0.05)" }}>
                         <td className="px-4 py-3"><span className="text-gray-400 text-xs font-['JetBrains_Mono']">{entry.ts}</span></td>
                         <td className="px-4 py-3">
                           <div className="flex items-center gap-2">
                             <div className="w-6 h-6 flex items-center justify-center rounded-full flex-shrink-0"
-                              style={{ background: "rgba(34,211,238,0.1)", border: "1px solid rgba(34,211,238,0.2)" }}>
-                              <span className="text-cyan-400 font-bold" style={{ fontSize: "8px" }}>{entry.user.split(" ").map((n) => n[0]).join("").slice(0, 2)}</span>
+                              style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+                              <span className="text-gold-400 font-bold" style={{ fontSize: "8px" }}>{entry.user.split(" ").map((n) => n[0]).join("").slice(0, 2)}</span>
                             </div>
                             <span className="text-white text-xs font-semibold whitespace-nowrap">{entry.user}</span>
                           </div>
@@ -1026,7 +1026,7 @@ const CommandCenterPage = () => {
                 </table>
               </div>
               {/* Integrity footer */}
-              <div className="flex items-center gap-3 px-5 py-3 border-t" style={{ borderColor: "rgba(34,211,238,0.08)" }}>
+              <div className="flex items-center gap-3 px-5 py-3 border-t" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
                 <i className="ri-shield-check-line text-green-400 text-xs" />
                 <span className="text-green-400 text-xs font-['JetBrains_Mono']">
                   {isAr ? "سلامة السجل مؤكدة — SHA-256 · لا توجد تعديلات مكتشفة" : "Log integrity verified — SHA-256 · No tampering detected"}

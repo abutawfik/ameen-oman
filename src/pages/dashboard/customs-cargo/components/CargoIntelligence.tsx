@@ -100,16 +100,16 @@ const CargoIntelligence = ({ isAr }: CargoIntelligenceProps) => {
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-1 p-1 rounded-xl" style={{ background: "rgba(10,22,40,0.8)", border: "1px solid rgba(34,211,238,0.1)" }}>
+      <div className="flex gap-1 p-1 rounded-xl" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.1)" }}>
         {tabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id as typeof activeTab)}
             className="flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-lg text-xs font-semibold transition-all cursor-pointer whitespace-nowrap font-['Inter']"
             style={{
-              background: activeTab === tab.id ? "rgba(34,211,238,0.12)" : "transparent",
-              color: activeTab === tab.id ? "#22D3EE" : "#6B7280",
-              border: activeTab === tab.id ? "1px solid rgba(34,211,238,0.25)" : "1px solid transparent",
+              background: activeTab === tab.id ? "rgba(181,142,60,0.12)" : "transparent",
+              color: activeTab === tab.id ? "#D4A84B" : "#6B7280",
+              border: activeTab === tab.id ? "1px solid rgba(181,142,60,0.25)" : "1px solid transparent",
             }}
           >
             <i className={`${tab.icon} text-sm`} />
@@ -130,9 +130,9 @@ const CargoIntelligence = ({ isAr }: CargoIntelligenceProps) => {
                 onClick={() => setRiskFilter(f)}
                 className="px-3 py-1 rounded-full text-xs font-semibold transition-all cursor-pointer whitespace-nowrap font-['Inter']"
                 style={{
-                  background: riskFilter === f ? (f === "all" ? "rgba(34,211,238,0.15)" : `${riskColors[f]}15`) : "rgba(10,22,40,0.6)",
-                  color: riskFilter === f ? (f === "all" ? "#22D3EE" : riskColors[f]) : "#6B7280",
-                  border: `1px solid ${riskFilter === f ? (f === "all" ? "rgba(34,211,238,0.3)" : `${riskColors[f]}40`) : "rgba(255,255,255,0.06)"}`,
+                  background: riskFilter === f ? (f === "all" ? "rgba(181,142,60,0.15)" : `${riskColors[f]}15`) : "rgba(20,29,46,0.6)",
+                  color: riskFilter === f ? (f === "all" ? "#D4A84B" : riskColors[f]) : "#6B7280",
+                  border: `1px solid ${riskFilter === f ? (f === "all" ? "rgba(181,142,60,0.3)" : `${riskColors[f]}40`) : "rgba(255,255,255,0.06)"}`,
                 }}
               >
                 {f === "all" ? (isAr ? "الكل" : "All") : f.charAt(0).toUpperCase() + f.slice(1)}
@@ -140,10 +140,10 @@ const CargoIntelligence = ({ isAr }: CargoIntelligenceProps) => {
             ))}
           </div>
 
-          <div className="rounded-xl overflow-hidden" style={{ background: "rgba(10,22,40,0.8)", border: "1px solid rgba(34,211,238,0.1)" }}>
+          <div className="rounded-xl overflow-hidden" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.1)" }}>
             <table className="w-full">
               <thead>
-                <tr style={{ borderBottom: "1px solid rgba(34,211,238,0.08)" }}>
+                <tr style={{ borderBottom: "1px solid rgba(181,142,60,0.08)" }}>
                   {["HS Code", "Description", "Category", "Risk Level", "Risk Score", "Declarations", "Seizures", "Trend"].map((h) => (
                     <th key={h} className="px-4 py-3 text-left text-xs font-semibold text-gray-500 font-['Inter'] whitespace-nowrap">{h}</th>
                   ))}
@@ -154,11 +154,11 @@ const CargoIntelligence = ({ isAr }: CargoIntelligenceProps) => {
                   <tr key={row.code}
                     className="transition-colors"
                     style={{ borderBottom: i < filteredHs.length - 1 ? "1px solid rgba(255,255,255,0.03)" : "none" }}
-                    onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(34,211,238,0.03)")}
+                    onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(181,142,60,0.03)")}
                     onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
                   >
                     <td className="px-4 py-3">
-                      <span className="text-cyan-400 font-['JetBrains_Mono'] text-sm font-bold">{row.code}</span>
+                      <span className="text-gold-400 font-['JetBrains_Mono'] text-sm font-bold">{row.code}</span>
                     </td>
                     <td className="px-4 py-3">
                       <p className="text-white text-xs font-['Inter']">{isAr ? row.descAr : row.desc}</p>
@@ -205,12 +205,12 @@ const CargoIntelligence = ({ isAr }: CargoIntelligenceProps) => {
           {/* KPI row */}
           <div className="grid grid-cols-4 gap-3">
             {[
-              { label: "Total Declarations", labelAr: "إجمالي الإقرارات", value: "6,241", delta: "+12%", color: "#22D3EE", icon: "ri-file-list-3-line" },
+              { label: "Total Declarations", labelAr: "إجمالي الإقرارات", value: "6,241", delta: "+12%", color: "#D4A84B", icon: "ri-file-list-3-line" },
               { label: "High-Value Shipments", labelAr: "شحنات عالية القيمة", value: "162", delta: "+10%", color: "#FACC15", icon: "ri-money-dollar-circle-line" },
               { label: "Seizures This Month", labelAr: "ضبط هذا الشهر", value: "23", delta: "+21%", color: "#F87171", icon: "ri-shield-cross-line" },
               { label: "Duty Collected", labelAr: "رسوم جمركية محصلة", value: "OMR 4.2M", delta: "+8%", color: "#4ADE80", icon: "ri-bank-line" },
             ].map((kpi) => (
-              <div key={kpi.label} className="p-4 rounded-xl" style={{ background: "rgba(10,22,40,0.8)", border: `1px solid ${kpi.color}20` }}>
+              <div key={kpi.label} className="p-4 rounded-xl" style={{ background: "rgba(20,29,46,0.8)", border: `1px solid ${kpi.color}20` }}>
                 <div className="flex items-center justify-between mb-2">
                   <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: `${kpi.color}15` }}>
                     <i className={`${kpi.icon} text-sm`} style={{ color: kpi.color }} />
@@ -224,13 +224,13 @@ const CargoIntelligence = ({ isAr }: CargoIntelligenceProps) => {
           </div>
 
           {/* Bar chart */}
-          <div className="p-5 rounded-xl" style={{ background: "rgba(10,22,40,0.8)", border: "1px solid rgba(34,211,238,0.1)" }}>
+          <div className="p-5 rounded-xl" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.1)" }}>
             <div className="flex items-center justify-between mb-5">
               <h3 className="text-white text-sm font-bold font-['Inter']">
                 {isAr ? "حجم الشحنات الشهري (7 أشهر)" : "Monthly Shipment Volume (7 Months)"}
               </h3>
               <div className="flex items-center gap-4 text-xs font-['Inter']">
-                <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded-sm" style={{ background: "#22D3EE" }} /><span className="text-gray-400">Imports</span></div>
+                <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded-sm" style={{ background: "#D4A84B" }} /><span className="text-gray-400">Imports</span></div>
                 <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded-sm" style={{ background: "#4ADE80" }} /><span className="text-gray-400">Exports</span></div>
                 <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded-sm" style={{ background: "#F87171" }} /><span className="text-gray-400">Seizures ×10</span></div>
               </div>
@@ -239,7 +239,7 @@ const CargoIntelligence = ({ isAr }: CargoIntelligenceProps) => {
               {shipmentTrends.map((d) => (
                 <div key={d.month} className="flex-1 flex flex-col items-center gap-1">
                   <div className="w-full flex items-end gap-0.5 h-40">
-                    <div className="flex-1 rounded-t-sm transition-all" style={{ height: `${(d.imports / maxImports) * 100}%`, background: "rgba(34,211,238,0.7)" }} />
+                    <div className="flex-1 rounded-t-sm transition-all" style={{ height: `${(d.imports / maxImports) * 100}%`, background: "rgba(181,142,60,0.7)" }} />
                     <div className="flex-1 rounded-t-sm transition-all" style={{ height: `${(d.exports / maxImports) * 100}%`, background: "rgba(74,222,128,0.7)" }} />
                     <div className="flex-1 rounded-t-sm transition-all" style={{ height: `${(d.seizures * 10 / maxImports) * 100}%`, background: "rgba(248,113,113,0.8)" }} />
                   </div>
@@ -250,7 +250,7 @@ const CargoIntelligence = ({ isAr }: CargoIntelligenceProps) => {
           </div>
 
           {/* High-value trend */}
-          <div className="p-5 rounded-xl" style={{ background: "rgba(10,22,40,0.8)", border: "1px solid rgba(34,211,238,0.1)" }}>
+          <div className="p-5 rounded-xl" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.1)" }}>
             <h3 className="text-white text-sm font-bold font-['Inter'] mb-4">
               {isAr ? "اتجاه الشحنات عالية القيمة" : "High-Value Shipment Trend"}
             </h3>
@@ -276,11 +276,11 @@ const CargoIntelligence = ({ isAr }: CargoIntelligenceProps) => {
                 {isAr ? "الضبط حسب المنفذ" : "Seizures by Port of Entry"}
               </h3>
               {seizureHeatmap.map((port) => (
-                <div key={port.port} className="p-4 rounded-xl" style={{ background: "rgba(10,22,40,0.8)", border: "1px solid rgba(34,211,238,0.08)" }}>
+                <div key={port.port} className="p-4 rounded-xl" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.08)" }}>
                   <div className="flex items-start justify-between mb-2">
                     <div>
                       <p className="text-white text-sm font-semibold font-['Inter']">{isAr ? port.portAr : port.port}</p>
-                      <p className="text-gray-500 text-xs font-['Inter'] mt-0.5">{isAr ? "الفئة الأعلى:" : "Top category:"} <span className="text-cyan-400">{port.topCategory}</span></p>
+                      <p className="text-gray-500 text-xs font-['Inter'] mt-0.5">{isAr ? "الفئة الأعلى:" : "Top category:"} <span className="text-gold-400">{port.topCategory}</span></p>
                     </div>
                     <div className="text-right">
                       <div className="text-lg font-bold font-['JetBrains_Mono']" style={{ color: port.intensity > 80 ? "#F87171" : port.intensity > 50 ? "#FB923C" : port.intensity > 30 ? "#FACC15" : "#4ADE80" }}>
@@ -301,16 +301,16 @@ const CargoIntelligence = ({ isAr }: CargoIntelligenceProps) => {
             </div>
 
             {/* Visual heatmap grid */}
-            <div className="p-5 rounded-xl" style={{ background: "rgba(10,22,40,0.8)", border: "1px solid rgba(34,211,238,0.1)" }}>
+            <div className="p-5 rounded-xl" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.1)" }}>
               <h3 className="text-white text-sm font-bold font-['Inter'] mb-4">
                 {isAr ? "خريطة الكثافة" : "Intensity Map"}
               </h3>
               {/* Simplified visual map */}
-              <div className="relative rounded-xl overflow-hidden" style={{ height: "320px", background: "rgba(6,13,26,0.9)", border: "1px solid rgba(34,211,238,0.08)" }}>
+              <div className="relative rounded-xl overflow-hidden" style={{ height: "320px", background: "rgba(11,18,32,0.9)", border: "1px solid rgba(181,142,60,0.08)" }}>
                 {/* Grid lines */}
                 <div className="absolute inset-0 opacity-10"
                   style={{
-                    backgroundImage: "linear-gradient(rgba(34,211,238,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.3) 1px, transparent 1px)",
+                    backgroundImage: "linear-gradient(rgba(181,142,60,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,0.3) 1px, transparent 1px)",
                     backgroundSize: "30px 30px",
                   }} />
                 {/* Port dots */}
@@ -356,7 +356,7 @@ const CargoIntelligence = ({ isAr }: CargoIntelligenceProps) => {
                 {[
                   { label: "Total Seizures", value: "265", color: "#F87171" },
                   { label: "Total Value", value: "OMR 13.8M", color: "#FACC15" },
-                  { label: "Active Ports", value: "6", color: "#22D3EE" },
+                  { label: "Active Ports", value: "6", color: "#D4A84B" },
                 ].map((s) => (
                   <div key={s.label} className="p-2 rounded-lg text-center" style={{ background: `${s.color}08`, border: `1px solid ${s.color}20` }}>
                     <div className="text-sm font-bold font-['JetBrains_Mono']" style={{ color: s.color }}>{s.value}</div>
@@ -386,18 +386,18 @@ const CargoIntelligence = ({ isAr }: CargoIntelligenceProps) => {
             {highValueShipments.map((s) => (
               <div key={s.ref} className="p-4 rounded-xl transition-all"
                 style={{
-                  background: s.flag ? "rgba(248,113,113,0.05)" : "rgba(10,22,40,0.8)",
-                  border: `1px solid ${s.flag ? "rgba(248,113,113,0.25)" : "rgba(34,211,238,0.08)"}`,
+                  background: s.flag ? "rgba(248,113,113,0.05)" : "rgba(20,29,46,0.8)",
+                  border: `1px solid ${s.flag ? "rgba(248,113,113,0.25)" : "rgba(181,142,60,0.08)"}`,
                 }}>
                 <div className="flex items-start justify-between">
                   <div className="flex items-start gap-3">
                     <div className="w-9 h-9 flex items-center justify-center rounded-lg flex-shrink-0"
-                      style={{ background: s.flag ? "rgba(248,113,113,0.15)" : "rgba(34,211,238,0.1)" }}>
-                      <i className={`${s.flag ? "ri-alert-line text-red-400" : "ri-ship-line text-cyan-400"} text-base`} />
+                      style={{ background: s.flag ? "rgba(248,113,113,0.15)" : "rgba(181,142,60,0.1)" }}>
+                      <i className={`${s.flag ? "ri-alert-line text-red-400" : "ri-ship-line text-gold-400"} text-base`} />
                     </div>
                     <div>
                       <div className="flex items-center gap-2 mb-1">
-                        <span className="text-cyan-400 text-xs font-['JetBrains_Mono'] font-bold">{s.ref}</span>
+                        <span className="text-gold-400 text-xs font-['JetBrains_Mono'] font-bold">{s.ref}</span>
                         {s.flag && (
                           <span className="px-2 py-0.5 rounded-full text-xs font-semibold font-['Inter']"
                             style={{ background: "rgba(248,113,113,0.15)", color: "#F87171", border: "1px solid rgba(248,113,113,0.3)" }}>

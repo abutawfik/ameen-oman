@@ -34,7 +34,7 @@ export default function FusionDashboard({ isAr }: Props) {
           </div>
           <button
             className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap transition-all"
-            style={{ background: '#22D3EE', color: '#060D1A' }}
+            style={{ background: '#D4A84B', color: '#0B1220' }}
           >
             <i className="ri-add-line" />
             {isAr ? 'إضافة قاعدة' : 'Add Rule'}
@@ -50,7 +50,7 @@ export default function FusionDashboard({ isAr }: Props) {
                 key={rule.id}
                 className="rounded-xl border p-4 transition-all"
                 style={{
-                  background: 'rgba(10,22,40,0.8)',
+                  background: 'rgba(20,29,46,0.8)',
                   borderColor: rule.enabled ? `${rule.color}25` : 'rgba(255,255,255,0.06)',
                   opacity: rule.enabled ? 1 : 0.55,
                 }}
@@ -80,7 +80,7 @@ export default function FusionDashboard({ isAr }: Props) {
                   <button
                     onClick={() => toggleRule(rule.id)}
                     className="relative w-10 h-5 rounded-full transition-all cursor-pointer shrink-0 mt-1"
-                    style={{ background: rule.enabled ? '#22D3EE' : 'rgba(255,255,255,0.1)' }}
+                    style={{ background: rule.enabled ? '#D4A84B' : 'rgba(255,255,255,0.1)' }}
                   >
                     <div
                       className="absolute top-0.5 w-4 h-4 rounded-full bg-white transition-all"
@@ -126,9 +126,9 @@ export default function FusionDashboard({ isAr }: Props) {
                     onClick={() => setEditingRule(isEditing ? null : rule.id)}
                     className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs border cursor-pointer transition-all whitespace-nowrap"
                     style={{
-                      borderColor: 'rgba(34,211,238,0.25)',
-                      color: '#22D3EE',
-                      background: isEditing ? 'rgba(34,211,238,0.1)' : 'transparent',
+                      borderColor: 'rgba(181,142,60,0.25)',
+                      color: '#D4A84B',
+                      background: isEditing ? 'rgba(181,142,60,0.1)' : 'transparent',
                     }}
                   >
                     <i className={isEditing ? 'ri-check-line' : 'ri-settings-3-line'} />
@@ -139,17 +139,17 @@ export default function FusionDashboard({ isAr }: Props) {
                 {/* Inline edit panel */}
                 {isEditing && (
                   <div
-                    className="mt-3 pt-3 border-t border-cyan-500/15 space-y-2"
+                    className="mt-3 pt-3 border-t border-gold-500/15 space-y-2"
                   >
                     <div className="flex items-center justify-between">
                       <span className="text-gray-400 text-xs font-['Inter']">
                         {isAr ? 'حد الثقة' : 'Confidence Threshold'}
                       </span>
-                      <span className="text-cyan-400 font-mono text-xs">{rule.confidence}%</span>
+                      <span className="text-gold-400 font-mono text-xs">{rule.confidence}%</span>
                     </div>
                     <input
                       type="range" min={50} max={100} defaultValue={rule.confidence}
-                      className="w-full h-1 rounded-full cursor-pointer accent-cyan-400"
+                      className="w-full h-1 rounded-full cursor-pointer accent-gold-400"
                     />
                     <div className="flex items-center justify-between">
                       <span className="text-gray-400 text-xs font-['Inter']">
@@ -158,7 +158,7 @@ export default function FusionDashboard({ isAr }: Props) {
                       <select
                         defaultValue={rule.action}
                         className="text-xs rounded-lg px-2 py-1 cursor-pointer font-['Inter']"
-                        style={{ background: 'rgba(10,22,40,0.9)', color: '#D1D5DB', border: '1px solid rgba(34,211,238,0.2)' }}
+                        style={{ background: 'rgba(20,29,46,0.9)', color: '#D1D5DB', border: '1px solid rgba(181,142,60,0.2)' }}
                       >
                         <option value="auto-merge">Auto-Merge</option>
                         <option value="candidate">Candidate</option>
@@ -175,8 +175,8 @@ export default function FusionDashboard({ isAr }: Props) {
 
       {/* Stream Resolution Stats */}
       <div
-        className="rounded-xl border border-cyan-500/15 p-5"
-        style={{ background: 'rgba(10,22,40,0.8)' }}
+        className="rounded-xl border border-gold-500/15 p-5"
+        style={{ background: 'rgba(20,29,46,0.8)' }}
       >
         <h3 className="text-white font-bold text-sm font-['Inter'] mb-4">
           {isAr ? 'معدل الدقة لكل تيار' : 'Resolution Rate per Stream'}
@@ -193,7 +193,7 @@ export default function FusionDashboard({ isAr }: Props) {
                   className="h-full rounded-full"
                   style={{
                     width: `${(s.resolved / maxRate) * 100}%`,
-                    background: s.rate >= 97 ? '#4ADE80' : s.rate >= 95 ? '#22D3EE' : s.rate >= 93 ? '#FACC15' : '#FB923C',
+                    background: s.rate >= 97 ? '#4ADE80' : s.rate >= 95 ? '#D4A84B' : s.rate >= 93 ? '#FACC15' : '#FB923C',
                   }}
                 />
               </div>
@@ -203,7 +203,7 @@ export default function FusionDashboard({ isAr }: Props) {
               <div className="w-14 text-right shrink-0">
                 <span
                   className="font-mono font-bold text-xs"
-                  style={{ color: s.rate >= 97 ? '#4ADE80' : s.rate >= 95 ? '#22D3EE' : s.rate >= 93 ? '#FACC15' : '#FB923C' }}
+                  style={{ color: s.rate >= 97 ? '#4ADE80' : s.rate >= 95 ? '#D4A84B' : s.rate >= 93 ? '#FACC15' : '#FB923C' }}
                 >
                   {s.rate}%
                 </span>

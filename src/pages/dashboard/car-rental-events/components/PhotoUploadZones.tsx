@@ -49,8 +49,8 @@ const PhotoUploadZones = ({ isAr }: Props) => {
     <div>
       <div className="flex items-center gap-2 mb-3">
         <div className="w-7 h-7 flex items-center justify-center rounded-lg"
-          style={{ background: "rgba(34,211,238,0.1)", border: "1px solid rgba(34,211,238,0.2)" }}>
-          <i className="ri-camera-line text-cyan-400 text-sm" />
+          style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+          <i className="ri-camera-line text-gold-400 text-sm" />
         </div>
         <h3 className="text-white font-bold text-sm font-['Inter']">
           {isAr ? "صور حالة المركبة" : "Vehicle Condition Photos"}
@@ -70,8 +70,8 @@ const PhotoUploadZones = ({ isAr }: Props) => {
               key={zone.id}
               className="relative rounded-xl border-2 border-dashed transition-all duration-200 cursor-pointer overflow-hidden"
               style={{
-                borderColor: isDraggingThis ? "#22D3EE" : hasPhoto ? "rgba(34,211,238,0.4)" : "rgba(34,211,238,0.2)",
-                background: isDraggingThis ? "rgba(34,211,238,0.06)" : hasPhoto ? "transparent" : "rgba(10,22,40,0.6)",
+                borderColor: isDraggingThis ? "#D4A84B" : hasPhoto ? "rgba(181,142,60,0.4)" : "rgba(181,142,60,0.2)",
+                background: isDraggingThis ? "rgba(181,142,60,0.06)" : hasPhoto ? "transparent" : "rgba(20,29,46,0.6)",
                 minHeight: "120px",
               }}
               onClick={() => !hasPhoto && inputRefs.current[zone.id]?.click()}
@@ -121,10 +121,10 @@ const PhotoUploadZones = ({ isAr }: Props) => {
               ) : (
                 <div className="flex flex-col items-center justify-center h-full p-4 gap-2" style={{ minHeight: "120px" }}>
                   <div className="w-10 h-10 flex items-center justify-center rounded-xl"
-                    style={{ background: "rgba(34,211,238,0.08)", border: "1px solid rgba(34,211,238,0.15)" }}>
-                    <i className="ri-image-add-line text-cyan-400 text-lg" />
+                    style={{ background: "rgba(181,142,60,0.08)", border: "1px solid rgba(181,142,60,0.15)" }}>
+                    <i className="ri-image-add-line text-gold-400 text-lg" />
                   </div>
-                  <p className="text-cyan-400 text-xs font-semibold font-['Inter'] text-center">
+                  <p className="text-gold-400 text-xs font-semibold font-['Inter'] text-center">
                     {isAr ? zone.labelAr : zone.label}
                   </p>
                   <p className="text-gray-600 text-xs font-['Inter'] text-center">

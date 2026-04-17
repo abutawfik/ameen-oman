@@ -137,18 +137,18 @@ const DossierBuilder = ({ isAr, onGenerate }: Props) => {
               <div
                 className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold font-['JetBrains_Mono'] flex-shrink-0 transition-all"
                 style={{
-                  background: step === s.n ? "#22D3EE" : step > s.n ? "rgba(74,222,128,0.2)" : "rgba(34,211,238,0.08)",
-                  color: step === s.n ? "#060D1A" : step > s.n ? "#4ADE80" : "#6B7280",
-                  border: step > s.n ? "1px solid rgba(74,222,128,0.4)" : "1px solid rgba(34,211,238,0.2)",
+                  background: step === s.n ? "#D4A84B" : step > s.n ? "rgba(74,222,128,0.2)" : "rgba(181,142,60,0.08)",
+                  color: step === s.n ? "#0B1220" : step > s.n ? "#4ADE80" : "#6B7280",
+                  border: step > s.n ? "1px solid rgba(74,222,128,0.4)" : "1px solid rgba(181,142,60,0.2)",
                 }}
               >
                 {step > s.n ? <i className="ri-check-line text-sm" /> : s.n}
               </div>
-              <span className="text-sm font-['Inter'] whitespace-nowrap" style={{ color: step === s.n ? "#22D3EE" : step > s.n ? "#4ADE80" : "#6B7280" }}>
+              <span className="text-sm font-['Inter'] whitespace-nowrap" style={{ color: step === s.n ? "#D4A84B" : step > s.n ? "#4ADE80" : "#6B7280" }}>
                 {s.label}
               </span>
             </button>
-            {i < 2 && <div className="flex-1 h-px mx-3" style={{ background: step > s.n ? "rgba(74,222,128,0.3)" : "rgba(34,211,238,0.1)" }} />}
+            {i < 2 && <div className="flex-1 h-px mx-3" style={{ background: step > s.n ? "rgba(74,222,128,0.3)" : "rgba(181,142,60,0.1)" }} />}
           </div>
         ))}
       </div>
@@ -158,7 +158,7 @@ const DossierBuilder = ({ isAr, onGenerate }: Props) => {
         <div className="space-y-4">
           <div
             className="rounded-xl p-5"
-            style={{ background: "rgba(10,22,40,0.8)", border: "1px solid rgba(34,211,238,0.15)" }}
+            style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.15)" }}
           >
             <h3 className="text-white text-sm font-bold font-['Inter'] mb-4">Search Subject</h3>
             <div className="relative mb-4">
@@ -171,7 +171,7 @@ const DossierBuilder = ({ isAr, onGenerate }: Props) => {
                 className="w-full pl-9 pr-4 py-2.5 rounded-lg text-sm font-['Inter'] outline-none transition-colors"
                 style={{
                   background: "rgba(255,255,255,0.04)",
-                  border: "1px solid rgba(34,211,238,0.15)",
+                  border: "1px solid rgba(181,142,60,0.15)",
                   color: "#E5E7EB",
                 }}
               />
@@ -183,8 +183,8 @@ const DossierBuilder = ({ isAr, onGenerate }: Props) => {
                   onClick={() => setSelectedSubject(subject)}
                   className="w-full flex items-center gap-4 p-3 rounded-xl cursor-pointer transition-all text-left"
                   style={{
-                    background: selectedSubject?.id === subject.id ? "rgba(34,211,238,0.08)" : "rgba(255,255,255,0.02)",
-                    border: selectedSubject?.id === subject.id ? "1px solid rgba(34,211,238,0.3)" : "1px solid rgba(255,255,255,0.05)",
+                    background: selectedSubject?.id === subject.id ? "rgba(181,142,60,0.08)" : "rgba(255,255,255,0.02)",
+                    border: selectedSubject?.id === subject.id ? "1px solid rgba(181,142,60,0.3)" : "1px solid rgba(255,255,255,0.05)",
                   }}
                 >
                   <img
@@ -219,8 +219,8 @@ const DossierBuilder = ({ isAr, onGenerate }: Props) => {
                     </div>
                   </div>
                   {selectedSubject?.id === subject.id && (
-                    <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: "rgba(34,211,238,0.2)", border: "1px solid rgba(34,211,238,0.4)" }}>
-                      <i className="ri-check-line text-cyan-400 text-xs" />
+                    <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: "rgba(181,142,60,0.2)", border: "1px solid rgba(181,142,60,0.4)" }}>
+                      <i className="ri-check-line text-gold-400 text-xs" />
                     </div>
                   )}
                 </button>
@@ -233,9 +233,9 @@ const DossierBuilder = ({ isAr, onGenerate }: Props) => {
             disabled={!selectedSubject}
             className="w-full py-3 rounded-xl text-sm font-bold font-['Inter'] cursor-pointer transition-all whitespace-nowrap"
             style={{
-              background: selectedSubject ? "#22D3EE" : "rgba(34,211,238,0.1)",
-              color: selectedSubject ? "#060D1A" : "#6B7280",
-              boxShadow: selectedSubject ? "0 0 20px rgba(34,211,238,0.2)" : "none",
+              background: selectedSubject ? "#D4A84B" : "rgba(181,142,60,0.1)",
+              color: selectedSubject ? "#0B1220" : "#6B7280",
+              boxShadow: selectedSubject ? "0 0 20px rgba(181,142,60,0.2)" : "none",
             }}
           >
             Continue — Configure Sections
@@ -248,7 +248,7 @@ const DossierBuilder = ({ isAr, onGenerate }: Props) => {
       {step === 2 && (
         <div className="space-y-4">
           {/* Classification selector */}
-          <div className="rounded-xl p-5" style={{ background: "rgba(10,22,40,0.8)", border: "1px solid rgba(34,211,238,0.15)" }}>
+          <div className="rounded-xl p-5" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.15)" }}>
             <h3 className="text-white text-sm font-bold font-['Inter'] mb-3">Classification Level</h3>
             <div className="flex gap-2 flex-wrap">
               {classificationLevels.map((lvl) => {
@@ -274,14 +274,14 @@ const DossierBuilder = ({ isAr, onGenerate }: Props) => {
           </div>
 
           {/* Section selector */}
-          <div className="rounded-xl p-5" style={{ background: "rgba(10,22,40,0.8)", border: "1px solid rgba(34,211,238,0.15)" }}>
+          <div className="rounded-xl p-5" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.15)" }}>
             <div className="flex items-center justify-between mb-3">
               <h3 className="text-white text-sm font-bold font-['Inter']">
                 Report Sections
                 <span className="ml-2 text-xs font-normal text-gray-500">({selectedSections.size} selected · ~{estimatedPages} pages)</span>
               </h3>
               <div className="flex gap-2">
-                <button onClick={selectAll} className="text-xs text-cyan-400 hover:text-cyan-300 cursor-pointer font-['Inter'] transition-colors">Select All</button>
+                <button onClick={selectAll} className="text-xs text-gold-400 hover:text-gold-300 cursor-pointer font-['Inter'] transition-colors">Select All</button>
                 <span className="text-gray-700">·</span>
                 <button onClick={clearOptional} className="text-xs text-gray-500 hover:text-gray-400 cursor-pointer font-['Inter'] transition-colors">Required Only</button>
               </div>
@@ -295,9 +295,9 @@ const DossierBuilder = ({ isAr, onGenerate }: Props) => {
                   onClick={() => setSectionFilter(f)}
                   className="px-2.5 py-1 rounded-full text-[11px] font-['Inter'] cursor-pointer transition-all whitespace-nowrap capitalize"
                   style={{
-                    background: sectionFilter === f ? "rgba(34,211,238,0.12)" : "rgba(255,255,255,0.03)",
-                    color: sectionFilter === f ? "#22D3EE" : "#6B7280",
-                    border: sectionFilter === f ? "1px solid rgba(34,211,238,0.25)" : "1px solid rgba(255,255,255,0.06)",
+                    background: sectionFilter === f ? "rgba(181,142,60,0.12)" : "rgba(255,255,255,0.03)",
+                    color: sectionFilter === f ? "#D4A84B" : "#6B7280",
+                    border: sectionFilter === f ? "1px solid rgba(181,142,60,0.25)" : "1px solid rgba(255,255,255,0.06)",
                   }}
                 >
                   {f === "all" ? "All" : f === "required" ? "Required" : f}
@@ -305,7 +305,7 @@ const DossierBuilder = ({ isAr, onGenerate }: Props) => {
               ))}
             </div>
 
-            <div className="space-y-1.5 max-h-80 overflow-y-auto pr-1" style={{ scrollbarWidth: "thin", scrollbarColor: "rgba(34,211,238,0.2) transparent" }}>
+            <div className="space-y-1.5 max-h-80 overflow-y-auto pr-1" style={{ scrollbarWidth: "thin", scrollbarColor: "rgba(181,142,60,0.2) transparent" }}>
               {filteredSections.map((section) => {
                 const isSelected = selectedSections.has(section.key);
                 return (
@@ -314,19 +314,19 @@ const DossierBuilder = ({ isAr, onGenerate }: Props) => {
                     onClick={() => toggleSection(section.key, section.required)}
                     className="w-full flex items-center gap-3 p-3 rounded-lg cursor-pointer transition-all text-left"
                     style={{
-                      background: isSelected ? "rgba(34,211,238,0.05)" : "rgba(255,255,255,0.02)",
-                      border: isSelected ? "1px solid rgba(34,211,238,0.2)" : "1px solid rgba(255,255,255,0.04)",
+                      background: isSelected ? "rgba(181,142,60,0.05)" : "rgba(255,255,255,0.02)",
+                      border: isSelected ? "1px solid rgba(181,142,60,0.2)" : "1px solid rgba(255,255,255,0.04)",
                       opacity: section.required ? 1 : 1,
                     }}
                   >
                     <div
                       className="w-5 h-5 rounded flex items-center justify-center flex-shrink-0"
                       style={{
-                        background: isSelected ? (section.required ? "rgba(74,222,128,0.2)" : "rgba(34,211,238,0.2)") : "rgba(255,255,255,0.04)",
-                        border: isSelected ? `1px solid ${section.required ? "#4ADE80" : "#22D3EE"}` : "1px solid rgba(255,255,255,0.1)",
+                        background: isSelected ? (section.required ? "rgba(74,222,128,0.2)" : "rgba(181,142,60,0.2)") : "rgba(255,255,255,0.04)",
+                        border: isSelected ? `1px solid ${section.required ? "#4ADE80" : "#D4A84B"}` : "1px solid rgba(255,255,255,0.1)",
                       }}
                     >
-                      {isSelected && <i className={`text-[10px] ${section.required ? "ri-lock-line text-green-400" : "ri-check-line text-cyan-400"}`} />}
+                      {isSelected && <i className={`text-[10px] ${section.required ? "ri-lock-line text-green-400" : "ri-check-line text-gold-400"}`} />}
                     </div>
                     <div className="w-6 h-6 flex items-center justify-center flex-shrink-0">
                       <i className={`${section.streamIcon} text-sm`} style={{ color: section.streamColor }} />
@@ -343,7 +343,7 @@ const DossierBuilder = ({ isAr, onGenerate }: Props) => {
                       <p className="text-[11px] text-gray-600 font-['Inter'] truncate">{section.description}</p>
                     </div>
                     <div className="text-right flex-shrink-0">
-                      <p className="text-[11px] font-['JetBrains_Mono']" style={{ color: section.dataPoints > 0 ? "#22D3EE" : "#4B5563" }}>
+                      <p className="text-[11px] font-['JetBrains_Mono']" style={{ color: section.dataPoints > 0 ? "#D4A84B" : "#4B5563" }}>
                         {section.dataPoints > 0 ? `${section.dataPoints} events` : "no data"}
                       </p>
                       <p className="text-[10px] text-gray-700 font-['JetBrains_Mono']">~{section.estimatedPages}p</p>
@@ -354,10 +354,10 @@ const DossierBuilder = ({ isAr, onGenerate }: Props) => {
             </div>
 
             {/* Summary bar */}
-            <div className="mt-4 pt-4 border-t flex items-center justify-between" style={{ borderColor: "rgba(34,211,238,0.08)" }}>
+            <div className="mt-4 pt-4 border-t flex items-center justify-between" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
               <div className="flex gap-4 text-xs font-['JetBrains_Mono']">
                 <span className="text-gray-500">{selectedSections.size} sections</span>
-                <span className="text-cyan-400">~{estimatedPages} pages</span>
+                <span className="text-gold-400">~{estimatedPages} pages</span>
                 <span className="text-gray-500">{totalDataPoints} data points</span>
               </div>
             </div>
@@ -374,7 +374,7 @@ const DossierBuilder = ({ isAr, onGenerate }: Props) => {
             <button
               onClick={() => setStep(3)}
               className="flex-1 py-2.5 rounded-xl text-sm font-bold font-['Inter'] cursor-pointer transition-all whitespace-nowrap"
-              style={{ background: "#22D3EE", color: "#060D1A", boxShadow: "0 0 20px rgba(34,211,238,0.2)" }}
+              style={{ background: "#D4A84B", color: "#0B1220", boxShadow: "0 0 20px rgba(181,142,60,0.2)" }}
             >
               Continue — Output Settings <i className="ri-arrow-right-line ml-1" />
             </button>
@@ -386,7 +386,7 @@ const DossierBuilder = ({ isAr, onGenerate }: Props) => {
       {step === 3 && (
         <div className="space-y-4">
           {/* Format */}
-          <div className="rounded-xl p-5" style={{ background: "rgba(10,22,40,0.8)", border: "1px solid rgba(34,211,238,0.15)" }}>
+          <div className="rounded-xl p-5" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.15)" }}>
             <h3 className="text-white text-sm font-bold font-['Inter'] mb-3">Output Format</h3>
             <div className="grid grid-cols-3 gap-3">
               {formatOptions.map((f) => (
@@ -395,12 +395,12 @@ const DossierBuilder = ({ isAr, onGenerate }: Props) => {
                   onClick={() => setFormat(f.value)}
                   className="flex flex-col items-center gap-2 p-4 rounded-xl cursor-pointer transition-all"
                   style={{
-                    background: format === f.value ? "rgba(34,211,238,0.08)" : "rgba(255,255,255,0.02)",
-                    border: format === f.value ? "1px solid rgba(34,211,238,0.3)" : "1px solid rgba(255,255,255,0.06)",
+                    background: format === f.value ? "rgba(181,142,60,0.08)" : "rgba(255,255,255,0.02)",
+                    border: format === f.value ? "1px solid rgba(181,142,60,0.3)" : "1px solid rgba(255,255,255,0.06)",
                   }}
                 >
-                  <i className={`${f.icon} text-2xl`} style={{ color: format === f.value ? "#22D3EE" : "#6B7280" }} />
-                  <span className="text-xs font-bold font-['Inter']" style={{ color: format === f.value ? "#22D3EE" : "#9CA3AF" }}>{f.label}</span>
+                  <i className={`${f.icon} text-2xl`} style={{ color: format === f.value ? "#D4A84B" : "#6B7280" }} />
+                  <span className="text-xs font-bold font-['Inter']" style={{ color: format === f.value ? "#D4A84B" : "#9CA3AF" }}>{f.label}</span>
                   <span className="text-[10px] text-gray-600 font-['Inter'] text-center">{f.desc}</span>
                 </button>
               ))}
@@ -408,7 +408,7 @@ const DossierBuilder = ({ isAr, onGenerate }: Props) => {
           </div>
 
           {/* Purpose & Case Ref */}
-          <div className="rounded-xl p-5" style={{ background: "rgba(10,22,40,0.8)", border: "1px solid rgba(34,211,238,0.15)" }}>
+          <div className="rounded-xl p-5" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.15)" }}>
             <h3 className="text-white text-sm font-bold font-['Inter'] mb-3">Report Metadata</h3>
             <div className="space-y-3">
               <div>
@@ -419,7 +419,7 @@ const DossierBuilder = ({ isAr, onGenerate }: Props) => {
                   onChange={(e) => setPurpose(e.target.value)}
                   placeholder="e.g. Active Investigation — Operation Desert Watch"
                   className="w-full px-3 py-2.5 rounded-lg text-sm font-['Inter'] outline-none"
-                  style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(34,211,238,0.15)", color: "#E5E7EB" }}
+                  style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(181,142,60,0.15)", color: "#E5E7EB" }}
                 />
               </div>
               <div>
@@ -430,14 +430,14 @@ const DossierBuilder = ({ isAr, onGenerate }: Props) => {
                   onChange={(e) => setCaseRef(e.target.value)}
                   placeholder="e.g. OPS-2026-DW-441"
                   className="w-full px-3 py-2.5 rounded-lg text-sm font-['Inter'] outline-none"
-                  style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(34,211,238,0.15)", color: "#E5E7EB" }}
+                  style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(181,142,60,0.15)", color: "#E5E7EB" }}
                 />
               </div>
             </div>
           </div>
 
           {/* Security options */}
-          <div className="rounded-xl p-5" style={{ background: "rgba(10,22,40,0.8)", border: "1px solid rgba(34,211,238,0.15)" }}>
+          <div className="rounded-xl p-5" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.15)" }}>
             <h3 className="text-white text-sm font-bold font-['Inter'] mb-3">Security Options</h3>
             <div className="space-y-3">
               {[
@@ -453,15 +453,15 @@ const DossierBuilder = ({ isAr, onGenerate }: Props) => {
                     onClick={() => !opt.disabled && opt.set(!opt.value)}
                     className="relative w-10 h-5 rounded-full transition-all cursor-pointer flex-shrink-0"
                     style={{
-                      background: opt.value ? "rgba(34,211,238,0.3)" : "rgba(255,255,255,0.08)",
-                      border: opt.value ? "1px solid rgba(34,211,238,0.5)" : "1px solid rgba(255,255,255,0.1)",
+                      background: opt.value ? "rgba(181,142,60,0.3)" : "rgba(255,255,255,0.08)",
+                      border: opt.value ? "1px solid rgba(181,142,60,0.5)" : "1px solid rgba(255,255,255,0.1)",
                     }}
                   >
                     <div
                       className="absolute top-0.5 w-4 h-4 rounded-full transition-all"
                       style={{
                         left: opt.value ? "calc(100% - 18px)" : "2px",
-                        background: opt.value ? "#22D3EE" : "#6B7280",
+                        background: opt.value ? "#D4A84B" : "#6B7280",
                       }}
                     />
                   </button>
@@ -472,12 +472,12 @@ const DossierBuilder = ({ isAr, onGenerate }: Props) => {
 
           {/* Summary */}
           {selectedSubject && (
-            <div className="rounded-xl p-4" style={{ background: "rgba(34,211,238,0.04)", border: "1px solid rgba(34,211,238,0.15)" }}>
+            <div className="rounded-xl p-4" style={{ background: "rgba(181,142,60,0.04)", border: "1px solid rgba(181,142,60,0.15)" }}>
               <p className="text-xs text-gray-500 font-['JetBrains_Mono'] mb-2">GENERATION SUMMARY</p>
               <div className="grid grid-cols-2 gap-2 text-xs font-['JetBrains_Mono']">
                 <div><span className="text-gray-600">Subject:</span> <span className="text-white">{selectedSubject.nameEn}</span></div>
                 <div><span className="text-gray-600">Classification:</span> <span style={{ color: classificationConfig[classification].color }}>{classification}</span></div>
-                <div><span className="text-gray-600">Format:</span> <span className="text-cyan-400">{format}</span></div>
+                <div><span className="text-gray-600">Format:</span> <span className="text-gold-400">{format}</span></div>
                 <div><span className="text-gray-600">Sections:</span> <span className="text-white">{selectedSections.size} (~{estimatedPages}p)</span></div>
               </div>
             </div>
@@ -494,7 +494,7 @@ const DossierBuilder = ({ isAr, onGenerate }: Props) => {
             <button
               onClick={handleGenerate}
               className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-bold font-['Inter'] cursor-pointer transition-all whitespace-nowrap"
-              style={{ background: "#22D3EE", color: "#060D1A", boxShadow: "0 0 24px rgba(34,211,238,0.3)" }}
+              style={{ background: "#D4A84B", color: "#0B1220", boxShadow: "0 0 24px rgba(181,142,60,0.3)" }}
             >
               <i className="ri-file-pdf-line" />
               Generate Dossier

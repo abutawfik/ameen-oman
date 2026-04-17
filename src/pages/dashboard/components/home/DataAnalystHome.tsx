@@ -59,20 +59,20 @@ const DataAnalystHome = ({ isAr }: Props) => {
   // Mock "my recent actions" — scoped to the component per brief.
   const recentActions = [
     { icon: "ri-check-double-line", label: isAr ? "أُغلقت القضية مع تأكيد التهديد"  : "Closed case with confirmed threat", meta: "rec-000129 · Abdul R. Hashemi", ago: isAr ? "قبل 4د" : "4m ago", color: "#4ADE80" },
-    { icon: "ri-user-shared-line",  label: isAr ? "تم تصعيد القضية إلى المشرف"       : "Escalated to supervisor",            meta: "demo-highrisk-sponsor · Petrov", ago: isAr ? "قبل 12د" : "12m ago", color: "#AA95FF" },
-    { icon: "ri-check-line",        label: isAr ? "تم الإشعار بالتنبيه"                : "Acked alert",                         meta: "rec-000131 · Hasan Al-Bakri",     ago: isAr ? "قبل 18د" : "18m ago", color: "#22D3EE" },
+    { icon: "ri-user-shared-line",  label: isAr ? "تم تصعيد القضية إلى المشرف"       : "Escalated to supervisor",            meta: "demo-highrisk-sponsor · Petrov", ago: isAr ? "قبل 12د" : "12m ago", color: "#6B4FAE" },
+    { icon: "ri-check-line",        label: isAr ? "تم الإشعار بالتنبيه"                : "Acked alert",                         meta: "rec-000131 · Hasan Al-Bakri",     ago: isAr ? "قبل 18د" : "18m ago", color: "#D4A84B" },
     { icon: "ri-close-circle-line", label: isAr ? "تمّ إغلاق التنبيه كـ 'إيجابي كاذب'"  : "Closed alert as false positive",       meta: "rec-000128 · Elena Marković",     ago: isAr ? "قبل 34د" : "34m ago", color: "#FACC15" },
-    { icon: "ri-edit-line",         label: isAr ? "أُضيفت ملاحظة على السجل"           : "Added case note",                    meta: "demo-anomaly · Leila Benaissa",   ago: isAr ? "قبل 48د" : "48m ago", color: "#22D3EE" },
-    { icon: "ri-check-line",        label: isAr ? "تم الإشعار بالتنبيه"                : "Acked alert",                         meta: "rec-000137 · Noor Al-Hakim",      ago: isAr ? "قبل 58د" : "58m ago", color: "#22D3EE" },
+    { icon: "ri-edit-line",         label: isAr ? "أُضيفت ملاحظة على السجل"           : "Added case note",                    meta: "demo-anomaly · Leila Benaissa",   ago: isAr ? "قبل 48د" : "48m ago", color: "#D4A84B" },
+    { icon: "ri-check-line",        label: isAr ? "تم الإشعار بالتنبيه"                : "Acked alert",                         meta: "rec-000137 · Noor Al-Hakim",      ago: isAr ? "قبل 58د" : "58m ago", color: "#D4A84B" },
     { icon: "ri-check-double-line", label: isAr ? "أُغلقت القضية — مسار روتيني"        : "Closed case — routine routing",       meta: "rec-000132 · Priya Raman",        ago: isAr ? "قبل 1س 12د" : "1h 12m ago", color: "#4ADE80" },
-    { icon: "ri-search-eye-line",   label: isAr ? "فُتح الشرح ومراجعته"                : "Opened explain + reviewed",           meta: "demo-borderline · Yasir Karim",   ago: isAr ? "قبل 1س 24د" : "1h 24m ago", color: "#AA95FF" },
+    { icon: "ri-search-eye-line",   label: isAr ? "فُتح الشرح ومراجعته"                : "Opened explain + reviewed",           meta: "demo-borderline · Yasir Karim",   ago: isAr ? "قبل 1س 24د" : "1h 24m ago", color: "#6B4FAE" },
   ];
 
   // Hot signals — compact chips of deltas over 24h. Mock deltas; steady is fine for demo.
   const hotSignals = [
     { label: isAr ? "العقوبات" : "sanctions",          delta: "+12%", color: "#F87171", source: "OpenSanctions" },
-    { label: isAr ? "شذوذ المسار" : "routing anomaly", delta: "+30%", color: "#AA95FF", source: "OpenSky" },
-    { label: isAr ? "تحذيرات السفر" : "advisories",    delta: "+8%",  color: "#22D3EE", source: "US/UK" },
+    { label: isAr ? "شذوذ المسار" : "routing anomaly", delta: "+30%", color: "#6B4FAE", source: "OpenSky" },
+    { label: isAr ? "تحذيرات السفر" : "advisories",    delta: "+8%",  color: "#D4A84B", source: "US/UK" },
     { label: isAr ? "كثافة النزاع" : "conflict GDELT", delta: "+18%", color: "#FB923C", source: "GDELT" },
     { label: isAr ? "تفشٍ حيوي" : "biosec outbreak",   delta: "+3",   color: "#FACC15", source: "WHO" },
     { label: isAr ? "كيانات الكفيل" : "sponsor flags", delta: "+14%", color: "#4ADE80", source: "OpenCorporates" },
@@ -88,20 +88,20 @@ const DataAnalystHome = ({ isAr }: Props) => {
         className="rounded-xl border p-4 flex flex-col md:flex-row md:items-center gap-4"
         style={{
           background: isCrit
-            ? "linear-gradient(135deg, rgba(248,113,113,0.15), rgba(10,22,40,0.85))"
-            : "linear-gradient(135deg, rgba(34,211,238,0.08), rgba(10,22,40,0.75))",
-          borderColor: isCrit ? "rgba(248,113,113,0.35)" : "rgba(34,211,238,0.2)",
+            ? "linear-gradient(135deg, rgba(248,113,113,0.15), rgba(20,29,46,0.85))"
+            : "linear-gradient(135deg, rgba(181,142,60,0.08), rgba(20,29,46,0.75))",
+          borderColor: isCrit ? "rgba(248,113,113,0.35)" : "rgba(181,142,60,0.2)",
         }}
       >
         <div className="flex items-center gap-3">
           <div
             className={`w-11 h-11 flex items-center justify-center rounded-xl ${isCrit ? "animate-pulse" : ""}`}
             style={{
-              background: isCrit ? "rgba(248,113,113,0.2)" : "rgba(34,211,238,0.15)",
-              border: isCrit ? "1px solid rgba(248,113,113,0.5)" : "1px solid rgba(34,211,238,0.3)",
+              background: isCrit ? "rgba(248,113,113,0.2)" : "rgba(181,142,60,0.15)",
+              border: isCrit ? "1px solid rgba(248,113,113,0.5)" : "1px solid rgba(181,142,60,0.3)",
             }}
           >
-            <i className={`ri-timer-flash-line text-xl ${isCrit ? "text-red-400" : "text-cyan-400"}`} />
+            <i className={`ri-timer-flash-line text-xl ${isCrit ? "text-red-400" : "text-gold-400"}`} />
           </div>
           <div>
             <div className="text-[10px] font-bold tracking-widest font-['JetBrains_Mono'] text-gray-500">
@@ -110,7 +110,7 @@ const DataAnalystHome = ({ isAr }: Props) => {
             <div className="text-white font-bold text-sm">
               {sortedQueue.length} {isAr ? "تنبيهات مُسندة إليك" : "alerts assigned to you"}
               <span className="text-gray-600 mx-2">·</span>
-              <span className={isCrit ? "text-red-400" : "text-cyan-400"}>
+              <span className={isCrit ? "text-red-400" : "text-gold-400"}>
                 {criticalCount} {isAr ? "حرجة" : "critical"}
               </span>
               {breachedCount > 0 && (
@@ -131,7 +131,7 @@ const DataAnalystHome = ({ isAr }: Props) => {
             </div>
             <div
               className={`text-3xl font-black font-['JetBrains_Mono'] ${isCrit ? "animate-pulse" : ""}`}
-              style={{ color: isCrit ? "#F87171" : "#22D3EE" }}
+              style={{ color: isCrit ? "#F87171" : "#D4A84B" }}
             >
               {nextBreachMins}m {nextBreachSecs.toString().padStart(2, "0")}s
             </div>
@@ -144,9 +144,9 @@ const DataAnalystHome = ({ isAr }: Props) => {
         {/* My Queue (5/12) */}
         <div
           className="xl:col-span-5 rounded-xl border"
-          style={{ background: "rgba(10,22,40,0.65)", borderColor: "rgba(34,211,238,0.12)" }}
+          style={{ background: "rgba(20,29,46,0.65)", borderColor: "rgba(181,142,60,0.12)" }}
         >
-          <div className="flex items-center justify-between px-4 py-3 border-b" style={{ borderColor: "rgba(34,211,238,0.08)" }}>
+          <div className="flex items-center justify-between px-4 py-3 border-b" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
             <div>
               <h3 className="text-white text-sm font-bold">
                 {isAr ? "قائمتي" : "My Queue"}
@@ -157,19 +157,19 @@ const DataAnalystHome = ({ isAr }: Props) => {
             </div>
             <span
               className="px-2 py-0.5 rounded-md text-[10px] font-bold font-['JetBrains_Mono'] tracking-widest"
-              style={{ background: "rgba(34,211,238,0.12)", color: "#22D3EE" }}
+              style={{ background: "rgba(181,142,60,0.12)", color: "#D4A84B" }}
             >
               {sortedQueue.length}
             </span>
           </div>
-          <div className="divide-y" style={{ borderColor: "rgba(34,211,238,0.05)" }}>
+          <div className="divide-y" style={{ borderColor: "rgba(181,142,60,0.05)" }}>
             {sortedQueue.map((item) => {
               const sev = severityMeta[item.severity];
               return (
                 <div
                   key={item.id}
                   className="px-4 py-3 hover:bg-white/[0.02] transition-colors"
-                  style={{ borderColor: "rgba(34,211,238,0.05)" }}
+                  style={{ borderColor: "rgba(181,142,60,0.05)" }}
                 >
                   <div className="flex items-start gap-3">
                     <span
@@ -202,7 +202,7 @@ const DataAnalystHome = ({ isAr }: Props) => {
                     <button
                       type="button"
                       className="px-2.5 py-1 rounded-md text-[10px] font-bold cursor-pointer font-['JetBrains_Mono'] tracking-wider"
-                      style={{ background: "rgba(170,149,255,0.1)", color: "#AA95FF", border: "1px solid rgba(170,149,255,0.3)" }}
+                      style={{ background: "rgba(107,79,174,0.1)", color: "#6B4FAE", border: "1px solid rgba(107,79,174,0.3)" }}
                     >
                       {isAr ? "تصعيد" : "ESCALATE"}
                     </button>
@@ -210,7 +210,7 @@ const DataAnalystHome = ({ isAr }: Props) => {
                       type="button"
                       onClick={() => navigate("/dashboard/osint-risk-engine")}
                       className="px-2.5 py-1 rounded-md text-[10px] font-bold cursor-pointer font-['JetBrains_Mono'] tracking-wider ml-auto"
-                      style={{ background: "rgba(34,211,238,0.1)", color: "#22D3EE", border: "1px solid rgba(34,211,238,0.3)" }}
+                      style={{ background: "rgba(181,142,60,0.1)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.3)" }}
                     >
                       {isAr ? "فتح" : "OPEN"} →
                     </button>
@@ -224,9 +224,9 @@ const DataAnalystHome = ({ isAr }: Props) => {
         {/* Live Operator Queue (7/12) */}
         <div
           className="xl:col-span-7 rounded-xl border overflow-hidden"
-          style={{ background: "rgba(10,22,40,0.65)", borderColor: "rgba(34,211,238,0.12)" }}
+          style={{ background: "rgba(20,29,46,0.65)", borderColor: "rgba(181,142,60,0.12)" }}
         >
-          <div className="flex items-center justify-between px-4 py-3 border-b" style={{ borderColor: "rgba(34,211,238,0.08)" }}>
+          <div className="flex items-center justify-between px-4 py-3 border-b" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
             <div>
               <h3 className="text-white text-sm font-bold">
                 {isAr ? "قائمة المشغّل المباشرة" : "Live Operator Queue"}
@@ -238,7 +238,7 @@ const DataAnalystHome = ({ isAr }: Props) => {
             <button
               type="button"
               onClick={() => navigate("/dashboard/osint-risk-engine")}
-              className="text-[11px] text-cyan-400 font-semibold hover:text-cyan-300 font-['JetBrains_Mono']"
+              className="text-[11px] text-gold-400 font-semibold hover:text-gold-300 font-['JetBrains_Mono']"
             >
               {isAr ? "عرض الكل" : "view all"} →
             </button>
@@ -246,7 +246,7 @@ const DataAnalystHome = ({ isAr }: Props) => {
           <div>
             <div
               className="grid grid-cols-12 gap-2 px-4 py-2 border-b text-[9px] font-bold tracking-widest uppercase font-['JetBrains_Mono']"
-              style={{ borderColor: "rgba(34,211,238,0.05)", color: "#6B7280" }}
+              style={{ borderColor: "rgba(181,142,60,0.05)", color: "#6B7280" }}
             >
               <div className="col-span-1">{isAr ? "درجة" : "Score"}</div>
               <div className="col-span-4">{isAr ? "المسافر" : "Traveler"}</div>
@@ -260,7 +260,7 @@ const DataAnalystHome = ({ isAr }: Props) => {
                 type="button"
                 onClick={() => navigate("/dashboard/osint-risk-engine")}
                 className="w-full grid grid-cols-12 gap-2 px-4 py-2.5 border-b cursor-pointer text-left hover:bg-white/[0.03] transition-colors items-center"
-                style={{ borderColor: "rgba(34,211,238,0.04)" }}
+                style={{ borderColor: "rgba(181,142,60,0.04)" }}
               >
                 <div className="col-span-1">
                   <ScoreBadge score={r.unifiedScore} band={r.band} size="sm" />
@@ -286,8 +286,8 @@ const DataAnalystHome = ({ isAr }: Props) => {
                   <span
                     className="px-1.5 py-0.5 rounded text-[9px] font-bold tracking-wider font-['JetBrains_Mono']"
                     style={{
-                      background: r.decisionPoint === "ETA" ? "rgba(34,211,238,0.1)" : "rgba(170,149,255,0.1)",
-                      color: r.decisionPoint === "ETA" ? "#22D3EE" : "#AA95FF",
+                      background: r.decisionPoint === "ETA" ? "rgba(181,142,60,0.1)" : "rgba(107,79,174,0.1)",
+                      color: r.decisionPoint === "ETA" ? "#D4A84B" : "#6B4FAE",
                     }}
                   >
                     {r.decisionPoint}
@@ -303,9 +303,9 @@ const DataAnalystHome = ({ isAr }: Props) => {
       <div className="grid grid-cols-1 xl:grid-cols-12 gap-4">
         <div
           className="xl:col-span-7 rounded-xl border"
-          style={{ background: "rgba(10,22,40,0.65)", borderColor: "rgba(34,211,238,0.12)" }}
+          style={{ background: "rgba(20,29,46,0.65)", borderColor: "rgba(181,142,60,0.12)" }}
         >
-          <div className="flex items-center justify-between px-4 py-3 border-b" style={{ borderColor: "rgba(34,211,238,0.08)" }}>
+          <div className="flex items-center justify-between px-4 py-3 border-b" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
             <div>
               <h3 className="text-white text-sm font-bold">
                 {isAr ? "أحدث أفعالي" : "My Recent Actions"}
@@ -315,9 +315,9 @@ const DataAnalystHome = ({ isAr }: Props) => {
               </p>
             </div>
           </div>
-          <div className="divide-y" style={{ borderColor: "rgba(34,211,238,0.05)" }}>
+          <div className="divide-y" style={{ borderColor: "rgba(181,142,60,0.05)" }}>
             {recentActions.map((a, i) => (
-              <div key={i} className="px-4 py-2.5 flex items-center gap-3" style={{ borderColor: "rgba(34,211,238,0.05)" }}>
+              <div key={i} className="px-4 py-2.5 flex items-center gap-3" style={{ borderColor: "rgba(181,142,60,0.05)" }}>
                 <div
                   className="w-8 h-8 flex items-center justify-center rounded-lg flex-shrink-0"
                   style={{ background: `${a.color}15`, border: `1px solid ${a.color}30` }}
@@ -336,9 +336,9 @@ const DataAnalystHome = ({ isAr }: Props) => {
 
         <div
           className="xl:col-span-5 rounded-xl border"
-          style={{ background: "rgba(10,22,40,0.65)", borderColor: "rgba(34,211,238,0.12)" }}
+          style={{ background: "rgba(20,29,46,0.65)", borderColor: "rgba(181,142,60,0.12)" }}
         >
-          <div className="flex items-center justify-between px-4 py-3 border-b" style={{ borderColor: "rgba(34,211,238,0.08)" }}>
+          <div className="flex items-center justify-between px-4 py-3 border-b" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
             <div>
               <h3 className="text-white text-sm font-bold flex items-center gap-2">
                 <span>{isAr ? "الإشارات الساخنة" : "Hot Signals"}</span>
@@ -370,7 +370,7 @@ const DataAnalystHome = ({ isAr }: Props) => {
             ))}
           </div>
           {/* Bonus: live source summary strip */}
-          <div className="px-4 pb-4 pt-2 border-t" style={{ borderColor: "rgba(34,211,238,0.06)" }}>
+          <div className="px-4 pb-4 pt-2 border-t" style={{ borderColor: "rgba(181,142,60,0.06)" }}>
             <div className="flex items-center gap-3 text-[10px] font-['JetBrains_Mono'] text-gray-500">
               <span>{isAr ? "المصادر حيّة:" : "sources live:"}</span>
               <span className="text-green-400 font-bold">

@@ -54,7 +54,7 @@ const SupervisorHome = ({ isAr }: Props) => {
       label: isAr ? "قضايا مفتوحة" : "Open cases",
       value: openCases.toString(),
       icon: "ri-folder-warning-line",
-      color: "#22D3EE",
+      color: "#D4A84B",
       spark: [32, 38, 41, 36, 42, 44, openCases],
     },
     {
@@ -78,7 +78,7 @@ const SupervisorHome = ({ isAr }: Props) => {
       label: isAr ? "متوسط الاستجابة" : "Avg response",
       value: `${avgResponse}m`,
       icon: "ri-timer-line",
-      color: "#AA95FF",
+      color: "#6B4FAE",
       spark: [5.2, 4.8, 4.4, 4.2, 3.9, 3.6, Number(avgResponse)],
       deltaPct: -14.3,
       deltaDirHint: "down_is_good" as const,
@@ -151,9 +151,9 @@ const SupervisorHome = ({ isAr }: Props) => {
 
         <div
           className="xl:col-span-5 rounded-xl border"
-          style={{ background: "rgba(10,22,40,0.65)", borderColor: "rgba(34,211,238,0.12)" }}
+          style={{ background: "rgba(20,29,46,0.65)", borderColor: "rgba(181,142,60,0.12)" }}
         >
-          <div className="flex items-center justify-between px-4 py-3 border-b" style={{ borderColor: "rgba(34,211,238,0.08)" }}>
+          <div className="flex items-center justify-between px-4 py-3 border-b" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
             <div>
               <h3 className="text-white text-sm font-bold">{isAr ? "حمل الفريق" : "Team Workload"}</h3>
               <p className="text-gray-500 text-[11px] font-['JetBrains_Mono']">
@@ -170,7 +170,7 @@ const SupervisorHome = ({ isAr }: Props) => {
           <div className="overflow-x-auto">
             <div
               className="grid grid-cols-12 gap-2 px-3 py-2 border-b text-[9px] font-bold tracking-widest uppercase font-['JetBrains_Mono']"
-              style={{ borderColor: "rgba(34,211,238,0.05)", color: "#6B7280" }}
+              style={{ borderColor: "rgba(181,142,60,0.05)", color: "#6B7280" }}
             >
               <div className="col-span-4">{isAr ? "المحلل" : "Analyst"}</div>
               <div className="col-span-1 text-right">{isAr ? "م" : "Op"}</div>
@@ -187,12 +187,12 @@ const SupervisorHome = ({ isAr }: Props) => {
                 <div
                   key={a.id}
                   className="group grid grid-cols-12 gap-2 px-3 py-2.5 items-center border-b hover:bg-white/[0.02] transition-colors"
-                  style={{ borderColor: "rgba(34,211,238,0.04)" }}
+                  style={{ borderColor: "rgba(181,142,60,0.04)" }}
                 >
                   <div className="col-span-4 flex items-center gap-2 min-w-0">
                     <div
                       className="w-8 h-8 flex items-center justify-center rounded-lg text-[11px] font-black font-['JetBrains_Mono'] flex-shrink-0"
-                      style={{ background: "rgba(34,211,238,0.08)", color: "#22D3EE", border: "1px solid rgba(34,211,238,0.2)" }}
+                      style={{ background: "rgba(181,142,60,0.08)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}
                     >
                       {a.avatarInitials}
                     </div>
@@ -228,7 +228,7 @@ const SupervisorHome = ({ isAr }: Props) => {
                   <div className="col-span-1 text-right">
                     <button
                       type="button"
-                      className="opacity-0 group-hover:opacity-100 transition-opacity text-[10px] font-bold text-cyan-400 font-['JetBrains_Mono']"
+                      className="opacity-0 group-hover:opacity-100 transition-opacity text-[10px] font-bold text-gold-400 font-['JetBrains_Mono']"
                     >
                       {isAr ? "إعادة →" : "reassign →"}
                     </button>
@@ -245,9 +245,9 @@ const SupervisorHome = ({ isAr }: Props) => {
         {/* SLA Dashboard */}
         <div
           className="rounded-xl border"
-          style={{ background: "rgba(10,22,40,0.65)", borderColor: "rgba(34,211,238,0.12)" }}
+          style={{ background: "rgba(20,29,46,0.65)", borderColor: "rgba(181,142,60,0.12)" }}
         >
-          <div className="px-4 py-3 border-b" style={{ borderColor: "rgba(34,211,238,0.08)" }}>
+          <div className="px-4 py-3 border-b" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
             <h3 className="text-white text-sm font-bold">{isAr ? "لوحة مهلات الاستجابة · 24 ساعة" : "SLA Dashboard · 24h"}</h3>
             <p className="text-gray-500 text-[11px] font-['JetBrains_Mono']">
               {isAr ? "مقابل وقت الاستجابة المستهدف" : "met vs. breached by severity"}
@@ -290,27 +290,27 @@ const SupervisorHome = ({ isAr }: Props) => {
         {/* Recent Escalations */}
         <div
           className="rounded-xl border"
-          style={{ background: "rgba(10,22,40,0.65)", borderColor: "rgba(34,211,238,0.12)" }}
+          style={{ background: "rgba(20,29,46,0.65)", borderColor: "rgba(181,142,60,0.12)" }}
         >
-          <div className="flex items-center justify-between px-4 py-3 border-b" style={{ borderColor: "rgba(34,211,238,0.08)" }}>
+          <div className="flex items-center justify-between px-4 py-3 border-b" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
             <div>
               <h3 className="text-white text-sm font-bold">{isAr ? "تصعيدات حديثة" : "Recent Escalations"}</h3>
               <p className="text-gray-500 text-[11px] font-['JetBrains_Mono']">
                 {isAr ? "الأحدث أولاً" : "newest first"}
               </p>
             </div>
-            <button type="button" className="text-[11px] text-cyan-400 font-semibold font-['JetBrains_Mono']">
+            <button type="button" className="text-[11px] text-gold-400 font-semibold font-['JetBrains_Mono']">
               {isAr ? "الكل" : "view all"} →
             </button>
           </div>
-          <div className="divide-y" style={{ borderColor: "rgba(34,211,238,0.05)" }}>
+          <div className="divide-y" style={{ borderColor: "rgba(181,142,60,0.05)" }}>
             {RECENT_ESCALATIONS.slice(0, 5).map((e) => {
               const sevCol = severitySlaColor[e.severity];
               const analyst = TEAM_ROSTER.find((a) => a.id === e.fromAnalystId);
-              const statusCol = e.status === "pending" ? "#FB923C" : e.status === "reviewed" ? "#22D3EE" : "#4ADE80";
+              const statusCol = e.status === "pending" ? "#FB923C" : e.status === "reviewed" ? "#D4A84B" : "#4ADE80";
               const mins = Math.max(1, Math.floor((Date.now() - new Date(e.escalatedAt).getTime()) / 60_000));
               return (
-                <div key={e.id} className="px-4 py-3" style={{ borderColor: "rgba(34,211,238,0.05)" }}>
+                <div key={e.id} className="px-4 py-3" style={{ borderColor: "rgba(181,142,60,0.05)" }}>
                   <div className="flex items-center gap-2 mb-1">
                     <span
                       className="px-1.5 py-0.5 rounded text-[9px] font-bold tracking-widest font-['JetBrains_Mono']"
@@ -343,9 +343,9 @@ const SupervisorHome = ({ isAr }: Props) => {
         {/* Source Health Grid */}
         <div
           className="rounded-xl border"
-          style={{ background: "rgba(10,22,40,0.65)", borderColor: "rgba(34,211,238,0.12)" }}
+          style={{ background: "rgba(20,29,46,0.65)", borderColor: "rgba(181,142,60,0.12)" }}
         >
-          <div className="px-4 py-3 border-b" style={{ borderColor: "rgba(34,211,238,0.08)" }}>
+          <div className="px-4 py-3 border-b" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
             <h3 className="text-white text-sm font-bold">{isAr ? "صحة المصادر" : "Source Health"}</h3>
             <p className="text-gray-500 text-[11px] font-['JetBrains_Mono']">
               {isAr ? "مصادر الاستخبارات المفتوحة" : "OSINT adapter status"}

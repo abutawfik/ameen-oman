@@ -5,7 +5,7 @@ const CyanToggle = ({ value, onChange }: ToggleProps) => (
   <button
     onClick={() => onChange(!value)}
     className="relative inline-flex items-center w-11 h-6 rounded-full transition-colors cursor-pointer flex-shrink-0"
-    style={{ background: value ? "#22D3EE" : "rgba(255,255,255,0.1)" }}
+    style={{ background: value ? "#D4A84B" : "rgba(255,255,255,0.1)" }}
   >
     <span className="inline-block w-4 h-4 rounded-full bg-white transition-transform" style={{ transform: value ? "translateX(24px)" : "translateX(4px)" }} />
   </button>
@@ -18,9 +18,9 @@ const DarkInput = ({ label, value, onChange, type = "text", mono, placeholder, r
     <input
       type={type} value={value} onChange={(e) => onChange(e.target.value)} placeholder={placeholder} readOnly={readOnly}
       className="w-full px-3 py-2 rounded-lg text-sm outline-none transition-colors"
-      style={{ background: readOnly ? "rgba(255,255,255,0.02)" : "rgba(255,255,255,0.04)", border: "1px solid rgba(34,211,238,0.2)", color: readOnly ? "#6B7280" : "#D1D5DB", fontFamily: mono ? "'JetBrains Mono', monospace" : "'Inter', sans-serif" }}
-      onFocus={(e) => { if (!readOnly) e.target.style.borderColor = "rgba(34,211,238,0.6)"; }}
-      onBlur={(e) => { e.target.style.borderColor = "rgba(34,211,238,0.2)"; }}
+      style={{ background: readOnly ? "rgba(255,255,255,0.02)" : "rgba(255,255,255,0.04)", border: "1px solid rgba(181,142,60,0.2)", color: readOnly ? "#6B7280" : "#D1D5DB", fontFamily: mono ? "'JetBrains Mono', monospace" : "'Inter', sans-serif" }}
+      onFocus={(e) => { if (!readOnly) e.target.style.borderColor = "rgba(181,142,60,0.6)"; }}
+      onBlur={(e) => { e.target.style.borderColor = "rgba(181,142,60,0.2)"; }}
     />
   </div>
 );
@@ -30,18 +30,18 @@ const DarkSelect = ({ label, value, onChange, options }: SelectProps) => (
   <div>
     <label className="block text-xs text-gray-500 mb-1 font-['Inter'] uppercase tracking-wider">{label}</label>
     <select value={value} onChange={(e) => onChange(e.target.value)} className="w-full px-3 py-2 rounded-lg text-sm outline-none cursor-pointer"
-      style={{ background: "rgba(10,22,40,0.9)", border: "1px solid rgba(34,211,238,0.2)", color: "#D1D5DB", fontFamily: "'Inter', sans-serif" }}>
-      {options.map((o) => <option key={o.value} value={o.value} style={{ background: "#0A1628" }}>{o.label}</option>)}
+      style={{ background: "rgba(20,29,46,0.9)", border: "1px solid rgba(181,142,60,0.2)", color: "#D1D5DB", fontFamily: "'Inter', sans-serif" }}>
+      {options.map((o) => <option key={o.value} value={o.value} style={{ background: "#141D2E" }}>{o.label}</option>)}
     </select>
   </div>
 );
 
 interface SectionProps { title: string; titleAr?: string; icon: string; children: React.ReactNode; badge?: string; badgeColor?: string; }
 const ConfigSection = ({ title, icon, children, badge, badgeColor }: SectionProps) => (
-  <div className="rounded-xl p-5 mb-4" style={{ background: "rgba(10,22,40,0.8)", border: "1px solid rgba(34,211,238,0.12)" }}>
+  <div className="rounded-xl p-5 mb-4" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.12)" }}>
     <div className="flex items-center gap-2 mb-4">
-      <div className="w-7 h-7 flex items-center justify-center rounded-lg" style={{ background: "rgba(34,211,238,0.1)" }}>
-        <i className={`${icon} text-cyan-400 text-sm`} />
+      <div className="w-7 h-7 flex items-center justify-center rounded-lg" style={{ background: "rgba(181,142,60,0.1)" }}>
+        <i className={`${icon} text-gold-400 text-sm`} />
       </div>
       <h3 className="text-white font-semibold text-sm font-['Inter']">{title}</h3>
       {badge && (
@@ -165,7 +165,7 @@ const SystemConfig = () => {
             </div>
           ))}
         </div>
-        <div className="mt-3 flex items-center gap-3 p-3 rounded-lg" style={{ background: "rgba(34,211,238,0.05)", border: "1px solid rgba(34,211,238,0.1)" }}>
+        <div className="mt-3 flex items-center gap-3 p-3 rounded-lg" style={{ background: "rgba(181,142,60,0.05)", border: "1px solid rgba(181,142,60,0.1)" }}>
           <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse flex-shrink-0" />
           <span className="text-green-400 text-xs font-['JetBrains_Mono']">PRODUCTION — All systems operational</span>
           <span className="ml-auto text-gray-500 text-xs font-['JetBrains_Mono']">Build: 20260406-0832</span>
@@ -205,7 +205,7 @@ const SystemConfig = () => {
       </ConfigSection>
 
       {/* Integration — Security Dept 1 */}
-      <ConfigSection title="Security Dept 1 Integration" icon="ri-shield-star-line" badge="Police" badgeColor="#22D3EE">
+      <ConfigSection title="Security Dept 1 Integration" icon="ri-shield-star-line" badge="Police" badgeColor="#D4A84B">
         <div className="mb-3 flex items-center justify-between">
           <DarkInput label="Department Name" value={sd1Name} onChange={setSd1Name} />
           <div className="ml-4 flex items-center gap-2 flex-shrink-0 mt-5">
@@ -225,7 +225,7 @@ const SystemConfig = () => {
         <div className="flex items-center gap-3">
           <button onClick={() => testConnection("sd1")} disabled={testingConn === "sd1"}
             className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap transition-all"
-            style={{ background: "transparent", border: "1px solid rgba(34,211,238,0.4)", color: "#22D3EE" }}>
+            style={{ background: "transparent", border: "1px solid rgba(181,142,60,0.4)", color: "#D4A84B" }}>
             {testingConn === "sd1" ? <><i className="ri-loader-4-line animate-spin" />Testing...</> : <><i className="ri-wifi-line" />Test Connection</>}
           </button>
           <ConnStatus connKey="sd1" />
@@ -309,12 +309,12 @@ const SystemConfig = () => {
         <div className="flex items-center gap-3">
           <button onClick={() => testConnection("smtp")} disabled={testingConn === "smtp"}
             className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap"
-            style={{ background: "transparent", border: "1px solid rgba(34,211,238,0.4)", color: "#22D3EE" }}>
+            style={{ background: "transparent", border: "1px solid rgba(181,142,60,0.4)", color: "#D4A84B" }}>
             {testingConn === "smtp" ? <><i className="ri-loader-4-line animate-spin" />Testing...</> : <><i className="ri-mail-line" />Test SMTP</>}
           </button>
           <button onClick={() => testConnection("sms")} disabled={testingConn === "sms"}
             className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap"
-            style={{ background: "transparent", border: "1px solid rgba(34,211,238,0.4)", color: "#22D3EE" }}>
+            style={{ background: "transparent", border: "1px solid rgba(181,142,60,0.4)", color: "#D4A84B" }}>
             {testingConn === "sms" ? <><i className="ri-loader-4-line animate-spin" />Testing...</> : <><i className="ri-message-line" />Test SMS</>}
           </button>
           <ConnStatus connKey="smtp" />
@@ -326,11 +326,11 @@ const SystemConfig = () => {
       <div className="flex items-center gap-3 pt-2 pb-4">
         <button onClick={handleSave}
           className="px-6 py-2.5 rounded-lg text-sm font-semibold font-['Inter'] whitespace-nowrap cursor-pointer transition-all"
-          style={{ background: "#22D3EE", color: "#060D1A" }}>
+          style={{ background: "#D4A84B", color: "#0B1220" }}>
           <i className="ri-save-line mr-2" />Save Configuration
         </button>
         <button className="px-6 py-2.5 rounded-lg text-sm font-semibold font-['Inter'] whitespace-nowrap cursor-pointer transition-all"
-          style={{ background: "transparent", border: "1px solid rgba(34,211,238,0.4)", color: "#22D3EE" }}>
+          style={{ background: "transparent", border: "1px solid rgba(181,142,60,0.4)", color: "#D4A84B" }}>
           <i className="ri-refresh-line mr-2" />Reset to Defaults
         </button>
         {saved && (

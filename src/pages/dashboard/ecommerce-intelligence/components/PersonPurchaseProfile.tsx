@@ -118,8 +118,8 @@ const PersonPurchaseProfile = ({ isAr }: Props) => {
               onClick={() => setSelectedPerson(p.id)}
               className="w-full flex items-center gap-3 p-4 rounded-xl border cursor-pointer transition-all text-left"
               style={{
-                background: isActive ? `${prc}10` : "rgba(10,22,40,0.8)",
-                borderColor: isActive ? `${prc}40` : "rgba(34,211,238,0.1)",
+                background: isActive ? `${prc}10` : "rgba(20,29,46,0.8)",
+                borderColor: isActive ? `${prc}40` : "rgba(181,142,60,0.1)",
                 backdropFilter: "blur(12px)",
               }}
             >
@@ -144,7 +144,7 @@ const PersonPurchaseProfile = ({ isAr }: Props) => {
       {/* Purchase timeline + cross-stream */}
       <div className="lg:col-span-2 space-y-4">
         {/* Person header */}
-        <div className="rounded-2xl border p-5" style={{ background: "rgba(10,22,40,0.8)", borderColor: `${rc}25`, backdropFilter: "blur(12px)" }}>
+        <div className="rounded-2xl border p-5" style={{ background: "rgba(20,29,46,0.8)", borderColor: `${rc}25`, backdropFilter: "blur(12px)" }}>
           <div className="flex items-start justify-between gap-4 flex-wrap">
             <div className="flex items-center gap-4">
               <div className="text-4xl">{person.flag}</div>
@@ -165,7 +165,7 @@ const PersonPurchaseProfile = ({ isAr }: Props) => {
             <div className="grid grid-cols-3 gap-3 text-center">
               {[
                 { label: isAr ? "تنبيهات" : "Flags", value: person.totalFlagged, color: rc },
-                { label: isAr ? "الإنفاق" : "Total Spend", value: person.totalSpend, color: "#22D3EE" },
+                { label: isAr ? "الإنفاق" : "Total Spend", value: person.totalSpend, color: "#D4A84B" },
                 { label: isAr ? "بطاقات" : "Cards", value: person.paymentMethods, color: "#FACC15" },
               ].map((stat) => (
                 <div key={stat.label} className="px-3 py-2 rounded-xl" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
@@ -196,8 +196,8 @@ const PersonPurchaseProfile = ({ isAr }: Props) => {
         </div>
 
         {/* Purchase timeline */}
-        <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.12)", backdropFilter: "blur(12px)" }}>
-          <div className="px-5 py-4 border-b" style={{ borderColor: "rgba(34,211,238,0.08)" }}>
+        <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
+          <div className="px-5 py-4 border-b" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
             <h3 className="text-white font-bold text-sm">{isAr ? "سجل المشتريات المُبلَّغة" : "Flagged Purchase History"}</h3>
           </div>
           <div className="divide-y" style={{ borderColor: "rgba(255,255,255,0.04)" }}>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 140" width="540" height="140" role="img" aria-label="Al-Ameen — National Intelligence Platform">
+  <defs>
+    <linearGradient id="p-shield" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0B1220"/><stop offset="100%" stop-color="#141D2E"/></linearGradient>
+    <linearGradient id="p-accent" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#D4A84B"/><stop offset="100%" stop-color="#B58E3C"/></linearGradient>
+  </defs>
+  <g transform="translate(10,10)">
+    <path d="M60 6 L104 18 L104 62 C104 86 86 104 60 114 C34 104 16 86 16 62 L16 18 Z" fill="url(#p-shield)" stroke="url(#p-accent)" stroke-width="2"/>
+    <path d="M60 14 L96 24 L96 60 C96 80 82 96 60 104 C38 96 24 80 24 60 L24 24 Z" fill="none" stroke="#9A1F24" stroke-width="1.5" opacity="0.85"/>
+    <circle cx="60" cy="36" r="12" fill="#D4A84B"/>
+    <circle cx="60" cy="36" r="7" fill="#0B1220"/>
+    <circle cx="60" cy="36" r="3" fill="#D4A84B"/>
+    <rect x="57.25" y="50" width="5.5" height="40" rx="2.5" fill="#F5EFE3"/>
+    <rect x="34" y="90" width="52" height="3" rx="1.5" fill="#9A1F24"/>
+    <rect x="42" y="94" width="36" height="1.5" rx="0.75" fill="#B58E3C" opacity="0.8"/>
+  </g>
+  <rect x="148" y="34" width="1" height="72" fill="#B58E3C" opacity="0.4"/>
+  <text x="168" y="72" font-family="'Cormorant Garamond', serif" font-size="38" font-weight="500" fill="#0B1220">Al-Ameen</text>
+  <text x="168" y="100" font-family="'Readex Pro', 'Tajawal', sans-serif" font-size="22" font-weight="500" fill="#9A1F24" direction="rtl">الأمين</text>
+  <text x="168" y="122" font-family="'Inter', system-ui, sans-serif" font-size="10" font-weight="500" fill="#4A5365" letter-spacing="1.5">NATIONAL INTELLIGENCE PLATFORM</text>
+</svg>

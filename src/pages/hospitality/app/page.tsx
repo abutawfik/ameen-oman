@@ -18,7 +18,7 @@ type ActiveView =
 const BRANCHES = ['Main Branch — Muscat', 'Salalah Branch', 'Sohar Branch'];
 
 const statusConfig = {
-  confirmed:   { color: '#22D3EE', bg: 'rgba(34,211,238,0.1)',  label: 'Confirmed',   labelAr: 'مؤكد' },
+  confirmed:   { color: '#D4A84B', bg: 'rgba(181,142,60,0.1)',  label: 'Confirmed',   labelAr: 'مؤكد' },
   checked_in:  { color: '#4ADE80', bg: 'rgba(74,222,128,0.1)',  label: 'Checked In',  labelAr: 'مسجل دخول' },
   checked_out: { color: '#9CA3AF', bg: 'rgba(156,163,175,0.1)', label: 'Checked Out', labelAr: 'مسجل خروج' },
   cancelled:   { color: '#F87171', bg: 'rgba(248,113,113,0.1)', label: 'Cancelled',   labelAr: 'ملغي' },
@@ -33,7 +33,7 @@ const syncStatusConfig = {
 
 const roomStatusConfig = {
   available:   { color: '#4ADE80', bg: 'rgba(74,222,128,0.12)',  label: 'Available',   labelAr: 'متاحة' },
-  occupied:    { color: '#22D3EE', bg: 'rgba(34,211,238,0.12)',  label: 'Occupied',    labelAr: 'مشغولة' },
+  occupied:    { color: '#D4A84B', bg: 'rgba(181,142,60,0.12)',  label: 'Occupied',    labelAr: 'مشغولة' },
   reserved:    { color: '#FACC15', bg: 'rgba(250,204,21,0.12)',  label: 'Reserved',    labelAr: 'محجوزة' },
   maintenance: { color: '#F87171', bg: 'rgba(248,113,113,0.12)', label: 'Maintenance', labelAr: 'صيانة' },
 };
@@ -95,14 +95,14 @@ export default function HospitalityAppPage() {
   return (
     <div
       className="flex flex-col h-screen overflow-hidden"
-      style={{ background: '#060D1A', fontFamily: "'Inter', sans-serif" }}
+      style={{ background: '#0B1220', fontFamily: "'Inter', sans-serif" }}
       dir={isAr ? 'rtl' : 'ltr'}
     >
       {/* Grid texture */}
       <div
         className="fixed inset-0 pointer-events-none z-0"
         style={{
-          backgroundImage: `linear-gradient(rgba(34,211,238,0.022) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.022) 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(rgba(181,142,60,0.022) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,0.022) 1px, transparent 1px)`,
           backgroundSize: '40px 40px',
         }}
       />
@@ -128,8 +128,8 @@ export default function HospitalityAppPage() {
 
       {/* Title bar */}
       <div
-        className="relative z-20 flex items-center justify-between px-4 py-0 border-b border-cyan-500/15 shrink-0"
-        style={{ background: 'rgba(6,13,26,0.99)', minHeight: 46 }}
+        className="relative z-20 flex items-center justify-between px-4 py-0 border-b border-gold-500/15 shrink-0"
+        style={{ background: 'rgba(11,18,32,0.99)', minHeight: 46 }}
       >
         <div className="flex items-center gap-3 h-full">
           {/* Window controls */}
@@ -157,14 +157,14 @@ export default function HospitalityAppPage() {
           <div className="flex items-center gap-2">
             <div
               className="w-6 h-6 rounded-lg flex items-center justify-center shrink-0"
-              style={{ background: 'rgba(34,211,238,0.1)' }}
+              style={{ background: 'rgba(181,142,60,0.1)' }}
             >
-              <i className="ri-shield-star-fill text-cyan-400" style={{ fontSize: 12 }} />
+              <i className="ri-shield-star-fill text-gold-400" style={{ fontSize: 12 }} />
             </div>
             <div className="flex items-center gap-1.5">
               <span className="text-white font-bold text-sm">Al-Ameen Hospitality</span>
               <span className="text-gray-700 text-sm">|</span>
-              <span className="text-cyan-400/60 text-xs" style={{ fontFamily: 'serif' }}>الأمين للضيافة</span>
+              <span className="text-gold-400/60 text-xs" style={{ fontFamily: 'serif' }}>الأمين للضيافة</span>
             </div>
           </div>
 
@@ -186,26 +186,26 @@ export default function HospitalityAppPage() {
           <div className="relative hidden lg:block">
             <button
               onClick={() => setBranchOpen(o => !o)}
-              className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-cyan-500/15 text-gray-400 text-xs hover:border-cyan-500/30 cursor-pointer transition-colors whitespace-nowrap"
-              style={{ background: 'rgba(10,22,40,0.8)' }}
+              className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-gold-500/15 text-gray-400 text-xs hover:border-gold-500/30 cursor-pointer transition-colors whitespace-nowrap"
+              style={{ background: 'rgba(20,29,46,0.8)' }}
             >
-              <i className="ri-map-pin-line text-cyan-400" style={{ fontSize: 10 }} />
+              <i className="ri-map-pin-line text-gold-400" style={{ fontSize: 10 }} />
               {branch.split(' — ')[0]}
               <i className="ri-arrow-down-s-line text-gray-600" style={{ fontSize: 12 }} />
             </button>
             {branchOpen && (
               <div
-                className="absolute top-full mt-1 left-0 rounded-xl border border-cyan-500/20 py-1 z-50 min-w-52"
-                style={{ background: 'rgba(10,22,40,0.98)', backdropFilter: 'blur(12px)' }}
+                className="absolute top-full mt-1 left-0 rounded-xl border border-gold-500/20 py-1 z-50 min-w-52"
+                style={{ background: 'rgba(20,29,46,0.98)', backdropFilter: 'blur(12px)' }}
               >
                 {BRANCHES.map(b => (
                   <button
                     key={b}
                     onClick={() => { setBranch(b); setBranchOpen(false); }}
-                    className="w-full text-left px-3 py-2 text-xs hover:bg-cyan-500/8 cursor-pointer transition-colors whitespace-nowrap flex items-center gap-2"
-                    style={{ color: b === branch ? '#22D3EE' : '#9CA3AF' }}
+                    className="w-full text-left px-3 py-2 text-xs hover:bg-gold-500/8 cursor-pointer transition-colors whitespace-nowrap flex items-center gap-2"
+                    style={{ color: b === branch ? '#D4A84B' : '#9CA3AF' }}
                   >
-                    {b === branch && <i className="ri-check-line text-cyan-400" style={{ fontSize: 11 }} />}
+                    {b === branch && <i className="ri-check-line text-gold-400" style={{ fontSize: 11 }} />}
                     {b !== branch && <span className="w-3" />}
                     {b}
                   </button>
@@ -225,12 +225,12 @@ export default function HospitalityAppPage() {
           <div
             className="hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded-lg border text-xs"
             style={{
-              borderColor: 'rgba(34,211,238,0.2)',
-              background: 'rgba(34,211,238,0.05)',
-              color: '#22D3EE',
+              borderColor: 'rgba(181,142,60,0.2)',
+              background: 'rgba(181,142,60,0.05)',
+              color: '#D4A84B',
             }}
           >
-            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+            <span className="w-1.5 h-1.5 rounded-full bg-gold-400 animate-pulse" />
             {isAr ? 'أمين: نشط' : 'AMEEN: Active'}
           </div>
 
@@ -251,7 +251,7 @@ export default function HospitalityAppPage() {
           {/* Lang toggle */}
           <button
             onClick={() => setLang(l => l === 'en' ? 'ar' : 'en')}
-            className="px-2 py-1 rounded border border-cyan-500/20 text-cyan-400 text-xs cursor-pointer hover:bg-cyan-500/8 transition-colors whitespace-nowrap"
+            className="px-2 py-1 rounded border border-gold-500/20 text-gold-400 text-xs cursor-pointer hover:bg-gold-500/8 transition-colors whitespace-nowrap"
           >
             {isAr ? 'EN' : 'عربي'}
           </button>
@@ -260,7 +260,7 @@ export default function HospitalityAppPage() {
           <div className="flex items-center gap-2">
             <div
               className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold"
-              style={{ background: 'rgba(34,211,238,0.12)', color: '#22D3EE', border: '1px solid rgba(34,211,238,0.25)' }}
+              style={{ background: 'rgba(181,142,60,0.12)', color: '#D4A84B', border: '1px solid rgba(181,142,60,0.25)' }}
             >
               {user.initials || 'U'}
             </div>
@@ -311,7 +311,7 @@ export default function HospitalityAppPage() {
                   <div key={floor} className="mb-6">
                     <div className="flex items-center gap-3 mb-3">
                       <span className="text-gray-400 text-sm font-semibold">{isAr ? `الطابق ${floor}` : `Floor ${floor}`}</span>
-                      <div className="flex-1 h-px bg-cyan-500/10" />
+                      <div className="flex-1 h-px bg-gold-500/10" />
                       <span className="text-gray-600 text-xs">{floorRooms.length} {isAr ? 'غرفة' : 'rooms'}</span>
                     </div>
                     <div className="grid grid-cols-6 gap-3">
@@ -356,9 +356,9 @@ export default function HospitalityAppPage() {
                       onClick={() => setEventFilter(f)}
                       className="px-3 py-1.5 rounded-lg text-xs border cursor-pointer transition-all whitespace-nowrap"
                       style={{
-                        borderColor: eventFilter === f ? 'rgba(34,211,238,0.5)' : 'rgba(34,211,238,0.15)',
-                        color: eventFilter === f ? '#22D3EE' : '#6B7280',
-                        background: eventFilter === f ? 'rgba(34,211,238,0.08)' : 'transparent',
+                        borderColor: eventFilter === f ? 'rgba(181,142,60,0.5)' : 'rgba(181,142,60,0.15)',
+                        color: eventFilter === f ? '#D4A84B' : '#6B7280',
+                        background: eventFilter === f ? 'rgba(181,142,60,0.08)' : 'transparent',
                       }}
                     >
                       {f}
@@ -366,10 +366,10 @@ export default function HospitalityAppPage() {
                   ))}
                 </div>
               </div>
-              <div className="rounded-xl border border-cyan-500/15 overflow-hidden" style={{ background: 'rgba(10,22,40,0.8)' }}>
+              <div className="rounded-xl border border-gold-500/15 overflow-hidden" style={{ background: 'rgba(20,29,46,0.8)' }}>
                 <table className="w-full text-xs">
                   <thead>
-                    <tr className="border-b border-cyan-500/10">
+                    <tr className="border-b border-gold-500/10">
                       {[isAr ? 'رقم الحجز' : 'Booking ID', isAr ? 'النزيل' : 'Guest', isAr ? 'الغرفة' : 'Room', isAr ? 'الدخول' : 'Check-In', isAr ? 'الخروج' : 'Check-Out', isAr ? 'الإجمالي' : 'Total', isAr ? 'الحالة' : 'Status', isAr ? 'أمين' : 'AMEEN'].map(h => (
                         <th key={h} className="text-left text-gray-600 font-medium py-3 px-4 uppercase tracking-wider" style={{ fontSize: 10 }}>{h}</th>
                       ))}
@@ -379,8 +379,8 @@ export default function HospitalityAppPage() {
                     {filteredBookings.map(b => {
                       const sc = statusConfig[b.status];
                       return (
-                        <tr key={b.id} className="border-b border-cyan-500/5 hover:bg-cyan-500/4 cursor-pointer transition-colors">
-                          <td className="py-3 px-4 font-mono text-cyan-400/70">{b.id}</td>
+                        <tr key={b.id} className="border-b border-gold-500/5 hover:bg-gold-500/4 cursor-pointer transition-colors">
+                          <td className="py-3 px-4 font-mono text-gold-400/70">{b.id}</td>
                           <td className="py-3 px-4">
                             <div className="flex items-center gap-2">
                               <span>{b.nationalityFlag}</span>
@@ -424,11 +424,11 @@ export default function HospitalityAppPage() {
                   </p>
                 </div>
                 <div
-                  className="flex items-center gap-2 px-3 py-2 rounded-xl border border-cyan-500/20"
-                  style={{ background: 'rgba(34,211,238,0.05)' }}
+                  className="flex items-center gap-2 px-3 py-2 rounded-xl border border-gold-500/20"
+                  style={{ background: 'rgba(181,142,60,0.05)' }}
                 >
-                  <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-                  <span className="text-cyan-400 text-xs">{isAr ? 'الخادم: api.ameen.ameen.gov' : 'Server: api.ameen.ameen.gov'}</span>
+                  <span className="w-2 h-2 rounded-full bg-gold-400 animate-pulse" />
+                  <span className="text-gold-400 text-xs">{isAr ? 'الخادم: api.ameen.ameen.gov' : 'Server: api.ameen.ameen.gov'}</span>
                 </div>
               </div>
 
@@ -439,17 +439,17 @@ export default function HospitalityAppPage() {
                   { label: isAr ? 'معلق' : 'Pending',          value: syncLogs.filter(l => l.status === 'pending').length, color: '#FACC15' },
                   { label: isAr ? 'فشل' : 'Failed',            value: syncLogs.filter(l => l.status === 'failed').length,  color: '#F87171' },
                 ].map(s => (
-                  <div key={s.label} className="rounded-xl border border-cyan-500/10 px-4 py-3 text-center" style={{ background: 'rgba(10,22,40,0.8)' }}>
+                  <div key={s.label} className="rounded-xl border border-gold-500/10 px-4 py-3 text-center" style={{ background: 'rgba(20,29,46,0.8)' }}>
                     <p className="font-mono font-bold text-2xl" style={{ color: s.color }}>{s.value}</p>
                     <p className="text-gray-500 text-xs mt-0.5">{s.label}</p>
                   </div>
                 ))}
               </div>
 
-              <div className="rounded-xl border border-cyan-500/15 overflow-hidden" style={{ background: 'rgba(10,22,40,0.8)' }}>
+              <div className="rounded-xl border border-gold-500/15 overflow-hidden" style={{ background: 'rgba(20,29,46,0.8)' }}>
                 <table className="w-full text-xs">
                   <thead>
-                    <tr className="border-b border-cyan-500/10">
+                    <tr className="border-b border-gold-500/10">
                       {[isAr ? 'الوقت' : 'Time', isAr ? 'النزيل' : 'Guest', isAr ? 'نوع الحدث' : 'Event Type', isAr ? 'مرجع أمين' : 'AMEEN Ref', isAr ? 'الحالة' : 'Status'].map(h => (
                         <th key={h} className="text-left text-gray-600 font-medium py-3 px-4 uppercase tracking-wider" style={{ fontSize: 10 }}>{h}</th>
                       ))}
@@ -459,11 +459,11 @@ export default function HospitalityAppPage() {
                     {syncLogs.map(log => {
                       const sc = syncStatusConfig[log.status];
                       return (
-                        <tr key={log.id} className="border-b border-cyan-500/5 hover:bg-cyan-500/4 transition-colors">
+                        <tr key={log.id} className="border-b border-gold-500/5 hover:bg-gold-500/4 transition-colors">
                           <td className="py-3 px-4 font-mono text-gray-400">{log.timestamp}</td>
                           <td className="py-3 px-4 text-white font-medium">{log.guestName}</td>
                           <td className="py-3 px-4 text-gray-300">{log.eventType}</td>
-                          <td className="py-3 px-4 font-mono text-cyan-500/60">{log.ameenRef || '—'}</td>
+                          <td className="py-3 px-4 font-mono text-gold-500/60">{log.ameenRef || '—'}</td>
                           <td className="py-3 px-4">
                             <span className="flex items-center gap-1.5 w-fit px-2 py-0.5 rounded-full" style={{ background: sc.bg, color: sc.color }}>
                               <i className={`${sc.icon} text-xs`} />
@@ -486,7 +486,7 @@ export default function HospitalityAppPage() {
                 <h2 className="text-white font-bold text-lg">{isAr ? 'إدارة المستخدمين' : 'Manage Users'}</h2>
                 <button
                   className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium cursor-pointer whitespace-nowrap"
-                  style={{ background: '#22D3EE', color: '#060D1A' }}
+                  style={{ background: '#D4A84B', color: '#0B1220' }}
                 >
                   <i className="ri-user-add-line" />
                   {isAr ? 'إضافة مستخدم' : 'Add User'}
@@ -494,12 +494,12 @@ export default function HospitalityAppPage() {
               </div>
               <div className="grid grid-cols-3 gap-4">
                 {[
-                  { name: 'Salim Al-Rashidi',  nameAr: 'سالم الراشدي',  role: 'Admin',     initials: 'SR', color: '#22D3EE', lastLogin: '14:32 Today',  status: 'active' },
+                  { name: 'Salim Al-Rashidi',  nameAr: 'سالم الراشدي',  role: 'Admin',     initials: 'SR', color: '#D4A84B', lastLogin: '14:32 Today',  status: 'active' },
                   { name: 'Maryam Al-Balushi', nameAr: 'مريم البلوشي',  role: 'Reception', initials: 'MB', color: '#4ADE80', lastLogin: '13:15 Today',  status: 'active' },
                   { name: 'Tariq Al-Amri',     nameAr: 'طارق العامري',  role: 'Viewer',    initials: 'TA', color: '#9CA3AF', lastLogin: '09:00 Today',  status: 'active' },
                   { name: 'Huda Al-Farsi',     nameAr: 'هدى الفارسية',  role: 'Reception', initials: 'HF', color: '#4ADE80', lastLogin: '2 days ago',   status: 'inactive' },
                 ].map(u => (
-                  <div key={u.initials} className="rounded-xl border border-cyan-500/15 p-4" style={{ background: 'rgba(10,22,40,0.8)' }}>
+                  <div key={u.initials} className="rounded-xl border border-gold-500/15 p-4" style={{ background: 'rgba(20,29,46,0.8)' }}>
                     <div className="flex items-center gap-3 mb-3">
                       <div
                         className="w-11 h-11 rounded-full flex items-center justify-center font-bold text-sm border-2"
@@ -525,7 +525,7 @@ export default function HospitalityAppPage() {
                     </div>
                     <p className="text-gray-500 text-xs">{isAr ? 'آخر دخول:' : 'Last login:'} {u.lastLogin}</p>
                     <div className="flex gap-2 mt-3">
-                      <button className="flex-1 py-1.5 rounded-lg text-xs border border-cyan-500/20 text-cyan-400 hover:bg-cyan-500/8 cursor-pointer transition-colors whitespace-nowrap">
+                      <button className="flex-1 py-1.5 rounded-lg text-xs border border-gold-500/20 text-gold-400 hover:bg-gold-500/8 cursor-pointer transition-colors whitespace-nowrap">
                         {isAr ? 'تعديل' : 'Edit'}
                       </button>
                       <button className="flex-1 py-1.5 rounded-lg text-xs border border-red-500/20 text-red-400 hover:bg-red-500/8 cursor-pointer transition-colors whitespace-nowrap">
@@ -550,17 +550,17 @@ export default function HospitalityAppPage() {
                   { q: isAr ? 'كيف أوصل الماسح الضوئي؟' : 'How do I connect the scanner?', a: isAr ? 'وصّل ماسح Regula عبر USB. سيتم الكشف عنه تلقائياً. يمكن إعادة الإعداد من إعدادات النظام.' : 'Connect the Regula scanner via USB. It will be auto-detected. Re-setup is available in system settings.' },
                   { q: isAr ? 'كيف أرفع ملف أحداث؟' : 'How do I upload a batch file?', a: isAr ? 'انتقل إلى "رفع ملف الأحداث"، حمّل القالب، ثم ارفع ملف CSV أو Excel.' : 'Go to "Upload Events File", download the template, then upload your CSV or Excel file.' },
                 ].map((item, i) => (
-                  <div key={i} className="rounded-xl border border-cyan-500/15 p-4" style={{ background: 'rgba(10,22,40,0.8)' }}>
+                  <div key={i} className="rounded-xl border border-gold-500/15 p-4" style={{ background: 'rgba(20,29,46,0.8)' }}>
                     <p className="text-white font-semibold text-sm mb-1.5">{item.q}</p>
                     <p className="text-gray-400 text-sm leading-relaxed">{item.a}</p>
                   </div>
                 ))}
               </div>
-              <div className="mt-5 rounded-xl border border-cyan-500/20 p-4" style={{ background: 'rgba(34,211,238,0.04)' }}>
-                <p className="text-cyan-400 font-semibold text-sm mb-2">{isAr ? 'الدعم الفني' : 'Technical Support'}</p>
+              <div className="mt-5 rounded-xl border border-gold-500/20 p-4" style={{ background: 'rgba(181,142,60,0.04)' }}>
+                <p className="text-gold-400 font-semibold text-sm mb-2">{isAr ? 'الدعم الفني' : 'Technical Support'}</p>
                 <div className="space-y-1">
-                  <p className="text-gray-400 text-xs"><i className="ri-mail-line mr-2 text-cyan-500/60" />support@ameen.ameen.gov</p>
-                  <p className="text-gray-400 text-xs"><i className="ri-phone-line mr-2 text-cyan-500/60" />+968 2400 0000</p>
+                  <p className="text-gray-400 text-xs"><i className="ri-mail-line mr-2 text-gold-500/60" />support@ameen.ameen.gov</p>
+                  <p className="text-gray-400 text-xs"><i className="ri-phone-line mr-2 text-gold-500/60" />+968 2400 0000</p>
                   <p className="text-gray-500 text-xs mt-1">{isAr ? 'متاح 24/7 لجميع الفنادق المسجلة' : 'Available 24/7 for all registered hotels'}</p>
                 </div>
               </div>

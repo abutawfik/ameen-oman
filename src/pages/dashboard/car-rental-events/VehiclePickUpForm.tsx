@@ -176,7 +176,7 @@ const VehiclePickUpForm = ({ isAr, onCancel }: Props) => {
                 onChange={(e) => setConditionNotes(e.target.value)}
                 className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none transition-all duration-200 font-['Inter'] resize-none"
                 style={{ background: "#0F1923", border: "1px solid rgba(255,255,255,0.08)" }}
-                onFocus={(e) => { e.target.style.borderColor = "#22D3EE"; e.target.style.boxShadow = "0 0 0 2px rgba(34,211,238,0.08)"; }}
+                onFocus={(e) => { e.target.style.borderColor = "#D4A84B"; e.target.style.boxShadow = "0 0 0 2px rgba(181,142,60,0.08)"; }}
                 onBlur={(e) => { e.target.style.borderColor = "rgba(255,255,255,0.08)"; e.target.style.boxShadow = "none"; }}
               />
             </FormField>
@@ -196,16 +196,16 @@ const VehiclePickUpForm = ({ isAr, onCancel }: Props) => {
               </p>
               <div
                 className="flex items-center gap-1 px-5 py-3 rounded-xl"
-                style={{ background: "#060D1A", border: "1px solid rgba(34,211,238,0.18)" }}
+                style={{ background: "#0B1220", border: "1px solid rgba(181,142,60,0.18)" }}
               >
                 {(odometer || "000000").padStart(6, "0").split("").map((digit, i) => (
                   <div
                     key={i}
                     className="w-9 h-12 flex items-center justify-center rounded-lg text-xl font-bold font-['JetBrains_Mono']"
                     style={{
-                      background: "rgba(34,211,238,0.04)",
-                      border: "1px solid rgba(34,211,238,0.12)",
-                      color: digit !== "0" || odometer ? "#22D3EE" : "#1E3A4A",
+                      background: "rgba(181,142,60,0.04)",
+                      border: "1px solid rgba(181,142,60,0.12)",
+                      color: digit !== "0" || odometer ? "#D4A84B" : "#1E3A4A",
                     }}
                   >
                     {digit}
@@ -222,9 +222,9 @@ const VehiclePickUpForm = ({ isAr, onCancel }: Props) => {
             >
               <div
                 className="w-11 h-11 flex items-center justify-center rounded-xl flex-shrink-0"
-                style={{ background: "rgba(34,211,238,0.08)", border: "1px solid rgba(34,211,238,0.15)" }}
+                style={{ background: "rgba(181,142,60,0.08)", border: "1px solid rgba(181,142,60,0.15)" }}
               >
-                <i className="ri-gas-station-fill text-cyan-400 text-lg" />
+                <i className="ri-gas-station-fill text-gold-400 text-lg" />
               </div>
               <div>
                 <p className="text-gray-500 text-xs font-['Inter']">{t.fuelAtPickup}</p>

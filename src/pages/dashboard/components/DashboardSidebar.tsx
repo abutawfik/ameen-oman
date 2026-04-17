@@ -49,39 +49,39 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
       className="flex flex-col flex-shrink-0 border-r transition-all duration-300"
       style={{
         width: collapsed ? "64px" : "220px",
-        background: "#0A1628",
-        borderColor: "rgba(34,211,238,0.1)",
+        background: "#141D2E", // midnight-700
+        borderColor: "rgba(181,142,60,0.1)",
         minHeight: "100%",
       }}
     >
       {/* User info */}
       {!collapsed && (
-        <div className="px-4 py-5 border-b" style={{ borderColor: "rgba(34,211,238,0.08)" }}>
+        <div className="px-4 py-5 border-b" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
           <div className="flex items-center gap-3 mb-3">
             <div className="w-10 h-10 flex items-center justify-center rounded-full flex-shrink-0"
-              style={{ background: "rgba(34,211,238,0.15)", border: "2px solid rgba(34,211,238,0.4)" }}>
-              <span className="text-cyan-400 text-sm font-black font-['Inter']">AA</span>
+              style={{ background: "rgba(181,142,60,0.15)", border: "2px solid rgba(181,142,60,0.4)" }}>
+              <span className="text-gold-400 text-sm font-black font-['Inter']">AA</span>
             </div>
             <div className="min-w-0">
-              <p className="text-cyan-400 text-xs font-semibold font-['JetBrains_Mono'] uppercase tracking-widest">
+              <p className="text-gold-400 text-xs font-semibold font-mono uppercase tracking-widest">
                 {isAr ? "مرحباً" : "WELCOME"}
               </p>
-              <p className="text-white text-sm font-bold font-['Inter'] truncate">Ahmed Al-Amri</p>
+              <p className="text-ivory-100 text-sm font-bold font-['Inter'] truncate">Ahmed Al-Amri</p>
             </div>
           </div>
           <div className="space-y-1">
             <div className="flex items-center gap-2">
-              <i className="ri-time-line text-gray-600 text-xs" />
+              <i className="ri-time-line text-midnight-300 text-xs" />
               <div>
-                <p className="text-gray-600 text-xs font-['JetBrains_Mono']">{isAr ? "آخر دخول" : "Last Login"}</p>
-                <p className="text-gray-400 text-xs font-['JetBrains_Mono']">2025-04-05 08:32</p>
+                <p className="text-midnight-300 text-xs font-mono">{isAr ? "آخر دخول" : "Last Login"}</p>
+                <p className="text-ivory-200/80 text-xs font-mono">2025-04-05 08:32</p>
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <i className="ri-send-plane-line text-gray-600 text-xs" />
+              <i className="ri-send-plane-line text-midnight-300 text-xs" />
               <div>
-                <p className="text-gray-600 text-xs font-['JetBrains_Mono']">{isAr ? "آخر حدث" : "Last Event"}</p>
-                <p className="text-gray-400 text-xs font-['JetBrains_Mono']">2025-04-05 09:14</p>
+                <p className="text-midnight-300 text-xs font-mono">{isAr ? "آخر حدث" : "Last Event"}</p>
+                <p className="text-ivory-200/80 text-xs font-mono">2025-04-05 09:14</p>
               </div>
             </div>
           </div>
@@ -89,11 +89,12 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
       )}
 
       {collapsed && (
-        <div className="flex justify-center py-4 border-b" style={{ borderColor: "rgba(34,211,238,0.08)" }}>
-          <div className="w-9 h-9 flex items-center justify-center rounded-full"
-            style={{ background: "rgba(34,211,238,0.15)", border: "2px solid rgba(34,211,238,0.4)" }}>
-            <span className="text-cyan-400 text-xs font-black font-['Inter']">AA</span>
-          </div>
+        <div className="flex justify-center py-4 border-b" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
+          <img
+            src="/brand/al-ameen-mark-mono-light.svg"
+            alt="Al-Ameen"
+            className="w-8 h-8 object-contain"
+          />
         </div>
       )}
 
@@ -104,13 +105,13 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
             {/* Group label */}
             {!collapsed && (
               <div className="px-4 pt-4 pb-1">
-                <span className="text-gray-700 text-[10px] font-bold tracking-widest font-['JetBrains_Mono'] uppercase">
+                <span className="text-midnight-300 text-[10px] font-bold tracking-widest font-mono uppercase">
                   {isAr ? groupLabels[group].ar : groupLabels[group].en}
                 </span>
               </div>
             )}
             {collapsed && group !== "main" && (
-              <div className="mx-3 my-2 border-t" style={{ borderColor: "rgba(34,211,238,0.08)" }} />
+              <div className="mx-3 my-2 border-t" style={{ borderColor: "rgba(181,142,60,0.08)" }} />
             )}
 
             {items.map((item) => {
@@ -121,15 +122,15 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
                   onClick={() => handleNavClick(item)}
                   className="w-full flex items-center gap-3 px-4 py-2.5 transition-all duration-150 cursor-pointer relative group"
                   style={{
-                    background: isActive ? "rgba(34,211,238,0.08)" : "transparent",
-                    color: isActive ? "#22D3EE" : "#6B7280",
+                    background: isActive ? "rgba(181,142,60,0.1)" : "transparent",
+                    color: isActive ? "#D4A84B" : "#8B95B0",
                   }}
                   title={collapsed ? (isAr ? item.labelAr : item.labelEn) : undefined}
                 >
-                  {/* Active bar — anchors to the edge of the sidebar closest to content */}
+                  {/* Active bar — gold, anchors to the edge of the sidebar closest to content */}
                   {isActive && (
                     <div
-                      className={`absolute top-0 bottom-0 w-0.5 bg-cyan-400 ${
+                      className={`absolute top-0 bottom-0 w-0.5 bg-gold-400 ${
                         isAr ? "right-0 rounded-l-full" : "left-0 rounded-r-full"
                       }`}
                     />
@@ -144,15 +145,15 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
                   )}
                   {/* Route indicator dot */}
                   {!collapsed && item.route && !isActive && (
-                    <div className="ml-auto w-1 h-1 rounded-full bg-cyan-400/30 flex-shrink-0" />
+                    <div className="ml-auto w-1 h-1 rounded-full bg-gold-400/30 flex-shrink-0" />
                   )}
                   {/* Hover tooltip when collapsed — anchors to the content side in both LTR and RTL */}
                   {collapsed && (
                     <div
-                      className={`absolute px-2 py-1 rounded-md text-xs text-white whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 font-['Inter'] ${
+                      className={`absolute px-2 py-1 rounded-md text-xs text-ivory-100 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 font-['Inter'] ${
                         isAr ? "right-full mr-2" : "left-full ml-2"
                       }`}
-                      style={{ background: "rgba(10,22,40,0.95)", border: "1px solid rgba(34,211,238,0.2)" }}
+                      style={{ background: "rgba(20,29,46,0.95)", border: "1px solid rgba(181,142,60,0.25)" }}
                     >
                       {isAr ? item.labelAr : item.labelEn}
                     </div>
@@ -165,23 +166,23 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
       </nav>
 
       {/* Bottom: Network status + collapse toggle + sign out */}
-      <div className="border-t p-3" style={{ borderColor: "rgba(34,211,238,0.08)" }}>
+      <div className="border-t p-3" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
         {!collapsed && (
           <div className="flex items-center gap-2 mb-3 px-1">
-            <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse flex-shrink-0" />
-            <span className="text-green-400 text-xs font-['JetBrains_Mono']">
+            <div className="w-2 h-2 rounded-full animate-pulse flex-shrink-0" style={{ background: "#4F9A35" }} />
+            <span className="text-xs font-mono" style={{ color: "#4F9A35" }}>
               {isAr ? "متصل بالشبكة" : "Network Online"}
             </span>
           </div>
         )}
         {collapsed && (
           <div className="flex justify-center mb-3">
-            <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+            <div className="w-2 h-2 rounded-full animate-pulse" style={{ background: "#4F9A35" }} />
           </div>
         )}
         <button
           onClick={onToggleCollapse}
-          className="w-full flex items-center justify-center gap-2 py-1.5 rounded-lg hover:bg-white/5 transition-colors cursor-pointer text-gray-600 hover:text-gray-400"
+          className="w-full flex items-center justify-center gap-2 py-1.5 rounded-lg hover:bg-ivory-100/5 transition-colors cursor-pointer text-midnight-300 hover:text-ivory-200"
         >
           <i className={`text-sm ${
             collapsed
@@ -192,15 +193,15 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
         </button>
 
         {/* Divider between collapse toggle and sign-out */}
-        <div className="my-3 border-t" style={{ borderColor: "rgba(34,211,238,0.08)" }} />
+        <div className="my-3 border-t" style={{ borderColor: "rgba(181,142,60,0.08)" }} />
 
-        {/* Sign out button — big, red gradient, prominent */}
+        {/* Sign out button — brand oman-red gradient (kept prominent) */}
         {!collapsed ? (
           <button
             onClick={() => navigate("/login")}
             className="w-full flex items-center justify-center gap-2 py-2.5 rounded-lg transition-all duration-200 cursor-pointer group"
             style={{
-              background: "linear-gradient(135deg, #DC2626, #B91C1C)",
+              background: "linear-gradient(135deg, #E23D3D, #B91C1C)",
               boxShadow: "0 2px 8px rgba(220,38,38,0.25)",
             }}
             onMouseEnter={(e) => {
@@ -224,7 +225,7 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
               onClick={() => navigate("/login")}
               className="w-9 h-9 flex items-center justify-center rounded-lg transition-all duration-200 cursor-pointer"
               style={{
-                background: "linear-gradient(135deg, #DC2626, #B91C1C)",
+                background: "linear-gradient(135deg, #E23D3D, #B91C1C)",
                 boxShadow: "0 2px 8px rgba(220,38,38,0.25)",
               }}
               onMouseEnter={(e) => {

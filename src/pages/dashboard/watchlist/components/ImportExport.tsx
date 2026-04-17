@@ -15,7 +15,7 @@ const importSources = [
 const exportFormats = [
   { id: 'pdf', label: 'Redacted PDF (Field Ops)', labelAr: 'PDF مُعدَّل (عمليات الميدان)', icon: 'ri-file-pdf-line', color: '#F87171' },
   { id: 'csv', label: 'CSV Export (Document Numbers)', labelAr: 'تصدير CSV (أرقام الوثائق)', icon: 'ri-file-excel-line', color: '#4ADE80' },
-  { id: 'json', label: 'JSON (API Integration)', labelAr: 'JSON (تكامل API)', icon: 'ri-code-s-slash-line', color: '#22D3EE' },
+  { id: 'json', label: 'JSON (API Integration)', labelAr: 'JSON (تكامل API)', icon: 'ri-code-s-slash-line', color: '#D4A84B' },
   { id: 'encrypted', label: 'Encrypted Package (Secure Share)', labelAr: 'حزمة مشفرة (مشاركة آمنة)', icon: 'ri-lock-line', color: '#A78BFA' },
 ];
 
@@ -42,7 +42,7 @@ const ImportExport = ({ isAr }: Props) => {
     <div className="space-y-5">
       {/* Tabs */}
       <div className="flex gap-1 p-1 rounded-xl w-fit"
-        style={{ background: 'rgba(10,22,40,0.8)', border: '1px solid rgba(34,211,238,0.1)' }}>
+        style={{ background: 'rgba(20,29,46,0.8)', border: '1px solid rgba(181,142,60,0.1)' }}>
         {[
           { key: 'import', label: 'Import Sources', labelAr: 'مصادر الاستيراد' },
           { key: 'export', label: 'Export', labelAr: 'التصدير' },
@@ -51,8 +51,8 @@ const ImportExport = ({ isAr }: Props) => {
           <button key={tab.key} onClick={() => setActiveTab(tab.key as 'import' | 'export' | 'sync')}
             className="px-4 py-2 rounded-lg text-sm font-semibold font-['Inter'] whitespace-nowrap cursor-pointer transition-all"
             style={{
-              background: activeTab === tab.key ? '#22D3EE' : 'transparent',
-              color: activeTab === tab.key ? '#060D1A' : '#9CA3AF',
+              background: activeTab === tab.key ? '#D4A84B' : 'transparent',
+              color: activeTab === tab.key ? '#0B1220' : '#9CA3AF',
             }}>
             {isAr ? tab.labelAr : tab.label}
           </button>
@@ -65,15 +65,15 @@ const ImportExport = ({ isAr }: Props) => {
           <div
             className="rounded-2xl p-8 flex flex-col items-center justify-center text-center cursor-pointer transition-all"
             style={{
-              background: dragOver ? 'rgba(34,211,238,0.08)' : 'rgba(10,22,40,0.6)',
-              border: `2px dashed ${dragOver ? '#22D3EE' : 'rgba(34,211,238,0.2)'}`,
+              background: dragOver ? 'rgba(181,142,60,0.08)' : 'rgba(20,29,46,0.6)',
+              border: `2px dashed ${dragOver ? '#D4A84B' : 'rgba(181,142,60,0.2)'}`,
             }}
             onDragOver={e => { e.preventDefault(); setDragOver(true); }}
             onDragLeave={() => setDragOver(false)}
             onDrop={() => setDragOver(false)}>
             <div className="w-14 h-14 flex items-center justify-center rounded-2xl mb-4"
-              style={{ background: 'rgba(34,211,238,0.1)' }}>
-              <i className="ri-upload-cloud-2-line text-2xl text-cyan-400" />
+              style={{ background: 'rgba(181,142,60,0.1)' }}>
+              <i className="ri-upload-cloud-2-line text-2xl text-gold-400" />
             </div>
             <p className="text-white font-semibold font-['Inter'] text-base mb-1">
               {isAr ? 'رفع ملف CSV' : 'Upload CSV File'}
@@ -83,11 +83,11 @@ const ImportExport = ({ isAr }: Props) => {
             </p>
             <div className="flex items-center gap-3">
               <button className="px-4 py-2 rounded-xl text-sm font-semibold font-['Inter'] whitespace-nowrap cursor-pointer"
-                style={{ background: '#22D3EE', color: '#060D1A' }}>
+                style={{ background: '#D4A84B', color: '#0B1220' }}>
                 <i className="ri-folder-open-line mr-2" />{isAr ? 'اختر ملفاً' : 'Browse File'}
               </button>
               <button className="px-4 py-2 rounded-xl text-sm font-semibold font-['Inter'] whitespace-nowrap cursor-pointer"
-                style={{ border: '1px solid rgba(34,211,238,0.3)', color: '#22D3EE' }}>
+                style={{ border: '1px solid rgba(181,142,60,0.3)', color: '#D4A84B' }}>
                 <i className="ri-download-line mr-2" />{isAr ? 'تحميل القالب' : 'Download Template'}
               </button>
             </div>
@@ -103,7 +103,7 @@ const ImportExport = ({ isAr }: Props) => {
           <div className="grid grid-cols-1 gap-3">
             {importSources.map(src => (
               <div key={src.id} className="rounded-xl p-4 flex items-center gap-4"
-                style={{ background: 'rgba(10,22,40,0.8)', border: '1px solid rgba(34,211,238,0.12)' }}>
+                style={{ background: 'rgba(20,29,46,0.8)', border: '1px solid rgba(181,142,60,0.12)' }}>
                 <div className="w-10 h-10 flex items-center justify-center rounded-xl flex-shrink-0"
                   style={{ background: `${src.color}18` }}>
                   <i className={`${src.icon} text-lg`} style={{ color: src.color }} />
@@ -128,11 +128,11 @@ const ImportExport = ({ isAr }: Props) => {
                 </div>
                 <div className="flex items-center gap-2">
                   <button className="px-3 py-1.5 rounded-lg text-xs font-semibold font-['Inter'] whitespace-nowrap cursor-pointer"
-                    style={{ background: 'rgba(34,211,238,0.1)', color: '#22D3EE', border: '1px solid rgba(34,211,238,0.2)' }}>
+                    style={{ background: 'rgba(181,142,60,0.1)', color: '#D4A84B', border: '1px solid rgba(181,142,60,0.2)' }}>
                     <i className="ri-refresh-line mr-1" />{isAr ? 'مزامنة' : 'Sync Now'}
                   </button>
                   <button className="px-3 py-1.5 rounded-lg text-xs font-semibold font-['Inter'] whitespace-nowrap cursor-pointer"
-                    style={{ border: '1px solid rgba(34,211,238,0.15)', color: '#9CA3AF' }}>
+                    style={{ border: '1px solid rgba(181,142,60,0.15)', color: '#9CA3AF' }}>
                     <i className="ri-settings-line mr-1" />{isAr ? 'إعداد' : 'Config'}
                   </button>
                 </div>
@@ -146,7 +146,7 @@ const ImportExport = ({ isAr }: Props) => {
         <div className="grid grid-cols-2 gap-5">
           <div className="space-y-4">
             <div className="rounded-xl p-4"
-              style={{ background: 'rgba(10,22,40,0.8)', border: '1px solid rgba(34,211,238,0.12)' }}>
+              style={{ background: 'rgba(20,29,46,0.8)', border: '1px solid rgba(181,142,60,0.12)' }}>
               <h3 className="text-white font-semibold font-['Inter'] text-sm mb-3">
                 {isAr ? 'تنسيق التصدير' : 'Export Format'}
               </h3>
@@ -155,7 +155,7 @@ const ImportExport = ({ isAr }: Props) => {
                   <button key={fmt.id} onClick={() => setSelectedFormat(fmt.id)}
                     className="w-full flex items-center gap-3 p-3 rounded-xl cursor-pointer transition-all text-left"
                     style={{
-                      background: selectedFormat === fmt.id ? `${fmt.color}12` : 'rgba(6,13,26,0.5)',
+                      background: selectedFormat === fmt.id ? `${fmt.color}12` : 'rgba(11,18,32,0.5)',
                       border: `1px solid ${selectedFormat === fmt.id ? `${fmt.color}40` : 'rgba(255,255,255,0.05)'}`,
                     }}>
                     <i className={`${fmt.icon} text-lg`} style={{ color: fmt.color }} />
@@ -174,7 +174,7 @@ const ImportExport = ({ isAr }: Props) => {
 
           <div className="space-y-4">
             <div className="rounded-xl p-4"
-              style={{ background: 'rgba(10,22,40,0.8)', border: '1px solid rgba(34,211,238,0.12)' }}>
+              style={{ background: 'rgba(20,29,46,0.8)', border: '1px solid rgba(181,142,60,0.12)' }}>
               <h3 className="text-white font-semibold font-['Inter'] text-sm mb-3">
                 {isAr ? 'خيارات التصدير' : 'Export Options'}
               </h3>
@@ -185,7 +185,7 @@ const ImportExport = ({ isAr }: Props) => {
                   </label>
                   <select value={exportWatchlist} onChange={e => setExportWatchlist(e.target.value)}
                     className="w-full px-3 py-2 rounded-lg text-sm font-['Inter'] cursor-pointer"
-                    style={{ background: 'rgba(6,13,26,0.8)', border: '1px solid rgba(34,211,238,0.15)', color: '#D1D5DB' }}>
+                    style={{ background: 'rgba(11,18,32,0.8)', border: '1px solid rgba(181,142,60,0.15)', color: '#D1D5DB' }}>
                     <option value="all">All Watchlists</option>
                     <option value="wl-001">National Security</option>
                     <option value="wl-002">Overstay Monitoring</option>
@@ -219,7 +219,7 @@ const ImportExport = ({ isAr }: Props) => {
                     <div key={opt.label} className="flex items-center justify-between">
                       <span className="text-gray-400 text-xs font-['Inter']">{isAr ? opt.labelAr : opt.label}</span>
                       <div className="w-8 h-4 rounded-full cursor-pointer relative"
-                        style={{ background: opt.default ? '#22D3EE' : 'rgba(255,255,255,0.1)' }}>
+                        style={{ background: opt.default ? '#D4A84B' : 'rgba(255,255,255,0.1)' }}>
                         <div className="absolute top-0.5 w-3 h-3 rounded-full bg-white transition-all"
                           style={{ left: opt.default ? '18px' : '2px' }} />
                       </div>
@@ -228,7 +228,7 @@ const ImportExport = ({ isAr }: Props) => {
                 </div>
 
                 <button className="w-full py-3 rounded-xl text-sm font-bold font-['Inter'] cursor-pointer whitespace-nowrap transition-all"
-                  style={{ background: '#22D3EE', color: '#060D1A' }}>
+                  style={{ background: '#D4A84B', color: '#0B1220' }}>
                   <i className="ri-download-2-line mr-2" />
                   {isAr ? 'تصدير الآن' : 'Export Now'}
                 </button>
@@ -240,18 +240,18 @@ const ImportExport = ({ isAr }: Props) => {
 
       {activeTab === 'sync' && (
         <div className="rounded-xl overflow-hidden"
-          style={{ background: 'rgba(10,22,40,0.8)', border: '1px solid rgba(34,211,238,0.12)' }}>
+          style={{ background: 'rgba(20,29,46,0.8)', border: '1px solid rgba(181,142,60,0.12)' }}>
           <div className="px-4 py-3 border-b flex items-center justify-between"
-            style={{ borderColor: 'rgba(34,211,238,0.08)' }}>
+            style={{ borderColor: 'rgba(181,142,60,0.08)' }}>
             <h3 className="text-white font-semibold font-['Inter'] text-sm">
               {isAr ? 'سجل المزامنة' : 'Sync History'}
             </h3>
             <button className="px-3 py-1.5 rounded-lg text-xs font-semibold font-['Inter'] whitespace-nowrap cursor-pointer"
-              style={{ background: 'rgba(34,211,238,0.1)', color: '#22D3EE', border: '1px solid rgba(34,211,238,0.2)' }}>
+              style={{ background: 'rgba(181,142,60,0.1)', color: '#D4A84B', border: '1px solid rgba(181,142,60,0.2)' }}>
               <i className="ri-refresh-line mr-1" />{isAr ? 'مزامنة الكل' : 'Sync All'}
             </button>
           </div>
-          <div className="divide-y" style={{ borderColor: 'rgba(34,211,238,0.05)' }}>
+          <div className="divide-y" style={{ borderColor: 'rgba(181,142,60,0.05)' }}>
             {syncHistory.map((s, i) => (
               <div key={i} className="px-4 py-3 flex items-center gap-4">
                 <div className="w-8 h-8 flex items-center justify-center rounded-lg flex-shrink-0"
@@ -264,7 +264,7 @@ const ImportExport = ({ isAr }: Props) => {
                 </div>
                 <div className="flex items-center gap-4 text-xs font-['JetBrains_Mono']">
                   <span className="text-green-400">+{s.added} added</span>
-                  <span className="text-cyan-400">~{s.updated} updated</span>
+                  <span className="text-gold-400">~{s.updated} updated</span>
                   <span className="text-red-400">-{s.removed} removed</span>
                 </div>
                 <span className="text-xs px-2 py-0.5 rounded-full font-['JetBrains_Mono']"

@@ -11,7 +11,7 @@ interface Props {
 }
 
 const ROLE_COLORS: Record<string, string> = {
-  Admin: '#22D3EE', Reception: '#4ADE80', Viewer: '#9CA3AF',
+  Admin: '#D4A84B', Reception: '#4ADE80', Viewer: '#9CA3AF',
 };
 
 export default function HospitalitySidebar({ activeKey, onNav, lang, collapsed, isOffline, pendingSync }: Props) {
@@ -41,17 +41,17 @@ export default function HospitalitySidebar({ activeKey, onNav, lang, collapsed, 
         onClick={() => onNav(item.key)}
         className="w-full flex items-center gap-3 px-3 py-2.5 transition-all cursor-pointer relative group"
         style={{
-          background: isActive ? 'rgba(34,211,238,0.1)' : 'transparent',
-          borderLeft: isAr ? 'none' : (isActive ? '2px solid #22D3EE' : '2px solid transparent'),
-          borderRight: isAr ? (isActive ? '2px solid #22D3EE' : '2px solid transparent') : 'none',
+          background: isActive ? 'rgba(181,142,60,0.1)' : 'transparent',
+          borderLeft: isAr ? 'none' : (isActive ? '2px solid #D4A84B' : '2px solid transparent'),
+          borderRight: isAr ? (isActive ? '2px solid #D4A84B' : '2px solid transparent') : 'none',
         }}
         title={collapsed ? (isAr ? item.labelAr : item.labelEn) : undefined}
       >
         <div className="w-5 h-5 flex items-center justify-center shrink-0">
-          <i className={`${item.icon} text-sm`} style={{ color: isActive ? '#22D3EE' : '#6B7280' }} />
+          <i className={`${item.icon} text-sm`} style={{ color: isActive ? '#D4A84B' : '#6B7280' }} />
         </div>
         {!collapsed && (
-          <span className="text-xs font-medium truncate" style={{ color: isActive ? '#22D3EE' : '#9CA3AF' }}>
+          <span className="text-xs font-medium truncate" style={{ color: isActive ? '#D4A84B' : '#9CA3AF' }}>
             {isAr ? item.labelAr : item.labelEn}
           </span>
         )}
@@ -76,17 +76,17 @@ export default function HospitalitySidebar({ activeKey, onNav, lang, collapsed, 
 
   return (
     <div
-      className="flex flex-col h-full border-r border-cyan-500/15 transition-all duration-300 shrink-0"
+      className="flex flex-col h-full border-r border-gold-500/15 transition-all duration-300 shrink-0"
       style={{
         background: 'rgba(8,18,35,0.98)',
         width: collapsed ? 52 : 220,
         minWidth: collapsed ? 52 : 220,
         borderRight: isAr ? 'none' : undefined,
-        borderLeft: isAr ? '1px solid rgba(34,211,238,0.15)' : undefined,
+        borderLeft: isAr ? '1px solid rgba(181,142,60,0.15)' : undefined,
       }}
     >
       {/* User section */}
-      <div className="px-3 pt-4 pb-3 border-b border-cyan-500/10">
+      <div className="px-3 pt-4 pb-3 border-b border-gold-500/10">
         <div className="flex items-center gap-2.5">
           <div
             className="w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold shrink-0 border-2"
@@ -117,7 +117,7 @@ export default function HospitalitySidebar({ activeKey, onNav, lang, collapsed, 
 
         {!collapsed && (
           <div className="mt-3 px-1">
-            <p className="text-cyan-400 font-mono text-xs tracking-wider">{timeStr}</p>
+            <p className="text-gold-400 font-mono text-xs tracking-wider">{timeStr}</p>
             <p className="text-gray-600 text-xs mt-0.5">{dateStr}</p>
           </div>
         )}
@@ -125,7 +125,7 @@ export default function HospitalitySidebar({ activeKey, onNav, lang, collapsed, 
 
       {/* Quick actions */}
       {!collapsed && (
-        <div className="px-3 py-3 border-b border-cyan-500/10">
+        <div className="px-3 py-3 border-b border-gold-500/10">
           <p className="text-gray-600 text-xs uppercase tracking-widest mb-2" style={{ fontSize: 9 }}>
             {isAr ? 'إجراءات سريعة' : 'Quick Actions'}
           </p>
@@ -133,7 +133,7 @@ export default function HospitalitySidebar({ activeKey, onNav, lang, collapsed, 
             {[
               { key: 'checkin',     icon: 'ri-login-box-line',     color: '#4ADE80', en: 'Check-In',  ar: 'دخول' },
               { key: 'checkout',    icon: 'ri-logout-box-line',    color: '#FB923C', en: 'Check-Out', ar: 'خروج' },
-              { key: 'new-booking', icon: 'ri-calendar-check-line',color: '#22D3EE', en: 'Booking',   ar: 'حجز' },
+              { key: 'new-booking', icon: 'ri-calendar-check-line',color: '#D4A84B', en: 'Booking',   ar: 'حجز' },
               { key: 'changeroom',  icon: 'ri-door-line',          color: '#FACC15', en: 'Change Rm', ar: 'تغيير' },
             ].map(a => (
               <button
@@ -166,12 +166,12 @@ export default function HospitalitySidebar({ activeKey, onNav, lang, collapsed, 
             {isAr ? 'النظام' : 'System'}
           </p>
         )}
-        {collapsed && <div className="my-2 mx-3 h-px bg-cyan-500/10" />}
+        {collapsed && <div className="my-2 mx-3 h-px bg-gold-500/10" />}
         {systemItems.map(item => <NavItem key={item.key} item={item} />)}
       </div>
 
       {/* Status dots */}
-      <div className="px-3 py-3 border-t border-cyan-500/10 space-y-2">
+      <div className="px-3 py-3 border-t border-gold-500/10 space-y-2">
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full shrink-0 bg-green-400 animate-pulse" />
           {!collapsed && (
@@ -200,10 +200,10 @@ export default function HospitalitySidebar({ activeKey, onNav, lang, collapsed, 
         </div>
         {!collapsed && (
           <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full shrink-0 bg-cyan-400" />
+            <div className="w-2 h-2 rounded-full shrink-0 bg-gold-400" />
             <span className="text-gray-600 text-xs">
               {isAr ? 'أمين: ' : 'AMEEN: '}
-              <span className="text-cyan-400">{isAr ? 'مزامنة' : 'Syncing'}</span>
+              <span className="text-gold-400">{isAr ? 'مزامنة' : 'Syncing'}</span>
             </span>
           </div>
         )}

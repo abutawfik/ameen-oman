@@ -172,7 +172,7 @@ const ChangeRoomForm = ({ isAr, onCancel, onSaved }: Props) => {
         {currentRoom && newRoom && (
           <div
             className="mt-5 flex items-center justify-center gap-6 p-5 rounded-xl"
-            style={{ background: "rgba(34,211,238,0.03)", border: "1px solid rgba(34,211,238,0.08)" }}
+            style={{ background: "rgba(181,142,60,0.03)", border: "1px solid rgba(181,142,60,0.08)" }}
           >
             <div className="flex flex-col items-center gap-2">
               <div
@@ -185,7 +185,7 @@ const ChangeRoomForm = ({ isAr, onCancel, onSaved }: Props) => {
             </div>
 
             <div className="flex flex-col items-center gap-1">
-              <i className="ri-arrow-right-line text-cyan-400 text-2xl" />
+              <i className="ri-arrow-right-line text-gold-400 text-2xl" />
               <span className="text-gray-700 text-xs font-['Inter']">{isAr ? "تغيير" : "Change"}</span>
             </div>
 

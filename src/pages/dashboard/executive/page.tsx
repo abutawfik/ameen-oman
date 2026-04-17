@@ -22,20 +22,20 @@ const ExecutiveDashboardPage = () => {
   const statusColors = { nominal: "#4ADE80", elevated: "#FACC15", critical: "#F87171" };
 
   return (
-    <div className="flex flex-col h-full" style={{ background: "#060D1A" }}>
+    <div className="flex flex-col h-full" style={{ background: "#0B1220" }}>
       <div className="fixed inset-0 pointer-events-none z-0 opacity-[0.02]">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-          <defs><pattern id="ex-grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="#22D3EE" strokeWidth="0.5" /></pattern></defs>
+          <defs><pattern id="ex-grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="#D4A84B" strokeWidth="0.5" /></pattern></defs>
           <rect width="100%" height="100%" fill="url(#ex-grid)" />
         </svg>
       </div>
 
       <div className="flex-1 flex flex-col overflow-hidden relative z-10">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-3 border-b flex-shrink-0" style={{ borderColor: "rgba(34,211,238,0.1)", background: "rgba(10,22,40,0.7)" }}>
+        <div className="flex items-center justify-between px-6 py-3 border-b flex-shrink-0" style={{ borderColor: "rgba(181,142,60,0.1)", background: "rgba(20,29,46,0.7)" }}>
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(34,211,238,0.1)", border: "1px solid rgba(34,211,238,0.3)" }}>
-              <i className="ri-bar-chart-box-line text-cyan-400 text-sm" />
+            <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.3)" }}>
+              <i className="ri-bar-chart-box-line text-gold-400 text-sm" />
             </div>
             <div>
               <h1 className="text-white text-sm font-bold font-['Inter']">Executive Intelligence Dashboard</h1>
@@ -44,14 +44,14 @@ const ExecutiveDashboardPage = () => {
           </div>
           <div className="flex items-center gap-3">
             <span className="text-gray-600 text-xs font-['JetBrains_Mono']">Last updated: 2025-04-06 07:45</span>
-            <button className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-['Inter'] cursor-pointer whitespace-nowrap" style={{ background: "rgba(34,211,238,0.08)", color: "#22D3EE", border: "1px solid rgba(34,211,238,0.2)" }}>
+            <button className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-['Inter'] cursor-pointer whitespace-nowrap" style={{ background: "rgba(181,142,60,0.08)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>
               <i className="ri-file-text-line" />Generate Briefing
             </button>
           </div>
         </div>
 
         {/* Scrollable content */}
-        <div className="flex-1 overflow-y-auto px-6 py-4 space-y-5" style={{ scrollbarWidth: "thin", scrollbarColor: "rgba(34,211,238,0.2) transparent" }}>
+        <div className="flex-1 overflow-y-auto px-6 py-4 space-y-5" style={{ scrollbarWidth: "thin", scrollbarColor: "rgba(181,142,60,0.2) transparent" }}>
 
           {/* KPI Cards */}
           <div className="grid grid-cols-6 gap-3">
@@ -105,7 +105,7 @@ const ExecutiveDashboardPage = () => {
                           {isExp && <p className="text-gray-400 text-xs font-['Inter'] mt-1 leading-relaxed">{item.summary}</p>}
                           <div className="flex items-center gap-2 mt-1 flex-wrap">
                             {item.streams.map((s) => (
-                              <span key={s} className="text-[9px] px-1.5 py-0.5 rounded font-['Inter']" style={{ background: "rgba(34,211,238,0.08)", color: "#22D3EE" }}>{s}</span>
+                              <span key={s} className="text-[9px] px-1.5 py-0.5 rounded font-['Inter']" style={{ background: "rgba(181,142,60,0.08)", color: "#D4A84B" }}>{s}</span>
                             ))}
                           </div>
                         </div>
@@ -140,7 +140,7 @@ const ExecutiveDashboardPage = () => {
                       <p className="text-white text-xs font-bold font-['Inter'] truncate">{s.name}</p>
                       <div className="flex items-center gap-2">
                         <span className="text-gray-600 text-[10px] font-['Inter']">{s.nationality}</span>
-                        <span className="text-[9px] px-1 rounded font-['JetBrains_Mono']" style={{ background: s.status === "wanted" ? "rgba(248,113,113,0.15)" : "rgba(34,211,238,0.08)", color: s.status === "wanted" ? "#F87171" : "#22D3EE" }}>
+                        <span className="text-[9px] px-1 rounded font-['JetBrains_Mono']" style={{ background: s.status === "wanted" ? "rgba(248,113,113,0.15)" : "rgba(181,142,60,0.08)", color: s.status === "wanted" ? "#F87171" : "#D4A84B" }}>
                           {s.status}
                         </span>
                       </div>
@@ -162,7 +162,7 @@ const ExecutiveDashboardPage = () => {
             {/* Threat Trend */}
             <div className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
               <div className="flex items-center gap-2 mb-4">
-                <i className="ri-line-chart-line text-cyan-400 text-sm" />
+                <i className="ri-line-chart-line text-gold-400 text-sm" />
                 <p className="text-white text-xs font-bold font-['Inter']">7-Day Threat Trend</p>
               </div>
               <div className="space-y-2">
@@ -199,10 +199,10 @@ const ExecutiveDashboardPage = () => {
             {/* Regional Threat Map */}
             <div className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
               <div className="flex items-center gap-2 mb-4">
-                <i className="ri-map-pin-line text-cyan-400 text-sm" />
+                <i className="ri-map-pin-line text-gold-400 text-sm" />
                 <p className="text-white text-xs font-bold font-['Inter']">Regional Threat Distribution — Oman</p>
               </div>
-              <div className="relative rounded-xl overflow-hidden" style={{ height: "180px", background: "rgba(34,211,238,0.03)", border: "1px solid rgba(34,211,238,0.1)" }}>
+              <div className="relative rounded-xl overflow-hidden" style={{ height: "180px", background: "rgba(181,142,60,0.03)", border: "1px solid rgba(181,142,60,0.1)" }}>
                 <div className="absolute inset-0 flex items-center justify-center">
                   <span className="text-gray-800 text-xs font-['JetBrains_Mono']">OMAN — REGIONAL MAP</span>
                 </div>
@@ -211,7 +211,7 @@ const ExecutiveDashboardPage = () => {
                     <div className="w-4 h-4 rounded-full flex items-center justify-center" style={{ background: `${threatLevelColors[r.threatLevel]}30`, border: `2px solid ${threatLevelColors[r.threatLevel]}`, boxShadow: r.threatLevel === "critical" ? `0 0 10px ${threatLevelColors[r.threatLevel]}60` : "none" }}>
                       <div className="w-1.5 h-1.5 rounded-full" style={{ background: threatLevelColors[r.threatLevel] }} />
                     </div>
-                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 px-2 py-1 rounded text-[9px] font-['Inter'] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none" style={{ background: "rgba(6,13,26,0.95)", border: "1px solid rgba(34,211,238,0.2)", color: "#E5E7EB" }}>
+                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 px-2 py-1 rounded text-[9px] font-['Inter'] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none" style={{ background: "rgba(11,18,32,0.95)", border: "1px solid rgba(181,142,60,0.2)", color: "#E5E7EB" }}>
                       <p className="font-bold">{r.region}</p>
                       <p>{r.activeIncidents} incidents · {r.watchlistHits} hits</p>
                     </div>
@@ -239,7 +239,7 @@ const ExecutiveDashboardPage = () => {
           <div className="rounded-xl overflow-hidden" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
             <div className="flex items-center justify-between px-4 py-3 border-b" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
               <div className="flex items-center gap-2">
-                <i className="ri-database-2-line text-cyan-400 text-sm" />
+                <i className="ri-database-2-line text-gold-400 text-sm" />
                 <p className="text-white text-xs font-bold font-['Inter']">16-Stream Health Monitor</p>
               </div>
               <div className="flex items-center gap-3">

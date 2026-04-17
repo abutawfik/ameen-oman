@@ -16,7 +16,7 @@ const statusConfig: Record<IocStatus, { color: string; label: string; icon: stri
 };
 
 const typeConfig: Record<IocType, { icon: string; color: string; label: string }> = {
-  ip:     { icon: "ri-server-line",       color: "#22D3EE", label: "IP Address" },
+  ip:     { icon: "ri-server-line",       color: "#D4A84B", label: "IP Address" },
   domain: { icon: "ri-global-line",       color: "#A78BFA", label: "Domain" },
   hash:   { icon: "ri-fingerprint-line",  color: "#F87171", label: "File Hash" },
   email:  { icon: "ri-mail-line",         color: "#FACC15", label: "Email" },
@@ -56,7 +56,7 @@ const IocFeed = ({ isAr }: Props) => {
       {/* Stats bar */}
       <div className="grid grid-cols-4 gap-3">
         {[
-          { label: "Total IOCs", value: iocEntries.length.toString(), icon: "ri-database-line", color: "#22D3EE" },
+          { label: "Total IOCs", value: iocEntries.length.toString(), icon: "ri-database-line", color: "#D4A84B" },
           { label: "Critical Active", value: iocEntries.filter(i => i.severity === "critical" && i.status === "active").length.toString(), icon: "ri-alarm-warning-line", color: "#F87171" },
           { label: "Investigating", value: iocEntries.filter(i => i.status === "investigating").length.toString(), icon: "ri-search-eye-line", color: "#FACC15" },
           { label: "Mitigated", value: iocEntries.filter(i => i.status === "mitigated").length.toString(), icon: "ri-shield-check-line", color: "#4ADE80" },
@@ -90,9 +90,9 @@ const IocFeed = ({ isAr }: Props) => {
             <button key={s} onClick={() => setSelectedSeverity(s)}
               className="px-3 py-1.5 rounded-lg text-xs font-['Inter'] cursor-pointer transition-all whitespace-nowrap"
               style={{
-                background: selectedSeverity === s ? (s === "all" ? "rgba(34,211,238,0.15)" : severityConfig[s as SeverityLevel]?.bg) : "rgba(255,255,255,0.04)",
-                color: selectedSeverity === s ? (s === "all" ? "#22D3EE" : severityConfig[s as SeverityLevel]?.color) : "#6B7280",
-                border: `1px solid ${selectedSeverity === s ? (s === "all" ? "rgba(34,211,238,0.3)" : severityConfig[s as SeverityLevel]?.color + "40") : "rgba(255,255,255,0.06)"}`,
+                background: selectedSeverity === s ? (s === "all" ? "rgba(181,142,60,0.15)" : severityConfig[s as SeverityLevel]?.bg) : "rgba(255,255,255,0.04)",
+                color: selectedSeverity === s ? (s === "all" ? "#D4A84B" : severityConfig[s as SeverityLevel]?.color) : "#6B7280",
+                border: `1px solid ${selectedSeverity === s ? (s === "all" ? "rgba(181,142,60,0.3)" : severityConfig[s as SeverityLevel]?.color + "40") : "rgba(255,255,255,0.06)"}`,
               }}>
               {s === "all" ? "All" : s.charAt(0).toUpperCase() + s.slice(1)}
             </button>
@@ -179,8 +179,8 @@ const IocFeed = ({ isAr }: Props) => {
                           <div className="space-y-1">
                             {ioc.linkedSubjects.length > 0 ? ioc.linkedSubjects.map((s) => (
                               <div key={s} className="flex items-center gap-1.5">
-                                <i className="ri-user-line text-cyan-400 text-xs" />
-                                <span className="text-cyan-400 text-xs font-['Inter']">{s}</span>
+                                <i className="ri-user-line text-gold-400 text-xs" />
+                                <span className="text-gold-400 text-xs font-['Inter']">{s}</span>
                               </div>
                             )) : <span className="text-gray-700 text-xs">None identified</span>}
                           </div>
@@ -189,7 +189,7 @@ const IocFeed = ({ isAr }: Props) => {
                           <p className="text-gray-600 text-[10px] font-['JetBrains_Mono'] mb-1">LINKED STREAMS</p>
                           <div className="flex flex-wrap gap-1">
                             {ioc.linkedStreams.map((s) => (
-                              <span key={s} className="text-[10px] px-2 py-0.5 rounded font-['Inter']" style={{ background: "rgba(34,211,238,0.1)", color: "#22D3EE" }}>{s}</span>
+                              <span key={s} className="text-[10px] px-2 py-0.5 rounded font-['Inter']" style={{ background: "rgba(181,142,60,0.1)", color: "#D4A84B" }}>{s}</span>
                             ))}
                           </div>
                         </div>
@@ -220,7 +220,7 @@ const IocFeed = ({ isAr }: Props) => {
                         ))}
                       </div>
                       <div className="flex gap-2">
-                        <button className="flex-1 py-1.5 rounded-lg text-[10px] font-['Inter'] cursor-pointer transition-colors whitespace-nowrap" style={{ background: "rgba(34,211,238,0.08)", color: "#22D3EE", border: "1px solid rgba(34,211,238,0.2)" }}>
+                        <button className="flex-1 py-1.5 rounded-lg text-[10px] font-['Inter'] cursor-pointer transition-colors whitespace-nowrap" style={{ background: "rgba(181,142,60,0.08)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>
                           <i className="ri-search-eye-line mr-1" />Investigate
                         </button>
                         <button className="flex-1 py-1.5 rounded-lg text-[10px] font-['Inter'] cursor-pointer transition-colors whitespace-nowrap" style={{ background: "rgba(248,113,113,0.08)", color: "#F87171", border: "1px solid rgba(248,113,113,0.2)" }}>

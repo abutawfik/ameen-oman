@@ -37,7 +37,7 @@ const BatchUploadStatus = ({ isAr, results }: Props) => {
       {/* Summary pills */}
       <div className="flex flex-wrap items-center gap-3">
         {[
-          { label: isAr ? "إجمالي" : "Total", value: results.length, color: "#22D3EE" },
+          { label: isAr ? "إجمالي" : "Total", value: results.length, color: "#D4A84B" },
           { label: isAr ? "مقبول" : "Accepted", value: accepted, color: "#4ADE80" },
           { label: isAr ? "مرفوض" : "Rejected", value: rejected, color: "#F87171" },
           { label: isAr ? "معلق" : "Pending", value: pending, color: "#FACC15" },
@@ -51,7 +51,7 @@ const BatchUploadStatus = ({ isAr, results }: Props) => {
         <div className="ml-auto flex items-center gap-2">
           <button type="button"
             className="flex items-center gap-2 px-4 py-2 rounded-lg border text-xs font-semibold cursor-pointer whitespace-nowrap"
-            style={{ background: "transparent", borderColor: "rgba(34,211,238,0.3)", color: "#22D3EE" }}>
+            style={{ background: "transparent", borderColor: "rgba(181,142,60,0.3)", color: "#D4A84B" }}>
             <i className="ri-download-2-line text-xs" />
             {isAr ? "تصدير النتائج" : "Export Results"}
           </button>
@@ -68,16 +68,16 @@ const BatchUploadStatus = ({ isAr, results }: Props) => {
 
       {/* Filter bar */}
       <div className="flex flex-wrap items-center gap-3 rounded-2xl border p-4"
-        style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.12)", backdropFilter: "blur(12px)" }}>
+        style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
         <select value={filterType} onChange={(e) => setFilterType(e.target.value)}
           className="px-3 py-2 rounded-lg border text-sm cursor-pointer outline-none"
-          style={{ background: "rgba(6,13,26,0.8)", borderColor: "rgba(34,211,238,0.15)", color: "#D1D5DB", minWidth: "150px" }}>
+          style={{ background: "rgba(11,18,32,0.8)", borderColor: "rgba(181,142,60,0.15)", color: "#D1D5DB", minWidth: "150px" }}>
           <option value="all">{isAr ? "كل الأنواع" : "All Types"}</option>
           {uniqueTypes.map((t) => <option key={t} value={t}>{t}</option>)}
         </select>
         <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)}
           className="px-3 py-2 rounded-lg border text-sm cursor-pointer outline-none"
-          style={{ background: "rgba(6,13,26,0.8)", borderColor: "rgba(34,211,238,0.15)", color: "#D1D5DB", minWidth: "130px" }}>
+          style={{ background: "rgba(11,18,32,0.8)", borderColor: "rgba(181,142,60,0.15)", color: "#D1D5DB", minWidth: "130px" }}>
           <option value="all">{isAr ? "كل الحالات" : "All Status"}</option>
           <option value="accepted">{isAr ? "مقبول" : "Accepted"}</option>
           <option value="rejected">{isAr ? "مرفوض" : "Rejected"}</option>
@@ -88,22 +88,22 @@ const BatchUploadStatus = ({ isAr, results }: Props) => {
           <input type="text" value={search} onChange={(e) => setSearch(e.target.value)}
             placeholder={isAr ? "بحث..." : "Search..."}
             className="w-full pl-9 pr-3 py-2 rounded-lg border text-sm outline-none"
-            style={{ background: "rgba(6,13,26,0.8)", borderColor: "rgba(34,211,238,0.15)", color: "#D1D5DB" }} />
+            style={{ background: "rgba(11,18,32,0.8)", borderColor: "rgba(181,142,60,0.15)", color: "#D1D5DB" }} />
         </div>
         <button type="button"
           className="px-4 py-2 rounded-lg text-sm font-bold cursor-pointer whitespace-nowrap"
-          style={{ background: "#22D3EE", color: "#060D1A" }}>
+          style={{ background: "#D4A84B", color: "#0B1220" }}>
           {isAr ? "بحث" : "Go"}
         </button>
       </div>
 
       {/* Results table */}
       <div className="rounded-2xl border overflow-hidden"
-        style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.12)", backdropFilter: "blur(12px)" }}>
+        style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
         <div className="overflow-x-auto">
           <table className="w-full min-w-[700px]">
             <thead>
-              <tr style={{ background: "rgba(34,211,238,0.05)", borderBottom: "1px solid rgba(34,211,238,0.1)" }}>
+              <tr style={{ background: "rgba(181,142,60,0.05)", borderBottom: "1px solid rgba(181,142,60,0.1)" }}>
                 {[
                   isAr ? "الصف" : "Row",
                   isAr ? "المرجع" : "Reference",
@@ -122,18 +122,18 @@ const BatchUploadStatus = ({ isAr, results }: Props) => {
                   onClick={() => row.errors.length > 0 ? setSelectedRow(selectedRow?.id === row.id ? null : row) : undefined}
                   className="border-b transition-colors"
                   style={{
-                    background: selectedRow?.id === row.id ? "rgba(34,211,238,0.05)" : idx % 2 === 0 ? "rgba(10,22,40,0.6)" : "rgba(6,13,26,0.4)",
-                    borderColor: "rgba(34,211,238,0.05)",
+                    background: selectedRow?.id === row.id ? "rgba(181,142,60,0.05)" : idx % 2 === 0 ? "rgba(20,29,46,0.6)" : "rgba(11,18,32,0.4)",
+                    borderColor: "rgba(181,142,60,0.05)",
                     cursor: row.errors.length > 0 ? "pointer" : "default",
                     borderLeft: row.status === "rejected" ? "2px solid #F87171" : row.status === "pending" ? "2px solid #FACC15" : "2px solid transparent",
                   }}
-                  onMouseEnter={(e) => { if (row.errors.length > 0) (e.currentTarget as HTMLElement).style.background = "rgba(34,211,238,0.04)"; }}
-                  onMouseLeave={(e) => { if (selectedRow?.id !== row.id) (e.currentTarget as HTMLElement).style.background = idx % 2 === 0 ? "rgba(10,22,40,0.6)" : "rgba(6,13,26,0.4)"; }}>
+                  onMouseEnter={(e) => { if (row.errors.length > 0) (e.currentTarget as HTMLElement).style.background = "rgba(181,142,60,0.04)"; }}
+                  onMouseLeave={(e) => { if (selectedRow?.id !== row.id) (e.currentTarget as HTMLElement).style.background = idx % 2 === 0 ? "rgba(20,29,46,0.6)" : "rgba(11,18,32,0.4)"; }}>
                   <td className="px-4 py-3">
                     <span className="text-gray-500 text-xs font-['JetBrains_Mono']">#{row.row}</span>
                   </td>
                   <td className="px-4 py-3">
-                    <span className="text-cyan-400 text-xs font-['JetBrains_Mono']">{row.ref}</span>
+                    <span className="text-gold-400 text-xs font-['JetBrains_Mono']">{row.ref}</span>
                   </td>
                   <td className="px-4 py-3">
                     <span className="text-white text-xs font-semibold">{row.type}</span>
@@ -168,7 +168,7 @@ const BatchUploadStatus = ({ isAr, results }: Props) => {
       {/* Error slide-out panel */}
       {selectedRow && selectedRow.errors.length > 0 && (
         <div className="rounded-2xl border overflow-hidden"
-          style={{ background: "rgba(6,13,26,0.95)", borderColor: "rgba(251,191,36,0.25)", backdropFilter: "blur(16px)" }}>
+          style={{ background: "rgba(11,18,32,0.95)", borderColor: "rgba(251,191,36,0.25)", backdropFilter: "blur(16px)" }}>
           <div className="flex items-center justify-between px-6 py-4 border-b" style={{ borderColor: "rgba(251,191,36,0.12)" }}>
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 flex items-center justify-center rounded-lg"
@@ -197,7 +197,7 @@ const BatchUploadStatus = ({ isAr, results }: Props) => {
             <div className="flex items-center gap-3 pt-2">
               <button type="button"
                 className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold cursor-pointer whitespace-nowrap"
-                style={{ background: "#22D3EE", color: "#060D1A" }}>
+                style={{ background: "#D4A84B", color: "#0B1220" }}>
                 <i className="ri-edit-line text-sm" />
                 {isAr ? "تصحيح وإعادة الإرسال" : "Fix & Re-submit"}
               </button>

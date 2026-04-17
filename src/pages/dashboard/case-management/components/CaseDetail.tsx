@@ -69,9 +69,9 @@ const CaseDetail = ({ caseData, isAr }: Props) => {
           <button key={t.key} onClick={() => setSubTab(t.key)}
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-['Inter'] cursor-pointer transition-all whitespace-nowrap"
             style={{
-              background: subTab === t.key ? "rgba(34,211,238,0.1)" : "transparent",
-              color: subTab === t.key ? "#22D3EE" : "#6B7280",
-              border: subTab === t.key ? "1px solid rgba(34,211,238,0.25)" : "1px solid transparent",
+              background: subTab === t.key ? "rgba(181,142,60,0.1)" : "transparent",
+              color: subTab === t.key ? "#D4A84B" : "#6B7280",
+              border: subTab === t.key ? "1px solid rgba(181,142,60,0.25)" : "1px solid transparent",
             }}>
             <i className={`${t.icon} text-xs`} />
             {t.label}
@@ -80,7 +80,7 @@ const CaseDetail = ({ caseData, isAr }: Props) => {
       </div>
 
       {/* Content */}
-      <div className="flex-1 overflow-y-auto p-4" style={{ scrollbarWidth: "thin", scrollbarColor: "rgba(34,211,238,0.2) transparent" }}>
+      <div className="flex-1 overflow-y-auto p-4" style={{ scrollbarWidth: "thin", scrollbarColor: "rgba(181,142,60,0.2) transparent" }}>
         {subTab === "overview" && (
           <div className="space-y-4">
             <div className="p-3 rounded-xl" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
@@ -117,7 +117,7 @@ const CaseDetail = ({ caseData, isAr }: Props) => {
               <p className="text-gray-600 text-[10px] font-['JetBrains_Mono'] mb-2">INVESTIGATION TEAM</p>
               <div className="flex flex-wrap gap-2">
                 {[caseData.leadOfficer, ...caseData.team].map((member) => (
-                  <span key={member} className="text-xs px-2.5 py-1 rounded-lg font-['Inter']" style={{ background: "rgba(34,211,238,0.06)", color: "#22D3EE", border: "1px solid rgba(34,211,238,0.15)" }}>
+                  <span key={member} className="text-xs px-2.5 py-1 rounded-lg font-['Inter']" style={{ background: "rgba(181,142,60,0.06)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.15)" }}>
                     {member}
                   </span>
                 ))}
@@ -169,10 +169,10 @@ const CaseDetail = ({ caseData, isAr }: Props) => {
         {subTab === "notes" && (
           <div className="space-y-3">
             {caseData.notes.map((note) => (
-              <div key={note.id} className="p-3 rounded-xl" style={{ background: note.pinned ? "rgba(34,211,238,0.04)" : "rgba(255,255,255,0.02)", border: `1px solid ${note.pinned ? "rgba(34,211,238,0.2)" : "rgba(255,255,255,0.06)"}` }}>
+              <div key={note.id} className="p-3 rounded-xl" style={{ background: note.pinned ? "rgba(181,142,60,0.04)" : "rgba(255,255,255,0.02)", border: `1px solid ${note.pinned ? "rgba(181,142,60,0.2)" : "rgba(255,255,255,0.06)"}` }}>
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-2">
-                    {note.pinned && <i className="ri-pushpin-line text-cyan-400 text-xs" />}
+                    {note.pinned && <i className="ri-pushpin-line text-gold-400 text-xs" />}
                     <span className="text-white text-xs font-bold font-['Inter']">{note.author}</span>
                     <span className="text-gray-600 text-[10px] font-['Inter']">{note.authorRole}</span>
                   </div>
@@ -188,7 +188,7 @@ const CaseDetail = ({ caseData, isAr }: Props) => {
                 className="w-full bg-transparent text-white text-xs font-['Inter'] outline-none resize-none placeholder-gray-700"
               />
               <div className="flex justify-end mt-2">
-                <button className="px-4 py-1.5 rounded-lg text-xs font-['Inter'] cursor-pointer whitespace-nowrap" style={{ background: "rgba(34,211,238,0.1)", color: "#22D3EE", border: "1px solid rgba(34,211,238,0.2)" }}>
+                <button className="px-4 py-1.5 rounded-lg text-xs font-['Inter'] cursor-pointer whitespace-nowrap" style={{ background: "rgba(181,142,60,0.1)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>
                   Add Note
                 </button>
               </div>

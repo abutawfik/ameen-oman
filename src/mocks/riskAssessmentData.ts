@@ -90,7 +90,7 @@ export interface MultiplierRule {
 }
 
 export const STREAM_WEIGHTS: StreamWeight[] = [
-  { key: "hotel",        label: "Hotels",           labelAr: "الفنادق",              icon: "ri-hotel-line",           color: "#22D3EE", weight: 3,  defaultWeight: 3  },
+  { key: "hotel",        label: "Hotels",           labelAr: "الفنادق",              icon: "ri-hotel-line",           color: "#D4A84B", weight: 3,  defaultWeight: 3  },
   { key: "car",          label: "Car Rental",        labelAr: "تأجير السيارات",       icon: "ri-car-line",             color: "#4ADE80", weight: 4,  defaultWeight: 4  },
   { key: "mobile",       label: "Mobile / SIM",      labelAr: "الاتصالات",            icon: "ri-sim-card-line",        color: "#A78BFA", weight: 5,  defaultWeight: 5  },
   { key: "municipality", label: "Municipality",      labelAr: "البلديات",             icon: "ri-government-line",      color: "#FACC15", weight: 3,  defaultWeight: 3  },
@@ -201,7 +201,7 @@ export const FLAGGED_PERSONS: FlaggedPerson[] = [
       { id: "t2",  stream: "Financial",   streamAr: "المالية",      icon: "ri-bank-card-line",       color: "#F87171", event: "Large Payment",          eventAr: "دفعة كبيرة",          detail: "OMR 8,500 — single transaction, cash",                  detailAr: "8,500 ر.ع — معاملة واحدة، نقداً",                     timestamp: "14:28:10", ref: "PAY-2026-88220", risk: "review"  },
       { id: "t3",  stream: "Transport",   streamAr: "النقل",        icon: "ri-bus-line",             color: "#FB923C", event: "Cross-Region Trip",      eventAr: "رحلة بين مناطق",      detail: "Capital → Northern City — 3 trips this week",           detailAr: "العاصمة → المدينة الشمالية — 3 رحلات هذا الأسبوع",    timestamp: "11:15:00", ref: "TRN-2026-55210", risk: "review"  },
       { id: "t4",  stream: "Employment",  streamAr: "التوظيف",      icon: "ri-briefcase-line",       color: "#F9A8D4", event: "Employer Change",        eventAr: "تغيير صاحب عمل",      detail: "3rd employer change this year — pattern flagged",       detailAr: "تغيير صاحب العمل الثالث هذا العام — نمط مُبلَّغ",     timestamp: "08:00:00", ref: "EMP-2026-33210", risk: "review"  },
-      { id: "t5",  stream: "Hotel",       streamAr: "الفنادق",      icon: "ri-hotel-line",           color: "#22D3EE", event: "Check-In",               eventAr: "تسجيل وصول",          detail: "Grand Muscat Hotel — Room 412, 3 nights",               detailAr: "فندق غراند مسقط — غرفة 412، 3 ليالٍ",                 timestamp: "07:30:00", ref: "HTL-2026-22100", risk: "clear"   },
+      { id: "t5",  stream: "Hotel",       streamAr: "الفنادق",      icon: "ri-hotel-line",           color: "#D4A84B", event: "Check-In",               eventAr: "تسجيل وصول",          detail: "Grand Muscat Hotel — Room 412, 3 nights",               detailAr: "فندق غراند مسقط — غرفة 412، 3 ليالٍ",                 timestamp: "07:30:00", ref: "HTL-2026-22100", risk: "clear"   },
       { id: "t6",  stream: "Postal",      streamAr: "البريد",       icon: "ri-mail-line",            color: "#F9A8D4", event: "Package Received",       eventAr: "استلام طرد",          detail: "2 packages from UAE — contents undeclared",             detailAr: "طردان من الإمارات — المحتويات غير مُعلنة",             timestamp: "06:45:00", ref: "PST-2026-55100", risk: "review"  },
     ],
     scoreBreakdown: [
@@ -246,14 +246,14 @@ export const FLAGGED_PERSONS: FlaggedPerson[] = [
     timeline: [
       { id: "t1",  stream: "Border",      streamAr: "الحدود",       icon: "ri-passport-line",        color: "#38BDF8", event: "Overstay Alert",         eventAr: "تنبيه تجاوز إقامة",   detail: "Visa expired 3 days ago — no exit recorded",            detailAr: "انتهت التأشيرة منذ 3 أيام — لا خروج مسجل",            timestamp: "14:29:50", ref: "BRD-2026-44888", risk: "flagged" },
       { id: "t2",  stream: "Mobile",      streamAr: "الاتصالات",    icon: "ri-sim-card-line",        color: "#A78BFA", event: "SIM Activation",         eventAr: "تفعيل شريحة",         detail: "Prepaid SIM — City Center branch, 2nd SIM",             detailAr: "شريحة مدفوعة مسبقاً — فرع مركز المدينة، الثانية",     timestamp: "12:10:00", ref: "MOB-2026-19200", risk: "review"  },
-      { id: "t3",  stream: "Hotel",       streamAr: "الفنادق",      icon: "ri-hotel-line",           color: "#22D3EE", event: "No Registration",        eventAr: "لا تسجيل فندقي",      detail: "No hotel record since entry — 33 days",                 detailAr: "لا سجل فندقي منذ الدخول — 33 يوماً",                  timestamp: "2026-01-01", ref: "HTL-NONE", risk: "flagged" },
+      { id: "t3",  stream: "Hotel",       streamAr: "الفنادق",      icon: "ri-hotel-line",           color: "#D4A84B", event: "No Registration",        eventAr: "لا تسجيل فندقي",      detail: "No hotel record since entry — 33 days",                 detailAr: "لا سجل فندقي منذ الدخول — 33 يوماً",                  timestamp: "2026-01-01", ref: "HTL-NONE", risk: "flagged" },
       { id: "t4",  stream: "Transport",   streamAr: "النقل",        icon: "ri-bus-line",             color: "#FB923C", event: "Bus Trip",               eventAr: "رحلة حافلة",          detail: "City Center → Industrial Area — 3 trips",               detailAr: "مركز المدينة → المنطقة الصناعية — 3 رحلات",            timestamp: "10:00:00", ref: "TRN-2026-55188", risk: "review"  },
       { id: "t5",  stream: "Border",      streamAr: "الحدود",       icon: "ri-passport-line",        color: "#38BDF8", event: "Entry Recorded",         eventAr: "تسجيل دخول",          detail: "Capital Airport — Tourist Visa 30d, 2026-01-01",        detailAr: "مطار العاصمة — تأشيرة سياحية 30 يوم، 2026-01-01",     timestamp: "2026-01-01", ref: "BRD-2026-44001", risk: "clear" },
     ],
     scoreBreakdown: [
       { stream: "Border",  streamAr: "الحدود",    icon: "ri-passport-line", color: "#38BDF8", weight: 7, rawScore: 90, contribution: 28.4, multiplier: 2.0, multiplierReason: "No hotel 24h after arrival" },
       { stream: "Mobile",  streamAr: "الاتصالات", icon: "ri-sim-card-line", color: "#A78BFA", weight: 5, rawScore: 55, contribution: 9.8,  multiplier: 1.0, multiplierReason: undefined },
-      { stream: "Hotel",   streamAr: "الفنادق",   icon: "ri-hotel-line",    color: "#22D3EE", weight: 3, rawScore: 80, contribution: 8.6,  multiplier: 1.0, multiplierReason: undefined },
+      { stream: "Hotel",   streamAr: "الفنادق",   icon: "ri-hotel-line",    color: "#D4A84B", weight: 3, rawScore: 80, contribution: 8.6,  multiplier: 1.0, multiplierReason: undefined },
     ],
     scoreHistory: [
       { date: "Jan", score: 5 }, { date: "Feb", score: 5 }, { date: "Mar", score: 5 },

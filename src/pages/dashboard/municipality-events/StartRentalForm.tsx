@@ -272,9 +272,9 @@ const StartRentalForm = ({ isAr, onCancel }: Props) => {
               </FormField>
             </div>
             {durationMonths && (
-              <div className="flex items-center gap-2 px-3 py-2 rounded-lg border" style={{ background: "rgba(34,211,238,0.05)", borderColor: "rgba(34,211,238,0.2)" }}>
-                <i className="ri-calendar-check-line text-cyan-400 text-sm" />
-                <span className="text-cyan-400 text-xs font-['JetBrains_Mono']">{durationMonths} {isAr ? "شهراً" : "months"}</span>
+              <div className="flex items-center gap-2 px-3 py-2 rounded-lg border" style={{ background: "rgba(181,142,60,0.05)", borderColor: "rgba(181,142,60,0.2)" }}>
+                <i className="ri-calendar-check-line text-gold-400 text-sm" />
+                <span className="text-gold-400 text-xs font-['JetBrains_Mono']">{durationMonths} {isAr ? "شهراً" : "months"}</span>
               </div>
             )}
             <div className="grid grid-cols-2 gap-3">
@@ -400,9 +400,9 @@ const StartRentalForm = ({ isAr, onCancel }: Props) => {
           type="button"
           onClick={addCoTenant}
           className="w-full flex items-center justify-center gap-2 py-3 rounded-xl border-2 border-dashed text-sm font-semibold cursor-pointer transition-all"
-          style={{ borderColor: "rgba(34,211,238,0.25)", color: "#22D3EE", background: "rgba(34,211,238,0.03)" }}
-          onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(34,211,238,0.5)"; (e.currentTarget as HTMLButtonElement).style.background = "rgba(34,211,238,0.06)"; }}
-          onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(34,211,238,0.25)"; (e.currentTarget as HTMLButtonElement).style.background = "rgba(34,211,238,0.03)"; }}
+          style={{ borderColor: "rgba(181,142,60,0.25)", color: "#D4A84B", background: "rgba(181,142,60,0.03)" }}
+          onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(181,142,60,0.5)"; (e.currentTarget as HTMLButtonElement).style.background = "rgba(181,142,60,0.06)"; }}
+          onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(181,142,60,0.25)"; (e.currentTarget as HTMLButtonElement).style.background = "rgba(181,142,60,0.03)"; }}
         >
           <i className="ri-user-add-line" />{isAr ? "إضافة مستأجر مشارك" : "Add Co-Tenant"}
         </button>

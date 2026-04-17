@@ -1,0 +1,272 @@
+/* ================================================================
+ * AL-AMEEN · Design Tokens · v1.0
+ * National Intelligence Platform
+ * ----------------------------------------------------------------
+ * Palette: Oman Sovereign — deep navy base, Oman red primary,
+ *          desert ivory surfaces, frankincense gold accent.
+ *
+ * Usage: import this file once in your global stylesheet; every
+ * token is exposed as a CSS custom property under :root and
+ * [data-theme="light"] / [data-theme="dark"] overrides.
+ * ================================================================ */
+
+:root {
+  /* ---------- BRAND CORE ---------- */
+  --alm-midnight-900: #05080F;   /* deepest — modals, veils */
+  --alm-midnight-800: #0B1220;   /* shell background (dark) */
+  --alm-midnight-700: #141D2E;   /* cards (dark) */
+  --alm-midnight-600: #1C2740;   /* raised surfaces (dark) */
+  --alm-midnight-500: #2A3654;   /* hover surfaces (dark) */
+  --alm-midnight-400: #3E4A6B;   /* borders (dark) */
+  --alm-midnight-300: #5A6787;   /* muted text (dark) */
+  --alm-midnight-200: #8B95B0;   /* secondary text (dark) */
+  --alm-midnight-100: #B8BFD0;   /* primary text (dark inverted) */
+
+  --alm-oman-900: #4A0F13;
+  --alm-oman-800: #6B1519;
+  --alm-oman-700: #831B1F;
+  --alm-oman-600: #9A1F24;       /* PRIMARY Oman Royal Red */
+  --alm-oman-500: #B32830;
+  --alm-oman-400: #CC4049;
+  --alm-oman-300: #E06570;
+  --alm-oman-200: #F0A0A7;
+  --alm-oman-100: #FADDE0;
+  --alm-oman-050: #FDF0F2;
+
+  --alm-gold-900: #5A4418;
+  --alm-gold-800: #7A5C22;
+  --alm-gold-700: #96732C;
+  --alm-gold-600: #B58E3C;       /* Frankincense Gold — executive accent */
+  --alm-gold-500: #C99C48;
+  --alm-gold-400: #D4A84B;
+  --alm-gold-300: #DDB96B;
+  --alm-gold-200: #E8CF9A;
+  --alm-gold-100: #F4E5C4;
+  --alm-gold-050: #FBF6EA;
+
+  --alm-ivory-900: #4A453B;
+  --alm-ivory-800: #6B6457;
+  --alm-ivory-700: #8A8374;
+  --alm-ivory-600: #A9A193;
+  --alm-ivory-500: #C4BCA8;
+  --alm-ivory-400: #DAD0B8;
+  --alm-ivory-300: #E7DEC7;
+  --alm-ivory-200: #EFE7D3;
+  --alm-ivory-100: #F5EFE3;      /* Desert Ivory — warm canvas */
+  --alm-ivory-050: #FAF6EC;
+  --alm-ivory-000: #FFFFFF;
+
+  /* ---------- SEMANTIC · RISK TIERS ---------- */
+  /* Used by scoring engine for unified risk visualization        */
+  --alm-risk-clear:    #0E7C66;  /* verdant — 0-24   : routine   */
+  --alm-risk-low:      #4F9A35;  /* olive  — 25-49   : low       */
+  --alm-risk-elevated: #C98A1B;  /* amber  — 50-69   : elevated  */
+  --alm-risk-high:     #D25A2A;  /* ember  — 70-84   : high      */
+  --alm-risk-critical: #9A1F24;  /* oman red 85-100  : critical  */
+
+  --alm-risk-clear-bg:    #E7F4EF;
+  --alm-risk-low-bg:      #EDF5E6;
+  --alm-risk-elevated-bg: #FCF3DF;
+  --alm-risk-high-bg:     #FCE9DE;
+  --alm-risk-critical-bg: #FADDE0;
+
+  /* ---------- SEMANTIC · STATUS ---------- */
+  --alm-success: #0E7C66;
+  --alm-warning: #C98A1B;
+  --alm-danger:  #9A1F24;
+  --alm-info:    #2466A3;
+
+  /* ---------- SEMANTIC · STREAM CATEGORIES ---------- */
+  /* 10 category hues mapped to the 16 intelligence streams       */
+  --alm-cat-core:      #2466A3;  /* Core Intelligence — indigo    */
+  --alm-cat-mobility:  #D25A2A;  /* Mobility — ember              */
+  --alm-cat-financial: #0E7C66;  /* Financial — verdant           */
+  --alm-cat-health:    #B32830;  /* Health — rose                 */
+  --alm-cat-utility:   #C98A1B;  /* Utility — amber               */
+  --alm-cat-education: #6B4FAE;  /* Education — violet            */
+  --alm-cat-labor:     #4F9A35;  /* Labor — olive                 */
+  --alm-cat-commerce:  #1F7A8C;  /* Commerce — teal               */
+  --alm-cat-digital:   #8A6C1B;  /* Digital — khaki               */
+  --alm-cat-customs:   #9A1F24;  /* Customs — oman red            */
+  --alm-cat-maritime:  #2C5F8F;  /* Maritime — sea                */
+  --alm-cat-postal:    #A8547A;  /* Postal — mulberry             */
+
+  /* ---------- TYPE SCALE ---------- */
+  --alm-font-display:  'Canela', 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  --alm-font-sans:     'Inter', 'Geist', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --alm-font-arabic:   'Readex Pro', 'Tajawal', 'IBM Plex Sans Arabic', 'Noto Sans Arabic', sans-serif;
+  --alm-font-mono:     'JetBrains Mono', 'IBM Plex Mono', ui-monospace, 'SF Mono', monospace;
+
+  /* Modular scale · 1.250 (Major Third) */
+  --alm-text-2xs:  0.6875rem;   /* 11px — micro labels */
+  --alm-text-xs:   0.75rem;     /* 12px — table, tags */
+  --alm-text-sm:   0.875rem;    /* 14px — body small */
+  --alm-text-md:   1rem;        /* 16px — body */
+  --alm-text-lg:   1.125rem;    /* 18px — lead */
+  --alm-text-xl:   1.25rem;     /* 20px — h5 */
+  --alm-text-2xl:  1.5rem;      /* 24px — h4 */
+  --alm-text-3xl:  1.875rem;    /* 30px — h3 */
+  --alm-text-4xl:  2.25rem;     /* 36px — h2 */
+  --alm-text-5xl:  3rem;        /* 48px — h1 */
+  --alm-text-6xl:  3.75rem;     /* 60px — hero */
+  --alm-text-7xl:  4.5rem;      /* 72px — statement */
+
+  --alm-weight-regular:  400;
+  --alm-weight-medium:   500;
+  --alm-weight-semibold: 600;
+  --alm-weight-bold:     700;
+
+  --alm-leading-tight:   1.1;
+  --alm-leading-snug:    1.25;
+  --alm-leading-normal:  1.5;
+  --alm-leading-relaxed: 1.65;
+
+  --alm-tracking-tight:   -0.02em;
+  --alm-tracking-normal:   0em;
+  --alm-tracking-wide:     0.04em;
+  --alm-tracking-wider:    0.08em;
+  --alm-tracking-widest:   0.15em;  /* small-caps metadata */
+
+  /* ---------- SPACING · 4px base ---------- */
+  --alm-space-0:   0;
+  --alm-space-1:   0.25rem;   /*  4px */
+  --alm-space-2:   0.5rem;    /*  8px */
+  --alm-space-3:   0.75rem;   /* 12px */
+  --alm-space-4:   1rem;      /* 16px */
+  --alm-space-5:   1.25rem;   /* 20px */
+  --alm-space-6:   1.5rem;    /* 24px */
+  --alm-space-8:   2rem;      /* 32px */
+  --alm-space-10:  2.5rem;    /* 40px */
+  --alm-space-12:  3rem;      /* 48px */
+  --alm-space-16:  4rem;      /* 64px */
+  --alm-space-20:  5rem;      /* 80px */
+  --alm-space-24:  6rem;      /* 96px */
+  --alm-space-32:  8rem;      /* 128px */
+
+  /* ---------- RADII ---------- */
+  --alm-radius-none: 0;
+  --alm-radius-xs:   2px;
+  --alm-radius-sm:   4px;
+  --alm-radius-md:   6px;
+  --alm-radius-lg:   8px;
+  --alm-radius-xl:   12px;
+  --alm-radius-2xl:  16px;
+  --alm-radius-full: 9999px;
+
+  /* ---------- ELEVATION (shadows) ---------- */
+  --alm-shadow-xs: 0 1px 2px rgba(5, 8, 15, 0.06);
+  --alm-shadow-sm: 0 1px 3px rgba(5, 8, 15, 0.08), 0 1px 2px rgba(5, 8, 15, 0.06);
+  --alm-shadow-md: 0 4px 8px rgba(5, 8, 15, 0.08), 0 2px 4px rgba(5, 8, 15, 0.06);
+  --alm-shadow-lg: 0 12px 20px rgba(5, 8, 15, 0.10), 0 4px 8px rgba(5, 8, 15, 0.06);
+  --alm-shadow-xl: 0 20px 40px rgba(5, 8, 15, 0.14), 0 8px 16px rgba(5, 8, 15, 0.08);
+  --alm-shadow-2xl: 0 32px 64px rgba(5, 8, 15, 0.18);
+  --alm-shadow-inner: inset 0 1px 2px rgba(5, 8, 15, 0.06);
+
+  /* Gold glow — used on executive cards and royal-seal CTAs */
+  --alm-glow-gold: 0 0 0 1px rgba(181, 142, 60, 0.4), 0 4px 16px rgba(181, 142, 60, 0.2);
+  --alm-glow-risk: 0 0 0 1px rgba(154, 31, 36, 0.4), 0 4px 16px rgba(154, 31, 36, 0.2);
+
+  /* ---------- MOTION ---------- */
+  --alm-dur-instant: 80ms;
+  --alm-dur-fast:    150ms;
+  --alm-dur-med:     250ms;
+  --alm-dur-slow:    400ms;
+  --alm-ease-std:    cubic-bezier(0.4, 0, 0.2, 1);
+  --alm-ease-in:     cubic-bezier(0.4, 0, 1, 1);
+  --alm-ease-out:    cubic-bezier(0, 0, 0.2, 1);
+  --alm-ease-emph:   cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  /* ---------- Z-INDEX ---------- */
+  --alm-z-base:     0;
+  --alm-z-raised:   10;
+  --alm-z-sticky:   100;
+  --alm-z-overlay:  500;
+  --alm-z-modal:    1000;
+  --alm-z-toast:    2000;
+
+  /* ---------- SEMANTIC TOKENS · LIGHT (default) ---------- */
+  --alm-bg-canvas:      var(--alm-ivory-100);
+  --alm-bg-surface:     var(--alm-ivory-000);
+  --alm-bg-raised:      var(--alm-ivory-000);
+  --alm-bg-sunken:      var(--alm-ivory-200);
+  --alm-bg-inverse:     var(--alm-midnight-800);
+
+  --alm-fg-primary:     var(--alm-midnight-800);
+  --alm-fg-secondary:   var(--alm-midnight-600);
+  --alm-fg-muted:       var(--alm-midnight-300);
+  --alm-fg-subtle:      var(--alm-ivory-800);
+  --alm-fg-on-primary:  var(--alm-ivory-100);
+  --alm-fg-on-accent:   var(--alm-midnight-800);
+
+  --alm-border-subtle:  var(--alm-ivory-300);
+  --alm-border-default: var(--alm-ivory-400);
+  --alm-border-strong:  var(--alm-midnight-400);
+  --alm-border-accent:  var(--alm-gold-500);
+
+  --alm-action-primary-bg:     var(--alm-oman-600);
+  --alm-action-primary-bg-hov: var(--alm-oman-700);
+  --alm-action-primary-fg:     var(--alm-ivory-100);
+
+  --alm-action-secondary-bg:     var(--alm-midnight-800);
+  --alm-action-secondary-bg-hov: var(--alm-midnight-700);
+  --alm-action-secondary-fg:     var(--alm-ivory-100);
+
+  --alm-action-ghost-fg:         var(--alm-midnight-800);
+  --alm-action-ghost-bg-hov:     var(--alm-ivory-200);
+
+  --alm-accent-gold: var(--alm-gold-600);
+  --alm-accent-royal: var(--alm-oman-600);
+  --alm-focus-ring: var(--alm-gold-500);
+}
+
+/* ---------- DARK THEME ---------- */
+[data-theme="dark"] {
+  --alm-bg-canvas:      var(--alm-midnight-800);
+  --alm-bg-surface:     var(--alm-midnight-700);
+  --alm-bg-raised:      var(--alm-midnight-600);
+  --alm-bg-sunken:      var(--alm-midnight-900);
+  --alm-bg-inverse:     var(--alm-ivory-100);
+
+  --alm-fg-primary:     var(--alm-ivory-100);
+  --alm-fg-secondary:   var(--alm-ivory-200);
+  --alm-fg-muted:       var(--alm-midnight-200);
+  --alm-fg-subtle:      var(--alm-midnight-300);
+  --alm-fg-on-primary:  var(--alm-ivory-100);
+  --alm-fg-on-accent:   var(--alm-midnight-800);
+
+  --alm-border-subtle:  var(--alm-midnight-600);
+  --alm-border-default: var(--alm-midnight-500);
+  --alm-border-strong:  var(--alm-midnight-300);
+  --alm-border-accent:  var(--alm-gold-500);
+
+  --alm-action-primary-bg:     var(--alm-oman-600);
+  --alm-action-primary-bg-hov: var(--alm-oman-500);
+  --alm-action-primary-fg:     var(--alm-ivory-100);
+
+  --alm-action-secondary-bg:     var(--alm-midnight-500);
+  --alm-action-secondary-bg-hov: var(--alm-midnight-400);
+  --alm-action-secondary-fg:     var(--alm-ivory-100);
+
+  --alm-action-ghost-fg:         var(--alm-ivory-100);
+  --alm-action-ghost-bg-hov:     var(--alm-midnight-500);
+
+  --alm-accent-gold: var(--alm-gold-400);
+  --alm-accent-royal: var(--alm-oman-500);
+  --alm-focus-ring: var(--alm-gold-400);
+}
+
+/* ---------- RTL SUPPORT ---------- */
+[dir="rtl"] {
+  --alm-text-align-start: right;
+  --alm-text-align-end:   left;
+}
+
+/* ---------- MOTION PREFERENCE ---------- */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --alm-dur-instant: 0ms;
+    --alm-dur-fast:    0ms;
+    --alm-dur-med:     0ms;
+    --alm-dur-slow:    0ms;
+  }
+}

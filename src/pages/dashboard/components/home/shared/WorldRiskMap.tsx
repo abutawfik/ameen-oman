@@ -36,7 +36,7 @@ const WorldRiskMap = ({ origins, onSelectCountry, isAr, selectedIso2 }: Props) =
   return (
     <div
       className="relative rounded-xl border overflow-hidden"
-      style={{ background: "rgba(10,22,40,0.65)", borderColor: "rgba(34,211,238,0.12)" }}
+      style={{ background: "rgba(20,29,46,0.65)", borderColor: "rgba(181,142,60,0.12)" }}
     >
       <div className="flex items-center justify-between px-4 pt-4">
         <div>
@@ -69,7 +69,7 @@ const WorldRiskMap = ({ origins, onSelectCountry, isAr, selectedIso2 }: Props) =
           className="absolute inset-0 w-full h-full"
         >
           {/* Faint graticule */}
-          <g stroke="rgba(34,211,238,0.08)" strokeWidth={0.3} fill="none">
+          <g stroke="rgba(181,142,60,0.08)" strokeWidth={0.3} fill="none">
             {[-60, -30, 0, 30, 60].map((lat) => (
               <line key={`lat-${lat}`} x1={-170} x2={170} y1={-lat} y2={-lat} />
             ))}
@@ -80,8 +80,8 @@ const WorldRiskMap = ({ origins, onSelectCountry, isAr, selectedIso2 }: Props) =
 
           {/* Continent silhouettes */}
           <g
-            fill="rgba(34,211,238,0.06)"
-            stroke="rgba(34,211,238,0.25)"
+            fill="rgba(181,142,60,0.06)"
+            stroke="rgba(181,142,60,0.25)"
             strokeWidth={0.4}
             strokeLinejoin="round"
           >
@@ -91,12 +91,12 @@ const WorldRiskMap = ({ origins, onSelectCountry, isAr, selectedIso2 }: Props) =
           </g>
 
           {/* Oman anchor outline + marker */}
-          <path d={OMAN_PATH} fill="rgba(34,211,238,0.35)" stroke="#22D3EE" strokeWidth={0.6} />
+          <path d={OMAN_PATH} fill="rgba(181,142,60,0.35)" stroke="#D4A84B" strokeWidth={0.6} />
           <circle
             cx={omanMarker.lon}
             cy={-omanMarker.lat}
             r={2.6}
-            fill="#22D3EE"
+            fill="#D4A84B"
             opacity={0.9}
           />
           <circle
@@ -104,7 +104,7 @@ const WorldRiskMap = ({ origins, onSelectCountry, isAr, selectedIso2 }: Props) =
             cy={-omanMarker.lat}
             r={5.2}
             fill="none"
-            stroke="#22D3EE"
+            stroke="#D4A84B"
             strokeWidth={0.5}
             opacity={0.5}
           >
@@ -164,7 +164,7 @@ const WorldRiskMap = ({ origins, onSelectCountry, isAr, selectedIso2 }: Props) =
           <text
             x={omanMarker.lon}
             y={-omanMarker.lat - 4}
-            fill="#22D3EE"
+            fill="#D4A84B"
             fontFamily="JetBrains Mono, monospace"
             fontSize="2.2"
             fontWeight="bold"
@@ -183,7 +183,7 @@ const WorldRiskMap = ({ origins, onSelectCountry, isAr, selectedIso2 }: Props) =
             <div
               className="absolute top-3 right-3 px-3 py-2 rounded-lg text-xs font-['JetBrains_Mono'] pointer-events-none"
               style={{
-                background: "rgba(6,13,26,0.92)",
+                background: "rgba(11,18,32,0.92)",
                 border: `1px solid ${meta.color}66`,
                 backdropFilter: "blur(8px)",
               }}

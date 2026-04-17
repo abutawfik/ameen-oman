@@ -71,13 +71,13 @@ const LoginPage = () => {
   return (
     <div
       className="min-h-screen flex items-center justify-center relative overflow-hidden"
-      style={{ background: "#060D1A" }}
+      style={{ background: "#0B1220" }}
     >
       {/* Grid background */}
       <div
         className="absolute inset-0 opacity-20"
         style={{
-          backgroundImage: `linear-gradient(rgba(34,211,238,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.15) 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(rgba(181,142,60,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,0.15) 1px, transparent 1px)`,
           backgroundSize: "60px 60px",
         }}
       />
@@ -85,7 +85,7 @@ const LoginPage = () => {
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: "radial-gradient(ellipse 70% 60% at 50% 50%, rgba(34,211,238,0.06) 0%, transparent 70%)",
+          background: "radial-gradient(ellipse 70% 60% at 50% 50%, rgba(181,142,60,0.06) 0%, transparent 70%)",
         }}
       />
       {/* Particles */}
@@ -97,7 +97,7 @@ const LoginPage = () => {
             style={{
               width: (i % 3 === 0 ? 3 : i % 3 === 1 ? 2 : 1.5) + "px",
               height: (i % 3 === 0 ? 3 : i % 3 === 1 ? 2 : 1.5) + "px",
-              background: i % 5 === 0 ? "rgba(34,211,238,0.4)" : "rgba(34,211,238,0.2)",
+              background: i % 5 === 0 ? "rgba(181,142,60,0.4)" : "rgba(181,142,60,0.2)",
               left: ((i * 4.55) % 100) + "%",
               top: ((i * 7.7) % 100) + "%",
               animation: `floatP ${(i % 5) + 8}s ease-in-out infinite`,
@@ -110,7 +110,7 @@ const LoginPage = () => {
       {/* Top-right: Language toggle */}
       <button
         onClick={toggleLang}
-        className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center rounded-full border border-cyan-500/40 text-cyan-400 text-xs font-bold hover:bg-cyan-500/10 transition-colors cursor-pointer font-['JetBrains_Mono'] z-20"
+        className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center rounded-full border border-gold-500/40 text-gold-400 text-xs font-bold hover:bg-gold-500/10 transition-colors cursor-pointer font-['JetBrains_Mono'] z-20"
       >
         {isAr ? "EN" : "AR"}
       </button>
@@ -118,7 +118,7 @@ const LoginPage = () => {
       {/* Top-left: Back to home */}
       <a
         href="/"
-        className="absolute top-6 left-6 flex items-center gap-2 text-gray-500 hover:text-cyan-400 transition-colors text-sm cursor-pointer z-20 font-['Inter']"
+        className="absolute top-6 left-6 flex items-center gap-2 text-gray-500 hover:text-gold-400 transition-colors text-sm cursor-pointer z-20 font-['Inter']"
       >
         <i className="ri-arrow-left-line" />
         {isAr ? "الرئيسية" : "Home"}
@@ -129,10 +129,10 @@ const LoginPage = () => {
         <div
           className="rounded-2xl border overflow-hidden"
           style={{
-            background: "rgba(10,22,40,0.88)",
-            borderColor: "rgba(34,211,238,0.2)",
+            background: "rgba(20,29,46,0.88)",
+            borderColor: "rgba(181,142,60,0.2)",
             backdropFilter: "blur(24px)",
-            boxShadow: "0 0 80px rgba(34,211,238,0.06), 0 0 0 1px rgba(34,211,238,0.05)",
+            boxShadow: "0 0 80px rgba(181,142,60,0.06), 0 0 0 1px rgba(181,142,60,0.05)",
           }}
         >
           {/* Classification banner */}
@@ -152,17 +152,17 @@ const LoginPage = () => {
                 <div
                   className="w-20 h-20 flex items-center justify-center"
                   style={{
-                    background: "rgba(34,211,238,0.06)",
-                    border: "2px solid rgba(34,211,238,0.35)",
+                    background: "rgba(181,142,60,0.06)",
+                    border: "2px solid rgba(181,142,60,0.35)",
                     clipPath: "polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%)",
                   }}
                 >
                   <span
                     className="text-3xl font-black"
                     style={{
-                      color: "#22D3EE",
+                      color: "#D4A84B",
                       fontFamily: "Inter, sans-serif",
-                      textShadow: "0 0 16px rgba(34,211,238,0.7)",
+                      textShadow: "0 0 16px rgba(181,142,60,0.7)",
                     }}
                   >
                     A
@@ -172,7 +172,7 @@ const LoginPage = () => {
                 <div
                   className="absolute -inset-2 opacity-20"
                   style={{
-                    border: "1px dashed rgba(34,211,238,0.6)",
+                    border: "1px dashed rgba(181,142,60,0.6)",
                     clipPath: "polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%)",
                   }}
                 />
@@ -192,11 +192,11 @@ const LoginPage = () => {
               <div className="flex flex-col items-center">
                 <span
                   className="text-3xl font-black tracking-widest font-['Inter']"
-                  style={{ color: "#22D3EE", textShadow: "0 0 20px rgba(34,211,238,0.4)" }}
+                  style={{ color: "#D4A84B", textShadow: "0 0 20px rgba(181,142,60,0.4)" }}
                 >
                   {t.system}
                 </span>
-                <span className="text-cyan-400/60 text-base font-['Cairo'] mt-0.5">
+                <span className="text-gold-400/60 text-base font-['Cairo'] mt-0.5">
                   {t.systemAr}
                 </span>
               </div>
@@ -222,7 +222,7 @@ const LoginPage = () => {
                     placeholder={t.entityIdPh}
                     className="w-full pl-9 pr-4 py-3 rounded-lg text-sm text-white placeholder-gray-700 outline-none transition-all font-['JetBrains_Mono']"
                     style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}
-                    onFocus={(e) => (e.target.style.borderColor = "rgba(34,211,238,0.5)")}
+                    onFocus={(e) => (e.target.style.borderColor = "rgba(181,142,60,0.5)")}
                     onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.08)")}
                   />
                 </div>
@@ -242,7 +242,7 @@ const LoginPage = () => {
                     placeholder={t.usernamePh}
                     className="w-full pl-9 pr-4 py-3 rounded-lg text-sm text-white placeholder-gray-700 outline-none transition-all font-['Inter']"
                     style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}
-                    onFocus={(e) => (e.target.style.borderColor = "rgba(34,211,238,0.5)")}
+                    onFocus={(e) => (e.target.style.borderColor = "rgba(181,142,60,0.5)")}
                     onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.08)")}
                   />
                 </div>
@@ -254,7 +254,7 @@ const LoginPage = () => {
                   <label className="text-gray-400 text-xs font-['Inter']">{t.password}</label>
                   <button
                     type="button"
-                    className="text-cyan-400 text-xs hover:text-cyan-300 cursor-pointer font-['Inter']"
+                    className="text-gold-400 text-xs hover:text-gold-300 cursor-pointer font-['Inter']"
                   >
                     {t.forgot}
                   </button>
@@ -270,7 +270,7 @@ const LoginPage = () => {
                     placeholder={t.passwordPh}
                     className="w-full pl-9 pr-10 py-3 rounded-lg text-sm text-white placeholder-gray-700 outline-none transition-all font-['Inter']"
                     style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}
-                    onFocus={(e) => (e.target.style.borderColor = "rgba(34,211,238,0.5)")}
+                    onFocus={(e) => (e.target.style.borderColor = "rgba(181,142,60,0.5)")}
                     onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.08)")}
                   />
                   <button
@@ -299,7 +299,7 @@ const LoginPage = () => {
                 type="submit"
                 disabled={loading}
                 className="w-full flex items-center justify-center gap-2 py-3 rounded-lg font-bold hover:opacity-90 transition-all duration-200 cursor-pointer text-sm font-['Inter'] disabled:opacity-60 mt-2"
-                style={{ background: "#22D3EE", color: "#060D1A" }}
+                style={{ background: "#D4A84B", color: "#0B1220" }}
               >
                 {loading ? (
                   <>
@@ -320,7 +320,7 @@ const LoginPage = () => {
               <span className="text-gray-600 text-xs font-['Inter']">{t.newEntity} </span>
               <button
                 onClick={() => navigate("/register")}
-                className="text-cyan-400 text-xs font-semibold hover:text-cyan-300 transition-colors cursor-pointer font-['Inter']"
+                className="text-gold-400 text-xs font-semibold hover:text-gold-300 transition-colors cursor-pointer font-['Inter']"
               >
                 {t.register} <i className="ri-arrow-right-line" />
               </button>

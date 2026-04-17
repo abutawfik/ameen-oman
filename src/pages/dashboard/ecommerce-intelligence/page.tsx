@@ -31,20 +31,20 @@ const EcommerceIntelligencePage = () => {
     { id: "anomalies",  icon: "ri-alarm-warning-line",        label: "Anomalies",         labelAr: "الشذوذات",        badge: "5",  badgeColor: "#F87171" },
     { id: "feed",       icon: "ri-pulse-line",                label: "Live Feed",         labelAr: "التغذية المباشرة" },
     { id: "retailers",  icon: "ri-store-line",                label: "Retailer Compliance",labelAr: "امتثال التجار" },
-    { id: "submit",     icon: "ri-add-circle-line",           label: "Record Event",       labelAr: "تسجيل حدث",       badge: "5",  badgeColor: "#22D3EE" },
+    { id: "submit",     icon: "ri-add-circle-line",           label: "Record Event",       labelAr: "تسجيل حدث",       badge: "5",  badgeColor: "#D4A84B" },
   ];
 
   return (
-    <div className="min-h-screen font-['Inter']" style={{ background: "#060D1A" }} dir={isAr ? "rtl" : "ltr"}>
+    <div className="min-h-screen font-['Inter']" style={{ background: "#0B1220" }} dir={isAr ? "rtl" : "ltr"}>
       {/* Grid texture */}
       <div className="fixed inset-0 pointer-events-none" style={{
-        backgroundImage: `linear-gradient(rgba(34,211,238,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.03) 1px, transparent 1px)`,
+        backgroundImage: `linear-gradient(rgba(181,142,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,0.03) 1px, transparent 1px)`,
         backgroundSize: "40px 40px",
       }} />
 
       {/* Header */}
       <header className="sticky top-0 z-40 flex items-center justify-between px-6 py-3 border-b"
-        style={{ background: "rgba(6,13,26,0.95)", borderColor: "rgba(34,211,238,0.12)", backdropFilter: "blur(12px)" }}>
+        style={{ background: "rgba(11,18,32,0.95)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
         <div className="flex items-center gap-4">
           <button type="button" onClick={() => navigate("/dashboard?type=ecommerce")}
             className="flex items-center gap-2 px-3 py-1.5 rounded-lg border text-sm font-semibold cursor-pointer whitespace-nowrap transition-colors"
@@ -61,7 +61,7 @@ const EcommerceIntelligencePage = () => {
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-white font-bold text-sm">{isAr ? "استخبارات التجارة الإلكترونية والتجزئة" : "E-Commerce & Retail Intelligence"}</span>
-                <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(34,211,238,0.12)", color: "#22D3EE", border: "1px solid rgba(34,211,238,0.2)" }}>AMEEN</span>
+                <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(181,142,60,0.12)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>AMEEN</span>
               </div>
               <p className="text-gray-500 text-xs">{isAr ? "معالجو الدفع · تجار التجزئة · المنصات الإلكترونية" : "Payment Processors · Major Retailers · Online Platforms"}</p>
             </div>
@@ -70,15 +70,15 @@ const EcommerceIntelligencePage = () => {
 
         <div className="flex items-center gap-3">
           {/* Live clock */}
-          <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-lg border" style={{ background: "rgba(34,211,238,0.04)", borderColor: "rgba(34,211,238,0.12)" }}>
-            <i className="ri-time-line text-cyan-400 text-xs" />
-            <span className="text-cyan-400 text-xs font-bold font-['JetBrains_Mono']">{timeStr}</span>
+          <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-lg border" style={{ background: "rgba(181,142,60,0.04)", borderColor: "rgba(181,142,60,0.12)" }}>
+            <i className="ri-time-line text-gold-400 text-xs" />
+            <span className="text-gold-400 text-xs font-bold font-['JetBrains_Mono']">{timeStr}</span>
           </div>
 
           {/* Source pills */}
           <div className="hidden xl:flex items-center gap-2">
             {[
-              { label: "CBO Feed", color: "#22D3EE" },
+              { label: "CBO Feed", color: "#D4A84B" },
               { label: "Retailers", color: "#34D399" },
               { label: "Platforms", color: "#A78BFA" },
             ].map((p) => (
@@ -113,14 +113,14 @@ const EcommerceIntelligencePage = () => {
 
       {/* Tab bar */}
       <div className="sticky top-[57px] z-30 flex items-center gap-1 px-6 py-2 border-b overflow-x-auto"
-        style={{ background: "rgba(6,13,26,0.9)", borderColor: "rgba(34,211,238,0.08)", backdropFilter: "blur(12px)" }}>
+        style={{ background: "rgba(11,18,32,0.9)", borderColor: "rgba(181,142,60,0.08)", backdropFilter: "blur(12px)" }}>
         {TABS.map((tab) => (
           <button key={tab.id} type="button" onClick={() => setActiveTab(tab.id)}
             className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap transition-all flex-shrink-0"
             style={{
-              background: activeTab === tab.id ? "rgba(34,211,238,0.12)" : "transparent",
-              border: `1px solid ${activeTab === tab.id ? "rgba(34,211,238,0.25)" : "transparent"}`,
-              color: activeTab === tab.id ? "#22D3EE" : "#6B7280",
+              background: activeTab === tab.id ? "rgba(181,142,60,0.12)" : "transparent",
+              border: `1px solid ${activeTab === tab.id ? "rgba(181,142,60,0.25)" : "transparent"}`,
+              color: activeTab === tab.id ? "#D4A84B" : "#6B7280",
             }}>
             <i className={`${tab.icon} text-xs`} />
             {isAr ? tab.labelAr : tab.label}
@@ -156,17 +156,17 @@ const EcommerceIntelligencePage = () => {
             <EcomLiveCounters isAr={isAr} />
 
             {/* Intelligence value panel */}
-            <div className="rounded-2xl border p-5" style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.12)", backdropFilter: "blur(12px)" }}>
+            <div className="rounded-2xl border p-5" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(34,211,238,0.1)", border: "1px solid rgba(34,211,238,0.2)" }}>
-                  <i className="ri-links-line text-cyan-400 text-sm" />
+                <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+                  <i className="ri-links-line text-gold-400 text-sm" />
                 </div>
                 <h3 className="text-white font-bold text-sm">{isAr ? "قيمة الاستخبارات" : "Intelligence Value"}</h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {[
                   { icon: "ri-money-dollar-circle-line", color: "#4ADE80", title: isAr ? "الثروة غير المفسّرة" : "Unexplained Wealth", desc: isAr ? "مقارنة الإنفاق بالراتب المُعلن — الفجوة تُشير إلى مصادر دخل مخفية" : "Compare spending vs declared salary — gap indicates hidden income sources" },
-                  { icon: "ri-map-pin-line", color: "#22D3EE", title: isAr ? "تحديد الموقع الفعلي" : "Actual Location Reveal", desc: isAr ? "الشراء من متجر في نزوى يُثبت الوجود الجسدي — يتعارض مع العنوان المُسجَّل" : "Purchase at Nizwa store proves physical presence — contradicts registered address" },
+                  { icon: "ri-map-pin-line", color: "#D4A84B", title: isAr ? "تحديد الموقع الفعلي" : "Actual Location Reveal", desc: isAr ? "الشراء من متجر في نزوى يُثبت الوجود الجسدي — يتعارض مع العنوان المُسجَّل" : "Purchase at Nizwa store proves physical presence — contradicts registered address" },
                   { icon: "ri-spy-line", color: "#F87171", title: isAr ? "كشف النوايا" : "Intent Detection", desc: isAr ? "شراء مشوش إشارة + شرائح SIM بالجملة + مواد كيميائية = نمط يستحق التحقيق" : "Signal jammer + bulk SIMs + chemicals = pattern warranting investigation" },
                 ].map((item) => (
                   <div key={item.title} className="flex items-start gap-3 px-4 py-3 rounded-xl" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
@@ -183,7 +183,7 @@ const EcommerceIntelligencePage = () => {
             </div>
 
             {/* Trigger thresholds */}
-            <div className="rounded-2xl border p-5" style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.12)", backdropFilter: "blur(12px)" }}>
+            <div className="rounded-2xl border p-5" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(250,204,21,0.1)", border: "1px solid rgba(250,204,21,0.2)" }}>
                   <i className="ri-settings-4-line text-yellow-400 text-sm" />
@@ -199,7 +199,7 @@ const EcommerceIntelligencePage = () => {
                   { icon: "ri-money-dollar-circle-line", color: "#FB923C", label: isAr ? "معاملة عالية القيمة" : "High-Value Transaction", desc: isAr ? "شراء واحد فوق الحد المُهيَّأ حسب الفئة" : "Single purchase above configurable threshold by category" },
                   { icon: "ri-forbid-line", color: "#F87171", label: isAr ? "عنصر مقيّد" : "Restricted Item", desc: isAr ? "معدات مراقبة، مواد كيميائية، طائرات مسيّرة، أجهزة تشويش" : "Surveillance equipment, chemicals, drones, jammers" },
                   { icon: "ri-ship-line", color: "#A78BFA", label: isAr ? "تنبيه شحن" : "Shipping Alert", desc: isAr ? "شحنات دولية من مصادر عالية المخاطر" : "International shipments from high-risk origins" },
-                  { icon: "ri-exchange-line", color: "#22D3EE", label: isAr ? "نمط الدفع" : "Payment Pattern", desc: isAr ? "بطاقات متعددة، معاملات صغيرة متكررة، تجزئة" : "Multiple cards, frequent small transactions, structuring" },
+                  { icon: "ri-exchange-line", color: "#D4A84B", label: isAr ? "نمط الدفع" : "Payment Pattern", desc: isAr ? "بطاقات متعددة، معاملات صغيرة متكررة، تجزئة" : "Multiple cards, frequent small transactions, structuring" },
                   { icon: "ri-bank-card-line", color: "#34D399", label: isAr ? "بطاقات مدفوعة مسبقاً" : "Prepaid Cards", desc: isAr ? "10+ بطاقات في معاملة واحدة — مؤشر غسيل أموال" : "10+ cards in single transaction — money laundering indicator" },
                 ].map((t) => (
                   <div key={t.label} className="flex items-start gap-3 px-4 py-3 rounded-xl" style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${t.color}15` }}>
@@ -216,11 +216,11 @@ const EcommerceIntelligencePage = () => {
             </div>
 
             {/* Daily volume chart (visual) */}
-            <div className="rounded-2xl border p-5" style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.12)", backdropFilter: "blur(12px)" }}>
+            <div className="rounded-2xl border p-5" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
               <div className="flex items-center justify-between mb-5">
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(34,211,238,0.1)", border: "1px solid rgba(34,211,238,0.2)" }}>
-                    <i className="ri-bar-chart-line text-cyan-400 text-sm" />
+                  <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+                    <i className="ri-bar-chart-line text-gold-400 text-sm" />
                   </div>
                   <div>
                     <h3 className="text-white font-bold text-sm">{isAr ? "حجم المعاملات المُبلَّغة اليومي" : "Daily Flagged Transaction Volume"}</h3>
@@ -228,7 +228,7 @@ const EcommerceIntelligencePage = () => {
                   </div>
                 </div>
                 <div className="flex items-center gap-3 flex-wrap">
-                  {[{ label: "Bulk", color: "#FACC15" }, { label: "Restricted", color: "#F87171" }, { label: "High-Value", color: "#FB923C" }, { label: "Pattern", color: "#22D3EE" }].map((l) => (
+                  {[{ label: "Bulk", color: "#FACC15" }, { label: "Restricted", color: "#F87171" }, { label: "High-Value", color: "#FB923C" }, { label: "Pattern", color: "#D4A84B" }].map((l) => (
                     <div key={l.label} className="flex items-center gap-1.5">
                       <div className="w-2 h-2 rounded-full" style={{ background: l.color }} />
                       <span className="text-gray-400 text-xs">{l.label}</span>
@@ -257,7 +257,7 @@ const EcommerceIntelligencePage = () => {
                           { val: d.bulk, color: "#FACC15" },
                           { val: d.restricted, color: "#F87171" },
                           { val: d.highvalue, color: "#FB923C" },
-                          { val: d.pattern, color: "#22D3EE" },
+                          { val: d.pattern, color: "#D4A84B" },
                         ].map((seg, i) => (
                           <div key={i} className="w-full rounded-sm" style={{ height: scale(seg.val), background: seg.color, opacity: 0.8, minHeight: "2px" }} />
                         ))}
@@ -271,10 +271,10 @@ const EcommerceIntelligencePage = () => {
             </div>
 
             {/* AMN-ECM codes */}
-            <div className="rounded-2xl border p-5" style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.12)", backdropFilter: "blur(12px)" }}>
+            <div className="rounded-2xl border p-5" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
               <div className="flex items-center gap-3 mb-3">
-                <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(34,211,238,0.1)", border: "1px solid rgba(34,211,238,0.2)" }}>
-                  <i className="ri-qr-code-line text-cyan-400 text-sm" />
+                <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+                  <i className="ri-qr-code-line text-gold-400 text-sm" />
                 </div>
                 <h3 className="text-white font-bold text-sm">{isAr ? "رموز تأكيد AMEEN" : "AMEEN Confirmation Codes"}</h3>
               </div>

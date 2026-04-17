@@ -44,7 +44,7 @@ const MATCH_METHODS = [
 const genRef = (prefix: string) => `AMN-TRN-${Date.now()}-${Math.floor(Math.random() * 9000) + 1000}`;
 
 const ConfirmBanner = ({ refCode, label, color, onReset, isAr }: { refCode: string; label: string; color: string; onReset: () => void; isAr: boolean }) => (
-  <div className="rounded-2xl border p-10 flex flex-col items-center text-center" style={{ background: "rgba(10,22,40,0.9)", borderColor: `${color}30`, backdropFilter: "blur(20px)" }}>
+  <div className="rounded-2xl border p-10 flex flex-col items-center text-center" style={{ background: "rgba(20,29,46,0.9)", borderColor: `${color}30`, backdropFilter: "blur(20px)" }}>
     <div className="relative mb-6">
       <div className="w-20 h-20 flex items-center justify-center rounded-full" style={{ background: `${color}10`, border: `2px solid ${color}40`, boxShadow: `0 0 40px ${color}18` }}>
         <i className="ri-checkbox-circle-line text-4xl" style={{ color }} />
@@ -53,11 +53,11 @@ const ConfirmBanner = ({ refCode, label, color, onReset, isAr }: { refCode: stri
     </div>
     <h2 className="text-white text-xl font-bold mb-2">{isAr ? "تم تسجيل الرحلة بنجاح" : "Trip Recorded Successfully"}</h2>
     <p className="text-gray-400 text-sm mb-6">{label}</p>
-    <div className="px-8 py-4 rounded-2xl border mb-8 w-full max-w-md" style={{ background: "rgba(34,211,238,0.04)", borderColor: "rgba(34,211,238,0.15)" }}>
+    <div className="px-8 py-4 rounded-2xl border mb-8 w-full max-w-md" style={{ background: "rgba(181,142,60,0.04)", borderColor: "rgba(181,142,60,0.15)" }}>
       <p className="text-gray-500 text-xs mb-1 uppercase tracking-widest">{isAr ? "رمز المرجع" : "Reference Code"}</p>
-      <p className="text-xl font-bold font-['JetBrains_Mono'] tracking-wider" style={{ color: "#22D3EE" }}>{refCode}</p>
+      <p className="text-xl font-bold font-['JetBrains_Mono'] tracking-wider" style={{ color: "#D4A84B" }}>{refCode}</p>
     </div>
-    <button type="button" onClick={onReset} className="flex items-center gap-2 px-6 py-2.5 rounded-lg text-sm font-bold cursor-pointer whitespace-nowrap" style={{ background: "#22D3EE", color: "#060D1A" }}>
+    <button type="button" onClick={onReset} className="flex items-center gap-2 px-6 py-2.5 rounded-lg text-sm font-bold cursor-pointer whitespace-nowrap" style={{ background: "#D4A84B", color: "#0B1220" }}>
       <i className="ri-add-line" />{isAr ? "تسجيل رحلة أخرى" : "Record Another Trip"}
     </button>
   </div>
@@ -69,13 +69,13 @@ const BusJourneyForm = ({ isAr, onCancel }: { isAr: boolean; onCancel: () => voi
   const [saving, setSaving] = useState(false); const [confirmed, setConfirmed] = useState(false); const [refCode, setRefCode] = useState("");
 
   const handleSave = () => { setSaving(true); setTimeout(() => { setSaving(false); setRefCode(genRef("BUS")); setConfirmed(true); }, 1400); };
-  if (confirmed) return <ConfirmBanner refCode={refCode} label={isAr ? "رحلة حافلة — شركة الحافلات الوطنية" : "Bus Journey — National Bus Co."} color="#22D3EE" onReset={() => setConfirmed(false)} isAr={isAr} />;
+  if (confirmed) return <ConfirmBanner refCode={refCode} label={isAr ? "رحلة حافلة — شركة الحافلات الوطنية" : "Bus Journey — National Bus Co."} color="#D4A84B" onReset={() => setConfirmed(false)} isAr={isAr} />;
 
   return (
     <div className="space-y-5">
       <TipBanner text={isAr ? "بيانات الحافلة تُرسَل تلقائياً عبر API من شركة الحافلات الوطنية. هذا النموذج للإدخال اليدوي فقط." : "Bus data is auto-submitted via API from National Bus Co. This form is for manual entry only."} color="cyan" />
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
-        <SectionCard title={isAr ? "تفاصيل الرحلة" : "Journey Details"} icon="ri-bus-line" accentColor="#22D3EE">
+        <SectionCard title={isAr ? "تفاصيل الرحلة" : "Journey Details"} icon="ri-bus-line" accentColor="#D4A84B">
           <div className="space-y-4">
             <FormField label={isAr ? "معرّف البطاقة" : "Card ID"} required>
               <TextInput placeholder="CARD-XXXXXXXXXXXX" value={cardId} onChange={(e) => setCardId(e.target.value)} className="font-['JetBrains_Mono']" />
@@ -104,8 +104,8 @@ const BusJourneyForm = ({ isAr, onCancel }: { isAr: boolean; onCancel: () => voi
         </SectionCard>
         <SectionCard title={isAr ? "تطابق الهوية" : "Identity Match"} icon="ri-fingerprint-line">
           <div className="space-y-4">
-            <div className="flex items-start gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(34,211,238,0.04)", borderColor: "rgba(34,211,238,0.15)" }}>
-              <i className="ri-information-line text-cyan-400 text-sm mt-0.5 flex-shrink-0" />
+            <div className="flex items-start gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(181,142,60,0.04)", borderColor: "rgba(181,142,60,0.15)" }}>
+              <i className="ri-information-line text-gold-400 text-sm mt-0.5 flex-shrink-0" />
               <p className="text-gray-400 text-xs">{isAr ? "AMEEN يطابق معرّف البطاقة تلقائياً مع وثيقة السفر المسجّلة في قاعدة البيانات." : "AMEEN auto-matches Card ID with the registered travel document in the database."}</p>
             </div>
             <FormField label={isAr ? "طريقة التطابق" : "Match Method"}>
@@ -195,7 +195,7 @@ const TaxiTripForm = ({ isAr, onCancel }: { isAr: boolean; onCancel: () => void 
               <p className="text-gray-400 text-xs">{isAr ? "AMEEN يطابق الراكب باستخدام: وثيقة السفر المسجّلة، رقم الهاتف (تدفق SIM)، أو بطاقة الدفع." : "AMEEN matches passenger using: registered travel document, phone number (SIM stream), or payment card."}</p>
             </div>
             {[
-              { icon: "ri-bank-card-line", color: "#22D3EE", label: isAr ? "بطاقة عبور → وثيقة" : "Transit Card → Document" },
+              { icon: "ri-bank-card-line", color: "#D4A84B", label: isAr ? "بطاقة عبور → وثيقة" : "Transit Card → Document" },
               { icon: "ri-smartphone-line", color: "#4ADE80", label: isAr ? "رقم الهاتف → تدفق SIM" : "Phone Number → SIM Stream" },
               { icon: "ri-secure-payment-line", color: "#A78BFA", label: isAr ? "بطاقة دفع → التدفق المالي" : "Payment Card → Financial Stream" },
             ].map((m) => (
@@ -292,7 +292,7 @@ const RideHailTripForm = ({ isAr, onCancel }: { isAr: boolean; onCancel: () => v
 };
 
 const FORM_CARDS = [
-  { id: "bus" as FormType, icon: "ri-bus-line", label: "Bus Journey", labelAr: "رحلة حافلة", desc: "Record bus journey with card ID, route, boarding/alighting stop and fare", descAr: "تسجيل رحلة حافلة مع معرّف البطاقة والخط ومحطات الصعود والنزول والأجرة", color: "#22D3EE", code: "AMN-TRN-BUS" },
+  { id: "bus" as FormType, icon: "ri-bus-line", label: "Bus Journey", labelAr: "رحلة حافلة", desc: "Record bus journey with card ID, route, boarding/alighting stop and fare", descAr: "تسجيل رحلة حافلة مع معرّف البطاقة والخط ومحطات الصعود والنزول والأجرة", color: "#D4A84B", code: "AMN-TRN-BUS" },
   { id: "taxi" as FormType, icon: "ri-taxi-line", label: "Taxi Trip", labelAr: "رحلة تاكسي", desc: "Record taxi trip with booking ref, pickup/dropoff, distance, fare and payment", descAr: "تسجيل رحلة تاكسي مع مرجع الحجز والاستلام والإنزال والمسافة والأجرة", color: "#4ADE80", code: "AMN-TRN-TAXI" },
   { id: "ridehail" as FormType, icon: "ri-car-line", label: "Ride-Hail Trip", labelAr: "رحلة توصيل", desc: "Record ride-hail trip with GPS coordinates, driver ID, vehicle plate and passenger phone", descAr: "تسجيل رحلة توصيل مع إحداثيات GPS ومعرّف السائق ولوحة المركبة وهاتف الراكب", color: "#A78BFA", code: "AMN-TRN-RH" },
 ];
@@ -308,24 +308,24 @@ const TripSubmissionForms = ({ isAr }: Props) => {
     <div className="space-y-6">
       {!activeForm && (
         <>
-          <div className="flex items-start gap-3 px-5 py-4 rounded-xl border" style={{ background: "rgba(34,211,238,0.04)", borderColor: "rgba(34,211,238,0.15)" }}>
-            <i className="ri-robot-line text-cyan-400 text-sm mt-0.5 flex-shrink-0" />
+          <div className="flex items-start gap-3 px-5 py-4 rounded-xl border" style={{ background: "rgba(181,142,60,0.04)", borderColor: "rgba(181,142,60,0.15)" }}>
+            <i className="ri-robot-line text-gold-400 text-sm mt-0.5 flex-shrink-0" />
             <p className="text-gray-400 text-sm">{isAr ? "معظم بيانات النقل تُرسَل تلقائياً عبر API من المزودين. هذه النماذج للإدخال اليدوي والتصحيح فقط." : "Most transport data is auto-submitted via API from providers. These forms are for manual entry and corrections only."}</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
             {FORM_CARDS.map(card => (
               <button key={card.id} type="button" onClick={() => handleSwitch(card.id)}
                 className="group relative rounded-2xl border p-6 text-left cursor-pointer transition-all duration-300 flex flex-col gap-4"
-                style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.12)", backdropFilter: "blur(12px)" }}
+                style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}
                 onMouseEnter={(e) => { const el = e.currentTarget as HTMLButtonElement; el.style.borderColor = `${card.color}50`; el.style.background = `${card.color}08`; el.style.transform = "translateY(-2px)"; }}
-                onMouseLeave={(e) => { const el = e.currentTarget as HTMLButtonElement; el.style.borderColor = "rgba(34,211,238,0.12)"; el.style.background = "rgba(10,22,40,0.8)"; el.style.transform = "translateY(0)"; }}>
+                onMouseLeave={(e) => { const el = e.currentTarget as HTMLButtonElement; el.style.borderColor = "rgba(181,142,60,0.12)"; el.style.background = "rgba(20,29,46,0.8)"; el.style.transform = "translateY(0)"; }}>
                 <div className="w-14 h-14 flex items-center justify-center rounded-2xl" style={{ background: `${card.color}12`, border: `1px solid ${card.color}30` }}>
                   <i className={`${card.icon} text-2xl`} style={{ color: card.color }} />
                 </div>
                 <div className="flex-1">
                   <div className="flex items-start justify-between gap-2 mb-1">
                     <h3 className="text-white font-bold text-base">{isAr ? card.labelAr : card.label}</h3>
-                    <i className="ri-arrow-right-up-line text-gray-600 group-hover:text-cyan-400 transition-colors flex-shrink-0 mt-0.5" />
+                    <i className="ri-arrow-right-up-line text-gray-600 group-hover:text-gold-400 transition-colors flex-shrink-0 mt-0.5" />
                   </div>
                   <p className="text-gray-500 text-xs leading-relaxed">{isAr ? card.descAr : card.desc}</p>
                 </div>
@@ -338,7 +338,7 @@ const TripSubmissionForms = ({ isAr }: Props) => {
 
       {activeForm && (
         <>
-          <div className="flex gap-1 p-1 rounded-xl mb-2 overflow-x-auto" style={{ background: "rgba(10,22,40,0.8)", border: "1px solid rgba(34,211,238,0.1)" }}>
+          <div className="flex gap-1 p-1 rounded-xl mb-2 overflow-x-auto" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.1)" }}>
             {FORM_CARDS.map(card => (
               <button key={card.id} type="button" onClick={() => handleSwitch(card.id)}
                 className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap transition-all flex-shrink-0"

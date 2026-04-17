@@ -45,11 +45,11 @@ const NationalityBreakdown = ({ isAr }: Props) => {
   const maxCount = Math.max(...NATIONALITIES.map((n) => n.count));
 
   return (
-    <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.15)", backdropFilter: "blur(12px)" }}>
-      <div className="flex items-center justify-between px-6 py-4 border-b" style={{ borderColor: "rgba(34,211,238,0.1)" }}>
+    <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.15)", backdropFilter: "blur(12px)" }}>
+      <div className="flex items-center justify-between px-6 py-4 border-b" style={{ borderColor: "rgba(181,142,60,0.1)" }}>
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(34,211,238,0.1)", border: "1px solid rgba(34,211,238,0.2)" }}>
-            <i className="ri-global-line text-cyan-400 text-sm" />
+          <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+            <i className="ri-global-line text-gold-400 text-sm" />
           </div>
           <div>
             <h3 className="text-white font-bold text-sm">{isAr ? "توزيع الجنسيات" : "Nationality Breakdown"}</h3>
@@ -65,7 +65,7 @@ const NationalityBreakdown = ({ isAr }: Props) => {
           ))}
         </div>
       </div>
-      <div className="divide-y" style={{ borderColor: "rgba(34,211,238,0.06)" }}>
+      <div className="divide-y" style={{ borderColor: "rgba(181,142,60,0.06)" }}>
         {NATIONALITIES.map((nat, idx) => {
           const color = riskColor(nat.risk);
           const barWidth = (nat.count / maxCount) * 100;

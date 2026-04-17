@@ -75,7 +75,7 @@ export const threatLevelConfig: Record<ThreatLevel, { color: string; bg: string;
   CRITICAL: { color: "#F87171", bg: "rgba(248,113,113,0.12)", border: "rgba(248,113,113,0.4)", label: "CRITICAL",  labelAr: "حرج",     description: "Imminent threat — maximum security posture", descriptionAr: "تهديد وشيك — أقصى درجات الأمن" },
   HIGH:     { color: "#FB923C", bg: "rgba(251,146,60,0.12)",  border: "rgba(251,146,60,0.4)",  label: "HIGH",      labelAr: "عالٍ",    description: "Significant threat — heightened vigilance",  descriptionAr: "تهديد كبير — يقظة مشددة" },
   ELEVATED: { color: "#FACC15", bg: "rgba(250,204,21,0.12)",  border: "rgba(250,204,21,0.4)",  label: "ELEVATED",  labelAr: "مرتفع",   description: "Significant risk — enhanced monitoring",     descriptionAr: "خطر كبير — مراقبة مكثفة" },
-  GUARDED:  { color: "#22D3EE", bg: "rgba(34,211,238,0.12)",  border: "rgba(34,211,238,0.4)",  label: "GUARDED",   labelAr: "محدود",   description: "General risk — standard protocols active",   descriptionAr: "خطر عام — بروتوكولات قياسية" },
+  GUARDED:  { color: "#D4A84B", bg: "rgba(181,142,60,0.12)",  border: "rgba(181,142,60,0.4)",  label: "GUARDED",   labelAr: "محدود",   description: "General risk — standard protocols active",   descriptionAr: "خطر عام — بروتوكولات قياسية" },
   LOW:      { color: "#4ADE80", bg: "rgba(74,222,128,0.12)",  border: "rgba(74,222,128,0.4)",  label: "LOW",       labelAr: "منخفض",   description: "Minimal risk — routine operations",          descriptionAr: "خطر ضئيل — عمليات روتينية" },
 };
 
@@ -204,7 +204,7 @@ export const correlationAlerts: CorrelationAlert[] = [
     streams: [
       { name: "Border",     icon: "ri-passport-line",  color: "#60A5FA" },
       { name: "Employment", icon: "ri-briefcase-line", color: "#F9A8D4" },
-      { name: "Hotel",      icon: "ri-hotel-line",     color: "#22D3EE" },
+      { name: "Hotel",      icon: "ri-hotel-line",     color: "#D4A84B" },
     ],
     subjects: 9, correlationType: "Human Trafficking", severity: "critical", score: 88,
     detail: "9 foreign nationals entered on tourist visas, immediately registered with same employer, housed in same hotel block. Pattern matches human trafficking indicators. Case INV-2026-0024 active.",
@@ -233,7 +233,7 @@ export const streamThreatScores: { stream: string; icon: string; color: string; 
   { stream: "E-Commerce",           icon: "ri-shopping-cart-line",   color: "#34D399", score: 58, trend: "stable", events: 18234, alerts: 2 },
   { stream: "Transport",            icon: "ri-bus-line",             color: "#FB923C", score: 45, trend: "down",   events: 42891, alerts: 1 },
   { stream: "Employment Registry",  icon: "ri-briefcase-line",       color: "#F9A8D4", score: 42, trend: "stable", events: 3891,  alerts: 1 },
-  { stream: "Hotel Intelligence",   icon: "ri-hotel-line",           color: "#22D3EE", score: 38, trend: "down",   events: 1284,  alerts: 1 },
+  { stream: "Hotel Intelligence",   icon: "ri-hotel-line",           color: "#D4A84B", score: 38, trend: "down",   events: 1284,  alerts: 1 },
   { stream: "Healthcare",           icon: "ri-heart-pulse-line",     color: "#F87171", score: 35, trend: "stable", events: 1847,  alerts: 1 },
   { stream: "Municipality",         icon: "ri-government-line",      color: "#FACC15", score: 22, trend: "down",   events: 891,   alerts: 0 },
   { stream: "Utility Events",       icon: "ri-flashlight-line",      color: "#FACC15", score: 18, trend: "stable", events: 412,   alerts: 0 },

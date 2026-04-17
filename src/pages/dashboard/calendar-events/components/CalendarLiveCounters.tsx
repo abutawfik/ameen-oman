@@ -24,7 +24,7 @@ const CalendarLiveCounters = ({ isAr }: Props) => {
       sub: isAr ? "جميع الوحدات" : "All modules",
       value: totalToday,
       icon: "ri-calendar-check-line",
-      color: "#22D3EE",
+      color: "#D4A84B",
       trend: "+8%",
       trendUp: true,
     },
@@ -61,7 +61,7 @@ const CalendarLiveCounters = ({ isAr }: Props) => {
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
       {stats.map((s) => (
         <div key={s.label} className="relative rounded-2xl border p-5 overflow-hidden"
-          style={{ background: "rgba(10,22,40,0.8)", borderColor: `${s.color}25`, backdropFilter: "blur(12px)" }}>
+          style={{ background: "rgba(20,29,46,0.8)", borderColor: `${s.color}25`, backdropFilter: "blur(12px)" }}>
           {/* Glow bg */}
           <div className="absolute inset-0 opacity-5 pointer-events-none"
             style={{ background: `radial-gradient(circle at top right, ${s.color}, transparent 70%)` }} />

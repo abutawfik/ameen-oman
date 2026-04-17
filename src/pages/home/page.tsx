@@ -20,7 +20,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="min-h-screen" style={{ background: "#060D1A", fontFamily: "Inter, Cairo, sans-serif" }}>
+    <div className="min-h-screen" style={{ background: "#0B1220", fontFamily: "Inter, Cairo, sans-serif" }}>
       <Navbar />
       <HeroSection />
       <ServicesSection type="core" />

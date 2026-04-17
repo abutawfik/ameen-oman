@@ -15,13 +15,13 @@ const riskColors: Record<string, string> = {
 };
 
 const edgeColors: Record<string, string> = {
-  "co-guest":       "#22D3EE",
+  "co-guest":       "#D4A84B",
   "shared-imei":    "#F87171",
   "co-tenant":      "#4ADE80",
   "co-driver":      "#FB923C",
   "same-employer":  "#A78BFA",
   "same-booking":   "#FACC15",
-  "boat-passenger": "#67E8F9",
+  "boat-passenger": "#DDB96B",
 };
 
 const edgeTypeLabels: Record<string, { en: string; ar: string }> = {
@@ -62,7 +62,7 @@ const ConnectionsMap = ({ nodes, edges, isAr }: Props) => {
   return (
     <div
       className="rounded-xl p-5"
-      style={{ background: "rgba(10,22,40,0.8)", border: "1px solid rgba(34,211,238,0.15)", backdropFilter: "blur(12px)" }}
+      style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.15)", backdropFilter: "blur(12px)" }}
     >
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
@@ -71,7 +71,7 @@ const ConnectionsMap = ({ nodes, edges, isAr }: Props) => {
           </h3>
           <span
             className="px-2 py-0.5 rounded-full text-xs font-['JetBrains_Mono']"
-            style={{ background: "rgba(34,211,238,0.1)", color: "#22D3EE", border: "1px solid rgba(34,211,238,0.2)" }}
+            style={{ background: "rgba(181,142,60,0.1)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}
           >
             {nodes.length - 1} {isAr ? "اتصال" : "connections"}
           </span>
@@ -98,13 +98,13 @@ const ConnectionsMap = ({ nodes, edges, isAr }: Props) => {
         {/* SVG Graph */}
         <div
           className="flex-1 relative rounded-xl overflow-hidden"
-          style={{ background: "rgba(6,13,26,0.6)", border: "1px solid rgba(34,211,238,0.08)" }}
+          style={{ background: "rgba(11,18,32,0.6)", border: "1px solid rgba(181,142,60,0.08)" }}
         >
           {/* Grid texture */}
           <svg className="absolute inset-0 w-full h-full opacity-10" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <pattern id="conn-grid" width="30" height="30" patternUnits="userSpaceOnUse">
-                <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#22D3EE" strokeWidth="0.3" />
+                <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#D4A84B" strokeWidth="0.3" />
               </pattern>
             </defs>
             <rect width="100%" height="100%" fill="url(#conn-grid)" />
@@ -118,7 +118,7 @@ const ConnectionsMap = ({ nodes, edges, isAr }: Props) => {
               if (!fromNode || !toNode) return null;
               const from = getNodePos(fromNode);
               const to = getNodePos(toNode);
-              const color = edgeColors[edge.type] || "#22D3EE";
+              const color = edgeColors[edge.type] || "#D4A84B";
               const isHighlighted = selectedNode
                 ? (edge.from === selectedNode || edge.to === selectedNode)
                 : true;
@@ -232,7 +232,7 @@ const ConnectionsMap = ({ nodes, edges, isAr }: Props) => {
           {/* Edge type legend */}
           <div
             className="rounded-lg p-3"
-            style={{ background: "rgba(6,13,26,0.6)", border: "1px solid rgba(255,255,255,0.05)" }}
+            style={{ background: "rgba(11,18,32,0.6)", border: "1px solid rgba(255,255,255,0.05)" }}
           >
             <p className="text-gray-500 text-[10px] uppercase tracking-widest font-['JetBrains_Mono'] mb-2">
               {isAr ? "أنواع الاتصالات" : "Connection Types"}
@@ -250,7 +250,7 @@ const ConnectionsMap = ({ nodes, edges, isAr }: Props) => {
           {/* Risk level legend */}
           <div
             className="rounded-lg p-3"
-            style={{ background: "rgba(6,13,26,0.6)", border: "1px solid rgba(255,255,255,0.05)" }}
+            style={{ background: "rgba(11,18,32,0.6)", border: "1px solid rgba(255,255,255,0.05)" }}
           >
             <p className="text-gray-500 text-[10px] uppercase tracking-widest font-['JetBrains_Mono'] mb-2">
               {isAr ? "مستوى المخاطرة" : "Risk Level"}
@@ -319,7 +319,7 @@ const ConnectionsMap = ({ nodes, edges, isAr }: Props) => {
               )}
               <button
                 className="w-full py-1.5 rounded text-[10px] font-['JetBrains_Mono'] cursor-pointer transition-colors"
-                style={{ background: "rgba(34,211,238,0.1)", color: "#22D3EE", border: "1px solid rgba(34,211,238,0.2)" }}
+                style={{ background: "rgba(181,142,60,0.1)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}
               >
                 <i className="ri-user-search-line mr-1" />
                 {isAr ? "عرض الملف الشخصي" : "View Profile"}

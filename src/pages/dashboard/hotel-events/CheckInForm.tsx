@@ -292,14 +292,14 @@ const CheckInForm = ({ isAr, onCancel, onSaved }: Props) => {
           <div className="flex items-center gap-3">
             <div
               className="w-7 h-7 flex items-center justify-center rounded-full"
-              style={{ background: "rgba(34,211,238,0.1)", border: "1px solid rgba(34,211,238,0.25)" }}
+              style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.25)" }}
             >
-              <span className="text-cyan-400 text-xs font-bold font-['JetBrains_Mono']">{idx + 2}</span>
+              <span className="text-gold-400 text-xs font-bold font-['JetBrains_Mono']">{idx + 2}</span>
             </div>
             <span className="text-white font-semibold text-sm font-['Inter']">
               {t.guest} {idx + 2}
             </span>
-            <div className="flex-1 h-px" style={{ background: "rgba(34,211,238,0.08)" }} />
+            <div className="flex-1 h-px" style={{ background: "rgba(181,142,60,0.08)" }} />
             <button
               type="button"
               onClick={() => removeGuest(guest.id)}
@@ -335,13 +335,13 @@ const CheckInForm = ({ isAr, onCancel, onSaved }: Props) => {
         onClick={addGuest}
         className="flex items-center gap-2 px-5 py-3 rounded-xl border text-sm font-semibold cursor-pointer transition-colors font-['Inter'] whitespace-nowrap w-full justify-center"
         style={{
-          background: "rgba(34,211,238,0.04)",
-          borderColor: "rgba(34,211,238,0.18)",
-          color: "#22D3EE",
+          background: "rgba(181,142,60,0.04)",
+          borderColor: "rgba(181,142,60,0.18)",
+          color: "#D4A84B",
           borderStyle: "dashed",
         }}
-        onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(34,211,238,0.08)"; }}
-        onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(34,211,238,0.04)"; }}
+        onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(181,142,60,0.08)"; }}
+        onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(181,142,60,0.04)"; }}
       >
         <i className="ri-user-add-line" />
         {t.addGuest}

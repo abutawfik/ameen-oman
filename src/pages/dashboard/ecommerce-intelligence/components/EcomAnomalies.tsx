@@ -125,7 +125,7 @@ const riskColor = (r: Severity) => {
 };
 
 const streamColor = (s: string) => {
-  const map: Record<string, string> = { FINANCIAL: "#4ADE80", MOBILE: "#22D3EE", BORDER: "#A78BFA", EMPLOYMENT: "#F9A8D4", TRANSPORT: "#FB923C", UTILITY: "#FACC15" };
+  const map: Record<string, string> = { FINANCIAL: "#4ADE80", MOBILE: "#D4A84B", BORDER: "#A78BFA", EMPLOYMENT: "#F9A8D4", TRANSPORT: "#FB923C", UTILITY: "#FACC15" };
   return map[s] || "#9CA3AF";
 };
 
@@ -153,12 +153,12 @@ const EcomAnomalies = ({ isAr }: Props) => {
       {/* Stats row */}
       <div className="grid grid-cols-4 gap-4">
         {[
-          { label: isAr ? "إجمالي" : "Total", value: counts.total, color: "#22D3EE" },
+          { label: isAr ? "إجمالي" : "Total", value: counts.total, color: "#D4A84B" },
           { label: isAr ? "مفتوح" : "Open", value: counts.open, color: "#F87171" },
           { label: isAr ? "قيد التحقيق" : "Investigating", value: counts.investigating, color: "#FACC15" },
           { label: isAr ? "حرج" : "Critical", value: counts.critical, color: "#F87171" },
         ].map((s) => (
-          <div key={s.label} className="rounded-xl border p-4 text-center" style={{ background: "rgba(10,22,40,0.8)", borderColor: `${s.color}20`, backdropFilter: "blur(12px)" }}>
+          <div key={s.label} className="rounded-xl border p-4 text-center" style={{ background: "rgba(20,29,46,0.8)", borderColor: `${s.color}20`, backdropFilter: "blur(12px)" }}>
             <div className="text-3xl font-black font-['JetBrains_Mono']" style={{ color: s.color }}>{s.value}</div>
             <div className="text-gray-500 text-xs mt-1">{s.label}</div>
           </div>
@@ -178,7 +178,7 @@ const EcomAnomalies = ({ isAr }: Props) => {
                 onClick={() => setSelected(isActive ? null : anomaly.id)}
                 className="w-full rounded-2xl border p-4 text-left cursor-pointer transition-all"
                 style={{
-                  background: isActive ? `${rc}08` : "rgba(10,22,40,0.8)",
+                  background: isActive ? `${rc}08` : "rgba(20,29,46,0.8)",
                   borderColor: isActive ? `${rc}40` : `${rc}20`,
                   backdropFilter: "blur(12px)",
                   borderLeft: `4px solid ${rc}`,
@@ -218,7 +218,7 @@ const EcomAnomalies = ({ isAr }: Props) => {
 
         {/* Detail panel */}
         {selectedAnomaly ? (
-          <div className="rounded-2xl border p-5 space-y-4" style={{ background: "rgba(10,22,40,0.9)", borderColor: `${riskColor(selectedAnomaly.severity)}30`, backdropFilter: "blur(16px)" }}>
+          <div className="rounded-2xl border p-5 space-y-4" style={{ background: "rgba(20,29,46,0.9)", borderColor: `${riskColor(selectedAnomaly.severity)}30`, backdropFilter: "blur(16px)" }}>
             <div className="flex items-start justify-between">
               <div>
                 <div className="flex items-center gap-2 flex-wrap mb-1">
@@ -291,10 +291,10 @@ const EcomAnomalies = ({ isAr }: Props) => {
             </div>
           </div>
         ) : (
-          <div className="rounded-2xl border flex items-center justify-center" style={{ background: "rgba(10,22,40,0.5)", borderColor: "rgba(34,211,238,0.08)", minHeight: "300px" }}>
+          <div className="rounded-2xl border flex items-center justify-center" style={{ background: "rgba(20,29,46,0.5)", borderColor: "rgba(181,142,60,0.08)", minHeight: "300px" }}>
             <div className="text-center">
-              <div className="w-12 h-12 flex items-center justify-center rounded-2xl mx-auto mb-3" style={{ background: "rgba(34,211,238,0.08)", border: "1px solid rgba(34,211,238,0.15)" }}>
-                <i className="ri-cursor-line text-cyan-400 text-xl" />
+              <div className="w-12 h-12 flex items-center justify-center rounded-2xl mx-auto mb-3" style={{ background: "rgba(181,142,60,0.08)", border: "1px solid rgba(181,142,60,0.15)" }}>
+                <i className="ri-cursor-line text-gold-400 text-xl" />
               </div>
               <p className="text-gray-500 text-sm">{isAr ? "اختر شذوذاً لعرض التفاصيل" : "Select an anomaly to view details"}</p>
             </div>

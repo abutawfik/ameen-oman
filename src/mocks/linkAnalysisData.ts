@@ -58,7 +58,7 @@ export interface SavedWorkspace {
 }
 
 export const nodeTypeConfig: Record<NodeType, { icon: string; color: string; shape: string; labelEn: string; labelAr: string }> = {
-  person:       { icon: "ri-user-line",           color: "#22D3EE", shape: "circle",   labelEn: "Person",        labelAr: "شخص" },
+  person:       { icon: "ri-user-line",           color: "#D4A84B", shape: "circle",   labelEn: "Person",        labelAr: "شخص" },
   organization: { icon: "ri-building-2-line",     color: "#A78BFA", shape: "hexagon",  labelEn: "Organization",  labelAr: "منظمة" },
   location:     { icon: "ri-map-pin-line",         color: "#4ADE80", shape: "pin",      labelEn: "Location",      labelAr: "موقع" },
   vehicle:      { icon: "ri-car-line",             color: "#FACC15", shape: "diamond",  labelEn: "Vehicle",       labelAr: "مركبة" },
@@ -72,7 +72,7 @@ export const nodeTypeConfig: Record<NodeType, { icon: string; color: string; sha
 export const edgeTypeConfig: Record<EdgeType, { color: string; dash?: boolean; labelEn: string; labelAr: string }> = {
   "employer":       { color: "#A78BFA", labelEn: "Employer",         labelAr: "صاحب عمل" },
   "tenant":         { color: "#2DD4BF", labelEn: "Tenant",           labelAr: "مستأجر" },
-  "co-guest":       { color: "#22D3EE", labelEn: "Co-Guest",         labelAr: "نزيل مشترك" },
+  "co-guest":       { color: "#D4A84B", labelEn: "Co-Guest",         labelAr: "نزيل مشترك" },
   "co-driver":      { color: "#FACC15", labelEn: "Co-Driver",        labelAr: "سائق مشترك" },
   "family":         { color: "#F472B6", labelEn: "Family",           labelAr: "عائلة" },
   "wire-transfer":  { color: "#4ADE80", labelEn: "Wire Transfer",    labelAr: "تحويل بنكي" },
@@ -80,7 +80,7 @@ export const edgeTypeConfig: Record<EdgeType, { color: string; dash?: boolean; l
   "rental":         { color: "#FB923C", labelEn: "Rental Contract",  labelAr: "عقد إيجار" },
   "shared-phone":   { color: "#60A5FA", dash: true, labelEn: "Shared Phone",    labelAr: "هاتف مشترك" },
   "shared-imei":    { color: "#38BDF8", dash: true, labelEn: "Shared IMEI",     labelAr: "IMEI مشترك" },
-  "same-hotel":     { color: "#22D3EE", dash: true, labelEn: "Same Hotel",      labelAr: "نفس الفندق" },
+  "same-hotel":     { color: "#D4A84B", dash: true, labelEn: "Same Hotel",      labelAr: "نفس الفندق" },
   "same-property":  { color: "#2DD4BF", dash: true, labelEn: "Same Property",   labelAr: "نفس العقار" },
   "same-workplace": { color: "#A78BFA", dash: true, labelEn: "Same Workplace",  labelAr: "نفس مكان العمل" },
   "whatsapp-group": { color: "#4ADE80", dash: true, labelEn: "WhatsApp Group",  labelAr: "مجموعة واتساب" },

@@ -9,16 +9,16 @@ interface CellDetailModal {
 }
 
 const getColor = (value: number): string => {
-  if (value >= 90) return 'rgba(34,211,238,0.92)';
-  if (value >= 75) return 'rgba(34,211,238,0.70)';
-  if (value >= 60) return 'rgba(34,211,238,0.50)';
-  if (value >= 45) return 'rgba(34,211,238,0.32)';
-  if (value >= 30) return 'rgba(34,211,238,0.18)';
-  return 'rgba(34,211,238,0.06)';
+  if (value >= 90) return 'rgba(181,142,60,0.92)';
+  if (value >= 75) return 'rgba(181,142,60,0.70)';
+  if (value >= 60) return 'rgba(181,142,60,0.50)';
+  if (value >= 45) return 'rgba(181,142,60,0.32)';
+  if (value >= 30) return 'rgba(181,142,60,0.18)';
+  return 'rgba(181,142,60,0.06)';
 };
 
 const getTextColor = (value: number): string => {
-  if (value >= 75) return '#060D1A';
+  if (value >= 75) return '#0B1220';
   if (value >= 50) return '#D1D5DB';
   return '#6B7280';
 };
@@ -47,8 +47,8 @@ export default function PatternHeatmap() {
 
   return (
     <div
-      className="rounded-xl border border-cyan-500/20 p-5"
-      style={{ background: 'rgba(10,22,40,0.8)' }}
+      className="rounded-xl border border-gold-500/20 p-5"
+      style={{ background: 'rgba(20,29,46,0.8)' }}
     >
       <div className="flex items-start justify-between mb-3">
         <div>
@@ -57,13 +57,13 @@ export default function PatternHeatmap() {
         </div>
         <div className="flex items-center gap-2 text-xs text-gray-400 shrink-0">
           {[
-            { label: 'Low', bg: 'rgba(34,211,238,0.06)' },
-            { label: 'Med', bg: 'rgba(34,211,238,0.32)' },
-            { label: 'High', bg: 'rgba(34,211,238,0.70)' },
-            { label: 'Max', bg: 'rgba(34,211,238,0.92)' },
+            { label: 'Low', bg: 'rgba(181,142,60,0.06)' },
+            { label: 'Med', bg: 'rgba(181,142,60,0.32)' },
+            { label: 'High', bg: 'rgba(181,142,60,0.70)' },
+            { label: 'Max', bg: 'rgba(181,142,60,0.92)' },
           ].map(l => (
             <span key={l.label} className="flex items-center gap-1">
-              <span className="w-3 h-3 rounded-sm border border-cyan-500/20" style={{ background: l.bg }} />
+              <span className="w-3 h-3 rounded-sm border border-gold-500/20" style={{ background: l.bg }} />
               {l.label}
             </span>
           ))}
@@ -148,8 +148,8 @@ export default function PatternHeatmap() {
                       width: 42,
                       height: 26,
                       flexShrink: 0,
-                      background: isDiag ? 'rgba(34,211,238,0.15)' : getColor(val),
-                      border: isHovered ? '1px solid #22D3EE' : '1px solid transparent',
+                      background: isDiag ? 'rgba(181,142,60,0.15)' : getColor(val),
+                      border: isHovered ? '1px solid #D4A84B' : '1px solid transparent',
                       transform: isHovered ? 'scale(1.15)' : 'scale(1)',
                       zIndex: isHovered ? 10 : 1,
                       position: 'relative',
@@ -161,7 +161,7 @@ export default function PatternHeatmap() {
                   >
                     <span
                       className="font-mono font-bold"
-                      style={{ fontSize: 7, color: isDiag ? '#22D3EE' : getTextColor(val) }}
+                      style={{ fontSize: 7, color: isDiag ? '#D4A84B' : getTextColor(val) }}
                     >
                       {isDiag ? '—' : val}
                     </span>
@@ -176,8 +176,8 @@ export default function PatternHeatmap() {
       {/* Hover tooltip */}
       {hovered && hovered.row !== hovered.col && (
         <div
-          className="mt-3 px-3 py-2 rounded-lg border border-cyan-500/20 text-xs flex items-center gap-3"
-          style={{ background: 'rgba(34,211,238,0.05)' }}
+          className="mt-3 px-3 py-2 rounded-lg border border-gold-500/20 text-xs flex items-center gap-3"
+          style={{ background: 'rgba(181,142,60,0.05)' }}
         >
           <span style={{ color: streamLabels.find(s => s.key === hovered.row)?.color }}>
             {streamLabels.find(s => s.key === hovered.row)?.label}
@@ -187,7 +187,7 @@ export default function PatternHeatmap() {
             {streamLabels.find(s => s.key === hovered.col)?.label}
           </span>
           <span className="text-gray-500">—</span>
-          <span className="font-mono font-bold text-cyan-400">
+          <span className="font-mono font-bold text-gold-400">
             {heatmapData[hovered.row]?.[hovered.col] ?? 0}
           </span>
           <span className="text-gray-400">
@@ -201,12 +201,12 @@ export default function PatternHeatmap() {
       {modal && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center"
-          style={{ background: 'rgba(6,13,26,0.85)' }}
+          style={{ background: 'rgba(11,18,32,0.85)' }}
           onClick={() => setModal(null)}
         >
           <div
-            className="rounded-xl border border-cyan-500/30 p-6 w-full max-w-md mx-4"
-            style={{ background: 'rgba(10,22,40,0.98)' }}
+            className="rounded-xl border border-gold-500/30 p-6 w-full max-w-md mx-4"
+            style={{ background: 'rgba(20,29,46,0.98)' }}
             onClick={e => e.stopPropagation()}
           >
             <div className="flex items-center justify-between mb-4">
@@ -223,10 +223,10 @@ export default function PatternHeatmap() {
               </button>
             </div>
 
-            <div className="flex items-center gap-4 mb-5 p-3 rounded-lg border border-cyan-500/15" style={{ background: 'rgba(34,211,238,0.04)' }}>
+            <div className="flex items-center gap-4 mb-5 p-3 rounded-lg border border-gold-500/15" style={{ background: 'rgba(181,142,60,0.04)' }}>
               <div
                 className="w-16 h-16 rounded-xl flex items-center justify-center font-mono font-bold text-2xl shrink-0"
-                style={{ background: getColor(modal.value), color: modal.value >= 75 ? '#060D1A' : '#22D3EE', border: '1px solid rgba(34,211,238,0.3)' }}
+                style={{ background: getColor(modal.value), color: modal.value >= 75 ? '#0B1220' : '#D4A84B', border: '1px solid rgba(181,142,60,0.3)' }}
               >
                 {modal.value}
               </div>
@@ -251,10 +251,10 @@ export default function PatternHeatmap() {
                   {modal.rules.map(rule => (
                     <div
                       key={rule}
-                      className="flex items-center gap-2 px-3 py-2.5 rounded-lg border border-cyan-500/20"
-                      style={{ background: 'rgba(34,211,238,0.05)' }}
+                      className="flex items-center gap-2 px-3 py-2.5 rounded-lg border border-gold-500/20"
+                      style={{ background: 'rgba(181,142,60,0.05)' }}
                     >
-                      <i className="ri-git-branch-line text-cyan-400 text-sm" />
+                      <i className="ri-git-branch-line text-gold-400 text-sm" />
                       <span className="text-white text-sm flex-1">{rule}</span>
                       <span className="text-gray-500 text-xs">Active</span>
                       <span className="w-1.5 h-1.5 rounded-full bg-green-400" />

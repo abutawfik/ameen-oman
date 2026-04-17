@@ -26,15 +26,15 @@ export default function MobilePushPanel() {
     <div className="space-y-4">
       {/* Header panel */}
       <div
-        className="rounded-xl border border-cyan-500/20 p-5"
-        style={{ background: 'rgba(10,22,40,0.8)' }}
+        className="rounded-xl border border-gold-500/20 p-5"
+        style={{ background: 'rgba(20,29,46,0.8)' }}
       >
         <div className="flex items-start gap-4 mb-4">
           <div
             className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0"
-            style={{ background: 'rgba(34,211,238,0.15)', border: '1px solid rgba(34,211,238,0.3)' }}
+            style={{ background: 'rgba(181,142,60,0.15)', border: '1px solid rgba(181,142,60,0.3)' }}
           >
-            <i className="ri-smartphone-line text-cyan-400 text-xl" />
+            <i className="ri-smartphone-line text-gold-400 text-xl" />
           </div>
           <div className="flex-1">
             <h3 className="text-white font-semibold text-sm">AMEEN Mobile Push — Tier 2</h3>
@@ -43,7 +43,7 @@ export default function MobilePushPanel() {
             </p>
           </div>
           <div className="text-right shrink-0">
-            <p className="text-cyan-400 font-mono font-bold text-2xl">{criticalAlerts.length}</p>
+            <p className="text-gold-400 font-mono font-bold text-2xl">{criticalAlerts.length}</p>
             <p className="text-gray-500 text-xs">Pushed Today</p>
           </div>
         </div>
@@ -51,14 +51,14 @@ export default function MobilePushPanel() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {[
             { label: 'Officers Online', value: `${onlineCount} / ${FIELD_OFFICERS.length}`, icon: 'ri-user-line', color: '#4ADE80' },
-            { label: 'Avg Response', value: '4.2 min', icon: 'ri-time-line', color: '#22D3EE' },
+            { label: 'Avg Response', value: '4.2 min', icon: 'ri-time-line', color: '#D4A84B' },
             { label: 'Acknowledged', value: `${acknowledged.size} / ${criticalAlerts.length}`, icon: 'ri-check-double-line', color: '#4ADE80' },
             { label: 'Pending Action', value: `${criticalAlerts.length - acknowledged.size}`, icon: 'ri-alarm-warning-line', color: '#FB923C' },
           ].map(stat => (
             <div
               key={stat.label}
-              className="rounded-lg px-3 py-2.5 border border-cyan-500/10 text-center"
-              style={{ background: 'rgba(34,211,238,0.04)' }}
+              className="rounded-lg px-3 py-2.5 border border-gold-500/10 text-center"
+              style={{ background: 'rgba(181,142,60,0.04)' }}
             >
               <div className="flex items-center justify-center gap-1.5 mb-1">
                 <i className={`${stat.icon} text-sm`} style={{ color: stat.color }} />
@@ -72,7 +72,7 @@ export default function MobilePushPanel() {
         {/* Officers toggle */}
         <button
           onClick={() => setShowOfficers(!showOfficers)}
-          className="mt-3 flex items-center gap-2 text-xs text-cyan-400 hover:text-cyan-300 cursor-pointer transition-colors"
+          className="mt-3 flex items-center gap-2 text-xs text-gold-400 hover:text-gold-300 cursor-pointer transition-colors"
         >
           <i className={`${showOfficers ? 'ri-arrow-up-s-line' : 'ri-arrow-down-s-line'}`} />
           {showOfficers ? 'Hide' : 'Show'} Field Officers ({onlineCount} online)
@@ -83,8 +83,8 @@ export default function MobilePushPanel() {
             {FIELD_OFFICERS.map(officer => (
               <div
                 key={officer.id}
-                className="flex items-center gap-2.5 px-3 py-2 rounded-lg border border-cyan-500/10"
-                style={{ background: 'rgba(10,22,40,0.6)' }}
+                className="flex items-center gap-2.5 px-3 py-2 rounded-lg border border-gold-500/10"
+                style={{ background: 'rgba(20,29,46,0.6)' }}
               >
                 <span
                   className="w-2 h-2 rounded-full shrink-0"
@@ -110,7 +110,7 @@ export default function MobilePushPanel() {
               key={alert.id}
               className="rounded-xl border overflow-hidden transition-all"
               style={{
-                background: 'rgba(10,22,40,0.9)',
+                background: 'rgba(20,29,46,0.9)',
                 borderColor: isAcked ? 'rgba(74,222,128,0.3)' : 'rgba(248,113,113,0.3)',
                 opacity: isAcked ? 0.7 : 1,
               }}
@@ -158,7 +158,7 @@ export default function MobilePushPanel() {
                     <p className="text-white font-semibold text-sm">{alert.personName}</p>
                     <p className="text-gray-400 text-xs font-mono">{alert.personDoc} · {alert.nationality}</p>
                     <div className="flex items-center gap-1.5 mt-1">
-                      <i className="ri-map-pin-line text-cyan-400 text-xs" />
+                      <i className="ri-map-pin-line text-gold-400 text-xs" />
                       <span className="text-gray-400 text-xs truncate">{alert.location}</span>
                     </div>
                   </div>
@@ -176,11 +176,11 @@ export default function MobilePushPanel() {
 
                 {/* Triggering pattern */}
                 <div
-                  className="rounded-lg p-3 mb-3 border border-cyan-500/15"
-                  style={{ background: 'rgba(34,211,238,0.04)' }}
+                  className="rounded-lg p-3 mb-3 border border-gold-500/15"
+                  style={{ background: 'rgba(181,142,60,0.04)' }}
                 >
                   <p className="text-gray-500 text-xs uppercase tracking-wider mb-1">Triggering Pattern</p>
-                  <p className="text-cyan-400 text-xs font-semibold mb-1">{alert.ruleName}</p>
+                  <p className="text-gold-400 text-xs font-semibold mb-1">{alert.ruleName}</p>
                   <p className="text-gray-300 text-xs leading-relaxed">{alert.triggerDescription}</p>
                 </div>
 
@@ -199,7 +199,7 @@ export default function MobilePushPanel() {
                     <button
                       onClick={() => handleAck(alert.id)}
                       className="flex-1 py-2 rounded-lg text-xs font-semibold cursor-pointer transition-all whitespace-nowrap"
-                      style={{ background: '#22D3EE', color: '#060D1A' }}
+                      style={{ background: '#D4A84B', color: '#0B1220' }}
                     >
                       <i className="ri-check-line mr-1" />Acknowledge
                     </button>
@@ -209,7 +209,7 @@ export default function MobilePushPanel() {
                       <i className="ri-arrow-up-circle-line mr-1" />Escalate
                     </button>
                     <button
-                      className="px-3 py-2 rounded-lg text-xs border border-cyan-500/20 text-cyan-400 hover:bg-cyan-500/10 cursor-pointer transition-all whitespace-nowrap"
+                      className="px-3 py-2 rounded-lg text-xs border border-gold-500/20 text-gold-400 hover:bg-gold-500/10 cursor-pointer transition-all whitespace-nowrap"
                       title="Navigate to location"
                     >
                       <i className="ri-map-pin-line" />

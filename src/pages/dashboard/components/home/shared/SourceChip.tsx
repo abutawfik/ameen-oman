@@ -22,8 +22,8 @@ const SourceChip = ({ source, isAr = false, compact = false }: Props) => {
     <div
       className="flex items-center gap-2.5 px-3 py-2 rounded-lg border"
       style={{
-        background: "rgba(10,22,40,0.65)",
-        borderColor: "rgba(34,211,238,0.12)",
+        background: "rgba(20,29,46,0.65)",
+        borderColor: "rgba(181,142,60,0.12)",
       }}
     >
       <div

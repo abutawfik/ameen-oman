@@ -68,13 +68,13 @@ const AttractionEntryForm = ({ isAr, onCancel }: Props) => {
     setTimeout(() => { setSaving(false); setRefNumber(`AMN-TOR-${Date.now()}-${Math.floor(Math.random() * 9000) + 1000}`); setConfirmed(true); }, 1800);
   };
 
-  if (confirmed) return <TorConfirmation refNumber={refNumber} eventType={isAr ? "دخول معلم سياحي" : "Attraction Entry"} eventCode="TOR_ATTRACTION" color="#22D3EE" isAr={isAr} onReset={() => { setConfirmed(false); setAutoFilled(false); }} />;
+  if (confirmed) return <TorConfirmation refNumber={refNumber} eventType={isAr ? "دخول معلم سياحي" : "Attraction Entry"} eventCode="TOR_ATTRACTION" color="#D4A84B" isAr={isAr} onReset={() => { setConfirmed(false); setAutoFilled(false); }} />;
 
   return (
     <div className="space-y-5">
       <TipBanner text={isAr ? "سجّل بيانات الزائر وتفاصيل التذكرة لكل دخول إلى المعالم السياحية." : "Record visitor details and ticket information for each attraction entry."} color="cyan" />
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
-        <SectionCard title={isAr ? "معلومات المعلم والزيارة" : "Attraction & Visit Info"} icon="ri-ticket-line" accentColor="#22D3EE">
+        <SectionCard title={isAr ? "معلومات المعلم والزيارة" : "Attraction & Visit Info"} icon="ri-ticket-line" accentColor="#D4A84B">
           <div className="space-y-4">
             <FormField label={isAr ? "اسم المعلم السياحي" : "Attraction Name"} required>
               <TextInput placeholder={isAr ? "اسم المعلم" : "Attraction name"} value={attractionName} onChange={(e) => setAttractionName(e.target.value)} />

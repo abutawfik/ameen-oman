@@ -16,9 +16,9 @@ const DataStreamsSection = () => {
     {
       key: "api",
       icon: "ri-code-s-slash-line",
-      color: "#22D3EE",
-      bg: "rgba(34,211,238,0.08)",
-      border: "rgba(34,211,238,0.3)",
+      color: "#D4A84B",
+      bg: "rgba(181,142,60,0.08)",
+      border: "rgba(181,142,60,0.3)",
     },
     {
       key: "validation",
@@ -30,9 +30,9 @@ const DataStreamsSection = () => {
     {
       key: "database",
       icon: "ri-database-2-line",
-      color: "#22D3EE",
-      bg: "rgba(34,211,238,0.08)",
-      border: "rgba(34,211,238,0.3)",
+      color: "#D4A84B",
+      bg: "rgba(181,142,60,0.08)",
+      border: "rgba(181,142,60,0.3)",
     },
   ];
 
@@ -71,10 +71,10 @@ const DataStreamsSection = () => {
   ];
 
   const allStreams = [
-    { num: "01", title: "Hotel Intelligence", titleAr: "الاستخبارات الفندقية", type: "Core", color: "#22D3EE", icon: "ri-hotel-line" },
-    { num: "02", title: "Car Rental Monitoring", titleAr: "مراقبة تأجير السيارات", type: "Core", color: "#22D3EE", icon: "ri-car-line" },
-    { num: "03", title: "Mobile Operators", titleAr: "مشغلو الاتصالات", type: "Core", color: "#22D3EE", icon: "ri-sim-card-line" },
-    { num: "04", title: "Municipality Registry", titleAr: "سجل البلديات", type: "Core", color: "#22D3EE", icon: "ri-government-line" },
+    { num: "01", title: "Hotel Intelligence", titleAr: "الاستخبارات الفندقية", type: "Core", color: "#D4A84B", icon: "ri-hotel-line" },
+    { num: "02", title: "Car Rental Monitoring", titleAr: "مراقبة تأجير السيارات", type: "Core", color: "#D4A84B", icon: "ri-car-line" },
+    { num: "03", title: "Mobile Operators", titleAr: "مشغلو الاتصالات", type: "Core", color: "#D4A84B", icon: "ri-sim-card-line" },
+    { num: "04", title: "Municipality Registry", titleAr: "سجل البلديات", type: "Core", color: "#D4A84B", icon: "ri-government-line" },
     { num: "05", title: "Payment Intelligence", titleAr: "الاستخبارات المالية", type: "Extended", color: "#4ADE80", icon: "ri-bank-card-line" },
     { num: "06", title: "Borders & Immigration", titleAr: "الحدود والهجرة", type: "Extended", color: "#60A5FA", icon: "ri-passport-line" },
     { num: "07", title: "Health Interactions", titleAr: "التفاعلات الصحية", type: "Extended", color: "#F87171", icon: "ri-heart-pulse-line" },
@@ -85,7 +85,7 @@ const DataStreamsSection = () => {
     { num: "12", title: "E-Commerce & Retail", titleAr: "التجارة الإلكترونية", type: "Extended", color: "#34D399", icon: "ri-shopping-cart-line" },
     { num: "13", title: "Social Media Intelligence", titleAr: "استخبارات وسائل التواصل", type: "Extended", color: "#38BDF8", icon: "ri-global-line" },
     { num: "14", title: "Customs & Cargo", titleAr: "الجمارك والشحن", type: "Extended", color: "#FCD34D", icon: "ri-ship-line" },
-    { num: "15", title: "Marine & Maritime", titleAr: "البحرية والملاحة", type: "Extended", color: "#22D3EE", icon: "ri-anchor-line" },
+    { num: "15", title: "Marine & Maritime", titleAr: "البحرية والملاحة", type: "Extended", color: "#D4A84B", icon: "ri-anchor-line" },
     { num: "16", title: "Postal Services", titleAr: "الخدمات البريدية", type: "Extended", color: "#A78BFA", icon: "ri-mail-send-line" },
   ];
 
@@ -93,12 +93,12 @@ const DataStreamsSection = () => {
     <section
       id="data-streams"
       className="py-20 md:py-28 relative"
-      style={{ background: "linear-gradient(180deg, #060D1A 0%, #080F1E 100%)" }}
+      style={{ background: "linear-gradient(180deg, #0B1220 0%, #080F1E 100%)" }}
     >
       <div
         className="absolute inset-0 opacity-10"
         style={{
-          backgroundImage: `linear-gradient(rgba(34,211,238,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.12) 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(rgba(181,142,60,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,0.12) 1px, transparent 1px)`,
           backgroundSize: "60px 60px",
         }}
       />
@@ -106,14 +106,14 @@ const DataStreamsSection = () => {
       <div className="relative z-10 max-w-[1400px] mx-auto px-4 md:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyan-500/30 bg-cyan-500/5 mb-4">
-            <span className="text-cyan-400 text-xs font-['JetBrains_Mono'] tracking-widest uppercase">16 DATA STREAMS</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gold-500/30 bg-gold-500/5 mb-4">
+            <span className="text-gold-400 text-xs font-['JetBrains_Mono'] tracking-widest uppercase">16 DATA STREAMS</span>
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-white font-['Inter'] mb-2">
             {t("architecture.title")}
           </h2>
           <p className="text-gray-500 text-sm font-['Cairo'] mb-4">{isAr ? "بنية تدفق البيانات" : "بنية تدفق البيانات"}</p>
-          <div className="w-16 h-0.5 bg-cyan-400 mx-auto mb-4" />
+          <div className="w-16 h-0.5 bg-gold-400 mx-auto mb-4" />
           <p className="text-gray-400 text-sm max-w-xl mx-auto font-['Inter']">{t("architecture.subtitle")}</p>
         </div>
 
@@ -124,7 +124,7 @@ const DataStreamsSection = () => {
               key={stream.num}
               className="flex items-center gap-3 p-3 rounded-lg border transition-all duration-200 hover:-translate-y-0.5 cursor-default"
               style={{
-                background: "rgba(10,22,40,0.7)",
+                background: "rgba(20,29,46,0.7)",
                 borderColor: stream.color + "22",
               }}
             >

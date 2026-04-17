@@ -78,9 +78,9 @@ const PermitRenewalForm = ({ isAr, onCancel }: Props) => {
               <TextInput placeholder="WP-XXXX-XXXXXXXX" value={permitNumber} onChange={(e) => setPermitNumber(e.target.value)} className="font-['JetBrains_Mono'] flex-1" />
               <button type="button" onClick={handleLookup}
                 className="flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap"
-                style={{ background: "#22D3EE", color: "#060D1A" }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#06B6D4"; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#22D3EE"; }}>
+                style={{ background: "#D4A84B", color: "#0B1220" }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C99C48"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#D4A84B"; }}>
                 {lookingUp ? <i className="ri-loader-4-line animate-spin" /> : <i className="ri-search-line" />}
                 {isAr ? "بحث" : "Lookup"}
               </button>
@@ -88,7 +88,7 @@ const PermitRenewalForm = ({ isAr, onCancel }: Props) => {
           </FormField>
 
           {permitInfo && (
-            <div className="rounded-xl border p-4" style={{ background: "rgba(10,22,40,0.6)", borderColor: "rgba(34,211,238,0.15)" }}>
+            <div className="rounded-xl border p-4" style={{ background: "rgba(20,29,46,0.6)", borderColor: "rgba(181,142,60,0.15)" }}>
               <div className="flex items-center gap-2 mb-3">
                 <div className="w-2 h-2 rounded-full" style={{ background: statusColor(permitInfo.status) }} />
                 <span className="text-xs font-bold font-['JetBrains_Mono']" style={{ color: statusColor(permitInfo.status) }}>{statusLabel(permitInfo.status)}</span>
@@ -127,7 +127,7 @@ const PermitRenewalForm = ({ isAr, onCancel }: Props) => {
             <button type="button" onClick={() => setSalaryChanged((v) => !v)}
               className="flex items-center gap-3 cursor-pointer mb-3">
               <div className="relative w-10 h-5 rounded-full transition-all duration-300"
-                style={{ background: salaryChanged ? "#22D3EE" : "rgba(255,255,255,0.1)" }}>
+                style={{ background: salaryChanged ? "#D4A84B" : "rgba(255,255,255,0.1)" }}>
                 <div className="absolute top-0.5 w-4 h-4 rounded-full bg-white transition-all duration-300 shadow-sm"
                   style={{ left: salaryChanged ? "calc(100% - 18px)" : "2px" }} />
               </div>
@@ -145,7 +145,7 @@ const PermitRenewalForm = ({ isAr, onCancel }: Props) => {
             <button type="button" onClick={() => setTitleChanged((v) => !v)}
               className="flex items-center gap-3 cursor-pointer mb-3">
               <div className="relative w-10 h-5 rounded-full transition-all duration-300"
-                style={{ background: titleChanged ? "#22D3EE" : "rgba(255,255,255,0.1)" }}>
+                style={{ background: titleChanged ? "#D4A84B" : "rgba(255,255,255,0.1)" }}>
                 <div className="absolute top-0.5 w-4 h-4 rounded-full bg-white transition-all duration-300 shadow-sm"
                   style={{ left: titleChanged ? "calc(100% - 18px)" : "2px" }} />
               </div>

@@ -16,7 +16,7 @@ const tabs: { key: Tab; label: string; icon: string; desc: string }[] = [
 ];
 
 const kpiCards = [
-  { label: "Active Subjects", value: geointKpis.activeSubjects, icon: "ri-user-location-line", color: "#22D3EE", delta: "+3 today" },
+  { label: "Active Subjects", value: geointKpis.activeSubjects, icon: "ri-user-location-line", color: "#D4A84B", delta: "+3 today" },
   { label: "Hotspot Clusters", value: geointKpis.hotspotCount, icon: "ri-focus-3-line", color: "#FB923C", delta: "2 critical" },
   { label: "Cross-Stream Alerts", value: geointKpis.crossStreamAlerts, icon: "ri-git-branch-line", color: "#F87171", delta: "+5 new" },
   { label: "Geofence Breaches", value: geointKpis.geofenceBreaches, icon: "ri-map-pin-range-line", color: "#FACC15", delta: "Active" },
@@ -42,12 +42,12 @@ const GeointPage = () => {
     <div className="flex flex-col h-full" style={{ background: "#060E1A", fontFamily: "Inter, sans-serif" }}>
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Page header */}
-        <div className="flex-shrink-0 px-6 pt-4 pb-3" style={{ borderBottom: "1px solid rgba(34,211,238,0.08)" }}>
+        <div className="flex-shrink-0 px-6 pt-4 pb-3" style={{ borderBottom: "1px solid rgba(181,142,60,0.08)" }}>
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 flex items-center justify-center rounded-xl"
-                style={{ background: "rgba(34,211,238,0.12)", border: "1px solid rgba(34,211,238,0.25)" }}>
-                <i className="ri-earth-line text-cyan-400 text-lg" />
+                style={{ background: "rgba(181,142,60,0.12)", border: "1px solid rgba(181,142,60,0.25)" }}>
+                <i className="ri-earth-line text-gold-400 text-lg" />
               </div>
               <div>
                 <h1 className="text-white font-['Inter'] font-bold text-lg">Geospatial Intelligence</h1>
@@ -56,9 +56,9 @@ const GeointPage = () => {
             </div>
             <div className="flex items-center gap-3">
               {/* Live clock */}
-              <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg" style={{ background: "rgba(34,211,238,0.06)", border: "1px solid rgba(34,211,238,0.15)" }}>
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg" style={{ background: "rgba(181,142,60,0.06)", border: "1px solid rgba(181,142,60,0.15)" }}>
                 <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-                <span className="text-cyan-400 text-xs font-['JetBrains_Mono']">
+                <span className="text-gold-400 text-xs font-['JetBrains_Mono']">
                   {liveTime.toLocaleTimeString("en-GB")} — LIVE
                 </span>
               </div>
@@ -106,9 +106,9 @@ const GeointPage = () => {
                 onClick={() => setActiveTab(tab.key)}
                 className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-['Inter'] font-medium transition-all cursor-pointer whitespace-nowrap"
                 style={activeTab === tab.key ? {
-                  background: "rgba(34,211,238,0.12)",
-                  color: "#22D3EE",
-                  border: "1px solid rgba(34,211,238,0.3)",
+                  background: "rgba(181,142,60,0.12)",
+                  color: "#D4A84B",
+                  border: "1px solid rgba(181,142,60,0.3)",
                 } : {
                   background: "rgba(255,255,255,0.03)",
                   color: "#6B7280",
@@ -139,14 +139,14 @@ const GeointPage = () => {
 
           {/* Subject panel */}
           {showSubjectPanel && (
-            <div className="w-64 flex-shrink-0 overflow-y-auto p-4 border-l" style={{ borderColor: "rgba(34,211,238,0.08)", background: "#080F1C" }}>
+            <div className="w-64 flex-shrink-0 overflow-y-auto p-4 border-l" style={{ borderColor: "rgba(181,142,60,0.08)", background: "#080F1C" }}>
               <div className="flex items-center justify-between mb-3">
                 <p className="text-gray-400 text-xs font-['JetBrains_Mono'] uppercase tracking-wider">Tracked Subjects</p>
-                <span className="text-xs font-['JetBrains_Mono'] text-cyan-400">{geoSubjects.length}</span>
+                <span className="text-xs font-['JetBrains_Mono'] text-gold-400">{geoSubjects.length}</span>
               </div>
               <div className="space-y-2">
                 {geoSubjects.map((subject, i) => {
-                  const subjectColors = ["#22D3EE", "#F87171", "#A78BFA", "#4ADE80", "#FB923C"];
+                  const subjectColors = ["#D4A84B", "#F87171", "#A78BFA", "#4ADE80", "#FB923C"];
                   const color = subjectColors[i % subjectColors.length];
                   const isSelected = selectedSubjectId === subject.id;
                   return (
@@ -203,11 +203,11 @@ const GeointPage = () => {
               </div>
 
               {/* Quick actions */}
-              <div className="mt-4 pt-4 border-t" style={{ borderColor: "rgba(34,211,238,0.08)" }}>
+              <div className="mt-4 pt-4 border-t" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
                 <p className="text-gray-600 text-xs font-['JetBrains_Mono'] uppercase tracking-wider mb-2">Quick Actions</p>
                 <div className="space-y-1.5">
                   {[
-                    { label: "Add Subject", icon: "ri-user-add-line", color: "#22D3EE" },
+                    { label: "Add Subject", icon: "ri-user-add-line", color: "#D4A84B" },
                     { label: "Set Geofence", icon: "ri-map-pin-range-line", color: "#4ADE80" },
                     { label: "Export Report", icon: "ri-download-line", color: "#A78BFA" },
                     { label: "Person 360°", icon: "ri-user-search-line", color: "#FB923C", action: () => navigate("/dashboard/person-360") },

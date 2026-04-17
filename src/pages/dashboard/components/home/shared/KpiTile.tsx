@@ -35,7 +35,7 @@ const KpiTile = ({ label, value, icon, color, deltaPct, deltaDirHint = "up_is_go
   return (
     <div
       className="rounded-xl border p-4 flex flex-col justify-between gap-3 min-h-[118px]"
-      style={{ background: "rgba(10,22,40,0.65)", borderColor: "rgba(34,211,238,0.12)" }}
+      style={{ background: "rgba(20,29,46,0.65)", borderColor: "rgba(181,142,60,0.12)" }}
     >
       <div className="flex items-start justify-between gap-2">
         <div className="flex items-center gap-2">

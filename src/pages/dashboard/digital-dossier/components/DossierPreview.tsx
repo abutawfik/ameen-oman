@@ -90,7 +90,7 @@ const DossierPreview = ({ subject, classification, format, sections, purpose, ca
                 { icon: "ri-alert-fill", color: "#F87171", title: "Visa Type Conflict", desc: "Tourist visa active while work permit issued — legal violation" },
                 { icon: "ri-bank-card-line", color: "#FB923C", title: "Suspicious Financial Activity", desc: "OMR 2,500 cash withdrawal + OMR 3,200 international wire within 21 days of arrival" },
                 { icon: "ri-sim-card-line", color: "#A78BFA", title: "Multiple SIM Acquisition", desc: "2 SIM cards purchased within 24 hours on same device (IMEI shared with flagged person)" },
-                { icon: "ri-ship-line", color: "#67E8F9", title: "Maritime Risk", desc: "Boat rental with 3 unregistered passengers — coastal security concern" },
+                { icon: "ri-ship-line", color: "#DDB96B", title: "Maritime Risk", desc: "Boat rental with 3 unregistered passengers — coastal security concern" },
                 { icon: "ri-box-3-line", color: "#FCD34D", title: "Customs Invoice Manipulation", desc: "68% value variance on cargo clearance — suspected under-invoicing" },
               ].map((alert) => (
                 <div key={alert.title} className="flex items-start gap-3 p-3 rounded-lg" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
@@ -104,8 +104,8 @@ const DossierPreview = ({ subject, classification, format, sections, purpose, ca
                 </div>
               ))}
             </div>
-            <div className="p-3 rounded-lg" style={{ background: "rgba(34,211,238,0.05)", border: "1px solid rgba(34,211,238,0.15)" }}>
-              <p className="text-cyan-400 text-xs font-bold font-['JetBrains_Mono'] mb-1">RECOMMENDED ACTIONS</p>
+            <div className="p-3 rounded-lg" style={{ background: "rgba(181,142,60,0.05)", border: "1px solid rgba(181,142,60,0.15)" }}>
+              <p className="text-gold-400 text-xs font-bold font-['JetBrains_Mono'] mb-1">RECOMMENDED ACTIONS</p>
               <ul className="text-gray-400 text-xs font-['Inter'] space-y-1">
                 <li>• Immediate visa status review and potential deportation proceedings</li>
                 <li>• Financial Intelligence Unit referral for wire transfer investigation</li>
@@ -225,7 +225,7 @@ const DossierPreview = ({ subject, classification, format, sections, purpose, ca
                     <p className="text-white text-xs font-bold font-['Inter'] capitalize">{stream.stream} Stream</p>
                     <p className="text-gray-500 text-xs font-['Inter']">{stream.label} · Last: {stream.lastEvent}</p>
                   </div>
-                  <span className="text-xs font-['JetBrains_Mono'] text-cyan-400">{stream.count} events</span>
+                  <span className="text-xs font-['JetBrains_Mono'] text-gold-400">{stream.count} events</span>
                 </div>
               ))}
             <p className="text-gray-700 text-xs font-['JetBrains_Mono'] text-center">Full data available in generated document</p>
@@ -235,41 +235,41 @@ const DossierPreview = ({ subject, classification, format, sections, purpose, ca
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex" style={{ background: "rgba(6,13,26,0.9)", backdropFilter: "blur(8px)" }}>
-      <div className="flex w-full max-w-6xl mx-auto my-6 rounded-2xl overflow-hidden" style={{ background: "rgba(10,22,40,0.98)", border: "1px solid rgba(34,211,238,0.2)" }}>
+    <div className="fixed inset-0 z-50 flex" style={{ background: "rgba(11,18,32,0.9)", backdropFilter: "blur(8px)" }}>
+      <div className="flex w-full max-w-6xl mx-auto my-6 rounded-2xl overflow-hidden" style={{ background: "rgba(20,29,46,0.98)", border: "1px solid rgba(181,142,60,0.2)" }}>
         {/* Left: Section nav */}
-        <div className="w-64 flex-shrink-0 border-r flex flex-col" style={{ borderColor: "rgba(34,211,238,0.1)" }}>
-          <div className="p-4 border-b" style={{ borderColor: "rgba(34,211,238,0.1)" }}>
+        <div className="w-64 flex-shrink-0 border-r flex flex-col" style={{ borderColor: "rgba(181,142,60,0.1)" }}>
+          <div className="p-4 border-b" style={{ borderColor: "rgba(181,142,60,0.1)" }}>
             <div className="flex items-center gap-2 mb-2">
-              <i className="ri-file-pdf-line text-cyan-400" />
+              <i className="ri-file-pdf-line text-gold-400" />
               <span className="text-white text-sm font-bold font-['Inter']">Dossier Preview</span>
             </div>
             <div className="px-2 py-1 rounded text-[10px] font-bold font-['JetBrains_Mono'] text-center" style={{ background: cfg.bg, color: cfg.color, border: `1px solid ${cfg.border}` }}>
               {classification}
             </div>
           </div>
-          <div className="flex-1 overflow-y-auto py-2" style={{ scrollbarWidth: "thin", scrollbarColor: "rgba(34,211,238,0.2) transparent" }}>
+          <div className="flex-1 overflow-y-auto py-2" style={{ scrollbarWidth: "thin", scrollbarColor: "rgba(181,142,60,0.2) transparent" }}>
             {selectedSectionData.map((section, idx) => (
               <button
                 key={section.key}
                 onClick={() => setActiveSection(section.key)}
                 className="w-full flex items-center gap-2 px-4 py-2.5 cursor-pointer transition-all text-left"
                 style={{
-                  background: activeSection === section.key ? "rgba(34,211,238,0.08)" : "transparent",
-                  borderLeft: activeSection === section.key ? "2px solid #22D3EE" : "2px solid transparent",
+                  background: activeSection === section.key ? "rgba(181,142,60,0.08)" : "transparent",
+                  borderLeft: activeSection === section.key ? "2px solid #D4A84B" : "2px solid transparent",
                 }}
               >
                 <span className="text-gray-600 text-[10px] font-['JetBrains_Mono'] w-4 flex-shrink-0">{String(idx + 1).padStart(2, "0")}</span>
                 <div className="w-4 h-4 flex items-center justify-center flex-shrink-0">
-                  <i className={`${section.streamIcon} text-xs`} style={{ color: activeSection === section.key ? "#22D3EE" : section.streamColor }} />
+                  <i className={`${section.streamIcon} text-xs`} style={{ color: activeSection === section.key ? "#D4A84B" : section.streamColor }} />
                 </div>
-                <span className="text-xs font-['Inter'] truncate" style={{ color: activeSection === section.key ? "#22D3EE" : "#9CA3AF" }}>
+                <span className="text-xs font-['Inter'] truncate" style={{ color: activeSection === section.key ? "#D4A84B" : "#9CA3AF" }}>
                   {section.label}
                 </span>
               </button>
             ))}
           </div>
-          <div className="p-4 border-t" style={{ borderColor: "rgba(34,211,238,0.1)" }}>
+          <div className="p-4 border-t" style={{ borderColor: "rgba(181,142,60,0.1)" }}>
             <p className="text-gray-600 text-[10px] font-['JetBrains_Mono']">{sections.length} sections · ~{estimatedPages} pages</p>
             {watermark && <p className="text-gray-700 text-[10px] font-['JetBrains_Mono'] mt-0.5">Watermarked · {encrypted ? "Encrypted" : "Standard"}</p>}
           </div>
@@ -278,7 +278,7 @@ const DossierPreview = ({ subject, classification, format, sections, purpose, ca
         {/* Right: Content */}
         <div className="flex-1 flex flex-col overflow-hidden">
           {/* Header */}
-          <div className="flex items-center justify-between px-6 py-4 border-b flex-shrink-0" style={{ borderColor: "rgba(34,211,238,0.1)" }}>
+          <div className="flex items-center justify-between px-6 py-4 border-b flex-shrink-0" style={{ borderColor: "rgba(181,142,60,0.1)" }}>
             <div>
               <h2 className="text-white text-sm font-bold font-['Inter']">
                 {dossierSections.find((s) => s.key === activeSection)?.label}
@@ -307,7 +307,7 @@ const DossierPreview = ({ subject, classification, format, sections, purpose, ca
           </div>
 
           {/* Content area */}
-          <div className="flex-1 overflow-y-auto p-6" style={{ scrollbarWidth: "thin", scrollbarColor: "rgba(34,211,238,0.2) transparent" }}>
+          <div className="flex-1 overflow-y-auto p-6" style={{ scrollbarWidth: "thin", scrollbarColor: "rgba(181,142,60,0.2) transparent" }}>
             {/* Classification banner */}
             <div className="text-center py-1.5 rounded mb-4 text-[10px] font-bold font-['JetBrains_Mono'] tracking-widest" style={{ background: cfg.bg, color: cfg.color, border: `1px solid ${cfg.border}` }}>
               {classification} — HANDLE ACCORDING TO CLASSIFICATION POLICY
@@ -316,16 +316,16 @@ const DossierPreview = ({ subject, classification, format, sections, purpose, ca
           </div>
 
           {/* Footer actions */}
-          <div className="flex items-center justify-between px-6 py-4 border-t" style={{ borderColor: "rgba(34,211,238,0.1)" }}>
+          <div className="flex items-center justify-between px-6 py-4 border-t" style={{ borderColor: "rgba(181,142,60,0.1)" }}>
             <button onClick={onClose} className="px-4 py-2 rounded-lg text-sm font-['Inter'] cursor-pointer transition-colors whitespace-nowrap" style={{ background: "rgba(255,255,255,0.04)", color: "#9CA3AF", border: "1px solid rgba(255,255,255,0.08)" }}>
               Close Preview
             </button>
             <div className="flex gap-3">
-              <button className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-['Inter'] cursor-pointer transition-colors whitespace-nowrap" style={{ background: "rgba(34,211,238,0.08)", color: "#22D3EE", border: "1px solid rgba(34,211,238,0.2)" }}>
+              <button className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-['Inter'] cursor-pointer transition-colors whitespace-nowrap" style={{ background: "rgba(181,142,60,0.08)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>
                 <i className="ri-printer-line" />
                 Print
               </button>
-              <button onClick={onDownload} className="flex items-center gap-1.5 px-5 py-2 rounded-lg text-sm font-bold font-['Inter'] cursor-pointer transition-all whitespace-nowrap" style={{ background: "#22D3EE", color: "#060D1A", boxShadow: "0 0 16px rgba(34,211,238,0.25)" }}>
+              <button onClick={onDownload} className="flex items-center gap-1.5 px-5 py-2 rounded-lg text-sm font-bold font-['Inter'] cursor-pointer transition-all whitespace-nowrap" style={{ background: "#D4A84B", color: "#0B1220", boxShadow: "0 0 16px rgba(181,142,60,0.25)" }}>
                 <i className="ri-download-line" />
                 Download {format}
               </button>

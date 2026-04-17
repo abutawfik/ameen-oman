@@ -51,7 +51,7 @@ const BatchReportsPage = () => {
 
   const TABS: { id: Tab; icon: string; label: string; labelAr: string; badge?: string; badgeColor?: string }[] = [
     { id: "upload",        icon: "ri-upload-cloud-2-line", label: "Batch Upload",    labelAr: "رفع الدُفعة" },
-    { id: "upload-status", icon: "ri-list-check-2",        label: "Upload Status",   labelAr: "حالة الرفع",   badge: uploadResults.length > 0 ? String(uploadResults.length) : undefined, badgeColor: "#22D3EE" },
+    { id: "upload-status", icon: "ri-list-check-2",        label: "Upload Status",   labelAr: "حالة الرفع",   badge: uploadResults.length > 0 ? String(uploadResults.length) : undefined, badgeColor: "#D4A84B" },
     { id: "reports",       icon: "ri-bar-chart-2-line",    label: "Reports",         labelAr: "التقارير" },
     { id: "compliance",    icon: "ri-shield-check-line",   label: "Compliance",      labelAr: "الامتثال" },
     { id: "users",         icon: "ri-team-line",           label: "Manage Users",    labelAr: "إدارة المستخدمين" },
@@ -59,16 +59,16 @@ const BatchReportsPage = () => {
   ];
 
   return (
-    <div className="min-h-screen font-['Inter']" style={{ background: "#060D1A" }} dir={isAr ? "rtl" : "ltr"}>
+    <div className="min-h-screen font-['Inter']" style={{ background: "#0B1220" }} dir={isAr ? "rtl" : "ltr"}>
       {/* Grid texture */}
       <div className="fixed inset-0 pointer-events-none" style={{
-        backgroundImage: `linear-gradient(rgba(34,211,238,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.03) 1px, transparent 1px)`,
+        backgroundImage: `linear-gradient(rgba(181,142,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,0.03) 1px, transparent 1px)`,
         backgroundSize: "40px 40px"
       }} />
 
       {/* Header */}
       <header className="sticky top-0 z-40 flex items-center justify-between px-6 py-3 border-b"
-        style={{ background: "rgba(6,13,26,0.95)", borderColor: "rgba(34,211,238,0.12)", backdropFilter: "blur(12px)" }}>
+        style={{ background: "rgba(11,18,32,0.95)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
         <div className="flex items-center gap-4">
           <button type="button" onClick={() => navigate("/dashboard")}
             className="flex items-center gap-2 px-3 py-1.5 rounded-lg border text-sm font-semibold cursor-pointer whitespace-nowrap transition-colors"
@@ -80,14 +80,14 @@ const BatchReportsPage = () => {
           </button>
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 flex items-center justify-center rounded-lg"
-              style={{ background: "rgba(34,211,238,0.1)", border: "1px solid rgba(34,211,238,0.2)" }}>
-              <i className="ri-upload-cloud-2-line text-cyan-400 text-sm" />
+              style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+              <i className="ri-upload-cloud-2-line text-gold-400 text-sm" />
             </div>
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-white font-bold text-sm">{isAr ? "رفع الدُفعة والتقارير" : "Batch Upload & Reports"}</span>
                 <span className="px-2 py-0.5 rounded-full text-xs font-bold"
-                  style={{ background: "rgba(34,211,238,0.12)", color: "#22D3EE", border: "1px solid rgba(34,211,238,0.2)" }}>
+                  style={{ background: "rgba(181,142,60,0.12)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>
                   AMEEN
                 </span>
               </div>
@@ -99,9 +99,9 @@ const BatchReportsPage = () => {
         <div className="flex items-center gap-3">
           {/* Live clock */}
           <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-lg border"
-            style={{ background: "rgba(34,211,238,0.04)", borderColor: "rgba(34,211,238,0.12)" }}>
-            <i className="ri-time-line text-cyan-400 text-xs" />
-            <span className="text-cyan-400 text-xs font-bold font-['JetBrains_Mono']">{timeStr}</span>
+            style={{ background: "rgba(181,142,60,0.04)", borderColor: "rgba(181,142,60,0.12)" }}>
+            <i className="ri-time-line text-gold-400 text-xs" />
+            <span className="text-gold-400 text-xs font-bold font-['JetBrains_Mono']">{timeStr}</span>
           </div>
 
           {/* Live badge */}
@@ -117,14 +117,14 @@ const BatchReportsPage = () => {
 
       {/* Tab bar */}
       <div className="sticky top-[57px] z-30 flex items-center gap-1 px-6 py-2 border-b overflow-x-auto"
-        style={{ background: "rgba(6,13,26,0.9)", borderColor: "rgba(34,211,238,0.08)", backdropFilter: "blur(12px)" }}>
+        style={{ background: "rgba(11,18,32,0.9)", borderColor: "rgba(181,142,60,0.08)", backdropFilter: "blur(12px)" }}>
         {TABS.map((tab) => (
           <button key={tab.id} type="button" onClick={() => setActiveTab(tab.id)}
             className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap transition-all flex-shrink-0"
             style={{
-              background: activeTab === tab.id ? "rgba(34,211,238,0.12)" : "transparent",
-              border: `1px solid ${activeTab === tab.id ? "rgba(34,211,238,0.25)" : "transparent"}`,
-              color: activeTab === tab.id ? "#22D3EE" : "#6B7280",
+              background: activeTab === tab.id ? "rgba(181,142,60,0.12)" : "transparent",
+              border: `1px solid ${activeTab === tab.id ? "rgba(181,142,60,0.25)" : "transparent"}`,
+              color: activeTab === tab.id ? "#D4A84B" : "#6B7280",
             }}>
             <i className={`${tab.icon} text-xs`} />
             {isAr ? tab.labelAr : tab.label}
@@ -150,9 +150,9 @@ const BatchReportsPage = () => {
                 <p className="text-gray-400 text-sm">{isAr ? "رفع دُفعة من الأحداث عبر CSV أو Excel" : "Submit a batch of events via CSV or Excel file"}</p>
               </div>
               <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg border"
-                style={{ background: "rgba(34,211,238,0.04)", borderColor: "rgba(34,211,238,0.12)" }}>
-                <i className="ri-qr-code-line text-cyan-400 text-xs" />
-                <span className="text-cyan-400 text-xs font-['JetBrains_Mono']">AMN-BATCH-20260405</span>
+                style={{ background: "rgba(181,142,60,0.04)", borderColor: "rgba(181,142,60,0.12)" }}>
+                <i className="ri-qr-code-line text-gold-400 text-xs" />
+                <span className="text-gold-400 text-xs font-['JetBrains_Mono']">AMN-BATCH-20260405</span>
               </div>
             </div>
             <BatchUploadZone isAr={isAr} onProcessingComplete={handleProcessingComplete} />
@@ -168,16 +168,16 @@ const BatchReportsPage = () => {
             </div>
             {uploadResults.length === 0 ? (
               <div className="flex flex-col items-center justify-center py-20 rounded-2xl border"
-                style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.12)" }}>
+                style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)" }}>
                 <div className="w-16 h-16 flex items-center justify-center rounded-2xl mb-4"
-                  style={{ background: "rgba(34,211,238,0.08)", border: "1px solid rgba(34,211,238,0.15)" }}>
-                  <i className="ri-inbox-line text-cyan-400 text-3xl" />
+                  style={{ background: "rgba(181,142,60,0.08)", border: "1px solid rgba(181,142,60,0.15)" }}>
+                  <i className="ri-inbox-line text-gold-400 text-3xl" />
                 </div>
                 <p className="text-white font-bold mb-1">{isAr ? "لا توجد نتائج بعد" : "No results yet"}</p>
                 <p className="text-gray-500 text-sm mb-4">{isAr ? "ارفع ملفاً أولاً لرؤية النتائج هنا" : "Upload a file first to see results here"}</p>
                 <button type="button" onClick={() => setActiveTab("upload")}
                   className="flex items-center gap-2 px-5 py-2 rounded-lg text-sm font-bold cursor-pointer whitespace-nowrap"
-                  style={{ background: "#22D3EE", color: "#060D1A" }}>
+                  style={{ background: "#D4A84B", color: "#0B1220" }}>
                   <i className="ri-upload-cloud-2-line text-sm" />
                   {isAr ? "رفع ملف" : "Upload File"}
                 </button>
@@ -198,13 +198,13 @@ const BatchReportsPage = () => {
               </div>
               {/* Date range selector */}
               <div className="flex items-center gap-1 p-1 rounded-xl border"
-                style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.12)" }}>
+                style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)" }}>
                 {DATE_RANGES.map((dr) => (
                   <button key={dr.id} type="button" onClick={() => setDateRange(dr.id)}
                     className="px-3 py-1.5 rounded-lg text-xs font-bold cursor-pointer whitespace-nowrap transition-all"
                     style={{
-                      background: dateRange === dr.id ? "#22D3EE" : "transparent",
-                      color: dateRange === dr.id ? "#060D1A" : "#6B7280",
+                      background: dateRange === dr.id ? "#D4A84B" : "transparent",
+                      color: dateRange === dr.id ? "#0B1220" : "#6B7280",
                     }}>
                     {isAr ? dr.labelAr : dr.label}
                   </button>

@@ -62,7 +62,7 @@ export const livePatternStats = {
 
 export const streamLabels = [
   { key: 'border',       label: 'Border',       short: 'BRD', color: '#60A5FA' },
-  { key: 'hotel',        label: 'Hotel',        short: 'HTL', color: '#22D3EE' },
+  { key: 'hotel',        label: 'Hotel',        short: 'HTL', color: '#D4A84B' },
   { key: 'mobile',       label: 'Mobile',       short: 'MOB', color: '#A78BFA' },
   { key: 'car',          label: 'Car Rental',   short: 'CAR', color: '#34D399' },
   { key: 'financial',    label: 'Financial',    short: 'FIN', color: '#4ADE80' },
@@ -230,7 +230,7 @@ export const alertQueue: PatternAlert[] = [
     tier: 1, priority: 'critical', location: 'Capital International Airport',
     triggerDescription: 'Arrived via Capital Airport 6h ago. No hotel check-in detected. SIM purchased 2h after arrival. Car rental booked under different name.',
     suggestedAction: 'Dispatch field team to last known location. Cross-check SIM IMEI with hotel registry.',
-    escalationLevel: 0, photoInitials: 'TM', photoColor: '#22D3EE',
+    escalationLevel: 0, photoInitials: 'TM', photoColor: '#D4A84B',
   },
   {
     id: 'ALT-2026-002', ruleId: 'R002', ruleName: 'SIM Swapping', ruleCategory: 'Identity',

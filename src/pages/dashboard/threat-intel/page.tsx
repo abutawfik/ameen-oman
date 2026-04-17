@@ -22,7 +22,7 @@ const ThreatIntelPage = () => {
   const onlineSources = feedSources.filter(s => s.status === "online").length;
 
   return (
-    <div className="flex flex-col h-full" style={{ background: "#060D1A" }}>
+    <div className="flex flex-col h-full" style={{ background: "#0B1220" }}>
       {/* Background grid */}
       <div className="fixed inset-0 pointer-events-none z-0 opacity-[0.025]">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
@@ -37,7 +37,7 @@ const ThreatIntelPage = () => {
 
       <div className="flex-1 flex flex-col overflow-hidden relative z-10">
         {/* Page header */}
-        <div className="flex items-center justify-between px-6 py-3 border-b flex-shrink-0" style={{ borderColor: "rgba(248,113,113,0.15)", background: "rgba(10,22,40,0.6)" }}>
+        <div className="flex items-center justify-between px-6 py-3 border-b flex-shrink-0" style={{ borderColor: "rgba(248,113,113,0.15)", background: "rgba(20,29,46,0.6)" }}>
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(248,113,113,0.1)", border: "1px solid rgba(248,113,113,0.3)" }}>
               <i className="ri-bug-line text-red-400 text-sm" />
@@ -64,7 +64,7 @@ const ThreatIntelPage = () => {
         {/* KPI bar */}
         <div className="grid grid-cols-5 gap-0 border-b flex-shrink-0" style={{ borderColor: "rgba(248,113,113,0.08)" }}>
           {[
-            { label: "Total IOCs",        value: iocEntries.length.toString(),                                                icon: "ri-database-line",       color: "#22D3EE" },
+            { label: "Total IOCs",        value: iocEntries.length.toString(),                                                icon: "ri-database-line",       color: "#D4A84B" },
             { label: "Critical Active",   value: criticalCount.toString(),                                                    icon: "ri-alarm-warning-line",  color: "#F87171" },
             { label: "Dark Web Mentions", value: "6",                                                                         icon: "ri-ghost-line",          color: "#A78BFA" },
             { label: "Threat Actors",     value: "4",                                                                         icon: "ri-spy-line",            color: "#FB923C" },

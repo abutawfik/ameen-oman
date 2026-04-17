@@ -13,7 +13,7 @@ const channelColors: Record<string, string> = {
 };
 
 const typeLabels: Record<string, { en: string; ar: string; icon: string; color: string }> = {
-  import:   { en: "Import",        ar: "استيراد",    icon: "ri-download-2-line",       color: "#22D3EE" },
+  import:   { en: "Import",        ar: "استيراد",    icon: "ri-download-2-line",       color: "#D4A84B" },
   export:   { en: "Export",        ar: "تصدير",      icon: "ri-upload-2-line",         color: "#4ADE80" },
   transit:  { en: "Transit",       ar: "عبور",       icon: "ri-arrow-left-right-line", color: "#FACC15" },
   freezone: { en: "Free Zone",     ar: "منطقة حرة",  icon: "ri-store-2-line",          color: "#38BDF8" },
@@ -38,8 +38,8 @@ const CustomsLiveCounters = ({ isAr }: Props) => {
             key={kpi.label}
             className="rounded-xl p-4 flex flex-col gap-2"
             style={{
-              background: "rgba(10,22,40,0.8)",
-              border: "1px solid rgba(34,211,238,0.12)",
+              background: "rgba(20,29,46,0.8)",
+              border: "1px solid rgba(181,142,60,0.12)",
               backdropFilter: "blur(12px)",
             }}
           >
@@ -70,7 +70,7 @@ const CustomsLiveCounters = ({ isAr }: Props) => {
       {/* Channel Distribution */}
       <div
         className="rounded-xl p-5"
-        style={{ background: "rgba(10,22,40,0.8)", border: "1px solid rgba(34,211,238,0.12)" }}
+        style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.12)" }}
       >
         <h3 className="text-white text-sm font-semibold font-['Inter'] mb-4">
           {isAr ? "توزيع قنوات الفحص" : "Inspection Channel Distribution"}
@@ -109,15 +109,15 @@ const CustomsLiveCounters = ({ isAr }: Props) => {
       {/* Recent Declarations Feed */}
       <div
         className="rounded-xl p-5"
-        style={{ background: "rgba(10,22,40,0.8)", border: "1px solid rgba(34,211,238,0.12)" }}
+        style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.12)" }}
       >
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-white text-sm font-semibold font-['Inter']">
             {isAr ? "آخر الإقرارات الجمركية" : "Recent Customs Declarations"}
           </h3>
           <div className="flex items-center gap-1.5">
-            <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-            <span className="text-cyan-400 text-xs font-['JetBrains_Mono']">{isAr ? "مباشر" : "LIVE"}</span>
+            <div className="w-1.5 h-1.5 rounded-full bg-gold-400 animate-pulse" />
+            <span className="text-gold-400 text-xs font-['JetBrains_Mono']">{isAr ? "مباشر" : "LIVE"}</span>
           </div>
         </div>
         <div className="space-y-2">
@@ -163,14 +163,14 @@ const CustomsLiveCounters = ({ isAr }: Props) => {
       {/* Port Activity */}
       <div
         className="rounded-xl p-5"
-        style={{ background: "rgba(10,22,40,0.8)", border: "1px solid rgba(34,211,238,0.12)" }}
+        style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.12)" }}
       >
         <h3 className="text-white text-sm font-semibold font-['Inter'] mb-4">
           {isAr ? "نشاط المنافذ" : "Port Activity"}
         </h3>
         <div className="space-y-3">
           {[
-            { name: "Capital International Airport", nameAr: "مطار العاصمة الدولي",    count: 612, pct: 33, color: "#22D3EE" },
+            { name: "Capital International Airport", nameAr: "مطار العاصمة الدولي",    count: 612, pct: 33, color: "#D4A84B" },
             { name: "Capital Seaport",               nameAr: "الميناء البحري للعاصمة", count: 489, pct: 26, color: "#4ADE80" },
             { name: "Northern Port",                 nameAr: "الميناء الشمالي",         count: 334, pct: 18, color: "#A78BFA" },
             { name: "Eastern Land Crossing",         nameAr: "المنفذ البري الشرقي",     count: 223, pct: 12, color: "#FACC15" },

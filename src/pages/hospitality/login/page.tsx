@@ -8,7 +8,7 @@ const USERS = [
 ];
 
 const ROLE_COLORS: Record<string, string> = {
-  Admin: '#22D3EE', Reception: '#4ADE80', Viewer: '#9CA3AF',
+  Admin: '#D4A84B', Reception: '#4ADE80', Viewer: '#9CA3AF',
 };
 
 export default function HospitalityLoginPage() {
@@ -40,7 +40,7 @@ export default function HospitalityLoginPage() {
   return (
     <div
       className="min-h-screen flex overflow-hidden"
-      style={{ background: '#060D1A', fontFamily: "'Inter', sans-serif" }}
+      style={{ background: '#0B1220', fontFamily: "'Inter', sans-serif" }}
       dir={isAr ? 'rtl' : 'ltr'}
     >
       {/* Grid texture */}
@@ -48,8 +48,8 @@ export default function HospitalityLoginPage() {
         className="fixed inset-0 pointer-events-none z-0"
         style={{
           backgroundImage: `
-            linear-gradient(rgba(34,211,238,0.035) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(34,211,238,0.035) 1px, transparent 1px)
+            linear-gradient(rgba(181,142,60,0.035) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(181,142,60,0.035) 1px, transparent 1px)
           `,
           backgroundSize: '44px 44px',
         }}
@@ -57,27 +57,27 @@ export default function HospitalityLoginPage() {
 
       {/* Left panel — branding */}
       <div
-        className="hidden lg:flex flex-col justify-between w-[420px] shrink-0 relative z-10 p-10 border-r border-cyan-500/10"
-        style={{ background: 'rgba(10,22,40,0.6)' }}
+        className="hidden lg:flex flex-col justify-between w-[420px] shrink-0 relative z-10 p-10 border-r border-gold-500/10"
+        style={{ background: 'rgba(20,29,46,0.6)' }}
       >
         {/* Top glow */}
         <div
           className="absolute top-0 left-0 right-0 h-1 pointer-events-none"
-          style={{ background: 'linear-gradient(90deg, transparent, #22D3EE, transparent)' }}
+          style={{ background: 'linear-gradient(90deg, transparent, #D4A84B, transparent)' }}
         />
 
         <div>
           {/* Emblem */}
           <div className="flex items-center gap-4 mb-10">
             <div
-              className="w-16 h-16 rounded-2xl flex items-center justify-center border-2 border-cyan-500/30 shrink-0"
-              style={{ background: 'rgba(34,211,238,0.08)' }}
+              className="w-16 h-16 rounded-2xl flex items-center justify-center border-2 border-gold-500/30 shrink-0"
+              style={{ background: 'rgba(181,142,60,0.08)' }}
             >
-              <i className="ri-shield-star-fill text-cyan-400 text-3xl" />
+              <i className="ri-shield-star-fill text-gold-400 text-3xl" />
             </div>
             <div>
               <p className="text-white font-bold text-lg leading-tight">Al-Ameen</p>
-              <p className="text-cyan-400/80 text-sm" style={{ fontFamily: 'serif' }}>الأمين</p>
+              <p className="text-gold-400/80 text-sm" style={{ fontFamily: 'serif' }}>الأمين</p>
               <p className="text-gray-500 text-xs mt-0.5">National Police · iBorders</p>
             </div>
           </div>
@@ -86,9 +86,9 @@ export default function HospitalityLoginPage() {
           <div className="mb-8">
             <h1 className="text-white font-bold text-3xl leading-tight mb-1">
               Al-Ameen<br />
-              <span className="text-cyan-400">Hospitality</span>
+              <span className="text-gold-400">Hospitality</span>
             </h1>
-            <p className="text-cyan-400/60 text-xl" style={{ fontFamily: 'serif' }}>الأمين للضيافة</p>
+            <p className="text-gold-400/60 text-xl" style={{ fontFamily: 'serif' }}>الأمين للضيافة</p>
             <p className="text-gray-500 text-sm mt-3 leading-relaxed">
               {isAr
                 ? 'نظام إدارة الفنادق المتكامل — مقدم مجاناً من الشرطة الوطنية للفنادق المسجلة في برنامج أمين.'
@@ -108,9 +108,9 @@ export default function HospitalityLoginPage() {
               <div key={f.icon} className="flex items-center gap-3">
                 <div
                   className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0"
-                  style={{ background: 'rgba(34,211,238,0.1)' }}
+                  style={{ background: 'rgba(181,142,60,0.1)' }}
                 >
-                  <i className={`${f.icon} text-cyan-400`} style={{ fontSize: 13 }} />
+                  <i className={`${f.icon} text-gold-400`} style={{ fontSize: 13 }} />
                 </div>
                 <span className="text-gray-400 text-sm">{isAr ? f.ar : f.en}</span>
               </div>
@@ -120,7 +120,7 @@ export default function HospitalityLoginPage() {
 
         {/* Bottom */}
         <div>
-          <div className="h-px bg-cyan-500/10 mb-4" />
+          <div className="h-px bg-gold-500/10 mb-4" />
           <p className="text-gray-600 text-xs">
             {isAr ? 'إصدار' : 'Version'} 2.4.1 · {isAr ? 'جميع الحقوق محفوظة' : 'All rights reserved'} © 2025
           </p>
@@ -133,14 +133,14 @@ export default function HospitalityLoginPage() {
         {/* Radial glow */}
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ background: 'radial-gradient(ellipse 50% 60% at 60% 50%, rgba(34,211,238,0.05) 0%, transparent 70%)' }}
+          style={{ background: 'radial-gradient(ellipse 50% 60% at 60% 50%, rgba(181,142,60,0.05) 0%, transparent 70%)' }}
         />
 
         {/* Lang toggle */}
         <button
           onClick={() => setLang(l => l === 'en' ? 'ar' : 'en')}
-          className="absolute top-5 right-5 px-3 py-1.5 rounded-lg border border-cyan-500/25 text-cyan-400 text-xs cursor-pointer hover:bg-cyan-500/10 transition-colors whitespace-nowrap z-10"
-          style={{ background: 'rgba(10,22,40,0.8)' }}
+          className="absolute top-5 right-5 px-3 py-1.5 rounded-lg border border-gold-500/25 text-gold-400 text-xs cursor-pointer hover:bg-gold-500/10 transition-colors whitespace-nowrap z-10"
+          style={{ background: 'rgba(20,29,46,0.8)' }}
         >
           {isAr ? 'English' : 'عربي'}
         </button>
@@ -149,30 +149,30 @@ export default function HospitalityLoginPage() {
           {/* Mobile logo */}
           <div className="lg:hidden flex items-center gap-3 mb-8 justify-center">
             <div
-              className="w-12 h-12 rounded-xl flex items-center justify-center border border-cyan-500/30"
-              style={{ background: 'rgba(34,211,238,0.08)' }}
+              className="w-12 h-12 rounded-xl flex items-center justify-center border border-gold-500/30"
+              style={{ background: 'rgba(181,142,60,0.08)' }}
             >
-              <i className="ri-shield-star-fill text-cyan-400 text-xl" />
+              <i className="ri-shield-star-fill text-gold-400 text-xl" />
             </div>
             <div>
-              <p className="text-cyan-400 font-bold text-lg">Al-Ameen Hospitality</p>
-              <p className="text-cyan-400/60 text-sm" style={{ fontFamily: 'serif' }}>الأمين للضيافة</p>
+              <p className="text-gold-400 font-bold text-lg">Al-Ameen Hospitality</p>
+              <p className="text-gold-400/60 text-sm" style={{ fontFamily: 'serif' }}>الأمين للضيافة</p>
             </div>
           </div>
 
           {/* Card */}
           <div
-            className="rounded-2xl border border-cyan-500/20 p-8 relative"
+            className="rounded-2xl border border-gold-500/20 p-8 relative"
             style={{
-              background: 'rgba(10,22,40,0.92)',
+              background: 'rgba(20,29,46,0.92)',
               backdropFilter: 'blur(20px)',
-              boxShadow: '0 0 60px rgba(34,211,238,0.07), 0 0 120px rgba(34,211,238,0.03)',
+              boxShadow: '0 0 60px rgba(181,142,60,0.07), 0 0 120px rgba(181,142,60,0.03)',
             }}
           >
             {/* Top accent line */}
             <div
               className="absolute top-0 left-8 right-8 h-0.5 rounded-full"
-              style={{ background: 'linear-gradient(90deg, transparent, #22D3EE, transparent)' }}
+              style={{ background: 'linear-gradient(90deg, transparent, #D4A84B, transparent)' }}
             />
 
             <div className="mb-6">
@@ -201,7 +201,7 @@ export default function HospitalityLoginPage() {
                     value={username}
                     onChange={e => setUsername(e.target.value)}
                     placeholder={isAr ? 'أدخل اسم المستخدم' : 'Enter username'}
-                    className="w-full rounded-xl border border-cyan-500/20 bg-transparent text-white text-sm py-3 focus:outline-none focus:border-cyan-500/50 placeholder-gray-600 transition-colors"
+                    className="w-full rounded-xl border border-gold-500/20 bg-transparent text-white text-sm py-3 focus:outline-none focus:border-gold-500/50 placeholder-gray-600 transition-colors"
                     style={{ paddingLeft: isAr ? 12 : 38, paddingRight: isAr ? 38 : 12 }}
                     required
                   />
@@ -224,7 +224,7 @@ export default function HospitalityLoginPage() {
                     value={password}
                     onChange={e => setPassword(e.target.value)}
                     placeholder={isAr ? 'أدخل كلمة المرور' : 'Enter password'}
-                    className="w-full rounded-xl border border-cyan-500/20 bg-transparent text-white text-sm py-3 focus:outline-none focus:border-cyan-500/50 placeholder-gray-600 transition-colors"
+                    className="w-full rounded-xl border border-gold-500/20 bg-transparent text-white text-sm py-3 focus:outline-none focus:border-gold-500/50 placeholder-gray-600 transition-colors"
                     style={{ paddingLeft: isAr ? 38 : 38, paddingRight: isAr ? 38 : 38 }}
                     required
                   />
@@ -255,8 +255,8 @@ export default function HospitalityLoginPage() {
                 disabled={loading}
                 className="w-full py-3 rounded-xl font-semibold text-sm transition-all cursor-pointer whitespace-nowrap mt-1"
                 style={{
-                  background: loading ? 'rgba(34,211,238,0.5)' : '#22D3EE',
-                  color: '#060D1A',
+                  background: loading ? 'rgba(181,142,60,0.5)' : '#D4A84B',
+                  color: '#0B1220',
                 }}
               >
                 {loading ? (
@@ -275,8 +275,8 @@ export default function HospitalityLoginPage() {
 
             {/* Role selector hint */}
             <div
-              className="mt-5 rounded-xl p-3 border border-cyan-500/10"
-              style={{ background: 'rgba(34,211,238,0.03)' }}
+              className="mt-5 rounded-xl p-3 border border-gold-500/10"
+              style={{ background: 'rgba(181,142,60,0.03)' }}
             >
               <p className="text-gray-600 text-xs mb-2 uppercase tracking-wider">{isAr ? 'بيانات تجريبية' : 'Demo Credentials'}</p>
               <div className="space-y-1.5">
@@ -284,7 +284,7 @@ export default function HospitalityLoginPage() {
                   <button
                     key={u.username}
                     onClick={() => { setUsername(u.username); setPassword(u.password); }}
-                    className="w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg hover:bg-cyan-500/5 cursor-pointer transition-colors group"
+                    className="w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg hover:bg-gold-500/5 cursor-pointer transition-colors group"
                   >
                     <div className="flex items-center gap-2">
                       <div
@@ -309,13 +309,13 @@ export default function HospitalityLoginPage() {
             {/* Bottom accent */}
             <div
               className="absolute bottom-0 left-8 right-8 h-0.5 rounded-full"
-              style={{ background: 'linear-gradient(90deg, transparent, rgba(34,211,238,0.3), transparent)' }}
+              style={{ background: 'linear-gradient(90deg, transparent, rgba(181,142,60,0.3), transparent)' }}
             />
           </div>
 
           <p className="text-center text-gray-700 text-xs mt-4">
             {isAr ? 'مقدم من' : 'Provided by'}{' '}
-            <span className="text-cyan-600/60">National Police — iBorders</span>
+            <span className="text-gold-600/60">National Police — iBorders</span>
             {' · '}v2.4.1
           </p>
         </div>

@@ -43,7 +43,7 @@ const DashboardLayout = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen overflow-hidden" style={{ background: "#060D1A" }}>
+    <div className="flex flex-col h-screen overflow-hidden" style={{ background: "#0B1220" }}>
       <DashboardTitleBar
         entityType={entityType}
         isAr={isAr}

@@ -41,22 +41,22 @@ const EcomConfirmation = ({ isAr, eventType, eventTypeAr, color, icon, onReset }
       {/* Confirmation code */}
       <div
         className="flex items-center gap-3 px-6 py-4 rounded-2xl mb-3"
-        style={{ background: "rgba(34,211,238,0.06)", border: "1px solid rgba(34,211,238,0.2)" }}
+        style={{ background: "rgba(181,142,60,0.06)", border: "1px solid rgba(181,142,60,0.2)" }}
       >
-        <i className="ri-qr-code-line text-cyan-400 text-xl" />
+        <i className="ri-qr-code-line text-gold-400 text-xl" />
         <div className="text-left">
           <p className="text-gray-500 text-xs mb-0.5 font-['Inter']">
             {isAr ? "رمز التأكيد" : "Confirmation Code"}
           </p>
-          <p className="text-cyan-400 text-lg font-black font-['JetBrains_Mono'] tracking-widest">{code}</p>
+          <p className="text-gold-400 text-lg font-black font-['JetBrains_Mono'] tracking-widest">{code}</p>
         </div>
         <button
           type="button"
           onClick={() => { navigator.clipboard.writeText(code); setCopied(true); }}
           className="ml-2 w-8 h-8 flex items-center justify-center rounded-lg cursor-pointer transition-colors"
-          style={{ background: "rgba(34,211,238,0.1)", border: "1px solid rgba(34,211,238,0.2)" }}
+          style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}
         >
-          <i className={`${copied ? "ri-check-line text-green-400" : "ri-file-copy-line text-cyan-400"} text-sm`} />
+          <i className={`${copied ? "ri-check-line text-green-400" : "ri-file-copy-line text-gold-400"} text-sm`} />
         </button>
       </div>
 
@@ -70,9 +70,9 @@ const EcomConfirmation = ({ isAr, eventType, eventTypeAr, color, icon, onReset }
           type="button"
           onClick={onReset}
           className="flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold cursor-pointer transition-colors whitespace-nowrap font-['Inter']"
-          style={{ background: "#22D3EE", color: "#060D1A" }}
-          onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#06B6D4"; }}
-          onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#22D3EE"; }}
+          style={{ background: "#D4A84B", color: "#0B1220" }}
+          onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C99C48"; }}
+          onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#D4A84B"; }}
         >
           <i className="ri-add-line" />
           {isAr ? "إرسال حدث جديد" : "Submit Another Event"}

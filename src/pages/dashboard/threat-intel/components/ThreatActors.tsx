@@ -29,7 +29,7 @@ const ThreatActors = ({ isAr }: Props) => {
               className="w-full text-left p-3 rounded-xl cursor-pointer transition-all"
               style={{
                 background: isSelected ? "rgba(255,255,255,0.06)" : "rgba(255,255,255,0.02)",
-                border: `1px solid ${isSelected ? "rgba(34,211,238,0.3)" : "rgba(255,255,255,0.06)"}`,
+                border: `1px solid ${isSelected ? "rgba(181,142,60,0.3)" : "rgba(255,255,255,0.06)"}`,
               }}
             >
               <div className="flex items-center gap-3">
@@ -83,7 +83,7 @@ const ThreatActors = ({ isAr }: Props) => {
 
           <div className="grid grid-cols-3 gap-3 mb-4">
             {[
-              { label: "Linked IOCs", value: selected.linkedIocs.toString(), icon: "ri-database-line", color: "#22D3EE" },
+              { label: "Linked IOCs", value: selected.linkedIocs.toString(), icon: "ri-database-line", color: "#D4A84B" },
               { label: "Linked Cases", value: selected.linkedCases.toString(), icon: "ri-folder-line", color: "#A78BFA" },
               { label: "Last Activity", value: selected.lastActivity, icon: "ri-time-line", color: "#FACC15" },
             ].map((stat) => (
@@ -110,7 +110,7 @@ const ThreatActors = ({ isAr }: Props) => {
         {/* Actions */}
         <div className="grid grid-cols-4 gap-2">
           {[
-            { label: "View Person 360°", icon: "ri-user-search-line", color: "#22D3EE" },
+            { label: "View Person 360°", icon: "ri-user-search-line", color: "#D4A84B" },
             { label: "Open Case File", icon: "ri-folder-open-line", color: "#A78BFA" },
             { label: "Generate Dossier", icon: "ri-file-shield-2-line", color: "#4ADE80" },
             { label: "Escalate Alert", icon: "ri-alarm-warning-line", color: "#F87171" },

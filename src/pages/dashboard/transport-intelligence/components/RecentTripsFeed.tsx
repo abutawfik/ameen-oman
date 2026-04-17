@@ -29,7 +29,7 @@ const INITIAL_TRIPS: TripRecord[] = [
 ];
 
 const typeIcon = (t: TripRecord["type"]) => t === "bus" ? "ri-bus-line" : t === "taxi" ? "ri-taxi-line" : "ri-car-line";
-const typeColor = (t: TripRecord["type"]) => t === "bus" ? "#22D3EE" : t === "taxi" ? "#4ADE80" : "#A78BFA";
+const typeColor = (t: TripRecord["type"]) => t === "bus" ? "#D4A84B" : t === "taxi" ? "#4ADE80" : "#A78BFA";
 const matchIcon = (m: TripRecord["matchMethod"]) => {
   if (m === "transit-card") return "ri-bank-card-line";
   if (m === "phone") return "ri-smartphone-line";
@@ -74,11 +74,11 @@ const RecentTripsFeed = ({ isAr }: Props) => {
   });
 
   return (
-    <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.15)", backdropFilter: "blur(12px)" }}>
-      <div className="flex items-center justify-between px-6 py-4 border-b flex-wrap gap-3" style={{ borderColor: "rgba(34,211,238,0.1)" }}>
+    <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.15)", backdropFilter: "blur(12px)" }}>
+      <div className="flex items-center justify-between px-6 py-4 border-b flex-wrap gap-3" style={{ borderColor: "rgba(181,142,60,0.1)" }}>
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(34,211,238,0.1)", border: "1px solid rgba(34,211,238,0.2)" }}>
-            <i className="ri-pulse-line text-cyan-400 text-sm" />
+          <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+            <i className="ri-pulse-line text-gold-400 text-sm" />
           </div>
           <div>
             <h3 className="text-white font-bold text-sm">{isAr ? "تغذية الرحلات المباشرة" : "Live Trip Feed"}</h3>
@@ -90,9 +90,9 @@ const RecentTripsFeed = ({ isAr }: Props) => {
             <button key={f} type="button" onClick={() => setFilter(f)}
               className="px-3 py-1 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap transition-all"
               style={{
-                background: filter === f ? (f === "flagged" ? "rgba(248,113,113,0.15)" : "rgba(34,211,238,0.15)") : "rgba(255,255,255,0.04)",
-                border: `1px solid ${filter === f ? (f === "flagged" ? "rgba(248,113,113,0.4)" : "rgba(34,211,238,0.4)") : "rgba(255,255,255,0.08)"}`,
-                color: filter === f ? (f === "flagged" ? "#F87171" : "#22D3EE") : "#6B7280",
+                background: filter === f ? (f === "flagged" ? "rgba(248,113,113,0.15)" : "rgba(181,142,60,0.15)") : "rgba(255,255,255,0.04)",
+                border: `1px solid ${filter === f ? (f === "flagged" ? "rgba(248,113,113,0.4)" : "rgba(181,142,60,0.4)") : "rgba(255,255,255,0.08)"}`,
+                color: filter === f ? (f === "flagged" ? "#F87171" : "#D4A84B") : "#6B7280",
               }}>
               {f === "all" ? (isAr ? "الكل" : "All") : f === "bus" ? (isAr ? "حافلة" : "Bus") : f === "taxi" ? (isAr ? "تاكسي" : "Taxi") : f === "ride-hail" ? (isAr ? "توصيل" : "Ride-Hail") : (isAr ? "مُبلَّغ" : "Flagged")}
             </button>
@@ -104,7 +104,7 @@ const RecentTripsFeed = ({ isAr }: Props) => {
         </div>
       </div>
 
-      <div className="divide-y overflow-y-auto" style={{ borderColor: "rgba(34,211,238,0.06)", maxHeight: "420px" }}>
+      <div className="divide-y overflow-y-auto" style={{ borderColor: "rgba(181,142,60,0.06)", maxHeight: "420px" }}>
         {filtered.map((trip) => {
           const color = typeColor(trip.type);
           return (
@@ -132,7 +132,7 @@ const RecentTripsFeed = ({ isAr }: Props) => {
                 </div>
               </div>
               <div className="text-right flex-shrink-0">
-                <div className="text-cyan-400 text-xs font-bold font-['JetBrains_Mono']">{trip.fare.toFixed(3)} LCY</div>
+                <div className="text-gold-400 text-xs font-bold font-['JetBrains_Mono']">{trip.fare.toFixed(3)} LCY</div>
                 <div className="text-gray-600 text-xs font-['JetBrains_Mono']">{trip.time}</div>
               </div>
             </div>

@@ -13,7 +13,7 @@ const typeConfig: Record<WatchlistType, { label: string; labelAr: string; border
   financial:         { label: 'Financial Watchlist', labelAr: 'القائمة المالية', border: '#FACC15', bg: 'rgba(250,204,21,0.08)', icon: 'ri-money-dollar-circle-line' },
   employment:        { label: 'Employment Violation', labelAr: 'مخالفات التوظيف', border: '#FB923C', bg: 'rgba(251,146,60,0.06)', icon: 'ri-briefcase-line' },
   interpol:          { label: 'Interpol / International', labelAr: 'الإنتربول / الدولي', border: '#A78BFA', bg: 'rgba(167,139,250,0.08)', icon: 'ri-global-line' },
-  custom:            { label: 'Custom', labelAr: 'مخصص', border: '#22D3EE', bg: 'rgba(34,211,238,0.08)', icon: 'ri-settings-3-line' },
+  custom:            { label: 'Custom', labelAr: 'مخصص', border: '#D4A84B', bg: 'rgba(181,142,60,0.08)', icon: 'ri-settings-3-line' },
 };
 
 const priorityColors: Record<string, string> = {
@@ -36,7 +36,7 @@ const WatchlistDashboard = ({ isAr, onSelectWatchlist, onCreateNew }: Props) => 
   const recentAlerts = watchlistAlerts.slice(0, 5);
 
   const stats = [
-    { label: 'Total Watchlists', labelAr: 'إجمالي القوائم', value: watchlistStats.totalWatchlists, icon: 'ri-list-check-2', color: '#22D3EE' },
+    { label: 'Total Watchlists', labelAr: 'إجمالي القوائم', value: watchlistStats.totalWatchlists, icon: 'ri-list-check-2', color: '#D4A84B' },
     { label: 'Active Targets', labelAr: 'الأهداف النشطة', value: watchlistStats.activeTargets.toLocaleString(), icon: 'ri-user-search-line', color: '#F87171' },
     { label: 'Alerts Today', labelAr: 'تنبيهات اليوم', value: watchlistStats.alertsToday, icon: 'ri-alarm-warning-line', color: '#FB923C' },
     { label: 'Hit Rate', labelAr: 'معدل التطابق', value: `${watchlistStats.hitRate}%`, icon: 'ri-percent-line', color: '#4ADE80' },
@@ -49,14 +49,14 @@ const WatchlistDashboard = ({ isAr, onSelectWatchlist, onCreateNew }: Props) => 
       <div className="grid grid-cols-5 gap-4">
         {stats.map((s) => (
           <div key={s.label} className="rounded-xl p-4 flex flex-col gap-2"
-            style={{ background: 'rgba(10,22,40,0.8)', border: '1px solid rgba(34,211,238,0.12)' }}>
+            style={{ background: 'rgba(20,29,46,0.8)', border: '1px solid rgba(181,142,60,0.12)' }}>
             <div className="flex items-center justify-between">
               <div className="w-9 h-9 flex items-center justify-center rounded-lg"
                 style={{ background: `${s.color}18` }}>
                 <i className={`${s.icon} text-lg`} style={{ color: s.color }} />
               </div>
               <span className="text-xs font-['JetBrains_Mono'] px-2 py-0.5 rounded-full"
-                style={{ background: 'rgba(34,211,238,0.08)', color: '#22D3EE' }}>LIVE</span>
+                style={{ background: 'rgba(181,142,60,0.08)', color: '#D4A84B' }}>LIVE</span>
             </div>
             <div>
               <p className="text-2xl font-black font-['JetBrains_Mono'] text-white">{s.value}</p>
@@ -69,12 +69,12 @@ const WatchlistDashboard = ({ isAr, onSelectWatchlist, onCreateNew }: Props) => 
       {/* Sub-stats */}
       <div className="grid grid-cols-3 gap-4">
         {[
-          { label: 'Auto-Alerts Today', labelAr: 'تنبيهات تلقائية', value: watchlistStats.autoAlertsToday, color: '#22D3EE' },
+          { label: 'Auto-Alerts Today', labelAr: 'تنبيهات تلقائية', value: watchlistStats.autoAlertsToday, color: '#D4A84B' },
           { label: 'Manual Review', labelAr: 'مراجعة يدوية', value: watchlistStats.manualReviewToday, color: '#FACC15' },
           { label: 'Near-Matches', labelAr: 'تطابقات قريبة', value: watchlistStats.nearMatchesToday, color: '#FB923C' },
         ].map(s => (
           <div key={s.label} className="rounded-xl p-4 flex items-center gap-4"
-            style={{ background: 'rgba(10,22,40,0.8)', border: '1px solid rgba(34,211,238,0.12)' }}>
+            style={{ background: 'rgba(20,29,46,0.8)', border: '1px solid rgba(181,142,60,0.12)' }}>
             <div className="w-10 h-10 flex items-center justify-center rounded-full flex-shrink-0"
               style={{ background: `${s.color}18`, border: `1px solid ${s.color}40` }}>
               <span className="text-lg font-black font-['JetBrains_Mono']" style={{ color: s.color }}>{s.value}</span>
@@ -96,7 +96,7 @@ const WatchlistDashboard = ({ isAr, onSelectWatchlist, onCreateNew }: Props) => 
                 value={filter}
                 onChange={e => setFilter(e.target.value as WatchlistType | 'all')}
                 className="text-xs px-3 py-1.5 rounded-lg font-['Inter'] cursor-pointer"
-                style={{ background: 'rgba(10,22,40,0.9)', border: '1px solid rgba(34,211,238,0.2)', color: '#D1D5DB' }}
+                style={{ background: 'rgba(20,29,46,0.9)', border: '1px solid rgba(181,142,60,0.2)', color: '#D1D5DB' }}
               >
                 <option value="all">{isAr ? 'الكل' : 'All Types'}</option>
                 {Object.entries(typeConfig).map(([k, v]) => (
@@ -105,7 +105,7 @@ const WatchlistDashboard = ({ isAr, onSelectWatchlist, onCreateNew }: Props) => 
               </select>
               <button onClick={onCreateNew}
                 className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold font-['Inter'] whitespace-nowrap cursor-pointer transition-all"
-                style={{ background: '#22D3EE', color: '#060D1A' }}>
+                style={{ background: '#D4A84B', color: '#0B1220' }}>
                 <i className="ri-add-line" />
                 {isAr ? 'قائمة جديدة' : 'New Watchlist'}
               </button>
@@ -161,7 +161,7 @@ const WatchlistDashboard = ({ isAr, onSelectWatchlist, onCreateNew }: Props) => 
                     <span className="text-gray-500 font-['Inter']">
                       {isAr ? 'آخر تطابق:' : 'Last hit:'} <span className="text-gray-300">{wl.lastHit}</span>
                     </span>
-                    <span className="text-cyan-400 font-['Inter'] flex items-center gap-1">
+                    <span className="text-gold-400 font-['Inter'] flex items-center gap-1">
                       {isAr ? 'عرض' : 'View'} <i className="ri-arrow-right-s-line" />
                     </span>
                   </div>
@@ -186,11 +186,11 @@ const WatchlistDashboard = ({ isAr, onSelectWatchlist, onCreateNew }: Props) => 
           <div className="space-y-2">
             {recentAlerts.map((alert) => (
               <div key={alert.id} className="rounded-xl p-3"
-                style={{ background: 'rgba(10,22,40,0.8)', border: `1px solid ${alert.isNearMatch ? 'rgba(251,146,60,0.3)' : 'rgba(34,211,238,0.1)'}` }}>
+                style={{ background: 'rgba(20,29,46,0.8)', border: `1px solid ${alert.isNearMatch ? 'rgba(251,146,60,0.3)' : 'rgba(181,142,60,0.1)'}` }}>
                 <div className="flex items-start gap-2 mb-2">
                   <div className="w-7 h-7 flex items-center justify-center rounded-lg flex-shrink-0"
-                    style={{ background: 'rgba(34,211,238,0.1)' }}>
-                    <i className={`${alert.streamIcon} text-xs text-cyan-400`} />
+                    style={{ background: 'rgba(181,142,60,0.1)' }}>
+                    <i className={`${alert.streamIcon} text-xs text-gold-400`} />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-1 flex-wrap">

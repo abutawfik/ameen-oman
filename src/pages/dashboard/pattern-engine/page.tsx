@@ -14,7 +14,7 @@ const uid = () => Math.random().toString(36).slice(2, 8);
 
 const ActionPill = ({ label }: { label: string }) => {
   const colors: Record<string, { color: string; bg: string }> = {
-    "Create Alert":     { color: "#22D3EE", bg: "rgba(34,211,238,0.1)"  },
+    "Create Alert":     { color: "#D4A84B", bg: "rgba(181,142,60,0.1)"  },
     "Assign to Team":   { color: "#4ADE80", bg: "rgba(74,222,128,0.1)"  },
     "Push to Mobile":   { color: "#A78BFA", bg: "rgba(167,139,250,0.1)" },
     "Auto-Escalate":    { color: "#F87171", bg: "rgba(248,113,113,0.1)" },
@@ -40,14 +40,14 @@ const RuleCard = ({
   return (
     <div className="rounded-2xl border overflow-hidden transition-all"
       style={{
-        background: "rgba(10,22,40,0.85)",
+        background: "rgba(20,29,46,0.85)",
         borderColor: rule.enabled ? `${riskCfg.color}22` : "rgba(255,255,255,0.05)",
         backdropFilter: "blur(12px)",
         opacity: rule.enabled ? 1 : 0.5,
         borderLeft: `3px solid ${rule.enabled ? riskCfg.color : "#374151"}`,
       }}>
       {/* Header */}
-      <div className="px-4 py-3 border-b" style={{ borderColor: "rgba(34,211,238,0.05)", background: `${riskCfg.color}04` }}>
+      <div className="px-4 py-3 border-b" style={{ borderColor: "rgba(181,142,60,0.05)", background: `${riskCfg.color}04` }}>
         <div className="flex items-start justify-between gap-2">
           <div className="flex items-start gap-2.5 flex-1 min-w-0">
             <div className="w-7 h-7 flex items-center justify-center rounded-lg flex-shrink-0 mt-0.5"
@@ -76,9 +76,9 @@ const RuleCard = ({
             className="relative flex-shrink-0 cursor-pointer mt-1"
             style={{ width: "36px", height: "20px" }}>
             <div className="absolute inset-0 rounded-full transition-colors"
-              style={{ background: rule.enabled ? "rgba(34,211,238,0.2)" : "rgba(255,255,255,0.06)", border: `1px solid ${rule.enabled ? "rgba(34,211,238,0.4)" : "rgba(255,255,255,0.08)"}` }} />
+              style={{ background: rule.enabled ? "rgba(181,142,60,0.2)" : "rgba(255,255,255,0.06)", border: `1px solid ${rule.enabled ? "rgba(181,142,60,0.4)" : "rgba(255,255,255,0.08)"}` }} />
             <div className="absolute top-0.5 rounded-full transition-all"
-              style={{ width: "16px", height: "16px", left: rule.enabled ? "18px" : "2px", background: rule.enabled ? "#22D3EE" : "#4B5563" }} />
+              style={{ width: "16px", height: "16px", left: rule.enabled ? "18px" : "2px", background: rule.enabled ? "#D4A84B" : "#4B5563" }} />
           </button>
         </div>
       </div>
@@ -91,7 +91,7 @@ const RuleCard = ({
         <div className="flex items-center gap-1.5 flex-wrap">
           {rule.streams.map((s) => (
             <span key={s} className="px-2 py-0.5 rounded-full text-xs font-semibold"
-              style={{ background: "rgba(34,211,238,0.06)", color: "#22D3EE", border: "1px solid rgba(34,211,238,0.12)" }}>
+              style={{ background: "rgba(181,142,60,0.06)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.12)" }}>
               {s}
             </span>
           ))}
@@ -99,14 +99,14 @@ const RuleCard = ({
 
         {/* Expanded detail */}
         {expanded && (
-          <div className="space-y-3 pt-2 border-t" style={{ borderColor: "rgba(34,211,238,0.06)" }}>
+          <div className="space-y-3 pt-2 border-t" style={{ borderColor: "rgba(181,142,60,0.06)" }}>
             <div>
               <p className="text-gray-600 text-xs font-semibold uppercase tracking-wider mb-2">{isAr ? "الشروط" : "Conditions"}</p>
               <div className="space-y-1.5">
                 {(isAr ? rule.conditionsAr : rule.conditions).map((c, i) => (
                   <div key={i} className="flex items-start gap-2 px-3 py-2 rounded-lg"
-                    style={{ background: "rgba(34,211,238,0.03)", border: "1px solid rgba(34,211,238,0.07)" }}>
-                    <span className="text-cyan-400 font-bold font-['JetBrains_Mono'] flex-shrink-0 text-xs mt-0.5">
+                    style={{ background: "rgba(181,142,60,0.03)", border: "1px solid rgba(181,142,60,0.07)" }}>
+                    <span className="text-gold-400 font-bold font-['JetBrains_Mono'] flex-shrink-0 text-xs mt-0.5">
                       {i === 0 ? "IF" : "AND"}
                     </span>
                     <span className="text-gray-300 text-xs">{c}</span>
@@ -124,18 +124,18 @@ const RuleCard = ({
         )}
 
         {/* Footer */}
-        <div className="flex items-center justify-between pt-1 border-t" style={{ borderColor: "rgba(34,211,238,0.05)" }}>
+        <div className="flex items-center justify-between pt-1 border-t" style={{ borderColor: "rgba(181,142,60,0.05)" }}>
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-1.5">
-              <i className="ri-pulse-line text-cyan-400" style={{ fontSize: "10px" }} />
-              <span className="text-cyan-400 text-xs font-black font-['JetBrains_Mono']">{rule.hitCount}</span>
+              <i className="ri-pulse-line text-gold-400" style={{ fontSize: "10px" }} />
+              <span className="text-gold-400 text-xs font-black font-['JetBrains_Mono']">{rule.hitCount}</span>
               <span className="text-gray-600 text-xs">{isAr ? "تطابق" : "hits"}</span>
             </div>
             <span className="text-gray-700 text-xs font-['JetBrains_Mono']">{rule.lastTriggered}</span>
           </div>
           <button type="button" onClick={onToggleExpand}
             className="flex items-center gap-1 text-xs cursor-pointer whitespace-nowrap transition-colors"
-            style={{ color: expanded ? "#22D3EE" : "#6B7280" }}>
+            style={{ color: expanded ? "#D4A84B" : "#6B7280" }}>
             {expanded ? (isAr ? "إخفاء" : "Hide") : (isAr ? "التفاصيل" : "Details")}
             <i className={`${expanded ? "ri-arrow-up-s-line" : "ri-arrow-down-s-line"} text-xs`} />
           </button>
@@ -234,10 +234,10 @@ const PatternEnginePage = () => {
   ];
 
   return (
-    <div className="min-h-screen font-['Inter']" style={{ background: "#060D1A" }} dir={isAr ? "rtl" : "ltr"}>
+    <div className="min-h-screen font-['Inter']" style={{ background: "#0B1220" }} dir={isAr ? "rtl" : "ltr"}>
       {/* Grid texture */}
       <div className="fixed inset-0 pointer-events-none" style={{
-        backgroundImage: `linear-gradient(rgba(34,211,238,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.025) 1px, transparent 1px)`,
+        backgroundImage: `linear-gradient(rgba(181,142,60,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,0.025) 1px, transparent 1px)`,
         backgroundSize: "40px 40px",
       }} />
 
@@ -254,7 +254,7 @@ const PatternEnginePage = () => {
 
       {/* Header */}
       <header className="sticky top-0 z-40 flex items-center justify-between px-6 py-3 border-b"
-        style={{ background: "rgba(6,13,26,0.97)", borderColor: "rgba(34,211,238,0.12)", backdropFilter: "blur(12px)" }}>
+        style={{ background: "rgba(11,18,32,0.97)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
         <div className="flex items-center gap-4">
           <button type="button" onClick={() => navigate("/dashboard")}
             className="flex items-center gap-2 px-3 py-1.5 rounded-lg border text-sm font-semibold cursor-pointer whitespace-nowrap"
@@ -263,12 +263,12 @@ const PatternEnginePage = () => {
           </button>
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 flex items-center justify-center rounded-xl flex-shrink-0"
-              style={{ background: "rgba(34,211,238,0.1)", border: "2px solid rgba(34,211,238,0.3)" }}>
-              <i className="ri-git-branch-line text-cyan-400 text-base" />
+              style={{ background: "rgba(181,142,60,0.1)", border: "2px solid rgba(181,142,60,0.3)" }}>
+              <i className="ri-git-branch-line text-gold-400 text-base" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-cyan-400 font-black text-base tracking-wide">AMEEN</span>
+                <span className="text-gold-400 font-black text-base tracking-wide">AMEEN</span>
                 <span className="text-white font-bold text-sm">{isAr ? "محرك اكتشاف الأنماط" : "Pattern Detection Engine"}</span>
                 <span className="px-2 py-0.5 rounded-full text-xs font-bold"
                   style={{ background: "rgba(248,113,113,0.15)", color: "#F87171", border: "1px solid rgba(248,113,113,0.3)" }}>
@@ -281,8 +281,8 @@ const PatternEnginePage = () => {
         </div>
         <div className="flex items-center gap-3">
           <div className="hidden lg:flex flex-col items-end px-3 py-1.5 rounded-lg border"
-            style={{ background: "rgba(34,211,238,0.04)", borderColor: "rgba(34,211,238,0.12)" }}>
-            <span className="text-cyan-400 text-sm font-black font-['JetBrains_Mono']">{timeStr}</span>
+            style={{ background: "rgba(181,142,60,0.04)", borderColor: "rgba(181,142,60,0.12)" }}>
+            <span className="text-gold-400 text-sm font-black font-['JetBrains_Mono']">{timeStr}</span>
             <span className="text-gray-600 text-xs font-['JetBrains_Mono']">LIVE</span>
           </div>
           <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border"
@@ -295,20 +295,20 @@ const PatternEnginePage = () => {
 
       {/* Tab bar */}
       <div className="sticky top-[89px] z-30 flex items-center gap-1 px-6 py-2 border-b overflow-x-auto"
-        style={{ background: "rgba(6,13,26,0.95)", borderColor: "rgba(34,211,238,0.08)", backdropFilter: "blur(12px)" }}>
+        style={{ background: "rgba(11,18,32,0.95)", borderColor: "rgba(181,142,60,0.08)", backdropFilter: "blur(12px)" }}>
         {TABS.map((tab) => (
           <button key={tab.id} type="button" onClick={() => setActiveTab(tab.id)}
             className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap transition-all flex-shrink-0"
             style={{
-              background: activeTab === tab.id ? "rgba(34,211,238,0.12)" : "transparent",
-              border: `1px solid ${activeTab === tab.id ? "rgba(34,211,238,0.25)" : "transparent"}`,
-              color: activeTab === tab.id ? "#22D3EE" : "#6B7280",
+              background: activeTab === tab.id ? "rgba(181,142,60,0.12)" : "transparent",
+              border: `1px solid ${activeTab === tab.id ? "rgba(181,142,60,0.25)" : "transparent"}`,
+              color: activeTab === tab.id ? "#D4A84B" : "#6B7280",
             }}>
             <i className={`${tab.icon} text-xs`} />
             {isAr ? tab.labelAr : tab.label}
             {tab.badge > 0 && (
               <span className="px-1.5 py-0.5 rounded-full font-bold font-['JetBrains_Mono']"
-                style={{ background: "rgba(34,211,238,0.15)", color: "#22D3EE", fontSize: "9px" }}>
+                style={{ background: "rgba(181,142,60,0.15)", color: "#D4A84B", fontSize: "9px" }}>
                 {tab.badge}
               </span>
             )}
@@ -326,9 +326,9 @@ const PatternEnginePage = () => {
             {/* Concept banner */}
             {showConcept && (
               <div className="rounded-2xl border p-5 relative overflow-hidden"
-                style={{ background: "rgba(34,211,238,0.04)", borderColor: "rgba(34,211,238,0.18)" }}>
+                style={{ background: "rgba(181,142,60,0.04)", borderColor: "rgba(181,142,60,0.18)" }}>
                 <div className="absolute inset-0 pointer-events-none" style={{
-                  backgroundImage: `linear-gradient(rgba(34,211,238,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.03) 1px, transparent 1px)`,
+                  backgroundImage: `linear-gradient(rgba(181,142,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,0.03) 1px, transparent 1px)`,
                   backgroundSize: "20px 20px"
                 }} />
                 <button type="button" onClick={() => setShowConcept(false)}
@@ -339,8 +339,8 @@ const PatternEnginePage = () => {
                 <div className="relative z-10">
                   <div className="flex items-center gap-3 mb-3">
                     <div className="w-8 h-8 flex items-center justify-center rounded-xl"
-                      style={{ background: "rgba(34,211,238,0.12)", border: "1px solid rgba(34,211,238,0.25)" }}>
-                      <i className="ri-lightbulb-flash-line text-cyan-400 text-sm" />
+                      style={{ background: "rgba(181,142,60,0.12)", border: "1px solid rgba(181,142,60,0.25)" }}>
+                      <i className="ri-lightbulb-flash-line text-gold-400 text-sm" />
                     </div>
                     <h3 className="text-white font-bold text-sm">{isAr ? "مفهوم المحرك" : "Engine Concept"}</h3>
                   </div>
@@ -352,7 +352,7 @@ const PatternEnginePage = () => {
                   <div className="flex items-center gap-2 flex-wrap">
                     {[
                       { label: isAr ? "الحدود" : "Border",    icon: "ri-passport-line",      color: "#38BDF8" },
-                      { label: isAr ? "الفنادق" : "Hotel",    icon: "ri-hotel-line",         color: "#22D3EE" },
+                      { label: isAr ? "الفنادق" : "Hotel",    icon: "ri-hotel-line",         color: "#D4A84B" },
                       { label: isAr ? "الاتصالات" : "SIM",    icon: "ri-sim-card-line",      color: "#A78BFA" },
                       { label: isAr ? "السيارات" : "Car",     icon: "ri-car-line",           color: "#4ADE80" },
                       { label: isAr ? "المالية" : "Financial",icon: "ri-bank-card-line",     color: "#F87171" },
@@ -386,13 +386,13 @@ const PatternEnginePage = () => {
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {[
-                { label: isAr ? "إجمالي القواعد" : "Total Rules",   value: rules.length,    color: "#22D3EE", icon: "ri-list-check-2" },
+                { label: isAr ? "إجمالي القواعد" : "Total Rules",   value: rules.length,    color: "#D4A84B", icon: "ri-list-check-2" },
                 { label: isAr ? "نشطة" : "Active",                  value: enabledCount,    color: "#4ADE80", icon: "ri-checkbox-circle-line" },
                 { label: isAr ? "حرجة" : "Critical Rules",          value: criticalCount,   color: "#F87171", icon: "ri-shield-cross-line" },
                 { label: isAr ? "إجمالي التطابقات" : "Total Hits",  value: totalHits,       color: "#A78BFA", icon: "ri-pulse-line" },
               ].map((s) => (
                 <div key={s.label} className="rounded-xl border p-4 flex items-center gap-3"
-                  style={{ background: "rgba(10,22,40,0.8)", borderColor: `${s.color}18`, backdropFilter: "blur(12px)" }}>
+                  style={{ background: "rgba(20,29,46,0.8)", borderColor: `${s.color}18`, backdropFilter: "blur(12px)" }}>
                   <div className="w-8 h-8 flex items-center justify-center rounded-lg flex-shrink-0"
                     style={{ background: `${s.color}10`, border: `1px solid ${s.color}18` }}>
                     <i className={`${s.icon} text-sm`} style={{ color: s.color }} />
@@ -408,7 +408,7 @@ const PatternEnginePage = () => {
             {/* Filters */}
             <div className="flex items-center gap-3 flex-wrap">
               <div className="flex items-center gap-2 px-3 py-2 rounded-xl border flex-1 min-w-[200px]"
-                style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.12)" }}>
+                style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)" }}>
                 <i className="ri-search-line text-gray-500 text-xs" />
                 <input type="text" value={searchQ} onChange={(e) => setSearchQ(e.target.value)}
                   placeholder={isAr ? "بحث في القواعد..." : "Search rules..."}
@@ -418,7 +418,7 @@ const PatternEnginePage = () => {
               <div className="flex items-center gap-1 flex-wrap">
                 <button type="button" onClick={() => setFilterCat("all")}
                   className="px-2.5 py-1 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap transition-all"
-                  style={{ background: filterCat === "all" ? "rgba(34,211,238,0.12)" : "transparent", border: `1px solid ${filterCat === "all" ? "rgba(34,211,238,0.3)" : "transparent"}`, color: filterCat === "all" ? "#22D3EE" : "#6B7280" }}>
+                  style={{ background: filterCat === "all" ? "rgba(181,142,60,0.12)" : "transparent", border: `1px solid ${filterCat === "all" ? "rgba(181,142,60,0.3)" : "transparent"}`, color: filterCat === "all" ? "#D4A84B" : "#6B7280" }}>
                   {isAr ? "الكل" : "All"}
                 </button>
                 {(Object.keys(CATEGORY_META) as RuleCategory[]).map((cat) => {
@@ -436,7 +436,7 @@ const PatternEnginePage = () => {
               </div>
               <div className="flex items-center gap-1">
                 {(["all", "critical", "high", "medium", "low"] as const).map((r) => {
-                  const cfg = r === "all" ? { color: "#22D3EE", label: "All", labelAr: "الكل" } : { ...RISK_CONFIG[r] };
+                  const cfg = r === "all" ? { color: "#D4A84B", label: "All", labelAr: "الكل" } : { ...RISK_CONFIG[r] };
                   return (
                     <button key={r} type="button" onClick={() => setFilterRisk(r)}
                       className="px-2.5 py-1 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap transition-all"
@@ -509,17 +509,17 @@ const PatternEnginePage = () => {
               <div className="xl:col-span-2 space-y-5">
                 {/* Rule name */}
                 <div className="rounded-2xl border p-5"
-                  style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.12)", backdropFilter: "blur(12px)" }}>
+                  style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
                   <label className="text-gray-400 text-xs font-semibold uppercase tracking-wider block mb-2">{isAr ? "اسم القاعدة" : "Rule Name"}</label>
                   <input type="text" value={builderName} onChange={(e) => setBuilderName(e.target.value)}
                     placeholder={isAr ? "مثال: نمط الوصول الليلي..." : "e.g. Night Arrival Pattern..."}
                     className="w-full px-4 py-2.5 rounded-xl border outline-none text-sm"
-                    style={{ background: "rgba(6,13,26,0.8)", borderColor: "rgba(34,211,238,0.15)", color: "#D1D5DB" }} />
+                    style={{ background: "rgba(11,18,32,0.8)", borderColor: "rgba(181,142,60,0.15)", color: "#D1D5DB" }} />
                 </div>
 
                 {/* Conditions */}
                 <div className="rounded-2xl border p-5"
-                  style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.12)", backdropFilter: "blur(12px)" }}>
+                  style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
                   <div className="flex items-center justify-between mb-4">
                     <div>
                       <h3 className="text-white font-bold text-sm">{isAr ? "الشروط" : "Conditions"}</h3>
@@ -527,7 +527,7 @@ const PatternEnginePage = () => {
                     </div>
                     <button type="button" onClick={addCondition}
                       className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold cursor-pointer whitespace-nowrap"
-                      style={{ background: "rgba(34,211,238,0.1)", color: "#22D3EE", border: "1px solid rgba(34,211,238,0.2)" }}>
+                      style={{ background: "rgba(181,142,60,0.1)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>
                       <i className="ri-add-line text-xs" />{isAr ? "إضافة شرط" : "Add Condition"}
                     </button>
                   </div>
@@ -539,34 +539,34 @@ const PatternEnginePage = () => {
                             {(["AND", "OR"] as const).map((l) => (
                               <button key={l} type="button" onClick={() => updateCondition(cond.id, "logic", l)}
                                 className="px-3 py-1 rounded-lg text-xs font-bold cursor-pointer whitespace-nowrap"
-                                style={{ background: cond.logic === l ? "rgba(34,211,238,0.15)" : "rgba(255,255,255,0.04)", color: cond.logic === l ? "#22D3EE" : "#6B7280", border: `1px solid ${cond.logic === l ? "rgba(34,211,238,0.3)" : "rgba(255,255,255,0.06)"}` }}>
+                                style={{ background: cond.logic === l ? "rgba(181,142,60,0.15)" : "rgba(255,255,255,0.04)", color: cond.logic === l ? "#D4A84B" : "#6B7280", border: `1px solid ${cond.logic === l ? "rgba(181,142,60,0.3)" : "rgba(255,255,255,0.06)"}` }}>
                                 {l}
                               </button>
                             ))}
                           </div>
                         )}
                         <div className="flex items-center gap-2 flex-wrap p-3 rounded-xl"
-                          style={{ background: "rgba(34,211,238,0.03)", border: "1px solid rgba(34,211,238,0.08)" }}>
-                          <span className="text-cyan-400 text-xs font-bold font-['JetBrains_Mono'] flex-shrink-0">IF</span>
+                          style={{ background: "rgba(181,142,60,0.03)", border: "1px solid rgba(181,142,60,0.08)" }}>
+                          <span className="text-gold-400 text-xs font-bold font-['JetBrains_Mono'] flex-shrink-0">IF</span>
                           <select value={cond.stream} onChange={(e) => updateCondition(cond.id, "stream", e.target.value)}
                             className="px-2 py-1.5 rounded-lg text-xs outline-none cursor-pointer"
-                            style={{ background: "rgba(6,13,26,0.9)", border: "1px solid rgba(34,211,238,0.15)", color: "#22D3EE" }}>
+                            style={{ background: "rgba(11,18,32,0.9)", border: "1px solid rgba(181,142,60,0.15)", color: "#D4A84B" }}>
                             {STREAM_OPTIONS.map((s) => <option key={s} value={s}>{s}</option>)}
                           </select>
                           <select value={cond.event} onChange={(e) => updateCondition(cond.id, "event", e.target.value)}
                             className="px-2 py-1.5 rounded-lg text-xs outline-none cursor-pointer"
-                            style={{ background: "rgba(6,13,26,0.9)", border: "1px solid rgba(34,211,238,0.15)", color: "#D1D5DB" }}>
+                            style={{ background: "rgba(11,18,32,0.9)", border: "1px solid rgba(181,142,60,0.15)", color: "#D1D5DB" }}>
                             {(EVENT_OPTIONS[cond.stream] ?? []).map((ev) => <option key={ev} value={ev}>{ev}</option>)}
                           </select>
                           <select value={cond.operator} onChange={(e) => updateCondition(cond.id, "operator", e.target.value)}
                             className="px-2 py-1.5 rounded-lg text-xs outline-none cursor-pointer"
-                            style={{ background: "rgba(6,13,26,0.9)", border: "1px solid rgba(34,211,238,0.15)", color: "#FACC15" }}>
+                            style={{ background: "rgba(11,18,32,0.9)", border: "1px solid rgba(181,142,60,0.15)", color: "#FACC15" }}>
                             {OPERATOR_OPTIONS.map((op) => <option key={op} value={op}>{op}</option>)}
                           </select>
                           <input type="text" value={cond.value} onChange={(e) => updateCondition(cond.id, "value", e.target.value)}
                             placeholder={isAr ? "القيمة..." : "value..."}
                             className="px-2 py-1.5 rounded-lg text-xs outline-none flex-1 min-w-[80px]"
-                            style={{ background: "rgba(6,13,26,0.9)", border: "1px solid rgba(34,211,238,0.1)", color: "#D1D5DB" }} />
+                            style={{ background: "rgba(11,18,32,0.9)", border: "1px solid rgba(181,142,60,0.1)", color: "#D1D5DB" }} />
                           {builderConditions.length > 1 && (
                             <button type="button" onClick={() => removeCondition(cond.id)}
                               className="w-6 h-6 flex items-center justify-center rounded-lg cursor-pointer flex-shrink-0"
@@ -582,16 +582,16 @@ const PatternEnginePage = () => {
 
                 {/* Timeframe */}
                 <div className="rounded-2xl border p-5"
-                  style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.12)", backdropFilter: "blur(12px)" }}>
+                  style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
                   <h3 className="text-white font-bold text-sm mb-3">{isAr ? "الإطار الزمني" : "Timeframe"}</h3>
                   <div className="flex items-center gap-3">
                     <span className="text-gray-400 text-xs font-['JetBrains_Mono']">WITHIN</span>
                     <input type="number" value={builderTimeframe} onChange={(e) => setBuilderTimeframe(e.target.value)}
                       className="w-20 px-3 py-2 rounded-lg text-sm text-center outline-none font-['JetBrains_Mono']"
-                      style={{ background: "rgba(6,13,26,0.9)", border: "1px solid rgba(34,211,238,0.2)", color: "#22D3EE" }} />
+                      style={{ background: "rgba(11,18,32,0.9)", border: "1px solid rgba(181,142,60,0.2)", color: "#D4A84B" }} />
                     <select value={builderTimeUnit} onChange={(e) => setBuilderTimeUnit(e.target.value)}
                       className="px-3 py-2 rounded-lg text-xs outline-none cursor-pointer"
-                      style={{ background: "rgba(6,13,26,0.9)", border: "1px solid rgba(34,211,238,0.15)", color: "#D1D5DB" }}>
+                      style={{ background: "rgba(11,18,32,0.9)", border: "1px solid rgba(181,142,60,0.15)", color: "#D1D5DB" }}>
                       {["minutes", "hours", "days", "weeks", "months"].map((u) => <option key={u} value={u}>{u}</option>)}
                     </select>
                   </div>
@@ -599,7 +599,7 @@ const PatternEnginePage = () => {
 
                 {/* Alert level */}
                 <div className="rounded-2xl border p-5"
-                  style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.12)", backdropFilter: "blur(12px)" }}>
+                  style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
                   <h3 className="text-white font-bold text-sm mb-3">{isAr ? "مستوى التنبيه" : "Alert Level"}</h3>
                   <div className="flex items-center gap-2">
                     {(["low", "medium", "high", "critical"] as RiskLevel[]).map((lvl) => {
@@ -617,7 +617,7 @@ const PatternEnginePage = () => {
 
                 {/* Actions */}
                 <div className="rounded-2xl border p-5"
-                  style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.12)", backdropFilter: "blur(12px)" }}>
+                  style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
                   <h3 className="text-white font-bold text-sm mb-3">{isAr ? "الإجراءات عند التطابق" : "Actions on Match"}</h3>
                   <div className="flex flex-wrap gap-2">
                     {ACTION_OPTIONS.map((action) => {
@@ -636,7 +636,7 @@ const PatternEnginePage = () => {
 
                 <button type="button" onClick={saveRule}
                   className="w-full py-3 rounded-xl text-sm font-bold cursor-pointer whitespace-nowrap transition-all"
-                  style={{ background: savedMsg ? "#4ADE80" : "#22D3EE", color: "#060D1A" }}>
+                  style={{ background: savedMsg ? "#4ADE80" : "#D4A84B", color: "#0B1220" }}>
                   <i className={`${savedMsg ? "ri-checkbox-circle-line" : "ri-save-line"} mr-2`} />
                   {savedMsg ? (isAr ? "تم حفظ القاعدة!" : "Rule Saved!") : (isAr ? "حفظ القاعدة" : "Save Rule")}
                 </button>
@@ -645,13 +645,13 @@ const PatternEnginePage = () => {
               {/* Preview panel */}
               <div>
                 <div className="rounded-2xl border p-5 sticky top-[140px]"
-                  style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.15)", backdropFilter: "blur(12px)" }}>
+                  style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.15)", backdropFilter: "blur(12px)" }}>
                   <div className="flex items-center gap-2 mb-4">
-                    <i className="ri-eye-line text-cyan-400 text-sm" />
+                    <i className="ri-eye-line text-gold-400 text-sm" />
                     <h3 className="text-white font-bold text-sm">{isAr ? "معاينة القاعدة" : "Rule Preview"}</h3>
                   </div>
                   <div className="rounded-xl border p-4 space-y-3"
-                    style={{ background: "rgba(6,13,26,0.8)", borderColor: `${RISK_CONFIG[builderLevel].color}25` }}>
+                    style={{ background: "rgba(11,18,32,0.8)", borderColor: `${RISK_CONFIG[builderLevel].color}25` }}>
                     <div className="flex items-center gap-2 flex-wrap">
                       <span className="text-white font-bold text-sm">{builderName || (isAr ? "اسم القاعدة..." : "Rule Name...")}</span>
                       <span className="px-1.5 py-0.5 rounded-full text-xs font-bold"
@@ -663,11 +663,11 @@ const PatternEnginePage = () => {
                       {builderConditions.map((cond, i) => (
                         <div key={cond.id} className="flex items-start gap-2">
                           <span className="font-bold font-['JetBrains_Mono'] flex-shrink-0 text-xs"
-                            style={{ color: i === 0 ? "#22D3EE" : "#FACC15" }}>
+                            style={{ color: i === 0 ? "#D4A84B" : "#FACC15" }}>
                             {i === 0 ? "IF" : cond.logic}
                           </span>
                           <span className="text-gray-300 text-xs">
-                            <span style={{ color: "#22D3EE" }}>{cond.stream}</span>
+                            <span style={{ color: "#D4A84B" }}>{cond.stream}</span>
                             {" "}<span style={{ color: "#D1D5DB" }}>{cond.event}</span>
                             {" "}<span style={{ color: "#FACC15" }}>{cond.operator}</span>
                             {cond.value && <span style={{ color: "#4ADE80" }}> {cond.value}</span>}
@@ -675,9 +675,9 @@ const PatternEnginePage = () => {
                         </div>
                       ))}
                     </div>
-                    <div className="flex items-center gap-1.5 pt-1 border-t" style={{ borderColor: "rgba(34,211,238,0.06)" }}>
+                    <div className="flex items-center gap-1.5 pt-1 border-t" style={{ borderColor: "rgba(181,142,60,0.06)" }}>
                       <span className="text-gray-500 text-xs font-['JetBrains_Mono']">WITHIN</span>
-                      <span className="text-cyan-400 text-xs font-bold font-['JetBrains_Mono']">{builderTimeframe} {builderTimeUnit}</span>
+                      <span className="text-gold-400 text-xs font-bold font-['JetBrains_Mono']">{builderTimeframe} {builderTimeUnit}</span>
                     </div>
                     <div className="flex items-center gap-1.5 flex-wrap">
                       <span className="text-gray-500 text-xs font-['JetBrains_Mono']">THEN</span>
@@ -714,11 +714,11 @@ const PatternEnginePage = () => {
             </div>
 
             <div className="rounded-2xl border p-6"
-              style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.15)", backdropFilter: "blur(12px)" }}>
+              style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.15)", backdropFilter: "blur(12px)" }}>
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-8 h-8 flex items-center justify-center rounded-lg"
-                  style={{ background: "rgba(34,211,238,0.1)", border: "1px solid rgba(34,211,238,0.2)" }}>
-                  <i className="ri-test-tube-line text-cyan-400 text-sm" />
+                  style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+                  <i className="ri-test-tube-line text-gold-400 text-sm" />
                 </div>
                 <h3 className="text-white font-bold text-sm">{isAr ? "إدخال معرف الشخص" : "Enter Person ID"}</h3>
               </div>
@@ -726,11 +726,11 @@ const PatternEnginePage = () => {
                 <input type="text" value={testPersonId} onChange={(e) => setTestPersonId(e.target.value)}
                   placeholder={isAr ? "مثال: PRS-001 أو رقم الوثيقة..." : "e.g. PRS-001 or document number..."}
                   className="flex-1 min-w-[240px] px-4 py-3 rounded-xl border outline-none text-sm font-['JetBrains_Mono']"
-                  style={{ background: "rgba(6,13,26,0.9)", borderColor: "rgba(34,211,238,0.2)", color: "#22D3EE" }}
+                  style={{ background: "rgba(11,18,32,0.9)", borderColor: "rgba(181,142,60,0.2)", color: "#D4A84B" }}
                   onKeyDown={(e) => e.key === "Enter" && runTest()} />
                 <button type="button" onClick={runTest} disabled={testRunning}
                   className="flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold cursor-pointer whitespace-nowrap"
-                  style={{ background: testRunning ? "rgba(34,211,238,0.3)" : "#22D3EE", color: "#060D1A", opacity: testRunning ? 0.7 : 1 }}>
+                  style={{ background: testRunning ? "rgba(181,142,60,0.3)" : "#D4A84B", color: "#0B1220", opacity: testRunning ? 0.7 : 1 }}>
                   {testRunning
                     ? <><i className="ri-loader-4-line animate-spin text-sm" />{isAr ? "جارٍ المحاكاة..." : "Simulating..."}</>
                     : <><i className="ri-play-line text-sm" />{isAr ? "تشغيل المحاكاة" : "Run Simulation"}</>}
@@ -741,7 +741,7 @@ const PatternEnginePage = () => {
                 {["PRS-001", "PRS-002", "PRS-003"].map((id) => (
                   <button key={id} type="button" onClick={() => setTestPersonId(id)}
                     className="px-2.5 py-1 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap"
-                    style={{ background: "rgba(34,211,238,0.08)", color: "#22D3EE", border: "1px solid rgba(34,211,238,0.15)" }}>
+                    style={{ background: "rgba(181,142,60,0.08)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.15)" }}>
                     {id}
                   </button>
                 ))}
@@ -750,12 +750,12 @@ const PatternEnginePage = () => {
 
             {testRunning && (
               <div className="rounded-2xl border p-10 flex flex-col items-center gap-4"
-                style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.12)" }}>
+                style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)" }}>
                 <div className="relative w-16 h-16">
-                  <div className="absolute inset-0 rounded-full border-2 border-cyan-400 animate-spin" style={{ borderTopColor: "transparent" }} />
-                  <div className="absolute inset-2 rounded-full border-2 border-cyan-400 animate-spin" style={{ borderBottomColor: "transparent", animationDirection: "reverse", animationDuration: "0.8s" }} />
+                  <div className="absolute inset-0 rounded-full border-2 border-gold-400 animate-spin" style={{ borderTopColor: "transparent" }} />
+                  <div className="absolute inset-2 rounded-full border-2 border-gold-400 animate-spin" style={{ borderBottomColor: "transparent", animationDirection: "reverse", animationDuration: "0.8s" }} />
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <i className="ri-git-branch-line text-cyan-400 text-lg" />
+                    <i className="ri-git-branch-line text-gold-400 text-lg" />
                   </div>
                 </div>
                 <p className="text-white font-bold text-sm">{isAr ? "جارٍ تحليل البيانات التاريخية..." : "Analyzing historical data..."}</p>
@@ -767,13 +767,13 @@ const PatternEnginePage = () => {
               <>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   {[
-                    { label: isAr ? "القواعد المختبرة" : "Rules Tested",  value: testResults.length,                                    color: "#22D3EE" },
+                    { label: isAr ? "القواعد المختبرة" : "Rules Tested",  value: testResults.length,                                    color: "#D4A84B" },
                     { label: isAr ? "مُطلَقة" : "Triggered",              value: testResults.filter((r) => r.triggered).length,         color: "#F87171" },
                     { label: isAr ? "غير مُطلَقة" : "Not Triggered",      value: testResults.filter((r) => !r.triggered).length,        color: "#4ADE80" },
                     { label: isAr ? "أعلى مستوى" : "Highest Level",       value: testResults.some((r) => r.triggered && r.riskLevel === "critical") ? (isAr ? "حرج" : "CRITICAL") : (isAr ? "عالٍ" : "HIGH"), color: "#F87171" },
                   ].map((s) => (
                     <div key={s.label} className="rounded-xl border p-4"
-                      style={{ background: "rgba(10,22,40,0.8)", borderColor: `${s.color}18` }}>
+                      style={{ background: "rgba(20,29,46,0.8)", borderColor: `${s.color}18` }}>
                       <div className="text-2xl font-black font-['JetBrains_Mono']" style={{ color: s.color }}>{s.value}</div>
                       <div className="text-gray-500 text-xs">{s.label}</div>
                     </div>
@@ -787,7 +787,7 @@ const PatternEnginePage = () => {
                     return (
                       <div key={result.ruleId} className="rounded-2xl border overflow-hidden"
                         style={{
-                          background: "rgba(10,22,40,0.8)",
+                          background: "rgba(20,29,46,0.8)",
                           borderColor: result.triggered ? `${riskCfg.color}25` : "rgba(255,255,255,0.05)",
                           borderLeft: `4px solid ${result.triggered ? riskCfg.color : "#374151"}`,
                           backdropFilter: "blur(12px)",
@@ -833,7 +833,7 @@ const PatternEnginePage = () => {
                 <div className="flex justify-end">
                   <button type="button"
                     className="flex items-center gap-2 px-5 py-2.5 rounded-xl border text-xs font-bold cursor-pointer whitespace-nowrap"
-                    style={{ background: "transparent", borderColor: "rgba(34,211,238,0.3)", color: "#22D3EE" }}>
+                    style={{ background: "transparent", borderColor: "rgba(181,142,60,0.3)", color: "#D4A84B" }}>
                     <i className="ri-download-2-line text-xs" />
                     {isAr ? "تصدير نتائج الاختبار" : "Export Test Results"}
                   </button>

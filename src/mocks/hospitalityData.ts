@@ -156,11 +156,11 @@ export const hospitalityNavItems = [
 
 export const recentActivities = [
   { id: 'A001', type: 'check-in',    icon: 'ri-login-box-line',     color: '#4ADE80', guestName: 'Ahmed Al-Rashidi',    room: '101', time: '14:32', flag: '🇴🇲' },
-  { id: 'A002', type: 'booking',     icon: 'ri-calendar-check-line',color: '#22D3EE', guestName: 'Sarah Johnson',        room: '103', time: '14:18', flag: '🇬🇧' },
+  { id: 'A002', type: 'booking',     icon: 'ri-calendar-check-line',color: '#D4A84B', guestName: 'Sarah Johnson',        room: '103', time: '14:18', flag: '🇬🇧' },
   { id: 'A003', type: 'check-out',   icon: 'ri-logout-box-line',    color: '#FB923C', guestName: 'Aisha Al-Harthi',      room: '201', time: '13:55', flag: '🇴🇲' },
   { id: 'A004', type: 'check-in',    icon: 'ri-login-box-line',     color: '#4ADE80', guestName: 'Ravi Krishnamurthy',   room: '202', time: '13:42', flag: '🇮🇳' },
   { id: 'A005', type: 'change-room', icon: 'ri-door-line',          color: '#FACC15', guestName: 'Mohammed Al-Balushi',  room: '302', time: '12:30', flag: '🇴🇲' },
-  { id: 'A006', type: 'booking',     icon: 'ri-calendar-check-line',color: '#22D3EE', guestName: 'Chen Wei',             room: '204', time: '11:55', flag: '🇨🇳' },
+  { id: 'A006', type: 'booking',     icon: 'ri-calendar-check-line',color: '#D4A84B', guestName: 'Chen Wei',             room: '204', time: '11:55', flag: '🇨🇳' },
   { id: 'A007', type: 'check-in',    icon: 'ri-login-box-line',     color: '#4ADE80', guestName: 'James Whitfield',      room: '305', time: '11:20', flag: '🇺🇸' },
   { id: 'A008', type: 'check-out',   icon: 'ri-logout-box-line',    color: '#FB923C', guestName: 'Khalid Al-Amri',       room: '303', time: '10:45', flag: '🇴🇲' },
 ];

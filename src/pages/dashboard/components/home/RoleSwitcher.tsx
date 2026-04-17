@@ -7,9 +7,11 @@ interface Props {
 }
 
 const ROLES: { id: Role; icon: string; labelEn: string; labelAr: string; color: string }[] = [
-  { id: "analyst",    icon: "ri-user-search-line",  labelEn: "Data Analyst", labelAr: "محلل بيانات", color: "#22D3EE" },
-  { id: "supervisor", icon: "ri-user-star-line",    labelEn: "Supervisor",    labelAr: "مشرف",        color: "#AA95FF" },
-  { id: "manager",    icon: "ri-dashboard-3-line",  labelEn: "Manager",       labelAr: "مدير",         color: "#4ADE80" },
+  // Active-pill hues: gold (primary role highlight), frankincense, olive —
+  // all from the Al-Ameen brand palette.
+  { id: "analyst",    icon: "ri-user-search-line",  labelEn: "Data Analyst", labelAr: "محلل بيانات", color: "#D4A84B" }, // gold-400
+  { id: "supervisor", icon: "ri-user-star-line",    labelEn: "Supervisor",    labelAr: "مشرف",        color: "#B58E3C" }, // gold-600 (frankincense)
+  { id: "manager",    icon: "ri-dashboard-3-line",  labelEn: "Manager",       labelAr: "مدير",         color: "#4F9A35" }, // olive
 ];
 
 // Top-right pill toggle that picks which home dashboard we render.
@@ -19,8 +21,8 @@ const RoleSwitcher = ({ value, onChange, isAr }: Props) => {
     <div
       className="flex items-center gap-1 p-1 rounded-xl"
       style={{
-        background: "rgba(10,22,40,0.8)",
-        border: "1px solid rgba(34,211,238,0.12)",
+        background: "rgba(20,29,46,0.8)",
+        border: "1px solid rgba(181,142,60,0.15)",
       }}
     >
       {ROLES.map((r) => {

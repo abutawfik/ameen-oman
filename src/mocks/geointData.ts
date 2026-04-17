@@ -139,7 +139,7 @@ export const geoSubjects: GeoSubject[] = [
 export const movementPoints: MovementPoint[] = [
   // Ahmed Al-Rashidi trail
   { id: "mp-001", subjectId: "sub-001", lat: 23.5880, lng: 58.3829, location: "Muscat International Airport", district: "Seeb", stream: "Borders", streamIcon: "ri-passport-line", streamColor: "#60A5FA", timestamp: "2026-04-06 07:12", eventType: "Entry Recorded", detail: "Arrived from Dubai — Flight EK-862", riskFlag: true },
-  { id: "mp-002", subjectId: "sub-001", lat: 23.6100, lng: 58.5930, location: "Grand Hyatt Muscat", district: "Shati Al Qurum", stream: "Hotel", streamIcon: "ri-hotel-line", streamColor: "#22D3EE", timestamp: "2026-04-06 08:45", eventType: "Check-In", detail: "Room 412, 3-night booking", riskFlag: false },
+  { id: "mp-002", subjectId: "sub-001", lat: 23.6100, lng: 58.5930, location: "Grand Hyatt Muscat", district: "Shati Al Qurum", stream: "Hotel", streamIcon: "ri-hotel-line", streamColor: "#D4A84B", timestamp: "2026-04-06 08:45", eventType: "Check-In", detail: "Room 412, 3-night booking", riskFlag: false },
   { id: "mp-003", subjectId: "sub-001", lat: 23.6200, lng: 58.5800, location: "National Bank of Oman", district: "Qurum", stream: "Financial", streamIcon: "ri-bank-card-line", streamColor: "#4ADE80", timestamp: "2026-04-06 10:22", eventType: "Large Cash Deposit", detail: "OMR 18,500 cash deposit", riskFlag: true },
   { id: "mp-004", subjectId: "sub-001", lat: 23.6150, lng: 58.5750, location: "Qurum City Centre", district: "Qurum", stream: "E-Commerce", streamIcon: "ri-shopping-cart-line", streamColor: "#34D399", timestamp: "2026-04-06 11:40", eventType: "High-Value Purchase", detail: "Electronics — OMR 3,200", riskFlag: false },
   { id: "mp-005", subjectId: "sub-001", lat: 23.5950, lng: 58.5600, location: "Muttrah Port", district: "Muttrah", stream: "Marine", streamIcon: "ri-anchor-line", streamColor: "#FB923C", timestamp: "2026-04-06 13:15", eventType: "Marina Docking", detail: "Vessel: Al-Noor, 2hr berth", riskFlag: true },
@@ -148,12 +148,12 @@ export const movementPoints: MovementPoint[] = [
   // Khalid Al-Balushi trail
   { id: "mp-007", subjectId: "sub-002", lat: 23.5950, lng: 58.5600, location: "Muttrah Port", district: "Muttrah", stream: "Customs", streamIcon: "ri-ship-line", streamColor: "#FACC15", timestamp: "2026-04-06 06:30", eventType: "Import Declaration", detail: "Container MSKU-4523891, Electronics", riskFlag: true },
   { id: "mp-008", subjectId: "sub-002", lat: 23.6050, lng: 58.5700, location: "Ruwi Business District", district: "Ruwi", stream: "Employment", streamIcon: "ri-briefcase-line", streamColor: "#F9A8D4", timestamp: "2026-04-06 09:00", eventType: "Employer Change", detail: "Transfer to Al-Balushi Trading LLC", riskFlag: false },
-  { id: "mp-009", subjectId: "sub-002", lat: 23.6100, lng: 58.5930, location: "Muscat Hills", district: "Shati Al Qurum", stream: "Municipality", streamIcon: "ri-government-line", streamColor: "#22D3EE", timestamp: "2026-04-06 11:20", eventType: "Lease Start", detail: "Villa 7, Al Khuwair — 12 months", riskFlag: false },
+  { id: "mp-009", subjectId: "sub-002", lat: 23.6100, lng: 58.5930, location: "Muscat Hills", district: "Shati Al Qurum", stream: "Municipality", streamIcon: "ri-government-line", streamColor: "#D4A84B", timestamp: "2026-04-06 11:20", eventType: "Lease Start", detail: "Villa 7, Al Khuwair — 12 months", riskFlag: false },
   { id: "mp-010", subjectId: "sub-002", lat: 23.5950, lng: 58.5600, location: "Muttrah Port", district: "Muttrah", stream: "Marine", streamIcon: "ri-anchor-line", streamColor: "#FB923C", timestamp: "2026-04-06 14:00", eventType: "Boat Rental", detail: "Speed boat — 4hr rental", riskFlag: true },
 
   // Fatima Al-Zadjali trail
   { id: "mp-011", subjectId: "sub-003", lat: 23.6200, lng: 58.5800, location: "Sultan Qaboos University", district: "Al Khoud", stream: "Education", streamIcon: "ri-graduation-cap-line", streamColor: "#A78BFA", timestamp: "2026-04-06 08:00", eventType: "Course Registration", detail: "MBA Program — Spring 2026", riskFlag: false },
-  { id: "mp-012", subjectId: "sub-003", lat: 23.6150, lng: 58.5750, location: "Qurum Commercial District", district: "Qurum", stream: "Mobile", streamIcon: "ri-sim-card-line", streamColor: "#22D3EE", timestamp: "2026-04-06 10:30", eventType: "SIM Swap", detail: "Number: +968 9234 5678", riskFlag: true },
+  { id: "mp-012", subjectId: "sub-003", lat: 23.6150, lng: 58.5750, location: "Qurum Commercial District", district: "Qurum", stream: "Mobile", streamIcon: "ri-sim-card-line", streamColor: "#D4A84B", timestamp: "2026-04-06 10:30", eventType: "SIM Swap", detail: "Number: +968 9234 5678", riskFlag: true },
   { id: "mp-013", subjectId: "sub-003", lat: 23.6100, lng: 58.5930, location: "Royal Hospital", district: "Shati Al Qurum", stream: "Healthcare", streamIcon: "ri-heart-pulse-line", streamColor: "#F87171", timestamp: "2026-04-06 12:15", eventType: "Patient Registration", detail: "Outpatient — Cardiology", riskFlag: false },
 
   // Rajesh Kumar trail
@@ -307,7 +307,7 @@ export const crossStreamCorrelations: CrossStreamCorrelationEvent[] = [
     lat: 23.6150,
     lng: 58.5750,
     streams: [
-      { name: "Mobile", icon: "ri-sim-card-line", color: "#22D3EE", event: "SIM swap — suspicious", time: "10:30" },
+      { name: "Mobile", icon: "ri-sim-card-line", color: "#D4A84B", event: "SIM swap — suspicious", time: "10:30" },
       { name: "Financial", icon: "ri-bank-card-line", color: "#4ADE80", event: "Wire transfer OMR 8,000", time: "11:00" },
       { name: "E-Commerce", icon: "ri-shopping-cart-line", color: "#34D399", event: "Bulk purchase — 200 units", time: "11:45" },
     ],
@@ -358,7 +358,7 @@ export const geointKpis = {
 export const streamColors: Record<string, string> = {
   "Borders": "#60A5FA",
   "Financial": "#4ADE80",
-  "Hotel": "#22D3EE",
+  "Hotel": "#D4A84B",
   "Marine": "#FB923C",
   "Customs": "#FACC15",
   "Employment": "#F9A8D4",
@@ -367,7 +367,7 @@ export const streamColors: Record<string, string> = {
   "Education": "#A78BFA",
   "Transport": "#FB923C",
   "E-Commerce": "#34D399",
-  "Municipality": "#22D3EE",
+  "Municipality": "#D4A84B",
   "Tourism": "#FACC15",
   "Postal": "#A78BFA",
   "Social": "#38BDF8",

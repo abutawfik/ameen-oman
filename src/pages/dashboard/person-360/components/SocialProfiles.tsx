@@ -20,7 +20,7 @@ const SocialProfiles = ({ profiles, isAr }: Props) => {
   return (
     <div
       className="rounded-xl p-5"
-      style={{ background: "rgba(10,22,40,0.8)", border: "1px solid rgba(34,211,238,0.15)", backdropFilter: "blur(12px)" }}
+      style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.15)", backdropFilter: "blur(12px)" }}
     >
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
@@ -29,7 +29,7 @@ const SocialProfiles = ({ profiles, isAr }: Props) => {
           </h3>
           <span
             className="px-2 py-0.5 rounded-full text-xs font-['JetBrains_Mono']"
-            style={{ background: "rgba(34,211,238,0.1)", color: "#22D3EE", border: "1px solid rgba(34,211,238,0.2)" }}
+            style={{ background: "rgba(181,142,60,0.1)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}
           >
             {profiles.length} {isAr ? "منصة" : "platforms"}
           </span>
@@ -74,11 +74,11 @@ const SocialProfiles = ({ profiles, isAr }: Props) => {
               key={profile.platform}
               className="rounded-xl p-4 flex flex-col gap-3 relative cursor-pointer transition-all"
               style={{
-                background: profile.flagged ? "rgba(248,113,113,0.06)" : "rgba(6,13,26,0.6)",
+                background: profile.flagged ? "rgba(248,113,113,0.06)" : "rgba(11,18,32,0.6)",
                 border: profile.flagged
                   ? "1px solid rgba(248,113,113,0.3)"
                   : isExpanded
-                    ? "1px solid rgba(34,211,238,0.3)"
+                    ? "1px solid rgba(181,142,60,0.3)"
                     : "1px solid rgba(255,255,255,0.06)",
               }}
               onClick={() => setExpandedProfile(isExpanded ? null : profile.platform)}
@@ -124,7 +124,7 @@ const SocialProfiles = ({ profiles, isAr }: Props) => {
                 {profile.followers > 0 && (
                   <div>
                     <p className="text-gray-600 text-[9px] font-['JetBrains_Mono'] uppercase">{isAr ? "متابعون" : "Followers"}</p>
-                    <p className="text-cyan-400 text-xs font-bold font-['JetBrains_Mono']">{profile.followers.toLocaleString()}</p>
+                    <p className="text-gold-400 text-xs font-bold font-['JetBrains_Mono']">{profile.followers.toLocaleString()}</p>
                   </div>
                 )}
                 <div>
@@ -159,9 +159,9 @@ const SocialProfiles = ({ profiles, isAr }: Props) => {
                 href={profile.profileUrl}
                 className="flex items-center justify-center gap-1 py-1.5 rounded-lg text-[10px] font-['JetBrains_Mono'] cursor-pointer transition-colors"
                 style={{
-                  background: "rgba(34,211,238,0.05)",
-                  color: "#22D3EE",
-                  border: "1px solid rgba(34,211,238,0.2)",
+                  background: "rgba(181,142,60,0.05)",
+                  color: "#D4A84B",
+                  border: "1px solid rgba(181,142,60,0.2)",
                   textDecoration: "none",
                 }}
                 onClick={e => e.stopPropagation()}

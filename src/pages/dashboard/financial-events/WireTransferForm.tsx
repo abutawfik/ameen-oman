@@ -165,10 +165,10 @@ const WireTransferForm = ({ isAr, onCancel }: Props) => {
                 </FormField>
               </div>
               {amount && (
-                <div className="flex items-center gap-2 px-3 py-2 rounded-lg border" style={{ background: "rgba(34,211,238,0.05)", borderColor: "rgba(34,211,238,0.2)" }}>
-                  <i className="ri-exchange-dollar-line text-cyan-400 text-sm" />
+                <div className="flex items-center gap-2 px-3 py-2 rounded-lg border" style={{ background: "rgba(181,142,60,0.05)", borderColor: "rgba(181,142,60,0.2)" }}>
+                  <i className="ri-exchange-dollar-line text-gold-400 text-sm" />
                   <span className="text-gray-400 text-xs">{isAr ? "ما يعادل تقريباً:" : "Approx. equivalent:"}</span>
-                  <span className="text-cyan-400 font-bold text-sm font-['JetBrains_Mono']">LCY {amountLCY.toFixed(3)}</span>
+                  <span className="text-gold-400 font-bold text-sm font-['JetBrains_Mono']">LCY {amountLCY.toFixed(3)}</span>
                 </div>
               )}
               <FormField label={isAr ? "الغرض من التحويل" : "Transfer Purpose"} required>

@@ -372,7 +372,7 @@ export const threatActors: ThreatActor[] = [
 ];
 
 export const feedSources: ThreatFeedSource[] = [
-  { id: "fs-001", name: "Internal SIEM",         type: "internal",    status: "online",   lastSync: "2 min ago",  iocCount: 1247, reliability: 98, color: "#22D3EE", icon: "ri-server-line" },
+  { id: "fs-001", name: "Internal SIEM",         type: "internal",    status: "online",   lastSync: "2 min ago",  iocCount: 1247, reliability: 98, color: "#D4A84B", icon: "ri-server-line" },
   { id: "fs-002", name: "VirusTotal",             type: "commercial",  status: "online",   lastSync: "5 min ago",  iocCount: 8934, reliability: 94, color: "#4ADE80", icon: "ri-shield-check-line" },
   { id: "fs-003", name: "OSINT Aggregator",       type: "osint",       status: "online",   lastSync: "12 min ago", iocCount: 3421, reliability: 78, color: "#FACC15", icon: "ri-global-line" },
   { id: "fs-004", name: "Dark Web Monitor",       type: "darkweb",     status: "online",   lastSync: "8 min ago",  iocCount: 567,  reliability: 71, color: "#F87171", icon: "ri-ghost-line" },

@@ -96,10 +96,10 @@ const PhoneLookupEngine = ({ isAr }: Props) => {
   return (
     <div className="space-y-5">
       {/* Lookup panel */}
-      <div className="rounded-2xl border p-6" style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.2)", backdropFilter: "blur(12px)" }}>
+      <div className="rounded-2xl border p-6" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.2)", backdropFilter: "blur(12px)" }}>
         <div className="flex items-center gap-3 mb-5">
-          <div className="w-9 h-9 flex items-center justify-center rounded-xl" style={{ background: "rgba(34,211,238,0.1)", border: "1px solid rgba(34,211,238,0.25)" }}>
-            <i className="ri-search-eye-line text-cyan-400" />
+          <div className="w-9 h-9 flex items-center justify-center rounded-xl" style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.25)" }}>
+            <i className="ri-search-eye-line text-gold-400" />
           </div>
           <div>
             <h3 className="text-white font-bold">{isAr ? "محرك البحث عن الهوية الاجتماعية" : "Social Identity Lookup Engine"}</h3>
@@ -117,9 +117,9 @@ const PhoneLookupEngine = ({ isAr }: Props) => {
             <button key={t} type="button" onClick={() => setLookupType(t)}
               className="px-4 py-1.5 rounded-lg text-xs font-semibold cursor-pointer transition-all whitespace-nowrap"
               style={{
-                background: lookupType === t ? "rgba(34,211,238,0.15)" : "rgba(255,255,255,0.04)",
-                border: `1px solid ${lookupType === t ? "rgba(34,211,238,0.35)" : "rgba(255,255,255,0.08)"}`,
-                color: lookupType === t ? "#22D3EE" : "#6B7280",
+                background: lookupType === t ? "rgba(181,142,60,0.15)" : "rgba(255,255,255,0.04)",
+                border: `1px solid ${lookupType === t ? "rgba(181,142,60,0.35)" : "rgba(255,255,255,0.08)"}`,
+                color: lookupType === t ? "#D4A84B" : "#6B7280",
               }}>
               <i className={`${t === "phone" ? "ri-phone-line" : "ri-mail-line"} mr-1.5`} />
               {t === "phone" ? (isAr ? "رقم الهاتف" : "Phone Number") : (isAr ? "البريد الإلكتروني" : "Email Address")}
@@ -129,8 +129,8 @@ const PhoneLookupEngine = ({ isAr }: Props) => {
 
         {/* Input row */}
         <div className="flex gap-3">
-          <div className="flex-1 flex items-center gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(255,255,255,0.03)", borderColor: "rgba(34,211,238,0.2)" }}>
-            <i className={`${lookupType === "phone" ? "ri-phone-line" : "ri-mail-line"} text-cyan-400 text-sm flex-shrink-0`} />
+          <div className="flex-1 flex items-center gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(255,255,255,0.03)", borderColor: "rgba(181,142,60,0.2)" }}>
+            <i className={`${lookupType === "phone" ? "ri-phone-line" : "ri-mail-line"} text-gold-400 text-sm flex-shrink-0`} />
             <input
               type="text"
               value={input}
@@ -142,7 +142,7 @@ const PhoneLookupEngine = ({ isAr }: Props) => {
           </div>
           <button type="button" onClick={handleLookup} disabled={loading}
             className="flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-bold cursor-pointer whitespace-nowrap transition-all"
-            style={{ background: loading ? "rgba(34,211,238,0.3)" : "#22D3EE", color: "#060D1A" }}>
+            style={{ background: loading ? "rgba(181,142,60,0.3)" : "#D4A84B", color: "#0B1220" }}>
             {loading ? <><i className="ri-loader-4-line animate-spin" />{isAr ? "جارٍ البحث..." : "Searching..."}</> : <><i className="ri-search-line" />{isAr ? "بحث" : "Lookup"}</>}
           </button>
         </div>
@@ -156,9 +156,9 @@ const PhoneLookupEngine = ({ isAr }: Props) => {
 
       {/* Loading state */}
       {loading && (
-        <div className="rounded-2xl border p-8 flex flex-col items-center gap-4" style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.12)" }}>
-          <div className="w-12 h-12 flex items-center justify-center rounded-2xl" style={{ background: "rgba(34,211,238,0.1)", border: "1px solid rgba(34,211,238,0.2)" }}>
-            <i className="ri-loader-4-line text-cyan-400 text-2xl animate-spin" />
+        <div className="rounded-2xl border p-8 flex flex-col items-center gap-4" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)" }}>
+          <div className="w-12 h-12 flex items-center justify-center rounded-2xl" style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+            <i className="ri-loader-4-line text-gold-400 text-2xl animate-spin" />
           </div>
           <div className="text-center">
             <p className="text-white font-semibold mb-1">{isAr ? "جارٍ الاستعلام عن قواعد البيانات..." : "Querying lookup databases..."}</p>
@@ -166,7 +166,7 @@ const PhoneLookupEngine = ({ isAr }: Props) => {
           </div>
           <div className="flex gap-2">
             {["WhatsApp", "Telegram", "Instagram", "X"].map((p, i) => (
-              <div key={p} className="px-2 py-1 rounded-lg text-xs font-['JetBrains_Mono'] animate-pulse" style={{ background: "rgba(34,211,238,0.08)", color: "#22D3EE", animationDelay: `${i * 0.2}s` }}>{p}</div>
+              <div key={p} className="px-2 py-1 rounded-lg text-xs font-['JetBrains_Mono'] animate-pulse" style={{ background: "rgba(181,142,60,0.08)", color: "#D4A84B", animationDelay: `${i * 0.2}s` }}>{p}</div>
             ))}
           </div>
         </div>
@@ -176,14 +176,14 @@ const PhoneLookupEngine = ({ isAr }: Props) => {
       {result && !loading && (
         <div className="space-y-4">
           {/* Person header */}
-          <div className="rounded-2xl border p-5" style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.2)", backdropFilter: "blur(12px)" }}>
+          <div className="rounded-2xl border p-5" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.2)", backdropFilter: "blur(12px)" }}>
             <div className="flex items-start justify-between gap-4 flex-wrap">
               <div className="flex items-center gap-4">
                 <span className="text-4xl">{result.flag}</span>
                 <div>
                   <div className="flex items-center gap-2 flex-wrap mb-1">
                     <span className="text-white text-lg font-bold">{isAr ? result.personNameAr : result.personName}</span>
-                    <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(34,211,238,0.12)", color: "#22D3EE", border: "1px solid rgba(34,211,238,0.25)" }}>
+                    <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(181,142,60,0.12)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.25)" }}>
                       {result.profiles.length} {isAr ? "حساب مكتشف" : "profiles found"}
                     </span>
                   </div>
@@ -209,7 +209,7 @@ const PhoneLookupEngine = ({ isAr }: Props) => {
           {/* Profile cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {result.profiles.map((profile) => (
-              <div key={profile.platform} className="rounded-2xl border p-5" style={{ background: "rgba(10,22,40,0.8)", borderColor: `${profile.color}20`, backdropFilter: "blur(12px)" }}>
+              <div key={profile.platform} className="rounded-2xl border p-5" style={{ background: "rgba(20,29,46,0.8)", borderColor: `${profile.color}20`, backdropFilter: "blur(12px)" }}>
                 <div className="flex items-start justify-between gap-3 mb-3">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 flex items-center justify-center rounded-xl" style={{ background: `${profile.color}15`, border: `1px solid ${profile.color}30` }}>
@@ -263,17 +263,17 @@ const PhoneLookupEngine = ({ isAr }: Props) => {
           </div>
 
           {/* AMN ref */}
-          <div className="flex items-center gap-3 px-4 py-3 rounded-xl" style={{ background: "rgba(34,211,238,0.06)", border: "1px solid rgba(34,211,238,0.15)" }}>
-            <i className="ri-qr-code-line text-cyan-400 text-sm" />
-            <span className="text-cyan-400 text-xs font-bold font-['JetBrains_Mono']">{result.ref}</span>
+          <div className="flex items-center gap-3 px-4 py-3 rounded-xl" style={{ background: "rgba(181,142,60,0.06)", border: "1px solid rgba(181,142,60,0.15)" }}>
+            <i className="ri-qr-code-line text-gold-400 text-sm" />
+            <span className="text-gold-400 text-xs font-bold font-['JetBrains_Mono']">{result.ref}</span>
             <span className="text-gray-500 text-xs ml-2">{isAr ? "مرجع AMEEN — مرتبط بملف الشخص" : "AMEEN reference — attached to person profile"}</span>
           </div>
         </div>
       )}
 
       {/* Recent lookups */}
-      <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.1)", backdropFilter: "blur(12px)" }}>
-        <div className="px-5 py-4 border-b" style={{ borderColor: "rgba(34,211,238,0.08)" }}>
+      <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.1)", backdropFilter: "blur(12px)" }}>
+        <div className="px-5 py-4 border-b" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
           <h3 className="text-white font-bold text-sm">{isAr ? "عمليات البحث الأخيرة" : "Recent Lookups"}</h3>
         </div>
         <div className="divide-y" style={{ borderColor: "rgba(255,255,255,0.04)" }}>
@@ -288,7 +288,7 @@ const PhoneLookupEngine = ({ isAr }: Props) => {
                 </div>
               </div>
               <div className="flex items-center gap-4">
-                <span className="text-xs font-bold" style={{ color: r.profiles > 0 ? "#22D3EE" : "#6B7280" }}>
+                <span className="text-xs font-bold" style={{ color: r.profiles > 0 ? "#D4A84B" : "#6B7280" }}>
                   {r.profiles} {isAr ? "حساب" : "profiles"}
                 </span>
                 <span className="text-gray-600 text-xs font-['JetBrains_Mono']">{r.time}</span>

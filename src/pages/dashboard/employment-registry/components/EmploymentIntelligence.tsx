@@ -11,11 +11,11 @@ const ABSCONDING = [
 
 /* ── Sector Concentration ── */
 const SECTOR_DATA = [
-  { sector: "Construction", sectorAr: "البناء", total: 48200, nationalities: [{ name: "India", pct: 42, color: "#22D3EE" }, { name: "Pakistan", pct: 28, color: "#4ADE80" }, { name: "Bangladesh", pct: 18, color: "#FACC15" }, { name: "Other", pct: 12, color: "#9CA3AF" }], risk: "medium" as const },
-  { sector: "Hospitality", sectorAr: "الضيافة", total: 22100, nationalities: [{ name: "Philippines", pct: 38, color: "#22D3EE" }, { name: "India", pct: 31, color: "#4ADE80" }, { name: "Nepal", pct: 19, color: "#FACC15" }, { name: "Other", pct: 12, color: "#9CA3AF" }], risk: "low" as const },
-  { sector: "Oil & Gas", sectorAr: "النفط والغاز", total: 18400, nationalities: [{ name: "India", pct: 35, color: "#22D3EE" }, { name: "UK", pct: 22, color: "#4ADE80" }, { name: "USA", pct: 18, color: "#FACC15" }, { name: "Other", pct: 25, color: "#9CA3AF" }], risk: "low" as const },
-  { sector: "Retail", sectorAr: "التجزئة", total: 31700, nationalities: [{ name: "India", pct: 55, color: "#22D3EE" }, { name: "Bangladesh", pct: 22, color: "#4ADE80" }, { name: "Pakistan", pct: 14, color: "#FACC15" }, { name: "Other", pct: 9, color: "#9CA3AF" }], risk: "high" as const },
-  { sector: "Healthcare", sectorAr: "الرعاية الصحية", total: 12800, nationalities: [{ name: "India", pct: 48, color: "#22D3EE" }, { name: "Philippines", pct: 29, color: "#4ADE80" }, { name: "Jordan", pct: 13, color: "#FACC15" }, { name: "Other", pct: 10, color: "#9CA3AF" }], risk: "low" as const },
+  { sector: "Construction", sectorAr: "البناء", total: 48200, nationalities: [{ name: "India", pct: 42, color: "#D4A84B" }, { name: "Pakistan", pct: 28, color: "#4ADE80" }, { name: "Bangladesh", pct: 18, color: "#FACC15" }, { name: "Other", pct: 12, color: "#9CA3AF" }], risk: "medium" as const },
+  { sector: "Hospitality", sectorAr: "الضيافة", total: 22100, nationalities: [{ name: "Philippines", pct: 38, color: "#D4A84B" }, { name: "India", pct: 31, color: "#4ADE80" }, { name: "Nepal", pct: 19, color: "#FACC15" }, { name: "Other", pct: 12, color: "#9CA3AF" }], risk: "low" as const },
+  { sector: "Oil & Gas", sectorAr: "النفط والغاز", total: 18400, nationalities: [{ name: "India", pct: 35, color: "#D4A84B" }, { name: "UK", pct: 22, color: "#4ADE80" }, { name: "USA", pct: 18, color: "#FACC15" }, { name: "Other", pct: 25, color: "#9CA3AF" }], risk: "low" as const },
+  { sector: "Retail", sectorAr: "التجزئة", total: 31700, nationalities: [{ name: "India", pct: 55, color: "#D4A84B" }, { name: "Bangladesh", pct: 22, color: "#4ADE80" }, { name: "Pakistan", pct: 14, color: "#FACC15" }, { name: "Other", pct: 9, color: "#9CA3AF" }], risk: "high" as const },
+  { sector: "Healthcare", sectorAr: "الرعاية الصحية", total: 12800, nationalities: [{ name: "India", pct: 48, color: "#D4A84B" }, { name: "Philippines", pct: 29, color: "#4ADE80" }, { name: "Jordan", pct: 13, color: "#FACC15" }, { name: "Other", pct: 10, color: "#9CA3AF" }], risk: "low" as const },
 ];
 
 /* ── Ghost Employees ── */
@@ -42,7 +42,7 @@ const riskColor = (r: "low" | "medium" | "high" | "critical") => {
 };
 
 const streamColor = (s: string) => {
-  const map: Record<string, string> = { TRANSPORT: "#22D3EE", BORDER: "#A78BFA", HOTEL: "#FB923C", MUNICIPALITY: "#4ADE80", UTILITY: "#FACC15", MOBILE: "#F87171" };
+  const map: Record<string, string> = { TRANSPORT: "#D4A84B", BORDER: "#A78BFA", HOTEL: "#FB923C", MUNICIPALITY: "#4ADE80", UTILITY: "#FACC15", MOBILE: "#F87171" };
   return map[s] || "#9CA3AF";
 };
 
@@ -51,7 +51,7 @@ const EmploymentIntelligence = ({ isAr }: Props) => {
 
   const sections = [
     { id: "absconding" as const, icon: "ri-user-unfollow-line", label: isAr ? "مراقبة التغيب" : "Absconding Monitor", color: "#F87171", count: ABSCONDING.length },
-    { id: "sector" as const, icon: "ri-pie-chart-line", label: isAr ? "تركيز القطاعات" : "Sector Concentration", color: "#22D3EE" },
+    { id: "sector" as const, icon: "ri-pie-chart-line", label: isAr ? "تركيز القطاعات" : "Sector Concentration", color: "#D4A84B" },
     { id: "ghost" as const, icon: "ri-ghost-line", label: isAr ? "الموظفون الوهميون" : "Ghost Employees", color: "#FB923C", count: GHOST_EMPLOYEES.length },
     { id: "compliance" as const, icon: "ri-building-line", label: isAr ? "امتثال أصحاب العمل" : "Employer Compliance", color: "#FACC15" },
   ];
@@ -64,8 +64,8 @@ const EmploymentIntelligence = ({ isAr }: Props) => {
           <button key={sec.id} type="button" onClick={() => setActiveSection(sec.id)}
             className="flex items-center gap-3 p-4 rounded-xl border cursor-pointer transition-all text-left"
             style={{
-              background: activeSection === sec.id ? `${sec.color}10` : "rgba(10,22,40,0.8)",
-              borderColor: activeSection === sec.id ? `${sec.color}40` : "rgba(34,211,238,0.1)",
+              background: activeSection === sec.id ? `${sec.color}10` : "rgba(20,29,46,0.8)",
+              borderColor: activeSection === sec.id ? `${sec.color}40` : "rgba(181,142,60,0.1)",
               backdropFilter: "blur(12px)",
             }}>
             <div className="w-9 h-9 flex items-center justify-center rounded-xl flex-shrink-0" style={{ background: `${sec.color}15`, border: `1px solid ${sec.color}30` }}>
@@ -95,7 +95,7 @@ const EmploymentIntelligence = ({ isAr }: Props) => {
           {ABSCONDING.map((rec) => {
             const color = riskColor(rec.severity);
             return (
-              <div key={rec.id} className="rounded-2xl border p-5" style={{ background: "rgba(10,22,40,0.8)", borderColor: `${color}25`, backdropFilter: "blur(12px)", borderLeft: `4px solid ${color}` }}>
+              <div key={rec.id} className="rounded-2xl border p-5" style={{ background: "rgba(20,29,46,0.8)", borderColor: `${color}25`, backdropFilter: "blur(12px)", borderLeft: `4px solid ${color}` }}>
                 <div className="flex items-start justify-between gap-4 flex-wrap">
                   <div className="flex items-center gap-3">
                     <span className="text-2xl">{rec.flag}</span>
@@ -151,12 +151,12 @@ const EmploymentIntelligence = ({ isAr }: Props) => {
       {/* ── Sector Concentration ── */}
       {activeSection === "sector" && (
         <div className="space-y-4">
-          <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.15)", backdropFilter: "blur(12px)" }}>
-            <div className="px-6 py-4 border-b" style={{ borderColor: "rgba(34,211,238,0.1)" }}>
+          <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.15)", backdropFilter: "blur(12px)" }}>
+            <div className="px-6 py-4 border-b" style={{ borderColor: "rgba(181,142,60,0.1)" }}>
               <h3 className="text-white font-bold text-sm">{isAr ? "توزيع الجنسيات حسب القطاع" : "Nationality × Sector Distribution"}</h3>
               <p className="text-gray-500 text-xs mt-0.5">{isAr ? "تركيز غير عادي يُبلَّغ تلقائياً" : "Unusual concentration auto-flagged"}</p>
             </div>
-            <div className="divide-y" style={{ borderColor: "rgba(34,211,238,0.06)" }}>
+            <div className="divide-y" style={{ borderColor: "rgba(181,142,60,0.06)" }}>
               {SECTOR_DATA.map((sec) => {
                 const color = riskColor(sec.risk);
                 return (
@@ -173,7 +173,7 @@ const EmploymentIntelligence = ({ isAr }: Props) => {
                         <div key={nat.name} className="h-full rounded-sm transition-all duration-700 relative group"
                           style={{ width: `${nat.pct}%`, background: nat.color, minWidth: "2px" }}>
                           <div className="absolute -top-7 left-1/2 -translate-x-1/2 px-1.5 py-0.5 rounded text-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity z-10"
-                            style={{ background: nat.color, color: "#060D1A", fontSize: "9px", fontWeight: "bold" }}>
+                            style={{ background: nat.color, color: "#0B1220", fontSize: "9px", fontWeight: "bold" }}>
                             {nat.name} {nat.pct}%
                           </div>
                         </div>
@@ -206,7 +206,7 @@ const EmploymentIntelligence = ({ isAr }: Props) => {
                 : "Work permit active but no utility connection, no SIM, no financial activity → possible paper-only permit."}
             </p>
           </div>
-          <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(251,146,60,0.2)", backdropFilter: "blur(12px)" }}>
+          <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(251,146,60,0.2)", backdropFilter: "blur(12px)" }}>
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
@@ -228,7 +228,7 @@ const EmploymentIntelligence = ({ isAr }: Props) => {
                           </div>
                         </div>
                       </td>
-                      <td className="px-4 py-3"><span className="text-cyan-400 text-xs font-['JetBrains_Mono']">{emp.permitNumber}</span></td>
+                      <td className="px-4 py-3"><span className="text-gold-400 text-xs font-['JetBrains_Mono']">{emp.permitNumber}</span></td>
                       <td className="px-4 py-3"><span className="text-gray-300 text-xs">{emp.employer}</span></td>
                       <td className="px-4 py-3"><span className="text-gray-300 text-xs">{emp.sector}</span></td>
                       {[emp.noUtility, emp.noSIM, emp.noFinancial, emp.noTransport].map((missing, i) => (
@@ -257,7 +257,7 @@ const EmploymentIntelligence = ({ isAr }: Props) => {
 
       {/* ── Employer Compliance ── */}
       {activeSection === "compliance" && (
-        <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(250,204,21,0.2)", backdropFilter: "blur(12px)" }}>
+        <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(250,204,21,0.2)", backdropFilter: "blur(12px)" }}>
           <div className="px-6 py-4 border-b" style={{ borderColor: "rgba(250,204,21,0.1)" }}>
             <h3 className="text-white font-bold text-sm">{isAr ? "ترتيب أصحاب العمل حسب المخالفات" : "Employer Compliance Ranking"}</h3>
             <p className="text-gray-500 text-xs mt-0.5">{isAr ? "مرتّب تنازلياً حسب درجة المخالفة" : "Ranked by violation score (highest first)"}</p>

@@ -67,8 +67,8 @@ const DarkWebMonitor = ({ isAr }: Props) => {
               <button key={s} onClick={() => setFilterSeverity(s)}
                 className="px-2 py-1 rounded text-[10px] font-['Inter'] cursor-pointer transition-all whitespace-nowrap"
                 style={{
-                  background: filterSeverity === s ? "rgba(34,211,238,0.1)" : "transparent",
-                  color: filterSeverity === s ? "#22D3EE" : "#6B7280",
+                  background: filterSeverity === s ? "rgba(181,142,60,0.1)" : "transparent",
+                  color: filterSeverity === s ? "#D4A84B" : "#6B7280",
                 }}>
                 {s === "all" ? "All" : s.charAt(0).toUpperCase() + s.slice(1)}
               </button>
@@ -92,7 +92,7 @@ const DarkWebMonitor = ({ isAr }: Props) => {
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-0.5">
                   <span className="text-gray-400 text-[10px] font-['Inter'] truncate">{mention.platform}</span>
-                  {mention.verified && <i className="ri-verified-badge-line text-cyan-400 text-[10px] flex-shrink-0" />}
+                  {mention.verified && <i className="ri-verified-badge-line text-gold-400 text-[10px] flex-shrink-0" />}
                   {mention.translated && (
                     <span className="text-[9px] px-1 rounded font-['JetBrains_Mono'] flex-shrink-0" style={{ background: "rgba(167,139,250,0.15)", color: "#A78BFA" }}>
                       {mention.originalLang.toUpperCase()}→EN
@@ -170,9 +170,9 @@ const DarkWebMonitor = ({ isAr }: Props) => {
                   <p className="text-gray-600 text-[10px] font-['JetBrains_Mono'] mb-1">LINKED IOCs</p>
                   <div className="space-y-1">
                     {selectedMention.linkedIocs.map((iocId) => (
-                      <div key={iocId} className="flex items-center gap-2 px-2 py-1 rounded" style={{ background: "rgba(34,211,238,0.06)" }}>
-                        <i className="ri-link text-cyan-400 text-xs" />
-                        <span className="text-cyan-400 text-[10px] font-['JetBrains_Mono']">{iocId.toUpperCase()}</span>
+                      <div key={iocId} className="flex items-center gap-2 px-2 py-1 rounded" style={{ background: "rgba(181,142,60,0.06)" }}>
+                        <i className="ri-link text-gold-400 text-xs" />
+                        <span className="text-gold-400 text-[10px] font-['JetBrains_Mono']">{iocId.toUpperCase()}</span>
                       </div>
                     ))}
                   </div>
@@ -182,7 +182,7 @@ const DarkWebMonitor = ({ isAr }: Props) => {
                 <button className="flex-1 py-2 rounded-lg text-xs font-['Inter'] cursor-pointer whitespace-nowrap" style={{ background: "rgba(248,113,113,0.1)", color: "#F87171", border: "1px solid rgba(248,113,113,0.2)" }}>
                   <i className="ri-alarm-warning-line mr-1" />Escalate
                 </button>
-                <button className="flex-1 py-2 rounded-lg text-xs font-['Inter'] cursor-pointer whitespace-nowrap" style={{ background: "rgba(34,211,238,0.08)", color: "#22D3EE", border: "1px solid rgba(34,211,238,0.2)" }}>
+                <button className="flex-1 py-2 rounded-lg text-xs font-['Inter'] cursor-pointer whitespace-nowrap" style={{ background: "rgba(181,142,60,0.08)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>
                   <i className="ri-file-add-line mr-1" />Add to Case
                 </button>
               </div>

@@ -1,8 +1,8 @@
 const colorPalette = [
-  { name: "Cyan — Primary",    hex: "#22D3EE", role: "Interactive elements, highlights, active states, logo mark",  group: "brand" },
-  { name: "Navy Black",        hex: "#060D1A", role: "Primary background, authority, command",                       group: "brand" },
+  { name: "Cyan — Primary",    hex: "#D4A84B", role: "Interactive elements, highlights, active states, logo mark",  group: "brand" },
+  { name: "Navy Black",        hex: "#0B1220", role: "Primary background, authority, command",                       group: "brand" },
   { name: "Hover Cyan",        hex: "#0EA5E9", role: "Hover states, secondary interactive",                          group: "brand" },
-  { name: "Glass Panel",       hex: "rgba(10,22,40,0.8)", role: "Card/panel backgrounds with glassmorphism",         group: "brand" },
+  { name: "Glass Panel",       hex: "rgba(20,29,46,0.8)", role: "Card/panel backgrounds with glassmorphism",         group: "brand" },
   { name: "White",             hex: "#FFFFFF", role: "Primary headings, high-emphasis text",                         group: "text" },
   { name: "Light Gray",        hex: "#D1D5DB", role: "Body text, descriptions",                                      group: "text" },
   { name: "Muted Gray",        hex: "#9CA3AF", role: "Secondary text, captions, metadata",                           group: "text" },
@@ -24,12 +24,12 @@ const typeScale = [
 ];
 
 const dosDonts = [
-  { type: "do",   text: "Use cyan (#22D3EE) as the sole accent color on dark backgrounds" },
+  { type: "do",   text: "Use cyan (#D4A84B) as the sole accent color on dark backgrounds" },
   { type: "do",   text: "Maintain minimum 4.5:1 contrast ratio for all body text" },
   { type: "do",   text: "Use Noto Kufi Arabic for all Arabic text — never substitute" },
   { type: "do",   text: "Present bilingual content with English left, Arabic right (RTL)" },
   { type: "do",   text: "Use the shield mark at minimum 24px for digital, 8mm for print" },
-  { type: "do",   text: "Apply glassmorphism (rgba(10,22,40,0.8)) for all card surfaces" },
+  { type: "do",   text: "Apply glassmorphism (rgba(20,29,46,0.8)) for all card surfaces" },
   { type: "dont", text: "Never use blue or purple — these are explicitly prohibited" },
   { type: "dont", text: "Never place the logo on a busy photographic background without overlay" },
   { type: "dont", text: "Never stretch, rotate, or alter the shield proportions" },
@@ -48,11 +48,11 @@ const voiceExamples = [
 const BrandGuidelines = () => (
   <div className="space-y-8">
     {/* Brand Philosophy */}
-    <div className="rounded-2xl p-8 relative overflow-hidden" style={{ background: "rgba(10,22,40,0.9)", border: "1px solid rgba(34,211,238,0.2)" }}>
-      <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: "radial-gradient(ellipse at 20% 50%, rgba(34,211,238,0.05) 0%, transparent 60%)" }} />
+    <div className="rounded-2xl p-8 relative overflow-hidden" style={{ background: "rgba(20,29,46,0.9)", border: "1px solid rgba(181,142,60,0.2)" }}>
+      <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: "radial-gradient(ellipse at 20% 50%, rgba(181,142,60,0.05) 0%, transparent 60%)" }} />
       <div className="relative z-10 grid grid-cols-2 gap-8">
         <div>
-          <p className="text-xs text-cyan-400 uppercase tracking-widest font-['JetBrains_Mono'] mb-3">Brand Philosophy</p>
+          <p className="text-xs text-gold-400 uppercase tracking-widest font-['JetBrains_Mono'] mb-3">Brand Philosophy</p>
           <h2 className="text-white text-2xl font-bold font-['Inter'] mb-4">أمين = The Trustworthy</h2>
           <p className="text-gray-400 text-sm font-['Inter'] leading-relaxed mb-4">
             AMEEN is the trusted custodian safeguarding the nation. The name itself — أمين — means trustworthy, faithful, and guardian in Arabic. Every design decision reinforces this: sovereign protection, intelligent insight, and national pride.
@@ -60,14 +60,14 @@ const BrandGuidelines = () => (
           <div className="space-y-2">
             {["Sovereign Protection", "Intelligent Insight", "National Pride", "Operational Precision"].map((v) => (
               <div key={v} className="flex items-center gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 flex-shrink-0" />
+                <div className="w-1.5 h-1.5 rounded-full bg-gold-400 flex-shrink-0" />
                 <span className="text-gray-300 text-sm font-['Inter']">{v}</span>
               </div>
             ))}
           </div>
         </div>
         <div>
-          <p className="text-xs text-cyan-400 uppercase tracking-widest font-['JetBrains_Mono'] mb-3">Audience</p>
+          <p className="text-xs text-gold-400 uppercase tracking-widest font-['JetBrains_Mono'] mb-3">Audience</p>
           <div className="space-y-3">
             {[
               { role: "Government Officials",    desc: "Ministers, directors, senior decision-makers requiring strategic intelligence" },
@@ -75,7 +75,7 @@ const BrandGuidelines = () => (
               { role: "Entity Operators",        desc: "Hotels, car rentals, telecoms — submitting events via the platform" },
               { role: "System Integrators",      desc: "Technical teams building API integrations" },
             ].map((a) => (
-              <div key={a.role} className="p-3 rounded-lg" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(34,211,238,0.08)" }}>
+              <div key={a.role} className="p-3 rounded-lg" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(181,142,60,0.08)" }}>
                 <p className="text-white text-xs font-semibold font-['Inter']">{a.role}</p>
                 <p className="text-gray-500 text-xs font-['Inter'] mt-0.5">{a.desc}</p>
               </div>
@@ -88,7 +88,7 @@ const BrandGuidelines = () => (
     {/* Color Palette */}
     <div>
       <h2 className="text-white font-bold text-lg font-['Inter'] mb-4">
-        <i className="ri-palette-line mr-2 text-cyan-400" />Color System
+        <i className="ri-palette-line mr-2 text-gold-400" />Color System
       </h2>
       {(["brand", "text", "semantic"] as const).map((group) => (
         <div key={group} className="mb-5">
@@ -97,11 +97,11 @@ const BrandGuidelines = () => (
             {colorPalette.filter((c) => c.group === group).map((color) => {
               const isGlass = color.hex.startsWith("rgba");
               return (
-                <div key={color.name} className="rounded-xl overflow-hidden" style={{ border: "1px solid rgba(34,211,238,0.1)" }}>
-                  <div className="h-16 relative" style={{ background: isGlass ? color.hex : color.hex, border: isGlass ? "1px dashed rgba(34,211,238,0.3)" : "none" }}>
+                <div key={color.name} className="rounded-xl overflow-hidden" style={{ border: "1px solid rgba(181,142,60,0.1)" }}>
+                  <div className="h-16 relative" style={{ background: isGlass ? color.hex : color.hex, border: isGlass ? "1px dashed rgba(181,142,60,0.3)" : "none" }}>
                     {isGlass && (
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <span className="text-cyan-400 text-xs font-['JetBrains_Mono'] opacity-60">glass</span>
+                        <span className="text-gold-400 text-xs font-['JetBrains_Mono'] opacity-60">glass</span>
                       </div>
                     )}
                     {color.hex === "#FFFFFF" && (
@@ -110,9 +110,9 @@ const BrandGuidelines = () => (
                       </div>
                     )}
                   </div>
-                  <div className="p-3" style={{ background: "rgba(10,22,40,0.8)" }}>
+                  <div className="p-3" style={{ background: "rgba(20,29,46,0.8)" }}>
                     <p className="text-white text-xs font-semibold font-['Inter'] mb-0.5">{color.name}</p>
-                    <p className="text-cyan-400 text-xs font-['JetBrains_Mono'] mb-1">{color.hex}</p>
+                    <p className="text-gold-400 text-xs font-['JetBrains_Mono'] mb-1">{color.hex}</p>
                     <p className="text-gray-600 text-xs font-['Inter'] leading-tight">{color.role}</p>
                   </div>
                 </div>
@@ -126,7 +126,7 @@ const BrandGuidelines = () => (
     {/* Typography */}
     <div>
       <h2 className="text-white font-bold text-lg font-['Inter'] mb-4">
-        <i className="ri-text mr-2 text-cyan-400" />Typography System
+        <i className="ri-text mr-2 text-gold-400" />Typography System
       </h2>
       <div className="grid grid-cols-2 gap-3 mb-4">
         {[
@@ -134,9 +134,9 @@ const BrandGuidelines = () => (
           { name: "Noto Kufi Arabic", role: "Arabic — Primary UI", sample: "أمين — الحارس الأمين للوطن", weight: "400–700" },
           { name: "JetBrains Mono", role: "Monospace — Data & Code", sample: "AMN-HTL-2025-04891 | 09:41:22", weight: "400–700" },
         ].map((font) => (
-          <div key={font.name} className="p-4 rounded-xl" style={{ background: "rgba(10,22,40,0.8)", border: "1px solid rgba(34,211,238,0.1)" }}>
+          <div key={font.name} className="p-4 rounded-xl" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.1)" }}>
             <div className="flex items-center justify-between mb-2">
-              <p className="text-cyan-400 text-xs font-semibold font-['JetBrains_Mono']">{font.name}</p>
+              <p className="text-gold-400 text-xs font-semibold font-['JetBrains_Mono']">{font.name}</p>
               <span className="text-gray-600 text-xs font-['Inter']">{font.weight}</span>
             </div>
             <p className="text-gray-500 text-xs font-['Inter'] mb-3">{font.role}</p>
@@ -146,15 +146,15 @@ const BrandGuidelines = () => (
           </div>
         ))}
       </div>
-      <div className="rounded-xl overflow-hidden" style={{ border: "1px solid rgba(34,211,238,0.1)" }}>
+      <div className="rounded-xl overflow-hidden" style={{ border: "1px solid rgba(181,142,60,0.1)" }}>
         <div className="grid px-4 py-2 text-xs font-semibold uppercase tracking-wider text-gray-600 font-['Inter']"
-          style={{ background: "rgba(34,211,238,0.04)", gridTemplateColumns: "1fr 1.2fr 1.2fr 1.5fr 2fr" }}>
+          style={{ background: "rgba(181,142,60,0.04)", gridTemplateColumns: "1fr 1.2fr 1.2fr 1.5fr 2fr" }}>
           <span>Scale</span><span>Size</span><span>Weight</span><span>Usage</span><span>Sample</span>
         </div>
         {typeScale.map((t, i) => (
           <div key={t.name} className="grid px-4 py-3 items-center"
             style={{ gridTemplateColumns: "1fr 1.2fr 1.2fr 1.5fr 2fr", borderTop: i > 0 ? "1px solid rgba(255,255,255,0.04)" : "none" }}>
-            <span className="text-cyan-400 text-xs font-semibold font-['JetBrains_Mono']">{t.name}</span>
+            <span className="text-gold-400 text-xs font-semibold font-['JetBrains_Mono']">{t.name}</span>
             <span className="text-gray-400 text-xs font-['JetBrains_Mono']">{t.size}</span>
             <span className="text-gray-400 text-xs font-['Inter']">{t.weight}</span>
             <span className="text-gray-500 text-xs font-['Inter']">{t.usage}</span>
@@ -167,12 +167,12 @@ const BrandGuidelines = () => (
     {/* Voice & Tone */}
     <div>
       <h2 className="text-white font-bold text-lg font-['Inter'] mb-4">
-        <i className="ri-megaphone-line mr-2 text-cyan-400" />Voice &amp; Tone
+        <i className="ri-megaphone-line mr-2 text-gold-400" />Voice &amp; Tone
       </h2>
       <div className="space-y-3">
         {voiceExamples.map((ex) => (
-          <div key={ex.label} className="rounded-xl p-4" style={{ background: "rgba(10,22,40,0.8)", border: "1px solid rgba(34,211,238,0.1)" }}>
-            <p className="text-cyan-400 text-xs font-semibold font-['JetBrains_Mono'] uppercase tracking-wider mb-3">{ex.label}</p>
+          <div key={ex.label} className="rounded-xl p-4" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.1)" }}>
+            <p className="text-gold-400 text-xs font-semibold font-['JetBrains_Mono'] uppercase tracking-wider mb-3">{ex.label}</p>
             <div className="grid grid-cols-2 gap-3">
               <div className="p-3 rounded-lg" style={{ background: "rgba(74,222,128,0.06)", border: "1px solid rgba(74,222,128,0.2)" }}>
                 <div className="flex items-center gap-1.5 mb-2">
@@ -197,7 +197,7 @@ const BrandGuidelines = () => (
     {/* Do's & Don'ts */}
     <div>
       <h2 className="text-white font-bold text-lg font-['Inter'] mb-4">
-        <i className="ri-shield-check-line mr-2 text-cyan-400" />Logo Usage Rules
+        <i className="ri-shield-check-line mr-2 text-gold-400" />Logo Usage Rules
       </h2>
       <div className="grid grid-cols-2 gap-4">
         <div className="rounded-xl p-5" style={{ background: "rgba(74,222,128,0.04)", border: "1px solid rgba(74,222,128,0.15)" }}>

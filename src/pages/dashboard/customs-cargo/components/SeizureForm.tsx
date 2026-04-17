@@ -27,11 +27,11 @@ const SeizureForm = ({ isAr, onSubmit }: Props) => {
     }, 1200);
   };
 
-  const inputClass = "w-full bg-transparent border rounded-lg px-3 py-2.5 text-white text-sm font-['Inter'] focus:outline-none focus:border-cyan-400 transition-colors placeholder-gray-600";
-  const inputStyle = { borderColor: "rgba(34,211,238,0.2)", background: "rgba(255,255,255,0.03)" };
+  const inputClass = "w-full bg-transparent border rounded-lg px-3 py-2.5 text-white text-sm font-['Inter'] focus:outline-none focus:border-gold-400 transition-colors placeholder-gray-600";
+  const inputStyle = { borderColor: "rgba(181,142,60,0.2)", background: "rgba(255,255,255,0.03)" };
   const labelClass = "block text-gray-400 text-xs font-['Inter'] mb-1.5";
   const sectionClass = "rounded-xl p-5 space-y-4";
-  const sectionStyle = { background: "rgba(10,22,40,0.6)", border: "1px solid rgba(34,211,238,0.1)" };
+  const sectionStyle = { background: "rgba(20,29,46,0.6)", border: "1px solid rgba(181,142,60,0.1)" };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
@@ -106,7 +106,7 @@ const SeizureForm = ({ isAr, onSubmit }: Props) => {
                   background: selectedReasons.includes(reason.id) ? "#F87171" : "transparent",
                   border: `2px solid ${selectedReasons.includes(reason.id) ? "#F87171" : "rgba(248,113,113,0.3)"}`,
                 }}>
-                {selectedReasons.includes(reason.id) && <i className="ri-check-line text-xs text-[#060D1A]" />}
+                {selectedReasons.includes(reason.id) && <i className="ri-check-line text-xs text-[#0B1220]" />}
               </div>
               <span className="text-sm font-['Inter']"
                 style={{ color: selectedReasons.includes(reason.id) ? "#F87171" : "#9CA3AF" }}>
@@ -212,7 +212,7 @@ const SeizureForm = ({ isAr, onSubmit }: Props) => {
         </button>
         <button type="submit" disabled={submitting}
           className="px-8 py-2.5 rounded-lg text-sm font-['Inter'] font-bold cursor-pointer whitespace-nowrap transition-all flex items-center gap-2"
-          style={{ background: submitting ? "rgba(248,113,113,0.5)" : "#F87171", color: "#060D1A" }}>
+          style={{ background: submitting ? "rgba(248,113,113,0.5)" : "#F87171", color: "#0B1220" }}>
           {submitting ? (
             <><i className="ri-loader-4-line animate-spin" />{isAr ? "جارٍ الإرسال..." : "Submitting..."}</>
           ) : (

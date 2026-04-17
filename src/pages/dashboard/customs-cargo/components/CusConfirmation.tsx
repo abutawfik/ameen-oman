@@ -23,7 +23,7 @@ const CusConfirmation = ({ refNumber, eventType, isAr, onReset }: Props) => {
   });
 
   const typeColors: Record<string, string> = {
-    import:   "#22D3EE",
+    import:   "#D4A84B",
     export:   "#4ADE80",
     transit:  "#FACC15",
     freezone: "#38BDF8",
@@ -31,7 +31,7 @@ const CusConfirmation = ({ refNumber, eventType, isAr, onReset }: Props) => {
     personal: "#A78BFA",
   };
 
-  const accentColor = typeColors[eventType] || "#22D3EE";
+  const accentColor = typeColors[eventType] || "#D4A84B";
 
   return (
     <div className="flex flex-col items-center justify-center py-12 px-6 text-center">
@@ -60,7 +60,7 @@ const CusConfirmation = ({ refNumber, eventType, isAr, onReset }: Props) => {
 
       {/* Reference Card */}
       <div className="w-full max-w-md rounded-2xl p-6 mb-8"
-        style={{ background: "rgba(10,22,40,0.8)", border: `1px solid ${accentColor}30` }}>
+        style={{ background: "rgba(20,29,46,0.8)", border: `1px solid ${accentColor}30` }}>
         <p className="text-gray-500 text-xs font-['JetBrains_Mono'] uppercase tracking-widest mb-2">
           {isAr ? "رقم المرجع" : "Reference Number"}
         </p>
@@ -106,8 +106,8 @@ const CusConfirmation = ({ refNumber, eventType, isAr, onReset }: Props) => {
 
       {/* Next Steps */}
       <div className="w-full max-w-md rounded-xl p-4 mb-8 text-left"
-        style={{ background: "rgba(34,211,238,0.05)", border: "1px solid rgba(34,211,238,0.1)" }}>
-        <p className="text-cyan-400 text-xs font-semibold font-['Inter'] mb-3">
+        style={{ background: "rgba(181,142,60,0.05)", border: "1px solid rgba(181,142,60,0.1)" }}>
+        <p className="text-gold-400 text-xs font-semibold font-['Inter'] mb-3">
           {isAr ? "الخطوات التالية" : "Next Steps"}
         </p>
         <div className="space-y-2">
@@ -118,8 +118,8 @@ const CusConfirmation = ({ refNumber, eventType, isAr, onReset }: Props) => {
           ].map((step, i) => (
             <div key={i} className="flex items-center gap-3">
               <div className="w-6 h-6 flex items-center justify-center rounded-full flex-shrink-0"
-                style={{ background: "rgba(34,211,238,0.1)" }}>
-                <i className={`${step.icon} text-xs text-cyan-400`} />
+                style={{ background: "rgba(181,142,60,0.1)" }}>
+                <i className={`${step.icon} text-xs text-gold-400`} />
               </div>
               <span className="text-gray-400 text-xs font-['Inter']">{step.text}</span>
             </div>
@@ -132,12 +132,12 @@ const CusConfirmation = ({ refNumber, eventType, isAr, onReset }: Props) => {
         <button
           onClick={onReset}
           className="px-6 py-2.5 rounded-lg text-sm font-['Inter'] font-medium cursor-pointer whitespace-nowrap transition-all"
-          style={{ border: "1px solid rgba(34,211,238,0.3)", color: "#22D3EE", background: "transparent" }}>
+          style={{ border: "1px solid rgba(181,142,60,0.3)", color: "#D4A84B", background: "transparent" }}>
           {isAr ? "إقرار جديد" : "New Declaration"}
         </button>
         <button
           className="px-6 py-2.5 rounded-lg text-sm font-['Inter'] font-bold cursor-pointer whitespace-nowrap transition-all flex items-center gap-2"
-          style={{ background: "#22D3EE", color: "#060D1A" }}>
+          style={{ background: "#D4A84B", color: "#0B1220" }}>
           <i className="ri-printer-line" />
           {isAr ? "طباعة الإيصال" : "Print Receipt"}
         </button>

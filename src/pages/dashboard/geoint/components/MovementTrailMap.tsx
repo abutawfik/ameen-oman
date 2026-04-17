@@ -19,7 +19,7 @@ const riskColors: Record<string, string> = {
   low: "#4ADE80",
 };
 
-const subjectTrailColors = ["#22D3EE", "#F87171", "#A78BFA", "#4ADE80", "#FB923C"];
+const subjectTrailColors = ["#D4A84B", "#F87171", "#A78BFA", "#4ADE80", "#FB923C"];
 
 interface Props {
   selectedSubjectId: string | null;
@@ -75,7 +75,7 @@ const MovementTrailMap = ({ selectedSubjectId, onSelectSubject }: Props) => {
         <button
           onClick={() => onSelectSubject(null)}
           className={`px-3 py-1 rounded-full text-xs font-['Inter'] font-medium transition-all cursor-pointer whitespace-nowrap ${
-            !selectedSubjectId ? "bg-cyan-400/20 text-cyan-400 border border-cyan-400/40" : "bg-white/5 text-gray-400 border border-white/10 hover:border-white/20"
+            !selectedSubjectId ? "bg-gold-400/20 text-gold-400 border border-gold-400/40" : "bg-white/5 text-gray-400 border border-white/10 hover:border-white/20"
           }`}
         >
           All Subjects
@@ -100,7 +100,7 @@ const MovementTrailMap = ({ selectedSubjectId, onSelectSubject }: Props) => {
       </div>
 
       {/* Map SVG */}
-      <div className="relative flex-1 rounded-xl overflow-hidden" style={{ background: "#0D1B2E", border: "1px solid rgba(34,211,238,0.15)", minHeight: "420px" }}>
+      <div className="relative flex-1 rounded-xl overflow-hidden" style={{ background: "#0D1B2E", border: "1px solid rgba(181,142,60,0.15)", minHeight: "420px" }}>
         <svg
           viewBox={`0 0 ${W} ${H}`}
           className="w-full h-full"
@@ -109,7 +109,7 @@ const MovementTrailMap = ({ selectedSubjectId, onSelectSubject }: Props) => {
           {/* Background grid */}
           <defs>
             <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(34,211,238,0.04)" strokeWidth="1" />
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(181,142,60,0.04)" strokeWidth="1" />
             </pattern>
             <radialGradient id="hotGlow" cx="50%" cy="50%" r="50%">
               <stop offset="0%" stopColor="#F87171" stopOpacity="0.3" />
@@ -121,11 +121,11 @@ const MovementTrailMap = ({ selectedSubjectId, onSelectSubject }: Props) => {
           {/* Coastline / water suggestion */}
           <path
             d="M 0 420 Q 100 400 200 410 Q 300 420 350 400 Q 400 380 450 390 Q 500 400 550 380 Q 600 360 650 370 Q 700 380 750 360 Q 800 340 900 350 L 900 500 L 0 500 Z"
-            fill="rgba(34,211,238,0.04)"
-            stroke="rgba(34,211,238,0.1)"
+            fill="rgba(181,142,60,0.04)"
+            stroke="rgba(181,142,60,0.1)"
             strokeWidth="1"
           />
-          <text x="820" y="470" fill="rgba(34,211,238,0.2)" fontSize="10" textAnchor="middle">Gulf of Oman</text>
+          <text x="820" y="470" fill="rgba(181,142,60,0.2)" fontSize="10" textAnchor="middle">Gulf of Oman</text>
 
           {/* District labels */}
           {districts.map((d) => {
@@ -205,8 +205,8 @@ const MovementTrailMap = ({ selectedSubjectId, onSelectSubject }: Props) => {
             const tipY = y > H - 100 ? y - 110 : y + 10;
             return (
               <g>
-                <rect x={tipX} y={tipY} width="200" height="90" rx="6" fill="#0A1628" stroke="rgba(34,211,238,0.3)" strokeWidth="1" />
-                <text x={tipX + 10} y={tipY + 18} fill="#22D3EE" fontSize="9" fontWeight="bold">{hoveredPoint.eventType}</text>
+                <rect x={tipX} y={tipY} width="200" height="90" rx="6" fill="#141D2E" stroke="rgba(181,142,60,0.3)" strokeWidth="1" />
+                <text x={tipX + 10} y={tipY + 18} fill="#D4A84B" fontSize="9" fontWeight="bold">{hoveredPoint.eventType}</text>
                 <text x={tipX + 10} y={tipY + 32} fill="rgba(255,255,255,0.7)" fontSize="8">{hoveredPoint.location}</text>
                 <text x={tipX + 10} y={tipY + 46} fill="rgba(255,255,255,0.5)" fontSize="8">{hoveredPoint.stream} Stream</text>
                 <text x={tipX + 10} y={tipY + 60} fill="rgba(255,255,255,0.5)" fontSize="8">{hoveredPoint.detail}</text>
@@ -220,8 +220,8 @@ const MovementTrailMap = ({ selectedSubjectId, onSelectSubject }: Props) => {
 
           {/* Legend */}
           <g transform={`translate(10, 10)`}>
-            <rect width="130" height={geoSubjects.length * 18 + 20} rx="4" fill="rgba(10,22,40,0.85)" stroke="rgba(34,211,238,0.15)" strokeWidth="1" />
-            <text x="10" y="16" fill="rgba(34,211,238,0.7)" fontSize="8" fontWeight="bold" letterSpacing="1">SUBJECTS</text>
+            <rect width="130" height={geoSubjects.length * 18 + 20} rx="4" fill="rgba(20,29,46,0.85)" stroke="rgba(181,142,60,0.15)" strokeWidth="1" />
+            <text x="10" y="16" fill="rgba(181,142,60,0.7)" fontSize="8" fontWeight="bold" letterSpacing="1">SUBJECTS</text>
             {geoSubjects.map((s, i) => (
               <g key={s.id} transform={`translate(10, ${20 + i * 18})`}>
                 <circle cx="5" cy="5" r="4" fill={subjectTrailColors[i % subjectTrailColors.length]} opacity="0.9" />
@@ -232,15 +232,15 @@ const MovementTrailMap = ({ selectedSubjectId, onSelectSubject }: Props) => {
 
           {/* Compass */}
           <g transform={`translate(${W - 40}, 30)`}>
-            <circle cx="0" cy="0" r="18" fill="rgba(10,22,40,0.7)" stroke="rgba(34,211,238,0.2)" strokeWidth="1" />
-            <text x="0" y="-8" textAnchor="middle" fill="rgba(34,211,238,0.8)" fontSize="8" fontWeight="bold">N</text>
-            <line x1="0" y1="-14" x2="0" y2="14" stroke="rgba(34,211,238,0.3)" strokeWidth="1" />
-            <line x1="-14" y1="0" x2="14" y2="0" stroke="rgba(34,211,238,0.3)" strokeWidth="1" />
+            <circle cx="0" cy="0" r="18" fill="rgba(20,29,46,0.7)" stroke="rgba(181,142,60,0.2)" strokeWidth="1" />
+            <text x="0" y="-8" textAnchor="middle" fill="rgba(181,142,60,0.8)" fontSize="8" fontWeight="bold">N</text>
+            <line x1="0" y1="-14" x2="0" y2="14" stroke="rgba(181,142,60,0.3)" strokeWidth="1" />
+            <line x1="-14" y1="0" x2="14" y2="0" stroke="rgba(181,142,60,0.3)" strokeWidth="1" />
           </g>
         </svg>
 
         {/* Map overlay label */}
-        <div className="absolute top-3 right-14 text-xs font-['JetBrains_Mono'] text-cyan-400/40 uppercase tracking-widest">
+        <div className="absolute top-3 right-14 text-xs font-['JetBrains_Mono'] text-gold-400/40 uppercase tracking-widest">
           Muscat Governorate — GEOINT View
         </div>
       </div>
@@ -251,7 +251,7 @@ const MovementTrailMap = ({ selectedSubjectId, onSelectSubject }: Props) => {
         <span>•</span>
         <span>{filteredPoints.filter((p) => p.riskFlag).length} risk-flagged points</span>
         <span>•</span>
-        <span className="text-cyan-400/60">Live tracking active</span>
+        <span className="text-gold-400/60">Live tracking active</span>
         <div className="ml-auto flex items-center gap-1.5">
           <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
           <span className="text-green-400">LIVE</span>

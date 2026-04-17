@@ -114,9 +114,9 @@ const TourBookingForm = ({ isAr, onCancel }: Props) => {
               </div>
             </FormField>
             {pricePerPerson && (
-              <div className="flex items-center justify-between px-4 py-3 rounded-xl border" style={{ background: "rgba(34,211,238,0.04)", borderColor: "rgba(34,211,238,0.15)" }}>
+              <div className="flex items-center justify-between px-4 py-3 rounded-xl border" style={{ background: "rgba(181,142,60,0.04)", borderColor: "rgba(181,142,60,0.15)" }}>
                 <span className="text-gray-400 text-xs">{isAr ? "الإجمالي للمجموعة" : "Group Total"}</span>
-                <span className="text-cyan-400 font-bold font-['JetBrains_Mono']">LCY {isNaN(totalPrice) ? "0.000" : totalPrice.toFixed(3)}</span>
+                <span className="text-gold-400 font-bold font-['JetBrains_Mono']">LCY {isNaN(totalPrice) ? "0.000" : totalPrice.toFixed(3)}</span>
               </div>
             )}
           </div>

@@ -41,7 +41,7 @@ const statusLabel = (status: OverstayRecord["status"], isAr: boolean) => {
 
 const OverstayTracker = ({ isAr }: Props) => {
   return (
-    <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(248,113,113,0.2)", backdropFilter: "blur(12px)" }}>
+    <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(248,113,113,0.2)", backdropFilter: "blur(12px)" }}>
       <div className="flex items-center justify-between px-6 py-4 border-b" style={{ borderColor: "rgba(248,113,113,0.12)" }}>
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(248,113,113,0.1)", border: "1px solid rgba(248,113,113,0.25)" }}>
@@ -114,7 +114,7 @@ const OverstayTracker = ({ isAr }: Props) => {
                         <span className="text-red-400 text-xs font-semibold">{isAr ? "غير معروف" : "Unknown"}</span>
                       ) : (
                         <>
-                          <i className="ri-hotel-line text-cyan-400 text-xs" />
+                          <i className="ri-hotel-line text-gold-400 text-xs" />
                           <span className="text-gray-300 text-xs">{isAr ? rec.lastKnownHotelAr : rec.lastKnownHotel}</span>
                         </>
                       )}

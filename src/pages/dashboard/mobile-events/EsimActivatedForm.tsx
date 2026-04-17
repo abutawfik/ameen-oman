@@ -200,21 +200,21 @@ const EsimActivatedForm = ({ isAr, onCancel }: Props) => {
             {/* eSIM status badge */}
             <div
               className="flex items-center gap-3 p-4 rounded-xl border"
-              style={{ background: "rgba(34,211,238,0.05)", borderColor: "rgba(34,211,238,0.2)" }}
+              style={{ background: "rgba(181,142,60,0.05)", borderColor: "rgba(181,142,60,0.2)" }}
             >
               <div className="w-10 h-10 flex items-center justify-center rounded-xl flex-shrink-0"
-                style={{ background: "rgba(34,211,238,0.12)", border: "1px solid rgba(34,211,238,0.25)" }}>
-                <i className="ri-phone-line text-cyan-400 text-lg" />
+                style={{ background: "rgba(181,142,60,0.12)", border: "1px solid rgba(181,142,60,0.25)" }}>
+                <i className="ri-phone-line text-gold-400 text-lg" />
               </div>
               <div>
-                <p className="text-cyan-400 font-bold text-sm font-['Inter']">
+                <p className="text-gold-400 font-bold text-sm font-['Inter']">
                   {isAr ? "eSIM جاهزة للتفعيل" : "eSIM Ready for Activation"}
                 </p>
                 <p className="text-gray-500 text-xs font-['Inter']">
                   {isAr ? "سيتم إرسال ملف eSIM إلى الجهاز" : "eSIM profile will be pushed to device"}
                 </p>
               </div>
-              <div className="ml-auto w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse flex-shrink-0" />
+              <div className="ml-auto w-2.5 h-2.5 rounded-full bg-gold-400 animate-pulse flex-shrink-0" />
             </div>
           </div>
         </SectionCard>

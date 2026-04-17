@@ -22,9 +22,9 @@ const WatchlistHitRate = ({ isAr }: Props) => {
 
   return (
     <div className="rounded-2xl border overflow-hidden"
-      style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.12)", backdropFilter: "blur(12px)" }}>
+      style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
       {/* Header */}
-      <div className="flex items-center justify-between px-5 py-4 border-b" style={{ borderColor: "rgba(34,211,238,0.08)" }}>
+      <div className="flex items-center justify-between px-5 py-4 border-b" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 flex items-center justify-center rounded-xl"
             style={{ background: "rgba(248,113,113,0.1)", border: "1px solid rgba(248,113,113,0.2)" }}>
@@ -43,14 +43,14 @@ const WatchlistHitRate = ({ isAr }: Props) => {
       </div>
 
       {/* KPI row */}
-      <div className="grid grid-cols-4 divide-x" style={{ borderBottom: "1px solid rgba(34,211,238,0.08)", borderColor: "rgba(34,211,238,0.08)" }}>
+      <div className="grid grid-cols-4 divide-x" style={{ borderBottom: "1px solid rgba(181,142,60,0.08)", borderColor: "rgba(181,142,60,0.08)" }}>
         {[
-          { label: isAr ? "إجمالي الإصابات" : "Total Hits",    value: watchlistHits.length, color: "#22D3EE" },
+          { label: isAr ? "إجمالي الإصابات" : "Total Hits",    value: watchlistHits.length, color: "#D4A84B" },
           { label: isAr ? "مؤكد" : "Confirmed",                value: confirmed,             color: "#F87171" },
           { label: isAr ? "معلق" : "Pending",                  value: pending,               color: "#FACC15" },
           { label: isAr ? "إيجابي كاذب" : "False Positive",   value: fp,                    color: "#4ADE80" },
         ].map((s) => (
-          <div key={s.label} className="px-4 py-3 text-center" style={{ borderColor: "rgba(34,211,238,0.08)" }}>
+          <div key={s.label} className="px-4 py-3 text-center" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
             <div className="text-xl font-black font-['JetBrains_Mono']" style={{ color: s.color }}>{s.value}</div>
             <div className="text-gray-500 text-xs">{s.label}</div>
           </div>
@@ -58,12 +58,12 @@ const WatchlistHitRate = ({ isAr }: Props) => {
       </div>
 
       {/* List type breakdown */}
-      <div className="px-5 py-4 border-b" style={{ borderColor: "rgba(34,211,238,0.08)" }}>
+      <div className="px-5 py-4 border-b" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
         <p className="text-gray-500 text-xs font-semibold uppercase tracking-wider mb-3">{isAr ? "حسب نوع القائمة" : "By List Type"}</p>
         <div className="space-y-2">
           {Object.entries(listTypeCounts).map(([type, count]) => {
             const hit = watchlistHits.find((h) => h.listType === type);
-            const color = hit?.listColor || "#22D3EE";
+            const color = hit?.listColor || "#D4A84B";
             return (
               <div key={type} className="flex items-center gap-3">
                 <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: color }} />
@@ -79,14 +79,14 @@ const WatchlistHitRate = ({ isAr }: Props) => {
       </div>
 
       {/* Filter */}
-      <div className="flex items-center gap-1 px-5 py-3 border-b" style={{ borderColor: "rgba(34,211,238,0.08)" }}>
+      <div className="flex items-center gap-1 px-5 py-3 border-b" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
         {(["all", "confirmed", "pending", "false_positive"] as const).map((f) => (
           <button key={f} type="button" onClick={() => setActiveFilter(f)}
             className="px-2.5 py-1 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap transition-all"
             style={{
-              background: activeFilter === f ? "rgba(34,211,238,0.12)" : "transparent",
-              border: `1px solid ${activeFilter === f ? "rgba(34,211,238,0.25)" : "transparent"}`,
-              color: activeFilter === f ? "#22D3EE" : "#6B7280",
+              background: activeFilter === f ? "rgba(181,142,60,0.12)" : "transparent",
+              border: `1px solid ${activeFilter === f ? "rgba(181,142,60,0.25)" : "transparent"}`,
+              color: activeFilter === f ? "#D4A84B" : "#6B7280",
             }}>
             {f === "all" ? (isAr ? "الكل" : "All") : f === "confirmed" ? (isAr ? "مؤكد" : "Confirmed") : f === "pending" ? (isAr ? "معلق" : "Pending") : (isAr ? "إيجابي كاذب" : "False Positive")}
           </button>
@@ -94,7 +94,7 @@ const WatchlistHitRate = ({ isAr }: Props) => {
       </div>
 
       {/* Hit list */}
-      <div className="divide-y overflow-y-auto" style={{ maxHeight: "420px", borderColor: "rgba(34,211,238,0.04)" }}>
+      <div className="divide-y overflow-y-auto" style={{ maxHeight: "420px", borderColor: "rgba(181,142,60,0.04)" }}>
         {filtered.map((hit) => {
           const statusColor = hit.status === "confirmed" ? "#F87171" : hit.status === "pending" ? "#FACC15" : "#4ADE80";
           const statusLabel = hit.status === "confirmed" ? (isAr ? "مؤكد" : "Confirmed") : hit.status === "pending" ? (isAr ? "معلق" : "Pending") : (isAr ? "إيجابي كاذب" : "False Positive");
@@ -142,13 +142,13 @@ const WatchlistHitRate = ({ isAr }: Props) => {
       </div>
 
       {/* Footer */}
-      <div className="flex items-center justify-between px-5 py-3 border-t" style={{ borderColor: "rgba(34,211,238,0.08)" }}>
+      <div className="flex items-center justify-between px-5 py-3 border-t" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
         <span className="text-gray-600 text-xs font-['JetBrains_Mono']">
           {isAr ? "مصدر: قاعدة بيانات المراقبة الوطنية" : "Source: National Watchlist Database"}
         </span>
         <button type="button"
           className="flex items-center gap-1.5 text-xs font-semibold cursor-pointer whitespace-nowrap"
-          style={{ color: "#22D3EE" }}>
+          style={{ color: "#D4A84B" }}>
           <i className="ri-external-link-line text-xs" />
           {isAr ? "إدارة القوائم" : "Manage Lists"}
         </button>

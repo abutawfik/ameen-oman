@@ -21,10 +21,10 @@ const FLAG_CATEGORY_ICONS: Record<string, string> = {
 };
 
 const FLOW_STEPS = [
-  { label: "Event",      labelAr: "حدث",          icon: "ri-pulse-line",        color: "#22D3EE", done: true  },
-  { label: "AMEEN DB",   labelAr: "قاعدة أمين",   icon: "ri-database-2-line",   color: "#22D3EE", done: true  },
-  { label: "Sec Dept 1", labelAr: "أمن 1",         icon: "ri-server-line",       color: "#22D3EE", done: true  },
-  { label: "Sec Dept 2", labelAr: "أمن 2",         icon: "ri-server-line",       color: "#22D3EE", done: true  },
+  { label: "Event",      labelAr: "حدث",          icon: "ri-pulse-line",        color: "#D4A84B", done: true  },
+  { label: "AMEEN DB",   labelAr: "قاعدة أمين",   icon: "ri-database-2-line",   color: "#D4A84B", done: true  },
+  { label: "Sec Dept 1", labelAr: "أمن 1",         icon: "ri-server-line",       color: "#D4A84B", done: true  },
+  { label: "Sec Dept 2", labelAr: "أمن 2",         icon: "ri-server-line",       color: "#D4A84B", done: true  },
   { label: "Assessment", labelAr: "تقييم",         icon: "ri-shield-line",       color: "#FACC15", done: true  },
   { label: "Police DB",  labelAr: "قاعدة الشرطة",  icon: "ri-database-line",     color: "#4ADE80", done: false },
 ];
@@ -59,7 +59,7 @@ const FlaggedEventDetail = ({ person, isAr, onClose, onConfirm, onDismiss, onEsc
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4"
       style={{ background: "rgba(0,0,0,0.82)", backdropFilter: "blur(10px)" }}>
       <div className="relative w-full max-w-5xl max-h-[92vh] overflow-hidden rounded-3xl border flex flex-col"
-        style={{ background: "rgba(6,13,26,0.99)", borderColor: "rgba(34,211,238,0.18)", backdropFilter: "blur(24px)", boxShadow: `0 0 60px rgba(34,211,238,0.06), 0 0 0 1px rgba(34,211,238,0.08)` }}>
+        style={{ background: "rgba(11,18,32,0.99)", borderColor: "rgba(181,142,60,0.18)", backdropFilter: "blur(24px)", boxShadow: `0 0 60px rgba(181,142,60,0.06), 0 0 0 1px rgba(181,142,60,0.08)` }}>
 
         {/* Classification stripe */}
         <div className="w-full py-1 px-6 flex items-center justify-between flex-shrink-0"
@@ -107,7 +107,7 @@ const FlaggedEventDetail = ({ person, isAr, onClose, onConfirm, onDismiss, onEsc
 
         {/* Section tabs */}
         <div className="flex items-center gap-1 px-6 py-2 border-b flex-shrink-0"
-          style={{ borderColor: "rgba(34,211,238,0.07)" }}>
+          style={{ borderColor: "rgba(181,142,60,0.07)" }}>
           {[
             { id: "overview" as const, label: isAr ? "نظرة عامة" : "Overview",              icon: "ri-user-line" },
             { id: "timeline" as const, label: isAr ? "الجدول الزمني" : "Cross-Entity Timeline", icon: "ri-time-line" },
@@ -116,9 +116,9 @@ const FlaggedEventDetail = ({ person, isAr, onClose, onConfirm, onDismiss, onEsc
             <button key={s.id} type="button" onClick={() => setActiveSection(s.id)}
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap transition-all"
               style={{
-                background: activeSection === s.id ? "rgba(34,211,238,0.08)" : "transparent",
-                border: `1px solid ${activeSection === s.id ? "rgba(34,211,238,0.2)" : "transparent"}`,
-                color: activeSection === s.id ? "#22D3EE" : "#6B7280",
+                background: activeSection === s.id ? "rgba(181,142,60,0.08)" : "transparent",
+                border: `1px solid ${activeSection === s.id ? "rgba(181,142,60,0.2)" : "transparent"}`,
+                color: activeSection === s.id ? "#D4A84B" : "#6B7280",
               }}>
               <i className={`${s.icon} text-xs`} />{s.label}
             </button>
@@ -136,7 +136,7 @@ const FlaggedEventDetail = ({ person, isAr, onClose, onConfirm, onDismiss, onEsc
               <div className="lg:col-span-1 space-y-4">
                 {/* Person glass card */}
                 <div className="rounded-2xl border p-5 space-y-4"
-                  style={{ background: "rgba(10,22,40,0.9)", borderColor: `${scoreColor}20`, backdropFilter: "blur(12px)" }}>
+                  style={{ background: "rgba(20,29,46,0.9)", borderColor: `${scoreColor}20`, backdropFilter: "blur(12px)" }}>
                   {/* Photo + identity */}
                   <div className="flex items-start gap-4">
                     <div className="relative flex-shrink-0">
@@ -144,7 +144,7 @@ const FlaggedEventDetail = ({ person, isAr, onClose, onConfirm, onDismiss, onEsc
                         className="w-20 h-20 rounded-2xl object-cover object-top"
                         style={{ border: `2px solid ${scoreColor}35` }} />
                       <div className="absolute -bottom-1.5 -right-1.5 w-6 h-6 flex items-center justify-center rounded-full"
-                        style={{ background: scoreColor, border: "2px solid #060D1A" }}>
+                        style={{ background: scoreColor, border: "2px solid #0B1220" }}>
                         <i className="ri-shield-cross-line text-white" style={{ fontSize: "9px" }} />
                       </div>
                     </div>
@@ -185,9 +185,9 @@ const FlaggedEventDetail = ({ person, isAr, onClose, onConfirm, onDismiss, onEsc
                   </div>
 
                   {/* Current location */}
-                  <div className="rounded-xl overflow-hidden" style={{ border: "1px solid rgba(34,211,238,0.1)" }}>
-                    <div className="flex items-center gap-2 px-3 py-2" style={{ background: "rgba(34,211,238,0.04)" }}>
-                      <i className="ri-map-pin-line text-cyan-400 text-xs" />
+                  <div className="rounded-xl overflow-hidden" style={{ border: "1px solid rgba(181,142,60,0.1)" }}>
+                    <div className="flex items-center gap-2 px-3 py-2" style={{ background: "rgba(181,142,60,0.04)" }}>
+                      <i className="ri-map-pin-line text-gold-400 text-xs" />
                       <span className="text-gray-400 text-xs">{isAr ? "الموقع الحالي" : "Current Location"}</span>
                     </div>
                     <div className="px-3 py-2">
@@ -195,10 +195,10 @@ const FlaggedEventDetail = ({ person, isAr, onClose, onConfirm, onDismiss, onEsc
                     </div>
                     {/* Mini map */}
                     <div className="relative flex items-center justify-center"
-                      style={{ height: "80px", background: "rgba(6,13,26,0.9)" }}>
+                      style={{ height: "80px", background: "rgba(11,18,32,0.9)" }}>
                       {/* Grid lines */}
                       <div className="absolute inset-0" style={{
-                        backgroundImage: `linear-gradient(rgba(34,211,238,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.04) 1px, transparent 1px)`,
+                        backgroundImage: `linear-gradient(rgba(181,142,60,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,0.04) 1px, transparent 1px)`,
                         backgroundSize: "16px 16px"
                       }} />
                       {/* Pulsing location dot */}
@@ -214,7 +214,7 @@ const FlaggedEventDetail = ({ person, isAr, onClose, onConfirm, onDismiss, onEsc
                 </div>
 
                 {/* Processing flow */}
-                <div className="rounded-2xl border p-4" style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.08)" }}>
+                <div className="rounded-2xl border p-4" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.08)" }}>
                   <p className="text-gray-600 text-xs font-['JetBrains_Mono'] mb-3 uppercase tracking-wider">{isAr ? "تدفق المعالجة" : "Processing Flow"}</p>
                   <div className="space-y-1.5">
                     {FLOW_STEPS.map((step, i) => (
@@ -247,7 +247,7 @@ const FlaggedEventDetail = ({ person, isAr, onClose, onConfirm, onDismiss, onEsc
               <div className="lg:col-span-2 space-y-4">
 
                 {/* Flag categories */}
-                <div className="rounded-2xl border p-5" style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.1)" }}>
+                <div className="rounded-2xl border p-5" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.1)" }}>
                   <div className="flex items-center gap-2 mb-4">
                     <i className="ri-flag-2-line text-red-400 text-sm" />
                     <h4 className="text-white font-bold text-sm">{isAr ? "فئات التنبيه" : "Flag Categories"}</h4>
@@ -276,9 +276,9 @@ const FlaggedEventDetail = ({ person, isAr, onClose, onConfirm, onDismiss, onEsc
                 </div>
 
                 {/* Match info */}
-                <div className="rounded-2xl border p-5" style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.1)" }}>
+                <div className="rounded-2xl border p-5" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.1)" }}>
                   <div className="flex items-center gap-2 mb-4">
-                    <i className="ri-fingerprint-line text-cyan-400 text-sm" />
+                    <i className="ri-fingerprint-line text-gold-400 text-sm" />
                     <h4 className="text-white font-bold text-sm">{isAr ? "معلومات التطابق" : "Match Information"}</h4>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -287,7 +287,7 @@ const FlaggedEventDetail = ({ person, isAr, onClose, onConfirm, onDismiss, onEsc
                         label: isAr ? "قاعدة البيانات" : "Database",
                         value: isAr ? person.matchInfo.databaseAr : person.matchInfo.database,
                         icon: "ri-database-2-line",
-                        color: "#22D3EE",
+                        color: "#D4A84B",
                       },
                       {
                         label: isAr ? "مستوى الثقة" : "Confidence",
@@ -315,9 +315,9 @@ const FlaggedEventDetail = ({ person, isAr, onClose, onConfirm, onDismiss, onEsc
                 </div>
 
                 {/* Notes */}
-                <div className="rounded-2xl border p-5" style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.1)" }}>
+                <div className="rounded-2xl border p-5" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.1)" }}>
                   <div className="flex items-center gap-2 mb-3">
-                    <i className="ri-sticky-note-line text-cyan-400 text-sm" />
+                    <i className="ri-sticky-note-line text-gold-400 text-sm" />
                     <h4 className="text-white font-bold text-sm">{isAr ? "ملاحظات المحقق" : "Analyst Notes"}</h4>
                   </div>
                   <textarea
@@ -327,8 +327,8 @@ const FlaggedEventDetail = ({ person, isAr, onClose, onConfirm, onDismiss, onEsc
                     rows={3}
                     className="w-full rounded-xl px-4 py-3 text-xs resize-none outline-none transition-colors"
                     style={{
-                      background: "rgba(6,13,26,0.8)",
-                      border: "1px solid rgba(34,211,238,0.12)",
+                      background: "rgba(11,18,32,0.8)",
+                      border: "1px solid rgba(181,142,60,0.12)",
                       color: "#D1D5DB",
                       fontFamily: "Inter, sans-serif",
                     }}
@@ -337,7 +337,7 @@ const FlaggedEventDetail = ({ person, isAr, onClose, onConfirm, onDismiss, onEsc
                     <span className="text-gray-700 text-xs font-['JetBrains_Mono']">{notesText.length}/500</span>
                     <button type="button"
                       className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap"
-                      style={{ background: "rgba(34,211,238,0.08)", border: "1px solid rgba(34,211,238,0.2)", color: "#22D3EE" }}>
+                      style={{ background: "rgba(181,142,60,0.08)", border: "1px solid rgba(181,142,60,0.2)", color: "#D4A84B" }}>
                       <i className="ri-save-line text-xs" />
                       {isAr ? "حفظ" : "Save Note"}
                     </button>
@@ -349,11 +349,11 @@ const FlaggedEventDetail = ({ person, isAr, onClose, onConfirm, onDismiss, onEsc
 
           {/* ── TIMELINE ── */}
           {activeSection === "timeline" && (
-            <div className="rounded-2xl border p-5" style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.1)" }}>
+            <div className="rounded-2xl border p-5" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.1)" }}>
               <div className="flex items-center gap-3 mb-5">
                 <div className="w-8 h-8 flex items-center justify-center rounded-xl"
-                  style={{ background: "rgba(34,211,238,0.08)", border: "1px solid rgba(34,211,238,0.18)" }}>
-                  <i className="ri-time-line text-cyan-400 text-sm" />
+                  style={{ background: "rgba(181,142,60,0.08)", border: "1px solid rgba(181,142,60,0.18)" }}>
+                  <i className="ri-time-line text-gold-400 text-sm" />
                 </div>
                 <div>
                   <h4 className="text-white font-bold text-sm">{isAr ? "الجدول الزمني عبر الكيانات — جميع 14 تدفقاً" : "Cross-Entity Timeline — All 14 Streams"}</h4>
@@ -361,7 +361,7 @@ const FlaggedEventDetail = ({ person, isAr, onClose, onConfirm, onDismiss, onEsc
                 </div>
                 <div className="flex items-center gap-2 ml-auto">
                   <span className="px-2 py-0.5 rounded-full text-xs font-bold"
-                    style={{ background: "rgba(34,211,238,0.08)", color: "#22D3EE", border: "1px solid rgba(34,211,238,0.18)" }}>
+                    style={{ background: "rgba(181,142,60,0.08)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.18)" }}>
                     {person.timeline.length} {isAr ? "حدث" : "events"}
                   </span>
                   <span className="px-2 py-0.5 rounded-full text-xs font-bold"
@@ -380,7 +380,7 @@ const FlaggedEventDetail = ({ person, isAr, onClose, onConfirm, onDismiss, onEsc
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 {/* Gauge */}
                 <div className="rounded-2xl border p-5 flex flex-col items-center gap-4"
-                  style={{ background: "rgba(10,22,40,0.8)", borderColor: `${scoreColor}20` }}>
+                  style={{ background: "rgba(20,29,46,0.8)", borderColor: `${scoreColor}20` }}>
                   <RiskScoreGauge score={person.riskScore} size={170} />
                   <div className="w-full space-y-2">
                     <div className="flex items-center justify-between px-3 py-2 rounded-lg"
@@ -402,7 +402,7 @@ const FlaggedEventDetail = ({ person, isAr, onClose, onConfirm, onDismiss, onEsc
                 </div>
 
                 {/* Score history */}
-                <div className="rounded-2xl border p-5" style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.1)" }}>
+                <div className="rounded-2xl border p-5" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.1)" }}>
                   <h4 className="text-white font-bold text-sm mb-4">{isAr ? "تطور درجة المخاطر (12 شهراً)" : "Risk Score Timeline (12 months)"}</h4>
                   <div className="relative" style={{ height: "120px" }}>
                     <svg width="100%" height="120" viewBox="0 0 300 120" preserveAspectRatio="none">
@@ -433,7 +433,7 @@ const FlaggedEventDetail = ({ person, isAr, onClose, onConfirm, onDismiss, onEsc
               </div>
 
               {/* Stream breakdown */}
-              <div className="rounded-2xl border p-5" style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.1)" }}>
+              <div className="rounded-2xl border p-5" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.1)" }}>
                 <h4 className="text-white font-bold text-sm mb-4">{isAr ? "تفصيل المساهمة حسب التدفق" : "Contribution Breakdown by Stream"}</h4>
                 <div className="space-y-3">
                   {person.scoreBreakdown.sort((a, b) => b.contribution - a.contribution).map((s) => (
@@ -475,11 +475,11 @@ const FlaggedEventDetail = ({ person, isAr, onClose, onConfirm, onDismiss, onEsc
 
         {/* Action bar */}
         <div className="flex items-center gap-2 px-6 py-4 border-t flex-shrink-0 flex-wrap"
-          style={{ background: "rgba(6,13,26,0.95)", borderColor: "rgba(34,211,238,0.08)" }}>
+          style={{ background: "rgba(11,18,32,0.95)", borderColor: "rgba(181,142,60,0.08)" }}>
           {/* Primary: Confirm */}
           <button type="button" onClick={() => onConfirm(person.id)}
             className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold cursor-pointer whitespace-nowrap transition-all hover:opacity-90"
-            style={{ background: "#22D3EE", color: "#060D1A" }}>
+            style={{ background: "#D4A84B", color: "#0B1220" }}>
             <i className="ri-checkbox-circle-line text-xs" />
             {isAr ? "تأكيد التنبيه → Police DB" : "Confirm Flag → Police DB"}
           </button>

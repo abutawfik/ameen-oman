@@ -7,7 +7,7 @@ interface Props {
 
 const streamList = [
   { key: 'border', label: 'Border Intelligence', icon: 'ri-passport-line', color: '#60A5FA' },
-  { key: 'hotel', label: 'Hotel Intelligence', icon: 'ri-hotel-line', color: '#22D3EE' },
+  { key: 'hotel', label: 'Hotel Intelligence', icon: 'ri-hotel-line', color: '#D4A84B' },
   { key: 'mobile', label: 'Mobile Operators', icon: 'ri-sim-card-line', color: '#A78BFA' },
   { key: 'financial', label: 'Financial Services', icon: 'ri-bank-card-line', color: '#4ADE80' },
   { key: 'employment', label: 'Employment Registry', icon: 'ri-briefcase-line', color: '#F9A8D4' },
@@ -55,7 +55,7 @@ const AlertBehavior = ({ isAr }: Props) => {
     <div className="space-y-5">
       {/* Alert Queue / Config tabs */}
       <div className="flex gap-1 p-1 rounded-xl w-fit"
-        style={{ background: 'rgba(10,22,40,0.8)', border: '1px solid rgba(34,211,238,0.1)' }}>
+        style={{ background: 'rgba(20,29,46,0.8)', border: '1px solid rgba(181,142,60,0.1)' }}>
         {[
           { key: 'queue', label: 'Alert Queue', labelAr: 'قائمة التنبيهات' },
           { key: 'config', label: 'Alert Configuration', labelAr: 'إعداد التنبيهات' },
@@ -63,13 +63,13 @@ const AlertBehavior = ({ isAr }: Props) => {
           <button key={tab.key} onClick={() => setActiveAlertTab(tab.key as 'queue' | 'config')}
             className="px-4 py-2 rounded-lg text-sm font-semibold font-['Inter'] whitespace-nowrap cursor-pointer transition-all"
             style={{
-              background: activeAlertTab === tab.key ? '#22D3EE' : 'transparent',
-              color: activeAlertTab === tab.key ? '#060D1A' : '#9CA3AF',
+              background: activeAlertTab === tab.key ? '#D4A84B' : 'transparent',
+              color: activeAlertTab === tab.key ? '#0B1220' : '#9CA3AF',
             }}>
             {isAr ? tab.labelAr : tab.label}
             {tab.key === 'queue' && newAlerts.length > 0 && (
               <span className="ml-2 px-1.5 py-0.5 rounded-full text-xs font-['JetBrains_Mono']"
-                style={{ background: activeAlertTab === 'queue' ? 'rgba(6,13,26,0.3)' : 'rgba(248,113,113,0.3)', color: activeAlertTab === 'queue' ? '#060D1A' : '#F87171' }}>
+                style={{ background: activeAlertTab === 'queue' ? 'rgba(11,18,32,0.3)' : 'rgba(248,113,113,0.3)', color: activeAlertTab === 'queue' ? '#0B1220' : '#F87171' }}>
                 {newAlerts.length}
               </span>
             )}
@@ -104,9 +104,9 @@ const AlertBehavior = ({ isAr }: Props) => {
 
           {/* Alert list */}
           <div className="rounded-xl overflow-hidden"
-            style={{ background: 'rgba(10,22,40,0.8)', border: '1px solid rgba(34,211,238,0.12)' }}>
+            style={{ background: 'rgba(20,29,46,0.8)', border: '1px solid rgba(181,142,60,0.12)' }}>
             <div className="px-4 py-3 border-b flex items-center justify-between"
-              style={{ borderColor: 'rgba(34,211,238,0.08)' }}>
+              style={{ borderColor: 'rgba(181,142,60,0.08)' }}>
               <h3 className="text-white font-semibold font-['Inter'] text-sm">
                 {isAr ? 'جميع التنبيهات' : 'All Alerts'} ({allAlerts.length})
               </h3>
@@ -120,13 +120,13 @@ const AlertBehavior = ({ isAr }: Props) => {
               </div>
             </div>
 
-            <div className="divide-y" style={{ borderColor: 'rgba(34,211,238,0.05)' }}>
+            <div className="divide-y" style={{ borderColor: 'rgba(181,142,60,0.05)' }}>
               {allAlerts.map((alert) => (
                 <div key={alert.id} className="p-4 flex items-start gap-4 hover:bg-white/5 transition-colors">
                   <div className="w-9 h-9 flex items-center justify-center rounded-xl flex-shrink-0"
-                    style={{ background: alert.isNearMatch ? 'rgba(251,146,60,0.15)' : 'rgba(34,211,238,0.1)' }}>
+                    style={{ background: alert.isNearMatch ? 'rgba(251,146,60,0.15)' : 'rgba(181,142,60,0.1)' }}>
                     <i className={`${alert.streamIcon} text-sm`}
-                      style={{ color: alert.isNearMatch ? '#FB923C' : '#22D3EE' }} />
+                      style={{ color: alert.isNearMatch ? '#FB923C' : '#D4A84B' }} />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap mb-1">
@@ -156,7 +156,7 @@ const AlertBehavior = ({ isAr }: Props) => {
                     </span>
                     {alert.status === 'new' && (
                       <button className="px-2 py-1 rounded-lg text-xs font-['Inter'] cursor-pointer whitespace-nowrap"
-                        style={{ background: 'rgba(34,211,238,0.15)', color: '#22D3EE' }}>
+                        style={{ background: 'rgba(181,142,60,0.15)', color: '#D4A84B' }}>
                         {isAr ? 'إقرار' : 'Ack'}
                       </button>
                     )}
@@ -177,7 +177,7 @@ const AlertBehavior = ({ isAr }: Props) => {
           {/* Left: Per-watchlist config */}
           <div className="space-y-4">
             <div className="rounded-xl p-4"
-              style={{ background: 'rgba(10,22,40,0.8)', border: '1px solid rgba(34,211,238,0.12)' }}>
+              style={{ background: 'rgba(20,29,46,0.8)', border: '1px solid rgba(181,142,60,0.12)' }}>
               <h3 className="text-white font-semibold font-['Inter'] text-sm mb-3">
                 {isAr ? 'إعداد القائمة' : 'Watchlist Alert Config'}
               </h3>
@@ -187,7 +187,7 @@ const AlertBehavior = ({ isAr }: Props) => {
                 </label>
                 <select value={selectedWl} onChange={e => setSelectedWl(e.target.value)}
                   className="w-full px-3 py-2 rounded-lg text-sm font-['Inter'] cursor-pointer"
-                  style={{ background: 'rgba(6,13,26,0.8)', border: '1px solid rgba(34,211,238,0.15)', color: '#D1D5DB' }}>
+                  style={{ background: 'rgba(11,18,32,0.8)', border: '1px solid rgba(181,142,60,0.15)', color: '#D1D5DB' }}>
                   {watchlists.map(wl => (
                     <option key={wl.id} value={wl.id}>{wl.name}</option>
                   ))}
@@ -196,14 +196,14 @@ const AlertBehavior = ({ isAr }: Props) => {
 
               <div className="space-y-3">
                 {[
-                  { label: 'Sound Alert at Command Center', labelAr: 'تنبيه صوتي في مركز القيادة', state: soundAlert, set: setSoundAlert, icon: 'ri-volume-up-line', color: '#22D3EE' },
+                  { label: 'Sound Alert at Command Center', labelAr: 'تنبيه صوتي في مركز القيادة', state: soundAlert, set: setSoundAlert, icon: 'ri-volume-up-line', color: '#D4A84B' },
                   { label: 'Push to Mobile Field Officers', labelAr: 'إرسال لضباط الميدان', state: mobilePush, set: setMobilePush, icon: 'ri-smartphone-line', color: '#4ADE80' },
                   { label: 'Alert Command Center Dashboard', labelAr: 'تنبيه لوحة مركز القيادة', state: commandCenter, set: setCommandCenter, icon: 'ri-radar-line', color: '#FB923C' },
                   { label: 'Email Notification', labelAr: 'إشعار بريد إلكتروني', state: emailAlert, set: setEmailAlert, icon: 'ri-mail-line', color: '#FACC15' },
                   { label: 'Auto-Escalate if Unacknowledged', labelAr: 'تصعيد تلقائي إذا لم يُقر', state: autoEscalate, set: setAutoEscalate, icon: 'ri-arrow-up-circle-line', color: '#F87171' },
                 ].map(item => (
                   <div key={item.label} className="flex items-center justify-between p-3 rounded-xl"
-                    style={{ background: 'rgba(6,13,26,0.5)', border: '1px solid rgba(34,211,238,0.06)' }}>
+                    style={{ background: 'rgba(11,18,32,0.5)', border: '1px solid rgba(181,142,60,0.06)' }}>
                     <div className="flex items-center gap-2">
                       <i className={`${item.icon} text-sm`} style={{ color: item.color }} />
                       <span className="text-gray-300 text-xs font-['Inter']">
@@ -212,7 +212,7 @@ const AlertBehavior = ({ isAr }: Props) => {
                     </div>
                     <button onClick={() => item.set(!item.state)}
                       className="w-10 h-5 rounded-full transition-all cursor-pointer relative flex-shrink-0"
-                      style={{ background: item.state ? '#22D3EE' : 'rgba(255,255,255,0.1)' }}>
+                      style={{ background: item.state ? '#D4A84B' : 'rgba(255,255,255,0.1)' }}>
                       <div className="absolute top-0.5 w-4 h-4 rounded-full bg-white transition-all"
                         style={{ left: item.state ? '22px' : '2px' }} />
                     </button>
@@ -240,7 +240,7 @@ const AlertBehavior = ({ isAr }: Props) => {
           {/* Right: Stream monitoring + near-match */}
           <div className="space-y-4">
             <div className="rounded-xl p-4"
-              style={{ background: 'rgba(10,22,40,0.8)', border: '1px solid rgba(34,211,238,0.12)' }}>
+              style={{ background: 'rgba(20,29,46,0.8)', border: '1px solid rgba(181,142,60,0.12)' }}>
               <h3 className="text-white font-semibold font-['Inter'] text-sm mb-3">
                 {isAr ? 'تفعيل التدفقات' : 'Stream Monitoring'}
               </h3>
@@ -249,7 +249,7 @@ const AlertBehavior = ({ isAr }: Props) => {
                   <button key={stream.key} onClick={() => toggleStream(stream.key)}
                     className="flex items-center gap-2 p-2 rounded-lg cursor-pointer transition-all text-left"
                     style={{
-                      background: enabledStreams[stream.key] ? `${stream.color}12` : 'rgba(6,13,26,0.5)',
+                      background: enabledStreams[stream.key] ? `${stream.color}12` : 'rgba(11,18,32,0.5)',
                       border: `1px solid ${enabledStreams[stream.key] ? `${stream.color}40` : 'rgba(255,255,255,0.05)'}`,
                     }}>
                     <i className={`${stream.icon} text-sm flex-shrink-0`}
@@ -266,7 +266,7 @@ const AlertBehavior = ({ isAr }: Props) => {
             </div>
 
             <div className="rounded-xl p-4"
-              style={{ background: 'rgba(10,22,40,0.8)', border: '1px solid rgba(251,146,60,0.2)' }}>
+              style={{ background: 'rgba(20,29,46,0.8)', border: '1px solid rgba(251,146,60,0.2)' }}>
               <h3 className="text-white font-semibold font-['Inter'] text-sm mb-3">
                 {isAr ? 'إعداد التطابق القريب' : 'Near-Match Configuration'}
               </h3>
@@ -298,7 +298,7 @@ const AlertBehavior = ({ isAr }: Props) => {
                     { label: 'Biometric Partial', icon: 'ri-fingerprint-line', active: true },
                   ].map(item => (
                     <div key={item.label} className="flex items-center gap-2 p-2 rounded-lg"
-                      style={{ background: item.active ? 'rgba(251,146,60,0.08)' : 'rgba(6,13,26,0.5)', border: `1px solid ${item.active ? 'rgba(251,146,60,0.25)' : 'rgba(255,255,255,0.05)'}` }}>
+                      style={{ background: item.active ? 'rgba(251,146,60,0.08)' : 'rgba(11,18,32,0.5)', border: `1px solid ${item.active ? 'rgba(251,146,60,0.25)' : 'rgba(255,255,255,0.05)'}` }}>
                       <i className={`${item.icon} text-xs`} style={{ color: item.active ? '#FB923C' : '#4B5563' }} />
                       <span className="text-xs font-['Inter']" style={{ color: item.active ? '#D1D5DB' : '#4B5563' }}>
                         {item.label}

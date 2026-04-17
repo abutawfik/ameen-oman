@@ -6,8 +6,8 @@ const TIERS = [
     tier: 1,
     label: 'Tier 1 — Dashboard Queue',
     icon: 'ri-dashboard-line',
-    color: '#22D3EE',
-    bg: 'rgba(34,211,238,0.1)',
+    color: '#D4A84B',
+    bg: 'rgba(181,142,60,0.1)',
     description: 'All pattern-triggered alerts land here. Analysts review and action within 30 minutes.',
     threshold: null,
     count: alertQueue.filter(a => a.tier === 1).length,
@@ -38,7 +38,7 @@ const ESCALATION_STEPS = [
   {
     time: '0 min',
     label: 'Alert Created',
-    color: '#22D3EE',
+    color: '#D4A84B',
     icon: 'ri-alert-line',
     desc: 'Pattern rule triggered, alert enters Tier 1 queue. Analyst notified.',
     action: 'Analyst reviews',
@@ -82,7 +82,7 @@ export default function EscalationTimeline() {
           <div
             key={tier.tier}
             className="rounded-xl border p-5 relative overflow-hidden"
-            style={{ background: 'rgba(10,22,40,0.8)', borderColor: `${tier.color}30` }}
+            style={{ background: 'rgba(20,29,46,0.8)', borderColor: `${tier.color}30` }}
           >
             <div
               className="absolute top-0 left-0 w-1 h-full rounded-l-xl"
@@ -125,7 +125,7 @@ export default function EscalationTimeline() {
       {ACTIVE_ESCALATIONS.length > 0 && (
         <div
           className="rounded-xl border border-orange-500/25 p-5"
-          style={{ background: 'rgba(10,22,40,0.8)' }}
+          style={{ background: 'rgba(20,29,46,0.8)' }}
         >
           <div className="flex items-center gap-2 mb-3">
             <span className="w-2 h-2 rounded-full bg-orange-400 animate-pulse" />
@@ -188,15 +188,15 @@ export default function EscalationTimeline() {
 
       {/* Escalation timeline */}
       <div
-        className="rounded-xl border border-cyan-500/20 p-5"
-        style={{ background: 'rgba(10,22,40,0.8)' }}
+        className="rounded-xl border border-gold-500/20 p-5"
+        style={{ background: 'rgba(20,29,46,0.8)' }}
       >
         <h3 className="text-white font-semibold text-sm mb-5">Auto-Escalation Timeline</h3>
         <div className="relative">
           {/* Timeline line */}
           <div
             className="absolute left-6 top-6 bottom-6 w-0.5"
-            style={{ background: 'linear-gradient(to bottom, #22D3EE, #FACC15, #FB923C, #F87171)' }}
+            style={{ background: 'linear-gradient(to bottom, #D4A84B, #FACC15, #FB923C, #F87171)' }}
           />
 
           <div className="space-y-5">
@@ -209,7 +209,7 @@ export default function EscalationTimeline() {
                 <div
                   className="w-12 h-12 rounded-full flex items-center justify-center shrink-0 z-10 border-2 transition-all"
                   style={{
-                    background: activeStep === i ? `${step.color}20` : 'rgba(10,22,40,0.95)',
+                    background: activeStep === i ? `${step.color}20` : 'rgba(20,29,46,0.95)',
                     borderColor: step.color,
                   }}
                 >
@@ -241,8 +241,8 @@ export default function EscalationTimeline() {
 
       {/* Feedback loop */}
       <div
-        className="rounded-xl border border-cyan-500/20 p-5"
-        style={{ background: 'rgba(10,22,40,0.8)' }}
+        className="rounded-xl border border-gold-500/20 p-5"
+        style={{ background: 'rgba(20,29,46,0.8)' }}
       >
         <div className="flex items-center justify-between mb-4">
           <div>
@@ -260,15 +260,15 @@ export default function EscalationTimeline() {
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
           {[
-            { label: 'Total Decisions', value: feedbackStats.totalDecisions.toLocaleString(), color: '#22D3EE', icon: 'ri-checkbox-multiple-line' },
+            { label: 'Total Decisions', value: feedbackStats.totalDecisions.toLocaleString(), color: '#D4A84B', icon: 'ri-checkbox-multiple-line' },
             { label: 'Confirmed (TP)', value: `${feedbackStats.confirmed} (${feedbackStats.confirmedPct}%)`, color: '#4ADE80', icon: 'ri-check-double-line' },
             { label: 'Dismissed (FP)', value: `${feedbackStats.dismissed} (${feedbackStats.dismissedPct}%)`, color: '#9CA3AF', icon: 'ri-close-circle-line' },
             { label: 'Escalated', value: `${feedbackStats.escalated} (${feedbackStats.escalatedPct}%)`, color: '#FB923C', icon: 'ri-arrow-up-circle-line' },
           ].map(stat => (
             <div
               key={stat.label}
-              className="rounded-lg p-3 border border-cyan-500/10"
-              style={{ background: 'rgba(34,211,238,0.04)' }}
+              className="rounded-lg p-3 border border-gold-500/10"
+              style={{ background: 'rgba(181,142,60,0.04)' }}
             >
               <div className="flex items-center gap-2 mb-1">
                 <i className={`${stat.icon} text-sm`} style={{ color: stat.color }} />
@@ -309,7 +309,7 @@ export default function EscalationTimeline() {
                     className="w-full rounded-t-sm"
                     style={{
                       height: `${(val / maxV) * 40}px`,
-                      background: i === feedbackStats.weeklyDecisions.length - 1 ? '#22D3EE' : 'rgba(34,211,238,0.3)',
+                      background: i === feedbackStats.weeklyDecisions.length - 1 ? '#D4A84B' : 'rgba(181,142,60,0.3)',
                     }}
                   />
                   <span className="text-gray-600 font-mono" style={{ fontSize: 8 }}>

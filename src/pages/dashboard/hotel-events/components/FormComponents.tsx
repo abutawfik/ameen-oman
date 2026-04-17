@@ -11,8 +11,8 @@ export const inputStyle = {
 
 export const focusHandlers = {
   onFocus: (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    e.target.style.borderColor = "#22D3EE";
-    e.target.style.boxShadow = "0 0 0 2px rgba(34,211,238,0.08)";
+    e.target.style.borderColor = "#D4A84B";
+    e.target.style.boxShadow = "0 0 0 2px rgba(181,142,60,0.08)";
   },
   onBlur: (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     e.target.style.borderColor = "rgba(255,255,255,0.08)";
@@ -24,7 +24,7 @@ export const focusHandlers = {
 export const Label = ({ children, required }: { children: React.ReactNode; required?: boolean }) => (
   <label className="block text-gray-400 text-xs mb-1.5 font-['Inter'] tracking-wide">
     {children}
-    {required && <span className="text-cyan-400 ml-0.5">*</span>}
+    {required && <span className="text-gold-400 ml-0.5">*</span>}
   </label>
 );
 
@@ -80,17 +80,17 @@ export const SelectInput = ({ options, placeholder, className = "", ...props }: 
 
 // ─── SectionCard ──────────────────────────────────────────────────────────────
 export const SectionCard = ({
-  title, icon, children, className = "", accentColor = "#22D3EE",
+  title, icon, children, className = "", accentColor = "#D4A84B",
 }: {
   title: string; icon?: string; children: React.ReactNode; className?: string; accentColor?: string;
 }) => (
   <div
     className={`rounded-2xl border p-5 ${className}`}
     style={{
-      background: "rgba(10,22,40,0.85)",
-      borderColor: "rgba(34,211,238,0.12)",
+      background: "rgba(20,29,46,0.85)",
+      borderColor: "rgba(181,142,60,0.12)",
       backdropFilter: "blur(16px)",
-      boxShadow: "inset 0 1px 0 rgba(34,211,238,0.04)",
+      boxShadow: "inset 0 1px 0 rgba(181,142,60,0.04)",
     }}
   >
     {title && (
@@ -114,7 +114,7 @@ export const SectionCard = ({
 export const TipBanner = ({ text, color = "amber" }: { text: string; color?: "amber" | "cyan" | "green" }) => {
   const colors = {
     amber: { bg: "rgba(251,146,60,0.06)", border: "rgba(251,146,60,0.22)", text: "#FB923C", icon: "ri-information-line" },
-    cyan:  { bg: "rgba(34,211,238,0.06)",  border: "rgba(34,211,238,0.22)",  text: "#22D3EE", icon: "ri-lightbulb-flash-line" },
+    cyan:  { bg: "rgba(181,142,60,0.06)",  border: "rgba(181,142,60,0.22)",  text: "#D4A84B", icon: "ri-lightbulb-flash-line" },
     green: { bg: "rgba(74,222,128,0.06)",  border: "rgba(74,222,128,0.22)",  text: "#4ADE80", icon: "ri-checkbox-circle-line" },
   };
   const c = colors[color];
@@ -146,16 +146,16 @@ export const RadioGroup = ({
         onClick={() => onChange(opt.value)}
         className="flex items-center gap-2 px-3 py-2 rounded-lg border text-xs font-semibold transition-all cursor-pointer font-['Inter'] whitespace-nowrap"
         style={{
-          background: value === opt.value ? "rgba(34,211,238,0.12)" : "#0F1923",
-          borderColor: value === opt.value ? "#22D3EE" : "rgba(255,255,255,0.08)",
-          color: value === opt.value ? "#22D3EE" : "#6B7280",
+          background: value === opt.value ? "rgba(181,142,60,0.12)" : "#0F1923",
+          borderColor: value === opt.value ? "#D4A84B" : "rgba(255,255,255,0.08)",
+          color: value === opt.value ? "#D4A84B" : "#6B7280",
         }}
       >
         <div
           className="w-3.5 h-3.5 rounded-full border-2 flex items-center justify-center flex-shrink-0"
-          style={{ borderColor: value === opt.value ? "#22D3EE" : "#374151" }}
+          style={{ borderColor: value === opt.value ? "#D4A84B" : "#374151" }}
         >
-          {value === opt.value && <div className="w-1.5 h-1.5 rounded-full bg-cyan-400" />}
+          {value === opt.value && <div className="w-1.5 h-1.5 rounded-full bg-gold-400" />}
         </div>
         {opt.label}
       </button>
@@ -301,9 +301,9 @@ export const FormActions = ({
       onClick={onSave}
       disabled={saving || disabled}
       className="flex items-center gap-2 px-6 py-2.5 rounded-lg text-sm font-bold transition-colors cursor-pointer whitespace-nowrap font-['Inter'] disabled:opacity-60"
-      style={{ background: "#22D3EE", color: "#060D1A" }}
-      onMouseEnter={(e) => { if (!saving) (e.currentTarget as HTMLButtonElement).style.background = "#06B6D4"; }}
-      onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#22D3EE"; }}
+      style={{ background: "#D4A84B", color: "#0B1220" }}
+      onMouseEnter={(e) => { if (!saving) (e.currentTarget as HTMLButtonElement).style.background = "#C99C48"; }}
+      onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#D4A84B"; }}
     >
       {saving ? <i className="ri-loader-4-line animate-spin" /> : <i className="ri-save-line" />}
       {isAr ? "حفظ الحدث" : saveLabel}
@@ -327,10 +327,10 @@ export const SuccessScreen = ({
     <p className="text-white font-bold text-xl font-['Inter'] mb-2">{isAr ? titleAr : titleEn}</p>
     <div
       className="flex items-center gap-2 px-4 py-2 rounded-lg mt-1"
-      style={{ background: "rgba(34,211,238,0.06)", border: "1px solid rgba(34,211,238,0.15)" }}
+      style={{ background: "rgba(181,142,60,0.06)", border: "1px solid rgba(181,142,60,0.15)" }}
     >
-      <i className="ri-checkbox-circle-line text-cyan-400 text-sm" />
-      <span className="text-cyan-400 text-sm font-['JetBrains_Mono'] tracking-widest">
+      <i className="ri-checkbox-circle-line text-gold-400 text-sm" />
+      <span className="text-gold-400 text-sm font-['JetBrains_Mono'] tracking-widest">
         HTL-{Date.now().toString().slice(-8)}
       </span>
     </div>
@@ -345,9 +345,9 @@ export const LookupButton = ({ onClick, isAr, loading = false }: { onClick: () =
     onClick={onClick}
     disabled={loading}
     className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap font-['Inter'] transition-colors disabled:opacity-60"
-    style={{ background: "rgba(34,211,238,0.1)", border: "1px solid rgba(34,211,238,0.25)", color: "#22D3EE" }}
-    onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(34,211,238,0.18)"; }}
-    onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(34,211,238,0.1)"; }}
+    style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.25)", color: "#D4A84B" }}
+    onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(181,142,60,0.18)"; }}
+    onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(181,142,60,0.1)"; }}
   >
     {loading ? <i className="ri-loader-4-line animate-spin" /> : <i className="ri-search-line" />}
     {isAr ? "بحث" : "Lookup"}

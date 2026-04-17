@@ -37,7 +37,7 @@ const StreamSummaryRow = ({ streams, activeFilter, onFilterChange, isAr }: Props
           </h3>
           <span
             className="px-2 py-0.5 rounded-full text-xs font-['JetBrains_Mono']"
-            style={{ background: "rgba(34,211,238,0.1)", color: "#22D3EE", border: "1px solid rgba(34,211,238,0.2)" }}
+            style={{ background: "rgba(181,142,60,0.1)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}
           >
             {activeCount} {isAr ? "نشط" : "active"}
           </span>
@@ -46,7 +46,7 @@ const StreamSummaryRow = ({ streams, activeFilter, onFilterChange, isAr }: Props
           <button
             onClick={() => onFilterChange(null)}
             className="text-xs px-2.5 py-1 rounded cursor-pointer font-['JetBrains_Mono'] flex items-center gap-1"
-            style={{ color: "#22D3EE", border: "1px solid rgba(34,211,238,0.3)", background: "rgba(34,211,238,0.05)" }}
+            style={{ color: "#D4A84B", border: "1px solid rgba(181,142,60,0.3)", background: "rgba(181,142,60,0.05)" }}
           >
             <i className="ri-close-line" />
             {isAr ? "إلغاء الفلتر" : "Clear Filter"}
@@ -69,12 +69,12 @@ const StreamSummaryRow = ({ streams, activeFilter, onFilterChange, isAr }: Props
                 background: isSelected
                   ? `${s.color}22`
                   : isActive
-                    ? "rgba(10,22,40,0.8)"
-                    : "rgba(10,22,40,0.3)",
+                    ? "rgba(20,29,46,0.8)"
+                    : "rgba(20,29,46,0.3)",
                 border: isSelected
                   ? `1px solid ${s.color}88`
                   : isActive
-                    ? "1px solid rgba(34,211,238,0.15)"
+                    ? "1px solid rgba(181,142,60,0.15)"
                     : "1px solid rgba(255,255,255,0.04)",
                 opacity: isActive ? 1 : 0.35,
                 cursor: isActive ? "pointer" : "default",
@@ -110,10 +110,10 @@ const StreamSummaryRow = ({ streams, activeFilter, onFilterChange, isAr }: Props
       {activeFilter && (
         <div
           className="mt-3 flex items-center gap-2 px-3 py-2 rounded-lg"
-          style={{ background: "rgba(34,211,238,0.05)", border: "1px solid rgba(34,211,238,0.15)" }}
+          style={{ background: "rgba(181,142,60,0.05)", border: "1px solid rgba(181,142,60,0.15)" }}
         >
-          <i className="ri-filter-line text-cyan-400 text-xs" />
-          <span className="text-cyan-400 text-xs font-['JetBrains_Mono']">
+          <i className="ri-filter-line text-gold-400 text-xs" />
+          <span className="text-gold-400 text-xs font-['JetBrains_Mono']">
             {isAr ? "فلتر نشط:" : "Active filter:"} {streamLabels[activeFilter]?.en || activeFilter}
           </span>
           <span className="text-gray-500 text-xs font-['JetBrains_Mono'] ml-1">

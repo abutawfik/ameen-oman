@@ -38,12 +38,12 @@ const StreamManagement = () => {
       {/* Header stats */}
       <div className="grid grid-cols-4 gap-3 mb-5">
         {[
-          { label: "Total Streams", value: String(streamList.length), icon: "ri-stack-line", color: "#22D3EE" },
+          { label: "Total Streams", value: String(streamList.length), icon: "ri-stack-line", color: "#D4A84B" },
           { label: "Active", value: String(streamList.filter((s) => s.status === "active").length), icon: "ri-checkbox-circle-line", color: "#4ADE80" },
           { label: "Disabled", value: String(streamList.filter((s) => s.status === "disabled").length), icon: "ri-close-circle-line", color: "#F87171" },
           { label: "Events Today", value: totalEventsToday.toLocaleString(), icon: "ri-pulse-line", color: "#FACC15" },
         ].map((stat) => (
-          <div key={stat.label} className="rounded-xl p-4 flex items-center gap-3" style={{ background: "rgba(10,22,40,0.8)", border: "1px solid rgba(34,211,238,0.12)" }}>
+          <div key={stat.label} className="rounded-xl p-4 flex items-center gap-3" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.12)" }}>
             <div className="w-9 h-9 flex items-center justify-center rounded-lg flex-shrink-0" style={{ background: `${stat.color}18` }}>
               <i className={`${stat.icon} text-base`} style={{ color: stat.color }} />
             </div>
@@ -61,30 +61,30 @@ const StreamManagement = () => {
           {(["all", "active", "disabled"] as const).map((f) => (
             <button key={f} onClick={() => setFilterStatus(f)}
               className="px-3 py-1.5 rounded-full text-xs font-semibold font-['Inter'] whitespace-nowrap cursor-pointer transition-all capitalize"
-              style={{ background: filterStatus === f ? "#22D3EE" : "rgba(255,255,255,0.05)", color: filterStatus === f ? "#060D1A" : "#9CA3AF", border: filterStatus === f ? "none" : "1px solid rgba(255,255,255,0.08)" }}>
+              style={{ background: filterStatus === f ? "#D4A84B" : "rgba(255,255,255,0.05)", color: filterStatus === f ? "#0B1220" : "#9CA3AF", border: filterStatus === f ? "none" : "1px solid rgba(255,255,255,0.08)" }}>
               {f === "all" ? "All" : f.charAt(0).toUpperCase() + f.slice(1)}
             </button>
           ))}
         </div>
         <select value={filterCategory} onChange={(e) => setFilterCategory(e.target.value)}
           className="px-3 py-1.5 rounded-lg text-xs outline-none cursor-pointer"
-          style={{ background: "rgba(10,22,40,0.9)", border: "1px solid rgba(34,211,238,0.2)", color: "#D1D5DB" }}>
-          {categories.map((c) => <option key={c} value={c} style={{ background: "#0A1628" }}>{c === "all" ? "All Categories" : c}</option>)}
+          style={{ background: "rgba(20,29,46,0.9)", border: "1px solid rgba(181,142,60,0.2)", color: "#D1D5DB" }}>
+          {categories.map((c) => <option key={c} value={c} style={{ background: "#141D2E" }}>{c === "all" ? "All Categories" : c}</option>)}
         </select>
         <div className="relative">
           <i className="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-xs" />
           <input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search streams..."
             className="pl-8 pr-3 py-1.5 rounded-lg text-xs outline-none"
-            style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(34,211,238,0.15)", color: "#D1D5DB", fontFamily: "'Inter', sans-serif", width: "160px" }} />
+            style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(181,142,60,0.15)", color: "#D1D5DB", fontFamily: "'Inter', sans-serif", width: "160px" }} />
         </div>
         <span className="ml-auto text-gray-600 text-xs font-['JetBrains_Mono']">{filtered.length} streams</span>
       </div>
 
       {/* Table */}
-      <div className="rounded-xl overflow-hidden" style={{ border: "1px solid rgba(34,211,238,0.12)" }}>
+      <div className="rounded-xl overflow-hidden" style={{ border: "1px solid rgba(181,142,60,0.12)" }}>
         {/* Header */}
         <div className="grid px-4 py-3 text-xs font-semibold uppercase tracking-wider font-['Inter']"
-          style={{ background: "rgba(34,211,238,0.05)", color: "#9CA3AF", gridTemplateColumns: "2.2fr 1.1fr 0.9fr 0.9fr 1fr 0.9fr 0.8fr 70px" }}>
+          style={{ background: "rgba(181,142,60,0.05)", color: "#9CA3AF", gridTemplateColumns: "2.2fr 1.1fr 0.9fr 0.9fr 1fr 0.9fr 0.8fr 70px" }}>
           <span>Stream</span>
           <span>Code</span>
           <span>Status</span>
@@ -115,7 +115,7 @@ const StreamManagement = () => {
               </div>
               {/* Code */}
               <div className="flex items-center">
-                <span className="px-2 py-0.5 rounded text-xs font-['JetBrains_Mono'] font-semibold" style={{ background: "rgba(34,211,238,0.1)", color: "#22D3EE" }}>{stream.code}</span>
+                <span className="px-2 py-0.5 rounded text-xs font-['JetBrains_Mono'] font-semibold" style={{ background: "rgba(181,142,60,0.1)", color: "#D4A84B" }}>{stream.code}</span>
               </div>
               {/* Status */}
               <div className="flex items-center">
@@ -130,7 +130,7 @@ const StreamManagement = () => {
               </div>
               {/* Events */}
               <div className="flex items-center gap-2">
-                <span className="text-cyan-400 text-sm font-['JetBrains_Mono']">{stream.eventsToday.toLocaleString()}</span>
+                <span className="text-gold-400 text-sm font-['JetBrains_Mono']">{stream.eventsToday.toLocaleString()}</span>
                 {stream.eventsToday > 10000 && <span className="text-xs text-yellow-400 font-['JetBrains_Mono']">↑ High</span>}
               </div>
               {/* Rules */}
@@ -145,7 +145,7 @@ const StreamManagement = () => {
               <div className="flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
                 <button onClick={() => toggleStream(stream.id)}
                   className="relative inline-flex items-center w-10 h-5 rounded-full transition-colors cursor-pointer"
-                  style={{ background: stream.status === "active" ? "#22D3EE" : "rgba(255,255,255,0.1)" }}>
+                  style={{ background: stream.status === "active" ? "#D4A84B" : "rgba(255,255,255,0.1)" }}>
                   <span className="inline-block w-3.5 h-3.5 rounded-full bg-white transition-transform" style={{ transform: stream.status === "active" ? "translateX(22px)" : "translateX(3px)" }} />
                 </button>
               </div>
@@ -153,7 +153,7 @@ const StreamManagement = () => {
 
             {/* Expanded detail */}
             {expandedId === stream.id && (
-              <div className="px-4 pb-5 pt-3" style={{ background: "rgba(34,211,238,0.02)", borderTop: "1px solid rgba(34,211,238,0.08)" }}>
+              <div className="px-4 pb-5 pt-3" style={{ background: "rgba(181,142,60,0.02)", borderTop: "1px solid rgba(181,142,60,0.08)" }}>
                 <div className="grid grid-cols-3 gap-5">
                   {/* Required Fields */}
                   <div>
@@ -161,7 +161,7 @@ const StreamManagement = () => {
                     <div className="flex flex-wrap gap-1.5">
                       {stream.requiredFields.map((f) => (
                         <span key={f} className="px-2 py-0.5 rounded text-xs font-['JetBrains_Mono']"
-                          style={{ background: "rgba(34,211,238,0.08)", color: "#22D3EE", border: "1px solid rgba(34,211,238,0.15)" }}>
+                          style={{ background: "rgba(181,142,60,0.08)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.15)" }}>
                           {f}
                         </span>
                       ))}
@@ -173,10 +173,10 @@ const StreamManagement = () => {
                     <p className="text-gray-500 text-xs uppercase tracking-wider font-['Inter'] mb-2">Stream Statistics</p>
                     <div className="space-y-1.5">
                       {[
-                        { label: "Events Today", value: stream.eventsToday.toLocaleString(), color: "#22D3EE" },
+                        { label: "Events Today", value: stream.eventsToday.toLocaleString(), color: "#D4A84B" },
                         { label: "Total Entities", value: stream.entityCount.toLocaleString(), color: "#D1D5DB" },
                         { label: "Validation Rules", value: String(stream.validationRules), color: "#FACC15" },
-                        { label: "Stream Code", value: stream.code, color: "#22D3EE" },
+                        { label: "Stream Code", value: stream.code, color: "#D4A84B" },
                       ].map((stat) => (
                         <div key={stat.label} className="flex items-center justify-between">
                           <span className="text-gray-500 text-xs font-['Inter']">{stat.label}</span>
@@ -205,10 +205,10 @@ const StreamManagement = () => {
                           onKeyDown={(e) => e.key === "Enter" && addCustomEvent(stream.id)}
                           placeholder="Event type name..."
                           className="flex-1 px-3 py-1.5 rounded-lg text-xs outline-none"
-                          style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(34,211,238,0.3)", color: "#D1D5DB", fontFamily: "'Inter', sans-serif" }} />
+                          style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(181,142,60,0.3)", color: "#D1D5DB", fontFamily: "'Inter', sans-serif" }} />
                         <button onClick={() => addCustomEvent(stream.id)}
                           className="px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap"
-                          style={{ background: "#22D3EE", color: "#060D1A" }}>Add</button>
+                          style={{ background: "#D4A84B", color: "#0B1220" }}>Add</button>
                         <button onClick={() => setShowAddEvent(null)}
                           className="px-3 py-1.5 rounded-lg text-xs cursor-pointer"
                           style={{ background: "rgba(255,255,255,0.05)", color: "#9CA3AF" }}>Cancel</button>
@@ -216,7 +216,7 @@ const StreamManagement = () => {
                     ) : (
                       <button onClick={() => setShowAddEvent(stream.id)}
                         className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs cursor-pointer transition-colors"
-                        style={{ background: "rgba(34,211,238,0.08)", color: "#22D3EE", border: "1px solid rgba(34,211,238,0.2)" }}>
+                        style={{ background: "rgba(181,142,60,0.08)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>
                         <i className="ri-add-line" />Add Custom Event Type
                       </button>
                     )}
@@ -226,7 +226,7 @@ const StreamManagement = () => {
                 {/* Action buttons */}
                 <div className="flex items-center gap-2 mt-4 pt-3" style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
                   <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap"
-                    style={{ background: "#22D3EE", color: "#060D1A" }}>
+                    style={{ background: "#D4A84B", color: "#0B1220" }}>
                     <i className="ri-edit-line" />Edit Stream Config
                   </button>
                   <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs cursor-pointer whitespace-nowrap"

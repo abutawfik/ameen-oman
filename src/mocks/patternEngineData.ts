@@ -54,7 +54,7 @@ export interface TestResult {
 
 export const CATEGORY_META: Record<RuleCategory, { label: string; labelAr: string; icon: string; color: string }> = {
   arrival:       { label: "Arrival Patterns",    labelAr: "أنماط الوصول",      icon: "ri-passport-line",        color: "#60A5FA" },
-  accommodation: { label: "Accommodation",        labelAr: "الإقامة",            icon: "ri-hotel-line",           color: "#22D3EE" },
+  accommodation: { label: "Accommodation",        labelAr: "الإقامة",            icon: "ri-hotel-line",           color: "#D4A84B" },
   financial:     { label: "Financial",            labelAr: "المالية",            icon: "ri-bank-card-line",       color: "#4ADE80" },
   identity:      { label: "Identity",             labelAr: "الهوية",             icon: "ri-fingerprint-line",     color: "#A78BFA" },
   employment:    { label: "Employment",           labelAr: "التوظيف",            icon: "ri-briefcase-line",       color: "#F9A8D4" },

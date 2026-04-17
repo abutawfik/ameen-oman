@@ -100,7 +100,7 @@ const statusLabel = (s: AnomalyRecord["status"], isAr: boolean) => {
 };
 
 const streamColor = (s: string) => {
-  if (s === "UTILITY") return "#22D3EE";
+  if (s === "UTILITY") return "#D4A84B";
   if (s === "MUNICIPALITY") return "#4ADE80";
   if (s === "BORDER") return "#A78BFA";
   if (s === "HOTEL") return "#FB923C";
@@ -137,12 +137,12 @@ const UsageAnomalyPanel = ({ isAr, onCancel }: Props) => {
       {/* Stats row */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {[
-          { label: isAr ? "إجمالي التنبيهات" : "Total Alerts", value: ANOMALIES.length, color: "#22D3EE", icon: "ri-alert-line" },
+          { label: isAr ? "إجمالي التنبيهات" : "Total Alerts", value: ANOMALIES.length, color: "#D4A84B", icon: "ri-alert-line" },
           { label: isAr ? "مفتوح" : "Open", value: ANOMALIES.filter(a => a.status === "open").length, color: "#F87171", icon: "ri-error-warning-line" },
           { label: isAr ? "قيد التحقيق" : "Investigating", value: ANOMALIES.filter(a => a.status === "investigating").length, color: "#FACC15", icon: "ri-search-eye-line" },
           { label: isAr ? "حرج" : "Critical", value: ANOMALIES.filter(a => a.severity === "critical").length, color: "#F87171", icon: "ri-alarm-warning-line" },
         ].map((stat) => (
-          <div key={stat.label} className="rounded-xl border p-4" style={{ background: "rgba(10,22,40,0.8)", borderColor: `${stat.color}20`, backdropFilter: "blur(12px)" }}>
+          <div key={stat.label} className="rounded-xl border p-4" style={{ background: "rgba(20,29,46,0.8)", borderColor: `${stat.color}20`, backdropFilter: "blur(12px)" }}>
             <div className="flex items-center gap-2 mb-2">
               <div className="w-7 h-7 flex items-center justify-center rounded-lg" style={{ background: `${stat.color}15` }}>
                 <i className={`${stat.icon} text-xs`} style={{ color: stat.color }} />
@@ -166,8 +166,8 @@ const UsageAnomalyPanel = ({ isAr, onCancel }: Props) => {
               <button key={anomaly.id} type="button" onClick={() => setSelectedId(isSelected ? null : anomaly.id)}
                 className="w-full rounded-xl border p-4 text-left cursor-pointer transition-all duration-200"
                 style={{
-                  background: isSelected ? `${color}08` : "rgba(10,22,40,0.8)",
-                  borderColor: isSelected ? `${color}40` : "rgba(34,211,238,0.1)",
+                  background: isSelected ? `${color}08` : "rgba(20,29,46,0.8)",
+                  borderColor: isSelected ? `${color}40` : "rgba(181,142,60,0.1)",
                   borderLeft: `3px solid ${color}`,
                   backdropFilter: "blur(12px)",
                 }}>
@@ -197,7 +197,7 @@ const UsageAnomalyPanel = ({ isAr, onCancel }: Props) => {
         {/* Detail panel */}
         <div className="lg:col-span-3">
           {selected ? (
-            <div className="rounded-2xl border p-6 sticky top-24" style={{ background: "rgba(10,22,40,0.9)", borderColor: `${severityColor(selected.severity)}30`, backdropFilter: "blur(16px)" }}>
+            <div className="rounded-2xl border p-6 sticky top-24" style={{ background: "rgba(20,29,46,0.9)", borderColor: `${severityColor(selected.severity)}30`, backdropFilter: "blur(16px)" }}>
               {/* Header */}
               <div className="flex items-start justify-between gap-3 mb-5">
                 <div className="flex items-center gap-3">
@@ -270,9 +270,9 @@ const UsageAnomalyPanel = ({ isAr, onCancel }: Props) => {
               </div>
             </div>
           ) : (
-            <div className="rounded-2xl border p-8 flex flex-col items-center justify-center text-center h-full min-h-[300px]" style={{ background: "rgba(10,22,40,0.5)", borderColor: "rgba(34,211,238,0.08)", backdropFilter: "blur(12px)" }}>
-              <div className="w-14 h-14 flex items-center justify-center rounded-2xl mb-4" style={{ background: "rgba(34,211,238,0.08)", border: "1px solid rgba(34,211,238,0.15)" }}>
-                <i className="ri-bar-chart-grouped-line text-cyan-400 text-2xl" />
+            <div className="rounded-2xl border p-8 flex flex-col items-center justify-center text-center h-full min-h-[300px]" style={{ background: "rgba(20,29,46,0.5)", borderColor: "rgba(181,142,60,0.08)", backdropFilter: "blur(12px)" }}>
+              <div className="w-14 h-14 flex items-center justify-center rounded-2xl mb-4" style={{ background: "rgba(181,142,60,0.08)", border: "1px solid rgba(181,142,60,0.15)" }}>
+                <i className="ri-bar-chart-grouped-line text-gold-400 text-2xl" />
               </div>
               <p className="text-gray-400 text-sm">{isAr ? "اختر تنبيهاً لعرض التفاصيل" : "Select an alert to view details"}</p>
             </div>
@@ -281,10 +281,10 @@ const UsageAnomalyPanel = ({ isAr, onCancel }: Props) => {
       </div>
 
       {/* Detection rules */}
-      <div className="rounded-2xl border p-5" style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.12)", backdropFilter: "blur(12px)" }}>
+      <div className="rounded-2xl border p-5" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
         <div className="flex items-center gap-3 mb-4">
-          <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(34,211,238,0.1)", border: "1px solid rgba(34,211,238,0.2)" }}>
-            <i className="ri-cpu-line text-cyan-400 text-sm" />
+          <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+            <i className="ri-cpu-line text-gold-400 text-sm" />
           </div>
           <h3 className="text-white font-bold text-sm">{isAr ? "قواعد الكشف التلقائي" : "Auto-Detection Rules"}</h3>
         </div>
@@ -295,7 +295,7 @@ const UsageAnomalyPanel = ({ isAr, onCancel }: Props) => {
             { icon: "ri-user-shared-line", label: isAr ? "حسابات متعددة لنفس الشخص في عناوين مختلفة" : "Multiple accounts same person, different addresses", color: "#FACC15" },
             { icon: "ri-ghost-line", label: isAr ? "توصيل في عنوان بدون ساكن مسجّل" : "Connection at address with no registered occupant", color: "#F87171" },
             { icon: "ri-store-line", label: isAr ? "نمط استهلاك تجاري على تعرفة سكنية" : "Commercial usage pattern on residential tariff", color: "#FB923C" },
-            { icon: "ri-links-line", label: isAr ? "اتصال إنترنت = مرساة البصمة الرقمية" : "Internet connection = digital footprint anchor", color: "#22D3EE" },
+            { icon: "ri-links-line", label: isAr ? "اتصال إنترنت = مرساة البصمة الرقمية" : "Internet connection = digital footprint anchor", color: "#D4A84B" },
           ].map((rule) => (
             <div key={rule.label} className="flex items-start gap-2.5 px-3 py-2.5 rounded-lg" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
               <div className="w-6 h-6 flex items-center justify-center rounded flex-shrink-0 mt-0.5" style={{ background: `${rule.color}12` }}>

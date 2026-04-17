@@ -30,17 +30,17 @@ const ImportDeclarationForm = ({ isAr, onSubmit }: Props) => {
     }, 1200);
   };
 
-  const inputClass = "w-full bg-transparent border rounded-lg px-3 py-2.5 text-white text-sm font-['Inter'] focus:outline-none focus:border-cyan-400 transition-colors placeholder-gray-600";
-  const inputStyle = { borderColor: "rgba(34,211,238,0.2)", background: "rgba(255,255,255,0.03)" };
+  const inputClass = "w-full bg-transparent border rounded-lg px-3 py-2.5 text-white text-sm font-['Inter'] focus:outline-none focus:border-gold-400 transition-colors placeholder-gray-600";
+  const inputStyle = { borderColor: "rgba(181,142,60,0.2)", background: "rgba(255,255,255,0.03)" };
   const labelClass = "block text-gray-400 text-xs font-['Inter'] mb-1.5";
   const sectionClass = "rounded-xl p-5 space-y-4";
-  const sectionStyle = { background: "rgba(10,22,40,0.6)", border: "1px solid rgba(34,211,238,0.1)" };
+  const sectionStyle = { background: "rgba(20,29,46,0.6)", border: "1px solid rgba(181,142,60,0.1)" };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
       {/* Declaration Header */}
       <div className={sectionClass} style={sectionStyle}>
-        <h3 className="text-cyan-400 text-sm font-semibold font-['Inter'] flex items-center gap-2">
+        <h3 className="text-gold-400 text-sm font-semibold font-['Inter'] flex items-center gap-2">
           <i className="ri-file-list-3-line" />
           {isAr ? "بيانات الإقرار" : "Declaration Details"}
         </h3>
@@ -73,7 +73,7 @@ const ImportDeclarationForm = ({ isAr, onSubmit }: Props) => {
 
       {/* Goods Information */}
       <div className={sectionClass} style={sectionStyle}>
-        <h3 className="text-cyan-400 text-sm font-semibold font-['Inter'] flex items-center gap-2">
+        <h3 className="text-gold-400 text-sm font-semibold font-['Inter'] flex items-center gap-2">
           <i className="ri-box-3-line" />
           {isAr ? "معلومات البضائع" : "Goods Information"}
         </h3>
@@ -92,16 +92,16 @@ const ImportDeclarationForm = ({ isAr, onSubmit }: Props) => {
           />
           {showHsDropdown && hsSearch && (
             <div className="absolute z-20 w-full mt-1 rounded-xl overflow-hidden shadow-2xl"
-              style={{ background: "#0A1628", border: "1px solid rgba(34,211,238,0.2)" }}>
+              style={{ background: "#141D2E", border: "1px solid rgba(181,142,60,0.2)" }}>
               {filteredHs.slice(0, 6).map((h) => (
                 <button
                   key={h.code}
                   type="button"
-                  className="w-full text-left px-4 py-3 hover:bg-cyan-400/10 transition-colors border-b"
-                  style={{ borderColor: "rgba(34,211,238,0.06)" }}
+                  className="w-full text-left px-4 py-3 hover:bg-gold-400/10 transition-colors border-b"
+                  style={{ borderColor: "rgba(181,142,60,0.06)" }}
                   onClick={() => { setSelectedHs(h); setHsSearch(h.code); setShowHsDropdown(false); }}
                 >
-                  <span className="text-cyan-400 text-sm font-bold font-['JetBrains_Mono']">{h.code}</span>
+                  <span className="text-gold-400 text-sm font-bold font-['JetBrains_Mono']">{h.code}</span>
                   <span className="text-gray-300 text-sm font-['Inter'] ml-2">{h.descriptionEn}</span>
                   <span className="text-gray-600 text-xs font-['Inter'] ml-2">({h.category})</span>
                 </button>
@@ -110,8 +110,8 @@ const ImportDeclarationForm = ({ isAr, onSubmit }: Props) => {
           )}
           {selectedHs && (
             <div className="mt-2 px-3 py-2 rounded-lg text-xs font-['Inter']"
-              style={{ background: "rgba(34,211,238,0.08)", border: "1px solid rgba(34,211,238,0.2)" }}>
-              <span className="text-cyan-400 font-bold">{selectedHs.code}</span>
+              style={{ background: "rgba(181,142,60,0.08)", border: "1px solid rgba(181,142,60,0.2)" }}>
+              <span className="text-gold-400 font-bold">{selectedHs.code}</span>
               <span className="text-gray-300 ml-2">{selectedHs.descriptionEn}</span>
               {isAr && <span className="text-gray-400 ml-2 font-['Noto_Sans_Arabic']"> — {selectedHs.descriptionAr}</span>}
             </div>
@@ -178,7 +178,7 @@ const ImportDeclarationForm = ({ isAr, onSubmit }: Props) => {
 
       {/* Transport Details */}
       <div className={sectionClass} style={sectionStyle}>
-        <h3 className="text-cyan-400 text-sm font-semibold font-['Inter'] flex items-center gap-2">
+        <h3 className="text-gold-400 text-sm font-semibold font-['Inter'] flex items-center gap-2">
           <i className="ri-ship-line" />
           {isAr ? "تفاصيل النقل" : "Transport Details"}
         </h3>
@@ -209,7 +209,7 @@ const ImportDeclarationForm = ({ isAr, onSubmit }: Props) => {
 
       {/* Importer Details */}
       <div className={sectionClass} style={sectionStyle}>
-        <h3 className="text-cyan-400 text-sm font-semibold font-['Inter'] flex items-center gap-2">
+        <h3 className="text-gold-400 text-sm font-semibold font-['Inter'] flex items-center gap-2">
           <i className="ri-building-line" />
           {isAr ? "بيانات المستورد" : "Importer Details"}
         </h3>
@@ -221,9 +221,9 @@ const ImportDeclarationForm = ({ isAr, onSubmit }: Props) => {
               onClick={() => setImporterType(t)}
               className="px-4 py-2 rounded-lg text-sm font-['Inter'] font-medium transition-all cursor-pointer whitespace-nowrap"
               style={{
-                background: importerType === t ? "#22D3EE" : "rgba(34,211,238,0.08)",
-                color: importerType === t ? "#060D1A" : "#9CA3AF",
-                border: `1px solid ${importerType === t ? "#22D3EE" : "rgba(34,211,238,0.15)"}`,
+                background: importerType === t ? "#D4A84B" : "rgba(181,142,60,0.08)",
+                color: importerType === t ? "#0B1220" : "#9CA3AF",
+                border: `1px solid ${importerType === t ? "#D4A84B" : "rgba(181,142,60,0.15)"}`,
               }}
             >
               {t === "company"
@@ -269,7 +269,7 @@ const ImportDeclarationForm = ({ isAr, onSubmit }: Props) => {
 
       {/* Duties & Payment */}
       <div className={sectionClass} style={sectionStyle}>
-        <h3 className="text-cyan-400 text-sm font-semibold font-['Inter'] flex items-center gap-2">
+        <h3 className="text-gold-400 text-sm font-semibold font-['Inter'] flex items-center gap-2">
           <i className="ri-money-dollar-circle-line" />
           {isAr ? "الرسوم والدفع" : "Duties & Payment"}
         </h3>
@@ -299,7 +299,7 @@ const ImportDeclarationForm = ({ isAr, onSubmit }: Props) => {
 
       {/* Inspection */}
       <div className={sectionClass} style={sectionStyle}>
-        <h3 className="text-cyan-400 text-sm font-semibold font-['Inter'] flex items-center gap-2">
+        <h3 className="text-gold-400 text-sm font-semibold font-['Inter'] flex items-center gap-2">
           <i className="ri-search-eye-line" />
           {isAr ? "الفحص والتفتيش" : "Inspection"}
         </h3>
@@ -342,7 +342,7 @@ const ImportDeclarationForm = ({ isAr, onSubmit }: Props) => {
         <button
           type="button"
           className="px-6 py-2.5 rounded-lg text-sm font-['Inter'] font-medium cursor-pointer whitespace-nowrap transition-all"
-          style={{ border: "1px solid rgba(34,211,238,0.3)", color: "#22D3EE", background: "transparent" }}
+          style={{ border: "1px solid rgba(181,142,60,0.3)", color: "#D4A84B", background: "transparent" }}
         >
           {isAr ? "حفظ مسودة" : "Save Draft"}
         </button>
@@ -350,7 +350,7 @@ const ImportDeclarationForm = ({ isAr, onSubmit }: Props) => {
           type="submit"
           disabled={submitting}
           className="px-8 py-2.5 rounded-lg text-sm font-['Inter'] font-bold cursor-pointer whitespace-nowrap transition-all flex items-center gap-2"
-          style={{ background: submitting ? "rgba(34,211,238,0.5)" : "#22D3EE", color: "#060D1A" }}
+          style={{ background: submitting ? "rgba(181,142,60,0.5)" : "#D4A84B", color: "#0B1220" }}
         >
           {submitting ? (
             <><i className="ri-loader-4-line animate-spin" />{isAr ? "جارٍ الإرسال..." : "Submitting..."}</>

@@ -108,7 +108,7 @@ const NewConnectionForm = ({ isAr, onCancel }: Props) => {
     setTimeout(() => { setSaving(false); setSubmitted(true); }, 1400);
   };
 
-  if (submitted) return <UtilConfirmation isAr={isAr} onReset={() => setSubmitted(false)} eventLabel="New Utility Connection" eventLabelAr="توصيل خدمة جديدة" eventColor="#22D3EE" />;
+  if (submitted) return <UtilConfirmation isAr={isAr} onReset={() => setSubmitted(false)} eventLabel="New Utility Connection" eventLabelAr="توصيل خدمة جديدة" eventColor="#D4A84B" />;
 
   const t = {
     eventInfo: isAr ? "معلومات الحدث" : "Event Information",
@@ -151,8 +151,8 @@ const NewConnectionForm = ({ isAr, onCancel }: Props) => {
   return (
     <div className="space-y-5">
       {/* Intelligence note */}
-      <div className="flex items-start gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(34,211,238,0.04)", borderColor: "rgba(34,211,238,0.15)" }}>
-        <i className="ri-lightbulb-flash-line text-cyan-400 text-sm mt-0.5 flex-shrink-0" />
+      <div className="flex items-start gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(181,142,60,0.04)", borderColor: "rgba(181,142,60,0.15)" }}>
+        <i className="ri-lightbulb-flash-line text-gold-400 text-sm mt-0.5 flex-shrink-0" />
         <p className="text-gray-400 text-xs">
           {isAr
             ? "توصيلات المرافق تكشف أين يعيش الشخص فعلياً — غالباً مختلف عن العنوان المسجّل. يتم التحقق المتقاطع مع بيانات إيجار البلدية وتسجيلات الفنادق."
@@ -196,7 +196,7 @@ const NewConnectionForm = ({ isAr, onCancel }: Props) => {
             {/* Address */}
             <div className="pt-2 border-t" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
               <p className="text-gray-400 text-xs font-semibold mb-3 flex items-center gap-1.5">
-                <i className="ri-map-pin-line text-cyan-400" />{t.address}
+                <i className="ri-map-pin-line text-gold-400" />{t.address}
               </p>
               <div className="space-y-3">
                 <div className="grid grid-cols-2 gap-3">
@@ -226,7 +226,7 @@ const NewConnectionForm = ({ isAr, onCancel }: Props) => {
                     <TextInput placeholder="MUN-AGR-XXXX" value={landlordRef} onChange={(e) => setLandlordRef(e.target.value)} className="font-['JetBrains_Mono']" />
                     {landlordRef && (
                       <div className="absolute right-3 top-1/2 -translate-y-1/2">
-                        <i className="ri-links-line text-cyan-400 text-xs" />
+                        <i className="ri-links-line text-gold-400 text-xs" />
                       </div>
                     )}
                   </div>

@@ -88,9 +88,9 @@ const DisconnectionForm = ({ isAr, onCancel }: Props) => {
               <TextInput placeholder="ACC-XXXX-XXXX" value={accountNumber} onChange={(e) => setAccountNumber(e.target.value)} className="font-['JetBrains_Mono'] flex-1" />
               <button type="button" onClick={handleLookup}
                 className="flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap"
-                style={{ background: "#22D3EE", color: "#060D1A" }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#06B6D4"; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#22D3EE"; }}>
+                style={{ background: "#D4A84B", color: "#0B1220" }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C99C48"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#D4A84B"; }}>
                 {lookingUp ? <i className="ri-loader-4-line animate-spin" /> : <i className="ri-search-line" />}
                 {isAr ? "بحث" : "Lookup"}
               </button>
@@ -98,14 +98,14 @@ const DisconnectionForm = ({ isAr, onCancel }: Props) => {
           </FormField>
 
           {accountInfo && (
-            <div className="rounded-xl border p-4" style={{ background: "rgba(10,22,40,0.6)", borderColor: "rgba(34,211,238,0.15)" }}>
+            <div className="rounded-xl border p-4" style={{ background: "rgba(20,29,46,0.6)", borderColor: "rgba(181,142,60,0.15)" }}>
               <div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
                 {[
                   { label: isAr ? "صاحب الحساب" : "Account Holder", value: accountInfo.holderName, color: "#FFFFFF" },
-                  { label: isAr ? "نوع الخدمة" : "Service Type", value: accountInfo.serviceType, color: "#22D3EE" },
+                  { label: isAr ? "نوع الخدمة" : "Service Type", value: accountInfo.serviceType, color: "#D4A84B" },
                   { label: isAr ? "المزود" : "Provider", value: accountInfo.provider, color: "#D1D5DB" },
                   { label: isAr ? "العنوان" : "Address", value: accountInfo.address, color: "#D1D5DB" },
-                  { label: isAr ? "رقم العداد" : "Meter Number", value: accountInfo.meterNumber, color: "#22D3EE" },
+                  { label: isAr ? "رقم العداد" : "Meter Number", value: accountInfo.meterNumber, color: "#D4A84B" },
                   { label: isAr ? "الرصيد المستحق" : "Outstanding Balance", value: `${accountInfo.outstandingBalance} LCY`, color: accountInfo.outstandingBalance > 0 ? "#F87171" : "#4ADE80" },
                 ].map((item) => (
                   <div key={item.label}>
@@ -157,7 +157,7 @@ const DisconnectionForm = ({ isAr, onCancel }: Props) => {
               onChange={(e) => setNotes(e.target.value)}
               className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none resize-none font-['Inter']"
               style={{ background: "#0F1923", border: "1px solid rgba(255,255,255,0.08)" }}
-              onFocus={(e) => { e.target.style.borderColor = "#22D3EE"; }}
+              onFocus={(e) => { e.target.style.borderColor = "#D4A84B"; }}
               onBlur={(e) => { e.target.style.borderColor = "rgba(255,255,255,0.08)"; }}
             />
           </FormField>
@@ -182,7 +182,7 @@ const DisconnectionForm = ({ isAr, onCancel }: Props) => {
         </button>
         <button type="button" onClick={handleSubmit} disabled={!confirmed || saving}
           className="flex items-center gap-2 px-6 py-2.5 rounded-lg text-sm font-bold cursor-pointer whitespace-nowrap disabled:opacity-40"
-          style={{ background: "#F87171", color: "#060D1A" }}
+          style={{ background: "#F87171", color: "#0B1220" }}
           onMouseEnter={(e) => { if (confirmed) (e.currentTarget as HTMLButtonElement).style.background = "#EF4444"; }}
           onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#F87171"; }}>
           {saving ? <i className="ri-loader-4-line animate-spin" /> : <i className="ri-shut-down-line" />}

@@ -91,10 +91,10 @@ const RiskAssessmentPage = () => {
   ];
 
   return (
-    <div className="min-h-screen font-['Inter']" style={{ background: "#060D1A" }} dir={isAr ? "rtl" : "ltr"}>
+    <div className="min-h-screen font-['Inter']" style={{ background: "#0B1220" }} dir={isAr ? "rtl" : "ltr"}>
       {/* Grid texture */}
       <div className="fixed inset-0 pointer-events-none" style={{
-        backgroundImage: `linear-gradient(rgba(34,211,238,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.025) 1px, transparent 1px)`,
+        backgroundImage: `linear-gradient(rgba(181,142,60,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,0.025) 1px, transparent 1px)`,
         backgroundSize: "40px 40px"
       }} />
 
@@ -111,7 +111,7 @@ const RiskAssessmentPage = () => {
 
       {/* Header */}
       <header className="sticky top-0 z-40 flex items-center justify-between px-6 py-3 border-b"
-        style={{ background: "rgba(6,13,26,0.97)", borderColor: "rgba(34,211,238,0.12)", backdropFilter: "blur(12px)" }}>
+        style={{ background: "rgba(11,18,32,0.97)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
         <div className="flex items-center gap-4">
           <button type="button" onClick={() => navigate("/dashboard")}
             className="flex items-center gap-2 px-3 py-1.5 rounded-lg border text-sm font-semibold cursor-pointer whitespace-nowrap"
@@ -126,7 +126,7 @@ const RiskAssessmentPage = () => {
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-cyan-400 font-black text-base tracking-wide">AMEEN</span>
+                <span className="text-gold-400 font-black text-base tracking-wide">AMEEN</span>
                 <span className="text-white font-bold text-sm">{isAr ? "تقييم المخاطر" : "Risk Assessment"}</span>
                 <span className="px-2 py-0.5 rounded-full text-xs font-bold"
                   style={{ background: "rgba(248,113,113,0.15)", color: "#F87171", border: "1px solid rgba(248,113,113,0.3)" }}>
@@ -140,8 +140,8 @@ const RiskAssessmentPage = () => {
 
         <div className="flex items-center gap-3">
           <div className="hidden lg:flex flex-col items-end px-3 py-1.5 rounded-lg border"
-            style={{ background: "rgba(34,211,238,0.04)", borderColor: "rgba(34,211,238,0.12)" }}>
-            <span className="text-cyan-400 text-sm font-black font-['JetBrains_Mono']">{timeStr}</span>
+            style={{ background: "rgba(181,142,60,0.04)", borderColor: "rgba(181,142,60,0.12)" }}>
+            <span className="text-gold-400 text-sm font-black font-['JetBrains_Mono']">{timeStr}</span>
             <span className="text-gray-600 text-xs font-['JetBrains_Mono']">{dateStr}</span>
           </div>
           {pendingPersons.length > 0 && (
@@ -156,14 +156,14 @@ const RiskAssessmentPage = () => {
 
       {/* Tab bar */}
       <div className="sticky top-[89px] z-30 flex items-center gap-1 px-6 py-2 border-b overflow-x-auto"
-        style={{ background: "rgba(6,13,26,0.95)", borderColor: "rgba(34,211,238,0.08)", backdropFilter: "blur(12px)" }}>
+        style={{ background: "rgba(11,18,32,0.95)", borderColor: "rgba(181,142,60,0.08)", backdropFilter: "blur(12px)" }}>
         {TABS.map((tab) => (
           <button key={tab.id} type="button" onClick={() => setActiveTab(tab.id)}
             className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap transition-all flex-shrink-0"
             style={{
-              background: activeTab === tab.id ? "rgba(34,211,238,0.12)" : "transparent",
-              border: `1px solid ${activeTab === tab.id ? "rgba(34,211,238,0.25)" : "transparent"}`,
-              color: activeTab === tab.id ? "#22D3EE" : "#6B7280",
+              background: activeTab === tab.id ? "rgba(181,142,60,0.12)" : "transparent",
+              border: `1px solid ${activeTab === tab.id ? "rgba(181,142,60,0.25)" : "transparent"}`,
+              color: activeTab === tab.id ? "#D4A84B" : "#6B7280",
             }}>
             <i className={`${tab.icon} text-xs`} />
             {isAr ? tab.labelAr : tab.label}
@@ -195,7 +195,7 @@ const RiskAssessmentPage = () => {
               {/* Risk filter */}
               <div className="flex items-center gap-1">
                 {([
-                  { id: "all",      label: isAr ? "الكل" : "All",       color: "#22D3EE" },
+                  { id: "all",      label: isAr ? "الكل" : "All",       color: "#D4A84B" },
                   { id: "critical", label: isAr ? "حرج" : "Critical",   color: "#F87171" },
                   { id: "high",     label: isAr ? "عالٍ" : "High",      color: "#FB923C" },
                   { id: "medium",   label: isAr ? "متوسط" : "Medium",   color: "#FACC15" },
@@ -218,12 +218,12 @@ const RiskAssessmentPage = () => {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {[
                 { label: isAr ? "معلق" : "Pending Review",  value: pendingPersons.length,   color: "#F87171", icon: "ri-time-line" },
-                { label: isAr ? "مؤكد" : "Confirmed",       value: confirmedPersons.length, color: "#22D3EE", icon: "ri-checkbox-circle-line" },
+                { label: isAr ? "مؤكد" : "Confirmed",       value: confirmedPersons.length, color: "#D4A84B", icon: "ri-checkbox-circle-line" },
                 { label: isAr ? "مرفوض" : "Dismissed",      value: dismissedPersons.length, color: "#4ADE80", icon: "ri-close-circle-line" },
                 { label: isAr ? "إجمالي" : "Total Assessed", value: persons.length,          color: "#A78BFA", icon: "ri-shield-line" },
               ].map((s) => (
                 <div key={s.label} className="rounded-xl border p-4 flex items-center gap-3"
-                  style={{ background: "rgba(10,22,40,0.8)", borderColor: `${s.color}20`, backdropFilter: "blur(12px)" }}>
+                  style={{ background: "rgba(20,29,46,0.8)", borderColor: `${s.color}20`, backdropFilter: "blur(12px)" }}>
                   <div className="w-8 h-8 flex items-center justify-center rounded-lg flex-shrink-0"
                     style={{ background: `${s.color}12`, border: `1px solid ${s.color}20` }}>
                     <i className={`${s.icon} text-sm`} style={{ color: s.color }} />
@@ -240,7 +240,7 @@ const RiskAssessmentPage = () => {
             <div className="space-y-3">
               {pendingPersons.length === 0 && (
                 <div className="rounded-2xl border p-10 flex flex-col items-center gap-3"
-                  style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.08)" }}>
+                  style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.08)" }}>
                   <i className="ri-shield-check-line text-green-400 text-3xl" />
                   <p className="text-white font-bold">{isAr ? "لا توجد تنبيهات معلقة" : "No pending flags"}</p>
                   <p className="text-gray-500 text-sm">{isAr ? "جميع الأحداث تمت مراجعتها" : "All events have been reviewed"}</p>
@@ -252,7 +252,7 @@ const RiskAssessmentPage = () => {
                   <div key={person.id}
                     onClick={() => setSelectedPerson(person)}
                     className="rounded-2xl border cursor-pointer transition-all overflow-hidden group"
-                    style={{ background: "rgba(10,22,40,0.8)", borderColor: `${scoreColor}20`, backdropFilter: "blur(12px)", borderLeft: `4px solid ${scoreColor}` }}>
+                    style={{ background: "rgba(20,29,46,0.8)", borderColor: `${scoreColor}20`, backdropFilter: "blur(12px)", borderLeft: `4px solid ${scoreColor}` }}>
                     <div className="flex items-center gap-4 px-5 py-4 flex-wrap">
                       {/* Photo */}
                       <div className="relative flex-shrink-0">
@@ -260,7 +260,7 @@ const RiskAssessmentPage = () => {
                           className="w-12 h-12 rounded-xl object-cover object-top"
                           style={{ border: `2px solid ${scoreColor}30` }} />
                         <div className="absolute -bottom-1 -right-1 w-4 h-4 flex items-center justify-center rounded-full"
-                          style={{ background: scoreColor, border: "2px solid #060D1A" }}>
+                          style={{ background: scoreColor, border: "2px solid #0B1220" }}>
                           <i className="ri-shield-cross-line text-white" style={{ fontSize: "7px" }} />
                         </div>
                       </div>
@@ -314,7 +314,7 @@ const RiskAssessmentPage = () => {
                       </div>
 
                       {/* Arrow */}
-                      <i className="ri-arrow-right-s-line text-gray-600 text-lg flex-shrink-0 group-hover:text-cyan-400 transition-colors" />
+                      <i className="ri-arrow-right-s-line text-gray-600 text-lg flex-shrink-0 group-hover:text-gold-400 transition-colors" />
                     </div>
                   </div>
                 );

@@ -42,9 +42,9 @@ const CrossStreamLocationCorrelation = () => {
               onClick={() => setActiveTab(tab)}
               className="flex-1 py-1.5 rounded-md text-xs font-['Inter'] font-medium transition-all cursor-pointer whitespace-nowrap"
               style={activeTab === tab ? {
-                background: "rgba(34,211,238,0.15)",
-                color: "#22D3EE",
-                border: "1px solid rgba(34,211,238,0.3)",
+                background: "rgba(181,142,60,0.15)",
+                color: "#D4A84B",
+                border: "1px solid rgba(181,142,60,0.3)",
               } : { color: "#6B7280" }}
             >
               {tab === "correlations" ? (
@@ -67,8 +67,8 @@ const CrossStreamLocationCorrelation = () => {
                   onClick={() => setSelectedCorrelation(isSelected ? null : corr)}
                   className="w-full text-left rounded-xl p-3 transition-all cursor-pointer"
                   style={{
-                    background: isSelected ? "rgba(34,211,238,0.06)" : "rgba(255,255,255,0.02)",
-                    border: `1px solid ${isSelected ? "rgba(34,211,238,0.25)" : "rgba(255,255,255,0.06)"}`,
+                    background: isSelected ? "rgba(181,142,60,0.06)" : "rgba(255,255,255,0.02)",
+                    border: `1px solid ${isSelected ? "rgba(181,142,60,0.25)" : "rgba(255,255,255,0.06)"}`,
                   }}
                 >
                   <div className="flex items-start justify-between mb-2">
@@ -86,7 +86,7 @@ const CrossStreamLocationCorrelation = () => {
                       </span>
                     </div>
                   </div>
-                  <p className="text-xs font-['Inter'] mb-2" style={{ color: "#22D3EE" }}>{corr.correlationType}</p>
+                  <p className="text-xs font-['Inter'] mb-2" style={{ color: "#D4A84B" }}>{corr.correlationType}</p>
                   <div className="flex flex-wrap gap-1">
                     {corr.streams.map((s) => (
                       <span key={s.name} className="w-5 h-5 flex items-center justify-center rounded-full text-xs"
@@ -108,7 +108,7 @@ const CrossStreamLocationCorrelation = () => {
                   key={f}
                   onClick={() => setAlertFilter(f)}
                   className={`px-2 py-0.5 rounded-full text-xs font-['Inter'] cursor-pointer transition-all whitespace-nowrap ${
-                    alertFilter === f ? "bg-cyan-400/20 text-cyan-400 border border-cyan-400/30" : "text-gray-500 border border-white/10 hover:border-white/20"
+                    alertFilter === f ? "bg-gold-400/20 text-gold-400 border border-gold-400/30" : "text-gray-500 border border-white/10 hover:border-white/20"
                   }`}
                 >
                   {f.charAt(0).toUpperCase() + f.slice(1)}
@@ -162,12 +162,12 @@ const CrossStreamLocationCorrelation = () => {
         {selectedCorrelation ? (
           <div className="h-full flex flex-col gap-4">
             {/* Header */}
-            <div className="rounded-xl p-4" style={{ background: "#0D1B2E", border: "1px solid rgba(34,211,238,0.15)" }}>
+            <div className="rounded-xl p-4" style={{ background: "#0D1B2E", border: "1px solid rgba(181,142,60,0.15)" }}>
               <div className="flex items-start justify-between mb-3">
                 <div>
                   <div className="flex items-center gap-2 mb-1">
-                    <i className="ri-git-branch-line text-cyan-400" />
-                    <span className="text-cyan-400 text-xs font-['JetBrains_Mono'] uppercase tracking-wider">Cross-Stream Correlation</span>
+                    <i className="ri-git-branch-line text-gold-400" />
+                    <span className="text-gold-400 text-xs font-['JetBrains_Mono'] uppercase tracking-wider">Cross-Stream Correlation</span>
                   </div>
                   <h3 className="text-white font-['Inter'] font-bold text-base">{selectedCorrelation.subjectName}</h3>
                   <p className="text-gray-400 text-sm font-['Inter']">{selectedCorrelation.correlationType}</p>
@@ -191,11 +191,11 @@ const CrossStreamLocationCorrelation = () => {
             </div>
 
             {/* Stream timeline */}
-            <div className="rounded-xl p-4 flex-1" style={{ background: "#0D1B2E", border: "1px solid rgba(34,211,238,0.1)" }}>
+            <div className="rounded-xl p-4 flex-1" style={{ background: "#0D1B2E", border: "1px solid rgba(181,142,60,0.1)" }}>
               <p className="text-gray-400 text-xs font-['JetBrains_Mono'] uppercase tracking-wider mb-4">Stream Event Timeline</p>
               <div className="relative">
                 {/* Vertical line */}
-                <div className="absolute left-5 top-0 bottom-0 w-px" style={{ background: "rgba(34,211,238,0.15)" }} />
+                <div className="absolute left-5 top-0 bottom-0 w-px" style={{ background: "rgba(181,142,60,0.15)" }} />
                 <div className="space-y-4">
                   {selectedCorrelation.streams.map((stream, i) => (
                     <div key={i} className="flex items-start gap-4 relative">
@@ -221,7 +221,7 @@ const CrossStreamLocationCorrelation = () => {
             {/* Actions */}
             <div className="flex gap-2">
               <button className="flex-1 py-2.5 rounded-lg text-xs font-['Inter'] font-semibold cursor-pointer transition-all hover:opacity-80"
-                style={{ background: "rgba(34,211,238,0.15)", color: "#22D3EE", border: "1px solid rgba(34,211,238,0.3)" }}>
+                style={{ background: "rgba(181,142,60,0.15)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.3)" }}>
                 <i className="ri-user-search-line mr-1.5" />Open Person 360°
               </button>
               <button className="flex-1 py-2.5 rounded-lg text-xs font-['Inter'] font-semibold cursor-pointer transition-all hover:opacity-80"
@@ -235,7 +235,7 @@ const CrossStreamLocationCorrelation = () => {
             </div>
           </div>
         ) : (
-          <div className="h-full flex items-center justify-center rounded-xl" style={{ background: "#0D1B2E", border: "1px solid rgba(34,211,238,0.08)" }}>
+          <div className="h-full flex items-center justify-center rounded-xl" style={{ background: "#0D1B2E", border: "1px solid rgba(181,142,60,0.08)" }}>
             <div className="text-center">
               <i className="ri-git-branch-line text-4xl text-gray-700 mb-3 block" />
               <p className="text-gray-500 text-sm font-['Inter']">Select a correlation to view details</p>

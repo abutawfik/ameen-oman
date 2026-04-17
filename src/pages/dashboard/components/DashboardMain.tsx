@@ -20,16 +20,16 @@ const DashboardMain = ({ entityType, isAr }: Props) => {
   ];
 
   const summaryStats = [
-    { labelEn: "Events Submitted", labelAr: "أحداث مُرسلة",  value: "2,847", color: "#22D3EE", icon: "ri-send-plane-line" },
+    { labelEn: "Events Submitted", labelAr: "أحداث مُرسلة",  value: "2,847", color: "#D4A84B", icon: "ri-send-plane-line" },
     { labelEn: "Accepted",         labelAr: "مقبولة",         value: "2,791", color: "#4ADE80", icon: "ri-checkbox-circle-line" },
     { labelEn: "Pending",          labelAr: "معلقة",          value: "43",    color: "#FACC15", icon: "ri-time-line" },
     { labelEn: "Rejected",         labelAr: "مرفوضة",         value: "13",    color: "#F87171", icon: "ri-close-circle-line" },
   ];
 
   return (
-    <main className="flex-1 overflow-y-auto p-4 md:p-6" style={{ background: "#060D1A" }}>
+    <main className="flex-1 overflow-y-auto p-4 md:p-6" style={{ background: "#0B1220" }}>
       {/* Grid bg */}
-      <div className="fixed inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: `linear-gradient(rgba(34,211,238,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.1) 1px, transparent 1px)`, backgroundSize: "60px 60px" }} />
+      <div className="fixed inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: `linear-gradient(rgba(181,142,60,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,0.1) 1px, transparent 1px)`, backgroundSize: "60px 60px" }} />
 
       <div className="relative z-10 max-w-[1400px] mx-auto">
         {/* Page header */}
@@ -49,16 +49,16 @@ const DashboardMain = ({ entityType, isAr }: Props) => {
           </div>
 
           {/* Date range picker */}
-          <div className="flex items-center gap-1 p-1 rounded-xl" style={{ background: "rgba(10,22,40,0.8)", border: "1px solid rgba(34,211,238,0.12)" }}>
+          <div className="flex items-center gap-1 p-1 rounded-xl" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.12)" }}>
             {dateRanges.map((dr) => (
               <button
                 key={dr.key}
                 onClick={() => setDateRange(dr.key)}
                 className="px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer whitespace-nowrap font-['Inter']"
                 style={{
-                  background: dateRange === dr.key ? "rgba(34,211,238,0.15)" : "transparent",
-                  color: dateRange === dr.key ? "#22D3EE" : "#6B7280",
-                  border: dateRange === dr.key ? "1px solid rgba(34,211,238,0.3)" : "1px solid transparent",
+                  background: dateRange === dr.key ? "rgba(181,142,60,0.15)" : "transparent",
+                  color: dateRange === dr.key ? "#D4A84B" : "#6B7280",
+                  border: dateRange === dr.key ? "1px solid rgba(181,142,60,0.3)" : "1px solid transparent",
                 }}
               >
                 {isAr ? dr.labelAr : dr.labelEn}
@@ -71,7 +71,7 @@ const DashboardMain = ({ entityType, isAr }: Props) => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
           {summaryStats.map((s) => (
             <div key={s.labelEn} className="flex items-center gap-3 p-3 rounded-xl border"
-              style={{ background: "rgba(10,22,40,0.6)", borderColor: "rgba(255,255,255,0.06)" }}>
+              style={{ background: "rgba(20,29,46,0.6)", borderColor: "rgba(255,255,255,0.06)" }}>
               <div className="w-8 h-8 flex items-center justify-center rounded-lg flex-shrink-0"
                 style={{ background: s.color + "12", border: `1px solid ${s.color}25` }}>
                 <i className={`${s.icon} text-sm`} style={{ color: s.color }} />
@@ -87,7 +87,7 @@ const DashboardMain = ({ entityType, isAr }: Props) => {
         {/* KPI Cards */}
         <div className="mb-6">
           <div className="flex items-center gap-2 mb-4">
-            <div className="w-1 h-5 rounded-full bg-cyan-400" />
+            <div className="w-1 h-5 rounded-full bg-gold-400" />
             <h2 className="text-white font-bold text-base font-['Inter']">
               {isAr ? "مؤشرات الأداء الرئيسية" : "Key Performance Indicators"}
             </h2>
@@ -99,7 +99,7 @@ const DashboardMain = ({ entityType, isAr }: Props) => {
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
           {/* Activity chart placeholder */}
           <div className="xl:col-span-2 rounded-xl border p-5"
-            style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.12)", backdropFilter: "blur(12px)" }}>
+            style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
             <div className="flex items-center justify-between mb-5">
               <div>
                 <h3 className="text-white font-bold text-sm font-['Inter']">
@@ -153,13 +153,13 @@ const DashboardMain = ({ entityType, isAr }: Props) => {
         </div>
 
         {/* Quick actions */}
-        <div className="mt-4 p-4 rounded-xl border" style={{ background: "rgba(10,22,40,0.6)", borderColor: "rgba(34,211,238,0.08)" }}>
+        <div className="mt-4 p-4 rounded-xl border" style={{ background: "rgba(20,29,46,0.6)", borderColor: "rgba(181,142,60,0.08)" }}>
           <div className="flex flex-wrap items-center gap-3">
             <span className="text-gray-500 text-xs font-['JetBrains_Mono'] uppercase tracking-widest">
               {isAr ? "إجراءات سريعة" : "Quick Actions"}
             </span>
             {[
-              { icon: "ri-upload-cloud-2-line", labelEn: "Upload Batch File", labelAr: "رفع ملف دفعي", color: "#22D3EE" },
+              { icon: "ri-upload-cloud-2-line", labelEn: "Upload Batch File", labelAr: "رفع ملف دفعي", color: "#D4A84B" },
               { icon: "ri-file-download-line",  labelEn: "Export Report",     labelAr: "تصدير تقرير",  color: "#4ADE80" },
               { icon: "ri-refresh-line",         labelEn: "Sync Status",       labelAr: "مزامنة الحالة", color: "#FACC15" },
               { icon: "ri-customer-service-2-line", labelEn: "Contact Support", labelAr: "الدعم التقني", color: "#A78BFA" },

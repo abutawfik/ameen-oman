@@ -24,13 +24,13 @@ const DashboardPage = () => {
   }, [role]);
 
   return (
-    <div className="min-h-screen font-['Inter']" style={{ background: "#060D1A" }} dir={isAr ? "rtl" : "ltr"}>
+    <div className="min-h-screen font-['Inter']" style={{ background: "#0B1220" }} dir={isAr ? "rtl" : "ltr"}>
       {/* Subtle grid texture — matches the OSINT engine page look */}
       <div
         className="fixed inset-0 pointer-events-none"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(34,211,238,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.025) 1px, transparent 1px)",
+            "linear-gradient(rgba(181,142,60,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,0.025) 1px, transparent 1px)",
           backgroundSize: "40px 40px",
         }}
       />
@@ -39,21 +39,21 @@ const DashboardPage = () => {
       <div
         className="sticky top-0 z-30 flex items-center justify-between px-6 py-3 border-b"
         style={{
-          background: "rgba(6,13,26,0.92)",
-          borderColor: "rgba(34,211,238,0.08)",
+          background: "rgba(11,18,32,0.92)",
+          borderColor: "rgba(181,142,60,0.08)",
           backdropFilter: "blur(12px)",
         }}
       >
         <div className="flex items-center gap-3">
           <div
             className="w-9 h-9 flex items-center justify-center rounded-xl"
-            style={{ background: "rgba(34,211,238,0.1)", border: "2px solid rgba(34,211,238,0.3)" }}
+            style={{ background: "rgba(181,142,60,0.1)", border: "2px solid rgba(181,142,60,0.3)" }}
           >
-            <i className="ri-radar-line text-cyan-400 text-base" />
+            <i className="ri-radar-line text-gold-400 text-base" />
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-cyan-400 font-black text-base tracking-wide">AMEEN</span>
+              <span className="text-gold-400 font-black text-base tracking-wide">AMEEN</span>
               <span className="text-white font-bold text-sm">
                 {isAr ? "مركز قيادة محرّك المخاطر" : "Risk Engine Command Center"}
               </span>

@@ -17,7 +17,7 @@ const PRIORITY_FILTERS = [
   { key: 'critical', label: 'Critical', color: '#F87171' },
   { key: 'high',     label: 'High',     color: '#FB923C' },
   { key: 'medium',   label: 'Medium',   color: '#FACC15' },
-  { key: 'low',      label: 'Low',      color: '#22D3EE' },
+  { key: 'low',      label: 'Low',      color: '#D4A84B' },
 ];
 
 const STATUS_FILTERS = [
@@ -57,7 +57,7 @@ export default function PredictiveAnalyticsPage() {
   return (
     <div
       className="min-h-screen relative"
-      style={{ background: '#060D1A', fontFamily: "'Inter', sans-serif" }}
+      style={{ background: '#0B1220', fontFamily: "'Inter', sans-serif" }}
       dir={lang === 'ar' ? 'rtl' : 'ltr'}
     >
       {/* Grid texture */}
@@ -65,8 +65,8 @@ export default function PredictiveAnalyticsPage() {
         className="fixed inset-0 pointer-events-none"
         style={{
           backgroundImage: `
-            linear-gradient(rgba(34,211,238,0.03) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(34,211,238,0.03) 1px, transparent 1px)
+            linear-gradient(rgba(181,142,60,0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(181,142,60,0.03) 1px, transparent 1px)
           `,
           backgroundSize: '40px 40px',
         }}
@@ -84,15 +84,15 @@ export default function PredictiveAnalyticsPage() {
             <div className="flex items-center gap-3 mb-1">
               <div
                 className="w-10 h-10 rounded-xl flex items-center justify-center"
-                style={{ background: 'rgba(34,211,238,0.15)', border: '1px solid rgba(34,211,238,0.3)' }}
+                style={{ background: 'rgba(181,142,60,0.15)', border: '1px solid rgba(181,142,60,0.3)' }}
               >
-                <i className="ri-brain-line text-cyan-400 text-lg" />
+                <i className="ri-brain-line text-gold-400 text-lg" />
               </div>
               <div>
                 <h1 className="text-white font-bold text-xl leading-none">
                   {lang === 'en' ? 'Al-Ameen Predictive Intelligence' : 'الاستخبارات التنبؤية للأمين'}
                 </h1>
-                <p className="text-cyan-400 text-xs mt-0.5 font-mono">
+                <p className="text-gold-400 text-xs mt-0.5 font-mono">
                   {lang === 'en' ? 'Pattern Detection Engine & Alert Workflow' : 'محرك اكتشاف الأنماط وسير عمل التنبيهات'}
                 </p>
               </div>
@@ -101,15 +101,15 @@ export default function PredictiveAnalyticsPage() {
 
           <div className="flex items-center gap-3 flex-wrap">
             {/* Date range */}
-            <div className="flex items-center gap-1 p-1 rounded-lg border border-cyan-500/20" style={{ background: 'rgba(10,22,40,0.8)' }}>
+            <div className="flex items-center gap-1 p-1 rounded-lg border border-gold-500/20" style={{ background: 'rgba(20,29,46,0.8)' }}>
               {DATE_RANGES.map(r => (
                 <button
                   key={r}
                   onClick={() => setDateRange(r)}
                   className="px-3 py-1.5 rounded-md text-xs transition-all cursor-pointer whitespace-nowrap"
                   style={{
-                    background: dateRange === r ? '#22D3EE' : 'transparent',
-                    color: dateRange === r ? '#060D1A' : '#9CA3AF',
+                    background: dateRange === r ? '#D4A84B' : 'transparent',
+                    color: dateRange === r ? '#0B1220' : '#9CA3AF',
                     fontWeight: dateRange === r ? 600 : 400,
                   }}
                 >
@@ -121,8 +121,8 @@ export default function PredictiveAnalyticsPage() {
             {/* Lang toggle */}
             <button
               onClick={() => setLang(l => l === 'en' ? 'ar' : 'en')}
-              className="px-3 py-1.5 rounded-lg border border-cyan-500/20 text-cyan-400 text-xs cursor-pointer hover:bg-cyan-500/10 transition-colors whitespace-nowrap"
-              style={{ background: 'rgba(10,22,40,0.8)' }}
+              className="px-3 py-1.5 rounded-lg border border-gold-500/20 text-gold-400 text-xs cursor-pointer hover:bg-gold-500/10 transition-colors whitespace-nowrap"
+              style={{ background: 'rgba(20,29,46,0.8)' }}
             >
               {lang === 'en' ? 'عربي' : 'EN'}
             </button>
@@ -149,7 +149,7 @@ export default function PredictiveAnalyticsPage() {
               value: `${stats.activeRules} / ${stats.totalRules}`,
               sub: `${stats.totalRules - stats.activeRules} disabled`,
               icon: 'ri-git-branch-line',
-              color: '#22D3EE',
+              color: '#D4A84B',
             },
             {
               label: lang === 'en' ? 'Triggered Today' : 'مُفعَّلة اليوم',
@@ -183,8 +183,8 @@ export default function PredictiveAnalyticsPage() {
           ].map(stat => (
             <div
               key={stat.label}
-              className="rounded-xl border border-cyan-500/15 p-4"
-              style={{ background: 'rgba(10,22,40,0.8)' }}
+              className="rounded-xl border border-gold-500/15 p-4"
+              style={{ background: 'rgba(20,29,46,0.8)' }}
             >
               <div className="flex items-center justify-between mb-2">
                 <div
@@ -211,15 +211,15 @@ export default function PredictiveAnalyticsPage() {
 
         {/* Tier status strip */}
         <div
-          className="rounded-xl border border-cyan-500/15 p-4 mb-5 flex items-center gap-6 flex-wrap"
-          style={{ background: 'rgba(10,22,40,0.8)' }}
+          className="rounded-xl border border-gold-500/15 p-4 mb-5 flex items-center gap-6 flex-wrap"
+          style={{ background: 'rgba(20,29,46,0.8)' }}
         >
           <div className="flex items-center gap-2">
-            <i className="ri-shield-line text-cyan-400 text-sm" />
+            <i className="ri-shield-line text-gold-400 text-sm" />
             <span className="text-gray-400 text-xs font-medium uppercase tracking-wider">Alert Workflow Status</span>
           </div>
           {[
-            { tier: 1, label: 'Tier 1 — Queue', count: openAlerts, color: '#22D3EE', icon: 'ri-list-check-2' },
+            { tier: 1, label: 'Tier 1 — Queue', count: openAlerts, color: '#D4A84B', icon: 'ri-list-check-2' },
             { tier: 2, label: 'Tier 2 — Mobile Push', count: tier2Alerts, color: '#FB923C', icon: 'ri-smartphone-line' },
             { tier: 3, label: 'Tier 3 — Escalated', count: tier3Alerts, color: '#F87171', icon: 'ri-alarm-warning-line' },
           ].map((t, i) => (
@@ -250,7 +250,7 @@ export default function PredictiveAnalyticsPage() {
         </div>
 
         {/* Main tabs */}
-        <div className="flex items-center gap-1 mb-5 p-1 rounded-xl border border-cyan-500/15 w-fit" style={{ background: 'rgba(10,22,40,0.8)' }}>
+        <div className="flex items-center gap-1 mb-5 p-1 rounded-xl border border-gold-500/15 w-fit" style={{ background: 'rgba(20,29,46,0.8)' }}>
           {[
             { key: 'analytics', label: lang === 'en' ? 'Analytics Dashboard' : 'لوحة التحليلات', icon: 'ri-bar-chart-2-line' },
             { key: 'workflow',  label: lang === 'en' ? 'Alert Workflow' : 'سير عمل التنبيهات', icon: 'ri-flow-chart', badge: openAlerts },
@@ -260,8 +260,8 @@ export default function PredictiveAnalyticsPage() {
               onClick={() => setTab(t.key as Tab)}
               className="flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium transition-all cursor-pointer whitespace-nowrap"
               style={{
-                background: tab === t.key ? '#22D3EE' : 'transparent',
-                color: tab === t.key ? '#060D1A' : '#9CA3AF',
+                background: tab === t.key ? '#D4A84B' : 'transparent',
+                color: tab === t.key ? '#0B1220' : '#9CA3AF',
               }}
             >
               <i className={`${t.icon} text-sm`} />
@@ -270,8 +270,8 @@ export default function PredictiveAnalyticsPage() {
                 <span
                   className="w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold"
                   style={{
-                    background: tab === t.key ? '#060D1A' : '#F87171',
-                    color: tab === t.key ? '#22D3EE' : '#fff',
+                    background: tab === t.key ? '#0B1220' : '#F87171',
+                    color: tab === t.key ? '#D4A84B' : '#fff',
                   }}
                 >
                   {t.badge}
@@ -296,7 +296,7 @@ export default function PredictiveAnalyticsPage() {
         {tab === 'workflow' && (
           <div>
             {/* Workflow sub-tabs */}
-            <div className="flex items-center gap-1 mb-5 p-1 rounded-xl border border-cyan-500/15 w-fit" style={{ background: 'rgba(10,22,40,0.8)' }}>
+            <div className="flex items-center gap-1 mb-5 p-1 rounded-xl border border-gold-500/15 w-fit" style={{ background: 'rgba(20,29,46,0.8)' }}>
               {[
                 { key: 'queue',      label: lang === 'en' ? 'Tier 1 — Queue' : 'المستوى 1 — القائمة',       icon: 'ri-list-check-2',       badge: openAlerts },
                 { key: 'mobile',     label: lang === 'en' ? 'Tier 2 — Mobile Push' : 'المستوى 2 — الجوال',  icon: 'ri-smartphone-line',    badge: tier2Alerts },
@@ -307,8 +307,8 @@ export default function PredictiveAnalyticsPage() {
                   onClick={() => setWorkflowTab(t.key as WorkflowTab)}
                   className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-medium transition-all cursor-pointer whitespace-nowrap"
                   style={{
-                    background: workflowTab === t.key ? '#22D3EE' : 'transparent',
-                    color: workflowTab === t.key ? '#060D1A' : '#9CA3AF',
+                    background: workflowTab === t.key ? '#D4A84B' : 'transparent',
+                    color: workflowTab === t.key ? '#0B1220' : '#9CA3AF',
                   }}
                 >
                   <i className={`${t.icon} text-sm`} />
@@ -317,8 +317,8 @@ export default function PredictiveAnalyticsPage() {
                     <span
                       className="w-4 h-4 rounded-full flex items-center justify-center text-xs font-bold"
                       style={{
-                        background: workflowTab === t.key ? '#060D1A' : (t.key === 'escalation' ? '#F87171' : '#FB923C'),
-                        color: workflowTab === t.key ? '#22D3EE' : '#fff',
+                        background: workflowTab === t.key ? '#0B1220' : (t.key === 'escalation' ? '#F87171' : '#FB923C'),
+                        color: workflowTab === t.key ? '#D4A84B' : '#fff',
                       }}
                     >
                       {t.badge}
@@ -338,7 +338,7 @@ export default function PredictiveAnalyticsPage() {
                       onClick={() => setPriorityFilter(f.key)}
                       className="px-3 py-1.5 rounded-md text-xs border transition-all cursor-pointer whitespace-nowrap"
                       style={{
-                        borderColor: priorityFilter === f.key ? f.color : 'rgba(34,211,238,0.15)',
+                        borderColor: priorityFilter === f.key ? f.color : 'rgba(181,142,60,0.15)',
                         background: priorityFilter === f.key ? `${f.color}20` : 'transparent',
                         color: priorityFilter === f.key ? f.color : '#9CA3AF',
                       }}
@@ -354,9 +354,9 @@ export default function PredictiveAnalyticsPage() {
                       onClick={() => setStatusFilter(f.key)}
                       className="px-2.5 py-1.5 rounded-md text-xs border transition-all cursor-pointer whitespace-nowrap"
                       style={{
-                        borderColor: statusFilter === f.key ? '#22D3EE' : 'rgba(34,211,238,0.15)',
-                        background: statusFilter === f.key ? 'rgba(34,211,238,0.1)' : 'transparent',
-                        color: statusFilter === f.key ? '#22D3EE' : '#9CA3AF',
+                        borderColor: statusFilter === f.key ? '#D4A84B' : 'rgba(181,142,60,0.15)',
+                        background: statusFilter === f.key ? 'rgba(181,142,60,0.1)' : 'transparent',
+                        color: statusFilter === f.key ? '#D4A84B' : '#9CA3AF',
                       }}
                     >
                       {f.label}

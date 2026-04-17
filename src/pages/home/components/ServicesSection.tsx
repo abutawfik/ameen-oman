@@ -9,8 +9,8 @@ const coreCards = [
     descKey: "services.core.hotel.description",
     eventsKey: "services.core.hotel.events",
     badgeType: "core" as const,
-    badgeColor: "#22D3EE",
-    categoryColor: "#22D3EE",
+    badgeColor: "#D4A84B",
+    categoryColor: "#D4A84B",
     streamNum: "01",
   },
   {
@@ -20,8 +20,8 @@ const coreCards = [
     descKey: "services.core.carRental.description",
     eventsKey: "services.core.carRental.events",
     badgeType: "core" as const,
-    badgeColor: "#22D3EE",
-    categoryColor: "#22D3EE",
+    badgeColor: "#D4A84B",
+    categoryColor: "#D4A84B",
     streamNum: "02",
   },
   {
@@ -31,8 +31,8 @@ const coreCards = [
     descKey: "services.core.mobile.description",
     eventsKey: "services.core.mobile.events",
     badgeType: "core" as const,
-    badgeColor: "#22D3EE",
-    categoryColor: "#22D3EE",
+    badgeColor: "#D4A84B",
+    categoryColor: "#D4A84B",
     streamNum: "03",
   },
   {
@@ -42,8 +42,8 @@ const coreCards = [
     descKey: "services.core.municipality.description",
     eventsKey: "services.core.municipality.events",
     badgeType: "core" as const,
-    badgeColor: "#22D3EE",
-    categoryColor: "#22D3EE",
+    badgeColor: "#D4A84B",
+    categoryColor: "#D4A84B",
     streamNum: "04",
   },
 ];
@@ -166,8 +166,8 @@ const extendedCards = [
     descKey: "services.extended.marine.description",
     eventsKey: "services.extended.marine.events",
     badgeType: "extended" as const,
-    badgeColor: "#22D3EE",
-    categoryColor: "#22D3EE",
+    badgeColor: "#D4A84B",
+    categoryColor: "#D4A84B",
     streamNum: "15",
   },
   {
@@ -194,19 +194,19 @@ const ServicesSection = ({ type }: ServicesSectionProps) => {
   const sectionTitle = type === "core" ? "Core Streams" : "Extended Streams";
   const sectionTitleAr = type === "core" ? "المصادر الأساسية" : "المصادر الموسعة";
   const count = type === "core" ? "4" : "12";
-  const badgeColor = type === "core" ? "#22D3EE" : "#4ADE80";
+  const badgeColor = type === "core" ? "#D4A84B" : "#4ADE80";
 
   return (
     <section
       id={sectionId}
       className="py-20 md:py-28 relative"
-      style={{ background: "#060D1A" }}
+      style={{ background: "#0B1220" }}
     >
       {/* Subtle grid */}
       <div
         className="absolute inset-0 opacity-10"
         style={{
-          backgroundImage: `linear-gradient(rgba(34,211,238,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.1) 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(rgba(181,142,60,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,0.1) 1px, transparent 1px)`,
           backgroundSize: "80px 80px",
         }}
       />

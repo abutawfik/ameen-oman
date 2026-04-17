@@ -14,7 +14,7 @@ const watchlistTypeColors: Record<string, string> = {
   financial: "#FACC15",
   employment: "#FB923C",
   overstay: "#FB923C",
-  custom: "#22D3EE",
+  custom: "#D4A84B",
 };
 
 const PersonLookup = ({ isAr, onBack }: Props) => {
@@ -76,8 +76,8 @@ const PersonLookup = ({ isAr, onBack }: Props) => {
       <div className="px-3 pt-3 pb-2 flex-shrink-0">
         <div className="flex items-center gap-2">
           <div className="flex-1 flex items-center gap-2 px-3 py-2.5 rounded-2xl"
-            style={{ background: "rgba(10,22,40,0.9)", border: "1.5px solid rgba(34,211,238,0.35)" }}>
-            <i className="ri-search-line text-cyan-400 text-base flex-shrink-0" />
+            style={{ background: "rgba(20,29,46,0.9)", border: "1.5px solid rgba(181,142,60,0.35)" }}>
+            <i className="ri-search-line text-gold-400 text-base flex-shrink-0" />
             <input type="text" value={query}
               onChange={(e) => setQuery(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleSearch()}
@@ -91,23 +91,23 @@ const PersonLookup = ({ isAr, onBack }: Props) => {
           </div>
           <button onClick={handleScan}
             className="w-11 h-11 flex items-center justify-center rounded-2xl cursor-pointer flex-shrink-0"
-            style={{ background: scanning ? "rgba(34,211,238,0.2)" : "rgba(34,211,238,0.1)", border: "1.5px solid rgba(34,211,238,0.4)" }}>
+            style={{ background: scanning ? "rgba(181,142,60,0.2)" : "rgba(181,142,60,0.1)", border: "1.5px solid rgba(181,142,60,0.4)" }}>
             {scanning
-              ? <div className="w-4 h-4 rounded-full border-2 border-cyan-400 border-t-transparent animate-spin" />
-              : <i className="ri-camera-line text-cyan-400 text-lg" />}
+              ? <div className="w-4 h-4 rounded-full border-2 border-gold-400 border-t-transparent animate-spin" />
+              : <i className="ri-camera-line text-gold-400 text-lg" />}
           </button>
         </div>
         {scanning && (
           <div className="mt-2 flex items-center gap-2 px-3 py-2 rounded-xl"
-            style={{ background: "rgba(34,211,238,0.06)", border: "1px solid rgba(34,211,238,0.2)" }}>
-            <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-            <span className="text-cyan-400 text-xs font-['JetBrains_Mono']">{isAr ? "جارٍ قراءة MRZ..." : "Reading MRZ passport chip..."}</span>
+            style={{ background: "rgba(181,142,60,0.06)", border: "1px solid rgba(181,142,60,0.2)" }}>
+            <div className="w-1.5 h-1.5 rounded-full bg-gold-400 animate-pulse" />
+            <span className="text-gold-400 text-xs font-['JetBrains_Mono']">{isAr ? "جارٍ قراءة MRZ..." : "Reading MRZ passport chip..."}</span>
           </div>
         )}
         {!found && !scanning && (
           <button onClick={handleSearch}
             className="mt-2 w-full py-2.5 rounded-2xl text-sm font-bold font-['Inter'] cursor-pointer"
-            style={{ background: "#22D3EE", color: "#060D1A" }}>
+            style={{ background: "#D4A84B", color: "#0B1220" }}>
             {isAr ? "بحث" : "Search"}
           </button>
         )}
@@ -118,7 +118,7 @@ const PersonLookup = ({ isAr, onBack }: Props) => {
         <div className="flex-1 overflow-y-auto px-3 pb-4" style={{ scrollbarWidth: "none" }}>
           {/* Identity header */}
           <div className="rounded-2xl p-3 mb-2"
-            style={{ background: "rgba(10,22,40,0.9)", border: `1.5px solid ${riskColor}44` }}>
+            style={{ background: "rgba(20,29,46,0.9)", border: `1.5px solid ${riskColor}44` }}>
             <div className="flex items-start gap-3">
               <div className="relative flex-shrink-0">
                 <div className="w-14 h-14 rounded-xl overflow-hidden"
@@ -127,7 +127,7 @@ const PersonLookup = ({ isAr, onBack }: Props) => {
                 </div>
                 {/* Watchlist badge */}
                 <div className="absolute -top-1 -right-1 w-5 h-5 rounded-full flex items-center justify-center"
-                  style={{ background: "#F87171", border: "1.5px solid #060D1A" }}>
+                  style={{ background: "#F87171", border: "1.5px solid #0B1220" }}>
                   <i className="ri-eye-fill text-[8px] text-white" />
                 </div>
               </div>
@@ -136,7 +136,7 @@ const PersonLookup = ({ isAr, onBack }: Props) => {
                 <p className="text-gray-400 text-xs font-['Cairo'] mt-0.5">{person.nameAr}</p>
                 <div className="flex items-center gap-1.5 mt-1 flex-wrap">
                   <span className="text-[9px] font-['JetBrains_Mono'] px-1.5 py-0.5 rounded-full"
-                    style={{ background: "rgba(34,211,238,0.1)", color: "#22D3EE", border: "1px solid rgba(34,211,238,0.2)" }}>
+                    style={{ background: "rgba(181,142,60,0.1)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>
                     {person.docType}: {person.docNumber}
                   </span>
                   <span className="text-[10px] font-['Inter']">{person.nationalityFlag} {person.nationality}</span>
@@ -165,8 +165,8 @@ const PersonLookup = ({ isAr, onBack }: Props) => {
               <button key={tab.key} onClick={() => setActiveTab(tab.key)}
                 className="flex-1 flex items-center justify-center gap-1 py-2 rounded-xl text-[10px] font-bold font-['JetBrains_Mono'] cursor-pointer transition-all"
                 style={{
-                  background: activeTab === tab.key ? "#22D3EE" : "rgba(10,22,40,0.8)",
-                  color: activeTab === tab.key ? "#060D1A" : "#6B7280",
+                  background: activeTab === tab.key ? "#D4A84B" : "rgba(20,29,46,0.8)",
+                  color: activeTab === tab.key ? "#0B1220" : "#6B7280",
                   border: activeTab === tab.key ? "none" : "1px solid rgba(255,255,255,0.06)",
                 }}>
                 <i className={`${tab.icon} text-xs`} />
@@ -178,7 +178,7 @@ const PersonLookup = ({ isAr, onBack }: Props) => {
           {/* Identity tab */}
           {activeTab === "identity" && (
             <div className="rounded-2xl p-3 mb-3"
-              style={{ background: "rgba(10,22,40,0.9)", border: "1px solid rgba(255,255,255,0.06)" }}>
+              style={{ background: "rgba(20,29,46,0.9)", border: "1px solid rgba(255,255,255,0.06)" }}>
               <div className="grid grid-cols-2 gap-2 mb-3">
                 {[
                   { k: isAr ? "العمر" : "Age", v: `${person.age} yrs` },
@@ -189,7 +189,7 @@ const PersonLookup = ({ isAr, onBack }: Props) => {
                   { k: isAr ? "نوع الوثيقة" : "Doc Type", v: person.docType },
                 ].map((f) => (
                   <div key={f.k} className="px-2.5 py-2 rounded-xl"
-                    style={{ background: "rgba(6,13,26,0.6)", border: "1px solid rgba(255,255,255,0.05)" }}>
+                    style={{ background: "rgba(11,18,32,0.6)", border: "1px solid rgba(255,255,255,0.05)" }}>
                     <p className="text-gray-600 text-[9px] font-['JetBrains_Mono'] uppercase">{f.k}</p>
                     <p className="text-sm font-bold font-['JetBrains_Mono'] mt-0.5"
                       style={{ color: f.color || "#D1D5DB" }}>{f.v}</p>
@@ -197,8 +197,8 @@ const PersonLookup = ({ isAr, onBack }: Props) => {
                 ))}
               </div>
               <div className="flex items-center gap-2 px-2.5 py-2 rounded-xl"
-                style={{ background: "rgba(6,13,26,0.6)", border: "1px solid rgba(34,211,238,0.1)" }}>
-                <i className="ri-map-pin-line text-cyan-400 text-sm flex-shrink-0" />
+                style={{ background: "rgba(11,18,32,0.6)", border: "1px solid rgba(181,142,60,0.1)" }}>
+                <i className="ri-map-pin-line text-gold-400 text-sm flex-shrink-0" />
                 <div>
                   <p className="text-gray-600 text-[9px] font-['JetBrains_Mono'] uppercase">{isAr ? "آخر موقع" : "Last Location"}</p>
                   <p className="text-white text-xs font-['Inter']">{person.lastLocation} · {person.lastSeen}</p>
@@ -212,7 +212,7 @@ const PersonLookup = ({ isAr, onBack }: Props) => {
             <div className="space-y-2 mb-3">
               {mockWatchlistHits.map((hit, i) => (
                 <div key={i} className="rounded-2xl p-3"
-                  style={{ background: "rgba(10,22,40,0.9)", border: `1px solid ${watchlistTypeColors[hit.listType]}30` }}>
+                  style={{ background: "rgba(20,29,46,0.9)", border: `1px solid ${watchlistTypeColors[hit.listType]}30` }}>
                   <div className="flex items-start gap-2">
                     <div className="w-7 h-7 flex items-center justify-center rounded-lg flex-shrink-0"
                       style={{ background: `${watchlistTypeColors[hit.listType]}18` }}>
@@ -248,10 +248,10 @@ const PersonLookup = ({ isAr, onBack }: Props) => {
           {/* Events tab */}
           {activeTab === "events" && (
             <div className="rounded-2xl p-3 mb-3"
-              style={{ background: "rgba(10,22,40,0.9)", border: "1px solid rgba(255,255,255,0.06)" }}>
+              style={{ background: "rgba(20,29,46,0.9)", border: "1px solid rgba(255,255,255,0.06)" }}>
               <div className="relative">
                 <div className="absolute left-3 top-0 bottom-0 w-px"
-                  style={{ background: "linear-gradient(to bottom, rgba(34,211,238,0.5), transparent)" }} />
+                  style={{ background: "linear-gradient(to bottom, rgba(181,142,60,0.5), transparent)" }} />
                 <div className="space-y-3">
                   {person.recentEvents.map((ev, i) => (
                     <div key={i} className="flex items-start gap-3 pl-8 relative">
@@ -285,8 +285,8 @@ const PersonLookup = ({ isAr, onBack }: Props) => {
               {!biometricDone && !runningBiometric && (
                 <button onClick={handleBiometric}
                   className="w-full flex flex-col items-center gap-3 py-6 rounded-2xl cursor-pointer"
-                  style={{ background: "rgba(10,22,40,0.9)", border: "1.5px dashed rgba(34,211,238,0.3)" }}>
-                  <i className="ri-fingerprint-line text-cyan-400 text-3xl" />
+                  style={{ background: "rgba(20,29,46,0.9)", border: "1.5px dashed rgba(181,142,60,0.3)" }}>
+                  <i className="ri-fingerprint-line text-gold-400 text-3xl" />
                   <p className="text-white text-sm font-bold font-['Inter']">
                     {isAr ? "تشغيل المطابقة البيومترية" : "Run Biometric Match"}
                   </p>
@@ -297,16 +297,16 @@ const PersonLookup = ({ isAr, onBack }: Props) => {
               )}
               {runningBiometric && (
                 <div className="flex flex-col items-center gap-3 py-6 rounded-2xl"
-                  style={{ background: "rgba(10,22,40,0.9)", border: "1px solid rgba(34,211,238,0.2)" }}>
-                  <div className="w-12 h-12 rounded-full border-2 border-cyan-400 border-t-transparent animate-spin" />
-                  <p className="text-cyan-400 text-sm font-['JetBrains_Mono']">
+                  style={{ background: "rgba(20,29,46,0.9)", border: "1px solid rgba(181,142,60,0.2)" }}>
+                  <div className="w-12 h-12 rounded-full border-2 border-gold-400 border-t-transparent animate-spin" />
+                  <p className="text-gold-400 text-sm font-['JetBrains_Mono']">
                     {isAr ? "جارٍ المطابقة البيومترية..." : "Running biometric match..."}
                   </p>
                 </div>
               )}
               {biometricDone && mockBiometricResults.map((result, i) => (
                 <div key={i} className="rounded-2xl p-3"
-                  style={{ background: "rgba(10,22,40,0.9)", border: "1px solid rgba(74,222,128,0.3)" }}>
+                  style={{ background: "rgba(20,29,46,0.9)", border: "1px solid rgba(74,222,128,0.3)" }}>
                   <div className="flex items-center gap-3">
                     <div className="w-9 h-9 flex items-center justify-center rounded-xl flex-shrink-0"
                       style={{ background: "rgba(74,222,128,0.15)" }}>
@@ -332,7 +332,7 @@ const PersonLookup = ({ isAr, onBack }: Props) => {
           <div className="space-y-2">
             <button onClick={() => setConfirmSighting(true)}
               className="w-full flex items-center justify-center gap-2 py-3 rounded-2xl text-sm font-bold font-['Inter'] cursor-pointer transition-all"
-              style={{ background: confirmSighting ? "rgba(34,211,238,0.2)" : "#22D3EE", color: confirmSighting ? "#22D3EE" : "#060D1A", border: confirmSighting ? "1.5px solid #22D3EE" : "none" }}>
+              style={{ background: confirmSighting ? "rgba(181,142,60,0.2)" : "#D4A84B", color: confirmSighting ? "#D4A84B" : "#0B1220", border: confirmSighting ? "1.5px solid #D4A84B" : "none" }}>
               <i className={confirmSighting ? "ri-checkbox-circle-fill" : "ri-eye-line"} />
               {confirmSighting ? (isAr ? "تم تأكيد الرؤية ✓" : "Sighting Confirmed ✓") : (isAr ? "تأكيد الرؤية" : "Confirm Sighting")}
             </button>
@@ -358,8 +358,8 @@ const PersonLookup = ({ isAr, onBack }: Props) => {
       {!found && !scanning && (
         <div className="flex-1 flex flex-col items-center justify-center gap-3 px-6">
           <div className="w-16 h-16 rounded-full flex items-center justify-center"
-            style={{ background: "rgba(34,211,238,0.06)", border: "1px solid rgba(34,211,238,0.15)" }}>
-            <i className="ri-user-search-line text-cyan-400/40 text-3xl" />
+            style={{ background: "rgba(181,142,60,0.06)", border: "1px solid rgba(181,142,60,0.15)" }}>
+            <i className="ri-user-search-line text-gold-400/40 text-3xl" />
           </div>
           <p className="text-gray-600 text-sm font-['Inter'] text-center">
             {isAr ? "أدخل رقم المستند أو امسح جواز السفر" : "Enter document number or scan passport MRZ"}

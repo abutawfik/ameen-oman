@@ -87,7 +87,7 @@ export const countries: string[] = [
 ];
 
 export const customsKpis: CustomsKpi[] = [
-  { label: "Declarations Today",   labelAr: "إقرارات اليوم",        value: "1,847", delta: "+12%", deltaUp: true,  icon: "ri-file-list-3-line",     color: "#22D3EE" },
+  { label: "Declarations Today",   labelAr: "إقرارات اليوم",        value: "1,847", delta: "+12%", deltaUp: true,  icon: "ri-file-list-3-line",     color: "#D4A84B" },
   { label: "Import Declarations",  labelAr: "إقرارات الاستيراد",    value: "1,203", delta: "+8%",  deltaUp: true,  icon: "ri-download-2-line",      color: "#4ADE80" },
   { label: "Export Declarations",  labelAr: "إقرارات التصدير",      value: "489",   delta: "+5%",  deltaUp: true,  icon: "ri-upload-2-line",        color: "#A78BFA" },
   { label: "Transit Movements",    labelAr: "حركات العبور",          value: "134",   delta: "+3%",  deltaUp: true,  icon: "ri-arrow-left-right-line",color: "#FACC15" },

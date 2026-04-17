@@ -8,7 +8,7 @@ const riskColors: Record<string, string> = {
 };
 
 const edgeColors: Record<string, string> = {
-  document: '#22D3EE', phone: '#4ADE80', address: '#A78BFA',
+  document: '#D4A84B', phone: '#4ADE80', address: '#A78BFA',
   imei: '#FB923C', employer: '#FACC15', biometric: '#F87171', email: '#38BDF8',
 };
 
@@ -53,7 +53,7 @@ export default function IdentityGraph({ isAr }: Props) {
 
       const alpha = edge.confidence / 100;
       const thickness = Math.max(1, (edge.confidence / 100) * 3);
-      const color = edgeColors[edge.type] || '#22D3EE';
+      const color = edgeColors[edge.type] || '#D4A84B';
 
       ctx.beginPath();
       ctx.moveTo(src.x, src.y);
@@ -99,7 +99,7 @@ export default function IdentityGraph({ isAr }: Props) {
       // Node circle
       ctx.beginPath();
       ctx.arc(node.x, node.y, r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(10,22,40,0.95)`;
+      ctx.fillStyle = `rgba(20,29,46,0.95)`;
       ctx.fill();
       ctx.strokeStyle = color + (isSelected ? 'FF' : '88');
       ctx.lineWidth = 1.5 / zoom;
@@ -124,10 +124,10 @@ export default function IdentityGraph({ isAr }: Props) {
       if (node.mergedCount > 1) {
         ctx.beginPath();
         ctx.arc(node.x + r * 0.7, node.y - r * 0.7, 8 / zoom, 0, Math.PI * 2);
-        ctx.fillStyle = '#22D3EE';
+        ctx.fillStyle = '#D4A84B';
         ctx.fill();
         ctx.font = `bold ${8 / zoom}px JetBrains Mono, monospace`;
-        ctx.fillStyle = '#060D1A';
+        ctx.fillStyle = '#0B1220';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         ctx.fillText(String(node.mergedCount), node.x + r * 0.7, node.y - r * 0.7);
@@ -199,8 +199,8 @@ export default function IdentityGraph({ isAr }: Props) {
       <div className="w-56 shrink-0 space-y-4">
         {/* Zoom controls */}
         <div
-          className="rounded-xl border border-cyan-500/15 p-4"
-          style={{ background: 'rgba(10,22,40,0.8)' }}
+          className="rounded-xl border border-gold-500/15 p-4"
+          style={{ background: 'rgba(20,29,46,0.8)' }}
         >
           <p className="text-gray-500 text-xs uppercase tracking-wider mb-3 font-['JetBrains_Mono']">
             {isAr ? 'التحكم' : 'Controls'}
@@ -208,7 +208,7 @@ export default function IdentityGraph({ isAr }: Props) {
           <div className="flex items-center gap-2 mb-3">
             <button
               onClick={() => setZoom(z => Math.max(0.4, z - 0.2))}
-              className="w-8 h-8 flex items-center justify-center rounded-lg border border-cyan-500/25 text-cyan-400 hover:bg-cyan-500/10 cursor-pointer transition-colors"
+              className="w-8 h-8 flex items-center justify-center rounded-lg border border-gold-500/25 text-gold-400 hover:bg-gold-500/10 cursor-pointer transition-colors"
             >
               <i className="ri-zoom-out-line text-sm" />
             </button>
@@ -217,14 +217,14 @@ export default function IdentityGraph({ isAr }: Props) {
             </div>
             <button
               onClick={() => setZoom(z => Math.min(2.5, z + 0.2))}
-              className="w-8 h-8 flex items-center justify-center rounded-lg border border-cyan-500/25 text-cyan-400 hover:bg-cyan-500/10 cursor-pointer transition-colors"
+              className="w-8 h-8 flex items-center justify-center rounded-lg border border-gold-500/25 text-gold-400 hover:bg-gold-500/10 cursor-pointer transition-colors"
             >
               <i className="ri-zoom-in-line text-sm" />
             </button>
           </div>
           <button
             onClick={() => { setZoom(1); setPan({ x: 0, y: 0 }); }}
-            className="w-full py-1.5 rounded-lg text-xs border border-cyan-500/20 text-cyan-400 hover:bg-cyan-500/8 cursor-pointer transition-colors font-['Inter'] whitespace-nowrap"
+            className="w-full py-1.5 rounded-lg text-xs border border-gold-500/20 text-gold-400 hover:bg-gold-500/8 cursor-pointer transition-colors font-['Inter'] whitespace-nowrap"
           >
             {isAr ? 'إعادة ضبط' : 'Reset View'}
           </button>
@@ -232,26 +232,26 @@ export default function IdentityGraph({ isAr }: Props) {
 
         {/* Confidence filter */}
         <div
-          className="rounded-xl border border-cyan-500/15 p-4"
-          style={{ background: 'rgba(10,22,40,0.8)' }}
+          className="rounded-xl border border-gold-500/15 p-4"
+          style={{ background: 'rgba(20,29,46,0.8)' }}
         >
           <div className="flex items-center justify-between mb-2">
             <p className="text-gray-500 text-xs uppercase tracking-wider font-['JetBrains_Mono']">
               {isAr ? 'حد الثقة' : 'Min Confidence'}
             </p>
-            <span className="text-cyan-400 font-mono text-xs">{confidenceFilter}%</span>
+            <span className="text-gold-400 font-mono text-xs">{confidenceFilter}%</span>
           </div>
           <input
             type="range" min={0} max={90} step={5} value={confidenceFilter}
             onChange={e => setConfidenceFilter(Number(e.target.value))}
-            className="w-full h-1 rounded-full cursor-pointer accent-cyan-400"
+            className="w-full h-1 rounded-full cursor-pointer accent-gold-400"
           />
         </div>
 
         {/* Edge type filter */}
         <div
-          className="rounded-xl border border-cyan-500/15 p-4"
-          style={{ background: 'rgba(10,22,40,0.8)' }}
+          className="rounded-xl border border-gold-500/15 p-4"
+          style={{ background: 'rgba(20,29,46,0.8)' }}
         >
           <p className="text-gray-500 text-xs uppercase tracking-wider mb-3 font-['JetBrains_Mono']">
             {isAr ? 'نوع الرابط' : 'Edge Type'}
@@ -262,15 +262,15 @@ export default function IdentityGraph({ isAr }: Props) {
                 key={t}
                 onClick={() => setEdgeTypeFilter(t)}
                 className="w-full flex items-center gap-2 px-2 py-1.5 rounded-lg cursor-pointer transition-colors text-left"
-                style={{ background: edgeTypeFilter === t ? 'rgba(34,211,238,0.1)' : 'transparent' }}
+                style={{ background: edgeTypeFilter === t ? 'rgba(181,142,60,0.1)' : 'transparent' }}
               >
                 {t !== 'all' && (
                   <div className="w-2 h-2 rounded-full shrink-0" style={{ background: edgeColors[t] }} />
                 )}
-                {t === 'all' && <i className="ri-links-line text-cyan-400 text-xs" />}
+                {t === 'all' && <i className="ri-links-line text-gold-400 text-xs" />}
                 <span
                   className="text-xs font-['Inter'] capitalize"
-                  style={{ color: edgeTypeFilter === t ? '#22D3EE' : '#9CA3AF' }}
+                  style={{ color: edgeTypeFilter === t ? '#D4A84B' : '#9CA3AF' }}
                 >
                   {t === 'all' ? (isAr ? 'الكل' : 'All Types') : t}
                 </span>
@@ -281,8 +281,8 @@ export default function IdentityGraph({ isAr }: Props) {
 
         {/* Legend */}
         <div
-          className="rounded-xl border border-cyan-500/15 p-4"
-          style={{ background: 'rgba(10,22,40,0.8)' }}
+          className="rounded-xl border border-gold-500/15 p-4"
+          style={{ background: 'rgba(20,29,46,0.8)' }}
         >
           <p className="text-gray-500 text-xs uppercase tracking-wider mb-3 font-['JetBrains_Mono']">
             {isAr ? 'مستوى الخطر' : 'Risk Level'}
@@ -299,14 +299,14 @@ export default function IdentityGraph({ isAr }: Props) {
       {/* Canvas area */}
       <div className="flex-1 flex flex-col gap-3">
         <div
-          className="flex-1 rounded-xl border border-cyan-500/15 overflow-hidden relative"
-          style={{ background: 'rgba(6,13,26,0.9)', minHeight: 480 }}
+          className="flex-1 rounded-xl border border-gold-500/15 overflow-hidden relative"
+          style={{ background: 'rgba(11,18,32,0.9)', minHeight: 480 }}
         >
           {/* Grid overlay */}
           <div
             className="absolute inset-0 pointer-events-none opacity-10"
             style={{
-              backgroundImage: 'linear-gradient(rgba(34,211,238,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.15) 1px, transparent 1px)',
+              backgroundImage: 'linear-gradient(rgba(181,142,60,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,0.15) 1px, transparent 1px)',
               backgroundSize: '40px 40px',
             }}
           />
@@ -322,7 +322,7 @@ export default function IdentityGraph({ isAr }: Props) {
             onWheel={handleWheel}
           />
           {/* Hint */}
-          <div className="absolute bottom-3 left-3 flex items-center gap-2 px-3 py-1.5 rounded-lg" style={{ background: 'rgba(10,22,40,0.8)', border: '1px solid rgba(34,211,238,0.1)' }}>
+          <div className="absolute bottom-3 left-3 flex items-center gap-2 px-3 py-1.5 rounded-lg" style={{ background: 'rgba(20,29,46,0.8)', border: '1px solid rgba(181,142,60,0.1)' }}>
             <i className="ri-drag-move-line text-gray-500 text-xs" />
             <span className="text-gray-600 text-xs font-['JetBrains_Mono']">
               {isAr ? 'اسحب للتحريك · انقر للتحديد · عجلة للتكبير' : 'Drag to move · Click to select · Scroll to zoom'}
@@ -333,8 +333,8 @@ export default function IdentityGraph({ isAr }: Props) {
         {/* Selected node detail */}
         {selectedNode && (
           <div
-            className="rounded-xl border border-cyan-500/20 p-4"
-            style={{ background: 'rgba(10,22,40,0.9)' }}
+            className="rounded-xl border border-gold-500/20 p-4"
+            style={{ background: 'rgba(20,29,46,0.9)' }}
           >
             <div className="flex items-center gap-3">
               <div
@@ -355,7 +355,7 @@ export default function IdentityGraph({ isAr }: Props) {
                 <div className="flex flex-wrap gap-1">
                   {selectedNode.streams.map(s => (
                     <span key={s} className="text-xs px-1.5 py-0.5 rounded font-['JetBrains_Mono']"
-                      style={{ background: 'rgba(34,211,238,0.08)', color: '#22D3EE', fontSize: 9 }}>
+                      style={{ background: 'rgba(181,142,60,0.08)', color: '#D4A84B', fontSize: 9 }}>
                       {s.toUpperCase()}
                     </span>
                   ))}

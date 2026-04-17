@@ -180,7 +180,7 @@ const CustomsBrokerRegistry = ({ isAr }: CustomsBrokerRegistryProps) => {
           </p>
         </div>
         <button className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold font-['Inter'] cursor-pointer whitespace-nowrap transition-all"
-          style={{ background: "rgba(34,211,238,0.12)", color: "#22D3EE", border: "1px solid rgba(34,211,238,0.25)" }}>
+          style={{ background: "rgba(181,142,60,0.12)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.25)" }}>
           <i className="ri-add-line" />
           {isAr ? "تسجيل وسيط" : "Register Broker"}
         </button>
@@ -189,13 +189,13 @@ const CustomsBrokerRegistry = ({ isAr }: CustomsBrokerRegistryProps) => {
       {/* Stats row */}
       <div className="grid grid-cols-5 gap-3">
         {[
-          { label: "Total Brokers", labelAr: "إجمالي الوسطاء", value: stats.total, color: "#22D3EE" },
+          { label: "Total Brokers", labelAr: "إجمالي الوسطاء", value: stats.total, color: "#D4A84B" },
           { label: "Active", labelAr: "نشط", value: stats.active, color: "#4ADE80" },
           { label: "Warning", labelAr: "تحذير", value: stats.warning, color: "#FACC15" },
           { label: "Suspended", labelAr: "موقوف", value: stats.suspended, color: "#F87171" },
           { label: "Avg Compliance", labelAr: "متوسط الامتثال", value: `${stats.avgCompliance}%`, color: "#FB923C" },
         ].map((s) => (
-          <div key={s.label} className="p-3 rounded-xl text-center" style={{ background: "rgba(10,22,40,0.8)", border: `1px solid ${s.color}20` }}>
+          <div key={s.label} className="p-3 rounded-xl text-center" style={{ background: "rgba(20,29,46,0.8)", border: `1px solid ${s.color}20` }}>
             <div className="text-xl font-bold font-['JetBrains_Mono']" style={{ color: s.color }}>{s.value}</div>
             <div className="text-xs text-gray-500 font-['Inter'] mt-0.5">{isAr ? s.labelAr : s.label}</div>
           </div>
@@ -207,7 +207,7 @@ const CustomsBrokerRegistry = ({ isAr }: CustomsBrokerRegistryProps) => {
         <div className="w-80 flex-shrink-0 space-y-3">
           {/* Search + filter */}
           <div className="flex gap-2">
-            <div className="flex-1 flex items-center gap-2 px-3 py-2 rounded-lg" style={{ background: "rgba(10,22,40,0.8)", border: "1px solid rgba(34,211,238,0.1)" }}>
+            <div className="flex-1 flex items-center gap-2 px-3 py-2 rounded-lg" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.1)" }}>
               <i className="ri-search-line text-gray-500 text-sm" />
               <input
                 type="text"
@@ -223,9 +223,9 @@ const CustomsBrokerRegistry = ({ isAr }: CustomsBrokerRegistryProps) => {
               <button key={f} onClick={() => setStatusFilter(f)}
                 className="flex-1 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer whitespace-nowrap font-['Inter'] capitalize"
                 style={{
-                  background: statusFilter === f ? (f === "all" ? "rgba(34,211,238,0.15)" : `${statusColors[f] || "rgba(34,211,238,0.15)"}15`) : "rgba(10,22,40,0.6)",
-                  color: statusFilter === f ? (f === "all" ? "#22D3EE" : statusColors[f] || "#22D3EE") : "#6B7280",
-                  border: `1px solid ${statusFilter === f ? (f === "all" ? "rgba(34,211,238,0.3)" : `${statusColors[f] || "#22D3EE"}40`) : "rgba(255,255,255,0.06)"}`,
+                  background: statusFilter === f ? (f === "all" ? "rgba(181,142,60,0.15)" : `${statusColors[f] || "rgba(181,142,60,0.15)"}15`) : "rgba(20,29,46,0.6)",
+                  color: statusFilter === f ? (f === "all" ? "#D4A84B" : statusColors[f] || "#D4A84B") : "#6B7280",
+                  border: `1px solid ${statusFilter === f ? (f === "all" ? "rgba(181,142,60,0.3)" : `${statusColors[f] || "#D4A84B"}40`) : "rgba(255,255,255,0.06)"}`,
                 }}>
                 {f}
               </button>
@@ -238,8 +238,8 @@ const CustomsBrokerRegistry = ({ isAr }: CustomsBrokerRegistryProps) => {
               <button key={broker.id} onClick={() => setSelectedBroker(broker)}
                 className="w-full p-3 rounded-xl text-left transition-all cursor-pointer"
                 style={{
-                  background: selectedBroker.id === broker.id ? "rgba(34,211,238,0.08)" : "rgba(10,22,40,0.6)",
-                  border: `1px solid ${selectedBroker.id === broker.id ? "rgba(34,211,238,0.25)" : "rgba(255,255,255,0.05)"}`,
+                  background: selectedBroker.id === broker.id ? "rgba(181,142,60,0.08)" : "rgba(20,29,46,0.6)",
+                  border: `1px solid ${selectedBroker.id === broker.id ? "rgba(181,142,60,0.25)" : "rgba(255,255,255,0.05)"}`,
                 }}>
                 <div className="flex items-start justify-between mb-1.5">
                   <div className="flex items-center gap-2">
@@ -282,7 +282,7 @@ const CustomsBrokerRegistry = ({ isAr }: CustomsBrokerRegistryProps) => {
           )}
 
           {/* Broker header */}
-          <div className="p-5 rounded-xl" style={{ background: "rgba(10,22,40,0.8)", border: "1px solid rgba(34,211,238,0.1)" }}>
+          <div className="p-5 rounded-xl" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.1)" }}>
             <div className="flex items-start justify-between mb-4">
               <div>
                 <div className="flex items-center gap-2 mb-1">
@@ -293,7 +293,7 @@ const CustomsBrokerRegistry = ({ isAr }: CustomsBrokerRegistryProps) => {
                 </div>
                 <h3 className="text-white text-base font-bold font-['Inter']">{isAr ? selectedBroker.nameAr : selectedBroker.name}</h3>
                 <p className="text-gray-500 text-xs font-['Inter'] mt-0.5">
-                  {isAr ? "رخصة:" : "License:"} <span className="text-cyan-400 font-['JetBrains_Mono']">{selectedBroker.license}</span>
+                  {isAr ? "رخصة:" : "License:"} <span className="text-gold-400 font-['JetBrains_Mono']">{selectedBroker.license}</span>
                   <span className="mx-2 text-gray-700">·</span>
                   {isAr ? "تنتهي:" : "Expires:"} <span className="text-gray-400">{selectedBroker.licenseExpiry}</span>
                 </p>
@@ -308,7 +308,7 @@ const CustomsBrokerRegistry = ({ isAr }: CustomsBrokerRegistryProps) => {
                   </button>
                 )}
                 <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap font-['Inter'] transition-all"
-                  style={{ background: "rgba(34,211,238,0.1)", color: "#22D3EE", border: "1px solid rgba(34,211,238,0.25)" }}>
+                  style={{ background: "rgba(181,142,60,0.1)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.25)" }}>
                   <i className="ri-edit-line" />
                   {isAr ? "تعديل" : "Edit"}
                 </button>
@@ -318,12 +318,12 @@ const CustomsBrokerRegistry = ({ isAr }: CustomsBrokerRegistryProps) => {
             {/* Stats grid */}
             <div className="grid grid-cols-4 gap-3">
               {[
-                { label: "Total Declarations", labelAr: "إجمالي الإقرارات", value: selectedBroker.declarations.toLocaleString(), color: "#22D3EE" },
+                { label: "Total Declarations", labelAr: "إجمالي الإقرارات", value: selectedBroker.declarations.toLocaleString(), color: "#D4A84B" },
                 { label: "This Month", labelAr: "هذا الشهر", value: selectedBroker.declarationsThisMonth, color: "#4ADE80" },
                 { label: "Violations", labelAr: "المخالفات", value: selectedBroker.violations, color: selectedBroker.violations > 10 ? "#F87171" : selectedBroker.violations > 3 ? "#FACC15" : "#4ADE80" },
                 { label: "Compliance", labelAr: "الامتثال", value: `${selectedBroker.complianceScore}%`, color: riskColors[selectedBroker.riskLevel] },
               ].map((s) => (
-                <div key={s.label} className="p-3 rounded-lg text-center" style={{ background: "rgba(6,13,26,0.6)", border: `1px solid ${s.color}15` }}>
+                <div key={s.label} className="p-3 rounded-lg text-center" style={{ background: "rgba(11,18,32,0.6)", border: `1px solid ${s.color}15` }}>
                   <div className="text-lg font-bold font-['JetBrains_Mono']" style={{ color: s.color }}>{s.value}</div>
                   <div className="text-xs text-gray-500 font-['Inter']">{isAr ? s.labelAr : s.label}</div>
                 </div>
@@ -332,7 +332,7 @@ const CustomsBrokerRegistry = ({ isAr }: CustomsBrokerRegistryProps) => {
           </div>
 
           {/* Compliance trend */}
-          <div className="p-5 rounded-xl" style={{ background: "rgba(10,22,40,0.8)", border: "1px solid rgba(34,211,238,0.1)" }}>
+          <div className="p-5 rounded-xl" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.1)" }}>
             <h4 className="text-white text-sm font-bold font-['Inter'] mb-4">
               {isAr ? "اتجاه الامتثال (6 أشهر)" : "Compliance Trend (6 Months)"}
             </h4>
@@ -352,14 +352,14 @@ const CustomsBrokerRegistry = ({ isAr }: CustomsBrokerRegistryProps) => {
 
           {/* Details */}
           <div className="grid grid-cols-2 gap-4">
-            <div className="p-4 rounded-xl" style={{ background: "rgba(10,22,40,0.8)", border: "1px solid rgba(34,211,238,0.08)" }}>
+            <div className="p-4 rounded-xl" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.08)" }}>
               <h4 className="text-gray-400 text-xs font-semibold font-['Inter'] mb-3 uppercase tracking-wider">
                 {isAr ? "التخصصات" : "Specializations"}
               </h4>
               <div className="flex flex-wrap gap-2">
                 {selectedBroker.specializations.map((s) => (
                   <span key={s} className="px-2 py-1 rounded-full text-xs font-['Inter']"
-                    style={{ background: "rgba(34,211,238,0.1)", color: "#22D3EE", border: "1px solid rgba(34,211,238,0.2)" }}>
+                    style={{ background: "rgba(181,142,60,0.1)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>
                     {s}
                   </span>
                 ))}
@@ -376,7 +376,7 @@ const CustomsBrokerRegistry = ({ isAr }: CustomsBrokerRegistryProps) => {
                 ))}
               </div>
             </div>
-            <div className="p-4 rounded-xl" style={{ background: "rgba(10,22,40,0.8)", border: "1px solid rgba(34,211,238,0.08)" }}>
+            <div className="p-4 rounded-xl" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.08)" }}>
               <h4 className="text-gray-400 text-xs font-semibold font-['Inter'] mb-3 uppercase tracking-wider">
                 {isAr ? "معلومات الاتصال" : "Contact Information"}
               </h4>
@@ -411,7 +411,7 @@ const CustomsBrokerRegistry = ({ isAr }: CustomsBrokerRegistryProps) => {
       {/* Suspend Modal */}
       {showSuspendModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center" style={{ background: "rgba(0,0,0,0.7)" }}>
-          <div className="w-[480px] rounded-2xl p-6" style={{ background: "rgba(10,22,40,0.98)", border: "1px solid rgba(248,113,113,0.3)" }}>
+          <div className="w-[480px] rounded-2xl p-6" style={{ background: "rgba(20,29,46,0.98)", border: "1px solid rgba(248,113,113,0.3)" }}>
             <div className="flex items-center gap-3 mb-4">
               <div className="w-10 h-10 flex items-center justify-center rounded-xl" style={{ background: "rgba(248,113,113,0.15)" }}>
                 <i className="ri-lock-line text-red-400 text-lg" />
@@ -432,7 +432,7 @@ const CustomsBrokerRegistry = ({ isAr }: CustomsBrokerRegistryProps) => {
                 maxLength={500}
                 placeholder={isAr ? "أدخل سبب الإيقاف..." : "Enter reason for suspension..."}
                 className="w-full px-3 py-2 rounded-lg text-white text-sm font-['Inter'] outline-none resize-none"
-                style={{ background: "rgba(6,13,26,0.8)", border: "1px solid rgba(248,113,113,0.2)" }}
+                style={{ background: "rgba(11,18,32,0.8)", border: "1px solid rgba(248,113,113,0.2)" }}
               />
             </div>
             <div className="flex gap-3">

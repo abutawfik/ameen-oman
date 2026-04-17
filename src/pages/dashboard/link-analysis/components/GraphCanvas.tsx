@@ -26,7 +26,7 @@ interface Props {
   sizeByDegree: boolean;
 }
 
-const COMMUNITY_PALETTE = ["#22D3EE", "#A78BFA", "#4ADE80", "#FB923C", "#F472B6", "#FCD34D", "#38BDF8", "#2DD4BF"];
+const COMMUNITY_PALETTE = ["#D4A84B", "#A78BFA", "#4ADE80", "#FB923C", "#F472B6", "#FCD34D", "#38BDF8", "#2DD4BF"];
 
 const GraphCanvas = ({
   nodes, edges, annotations, selectedNodes, highlightedPath, highlightedNodes,
@@ -136,7 +136,7 @@ const GraphCanvas = ({
 
     // Background grid
     ctx.save();
-    ctx.strokeStyle = "rgba(34,211,238,0.06)";
+    ctx.strokeStyle = "rgba(181,142,60,0.06)";
     ctx.lineWidth = 1;
     const gridSize = 60 * transform.scale;
     const offsetX = transform.x % gridSize;
@@ -174,7 +174,7 @@ const GraphCanvas = ({
 
       ctx.save();
       ctx.globalAlpha = alpha;
-      ctx.strokeStyle = isHighlighted ? "#22D3EE" : cfg.color;
+      ctx.strokeStyle = isHighlighted ? "#D4A84B" : cfg.color;
       ctx.lineWidth = Math.max(lineWidth, 1 / transform.scale);
 
       if (cfg.dash) {
@@ -212,7 +212,7 @@ const GraphCanvas = ({
       ctx.lineTo(ax - arrowSize * Math.cos(angle - 0.4), ay - arrowSize * Math.sin(angle - 0.4));
       ctx.lineTo(ax - arrowSize * Math.cos(angle + 0.4), ay - arrowSize * Math.sin(angle + 0.4));
       ctx.closePath();
-      ctx.fillStyle = isHighlighted ? "#22D3EE" : cfg.color;
+      ctx.fillStyle = isHighlighted ? "#D4A84B" : cfg.color;
       ctx.fill();
 
       // Edge label
@@ -247,14 +247,14 @@ const GraphCanvas = ({
 
       // Glow for selected/highlighted
       if (isSelected || isHighlighted || isHovered) {
-        ctx.shadowColor = isSelected ? "#22D3EE" : (isHighlighted ? riskColors[node.risk] : cfg.color);
+        ctx.shadowColor = isSelected ? "#D4A84B" : (isHighlighted ? riskColors[node.risk] : cfg.color);
         ctx.shadowBlur = isSelected ? 20 : 12;
       }
 
       // Node shape fill
       const fillColor = hasCommunity ? communityColors[node.id] : cfg.color;
       ctx.fillStyle = `${fillColor}22`;
-      ctx.strokeStyle = isSelected ? "#22D3EE" : (isHighlighted ? riskColors[node.risk] : fillColor);
+      ctx.strokeStyle = isSelected ? "#D4A84B" : (isHighlighted ? riskColors[node.risk] : fillColor);
       ctx.lineWidth = isSelected ? 3 / transform.scale : 2 / transform.scale;
 
       if (node.type === "organization") {
@@ -306,7 +306,7 @@ const GraphCanvas = ({
 
       // Node label below
       if (showLabels && transform.scale > 0.4) {
-        ctx.fillStyle = isSelected ? "#22D3EE" : "#D1D5DB";
+        ctx.fillStyle = isSelected ? "#D4A84B" : "#D1D5DB";
         ctx.font = `${11 / transform.scale}px Inter, sans-serif`;
         ctx.textAlign = "center";
         ctx.textBaseline = "top";
@@ -324,7 +324,7 @@ const GraphCanvas = ({
         ctx.beginPath();
         ctx.arc(bx, by, br, 0, Math.PI * 2);
         ctx.fill();
-        ctx.fillStyle = "#060D1A";
+        ctx.fillStyle = "#0B1220";
         ctx.font = `bold ${8 / transform.scale}px JetBrains Mono, monospace`;
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
@@ -341,7 +341,7 @@ const GraphCanvas = ({
       const w = 160 / transform.scale;
       const h = 60 / transform.scale;
       const pad = 8 / transform.scale;
-      ctx.fillStyle = "rgba(10,22,40,0.92)";
+      ctx.fillStyle = "rgba(20,29,46,0.92)";
       ctx.strokeStyle = ann.color;
       ctx.lineWidth = 1.5 / transform.scale;
       ctx.beginPath();
@@ -517,8 +517,8 @@ const GraphCanvas = ({
           className="absolute pointer-events-none px-2 py-1 rounded text-xs font-['JetBrains_Mono'] z-50 whitespace-nowrap"
           style={{
             left: tooltip.x, top: tooltip.y,
-            background: "rgba(10,22,40,0.95)",
-            border: "1px solid rgba(34,211,238,0.3)",
+            background: "rgba(20,29,46,0.95)",
+            border: "1px solid rgba(181,142,60,0.3)",
             color: "#D1D5DB",
           }}
         >
@@ -536,8 +536,8 @@ const GraphCanvas = ({
             key={i}
             onClick={btn.action}
             className="w-8 h-8 flex items-center justify-center rounded cursor-pointer transition-colors"
-            style={{ background: "rgba(10,22,40,0.9)", border: "1px solid rgba(34,211,238,0.2)", color: "#9CA3AF" }}
-            onMouseEnter={e => (e.currentTarget.style.color = "#22D3EE")}
+            style={{ background: "rgba(20,29,46,0.9)", border: "1px solid rgba(181,142,60,0.2)", color: "#9CA3AF" }}
+            onMouseEnter={e => (e.currentTarget.style.color = "#D4A84B")}
             onMouseLeave={e => (e.currentTarget.style.color = "#9CA3AF")}
           >
             <i className={`${btn.icon} text-sm`} />
@@ -547,7 +547,7 @@ const GraphCanvas = ({
       {/* Scale indicator */}
       <div
         className="absolute bottom-4 left-4 px-2 py-1 rounded text-xs font-['JetBrains_Mono']"
-        style={{ background: "rgba(10,22,40,0.8)", border: "1px solid rgba(34,211,238,0.15)", color: "#6B7280" }}
+        style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.15)", color: "#6B7280" }}
       >
         {Math.round(transform.scale * 100)}%
       </div>

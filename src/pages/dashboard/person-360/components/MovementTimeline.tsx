@@ -50,7 +50,7 @@ const MovementTimeline = ({ events, streamFilter, isAr }: Props) => {
   return (
     <div
       className="rounded-xl p-5"
-      style={{ background: "rgba(10,22,40,0.8)", border: "1px solid rgba(34,211,238,0.15)", backdropFilter: "blur(12px)" }}
+      style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.15)", backdropFilter: "blur(12px)" }}
     >
       {/* Header */}
       <div className="flex items-center justify-between mb-5 flex-wrap gap-3">
@@ -60,7 +60,7 @@ const MovementTimeline = ({ events, streamFilter, isAr }: Props) => {
           </h3>
           <span
             className="px-2 py-0.5 rounded-full text-xs font-['JetBrains_Mono'] font-bold"
-            style={{ background: "rgba(34,211,238,0.1)", color: "#22D3EE", border: "1px solid rgba(34,211,238,0.2)" }}
+            style={{ background: "rgba(181,142,60,0.1)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}
           >
             {filtered.length} {isAr ? "حدث" : "events"}
           </span>
@@ -100,7 +100,7 @@ const MovementTimeline = ({ events, streamFilter, isAr }: Props) => {
         {/* Vertical cyan line */}
         <div
           className="absolute left-6 top-3 bottom-3 w-0.5"
-          style={{ background: "linear-gradient(to bottom, rgba(34,211,238,0.8), rgba(34,211,238,0.1))" }}
+          style={{ background: "linear-gradient(to bottom, rgba(181,142,60,0.8), rgba(181,142,60,0.1))" }}
         />
 
         <div className="space-y-2">
@@ -194,7 +194,7 @@ const MovementTimeline = ({ events, streamFilter, isAr }: Props) => {
                         <div className="col-span-full flex gap-2 mt-2 pt-2 border-t" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
                           <button
                             className="px-3 py-1.5 rounded-lg text-xs font-['JetBrains_Mono'] cursor-pointer whitespace-nowrap"
-                            style={{ background: "#22D3EE", color: "#060D1A" }}
+                            style={{ background: "#D4A84B", color: "#0B1220" }}
                           >
                             <i className="ri-check-line mr-1" />Confirm Alert
                           </button>

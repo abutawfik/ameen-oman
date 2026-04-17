@@ -30,7 +30,7 @@ const EventFeed = ({ entityType, isAr }: Props) => {
 
   return (
     <div className="flex flex-col h-full rounded-xl border overflow-hidden"
-      style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.12)", backdropFilter: "blur(12px)" }}>
+      style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
       {/* Header */}
       <div className="flex items-center justify-between px-5 py-4 border-b flex-shrink-0"
         style={{ borderColor: "rgba(255,255,255,0.06)" }}>
@@ -67,7 +67,7 @@ const EventFeed = ({ entityType, isAr }: Props) => {
                   >
                     {isAr ? ev.typeAr : ev.type}
                   </span>
-                  <span className="text-cyan-400 text-xs font-['JetBrains_Mono'] hover:text-cyan-300 cursor-pointer">
+                  <span className="text-gold-400 text-xs font-['JetBrains_Mono'] hover:text-gold-300 cursor-pointer">
                     #{ev.ref}
                   </span>
                 </div>
@@ -93,7 +93,7 @@ const EventFeed = ({ entityType, isAr }: Props) => {
 
       {/* Footer */}
       <div className="px-5 py-3 border-t flex-shrink-0" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
-        <button className="w-full text-center text-cyan-400 text-xs font-semibold hover:text-cyan-300 transition-colors cursor-pointer font-['Inter']">
+        <button className="w-full text-center text-gold-400 text-xs font-semibold hover:text-gold-300 transition-colors cursor-pointer font-['Inter']">
           {isAr ? "عرض جميع الأحداث ›" : "View All Events ›"}
         </button>
       </div>

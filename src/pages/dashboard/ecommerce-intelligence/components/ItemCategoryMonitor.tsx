@@ -8,7 +8,7 @@ const CATEGORIES = [
     icon: "ri-cpu-line",
     label: "Electronics",
     labelAr: "الإلكترونيات",
-    color: "#22D3EE",
+    color: "#D4A84B",
     count: 89,
     trend: "+12%",
     trendUp: false,
@@ -138,7 +138,7 @@ const ItemCategoryMonitor = ({ isAr }: Props) => {
             onClick={() => setSelected(selected === cat.id ? null : cat.id)}
             className="relative rounded-2xl border p-5 text-left cursor-pointer transition-all overflow-hidden"
             style={{
-              background: selected === cat.id ? `${cat.color}10` : "rgba(10,22,40,0.8)",
+              background: selected === cat.id ? `${cat.color}10` : "rgba(20,29,46,0.8)",
               borderColor: selected === cat.id ? `${cat.color}50` : `${cat.color}20`,
               backdropFilter: "blur(12px)",
             }}
@@ -172,7 +172,7 @@ const ItemCategoryMonitor = ({ isAr }: Props) => {
 
       {/* Detail panel */}
       {selectedCat && (
-        <div className="rounded-2xl border p-6" style={{ background: "rgba(10,22,40,0.9)", borderColor: `${selectedCat.color}30`, backdropFilter: "blur(16px)" }}>
+        <div className="rounded-2xl border p-6" style={{ background: "rgba(20,29,46,0.9)", borderColor: `${selectedCat.color}30`, backdropFilter: "blur(16px)" }}>
           <div className="flex items-center justify-between mb-5">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 flex items-center justify-center rounded-xl" style={{ background: `${selectedCat.color}15`, border: `1px solid ${selectedCat.color}30` }}>

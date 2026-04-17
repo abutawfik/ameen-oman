@@ -91,7 +91,7 @@ const WorkPermitForm = ({ isAr, onCancel }: Props) => {
     setTimeout(() => { setSaving(false); setSubmitted(true); }, 1400);
   };
 
-  if (submitted) return <EmpConfirmation isAr={isAr} onReset={() => setSubmitted(false)} eventLabel="Work Permit Issued" eventLabelAr="تصريح عمل صادر" eventColor="#22D3EE" eventIcon="ri-briefcase-line" />;
+  if (submitted) return <EmpConfirmation isAr={isAr} onReset={() => setSubmitted(false)} eventLabel="Work Permit Issued" eventLabelAr="تصريح عمل صادر" eventColor="#D4A84B" eventIcon="ri-briefcase-line" />;
 
   const docTypeOpts = DOC_TYPES.map((d) => ({ value: d.value, label: isAr ? (d.value === "passport" ? "جواز سفر" : d.value === "national_id" ? "بطاقة هوية" : d.value === "resident_card" ? "بطاقة إقامة" : "هوية خليجية") : d.label }));
   const genderOpts = GENDERS.map((g) => ({ value: g.value, label: isAr ? (g.value === "male" ? "ذكر" : "أنثى") : g.label }));
@@ -99,8 +99,8 @@ const WorkPermitForm = ({ isAr, onCancel }: Props) => {
   return (
     <div className="space-y-5">
       {/* Ministry feed note */}
-      <div className="flex items-start gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(34,211,238,0.04)", borderColor: "rgba(34,211,238,0.15)" }}>
-        <i className="ri-government-line text-cyan-400 text-sm mt-0.5 flex-shrink-0" />
+      <div className="flex items-start gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(181,142,60,0.04)", borderColor: "rgba(181,142,60,0.15)" }}>
+        <i className="ri-government-line text-gold-400 text-sm mt-0.5 flex-shrink-0" />
         <p className="text-gray-400 text-xs">
           {isAr
             ? "هذا الحدث يُستقبل من تغذية API لوزارة العمل. يمكن أيضاً إدخاله يدوياً من قِبل صاحب العمل المسجّل."

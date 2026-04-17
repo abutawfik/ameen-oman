@@ -37,7 +37,7 @@ const scoreColor = (band: RiskBand) => SCORE_BAND_META[band].color;
 
 const confidenceColor: Record<string, string> = {
   "High": "#4ADE80",
-  "Medium-High": "#22D3EE",
+  "Medium-High": "#D4A84B",
   "Medium": "#FACC15",
   "Low": "#F87171",
 };
@@ -135,7 +135,7 @@ const DEMO_SCENARIO_CARDS: {
     teachingEn: "ML + sequence coherence together surface what rules miss.",
     teachingAr: "تعاون ML مع تماسك التسلسل يكشف ما تتجاوزه القواعد.",
     icon: "ri-radar-line",
-    color: "#AA95FF",
+    color: "#6B4FAE",
   },
   {
     scenarioKey: "health-overlap",
@@ -251,12 +251,12 @@ const OsintRiskEnginePage = () => {
     <div
       className="min-h-screen font-['Inter']"
       style={{
-        background: "#060D1A",
+        background: "#0B1220",
         // F1 — scale the page up 15% in presenter mode
         fontSize: presenterMode ? "1.15em" : "1em",
-        outline: presenterMode ? "1px solid rgba(34,211,238,0.55)" : "none",
+        outline: presenterMode ? "1px solid rgba(181,142,60,0.55)" : "none",
         outlineOffset: presenterMode ? "-1px" : "0",
-        boxShadow: presenterMode ? "inset 0 0 32px rgba(34,211,238,0.12)" : "none",
+        boxShadow: presenterMode ? "inset 0 0 32px rgba(181,142,60,0.12)" : "none",
       }}
       dir={isAr ? "rtl" : "ltr"}
       data-presenter={presenterMode ? "on" : "off"}
@@ -266,7 +266,7 @@ const OsintRiskEnginePage = () => {
         className="fixed inset-0 pointer-events-none"
         style={{
           backgroundImage:
-            `linear-gradient(rgba(34,211,238,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.025) 1px, transparent 1px)`,
+            `linear-gradient(rgba(181,142,60,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,0.025) 1px, transparent 1px)`,
           backgroundSize: "40px 40px",
         }}
       />
@@ -288,7 +288,7 @@ const OsintRiskEnginePage = () => {
       {/* Header */}
       <header
         className="sticky top-0 z-40 flex items-center justify-between px-6 py-3 border-b"
-        style={{ background: "rgba(6,13,26,0.97)", borderColor: "rgba(34,211,238,0.12)", backdropFilter: "blur(12px)" }}
+        style={{ background: "rgba(11,18,32,0.97)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}
       >
         <div className="flex items-center gap-4">
           <button type="button" onClick={() => navigate("/dashboard")}
@@ -299,16 +299,16 @@ const OsintRiskEnginePage = () => {
           </button>
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 flex items-center justify-center rounded-xl flex-shrink-0"
-              style={{ background: "rgba(170,149,255,0.1)", border: "2px solid rgba(170,149,255,0.3)" }}>
-              <i className="ri-radar-line text-[#AA95FF] text-base" />
+              style={{ background: "rgba(107,79,174,0.1)", border: "2px solid rgba(107,79,174,0.3)" }}>
+              <i className="ri-radar-line text-[#6B4FAE] text-base" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-cyan-400 font-black text-base tracking-wide">AMEEN</span>
+                <span className="text-gold-400 font-black text-base tracking-wide">AMEEN</span>
                 <span className="text-white font-bold text-sm">{isAr ? "محرّك المخاطر OSINT" : "OSINT Risk Engine"}</span>
                 {!presenterMode && (
                   <span className="px-2 py-0.5 rounded-full text-xs font-bold"
-                    style={{ background: "rgba(170,149,255,0.15)", color: "#AA95FF", border: "1px solid rgba(170,149,255,0.3)" }}>
+                    style={{ background: "rgba(107,79,174,0.15)", color: "#6B4FAE", border: "1px solid rgba(107,79,174,0.3)" }}>
                     PoC · v0.3.1
                   </span>
                 )}
@@ -325,16 +325,16 @@ const OsintRiskEnginePage = () => {
         <div className="flex items-center gap-3">
           {presenterMode && (
             <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border"
-              style={{ background: "rgba(34,211,238,0.12)", borderColor: "rgba(34,211,238,0.45)" }}>
-              <i className="ri-mic-line text-cyan-400 text-sm" />
-              <span className="text-cyan-300 text-xs font-bold font-['JetBrains_Mono'] tracking-widest">
+              style={{ background: "rgba(181,142,60,0.12)", borderColor: "rgba(181,142,60,0.45)" }}>
+              <i className="ri-mic-line text-gold-400 text-sm" />
+              <span className="text-gold-300 text-xs font-bold font-['JetBrains_Mono'] tracking-widest">
                 {isAr ? "عرض تقديمي" : "PRESENTER"}
               </span>
             </div>
           )}
           <div className="hidden lg:flex flex-col items-end px-3 py-1.5 rounded-lg border"
-            style={{ background: "rgba(34,211,238,0.04)", borderColor: "rgba(34,211,238,0.12)" }}>
-            <span className="text-cyan-400 text-sm font-black font-['JetBrains_Mono']">{timeStr}</span>
+            style={{ background: "rgba(181,142,60,0.04)", borderColor: "rgba(181,142,60,0.12)" }}>
+            <span className="text-gold-400 text-sm font-black font-['JetBrains_Mono']">{timeStr}</span>
             <span className="text-gray-600 text-xs font-['JetBrains_Mono']">{dateStr}</span>
           </div>
           <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border"
@@ -351,7 +351,7 @@ const OsintRiskEnginePage = () => {
 
       {/* Tabs */}
       <nav className="sticky top-[57px] z-30 flex items-center gap-1 px-6 py-2 border-b overflow-x-auto"
-        style={{ background: "rgba(6,13,26,0.92)", borderColor: "rgba(34,211,238,0.08)", backdropFilter: "blur(12px)" }}>
+        style={{ background: "rgba(11,18,32,0.92)", borderColor: "rgba(181,142,60,0.08)", backdropFilter: "blur(12px)" }}>
         {TABS.map((tab) => {
           const isActive = activeTab === tab.id;
           return (
@@ -360,9 +360,9 @@ const OsintRiskEnginePage = () => {
               onClick={() => setActiveTab(tab.id)}
               className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold whitespace-nowrap cursor-pointer transition-all"
               style={{
-                background: isActive ? "rgba(34,211,238,0.1)" : "transparent",
-                color: isActive ? "#22D3EE" : "#6B7280",
-                border: isActive ? "1px solid rgba(34,211,238,0.3)" : "1px solid transparent",
+                background: isActive ? "rgba(181,142,60,0.1)" : "transparent",
+                color: isActive ? "#D4A84B" : "#6B7280",
+                border: isActive ? "1px solid rgba(181,142,60,0.3)" : "1px solid transparent",
               }}
             >
               <i className={tab.icon} />
@@ -435,10 +435,10 @@ const OverviewTab = ({ isAr, agg, presenterMode }: { isAr: boolean; agg: ReturnT
   }, []);
 
   const kpis = [
-    { label: isAr ? "مسجّل خلال 24 ساعة"  : "Scored · 24h",      value: agg.total24h.toLocaleString(),  color: "#22D3EE", icon: "ri-pulse-line" },
+    { label: isAr ? "مسجّل خلال 24 ساعة"  : "Scored · 24h",      value: agg.total24h.toLocaleString(),  color: "#D4A84B", icon: "ri-pulse-line" },
     { label: isAr ? "مُرفَع للمراجعة" : "Flagged · 24h",           value: agg.flagged24h.toString(),      color: "#F87171", icon: "ri-alarm-warning-line" },
     { label: isAr ? "معدل الرفع"       : "Flag rate",              value: `${agg.flagRate}%`,             color: "#FB923C", icon: "ri-percent-line" },
-    { label: isAr ? "متوسط الدرجة"    : "Avg unified score",       value: agg.avgScore.toString(),        color: "#AA95FF", icon: "ri-scales-3-line" },
+    { label: isAr ? "متوسط الدرجة"    : "Avg unified score",       value: agg.avgScore.toString(),        color: "#6B4FAE", icon: "ri-scales-3-line" },
     { label: isAr ? "مصادر حيّة"       : "Sources live",            value: `${agg.sourcesHealthy + INTERNAL_STREAMS.filter((s) => s.status === "healthy").length}/${TOTAL_OSINT_BASELINE + INTERNAL_STREAMS.length}`, color: "#4ADE80", icon: "ri-broadcast-line" },
     { label: isAr ? "إصدار النموذج"   : "Model version",            value: "mvp-0.3.1",                    color: "#FACC15", icon: "ri-git-commit-line" },
   ];
@@ -451,7 +451,7 @@ const OverviewTab = ({ isAr, agg, presenterMode }: { isAr: boolean; agg: ReturnT
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
         {visibleKpis.map((k) => (
           <div key={k.label} className="rounded-xl border p-4"
-            style={{ background: "rgba(10,22,40,0.65)", borderColor: "rgba(34,211,238,0.12)" }}>
+            style={{ background: "rgba(20,29,46,0.65)", borderColor: "rgba(181,142,60,0.12)" }}>
             <div className="flex items-center gap-2 mb-2">
               <i className={`${k.icon} text-lg`} style={{ color: k.color }} />
               <span className="text-gray-500 text-[10px] font-bold tracking-widest uppercase font-['JetBrains_Mono']">{k.label}</span>
@@ -466,14 +466,14 @@ const OverviewTab = ({ isAr, agg, presenterMode }: { isAr: boolean; agg: ReturnT
 
       {/* Throughput chart */}
       <div className="rounded-xl border p-5"
-        style={{ background: "rgba(10,22,40,0.65)", borderColor: "rgba(34,211,238,0.12)" }}>
+        style={{ background: "rgba(20,29,46,0.65)", borderColor: "rgba(181,142,60,0.12)" }}>
         <div className="flex items-center justify-between mb-4">
           <div>
             <h3 className="text-white text-base font-bold">{isAr ? "إنتاجية المحرّك · آخر 24 ساعة" : "Engine throughput · last 24h"}</h3>
             <p className="text-gray-500 text-xs font-['JetBrains_Mono']">scored vs flagged · hourly</p>
           </div>
           <div className="flex items-center gap-3 text-xs font-['JetBrains_Mono']">
-            <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm" style={{ background: "#22D3EE" }} /> <span className="text-gray-400">scored</span></span>
+            <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm" style={{ background: "#D4A84B" }} /> <span className="text-gray-400">scored</span></span>
             <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm" style={{ background: "#F87171" }} /> <span className="text-gray-400">flagged</span></span>
           </div>
         </div>
@@ -482,19 +482,19 @@ const OverviewTab = ({ isAr, agg, presenterMode }: { isAr: boolean; agg: ReturnT
             <AreaChart data={THROUGHPUT_24H}>
               <defs>
                 <linearGradient id="g-scored" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#22D3EE" stopOpacity={0.5} />
-                  <stop offset="95%" stopColor="#22D3EE" stopOpacity={0.05} />
+                  <stop offset="5%" stopColor="#D4A84B" stopOpacity={0.5} />
+                  <stop offset="95%" stopColor="#D4A84B" stopOpacity={0.05} />
                 </linearGradient>
                 <linearGradient id="g-flagged" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="5%" stopColor="#F87171" stopOpacity={0.7} />
                   <stop offset="95%" stopColor="#F87171" stopOpacity={0.1} />
                 </linearGradient>
               </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(34,211,238,0.08)" />
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(181,142,60,0.08)" />
               <XAxis dataKey="hour" stroke="#6B7280" tick={{ fontSize: 11, fontFamily: "JetBrains Mono" }} />
               <YAxis stroke="#6B7280" tick={{ fontSize: 11, fontFamily: "JetBrains Mono" }} />
-              <Tooltip contentStyle={{ background: "#0A1628", border: "1px solid rgba(34,211,238,0.3)", borderRadius: 8, fontSize: 12, fontFamily: "JetBrains Mono" }} />
-              <Area type="monotone" dataKey="scored"  stroke="#22D3EE" strokeWidth={2} fill="url(#g-scored)"  />
+              <Tooltip contentStyle={{ background: "#141D2E", border: "1px solid rgba(181,142,60,0.3)", borderRadius: 8, fontSize: 12, fontFamily: "JetBrains Mono" }} />
+              <Area type="monotone" dataKey="scored"  stroke="#D4A84B" strokeWidth={2} fill="url(#g-scored)"  />
               <Area type="monotone" dataKey="flagged" stroke="#F87171" strokeWidth={2} fill="url(#g-flagged)" />
             </AreaChart>
           </ResponsiveContainer>
@@ -504,7 +504,7 @@ const OverviewTab = ({ isAr, agg, presenterMode }: { isAr: boolean; agg: ReturnT
       {/* Band distribution + Narrative */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         <div className="lg:col-span-2 rounded-xl border p-5"
-          style={{ background: "rgba(10,22,40,0.65)", borderColor: "rgba(34,211,238,0.12)" }}>
+          style={{ background: "rgba(20,29,46,0.65)", borderColor: "rgba(181,142,60,0.12)" }}>
           <h3 className="text-white text-base font-bold mb-4">{isAr ? "توزيع نطاقات المخاطر" : "Risk-band distribution"}</h3>
           <div className="space-y-3">
             {(Object.keys(bandCounts) as RiskBand[]).map((b) => {
@@ -529,9 +529,9 @@ const OverviewTab = ({ isAr, agg, presenterMode }: { isAr: boolean; agg: ReturnT
         </div>
 
         <div className="rounded-xl border p-5 flex flex-col gap-3"
-          style={{ background: "linear-gradient(135deg, rgba(170,149,255,0.08), rgba(34,211,238,0.04))", borderColor: "rgba(170,149,255,0.25)" }}>
+          style={{ background: "linear-gradient(135deg, rgba(107,79,174,0.08), rgba(181,142,60,0.04))", borderColor: "rgba(107,79,174,0.25)" }}>
           <div className="flex items-center gap-2">
-            <i className="ri-lightbulb-flash-line text-[#AA95FF]" />
+            <i className="ri-lightbulb-flash-line text-[#6B4FAE]" />
             <h3 className="text-white text-sm font-bold">{isAr ? "ما الذي يفعله المحرّك" : "What the engine does"}</h3>
           </div>
           <p className="text-gray-400 text-xs leading-relaxed">
@@ -540,7 +540,7 @@ const OverviewTab = ({ isAr, agg, presenterMode }: { isAr: boolean; agg: ReturnT
             adjudication and API/PNR pre-arrival. Nine sub-scores — deterministic rules for auditability, unsupervised
             ML for pattern detection, SHAP-style attribution for every flag.
           </p>
-          <p className="text-gray-500 text-[11px] font-['JetBrains_Mono'] pt-2 border-t" style={{ borderColor: "rgba(170,149,255,0.2)" }}>
+          <p className="text-gray-500 text-[11px] font-['JetBrains_Mono'] pt-2 border-t" style={{ borderColor: "rgba(107,79,174,0.2)" }}>
             Architected source-agnostic — Rasad integrates as a new adapter when access is granted.
           </p>
         </div>
@@ -574,11 +574,11 @@ const QueueTab = ({
     <div className="space-y-4">
       {/* F2 — Demo scenario loader */}
       <div className="rounded-xl border p-4"
-        style={{ background: "rgba(10,22,40,0.65)", borderColor: "rgba(34,211,238,0.12)" }}>
+        style={{ background: "rgba(20,29,46,0.65)", borderColor: "rgba(181,142,60,0.12)" }}>
         <div className="flex items-center justify-between mb-3">
           <div>
             <h3 className="text-white text-sm font-bold flex items-center gap-2">
-              <i className="ri-slideshow-line text-[#AA95FF]" />
+              <i className="ri-slideshow-line text-[#6B4FAE]" />
               {isAr ? "سيناريوهات العرض" : "Demo Scenarios"}
             </h3>
             <p className="text-gray-500 text-[11px] font-['JetBrains_Mono']">
@@ -604,9 +604,9 @@ const QueueTab = ({
                   width: 220,
                   scrollSnapAlign: "start",
                   background: active
-                    ? `linear-gradient(135deg, ${s.color}22, rgba(10,22,40,0.8))`
-                    : "rgba(10,22,40,0.85)",
-                  borderColor: active ? `${s.color}55` : "rgba(34,211,238,0.1)",
+                    ? `linear-gradient(135deg, ${s.color}22, rgba(20,29,46,0.8))`
+                    : "rgba(20,29,46,0.85)",
+                  borderColor: active ? `${s.color}55` : "rgba(181,142,60,0.1)",
                 }}>
                 <div className="flex items-center gap-2">
                   <div className="w-8 h-8 rounded-lg flex items-center justify-center"
@@ -621,9 +621,9 @@ const QueueTab = ({
                 <button onClick={() => onScenarioLoad(s.scenarioKey)}
                   className="mt-1 px-2 py-1 rounded-md text-[11px] font-bold cursor-pointer flex items-center justify-center gap-1 transition-all"
                   style={{
-                    background: active ? `${s.color}22` : "rgba(34,211,238,0.1)",
-                    color: active ? s.color : "#22D3EE",
-                    border: `1px solid ${active ? s.color : "#22D3EE"}55`,
+                    background: active ? `${s.color}22` : "rgba(181,142,60,0.1)",
+                    color: active ? s.color : "#D4A84B",
+                    border: `1px solid ${active ? s.color : "#D4A84B"}55`,
                   }}>
                   {isAr ? "تشغيل السيناريو" : "Play scenario"}
                   <i className={isAr ? "ri-play-mini-line" : "ri-play-mini-line"} />
@@ -636,14 +636,14 @@ const QueueTab = ({
 
       {/* Filter bar */}
       <div className="flex flex-wrap items-center gap-2 p-3 rounded-xl border"
-        style={{ background: "rgba(10,22,40,0.65)", borderColor: "rgba(34,211,238,0.12)" }}>
+        style={{ background: "rgba(20,29,46,0.65)", borderColor: "rgba(181,142,60,0.12)" }}>
         <span className="text-gray-500 text-xs font-bold tracking-widest uppercase font-['JetBrains_Mono']">
           {isAr ? "تصفية" : "Filter"}
         </span>
         <div className="flex gap-1">
           {BANDS.map((b) => {
             const active = filterBand === b;
-            const col = b === "all" ? "#22D3EE" : SCORE_BAND_META[b as RiskBand].color;
+            const col = b === "all" ? "#D4A84B" : SCORE_BAND_META[b as RiskBand].color;
             return (
               <button key={b} onClick={() => setFilterBand(b)}
                 className="px-2.5 py-1 rounded-md text-[11px] font-bold font-['JetBrains_Mono'] tracking-widest uppercase cursor-pointer"
@@ -665,9 +665,9 @@ const QueueTab = ({
               <button key={d} onClick={() => setFilterDecision(d)}
                 className="px-2.5 py-1 rounded-md text-[11px] font-bold font-['JetBrains_Mono'] tracking-widest uppercase cursor-pointer"
                 style={{
-                  background: active ? "rgba(170,149,255,0.18)" : "transparent",
-                  color: active ? "#AA95FF" : "#6B7280",
-                  border: active ? "1px solid rgba(170,149,255,0.4)" : "1px solid rgba(255,255,255,0.08)",
+                  background: active ? "rgba(107,79,174,0.18)" : "transparent",
+                  color: active ? "#6B4FAE" : "#6B7280",
+                  border: active ? "1px solid rgba(107,79,174,0.4)" : "1px solid rgba(255,255,255,0.08)",
                 }}>
                 {d}
               </button>
@@ -681,9 +681,9 @@ const QueueTab = ({
 
       {/* Table */}
       <div className="rounded-xl border overflow-hidden"
-        style={{ background: "rgba(10,22,40,0.65)", borderColor: "rgba(34,211,238,0.12)" }}>
+        style={{ background: "rgba(20,29,46,0.65)", borderColor: "rgba(181,142,60,0.12)" }}>
         <div className="grid grid-cols-12 gap-2 px-4 py-2.5 border-b text-[10px] font-bold tracking-widest uppercase font-['JetBrains_Mono']"
-          style={{ borderColor: "rgba(34,211,238,0.08)", color: "#6B7280" }}>
+          style={{ borderColor: "rgba(181,142,60,0.08)", color: "#6B7280" }}>
           <div className="col-span-1">{isAr ? "الدرجة" : "Score"}</div>
           <div className="col-span-3">{isAr ? "المسافر" : "Traveler"}</div>
           <div className="col-span-1">{isAr ? "الجنسية" : "Nat."}</div>
@@ -698,7 +698,7 @@ const QueueTab = ({
             key={r.id}
             onClick={() => onSelect(r)}
             className="w-full grid grid-cols-12 gap-2 px-4 py-3 border-b cursor-pointer transition-colors text-left hover:bg-white/[0.03]"
-            style={{ borderColor: "rgba(34,211,238,0.05)" }}
+            style={{ borderColor: "rgba(181,142,60,0.05)" }}
           >
             {/* Score */}
             <div className="col-span-1 flex items-center">
@@ -739,8 +739,8 @@ const QueueTab = ({
             <div className="col-span-1 flex items-center">
               <span className="px-2 py-0.5 rounded-md text-[10px] font-bold tracking-wider font-['JetBrains_Mono']"
                 style={{
-                  background: r.decisionPoint === "ETA" ? "rgba(34,211,238,0.1)" : "rgba(170,149,255,0.1)",
-                  color: r.decisionPoint === "ETA" ? "#22D3EE" : "#AA95FF",
+                  background: r.decisionPoint === "ETA" ? "rgba(181,142,60,0.1)" : "rgba(107,79,174,0.1)",
+                  color: r.decisionPoint === "ETA" ? "#D4A84B" : "#6B4FAE",
                 }}>
                 {r.decisionPoint}
               </span>
@@ -784,12 +784,12 @@ const ExplainTab = ({
   if (!record) {
     return (
       <div className="rounded-xl border p-8 text-center"
-        style={{ background: "rgba(10,22,40,0.65)", borderColor: "rgba(34,211,238,0.12)" }}>
+        style={{ background: "rgba(20,29,46,0.65)", borderColor: "rgba(181,142,60,0.12)" }}>
         <i className="ri-focus-3-line text-5xl text-gray-600 mb-3" />
         <p className="text-gray-400 mb-4">{isAr ? "اختر سجلاً من قائمة المشغّل لعرض الشرح" : "Select a record from the Operator Queue to see its explainability breakdown"}</p>
         <button onClick={onBack}
           className="px-4 py-2 rounded-lg text-sm font-semibold cursor-pointer"
-          style={{ background: "rgba(34,211,238,0.1)", color: "#22D3EE", border: "1px solid rgba(34,211,238,0.3)" }}>
+          style={{ background: "rgba(181,142,60,0.1)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.3)" }}>
           {isAr ? "فتح قائمة المشغّل" : "Open Operator Queue"}
         </button>
       </div>
@@ -825,11 +825,11 @@ const ExplainTab = ({
       {scenarioToast && (
         <div className="flex items-center justify-between gap-3 rounded-xl border px-4 py-3"
           style={{
-            background: "linear-gradient(135deg, rgba(34,211,238,0.14), rgba(170,149,255,0.08))",
-            borderColor: "rgba(34,211,238,0.4)",
+            background: "linear-gradient(135deg, rgba(181,142,60,0.14), rgba(107,79,174,0.08))",
+            borderColor: "rgba(181,142,60,0.4)",
           }}>
           <div className="flex items-center gap-3">
-            <i className="ri-sparkling-2-line text-[#22D3EE] text-lg" />
+            <i className="ri-sparkling-2-line text-[#D4A84B] text-lg" />
             <span className="text-white text-sm font-semibold">{scenarioToast}</span>
           </div>
           <button onClick={onDismissToast}
@@ -843,7 +843,7 @@ const ExplainTab = ({
       {/* Traveler header */}
       <div className="flex flex-wrap items-start justify-between gap-4 rounded-xl border p-5"
         style={{
-          background: `linear-gradient(135deg, ${scoreColor(record.band)}14, rgba(10,22,40,0.8))`,
+          background: `linear-gradient(135deg, ${scoreColor(record.band)}14, rgba(20,29,46,0.8))`,
           borderColor: `${scoreColor(record.band)}44`,
         }}>
         <div className="flex items-start gap-4">
@@ -861,8 +861,8 @@ const ExplainTab = ({
               </span>
               <span className="px-2 py-0.5 rounded-md text-[10px] font-bold font-['JetBrains_Mono']"
                 style={{
-                  background: record.decisionPoint === "ETA" ? "rgba(34,211,238,0.1)" : "rgba(170,149,255,0.1)",
-                  color: record.decisionPoint === "ETA" ? "#22D3EE" : "#AA95FF",
+                  background: record.decisionPoint === "ETA" ? "rgba(181,142,60,0.1)" : "rgba(107,79,174,0.1)",
+                  color: record.decisionPoint === "ETA" ? "#D4A84B" : "#6B4FAE",
                 }}>
                 {record.decisionPoint}
               </span>
@@ -899,13 +899,13 @@ const ExplainTab = ({
       <div className="rounded-xl border px-4 py-3"
         style={{
           background: degraded
-            ? "linear-gradient(135deg, rgba(251,146,60,0.08), rgba(10,22,40,0.8))"
-            : "rgba(10,22,40,0.65)",
-          borderColor: degraded ? "rgba(251,146,60,0.3)" : "rgba(34,211,238,0.12)",
+            ? "linear-gradient(135deg, rgba(251,146,60,0.08), rgba(20,29,46,0.8))"
+            : "rgba(20,29,46,0.65)",
+          borderColor: degraded ? "rgba(251,146,60,0.3)" : "rgba(181,142,60,0.12)",
         }}>
         <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs font-['JetBrains_Mono']">
           <span className="flex items-center gap-2 text-gray-300">
-            <i className="ri-radar-line text-[#22D3EE]" />
+            <i className="ri-radar-line text-[#D4A84B]" />
             {isAr
               ? `يستند إلى ${record.sourcesAvailable.length}/${expectedSources} مصادر OSINT · ${activeRules}/${totalRules} قواعد نشطة`
               : `Based on ${record.sourcesAvailable.length}/${expectedSources} OSINT sources · ${activeRules}/${totalRules} rules fired`}
@@ -939,15 +939,15 @@ const ExplainTab = ({
       {/* Sub-score bars */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <div className="rounded-xl border p-5"
-          style={{ background: "rgba(10,22,40,0.65)", borderColor: "rgba(34,211,238,0.12)" }}>
+          style={{ background: "rgba(20,29,46,0.65)", borderColor: "rgba(181,142,60,0.12)" }}>
           <h3 className="text-white text-sm font-bold mb-4">{isAr ? "الدرجات الفرعية" : "Sub-score contribution"}</h3>
           <div style={{ height: presenterMode ? 340 : 260 }}>
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={subChartData} layout="vertical" margin={{ left: 20, right: 20 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(34,211,238,0.08)" horizontal={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(181,142,60,0.08)" horizontal={false} />
                 <XAxis type="number" domain={[0, 100]} stroke="#6B7280" tick={{ fontSize: presenterMode ? 12 : 10, fontFamily: "JetBrains Mono" }} />
                 <YAxis type="category" dataKey="label" stroke="#6B7280" tick={{ fontSize: presenterMode ? 13 : 11, fontFamily: "Inter" }} width={130} />
-                <Tooltip contentStyle={{ background: "#0A1628", border: "1px solid rgba(34,211,238,0.3)", borderRadius: 8, fontSize: 12 }} />
+                <Tooltip contentStyle={{ background: "#141D2E", border: "1px solid rgba(181,142,60,0.3)", borderRadius: 8, fontSize: 12 }} />
                 <Bar dataKey="value" radius={[0, 4, 4, 0]}>
                   {subChartData.map((d) => (<Cell key={d.key} fill={d.color} />))}
                 </Bar>
@@ -958,7 +958,7 @@ const ExplainTab = ({
 
         {/* Weight contribution legend */}
         <div className="rounded-xl border p-5"
-          style={{ background: "rgba(10,22,40,0.65)", borderColor: "rgba(34,211,238,0.12)" }}>
+          style={{ background: "rgba(20,29,46,0.65)", borderColor: "rgba(181,142,60,0.12)" }}>
           <h3 className="text-white text-sm font-bold mb-4">{isAr ? "الأوزان النشطة" : "Active weights"}</h3>
           <div className="space-y-2">
             {weights.map((w) => {
@@ -982,7 +982,7 @@ const ExplainTab = ({
 
       {/* Contributions per sub-score */}
       <div className="rounded-xl border p-5"
-        style={{ background: "rgba(10,22,40,0.65)", borderColor: "rgba(34,211,238,0.12)" }}>
+        style={{ background: "rgba(20,29,46,0.65)", borderColor: "rgba(181,142,60,0.12)" }}>
         <h3 className="text-white text-sm font-bold mb-4">
           {isAr ? "الإسهامات التفصيلية" : "Contributing signals"}
           <span className="ml-3 text-xs font-['JetBrains_Mono'] text-gray-600">
@@ -1008,8 +1008,8 @@ const ExplainTab = ({
                       style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
                       <span className="px-2 py-0.5 rounded-md text-[10px] font-bold font-['JetBrains_Mono'] tracking-widest flex-shrink-0"
                         style={{
-                          background: c.type === "rule" ? "rgba(34,211,238,0.12)" : "rgba(170,149,255,0.12)",
-                          color: c.type === "rule" ? "#22D3EE" : "#AA95FF",
+                          background: c.type === "rule" ? "rgba(181,142,60,0.12)" : "rgba(107,79,174,0.12)",
+                          color: c.type === "rule" ? "#D4A84B" : "#6B4FAE",
                         }}>
                         {c.type === "rule" ? "RULE" : "ML"}
                       </span>
@@ -1050,7 +1050,7 @@ const SequenceTab = ({ isAr }: { isAr: boolean }) => {
     <div className="space-y-4">
       {/* Header blurb */}
       <div className="rounded-xl border p-5 flex flex-col gap-2"
-        style={{ background: "linear-gradient(135deg, rgba(245,158,11,0.08), rgba(34,211,238,0.04))", borderColor: "rgba(245,158,11,0.3)" }}>
+        style={{ background: "linear-gradient(135deg, rgba(245,158,11,0.08), rgba(181,142,60,0.04))", borderColor: "rgba(245,158,11,0.3)" }}>
         <div className="flex items-center gap-2">
           <i className="ri-flow-chart text-[#F59E0B] text-lg" />
           <h3 className="text-white text-base font-bold">{isAr ? "النموذج الثالث — تماسك التسلسل" : "Model 3 — Sequence Coherence"}</h3>
@@ -1099,7 +1099,7 @@ const SequenceRow = ({ timeline, isAr }: { timeline: SequenceTimeline; isAr: boo
   return (
     <div className="rounded-xl border p-5"
       style={{
-        background: `linear-gradient(135deg, ${verdict.color}0d, rgba(10,22,40,0.75))`,
+        background: `linear-gradient(135deg, ${verdict.color}0d, rgba(20,29,46,0.75))`,
         borderColor: `${verdict.color}33`,
       }}>
       {/* Header */}
@@ -1151,7 +1151,7 @@ const SequenceRow = ({ timeline, isAr }: { timeline: SequenceTimeline; isAr: boo
                 )}
                 <div className="w-10 h-10 rounded-full flex items-center justify-center relative z-10"
                   style={{
-                    background: missing ? "rgba(10,22,40,0.95)" : `${tp.color}22`,
+                    background: missing ? "rgba(20,29,46,0.95)" : `${tp.color}22`,
                     border: `2px solid ${missing ? "#FB923C" : tp.color}`,
                   }}>
                   <i className={`${tp.icon} text-base`}
@@ -1206,8 +1206,8 @@ const SourcesTab = ({ isAr, presenterMode }: { isAr: boolean; presenterMode: boo
   const internalCount = INTERNAL_STREAMS.length;
 
   const FILTER_TABS: { id: SourceFilter; labelEn: string; labelAr: string; count: number; color: string }[] = [
-    { id: "all",      labelEn: "All",              labelAr: "الكل",           count: osintCount + internalCount, color: "#22D3EE" },
-    { id: "osint",    labelEn: "OSINT",            labelAr: "مصادر مفتوحة",   count: osintCount,                 color: "#22D3EE" },
+    { id: "all",      labelEn: "All",              labelAr: "الكل",           count: osintCount + internalCount, color: "#D4A84B" },
+    { id: "osint",    labelEn: "OSINT",            labelAr: "مصادر مفتوحة",   count: osintCount,                 color: "#D4A84B" },
     { id: "internal", labelEn: "Internal Streams", labelAr: "تدفقات داخلية",  count: internalCount,              color: "#4ADE80" },
   ];
 
@@ -1215,7 +1215,7 @@ const SourcesTab = ({ isAr, presenterMode }: { isAr: boolean; presenterMode: boo
     <div className="space-y-4">
       {/* Filter toggle */}
       <div className="flex flex-wrap items-center gap-2 p-3 rounded-xl border"
-        style={{ background: "rgba(10,22,40,0.65)", borderColor: "rgba(34,211,238,0.12)" }}>
+        style={{ background: "rgba(20,29,46,0.65)", borderColor: "rgba(181,142,60,0.12)" }}>
         <span className="text-gray-500 text-xs font-bold tracking-widest uppercase font-['JetBrains_Mono']">
           {isAr ? "نوع المصدر" : "Source type"}
         </span>
@@ -1248,8 +1248,8 @@ const SourcesTab = ({ isAr, presenterMode }: { isAr: boolean; presenterMode: boo
           return (
             <div key={s.id} className="rounded-xl border p-4 flex flex-col gap-3 relative overflow-hidden"
               style={{
-                background: "rgba(10,22,40,0.65)",
-                borderColor: "rgba(34,211,238,0.12)",
+                background: "rgba(20,29,46,0.65)",
+                borderColor: "rgba(181,142,60,0.12)",
                 borderLeft: `3px solid ${cls.color}`,
               }}>
               <div className="flex items-start justify-between gap-2">
@@ -1291,7 +1291,7 @@ const SourcesTab = ({ isAr, presenterMode }: { isAr: boolean; presenterMode: boo
 
               {!presenterMode && (
                 <div className="flex items-center justify-between text-[10px] font-['JetBrains_Mono'] pt-2 border-t"
-                  style={{ borderColor: "rgba(34,211,238,0.08)" }}>
+                  style={{ borderColor: "rgba(181,142,60,0.08)" }}>
                   <span className="text-gray-600 truncate">{s.endpoint}</span>
                   <span className="flex items-center gap-1 flex-shrink-0" style={{ color: st.color }}>
                     <i className="ri-time-line" /> {timeSince(s.lastSuccess)}
@@ -1304,8 +1304,8 @@ const SourcesTab = ({ isAr, presenterMode }: { isAr: boolean; presenterMode: boo
       </div>
 
       <div className="rounded-xl border p-4 flex items-start gap-3"
-        style={{ background: "rgba(170,149,255,0.06)", borderColor: "rgba(170,149,255,0.25)" }}>
-        <i className="ri-lock-2-line text-[#AA95FF] text-lg mt-0.5" />
+        style={{ background: "rgba(107,79,174,0.06)", borderColor: "rgba(107,79,174,0.25)" }}>
+        <i className="ri-lock-2-line text-[#6B4FAE] text-lg mt-0.5" />
         <div>
           <p className="text-white text-sm font-semibold mb-1">{isAr ? "جاهزية رصد — التصميم المنفصل للمصادر" : "Rasad readiness — source-agnostic adapter pattern"}</p>
           <p className="text-gray-400 text-xs leading-relaxed">
@@ -1363,7 +1363,7 @@ const ConfigTab = ({
       {/* Weights + preview */}
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
         <div className="xl:col-span-2 rounded-xl border p-5"
-          style={{ background: "rgba(10,22,40,0.65)", borderColor: "rgba(34,211,238,0.12)" }}>
+          style={{ background: "rgba(20,29,46,0.65)", borderColor: "rgba(181,142,60,0.12)" }}>
           <div className="flex items-center justify-between mb-4">
             <div>
               <h3 className="text-white text-sm font-bold">{isAr ? "أوزان الدرجات الفرعية" : "Sub-score weights"}</h3>
@@ -1396,7 +1396,7 @@ const ConfigTab = ({
                     type="range" min={0} max={40} step={1}
                     value={w.weight}
                     onChange={(e) => onWeightChange(w.key, parseInt(e.target.value))}
-                    className="w-full accent-cyan-400 cursor-pointer"
+                    className="w-full accent-gold-400 cursor-pointer"
                   />
                   <p className="text-gray-600 text-[10px] font-['JetBrains_Mono'] mt-0.5">
                     {w.primarySources.join(" · ")} — {w.method}
@@ -1415,10 +1415,10 @@ const ConfigTab = ({
 
         {/* F3 — before/after preview panel */}
         <div className="rounded-xl border p-5 flex flex-col"
-          style={{ background: "rgba(10,22,40,0.65)", borderColor: "rgba(34,211,238,0.12)" }}>
+          style={{ background: "rgba(20,29,46,0.65)", borderColor: "rgba(181,142,60,0.12)" }}>
           <div className="mb-3">
             <h3 className="text-white text-sm font-bold flex items-center gap-2">
-              <i className="ri-compasses-2-line text-[#22D3EE]" />
+              <i className="ri-compasses-2-line text-[#D4A84B]" />
               {isAr ? "معاينة: قبل → بعد" : "Preview: before → after"}
             </h3>
             <p className="text-gray-500 text-[11px] font-['JetBrains_Mono']">
@@ -1459,7 +1459,7 @@ const ConfigTab = ({
 
       {/* Rules */}
       <div className="rounded-xl border p-5"
-        style={{ background: "rgba(10,22,40,0.65)", borderColor: "rgba(34,211,238,0.12)" }}>
+        style={{ background: "rgba(20,29,46,0.65)", borderColor: "rgba(181,142,60,0.12)" }}>
         <div className="flex items-center justify-between mb-4">
           <div>
             <h3 className="text-white text-sm font-bold">{isAr ? "قواعد التقييم" : "Scoring rules"}</h3>
@@ -1478,11 +1478,11 @@ const ConfigTab = ({
                 className="flex items-start gap-3 px-3 py-2.5 rounded-md text-left cursor-pointer transition-all"
                 style={{
                   background: r.enabled ? "rgba(255,255,255,0.03)" : "rgba(255,255,255,0.01)",
-                  border: `1px solid ${r.enabled ? "rgba(34,211,238,0.15)" : "rgba(255,255,255,0.04)"}`,
+                  border: `1px solid ${r.enabled ? "rgba(181,142,60,0.15)" : "rgba(255,255,255,0.04)"}`,
                   opacity: r.enabled ? 1 : 0.55,
                 }}>
                 <div className="w-9 h-5 rounded-full relative flex-shrink-0 mt-0.5 transition-colors"
-                  style={{ background: r.enabled ? "#22D3EE" : "rgba(255,255,255,0.08)" }}>
+                  style={{ background: r.enabled ? "#D4A84B" : "rgba(255,255,255,0.08)" }}>
                   <div className="absolute top-0.5 w-4 h-4 rounded-full bg-white transition-all"
                     style={{ left: r.enabled ? "calc(100% - 18px)" : "2px" }} />
                 </div>

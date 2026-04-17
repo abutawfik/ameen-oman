@@ -39,7 +39,7 @@ const typeConfig: Record<TxType, { label: string; labelAr: string; color: string
   restricted: { label: "Restricted Item", labelAr: "عنصر مقيّد",      color: "#F87171", icon: "ri-forbid-line" },
   highvalue:  { label: "High-Value",      labelAr: "قيمة عالية",      color: "#FB923C", icon: "ri-money-dollar-circle-line" },
   shipping:   { label: "Shipping Alert",  labelAr: "تنبيه شحن",       color: "#A78BFA", icon: "ri-ship-line" },
-  pattern:    { label: "Payment Pattern", labelAr: "نمط دفع",         color: "#22D3EE", icon: "ri-exchange-line" },
+  pattern:    { label: "Payment Pattern", labelAr: "نمط دفع",         color: "#D4A84B", icon: "ri-exchange-line" },
 };
 
 const riskColor = (r: Transaction["risk"]) => {
@@ -98,9 +98,9 @@ const FlaggedTransactionFeed = ({ isAr }: Props) => {
           <button key={f.id} type="button" onClick={() => setFilter(f.id)}
             className="px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer transition-all whitespace-nowrap"
             style={{
-              background: filter === f.id ? "rgba(34,211,238,0.15)" : "rgba(255,255,255,0.04)",
-              border: `1px solid ${filter === f.id ? "rgba(34,211,238,0.35)" : "rgba(255,255,255,0.08)"}`,
-              color: filter === f.id ? "#22D3EE" : "#6B7280",
+              background: filter === f.id ? "rgba(181,142,60,0.15)" : "rgba(255,255,255,0.04)",
+              border: `1px solid ${filter === f.id ? "rgba(181,142,60,0.35)" : "rgba(255,255,255,0.08)"}`,
+              color: filter === f.id ? "#D4A84B" : "#6B7280",
             }}>
             {isAr ? f.labelAr : f.label}
           </button>
@@ -112,7 +112,7 @@ const FlaggedTransactionFeed = ({ isAr }: Props) => {
       </div>
 
       {/* Feed */}
-      <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.12)", backdropFilter: "blur(12px)" }}>
+      <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
         <div className="divide-y" style={{ borderColor: "rgba(255,255,255,0.04)" }}>
           {filtered.map((tx) => {
             const tc = typeConfig[tx.type];

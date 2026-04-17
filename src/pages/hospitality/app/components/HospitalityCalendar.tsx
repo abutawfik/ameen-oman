@@ -4,7 +4,7 @@ import { bookings } from '@/mocks/hospitalityData';
 interface Props { lang: 'en' | 'ar'; onNav: (key: string) => void; }
 
 const EVENT_COLORS: Record<string, string> = {
-  confirmed: '#22D3EE',
+  confirmed: '#D4A84B',
   checked_in: '#4ADE80',
   checked_out: '#FB923C',
 };
@@ -45,7 +45,7 @@ export default function HospitalityCalendar({ lang, onNav }: Props) {
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-2 text-xs">
             {[
-              { color: '#22D3EE', label: isAr ? 'مؤكد' : 'Confirmed' },
+              { color: '#D4A84B', label: isAr ? 'مؤكد' : 'Confirmed' },
               { color: '#4ADE80', label: isAr ? 'دخول' : 'Check-In' },
               { color: '#FB923C', label: isAr ? 'خروج' : 'Check-Out' },
             ].map(l => (
@@ -58,20 +58,20 @@ export default function HospitalityCalendar({ lang, onNav }: Props) {
         </div>
       </div>
 
-      <div className="rounded-xl border border-cyan-500/20 overflow-hidden" style={{ background: 'rgba(10,22,40,0.8)' }}>
+      <div className="rounded-xl border border-gold-500/20 overflow-hidden" style={{ background: 'rgba(20,29,46,0.8)' }}>
         {/* Month nav */}
-        <div className="flex items-center justify-between px-5 py-4 border-b border-cyan-500/10">
-          <button onClick={prevMonth} className="w-8 h-8 flex items-center justify-center rounded-lg border border-cyan-500/20 text-cyan-400 hover:bg-cyan-500/10 cursor-pointer transition-colors">
+        <div className="flex items-center justify-between px-5 py-4 border-b border-gold-500/10">
+          <button onClick={prevMonth} className="w-8 h-8 flex items-center justify-center rounded-lg border border-gold-500/20 text-gold-400 hover:bg-gold-500/10 cursor-pointer transition-colors">
             <i className="ri-arrow-left-s-line" />
           </button>
           <h3 className="text-white font-semibold">{MONTHS[month]} {year}</h3>
-          <button onClick={nextMonth} className="w-8 h-8 flex items-center justify-center rounded-lg border border-cyan-500/20 text-cyan-400 hover:bg-cyan-500/10 cursor-pointer transition-colors">
+          <button onClick={nextMonth} className="w-8 h-8 flex items-center justify-center rounded-lg border border-gold-500/20 text-gold-400 hover:bg-gold-500/10 cursor-pointer transition-colors">
             <i className="ri-arrow-right-s-line" />
           </button>
         </div>
 
         {/* Day headers */}
-        <div className="grid grid-cols-7 border-b border-cyan-500/10">
+        <div className="grid grid-cols-7 border-b border-gold-500/10">
           {DAYS_SHORT.map(d => (
             <div key={d} className="text-center text-gray-500 text-xs py-2 font-medium uppercase tracking-wider">{d}</div>
           ))}
@@ -80,7 +80,7 @@ export default function HospitalityCalendar({ lang, onNav }: Props) {
         {/* Days grid */}
         <div className="grid grid-cols-7">
           {Array.from({ length: firstDay }).map((_, i) => (
-            <div key={`empty-${i}`} className="h-20 border-b border-r border-cyan-500/5" />
+            <div key={`empty-${i}`} className="h-20 border-b border-r border-gold-500/5" />
           ))}
           {Array.from({ length: daysInMonth }).map((_, i) => {
             const day = i + 1;
@@ -92,15 +92,15 @@ export default function HospitalityCalendar({ lang, onNav }: Props) {
               <div
                 key={day}
                 onClick={() => { setSelectedDay(day); if (events.length > 0) setPopup(true); }}
-                className="h-20 border-b border-r border-cyan-500/5 p-1.5 cursor-pointer hover:bg-cyan-500/5 transition-colors relative"
-                style={{ background: isSelected ? 'rgba(34,211,238,0.08)' : undefined }}
+                className="h-20 border-b border-r border-gold-500/5 p-1.5 cursor-pointer hover:bg-gold-500/5 transition-colors relative"
+                style={{ background: isSelected ? 'rgba(181,142,60,0.08)' : undefined }}
               >
                 <div className="flex items-center justify-between mb-1">
                   <span
                     className="text-xs font-mono font-medium w-6 h-6 flex items-center justify-center rounded-full"
                     style={{
-                      background: isToday ? '#22D3EE' : 'transparent',
-                      color: isToday ? '#060D1A' : '#9CA3AF',
+                      background: isToday ? '#D4A84B' : 'transparent',
+                      color: isToday ? '#0B1220' : '#9CA3AF',
                     }}
                   >
                     {day}
@@ -131,12 +131,12 @@ export default function HospitalityCalendar({ lang, onNav }: Props) {
       {popup && selectedDay && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center"
-          style={{ background: 'rgba(6,13,26,0.85)' }}
+          style={{ background: 'rgba(11,18,32,0.85)' }}
           onClick={() => setPopup(false)}
         >
           <div
-            className="rounded-2xl border border-cyan-500/30 p-6 w-full max-w-md"
-            style={{ background: 'rgba(10,22,40,0.98)' }}
+            className="rounded-2xl border border-gold-500/30 p-6 w-full max-w-md"
+            style={{ background: 'rgba(20,29,46,0.98)' }}
             onClick={e => e.stopPropagation()}
           >
             <div className="flex items-center justify-between mb-4">
@@ -150,7 +150,7 @@ export default function HospitalityCalendar({ lang, onNav }: Props) {
 
             <div className="space-y-2 mb-4">
               {selectedEvents.map(ev => (
-                <div key={ev.id} className="flex items-center gap-3 px-3 py-2.5 rounded-lg border border-cyan-500/10" style={{ background: 'rgba(34,211,238,0.04)' }}>
+                <div key={ev.id} className="flex items-center gap-3 px-3 py-2.5 rounded-lg border border-gold-500/10" style={{ background: 'rgba(181,142,60,0.04)' }}>
                   <span className="text-lg">{ev.nationalityFlag}</span>
                   <div className="flex-1">
                     <p className="text-white text-sm font-medium">{ev.guestName}</p>
@@ -173,7 +173,7 @@ export default function HospitalityCalendar({ lang, onNav }: Props) {
                 <button
                   key={action.key}
                   onClick={() => { setPopup(false); onNav(action.key); }}
-                  className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm border border-cyan-500/20 text-cyan-400 hover:bg-cyan-500/10 cursor-pointer transition-all whitespace-nowrap"
+                  className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm border border-gold-500/20 text-gold-400 hover:bg-gold-500/10 cursor-pointer transition-all whitespace-nowrap"
                 >
                   <i className={`${action.icon} text-sm`} />
                   {action.label}

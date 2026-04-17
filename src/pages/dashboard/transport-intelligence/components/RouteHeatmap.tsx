@@ -45,7 +45,7 @@ const LINKS: RouteLink[] = [
 ];
 
 const densityColor = (d: RoutePoint["density"]) => {
-  if (d === "normal") return "#22D3EE";
+  if (d === "normal") return "#D4A84B";
   if (d === "frequent") return "#FACC15";
   return "#F87171";
 };
@@ -67,11 +67,11 @@ const RouteHeatmap = ({ isAr }: Props) => {
   });
 
   return (
-    <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.15)", backdropFilter: "blur(12px)" }}>
-      <div className="flex items-center justify-between px-6 py-4 border-b flex-wrap gap-3" style={{ borderColor: "rgba(34,211,238,0.1)" }}>
+    <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.15)", backdropFilter: "blur(12px)" }}>
+      <div className="flex items-center justify-between px-6 py-4 border-b flex-wrap gap-3" style={{ borderColor: "rgba(181,142,60,0.1)" }}>
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(34,211,238,0.1)", border: "1px solid rgba(34,211,238,0.2)" }}>
-            <i className="ri-map-2-line text-cyan-400 text-sm" />
+          <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+            <i className="ri-map-2-line text-gold-400 text-sm" />
           </div>
           <div>
             <h3 className="text-white font-bold text-sm">{isAr ? "خريطة كثافة المسارات" : "Route Density Heatmap"}</h3>
@@ -83,9 +83,9 @@ const RouteHeatmap = ({ isAr }: Props) => {
             <button key={f} type="button" onClick={() => setFilter(f)}
               className="px-3 py-1 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap transition-all"
               style={{
-                background: filter === f ? "rgba(34,211,238,0.15)" : "rgba(255,255,255,0.04)",
-                border: `1px solid ${filter === f ? "rgba(34,211,238,0.4)" : "rgba(255,255,255,0.08)"}`,
-                color: filter === f ? "#22D3EE" : "#6B7280",
+                background: filter === f ? "rgba(181,142,60,0.15)" : "rgba(255,255,255,0.04)",
+                border: `1px solid ${filter === f ? "rgba(181,142,60,0.4)" : "rgba(255,255,255,0.08)"}`,
+                color: filter === f ? "#D4A84B" : "#6B7280",
               }}>
               {f === "all" ? (isAr ? "الكل" : "All") : f === "bus" ? (isAr ? "حافلة" : "Bus") : f === "taxi" ? (isAr ? "تاكسي" : "Taxi") : (isAr ? "شذوذ" : "Anomaly")}
             </button>
@@ -103,8 +103,8 @@ const RouteHeatmap = ({ isAr }: Props) => {
 
       <div className="flex flex-col lg:flex-row">
         {/* Map */}
-        <div className="relative flex-1 min-h-[360px]" style={{ background: "rgba(6,13,26,0.6)" }}>
-          <div className="absolute inset-0" style={{ backgroundImage: `linear-gradient(rgba(34,211,238,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.04) 1px, transparent 1px)`, backgroundSize: "30px 30px" }} />
+        <div className="relative flex-1 min-h-[360px]" style={{ background: "rgba(11,18,32,0.6)" }}>
+          <div className="absolute inset-0" style={{ backgroundImage: `linear-gradient(rgba(181,142,60,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,0.04) 1px, transparent 1px)`, backgroundSize: "30px 30px" }} />
           <div className="absolute top-4 left-4 text-gray-600 text-xs font-['JetBrains_Mono'] opacity-60">OMAN</div>
 
           {/* SVG route lines */}
@@ -158,7 +158,7 @@ const RouteHeatmap = ({ isAr }: Props) => {
         </div>
 
         {/* Side panel */}
-        <div className="w-full lg:w-72 border-t lg:border-t-0 lg:border-l overflow-y-auto" style={{ borderColor: "rgba(34,211,238,0.1)", maxHeight: "360px" }}>
+        <div className="w-full lg:w-72 border-t lg:border-t-0 lg:border-l overflow-y-auto" style={{ borderColor: "rgba(181,142,60,0.1)", maxHeight: "360px" }}>
           {selected ? (
             <div className="p-4">
               <div className="flex items-center gap-2 mb-3">
@@ -191,7 +191,7 @@ const RouteHeatmap = ({ isAr }: Props) => {
               </div>
             </div>
           ) : (
-            <div className="divide-y" style={{ borderColor: "rgba(34,211,238,0.06)" }}>
+            <div className="divide-y" style={{ borderColor: "rgba(181,142,60,0.06)" }}>
               {[...POINTS].sort((a, b) => b.trips - a.trips).map((point) => (
                 <button key={point.id} type="button" onClick={() => setSelected(point)}
                   className="w-full flex items-center gap-3 px-4 py-3 hover:bg-white/[0.03] transition-colors cursor-pointer text-left">

@@ -80,10 +80,10 @@ const DataManagement = () => {
           const isCurrent = i === 0;
           return (
             <div key={p.month} className="flex-1 flex flex-col items-center gap-1">
-              <span className="text-xs font-['JetBrains_Mono']" style={{ color: isCurrent ? "#22D3EE" : "#6B7280", fontSize: "10px" }}>
+              <span className="text-xs font-['JetBrains_Mono']" style={{ color: isCurrent ? "#D4A84B" : "#6B7280", fontSize: "10px" }}>
                 {p.projected.toFixed(1)}
               </span>
-              <div className="w-full rounded-t-sm transition-all" style={{ height: `${h}%`, background: isCurrent ? "#22D3EE" : "rgba(34,211,238,0.25)", minHeight: "4px" }} />
+              <div className="w-full rounded-t-sm transition-all" style={{ height: `${h}%`, background: isCurrent ? "#D4A84B" : "rgba(181,142,60,0.25)", minHeight: "4px" }} />
               <span className="text-gray-600 text-xs font-['Inter']" style={{ fontSize: "10px" }}>{p.month}</span>
             </div>
           );
@@ -107,9 +107,9 @@ const DataManagement = () => {
           <button key={tab.id} onClick={() => setActiveTab(tab.id)}
             className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap transition-all"
             style={{
-              background: activeTab === tab.id ? "rgba(34,211,238,0.12)" : "rgba(255,255,255,0.03)",
-              color: activeTab === tab.id ? "#22D3EE" : "#9CA3AF",
-              border: activeTab === tab.id ? "1px solid rgba(34,211,238,0.25)" : "1px solid rgba(255,255,255,0.06)",
+              background: activeTab === tab.id ? "rgba(181,142,60,0.12)" : "rgba(255,255,255,0.03)",
+              color: activeTab === tab.id ? "#D4A84B" : "#9CA3AF",
+              border: activeTab === tab.id ? "1px solid rgba(181,142,60,0.25)" : "1px solid rgba(255,255,255,0.06)",
             }}>
             <i className={tab.icon} />{tab.label}
           </button>
@@ -120,13 +120,13 @@ const DataManagement = () => {
       {activeTab === "overview" && (
         <div className="space-y-4">
           {/* Storage Overview */}
-          <div className="rounded-xl p-5" style={{ background: "rgba(10,22,40,0.8)", border: "1px solid rgba(34,211,238,0.12)" }}>
+          <div className="rounded-xl p-5" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.12)" }}>
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-white font-semibold text-sm font-['Inter']">
-                <i className="ri-database-2-line mr-2 text-cyan-400" />Storage Overview
+                <i className="ri-database-2-line mr-2 text-gold-400" />Storage Overview
               </h3>
               <div className="text-right">
-                <p className="text-cyan-400 text-xl font-bold font-['JetBrains_Mono']">{totalStorage}</p>
+                <p className="text-gold-400 text-xl font-bold font-['JetBrains_Mono']">{totalStorage}</p>
                 <p className="text-gray-500 text-xs font-['Inter']">of 10 TB allocated</p>
               </div>
             </div>
@@ -136,7 +136,7 @@ const DataManagement = () => {
                 <span>Free: {100 - usedPct}%</span>
               </div>
               <div className="h-3 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
-                <div className="h-full rounded-full" style={{ width: `${usedPct}%`, background: "linear-gradient(90deg, #22D3EE, #0891B2)" }} />
+                <div className="h-full rounded-full" style={{ width: `${usedPct}%`, background: "linear-gradient(90deg, #D4A84B, #B58E3C)" }} />
               </div>
             </div>
             <div className="grid grid-cols-2 gap-x-8 gap-y-2">
@@ -159,22 +159,22 @@ const DataManagement = () => {
 
           {/* Growth Projection + Record Counts */}
           <div className="grid grid-cols-2 gap-4">
-            <div className="rounded-xl p-5" style={{ background: "rgba(10,22,40,0.8)", border: "1px solid rgba(34,211,238,0.12)" }}>
+            <div className="rounded-xl p-5" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.12)" }}>
               <h3 className="text-white font-semibold text-sm font-['Inter'] mb-1">
-                <i className="ri-line-chart-line mr-2 text-cyan-400" />Growth Projection (6 months)
+                <i className="ri-line-chart-line mr-2 text-gold-400" />Growth Projection (6 months)
               </h3>
               <p className="text-gray-500 text-xs font-['Inter'] mb-4">Estimated storage growth at current rate</p>
               <GrowthChart />
               <div className="mt-3 flex items-center justify-between text-xs font-['JetBrains_Mono']">
-                <span className="text-gray-500">Current: <span className="text-cyan-400">4.31 TB</span></span>
+                <span className="text-gray-500">Current: <span className="text-gold-400">4.31 TB</span></span>
                 <span className="text-gray-500">Sep 2026: <span className="text-yellow-400">5.91 TB</span></span>
                 <span className="text-gray-500">Capacity: <span className="text-green-400">10 TB</span></span>
               </div>
             </div>
 
-            <div className="rounded-xl p-5" style={{ background: "rgba(10,22,40,0.8)", border: "1px solid rgba(34,211,238,0.12)" }}>
+            <div className="rounded-xl p-5" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.12)" }}>
               <h3 className="text-white font-semibold text-sm font-['Inter'] mb-3">
-                <i className="ri-bar-chart-2-line mr-2 text-cyan-400" />Top Streams by Volume
+                <i className="ri-bar-chart-2-line mr-2 text-gold-400" />Top Streams by Volume
               </h3>
               <div className="space-y-2">
                 {[
@@ -197,10 +197,10 @@ const DataManagement = () => {
           </div>
 
           {/* Record counts table */}
-          <div className="rounded-xl overflow-hidden" style={{ border: "1px solid rgba(34,211,238,0.12)" }}>
-            <div className="px-4 py-3" style={{ background: "rgba(34,211,238,0.05)" }}>
+          <div className="rounded-xl overflow-hidden" style={{ border: "1px solid rgba(181,142,60,0.12)" }}>
+            <div className="px-4 py-3" style={{ background: "rgba(181,142,60,0.05)" }}>
               <p className="text-white text-sm font-semibold font-['Inter']">
-                <i className="ri-table-line mr-2 text-cyan-400" />Record Counts by Stream
+                <i className="ri-table-line mr-2 text-gold-400" />Record Counts by Stream
               </p>
             </div>
             <div className="grid px-4 py-2 text-xs font-semibold uppercase tracking-wider font-['Inter'] text-gray-600"
@@ -218,7 +218,7 @@ const DataManagement = () => {
                     <span className="text-gray-300 text-xs font-['Inter']">{s.name}</span>
                   </div>
                   <span className="text-white text-xs font-['JetBrains_Mono']">{rec.count}</span>
-                  <span className="text-cyan-400 text-xs font-['JetBrains_Mono']">{rec.size}</span>
+                  <span className="text-gold-400 text-xs font-['JetBrains_Mono']">{rec.size}</span>
                   <span className="text-green-400 text-xs font-['JetBrains_Mono']">{rec.growth}</span>
                   <span className="text-gray-400 text-xs font-['JetBrains_Mono']">{retentions[s.id] || 7} yrs</span>
                 </div>
@@ -230,10 +230,10 @@ const DataManagement = () => {
 
       {/* Retention Tab */}
       {activeTab === "retention" && (
-        <div className="rounded-xl p-5" style={{ background: "rgba(10,22,40,0.8)", border: "1px solid rgba(34,211,238,0.12)" }}>
+        <div className="rounded-xl p-5" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.12)" }}>
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-white font-semibold text-sm font-['Inter']">
-              <i className="ri-time-line mr-2 text-cyan-400" />Retention Periods by Stream
+              <i className="ri-time-line mr-2 text-gold-400" />Retention Periods by Stream
             </h3>
             <p className="text-gray-500 text-xs font-['Inter']">Default: 7 years. Legal minimum: 5 years.</p>
           </div>
@@ -246,14 +246,14 @@ const DataManagement = () => {
                     <span className="text-gray-300 text-xs font-['Inter']">{s.name}</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-cyan-400 text-xs font-['JetBrains_Mono'] font-bold">{retentions[s.id] || 7} yrs</span>
+                    <span className="text-gold-400 text-xs font-['JetBrains_Mono'] font-bold">{retentions[s.id] || 7} yrs</span>
                     {(retentions[s.id] || 7) < 5 && <span className="text-red-400 text-xs font-['JetBrains_Mono']">⚠ Below min</span>}
                   </div>
                 </div>
                 <input type="range" min={1} max={20} value={retentions[s.id] || 7}
                   onChange={(e) => setRetentions((prev) => ({ ...prev, [s.id]: Number(e.target.value) }))}
                   className="w-full h-1.5 rounded-full cursor-pointer appearance-none"
-                  style={{ accentColor: "#22D3EE", background: `linear-gradient(90deg, #22D3EE ${((retentions[s.id] || 7) / 20) * 100}%, rgba(255,255,255,0.1) 0%)` }} />
+                  style={{ accentColor: "#D4A84B", background: `linear-gradient(90deg, #D4A84B ${((retentions[s.id] || 7) / 20) * 100}%, rgba(255,255,255,0.1) 0%)` }} />
                 <div className="flex justify-between text-xs text-gray-700 font-['JetBrains_Mono'] mt-0.5">
                   <span>1yr</span><span>10yr</span><span>20yr</span>
                 </div>
@@ -263,7 +263,7 @@ const DataManagement = () => {
           <div className="flex items-center gap-3 mt-6">
             <button onClick={handleSaveRetention}
               className="px-6 py-2.5 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap"
-              style={{ background: "#22D3EE", color: "#060D1A" }}>
+              style={{ background: "#D4A84B", color: "#0B1220" }}>
               <i className="ri-save-line mr-2" />Save Retention Policies
             </button>
             {retentionSaved && (
@@ -278,17 +278,17 @@ const DataManagement = () => {
 
       {/* Export Tab */}
       {activeTab === "export" && (
-        <div className="rounded-xl p-5" style={{ background: "rgba(10,22,40,0.8)", border: "1px solid rgba(34,211,238,0.12)" }}>
+        <div className="rounded-xl p-5" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.12)" }}>
           <h3 className="text-white font-semibold text-sm font-['Inter'] mb-4">
-            <i className="ri-download-cloud-line mr-2 text-cyan-400" />Bulk Data Export
+            <i className="ri-download-cloud-line mr-2 text-gold-400" />Bulk Data Export
           </h3>
           <div className="grid grid-cols-2 gap-4 mb-4">
             <div>
               <label className="block text-xs text-gray-500 mb-1 font-['Inter'] uppercase tracking-wider">Stream</label>
               <select value={exportStream} onChange={(e) => setExportStream(e.target.value)}
                 className="w-full px-3 py-2 rounded-lg text-sm outline-none cursor-pointer"
-                style={{ background: "rgba(10,22,40,0.9)", border: "1px solid rgba(34,211,238,0.2)", color: "#D1D5DB" }}>
-                {streams.map((s) => <option key={s.id} value={s.id} style={{ background: "#0A1628" }}>{s.name} ({s.code})</option>)}
+                style={{ background: "rgba(20,29,46,0.9)", border: "1px solid rgba(181,142,60,0.2)", color: "#D1D5DB" }}>
+                {streams.map((s) => <option key={s.id} value={s.id} style={{ background: "#141D2E" }}>{s.name} ({s.code})</option>)}
               </select>
             </div>
             <div>
@@ -297,7 +297,7 @@ const DataManagement = () => {
                 {["csv", "json", "xlsx", "parquet"].map((f) => (
                   <button key={f} onClick={() => setExportFormat(f)}
                     className="flex-1 py-2 rounded-lg text-xs font-semibold cursor-pointer uppercase whitespace-nowrap"
-                    style={{ background: exportFormat === f ? "#22D3EE" : "rgba(255,255,255,0.05)", color: exportFormat === f ? "#060D1A" : "#9CA3AF" }}>
+                    style={{ background: exportFormat === f ? "#D4A84B" : "rgba(255,255,255,0.05)", color: exportFormat === f ? "#0B1220" : "#9CA3AF" }}>
                     {f}
                   </button>
                 ))}
@@ -307,28 +307,28 @@ const DataManagement = () => {
               <label className="block text-xs text-gray-500 mb-1 font-['Inter'] uppercase tracking-wider">Date From</label>
               <input type="date" value={exportFrom} onChange={(e) => setExportFrom(e.target.value)}
                 className="w-full px-3 py-2 rounded-lg text-sm outline-none"
-                style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(34,211,238,0.2)", color: "#D1D5DB", colorScheme: "dark" }} />
+                style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(181,142,60,0.2)", color: "#D1D5DB", colorScheme: "dark" }} />
             </div>
             <div>
               <label className="block text-xs text-gray-500 mb-1 font-['Inter'] uppercase tracking-wider">Date To</label>
               <input type="date" value={exportTo} onChange={(e) => setExportTo(e.target.value)}
                 className="w-full px-3 py-2 rounded-lg text-sm outline-none"
-                style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(34,211,238,0.2)", color: "#D1D5DB", colorScheme: "dark" }} />
+                style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(181,142,60,0.2)", color: "#D1D5DB", colorScheme: "dark" }} />
             </div>
           </div>
           {/* Preview */}
-          <div className="p-3 rounded-lg mb-4" style={{ background: "rgba(34,211,238,0.04)", border: "1px solid rgba(34,211,238,0.1)" }}>
+          <div className="p-3 rounded-lg mb-4" style={{ background: "rgba(181,142,60,0.04)", border: "1px solid rgba(181,142,60,0.1)" }}>
             <p className="text-gray-500 text-xs font-['Inter'] mb-1">Export Preview</p>
             <div className="flex items-center gap-4 text-xs font-['JetBrains_Mono']">
-              <span className="text-white">Stream: <span className="text-cyan-400">{streams.find((s) => s.id === exportStream)?.code}</span></span>
-              <span className="text-white">Format: <span className="text-cyan-400">{exportFormat.toUpperCase()}</span></span>
+              <span className="text-white">Stream: <span className="text-gold-400">{streams.find((s) => s.id === exportStream)?.code}</span></span>
+              <span className="text-white">Format: <span className="text-gold-400">{exportFormat.toUpperCase()}</span></span>
               <span className="text-white">Est. Records: <span className="text-yellow-400">{streamRecords[exportStream]?.count || "—"}</span></span>
               <span className="text-white">Est. Size: <span className="text-green-400">{streamRecords[exportStream]?.size || "—"}</span></span>
             </div>
           </div>
           <button onClick={handleExport} disabled={exporting}
             className="px-6 py-2.5 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap transition-all"
-            style={{ background: exporting ? "rgba(34,211,238,0.4)" : "#22D3EE", color: "#060D1A" }}>
+            style={{ background: exporting ? "rgba(181,142,60,0.4)" : "#D4A84B", color: "#0B1220" }}>
             {exporting ? <><i className="ri-loader-4-line animate-spin mr-2" />Exporting...</> : <><i className="ri-download-line mr-2" />Export Data</>}
           </button>
           {exportDone && (
@@ -353,25 +353,25 @@ const DataManagement = () => {
             </p>
           </div>
 
-          <div className="rounded-xl p-5" style={{ background: "rgba(10,22,40,0.8)", border: "1px solid rgba(34,211,238,0.12)" }}>
+          <div className="rounded-xl p-5" style={{ background: "rgba(20,29,46,0.8)", border: "1px solid rgba(181,142,60,0.12)" }}>
             <h3 className="text-white font-semibold text-sm font-['Inter'] mb-4">
-              <i className="ri-calendar-schedule-line mr-2 text-cyan-400" />Schedule Purge
+              <i className="ri-calendar-schedule-line mr-2 text-gold-400" />Schedule Purge
             </h3>
             <div className="grid grid-cols-2 gap-4 mb-4">
               <div>
                 <label className="block text-xs text-gray-500 mb-1 font-['Inter'] uppercase tracking-wider">Stream to Purge</label>
                 <select value={purgeStream} onChange={(e) => setPurgeStream(e.target.value)}
                   className="w-full px-3 py-2 rounded-lg text-sm outline-none cursor-pointer"
-                  style={{ background: "rgba(10,22,40,0.9)", border: "1px solid rgba(34,211,238,0.2)", color: "#D1D5DB" }}>
-                  {streams.map((s) => <option key={s.id} value={s.id} style={{ background: "#0A1628" }}>{s.name}</option>)}
+                  style={{ background: "rgba(20,29,46,0.9)", border: "1px solid rgba(181,142,60,0.2)", color: "#D1D5DB" }}>
+                  {streams.map((s) => <option key={s.id} value={s.id} style={{ background: "#141D2E" }}>{s.name}</option>)}
                 </select>
               </div>
               <div>
                 <label className="block text-xs text-gray-500 mb-1 font-['Inter'] uppercase tracking-wider">Purge Records Before Year</label>
                 <select value={purgeYear} onChange={(e) => setPurgeYear(e.target.value)}
                   className="w-full px-3 py-2 rounded-lg text-sm outline-none cursor-pointer"
-                  style={{ background: "rgba(10,22,40,0.9)", border: "1px solid rgba(34,211,238,0.2)", color: "#D1D5DB" }}>
-                  {["2015", "2016", "2017", "2018", "2019", "2020"].map((y) => <option key={y} value={y} style={{ background: "#0A1628" }}>{y}</option>)}
+                  style={{ background: "rgba(20,29,46,0.9)", border: "1px solid rgba(181,142,60,0.2)", color: "#D1D5DB" }}>
+                  {["2015", "2016", "2017", "2018", "2019", "2020"].map((y) => <option key={y} value={y} style={{ background: "#141D2E" }}>{y}</option>)}
                 </select>
               </div>
             </div>
@@ -385,7 +385,7 @@ const DataManagement = () => {
                 ].map((a) => (
                   <label key={a.label} className="flex items-center gap-2 cursor-pointer">
                     <input type="checkbox" checked={a.value} onChange={(e) => a.onChange(e.target.checked)}
-                      className="w-4 h-4 rounded cursor-pointer" style={{ accentColor: "#22D3EE" }} />
+                      className="w-4 h-4 rounded cursor-pointer" style={{ accentColor: "#D4A84B" }} />
                     <span className="text-gray-400 text-xs font-['Inter']">{a.label}</span>
                   </label>
                 ))}

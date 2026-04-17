@@ -28,7 +28,7 @@ const TRIAGE_LEVELS = [
   { value: "2", label: "2 — Emergent",       color: "#FB923C" },
   { value: "3", label: "3 — Urgent",         color: "#FACC15" },
   { value: "4", label: "4 — Less Urgent",    color: "#4ADE80" },
-  { value: "5", label: "5 — Non-Urgent",     color: "#22D3EE" },
+  { value: "5", label: "5 — Non-Urgent",     color: "#D4A84B" },
 ];
 
 const emptyPersonal = (): PersonalData => ({
@@ -141,7 +141,7 @@ const EmergencyVisitForm = ({ isAr, onCancel }: Props) => {
                 maxLength={500}
                 className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none transition-all duration-200 resize-none font-['Inter']"
                 style={{ background: "#0F1923", border: "1px solid rgba(255,255,255,0.08)" }}
-                onFocus={(e) => { e.target.style.borderColor = "#22D3EE"; e.target.style.boxShadow = "0 0 0 2px rgba(34,211,238,0.08)"; }}
+                onFocus={(e) => { e.target.style.borderColor = "#D4A84B"; e.target.style.boxShadow = "0 0 0 2px rgba(181,142,60,0.08)"; }}
                 onBlur={(e) => { e.target.style.borderColor = "rgba(255,255,255,0.08)"; e.target.style.boxShadow = "none"; }}
               />
             </FormField>
@@ -202,9 +202,9 @@ const EmergencyVisitForm = ({ isAr, onCancel }: Props) => {
         type="button"
         onClick={addPerson}
         className="w-full flex items-center justify-center gap-2 py-3 rounded-xl border-2 border-dashed text-sm font-semibold cursor-pointer transition-all"
-        style={{ borderColor: "rgba(34,211,238,0.2)", color: "#22D3EE", background: "rgba(34,211,238,0.03)" }}
-        onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(34,211,238,0.4)"; (e.currentTarget as HTMLButtonElement).style.background = "rgba(34,211,238,0.06)"; }}
-        onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(34,211,238,0.2)"; (e.currentTarget as HTMLButtonElement).style.background = "rgba(34,211,238,0.03)"; }}
+        style={{ borderColor: "rgba(181,142,60,0.2)", color: "#D4A84B", background: "rgba(181,142,60,0.03)" }}
+        onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(181,142,60,0.4)"; (e.currentTarget as HTMLButtonElement).style.background = "rgba(181,142,60,0.06)"; }}
+        onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(181,142,60,0.2)"; (e.currentTarget as HTMLButtonElement).style.background = "rgba(181,142,60,0.03)"; }}
       >
         <i className="ri-user-add-line" />{isAr ? "إضافة مرافق" : "Add Accompanying Person"}
       </button>

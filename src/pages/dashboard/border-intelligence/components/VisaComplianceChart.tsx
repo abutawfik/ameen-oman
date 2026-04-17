@@ -4,7 +4,7 @@ interface Props {
 
 const SEGMENTS = [
   { label: "Valid", labelAr: "سارية", value: 68, color: "#4ADE80", count: 14821 },
-  { label: "Extended", labelAr: "ممتدة", value: 18, color: "#22D3EE", count: 3912 },
+  { label: "Extended", labelAr: "ممتدة", value: 18, color: "#D4A84B", count: 3912 },
   { label: "Expired", labelAr: "منتهية", value: 10, color: "#FB923C", count: 2174 },
   { label: "Overstay", labelAr: "تجاوز", value: 4, color: "#F87171", count: 870 },
 ];
@@ -22,10 +22,10 @@ const FrequentCrosserAlerts = ({ isAr }: Props) => {
   return (
     <div className="space-y-4">
       {/* Visa Compliance Pie */}
-      <div className="rounded-2xl border p-6" style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.15)", backdropFilter: "blur(12px)" }}>
+      <div className="rounded-2xl border p-6" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.15)", backdropFilter: "blur(12px)" }}>
         <div className="flex items-center gap-3 mb-5">
-          <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(34,211,238,0.1)", border: "1px solid rgba(34,211,238,0.2)" }}>
-            <i className="ri-pie-chart-line text-cyan-400 text-sm" />
+          <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+            <i className="ri-pie-chart-line text-gold-400 text-sm" />
           </div>
           <div>
             <h3 className="text-white font-bold text-sm">{isAr ? "امتثال التأشيرات" : "Visa Compliance"}</h3>
@@ -73,7 +73,7 @@ const FrequentCrosserAlerts = ({ isAr }: Props) => {
       </div>
 
       {/* Frequent Crosser Alerts */}
-      <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(248,113,113,0.2)", backdropFilter: "blur(12px)" }}>
+      <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(248,113,113,0.2)", backdropFilter: "blur(12px)" }}>
         <div className="flex items-center justify-between px-5 py-4 border-b" style={{ borderColor: "rgba(248,113,113,0.12)" }}>
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(248,113,113,0.1)", border: "1px solid rgba(248,113,113,0.25)" }}>

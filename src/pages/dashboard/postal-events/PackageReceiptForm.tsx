@@ -109,8 +109,8 @@ const PackageReceiptForm = ({ isAr, onCancel }: Props) => {
               <FormField label={isAr ? "حالة التخليص الجمركي" : "Customs Status"} required>
                 <SelectInput options={CUSTOMS_STATUS} placeholder={isAr ? "اختر الحالة" : "Select status"} value={customsStatus} onChange={(e) => setCustomsStatus(e.target.value)} />
               </FormField>
-              <div className="flex items-start gap-3 px-3 py-3 rounded-lg" style={{ background: "rgba(34,211,238,0.04)", border: "1px solid rgba(34,211,238,0.12)" }}>
-                <i className="ri-information-line text-cyan-400 text-sm mt-0.5 flex-shrink-0" />
+              <div className="flex items-start gap-3 px-3 py-3 rounded-lg" style={{ background: "rgba(181,142,60,0.04)", border: "1px solid rgba(181,142,60,0.12)" }}>
+                <i className="ri-information-line text-gold-400 text-sm mt-0.5 flex-shrink-0" />
                 <p className="text-gray-400 text-xs">{isAr ? "AMEEN يربط بيانات الطرد بسجلات الجمارك والمستلم تلقائياً." : "AMEEN auto-links package data with customs records and recipient profile."}</p>
               </div>
             </div>
@@ -136,7 +136,7 @@ const PackageReceiptForm = ({ isAr, onCancel }: Props) => {
                   onChange={(e) => setNotes(e.target.value)}
                   className="w-full px-3 py-2 rounded-lg text-sm text-white placeholder-gray-600 outline-none resize-none"
                   style={{ background: "#0F1923", border: "1px solid rgba(255,255,255,0.08)", fontFamily: "Inter" }}
-                  onFocus={(e) => { e.target.style.borderColor = "#22D3EE"; }}
+                  onFocus={(e) => { e.target.style.borderColor = "#D4A84B"; }}
                   onBlur={(e) => { e.target.style.borderColor = "rgba(255,255,255,0.08)"; }}
                 />
                 <p className="text-gray-600 text-xs mt-1 text-right">{notes.length}/500</p>

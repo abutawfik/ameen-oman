@@ -41,9 +41,9 @@ const NodeContextMenu = ({
     {
       group: isAr ? "توسيع" : "Expand",
       items: [
-        { icon: "ri-node-tree", label: isAr ? "توسيع 1 خطوة" : "Expand 1-hop", action: () => { onExpand(node.id, 1); onClose(); }, color: "#22D3EE" },
-        { icon: "ri-git-branch-line", label: isAr ? "توسيع 2 خطوة" : "Expand 2-hops", action: () => { onExpand(node.id, 2); onClose(); }, color: "#22D3EE" },
-        { icon: "ri-share-line", label: isAr ? "توسيع 3 خطوات" : "Expand 3-hops", action: () => { onExpand(node.id, 3); onClose(); }, color: "#22D3EE" },
+        { icon: "ri-node-tree", label: isAr ? "توسيع 1 خطوة" : "Expand 1-hop", action: () => { onExpand(node.id, 1); onClose(); }, color: "#D4A84B" },
+        { icon: "ri-git-branch-line", label: isAr ? "توسيع 2 خطوة" : "Expand 2-hops", action: () => { onExpand(node.id, 2); onClose(); }, color: "#D4A84B" },
+        { icon: "ri-share-line", label: isAr ? "توسيع 3 خطوات" : "Expand 3-hops", action: () => { onExpand(node.id, 3); onClose(); }, color: "#D4A84B" },
       ],
     },
     {
@@ -71,8 +71,8 @@ const NodeContextMenu = ({
       style={{
         left: adjustedX,
         top: adjustedY,
-        background: "rgba(6,13,26,0.98)",
-        border: "1px solid rgba(34,211,238,0.25)",
+        background: "rgba(11,18,32,0.98)",
+        border: "1px solid rgba(181,142,60,0.25)",
         backdropFilter: "blur(20px)",
         minWidth: "200px",
         boxShadow: "0 8px 32px rgba(0,0,0,0.6)",
@@ -81,7 +81,7 @@ const NodeContextMenu = ({
       {/* Node header */}
       <div
         className="flex items-center gap-2.5 px-3 py-2.5 border-b"
-        style={{ borderColor: "rgba(34,211,238,0.12)", background: "rgba(34,211,238,0.04)" }}
+        style={{ borderColor: "rgba(181,142,60,0.12)", background: "rgba(181,142,60,0.04)" }}
       >
         <div className="w-7 h-7 flex items-center justify-center rounded-full flex-shrink-0"
           style={{ background: `${cfg.color}22`, border: `1.5px solid ${cfg.color}66` }}>

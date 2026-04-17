@@ -17,8 +17,8 @@ const KpiCards = ({ entityType, isAr }: Props) => {
           key={card.key}
           className="flex flex-col p-5 rounded-xl border transition-all duration-200 hover:-translate-y-0.5 group"
           style={{
-            background: "rgba(10,22,40,0.8)",
-            borderColor: "rgba(34,211,238,0.12)",
+            background: "rgba(20,29,46,0.8)",
+            borderColor: "rgba(181,142,60,0.12)",
             backdropFilter: "blur(12px)",
           }}
           onMouseEnter={(e) => {
@@ -26,7 +26,7 @@ const KpiCards = ({ entityType, isAr }: Props) => {
             (e.currentTarget as HTMLDivElement).style.boxShadow = `0 0 20px ${card.color}0A`;
           }}
           onMouseLeave={(e) => {
-            (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(34,211,238,0.12)";
+            (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(181,142,60,0.12)";
             (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
           }}
         >
@@ -60,7 +60,7 @@ const KpiCards = ({ entityType, isAr }: Props) => {
 
           {/* Bottom: See Details + Action */}
           <div className="flex items-center justify-between pt-3 border-t border-white/5">
-            <button className="text-cyan-400 text-xs font-semibold hover:text-cyan-300 transition-colors cursor-pointer font-['Inter'] whitespace-nowrap">
+            <button className="text-gold-400 text-xs font-semibold hover:text-gold-300 transition-colors cursor-pointer font-['Inter'] whitespace-nowrap">
               {isAr ? "عرض التفاصيل ›" : "See Details ›"}
             </button>
             <button
@@ -83,7 +83,7 @@ const KpiCards = ({ entityType, isAr }: Props) => {
               }}
               onMouseEnter={(e) => {
                 (e.currentTarget as HTMLButtonElement).style.background = card.color;
-                (e.currentTarget as HTMLButtonElement).style.color = "#060D1A";
+                (e.currentTarget as HTMLButtonElement).style.color = "#0B1220";
               }}
               onMouseLeave={(e) => {
                 (e.currentTarget as HTMLButtonElement).style.background = card.color + "15";

@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Al-Ameen · Design System v1.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Readex+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="logo/al-ameen-favicon.svg">
+<style>
+/* ============ AL-AMEEN TOKENS (inlined) ============ */
+:root{
+  --m-900:#05080F; --m-800:#0B1220; --m-700:#141D2E; --m-600:#1C2740; --m-500:#2A3654;
+  --m-400:#3E4A6B; --m-300:#5A6787; --m-200:#8B95B0; --m-100:#B8BFD0;
+  --o-900:#4A0F13; --o-800:#6B1519; --o-700:#831B1F; --o-600:#9A1F24; --o-500:#B32830;
+  --o-400:#CC4049; --o-300:#E06570; --o-200:#F0A0A7; --o-100:#FADDE0; --o-050:#FDF0F2;
+  --g-900:#5A4418; --g-800:#7A5C22; --g-700:#96732C; --g-600:#B58E3C; --g-500:#C99C48;
+  --g-400:#D4A84B; --g-300:#DDB96B; --g-200:#E8CF9A; --g-100:#F4E5C4; --g-050:#FBF6EA;
+  --i-900:#4A453B; --i-800:#6B6457; --i-700:#8A8374; --i-600:#A9A193; --i-500:#C4BCA8;
+  --i-400:#DAD0B8; --i-300:#E7DEC7; --i-200:#EFE7D3; --i-100:#F5EFE3; --i-050:#FAF6EC; --i-000:#FFFFFF;
+  --r-clear:#0E7C66; --r-low:#4F9A35; --r-elev:#C98A1B; --r-high:#D25A2A; --r-crit:#9A1F24;
+  --cat-core:#2466A3; --cat-mob:#D25A2A; --cat-fin:#0E7C66; --cat-health:#B32830;
+  --cat-util:#C98A1B; --cat-edu:#6B4FAE; --cat-labor:#4F9A35; --cat-com:#1F7A8C;
+  --cat-dig:#8A6C1B; --cat-cust:#9A1F24; --cat-mar:#2C5F8F; --cat-post:#A8547A;
+  --ff-display:'Cormorant Garamond',Georgia,serif;
+  --ff-sans:'Inter',ui-sans-serif,system-ui,sans-serif;
+  --ff-arabic:'Readex Pro','Tajawal',sans-serif;
+  --ff-mono:'JetBrains Mono',ui-monospace,monospace;
+  --bg-canvas:var(--i-100); --bg-surface:var(--i-000); --bg-sunken:var(--i-200);
+  --fg-primary:var(--m-800); --fg-secondary:var(--m-600); --fg-muted:var(--m-300);
+  --border-subtle:var(--i-300); --border-default:var(--i-400); --border-strong:var(--m-400);
+  --shadow-sm:0 1px 3px rgba(5,8,15,.08),0 1px 2px rgba(5,8,15,.06);
+  --shadow-md:0 4px 8px rgba(5,8,15,.08),0 2px 4px rgba(5,8,15,.06);
+  --shadow-lg:0 12px 20px rgba(5,8,15,.10),0 4px 8px rgba(5,8,15,.06);
+  --shadow-xl:0 20px 40px rgba(5,8,15,.14),0 8px 16px rgba(5,8,15,.08);
+  --glow-gold:0 0 0 1px rgba(181,142,60,.4),0 4px 16px rgba(181,142,60,.2);
+}
+[data-theme="dark"]{
+  --bg-canvas:var(--m-800); --bg-surface:var(--m-700); --bg-sunken:var(--m-900);
+  --fg-primary:var(--i-100); --fg-secondary:var(--i-200); --fg-muted:var(--m-200);
+  --border-subtle:var(--m-600); --border-default:var(--m-500); --border-strong:var(--m-300);
+}
+
+/* ============ RESET + BASE ============ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--ff-sans);
+  font-size:16px;line-height:1.6;
+  background:var(--bg-canvas);
+  color:var(--fg-primary);
+  -webkit-font-smoothing:antialiased;
+  transition:background 250ms, color 250ms;
+}
+a{color:var(--o-600);text-decoration:none}
+a:hover{color:var(--o-700)}
+code{font-family:var(--ff-mono);font-size:.875em;background:var(--i-200);padding:.125em .375em;border-radius:4px;color:var(--m-700)}
+[data-theme="dark"] code{background:var(--m-600);color:var(--i-100)}
+
+/* ============ LAYOUT ============ */
+.shell{display:grid;grid-template-columns:260px 1fr;min-height:100vh}
+.sidebar{
+  background:linear-gradient(180deg,var(--m-800) 0%, var(--m-900) 100%);
+  color:var(--i-100);padding:2rem 1.25rem;position:sticky;top:0;height:100vh;overflow-y:auto;
+  border-right:1px solid var(--g-700);
+}
+.sidebar-brand{display:flex;align-items:center;gap:.75rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(181,142,60,.25);margin-bottom:1.5rem}
+.sidebar-brand .logo{width:40px;height:40px}
+.sidebar-brand .name{font-family:var(--ff-display);font-size:1.25rem;font-weight:500;letter-spacing:.02em}
+.sidebar-brand .ar{font-family:var(--ff-arabic);font-size:.75rem;color:var(--g-400);direction:rtl}
+.sidebar-nav{display:flex;flex-direction:column;gap:.125rem}
+.sidebar-nav-section{font-size:.6875rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--g-400);margin:1rem 0 .5rem;padding:0 .5rem}
+.sidebar-nav a{display:flex;align-items:center;gap:.625rem;padding:.5rem .75rem;color:var(--i-200);border-radius:6px;font-size:.875rem;transition:all 150ms}
+.sidebar-nav a:hover{background:rgba(245,239,227,.06);color:var(--i-100)}
+.sidebar-nav a.active{background:rgba(154,31,36,.2);color:var(--i-100);border-left:2px solid var(--o-500);padding-left:calc(.75rem - 2px)}
+
+.main{padding:3rem 4rem;max-width:1280px;margin:0 auto;width:100%}
+section.block{padding:3rem 0;border-bottom:1px solid var(--border-subtle)}
+section.block:last-child{border-bottom:none}
+.section-eyebrow{font-size:.6875rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--g-700);margin-bottom:.75rem}
+[data-theme="dark"] .section-eyebrow{color:var(--g-400)}
+.section-title{font-family:var(--ff-display);font-size:2.25rem;font-weight:500;line-height:1.1;letter-spacing:-.02em;margin-bottom:.5rem}
+.section-sub{font-size:1rem;color:var(--fg-muted);margin-bottom:2.5rem;max-width:640px}
+
+/* ============ TOP BAR ============ */
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:1rem 0 2rem;border-bottom:1px solid var(--border-subtle);margin-bottom:2rem}
+.topbar-title{font-family:var(--ff-display);font-size:1.75rem;font-weight:500}
+.topbar-actions{display:flex;gap:.75rem;align-items:center}
+.theme-toggle{background:var(--bg-surface);border:1px solid var(--border-default);padding:.5rem .875rem;border-radius:6px;font-size:.8125rem;cursor:pointer;color:var(--fg-primary);transition:all 150ms}
+.theme-toggle:hover{border-color:var(--g-500)}
+
+/* ============ BADGE ============ */
+.badge{display:inline-flex;align-items:center;gap:.375rem;padding:.25rem .625rem;border-radius:9999px;font-size:.6875rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;line-height:1.2}
+.badge-core{background:rgba(36,102,163,.12);color:var(--cat-core);border:1px solid rgba(36,102,163,.3)}
+.badge-extended{background:rgba(181,142,60,.15);color:var(--g-700);border:1px solid rgba(181,142,60,.35)}
+.badge-live{background:rgba(14,124,102,.12);color:var(--r-clear);border:1px solid rgba(14,124,102,.3)}
+.badge-live::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--r-clear);animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+/* Risk tier badges */
+.risk-tier{display:inline-flex;align-items:center;gap:.375rem;padding:.3125rem .75rem;border-radius:9999px;font-size:.75rem;font-weight:600;letter-spacing:.02em}
+.risk-clear{background:#E7F4EF;color:var(--r-clear)}
+.risk-low{background:#EDF5E6;color:var(--r-low)}
+.risk-elev{background:#FCF3DF;color:var(--r-elev)}
+.risk-high{background:#FCE9DE;color:var(--r-high)}
+.risk-crit{background:var(--o-100);color:var(--r-crit)}
+[data-theme="dark"] .risk-clear{background:rgba(14,124,102,.18);color:#4EB7A1}
+[data-theme="dark"] .risk-low{background:rgba(79,154,53,.18);color:#90CC72}
+[data-theme="dark"] .risk-elev{background:rgba(201,138,27,.2);color:#EFB94B}
+[data-theme="dark"] .risk-high{background:rgba(210,90,42,.2);color:#F08656}
+[data-theme="dark"] .risk-crit{background:rgba(154,31,36,.25);color:#F0A0A7}
+
+/* ============ BUTTONS ============ */
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.625rem 1.125rem;font-family:var(--ff-sans);font-size:.875rem;font-weight:500;border-radius:6px;border:1px solid transparent;cursor:pointer;transition:all 150ms;line-height:1.2}
+.btn-primary{background:var(--o-600);color:var(--i-100);box-shadow:0 1px 2px rgba(154,31,36,.25)}
+.btn-primary:hover{background:var(--o-700);transform:translateY(-1px);box-shadow:0 4px 12px rgba(154,31,36,.3)}
+.btn-secondary{background:var(--m-800);color:var(--i-100)}
+.btn-secondary:hover{background:var(--m-700)}
+[data-theme="dark"] .btn-secondary{background:var(--m-500)}
+[data-theme="dark"] .btn-secondary:hover{background:var(--m-400)}
+.btn-ghost{background:transparent;color:var(--fg-primary);border-color:var(--border-default)}
+.btn-ghost:hover{background:var(--bg-sunken);border-color:var(--g-500)}
+.btn-executive{background:linear-gradient(180deg,var(--g-400) 0%, var(--g-600) 100%);color:var(--m-800);box-shadow:var(--glow-gold)}
+.btn-executive:hover{background:linear-gradient(180deg,var(--g-500) 0%, var(--g-700) 100%)}
+.btn-destructive{background:var(--o-700);color:var(--i-100)}
+.btn-destructive:hover{background:var(--o-800)}
+.btn-sm{padding:.4375rem .75rem;font-size:.8125rem}
+.btn-lg{padding:.875rem 1.5rem;font-size:1rem}
+
+/* ============ CARD ============ */
+.card{background:var(--bg-surface);border:1px solid var(--border-subtle);border-radius:8px;padding:1.5rem;transition:all 200ms}
+.card:hover{border-color:var(--border-default);box-shadow:var(--shadow-md)}
+.card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem}
+.card-title{font-family:var(--ff-display);font-size:1.25rem;font-weight:500;line-height:1.2}
+.card-sub{font-size:.75rem;color:var(--fg-muted);text-transform:uppercase;letter-spacing:.08em;font-weight:500;margin-bottom:.25rem}
+
+.card-executive{background:linear-gradient(180deg,var(--m-800) 0%, var(--m-900) 100%);color:var(--i-100);border:1px solid var(--g-700);position:relative;overflow:hidden}
+.card-executive::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--g-500),transparent)}
+
+/* ============ INPUT ============ */
+.field{display:flex;flex-direction:column;gap:.4375rem}
+.field-label{font-size:.8125rem;font-weight:500;color:var(--fg-secondary);letter-spacing:.01em}
+.field-input{background:var(--bg-surface);border:1px solid var(--border-default);border-radius:6px;padding:.625rem .875rem;font-family:var(--ff-sans);font-size:.875rem;color:var(--fg-primary);transition:all 150ms;width:100%}
+.field-input:focus{outline:none;border-color:var(--g-500);box-shadow:0 0 0 3px rgba(181,142,60,.15)}
+.field-help{font-size:.75rem;color:var(--fg-muted)}
+
+/* ============ SWATCHES ============ */
+.swatch-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:.75rem}
+.swatch{border-radius:6px;overflow:hidden;border:1px solid var(--border-subtle);background:var(--bg-surface)}
+.swatch-color{height:72px;border-bottom:1px solid var(--border-subtle)}
+.swatch-meta{padding:.625rem .75rem;font-size:.75rem}
+.swatch-name{font-weight:600;margin-bottom:.125rem}
+.swatch-hex{font-family:var(--ff-mono);color:var(--fg-muted);font-size:.6875rem}
+
+/* ============ TYPE SPECIMEN ============ */
+.type-row{display:grid;grid-template-columns:180px 1fr 200px;gap:2rem;padding:1.25rem 0;border-bottom:1px dashed var(--border-subtle);align-items:baseline}
+.type-row:last-child{border-bottom:none}
+.type-label{font-size:.75rem;font-weight:600;color:var(--fg-muted);letter-spacing:.08em;text-transform:uppercase}
+.type-spec{font-family:var(--ff-mono);font-size:.75rem;color:var(--fg-muted);text-align:right}
+.type-specimen{color:var(--fg-primary)}
+
+/* ============ STREAM CARD (real component) ============ */
+.stream-card{background:var(--bg-surface);border:1px solid var(--border-subtle);border-radius:8px;padding:1.25rem;display:flex;flex-direction:column;gap:.75rem;transition:all 200ms;cursor:pointer;position:relative;overflow:hidden}
+.stream-card::before{content:"";position:absolute;top:0;left:0;bottom:0;width:3px;background:var(--cat-color,var(--cat-core));opacity:.8}
+.stream-card:hover{border-color:var(--g-500);box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.stream-card-head{display:flex;justify-content:space-between;align-items:center}
+.stream-num{font-family:var(--ff-mono);font-size:.75rem;color:var(--fg-muted);font-weight:500}
+.stream-icon{width:32px;height:32px;border-radius:6px;display:flex;align-items:center;justify-content:center;background:var(--cat-color-bg,rgba(36,102,163,.1));color:var(--cat-color,var(--cat-core))}
+.stream-category{font-size:.6875rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--cat-color,var(--cat-core))}
+.stream-title{font-family:var(--ff-display);font-size:1.125rem;font-weight:500;color:var(--fg-primary);line-height:1.2}
+.stream-title-ar{font-family:var(--ff-arabic);font-size:.8125rem;color:var(--fg-muted);direction:rtl}
+.stream-desc{font-size:.8125rem;color:var(--fg-secondary);line-height:1.5}
+.stream-foot{display:flex;justify-content:space-between;align-items:center;padding-top:.5rem;border-top:1px solid var(--border-subtle)}
+.stream-link{font-size:.8125rem;color:var(--o-600);font-weight:500}
+.stream-metric{font-family:var(--ff-mono);font-size:.75rem;color:var(--fg-muted)}
+
+/* Category variants */
+.cat-core{--cat-color:var(--cat-core);--cat-color-bg:rgba(36,102,163,.1)}
+.cat-mobility{--cat-color:var(--cat-mob);--cat-color-bg:rgba(210,90,42,.1)}
+.cat-financial{--cat-color:var(--cat-fin);--cat-color-bg:rgba(14,124,102,.1)}
+.cat-health{--cat-color:var(--cat-health);--cat-color-bg:rgba(179,40,48,.1)}
+.cat-utility{--cat-color:var(--cat-util);--cat-color-bg:rgba(201,138,27,.1)}
+.cat-education{--cat-color:var(--cat-edu);--cat-color-bg:rgba(107,79,174,.1)}
+.cat-labor{--cat-color:var(--cat-labor);--cat-color-bg:rgba(79,154,53,.1)}
+.cat-commerce{--cat-color:var(--cat-com);--cat-color-bg:rgba(31,122,140,.1)}
+.cat-digital{--cat-color:var(--cat-dig);--cat-color-bg:rgba(138,108,27,.1)}
+.cat-customs{--cat-color:var(--cat-cust);--cat-color-bg:rgba(154,31,36,.1)}
+.cat-maritime{--cat-color:var(--cat-mar);--cat-color-bg:rgba(44,95,143,.1)}
+.cat-postal{--cat-color:var(--cat-post);--cat-color-bg:rgba(168,84,122,.1)}
+
+/* ============ RISK GAUGE ============ */
+.risk-gauge{display:flex;flex-direction:column;gap:.625rem}
+.risk-gauge-label{display:flex;justify-content:space-between;align-items:baseline}
+.risk-score{font-family:var(--ff-display);font-size:2.5rem;font-weight:500;line-height:1;letter-spacing:-.02em}
+.risk-score-max{font-family:var(--ff-mono);font-size:.875rem;color:var(--fg-muted);margin-left:.375rem}
+.risk-bar{height:8px;background:var(--bg-sunken);border-radius:4px;overflow:hidden;position:relative}
+.risk-bar-fill{height:100%;border-radius:4px;transition:width 400ms cubic-bezier(.2,.8,.2,1)}
+.risk-bar-ticks{display:grid;grid-template-columns:25fr 24fr 19fr 14fr 15fr;height:8px;gap:1px}
+.risk-bar-ticks > div{background:var(--bg-sunken);border-radius:1px}
+.risk-bar-ticks.reveal > div.active{box-shadow:inset 0 0 0 2px currentColor}
+
+/* ============ TABLE ============ */
+.tbl{width:100%;border-collapse:collapse;font-size:.875rem}
+.tbl thead{background:var(--bg-sunken);border-bottom:1px solid var(--border-default)}
+.tbl th{text-align:left;padding:.75rem 1rem;font-size:.75rem;font-weight:600;color:var(--fg-muted);letter-spacing:.06em;text-transform:uppercase}
+.tbl td{padding:.875rem 1rem;border-bottom:1px solid var(--border-subtle);vertical-align:middle}
+.tbl tr:hover{background:var(--bg-sunken)}
+.tbl .mono{font-family:var(--ff-mono);font-size:.8125rem}
+
+/* ============ NAV (for mockups) ============ */
+.topnav{background:var(--m-800);color:var(--i-100);padding:.875rem 2rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--g-700)}
+.topnav-brand{display:flex;align-items:center;gap:.75rem}
+.topnav-brand .nm{font-family:var(--ff-display);font-size:1.125rem;font-weight:500}
+.topnav-brand .ar{font-family:var(--ff-arabic);font-size:.6875rem;color:var(--g-400);direction:rtl}
+.topnav-links{display:flex;gap:.25rem}
+.topnav-links a{padding:.5rem .875rem;color:var(--i-200);font-size:.875rem;border-radius:4px;transition:all 150ms}
+.topnav-links a:hover,.topnav-links a.on{color:var(--i-100);background:rgba(245,239,227,.06)}
+.topnav-actions{display:flex;gap:.75rem;align-items:center}
+.officer-chip{display:flex;align-items:center;gap:.5rem;padding:.375rem .625rem .375rem .375rem;background:rgba(245,239,227,.08);border-radius:9999px;font-size:.8125rem}
+.officer-avatar{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--g-400),var(--o-500));display:flex;align-items:center;justify-content:center;font-size:.6875rem;font-weight:600;color:var(--m-900)}
+
+/* ============ MOCKUP FRAMES ============ */
+.mockup{border:1px solid var(--border-default);border-radius:12px;overflow:hidden;margin-bottom:2rem;background:var(--bg-surface);box-shadow:var(--shadow-lg)}
+.mockup-chrome{display:flex;gap:.5rem;padding:.625rem .875rem;background:var(--bg-sunken);border-bottom:1px solid var(--border-subtle)}
+.mockup-chrome span{width:12px;height:12px;border-radius:50%;background:var(--border-default)}
+.mockup-label{margin-left:auto;font-family:var(--ff-mono);font-size:.75rem;color:var(--fg-muted)}
+.mockup-body{background:var(--m-800);color:var(--i-100);min-height:420px}
+.mockup-body.light{background:var(--i-100);color:var(--m-800)}
+
+/* ============ HERO (for landing mockup) ============ */
+.hero{padding:4rem 2rem 5rem;text-align:center;position:relative;overflow:hidden;background:radial-gradient(ellipse at top,rgba(154,31,36,.15),transparent 60%), var(--m-800)}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(181,142,60,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(181,142,60,.05) 1px,transparent 1px);background-size:40px 40px;pointer-events:none}
+.hero-eyebrow{position:relative;display:inline-flex;align-items:center;gap:.5rem;padding:.375rem 1rem;background:rgba(181,142,60,.1);border:1px solid rgba(181,142,60,.35);border-radius:9999px;font-size:.6875rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--g-400);margin-bottom:2rem}
+.hero-eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--g-500);animation:pulse 2s infinite}
+.hero-mark{position:relative;width:96px;height:96px;margin:0 auto 1.5rem;filter:drop-shadow(0 8px 24px rgba(181,142,60,.25))}
+.hero-title{position:relative;font-family:var(--ff-display);font-size:4.5rem;font-weight:500;line-height:1;letter-spacing:-.025em;color:var(--i-100);margin-bottom:.5rem}
+.hero-arabic{position:relative;font-family:var(--ff-arabic);font-size:2rem;font-weight:500;color:var(--g-400);margin-bottom:1rem;direction:rtl}
+.hero-tag-line{position:relative;display:flex;align-items:center;justify-content:center;gap:1.25rem;margin-bottom:1.5rem}
+.hero-tag-line .rule{height:1px;width:60px;background:linear-gradient(90deg,transparent,var(--g-500))}
+.hero-tag-line .rule.r{background:linear-gradient(90deg,var(--g-500),transparent)}
+.hero-tag{font-family:var(--ff-display);font-size:1.25rem;font-weight:500;color:var(--i-100);font-style:italic}
+.hero-tag-ar{font-family:var(--ff-arabic);font-size:1rem;color:var(--i-200);direction:rtl}
+.hero-desc{position:relative;max-width:620px;margin:0 auto 2.5rem;font-size:1rem;color:var(--i-200);line-height:1.7}
+.hero-stats{position:relative;display:grid;grid-template-columns:repeat(4,1fr);max-width:900px;margin:0 auto;gap:1rem}
+.hero-stat{background:rgba(11,18,32,.6);border:1px solid rgba(181,142,60,.25);border-radius:8px;padding:1rem;backdrop-filter:blur(12px)}
+.hero-stat-icon{width:24px;height:24px;margin-bottom:.75rem;color:var(--g-400)}
+.hero-stat-value{font-family:var(--ff-display);font-size:1.875rem;font-weight:500;color:var(--i-100);line-height:1}
+.hero-stat-label{font-size:.75rem;color:var(--i-200);text-transform:uppercase;letter-spacing:.08em;margin-top:.375rem}
+
+/* ============ UTILS ============ */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.stack-2{display:flex;flex-direction:column;gap:.5rem}
+.stack-4{display:flex;flex-direction:column;gap:1rem}
+.row{display:flex;gap:.75rem;flex-wrap:wrap;align-items:center}
+.divider{height:1px;background:var(--border-subtle);margin:2rem 0}
+.kbd{font-family:var(--ff-mono);font-size:.75rem;padding:.125rem .375rem;background:var(--bg-sunken);border:1px solid var(--border-default);border-bottom-width:2px;border-radius:4px}
+.muted{color:var(--fg-muted)}
+.mono{font-family:var(--ff-mono)}
+.arabic{font-family:var(--ff-arabic);direction:rtl}
+
+@media (max-width:960px){.shell{grid-template-columns:1fr}.sidebar{display:none}.main{padding:1.5rem}}
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <svg class="logo" viewBox="0 0 120 120" aria-hidden="true">
+        <path d="M60 6 L104 18 L104 62 C104 86 86 104 60 114 C34 104 16 86 16 62 L16 18 Z" fill="none" stroke="#D4A84B" stroke-width="2"/>
+        <circle cx="60" cy="36" r="12" fill="#D4A84B"/><circle cx="60" cy="36" r="7" fill="#0B1220"/><circle cx="60" cy="36" r="3" fill="#D4A84B"/>
+        <rect x="57.25" y="50" width="5.5" height="40" rx="2.5" fill="#F5EFE3"/>
+        <rect x="34" y="90" width="52" height="3" rx="1.5" fill="#9A1F24"/>
+      </svg>
+      <div>
+        <div class="name">Al-Ameen</div>
+        <div class="ar">دليل الهوية البصرية</div>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="sidebar-nav-section">Foundations</div>
+      <a href="#identity" class="active">Brand Identity</a>
+      <a href="#logo">Logo System</a>
+      <a href="#color">Color System</a>
+      <a href="#type">Typography</a>
+      <a href="#space">Spacing &amp; Layout</a>
+      <a href="#motion">Motion &amp; Elevation</a>
+      <div class="sidebar-nav-section">Components</div>
+      <a href="#buttons">Buttons</a>
+      <a href="#badges">Badges &amp; Tags</a>
+      <a href="#forms">Forms &amp; Inputs</a>
+      <a href="#cards">Cards</a>
+      <a href="#risk">Risk Visualization</a>
+      <a href="#tables">Tables</a>
+      <a href="#nav">Navigation</a>
+      <div class="sidebar-nav-section">Pages</div>
+      <a href="#page-home">Public Landing</a>
+      <a href="#page-login">Portal Login</a>
+      <a href="#page-dash">Operator Dashboard</a>
+      <a href="#page-case">Risk Case Detail</a>
+      <div class="sidebar-nav-section">Reference</div>
+      <a href="#voice">Voice &amp; Language</a>
+      <a href="#access">Accessibility</a>
+      <a href="#integrate">Engineering Integration</a>
+    </nav>
+  </aside>
+
+  <!-- ============ MAIN ============ -->
+  <main class="main">
+
+    <div class="topbar">
+      <div>
+        <div class="section-eyebrow">Al-Ameen · National Intelligence Platform</div>
+        <div class="topbar-title">Design System · v1.0</div>
+      </div>
+      <div class="topbar-actions">
+        <button class="theme-toggle" onclick="toggleTheme()">◐ Toggle theme</button>
+      </div>
+    </div>
+
+    <!-- ============ IDENTITY ============ -->
+    <section id="identity" class="block">
+      <div class="section-eyebrow">01 · Foundation</div>
+      <h2 class="section-title">Brand Identity</h2>
+      <p class="section-sub">Al-Ameen (الأمين) means <em>"the trustworthy"</em> in Arabic — an honorific historically applied to those entrusted with what cannot be lost. The platform is the nation's trusted guardian at the border, and every design decision earns that name.</p>
+
+      <div class="grid-2" style="gap:2rem">
+        <div class="card">
+          <div class="card-sub">Positioning</div>
+          <h3 class="card-title" style="margin-bottom:.75rem">Sovereign, trustworthy, insightful</h3>
+          <p style="color:var(--fg-secondary);font-size:.9375rem">Al-Ameen is a national-grade intelligence platform operated by border authorities. The brand carries the weight of state decisioning without feeling militarized — it communicates <strong>competence, care, and clarity</strong>. For executives (Inspector General, ministry), the brand reads as credible and ceremonial. For operators (border officers, analysts), it reads as calm, legible, and fast.</p>
+        </div>
+        <div class="card card-executive">
+          <div class="card-sub" style="color:var(--g-400)">Brand Promise</div>
+          <h3 class="card-title" style="color:var(--i-100);margin-bottom:.75rem">"Every decision is explainable."</h3>
+          <p style="color:var(--i-200);font-size:.9375rem">Where other systems say <em>flagged</em>, Al-Ameen says <em>flagged because — these signals, from these sources, with this confidence</em>. The brand expression follows: hierarchy over noise, attribution over assertion, transparency as a feature.</p>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-sub">Pillar · 01</div>
+          <h4 class="card-title" style="font-size:1.125rem">Sovereign</h4>
+          <p style="color:var(--fg-secondary);font-size:.875rem;margin-top:.5rem">Oman-rooted, state-grade. Deep midnight base, Oman Royal Red accents, Frankincense Gold for ceremonial moments. Never generic, never "startup."</p>
+        </div>
+        <div class="card">
+          <div class="card-sub">Pillar · 02</div>
+          <h4 class="card-title" style="font-size:1.125rem">Trustworthy</h4>
+          <p style="color:var(--fg-secondary);font-size:.875rem;margin-top:.5rem">Type hierarchy is clear. Arabic and English carry equal weight. Risk verdicts cite their sources. White space signals seriousness, not emptiness.</p>
+        </div>
+        <div class="card">
+          <div class="card-sub">Pillar · 03</div>
+          <h4 class="card-title" style="font-size:1.125rem">Insightful</h4>
+          <p style="color:var(--fg-secondary);font-size:.875rem;margin-top:.5rem">The interface surfaces <em>why</em> before <em>what</em>. Explainability is the product. Visuals privilege contribution breakdowns, signal attribution, and confidence bands.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ LOGO ============ -->
+    <section id="logo" class="block">
+      <div class="section-eyebrow">02 · Foundation</div>
+      <h2 class="section-title">Logo System</h2>
+      <p class="section-sub">The mark is "The Guardian's Gate" — a shield-arch silhouette enclosing the Arabic letter Alif (ا, the first letter of <span class="arabic">الأمين</span>), crowned by a vigilant crescent, standing on a frontier base line. Every element is meaningful and every lockup is bilingual-equal.</p>
+
+      <div class="grid-2" style="gap:2rem">
+        <!-- Primary horizontal -->
+        <div class="card" style="padding:2.5rem;text-align:center;background:var(--i-100)">
+          <svg viewBox="0 0 540 140" width="100%" style="max-width:440px">
+            <defs>
+              <linearGradient id="lg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0B1220"/><stop offset="100%" stop-color="#141D2E"/></linearGradient>
+              <linearGradient id="lg2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#D4A84B"/><stop offset="100%" stop-color="#B58E3C"/></linearGradient>
+            </defs>
+            <g transform="translate(10,10)">
+              <path d="M60 6 L104 18 L104 62 C104 86 86 104 60 114 C34 104 16 86 16 62 L16 18 Z" fill="url(#lg1)" stroke="url(#lg2)" stroke-width="2"/>
+              <path d="M60 14 L96 24 L96 60 C96 80 82 96 60 104 C38 96 24 80 24 60 L24 24 Z" fill="none" stroke="#9A1F24" stroke-width="1.5" opacity="0.85"/>
+              <circle cx="60" cy="36" r="12" fill="url(#lg2)"/><circle cx="60" cy="36" r="7" fill="#0B1220"/><circle cx="60" cy="36" r="3" fill="url(#lg2)"/>
+              <rect x="57.25" y="50" width="5.5" height="40" rx="2.5" fill="#F5EFE3"/>
+              <rect x="34" y="90" width="52" height="3" rx="1.5" fill="#9A1F24"/>
+              <rect x="42" y="94" width="36" height="1.5" rx="0.75" fill="#B58E3C" opacity="0.8"/>
+            </g>
+            <rect x="148" y="34" width="1" height="72" fill="#B58E3C" opacity="0.4"/>
+            <text x="168" y="72" font-family="Cormorant Garamond, serif" font-size="38" font-weight="500" fill="#0B1220">Al-Ameen</text>
+            <text x="168" y="100" font-family="Readex Pro, sans-serif" font-size="22" font-weight="500" fill="#9A1F24" direction="rtl">الأمين</text>
+            <text x="168" y="122" font-family="Inter, sans-serif" font-size="10" font-weight="500" fill="#4A5365" letter-spacing="1.5">NATIONAL INTELLIGENCE PLATFORM</text>
+          </svg>
+          <div style="margin-top:1rem;font-size:.75rem;color:var(--m-600);letter-spacing:.1em;text-transform:uppercase">Primary · Horizontal</div>
+        </div>
+
+        <!-- Primary stacked on dark -->
+        <div class="card" style="padding:2.5rem;text-align:center;background:var(--m-800);color:var(--i-100)">
+          <svg viewBox="0 0 320 260" width="100%" style="max-width:220px">
+            <g transform="translate(100,10)">
+              <path d="M60 6 L104 18 L104 62 C104 86 86 104 60 114 C34 104 16 86 16 62 L16 18 Z" fill="none" stroke="#D4A84B" stroke-width="2"/>
+              <circle cx="60" cy="36" r="12" fill="#D4A84B"/><circle cx="60" cy="36" r="7" fill="#0B1220"/><circle cx="60" cy="36" r="3" fill="#D4A84B"/>
+              <rect x="57.25" y="50" width="5.5" height="40" rx="2.5" fill="#F5EFE3"/>
+              <rect x="34" y="90" width="52" height="3" rx="1.5" fill="#9A1F24"/>
+            </g>
+            <text x="160" y="172" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="42" font-weight="500" fill="#F5EFE3">Al-Ameen</text>
+            <text x="160" y="204" text-anchor="middle" font-family="Readex Pro, sans-serif" font-size="26" font-weight="500" fill="#D4A84B" direction="rtl">الأمين</text>
+            <line x1="80" y1="224" x2="240" y2="224" stroke="#B58E3C" stroke-width="1" opacity="0.5"/>
+            <text x="160" y="244" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="600" fill="#8B95B0" letter-spacing="3">NATIONAL INTELLIGENCE PLATFORM</text>
+          </svg>
+          <div style="margin-top:1rem;font-size:.75rem;color:var(--g-400);letter-spacing:.1em;text-transform:uppercase">Stacked · Dark Canvas</div>
+        </div>
+      </div>
+
+      <div class="grid-4" style="margin-top:1.5rem">
+        <div class="card" style="padding:1.5rem;text-align:center;background:var(--i-100)">
+          <svg viewBox="0 0 120 120" width="72" height="72">
+            <defs><linearGradient id="l3a" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0B1220"/><stop offset="100%" stop-color="#141D2E"/></linearGradient><linearGradient id="l3b" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#D4A84B"/><stop offset="100%" stop-color="#B58E3C"/></linearGradient></defs>
+            <path d="M60 6 L104 18 L104 62 C104 86 86 104 60 114 C34 104 16 86 16 62 L16 18 Z" fill="url(#l3a)" stroke="url(#l3b)" stroke-width="2"/>
+            <circle cx="60" cy="36" r="12" fill="url(#l3b)"/><circle cx="60" cy="36" r="7" fill="#0B1220"/><circle cx="60" cy="36" r="3" fill="url(#l3b)"/>
+            <rect x="57.25" y="50" width="5.5" height="40" rx="2.5" fill="#F5EFE3"/>
+            <rect x="34" y="90" width="52" height="3" rx="1.5" fill="#9A1F24"/>
+          </svg>
+          <div style="margin-top:.75rem;font-size:.6875rem;color:var(--fg-muted);letter-spacing:.08em;text-transform:uppercase">Mark · Full Color</div>
+        </div>
+        <div class="card" style="padding:1.5rem;text-align:center;background:var(--m-800)">
+          <svg viewBox="0 0 120 120" width="72" height="72">
+            <path d="M60 6 L104 18 L104 62 C104 86 86 104 60 114 C34 104 16 86 16 62 L16 18 Z" fill="none" stroke="#F5EFE3" stroke-width="2.5"/>
+            <circle cx="60" cy="36" r="12" fill="#F5EFE3"/><circle cx="60" cy="36" r="7" fill="#0B1220"/><circle cx="60" cy="36" r="3" fill="#F5EFE3"/>
+            <rect x="57.25" y="50" width="5.5" height="40" rx="2.5" fill="#F5EFE3"/>
+            <rect x="34" y="90" width="52" height="3" rx="1.5" fill="#F5EFE3"/>
+          </svg>
+          <div style="margin-top:.75rem;font-size:.6875rem;color:var(--g-400);letter-spacing:.08em;text-transform:uppercase">Mono · Light</div>
+        </div>
+        <div class="card" style="padding:1.5rem;text-align:center;background:var(--i-100)">
+          <svg viewBox="0 0 120 120" width="72" height="72">
+            <path d="M60 6 L104 18 L104 62 C104 86 86 104 60 114 C34 104 16 86 16 62 L16 18 Z" fill="#0B1220"/>
+            <circle cx="60" cy="36" r="12" fill="#F5EFE3"/><circle cx="60" cy="36" r="7" fill="#0B1220"/><circle cx="60" cy="36" r="3" fill="#F5EFE3"/>
+            <rect x="57.25" y="50" width="5.5" height="40" rx="2.5" fill="#F5EFE3"/>
+            <rect x="34" y="90" width="52" height="3" rx="1.5" fill="#F5EFE3"/>
+          </svg>
+          <div style="margin-top:.75rem;font-size:.6875rem;color:var(--fg-muted);letter-spacing:.08em;text-transform:uppercase">Mono · Dark</div>
+        </div>
+        <div class="card" style="padding:1.5rem;text-align:center;background:var(--bg-sunken);display:flex;flex-direction:column;align-items:center;justify-content:center">
+          <svg viewBox="0 0 32 32" width="64" height="64" style="margin-bottom:.5rem">
+            <rect width="32" height="32" rx="6" fill="#0B1220"/>
+            <path d="M16 5 L26 8 L26 17 C26 22 22 26 16 28 C10 26 6 22 6 17 L6 8 Z" fill="none" stroke="#D4A84B" stroke-width="1.2"/>
+            <circle cx="16" cy="13" r="3.5" fill="#D4A84B"/>
+            <rect x="14.75" y="16" width="2.5" height="10" rx="1.1" fill="#F5EFE3"/>
+            <rect x="10" y="25" width="12" height="1.5" rx="0.75" fill="#9A1F24"/>
+          </svg>
+          <div style="display:flex;gap:.5rem;align-items:center">
+            <svg viewBox="0 0 32 32" width="20" height="20">
+              <rect width="32" height="32" rx="6" fill="#0B1220"/>
+              <circle cx="16" cy="13" r="3.5" fill="#D4A84B"/>
+              <rect x="14.75" y="16" width="2.5" height="10" rx="1.1" fill="#F5EFE3"/>
+              <rect x="10" y="25" width="12" height="1.5" rx="0.75" fill="#9A1F24"/>
+            </svg>
+            <svg viewBox="0 0 32 32" width="16" height="16">
+              <rect width="32" height="32" rx="6" fill="#0B1220"/>
+              <circle cx="16" cy="13" r="3.5" fill="#D4A84B"/>
+              <rect x="14.75" y="16" width="2.5" height="10" rx="1.1" fill="#F5EFE3"/>
+              <rect x="10" y="25" width="12" height="1.5" rx="0.75" fill="#9A1F24"/>
+            </svg>
+          </div>
+          <div style="margin-top:.625rem;font-size:.6875rem;color:var(--fg-muted);letter-spacing:.08em;text-transform:uppercase">Favicon · 32 / 20 / 16</div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="grid-2" style="gap:2rem">
+        <div>
+          <h3 style="font-family:var(--ff-display);font-size:1.25rem;font-weight:500;margin-bottom:1rem">Clear space &amp; minimum sizes</h3>
+          <ul style="color:var(--fg-secondary);font-size:.9375rem;line-height:1.8;padding-left:1.25rem">
+            <li>Clear space around the mark = <strong>25% of mark height</strong> on all sides.</li>
+            <li>Minimum digital size: <strong>24 px tall</strong> for the mark, <strong>40 px tall</strong> for horizontal lockup.</li>
+            <li>Minimum print size: <strong>10 mm tall</strong> for the mark.</li>
+            <li>Never place the mark on a background that reduces contrast below 3:1 between mark and canvas.</li>
+          </ul>
+        </div>
+        <div>
+          <h3 style="font-family:var(--ff-display);font-size:1.25rem;font-weight:500;margin-bottom:1rem">Don'ts</h3>
+          <ul style="color:var(--fg-secondary);font-size:.9375rem;line-height:1.8;padding-left:1.25rem">
+            <li>Don't recolor the mark outside the sanctioned palette.</li>
+            <li>Don't stretch, rotate, or skew.</li>
+            <li>Don't add effects — no drop shadows, outer glows, embosses.</li>
+            <li>Don't lock up with other institutional marks without approval.</li>
+            <li>Don't place the Latin wordmark on its own without the Arabic in official contexts.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ COLOR ============ -->
+    <section id="color" class="block">
+      <div class="section-eyebrow">03 · Foundation</div>
+      <h2 class="section-title">Color System</h2>
+      <p class="section-sub">Four brand families anchor the palette. Midnight is the canvas for ops. Oman Royal Red is the primary action and highest-severity alert. Frankincense Gold reserves itself for executive, ceremonial, and explainability moments. Desert Ivory carries the warm, literate surfaces.</p>
+
+      <h3 style="font-family:var(--ff-display);font-size:1.25rem;font-weight:500;margin-bottom:1rem">Midnight · Canvas</h3>
+      <div class="swatch-grid" style="margin-bottom:2rem">
+        <div class="swatch"><div class="swatch-color" style="background:#05080F"></div><div class="swatch-meta"><div class="swatch-name">midnight-900</div><div class="swatch-hex">#05080F</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#0B1220"></div><div class="swatch-meta"><div class="swatch-name">midnight-800 · shell</div><div class="swatch-hex">#0B1220</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#141D2E"></div><div class="swatch-meta"><div class="swatch-name">midnight-700 · card</div><div class="swatch-hex">#141D2E</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#1C2740"></div><div class="swatch-meta"><div class="swatch-name">midnight-600</div><div class="swatch-hex">#1C2740</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#2A3654"></div><div class="swatch-meta"><div class="swatch-name">midnight-500</div><div class="swatch-hex">#2A3654</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#3E4A6B"></div><div class="swatch-meta"><div class="swatch-name">midnight-400 · border</div><div class="swatch-hex">#3E4A6B</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#5A6787"></div><div class="swatch-meta"><div class="swatch-name">midnight-300</div><div class="swatch-hex">#5A6787</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#8B95B0"></div><div class="swatch-meta"><div class="swatch-name">midnight-200</div><div class="swatch-hex">#8B95B0</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#B8BFD0"></div><div class="swatch-meta"><div class="swatch-name">midnight-100</div><div class="swatch-hex">#B8BFD0</div></div></div>
+      </div>
+
+      <h3 style="font-family:var(--ff-display);font-size:1.25rem;font-weight:500;margin-bottom:1rem">Oman Royal Red · Primary</h3>
+      <div class="swatch-grid" style="margin-bottom:2rem">
+        <div class="swatch"><div class="swatch-color" style="background:#4A0F13"></div><div class="swatch-meta"><div class="swatch-name">oman-900</div><div class="swatch-hex">#4A0F13</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#6B1519"></div><div class="swatch-meta"><div class="swatch-name">oman-800</div><div class="swatch-hex">#6B1519</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#831B1F"></div><div class="swatch-meta"><div class="swatch-name">oman-700 · hover</div><div class="swatch-hex">#831B1F</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#9A1F24;box-shadow:var(--glow-gold)"></div><div class="swatch-meta"><div class="swatch-name">oman-600 · PRIMARY</div><div class="swatch-hex">#9A1F24</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#B32830"></div><div class="swatch-meta"><div class="swatch-name">oman-500</div><div class="swatch-hex">#B32830</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#CC4049"></div><div class="swatch-meta"><div class="swatch-name">oman-400</div><div class="swatch-hex">#CC4049</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#E06570"></div><div class="swatch-meta"><div class="swatch-name">oman-300</div><div class="swatch-hex">#E06570</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#F0A0A7"></div><div class="swatch-meta"><div class="swatch-name">oman-200</div><div class="swatch-hex">#F0A0A7</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#FADDE0"></div><div class="swatch-meta"><div class="swatch-name">oman-100</div><div class="swatch-hex">#FADDE0</div></div></div>
+      </div>
+
+      <h3 style="font-family:var(--ff-display);font-size:1.25rem;font-weight:500;margin-bottom:1rem">Frankincense Gold · Ceremonial</h3>
+      <div class="swatch-grid" style="margin-bottom:2rem">
+        <div class="swatch"><div class="swatch-color" style="background:#5A4418"></div><div class="swatch-meta"><div class="swatch-name">gold-900</div><div class="swatch-hex">#5A4418</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#7A5C22"></div><div class="swatch-meta"><div class="swatch-name">gold-800</div><div class="swatch-hex">#7A5C22</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#96732C"></div><div class="swatch-meta"><div class="swatch-name">gold-700</div><div class="swatch-hex">#96732C</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#B58E3C"></div><div class="swatch-meta"><div class="swatch-name">gold-600 · ACCENT</div><div class="swatch-hex">#B58E3C</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#C99C48"></div><div class="swatch-meta"><div class="swatch-name">gold-500</div><div class="swatch-hex">#C99C48</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#D4A84B"></div><div class="swatch-meta"><div class="swatch-name">gold-400 · highlight</div><div class="swatch-hex">#D4A84B</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#DDB96B"></div><div class="swatch-meta"><div class="swatch-name">gold-300</div><div class="swatch-hex">#DDB96B</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#E8CF9A"></div><div class="swatch-meta"><div class="swatch-name">gold-200</div><div class="swatch-hex">#E8CF9A</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#F4E5C4"></div><div class="swatch-meta"><div class="swatch-name">gold-100</div><div class="swatch-hex">#F4E5C4</div></div></div>
+      </div>
+
+      <h3 style="font-family:var(--ff-display);font-size:1.25rem;font-weight:500;margin-bottom:1rem">Desert Ivory · Surfaces</h3>
+      <div class="swatch-grid" style="margin-bottom:2rem">
+        <div class="swatch"><div class="swatch-color" style="background:#4A453B"></div><div class="swatch-meta"><div class="swatch-name">ivory-900</div><div class="swatch-hex">#4A453B</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#6B6457"></div><div class="swatch-meta"><div class="swatch-name">ivory-800</div><div class="swatch-hex">#6B6457</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#8A8374"></div><div class="swatch-meta"><div class="swatch-name">ivory-700</div><div class="swatch-hex">#8A8374</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#A9A193"></div><div class="swatch-meta"><div class="swatch-name">ivory-600</div><div class="swatch-hex">#A9A193</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#C4BCA8"></div><div class="swatch-meta"><div class="swatch-name">ivory-500</div><div class="swatch-hex">#C4BCA8</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#DAD0B8"></div><div class="swatch-meta"><div class="swatch-name">ivory-400</div><div class="swatch-hex">#DAD0B8</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#EFE7D3"></div><div class="swatch-meta"><div class="swatch-name">ivory-200</div><div class="swatch-hex">#EFE7D3</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#F5EFE3"></div><div class="swatch-meta"><div class="swatch-name">ivory-100 · canvas</div><div class="swatch-hex">#F5EFE3</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#FFFFFF;border:1px solid var(--border-subtle)"></div><div class="swatch-meta"><div class="swatch-name">ivory-000 · surface</div><div class="swatch-hex">#FFFFFF</div></div></div>
+      </div>
+
+      <h3 style="font-family:var(--ff-display);font-size:1.25rem;font-weight:500;margin-bottom:1rem">Semantic · Risk Tiers</h3>
+      <p style="color:var(--fg-muted);font-size:.875rem;margin-bottom:1rem">Risk is expressed on a 0–100 unified score, binned into five tiers. Each tier maps to a color that is stable across the product — ship no risk color outside these five.</p>
+      <div class="swatch-grid" style="margin-bottom:2rem;grid-template-columns:repeat(5,1fr)">
+        <div class="swatch"><div class="swatch-color" style="background:#0E7C66"></div><div class="swatch-meta"><div class="swatch-name">CLEAR · 0–24</div><div class="swatch-hex">#0E7C66</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#4F9A35"></div><div class="swatch-meta"><div class="swatch-name">LOW · 25–49</div><div class="swatch-hex">#4F9A35</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#C98A1B"></div><div class="swatch-meta"><div class="swatch-name">ELEVATED · 50–69</div><div class="swatch-hex">#C98A1B</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#D25A2A"></div><div class="swatch-meta"><div class="swatch-name">HIGH · 70–84</div><div class="swatch-hex">#D25A2A</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#9A1F24"></div><div class="swatch-meta"><div class="swatch-name">CRITICAL · 85–100</div><div class="swatch-hex">#9A1F24</div></div></div>
+      </div>
+
+      <h3 style="font-family:var(--ff-display);font-size:1.25rem;font-weight:500;margin-bottom:1rem">Semantic · Stream Categories</h3>
+      <p style="color:var(--fg-muted);font-size:.875rem;margin-bottom:1rem">Each of the 16 intelligence streams inherits exactly one category hue. Category color appears as a 3 px left rail on stream cards and the icon tint.</p>
+      <div class="swatch-grid">
+        <div class="swatch"><div class="swatch-color" style="background:#2466A3"></div><div class="swatch-meta"><div class="swatch-name">Core Intel</div><div class="swatch-hex">#2466A3</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#D25A2A"></div><div class="swatch-meta"><div class="swatch-name">Mobility</div><div class="swatch-hex">#D25A2A</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#0E7C66"></div><div class="swatch-meta"><div class="swatch-name">Financial</div><div class="swatch-hex">#0E7C66</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#B32830"></div><div class="swatch-meta"><div class="swatch-name">Health</div><div class="swatch-hex">#B32830</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#C98A1B"></div><div class="swatch-meta"><div class="swatch-name">Utility</div><div class="swatch-hex">#C98A1B</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#6B4FAE"></div><div class="swatch-meta"><div class="swatch-name">Education</div><div class="swatch-hex">#6B4FAE</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#4F9A35"></div><div class="swatch-meta"><div class="swatch-name">Labor</div><div class="swatch-hex">#4F9A35</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#1F7A8C"></div><div class="swatch-meta"><div class="swatch-name">Commerce</div><div class="swatch-hex">#1F7A8C</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#8A6C1B"></div><div class="swatch-meta"><div class="swatch-name">Digital</div><div class="swatch-hex">#8A6C1B</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#9A1F24"></div><div class="swatch-meta"><div class="swatch-name">Customs</div><div class="swatch-hex">#9A1F24</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#2C5F8F"></div><div class="swatch-meta"><div class="swatch-name">Maritime</div><div class="swatch-hex">#2C5F8F</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#A8547A"></div><div class="swatch-meta"><div class="swatch-name">Postal</div><div class="swatch-hex">#A8547A</div></div></div>
+      </div>
+    </section>
+
+    <!-- ============ TYPOGRAPHY ============ -->
+    <section id="type" class="block">
+      <div class="section-eyebrow">04 · Foundation</div>
+      <h2 class="section-title">Typography</h2>
+      <p class="section-sub">Four typefaces carry the system: a <strong>serif display</strong> for ceremonial headlines, <strong>Inter</strong> for interface text, <strong>Readex Pro</strong> for Arabic with balanced x-height, and <strong>JetBrains Mono</strong> for data, IDs, and signal attribution. Arabic and English are treated as <em>equal peers</em>, never as translations of each other.</p>
+
+      <div class="card" style="padding:2.5rem">
+        <div class="type-row">
+          <span class="type-label">Hero · Display</span>
+          <span class="type-specimen" style="font-family:var(--ff-display);font-size:4.5rem;font-weight:500;line-height:1;letter-spacing:-.025em">Al-Ameen</span>
+          <span class="type-spec">Cormorant 72 / 500 / −2.5%</span>
+        </div>
+        <div class="type-row">
+          <span class="type-label">H1</span>
+          <span class="type-specimen" style="font-family:var(--ff-display);font-size:3rem;font-weight:500;line-height:1.1;letter-spacing:-.02em">The nation's trusted guardian</span>
+          <span class="type-spec">Cormorant 48 / 500 / −2%</span>
+        </div>
+        <div class="type-row">
+          <span class="type-label">H2</span>
+          <span class="type-specimen" style="font-family:var(--ff-display);font-size:2.25rem;font-weight:500;line-height:1.1">Core Streams</span>
+          <span class="type-spec">Cormorant 36 / 500</span>
+        </div>
+        <div class="type-row">
+          <span class="type-label">H3</span>
+          <span class="type-specimen" style="font-family:var(--ff-display);font-size:1.5rem;font-weight:500">Hotel Intelligence</span>
+          <span class="type-spec">Cormorant 24 / 500</span>
+        </div>
+        <div class="type-row">
+          <span class="type-label">H4 · Card</span>
+          <span class="type-specimen" style="font-family:var(--ff-sans);font-size:1.125rem;font-weight:600">Risk Case · RC-2026-0417-084</span>
+          <span class="type-spec">Inter 18 / 600</span>
+        </div>
+        <div class="type-row">
+          <span class="type-label">Lead body</span>
+          <span class="type-specimen" style="font-family:var(--ff-sans);font-size:1.125rem;font-weight:400;line-height:1.65">Real-time risk fusion across 16 national intelligence streams with explainable attribution.</span>
+          <span class="type-spec">Inter 18 / 400 / 1.65</span>
+        </div>
+        <div class="type-row">
+          <span class="type-label">Body</span>
+          <span class="type-specimen" style="font-family:var(--ff-sans);font-size:1rem;line-height:1.6">A centralized intelligence platform receiving real-time event data from external entities across the nation.</span>
+          <span class="type-spec">Inter 16 / 400 / 1.6</span>
+        </div>
+        <div class="type-row">
+          <span class="type-label">Body small</span>
+          <span class="type-specimen" style="font-family:var(--ff-sans);font-size:.875rem;line-height:1.5">Explainability payload returned with every scored record — every flag cites its sources.</span>
+          <span class="type-spec">Inter 14 / 400</span>
+        </div>
+        <div class="type-row">
+          <span class="type-label">Caption · Eyebrow</span>
+          <span class="type-specimen" style="font-family:var(--ff-sans);font-size:.6875rem;font-weight:600;text-transform:uppercase;letter-spacing:.2em;color:var(--g-700)">OPERATED BY NATIONAL POLICE HQ</span>
+          <span class="type-spec">Inter 11 / 600 / +20%</span>
+        </div>
+        <div class="type-row">
+          <span class="type-label">Arabic · Display</span>
+          <span class="type-specimen arabic" style="font-family:var(--ff-arabic);font-size:3rem;font-weight:500;line-height:1.3">الأمين</span>
+          <span class="type-spec">Readex 48 / 500</span>
+        </div>
+        <div class="type-row">
+          <span class="type-label">Arabic · Body</span>
+          <span class="type-specimen arabic" style="font-family:var(--ff-arabic);font-size:1rem;line-height:1.75">الحارس الأمين للوطن — منصة استخبارات وطنية لمعالجة بيانات الحدود في الزمن الحقيقي</span>
+          <span class="type-spec">Readex 16 / 1.75</span>
+        </div>
+        <div class="type-row">
+          <span class="type-label">Mono · Data</span>
+          <span class="type-specimen mono" style="font-size:1rem">RC-2026-0417-084 · score 78 · GDELT.v2:acled.high</span>
+          <span class="type-spec">JetBrains 16</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SPACE ============ -->
+    <section id="space" class="block">
+      <div class="section-eyebrow">05 · Foundation</div>
+      <h2 class="section-title">Spacing &amp; Layout</h2>
+      <p class="section-sub">A 4-pixel base unit governs all spacing. Layout grids are 12-column with 24 px gutters on ≥1024 px, 8-column with 16 px gutters on 640–1023 px, and 4-column with 16 px gutters below.</p>
+
+      <div class="grid-2" style="gap:2rem">
+        <div class="card">
+          <h4 style="font-family:var(--ff-display);font-size:1.25rem;font-weight:500;margin-bottom:1rem">Spacing scale</h4>
+          <div style="display:flex;flex-direction:column;gap:.5rem">
+            <div style="display:flex;align-items:center;gap:1rem"><code style="width:64px">--space-1</code><div style="background:var(--o-200);width:4px;height:24px"></div><span class="muted">4px</span></div>
+            <div style="display:flex;align-items:center;gap:1rem"><code style="width:64px">--space-2</code><div style="background:var(--o-200);width:8px;height:24px"></div><span class="muted">8px</span></div>
+            <div style="display:flex;align-items:center;gap:1rem"><code style="width:64px">--space-3</code><div style="background:var(--o-300);width:12px;height:24px"></div><span class="muted">12px</span></div>
+            <div style="display:flex;align-items:center;gap:1rem"><code style="width:64px">--space-4</code><div style="background:var(--o-400);width:16px;height:24px"></div><span class="muted">16px · default</span></div>
+            <div style="display:flex;align-items:center;gap:1rem"><code style="width:64px">--space-6</code><div style="background:var(--o-500);width:24px;height:24px"></div><span class="muted">24px · card pad</span></div>
+            <div style="display:flex;align-items:center;gap:1rem"><code style="width:64px">--space-8</code><div style="background:var(--o-600);width:32px;height:24px"></div><span class="muted">32px · section</span></div>
+            <div style="display:flex;align-items:center;gap:1rem"><code style="width:64px">--space-12</code><div style="background:var(--o-700);width:48px;height:24px"></div><span class="muted">48px · block</span></div>
+            <div style="display:flex;align-items:center;gap:1rem"><code style="width:64px">--space-20</code><div style="background:var(--o-800);width:80px;height:24px"></div><span class="muted">80px · hero</span></div>
+          </div>
+        </div>
+        <div class="card">
+          <h4 style="font-family:var(--ff-display);font-size:1.25rem;font-weight:500;margin-bottom:1rem">Radii</h4>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin-bottom:1rem">
+            <div style="text-align:center"><div style="background:var(--o-200);width:64px;height:64px;border-radius:2px;margin:0 auto"></div><code style="font-size:.6875rem">xs · 2</code></div>
+            <div style="text-align:center"><div style="background:var(--o-300);width:64px;height:64px;border-radius:4px;margin:0 auto"></div><code style="font-size:.6875rem">sm · 4</code></div>
+            <div style="text-align:center"><div style="background:var(--o-400);width:64px;height:64px;border-radius:6px;margin:0 auto"></div><code style="font-size:.6875rem">md · 6</code></div>
+            <div style="text-align:center"><div style="background:var(--o-500);width:64px;height:64px;border-radius:8px;margin:0 auto"></div><code style="font-size:.6875rem">lg · 8</code></div>
+            <div style="text-align:center"><div style="background:var(--o-600);width:64px;height:64px;border-radius:12px;margin:0 auto"></div><code style="font-size:.6875rem">xl · 12</code></div>
+            <div style="text-align:center"><div style="background:var(--o-700);width:64px;height:64px;border-radius:16px;margin:0 auto"></div><code style="font-size:.6875rem">2xl · 16</code></div>
+            <div style="text-align:center"><div style="background:var(--g-600);width:64px;height:64px;border-radius:9999px;margin:0 auto"></div><code style="font-size:.6875rem">full</code></div>
+          </div>
+          <p class="muted" style="font-size:.875rem">Use <code>md (6px)</code> as the default for interactive controls. <code>lg (8px)</code> for cards. <code>full</code> for badges and avatars only.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MOTION ============ -->
+    <section id="motion" class="block">
+      <div class="section-eyebrow">06 · Foundation</div>
+      <h2 class="section-title">Motion &amp; Elevation</h2>
+      <p class="section-sub">Motion is earned. Fast (150 ms) for hover/press feedback, medium (250 ms) for surface transitions, slow (400 ms) for modal and navigation transitions. The platform never animates for decoration — only to signal state change.</p>
+
+      <div class="grid-4">
+        <div class="card"><div style="height:48px;background:var(--bg-sunken);border-radius:4px;margin-bottom:.625rem"></div><div class="card-sub">Flat</div><div>0 elevation · inputs, chips</div></div>
+        <div class="card" style="box-shadow:var(--shadow-sm)"><div style="height:48px;background:var(--bg-sunken);border-radius:4px;margin-bottom:.625rem"></div><div class="card-sub">Shadow-sm</div><div>Cards at rest</div></div>
+        <div class="card" style="box-shadow:var(--shadow-md)"><div style="height:48px;background:var(--bg-sunken);border-radius:4px;margin-bottom:.625rem"></div><div class="card-sub">Shadow-md</div><div>Hover / raised</div></div>
+        <div class="card" style="box-shadow:var(--shadow-lg)"><div style="height:48px;background:var(--bg-sunken);border-radius:4px;margin-bottom:.625rem"></div><div class="card-sub">Shadow-lg</div><div>Popover, menu</div></div>
+        <div class="card" style="box-shadow:var(--shadow-xl)"><div style="height:48px;background:var(--bg-sunken);border-radius:4px;margin-bottom:.625rem"></div><div class="card-sub">Shadow-xl</div><div>Modal</div></div>
+        <div class="card" style="box-shadow:var(--glow-gold)"><div style="height:48px;background:var(--bg-sunken);border-radius:4px;margin-bottom:.625rem"></div><div class="card-sub">Glow · Gold</div><div>Executive action</div></div>
+        <div class="card" style="box-shadow:0 0 0 1px rgba(154,31,36,.4),0 4px 16px rgba(154,31,36,.2)"><div style="height:48px;background:var(--bg-sunken);border-radius:4px;margin-bottom:.625rem"></div><div class="card-sub">Glow · Red</div><div>Critical alert</div></div>
+      </div>
+    </section>
+
+    <!-- ============ BUTTONS ============ -->
+    <section id="buttons" class="block">
+      <div class="section-eyebrow">07 · Components</div>
+      <h2 class="section-title">Buttons</h2>
+      <p class="section-sub">Five variants. Primary (Oman red) for the single most important action on a screen. Secondary (midnight) for supporting actions. Ghost for tertiary. Executive (gold) for rare ceremonial moments — dashboard-level commits, sign-off actions. Destructive for dangerous operations.</p>
+
+      <div class="card">
+        <h4 style="font-family:var(--ff-display);font-size:1.125rem;font-weight:500;margin-bottom:1rem">Variants · medium size</h4>
+        <div class="row" style="margin-bottom:2rem">
+          <button class="btn btn-primary">Adjudicate ETA</button>
+          <button class="btn btn-secondary">View signals</button>
+          <button class="btn btn-ghost">Cancel</button>
+          <button class="btn btn-executive">✦ Commit to IG</button>
+          <button class="btn btn-destructive">Override &amp; deny</button>
+        </div>
+        <h4 style="font-family:var(--ff-display);font-size:1.125rem;font-weight:500;margin-bottom:1rem">Sizes</h4>
+        <div class="row" style="margin-bottom:2rem">
+          <button class="btn btn-primary btn-sm">Small · Approve</button>
+          <button class="btn btn-primary">Medium · Approve</button>
+          <button class="btn btn-primary btn-lg">Large · Approve</button>
+        </div>
+        <h4 style="font-family:var(--ff-display);font-size:1.125rem;font-weight:500;margin-bottom:1rem">With icons</h4>
+        <div class="row">
+          <button class="btn btn-primary">➜ Run scoring</button>
+          <button class="btn btn-secondary">⎘ Export report</button>
+          <button class="btn btn-ghost">↓ Download</button>
+          <button class="btn btn-executive">✦ Seal &amp; sign</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BADGES ============ -->
+    <section id="badges" class="block">
+      <div class="section-eyebrow">08 · Components</div>
+      <h2 class="section-title">Badges &amp; Tags</h2>
+      <p class="section-sub">Badges classify; risk tiers verdict. Both are small, dense, and have fixed semantic meaning.</p>
+      <div class="card">
+        <h4 style="font-family:var(--ff-display);font-size:1.125rem;font-weight:500;margin-bottom:1rem">Category badges</h4>
+        <div class="row" style="margin-bottom:2rem">
+          <span class="badge badge-core">◆ Core</span>
+          <span class="badge badge-extended">◇ Extended</span>
+          <span class="badge badge-live">Live</span>
+        </div>
+        <h4 style="font-family:var(--ff-display);font-size:1.125rem;font-weight:500;margin-bottom:1rem">Risk tiers</h4>
+        <div class="row">
+          <span class="risk-tier risk-clear">● Clear · 12</span>
+          <span class="risk-tier risk-low">● Low · 34</span>
+          <span class="risk-tier risk-elev">● Elevated · 62</span>
+          <span class="risk-tier risk-high">● High · 78</span>
+          <span class="risk-tier risk-crit">● Critical · 94</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FORMS ============ -->
+    <section id="forms" class="block">
+      <div class="section-eyebrow">09 · Components</div>
+      <h2 class="section-title">Forms &amp; Inputs</h2>
+      <p class="section-sub">Forms are the quiet backbone of adjudication. Labels are always visible, help text is literal, and validation is specific about what's wrong and how to fix it.</p>
+      <div class="card">
+        <div class="grid-2" style="gap:1.25rem;max-width:640px">
+          <div class="field">
+            <label class="field-label">Passenger ID</label>
+            <input class="field-input" type="text" placeholder="P-OMN-2026-0417-0001" value="P-OMN-2026-0417-0001">
+            <div class="field-help">ETA record identifier from the applicant's registration.</div>
+          </div>
+          <div class="field">
+            <label class="field-label">Decision point</label>
+            <select class="field-input">
+              <option>ETA adjudication</option>
+              <option>API/PNR pre-arrival</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="field-label">Officer note</label>
+            <textarea class="field-input" rows="3" placeholder="Plain-language justification for override, if any"></textarea>
+            <div class="field-help">Stored with the case lineage; visible to IG audit.</div>
+          </div>
+          <div class="field" style="align-self:end">
+            <label class="field-label">Confirm</label>
+            <button class="btn btn-primary">✓ Submit adjudication</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CARDS ============ -->
+    <section id="cards" class="block">
+      <div class="section-eyebrow">10 · Components</div>
+      <h2 class="section-title">Cards</h2>
+      <p class="section-sub">Three primary card patterns. Stream card is the canonical data-stream surface. Executive card is for IG / ministry-level summaries. Risk case card is for the adjudication queue.</p>
+
+      <h3 style="font-family:var(--ff-display);font-size:1.25rem;font-weight:500;margin-bottom:1rem">Stream cards · 16 categories</h3>
+      <div class="grid-4">
+        <div class="stream-card cat-core">
+          <div class="stream-card-head"><span class="stream-num">01</span><span class="stream-icon">⌂</span></div>
+          <div><div class="stream-category">Core Intelligence</div><div class="stream-title">Hotel Intelligence</div><div class="stream-title-ar">الاستخبارات الفندقية</div></div>
+          <div class="stream-desc">Check-in, room changes, and guest movement from all registered hospitality providers.</div>
+          <div class="stream-foot"><span class="stream-link">Show events ➜</span><span class="stream-metric">2.4k / hr</span></div>
+        </div>
+        <div class="stream-card cat-mobility">
+          <div class="stream-card-head"><span class="stream-num">02</span><span class="stream-icon">◈</span></div>
+          <div><div class="stream-category">Mobility</div><div class="stream-title">Car Rental</div><div class="stream-title-ar">تأجير المركبات</div></div>
+          <div class="stream-desc">Rental lifecycle — bookings, extensions, drop-offs from all licensed operators.</div>
+          <div class="stream-foot"><span class="stream-link">Show events ➜</span><span class="stream-metric">812 / hr</span></div>
+        </div>
+        <div class="stream-card cat-commerce">
+          <div class="stream-card-head"><span class="stream-num">03</span><span class="stream-icon">◉</span></div>
+          <div><div class="stream-category">Commerce</div><div class="stream-title">Mobile Operators</div><div class="stream-title-ar">مشغلو الاتصالات</div></div>
+          <div class="stream-desc">SIM lifecycle, IMEI tracking, roaming events from licensed telecoms.</div>
+          <div class="stream-foot"><span class="stream-link">Show events ➜</span><span class="stream-metric">18k / hr</span></div>
+        </div>
+        <div class="stream-card cat-customs">
+          <div class="stream-card-head"><span class="stream-num">14</span><span class="stream-icon">⊞</span></div>
+          <div><div class="stream-category">Customs</div><div class="stream-title">Customs &amp; Cargo</div><div class="stream-title-ar">الجمارك والشحن</div></div>
+          <div class="stream-desc">Manifests, restricted goods, trade-based money-laundering signals.</div>
+          <div class="stream-foot"><span class="stream-link">Show events ➜</span><span class="stream-metric">1.1k / hr</span></div>
+        </div>
+      </div>
+
+      <h3 style="font-family:var(--ff-display);font-size:1.25rem;font-weight:500;margin:2rem 0 1rem">Executive card · for IG / Ministry surfaces</h3>
+      <div class="card card-executive" style="max-width:720px">
+        <div class="card-header">
+          <div>
+            <div class="card-sub" style="color:var(--g-400)">Inspector General Dashboard · 7-day</div>
+            <h3 class="card-title" style="color:var(--i-100);font-size:1.5rem">Border risk posture — stable</h3>
+          </div>
+          <span class="risk-tier" style="background:rgba(14,124,102,.2);color:#4EB7A1">● Clear · national</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:1rem">
+          <div><div style="font-family:var(--ff-display);font-size:2rem;color:var(--g-400)">124,840</div><div style="font-size:.75rem;color:var(--i-200);text-transform:uppercase;letter-spacing:.08em;margin-top:.25rem">ETAs scored</div></div>
+          <div><div style="font-family:var(--ff-display);font-size:2rem;color:var(--g-400)">1,248</div><div style="font-size:.75rem;color:var(--i-200);text-transform:uppercase;letter-spacing:.08em;margin-top:.25rem">Elevated flags</div></div>
+          <div><div style="font-family:var(--ff-display);font-size:2rem;color:var(--g-400)">38</div><div style="font-size:.75rem;color:var(--i-200);text-transform:uppercase;letter-spacing:.08em;margin-top:.25rem">Critical (hand-adjudicated)</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ RISK VIZ ============ -->
+    <section id="risk" class="block">
+      <div class="section-eyebrow">11 · Components</div>
+      <h2 class="section-title">Risk Visualization</h2>
+      <p class="section-sub">Every flagged record carries a unified score 0–100 with five-tier binning. The explainability layer is <em>product-defining</em> — it is never an afterthought panel. Each signal cites its source and confidence band, and no score appears without them.</p>
+
+      <div class="grid-2" style="gap:1.5rem">
+        <div class="card">
+          <div class="card-sub">Unified risk gauge</div>
+          <div style="display:flex;align-items:baseline;justify-content:space-between;margin-top:.5rem">
+            <div class="risk-score" style="color:var(--r-high)">78<span class="risk-score-max">/100</span></div>
+            <span class="risk-tier risk-high">● High</span>
+          </div>
+          <div class="risk-bar" style="margin-top:1rem"><div class="risk-bar-fill" style="width:78%;background:linear-gradient(90deg,var(--r-low),var(--r-elev),var(--r-high))"></div></div>
+          <div style="display:flex;justify-content:space-between;margin-top:.5rem;font-size:.6875rem;color:var(--fg-muted);font-family:var(--ff-mono)"><span>0</span><span>25</span><span>50</span><span>70</span><span>85</span><span>100</span></div>
+        </div>
+
+        <div class="card">
+          <div class="card-sub">Contribution breakdown</div>
+          <h4 style="font-family:var(--ff-display);font-size:1.125rem;margin:.25rem 0 1rem">Why 78</h4>
+          <div style="display:flex;flex-direction:column;gap:.75rem">
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:.8125rem;margin-bottom:.25rem"><span>Origin conflict intensity <span class="muted mono" style="font-size:.6875rem">· GDELT ± Medium</span></span><span style="font-weight:600">+24</span></div>
+              <div style="height:6px;background:var(--bg-sunken);border-radius:3px"><div style="height:100%;width:80%;background:var(--r-high);border-radius:3px"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:.8125rem;margin-bottom:.25rem"><span>Sponsor entity exposure <span class="muted mono" style="font-size:.6875rem">· OpenSanctions ± High</span></span><span style="font-weight:600">+22</span></div>
+              <div style="height:6px;background:var(--bg-sunken);border-radius:3px"><div style="height:100%;width:73%;background:var(--r-high);border-radius:3px"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:.8125rem;margin-bottom:.25rem"><span>Routing anomaly <span class="muted mono" style="font-size:.6875rem">· IsoForest ± Medium</span></span><span style="font-weight:600">+18</span></div>
+              <div style="height:6px;background:var(--bg-sunken);border-radius:3px"><div style="height:100%;width:60%;background:var(--r-elev);border-radius:3px"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:.8125rem;margin-bottom:.25rem"><span>Document integrity <span class="muted mono" style="font-size:.6875rem">· rules.v3.2</span></span><span style="font-weight:600">+14</span></div>
+              <div style="height:6px;background:var(--bg-sunken);border-radius:3px"><div style="height:100%;width:47%;background:var(--r-elev);border-radius:3px"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TABLES ============ -->
+    <section id="tables" class="block">
+      <div class="section-eyebrow">12 · Components</div>
+      <h2 class="section-title">Tables</h2>
+      <p class="section-sub">Operator tables are dense by default. Numeric columns are right-aligned and monospaced. Risk tier is always visualized as a colored tier chip, never just a number in a cell.</p>
+      <div class="card" style="padding:0;overflow:hidden">
+        <table class="tbl">
+          <thead><tr><th>Case ID</th><th>Passenger</th><th>Route</th><th>Score</th><th>Tier</th><th>Top signal</th><th>Updated</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">RC-2026-0417-094</td><td>REDACTED · IN</td><td>BOM → MCT</td><td class="mono" style="text-align:right;font-weight:600">94</td><td><span class="risk-tier risk-crit">● Critical</span></td><td>Sponsor exposure</td><td class="muted mono" style="font-size:.75rem">00:04:12 ago</td></tr>
+            <tr><td class="mono">RC-2026-0417-088</td><td>REDACTED · PK</td><td>KHI → SLL</td><td class="mono" style="text-align:right;font-weight:600">82</td><td><span class="risk-tier risk-high">● High</span></td><td>Routing anomaly</td><td class="muted mono" style="font-size:.75rem">00:08:40 ago</td></tr>
+            <tr><td class="mono">RC-2026-0417-084</td><td>REDACTED · UK</td><td>LHR → MCT</td><td class="mono" style="text-align:right;font-weight:600">78</td><td><span class="risk-tier risk-high">● High</span></td><td>GDELT conflict</td><td class="muted mono" style="font-size:.75rem">00:12:31 ago</td></tr>
+            <tr><td class="mono">RC-2026-0417-079</td><td>REDACTED · EG</td><td>CAI → MCT</td><td class="mono" style="text-align:right;font-weight:600">62</td><td><span class="risk-tier risk-elev">● Elevated</span></td><td>Outbreak overlap</td><td class="muted mono" style="font-size:.75rem">00:18:02 ago</td></tr>
+            <tr><td class="mono">RC-2026-0417-077</td><td>REDACTED · FR</td><td>CDG → MCT</td><td class="mono" style="text-align:right;font-weight:600">34</td><td><span class="risk-tier risk-low">● Low</span></td><td>—</td><td class="muted mono" style="font-size:.75rem">00:23:18 ago</td></tr>
+            <tr><td class="mono">RC-2026-0417-072</td><td>REDACTED · AE</td><td>DXB → MCT</td><td class="mono" style="text-align:right;font-weight:600">12</td><td><span class="risk-tier risk-clear">● Clear</span></td><td>—</td><td class="muted mono" style="font-size:.75rem">00:31:55 ago</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ============ NAV ============ -->
+    <section id="nav" class="block">
+      <div class="section-eyebrow">13 · Components</div>
+      <h2 class="section-title">Navigation</h2>
+      <p class="section-sub">Public and operator navigation share the same chrome — only the action set changes by context.</p>
+
+      <div class="mockup">
+        <div class="mockup-chrome"><span></span><span></span><span></span><span class="mockup-label">al-ameen.gov.om</span></div>
+        <div class="topnav">
+          <div class="topnav-brand">
+            <svg viewBox="0 0 120 120" width="34" height="34"><path d="M60 6 L104 18 L104 62 C104 86 86 104 60 114 C34 104 16 86 16 62 L16 18 Z" fill="none" stroke="#D4A84B" stroke-width="3"/><circle cx="60" cy="40" r="10" fill="#D4A84B"/><rect x="57.25" y="50" width="5.5" height="40" rx="2.5" fill="#F5EFE3"/><rect x="34" y="90" width="52" height="3" rx="1.5" fill="#9A1F24"/></svg>
+            <div><div class="nm">Al-Ameen</div><div class="ar">الأمين</div></div>
+          </div>
+          <div class="topnav-links">
+            <a href="#" class="on">Home</a><a href="#">Core Services</a><a href="#">Extended Services</a><a href="#">Data Streams</a><a href="#">API &amp; Integration</a><a href="#">About</a>
+          </div>
+          <div class="topnav-actions">
+            <span class="badge badge-live">Live</span>
+            <button class="btn btn-primary btn-sm">Portal Login →</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PAGE: HOME ============ -->
+    <section id="page-home" class="block">
+      <div class="section-eyebrow">Page · 01</div>
+      <h2 class="section-title">Public Landing · Redesigned</h2>
+      <p class="section-sub">The current landing already carries the correct spine — hero + stats + streams + footer. The refresh brings sovereign palette, bilingual-equal typography, a Frankincense Gold ceremonial eyebrow, and sharper stat cards. No structural rework needed.</p>
+
+      <div class="mockup">
+        <div class="mockup-chrome"><span></span><span></span><span></span><span class="mockup-label">al-ameen.gov.om</span></div>
+        <div class="topnav">
+          <div class="topnav-brand">
+            <svg viewBox="0 0 120 120" width="32" height="32"><path d="M60 6 L104 18 L104 62 C104 86 86 104 60 114 C34 104 16 86 16 62 L16 18 Z" fill="none" stroke="#D4A84B" stroke-width="3"/><circle cx="60" cy="40" r="10" fill="#D4A84B"/><rect x="57.25" y="50" width="5.5" height="40" rx="2.5" fill="#F5EFE3"/><rect x="34" y="90" width="52" height="3" rx="1.5" fill="#9A1F24"/></svg>
+            <div><div class="nm">Al-Ameen</div><div class="ar">الأمين</div></div>
+          </div>
+          <div class="topnav-links">
+            <a href="#" class="on">Home</a><a href="#">Core Services</a><a href="#">Extended Services</a><a href="#">Data Streams</a><a href="#">API</a><a href="#">About</a>
+          </div>
+          <div class="topnav-actions">
+            <button class="btn btn-primary btn-sm">Portal Login →</button>
+          </div>
+        </div>
+        <div class="hero">
+          <div class="hero-eyebrow">Operated by National Police HQ · Border Control System</div>
+          <svg class="hero-mark" viewBox="0 0 120 120">
+            <defs><linearGradient id="hm1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0B1220"/><stop offset="100%" stop-color="#141D2E"/></linearGradient><linearGradient id="hm2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#D4A84B"/><stop offset="100%" stop-color="#B58E3C"/></linearGradient></defs>
+            <path d="M60 6 L104 18 L104 62 C104 86 86 104 60 114 C34 104 16 86 16 62 L16 18 Z" fill="url(#hm1)" stroke="url(#hm2)" stroke-width="2"/>
+            <circle cx="60" cy="36" r="12" fill="url(#hm2)"/><circle cx="60" cy="36" r="7" fill="#0B1220"/><circle cx="60" cy="36" r="3" fill="url(#hm2)"/>
+            <rect x="57.25" y="50" width="5.5" height="40" rx="2.5" fill="#F5EFE3"/>
+            <rect x="34" y="90" width="52" height="3" rx="1.5" fill="#9A1F24"/>
+          </svg>
+          <h1 class="hero-title">Al-Ameen</h1>
+          <div class="hero-arabic">الأمين</div>
+          <div class="hero-tag-line">
+            <span class="rule"></span>
+            <span class="hero-tag">The Nation's Trusted Guardian</span>
+            <span class="rule r"></span>
+          </div>
+          <div class="hero-tag-ar">الحارس الأمين للوطن</div>
+          <p class="hero-desc">A national intelligence platform fusing 16 live data streams with explainable risk scoring at ETA and pre-arrival decisioning. Every flag cites its sources. Every decision is auditable.</p>
+          <div class="hero-stats">
+            <div class="hero-stat"><div class="hero-stat-icon">⬢</div><div class="hero-stat-value">124.8k</div><div class="hero-stat-label">Events / 24h</div></div>
+            <div class="hero-stat"><div class="hero-stat-icon">◈</div><div class="hero-stat-value" style="color:var(--r-elev)">1,248</div><div class="hero-stat-label">Active alerts</div></div>
+            <div class="hero-stat"><div class="hero-stat-icon">▤</div><div class="hero-stat-value">16 / 16</div><div class="hero-stat-label">Streams live</div></div>
+            <div class="hero-stat"><div class="hero-stat-icon">☗</div><div class="hero-stat-value">2,412</div><div class="hero-stat-label">Registered entities</div></div>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="font-family:var(--ff-display);font-size:1.5rem;font-weight:500;margin:2rem 0 1rem">Below the fold — streams grid</h3>
+      <div class="grid-4">
+        <div class="stream-card cat-core"><div class="stream-card-head"><span class="stream-num">01</span><span class="stream-icon">⌂</span></div><div><div class="stream-category">Core Intelligence</div><div class="stream-title">Hotel</div><div class="stream-title-ar">فنادق</div></div><div class="stream-desc">Check-in / out, room changes, guest movement.</div><div class="stream-foot"><span class="stream-link">Events ➜</span><span class="stream-metric">2.4k/h</span></div></div>
+        <div class="stream-card cat-mobility"><div class="stream-card-head"><span class="stream-num">02</span><span class="stream-icon">◈</span></div><div><div class="stream-category">Mobility</div><div class="stream-title">Car Rental</div><div class="stream-title-ar">تأجير</div></div><div class="stream-desc">Bookings, extensions, drop-offs.</div><div class="stream-foot"><span class="stream-link">Events ➜</span><span class="stream-metric">812/h</span></div></div>
+        <div class="stream-card cat-commerce"><div class="stream-card-head"><span class="stream-num">03</span><span class="stream-icon">◉</span></div><div><div class="stream-category">Commerce</div><div class="stream-title">Mobile Ops</div><div class="stream-title-ar">الاتصالات</div></div><div class="stream-desc">SIM lifecycle, IMEI tracking, roaming.</div><div class="stream-foot"><span class="stream-link">Events ➜</span><span class="stream-metric">18k/h</span></div></div>
+        <div class="stream-card cat-core"><div class="stream-card-head"><span class="stream-num">04</span><span class="stream-icon">▣</span></div><div><div class="stream-category">Core Intelligence</div><div class="stream-title">Municipality</div><div class="stream-title-ar">البلديات</div></div><div class="stream-desc">Lease registrations, renewals, terminations.</div><div class="stream-foot"><span class="stream-link">Events ➜</span><span class="stream-metric">340/h</span></div></div>
+      </div>
+    </section>
+
+    <!-- ============ PAGE: LOGIN ============ -->
+    <section id="page-login" class="block">
+      <div class="section-eyebrow">Page · 02</div>
+      <h2 class="section-title">Portal Login</h2>
+      <p class="section-sub">The Portal Login is the first impression for operators and IG visitors. Split layout: sovereign identity on the left (dark, ceremonial), form on the right (ivory, focused). SSO-first.</p>
+
+      <div class="mockup">
+        <div class="mockup-chrome"><span></span><span></span><span></span><span class="mockup-label">al-ameen.gov.om/portal</span></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;min-height:520px">
+          <div style="background:radial-gradient(ellipse at top,rgba(154,31,36,.2),transparent 70%),linear-gradient(180deg,#0B1220,#05080F);padding:4rem 3rem;color:var(--i-100);display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden">
+            <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(181,142,60,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(181,142,60,.06) 1px,transparent 1px);background-size:40px 40px;pointer-events:none"></div>
+            <div style="position:relative">
+              <svg viewBox="0 0 120 120" width="56" height="56" style="margin-bottom:2rem">
+                <path d="M60 6 L104 18 L104 62 C104 86 86 104 60 114 C34 104 16 86 16 62 L16 18 Z" fill="none" stroke="#D4A84B" stroke-width="2.5"/>
+                <circle cx="60" cy="36" r="12" fill="#D4A84B"/><circle cx="60" cy="36" r="7" fill="#0B1220"/><circle cx="60" cy="36" r="3" fill="#D4A84B"/>
+                <rect x="57.25" y="50" width="5.5" height="40" rx="2.5" fill="#F5EFE3"/>
+                <rect x="34" y="90" width="52" height="3" rx="1.5" fill="#9A1F24"/>
+              </svg>
+              <div class="hero-eyebrow" style="margin-bottom:1.25rem;background:rgba(181,142,60,.1);color:var(--g-400);border-color:rgba(181,142,60,.35)">Authorized access · Restricted</div>
+              <div style="font-family:var(--ff-display);font-size:2.5rem;font-weight:500;line-height:1.1;margin-bottom:.25rem">Al-Ameen</div>
+              <div style="font-family:var(--ff-arabic);font-size:1.5rem;color:var(--g-400);direction:rtl;margin-bottom:1.5rem">الأمين</div>
+              <div style="font-family:var(--ff-display);font-style:italic;color:var(--i-200);font-size:1.125rem;margin-bottom:.25rem">The nation's trusted guardian.</div>
+              <div style="font-family:var(--ff-arabic);color:var(--i-200);font-size:.9375rem;direction:rtl">الحارس الأمين للوطن</div>
+            </div>
+            <div style="position:relative;padding-top:2rem;border-top:1px solid rgba(181,142,60,.2);font-size:.75rem;color:var(--i-200);line-height:1.7">
+              Access is logged and audited under Classification Directive BCS-A/2024. Unauthorized use is prosecuted under Sultanate Cybercrime Law 12/2011.
+            </div>
+          </div>
+          <div style="background:var(--i-100);padding:5rem 3.5rem;color:var(--m-800)">
+            <div style="max-width:380px">
+              <div class="section-eyebrow" style="color:var(--g-700)">Sign in</div>
+              <h3 style="font-family:var(--ff-display);font-size:2rem;font-weight:500;margin-bottom:2rem">Operator Portal</h3>
+              <button class="btn btn-secondary" style="width:100%;justify-content:center;margin-bottom:.75rem">⌘ Continue with ROP SSO</button>
+              <button class="btn btn-ghost" style="width:100%;justify-content:center;margin-bottom:2rem">⛨ YubiKey / CAC</button>
+              <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1.5rem"><div style="height:1px;flex:1;background:var(--i-400)"></div><span style="font-size:.6875rem;letter-spacing:.15em;text-transform:uppercase;color:var(--i-800)">Or officer ID</span><div style="height:1px;flex:1;background:var(--i-400)"></div></div>
+              <div class="field" style="margin-bottom:1rem"><label class="field-label">Officer ID</label><input class="field-input" placeholder="ROP-OMN-•••••"></div>
+              <div class="field" style="margin-bottom:1.5rem"><label class="field-label">Passcode</label><input class="field-input" type="password" placeholder="••••••••"></div>
+              <button class="btn btn-primary" style="width:100%;justify-content:center">Sign in to Al-Ameen ➜</button>
+              <p style="font-size:.75rem;color:var(--i-800);margin-top:1.25rem;line-height:1.6">By signing in, you acknowledge session recording per BCS-A/2024 and lineage logging of all adjudications.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PAGE: DASHBOARD ============ -->
+    <section id="page-dash" class="block">
+      <div class="section-eyebrow">Page · 03</div>
+      <h2 class="section-title">Operator Dashboard</h2>
+      <p class="section-sub">The operator's at-a-glance. Left rail shows the adjudication queue, centre shows the active case being worked, right rail shows feed health and personal metrics. Designed for a single 1440×900 viewport without scrolling for the core day-to-day loop.</p>
+
+      <div class="mockup">
+        <div class="mockup-chrome"><span></span><span></span><span></span><span class="mockup-label">al-ameen.gov.om/portal/queue</span></div>
+        <div class="mockup-body" style="background:var(--m-800);color:var(--i-100);padding:1.25rem;min-height:480px">
+          <!-- top strip -->
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;padding-bottom:.875rem;border-bottom:1px solid var(--m-600)">
+            <div>
+              <div style="font-size:.6875rem;letter-spacing:.15em;color:var(--g-400);text-transform:uppercase">Operator Dashboard · Shift 17:00 – 01:00</div>
+              <div style="font-family:var(--ff-display);font-size:1.375rem;font-weight:500">Welcome back, Major Al-Balushi <span style="color:var(--g-400);font-family:var(--ff-arabic);font-size:1.125rem">· مرحباً</span></div>
+            </div>
+            <div style="display:flex;gap:.5rem;align-items:center">
+              <span class="badge badge-live" style="background:rgba(14,124,102,.15);color:#4EB7A1;border-color:rgba(14,124,102,.35)">All streams live</span>
+              <div class="officer-chip"><div class="officer-avatar">AB</div>Maj. Al-Balushi</div>
+            </div>
+          </div>
+
+          <!-- stat strip -->
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin-bottom:1rem">
+            <div style="background:var(--m-700);border:1px solid var(--m-600);border-radius:6px;padding:.875rem 1rem"><div style="font-size:.6875rem;color:var(--m-200);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.375rem">In queue · now</div><div style="font-family:var(--ff-display);font-size:1.75rem;font-weight:500">38</div></div>
+            <div style="background:var(--m-700);border:1px solid var(--m-600);border-radius:6px;padding:.875rem 1rem"><div style="font-size:.6875rem;color:var(--m-200);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.375rem">Critical · unassigned</div><div style="font-family:var(--ff-display);font-size:1.75rem;font-weight:500;color:var(--o-300)">4</div></div>
+            <div style="background:var(--m-700);border:1px solid var(--m-600);border-radius:6px;padding:.875rem 1rem"><div style="font-size:.6875rem;color:var(--m-200);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.375rem">My adjudications · shift</div><div style="font-family:var(--ff-display);font-size:1.75rem;font-weight:500">142</div></div>
+            <div style="background:var(--m-700);border:1px solid var(--m-600);border-radius:6px;padding:.875rem 1rem"><div style="font-size:.6875rem;color:var(--m-200);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.375rem">Avg. decision time</div><div style="font-family:var(--ff-display);font-size:1.75rem;font-weight:500">38<span style="font-size:.875rem;color:var(--m-200);font-family:var(--ff-mono);margin-left:.25rem">sec</span></div></div>
+          </div>
+
+          <!-- three-pane layout -->
+          <div style="display:grid;grid-template-columns:260px 1fr 280px;gap:.875rem">
+            <!-- queue -->
+            <div style="background:var(--m-700);border:1px solid var(--m-600);border-radius:6px;padding:.75rem">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.625rem"><span style="font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--g-400)">Queue</span><span class="mono" style="font-size:.6875rem;color:var(--m-200)">38</span></div>
+              <div style="display:flex;flex-direction:column;gap:.375rem">
+                <div style="padding:.625rem;background:rgba(154,31,36,.15);border:1px solid rgba(154,31,36,.35);border-radius:4px;cursor:pointer"><div style="display:flex;justify-content:space-between;font-size:.75rem"><span class="mono">RC-2026-0417-094</span><span style="color:var(--o-300);font-weight:600">94</span></div><div style="font-size:.6875rem;color:var(--m-100);margin-top:.125rem">BOM → MCT · Sponsor flag</div></div>
+                <div style="padding:.625rem;background:var(--m-600);border-radius:4px;cursor:pointer"><div style="display:flex;justify-content:space-between;font-size:.75rem"><span class="mono">RC-...088</span><span style="color:#F08656;font-weight:600">82</span></div><div style="font-size:.6875rem;color:var(--m-100);margin-top:.125rem">KHI → SLL · Route</div></div>
+                <div style="padding:.625rem;background:var(--m-600);border-radius:4px;cursor:pointer;border:1px solid var(--g-500)"><div style="display:flex;justify-content:space-between;font-size:.75rem"><span class="mono" style="color:var(--g-400)">RC-...084</span><span style="color:#F08656;font-weight:600">78</span></div><div style="font-size:.6875rem;color:var(--m-100);margin-top:.125rem">LHR → MCT · Current</div></div>
+                <div style="padding:.625rem;background:var(--m-600);border-radius:4px;cursor:pointer"><div style="display:flex;justify-content:space-between;font-size:.75rem"><span class="mono">RC-...079</span><span style="color:#EFB94B;font-weight:600">62</span></div><div style="font-size:.6875rem;color:var(--m-100);margin-top:.125rem">CAI → MCT · Outbreak</div></div>
+                <div style="padding:.625rem;background:var(--m-600);border-radius:4px;cursor:pointer"><div style="display:flex;justify-content:space-between;font-size:.75rem"><span class="mono">RC-...077</span><span style="color:#90CC72;font-weight:600">34</span></div><div style="font-size:.6875rem;color:var(--m-100);margin-top:.125rem">CDG → MCT</div></div>
+              </div>
+            </div>
+
+            <!-- current case -->
+            <div style="background:var(--m-700);border:1px solid var(--m-600);border-radius:6px;padding:1rem">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.875rem;padding-bottom:.875rem;border-bottom:1px solid var(--m-600)">
+                <div>
+                  <div style="font-size:.6875rem;color:var(--g-400);letter-spacing:.1em;text-transform:uppercase">Active case</div>
+                  <div class="mono" style="font-size:.875rem;color:var(--i-100);margin:.125rem 0">RC-2026-0417-084 · ETA adjudication</div>
+                  <div style="font-size:.75rem;color:var(--m-100)">LHR → MCT · Carrier BA107 · Arrival 17 Apr 22:40 GST</div>
+                </div>
+                <div style="text-align:right">
+                  <div style="font-family:var(--ff-display);font-size:2.25rem;font-weight:500;color:#F08656;line-height:1">78<span style="font-family:var(--ff-mono);font-size:.75rem;color:var(--m-200);margin-left:.25rem">/100</span></div>
+                  <span class="risk-tier" style="background:rgba(210,90,42,.2);color:#F08656">● High</span>
+                </div>
+              </div>
+              <div style="font-size:.8125rem;color:var(--m-100);margin-bottom:.75rem">Contribution breakdown — every score must explain itself.</div>
+              <div style="display:flex;flex-direction:column;gap:.5rem;margin-bottom:1rem">
+                <div><div style="display:flex;justify-content:space-between;font-size:.75rem;margin-bottom:.1875rem"><span>Origin conflict <span class="muted mono" style="font-size:.625rem;color:var(--m-200)">GDELT · Med</span></span><span style="font-weight:600">+24</span></div><div style="height:5px;background:var(--m-600);border-radius:3px"><div style="height:100%;width:80%;background:#F08656;border-radius:3px"></div></div></div>
+                <div><div style="display:flex;justify-content:space-between;font-size:.75rem;margin-bottom:.1875rem"><span>Sponsor exposure <span class="muted mono" style="font-size:.625rem;color:var(--m-200)">OpenSanctions · High</span></span><span style="font-weight:600">+22</span></div><div style="height:5px;background:var(--m-600);border-radius:3px"><div style="height:100%;width:73%;background:#F08656;border-radius:3px"></div></div></div>
+                <div><div style="display:flex;justify-content:space-between;font-size:.75rem;margin-bottom:.1875rem"><span>Routing anomaly <span class="muted mono" style="font-size:.625rem;color:var(--m-200)">IsoForest · Med</span></span><span style="font-weight:600">+18</span></div><div style="height:5px;background:var(--m-600);border-radius:3px"><div style="height:100%;width:60%;background:#EFB94B;border-radius:3px"></div></div></div>
+                <div><div style="display:flex;justify-content:space-between;font-size:.75rem;margin-bottom:.1875rem"><span>Document integrity <span class="muted mono" style="font-size:.625rem;color:var(--m-200)">rules.v3.2</span></span><span style="font-weight:600">+14</span></div><div style="height:5px;background:var(--m-600);border-radius:3px"><div style="height:100%;width:47%;background:#EFB94B;border-radius:3px"></div></div></div>
+              </div>
+              <div style="display:flex;gap:.5rem">
+                <button class="btn btn-primary btn-sm">Refer to secondary</button>
+                <button class="btn btn-secondary btn-sm" style="background:var(--m-500);color:var(--i-100)">Approve with flag</button>
+                <button class="btn btn-ghost btn-sm" style="border-color:var(--m-500);color:var(--i-100)">Request more signal</button>
+                <button class="btn btn-destructive btn-sm" style="margin-left:auto">Deny</button>
+              </div>
+            </div>
+
+            <!-- right rail -->
+            <div style="display:flex;flex-direction:column;gap:.75rem">
+              <div style="background:var(--m-700);border:1px solid var(--m-600);border-radius:6px;padding:.75rem">
+                <div style="font-size:.6875rem;color:var(--g-400);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem">Feed health</div>
+                <div style="font-size:.75rem;color:var(--m-100);display:flex;flex-direction:column;gap:.25rem">
+                  <div style="display:flex;justify-content:space-between"><span>OpenSanctions</span><span style="color:#4EB7A1">● 23s ago</span></div>
+                  <div style="display:flex;justify-content:space-between"><span>GDELT v2</span><span style="color:#4EB7A1">● 48s ago</span></div>
+                  <div style="display:flex;justify-content:space-between"><span>ACLED</span><span style="color:#4EB7A1">● 2m ago</span></div>
+                  <div style="display:flex;justify-content:space-between"><span>WHO · Outbreaks</span><span style="color:#EFB94B">● 12m ago</span></div>
+                  <div style="display:flex;justify-content:space-between"><span>ECDC</span><span style="color:#4EB7A1">● 4m ago</span></div>
+                </div>
+              </div>
+              <div style="background:var(--m-700);border:1px solid var(--m-600);border-radius:6px;padding:.75rem">
+                <div style="font-size:.6875rem;color:var(--g-400);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem">Model</div>
+                <div class="mono" style="font-size:.75rem;color:var(--m-100)">rules.v3.2 · iso-forest.v1.4<br>last drift review · 14 Apr</div>
+              </div>
+              <div style="background:linear-gradient(180deg,rgba(181,142,60,.12),rgba(181,142,60,.04));border:1px solid rgba(181,142,60,.35);border-radius:6px;padding:.75rem">
+                <div style="font-size:.6875rem;color:var(--g-400);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem">Exec view</div>
+                <div style="font-size:.75rem;color:var(--i-100);line-height:1.6">Prepare IG brief for tomorrow's 09:00 posture call.</div>
+                <button class="btn btn-executive btn-sm" style="margin-top:.625rem">✦ Build brief</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PAGE: RISK CASE ============ -->
+    <section id="page-case" class="block">
+      <div class="section-eyebrow">Page · 04</div>
+      <h2 class="section-title">Risk Case Detail · Explainability</h2>
+      <p class="section-sub">The most important screen in the product. The operator sees the full lineage of a single score — every signal, every source, every rule fire, every ML contribution — and can adjudicate with full context. Audit-ready by construction.</p>
+
+      <div class="mockup">
+        <div class="mockup-chrome"><span></span><span></span><span></span><span class="mockup-label">al-ameen.gov.om/portal/cases/RC-2026-0417-084</span></div>
+        <div class="mockup-body light" style="padding:2rem">
+          <!-- breadcrumb -->
+          <div style="display:flex;align-items:center;gap:.5rem;font-size:.8125rem;color:var(--fg-muted);margin-bottom:1rem"><span>Queue</span><span>›</span><span>ETA</span><span>›</span><span class="mono" style="color:var(--m-800)">RC-2026-0417-084</span></div>
+
+          <!-- header -->
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border-subtle)">
+            <div>
+              <div class="section-eyebrow">ETA Adjudication · unsealed</div>
+              <h3 style="font-family:var(--ff-display);font-size:2rem;font-weight:500;margin-bottom:.25rem">Case RC-2026-0417-084</h3>
+              <div style="font-size:.875rem;color:var(--fg-secondary)">Passenger REDACTED · UK · LHR → MCT · BA107 · Arrival 17 Apr 22:40 GST</div>
+            </div>
+            <div style="text-align:right;display:flex;gap:1rem;align-items:center">
+              <div class="risk-gauge" style="width:200px">
+                <div style="display:flex;align-items:baseline;gap:.5rem"><div class="risk-score" style="color:var(--r-high)">78<span class="risk-score-max">/100</span></div><span class="risk-tier risk-high">● High</span></div>
+                <div class="risk-bar" style="margin-top:.5rem"><div class="risk-bar-fill" style="width:78%;background:linear-gradient(90deg,var(--r-low),var(--r-elev),var(--r-high))"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- grid -->
+          <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:1.25rem">
+            <!-- left: explainability -->
+            <div class="card">
+              <div class="card-sub">Why this score</div>
+              <h4 style="font-family:var(--ff-display);font-size:1.25rem;font-weight:500;margin-bottom:1rem">Signal contribution breakdown</h4>
+              <div style="display:flex;flex-direction:column;gap:1rem">
+                <div style="padding-bottom:1rem;border-bottom:1px dashed var(--border-subtle)">
+                  <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.375rem"><span style="font-weight:600;font-size:.9375rem">Origin conflict intensity</span><span style="font-family:var(--ff-display);font-size:1.25rem;font-weight:500;color:var(--r-high)">+24</span></div>
+                  <div style="height:6px;background:var(--bg-sunken);border-radius:3px;margin-bottom:.5rem"><div style="height:100%;width:80%;background:var(--r-high);border-radius:3px"></div></div>
+                  <div style="font-size:.8125rem;color:var(--fg-secondary)">Origin country conflict posture elevated over rolling 7-day window. Goldstein score threshold exceeded 3 of last 7 days.</div>
+                  <div class="mono" style="font-size:.6875rem;color:var(--fg-muted);margin-top:.375rem">Source: GDELT v2 · Confidence: Medium · Rule: rules.conflict.gdelt@v3.2 · Evaluated 17 Apr 22:14:02 GST</div>
+                </div>
+                <div style="padding-bottom:1rem;border-bottom:1px dashed var(--border-subtle)">
+                  <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.375rem"><span style="font-weight:600;font-size:.9375rem">Sponsor entity exposure</span><span style="font-family:var(--ff-display);font-size:1.25rem;font-weight:500;color:var(--r-high)">+22</span></div>
+                  <div style="height:6px;background:var(--bg-sunken);border-radius:3px;margin-bottom:.5rem"><div style="height:100%;width:73%;background:var(--r-high);border-radius:3px"></div></div>
+                  <div style="font-size:.8125rem;color:var(--fg-secondary)">Sponsor organization shares 2-hop entity graph edge to sanctioned party via corporate officer overlap.</div>
+                  <div class="mono" style="font-size:.6875rem;color:var(--fg-muted);margin-top:.375rem">Source: OpenSanctions · Confidence: High · Path: graph.entity-risk@v1.4 · Hops: 2</div>
+                </div>
+                <div style="padding-bottom:1rem;border-bottom:1px dashed var(--border-subtle)">
+                  <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.375rem"><span style="font-weight:600;font-size:.9375rem">Routing anomaly</span><span style="font-family:var(--ff-display);font-size:1.25rem;font-weight:500;color:var(--r-elev)">+18</span></div>
+                  <div style="height:6px;background:var(--bg-sunken);border-radius:3px;margin-bottom:.5rem"><div style="height:100%;width:60%;background:var(--r-elev);border-radius:3px"></div></div>
+                  <div style="font-size:.8125rem;color:var(--fg-secondary)">Flight path LHR → MCT via non-standard stopover sequence for this nationality-route combination.</div>
+                  <div class="mono" style="font-size:.6875rem;color:var(--fg-muted);margin-top:.375rem">Source: Isolation Forest · Confidence: Medium · Model: iso-forest.v1.4 · Feature: route-sequence</div>
+                </div>
+                <div>
+                  <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.375rem"><span style="font-weight:600;font-size:.9375rem">Document integrity</span><span style="font-family:var(--ff-display);font-size:1.25rem;font-weight:500;color:var(--r-elev)">+14</span></div>
+                  <div style="height:6px;background:var(--bg-sunken);border-radius:3px;margin-bottom:.5rem"><div style="height:100%;width:47%;background:var(--r-elev);border-radius:3px"></div></div>
+                  <div style="font-size:.8125rem;color:var(--fg-secondary)">Document number pattern deviates from issuing-country reference template.</div>
+                  <div class="mono" style="font-size:.6875rem;color:var(--fg-muted);margin-top:.375rem">Source: rules.doc-integrity.v3.2 · Confidence: Medium · Threshold: 0.35 · Observed: 0.52</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- right: action + trace -->
+            <div style="display:flex;flex-direction:column;gap:1rem">
+              <div class="card">
+                <div class="card-sub">Decision</div>
+                <h4 style="font-family:var(--ff-display);font-size:1.125rem;font-weight:500;margin-bottom:.875rem">Adjudicate</h4>
+                <div class="field" style="margin-bottom:.875rem"><label class="field-label">Note to record</label><textarea class="field-input" rows="3" placeholder="Reasoning to attach to the case lineage. IG-visible."></textarea></div>
+                <div style="display:flex;flex-direction:column;gap:.5rem">
+                  <button class="btn btn-primary" style="width:100%;justify-content:center">Refer to secondary inspection</button>
+                  <button class="btn btn-secondary" style="width:100%;justify-content:center">Approve with flag</button>
+                  <button class="btn btn-destructive" style="width:100%;justify-content:center">Deny ETA</button>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-sub">Trace</div>
+                <h4 style="font-family:var(--ff-display);font-size:1.125rem;font-weight:500;margin-bottom:.75rem">Lineage</h4>
+                <div class="mono" style="font-size:.75rem;color:var(--fg-secondary);line-height:1.8">
+                  22:14:02 · ETA submitted<br>
+                  22:14:04 · rules.v3.2 evaluated<br>
+                  22:14:04 · iso-forest.v1.4 evaluated<br>
+                  22:14:05 · graph.entity-risk@v1.4 evaluated<br>
+                  22:14:06 · fusion → score 78<br>
+                  22:14:06 · tier → HIGH<br>
+                  <span style="color:var(--o-600);font-weight:600">22:14:06 · routed to Major Al-Balushi</span>
+                </div>
+              </div>
+              <div class="card" style="background:linear-gradient(180deg,var(--g-050),#FFF);border:1px solid var(--g-400)">
+                <div class="card-sub" style="color:var(--g-700)">Executive</div>
+                <h4 style="font-family:var(--ff-display);font-size:1.125rem;font-weight:500;margin-bottom:.5rem">Brief this case for IG?</h4>
+                <p style="font-size:.8125rem;color:var(--fg-secondary);margin-bottom:.875rem">Generates a one-page narrative summary with attribution table, for attachment to the 09:00 posture brief.</p>
+                <button class="btn btn-executive btn-sm">✦ Build brief</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ VOICE ============ -->
+    <section id="voice" class="block">
+      <div class="section-eyebrow">14 · Reference</div>
+      <h2 class="section-title">Voice &amp; Language</h2>
+      <p class="section-sub">Al-Ameen speaks with the calm, cited authority of a senior analyst. Never alarmist. Never casual. Bilingual where it matters — Arabic and English equal peers, not parent/translation.</p>
+
+      <div class="grid-2" style="gap:2rem">
+        <div class="card">
+          <h4 style="font-family:var(--ff-display);font-size:1.125rem;font-weight:500;margin-bottom:1rem">Do</h4>
+          <ul style="color:var(--fg-secondary);line-height:1.8;padding-left:1.25rem">
+            <li>Cite the source with every flag — "<em>flagged because GDELT reports elevated conflict score…</em>"</li>
+            <li>Use <strong>routine / low / elevated / high / critical</strong> — not "amber/red" or "threat level 5."</li>
+            <li>Address officers by rank: "Major Al-Balushi," "Colonel…"</li>
+            <li>Pair Arabic + English for titles, hero copy, critical alerts, footer; English only for dense UI chrome is OK.</li>
+            <li>State uncertainty plainly: "Medium confidence — signal may update."</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4 style="font-family:var(--ff-display);font-size:1.125rem;font-weight:500;margin-bottom:1rem">Don't</h4>
+          <ul style="color:var(--fg-secondary);line-height:1.8;padding-left:1.25rem">
+            <li>"🚨 WARNING" — no emoji in operator UI. Icons only.</li>
+            <li>"Suspicious traveler detected" — too assertive. Use "elevated risk signals" or "referred for secondary."</li>
+            <li>"Powered by AI" — the word is <em>risk engine</em>. The ML is an overlay, not the brand.</li>
+            <li>Slang, contractions in executive/IG surfaces. "Do not" not "don't."</li>
+            <li>Arabic-as-afterthought. Never smaller than 80% of the English equivalent at the same hierarchy level.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ACCESSIBILITY ============ -->
+    <section id="access" class="block">
+      <div class="section-eyebrow">15 · Reference</div>
+      <h2 class="section-title">Accessibility</h2>
+      <p class="section-sub">Al-Ameen targets WCAG 2.1 AA. Every chosen color pair in this guide meets the required contrast for its role. Every control has visible focus, every interactive target is at least 32×32 CSS px.</p>
+      <div class="grid-3">
+        <div class="card"><h4 style="font-family:var(--ff-display);font-size:1.125rem;font-weight:500;margin-bottom:.625rem">Contrast</h4><p style="font-size:.875rem;color:var(--fg-secondary)">Body text carries ≥4.5:1. Large text ≥3:1. Risk tier chips ≥4.5:1 against their surface.</p></div>
+        <div class="card"><h4 style="font-family:var(--ff-display);font-size:1.125rem;font-weight:500;margin-bottom:.625rem">Focus</h4><p style="font-size:.875rem;color:var(--fg-secondary)">Gold outline + 2 px offset. Never rely on color alone — shape or weight changes always accompany color.</p></div>
+        <div class="card"><h4 style="font-family:var(--ff-display);font-size:1.125rem;font-weight:500;margin-bottom:.625rem">RTL</h4><p style="font-size:.875rem;color:var(--fg-secondary)">Full RTL support via <code>[dir="rtl"]</code>. Icons, layouts, and navigation mirror in Arabic locale.</p></div>
+      </div>
+    </section>
+
+    <!-- ============ INTEGRATION ============ -->
+    <section id="integrate" class="block">
+      <div class="section-eyebrow">16 · Reference</div>
+      <h2 class="section-title">Engineering Integration</h2>
+      <p class="section-sub">Three files drop into your React/Tailwind build to unify the look.</p>
+      <div class="card">
+        <h4 style="font-family:var(--ff-display);font-size:1.125rem;font-weight:500;margin-bottom:1rem">1 · CSS variables</h4>
+        <pre style="background:var(--m-800);color:var(--i-100);padding:1rem;border-radius:6px;font-family:var(--ff-mono);font-size:.8125rem;overflow-x:auto"><code style="background:none;color:inherit">// src/styles/al-ameen.css
+@import url('./tokens.css');      // color + type + space tokens
+@import url('./al-ameen-ui.css'); // component styles (optional)</code></pre>
+
+        <h4 style="font-family:var(--ff-display);font-size:1.125rem;font-weight:500;margin:1.25rem 0 1rem">2 · Tailwind</h4>
+        <pre style="background:var(--m-800);color:var(--i-100);padding:1rem;border-radius:6px;font-family:var(--ff-mono);font-size:.8125rem;overflow-x:auto"><code style="background:none;color:inherit">// tailwind.config.js
+module.exports = require('./al-ameen-brand/tokens/tailwind.config.js');</code></pre>
+
+        <h4 style="font-family:var(--ff-display);font-size:1.125rem;font-weight:500;margin:1.25rem 0 1rem">3 · React usage</h4>
+        <pre style="background:var(--m-800);color:var(--i-100);padding:1rem;border-radius:6px;font-family:var(--ff-mono);font-size:.8125rem;overflow-x:auto"><code style="background:none;color:inherit">&lt;button className="bg-oman-600 hover:bg-oman-700 text-ivory-100
+                   px-4 py-2.5 rounded-md font-medium text-sm
+                   transition-all duration-fast ease-std"&gt;
+  Adjudicate ETA
+&lt;/button&gt;
+
+&lt;span className="risk-tier risk-high"&gt;● High · 78&lt;/span&gt;
+
+&lt;h1 className="font-display text-6xl font-medium tracking-tight"&gt;
+  Al-Ameen
+&lt;/h1&gt;
+&lt;span className="font-arabic text-3xl text-oman-600"&gt;الأمين&lt;/span&gt;</code></pre>
+      </div>
+    </section>
+
+    <footer style="padding:3rem 0;border-top:1px solid var(--border-subtle);color:var(--fg-muted);font-size:.8125rem;display:flex;justify-content:space-between;align-items:center">
+      <div>Al-Ameen Design System · v1.0 · 17 April 2026 · Prepared by Alaa Fada, Portfolio Director — Borders MEA</div>
+      <div style="font-family:var(--ff-arabic);direction:rtl;font-size:.875rem">الأمين — الحارس الأمين للوطن</div>
+    </footer>
+  </main>
+</div>
+
+<script>
+function toggleTheme(){
+  const html = document.documentElement;
+  const current = html.getAttribute('data-theme');
+  html.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+}
+</script>
+</body>
+</html>

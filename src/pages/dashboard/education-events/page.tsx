@@ -9,7 +9,7 @@ type EventType = "enrollment" | "course" | "visa" | null;
 
 const EVENT_CARDS = [
   { id: "enrollment" as const, icon: "ri-graduation-cap-line", label: "Student Enrollment", labelAr: "تسجيل طالب", desc: "Register a new student — institution, program, faculty, start/end dates, study mode, scholarship, housing", descAr: "تسجيل طالب جديد — المؤسسة، البرنامج، الكلية، التواريخ، نظام الدراسة، المنحة، السكن", color: "#A78BFA", code: "AMN-EDU-ENR", stats: "2,341 enrolled", statsAr: "2,341 مسجّل" },
-  { id: "course" as const, icon: "ri-book-open-line", label: "Course Registration", labelAr: "تسجيل مقررات", desc: "Register courses for a student — student ID lookup, course selection, semester, credit hours", descAr: "تسجيل مقررات لطالب — بحث برقم الطالب، اختيار المقررات، الفصل الدراسي، الساعات المعتمدة", color: "#22D3EE", code: "AMN-EDU-CRS", stats: "8,912 courses registered", statsAr: "8,912 مقرر مسجّل" },
+  { id: "course" as const, icon: "ri-book-open-line", label: "Course Registration", labelAr: "تسجيل مقررات", desc: "Register courses for a student — student ID lookup, course selection, semester, credit hours", descAr: "تسجيل مقررات لطالب — بحث برقم الطالب، اختيار المقررات، الفصل الدراسي، الساعات المعتمدة", color: "#D4A84B", code: "AMN-EDU-CRS", stats: "8,912 courses registered", statsAr: "8,912 مقرر مسجّل" },
   { id: "visa" as const, icon: "ri-passport-line", label: "Student Visa Extension", labelAr: "تمديد تأشيرة طالب", desc: "Extend student visa — student ID, attendance %, academic standing, current visa expiry, extension duration", descAr: "تمديد تأشيرة طالب — رقم الطالب، نسبة الحضور، الوضع الأكاديمي، انتهاء التأشيرة الحالية، مدة التمديد", color: "#4ADE80", code: "AMN-EDU-VISA", stats: "891 extensions this year", statsAr: "891 تمديد هذا العام" },
 ];
 
@@ -26,10 +26,10 @@ const EducationEventsPage = () => {
   const handleSelect = (id: EventType) => { setActiveEvent(id); setFormKey(k => k + 1); };
 
   return (
-    <div className="min-h-screen font-['Inter']" style={{ background: "#060D1A" }}>
-      <div className="fixed inset-0 pointer-events-none" style={{ backgroundImage: `linear-gradient(rgba(34,211,238,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.03) 1px, transparent 1px)`, backgroundSize: "40px 40px" }} />
+    <div className="min-h-screen font-['Inter']" style={{ background: "#0B1220" }}>
+      <div className="fixed inset-0 pointer-events-none" style={{ backgroundImage: `linear-gradient(rgba(181,142,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,0.03) 1px, transparent 1px)`, backgroundSize: "40px 40px" }} />
 
-      <header className="sticky top-0 z-40 flex items-center justify-between px-6 py-3 border-b" style={{ background: "rgba(6,13,26,0.95)", borderColor: "rgba(34,211,238,0.12)", backdropFilter: "blur(12px)" }}>
+      <header className="sticky top-0 z-40 flex items-center justify-between px-6 py-3 border-b" style={{ background: "rgba(11,18,32,0.95)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
         <div className="flex items-center gap-4">
           <button type="button" onClick={() => navigate("/dashboard")} className="flex items-center gap-2 px-3 py-1.5 rounded-lg border text-sm font-semibold cursor-pointer whitespace-nowrap" style={{ background: "transparent", borderColor: "rgba(255,255,255,0.1)", color: "#9CA3AF" }} onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "#D1D5DB"; }} onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "#9CA3AF"; }}>
             <i className={isAr ? "ri-arrow-right-line" : "ri-arrow-left-line"} />{isAr ? "لوحة التحكم" : "Dashboard"}
@@ -41,16 +41,16 @@ const EducationEventsPage = () => {
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-white font-bold text-sm">{isAr ? "أحداث التعليم" : "Education Events"}</span>
-                <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(34,211,238,0.12)", color: "#22D3EE", border: "1px solid rgba(34,211,238,0.2)" }}>AMEEN</span>
+                <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(181,142,60,0.12)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>AMEEN</span>
               </div>
               <p className="text-gray-500 text-xs">{isAr ? "تسجيل الطلاب · المقررات · تمديد التأشيرة" : "Student enrollment · Courses · Visa extension"}</p>
             </div>
           </div>
         </div>
         <div className="flex items-center gap-3">
-          <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-lg border" style={{ background: "rgba(34,211,238,0.04)", borderColor: "rgba(34,211,238,0.12)" }}>
-            <i className="ri-time-line text-cyan-400 text-xs" />
-            <span className="text-cyan-400 text-xs font-bold font-['JetBrains_Mono']">{timeStr}</span>
+          <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-lg border" style={{ background: "rgba(181,142,60,0.04)", borderColor: "rgba(181,142,60,0.12)" }}>
+            <i className="ri-time-line text-gold-400 text-xs" />
+            <span className="text-gold-400 text-xs font-bold font-['JetBrains_Mono']">{timeStr}</span>
           </div>
           <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border" style={{ background: "rgba(74,222,128,0.06)", borderColor: "rgba(74,222,128,0.2)" }}>
             <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
@@ -66,7 +66,7 @@ const EducationEventsPage = () => {
             <p className="text-gray-400 text-sm">{isAr ? "تسجيل الطلاب والمقررات وتمديد تأشيرات الطلاب" : "Student enrollment, course registration, and student visa extensions"}</p>
           </div>
           {activeEvent && (
-            <button type="button" onClick={() => setActiveEvent(null)} className="flex items-center gap-2 px-4 py-2 rounded-lg border text-sm font-semibold cursor-pointer whitespace-nowrap" style={{ background: "transparent", borderColor: "rgba(34,211,238,0.2)", color: "#22D3EE" }} onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(34,211,238,0.06)"; }} onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "transparent"; }}>
+            <button type="button" onClick={() => setActiveEvent(null)} className="flex items-center gap-2 px-4 py-2 rounded-lg border text-sm font-semibold cursor-pointer whitespace-nowrap" style={{ background: "transparent", borderColor: "rgba(181,142,60,0.2)", color: "#D4A84B" }} onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(181,142,60,0.06)"; }} onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "transparent"; }}>
               <i className="ri-arrow-left-line" />{isAr ? "العودة" : "Back"}
             </button>
           )}
@@ -78,11 +78,11 @@ const EducationEventsPage = () => {
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
               {[
                 { label: isAr ? "طلاب مسجّلون" : "Enrolled Students", value: "2,341", icon: "ri-graduation-cap-line", color: "#A78BFA" },
-                { label: isAr ? "مقررات مسجّلة" : "Courses Registered", value: "8,912", icon: "ri-book-open-line", color: "#22D3EE" },
+                { label: isAr ? "مقررات مسجّلة" : "Courses Registered", value: "8,912", icon: "ri-book-open-line", color: "#D4A84B" },
                 { label: isAr ? "تمديدات التأشيرة" : "Visa Extensions", value: "891", icon: "ri-passport-line", color: "#4ADE80" },
                 { label: isAr ? "تنبيهات الانسحاب" : "Dropout Flags", value: "23", icon: "ri-alert-line", color: "#F87171" },
               ].map((stat) => (
-                <div key={stat.label} className="relative rounded-2xl border p-5 overflow-hidden" style={{ background: "rgba(10,22,40,0.8)", borderColor: `${stat.color}25`, backdropFilter: "blur(12px)" }}>
+                <div key={stat.label} className="relative rounded-2xl border p-5 overflow-hidden" style={{ background: "rgba(20,29,46,0.8)", borderColor: `${stat.color}25`, backdropFilter: "blur(12px)" }}>
                   <div className="absolute inset-0 opacity-5" style={{ background: `radial-gradient(circle at top right, ${stat.color}, transparent 70%)` }} />
                   <div className="relative z-10 flex items-center gap-3">
                     <div className="w-10 h-10 flex items-center justify-center rounded-xl" style={{ background: `${stat.color}15`, border: `1px solid ${stat.color}30` }}>
@@ -102,15 +102,15 @@ const EducationEventsPage = () => {
               {EVENT_CARDS.map(card => (
                 <button key={card.id} type="button" onClick={() => handleSelect(card.id)}
                   className="group relative rounded-2xl border p-7 text-left cursor-pointer transition-all duration-300 flex flex-col gap-5"
-                  style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.12)", backdropFilter: "blur(12px)" }}
+                  style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}
                   onMouseEnter={(e) => { const el = e.currentTarget as HTMLButtonElement; el.style.borderColor = `${card.color}50`; el.style.background = `${card.color}08`; el.style.transform = "translateY(-3px)"; }}
-                  onMouseLeave={(e) => { const el = e.currentTarget as HTMLButtonElement; el.style.borderColor = "rgba(34,211,238,0.12)"; el.style.background = "rgba(10,22,40,0.8)"; el.style.transform = "translateY(0)"; }}>
+                  onMouseLeave={(e) => { const el = e.currentTarget as HTMLButtonElement; el.style.borderColor = "rgba(181,142,60,0.12)"; el.style.background = "rgba(20,29,46,0.8)"; el.style.transform = "translateY(0)"; }}>
                   <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" style={{ background: `radial-gradient(circle at top left, ${card.color}06, transparent 60%)` }} />
                   <div className="relative z-10 flex items-start justify-between">
                     <div className="w-16 h-16 flex items-center justify-center rounded-2xl" style={{ background: `${card.color}12`, border: `1px solid ${card.color}30` }}>
                       <i className={`${card.icon} text-3xl`} style={{ color: card.color }} />
                     </div>
-                    <i className="ri-arrow-right-up-line text-gray-600 group-hover:text-cyan-400 transition-colors text-lg" />
+                    <i className="ri-arrow-right-up-line text-gray-600 group-hover:text-gold-400 transition-colors text-lg" />
                   </div>
                   <div className="relative z-10">
                     <h3 className="text-white font-bold text-lg mb-2">{isAr ? card.labelAr : card.label}</h3>
@@ -125,18 +125,18 @@ const EducationEventsPage = () => {
             </div>
 
             {/* Recent events */}
-            <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.12)", backdropFilter: "blur(12px)" }}>
-              <div className="flex items-center gap-3 px-6 py-4 border-b" style={{ borderColor: "rgba(34,211,238,0.1)" }}>
-                <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(34,211,238,0.1)", border: "1px solid rgba(34,211,238,0.2)" }}>
-                  <i className="ri-history-line text-cyan-400 text-sm" />
+            <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
+              <div className="flex items-center gap-3 px-6 py-4 border-b" style={{ borderColor: "rgba(181,142,60,0.1)" }}>
+                <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
+                  <i className="ri-history-line text-gold-400 text-sm" />
                 </div>
                 <h3 className="text-white font-bold text-sm">{isAr ? "الأحداث الأخيرة" : "Recent Events"}</h3>
               </div>
-              <div className="divide-y" style={{ borderColor: "rgba(34,211,238,0.06)" }}>
+              <div className="divide-y" style={{ borderColor: "rgba(181,142,60,0.06)" }}>
                 {[
                   { ref: "AMN-EDU-4821", type: isAr ? "تسجيل طالب" : "Student Enrollment", detail: isAr ? "أحمد الراشدي — بكالوريوس علوم الحاسوب — الجامعة الوطنية" : "Ahmed Al-Rashidi — BSc Computer Science — National University", time: "5 min ago", color: "#A78BFA", icon: "ri-graduation-cap-line" },
                   { ref: "AMN-EDU-4820", type: isAr ? "تمديد تأشيرة" : "Visa Extension", detail: isAr ? "بريا ناير — تمديد سنة — نسبة حضور 95%" : "Priya Nair — 1 Year Extension — 95% attendance", time: "18 min ago", color: "#4ADE80", icon: "ri-passport-line" },
-                  { ref: "AMN-EDU-4819", type: isAr ? "تسجيل مقررات" : "Course Registration", detail: isAr ? "STU-2025-0088 — 4 مقررات — 12 ساعة معتمدة" : "STU-2025-0088 — 4 courses — 12 credit hours", time: "34 min ago", color: "#22D3EE", icon: "ri-book-open-line" },
+                  { ref: "AMN-EDU-4819", type: isAr ? "تسجيل مقررات" : "Course Registration", detail: isAr ? "STU-2025-0088 — 4 مقررات — 12 ساعة معتمدة" : "STU-2025-0088 — 4 courses — 12 credit hours", time: "34 min ago", color: "#D4A84B", icon: "ri-book-open-line" },
                   { ref: "AMN-EDU-4818", type: isAr ? "تنبيه انسحاب" : "Dropout Flag", detail: isAr ? "STU-2024-3312 — غياب 35 يوماً — قيد المراجعة" : "STU-2024-3312 — 35 days absence — Under review", time: "52 min ago", color: "#F87171", icon: "ri-alert-line" },
                   { ref: "AMN-EDU-4817", type: isAr ? "تسجيل طالب" : "Student Enrollment", detail: isAr ? "فاطمة الزدجالية — ماجستير إدارة الأعمال — كلية الأعمال" : "Fatima Al-Zadjali — MBA — National Business School", time: "1.1 hr ago", color: "#A78BFA", icon: "ri-graduation-cap-line" },
                 ].map((ev) => (
@@ -149,7 +149,7 @@ const EducationEventsPage = () => {
                       <p className="text-gray-500 text-xs truncate">{ev.detail}</p>
                     </div>
                     <div className="text-right flex-shrink-0">
-                      <div className="text-cyan-400 text-xs font-bold font-['JetBrains_Mono']">{ev.ref}</div>
+                      <div className="text-gold-400 text-xs font-bold font-['JetBrains_Mono']">{ev.ref}</div>
                       <div className="text-gray-600 text-xs">{ev.time}</div>
                     </div>
                   </div>

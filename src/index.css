@@ -1,3 +1,6 @@
+/* Al-Ameen brand tokens v1.0 — Oman sovereign palette (red / gold / navy / ivory) */
+@import "../al-ameen-brand/tokens/tokens.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

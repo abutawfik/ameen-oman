@@ -57,7 +57,7 @@ const CrossEntityTimeline = ({ events, isAr }: CrossEntityTimelineProps) => {
     <div className="relative">
       {/* Vertical cyan line */}
       <div className="absolute top-0 bottom-0 w-0.5 rounded-full"
-        style={{ left: "19px", background: "linear-gradient(to bottom, rgba(34,211,238,0.7), rgba(34,211,238,0.05))" }} />
+        style={{ left: "19px", background: "linear-gradient(to bottom, rgba(181,142,60,0.7), rgba(181,142,60,0.05))" }} />
 
       <div className="space-y-0.5">
         {events.map((ev) => {
@@ -100,7 +100,7 @@ const CrossEntityTimeline = ({ events, isAr }: CrossEntityTimelineProps) => {
                   <span className="text-gray-700 font-['JetBrains_Mono']" style={{ fontSize: "9px" }}>{ev.ref}</span>
                 </div>
 
-                <i className={isExpanded ? "ri-arrow-up-s-line text-gray-700 text-xs flex-shrink-0 group-hover:text-cyan-400 transition-colors" : "ri-arrow-down-s-line text-gray-700 text-xs flex-shrink-0 group-hover:text-cyan-400 transition-colors"} />
+                <i className={isExpanded ? "ri-arrow-up-s-line text-gray-700 text-xs flex-shrink-0 group-hover:text-gold-400 transition-colors" : "ri-arrow-down-s-line text-gray-700 text-xs flex-shrink-0 group-hover:text-gold-400 transition-colors"} />
               </div>
 
               {/* Expanded detail */}
@@ -114,7 +114,7 @@ const CrossEntityTimeline = ({ events, isAr }: CrossEntityTimelineProps) => {
                     </div>
                     <div>
                       <p className="text-gray-600 text-xs mb-0.5">{isAr ? "المرجع" : "Reference"}</p>
-                      <p className="text-cyan-400 text-xs font-bold font-['JetBrains_Mono']">{ev.ref}</p>
+                      <p className="text-gold-400 text-xs font-bold font-['JetBrains_Mono']">{ev.ref}</p>
                     </div>
                     <div>
                       <p className="text-gray-600 text-xs mb-0.5">{isAr ? "التدفق" : "Stream"}</p>

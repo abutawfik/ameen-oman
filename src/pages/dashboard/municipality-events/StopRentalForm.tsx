@@ -109,9 +109,9 @@ const StopRentalForm = ({ isAr, onCancel }: Props) => {
                   type="button"
                   onClick={handleLookup}
                   className="flex items-center gap-1.5 px-4 py-2.5 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap transition-colors"
-                  style={{ background: "rgba(34,211,238,0.12)", border: "1px solid rgba(34,211,238,0.3)", color: "#22D3EE" }}
-                  onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(34,211,238,0.2)"; }}
-                  onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(34,211,238,0.12)"; }}
+                  style={{ background: "rgba(181,142,60,0.12)", border: "1px solid rgba(181,142,60,0.3)", color: "#D4A84B" }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(181,142,60,0.2)"; }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(181,142,60,0.12)"; }}
                 >
                   <i className="ri-search-line text-xs" />{isAr ? "بحث" : "Lookup"}
                 </button>
@@ -205,7 +205,7 @@ const StopRentalForm = ({ isAr, onCancel }: Props) => {
                   maxLength={500}
                   className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none transition-all duration-200 resize-none"
                   style={{ background: "#0F1923", border: "1px solid rgba(255,255,255,0.08)", fontFamily: "Inter, sans-serif" }}
-                  onFocus={(e) => { e.target.style.borderColor = "#22D3EE"; e.target.style.boxShadow = "0 0 0 2px rgba(34,211,238,0.08)"; }}
+                  onFocus={(e) => { e.target.style.borderColor = "#D4A84B"; e.target.style.boxShadow = "0 0 0 2px rgba(181,142,60,0.08)"; }}
                   onBlur={(e) => { e.target.style.borderColor = "rgba(255,255,255,0.08)"; e.target.style.boxShadow = "none"; }}
                 />
               </FormField>
@@ -213,7 +213,7 @@ const StopRentalForm = ({ isAr, onCancel }: Props) => {
 
             {/* Financial Summary */}
             {(depositAmount || outstanding) && (
-              <div className="p-3 rounded-xl border" style={{ background: "rgba(34,211,238,0.04)", borderColor: "rgba(34,211,238,0.15)" }}>
+              <div className="p-3 rounded-xl border" style={{ background: "rgba(181,142,60,0.04)", borderColor: "rgba(181,142,60,0.15)" }}>
                 <p className="text-gray-500 text-xs mb-2">{isAr ? "ملخص مالي" : "Financial Summary"}</p>
                 {[
                   { label: isAr ? "التأمين" : "Deposit", value: depositAmount ? `LCY ${depositAmount}` : "—" },
@@ -222,7 +222,7 @@ const StopRentalForm = ({ isAr, onCancel }: Props) => {
                 ].map((row, i) => (
                   <div key={i} className="flex justify-between py-1.5 border-b last:border-0" style={{ borderColor: "rgba(255,255,255,0.05)" }}>
                     <span className="text-gray-400 text-xs">{row.label}</span>
-                    <span className="text-sm font-bold font-['JetBrains_Mono']" style={{ color: row.highlight ? "#22D3EE" : "#D1D5DB" }}>{row.value}</span>
+                    <span className="text-sm font-bold font-['JetBrains_Mono']" style={{ color: row.highlight ? "#D4A84B" : "#D1D5DB" }}>{row.value}</span>
                   </div>
                 ))}
               </div>

@@ -14,7 +14,7 @@ interface KeywordGroup {
 }
 
 const INITIAL_GROUPS: KeywordGroup[] = [
-  { id: "location", name: "Location Keywords", nameAr: "كلمات الموقع", icon: "ri-map-pin-line", color: "#22D3EE", keywords: ["Muscat", "Salalah", "Nizwa", "Sohar", "Buraimi", "Muttrah", "Qurum", "Seeb", "Ruwi", "Ibri"], matchesToday: 1842, enabled: true },
+  { id: "location", name: "Location Keywords", nameAr: "كلمات الموقع", icon: "ri-map-pin-line", color: "#D4A84B", keywords: ["Muscat", "Salalah", "Nizwa", "Sohar", "Buraimi", "Muttrah", "Qurum", "Seeb", "Ruwi", "Ibri"], matchesToday: 1842, enabled: true },
   { id: "threat", name: "Threat Keywords", nameAr: "كلمات التهديد", icon: "ri-alarm-warning-line", color: "#F87171", keywords: ["explosive", "weapon", "attack", "bomb", "threat", "danger", "كيميائي", "سلاح", "تفجير"], matchesToday: 23, enabled: true },
   { id: "event", name: "Event Keywords", nameAr: "كلمات الأحداث", icon: "ri-calendar-event-line", color: "#FACC15", keywords: ["National Day", "Royal Visit", "Sultan", "parade", "ceremony", "اليوم الوطني", "زيارة ملكية"], matchesToday: 341, enabled: true },
   { id: "entity", name: "Entity Keywords", nameAr: "كلمات الكيانات", icon: "ri-building-line", color: "#FB923C", keywords: ["Police", "Government", "Palace", "Airport", "Port", "حكومة", "قصر", "مطار", "ميناء"], matchesToday: 567, enabled: true },
@@ -56,12 +56,12 @@ const KeywordMonitor = ({ isAr }: Props) => {
       {/* Stats row */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {[
-          { label: isAr ? "إجمالي التطابقات اليوم" : "Total Matches Today", value: totalMatches.toLocaleString(), color: "#22D3EE", icon: "ri-search-eye-line" },
+          { label: isAr ? "إجمالي التطابقات اليوم" : "Total Matches Today", value: totalMatches.toLocaleString(), color: "#D4A84B", icon: "ri-search-eye-line" },
           { label: isAr ? "مجموعات الكلمات" : "Keyword Groups", value: groups.filter((g) => g.enabled).length, color: "#4ADE80", icon: "ri-price-tag-3-line" },
           { label: isAr ? "المنصات النشطة" : "Active Platforms", value: platforms.filter((p) => p.enabled).length, color: "#FACC15", icon: "ri-global-line" },
           { label: isAr ? "تنبيهات عالية الأولوية" : "High-Priority Alerts", value: 31, color: "#F87171", icon: "ri-alarm-warning-line" },
         ].map((s) => (
-          <div key={s.label} className="rounded-xl border p-4" style={{ background: "rgba(10,22,40,0.8)", borderColor: `${s.color}20`, backdropFilter: "blur(12px)" }}>
+          <div key={s.label} className="rounded-xl border p-4" style={{ background: "rgba(20,29,46,0.8)", borderColor: `${s.color}20`, backdropFilter: "blur(12px)" }}>
             <div className="flex items-center gap-2 mb-2">
               <div className="w-7 h-7 flex items-center justify-center rounded-lg" style={{ background: `${s.color}12` }}>
                 <i className={`${s.icon} text-xs`} style={{ color: s.color }} />
@@ -81,7 +81,7 @@ const KeywordMonitor = ({ isAr }: Props) => {
           </h3>
           {groups.map((group) => (
             <div key={group.id} className="rounded-2xl border overflow-hidden transition-all"
-              style={{ background: "rgba(10,22,40,0.8)", borderColor: group.enabled ? `${group.color}25` : "rgba(255,255,255,0.06)", backdropFilter: "blur(12px)" }}>
+              style={{ background: "rgba(20,29,46,0.8)", borderColor: group.enabled ? `${group.color}25` : "rgba(255,255,255,0.06)", backdropFilter: "blur(12px)" }}>
               <div className="flex items-center justify-between px-5 py-4">
                 <div className="flex items-center gap-3">
                   <div className="w-9 h-9 flex items-center justify-center rounded-xl" style={{ background: `${group.color}15`, border: `1px solid ${group.color}30`, opacity: group.enabled ? 1 : 0.4 }}>
@@ -158,7 +158,7 @@ const KeywordMonitor = ({ isAr }: Props) => {
           </h3>
           {platforms.map((p) => (
             <div key={p.id} className="rounded-xl border p-4 flex items-center justify-between"
-              style={{ background: "rgba(10,22,40,0.8)", borderColor: p.enabled ? `${p.color}20` : "rgba(255,255,255,0.06)", backdropFilter: "blur(12px)" }}>
+              style={{ background: "rgba(20,29,46,0.8)", borderColor: p.enabled ? `${p.color}20` : "rgba(255,255,255,0.06)", backdropFilter: "blur(12px)" }}>
               <div className="flex items-center gap-3">
                 <div className="w-9 h-9 flex items-center justify-center rounded-xl" style={{ background: `${p.color}12`, border: `1px solid ${p.color}20`, opacity: p.enabled ? 1 : 0.4 }}>
                   <i className={`${p.icon} text-base`} style={{ color: p.color }} />
@@ -180,16 +180,16 @@ const KeywordMonitor = ({ isAr }: Props) => {
           ))}
 
           {/* Refresh interval */}
-          <div className="rounded-xl border p-4" style={{ background: "rgba(10,22,40,0.8)", borderColor: "rgba(34,211,238,0.12)", backdropFilter: "blur(12px)" }}>
+          <div className="rounded-xl border p-4" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
             <p className="text-gray-400 text-xs font-semibold mb-3">{isAr ? "فترة التحديث" : "Refresh Interval"}</p>
             <div className="flex gap-2 flex-wrap">
               {["5m", "15m", "30m", "1h"].map((t) => (
                 <button key={t} type="button"
                   className="px-3 py-1.5 rounded-lg text-xs font-bold cursor-pointer transition-all"
                   style={{
-                    background: t === "15m" ? "rgba(34,211,238,0.15)" : "rgba(255,255,255,0.04)",
-                    border: `1px solid ${t === "15m" ? "rgba(34,211,238,0.35)" : "rgba(255,255,255,0.08)"}`,
-                    color: t === "15m" ? "#22D3EE" : "#6B7280",
+                    background: t === "15m" ? "rgba(181,142,60,0.15)" : "rgba(255,255,255,0.04)",
+                    border: `1px solid ${t === "15m" ? "rgba(181,142,60,0.35)" : "rgba(255,255,255,0.08)"}`,
+                    color: t === "15m" ? "#D4A84B" : "#6B7280",
                   }}>
                   {t}
                 </button>

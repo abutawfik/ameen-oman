@@ -16,15 +16,15 @@ export default function FusionStatistics({ isAr }: Props) {
       {/* Summary KPIs */}
       <div className="grid grid-cols-4 gap-3">
         {[
-          { label: isAr ? 'إجمالي المحلولة' : 'Total Resolved', value: totalResolved.toLocaleString(), color: '#22D3EE', icon: 'ri-user-follow-line' },
+          { label: isAr ? 'إجمالي المحلولة' : 'Total Resolved', value: totalResolved.toLocaleString(), color: '#D4A84B', icon: 'ri-user-follow-line' },
           { label: isAr ? 'مكررات مكتشفة' : 'Duplicates Found', value: totalDuplicates.toLocaleString(), color: '#FACC15', icon: 'ri-user-2-line' },
           { label: isAr ? 'متوسط معدل الدقة' : 'Avg Resolution Rate', value: `${avgRate}%`, color: '#4ADE80', icon: 'ri-percent-line' },
           { label: isAr ? 'قواعد نشطة' : 'Active Rules', value: matchingRules.filter(r => r.enabled).length.toString(), color: '#A78BFA', icon: 'ri-git-branch-line' },
         ].map(kpi => (
           <div
             key={kpi.label}
-            className="rounded-xl border border-cyan-500/12 p-4"
-            style={{ background: 'rgba(10,22,40,0.8)' }}
+            className="rounded-xl border border-gold-500/12 p-4"
+            style={{ background: 'rgba(20,29,46,0.8)' }}
           >
             <div className="flex items-center gap-3 mb-2">
               <div className="w-8 h-8 flex items-center justify-center rounded-lg shrink-0" style={{ background: `${kpi.color}15` }}>
@@ -39,8 +39,8 @@ export default function FusionStatistics({ isAr }: Props) {
 
       {/* Duplicate detection chart */}
       <div
-        className="rounded-xl border border-cyan-500/15 p-5"
-        style={{ background: 'rgba(10,22,40,0.8)' }}
+        className="rounded-xl border border-gold-500/15 p-5"
+        style={{ background: 'rgba(20,29,46,0.8)' }}
       >
         <div className="flex items-center justify-between mb-5">
           <div>
@@ -53,7 +53,7 @@ export default function FusionStatistics({ isAr }: Props) {
           </div>
           <div className="flex items-center gap-4">
             {[
-              { label: isAr ? 'مكتشف' : 'Detected', color: '#22D3EE' },
+              { label: isAr ? 'مكتشف' : 'Detected', color: '#D4A84B' },
               { label: isAr ? 'محلول' : 'Resolved', color: '#4ADE80' },
               { label: isAr ? 'دمج تلقائي' : 'Auto-Merged', color: '#A78BFA' },
             ].map(l => (
@@ -73,7 +73,7 @@ export default function FusionStatistics({ isAr }: Props) {
                 {/* Detected bar */}
                 <div
                   className="w-full rounded-t-sm relative group"
-                  style={{ height: `${(d.detected / maxDetected) * 100}%`, background: 'rgba(34,211,238,0.3)', minHeight: 4 }}
+                  style={{ height: `${(d.detected / maxDetected) * 100}%`, background: 'rgba(181,142,60,0.3)', minHeight: 4 }}
                 >
                   {/* Resolved overlay */}
                   <div
@@ -88,9 +88,9 @@ export default function FusionStatistics({ isAr }: Props) {
                   {/* Tooltip */}
                   <div
                     className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 px-2 py-1 rounded text-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10 font-['JetBrains_Mono']"
-                    style={{ background: 'rgba(10,22,40,0.95)', border: '1px solid rgba(34,211,238,0.2)' }}
+                    style={{ background: 'rgba(20,29,46,0.95)', border: '1px solid rgba(181,142,60,0.2)' }}
                   >
-                    <p className="text-cyan-400">{d.detected} detected</p>
+                    <p className="text-gold-400">{d.detected} detected</p>
                     <p className="text-green-400">{d.resolved} resolved</p>
                     <p className="text-purple-400">{d.autoMerged} auto</p>
                   </div>
@@ -104,8 +104,8 @@ export default function FusionStatistics({ isAr }: Props) {
 
       {/* Rule effectiveness */}
       <div
-        className="rounded-xl border border-cyan-500/15 p-5"
-        style={{ background: 'rgba(10,22,40,0.8)' }}
+        className="rounded-xl border border-gold-500/15 p-5"
+        style={{ background: 'rgba(20,29,46,0.8)' }}
       >
         <h3 className="text-white font-bold text-sm font-['Inter'] mb-4">
           {isAr ? 'فعالية قواعد المطابقة' : 'Matching Rule Effectiveness'}
@@ -137,7 +137,7 @@ export default function FusionStatistics({ isAr }: Props) {
                 <span className="text-gray-600 text-xs ml-1 font-['Inter']">{isAr ? 'دمج' : 'merges'}</span>
               </div>
               <div className="w-16 text-right shrink-0">
-                <span className="text-cyan-400 font-mono text-xs">{rule.triggeredToday}</span>
+                <span className="text-gold-400 font-mono text-xs">{rule.triggeredToday}</span>
                 <span className="text-gray-600 text-xs ml-1 font-['Inter']">{isAr ? 'اليوم' : 'today'}</span>
               </div>
             </div>
@@ -147,17 +147,17 @@ export default function FusionStatistics({ isAr }: Props) {
 
       {/* Stream resolution table */}
       <div
-        className="rounded-xl border border-cyan-500/15 overflow-hidden"
-        style={{ background: 'rgba(10,22,40,0.8)' }}
+        className="rounded-xl border border-gold-500/15 overflow-hidden"
+        style={{ background: 'rgba(20,29,46,0.8)' }}
       >
-        <div className="px-5 py-4 border-b border-cyan-500/10">
+        <div className="px-5 py-4 border-b border-gold-500/10">
           <h3 className="text-white font-bold text-sm font-['Inter']">
             {isAr ? 'إحصائيات الدقة لكل تيار' : 'Resolution Statistics by Stream'}
           </h3>
         </div>
         <table className="w-full text-xs">
           <thead>
-            <tr className="border-b border-cyan-500/10">
+            <tr className="border-b border-gold-500/10">
               {[
                 isAr ? 'التيار' : 'Stream',
                 isAr ? 'الرمز' : 'Code',
@@ -173,9 +173,9 @@ export default function FusionStatistics({ isAr }: Props) {
           </thead>
           <tbody>
             {streamResolutionStats.map(s => (
-              <tr key={s.code} className="border-b border-cyan-500/5 hover:bg-cyan-500/3 transition-colors">
+              <tr key={s.code} className="border-b border-gold-500/5 hover:bg-gold-500/3 transition-colors">
                 <td className="py-3 px-4 text-white font-medium font-['Inter']">{isAr ? s.streamAr : s.stream}</td>
-                <td className="py-3 px-4 font-mono text-cyan-400/70">{s.code}</td>
+                <td className="py-3 px-4 font-mono text-gold-400/70">{s.code}</td>
                 <td className="py-3 px-4 font-mono text-white">{s.resolved.toLocaleString()}</td>
                 <td className="py-3 px-4 font-mono text-red-400/70">{s.duplicates}</td>
                 <td className="py-3 px-4">
@@ -185,13 +185,13 @@ export default function FusionStatistics({ isAr }: Props) {
                         className="h-full rounded-full"
                         style={{
                           width: `${s.rate}%`,
-                          background: s.rate >= 97 ? '#4ADE80' : s.rate >= 95 ? '#22D3EE' : '#FACC15',
+                          background: s.rate >= 97 ? '#4ADE80' : s.rate >= 95 ? '#D4A84B' : '#FACC15',
                         }}
                       />
                     </div>
                     <span
                       className="font-mono font-bold"
-                      style={{ color: s.rate >= 97 ? '#4ADE80' : s.rate >= 95 ? '#22D3EE' : '#FACC15' }}
+                      style={{ color: s.rate >= 97 ? '#4ADE80' : s.rate >= 95 ? '#D4A84B' : '#FACC15' }}
                     >
                       {s.rate}%
                     </span>

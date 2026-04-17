@@ -96,9 +96,9 @@ const OSINTPostFeed = ({ isAr }: Props) => {
           <button key={f.id} type="button" onClick={() => setFilter(f.id)}
             className="px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer transition-all whitespace-nowrap"
             style={{
-              background: filter === f.id ? (f.id === "elevated" ? "rgba(248,113,113,0.15)" : "rgba(34,211,238,0.15)") : "rgba(255,255,255,0.04)",
-              border: `1px solid ${filter === f.id ? (f.id === "elevated" ? "rgba(248,113,113,0.35)" : "rgba(34,211,238,0.35)") : "rgba(255,255,255,0.08)"}`,
-              color: filter === f.id ? (f.id === "elevated" ? "#F87171" : "#22D3EE") : "#6B7280",
+              background: filter === f.id ? (f.id === "elevated" ? "rgba(248,113,113,0.15)" : "rgba(181,142,60,0.15)") : "rgba(255,255,255,0.04)",
+              border: `1px solid ${filter === f.id ? (f.id === "elevated" ? "rgba(248,113,113,0.35)" : "rgba(181,142,60,0.35)") : "rgba(255,255,255,0.08)"}`,
+              color: filter === f.id ? (f.id === "elevated" ? "#F87171" : "#D4A84B") : "#6B7280",
             }}>
             {isAr ? f.labelAr : f.label}
             {f.id === "elevated" && <span className="ml-1.5 px-1 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(248,113,113,0.2)", color: "#F87171", fontSize: "9px" }}>
@@ -120,8 +120,8 @@ const OSINTPostFeed = ({ isAr }: Props) => {
           return (
             <div key={post.id} className="rounded-2xl border p-5 transition-all"
               style={{
-                background: post.elevated ? "rgba(248,113,113,0.04)" : "rgba(10,22,40,0.8)",
-                borderColor: post.elevated ? "rgba(248,113,113,0.3)" : "rgba(34,211,238,0.1)",
+                background: post.elevated ? "rgba(248,113,113,0.04)" : "rgba(20,29,46,0.8)",
+                borderColor: post.elevated ? "rgba(248,113,113,0.3)" : "rgba(181,142,60,0.1)",
                 backdropFilter: "blur(12px)",
                 borderLeft: post.elevated ? "4px solid #F87171" : "4px solid transparent",
               }}>
@@ -156,7 +156,7 @@ const OSINTPostFeed = ({ isAr }: Props) => {
                     <div className="flex gap-1.5 flex-wrap">
                       {post.matchedKeywords.map((kw) => (
                         <span key={kw} className="px-2 py-0.5 rounded-full text-xs font-bold font-['JetBrains_Mono']"
-                          style={{ background: "rgba(34,211,238,0.12)", color: "#22D3EE", border: "1px solid rgba(34,211,238,0.2)" }}>
+                          style={{ background: "rgba(181,142,60,0.12)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>
                           {kw}
                         </span>
                       ))}

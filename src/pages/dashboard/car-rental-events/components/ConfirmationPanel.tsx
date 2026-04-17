@@ -16,8 +16,8 @@ const ConfirmationPanel = ({ refNumber, eventType, eventCode, color, isAr, onRes
     <div
       className="rounded-2xl border p-10 flex flex-col items-center text-center"
       style={{
-        background: "rgba(10,22,40,0.9)",
-        borderColor: "rgba(34,211,238,0.2)",
+        background: "rgba(20,29,46,0.9)",
+        borderColor: "rgba(181,142,60,0.2)",
         backdropFilter: "blur(20px)",
         boxShadow: `0 0 60px ${color}08`,
       }}
@@ -59,14 +59,14 @@ const ConfirmationPanel = ({ refNumber, eventType, eventCode, color, isAr, onRes
       {/* Reference number */}
       <div
         className="px-8 py-5 rounded-2xl border mb-8 w-full max-w-md"
-        style={{ background: "rgba(34,211,238,0.04)", borderColor: "rgba(34,211,238,0.15)" }}
+        style={{ background: "rgba(181,142,60,0.04)", borderColor: "rgba(181,142,60,0.15)" }}
       >
         <p className="text-gray-500 text-xs mb-2 font-['Inter'] uppercase tracking-widest">
           {isAr ? "رقم المرجع" : "Reference Number"}
         </p>
         <p
           className="text-xl font-bold font-['JetBrains_Mono'] tracking-wider mb-2"
-          style={{ color: "#22D3EE" }}
+          style={{ color: "#D4A84B" }}
         >
           {refNumber}
         </p>
@@ -86,9 +86,9 @@ const ConfirmationPanel = ({ refNumber, eventType, eventCode, color, isAr, onRes
             <div
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold font-['Inter']"
               style={{
-                background: step.done ? "rgba(34,211,238,0.1)" : "rgba(255,255,255,0.03)",
-                border: `1px solid ${step.done ? "rgba(34,211,238,0.25)" : "rgba(255,255,255,0.07)"}`,
-                color: step.done ? "#22D3EE" : "#4B5563",
+                background: step.done ? "rgba(181,142,60,0.1)" : "rgba(255,255,255,0.03)",
+                border: `1px solid ${step.done ? "rgba(181,142,60,0.25)" : "rgba(255,255,255,0.07)"}`,
+                color: step.done ? "#D4A84B" : "#4B5563",
               }}
             >
               <i className={`${step.icon} text-xs`} />
@@ -105,8 +105,8 @@ const ConfirmationPanel = ({ refNumber, eventType, eventCode, color, isAr, onRes
           type="button"
           onClick={onReset}
           className="flex items-center gap-2 px-5 py-2.5 rounded-lg border text-sm font-semibold cursor-pointer whitespace-nowrap font-['Inter'] transition-colors"
-          style={{ background: "transparent", borderColor: "rgba(34,211,238,0.25)", color: "#22D3EE" }}
-          onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(34,211,238,0.06)"; }}
+          style={{ background: "transparent", borderColor: "rgba(181,142,60,0.25)", color: "#D4A84B" }}
+          onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(181,142,60,0.06)"; }}
           onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "transparent"; }}
         >
           <i className="ri-add-line" />
@@ -116,9 +116,9 @@ const ConfirmationPanel = ({ refNumber, eventType, eventCode, color, isAr, onRes
           type="button"
           onClick={() => navigate("/dashboard?type=car-rental")}
           className="flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-bold cursor-pointer whitespace-nowrap font-['Inter'] transition-colors"
-          style={{ background: "#22D3EE", color: "#060D1A" }}
-          onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#06B6D4"; }}
-          onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#22D3EE"; }}
+          style={{ background: "#D4A84B", color: "#0B1220" }}
+          onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C99C48"; }}
+          onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#D4A84B"; }}
         >
           <i className="ri-dashboard-line" />
           {isAr ? "العودة للوحة التحكم" : "Back to Dashboard"}
