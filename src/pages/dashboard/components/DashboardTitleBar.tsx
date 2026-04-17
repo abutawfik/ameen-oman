@@ -3,6 +3,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { entityNotifications, policeAlerts } from "@/mocks/notificationsData";
 import BrandLogo from "@/brand/BrandLogo";
 import { useBrandFonts } from "@/brand/typography";
+import { useClearance, CLEARANCE_LEVELS } from "@/brand/clearance";
+import { CLASSIFICATION_META } from "@/mocks/osintData";
 
 interface Props {
   isAr: boolean;
@@ -70,6 +72,7 @@ const DashboardTitleBar = ({ isAr, onToggleLang, onToggleAr }: Props) => {
   const navigate = useNavigate();
   const location = useLocation();
   const fonts = useBrandFonts();
+  const { clearance, cycleClearance } = useClearance();
   const [notifOpen, setNotifOpen] = useState(false);
   const [userOpen, setUserOpen] = useState(false);
   const [now, setNow] = useState(new Date());
@@ -184,6 +187,40 @@ const DashboardTitleBar = ({ isAr, onToggleLang, onToggleAr }: Props) => {
         >
           {isAr ? "EN" : "AR"}
         </button>
+
+        {/* 2b. Clearance simulator pill — Wave 3 · D5.
+            Cycles PUBLIC → INTERNAL → RESTRICTED → CLASSIFIED. In production
+            this is RBAC-assigned; for the demo clicking it lets reviewers
+            watch fields redact across Queue / Explain / Identity / Audit. */}
+        {(() => {
+          const meta = CLASSIFICATION_META[clearance];
+          const idx = CLEARANCE_LEVELS.indexOf(clearance);
+          return (
+            <button
+              type="button"
+              onClick={cycleClearance}
+              className="flex items-center justify-center gap-1.5 px-2.5 h-8 rounded-full cursor-pointer transition-colors"
+              style={{
+                background: meta.bg,
+                border: `1px solid ${meta.color}66`,
+                color: meta.color,
+                fontFamily: fonts.mono,
+                fontSize: "0.6875rem",
+                fontWeight: 700,
+                letterSpacing: "0.08em",
+              }}
+              title={isAr
+                ? `الصلاحية: ${meta.labelAr} · اضغط للتبديل`
+                : `Clearance: ${meta.label} · click to cycle`}
+            >
+              <i className="ri-shield-user-line" style={{ fontSize: 12 }} />
+              {isAr ? meta.labelAr : meta.label}
+              <span className="ml-1 opacity-60" style={{ fontSize: "0.625rem" }}>
+                {idx + 1}/{CLEARANCE_LEVELS.length}
+              </span>
+            </button>
+          );
+        })()}
 
         {/* 3. Notifications bell */}
         <div className="relative">

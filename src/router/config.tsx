@@ -50,6 +50,7 @@ import CaseManagementPage from "../pages/dashboard/case-management/page";
 import ExecutiveDashboardPage from "../pages/dashboard/executive/page";
 import AuditLogPage from "../pages/dashboard/audit-log/page";
 import EntityResolutionPage from "../pages/dashboard/entity-resolution/page";
+import ReportsPage from "../pages/dashboard/reports/page";
 
 const routes: RouteObject[] = [
   {
@@ -88,7 +89,7 @@ const routes: RouteObject[] = [
       { path: "calendar", element: <CalendarEventsPage /> },
       { path: "event-list", element: <CalendarEventsPage /> },
       { path: "batch-upload", element: <BatchReportsPage /> },
-      { path: "reports", element: <BatchReportsPage /> },
+      { path: "reports", element: <ReportsPage /> },
       { path: "manage-users", element: <BatchReportsPage /> },
       { path: "help", element: <BatchReportsPage /> },
       { path: "command-center", element: <CommandCenterPage /> },

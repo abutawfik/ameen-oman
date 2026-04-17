@@ -9,6 +9,7 @@ import {
 } from "recharts";
 import type { DashboardOutletContext } from "../DashboardLayout";
 import { useBrandFonts } from "@/brand/typography";
+import { useClearance, REDACTED_GLYPH } from "@/brand/clearance";
 import {
   SCORED_RECORDS,
   MOVEMENT_EVENTS,
@@ -110,6 +111,7 @@ const SubjectHeader = ({
 
   return (
     <div
+      data-narrate-id="person-subject-header"
       className="rounded-2xl border p-6 mb-4 flex flex-col gap-5"
       style={{
         background: `linear-gradient(135deg, ${bandMeta.color}11, var(--alm-ocean-800, #0A2540))`,
@@ -232,6 +234,7 @@ const SubjectHeader = ({
 
 const IdentityTab = ({ subject, isAr }: { subject: ScoredRecord; isAr: boolean }) => {
   const fonts = useBrandFonts();
+  const { canView, clearance } = useClearance();
   const year = birthYearFromId(subject.id);
 
   // Generate alias variants deterministically
@@ -241,24 +244,52 @@ const IdentityTab = ({ subject, isAr }: { subject: ScoredRecord; isAr: boolean }
     subject.travelerName.split(" ").reverse().join(" "),
   ];
 
+  // Field-level classification gating per the tech spec:
+  //   passport no. / DOB / contact  → require INTERNAL+
+  //   national ID / declared addr   → require RESTRICTED+
+  //   biographic name / nationality → public baseline
+  const redactIf = (required: Classification, value: string): { value: string; redacted: boolean; needed: Classification } => {
+    const allowed = canView(required);
+    return { value: allowed ? value : REDACTED_GLYPH, redacted: !allowed, needed: required };
+  };
+
+  const dobString = `${year}-${String(1 + Math.floor(seed(subject.id + "m")() * 12)).padStart(2, "0")}-${String(1 + Math.floor(seed(subject.id + "d")() * 27)).padStart(2, "0")}`;
+  const nationalId = `${subject.nationalityCode.toUpperCase()}-${Math.floor(seed(subject.id + "n")() * 900000000 + 100000000)}`;
+
+  type Row = {
+    labelEn: string;
+    labelAr: string;
+    value: string;
+    redacted?: boolean;
+    needed?: Classification;
+  };
+
   type CardSpec = {
     titleEn: string;
     titleAr: string;
     icon: string;
-    rows: [string, string, string][]; // [labelEn, labelAr, value]
+    rows: Row[];
     source: string;
     refreshedAt: string;
+    classification?: Classification; // card-level lock gate
   };
+
+  const passportField = redactIf("internal", subject.passportNumber);
+  const dobField = redactIf("internal", dobString);
+  const natIdField = redactIf("restricted", nationalId);
+  const phoneField = redactIf("internal", "+968 9xxx 1284");
+  const emailField = redactIf("internal", `${subject.travelerName.toLowerCase().split(" ")[0]}@corp.${subject.nationalityCode}`);
+  const declaredField = redactIf("restricted", "Qurum Heights, Muscat");
 
   const cards: CardSpec[] = [
     {
       titleEn: "Biographic", titleAr: "معلومات شخصية", icon: "ri-id-card-line",
       rows: [
-        ["Full name", "الاسم الكامل", subject.travelerName],
-        ["Arabic name", "الاسم بالعربية", subject.travelerNameAr],
-        ["Date of birth", "تاريخ الميلاد", `${year}-${String(1 + Math.floor(seed(subject.id + "m")() * 12)).padStart(2, "0")}-${String(1 + Math.floor(seed(subject.id + "d")() * 27)).padStart(2, "0")}`],
-        ["Gender", "النوع", seed(subject.id + "g")() > 0.5 ? (isAr ? "ذكر" : "Male") : (isAr ? "أنثى" : "Female")],
-        ["Nationality", "الجنسية", `${subject.nationality}`],
+        { labelEn: "Full name", labelAr: "الاسم الكامل", value: subject.travelerName },
+        { labelEn: "Arabic name", labelAr: "الاسم بالعربية", value: subject.travelerNameAr },
+        { labelEn: "Date of birth", labelAr: "تاريخ الميلاد", value: dobField.value, redacted: dobField.redacted, needed: dobField.needed },
+        { labelEn: "Gender", labelAr: "النوع", value: seed(subject.id + "g")() > 0.5 ? (isAr ? "ذكر" : "Male") : (isAr ? "أنثى" : "Female") },
+        { labelEn: "Nationality", labelAr: "الجنسية", value: subject.nationality },
       ],
       source: "Civil registry · MoI",
       refreshedAt: "2026-04-17T03:00:00Z",
@@ -266,36 +297,37 @@ const IdentityTab = ({ subject, isAr }: { subject: ScoredRecord; isAr: boolean }
     {
       titleEn: "Passport", titleAr: "جواز السفر", icon: "ri-passport-line",
       rows: [
-        ["Passport no.", "رقم الجواز", subject.passportNumber],
-        ["Issuing country", "بلد الإصدار", subject.nationality],
-        ["Issued", "تاريخ الإصدار", `${year + 20}-03-11`],
-        ["Expires", "تاريخ الانتهاء", `${year + 30}-03-10`],
-        ["Biometric match", "المطابقة الحيوية", isAr ? "مطابق ✓" : "Matched ✓"],
+        { labelEn: "Passport no.", labelAr: "رقم الجواز", value: passportField.value, redacted: passportField.redacted, needed: passportField.needed },
+        { labelEn: "Issuing country", labelAr: "بلد الإصدار", value: subject.nationality },
+        { labelEn: "Issued", labelAr: "تاريخ الإصدار", value: `${year + 20}-03-11` },
+        { labelEn: "Expires", labelAr: "تاريخ الانتهاء", value: `${year + 30}-03-10` },
+        { labelEn: "Biometric match", labelAr: "المطابقة الحيوية", value: isAr ? "مطابق ✓" : "Matched ✓" },
       ],
       source: "Biometric gate · ePassport",
       refreshedAt: subject.arrivalTs,
     },
     {
       titleEn: "National ID", titleAr: "الرقم الوطني", icon: "ri-shield-user-line",
+      classification: "restricted",
       rows: [
-        ["National ID", "الرقم الوطني", `${subject.nationalityCode.toUpperCase()}-${Math.floor(seed(subject.id + "n")() * 900000000 + 100000000)}`],
-        ["Check-digit", "خانة التحقق", isAr ? "صحيح ✓" : "Valid ✓"],
-        ["Issued at", "مكان الإصدار", "Riyadh · SA-01"],
+        { labelEn: "National ID", labelAr: "الرقم الوطني", value: natIdField.value, redacted: natIdField.redacted, needed: natIdField.needed },
+        { labelEn: "Check-digit", labelAr: "خانة التحقق", value: isAr ? "صحيح ✓" : "Valid ✓" },
+        { labelEn: "Issued at", labelAr: "مكان الإصدار", value: "Riyadh · SA-01" },
       ],
       source: "GCC ID exchange",
       refreshedAt: "2026-04-10T00:00:00Z",
     },
     {
       titleEn: "Aliases", titleAr: "الأسماء البديلة", icon: "ri-user-received-2-line",
-      rows: aliases.map((a, i) => [`Alias ${i + 1}`, `اسم ${i + 1}`, a] as [string, string, string]),
+      rows: aliases.map((a, i) => ({ labelEn: `Alias ${i + 1}`, labelAr: `اسم ${i + 1}`, value: a })),
       source: "OpenSanctions · eVisa history",
       refreshedAt: "2026-04-16T14:00:00Z",
     },
     {
       titleEn: "Contact", titleAr: "الاتصال", icon: "ri-phone-line",
       rows: [
-        ["Phone", "الهاتف", subject.classification === "public" ? "+968 9xxx 1284" : "+968 9xxx ••84"],
-        ["Email", "البريد الإلكتروني", subject.classification === "public" ? `${subject.travelerName.toLowerCase().split(" ")[0]}@corp.${subject.nationalityCode}` : "••••••@corp.•••"],
+        { labelEn: "Phone", labelAr: "الهاتف", value: phoneField.value, redacted: phoneField.redacted, needed: phoneField.needed },
+        { labelEn: "Email", labelAr: "البريد الإلكتروني", value: emailField.value, redacted: emailField.redacted, needed: emailField.needed },
       ],
       source: "Declaration · SIM provider",
       refreshedAt: subject.arrivalTs,
@@ -303,8 +335,8 @@ const IdentityTab = ({ subject, isAr }: { subject: ScoredRecord; isAr: boolean }
     {
       titleEn: "Declared address", titleAr: "العنوان المُعلَن", icon: "ri-map-pin-line",
       rows: [
-        ["Declared", "المُعلَن", "Qurum Heights, Muscat"],
-        ["Matches municipality", "مطابقة البلدية", subject.subScores.declaration > 40 ? (isAr ? "جزئي (0.74)" : "Partial (0.74)") : (isAr ? "مطابق" : "Matched")],
+        { labelEn: "Declared", labelAr: "المُعلَن", value: declaredField.value, redacted: declaredField.redacted, needed: declaredField.needed },
+        { labelEn: "Matches municipality", labelAr: "مطابقة البلدية", value: subject.subScores.declaration > 40 ? (isAr ? "جزئي (0.74)" : "Partial (0.74)") : (isAr ? "مطابق" : "Matched") },
       ],
       source: "Muscat Municipality",
       refreshedAt: "2026-04-14T08:00:00Z",
@@ -312,30 +344,89 @@ const IdentityTab = ({ subject, isAr }: { subject: ScoredRecord; isAr: boolean }
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {cards.map((c) => (
-        <div key={c.titleEn} className="rounded-xl border p-4 flex flex-col"
-          style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.15)" }}>
-          <div className="flex items-center gap-2 mb-3">
-            <i className={c.icon} style={{ color: "#D6B47E" }} />
-            <h3 className="text-white text-sm font-bold" style={{ fontFamily: fonts.sans }}>
-              {isAr ? c.titleAr : c.titleEn}
-            </h3>
-          </div>
-          <div className="space-y-1.5 flex-1">
-            {c.rows.map(([en, ar, val]) => (
-              <div key={en} className="flex items-center justify-between gap-2 text-xs">
-                <span className="text-gray-500" style={{ fontFamily: fonts.sans }}>{isAr ? ar : en}</span>
-                <span className="text-gray-200 font-medium text-right" style={{ fontFamily: fonts.mono }}>{val}</span>
+    <div data-narrate-id="person-identity-cards" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {cards.map((c) => {
+        // Card-level gating — when the whole card's classification exceeds
+        // the viewer's clearance, show a full-panel redaction card instead.
+        const cardLocked = c.classification ? !canView(c.classification) : false;
+        if (cardLocked) {
+          const needMeta = CLASSIFICATION_META[c.classification!];
+          return (
+            <div key={c.titleEn} className="rounded-xl border p-4 flex flex-col items-center justify-center min-h-[180px] gap-2"
+              style={{
+                background: "linear-gradient(135deg, rgba(201,74,94,0.08), rgba(10,37,64,0.8))",
+                borderColor: `${needMeta.color}55`,
+              }}>
+              <div className="w-10 h-10 flex items-center justify-center rounded-full"
+                style={{ background: `${needMeta.color}18`, border: `1px solid ${needMeta.color}55` }}>
+                <i className="ri-shield-keyhole-line text-lg" style={{ color: needMeta.color }} />
               </div>
-            ))}
+              <h3 className="text-white text-sm font-bold text-center" style={{ fontFamily: fonts.sans }}>
+                {isAr ? c.titleAr : c.titleEn}
+              </h3>
+              <p className="text-gray-400 text-xs text-center leading-snug" style={{ fontFamily: fonts.sans }}>
+                {isAr
+                  ? `تتطلب هذه البطاقة صلاحية ${needMeta.labelAr}`
+                  : `This view requires ${needMeta.label} clearance`}
+              </p>
+              <p className="text-gray-600 text-[10px]" style={{ fontFamily: fonts.mono }}>
+                {isAr ? "صلاحيتك الحالية" : "your clearance"}: {CLASSIFICATION_META[clearance].label}
+              </p>
+              <button type="button"
+                className="mt-1 px-3 py-1 rounded-md text-[11px] font-bold cursor-pointer"
+                style={{ background: "transparent", color: needMeta.color, border: `1px solid ${needMeta.color}55`, fontFamily: fonts.sans }}>
+                <i className="ri-mail-send-line mr-1" />
+                {isAr ? "طلب الوصول" : "Request access"}
+              </button>
+            </div>
+          );
+        }
+
+        return (
+          <div key={c.titleEn} className="rounded-xl border p-4 flex flex-col"
+            style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.15)" }}>
+            <div className="flex items-center gap-2 mb-3">
+              <i className={c.icon} style={{ color: "#D6B47E" }} />
+              <h3 className="text-white text-sm font-bold" style={{ fontFamily: fonts.sans }}>
+                {isAr ? c.titleAr : c.titleEn}
+              </h3>
+              {c.classification && (
+                <ClassificationPill classification={c.classification} isAr={isAr} />
+              )}
+            </div>
+            <div className="space-y-1.5 flex-1">
+              {c.rows.map((row) => (
+                <div key={row.labelEn} className="flex items-center justify-between gap-2 text-xs">
+                  <span className="text-gray-500 flex items-center gap-1" style={{ fontFamily: fonts.sans }}>
+                    {isAr ? row.labelAr : row.labelEn}
+                    {row.redacted && row.needed && (
+                      <i className="ri-lock-line text-[10px]" style={{ color: CLASSIFICATION_META[row.needed].color }}
+                        title={isAr ? `يتطلب ${CLASSIFICATION_META[row.needed].labelAr}` : `requires ${CLASSIFICATION_META[row.needed].label}`} />
+                    )}
+                  </span>
+                  <span
+                    className="font-medium text-right"
+                    style={{
+                      fontFamily: fonts.mono,
+                      color: row.redacted ? "#6B7280" : "#E5E7EB",
+                      letterSpacing: row.redacted ? "0.05em" : undefined,
+                    }}
+                    title={row.redacted && row.needed
+                      ? (isAr ? `مُخفى · يتطلب ${CLASSIFICATION_META[row.needed].labelAr}` : `Redacted — ${CLASSIFICATION_META[row.needed].label} clearance required`)
+                      : undefined}
+                  >
+                    {row.value}
+                  </span>
+                </div>
+              ))}
+            </div>
+            <div className="mt-3 pt-2 border-t flex items-center justify-between text-[10px]" style={{ borderColor: "rgba(255,255,255,0.06)", fontFamily: fonts.mono }}>
+              <span className="text-gray-600">{isAr ? "المصدر" : "Source"}: {c.source}</span>
+              <span className="text-gray-600">{formatTs(c.refreshedAt)}</span>
+            </div>
           </div>
-          <div className="mt-3 pt-2 border-t flex items-center justify-between text-[10px]" style={{ borderColor: "rgba(255,255,255,0.06)", fontFamily: fonts.mono }}>
-            <span className="text-gray-600">{isAr ? "المصدر" : "Source"}: {c.source}</span>
-            <span className="text-gray-600">{formatTs(c.refreshedAt)}</span>
-          </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 };
@@ -1041,6 +1132,7 @@ const Person360Page = () => {
         {tabs.map((t) => (
           <button
             key={t.key}
+            data-narrate-id={`person-tab-${t.key}`}
             onClick={() => setTab(t.key)}
             className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm cursor-pointer transition-all"
             style={{

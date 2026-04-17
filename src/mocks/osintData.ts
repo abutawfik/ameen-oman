@@ -2775,3 +2775,431 @@ const buildAsOfSnapshots = (): Record<string, AsOfSnapshot[]> => {
 };
 
 export const AS_OF_SNAPSHOTS: Record<string, AsOfSnapshot[]> = buildAsOfSnapshots();
+
+// ─────────────────────────────────────────────────────────────────────────
+// Wave 3 · Deliverable 5 — clearance simulator ordering
+// Exported from mocks for convenience; the React context lives in
+// src/brand/clearance.ts. Ordered low → high; rank = index.
+// ─────────────────────────────────────────────────────────────────────────
+
+export const CLEARANCE_LEVELS: Classification[] = ["public", "internal", "restricted", "classified"];
+
+// ─────────────────────────────────────────────────────────────────────────
+// Wave 3 · Deliverable 3 — Report templates + scheduled runs
+// Six pre-built templates, four active schedules. Data only — the Reports
+// page renders them.
+// ─────────────────────────────────────────────────────────────────────────
+
+export interface ReportTemplate {
+  id: string;
+  name: string;
+  nameAr: string;
+  description: string;
+  descriptionAr: string;
+  icon: string;
+  color: string;
+  estimatedPages: number;
+  sections: string[];
+  // Cadence this template is *typically* run at — drives the chip on the card.
+  suggestedCadence: string;
+  audience: string;
+}
+
+export const REPORT_TEMPLATES: ReportTemplate[] = [
+  {
+    id: "tmpl-daily-ops",
+    name: "Daily Ops Summary",
+    nameAr: "ملخّص العمليات اليومي",
+    description: "24-hour operations snapshot — scoring throughput, queue flow, team performance.",
+    descriptionAr: "لقطة عمليات على مدار 24 ساعة — حجم التسجيل، تدفق القائمة، أداء الفريق.",
+    icon: "ri-sun-line",
+    color: "#D6B47E",
+    estimatedPages: 3,
+    sections: ["scored_24h", "flagged_24h", "cases_opened_closed", "avg_response_time", "top_flags"],
+    suggestedCadence: "Daily · 08:00",
+    audience: "Duty analyst",
+  },
+  {
+    id: "tmpl-weekly-source-health",
+    name: "Weekly Source Health",
+    nameAr: "صحة المصادر الأسبوعية",
+    description: "Per-source uptime, latency, record ingest rate, DLQ depth, and failure patterns.",
+    descriptionAr: "تشغيل كل مصدر وزمن الاستجابة ومعدل الاستيعاب وعمق DLQ وأنماط الإخفاق.",
+    icon: "ri-broadcast-line",
+    color: "#4A8E3A",
+    estimatedPages: 5,
+    sections: ["source_uptime", "source_latency", "records_ingested", "dlq_depth", "failure_patterns"],
+    suggestedCadence: "Weekly · Mondays 09:00",
+    audience: "Ops team",
+  },
+  {
+    id: "tmpl-monthly-exec",
+    name: "Monthly Executive",
+    nameAr: "التقرير التنفيذي الشهري",
+    description: "Risk posture, trend analysis, top cases by impact, cost per case.",
+    descriptionAr: "الوضع الأمني، تحليل الاتجاهات، أبرز القضايا بالتأثير، تكلفة القضية.",
+    icon: "ri-line-chart-line",
+    color: "#6B4FAE",
+    estimatedPages: 8,
+    sections: ["risk_posture_trends", "top_cases", "cost_per_case", "team_throughput", "kpi_deltas"],
+    suggestedCadence: "Monthly · 1st @ 07:00",
+    audience: "Leadership",
+  },
+  {
+    id: "tmpl-quarterly-gov",
+    name: "Quarterly Governance",
+    nameAr: "الحوكمة الفصلية",
+    description: "Drift, fairness, rule-fire distribution, model versions deployed, calibration audit.",
+    descriptionAr: "الانحراف والعدالة وتوزيع إطلاق القواعد ونماذج النشر وتدقيق المعايرة.",
+    icon: "ri-shield-star-line",
+    color: "#C98A1B",
+    estimatedPages: 12,
+    sections: ["drift_metrics", "fairness_audit", "rule_fire_distribution", "model_versions", "calibration"],
+    suggestedCadence: "Quarterly",
+    audience: "Governance board",
+  },
+  {
+    id: "tmpl-adhoc-score-audit",
+    name: "Ad-hoc Score Audit",
+    nameAr: "تدقيق درجة فرديّة",
+    description: "Full lineage for a single scored record — feature snapshot, contributions, skipped rules.",
+    descriptionAr: "تسلسل كامل لسجل تسجيل واحد — لقطة الميزات، الإسهامات، القواعد المُتخطّاة.",
+    icon: "ri-file-search-line",
+    color: "#4A7AA8",
+    estimatedPages: 2,
+    sections: ["score_lineage", "feature_snapshot", "contributions", "rules_skipped", "replay_hash"],
+    suggestedCadence: "On demand",
+    audience: "Analyst / auditor",
+  },
+  {
+    id: "tmpl-compliance-summary",
+    name: "Compliance Summary",
+    nameAr: "ملخّص الامتثال",
+    description: "Classified accesses, retention adherence, audit events grouped by actor and severity.",
+    descriptionAr: "الوصولات السرّية، التزام الاحتفاظ، أحداث التدقيق مجمّعة بالفاعل والخطورة.",
+    icon: "ri-file-shield-line",
+    color: "#C94A5E",
+    estimatedPages: 6,
+    sections: ["classified_accesses", "data_retention", "audit_by_actor", "access_violations"],
+    suggestedCadence: "Monthly · 1st @ 09:00",
+    audience: "Compliance officer",
+  },
+];
+
+export type ScheduleStatus = "ok" | "failed" | "pending";
+
+export interface ScheduledReport {
+  id: string;
+  templateId: string;
+  cadence: string;       // human-readable "Daily 08:00" / "Mondays 09:00"
+  recipients: string[];
+  lastRunAt: string;
+  lastRunStatus: ScheduleStatus;
+  nextRunAt: string;
+  enabled: boolean;
+  durationMs: number;    // last run duration for the detail row
+}
+
+export const SCHEDULED_REPORTS: ScheduledReport[] = [
+  {
+    id: "sch-daily-ops",
+    templateId: "tmpl-daily-ops",
+    cadence: "Daily 08:00",
+    recipients: ["duty-analyst@alameen.gov.om"],
+    lastRunAt: "2026-04-17T08:00:00Z",
+    lastRunStatus: "ok",
+    nextRunAt: "2026-04-18T08:00:00Z",
+    enabled: true,
+    durationMs: 1240,
+  },
+  {
+    id: "sch-weekly-source",
+    templateId: "tmpl-weekly-source-health",
+    cadence: "Mondays 09:00",
+    recipients: ["ops-team@alameen.gov.om", "connectors@alameen.gov.om"],
+    lastRunAt: "2026-04-13T09:00:00Z",
+    lastRunStatus: "ok",
+    nextRunAt: "2026-04-20T09:00:00Z",
+    enabled: true,
+    durationMs: 4380,
+  },
+  {
+    id: "sch-monthly-exec",
+    templateId: "tmpl-monthly-exec",
+    cadence: "1st of month 07:00",
+    recipients: ["leadership@alameen.gov.om"],
+    lastRunAt: "2026-04-01T07:00:00Z",
+    lastRunStatus: "ok",
+    nextRunAt: "2026-05-01T07:00:00Z",
+    enabled: true,
+    durationMs: 8920,
+  },
+  {
+    id: "sch-quarterly-gov",
+    templateId: "tmpl-quarterly-gov",
+    cadence: "Quarterly",
+    recipients: ["governance@alameen.gov.om"],
+    lastRunAt: "2026-01-15T07:00:00Z",
+    lastRunStatus: "ok",
+    nextRunAt: "2026-04-15T07:00:00Z",
+    enabled: true,
+    durationMs: 21_400,
+  },
+];
+
+// ─────────────────────────────────────────────────────────────────────────
+// Wave 3 · Deliverable 4 — Demo narration scripts
+// Each script walks one route through its key interactive elements.
+// Target selectors use `[data-narrate-id="..."]` hooks already on the pages.
+// ─────────────────────────────────────────────────────────────────────────
+
+export interface NarrationStep {
+  targetSelector: string;
+  titleEn: string;
+  titleAr: string;
+  bodyEn: string;
+  bodyAr: string;
+  durationMs?: number;
+}
+
+export interface NarrationScript {
+  route: string;
+  title: string;
+  titleAr: string;
+  steps: NarrationStep[];
+}
+
+export const DEMO_NARRATIONS: NarrationScript[] = [
+  {
+    route: "/dashboard",
+    title: "Command Center walkthrough",
+    titleAr: "جولة مركز القيادة",
+    steps: [
+      {
+        targetSelector: "[data-narrate-id='dashboard-kpis']",
+        titleEn: "Live KPI strip",
+        titleAr: "شريط المؤشرات المباشر",
+        bodyEn: "Every tile is a live aggregation. Scored, flagged, open cases — always reflects current mock data.",
+        bodyAr: "كل بطاقة تجميع لحظي. مسجَّل، مُرفَع، قضايا مفتوحة — دائماً يعكس البيانات الحالية.",
+      },
+      {
+        targetSelector: "[data-narrate-id='dashboard-sidebar']",
+        titleEn: "Single dashboard sidebar",
+        titleAr: "شريط جانبي موحَّد",
+        bodyEn: "Risk Assessment, OSINT, Watchlist, Cases, Person 360°, Audit, Entity Resolution, Reports — one operator shell.",
+        bodyAr: "تقييم المخاطر، OSINT، قائمة المراقبة، القضايا، ملف الشخص، التدقيق، حل الكيانات، التقارير — غلاف واحد.",
+      },
+      {
+        targetSelector: "[data-narrate-id='dashboard-event-feed']",
+        titleEn: "Unified event feed",
+        titleAr: "تدفق الأحداث الموحَّد",
+        bodyEn: "Every ingested signal surfaces here with source, classification, and timestamp.",
+        bodyAr: "كل إشارة مستوعبة تظهر هنا مع المصدر والتصنيف والطابع الزمني.",
+      },
+      {
+        targetSelector: "[data-narrate-id='dashboard-shortcut-osint']",
+        titleEn: "Jump to OSINT Risk Engine",
+        titleAr: "الانتقال إلى محرّك المخاطر OSINT",
+        bodyEn: "The signature module — 7 tabs, from Operator Queue to Model Governance.",
+        bodyAr: "الوحدة الأبرز — 7 تبويبات من قائمة المشغّل إلى حوكمة النموذج.",
+      },
+    ],
+  },
+  {
+    route: "/dashboard/osint-risk-engine",
+    title: "OSINT Risk Engine — feature tour",
+    titleAr: "جولة محرّك المخاطر OSINT",
+    steps: [
+      {
+        targetSelector: "[data-narrate-id='osint-overview-kpis']",
+        titleEn: "Unified score overview",
+        titleAr: "نظرة عامة على الدرجة الموحَّدة",
+        bodyEn: "24h throughput, flagged rate, average score, live source count, model version.",
+        bodyAr: "حجم 24 ساعة، نسبة التنبيه، متوسط الدرجة، عدد المصادر الحيّة، إصدار النموذج.",
+      },
+      {
+        targetSelector: "[data-narrate-id='osint-queue-first-row']",
+        titleEn: "Operator Queue",
+        titleAr: "قائمة المشغّل",
+        bodyEn: "Records sorted by unified score. Click a row to open Explainability with full lineage.",
+        bodyAr: "سجلات مرتَّبة بالدرجة الموحَّدة. اضغط على صف لفتح الشرح الكامل للسلسلة.",
+      },
+      {
+        targetSelector: "[data-narrate-id='osint-explain-coverage']",
+        titleEn: "Coverage strip",
+        titleAr: "شريط التغطية",
+        bodyEn: "Transparency — which sources contributed, which rules skipped, confidence gauge.",
+        bodyAr: "شفافية — أيّ مصادر ساهمت، أيّ قواعد تم تجاوزها، مقياس الثقة.",
+      },
+      {
+        targetSelector: "[data-narrate-id='osint-sequence-gap']",
+        titleEn: "Sequence Coherence anomaly",
+        titleAr: "شذوذ تماسك التسلسل",
+        bodyEn: "62h APIS → hotel gap triggers the Model 3 presence anomaly — rules alone wouldn't catch it.",
+        bodyAr: "فجوة 62 ساعة بين APIS والفندق تُفعِّل شذوذ الحضور — لا تكتشفها القواعد وحدها.",
+      },
+      {
+        targetSelector: "[data-narrate-id='osint-sources-mix']",
+        titleEn: "Source mix",
+        titleAr: "مزيج المصادر",
+        bodyEn: "8 public OSINT feeds + 9 internal streams. Classification-aware, refresh-aware.",
+        bodyAr: "8 تغذيات OSINT عامة + 9 تدفقات داخلية. واعية للتصنيف ولتردّد التحديث.",
+      },
+      {
+        targetSelector: "[data-narrate-id='osint-governance-drift']",
+        titleEn: "Model drift monitor",
+        titleAr: "مراقبة انحراف النموذج",
+        bodyEn: "30-day drift + calibration curve. Governance tab catches silent degradation.",
+        bodyAr: "انحراف 30 يوماً + منحنى المعايرة. تبويب الحوكمة يلتقط التراجع الصامت.",
+      },
+      {
+        targetSelector: "[data-narrate-id='osint-config-profile']",
+        titleEn: "Weight profiles",
+        titleAr: "ملفات الأوزان",
+        bodyEn: "Switch profiles for ETA vs API/PNR, or classified vs public. Every change is auditable.",
+        bodyAr: "بدّل الملفات بين ETA و API/PNR أو سرّي وعام. كل تغيير مسجَّل للتدقيق.",
+      },
+    ],
+  },
+  {
+    route: "/dashboard/person-360",
+    title: "Person 360° dossier",
+    titleAr: "ملف الشخص 360°",
+    steps: [
+      {
+        targetSelector: "[data-narrate-id='person-subject-header']",
+        titleEn: "Subject header",
+        titleAr: "ترويسة الشخص",
+        bodyEn: "Name, nationality, passport, unified score — everything the operator needs up top.",
+        bodyAr: "الاسم والجنسية والجواز والدرجة الموحَّدة — كل ما يحتاجه المشغّل في الأعلى.",
+      },
+      {
+        targetSelector: "[data-narrate-id='person-identity-cards']",
+        titleEn: "Identity breakdown",
+        titleAr: "تفصيل الهوية",
+        bodyEn: "Biographic, passport, national ID, aliases, contact — redacted by clearance.",
+        bodyAr: "المعلومات الشخصية، الجواز، الرقم الوطني، الأسماء البديلة، الاتصال — تُحجَب بالصلاحية.",
+      },
+      {
+        targetSelector: "[data-narrate-id='person-tab-movements']",
+        titleEn: "Movements timeline",
+        titleAr: "الجدول الزمني للحركات",
+        bodyEn: "Border, hotel, SIM, rental, MOL, municipality — one coherent cross-stream timeline.",
+        bodyAr: "حدود، فندق، شريحة، إيجار، توظيف، بلدية — جدول زمني واحد متعدد المصادر.",
+      },
+      {
+        targetSelector: "[data-narrate-id='person-tab-relationships']",
+        titleEn: "Entity graph",
+        titleAr: "شبكة الكيانات",
+        bodyEn: "Sponsor, employer, address — personalized PageRank feeds the Entity sub-score.",
+        bodyAr: "الكفيل، صاحب العمل، العنوان — PageRank مخصَّص يغذّي درجة الكيانات.",
+      },
+      {
+        targetSelector: "[data-narrate-id='person-tab-cases']",
+        titleEn: "Active cases",
+        titleAr: "القضايا النشطة",
+        bodyEn: "Every case touching this subject — status, severity, owner, last activity.",
+        bodyAr: "كل قضية تتعلق بهذا الشخص — الحالة، الخطورة، المالك، آخر نشاط.",
+      },
+    ],
+  },
+  {
+    route: "/dashboard/case-management",
+    title: "Case Management lifecycle",
+    titleAr: "دورة إدارة القضايا",
+    steps: [
+      {
+        targetSelector: "[data-narrate-id='cases-pipeline']",
+        titleEn: "Kanban pipeline",
+        titleAr: "خط الأنابيب",
+        bodyEn: "Draft → Open → Investigating → Pending Review → Closed. Drag or click to advance.",
+        bodyAr: "مسودّة → مفتوحة → قيد التحقيق → بانتظار المراجعة → مغلقة. اسحب أو اضغط للتقدم.",
+      },
+      {
+        targetSelector: "[data-narrate-id='cases-first-card']",
+        titleEn: "Case card",
+        titleAr: "بطاقة القضية",
+        bodyEn: "ID, severity, owner, linked subjects, classification. Click for full dossier.",
+        bodyAr: "المعرّف، الخطورة، المالك، الأشخاص المرتبطون، التصنيف. اضغط للملف الكامل.",
+      },
+      {
+        targetSelector: "[data-narrate-id='cases-disposition']",
+        titleEn: "Disposition gates",
+        titleAr: "بوّابات القرار",
+        bodyEn: "Closing requires a disposition: Confirmed Threat, False Positive, Insufficient Evidence, Transferred.",
+        bodyAr: "الإغلاق يستلزم قراراً: تهديد مؤكَّد، إنذار زائف، أدلّة غير كافية، مُحوَّلة.",
+      },
+      {
+        targetSelector: "[data-narrate-id='cases-notes']",
+        titleEn: "Case notes",
+        titleAr: "ملاحظات القضية",
+        bodyEn: "Every note is timestamped + actor-stamped + immutable. Feeds the Audit Log.",
+        bodyAr: "كل ملاحظة مختومة بالزمن والفاعل وغير قابلة للتعديل. تتدفق إلى سجل التدقيق.",
+      },
+      {
+        targetSelector: "[data-narrate-id='cases-stats']",
+        titleEn: "Rollup stats",
+        titleAr: "الإحصاءات التجميعية",
+        bodyEn: "Open / closed / average time-to-disposition — everything derived, nothing hardcoded.",
+        bodyAr: "مفتوحة / مغلقة / متوسط وقت القرار — كل شيء مُشتق وليس ثابتاً.",
+      },
+    ],
+  },
+  {
+    route: "/dashboard/audit-log",
+    title: "Audit Log viewer",
+    titleAr: "عارض سجل التدقيق",
+    steps: [
+      {
+        targetSelector: "[data-narrate-id='audit-filters']",
+        titleEn: "Event-type filters",
+        titleAr: "مرشّحات نوع الحدث",
+        bodyEn: "Score computed, rule fired, classified accessed, weight changed — slice by actor or severity.",
+        bodyAr: "حُسِبت درجة، أُطلقت قاعدة، وصول سرّي، تغيير وزن — قسِّم حسب الفاعل أو الخطورة.",
+      },
+      {
+        targetSelector: "[data-narrate-id='audit-first-row']",
+        titleEn: "One row = one immutable event",
+        titleAr: "كل صف = حدث ثابت",
+        bodyEn: "Actor + role + target + classification + detail payload. Signed, WORM storage.",
+        bodyAr: "الفاعل + الدور + الهدف + التصنيف + الحمولة. موقَّع، تخزين WORM.",
+      },
+      {
+        targetSelector: "[data-narrate-id='audit-export']",
+        titleEn: "Compliance export",
+        titleAr: "تصدير الامتثال",
+        bodyEn: "Feeds the Compliance Summary report. CSV / JSON / signed PDF.",
+        bodyAr: "يُغذّي تقرير ملخّص الامتثال. CSV / JSON / PDF موقَّع.",
+      },
+    ],
+  },
+  {
+    route: "/dashboard/entity-resolution",
+    title: "Entity Resolution queue",
+    titleAr: "قائمة حل الكيانات",
+    steps: [
+      {
+        targetSelector: "[data-narrate-id='entity-queue']",
+        titleEn: "Pending matches",
+        titleAr: "التطابقات المعلَّقة",
+        bodyEn: "Candidates ranked by match score. Human confirms or rejects — feeds training data.",
+        bodyAr: "المرشّحون مرتَّبون بدرجة التطابق. يُقرّ الإنسان أو يرفض — يغذّي بيانات التدريب.",
+      },
+      {
+        targetSelector: "[data-narrate-id='entity-first-pair']",
+        titleEn: "Side-by-side comparison",
+        titleAr: "مقارنة جنباً إلى جنب",
+        bodyEn: "Two candidate records, aligned field by field — name, DOB, passport, sponsor.",
+        bodyAr: "سجلان مرشّحان، مُحاذيان حقلاً بحقل — الاسم، الميلاد، الجواز، الكفيل.",
+      },
+      {
+        targetSelector: "[data-narrate-id='entity-actions']",
+        titleEn: "Resolve actions",
+        titleAr: "إجراءات الحل",
+        bodyEn: "Confirm same · Confirm different · Needs review. Logged and audited.",
+        bodyAr: "تأكيد التطابق · تأكيد الاختلاف · يحتاج مراجعة. مُسجَّل ومُدقَّق.",
+      },
+    ],
+  },
+];
+

@@ -11,6 +11,7 @@ import {
   type AuditEntry,
   type Classification,
 } from "@/mocks/osintData";
+import { useClearance, REDACTED_GLYPH } from "@/brand/clearance";
 
 // ── Meta maps (event type + role) ──────────────────────────────────────────
 type EventType = AuditEntry["eventType"];
@@ -51,7 +52,14 @@ const PAGE_SIZE = 12;
 
 const AuditLogPage = () => {
   const { isAr } = useOutletContext<DashboardOutletContext>();
+  const { canView } = useClearance();
   const now = Date.now();
+  // Wave 3 · D5 — classified_accessed rows hide their target_id unless
+  // the viewer has CLASSIFIED clearance. Everything else renders normally.
+  const redactTarget = (entry: AuditEntry): string => {
+    if (entry.eventType === "classified_accessed" && !canView("classified")) return REDACTED_GLYPH;
+    return entry.targetId;
+  };
 
   const [actorFilter, setActorFilter]   = useState<string>("all");
   const [eventFilter, setEventFilter]   = useState<EventType | "all">("all");
@@ -141,7 +149,7 @@ const AuditLogPage = () => {
           </div>
 
           {/* Filter bar */}
-          <div className="flex flex-wrap items-center gap-2">
+          <div data-narrate-id="audit-filters" className="flex flex-wrap items-center gap-2">
             {/* Actor */}
             <div className="flex items-center gap-1.5">
               <span className="text-[10px] font-bold tracking-widest uppercase font-['JetBrains_Mono'] text-gray-500">
@@ -218,6 +226,32 @@ const AuditLogPage = () => {
               <i className="ri-restart-line mr-1" />
               {isAr ? "إعادة التعيين" : "Reset"}
             </button>
+            {/* Compliance export — feeds the Reports suite Compliance Summary template. */}
+            <button data-narrate-id="audit-export"
+              type="button"
+              onClick={() => {
+                try {
+                  const csv = ["id,occurredAt,actor,role,eventType,classification,targetId"]
+                    .concat(filtered.map((e) => [
+                      e.id, e.occurredAt, e.actor.name, e.actor.role, e.eventType, e.classification, redactTarget(e),
+                    ].join(",")))
+                    .join("\n");
+                  const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+                  const url = URL.createObjectURL(blob);
+                  const a = document.createElement("a");
+                  a.href = url;
+                  a.download = "audit-log.csv";
+                  document.body.appendChild(a);
+                  a.click();
+                  document.body.removeChild(a);
+                  URL.revokeObjectURL(url);
+                } catch { /* noop */ }
+              }}
+              className="px-2.5 py-1 rounded-md text-[11px] font-bold cursor-pointer"
+              style={{ background: "rgba(184,138,60,0.12)", color: "#D6B47E", border: "1px solid #D6B47E55", fontFamily: "'JetBrains Mono', monospace" }}>
+              <i className="ri-file-download-line mr-1" />
+              {isAr ? "تصدير CSV" : "EXPORT CSV"}
+            </button>
             <span className="text-gray-500 text-xs font-['JetBrains_Mono']">
               {filtered.length} {isAr ? "سجلات" : "entries"}
             </span>
@@ -239,14 +273,16 @@ const AuditLogPage = () => {
               <div className="col-span-3">{isAr ? "التفاصيل" : "Details"}</div>
             </div>
 
-            {pageRows.map((e) => {
+            {pageRows.map((e, rowIdx) => {
               const ev = EVENT_META[e.eventType];
               const role = ROLE_META[e.actor.role];
               const critical = e.eventType === CRITICAL_EVENT;
               const ts = new Date(e.occurredAt);
               const tsStr = `${ts.toISOString().slice(0, 10)} ${ts.toISOString().slice(11, 19)}Z`;
               return (
-                <button key={e.id} onClick={() => setSelected(e)}
+                <button key={e.id}
+                  data-narrate-id={rowIdx === 0 ? "audit-first-row" : undefined}
+                  onClick={() => setSelected(e)}
                   className="w-full grid grid-cols-12 gap-2 px-4 py-2.5 border-b text-left cursor-pointer transition-colors hover:bg-white/[0.03]"
                   style={{
                     borderColor: "rgba(184,138,60,0.05)",
@@ -269,7 +305,20 @@ const AuditLogPage = () => {
                   <div className="col-span-1 flex items-center">
                     <ClassificationPill classification={e.classification} isAr={isAr} />
                   </div>
-                  <div className="col-span-2 text-gray-300 text-[11px] font-['JetBrains_Mono'] truncate">{e.targetId}</div>
+                  <div className="col-span-2 text-gray-300 text-[11px] font-['JetBrains_Mono'] truncate">
+                    {(() => {
+                      const val = redactTarget(e);
+                      const hidden = val === REDACTED_GLYPH;
+                      return (
+                        <span
+                          style={{ color: hidden ? "#6B7280" : undefined, letterSpacing: hidden ? "0.05em" : undefined }}
+                          title={hidden ? (isAr ? "مُخفى · يتطلب صلاحية سرّي" : "Redacted · CLASSIFIED clearance required") : undefined}
+                        >
+                          {val}
+                        </span>
+                      );
+                    })()}
+                  </div>
                   <div className="col-span-3 text-gray-500 text-[11px] font-['JetBrains_Mono'] truncate">
                     {Object.entries(e.details).slice(0, 2).map(([k, v], i, arr) => (
                       <span key={k}>
@@ -352,7 +401,15 @@ const AuditLogPage = () => {
                 </div>
                 <div className="rounded-md p-2" style={{ background: "rgba(255,255,255,0.03)" }}>
                   <div className="text-[9px] tracking-widest text-gray-600 font-['JetBrains_Mono']">{isAr ? "الهدف" : "TARGET"}</div>
-                  <div className="text-gray-200 font-['JetBrains_Mono']">{selected.targetId}</div>
+                  <div className="text-gray-200 font-['JetBrains_Mono']">
+                    {redactTarget(selected)}
+                    {redactTarget(selected) === REDACTED_GLYPH && (
+                      <span className="ml-2 text-[9px] text-gray-500 tracking-widest">
+                        <i className="ri-lock-line mr-0.5" />
+                        {isAr ? "يتطلب سرّي" : "REQUIRES CLASSIFIED"}
+                      </span>
+                    )}
+                  </div>
                 </div>
               </div>
 

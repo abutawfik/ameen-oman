@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
 import type { DashboardOutletContext } from "../DashboardLayout";
+import { useClearance, REDACTED_GLYPH } from "@/brand/clearance";
 import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   BarChart, Bar, Cell, ScatterChart, Scatter, Line, ReferenceLine,
@@ -37,7 +38,7 @@ import {
   type FeatureVector,
 } from "@/mocks/osintData";
 
-type Tab = "overview" | "queue" | "explain" | "sequence" | "sources" | "config" | "governance";
+type Tab = "overview" | "queue" | "explain" | "sequence" | "sources" | "config" | "governance" | "rasad";
 type SourceFilter = "all" | "osint" | "internal";
 
 // ─── Shared helpers ─────────────────────────────────────────────────────────
@@ -66,6 +67,34 @@ const timeSince = (iso: string): string => {
   const hr = Math.floor(min / 60);
   if (hr < 24) return `${hr}h ago`;
   return `${Math.floor(hr / 24)}d ago`;
+};
+
+// Redactable text — Wave 3 · D5. If viewer clearance is below the field's
+// classification, renders █████████ in a monospace redacted style with a
+// tooltip explaining what's required. Everything else falls through as text.
+const RedactableText = ({
+  fieldClass, value, className, style,
+}: {
+  fieldClass: Classification;
+  value: string;
+  className?: string;
+  style?: React.CSSProperties;
+}) => {
+  const { canView, clearance } = useClearance();
+  const visible = canView(fieldClass);
+  if (visible) {
+    return <span className={className} style={style}>{value}</span>;
+  }
+  const needed = CLASSIFICATION_META[fieldClass].label;
+  return (
+    <span
+      className={className}
+      style={{ ...style, fontFamily: "'JetBrains Mono', monospace", letterSpacing: "0.05em", color: "#6B7280" }}
+      title={`Redacted · ${needed} clearance required (viewer: ${CLASSIFICATION_META[clearance].label})`}
+    >
+      {REDACTED_GLYPH}
+    </span>
+  );
 };
 
 // Unified classification pill — used across Explain header, Queue rows,
@@ -277,6 +306,7 @@ const OsintRiskEnginePage = () => {
     { id: "sources",  icon: "ri-broadcast-line",    labelEn: "Sources",           labelAr: "المصادر", badge: TOTAL_OSINT_BASELINE + INTERNAL_STREAMS.length, badgeColor: "#4ADE80" },
     { id: "config",   icon: "ri-equalizer-line",    labelEn: "Configuration",     labelAr: "الإعدادات" },
     { id: "governance", icon: "ri-shield-star-line", labelEn: "Model Governance",  labelAr: "حوكمة النموذج" },
+    { id: "rasad",    icon: "ri-shield-keyhole-line", labelEn: "Rasad (Phase 2)", labelAr: "رصد · المرحلة 2" },
   ];
 
   return (
@@ -458,6 +488,7 @@ const OsintRiskEnginePage = () => {
           />
         )}
         {activeTab === "governance" && <GovernanceTab isAr={isAr} />}
+        {activeTab === "rasad" && <RasadTab isAr={isAr} onOpenConfig={() => setActiveTab("config")} onOpenAudit={() => navigate("/dashboard/audit-log")} />}
       </main>
     </div>
   );
@@ -486,7 +517,7 @@ const OverviewTab = ({ isAr, agg, presenterMode }: { isAr: boolean; agg: ReturnT
   return (
     <div className="space-y-6">
       {/* KPI strip */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+      <div data-narrate-id="osint-overview-kpis" className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
         {visibleKpis.map((k) => (
           <div key={k.label} className="rounded-xl border p-4"
             style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.12)" }}>
@@ -731,9 +762,10 @@ const QueueTab = ({
           <div className="col-span-1">{isAr ? "النطاق" : "Band"}</div>
           <div className="col-span-1 text-right">{isAr ? "الشرح" : "Explain"}</div>
         </div>
-        {records.map((r) => (
+        {records.map((r, rowIdx) => (
           <button
             key={r.id}
+            data-narrate-id={rowIdx === 0 ? "osint-queue-first-row" : undefined}
             onClick={() => onSelect(r)}
             className="w-full grid grid-cols-12 gap-2 px-4 py-3 border-b cursor-pointer transition-colors text-left hover:bg-white/[0.03]"
             style={{ borderColor: "rgba(184,138,60,0.05)" }}
@@ -756,7 +788,11 @@ const QueueTab = ({
             {/* Traveler */}
             <div className="col-span-3 flex flex-col justify-center min-w-0 gap-0.5">
               <div className="flex items-center gap-2 min-w-0">
-                <span className="text-white text-sm font-semibold truncate">{r.travelerName}</span>
+                <RedactableText
+                  fieldClass={r.classification}
+                  value={r.travelerName}
+                  className="text-white text-sm font-semibold truncate"
+                />
                 <ClassificationPill classification={r.classification} isAr={isAr} compact />
               </div>
               <span className="text-gray-600 text-xs font-['JetBrains_Mono'] truncate">{r.passportNumber}</span>
@@ -935,7 +971,7 @@ const ExplainTab = ({
       </div>
 
       {/* D3 — coverage strip */}
-      <div className="rounded-xl border px-4 py-3"
+      <div data-narrate-id="osint-explain-coverage" className="rounded-xl border px-4 py-3"
         style={{
           background: degraded
             ? "linear-gradient(135deg, rgba(201,138,27,0.08), rgba(10,37,64,0.8))"
@@ -1062,7 +1098,8 @@ const ExplainTab = ({
                             {c.confidence}
                           </span>
                         </div>
-                        <div className="text-gray-400 text-xs">{c.observed}</div>
+                        {/* D5 — redact observed text for classified records. */}
+                        <RedactableText fieldClass={record.classification} value={c.observed} className="text-gray-400 text-xs block" />
                       </div>
                       <div className="text-right flex-shrink-0">
                         <div className="text-[10px] text-gray-600 font-['JetBrains_Mono']">+pts</div>
@@ -1438,7 +1475,7 @@ const SequenceTab = ({ isAr }: { isAr: boolean }) => {
       </div>
 
       {/* Timeline rows */}
-      <div className="space-y-3">
+      <div data-narrate-id="osint-sequence-gap" className="space-y-3">
         {SEQUENCE_TIMELINES.map((t) => (
           <SequenceRow key={t.travelerId} timeline={t} isAr={isAr} />
         ))}
@@ -1583,7 +1620,7 @@ const SourcesTab = ({ isAr, presenterMode }: { isAr: boolean; presenterMode: boo
   ];
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4" data-narrate-id="osint-sources-mix">
       {/* Filter toggle */}
       <div className="flex flex-wrap items-center gap-2 p-3 rounded-xl border"
         style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.12)" }}>
@@ -1748,7 +1785,7 @@ const ConfigTab = ({
   return (
     <div className="space-y-4">
       {/* D5 — Weight Profile manager */}
-      <div className="rounded-xl border p-4"
+      <div data-narrate-id="osint-config-profile" className="rounded-xl border p-4"
         style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.12)" }}>
         <div className="flex items-start justify-between mb-3 gap-3 flex-wrap">
           <div>
@@ -1939,17 +1976,210 @@ const ConfigTab = ({
         </div>
       </div>
 
-      {/* Rules */}
-      <div className="rounded-xl border p-5"
-        style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.12)" }}>
-        <div className="flex items-center justify-between mb-4">
-          <div>
-            <h3 className="text-white text-sm font-bold">{isAr ? "قواعد التقييم" : "Scoring rules"}</h3>
-            <p className="text-gray-500 text-[11px] font-['JetBrains_Mono']">
-              {rules.filter((r) => r.enabled).length}/{rules.length} {isAr ? "نشطة" : "active"} · {rules.reduce((s, r) => s + r.firesLast24h, 0)} fires · 24h
-            </p>
-          </div>
+      {/* Rules — toggle between list + YAML view (Wave 3 · D1) */}
+      <RulesSection isAr={isAr} rules={rules} onRuleToggle={onRuleToggle} />
+    </div>
+  );
+};
+
+// ─── Rules section with YAML toggle (Wave 3 · D1) ─────────────────────────
+// Mirrors the Tech Spec §7.3 rules.yaml contract. Editor is a styled textarea
+// with a line-number gutter (Monaco-avoided — no new deps). Validate /
+// Reload / Reset / Download controls live above. Read-only by default;
+// the Edit toggle unlocks the textarea.
+
+const buildRulesYaml = (rules: RiskRule[]): string => {
+  const header = [
+    `# rules.yaml · ${rules.length} rules · v1.2.0 · loaded at ${new Date().toISOString()}`,
+    `# Each rule declares category, predicate, contribution, and required sources.`,
+    `# Hot-reload via POST /rules/reload (admin auth).`,
+    ``,
+  ].join("\n");
+  const body = rules.map((r) => {
+    const meta = DEFAULT_SUB_SCORE_WEIGHTS.find((w) => w.key === r.category)!;
+    // Light heuristic to pick a predicate shape from the human-readable threshold.
+    const predicate = /fuzzy/i.test(r.threshold)
+      ? `    type: fuzzy_match\n    against: opensanctions_entities\n    threshold: 0.92`
+      : /graph|hops/i.test(r.threshold)
+        ? `    type: graph_distance\n    against: sponsor_entity_graph\n    max_hops: 2\n    decay: 0.5`
+        : /outbreak/i.test(r.threshold)
+          ? `    type: outbreak_active\n    source: who_don\n    window_days: 14`
+          : /advisory/i.test(r.threshold)
+            ? `    type: threshold\n    signal: advisory_level\n    min: 3`
+            : /anomaly|z-score|iforest|Z-score/i.test(r.threshold)
+              ? `    type: threshold\n    signal: routing_iforest_score\n    min: 0.75`
+              : `    type: threshold\n    signal: ${r.category}_signal\n    note: "see spec §7.3"`;
+    const sources = meta.primarySources.map((s) => `"${s}"`).join(", ");
+    return [
+      `- id: ${r.id}`,
+      `  version: ${r.version}`,
+      `  category: ${r.category}`,
+      `  description: ${JSON.stringify(r.description)}`,
+      `  required_sources: [${sources}]`,
+      `  predicate:`,
+      predicate,
+      `  threshold_literal: ${JSON.stringify(r.threshold)}`,
+      `  contribution: ${r.contribution.toFixed(2)}`,
+      `  enabled: ${r.enabled ? "true" : "false"}`,
+      `  fires_last_24h: ${r.firesLast24h}`,
+      `  audit_level: ${r.contribution >= 0.8 ? "high" : r.contribution >= 0.5 ? "medium" : "low"}`,
+      ``,
+    ].join("\n");
+  }).join("\n");
+  return `${header}${body}`;
+};
+
+const RulesSection = ({
+  isAr, rules, onRuleToggle,
+}: {
+  isAr: boolean;
+  rules: RiskRule[];
+  onRuleToggle: (id: string) => void;
+}) => {
+  const [view, setView] = useState<"list" | "yaml">("list");
+  const [editable, setEditable] = useState(false);
+  const [dirty, setDirty] = useState(false);
+  const [docReference, setDocReference] = useState(false);
+  const [yamlText, setYamlText] = useState(() => buildRulesYaml(rules));
+  const [toast, setToast] = useState<{ msg: string; kind: "ok" | "reload" | "info" } | null>(null);
+
+  // Whenever the rule toggle changes upstream, regenerate the YAML unless the
+  // user has actively edited it (then we preserve their pending text).
+  useEffect(() => {
+    if (!dirty) setYamlText(buildRulesYaml(rules));
+  }, [rules, dirty]);
+
+  const fireToast = (msg: string, kind: "ok" | "reload" | "info") => {
+    setToast({ msg, kind });
+    window.setTimeout(() => setToast(null), 4000);
+  };
+
+  const handleValidate = () => {
+    fireToast(
+      isAr
+        ? `✓ ${rules.length} قواعد · صيغة صالحة · تم حل أنواع المسندات`
+        : `✓ ${rules.length} rules · syntax valid · predicate types resolved`,
+      "ok",
+    );
+  };
+
+  const handleReload = () => {
+    const auditId = `R-RELOAD-${new Date().toISOString().slice(0, 10)}-${String(Math.floor(Math.random() * 900 + 100))}`;
+    fireToast(
+      isAr
+        ? `تمّ التحميل الساخن · تمّ التطبيق على التسجيل المباشر · خلال 340ms · ${auditId}`
+        : `Reloading... ✓ Rules applied to live scoring · completed in 340ms · audit entry ${auditId} created`,
+      "reload",
+    );
+    setDirty(false);
+  };
+
+  const handleReset = () => {
+    setYamlText(buildRulesYaml(rules));
+    setDirty(false);
+    fireToast(isAr ? "تمّ استرجاع الملف من الذاكرة" : "Reverted to file contents", "info");
+  };
+
+  const handleDownload = () => {
+    try {
+      const blob = new Blob([yamlText], { type: "text/yaml;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "rules.yaml";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    } catch {
+      fireToast(isAr ? "تعذّر التنزيل" : "Download failed", "info");
+    }
+  };
+
+  const lineCount = yamlText.split("\n").length;
+  const lineNumbers = Array.from({ length: lineCount }, (_, i) => i + 1);
+
+  return (
+    <div className="rounded-xl border p-5"
+      style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.12)" }}>
+      {/* Section header + view toggle */}
+      <div className="flex items-center justify-between flex-wrap gap-3 mb-4">
+        <div>
+          <h3 className="text-white text-sm font-bold flex items-center gap-2">
+            {isAr ? "قواعد التقييم" : "Scoring rules"}
+            {dirty && (
+              <span className="px-1.5 py-0.5 rounded text-[9px] font-bold tracking-widest font-['JetBrains_Mono']"
+                style={{ background: "rgba(201,138,27,0.15)", color: "#C98A1B", border: "1px solid #C98A1B55" }}>
+                {isAr ? "تعديلات معلّقة" : "PENDING CHANGES"}
+              </span>
+            )}
+          </h3>
+          <p className="text-gray-500 text-[11px] font-['JetBrains_Mono']">
+            {rules.filter((r) => r.enabled).length}/{rules.length} {isAr ? "نشطة" : "active"} · {rules.reduce((s, r) => s + r.firesLast24h, 0)} fires · 24h
+          </p>
         </div>
+
+        <div className="flex items-center gap-2">
+          {/* View toggle pill */}
+          <div className="flex gap-1 p-0.5 rounded-lg"
+            style={{ background: "rgba(10,37,64,0.85)", border: "1px solid rgba(184,138,60,0.15)" }}>
+            {([
+              { id: "list", iconCls: "ri-list-check-2", labelEn: "Toggle list", labelAr: "قائمة التبديل" },
+              { id: "yaml", iconCls: "ri-code-s-slash-line", labelEn: "YAML", labelAr: "YAML" },
+            ] as const).map((v) => {
+              const active = view === v.id;
+              return (
+                <button key={v.id} type="button" onClick={() => setView(v.id)}
+                  className="px-3 py-1 rounded-md text-xs font-semibold cursor-pointer flex items-center gap-1.5"
+                  style={{
+                    background: active ? "rgba(184,138,60,0.15)" : "transparent",
+                    color: active ? "#D6B47E" : "#9CA3AF",
+                    border: `1px solid ${active ? "#D6B47E" : "transparent"}`,
+                  }}>
+                  <i className={v.iconCls} />
+                  {isAr ? v.labelAr : v.labelEn}
+                </button>
+              );
+            })}
+          </div>
+
+          {view === "yaml" && (
+            <button type="button" onClick={() => setEditable((e) => !e)}
+              className="px-3 py-1.5 rounded-md text-xs font-bold cursor-pointer flex items-center gap-1.5"
+              style={{
+                background: editable ? "rgba(74,222,128,0.12)" : "rgba(255,255,255,0.04)",
+                color: editable ? "#4ADE80" : "#9CA3AF",
+                border: `1px solid ${editable ? "#4ADE8055" : "rgba(255,255,255,0.1)"}`,
+              }}>
+              <i className={editable ? "ri-edit-fill" : "ri-edit-line"} />
+              {editable ? (isAr ? "وضع التحرير" : "Edit mode") : (isAr ? "تحرير" : "Edit")}
+            </button>
+          )}
+        </div>
+      </div>
+
+      {/* Toast */}
+      {toast && (
+        <div className="mb-3 rounded-lg border px-3 py-2 text-xs"
+          style={{
+            background: toast.kind === "ok"
+              ? "rgba(74,222,128,0.08)"
+              : toast.kind === "reload"
+                ? "rgba(107,79,174,0.1)"
+                : "rgba(184,138,60,0.08)",
+            borderColor: toast.kind === "ok"
+              ? "rgba(74,222,128,0.35)"
+              : toast.kind === "reload"
+                ? "rgba(107,79,174,0.35)"
+                : "rgba(184,138,60,0.35)",
+            color: toast.kind === "ok" ? "#4ADE80" : toast.kind === "reload" ? "#B8A0FF" : "#D6B47E",
+            fontFamily: "'JetBrains Mono', monospace",
+          }}>
+          {toast.msg}
+        </div>
+      )}
+
+      {view === "list" ? (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           {rules.map((r) => {
             const meta = DEFAULT_SUB_SCORE_WEIGHTS.find((w) => w.key === r.category)!;
@@ -1986,7 +2216,112 @@ const ConfigTab = ({
             );
           })}
         </div>
-      </div>
+      ) : (
+        <div className="space-y-3">
+          {/* Controls */}
+          <div className="flex flex-wrap items-center gap-2">
+            <button type="button" onClick={handleValidate}
+              className="px-3 py-1.5 rounded-md text-xs font-bold cursor-pointer flex items-center gap-1.5"
+              style={{ background: "transparent", color: "#D6B47E", border: "1px solid #D6B47E55", fontFamily: "'JetBrains Mono', monospace" }}>
+              <i className="ri-check-line" />
+              {isAr ? "تحقّق" : "Validate"}
+            </button>
+            <button type="button" onClick={handleReload}
+              className="px-3 py-1.5 rounded-md text-xs font-bold cursor-pointer flex items-center gap-1.5"
+              style={{ background: "#8A1F3C", color: "#FFFFFF", border: "1px solid #C94A5E", fontFamily: "'JetBrains Mono', monospace" }}>
+              <i className="ri-refresh-line" />
+              {isAr ? "إعادة تحميل" : "Reload rules"}
+            </button>
+            <button type="button" onClick={handleReset}
+              className="px-3 py-1.5 rounded-md text-xs font-bold cursor-pointer flex items-center gap-1.5"
+              style={{ background: "rgba(255,255,255,0.04)", color: "#9CA3AF", border: "1px solid rgba(255,255,255,0.1)", fontFamily: "'JetBrains Mono', monospace" }}>
+              <i className="ri-restart-line" />
+              {isAr ? "استعادة" : "Reset to file"}
+            </button>
+            <button type="button" onClick={handleDownload}
+              className="px-3 py-1.5 rounded-md text-xs font-bold cursor-pointer flex items-center gap-1.5"
+              style={{ background: "rgba(255,255,255,0.04)", color: "#9CA3AF", border: "1px solid rgba(255,255,255,0.1)", fontFamily: "'JetBrains Mono', monospace" }}>
+              <i className="ri-download-2-line" />
+              {isAr ? "تنزيل .yaml" : "Download .yaml"}
+            </button>
+            <span className="ml-auto text-[10px] font-['JetBrains_Mono'] text-gray-500">
+              {lineCount} {isAr ? "سطراً" : "lines"} · {yamlText.length.toLocaleString()} {isAr ? "رمزاً" : "chars"}
+            </span>
+          </div>
+
+          {/* Editor — textarea + gutter. Mono theme keeps it honest without
+              pulling in Monaco. */}
+          <div className="rounded-lg overflow-hidden flex"
+            style={{ background: "var(--alm-ocean-900, #061B30)", border: "1px solid rgba(184,138,60,0.25)" }}>
+            <div className="flex-shrink-0 px-3 py-3 select-none text-right"
+              style={{
+                background: "rgba(10,37,64,0.85)",
+                borderRight: "1px solid rgba(184,138,60,0.15)",
+                minWidth: 48,
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: 12,
+                lineHeight: 1.55,
+                color: "#6B7280",
+              }}>
+              {lineNumbers.map((n) => <div key={n}>{n}</div>)}
+            </div>
+            <textarea
+              value={yamlText}
+              readOnly={!editable}
+              spellCheck={false}
+              wrap="off"
+              onChange={(e) => {
+                setYamlText(e.target.value);
+                setDirty(true);
+              }}
+              className="flex-1 p-3 min-h-[360px] outline-none resize-vertical"
+              style={{
+                background: "transparent",
+                color: "#D6B47E",
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: 12,
+                lineHeight: 1.55,
+                whiteSpace: "pre",
+                overflowX: "auto",
+                caretColor: "#D6B47E",
+              }}
+            />
+          </div>
+
+          {/* Predicate DSL reference — collapsible help panel */}
+          <button type="button"
+            onClick={() => setDocReference((d) => !d)}
+            className="w-full flex items-center justify-between px-3 py-2 rounded-md cursor-pointer"
+            style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }}>
+            <span className="text-xs font-bold flex items-center gap-2"
+              style={{ color: "#D6B47E", fontFamily: "'JetBrains Mono', monospace" }}>
+              <i className="ri-book-2-line" />
+              {isAr ? "مرجع لغة المسندات" : "Predicate DSL reference"}
+            </span>
+            <i className={docReference ? "ri-arrow-up-s-line text-gray-400" : "ri-arrow-down-s-line text-gray-400"} />
+          </button>
+          {docReference && (
+            <div className="rounded-md p-3 text-[11px]"
+              style={{ background: "rgba(10,37,64,0.85)", border: "1px solid rgba(184,138,60,0.15)", fontFamily: "'JetBrains Mono', monospace", color: "#9CA3AF" }}>
+              <pre className="whitespace-pre-wrap">{`predicate: one of
+  - fuzzy_match { against, threshold }
+  - graph_distance { against, max_hops, decay }
+  - threshold { signal, min | max }
+  - outbreak_active { source, window_days }
+  - signal_exists { signal }
+  - and { of: [...] }
+  - or { of: [...] }
+  - not { of: ... }
+
+contribution: 0.0 - 1.0          # scales the sub-score points
+required_sources: [...]          # rule is skipped if any missing
+enabled: true | false
+audit_level: low | medium | high # controls audit + retention`}
+              </pre>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 };
@@ -2031,7 +2366,7 @@ const GovernanceTab = ({ isAr }: { isAr: boolean }) => {
   };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4" data-narrate-id="osint-governance-drift">
       {/* 12-col governance grid */}
       <div className="grid grid-cols-12 gap-4">
 
@@ -2301,6 +2636,275 @@ const GovernanceTab = ({ isAr }: { isAr: boolean }) => {
               })}
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// ─── Rasad (Phase 2) teaser tab — Wave 3 · D2 ───────────────────────────
+// Read-only preview of the classified-feed integration pathway. Frames how
+// Rasad would plug in once access is provisioned: adapter contract,
+// classification-aware routing, shadow-mode score preview, transition plan.
+// No actual Rasad data is ingested — all numbers are synthetic +12pt boosts.
+
+const RasadTab = ({
+  isAr, onOpenConfig, onOpenAudit,
+}: {
+  isAr: boolean;
+  onOpenConfig: () => void;
+  onOpenAudit: () => void;
+}) => {
+  const CHECKLIST: { done: boolean; labelEn: string; labelAr: string; linkLabel: string; linkLabelAr: string; onClick?: () => void }[] = [
+    { done: true, labelEn: "Source abstraction layer — identical adapter contract", labelAr: "طبقة تجريد المصادر — عقد مهايئ موحَّد", linkLabel: "see §5.1.1", linkLabelAr: "انظر §5.1.1" },
+    { done: true, labelEn: "Classification-aware routing — CLASSIFIED label flows end-to-end", labelAr: "توجيه واعٍ بالتصنيف — تسمية سرّي تسري من البداية للنهاية", linkLabel: "see Queue", linkLabelAr: "انظر القائمة" },
+    { done: true, labelEn: "Separate weight profile — 'Classified · Rasad-weighted' (see Config tab)", labelAr: "ملف أوزان منفصل — 'سرّي · موزون برصد' (انظر الإعدادات)", linkLabel: "open Config", linkLabelAr: "فتح الإعدادات", onClick: onOpenConfig },
+    { done: true, labelEn: "Segregated audit logging — all Rasad access flagged `classified_accessed`", labelAr: "سجل تدقيق منفصل — كل وصول لرصد يُعلَّم classified_accessed", linkLabel: "open Audit", linkLabelAr: "فتح التدقيق", onClick: onOpenAudit },
+    { done: false, labelEn: "Access provisioned — pending formal agreement with ROP + data owners", labelAr: "الصلاحية ممنوحة — بانتظار اتفاق رسمي مع الشرطة ومُلّاك البيانات", linkLabel: "Phase 2", linkLabelAr: "المرحلة 2" },
+  ];
+
+  const TRANSITION_STEPS: { icon: string; titleEn: string; titleAr: string; bodyEn: string; bodyAr: string; days: number }[] = [
+    { icon: "ri-node-tree", titleEn: "Schema alignment", titleAr: "محاذاة المخطط", bodyEn: "Rasad field-level mapping to unified Signal schema.", bodyAr: "ربط حقول رصد بمخطط الإشارات الموحَّد.", days: 3 },
+    { icon: "ri-shield-keyhole-line", titleEn: "Classification policy", titleAr: "سياسة التصنيف", bodyEn: "Retention + access + audit flow agreements.", bodyAr: "اتفاقيات الاحتفاظ والوصول وتدفق التدقيق.", days: 5 },
+    { icon: "ri-scales-3-line", titleEn: "Weight calibration", titleAr: "معايرة الأوزان", bodyEn: "Tune Classified weight profile against representative traffic.", bodyAr: "ضبط ملف الأوزان السرّي على حركة تمثيلية.", days: 7 },
+    { icon: "ri-shadow-line", titleEn: "Parallel-run validation", titleAr: "التحقّق بالتشغيل المتوازي", bodyEn: "Shadow Rasad scoring vs OSINT-only baseline.", bodyAr: "تشغيل Rasad كظل مقابل خط الأساس OSINT.", days: 14 },
+  ];
+  const totalDays = TRANSITION_STEPS.reduce((s, x) => s + x.days, 0);
+
+  // Pick 3 records for the shadow-mode preview — grab variety of bands.
+  const shadowRecords = useMemo(() => {
+    const byId = (id: string) => SCORED_RECORDS.find((r) => r.id === id)!;
+    return [byId("demo-borderline"), byId("demo-highrisk-sponsor"), byId("demo-anomaly")].filter(Boolean) as ScoredRecord[];
+  }, []);
+
+  return (
+    <div className="space-y-4">
+      {/* Banner — framing + classification chip */}
+      <div className="rounded-xl border p-5 flex items-start gap-4 flex-wrap"
+        style={{
+          background: "linear-gradient(135deg, rgba(138,31,60,0.12), rgba(10,37,64,0.8))",
+          borderColor: "rgba(138,31,60,0.45)",
+        }}>
+        <div className="w-12 h-12 flex items-center justify-center rounded-xl flex-shrink-0"
+          style={{ background: "rgba(138,31,60,0.18)", border: "1px solid rgba(201,74,94,0.4)" }}>
+          <i className="ri-shield-keyhole-line text-2xl" style={{ color: "#C94A5E" }} />
+        </div>
+        <div className="flex-1 min-w-[260px]">
+          <div className="flex items-center gap-2 flex-wrap">
+            <h2 className="text-white text-xl font-bold">{isAr ? "رصد · المرحلة 2" : "Rasad · Phase 2"}</h2>
+            <span className="px-2 py-0.5 rounded-md text-[10px] font-bold tracking-widest font-['JetBrains_Mono']"
+              style={{ background: CLASSIFICATION_META.classified.bg, color: CLASSIFICATION_META.classified.color, border: `1px solid ${CLASSIFICATION_META.classified.color}55` }}>
+              {isAr ? CLASSIFICATION_META.classified.labelAr : CLASSIFICATION_META.classified.label}
+            </span>
+            <span className="px-2 py-0.5 rounded-md text-[10px] font-bold tracking-widest font-['JetBrains_Mono']"
+              style={{ background: "rgba(107,79,174,0.12)", color: "#B8A0FF", border: "1px solid rgba(107,79,174,0.3)" }}>
+              {isAr ? "معاينة للقراءة فقط" : "READ-ONLY PREVIEW"}
+            </span>
+          </div>
+          <p className="text-gray-300 text-sm mt-1 leading-relaxed">
+            {isAr
+              ? "عرض للكيفية التي ستتكامل بها تغذيات رصد المُصنَّفة حين تُمنح الصلاحيات. لا بيانات رصد فعلية مستوعبة هنا — الأرقام اصطناعية لتوضيح المسار."
+              : "How classified Rasad feeds would integrate when access is granted. No actual Rasad data is ingested here — figures are synthetic to illustrate the pathway."}
+          </p>
+        </div>
+      </div>
+
+      {/* Panel 1 + Panel 2 — 6/6 row */}
+      <div className="grid grid-cols-12 gap-4">
+        {/* Readiness checklist */}
+        <div className="col-span-12 lg:col-span-6 rounded-xl border p-5"
+          style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.12)" }}>
+          <h3 className="text-white text-sm font-bold mb-3 flex items-center gap-2">
+            <i className="ri-checkbox-multiple-line text-[#D6B47E]" />
+            {isAr ? "قائمة الجاهزية" : "Readiness checklist"}
+          </h3>
+          <ul className="space-y-2">
+            {CHECKLIST.map((item, i) => (
+              <li key={i} className="flex items-start gap-3 p-2 rounded-md"
+                style={{ background: item.done ? "rgba(74,222,128,0.05)" : "rgba(201,138,27,0.05)", border: `1px solid ${item.done ? "rgba(74,222,128,0.2)" : "rgba(201,138,27,0.25)"}` }}>
+                <div className="w-6 h-6 flex items-center justify-center rounded-md flex-shrink-0"
+                  style={{
+                    background: item.done ? "rgba(74,222,128,0.15)" : "rgba(201,138,27,0.15)",
+                    color: item.done ? "#4ADE80" : "#C98A1B",
+                  }}>
+                  <i className={item.done ? "ri-check-line" : "ri-pause-line"} />
+                </div>
+                <span className="flex-1 text-gray-200 text-xs leading-snug">{isAr ? item.labelAr : item.labelEn}</span>
+                {item.onClick ? (
+                  <button type="button" onClick={item.onClick}
+                    className="text-[10px] font-bold font-['JetBrains_Mono'] tracking-widest cursor-pointer flex items-center gap-0.5"
+                    style={{ color: "#D6B47E" }}>
+                    {isAr ? item.linkLabelAr : item.linkLabel} <i className="ri-arrow-right-s-line" />
+                  </button>
+                ) : (
+                  <span className="text-[10px] font-['JetBrains_Mono'] text-gray-500">{isAr ? item.linkLabelAr : item.linkLabel}</span>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Classified adapter shape */}
+        <div className="col-span-12 lg:col-span-6 rounded-xl border p-5"
+          style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.12)" }}>
+          <h3 className="text-white text-sm font-bold mb-3 flex items-center gap-2">
+            <i className="ri-code-box-line text-[#D6B47E]" />
+            {isAr ? "شكل المهايئ المُصنَّف" : "Classified adapter shape"}
+          </h3>
+          <pre className="rounded-lg p-3 text-[11px] overflow-auto"
+            style={{
+              background: "var(--alm-ocean-900, #061B30)",
+              border: "1px solid rgba(184,138,60,0.18)",
+              fontFamily: "'JetBrains Mono', monospace",
+              color: "#D6B47E",
+              lineHeight: 1.55,
+              maxHeight: 340,
+            }}>
+{`class RasadAdapter implements BaseAdapter {
+  name            = "rasad";
+  source_class    = ClassificationLabel.CLASSIFIED;
+  expected_refresh = timedelta(hours = 1);
+
+  async fetch(since: Date): AsyncIterable<RawPayload> {
+    // mTLS + classified handshake
+    // retention: 7 days raw, audit indefinite
+  }
+
+  normalize(raw: RawPayload): Array<Event | Entity | Signal> {
+    // classification_max stays CLASSIFIED
+    // across all derived records
+  }
+
+  health(): ConnectorHealth {
+    return {
+      status: "healthy",
+      lastSuccess: new Date(),
+      latencyMs: 240,
+      classification: "classified",
+    };
+  }
+}`}
+          </pre>
+        </div>
+      </div>
+
+      {/* Panel 3 — Transition plan (full-width horizontal flow) */}
+      <div className="rounded-xl border p-5"
+        style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.12)" }}>
+        <div className="flex items-start justify-between mb-4 flex-wrap gap-2">
+          <div>
+            <h3 className="text-white text-sm font-bold flex items-center gap-2">
+              <i className="ri-route-line text-[#D6B47E]" />
+              {isAr ? "خطة الانتقال" : "Transition plan"}
+            </h3>
+            <p className="text-gray-500 text-[11px] font-['JetBrains_Mono']">
+              {isAr ? "خطوات الإدماج حتى التشغيل الموازي" : "Integration steps up to parallel-run validation"}
+            </p>
+          </div>
+          <span className="px-3 py-1 rounded-md text-xs font-bold font-['JetBrains_Mono'] tracking-widest"
+            style={{ background: "rgba(184,138,60,0.15)", color: "#D6B47E", border: "1px solid #D6B47E55" }}>
+            {isAr ? "الإجمالي" : "TOTAL"} {totalDays} {isAr ? "يوم عمل" : "working days"}
+          </span>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+          {TRANSITION_STEPS.map((s, i) => (
+            <div key={s.titleEn} className="relative rounded-lg border p-4 flex flex-col gap-2"
+              style={{ background: "rgba(255,255,255,0.02)", borderColor: "rgba(184,138,60,0.18)" }}>
+              <div className="flex items-start justify-between">
+                <div className="w-10 h-10 flex items-center justify-center rounded-lg"
+                  style={{ background: "rgba(184,138,60,0.12)", border: "1px solid #D6B47E55" }}>
+                  <i className={`${s.icon} text-lg`} style={{ color: "#D6B47E" }} />
+                </div>
+                <span className="text-[10px] font-bold font-['JetBrains_Mono'] text-gray-600">
+                  {isAr ? "خطوة" : "STEP"} {i + 1}
+                </span>
+              </div>
+              <h4 className="text-white text-sm font-bold">{isAr ? s.titleAr : s.titleEn}</h4>
+              <p className="text-gray-400 text-xs leading-snug flex-1">{isAr ? s.bodyAr : s.bodyEn}</p>
+              <span className="px-2 py-0.5 rounded-md text-[10px] font-bold font-['JetBrains_Mono'] self-start"
+                style={{ background: "rgba(107,79,174,0.12)", color: "#B8A0FF" }}>
+                ~{s.days} {isAr ? "يوم" : "days"}
+              </span>
+              {/* Arrow to next step */}
+              {i < TRANSITION_STEPS.length - 1 && (
+                <i className="hidden md:block ri-arrow-right-s-line absolute -right-5 top-1/2 -translate-y-1/2 text-2xl"
+                  style={{ color: "#D6B47E55" }} />
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Panel 4 — Shadow-mode preview */}
+      <div className="rounded-xl border p-5"
+        style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.12)" }}>
+        <div className="flex items-start justify-between mb-4 flex-wrap gap-2">
+          <div>
+            <h3 className="text-white text-sm font-bold flex items-center gap-2">
+              <i className="ri-shadow-line text-[#D6B47E]" />
+              {isAr ? "معاينة وضع الظل" : "Shadow-mode preview"}
+            </h3>
+            <p className="text-gray-500 text-[11px] font-['JetBrains_Mono']">
+              {isAr
+                ? "وضع الظل — لا بيانات رصد حقيقية. هذه المعاينة تستخدم تعزيزات اصطناعية +12 نقطة لتوضيح كيف تضيف رصد الفروق الدقيقة."
+                : "Shadow-mode — no Rasad data actually ingested. This preview uses synthetic +12-point boosts to illustrate the integration."}
+            </p>
+          </div>
+        </div>
+
+        <div className="space-y-2">
+          {/* Header row */}
+          <div className="grid grid-cols-12 gap-2 px-3 py-2 text-[10px] font-bold tracking-widest uppercase font-['JetBrains_Mono'] text-gray-500 border-b"
+            style={{ borderColor: "rgba(184,138,60,0.08)" }}>
+            <div className="col-span-3">{isAr ? "المسافر" : "Traveler"}</div>
+            <div className="col-span-2 text-center">{isAr ? "درجة OSINT" : "OSINT-only"}</div>
+            <div className="col-span-1 text-center" />
+            <div className="col-span-2 text-center">{isAr ? "OSINT + رصد" : "OSINT + Rasad"}</div>
+            <div className="col-span-1 text-center">{isAr ? "Δ" : "Δ"}</div>
+            <div className="col-span-3">{isAr ? "المُساهم من رصد (محاكى)" : "Top contributor from Rasad (simulated)"}</div>
+          </div>
+
+          {shadowRecords.map((r, i) => {
+            const rasadBoost = 12 + (i * 2); // +12 / +14 / +16 synthetic
+            const withRasad = Math.min(100, r.unifiedScore + rasadBoost);
+            const simulatedContributor = i === 0
+              ? { en: "Classified HUMINT source — travel intent corroboration", ar: "مصدر استخبارات بشرية مُصنَّف — تأكيد نيّة السفر" }
+              : i === 1
+                ? { en: "Classified sponsor graph edge — undeclared beneficial owner", ar: "حافّة رسم بياني مُصنَّفة — مالك مستتر غير مُعلَن" }
+                : { en: "Classified telemetry — device proximity cluster at origin", ar: "قياسات مُصنَّفة — تجمّع قرب الأجهزة عند المنشأ" };
+            return (
+              <div key={r.id} className="grid grid-cols-12 gap-2 px-3 py-3 items-center rounded-md"
+                style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.04)" }}>
+                <div className="col-span-3 flex items-center gap-2 min-w-0">
+                  <span className="text-white text-sm font-semibold truncate">{r.travelerName}</span>
+                  <ClassificationPill classification={r.classification} isAr={isAr} compact />
+                </div>
+                <div className="col-span-2 text-center">
+                  <span className="inline-flex items-center justify-center w-12 h-12 rounded-lg font-black font-['JetBrains_Mono']"
+                    style={{ background: `${scoreColor(r.band)}18`, color: scoreColor(r.band), border: `2px solid ${scoreColor(r.band)}55` }}>
+                    {r.unifiedScore}
+                  </span>
+                </div>
+                <div className="col-span-1 text-center text-gray-500 text-2xl">
+                  <i className="ri-arrow-right-s-line" />
+                </div>
+                <div className="col-span-2 text-center">
+                  <span className="inline-flex items-center justify-center w-12 h-12 rounded-lg font-black font-['JetBrains_Mono']"
+                    style={{ background: "rgba(184,138,60,0.18)", color: "#D6B47E", border: "2px solid #D6B47E" }}>
+                    {withRasad}
+                  </span>
+                </div>
+                <div className="col-span-1 text-center font-bold text-sm font-['JetBrains_Mono']"
+                  style={{ color: "#D6B47E" }}>
+                  +{rasadBoost}
+                </div>
+                <div className="col-span-3 text-gray-300 text-xs leading-snug">
+                  <i className="ri-sparkling-line mr-1" style={{ color: "#D6B47E" }} />
+                  <span className="italic">{isAr ? simulatedContributor.ar : simulatedContributor.en}</span>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
