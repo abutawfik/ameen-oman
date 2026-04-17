@@ -107,16 +107,23 @@ body {
  * (usually Arial / system) — NOT Cairo. That's the bug users see.
  *
  * This rule forces Cairo on every element in an RTL / Arabic-locale
- * subtree, EXCEPT monospace metadata (classification IDs, timestamps,
- * mock passport numbers — those stay JetBrains Mono and don't contain
- * Arabic). The `!important` flag beats component-level inline styles
- * and Tailwind arbitrary classes like `font-['Inter']`.
+ * subtree, EXCEPT:
+ *   · monospace metadata (classification IDs, timestamps, passport
+ *     numbers — stay JetBrains Mono, ASCII-only anyway)
+ *   · Remixicon glyphs (`ri-*` classes use their own icon font where
+ *     each class maps to a Unicode codepoint — overriding font-family
+ *     makes the icon vanish because Cairo has no codepoint mapping)
+ *   · FontAwesome glyphs (`fa-*`, `fas`, `far`, `fab`, `fal` — same)
+ *   · <i> tag broadly treated as an icon host
+ *
+ * The `!important` flag beats component-level inline styles and
+ * Tailwind arbitrary classes like `font-['Inter']`.
  *
  * In EN mode this rule doesn't fire, so Cormorant / Inter keep their
  * ceremonial roles on Latin-script surfaces.
  * ================================================================ */
-html[lang="ar"] *:not(.font-mono):not([class*="JetBrains"]):not(pre):not(code):not(kbd):not(samp),
-html[dir="rtl"] *:not(.font-mono):not([class*="JetBrains"]):not(pre):not(code):not(kbd):not(samp) {
+html[lang="ar"] *:not(.font-mono):not([class*="JetBrains"]):not([class*="ri-"]):not([class*="fa-"]):not(.fas):not(.far):not(.fab):not(.fal):not(i):not(pre):not(code):not(kbd):not(samp),
+html[dir="rtl"] *:not(.font-mono):not([class*="JetBrains"]):not([class*="ri-"]):not([class*="fa-"]):not(.fas):not(.far):not(.fab):not(.fal):not(i):not(pre):not(code):not(kbd):not(samp) {
   font-family: 'Cairo', 'Tajawal', 'IBM Plex Sans Arabic', ui-sans-serif, system-ui, sans-serif !important;
 }
 
@@ -126,6 +133,21 @@ html[dir="rtl"] .font-mono,
 html[lang="ar"] [class*="JetBrains"],
 html[dir="rtl"] [class*="JetBrains"] {
   font-family: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace !important;
+}
+
+/* Keep icon fonts explicit — Remixicon + FontAwesome both need their own
+   font-family to map class codes to glyphs. The universal `<i>` bypass
+   above already covers the common case; these rules re-assert the icon
+   font in case an author wraps an icon in a non-<i> element. */
+html[lang="ar"] [class*="ri-"],
+html[dir="rtl"] [class*="ri-"] {
+  font-family: 'remixicon' !important;
+}
+html[lang="ar"] [class*="fa-"],
+html[lang="ar"] .fas, html[lang="ar"] .far, html[lang="ar"] .fab, html[lang="ar"] .fal,
+html[dir="rtl"] [class*="fa-"],
+html[dir="rtl"] .fas, html[dir="rtl"] .far, html[dir="rtl"] .fab, html[dir="rtl"] .fal {
+  font-family: 'Font Awesome 6 Free', 'Font Awesome 6 Brands', 'Font Awesome 6 Pro', 'FontAwesome' !important;
 }
 
 /* ── Global keyframes used across pages ── */
