@@ -34,6 +34,36 @@ body {
   font-family: var(--alm-font-sans);
 }
 
+/* ================================================================ *
+ * Arabic font enforcement — universal Cairo fallback in AR mode
+ * ----------------------------------------------------------------
+ * Inter and Cormorant Garamond have zero Arabic glyphs. When a
+ * component hardcodes `font-['Inter']` or inline `'Inter'`, the
+ * browser renders Arabic characters with its default Arabic font
+ * (usually Arial / system) — NOT Cairo. That's the bug users see.
+ *
+ * This rule forces Cairo on every element in an RTL / Arabic-locale
+ * subtree, EXCEPT monospace metadata (classification IDs, timestamps,
+ * mock passport numbers — those stay JetBrains Mono and don't contain
+ * Arabic). The `!important` flag beats component-level inline styles
+ * and Tailwind arbitrary classes like `font-['Inter']`.
+ *
+ * In EN mode this rule doesn't fire, so Cormorant / Inter keep their
+ * ceremonial roles on Latin-script surfaces.
+ * ================================================================ */
+html[lang="ar"] *:not(.font-mono):not([class*="JetBrains"]):not(pre):not(code):not(kbd):not(samp),
+html[dir="rtl"] *:not(.font-mono):not([class*="JetBrains"]):not(pre):not(code):not(kbd):not(samp) {
+  font-family: 'Cairo', 'Tajawal', 'IBM Plex Sans Arabic', ui-sans-serif, system-ui, sans-serif !important;
+}
+
+/* Keep monospace explicit — classification codes / audit IDs stay ASCII */
+html[lang="ar"] .font-mono,
+html[dir="rtl"] .font-mono,
+html[lang="ar"] [class*="JetBrains"],
+html[dir="rtl"] [class*="JetBrains"] {
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace !important;
+}
+
 /* ── Global keyframes used across pages ── */
 @keyframes floatP {
   0%, 100% { transform: translateY(0px); opacity: 0.2; }
