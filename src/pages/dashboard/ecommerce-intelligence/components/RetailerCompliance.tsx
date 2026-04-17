@@ -56,7 +56,7 @@ const RetailerCompliance = ({ isAr }: Props) => {
       <div className="rounded-2xl border overflow-hidden" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }}>
         <div className="px-6 py-4 border-b" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
           <h3 className="text-white font-bold text-sm">{isAr ? "تقارير تجار التجزئة" : "Retailer Reporting Status"}</h3>
-          <p className="text-gray-500 text-xs mt-0.5">{isAr ? "التجار المسجّلون في نظام AMEEN" : "Retailers registered in AMEEN system"}</p>
+          <p className="text-gray-500 text-xs mt-0.5">{isAr ? "التجار المسجّلون في نظام Al-Ameen" : "Retailers registered in Al-Ameen system"}</p>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full">

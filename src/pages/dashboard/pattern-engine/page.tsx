@@ -268,7 +268,7 @@ const PatternEnginePage = () => {
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-gold-400 font-black text-base tracking-wide">AMEEN</span>
+                <span className="text-gold-400 font-black text-base tracking-wide">Al-Ameen</span>
                 <span className="text-white font-bold text-sm">{isAr ? "محرك اكتشاف الأنماط" : "Pattern Detection Engine"}</span>
                 <span className="px-2 py-0.5 rounded-full text-xs font-bold"
                   style={{ background: "rgba(248,113,113,0.15)", color: "#F87171", border: "1px solid rgba(248,113,113,0.3)" }}>

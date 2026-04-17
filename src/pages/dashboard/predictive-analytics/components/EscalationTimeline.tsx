@@ -18,7 +18,7 @@ const TIERS = [
     icon: 'ri-smartphone-line',
     color: '#FB923C',
     bg: 'rgba(251,146,60,0.1)',
-    description: 'Critical alerts (score >75) auto-push to field officers\' AMEEN Mobile app.',
+    description: 'Critical alerts (score >75) auto-push to field officers\' Al-Ameen Mobile app.',
     threshold: '>30 min unactioned',
     count: alertQueue.filter(a => a.tier === 2).length,
   },

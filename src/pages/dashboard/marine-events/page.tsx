@@ -33,7 +33,7 @@ const MarineEventsPage = () => {
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-white font-bold text-sm">{isAr ? "أحداث البحرية" : "Marine Events"}</span>
-                <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(181,142,60,0.12)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>AL-AMEEN Portal</span>
+                <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(181,142,60,0.12)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>Al-Ameen Portal</span>
               </div>
               <p className="text-gray-500 text-xs">{isAr ? "الموانئ والقوارب والغوص" : "Marinas, Boats & Diving"}</p>
             </div>
@@ -46,7 +46,7 @@ const MarineEventsPage = () => {
       </header>
       <main className="relative z-10 max-w-6xl mx-auto px-6 py-8">
         {!activeEvent && (<>
-          <div className="mb-8"><h1 className="text-white text-2xl font-bold mb-1">{isAr ? "أحداث البحرية" : "Marine Events"}</h1><p className="text-gray-400 text-sm">{isAr ? "3 أنواع أحداث — تُرسَل فوراً إلى منصة AL-AMEEN" : "3 event types — submitted instantly to AL-AMEEN platform"}</p></div>
+          <div className="mb-8"><h1 className="text-white text-2xl font-bold mb-1">{isAr ? "أحداث البحرية" : "Marine Events"}</h1><p className="text-gray-400 text-sm">{isAr ? "3 أنواع أحداث — تُرسَل فوراً إلى منصة Al-Ameen" : "3 event types — submitted instantly to Al-Ameen platform"}</p></div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-8">
             {EVENT_CARDS.map(card => (
               <button key={card.id} type="button" onClick={() => handleSwitch(card.id)} className="group relative rounded-2xl border p-6 text-left cursor-pointer transition-all duration-300 flex flex-col gap-4" style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(181,142,60,0.12)", backdropFilter: "blur(12px)" }} onMouseEnter={(e) => { const el = e.currentTarget as HTMLButtonElement; el.style.borderColor = `${card.color}50`; el.style.background = `${card.color}08`; el.style.transform = "translateY(-2px)"; }} onMouseLeave={(e) => { const el = e.currentTarget as HTMLButtonElement; el.style.borderColor = "rgba(181,142,60,0.12)"; el.style.background = "rgba(20,29,46,0.8)"; el.style.transform = "translateY(0)"; }}>

@@ -53,7 +53,7 @@ const NotificationsPage = () => {
                 {isAr ? "نظام الإشعارات والاتصالات" : "Notification & Communication System"}
               </h1>
               <p className="text-gray-500 text-xs font-['JetBrains_Mono']">
-                {isAr ? "AMEEN — إدارة التنبيهات والرسائل" : "AMEEN — Alert Management & Messaging"}
+                {isAr ? "Al-Ameen — إدارة التنبيهات والرسائل" : "Al-Ameen — Alert Management & Messaging"}
               </p>
             </div>
           </div>

@@ -96,7 +96,7 @@ const NationalSecurityDashboard = () => {
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-gold-400 font-black text-base tracking-wide">AMEEN</span>
+                <span className="text-gold-400 font-black text-base tracking-wide">Al-Ameen</span>
                 <span className="text-white font-bold text-sm">{isAr ? "لوحة الأمن الوطني" : "National Security Dashboard"}</span>
                 <span className="px-2 py-0.5 rounded-full text-xs font-bold animate-pulse"
                   style={{ background: cfg.bg, color: cfg.color, border: `1px solid ${cfg.border}` }}>

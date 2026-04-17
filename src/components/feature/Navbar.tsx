@@ -2,10 +2,25 @@ import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import i18n from "@/i18n";
 
+// ─── Inline brand tokens — never depend on JIT utilities for brand-critical
+//     chrome. These are the same values as the style-guide `.topnav`. ─────────
+const C = {
+  ivory100: "#F5EFE3",
+  ivory200: "#EFE7D3",
+  gold400:  "#D4A84B",
+  omanRed600: "#9A1F24",
+  omanRed500: "#B32830",
+  bgPanel:  "rgba(11,18,32,0.9)",
+  bgPanelSolid: "rgba(11,18,32,0.98)",
+};
+
+const FF_SANS = "'Inter', ui-sans-serif, system-ui, sans-serif";
+
 const Navbar = () => {
   const { t } = useTranslation();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [hoverLogin, setHoverLogin] = useState(false);
   const isAr = i18n.language === "ar";
 
   useEffect(() => {
@@ -26,7 +41,6 @@ const Navbar = () => {
     { key: "coreServices", href: "#core-services" },
     { key: "extendedServices", href: "#extended-services" },
     { key: "dataStreams", href: "#data-streams" },
-    { key: "apiIntegration", href: "#api-integration" },
     { key: "about", href: "#about" },
   ];
 
@@ -38,61 +52,130 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-[rgba(11,18,32,0.95)] backdrop-blur-md border-b border-gold-500/25"
-          : "bg-transparent"
-      }`}
+      className="fixed top-0 left-0 right-0 z-50 transition-colors duration-300"
+      style={{
+        background: C.bgPanel,
+        backdropFilter: "blur(16px)",
+        WebkitBackdropFilter: "blur(16px)",
+        borderBottom: `1px solid ${scrolled ? "rgba(181,142,60,0.25)" : "rgba(181,142,60,0.15)"}`,
+      }}
     >
       <div className="max-w-[1400px] mx-auto px-4 md:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo — brand horizontal lockup */}
+        <div className="flex items-center justify-between" style={{ height: 72 }}>
+
+          {/* Left — horizontal lockup at ~40px height */}
           <a
             href="#home"
             onClick={(e) => { e.preventDefault(); scrollTo("#home"); }}
-            className="flex items-center gap-3 cursor-pointer"
+            className="flex items-center cursor-pointer"
           >
             <img
               src="/brand/al-ameen-primary-horizontal.svg"
               alt="Al-Ameen"
-              className="h-9 md:h-10 object-contain"
+              style={{ height: 40, width: "auto", display: "block" }}
             />
           </a>
 
-          {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center gap-1">
+          {/* Center — desktop links */}
+          <div className="hidden lg:flex items-center" style={{ gap: "0.25rem" }}>
             {navLinks.map((link) => (
               <a
                 key={link.key}
                 href={link.href}
                 onClick={(e) => { e.preventDefault(); scrollTo(link.href); }}
-                className="px-3 py-2 text-sm text-ivory-200 hover:text-gold-400 transition-colors duration-200 cursor-pointer whitespace-nowrap font-['Inter'] relative group"
+                className="group relative cursor-pointer"
+                style={{
+                  padding: "0.5rem 0.875rem",
+                  fontSize: "0.875rem",
+                  color: C.ivory200,
+                  fontFamily: FF_SANS,
+                  whiteSpace: "nowrap",
+                  borderRadius: 4,
+                  transition: "color 150ms",
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = C.gold400)}
+                onMouseLeave={(e) => (e.currentTarget.style.color = C.ivory200)}
               >
                 {t(`nav.${link.key}`)}
-                <span className="absolute bottom-0 left-0 w-0 h-px bg-gold-400 group-hover:w-full transition-all duration-300" />
+                <span
+                  aria-hidden
+                  style={{
+                    position: "absolute",
+                    left: "0.875rem",
+                    right: "0.875rem",
+                    bottom: 4,
+                    height: 1,
+                    background: C.gold400,
+                    transform: "scaleX(0)",
+                    transformOrigin: "left",
+                    transition: "transform 250ms",
+                  }}
+                  className="group-hover:scale-x-100"
+                />
               </a>
             ))}
           </div>
 
-          {/* Right Actions */}
+          {/* Right — AR/EN ghost toggle + Portal Login */}
           <div className="flex items-center gap-3">
             <button
               onClick={toggleLang}
-              className="hidden md:flex items-center justify-center w-10 h-10 rounded-full border border-gold-500/50 text-gold-400 text-sm font-bold hover:bg-gold-500/10 transition-colors duration-200 font-mono cursor-pointer"
+              className="hidden md:inline-flex items-center justify-center cursor-pointer"
+              style={{
+                padding: "0.375rem 0.75rem",
+                fontSize: "0.75rem",
+                fontWeight: 600,
+                letterSpacing: "0.1em",
+                color: C.gold400,
+                fontFamily: "'JetBrains Mono', monospace",
+                background: "transparent",
+                border: "1px solid rgba(181,142,60,0.35)",
+                borderRadius: 4,
+                transition: "background 150ms",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(181,142,60,0.1)")}
+              onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
             >
               {t("nav.language")}
             </button>
+
             <a
               href="/login"
-              className="hidden md:flex items-center gap-2 px-4 py-2 bg-oman-600 hover:bg-oman-700 text-ivory-100 text-sm font-semibold rounded-md transition-colors duration-200 whitespace-nowrap cursor-pointer"
+              className="hidden md:inline-flex items-center gap-2 cursor-pointer"
+              onMouseEnter={() => setHoverLogin(true)}
+              onMouseLeave={() => setHoverLogin(false)}
+              style={{
+                padding: "0.5rem 1.25rem",
+                fontSize: "0.875rem",
+                fontWeight: 500,
+                color: C.ivory100,
+                fontFamily: FF_SANS,
+                background: `linear-gradient(180deg, ${C.omanRed500} 0%, ${C.omanRed600} 100%)`,
+                borderRadius: 6,
+                whiteSpace: "nowrap",
+                boxShadow: hoverLogin
+                  ? "0 4px 16px rgba(154,31,36,0.35)"
+                  : "0 1px 2px rgba(154,31,36,0.25)",
+                filter: hoverLogin ? "brightness(1.08)" : "none",
+                transition: "filter 150ms, box-shadow 150ms",
+              }}
             >
-              <i className="ri-login-box-line text-sm" />
               {t("nav.portalLogin")}
+              <span aria-hidden>→</span>
             </a>
+
             {/* Mobile hamburger */}
             <button
-              className="lg:hidden w-10 h-10 flex items-center justify-center text-ivory-200 hover:text-gold-400 cursor-pointer"
+              className="lg:hidden flex items-center justify-center cursor-pointer"
               onClick={() => setMobileOpen(!mobileOpen)}
+              style={{
+                width: 40,
+                height: 40,
+                color: C.ivory200,
+                background: "transparent",
+                border: "1px solid rgba(181,142,60,0.25)",
+                borderRadius: 4,
+              }}
             >
               <i className={`text-xl ${mobileOpen ? "ri-close-line" : "ri-menu-3-line"}`} />
             </button>
@@ -100,15 +183,29 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile menu */}
       {mobileOpen && (
-        <div className="lg:hidden bg-[rgba(11,18,32,0.98)] border-t border-gold-500/25 px-4 py-4">
+        <div
+          className="lg:hidden"
+          style={{
+            background: C.bgPanelSolid,
+            borderTop: "1px solid rgba(181,142,60,0.25)",
+            padding: "1rem",
+          }}
+        >
           {navLinks.map((link) => (
             <a
               key={link.key}
               href={link.href}
               onClick={(e) => { e.preventDefault(); scrollTo(link.href); }}
-              className="block py-3 text-ivory-200 hover:text-gold-400 border-b border-ivory-100/5 text-sm cursor-pointer"
+              className="block cursor-pointer"
+              style={{
+                padding: "0.75rem 0.25rem",
+                fontSize: "0.875rem",
+                color: C.ivory200,
+                fontFamily: FF_SANS,
+                borderBottom: "1px solid rgba(245,239,227,0.05)",
+              }}
             >
               {t(`nav.${link.key}`)}
             </a>
@@ -116,13 +213,37 @@ const Navbar = () => {
           <div className="flex items-center gap-3 mt-4">
             <button
               onClick={toggleLang}
-              className="flex items-center justify-center w-10 h-10 rounded-full border border-gold-500/50 text-gold-400 text-sm font-bold cursor-pointer"
+              className="inline-flex items-center justify-center cursor-pointer"
+              style={{
+                padding: "0.5rem 1rem",
+                fontSize: "0.75rem",
+                fontWeight: 600,
+                letterSpacing: "0.1em",
+                color: C.gold400,
+                fontFamily: "'JetBrains Mono', monospace",
+                background: "transparent",
+                border: "1px solid rgba(181,142,60,0.35)",
+                borderRadius: 4,
+              }}
             >
               {t("nav.language")}
             </button>
-            <a href="/login" className="flex items-center gap-2 px-4 py-2 bg-oman-600 hover:bg-oman-700 text-ivory-100 text-sm font-semibold rounded-md cursor-pointer">
-              <i className="ri-login-box-line" />
+            <a
+              href="/login"
+              className="inline-flex items-center gap-2 cursor-pointer"
+              style={{
+                padding: "0.5rem 1.25rem",
+                fontSize: "0.875rem",
+                fontWeight: 500,
+                color: C.ivory100,
+                fontFamily: FF_SANS,
+                background: `linear-gradient(180deg, ${C.omanRed500} 0%, ${C.omanRed600} 100%)`,
+                borderRadius: 6,
+                whiteSpace: "nowrap",
+              }}
+            >
               {t("nav.portalLogin")}
+              <span aria-hidden>→</span>
             </a>
           </div>
         </div>

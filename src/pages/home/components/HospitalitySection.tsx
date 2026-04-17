@@ -19,7 +19,7 @@ const HospitalitySection = () => {
                   <div className="w-3 h-3 rounded-full bg-red-400/60" />
                   <div className="w-3 h-3 rounded-full bg-yellow-400/60" />
                   <div className="w-3 h-3 rounded-full bg-green-400/60" />
-                  <span className="text-gray-600 text-xs font-['JetBrains_Mono'] ml-2">AMEEN Hospitality v2.4</span>
+                  <span className="text-gray-600 text-xs font-['JetBrains_Mono'] ml-2">Al-Ameen Hospitality v2.4</span>
                 </div>
                 <div className="p-5">
                   <div className="flex items-center justify-between mb-4">

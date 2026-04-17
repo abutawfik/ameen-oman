@@ -92,7 +92,7 @@ const AmeenLogo = ({ variant = "full", size = 64, className = "" }: LogoProps) =
         <AmeenShield size={size * 0.7} />
         <div>
           <div className="font-black tracking-widest uppercase" style={{ color: cyan, fontSize: size * 0.28, fontFamily: "'Inter', sans-serif", letterSpacing: "0.18em" }}>
-            AMEEN
+            Al-Ameen
           </div>
           <div className="font-bold" style={{ color: cyan, fontSize: size * 0.18, fontFamily: "'Noto Kufi Arabic', 'Arial', sans-serif", opacity: 0.8, letterSpacing: "0.05em" }}>
             أمين
@@ -113,7 +113,7 @@ const AmeenLogo = ({ variant = "full", size = 64, className = "" }: LogoProps) =
         </div>
         <div className="text-center">
           <div className="font-black tracking-widest uppercase" style={{ color: cyan, fontSize: size * 0.2, fontFamily: "'Inter', sans-serif", letterSpacing: "0.15em" }}>
-            AMEEN
+            Al-Ameen
           </div>
           <div className="font-semibold tracking-wider" style={{ color: "#D1D5DB", fontSize: size * 0.14, fontFamily: "'Inter', sans-serif", letterSpacing: "0.12em" }}>
             HOSPITALITY
@@ -132,7 +132,7 @@ const AmeenLogo = ({ variant = "full", size = 64, className = "" }: LogoProps) =
         <AmeenShield size={size} light />
         <div className="text-center">
           <div className="font-black tracking-widest uppercase" style={{ color: "#0B1220", fontSize: size * 0.22, fontFamily: "'Inter', sans-serif", letterSpacing: "0.18em" }}>
-            AMEEN
+            Al-Ameen
           </div>
           <div className="font-bold" style={{ color: "#0B1220", fontSize: size * 0.14, fontFamily: "'Noto Kufi Arabic', 'Arial', sans-serif", opacity: 0.7 }}>
             أمين
@@ -159,11 +159,11 @@ const AmeenLogo = ({ variant = "full", size = 64, className = "" }: LogoProps) =
         </div>
         {/* Divider */}
         <div style={{ width: 1, height: size * 0.8, background: "rgba(181,142,60,0.25)" }} />
-        {/* AMEEN */}
+        {/* Al-Ameen */}
         <div className="flex flex-col items-center gap-1">
           <AmeenShield size={size * 0.65} />
           <div className="font-black tracking-widest uppercase" style={{ color: cyan, fontSize: size * 0.18, fontFamily: "'Inter', sans-serif", letterSpacing: "0.18em" }}>
-            AMEEN
+            Al-Ameen
           </div>
           <div style={{ color: "#9CA3AF", fontSize: size * 0.1, fontFamily: "'Inter', sans-serif", letterSpacing: "0.06em" }}>
             أمين
@@ -179,7 +179,7 @@ const AmeenLogo = ({ variant = "full", size = 64, className = "" }: LogoProps) =
       <AmeenShield size={size} />
       <div className="text-center">
         <div className="font-black tracking-widest uppercase" style={{ color: cyan, fontSize: size * 0.24, fontFamily: "'Inter', sans-serif", letterSpacing: "0.2em" }}>
-          AMEEN
+          Al-Ameen
         </div>
         <div className="font-bold" style={{ color: cyan, fontSize: size * 0.18, fontFamily: "'Noto Kufi Arabic', 'Arial', sans-serif", opacity: 0.9, letterSpacing: "0.05em" }}>
           أمين

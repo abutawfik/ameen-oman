@@ -29,7 +29,7 @@ const LetterheadMockup = () => (
         <AmeenLogo variant="compact" size={40} />
         <div className="text-right">
           <p style={{ color: "#9CA3AF", fontSize: "9px", fontFamily: "'JetBrains_Mono', monospace" }}>ROYAL OMAN POLICE</p>
-          <p style={{ color: cyan, fontSize: "9px", fontFamily: "'JetBrains_Mono', monospace" }}>AMEEN INTELLIGENCE PLATFORM</p>
+          <p style={{ color: cyan, fontSize: "9px", fontFamily: "'JetBrains_Mono', monospace" }}>Al-Ameen INTELLIGENCE PLATFORM</p>
         </div>
       </div>
       {/* Body */}
@@ -60,7 +60,7 @@ const EmailSignatureMockup = () => (
         <div>
           <p style={{ color: "#0B1220", fontSize: "13px", fontWeight: 700, fontFamily: "'Inter', sans-serif" }}>Ahmed Al-Amri</p>
           <p style={{ color: "#374151", fontSize: "10px", fontFamily: "'Inter', sans-serif" }}>Senior Intelligence Analyst</p>
-          <p style={{ color: "#6B7280", fontSize: "10px", fontFamily: "'Inter', sans-serif" }}>National Police — AMEEN Platform</p>
+          <p style={{ color: "#6B7280", fontSize: "10px", fontFamily: "'Inter', sans-serif" }}>National Police — Al-Ameen Platform</p>
         </div>
       </div>
       <div className="grid grid-cols-2 gap-2">
@@ -91,7 +91,7 @@ const SplashMockup = () => (
       <div className="relative z-10 flex flex-col items-center gap-3">
         <AmeenShield size={64} />
         <div className="text-center">
-          <p className="font-black tracking-widest uppercase" style={{ color: cyan, fontSize: "18px", fontFamily: "'Inter', sans-serif", letterSpacing: "0.2em" }}>AMEEN</p>
+          <p className="font-black tracking-widest uppercase" style={{ color: cyan, fontSize: "18px", fontFamily: "'Inter', sans-serif", letterSpacing: "0.2em" }}>Al-Ameen</p>
           <p style={{ color: "#9CA3AF", fontSize: "9px", fontFamily: "'Inter', sans-serif", letterSpacing: "0.1em", marginTop: "2px" }}>FIELD OFFICER</p>
         </div>
         <div className="w-16 h-0.5 rounded-full" style={{ background: `linear-gradient(90deg, transparent, ${cyan}, transparent)` }} />
@@ -108,7 +108,7 @@ const IDBadgeMockup = () => (
       {/* Top bar */}
       <div className="px-3 py-2 flex items-center justify-between" style={{ background: "rgba(181,142,60,0.08)", borderBottom: `1px solid rgba(181,142,60,0.2)` }}>
         <AmeenShield size={22} />
-        <p style={{ color: cyan, fontSize: "7px", fontFamily: "'JetBrains_Mono', monospace", letterSpacing: "0.1em" }}>AMEEN</p>
+        <p style={{ color: cyan, fontSize: "7px", fontFamily: "'JetBrains_Mono', monospace", letterSpacing: "0.1em" }}>Al-Ameen</p>
       </div>
       {/* Photo area */}
       <div className="flex-1 flex flex-col items-center justify-center gap-2 px-3 py-2">
@@ -139,7 +139,7 @@ const VehicleDecalMockup = () => (
     <div className="flex items-center gap-6 px-8">
       <AmeenShield size={52} />
       <div>
-        <p className="font-black tracking-widest uppercase" style={{ color: cyan, fontSize: "22px", fontFamily: "'Inter', sans-serif", letterSpacing: "0.25em" }}>AMEEN</p>
+        <p className="font-black tracking-widest uppercase" style={{ color: cyan, fontSize: "22px", fontFamily: "'Inter', sans-serif", letterSpacing: "0.25em" }}>Al-Ameen</p>
         <p style={{ color: "#9CA3AF", fontSize: "9px", fontFamily: "'Inter', sans-serif", letterSpacing: "0.15em" }}>ROYAL OMAN POLICE — INTELLIGENCE UNIT</p>
       </div>
       <div style={{ width: 1, height: 40, background: "rgba(181,142,60,0.2)" }} />
@@ -161,7 +161,7 @@ const PresentationSlideMockup = () => (
       {/* Content */}
       <div className="flex-1 flex items-center px-8 relative z-10">
         <div>
-          <p style={{ color: cyan, fontSize: "10px", fontFamily: "'JetBrains_Mono', monospace", letterSpacing: "0.15em", marginBottom: "6px" }}>AMEEN INTELLIGENCE PLATFORM</p>
+          <p style={{ color: cyan, fontSize: "10px", fontFamily: "'JetBrains_Mono', monospace", letterSpacing: "0.15em", marginBottom: "6px" }}>Al-Ameen INTELLIGENCE PLATFORM</p>
           <p style={{ color: "#FFFFFF", fontSize: "20px", fontWeight: 700, fontFamily: "'Inter', sans-serif", lineHeight: 1.2 }}>National Activity Monitoring<br />for Events &amp; Entities</p>
           <p style={{ color: "#9CA3AF", fontSize: "10px", fontFamily: "'Inter', sans-serif", marginTop: "8px" }}>Oman — National Police</p>
         </div>
@@ -183,7 +183,7 @@ const GuidelinesCoverMockup = () => (
       <div className="relative z-10 flex flex-col items-center gap-3">
         <AmeenShield size={60} />
         <div className="text-center">
-          <p className="font-black tracking-widest uppercase" style={{ color: cyan, fontSize: "16px", fontFamily: "'Inter', sans-serif", letterSpacing: "0.2em" }}>AMEEN</p>
+          <p className="font-black tracking-widest uppercase" style={{ color: cyan, fontSize: "16px", fontFamily: "'Inter', sans-serif", letterSpacing: "0.2em" }}>Al-Ameen</p>
           <p style={{ color: "#9CA3AF", fontSize: "8px", fontFamily: "'Inter', sans-serif", letterSpacing: "0.12em", marginTop: "2px" }}>BRAND IDENTITY GUIDELINES</p>
         </div>
       </div>
@@ -212,7 +212,7 @@ const BrandApplications = () => (
       <h2 className="text-white font-bold text-lg font-['Inter'] mb-2">
         <i className="ri-layout-grid-line mr-2 text-gold-400" />Brand Applications
       </h2>
-      <p className="text-gray-500 text-sm font-['Inter'] mb-5">How the AMEEN brand appears across all touchpoints — digital, print, and physical.</p>
+      <p className="text-gray-500 text-sm font-['Inter'] mb-5">How the Al-Ameen brand appears across all touchpoints — digital, print, and physical.</p>
       <div className="grid grid-cols-2 gap-5">
         {applications.map((app) => (
           <div key={app.label}>

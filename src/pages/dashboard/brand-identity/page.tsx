@@ -33,7 +33,7 @@ const BrandIdentityPage = () => {
               <AmeenShield size={56} />
               <div>
                 <div className="flex items-center gap-3 mb-1">
-                  <h1 className="text-white text-2xl font-black font-['Inter'] tracking-wide">AMEEN</h1>
+                  <h1 className="text-white text-2xl font-black font-['Inter'] tracking-wide">Al-Ameen</h1>
                   <span className="text-2xl font-bold" style={{ color: "#D4A84B", fontFamily: "'Noto Kufi Arabic', 'Arial', sans-serif" }}>أمين</span>
                   <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold font-['JetBrains_Mono']" style={{ background: "rgba(181,142,60,0.1)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>
                     Brand Identity
@@ -93,7 +93,7 @@ const BrandIdentityPage = () => {
               {/* Sub-brand pill */}
               <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg" style={{ background: "rgba(181,142,60,0.06)", border: "1px solid rgba(181,142,60,0.15)" }}>
                 <span className="text-gold-400 text-xs font-['JetBrains_Mono']">Sub-brand:</span>
-                <span className="text-white text-xs font-semibold font-['Inter']">AMEEN Hospitality</span>
+                <span className="text-white text-xs font-semibold font-['Inter']">Al-Ameen Hospitality</span>
                 <span className="text-gold-400 text-xs" style={{ fontFamily: "'Noto Kufi Arabic', 'Arial', sans-serif" }}>أمين للضيافة</span>
               </div>
               <div className="flex items-center gap-1.5">

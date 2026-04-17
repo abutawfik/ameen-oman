@@ -47,7 +47,7 @@ const SystemAdminPage = () => {
                   {isAr ? "إدارة النظام" : "System Administration"}
                 </h1>
                 <p className="text-gray-500 text-xs font-['JetBrains_Mono']">
-                  {isAr ? "AMEEN Intelligence Platform — وصول المسؤول" : "AMEEN Intelligence Platform — Admin Access"}
+                  {isAr ? "Al-Ameen Intelligence Platform — وصول المسؤول" : "Al-Ameen Intelligence Platform — Admin Access"}
                 </p>
               </div>
             </div>

@@ -92,7 +92,7 @@ const MobileFieldPage = () => {
             <div className="w-8 h-8 flex items-center justify-center rounded-xl" style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.3)" }}>
               <i className="ri-smartphone-line text-gold-400 text-base" />
             </div>
-            <span className="text-gold-400 font-black text-lg font-['Inter'] tracking-widest">AMEEN Mobile</span>
+            <span className="text-gold-400 font-black text-lg font-['Inter'] tracking-widest">Al-Ameen Mobile</span>
           </div>
           <p className="text-gray-400 text-sm font-['Inter'] leading-relaxed">
             Field Officer Application for National Police. Secure, offline-capable intelligence tool for field operations.
@@ -166,7 +166,7 @@ const MobileFieldPage = () => {
         >
           <i className="ri-shield-fill text-white text-[10px]" />
           <span className="text-white text-[9px] font-black font-['JetBrains_Mono'] uppercase tracking-widest">
-            {isAr ? "سري للغاية — AMEEN" : "TOP SECRET — AMEEN CLASSIFIED"}
+            {isAr ? "سري للغاية — Al-Ameen" : "TOP SECRET — Al-Ameen CLASSIFIED"}
           </span>
           <i className="ri-shield-fill text-white text-[10px]" />
         </div>
@@ -201,7 +201,7 @@ const MobileFieldPage = () => {
                 <div className="w-16 h-16 rounded-full flex items-center justify-center" style={{ background: "rgba(181,142,60,0.1)", border: "2px solid rgba(181,142,60,0.4)", boxShadow: "0 0 24px rgba(181,142,60,0.15)" }}>
                   <i className="ri-shield-star-fill text-gold-400 text-3xl" />
                 </div>
-                <p className="text-gold-400 font-black text-xl font-['Inter'] tracking-widest">AMEEN</p>
+                <p className="text-gold-400 font-black text-xl font-['Inter'] tracking-widest">Al-Ameen</p>
                 <p className="text-gray-500 text-xs font-['JetBrains_Mono']">{isAr ? "تطبيق الضباط الميدانيين" : "Field Officer Application"}</p>
                 <p className="text-gray-600 text-[10px] font-['JetBrains_Mono']">{dateStr}</p>
               </div>

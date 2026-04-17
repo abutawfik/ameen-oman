@@ -140,7 +140,7 @@ const CarRentalEventsPage = () => {
                   className="px-2 py-0.5 rounded-full text-xs font-bold font-['JetBrains_Mono']"
                   style={{ background: "rgba(181,142,60,0.1)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}
                 >
-                  AL-AMEEN PORTAL
+                  Al-Ameen PORTAL
                 </span>
               </div>
               <p className="text-gray-600 text-xs font-['JetBrains_Mono']">

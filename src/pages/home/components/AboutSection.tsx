@@ -26,7 +26,7 @@ const AboutSection = () => {
       <div className="relative z-10 max-w-[1400px] mx-auto px-4 md:px-8">
         <div className="text-center mb-14">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gold-500/30 bg-gold-500/5 mb-4">
-            <span className="text-gold-400 text-xs font-['JetBrains_Mono'] tracking-widest uppercase">ABOUT AMEEN</span>
+            <span className="text-gold-400 text-xs font-['JetBrains_Mono'] tracking-widest uppercase">ABOUT Al-Ameen</span>
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-white font-['Inter'] mb-2">{t("about.title")}</h2>
           <div className="w-16 h-0.5 bg-gold-400 mx-auto mt-4 mb-4" />

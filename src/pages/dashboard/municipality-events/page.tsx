@@ -100,7 +100,7 @@ const MunicipalityEventsPage = () => {
               <div className="flex items-center gap-2">
                 <span className="text-white font-bold text-sm">{isAr ? "أحداث إيجار البلدية" : "Municipality Property Rental"}</span>
                 <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(181,142,60,0.12)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>
-                  AL-AMEEN Portal
+                  Al-Ameen Portal
                 </span>
               </div>
               <p className="text-gray-500 text-xs">{isAr ? "دائرة الإيجارات البلدية" : "Municipal Rental Registry"}</p>
@@ -133,7 +133,7 @@ const MunicipalityEventsPage = () => {
                 </div>
                 <div>
                   <h1 className="text-white text-2xl font-bold">{isAr ? "أحداث إيجار العقارات البلدية" : "Municipality Property Rental Events"}</h1>
-                  <p className="text-gray-400 text-sm">{isAr ? "3 أنواع أحداث — تُرسَل فوراً إلى منصة AL-AMEEN" : "3 event types — submitted instantly to AL-AMEEN platform"}</p>
+                  <p className="text-gray-400 text-sm">{isAr ? "3 أنواع أحداث — تُرسَل فوراً إلى منصة Al-Ameen" : "3 event types — submitted instantly to Al-Ameen platform"}</p>
                 </div>
               </div>
             </div>
@@ -186,8 +186,8 @@ const MunicipalityEventsPage = () => {
               <i className="ri-information-line text-gold-400 text-sm mt-0.5 flex-shrink-0" />
               <p className="text-gray-400 text-sm font-['Inter']">
                 {isAr
-                  ? "جميع عقود الإيجار المسجلة عبر هذه المنصة تُرسَل فوراً إلى قاعدة بيانات AL-AMEEN. تأكد من صحة بيانات المستأجر والمالك قبل الحفظ."
-                  : "All rental agreements registered through this portal are submitted instantly to the AL-AMEEN database. Verify tenant and owner details before saving."}
+                  ? "جميع عقود الإيجار المسجلة عبر هذه المنصة تُرسَل فوراً إلى قاعدة بيانات Al-Ameen. تأكد من صحة بيانات المستأجر والمالك قبل الحفظ."
+                  : "All rental agreements registered through this portal are submitted instantly to the Al-Ameen database. Verify tenant and owner details before saving."}
               </p>
             </div>
           </>

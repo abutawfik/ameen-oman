@@ -52,7 +52,7 @@ const ApiPortalPage = () => {
               </div>
               <div>
                 <h1 className="text-white text-xl font-bold font-['Inter']">Developer Portal</h1>
-                <p className="text-gray-500 text-xs font-['JetBrains_Mono']">AMEEN API v2.1 — Integration Hub</p>
+                <p className="text-gray-500 text-xs font-['JetBrains_Mono']">Al-Ameen API v2.1 — Integration Hub</p>
               </div>
             </div>
             <div className="flex items-center gap-3">

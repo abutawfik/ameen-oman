@@ -165,8 +165,8 @@ const StopRentalForm = ({ isAr, onCancel }: Props) => {
               <i className="ri-error-warning-line text-red-400 text-sm mt-0.5 flex-shrink-0" />
               <p className="text-gray-400 text-xs">
                 {isAr
-                  ? "تحذير: إنهاء الإيجار إجراء لا رجعة فيه. سيتم إرسال إشعار فوري إلى AL-AMEEN."
-                  : "Warning: Rental termination is irreversible. An immediate notification will be sent to AL-AMEEN."}
+                  ? "تحذير: إنهاء الإيجار إجراء لا رجعة فيه. سيتم إرسال إشعار فوري إلى Al-Ameen."
+                  : "Warning: Rental termination is irreversible. An immediate notification will be sent to Al-Ameen."}
               </p>
             </div>
           </div>

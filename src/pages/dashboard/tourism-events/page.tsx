@@ -36,7 +36,7 @@ const TourismEventsPage = () => {
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-white font-bold text-sm">{isAr ? "أحداث السياحة" : "Tourism Events"}</span>
-                <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(181,142,60,0.12)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>AL-AMEEN Portal</span>
+                <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(181,142,60,0.12)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>Al-Ameen Portal</span>
               </div>
               <p className="text-gray-500 text-xs">{isAr ? "المعالم السياحية والجولات والأنشطة" : "Attractions, Tours & Activities"}</p>
             </div>
@@ -55,7 +55,7 @@ const TourismEventsPage = () => {
           <>
             <div className="mb-8">
               <h1 className="text-white text-2xl font-bold mb-1">{isAr ? "أحداث السياحة" : "Tourism Events"}</h1>
-              <p className="text-gray-400 text-sm">{isAr ? "3 أنواع أحداث — تُرسَل فوراً إلى منصة AL-AMEEN" : "3 event types — submitted instantly to AL-AMEEN platform"}</p>
+              <p className="text-gray-400 text-sm">{isAr ? "3 أنواع أحداث — تُرسَل فوراً إلى منصة Al-Ameen" : "3 event types — submitted instantly to Al-Ameen platform"}</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-8">
               {EVENT_CARDS.map(card => (
@@ -81,7 +81,7 @@ const TourismEventsPage = () => {
             </div>
             <div className="flex items-start gap-3 px-5 py-4 rounded-xl border" style={{ background: "rgba(181,142,60,0.04)", borderColor: "rgba(181,142,60,0.15)" }}>
               <i className="ri-information-line text-gold-400 text-sm mt-0.5 flex-shrink-0" />
-              <p className="text-gray-400 text-sm">{isAr ? "جميع أحداث السياحة تُرسَل فوراً إلى AL-AMEEN. الأنشطة عالية المخاطر تتطلب توقيع إخلاء مسؤولية." : "All tourism events are submitted instantly to AL-AMEEN. High-risk activities require a signed waiver."}</p>
+              <p className="text-gray-400 text-sm">{isAr ? "جميع أحداث السياحة تُرسَل فوراً إلى Al-Ameen. الأنشطة عالية المخاطر تتطلب توقيع إخلاء مسؤولية." : "All tourism events are submitted instantly to Al-Ameen. High-risk activities require a signed waiver."}</p>
             </div>
           </>
         )}

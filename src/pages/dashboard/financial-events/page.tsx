@@ -116,7 +116,7 @@ const FinancialEventsPage = () => {
               <div className="flex items-center gap-2">
                 <span className="text-white font-bold text-sm">{isAr ? "أحداث الخدمات المالية" : "Financial Services Events"}</span>
                 <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(181,142,60,0.12)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>
-                  AL-AMEEN Portal
+                  Al-Ameen Portal
                 </span>
               </div>
               <p className="text-gray-500 text-xs">{isAr ? "البنوك وبيوت الصرافة" : "Banks &amp; Exchange Houses"}</p>
@@ -153,7 +153,7 @@ const FinancialEventsPage = () => {
                 </div>
                 <div>
                   <h1 className="text-white text-2xl font-bold">{isAr ? "أحداث الخدمات المالية" : "Financial Services Events"}</h1>
-                  <p className="text-gray-400 text-sm">{isAr ? "4 أنواع أحداث للبنوك وبيوت الصرافة — جميعها تُرسَل فوراً إلى AL-AMEEN" : "4 event types for banks and exchange houses — all submitted instantly to AL-AMEEN"}</p>
+                  <p className="text-gray-400 text-sm">{isAr ? "4 أنواع أحداث للبنوك وبيوت الصرافة — جميعها تُرسَل فوراً إلى Al-Ameen" : "4 event types for banks and exchange houses — all submitted instantly to Al-Ameen"}</p>
                 </div>
               </div>
             </div>
@@ -213,8 +213,8 @@ const FinancialEventsPage = () => {
               <i className="ri-shield-check-line text-red-400 text-sm mt-0.5 flex-shrink-0" />
               <p className="text-gray-400 text-sm font-['Inter']">
                 {isAr
-                  ? "جميع المعاملات المالية تخضع لمتطلبات AML/KYC. التحويلات فوق 1000 LCY والمعاملات النقدية فوق 5000 LCY تُبلَّغ تلقائياً إلى AL-AMEEN."
-                  : "All financial transactions are subject to AML/KYC requirements. Transfers above 1000 LCY and cash transactions above 5000 LCY are auto-reported to AL-AMEEN."}
+                  ? "جميع المعاملات المالية تخضع لمتطلبات AML/KYC. التحويلات فوق 1000 LCY والمعاملات النقدية فوق 5000 LCY تُبلَّغ تلقائياً إلى Al-Ameen."
+                  : "All financial transactions are subject to AML/KYC requirements. Transfers above 1000 LCY and cash transactions above 5000 LCY are auto-reported to Al-Ameen."}
               </p>
             </div>
           </>

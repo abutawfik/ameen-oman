@@ -126,8 +126,8 @@ export const entityNotifications: EntityNotification[] = [
   {
     id: "n7", category: "system",
     title: "API Upgraded to v2.1", titleAr: "ترقية API إلى v2.1",
-    detail: "AMEEN API updated to version 2.1. New endpoints available. Review changelog.",
-    detailAr: "تم تحديث AMEEN API إلى الإصدار 2.1. نقاط نهاية جديدة متاحة. راجع سجل التغييرات.",
+    detail: "Al-Ameen API updated to version 2.1. New endpoints available. Review changelog.",
+    detailAr: "تم تحديث Al-Ameen API إلى الإصدار 2.1. نقاط نهاية جديدة متاحة. راجع سجل التغييرات.",
     time: "4 hr ago", color: "#D4A84B", icon: "ri-code-s-slash-line", read: false, actionable: true,
   },
   {
@@ -147,8 +147,8 @@ export const entityNotifications: EntityNotification[] = [
   {
     id: "n10", category: "account",
     title: "API Key Expires in 7 Days", titleAr: "مفتاح API ينتهي خلال 7 أيام",
-    detail: "Your AMEEN API key (AMN-KEY-****4521) expires on April 12. Renew to avoid disruption.",
-    detailAr: "مفتاح AMEEN API الخاص بك (AMN-KEY-****4521) ينتهي في 12 أبريل. جدد لتجنب الانقطاع.",
+    detail: "Your Al-Ameen API key (AMN-KEY-****4521) expires on April 12. Renew to avoid disruption.",
+    detailAr: "مفتاح Al-Ameen API الخاص بك (AMN-KEY-****4521) ينتهي في 12 أبريل. جدد لتجنب الانقطاع.",
     time: "5 hr ago", color: "#FACC15", icon: "ri-key-line", read: false, actionable: true,
   },
   {

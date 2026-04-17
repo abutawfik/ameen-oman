@@ -149,7 +149,7 @@ export const hospitalityNavItems = [
   { key: 'calendar',    icon: 'ri-calendar-line',       labelEn: 'Calendar',           labelAr: 'التقويم',           group: 'main' },
   { key: 'eventlist',   icon: 'ri-list-check-2',        labelEn: 'Event List',         labelAr: 'قائمة الأحداث',    group: 'main' },
   { key: 'upload',      icon: 'ri-upload-cloud-2-line', labelEn: 'Upload Events File', labelAr: 'رفع ملف الأحداث',  group: 'main' },
-  { key: 'sync',        icon: 'ri-cloud-line',          labelEn: 'AMEEN Sync Log',     labelAr: 'سجل مزامنة أمين',  group: 'system' },
+  { key: 'sync',        icon: 'ri-cloud-line',          labelEn: 'Al-Ameen Sync Log',     labelAr: 'سجل مزامنة أمين',  group: 'system' },
   { key: 'users',       icon: 'ri-team-line',           labelEn: 'Manage Users',       labelAr: 'إدارة المستخدمين', group: 'system' },
   { key: 'help',        icon: 'ri-question-line',       labelEn: 'Help',               labelAr: 'المساعدة',          group: 'system' },
 ];

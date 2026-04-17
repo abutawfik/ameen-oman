@@ -185,7 +185,7 @@ const EcomEventForms = ({ isAr }: Props) => {
             <i className="ri-qr-code-line text-gold-400 text-sm" />
           </div>
           <h3 className="text-white font-bold text-sm font-['Inter']">
-            {isAr ? "رموز تأكيد AMEEN" : "AMEEN Confirmation Codes"}
+            {isAr ? "رموز تأكيد Al-Ameen" : "Al-Ameen Confirmation Codes"}
           </h3>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">

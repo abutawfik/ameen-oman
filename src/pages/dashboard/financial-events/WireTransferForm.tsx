@@ -103,8 +103,8 @@ const WireTransferForm = ({ isAr, onCancel }: Props) => {
         <i className="ri-alarm-warning-line text-orange-400 text-sm mt-0.5 flex-shrink-0" />
         <p className="text-orange-400 text-sm font-['Inter']">
           {isAr
-            ? "تنبيه: التحويلات فوق 1000 LCY أو إلى دول عالية المخاطر تُبلَّغ تلقائياً إلى AL-AMEEN."
-            : "Transfers >1000 LCY or to high-risk jurisdictions are auto-flagged and reported to AL-AMEEN."}
+            ? "تنبيه: التحويلات فوق 1000 LCY أو إلى دول عالية المخاطر تُبلَّغ تلقائياً إلى Al-Ameen."
+            : "Transfers >1000 LCY or to high-risk jurisdictions are auto-flagged and reported to Al-Ameen."}
         </p>
       </div>
 

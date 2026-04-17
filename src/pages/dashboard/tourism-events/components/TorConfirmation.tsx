@@ -14,7 +14,7 @@ const TorConfirmation = ({ refNumber, eventType, eventCode, color, isAr, onReset
         <div className="absolute inset-0 rounded-full animate-ping opacity-20" style={{ border: `2px solid ${color}` }} />
       </div>
       <h2 className="text-white text-2xl font-bold mb-2 font-['Inter']">{isAr ? "تم الإرسال بنجاح" : "Event Submitted Successfully"}</h2>
-      <p className="text-gray-400 text-sm mb-3 font-['Inter']">{isAr ? `تم إرسال حدث "${eventType}" إلى منصة AL-AMEEN` : `"${eventType}" event submitted to AL-AMEEN Portal`}</p>
+      <p className="text-gray-400 text-sm mb-3 font-['Inter']">{isAr ? `تم إرسال حدث "${eventType}" إلى منصة Al-Ameen` : `"${eventType}" event submitted to Al-Ameen Portal`}</p>
       <div className="flex items-center gap-2 px-3 py-1.5 rounded-full mb-8" style={{ background: `${color}10`, border: `1px solid ${color}25` }}>
         <span className="text-xs font-bold font-['JetBrains_Mono']" style={{ color }}>{eventCode}</span>
         <div className="w-1 h-1 rounded-full" style={{ background: color }} />

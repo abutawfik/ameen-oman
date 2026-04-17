@@ -32,17 +32,13 @@ const DashboardTitleBar = ({ entityType, isAr, onToggleLang, onToggleAr, selecte
     <header className="flex items-center justify-between px-4 md:px-6 h-16 border-b flex-shrink-0 relative z-30"
       style={{ background: "rgba(11,18,32,0.98)", borderColor: "rgba(181,142,60,0.18)", backdropFilter: "blur(12px)" }}>
 
-      {/* Left: Logo — brand lockup (mono-light mark + wordmark on dark shell) */}
+      {/* Left: Logo — horizontal lockup already carries the wordmark; no text */}
       <div className="flex items-center gap-3">
         <img
-          src="/brand/al-ameen-mark-mono-light.svg"
+          src="/brand/al-ameen-primary-horizontal.svg"
           alt="Al-Ameen"
-          className="w-9 h-9 object-contain flex-shrink-0"
+          className="h-8 md:h-9 w-auto object-contain flex-shrink-0"
         />
-        <div className="hidden sm:flex flex-col leading-tight">
-          <span className="text-ivory-100 font-semibold text-base tracking-widest font-display">AL&#8209;AMEEN</span>
-          <span className="text-gold-400/70 text-xs font-arabic">الأمين</span>
-        </div>
         <div className="hidden md:block w-px h-6 bg-ivory-100/10 mx-2" />
         {meta && (
           <div className="hidden md:flex items-center gap-1.5 px-2 py-1 rounded-md" style={{ background: "rgba(181,142,60,0.08)", border: "1px solid rgba(181,142,60,0.22)" }}>

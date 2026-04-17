@@ -53,9 +53,10 @@ const DashboardPage = () => {
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-gold-400 font-black text-base tracking-wide">AMEEN</span>
+              <span className="text-gold-400 font-semibold text-base tracking-wide" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>Al-Ameen</span>
+              <span className="text-ivory-200/60">·</span>
               <span className="text-white font-bold text-sm">
-                {isAr ? "مركز قيادة محرّك المخاطر" : "Risk Engine Command Center"}
+                {isAr ? "محرّك المخاطر" : "Risk Engine"}
               </span>
             </div>
             <p className="text-gray-500 text-[11px] font-['JetBrains_Mono']">

@@ -213,7 +213,7 @@ const CommandCenterPage = () => {
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-gold-400 font-black text-base tracking-wide">AMEEN</span>
+                <span className="text-gold-400 font-black text-base tracking-wide">Al-Ameen</span>
                 <span className="text-white font-bold text-sm">{isAr ? "مركز القيادة" : "Command Center"}</span>
                 <span className="px-2 py-0.5 rounded-full text-xs font-bold"
                   style={{ background: "rgba(248,113,113,0.15)", color: "#F87171", border: "1px solid rgba(248,113,113,0.3)" }}>
@@ -665,7 +665,7 @@ const CommandCenterPage = () => {
           <>
             <div>
               <h1 className="text-white text-2xl font-bold mb-1">{isAr ? "إدارة الكيانات" : "Entity Management"}</h1>
-              <p className="text-gray-400 text-sm">{isAr ? "جميع الكيانات المتكاملة مع AMEEN" : "All entities integrated with AMEEN"}</p>
+              <p className="text-gray-400 text-sm">{isAr ? "جميع الكيانات المتكاملة مع Al-Ameen" : "All entities integrated with Al-Ameen"}</p>
             </div>
             {/* Summary */}
             <div className="grid grid-cols-3 gap-4">

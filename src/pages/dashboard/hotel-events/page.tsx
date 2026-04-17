@@ -46,9 +46,9 @@ const HotelEventsPage = () => {
               {isAr ? "لوحة التحكم" : "Dashboard"}
             </button>
             <div className="w-px h-5 bg-white/10" />
-            <img src="https://public.readdy.ai/ai/img_res/407b94a6-cd23-46f2-9c3a-b1f5c8ba9a2c.png" alt="AMEEN" className="w-7 h-7 object-contain" />
+            <img src="https://public.readdy.ai/ai/img_res/407b94a6-cd23-46f2-9c3a-b1f5c8ba9a2c.png" alt="Al-Ameen" className="w-7 h-7 object-contain" />
             <div>
-              <span className="text-gold-400 font-bold text-sm font-['Inter'] tracking-widest">AMEEN</span>
+              <span className="text-gold-400 font-bold text-sm font-['Inter'] tracking-widest">Al-Ameen</span>
               <span className="text-gray-600 text-xs font-['Inter'] ml-2">— {isAr ? "نماذج أحداث الفنادق" : "Hotel Event Forms"}</span>
             </div>
           </div>

@@ -72,7 +72,7 @@ const PostalEventsPage = () => {
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-white font-bold text-sm">{isAr ? "أحداث البريد" : "Postal Events"}</span>
-                <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(181,142,60,0.12)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>AMEEN</span>
+                <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(181,142,60,0.12)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>Al-Ameen</span>
               </div>
               <p className="text-gray-500 text-xs">{isAr ? "تسجيل صناديق البريد والطرود الواردة" : "PO Box registration & incoming package tracking"}</p>
             </div>
@@ -95,7 +95,7 @@ const PostalEventsPage = () => {
         <div className="flex items-start justify-between">
           <div>
             <h1 className="text-white text-2xl font-bold mb-1">{isAr ? "أحداث البريد" : "Postal Events"}</h1>
-            <p className="text-gray-400 text-sm">{isAr ? "تسجيل صناديق البريد والطرود الواردة — مرتبط بقاعدة بيانات AMEEN" : "Register PO boxes and incoming packages — linked to AMEEN database"}</p>
+            <p className="text-gray-400 text-sm">{isAr ? "تسجيل صناديق البريد والطرود الواردة — مرتبط بقاعدة بيانات Al-Ameen" : "Register PO boxes and incoming packages — linked to Al-Ameen database"}</p>
           </div>
           {activeEvent && (
             <button type="button" onClick={() => setActiveEvent(null)}

@@ -95,7 +95,7 @@ const TransportFeedConfig = ({ isAr }: Props) => {
           </div>
           <div>
             <h3 className="text-white font-bold text-sm">{isAr ? "طرق تطابق الهوية" : "Identity Matching Methods"}</h3>
-            <p className="text-gray-500 text-xs">{isAr ? "كيف يربط AMEEN الرحلات بالأشخاص" : "How AMEEN links trips to persons"}</p>
+            <p className="text-gray-500 text-xs">{isAr ? "كيف يربط Al-Ameen الرحلات بالأشخاص" : "How Al-Ameen links trips to persons"}</p>
           </div>
         </div>
         <div className="divide-y" style={{ borderColor: "rgba(181,142,60,0.06)" }}>
@@ -126,8 +126,8 @@ const TransportFeedConfig = ({ isAr }: Props) => {
           <p className="text-gold-400 text-xs font-bold mb-0.5">{isAr ? "توازن الخصوصية" : "Privacy Balance"}</p>
           <p className="text-gray-400 text-xs">
             {isAr
-              ? "AMEEN يستقبل بيانات على مستوى المسار، وليس تتبع GPS في الوقت الفعلي. التحليل استرجاعي. البيانات المجهولة تُحتفظ بها مجهولة ما لم تُطابق بواسطة تدفق آخر."
-              : "AMEEN receives route-level data, not real-time GPS tracking. Pattern analysis is retrospective. Anonymous data stays anonymous unless matched by another stream."}
+              ? "Al-Ameen يستقبل بيانات على مستوى المسار، وليس تتبع GPS في الوقت الفعلي. التحليل استرجاعي. البيانات المجهولة تُحتفظ بها مجهولة ما لم تُطابق بواسطة تدفق آخر."
+              : "Al-Ameen receives route-level data, not real-time GPS tracking. Pattern analysis is retrospective. Anonymous data stays anonymous unless matched by another stream."}
           </p>
         </div>
       </div>

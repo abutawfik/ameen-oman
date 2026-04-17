@@ -29,7 +29,7 @@ const LogoShowcase = () => (
         {/* 4. Sub-brand Hospitality */}
         <div className="rounded-2xl p-8 flex flex-col items-center justify-center min-h-56" style={{ background: "#0B1220", border: "1px solid rgba(181,142,60,0.15)" }}>
           <AmeenLogo variant="hospitality" size={80} />
-          <p className="text-gray-600 text-xs font-['JetBrains_Mono'] mt-4 uppercase tracking-wider">04 — AMEEN Hospitality</p>
+          <p className="text-gray-600 text-xs font-['JetBrains_Mono'] mt-4 uppercase tracking-wider">04 — Al-Ameen Hospitality</p>
         </div>
 
         {/* 5. Light Background */}

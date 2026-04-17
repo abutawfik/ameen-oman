@@ -142,7 +142,7 @@ const POBoxRegistrationForm = ({ isAr, onCancel }: Props) => {
             ))}
             <div className="flex items-start gap-3 px-3 py-3 rounded-lg mt-2" style={{ background: "rgba(181,142,60,0.04)", border: "1px solid rgba(181,142,60,0.15)" }}>
               <i className="ri-shield-check-line text-gold-400 text-sm mt-0.5 flex-shrink-0" />
-              <p className="text-gray-400 text-xs">{isAr ? "سيتم ربط صندوق البريد بوثيقة السفر في قاعدة بيانات AMEEN." : "PO Box will be linked to the travel document in the AMEEN database."}</p>
+              <p className="text-gray-400 text-xs">{isAr ? "سيتم ربط صندوق البريد بوثيقة السفر في قاعدة بيانات Al-Ameen." : "PO Box will be linked to the travel document in the Al-Ameen database."}</p>
             </div>
           </div>
         </SectionCard>

@@ -144,7 +144,7 @@ const FeedConfigPanel = ({ isAr }: Props) => {
             </div>
             <div>
               <h3 className="text-white font-bold text-sm">{isAr ? "أنواع الأحداث المستلمة" : "Event Types Received"}</h3>
-              <p className="text-gray-500 text-xs">{isAr ? "تفعيل/تعطيل أنواع الأحداث لمعالجة AMEEN" : "Toggle event types for AMEEN processing"}</p>
+              <p className="text-gray-500 text-xs">{isAr ? "تفعيل/تعطيل أنواع الأحداث لمعالجة Al-Ameen" : "Toggle event types for Al-Ameen processing"}</p>
             </div>
           </div>
           <span className="text-gray-500 text-xs">{isAr ? "اليوم" : "Today's counts"}</span>
@@ -205,13 +205,13 @@ const FeedConfigPanel = ({ isAr }: Props) => {
         </div>
       </div>
 
-      {/* AMEEN Note */}
+      {/* Al-Ameen Note */}
       <div className="flex items-start gap-3 px-5 py-4 rounded-xl border" style={{ background: "rgba(181,142,60,0.04)", borderColor: "rgba(181,142,60,0.15)" }}>
         <i className="ri-information-line text-gold-400 text-sm mt-0.5 flex-shrink-0" />
         <p className="text-gray-400 text-sm">
           {isAr
-            ? "AMEEN لا يتحكم في أنظمة الحدود. هذه تغذية نظام إلى نظام من منصات iBorders وeVisa. يقوم AMEEN بإثراء هذه البيانات بتحليلات متعددة التدفقات."
-            : "AMEEN does NOT control border systems. This is a system-to-system feed from iBorders and eVisa platforms. AMEEN enriches this data with cross-stream analytics."}
+            ? "Al-Ameen لا يتحكم في أنظمة الحدود. هذه تغذية نظام إلى نظام من منصات iBorders وeVisa. يقوم Al-Ameen بإثراء هذه البيانات بتحليلات متعددة التدفقات."
+            : "Al-Ameen does NOT control border systems. This is a system-to-system feed from iBorders and eVisa platforms. Al-Ameen enriches this data with cross-stream analytics."}
         </p>
       </div>
     </div>

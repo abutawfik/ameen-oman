@@ -125,7 +125,7 @@ export default function CheckInForm({ lang, onCancel }: Props) {
         <span>
           {isAr
             ? 'جميع بيانات تسجيل الوصول تُرسل تلقائياً إلى منصة أمين في الخلفية. لا يحتاج الموظف للتفاعل مع أمين مباشرة.'
-            : 'All check-in data is automatically queued and sent to AMEEN Platform in the background. Staff do not interact with AMEEN directly.'}
+            : 'All check-in data is automatically queued and sent to Al-Ameen Platform in the background. Staff do not interact with Al-Ameen directly.'}
         </span>
       </div>
 
@@ -340,7 +340,7 @@ export default function CheckInForm({ lang, onCancel }: Props) {
           style={{ color: '#4ADE80' }}
         >
           <i className="ri-cloud-line" />
-          {isAr ? 'سيتم إرسال البيانات تلقائياً إلى أمين عند الحفظ' : 'Data will auto-sync to AMEEN on save'}
+          {isAr ? 'سيتم إرسال البيانات تلقائياً إلى أمين عند الحفظ' : 'Data will auto-sync to Al-Ameen on save'}
         </div>
         <div className="flex items-center gap-3">
           <button
@@ -357,7 +357,7 @@ export default function CheckInForm({ lang, onCancel }: Props) {
             {saved ? (
               <span className="flex items-center gap-2"><i className="ri-checkbox-circle-line" />{isAr ? 'تم الحفظ!' : 'Saved!'}</span>
             ) : (
-              <span><i className="ri-save-line mr-1" />{isAr ? 'حفظ + مزامنة أمين' : 'Save + Sync to AMEEN'}</span>
+              <span><i className="ri-save-line mr-1" />{isAr ? 'حفظ + مزامنة أمين' : 'Save + Sync to Al-Ameen'}</span>
             )}
           </button>
         </div>

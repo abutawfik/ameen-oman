@@ -16,7 +16,7 @@ const OSINTLimitations = ({ isAr }: Props) => {
     { name: "X/Twitter API v2", desc: isAr ? "بحث المنشورات العامة" : "Public post search", status: "active" as const, hitRate: "N/A" },
     { name: "Telegram Bot API", desc: isAr ? "مراقبة القنوات العامة" : "Public channel monitoring", status: "active" as const, hitRate: "N/A" },
     { name: "Instagram Graph API", desc: isAr ? "المنشورات العامة فقط" : "Public posts only", status: "limited" as const, hitRate: "N/A" },
-    { name: "Custom AMEEN Lookup", desc: isAr ? "قاعدة بيانات داخلية" : "Internal database", status: "active" as const, hitRate: "84%" },
+    { name: "Custom Al-Ameen Lookup", desc: isAr ? "قاعدة بيانات داخلية" : "Internal database", status: "active" as const, hitRate: "84%" },
   ];
 
   return (

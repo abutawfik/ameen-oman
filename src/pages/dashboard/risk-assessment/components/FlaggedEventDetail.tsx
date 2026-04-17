@@ -22,7 +22,7 @@ const FLAG_CATEGORY_ICONS: Record<string, string> = {
 
 const FLOW_STEPS = [
   { label: "Event",      labelAr: "حدث",          icon: "ri-pulse-line",        color: "#D4A84B", done: true  },
-  { label: "AMEEN DB",   labelAr: "قاعدة أمين",   icon: "ri-database-2-line",   color: "#D4A84B", done: true  },
+  { label: "Al-Ameen DB",   labelAr: "قاعدة أمين",   icon: "ri-database-2-line",   color: "#D4A84B", done: true  },
   { label: "Sec Dept 1", labelAr: "أمن 1",         icon: "ri-server-line",       color: "#D4A84B", done: true  },
   { label: "Sec Dept 2", labelAr: "أمن 2",         icon: "ri-server-line",       color: "#D4A84B", done: true  },
   { label: "Assessment", labelAr: "تقييم",         icon: "ri-shield-line",       color: "#FACC15", done: true  },
@@ -94,7 +94,7 @@ const FlaggedEventDetail = ({ person, isAr, onClose, onConfirm, onDismiss, onEsc
                 </span>
               </div>
               <p className="text-gray-600 text-xs font-['JetBrains_Mono'] mt-0.5">
-                {isAr ? "الحدث → قاعدة أمين → RES-A+RES-B → تقييم مستقل → صح/خطأ → قاعدة الشرطة" : "Event → AMEEN DB → Replicate RES-A+RES-B → Independent Assessment → True/False → Police DB"}
+                {isAr ? "الحدث → قاعدة أمين → RES-A+RES-B → تقييم مستقل → صح/خطأ → قاعدة الشرطة" : "Event → Al-Ameen DB → Replicate RES-A+RES-B → Independent Assessment → True/False → Police DB"}
               </p>
             </div>
           </div>

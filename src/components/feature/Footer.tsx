@@ -26,7 +26,7 @@ const Footer = () => {
               </div>
               <div>
                 <p className="text-white font-bold text-base font-['Inter'] tracking-widest">Al-Ameen</p>
-                <p className="text-gold-400 text-xs font-['Cairo']">الامين</p>
+                <p className="text-gold-400 text-xs font-['Cairo']">الأمين</p>
               </div>
             </div>
             <p className="text-gold-400 text-sm font-semibold font-['Inter'] mb-1">{t("footer.tagline")}</p>

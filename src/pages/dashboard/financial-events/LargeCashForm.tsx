@@ -101,7 +101,7 @@ const LargeCashForm = ({ isAr, onCancel }: Props) => {
   return (
     <div className="space-y-5">
       <TipBanner
-        text={isAr ? "المعاملات النقدية فوق 5000 LCY تُبلَّغ تلقائياً إلى AL-AMEEN وفق متطلبات مكافحة غسل الأموال." : "Cash transactions above 5000 LCY are automatically reported to AL-AMEEN per AML requirements."}
+        text={isAr ? "المعاملات النقدية فوق 5000 LCY تُبلَّغ تلقائياً إلى Al-Ameen وفق متطلبات مكافحة غسل الأموال." : "Cash transactions above 5000 LCY are automatically reported to Al-Ameen per AML requirements."}
         color="amber"
       />
 
@@ -158,7 +158,7 @@ const LargeCashForm = ({ isAr, onCancel }: Props) => {
                 {isAboveThreshold && (
                   <p className="text-xs mt-2" style={{ color: riskColors[riskLevel] }}>
                     <i className="ri-alert-line mr-1" />
-                    {isAr ? "هذه المعاملة مُبلَّغ عنها تلقائياً إلى AL-AMEEN" : "This transaction is auto-reported to AL-AMEEN"}
+                    {isAr ? "هذه المعاملة مُبلَّغ عنها تلقائياً إلى Al-Ameen" : "This transaction is auto-reported to Al-Ameen"}
                   </p>
                 )}
               </div>

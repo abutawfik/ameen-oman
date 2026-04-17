@@ -202,7 +202,7 @@ export default function HospitalitySidebar({ activeKey, onNav, lang, collapsed, 
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 rounded-full shrink-0 bg-gold-400" />
             <span className="text-gray-600 text-xs">
-              {isAr ? 'أمين: ' : 'AMEEN: '}
+              {isAr ? 'أمين: ' : 'Al-Ameen: '}
               <span className="text-gold-400">{isAr ? 'مزامنة' : 'Syncing'}</span>
             </span>
           </div>

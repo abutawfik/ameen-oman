@@ -108,7 +108,7 @@ const EmploymentRegistryPage = () => {
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-white font-bold text-sm">{isAr ? "سجل التوظيف" : "Employment Registry"}</span>
-                <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(181,142,60,0.12)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>AMEEN Portal</span>
+                <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(181,142,60,0.12)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>Al-Ameen Portal</span>
               </div>
               <p className="text-gray-500 text-xs">{isAr ? "وزارة العمل · أصحاب العمل المسجّلون" : "Ministry of Labour · Registered Employers"}</p>
             </div>
@@ -216,7 +216,7 @@ const EmploymentRegistryPage = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {[
                   { icon: "ri-government-line", color: "#D4A84B", title: isAr ? "وزارة العمل" : "Ministry of Labour", desc: isAr ? "تغذية API لإصدار/تجديد/إلغاء تصاريح العمل" : "API feed for work permit issuance/renewal/cancellation" },
-                  { icon: "ri-building-line", color: "#4ADE80", title: isAr ? "أصحاب العمل المسجّلون" : "Registered Employers", desc: isAr ? "أحداث تأهيل/إنهاء الموظفين عبر بوابة AMEEN أو API" : "Employee onboarding/termination events via AMEEN Portal or API" },
+                  { icon: "ri-building-line", color: "#4ADE80", title: isAr ? "أصحاب العمل المسجّلون" : "Registered Employers", desc: isAr ? "أحداث تأهيل/إنهاء الموظفين عبر بوابة Al-Ameen أو API" : "Employee onboarding/termination events via Al-Ameen Portal or API" },
                 ].map((src) => (
                   <div key={src.title} className="flex items-start gap-3 px-4 py-3 rounded-xl" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
                     <div className="w-8 h-8 flex items-center justify-center rounded-lg flex-shrink-0" style={{ background: `${src.color}12`, border: `1px solid ${src.color}20` }}>

@@ -122,7 +122,7 @@ const StudentVisaExtensionForm = ({ isAr, onCancel }: Props) => {
             </FormField>
             <div className="flex items-start gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(181,142,60,0.04)", borderColor: "rgba(181,142,60,0.15)" }}>
               <i className="ri-information-line text-gold-400 text-sm mt-0.5 flex-shrink-0" />
-              <p className="text-gray-400 text-xs">{isAr ? "AMEEN يتحقق تلقائياً من نسبة الحضور والوضع الأكاديمي قبل الموافقة على التمديد." : "AMEEN auto-verifies attendance % and academic standing before approving the extension."}</p>
+              <p className="text-gray-400 text-xs">{isAr ? "Al-Ameen يتحقق تلقائياً من نسبة الحضور والوضع الأكاديمي قبل الموافقة على التمديد." : "Al-Ameen auto-verifies attendance % and academic standing before approving the extension."}</p>
             </div>
           </div>
         </SectionCard>

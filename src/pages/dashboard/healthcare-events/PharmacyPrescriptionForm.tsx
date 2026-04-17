@@ -70,7 +70,7 @@ const PharmacyPrescriptionForm = ({ isAr, onCancel }: Props) => {
         <div className="flex items-start gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(248,113,113,0.06)", borderColor: "rgba(248,113,113,0.25)" }}>
           <i className="ri-alert-line text-red-400 text-sm mt-0.5 flex-shrink-0" />
           <p className="text-red-400 text-sm font-['Inter']">
-            {isAr ? "تنبيه: الأدوية المضبوطة والمخدرة تُبلَّغ تلقائياً إلى AL-AMEEN وتتطلب موافقة إضافية." : "Alert: Controlled and narcotic medications are auto-reported to AL-AMEEN and require additional approval."}
+            {isAr ? "تنبيه: الأدوية المضبوطة والمخدرة تُبلَّغ تلقائياً إلى Al-Ameen وتتطلب موافقة إضافية." : "Alert: Controlled and narcotic medications are auto-reported to Al-Ameen and require additional approval."}
           </p>
         </div>
       )}

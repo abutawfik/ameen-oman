@@ -61,7 +61,7 @@ const EcommerceIntelligencePage = () => {
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-white font-bold text-sm">{isAr ? "استخبارات التجارة الإلكترونية والتجزئة" : "E-Commerce & Retail Intelligence"}</span>
-                <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(181,142,60,0.12)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>AMEEN</span>
+                <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(181,142,60,0.12)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>Al-Ameen</span>
               </div>
               <p className="text-gray-500 text-xs">{isAr ? "معالجو الدفع · تجار التجزئة · المنصات الإلكترونية" : "Payment Processors · Major Retailers · Online Platforms"}</p>
             </div>
@@ -276,7 +276,7 @@ const EcommerceIntelligencePage = () => {
                 <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
                   <i className="ri-qr-code-line text-gold-400 text-sm" />
                 </div>
-                <h3 className="text-white font-bold text-sm">{isAr ? "رموز تأكيد AMEEN" : "AMEEN Confirmation Codes"}</h3>
+                <h3 className="text-white font-bold text-sm">{isAr ? "رموز تأكيد Al-Ameen" : "Al-Ameen Confirmation Codes"}</h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 {[

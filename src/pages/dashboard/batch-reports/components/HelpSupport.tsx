@@ -12,8 +12,8 @@ const FAQS = [
   {
     q: "What file formats are supported?",
     qAr: "ما هي صيغ الملفات المدعومة؟",
-    a: "AMEEN supports CSV, XLS, and XLSX formats. Maximum file size is 5MB per file. You can upload multiple files simultaneously.",
-    aAr: "يدعم AMEEN صيغ CSV وXLS وXLSX. الحد الأقصى لحجم الملف هو 5 ميجابايت لكل ملف. يمكنك رفع ملفات متعددة في وقت واحد.",
+    a: "Al-Ameen supports CSV, XLS, and XLSX formats. Maximum file size is 5MB per file. You can upload multiple files simultaneously.",
+    aAr: "يدعم Al-Ameen صيغ CSV وXLS وXLSX. الحد الأقصى لحجم الملف هو 5 ميجابايت لكل ملف. يمكنك رفع ملفات متعددة في وقت واحد.",
   },
   {
     q: "Why was my event rejected?",
@@ -36,20 +36,20 @@ const FAQS = [
   {
     q: "How is data privacy maintained?",
     qAr: "كيف يتم الحفاظ على خصوصية البيانات؟",
-    a: "AMEEN operates under National Police data governance policies. All data is encrypted in transit and at rest. Access is role-based and logged. Personal data is masked in exports. The system complies with Oman's Personal Data Protection Law.",
-    aAr: "يعمل AMEEN وفق سياسات حوكمة بيانات الشرطة الوطنية. جميع البيانات مشفرة أثناء النقل والتخزين. الوصول قائم على الأدوار ومسجّل. البيانات الشخصية مُخفاة في التصديرات. النظام متوافق مع قانون حماية البيانات الشخصية العُماني.",
+    a: "Al-Ameen operates under National Police data governance policies. All data is encrypted in transit and at rest. Access is role-based and logged. Personal data is masked in exports. The system complies with Oman's Personal Data Protection Law.",
+    aAr: "يعمل Al-Ameen وفق سياسات حوكمة بيانات الشرطة الوطنية. جميع البيانات مشفرة أثناء النقل والتخزين. الوصول قائم على الأدوار ومسجّل. البيانات الشخصية مُخفاة في التصديرات. النظام متوافق مع قانون حماية البيانات الشخصية العُماني.",
   },
 ];
 
 const GUIDES = [
-  { icon: "ri-file-pdf-line",    color: "#F87171", title: "AMEEN User Manual v3.2",       titleAr: "دليل مستخدم AMEEN v3.2",       size: "4.2 MB", type: "PDF" },
+  { icon: "ri-file-pdf-line",    color: "#F87171", title: "Al-Ameen User Manual v3.2",       titleAr: "دليل مستخدم Al-Ameen v3.2",       size: "4.2 MB", type: "PDF" },
   { icon: "ri-file-excel-2-line",color: "#4ADE80", title: "Batch Upload Template Guide",  titleAr: "دليل قالب رفع الدُفعة",        size: "1.1 MB", type: "XLSX" },
   { icon: "ri-file-text-line",   color: "#D4A84B", title: "API Integration Specification",titleAr: "مواصفات تكامل API",             size: "2.8 MB", type: "PDF" },
   { icon: "ri-file-text-line",   color: "#FACC15", title: "Data Dictionary v2.1",         titleAr: "قاموس البيانات v2.1",           size: "0.9 MB", type: "PDF" },
 ];
 
 const VIDEOS = [
-  { icon: "ri-play-circle-line", color: "#D4A84B", title: "Getting Started with AMEEN",   titleAr: "البدء مع AMEEN",               duration: "8:24" },
+  { icon: "ri-play-circle-line", color: "#D4A84B", title: "Getting Started with Al-Ameen",   titleAr: "البدء مع Al-Ameen",               duration: "8:24" },
   { icon: "ri-play-circle-line", color: "#4ADE80", title: "Batch Upload Walkthrough",     titleAr: "شرح رفع الدُفعة",              duration: "12:15" },
   { icon: "ri-play-circle-line", color: "#FACC15", title: "Reports & Analytics Deep Dive",titleAr: "تعمق في التقارير والتحليلات",  duration: "18:42" },
   { icon: "ri-play-circle-line", color: "#A78BFA", title: "Person 360 Profile Tutorial",  titleAr: "شرح ملف الشخص 360",            duration: "10:08" },

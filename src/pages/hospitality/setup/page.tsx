@@ -60,7 +60,7 @@ export default function SetupWizardPage() {
     { n: 1, labelEn: 'Hotel Profile',  labelAr: 'ملف الفندق',    icon: 'ri-hotel-line',   descEn: 'Basic hotel information', descAr: 'معلومات الفندق الأساسية' },
     { n: 2, labelEn: 'Rooms',          labelAr: 'الغرف',          icon: 'ri-door-line',    descEn: 'Configure room inventory', descAr: 'إعداد مخزون الغرف' },
     { n: 3, labelEn: 'Scanner',        labelAr: 'الماسح الضوئي', icon: 'ri-scan-line',    descEn: 'Connect document scanner', descAr: 'توصيل الماسح الضوئي' },
-    { n: 4, labelEn: 'AMEEN Sync',     labelAr: 'مزامنة أمين',   icon: 'ri-cloud-line',   descEn: 'Connect to AMEEN Platform', descAr: 'الاتصال بمنصة أمين' },
+    { n: 4, labelEn: 'Al-Ameen Sync',     labelAr: 'مزامنة أمين',   icon: 'ri-cloud-line',   descEn: 'Connect to Al-Ameen Platform', descAr: 'الاتصال بمنصة أمين' },
   ];
 
   const addRoom = () => {
@@ -252,7 +252,7 @@ export default function SetupWizardPage() {
             <p className="text-gray-500 text-xs leading-relaxed">
               {isAr
                 ? 'هذا النظام مقدم مجاناً من الشرطة الوطنية لجميع الفنادق المسجلة في برنامج أمين.'
-                : 'This system is provided free by National Police to all AMEEN-registered hotels.'}
+                : 'This system is provided free by National Police to all Al-Ameen-registered hotels.'}
             </p>
           </div>
         </div>
@@ -347,7 +347,7 @@ export default function SetupWizardPage() {
 
                   <div>
                     <label className={labelCls}>
-                      {isAr ? 'رقم تسجيل أمين' : 'AMEEN Registration Number'}
+                      {isAr ? 'رقم تسجيل أمين' : 'Al-Ameen Registration Number'}
                       <span className="text-gold-500/50 ml-2 normal-case">{isAr ? '(من الشرطة الوطنية)' : '(obtained from National Police)'}</span>
                     </label>
                     <div className="relative">
@@ -585,13 +585,13 @@ export default function SetupWizardPage() {
                 </div>
               )}
 
-              {/* STEP 4 — AMEEN Sync */}
+              {/* STEP 4 — Al-Ameen Sync */}
               {step === 4 && (
                 <div className="space-y-5">
                   <p className="text-gray-400 text-sm leading-relaxed">
                     {isAr
                       ? 'يتصل هذا التطبيق بمنصة أمين لإرسال بيانات الأحداث تلقائياً في الخلفية. لا يحتاج الموظف للتفاعل مع أمين مباشرة.'
-                      : 'This app connects to AMEEN Platform to automatically send event data in the background. Staff never interact with AMEEN directly.'}
+                      : 'This app connects to Al-Ameen Platform to automatically send event data in the background. Staff never interact with Al-Ameen directly.'}
                   </p>
 
                   <div className="rounded-xl border border-gold-500/20 p-4" style={{ background: 'rgba(181,142,60,0.04)' }}>
@@ -600,7 +600,7 @@ export default function SetupWizardPage() {
                       <p className="text-gold-300 text-xs leading-relaxed">
                         {isAr
                           ? 'مفتاح API مقدم من الشرطة الوطنية عند التسجيل في برنامج أمين. إذا لم يكن لديك مفتاح، تواصل مع مركز قيادة أمين على الرقم 2400-0000.'
-                          : 'API Key is provided by National Police upon AMEEN program registration. If you don\'t have a key, contact AMEEN Command Center at 2400-0000.'}
+                          : 'API Key is provided by National Police upon Al-Ameen program registration. If you don\'t have a key, contact Al-Ameen Command Center at 2400-0000.'}
                       </p>
                     </div>
                   </div>

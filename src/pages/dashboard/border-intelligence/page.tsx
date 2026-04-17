@@ -48,7 +48,7 @@ const BorderIntelligencePage = () => {
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-white font-bold text-sm">{isAr ? "ذكاء الحدود والهجرة" : "Borders & Immigration Intelligence"}</span>
-                <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(181,142,60,0.12)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>AMEEN</span>
+                <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(181,142,60,0.12)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>Al-Ameen</span>
               </div>
               <p className="text-gray-500 text-xs">{isAr ? "تغذية تلقائية من iBorders وeVisa" : "Automated feed from iBorders & eVisa"}</p>
             </div>
@@ -117,7 +117,7 @@ const BorderIntelligencePage = () => {
             <div className="flex items-start justify-between">
               <div>
                 <h1 className="text-white text-2xl font-bold mb-1">{isAr ? "لوحة ذكاء الحدود" : "Border Intelligence Dashboard"}</h1>
-                <p className="text-gray-400 text-sm">{isAr ? "بيانات مباشرة من iBorders وeVisa — AMEEN يُثري بتحليلات متعددة التدفقات" : "Live data from iBorders & eVisa — AMEEN enriches with cross-stream analytics"}</p>
+                <p className="text-gray-400 text-sm">{isAr ? "بيانات مباشرة من iBorders وeVisa — Al-Ameen يُثري بتحليلات متعددة التدفقات" : "Live data from iBorders & eVisa — Al-Ameen enriches with cross-stream analytics"}</p>
               </div>
               <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg border flex-shrink-0" style={{ background: "rgba(167,139,250,0.06)", borderColor: "rgba(167,139,250,0.15)" }}>
                 <i className="ri-information-line text-purple-400 text-xs" />
@@ -149,7 +149,7 @@ const BorderIntelligencePage = () => {
                 <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
                   <i className="ri-qr-code-line text-gold-400 text-sm" />
                 </div>
-                <h3 className="text-white font-bold text-sm">{isAr ? "رموز تأكيد AMEEN" : "AMEEN Confirmation Codes"}</h3>
+                <h3 className="text-white font-bold text-sm">{isAr ? "رموز تأكيد Al-Ameen" : "Al-Ameen Confirmation Codes"}</h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 {[

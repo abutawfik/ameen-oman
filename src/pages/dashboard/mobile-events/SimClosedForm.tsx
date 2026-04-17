@@ -199,8 +199,8 @@ const SimClosedForm = ({ isAr, onCancel }: Props) => {
               <i className="ri-error-warning-line text-red-400 text-sm mt-0.5 flex-shrink-0" />
               <p className="text-gray-400 text-xs font-['Inter']">
                 {isAr
-                  ? "تحذير: إغلاق الشريحة إجراء لا رجعة فيه. سيتم إرسال إشعار فوري إلى منصة AMEEN."
-                  : "Warning: SIM closure is irreversible. An immediate notification will be sent to the AMEEN platform."}
+                  ? "تحذير: إغلاق الشريحة إجراء لا رجعة فيه. سيتم إرسال إشعار فوري إلى منصة Al-Ameen."
+                  : "Warning: SIM closure is irreversible. An immediate notification will be sent to the Al-Ameen platform."}
               </p>
             </div>
           </div>

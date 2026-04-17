@@ -73,7 +73,7 @@ const CalendarEventsPage = () => {
                 <span className="text-white font-bold text-sm">{isAr ? "التقويم وقائمة الأحداث" : "Calendar & Event List"}</span>
                 <span className="px-2 py-0.5 rounded-full text-xs font-bold"
                   style={{ background: "rgba(181,142,60,0.12)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>
-                  AMEEN
+                  Al-Ameen
                 </span>
               </div>
               <p className="text-gray-500 text-xs">{isAr ? "عرض وتصفية جميع الأحداث عبر الوحدات" : "View and filter all events across modules"}</p>

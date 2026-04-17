@@ -95,7 +95,7 @@ const RegisterPage = () => {
             </div>
             <div>
               <span className="text-white font-bold text-sm font-['Inter'] tracking-widest">Al-Ameen</span>
-              <span className="text-gold-400 text-xs font-['Cairo'] ml-2">الامين</span>
+              <span className="text-gold-400 text-xs font-['Cairo'] ml-2">الأمين</span>
             </div>
             <span className="hidden md:block text-gray-600 text-xs font-['Inter'] ml-2">
               — {isAr ? "تسجيل جهة جديدة" : "Register New Entity"}

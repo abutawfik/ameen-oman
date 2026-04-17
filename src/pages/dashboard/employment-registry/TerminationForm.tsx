@@ -70,8 +70,8 @@ const TerminationForm = ({ isAr, onCancel }: Props) => {
         <i className="ri-error-warning-line text-red-400 text-sm mt-0.5 flex-shrink-0" />
         <p className="text-gray-400 text-xs">
           {isAr
-            ? "إنهاء العمل يُلغي تصريح العمل ويُبلَّغ تلقائياً إلى وزارة العمل. حالات التغيب تُبلَّغ فوراً إلى AMEEN."
-            : "Termination cancels the work permit and is auto-reported to the Ministry of Labour. Absconding cases are immediately flagged in AMEEN."}
+            ? "إنهاء العمل يُلغي تصريح العمل ويُبلَّغ تلقائياً إلى وزارة العمل. حالات التغيب تُبلَّغ فوراً إلى Al-Ameen."
+            : "Termination cancels the work permit and is auto-reported to the Ministry of Labour. Absconding cases are immediately flagged in Al-Ameen."}
         </p>
       </div>
 
@@ -129,7 +129,7 @@ const TerminationForm = ({ isAr, onCancel }: Props) => {
               <i className="ri-alarm-warning-line text-red-400 text-sm mt-0.5 flex-shrink-0" />
               <div>
                 <p className="text-red-400 text-xs font-bold mb-0.5">
-                  {isAbsconding ? (isAr ? "تنبيه: تغيب عن العمل — يُبلَّغ فوراً إلى AMEEN" : "Alert: Absconding — Immediately flagged in AMEEN") : (isAr ? "تنبيه: ترحيل — يُبلَّغ إلى الجهات المختصة" : "Alert: Deportation — Reported to relevant authorities")}
+                  {isAbsconding ? (isAr ? "تنبيه: تغيب عن العمل — يُبلَّغ فوراً إلى Al-Ameen" : "Alert: Absconding — Immediately flagged in Al-Ameen") : (isAr ? "تنبيه: ترحيل — يُبلَّغ إلى الجهات المختصة" : "Alert: Deportation — Reported to relevant authorities")}
                 </p>
                 <p className="text-gray-400 text-xs">
                   {isAbsconding ? (isAr ? "سيتم التحقق من تدفق الحدود. إذا لم يغادر الشخص البلاد، سيتم تفعيل مراقبة الفندق والمرافق والنقل." : "Border stream will be checked. If person has not exited, hotel/utility/transport monitoring will be activated.") : ""}

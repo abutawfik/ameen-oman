@@ -50,7 +50,7 @@ const FinConfirmation = ({ refNumber, eventType, isAr, onReset, flagged }: Props
         {isAr ? "تم الإرسال بنجاح" : "Submitted Successfully"}
       </h2>
       <p className="text-gray-400 text-sm mb-6 font-['Inter']">
-        {isAr ? `تم إرسال حدث "${eventType}" إلى منصة AL-AMEEN` : `"${eventType}" event submitted to AL-AMEEN platform`}
+        {isAr ? `تم إرسال حدث "${eventType}" إلى منصة Al-Ameen` : `"${eventType}" event submitted to Al-Ameen platform`}
       </p>
 
       {/* Reference number */}

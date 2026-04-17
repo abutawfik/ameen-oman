@@ -37,9 +37,9 @@ export default function MobilePushPanel() {
             <i className="ri-smartphone-line text-gold-400 text-xl" />
           </div>
           <div className="flex-1">
-            <h3 className="text-white font-semibold text-sm">AMEEN Mobile Push — Tier 2</h3>
+            <h3 className="text-white font-semibold text-sm">Al-Ameen Mobile Push — Tier 2</h3>
             <p className="text-gray-400 text-xs mt-1 leading-relaxed">
-              Critical alerts (score &gt;75 or critical priority) are automatically pushed to field officers&apos; AMEEN Mobile app in real-time. Officers receive full person profile, location, triggering pattern, and suggested action.
+              Critical alerts (score &gt;75 or critical priority) are automatically pushed to field officers&apos; Al-Ameen Mobile app in real-time. Officers receive full person profile, location, triggering pattern, and suggested action.
             </p>
           </div>
           <div className="text-right shrink-0">
@@ -136,7 +136,7 @@ export default function MobilePushPanel() {
                   className="text-xs font-semibold"
                   style={{ color: isAcked ? '#4ADE80' : '#F87171' }}
                 >
-                  {isAcked ? 'ACKNOWLEDGED' : 'AMEEN MOBILE — CRITICAL ALERT'}
+                  {isAcked ? 'ACKNOWLEDGED' : 'Al-Ameen MOBILE — CRITICAL ALERT'}
                 </span>
                 <span className="text-gray-500 text-xs ml-auto font-mono">{alert.triggeredAt}</span>
               </div>

@@ -48,8 +48,8 @@ const ANOMALIES: AnomalyRecord[] = [
     id: "ANM-UTL-004", type: "no_occupant", severity: "medium",
     accountNumber: "ACC-2024-9901", holderName: "Fatima Al-Zadjali", holderNameAr: "فاطمة الزدجالية",
     address: "Interior Region", provider: "National Electric Company", serviceType: "Electricity",
-    detectedAt: "2026-04-05 08:00", detail: "Active connection at address with no registered occupant in any AMEEN stream. No hotel, no rental, no border entry.",
-    detailAr: "توصيل نشط في عنوان لا يوجد فيه ساكن مسجّل في أي تدفق AMEEN. لا فندق، لا إيجار، لا دخول حدودي.",
+    detectedAt: "2026-04-05 08:00", detail: "Active connection at address with no registered occupant in any Al-Ameen stream. No hotel, no rental, no border entry.",
+    detailAr: "توصيل نشط في عنوان لا يوجد فيه ساكن مسجّل في أي تدفق Al-Ameen. لا فندق، لا إيجار، لا دخول حدودي.",
     linkedStreams: ["UTILITY", "HOTEL", "MUNICIPALITY", "BORDER"], status: "open",
   },
   {
@@ -128,8 +128,8 @@ const UsageAnomalyPanel = ({ isAr, onCancel }: Props) => {
           <p className="text-orange-400 text-sm font-bold mb-0.5">{isAr ? "تنبيه مُولَّد تلقائياً — لا إدخال يدوي" : "System-Generated Alerts — No Manual Entry"}</p>
           <p className="text-gray-400 text-xs">
             {isAr
-              ? "يكتشف AMEEN هذه الشذوذات تلقائياً عبر التحليل المتقاطع بين تدفقات المرافق والبلدية والحدود والفنادق."
-              : "AMEEN auto-detects these anomalies via cross-stream analysis between Utility, Municipality, Border, and Hotel data streams."}
+              ? "يكتشف Al-Ameen هذه الشذوذات تلقائياً عبر التحليل المتقاطع بين تدفقات المرافق والبلدية والحدود والفنادق."
+              : "Al-Ameen auto-detects these anomalies via cross-stream analysis between Utility, Municipality, Border, and Hotel data streams."}
           </p>
         </div>
       </div>

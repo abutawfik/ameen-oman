@@ -13,7 +13,7 @@ const colorPalette = [
 ];
 
 const typeScale = [
-  { name: "Display",    size: "48px / 3rem",  weight: "800 ExtraBold", usage: "Hero headlines, splash screens",          sample: "AMEEN", mono: false },
+  { name: "Display",    size: "48px / 3rem",  weight: "800 ExtraBold", usage: "Hero headlines, splash screens",          sample: "Al-Ameen", mono: false },
   { name: "H1",         size: "32px / 2rem",  weight: "700 Bold",      usage: "Page titles, section headers",             sample: "Intelligence Platform", mono: false },
   { name: "H2",         size: "24px / 1.5rem",weight: "600 SemiBold",  usage: "Card titles, panel headers",               sample: "Activity Monitoring", mono: false },
   { name: "H3",         size: "18px / 1.125rem",weight:"600 SemiBold", usage: "Sub-section titles",                       sample: "Stream Management", mono: false },
@@ -41,7 +41,7 @@ const dosDonts = [
 const voiceExamples = [
   { label: "Authoritative",  good: "Al-Ameen monitors 14 data streams in real-time across the nation.",       bad: "We track lots of stuff happening around the country." },
   { label: "Precise",        good: "Risk score: 87/100 — 3 pattern alerts triggered in the last 24 hours.",   bad: "This person seems pretty risky based on recent activity." },
-  { label: "Bilingual-native",good:"الحارس الامين للوطن — The Nation's Trusted Guardian",                    bad: "Guardian of the Nation (translated from Arabic)" },
+  { label: "Bilingual-native",good:"الحارس الأمين للوطن — The Nation's Trusted Guardian",                    bad: "Guardian of the Nation (translated from Arabic)" },
   { label: "Technical confidence",good:"VIS RES-A replication lag: 1.2 min — within SLA threshold.",         bad: "The system is a bit slow right now but should be fine." },
 ];
 
@@ -55,7 +55,7 @@ const BrandGuidelines = () => (
           <p className="text-xs text-gold-400 uppercase tracking-widest font-['JetBrains_Mono'] mb-3">Brand Philosophy</p>
           <h2 className="text-white text-2xl font-bold font-['Inter'] mb-4">أمين = The Trustworthy</h2>
           <p className="text-gray-400 text-sm font-['Inter'] leading-relaxed mb-4">
-            AMEEN is the trusted custodian safeguarding the nation. The name itself — أمين — means trustworthy, faithful, and guardian in Arabic. Every design decision reinforces this: sovereign protection, intelligent insight, and national pride.
+            Al-Ameen is the trusted custodian safeguarding the nation. The name itself — أمين — means trustworthy, faithful, and guardian in Arabic. Every design decision reinforces this: sovereign protection, intelligent insight, and national pride.
           </p>
           <div className="space-y-2">
             {["Sovereign Protection", "Intelligent Insight", "National Pride", "Operational Precision"].map((v) => (
@@ -130,7 +130,7 @@ const BrandGuidelines = () => (
       </h2>
       <div className="grid grid-cols-2 gap-3 mb-4">
         {[
-          { name: "Inter", role: "English — Primary UI", sample: "AMEEN Intelligence Platform", weight: "100–900" },
+          { name: "Inter", role: "English — Primary UI", sample: "Al-Ameen Intelligence Platform", weight: "100–900" },
           { name: "Noto Kufi Arabic", role: "Arabic — Primary UI", sample: "أمين — الحارس الأمين للوطن", weight: "400–700" },
           { name: "JetBrains Mono", role: "Monospace — Data & Code", sample: "AMN-HTL-2025-04891 | 09:41:22", weight: "400–700" },
         ].map((font) => (

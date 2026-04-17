@@ -63,7 +63,7 @@ const SocialIntelligencePage = () => {
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-white font-bold text-sm">{isAr ? "استخبارات وسائل التواصل الاجتماعي" : "Social Media Intelligence"}</span>
-                <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(181,142,60,0.12)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>AMEEN</span>
+                <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(181,142,60,0.12)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>Al-Ameen</span>
               </div>
               <p className="text-gray-500 text-xs">{isAr ? "OSINT Tier 1+2 — بيانات عامة فقط" : "OSINT Tier 1+2 — Public data only"}</p>
             </div>
@@ -188,7 +188,7 @@ const SocialIntelligencePage = () => {
                 <div className="space-y-3">
                   {[
                     { icon: "ri-input-method-line", label: isAr ? "المدخل" : "Input", desc: isAr ? "رقم هاتف من تدفق SIM أو بريد إلكتروني من البيانات المالية/الفندقية" : "Phone number from SIM stream or email from financial/hotel data" },
-                    { icon: "ri-cpu-line", label: isAr ? "المعالجة" : "Process", desc: isAr ? "استعلام خدمات Pipl وSEON وقاعدة بيانات AMEEN الداخلية" : "Query Pipl, SEON, and AMEEN internal database" },
+                    { icon: "ri-cpu-line", label: isAr ? "المعالجة" : "Process", desc: isAr ? "استعلام خدمات Pipl وSEON وقاعدة بيانات Al-Ameen الداخلية" : "Query Pipl, SEON, and Al-Ameen internal database" },
                     { icon: "ri-list-check-2", label: isAr ? "المخرج" : "Output", desc: isAr ? "قائمة الحسابات المكتشفة مع الأسماء والمتابعين وتاريخ الإنشاء والحالة" : "List of discovered accounts with names, followers, creation date, status" },
                     { icon: "ri-robot-line", label: isAr ? "تلقائي" : "Auto-Lookup", desc: isAr ? "عند شراء SIM جديد → بحث تلقائي → إرفاق النتائج بملف الشخص" : "New SIM purchase → auto-run lookup → attach results to person profile" },
                   ].map((item) => (
@@ -273,7 +273,7 @@ const SocialIntelligencePage = () => {
                 <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(181,142,60,0.1)", border: "1px solid rgba(181,142,60,0.2)" }}>
                   <i className="ri-qr-code-line text-gold-400 text-sm" />
                 </div>
-                <h3 className="text-white font-bold text-sm">{isAr ? "رموز تأكيد AMEEN" : "AMEEN Confirmation Codes"}</h3>
+                <h3 className="text-white font-bold text-sm">{isAr ? "رموز تأكيد Al-Ameen" : "Al-Ameen Confirmation Codes"}</h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 {[

@@ -34,7 +34,7 @@ const HltConfirmation = ({ refNumber, eventType, eventCode, color, isAr, onReset
         {isAr ? "تم الإرسال بنجاح" : "Event Submitted Successfully"}
       </h2>
       <p className="text-gray-400 text-sm mb-3 font-['Inter']">
-        {isAr ? `تم إرسال حدث "${eventType}" إلى منصة AL-AMEEN` : `"${eventType}" event submitted to AL-AMEEN Portal`}
+        {isAr ? `تم إرسال حدث "${eventType}" إلى منصة Al-Ameen` : `"${eventType}" event submitted to Al-Ameen Portal`}
       </p>
       <div className="flex items-center gap-2 px-3 py-1.5 rounded-full mb-8" style={{ background: `${color}10`, border: `1px solid ${color}25` }}>
         <span className="text-xs font-bold font-['JetBrains_Mono']" style={{ color }}>{eventCode}</span>

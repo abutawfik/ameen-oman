@@ -94,9 +94,9 @@ const PortalHome = ({ onTabChange }: Props) => {
                 ● All Systems Operational
               </span>
             </div>
-            <h1 className="text-white text-3xl font-bold font-['Inter'] mb-2">AMEEN Developer Portal</h1>
+            <h1 className="text-white text-3xl font-bold font-['Inter'] mb-2">Al-Ameen Developer Portal</h1>
             <p className="text-gray-400 text-base font-['Inter'] max-w-xl">
-              Integrate your entity with the AMEEN Intelligence Platform. Submit events across 13 data streams, manage API keys, configure webhooks, and monitor your integration in real-time.
+              Integrate your entity with the Al-Ameen Intelligence Platform. Submit events across 13 data streams, manage API keys, configure webhooks, and monitor your integration in real-time.
             </p>
             <div className="flex items-center gap-3 mt-5">
               <button

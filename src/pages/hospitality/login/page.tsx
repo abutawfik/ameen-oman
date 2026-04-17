@@ -92,7 +92,7 @@ export default function HospitalityLoginPage() {
             <p className="text-gray-500 text-sm mt-3 leading-relaxed">
               {isAr
                 ? 'نظام إدارة الفنادق المتكامل — مقدم مجاناً من الشرطة الوطنية للفنادق المسجلة في برنامج أمين.'
-                : 'Integrated Hotel Management System — provided free by National Police to all AMEEN-registered properties.'}
+                : 'Integrated Hotel Management System — provided free by National Police to all Al-Ameen-registered properties.'}
             </p>
           </div>
 
@@ -100,7 +100,7 @@ export default function HospitalityLoginPage() {
           <div className="space-y-2.5">
             {[
               { icon: 'ri-scan-line',        en: 'Passport & ID Scanner Integration',  ar: 'تكامل ماسح جوازات السفر والهويات' },
-              { icon: 'ri-cloud-line',        en: 'Auto-sync to AMEEN Platform',        ar: 'مزامنة تلقائية مع منصة أمين' },
+              { icon: 'ri-cloud-line',        en: 'Auto-sync to Al-Ameen Platform',        ar: 'مزامنة تلقائية مع منصة أمين' },
               { icon: 'ri-wifi-off-line',     en: 'Full Offline Mode',                  ar: 'وضع عدم الاتصال الكامل' },
               { icon: 'ri-translate-2',       en: 'Bilingual EN / AR',                  ar: 'ثنائي اللغة عربي / إنجليزي' },
               { icon: 'ri-hotel-line',        en: 'Complete PMS for 1-2 Star Hotels',   ar: 'نظام إدارة متكامل للفنادق الصغيرة' },

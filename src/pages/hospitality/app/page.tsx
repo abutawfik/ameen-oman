@@ -74,7 +74,7 @@ export default function HospitalityAppPage() {
     calendar:     { en: 'Calendar',            ar: 'التقويم' },
     upload:       { en: 'Upload Events File',  ar: 'رفع ملف الأحداث' },
     eventlist:    { en: 'Event List',          ar: 'قائمة الأحداث' },
-    sync:         { en: 'AMEEN Sync Log',      ar: 'سجل مزامنة أمين' },
+    sync:         { en: 'Al-Ameen Sync Log',      ar: 'سجل مزامنة أمين' },
     users:        { en: 'Manage Users',        ar: 'إدارة المستخدمين' },
     help:         { en: 'Help',                ar: 'المساعدة' },
     checkin:      { en: 'New Check-In',        ar: 'تسجيل وصول جديد' },
@@ -221,7 +221,7 @@ export default function HospitalityAppPage() {
             {isAr ? viewTitles[activeView]?.ar : viewTitles[activeView]?.en}
           </span>
 
-          {/* AMEEN sync indicator */}
+          {/* Al-Ameen sync indicator */}
           <div
             className="hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded-lg border text-xs"
             style={{
@@ -231,7 +231,7 @@ export default function HospitalityAppPage() {
             }}
           >
             <span className="w-1.5 h-1.5 rounded-full bg-gold-400 animate-pulse" />
-            {isAr ? 'أمين: نشط' : 'AMEEN: Active'}
+            {isAr ? 'أمين: نشط' : 'Al-Ameen: Active'}
           </div>
 
           {/* Offline toggle */}
@@ -370,7 +370,7 @@ export default function HospitalityAppPage() {
                 <table className="w-full text-xs">
                   <thead>
                     <tr className="border-b border-gold-500/10">
-                      {[isAr ? 'رقم الحجز' : 'Booking ID', isAr ? 'النزيل' : 'Guest', isAr ? 'الغرفة' : 'Room', isAr ? 'الدخول' : 'Check-In', isAr ? 'الخروج' : 'Check-Out', isAr ? 'الإجمالي' : 'Total', isAr ? 'الحالة' : 'Status', isAr ? 'أمين' : 'AMEEN'].map(h => (
+                      {[isAr ? 'رقم الحجز' : 'Booking ID', isAr ? 'النزيل' : 'Guest', isAr ? 'الغرفة' : 'Room', isAr ? 'الدخول' : 'Check-In', isAr ? 'الخروج' : 'Check-Out', isAr ? 'الإجمالي' : 'Total', isAr ? 'الحالة' : 'Status', isAr ? 'أمين' : 'Al-Ameen'].map(h => (
                         <th key={h} className="text-left text-gray-600 font-medium py-3 px-4 uppercase tracking-wider" style={{ fontSize: 10 }}>{h}</th>
                       ))}
                     </tr>
@@ -418,9 +418,9 @@ export default function HospitalityAppPage() {
             <div className="p-5">
               <div className="flex items-center justify-between mb-5">
                 <div>
-                  <h2 className="text-white font-bold text-lg">{isAr ? 'سجل مزامنة أمين' : 'AMEEN Sync Log'}</h2>
+                  <h2 className="text-white font-bold text-lg">{isAr ? 'سجل مزامنة أمين' : 'Al-Ameen Sync Log'}</h2>
                   <p className="text-gray-500 text-xs mt-0.5">
-                    {isAr ? 'جميع الأحداث المرسلة إلى منصة أمين' : 'All events transmitted to AMEEN Platform'}
+                    {isAr ? 'جميع الأحداث المرسلة إلى منصة أمين' : 'All events transmitted to Al-Ameen Platform'}
                   </p>
                 </div>
                 <div
@@ -450,7 +450,7 @@ export default function HospitalityAppPage() {
                 <table className="w-full text-xs">
                   <thead>
                     <tr className="border-b border-gold-500/10">
-                      {[isAr ? 'الوقت' : 'Time', isAr ? 'النزيل' : 'Guest', isAr ? 'نوع الحدث' : 'Event Type', isAr ? 'مرجع أمين' : 'AMEEN Ref', isAr ? 'الحالة' : 'Status'].map(h => (
+                      {[isAr ? 'الوقت' : 'Time', isAr ? 'النزيل' : 'Guest', isAr ? 'نوع الحدث' : 'Event Type', isAr ? 'مرجع أمين' : 'Al-Ameen Ref', isAr ? 'الحالة' : 'Status'].map(h => (
                         <th key={h} className="text-left text-gray-600 font-medium py-3 px-4 uppercase tracking-wider" style={{ fontSize: 10 }}>{h}</th>
                       ))}
                     </tr>
@@ -546,7 +546,7 @@ export default function HospitalityAppPage() {
                 {[
                   { q: isAr ? 'كيف أسجل وصول نزيل؟' : 'How do I check in a guest?', a: isAr ? 'انقر على "تسجيل دخول" من القائمة الجانبية أو الإجراءات السريعة.' : 'Click "Check-In" from the sidebar quick actions or main menu.' },
                   { q: isAr ? 'ماذا يحدث عند انقطاع الإنترنت؟' : 'What happens when internet is lost?', a: isAr ? 'يعمل النظام بشكل كامل دون اتصال. تُحفظ الأحداث محلياً وتُزامن تلقائياً عند استعادة الاتصال.' : 'The system works fully offline. Events are saved locally and auto-synced when connection is restored.' },
-                  { q: isAr ? 'كيف تعمل مزامنة أمين؟' : 'How does AMEEN sync work?', a: isAr ? 'تتم المزامنة تلقائياً في الخلفية. لا يحتاج الموظف للتفاعل مع أمين مباشرة.' : 'Sync happens automatically in the background. Staff never interact with AMEEN directly.' },
+                  { q: isAr ? 'كيف تعمل مزامنة أمين؟' : 'How does Al-Ameen sync work?', a: isAr ? 'تتم المزامنة تلقائياً في الخلفية. لا يحتاج الموظف للتفاعل مع أمين مباشرة.' : 'Sync happens automatically in the background. Staff never interact with Al-Ameen directly.' },
                   { q: isAr ? 'كيف أوصل الماسح الضوئي؟' : 'How do I connect the scanner?', a: isAr ? 'وصّل ماسح Regula عبر USB. سيتم الكشف عنه تلقائياً. يمكن إعادة الإعداد من إعدادات النظام.' : 'Connect the Regula scanner via USB. It will be auto-detected. Re-setup is available in system settings.' },
                   { q: isAr ? 'كيف أرفع ملف أحداث؟' : 'How do I upload a batch file?', a: isAr ? 'انتقل إلى "رفع ملف الأحداث"، حمّل القالب، ثم ارفع ملف CSV أو Excel.' : 'Go to "Upload Events File", download the template, then upload your CSV or Excel file.' },
                 ].map((item, i) => (

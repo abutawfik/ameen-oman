@@ -126,7 +126,7 @@ const RiskAssessmentPage = () => {
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-gold-400 font-black text-base tracking-wide">AMEEN</span>
+                <span className="text-gold-400 font-black text-base tracking-wide">Al-Ameen</span>
                 <span className="text-white font-bold text-sm">{isAr ? "تقييم المخاطر" : "Risk Assessment"}</span>
                 <span className="px-2 py-0.5 rounded-full text-xs font-bold"
                   style={{ background: "rgba(248,113,113,0.15)", color: "#F87171", border: "1px solid rgba(248,113,113,0.3)" }}>
@@ -189,7 +189,7 @@ const RiskAssessmentPage = () => {
               <div>
                 <h1 className="text-white text-2xl font-bold mb-1">{isAr ? "المرحلة 1 — التنبيه الثنائي" : "Phase 1 — Binary Flag"}</h1>
                 <p className="text-gray-400 text-sm font-['JetBrains_Mono']">
-                  {isAr ? "الحدث → قاعدة أمين → RES-A+RES-B → تقييم مستقل → صح/خطأ → قاعدة الشرطة" : "Event → AMEEN DB → Replicate RES-A+RES-B → Independent Assessment → True/False → Police DB"}
+                  {isAr ? "الحدث → قاعدة أمين → RES-A+RES-B → تقييم مستقل → صح/خطأ → قاعدة الشرطة" : "Event → Al-Ameen DB → Replicate RES-A+RES-B → Independent Assessment → True/False → Police DB"}
                 </p>
               </div>
               {/* Risk filter */}

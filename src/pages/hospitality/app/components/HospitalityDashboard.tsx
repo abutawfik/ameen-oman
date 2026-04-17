@@ -197,7 +197,7 @@ export default function HospitalityDashboard({ lang, onNav }: Props) {
           <div className="flex gap-1">
             {[
               { key: 'activity', en: 'Recent Activity', ar: 'آخر الأنشطة' },
-              { key: 'sync',     en: 'AMEEN Sync Log',  ar: 'سجل مزامنة أمين' },
+              { key: 'sync',     en: 'Al-Ameen Sync Log',  ar: 'سجل مزامنة أمين' },
             ].map(tab => (
               <button
                 key={tab.key}

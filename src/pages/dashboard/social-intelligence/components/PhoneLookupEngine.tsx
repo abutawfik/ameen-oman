@@ -162,7 +162,7 @@ const PhoneLookupEngine = ({ isAr }: Props) => {
           </div>
           <div className="text-center">
             <p className="text-white font-semibold mb-1">{isAr ? "جارٍ الاستعلام عن قواعد البيانات..." : "Querying lookup databases..."}</p>
-            <p className="text-gray-500 text-xs">{isAr ? "Pipl · SEON · قاعدة بيانات AMEEN" : "Pipl · SEON · AMEEN database"}</p>
+            <p className="text-gray-500 text-xs">{isAr ? "Pipl · SEON · قاعدة بيانات Al-Ameen" : "Pipl · SEON · Al-Ameen database"}</p>
           </div>
           <div className="flex gap-2">
             {["WhatsApp", "Telegram", "Instagram", "X"].map((p, i) => (
@@ -266,7 +266,7 @@ const PhoneLookupEngine = ({ isAr }: Props) => {
           <div className="flex items-center gap-3 px-4 py-3 rounded-xl" style={{ background: "rgba(181,142,60,0.06)", border: "1px solid rgba(181,142,60,0.15)" }}>
             <i className="ri-qr-code-line text-gold-400 text-sm" />
             <span className="text-gold-400 text-xs font-bold font-['JetBrains_Mono']">{result.ref}</span>
-            <span className="text-gray-500 text-xs ml-2">{isAr ? "مرجع AMEEN — مرتبط بملف الشخص" : "AMEEN reference — attached to person profile"}</span>
+            <span className="text-gray-500 text-xs ml-2">{isAr ? "مرجع Al-Ameen — مرتبط بملف الشخص" : "Al-Ameen reference — attached to person profile"}</span>
           </div>
         </div>
       )}

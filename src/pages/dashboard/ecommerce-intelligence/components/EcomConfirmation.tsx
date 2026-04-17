@@ -35,7 +35,7 @@ const EcomConfirmation = ({ isAr, eventType, eventTypeAr, color, icon, onReset }
         {isAr ? "تم الإرسال بنجاح" : "Event Submitted Successfully"}
       </h2>
       <p className="text-gray-400 text-sm mb-6 font-['Inter']">
-        {isAr ? `تم تسجيل حدث "${eventTypeAr}" في نظام AMEEN` : `"${eventType}" event recorded in AMEEN system`}
+        {isAr ? `تم تسجيل حدث "${eventTypeAr}" في نظام Al-Ameen` : `"${eventType}" event recorded in Al-Ameen system`}
       </p>
 
       {/* Confirmation code */}
@@ -61,7 +61,7 @@ const EcomConfirmation = ({ isAr, eventType, eventTypeAr, color, icon, onReset }
       </div>
 
       <p className="text-gray-600 text-xs font-['JetBrains_Mono'] mb-8">
-        {isAr ? "احتفظ بهذا الرمز للمراجعة" : "Keep this code for reference"} · AMEEN E-COMMERCE INTELLIGENCE
+        {isAr ? "احتفظ بهذا الرمز للمراجعة" : "Keep this code for reference"} · Al-Ameen E-COMMERCE INTELLIGENCE
       </p>
 
       {/* Actions */}

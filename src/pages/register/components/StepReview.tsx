@@ -47,11 +47,11 @@ const StepReview = ({ entityType, details, method, apiData, filesCount, isAr, on
     submit: isAr ? "إرسال طلب التسجيل" : "Submit Registration Request",
     submitting: isAr ? "جارٍ الإرسال..." : "Submitting...",
     disclaimer: isAr
-      ? "بالإرسال، أقر بأن جميع المعلومات المقدمة صحيحة ودقيقة، وأن جهتي مخولة بتقديم البيانات إلى منصة الامين وفقاً للأنظمة والتشريعات المعمول بها."
+      ? "بالإرسال، أقر بأن جميع المعلومات المقدمة صحيحة ودقيقة، وأن جهتي مخولة بتقديم البيانات إلى منصة الأمين وفقاً للأنظمة والتشريعات المعمول بها."
       : "By submitting, I confirm that all provided information is accurate and complete, and that my entity is authorized to submit data to the Al-Ameen platform in accordance with applicable laws and regulations.",
     filesUploaded: isAr ? "ملف/ملفات مرفوعة" : "file(s) uploaded",
     noFiles: isAr ? "لم يتم رفع ملفات" : "No files uploaded",
-    portal: isAr ? "بوابة الامين (يدوي)" : "Al-Ameen Portal (Manual)",
+    portal: isAr ? "بوابة الأمين (يدوي)" : "Al-Ameen Portal (Manual)",
     api: isAr ? "B2B API (تلقائي)" : "B2B API (Automated)",
     nameEn: isAr ? "الاسم (إنجليزي)" : "Name (EN)",
     nameAr: isAr ? "الاسم (عربي)" : "Name (AR)",
@@ -65,14 +65,14 @@ const StepReview = ({ entityType, details, method, apiData, filesCount, isAr, on
     rateTier: isAr ? "مستوى معدل الطلبات" : "Rate Tier",
     successTitle: isAr ? "تم إرسال الطلب بنجاح!" : "Registration Submitted!",
     successDesc: isAr
-      ? "تم استلام طلب تسجيل جهتك. سيقوم فريق الامين بمراجعة طلبك والتواصل معك خلال 3-5 أيام عمل."
+      ? "تم استلام طلب تسجيل جهتك. سيقوم فريق الأمين بمراجعة طلبك والتواصل معك خلال 3-5 أيام عمل."
       : "Your entity registration request has been received. The Al-Ameen team will review your application and contact you within 3-5 business days.",
     refLabel: isAr ? "رقم المرجع" : "Reference Number",
     keepRef: isAr ? "احتفظ بهذا الرقم للمتابعة" : "Keep this number for follow-up",
     goLogin: isAr ? "الذهاب إلى تسجيل الدخول" : "Go to Login",
     nextSteps: isAr ? "الخطوات التالية" : "Next Steps",
     steps: isAr
-      ? ["سيتم مراجعة طلبك من قبل فريق الامين", "ستتلقى بريداً إلكترونياً بالموافقة أو طلب معلومات إضافية", "عند الموافقة، ستتلقى بيانات الدخول وتعليمات التكامل"]
+      ? ["سيتم مراجعة طلبك من قبل فريق الأمين", "ستتلقى بريداً إلكترونياً بالموافقة أو طلب معلومات إضافية", "عند الموافقة، ستتلقى بيانات الدخول وتعليمات التكامل"]
       : ["Your application will be reviewed by the Al-Ameen team", "You will receive an email with approval or request for additional information", "Upon approval, you will receive login credentials and integration instructions"],
   };
 

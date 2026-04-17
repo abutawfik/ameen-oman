@@ -111,7 +111,7 @@ const CurrencyExchangeForm = ({ isAr, onCancel }: Props) => {
   return (
     <div className="space-y-5">
       <TipBanner
-        text={isAr ? "جميع معاملات الصرف تُرسَل فوراً إلى AL-AMEEN. المعاملات فوق 1000 LCY تُبلَّغ تلقائياً." : "All exchange transactions are sent to AL-AMEEN instantly. Transactions above 1000 LCY are auto-reported."}
+        text={isAr ? "جميع معاملات الصرف تُرسَل فوراً إلى Al-Ameen. المعاملات فوق 1000 LCY تُبلَّغ تلقائياً." : "All exchange transactions are sent to Al-Ameen instantly. Transactions above 1000 LCY are auto-reported."}
         color="cyan"
       />
 

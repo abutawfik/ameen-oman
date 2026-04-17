@@ -172,7 +172,7 @@ const SimActivatedForm = ({ isAr, onCancel }: Props) => {
                   {isAr ? "الشريحة نشطة" : "SIM Active"}
                 </p>
                 <p className="text-gray-500 text-xs font-['Inter']">
-                  {isAr ? "سيتم إرسال حدث التفعيل إلى AMEEN" : "Activation event will be sent to AMEEN"}
+                  {isAr ? "سيتم إرسال حدث التفعيل إلى Al-Ameen" : "Activation event will be sent to Al-Ameen"}
                 </p>
               </div>
               <div className="ml-auto w-2.5 h-2.5 rounded-full bg-green-400 animate-pulse flex-shrink-0" />

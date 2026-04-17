@@ -13,9 +13,9 @@ const en = {
     badge: "Operated by National Police HQ | Border Control System",
     title: "Al-Ameen",
     subtitle: "Activity Monitoring for Events & Entities Nationally",
-    arabicTitle: "الامين — نظام رصد الأنشطة والأحداث والكيانات الوطنية",
+    arabicTitle: "الأمين — نظام رصد الأنشطة والأحداث والكيانات الوطنية",
     tagline: "The Nation's Trusted Guardian",
-    arabicTagline: "الحارس الامين للوطن",
+    arabicTagline: "الحارس الأمين للوطن",
     description: "A centralized data collection platform receiving real-time event data from external entities across the nation. Powering national security intelligence through 14 integrated data streams under the Border Control System.",
     exploreServices: "Explore Services",
     apiDocs: "API Documentation",
@@ -155,7 +155,7 @@ const en = {
   hospitality: {
     badge: "Free Desktop App",
     title: "Al-Ameen Hospitality",
-    arabicTitle: "الامين للضيافة",
+    arabicTitle: "الأمين للضيافة",
     description: "A standalone hotel management system designed for small hotels without their own Property Management System. Syncs data to Al-Ameen in the background — completely separate product with its own login.",
     features: ["Booking management & reservations", "Room allocation & housekeeping", "Guest check-in / check-out", "Automatic Al-Ameen data sync", "Offline-capable desktop app", "Zero cost — free for all small hotels"],
     download: "Download for Windows",
@@ -219,7 +219,7 @@ const en = {
   },
   footer: {
     tagline: "The Nation's Trusted Guardian",
-    arabicTagline: "الحارس الامين للوطن",
+    arabicTagline: "الحارس الأمين للوطن",
     description: "Centralized national intelligence data collection platform operated by National Police Headquarters.",
     quickLinks: "Quick Links",
     links: {

@@ -69,7 +69,7 @@ export default function BookingForm({ lang, onCancel }: Props) {
 
       <div className="flex items-start gap-2 px-4 py-2.5 rounded-lg mb-5 text-xs" style={{ background: 'rgba(250,204,21,0.08)', border: '1px solid rgba(250,204,21,0.2)', color: '#FACC15' }}>
         <i className="ri-information-line text-sm shrink-0 mt-0.5" />
-        <span>{isAr ? 'بيانات الحجز تُرسل تلقائياً إلى منصة أمين في الخلفية.' : 'Booking data is automatically queued and sent to AMEEN Platform in the background.'}</span>
+        <span>{isAr ? 'بيانات الحجز تُرسل تلقائياً إلى منصة أمين في الخلفية.' : 'Booking data is automatically queued and sent to Al-Ameen Platform in the background.'}</span>
       </div>
 
       {/* Part 1 — Personal + Corporate */}
@@ -206,12 +206,12 @@ export default function BookingForm({ lang, onCancel }: Props) {
       <div className="flex items-center justify-between pt-4 border-t border-gold-500/10">
         <div className="flex items-center gap-2 text-xs" style={{ color: '#4ADE80' }}>
           <i className="ri-cloud-line" />
-          {isAr ? 'سيتم إرسال بيانات الحجز إلى أمين تلقائياً' : 'Booking data will auto-sync to AMEEN'}
+          {isAr ? 'سيتم إرسال بيانات الحجز إلى أمين تلقائياً' : 'Booking data will auto-sync to Al-Ameen'}
         </div>
         <div className="flex items-center gap-3">
           <button onClick={onCancel} className="px-5 py-2.5 rounded-lg text-sm border border-gray-600 text-gray-300 hover:border-gray-400 cursor-pointer transition-all whitespace-nowrap">{isAr ? 'إلغاء' : 'Cancel'}</button>
           <button onClick={handleSave} className="px-6 py-2.5 rounded-lg text-sm font-semibold cursor-pointer transition-all whitespace-nowrap" style={{ background: saved ? '#4ADE80' : '#D4A84B', color: '#0B1220' }}>
-            {saved ? <span className="flex items-center gap-2"><i className="ri-checkbox-circle-line" />{isAr ? 'تم!' : 'Saved!'}</span> : <span><i className="ri-save-line mr-1" />{isAr ? 'حفظ + مزامنة أمين' : 'Save + Sync to AMEEN'}</span>}
+            {saved ? <span className="flex items-center gap-2"><i className="ri-checkbox-circle-line" />{isAr ? 'تم!' : 'Saved!'}</span> : <span><i className="ri-save-line mr-1" />{isAr ? 'حفظ + مزامنة أمين' : 'Save + Sync to Al-Ameen'}</span>}
           </button>
         </div>
       </div>

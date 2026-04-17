@@ -60,7 +60,7 @@ const PackageReceiptForm = ({ isAr, onCancel }: Props) => {
         <div className="flex items-start gap-3 px-5 py-4 rounded-xl border" style={{ background: "rgba(251,146,60,0.06)", borderColor: "rgba(251,146,60,0.2)" }}>
           <i className="ri-alarm-warning-line text-orange-400 text-sm mt-0.5 flex-shrink-0" />
           <div>
-            <p className="text-orange-400 text-xs font-bold mb-0.5">{isAr ? "تنبيه AMEEN" : "AMEEN Alert"}</p>
+            <p className="text-orange-400 text-xs font-bold mb-0.5">{isAr ? "تنبيه Al-Ameen" : "Al-Ameen Alert"}</p>
             <p className="text-gray-400 text-xs">
               {isHighValue && (isAr ? "القيمة المُعلنة تتجاوز 500 LCY — يتطلب مراجعة جمركية. " : "Declared value exceeds 500 LCY — customs review required. ")}
               {isRestrictedCategory && (isAr ? "فئة المحتويات تتطلب تصريحاً خاصاً." : "Contents category requires special clearance.")}
@@ -111,7 +111,7 @@ const PackageReceiptForm = ({ isAr, onCancel }: Props) => {
               </FormField>
               <div className="flex items-start gap-3 px-3 py-3 rounded-lg" style={{ background: "rgba(181,142,60,0.04)", border: "1px solid rgba(181,142,60,0.12)" }}>
                 <i className="ri-information-line text-gold-400 text-sm mt-0.5 flex-shrink-0" />
-                <p className="text-gray-400 text-xs">{isAr ? "AMEEN يربط بيانات الطرد بسجلات الجمارك والمستلم تلقائياً." : "AMEEN auto-links package data with customs records and recipient profile."}</p>
+                <p className="text-gray-400 text-xs">{isAr ? "Al-Ameen يربط بيانات الطرد بسجلات الجمارك والمستلم تلقائياً." : "Al-Ameen auto-links package data with customs records and recipient profile."}</p>
               </div>
             </div>
           </SectionCard>

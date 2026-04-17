@@ -163,7 +163,7 @@ const MobileEventsPage = () => {
                   className="px-2 py-0.5 rounded-full text-xs font-bold"
                   style={{ background: "rgba(181,142,60,0.12)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}
                 >
-                  AMEEN Portal
+                  Al-Ameen Portal
                 </span>
               </div>
               <p className="text-gray-500 text-xs">
@@ -215,8 +215,8 @@ const MobileEventsPage = () => {
               </h1>
               <p className="text-gray-400 text-sm">
                 {isAr
-                  ? "6 أنواع أحداث لمشغّلي الاتصالات — جميعها تُرسَل فوراً إلى منصة AMEEN"
-                  : "6 event types for mobile operators — all submitted instantly to the AMEEN platform"}
+                  ? "6 أنواع أحداث لمشغّلي الاتصالات — جميعها تُرسَل فوراً إلى منصة Al-Ameen"
+                  : "6 event types for mobile operators — all submitted instantly to the Al-Ameen platform"}
               </p>
             </div>
 
@@ -298,8 +298,8 @@ const MobileEventsPage = () => {
               <i className="ri-git-merge-line text-yellow-400 text-sm mt-0.5 flex-shrink-0" />
               <p className="text-gray-400 text-sm font-['Inter']">
                 {isAr
-                  ? "ملاحظة: مشغّلو الاتصالات الذين لديهم أنظمة CRM متعددة (مثل عُمانتل، أوريدو) يرسلون البيانات عبر API. تقوم منصة AMEEN بإزالة التكرار تلقائياً لكل مشغّل."
-                  : "Note: Mobile operators with multiple CRMs (e.g., Omantel, Ooredoo) each push via API. AMEEN automatically deduplicates per operator."}
+                  ? "ملاحظة: مشغّلو الاتصالات الذين لديهم أنظمة CRM متعددة (مثل عُمانتل، أوريدو) يرسلون البيانات عبر API. تقوم منصة Al-Ameen بإزالة التكرار تلقائياً لكل مشغّل."
+                  : "Note: Mobile operators with multiple CRMs (e.g., Omantel, Ooredoo) each push via API. Al-Ameen automatically deduplicates per operator."}
               </p>
             </div>
           </>

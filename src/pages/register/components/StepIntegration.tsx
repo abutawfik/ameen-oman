@@ -33,8 +33,8 @@ const StepIntegration = ({ method, onSelect, apiData, onApiChange, isAr, entityT
 
   const t = {
     title: isAr ? "طريقة التكامل" : "Integration Method",
-    subtitle: isAr ? "اختر كيفية إرسال بيانات جهتك إلى الامين" : "Choose how your entity will submit data to Al-Ameen",
-    portalTitle: isAr ? "بوابة الامين" : "Al-Ameen Portal",
+    subtitle: isAr ? "اختر كيفية إرسال بيانات جهتك إلى الأمين" : "Choose how your entity will submit data to Al-Ameen",
+    portalTitle: isAr ? "بوابة الأمين" : "Al-Ameen Portal",
     portalDesc: isAr
       ? "إدخال البيانات يدوياً عبر واجهة الويب. مثالي للجهات الأصغر أو كبديل عند عدم توفر تكامل API."
       : "Manual data entry via web interface. Ideal for smaller entities or as a fallback when API integration is unavailable.",
@@ -61,7 +61,7 @@ const StepIntegration = ({ method, onSelect, apiData, onApiChange, isAr, entityT
     sandboxUrl: isAr ? "رابط بيئة الاختبار" : "Sandbox Base URL",
     prodUrl: isAr ? "رابط الإنتاج" : "Production Base URL",
     hotelNote: isAr
-      ? "ملاحظة: الفنادق التي تستخدم تطبيق الامين للضيافة لا تحتاج إلى هذه البوابة — التطبيق يتزامن تلقائياً في الخلفية."
+      ? "ملاحظة: الفنادق التي تستخدم تطبيق الأمين للضيافة لا تحتاج إلى هذه البوابة — التطبيق يتزامن تلقائياً في الخلفية."
       : "Note: Hotels using Al-Ameen Hospitality app do NOT need this portal — the app syncs automatically in the background.",
     keyNote: isAr ? "احتفظ بهذا المفتاح في مكان آمن — لن يُعرض مرة أخرى" : "Keep this key secure — it will not be shown again",
   };

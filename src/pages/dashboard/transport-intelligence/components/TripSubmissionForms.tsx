@@ -106,7 +106,7 @@ const BusJourneyForm = ({ isAr, onCancel }: { isAr: boolean; onCancel: () => voi
           <div className="space-y-4">
             <div className="flex items-start gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(181,142,60,0.04)", borderColor: "rgba(181,142,60,0.15)" }}>
               <i className="ri-information-line text-gold-400 text-sm mt-0.5 flex-shrink-0" />
-              <p className="text-gray-400 text-xs">{isAr ? "AMEEN يطابق معرّف البطاقة تلقائياً مع وثيقة السفر المسجّلة في قاعدة البيانات." : "AMEEN auto-matches Card ID with the registered travel document in the database."}</p>
+              <p className="text-gray-400 text-xs">{isAr ? "Al-Ameen يطابق معرّف البطاقة تلقائياً مع وثيقة السفر المسجّلة في قاعدة البيانات." : "Al-Ameen auto-matches Card ID with the registered travel document in the database."}</p>
             </div>
             <FormField label={isAr ? "طريقة التطابق" : "Match Method"}>
               <SelectInput options={MATCH_METHODS} placeholder={isAr ? "اختر" : "Select"} value="transit_card" onChange={() => {}} />
@@ -192,7 +192,7 @@ const TaxiTripForm = ({ isAr, onCancel }: { isAr: boolean; onCancel: () => void 
           <div className="space-y-4">
             <div className="flex items-start gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(74,222,128,0.06)", borderColor: "rgba(74,222,128,0.2)" }}>
               <i className="ri-information-line text-green-400 text-sm mt-0.5 flex-shrink-0" />
-              <p className="text-gray-400 text-xs">{isAr ? "AMEEN يطابق الراكب باستخدام: وثيقة السفر المسجّلة، رقم الهاتف (تدفق SIM)، أو بطاقة الدفع." : "AMEEN matches passenger using: registered travel document, phone number (SIM stream), or payment card."}</p>
+              <p className="text-gray-400 text-xs">{isAr ? "Al-Ameen يطابق الراكب باستخدام: وثيقة السفر المسجّلة، رقم الهاتف (تدفق SIM)، أو بطاقة الدفع." : "Al-Ameen matches passenger using: registered travel document, phone number (SIM stream), or payment card."}</p>
             </div>
             {[
               { icon: "ri-bank-card-line", color: "#D4A84B", label: isAr ? "بطاقة عبور → وثيقة" : "Transit Card → Document" },
@@ -273,7 +273,7 @@ const RideHailTripForm = ({ isAr, onCancel }: { isAr: boolean; onCancel: () => v
               <i className="ri-shield-check-line text-purple-400 text-sm mt-0.5 flex-shrink-0" />
               <div>
                 <p className="text-purple-400 text-xs font-bold mb-0.5">{isAr ? "توازن الخصوصية" : "Privacy Balance"}</p>
-                <p className="text-gray-400 text-xs">{isAr ? "AMEEN يستقبل بيانات على مستوى المسار، وليس تتبع GPS في الوقت الفعلي. التحليل استرجاعي." : "AMEEN receives route-level data, not real-time GPS tracking. Pattern analysis is retrospective."}</p>
+                <p className="text-gray-400 text-xs">{isAr ? "Al-Ameen يستقبل بيانات على مستوى المسار، وليس تتبع GPS في الوقت الفعلي. التحليل استرجاعي." : "Al-Ameen receives route-level data, not real-time GPS tracking. Pattern analysis is retrospective."}</p>
               </div>
             </div>
             <div className="px-4 py-3 rounded-xl border" style={{ background: "rgba(74,222,128,0.06)", borderColor: "rgba(74,222,128,0.2)" }}>

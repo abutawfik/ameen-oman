@@ -134,7 +134,7 @@ const SimDeactivatedForm = ({ isAr, onCancel }: Props) => {
                     {isAr ? "تنبيه: سبب ذو أولوية عالية" : "Alert: High-Priority Reason"}
                   </p>
                   <p className="text-gray-400 text-xs font-['Inter']">
-                    {isAr ? "سيتم إرسال إشعار فوري إلى AMEEN" : "Immediate notification will be sent to AMEEN"}
+                    {isAr ? "سيتم إرسال إشعار فوري إلى Al-Ameen" : "Immediate notification will be sent to Al-Ameen"}
                   </p>
                 </div>
               </div>

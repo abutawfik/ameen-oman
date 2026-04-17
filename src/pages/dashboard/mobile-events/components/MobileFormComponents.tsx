@@ -262,7 +262,7 @@ export const MobileConfirmationPanel = ({ refNumber, eventType, isAr, onReset, o
       {isAr ? "تم الإرسال بنجاح" : "Event Submitted Successfully"}
     </h2>
     <p className="text-gray-400 text-sm mb-6 font-['Inter']">
-      {isAr ? `تم إرسال حدث ${eventType} إلى منصة AMEEN` : `${eventType} event submitted to AMEEN platform`}
+      {isAr ? `تم إرسال حدث ${eventType} إلى منصة Al-Ameen` : `${eventType} event submitted to Al-Ameen platform`}
     </p>
     <div
       className="px-6 py-4 rounded-xl border mb-8 w-full max-w-sm"

@@ -110,7 +110,7 @@ const UtilityEventsPage = () => {
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-white font-bold text-sm">{isAr ? "أحداث المرافق" : "Utility Activation Events"}</span>
-                <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(181,142,60,0.12)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>AMEEN Portal</span>
+                <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(181,142,60,0.12)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.2)" }}>Al-Ameen Portal</span>
               </div>
               <p className="text-gray-500 text-xs">{isAr ? "الكهرباء الوطنية · المياه الوطنية · تيلكو أ · تيلكو ب" : "National Electric Co. · National Water Authority · Telco A · Telco B"}</p>
             </div>

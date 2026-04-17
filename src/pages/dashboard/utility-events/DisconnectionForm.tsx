@@ -135,7 +135,7 @@ const DisconnectionForm = ({ isAr, onCancel }: Props) => {
             <div className="flex items-start gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(248,113,113,0.06)", borderColor: "rgba(248,113,113,0.2)" }}>
               <i className="ri-alarm-warning-line text-red-400 text-sm mt-0.5 flex-shrink-0" />
               <p className="text-red-400 text-xs font-semibold">
-                {isAr ? "تنبيه: هذا السبب يُبلَّغ تلقائياً إلى AMEEN للمراجعة." : "Alert: This reason is auto-reported to AMEEN for review."}
+                {isAr ? "تنبيه: هذا السبب يُبلَّغ تلقائياً إلى Al-Ameen للمراجعة." : "Alert: This reason is auto-reported to Al-Ameen for review."}
               </p>
             </div>
           )}

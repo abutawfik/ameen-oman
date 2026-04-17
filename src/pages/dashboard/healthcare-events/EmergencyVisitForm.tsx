@@ -87,7 +87,7 @@ const EmergencyVisitForm = ({ isAr, onCancel }: Props) => {
 
   return (
     <div className="space-y-5">
-      <TipBanner text={isAr ? "حالات الطوارئ تُرسَل فوراً إلى AL-AMEEN. تأكد من تحديد مستوى الفرز بدقة." : "Emergency cases are submitted instantly to AL-AMEEN. Ensure triage level is accurately assigned."} color="amber" />
+      <TipBanner text={isAr ? "حالات الطوارئ تُرسَل فوراً إلى Al-Ameen. تأكد من تحديد مستوى الفرز بدقة." : "Emergency cases are submitted instantly to Al-Ameen. Ensure triage level is accurately assigned."} color="amber" />
 
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
         {/* Emergency Details */}

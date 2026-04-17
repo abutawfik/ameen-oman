@@ -47,8 +47,8 @@ const LoginPage = () => {
   const t = {
     authority: isAr ? "الشرطة الوطنية" : "NATIONAL POLICE",
     authorityFull: isAr ? "نظام مراقبة الحدود" : "BORDER CONTROL SYSTEM",
-    system: isAr ? "الامين" : "AL-AMEEN",
-    systemAr: isAr ? "Al-Ameen" : "الامين",
+    system: isAr ? "الأمين" : "Al-Ameen",
+    systemAr: isAr ? "Al-Ameen" : "الأمين",
     subtitle: isAr ? "نظام رصد الأنشطة والأحداث والكيانات الوطنية" : "Activity Monitoring for Events & Entities Nationally",
     entityId: isAr ? "معرّف الجهة" : "Entity ID",
     entityIdPh: "AMN-ENT-XXXXXX",
@@ -64,7 +64,7 @@ const LoginPage = () => {
     operated: isAr ? "يعمل تحت مظلة نظام مراقبة الحدود" : "Operated under Border Control System",
     badge: isAr ? "بوابة مقيدة — للجهات المعتمدة فقط" : "RESTRICTED PORTAL — AUTHORIZED ENTITIES ONLY",
     newEntity: isAr ? "جهة جديدة؟" : "New entity?",
-    hospitality: isAr ? "فندق يستخدم تطبيق الامين للضيافة؟" : "Hotel using Al-Ameen Hospitality app?",
+    hospitality: isAr ? "فندق يستخدم تطبيق الأمين للضيافة؟" : "Hotel using Al-Ameen Hospitality app?",
     hospitalityNote: isAr ? "لا تحتاج إلى هذه البوابة — التطبيق يتزامن تلقائياً" : "No need for this portal — the app syncs automatically",
   };
 
