@@ -1,5 +1,6 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { navItems, entityMeta, type EntityType } from "@/mocks/dashboardData";
+import BrandLogo from "@/brand/BrandLogo";
 
 interface Props {
   activeNav: string;
@@ -54,6 +55,30 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
         minHeight: "100%",
       }}
     >
+      {/* Brand lockup — expanded = horizontal + tagline, collapsed = mark only */}
+      {!collapsed && (
+        <div
+          className="px-4 py-4 border-b flex flex-col gap-2"
+          style={{ borderColor: "rgba(181,142,60,0.08)" }}
+        >
+          <BrandLogo variant="horizontal" tone="light" size="sm" showTagline isAr={isAr} />
+          {isAr && (
+            <div
+              style={{
+                fontFamily: "'Readex Pro', 'Tajawal', sans-serif",
+                fontWeight: 500,
+                fontSize: "0.6875rem",
+                color: "#D4A84B",
+                direction: "rtl",
+                paddingInlineStart: 36,
+              }}
+            >
+              الحارس الأمين للوطن
+            </div>
+          )}
+        </div>
+      )}
+
       {/* User info */}
       {!collapsed && (
         <div className="px-4 py-5 border-b" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
@@ -90,11 +115,7 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
 
       {collapsed && (
         <div className="flex justify-center py-4 border-b" style={{ borderColor: "rgba(181,142,60,0.08)" }}>
-          <img
-            src="/brand/al-ameen-mark-mono-light.svg"
-            alt="Al-Ameen"
-            className="w-8 h-8 object-contain"
-          />
+          <BrandLogo variant="mark" tone="light" size="sm" isAr={isAr} />
         </div>
       )}
 

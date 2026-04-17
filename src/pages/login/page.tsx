@@ -1,357 +1,765 @@
-import { useState, useEffect, useLayoutEffect } from "react";
+// ============================================================================
+// Al-Ameen · Operator Portal Login
+// ----------------------------------------------------------------------------
+// One door, two paths:
+//   1. SSO via Government Identity Provider (primary — 2FA handled upstream)
+//   2. Officer-ID + Passcode fallback → advances to OTP 2FA screen
+//
+// Layout: split canvas. Dark ceremonial left pane, ivory form right pane.
+// No "Back to Home" chrome — this is a restricted portal.
+// ============================================================================
+
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import i18n from "@/i18n";
+import BrandLogo from "@/brand/BrandLogo";
+import { useBrandFonts } from "@/brand/typography";
+
+// ── Inline brand tokens (hex from tokens.css) ───────────────────────────────
+const C = {
+  midnight900: "#05080F",
+  midnight800: "#0B1220",
+  midnight700: "#141D2E",
+  midnight600: "#1C2740",
+  midnight500: "#2A3654",
+  midnight400: "#3E4A6B",
+  midnight300: "#5A6787",
+  midnight200: "#8B95B0",
+
+  ivory000: "#FFFFFF",
+  ivory100: "#F5EFE3",
+  ivory200: "#EFE7D3",
+  ivory300: "#E7DEC7",
+  ivory400: "#DAD0B8",
+  ivory700: "#8A8374",
+  ivory800: "#6B6457",
+
+  gold400: "#D4A84B",
+  gold500: "#C99C48",
+  gold600: "#B58E3C",
+  gold700: "#96732C",
+
+  omanRed500: "#B32830",
+  omanRed600: "#9A1F24",
+  omanRed700: "#831B1F",
+} as const;
+
+const LOCALE_KEY = "ameen:locale";
+
+type Mode = "credentials" | "otp";
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const [lang, setLang] = useState(i18n.language || "en");
-  const [showPass, setShowPass] = useState(false);
-  const [form, setForm] = useState({ entityId: "", username: "", password: "" });
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const fonts = useBrandFonts();
 
+  // Persisted locale — read from localStorage on mount, fall back to i18n.
+  const [lang, setLang] = useState<string>(() => {
+    try {
+      const stored = typeof window !== "undefined" ? localStorage.getItem(LOCALE_KEY) : null;
+      return stored || i18n.language || "en";
+    } catch {
+      return i18n.language || "en";
+    }
+  });
   const isAr = lang === "ar";
 
-  // Scroll to top immediately on mount (before paint) to prevent blank flash
+  // Form state
+  const [mode, setMode] = useState<Mode>("credentials");
+  const [officerId, setOfficerId] = useState("");
+  const [passcode, setPasscode]   = useState("");
+  const [showPass, setShowPass]   = useState(false);
+  const [otp, setOtp]             = useState("");
+  const [loading, setLoading]     = useState(false);
+  const [ssoRedirecting, setSsoRedirecting] = useState(false);
+  const [error, setError]         = useState("");
+  const otpRef = useRef<HTMLInputElement | null>(null);
+
+  // ── Language sync ─────────────────────────────────────────────────────────
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
-    document.documentElement.dir = isAr ? "rtl" : "ltr";
-    document.documentElement.lang = lang;
-  }, [isAr, lang]);
+  }, []);
 
   useEffect(() => {
     document.documentElement.dir = isAr ? "rtl" : "ltr";
     document.documentElement.lang = lang;
+    if (i18n.language !== lang) i18n.changeLanguage(lang);
+    try { localStorage.setItem(LOCALE_KEY, lang); } catch { /* ignore */ }
   }, [lang, isAr]);
 
-  const toggleLang = () => {
-    const next = isAr ? "en" : "ar";
-    setLang(next);
-    i18n.changeLanguage(next);
+  const toggleLang = () => setLang(isAr ? "en" : "ar");
+
+  // ── Copy table ────────────────────────────────────────────────────────────
+  const t = {
+    // Left pane
+    restricted:       isAr ? "وصول مقيّد · للمخوّلين فقط" : "RESTRICTED ACCESS · AUTHORIZED PERSONNEL ONLY",
+    brand:            isAr ? "الأمين" : "Al-Ameen",
+    brandCounterpart: isAr ? "Al-Ameen" : "الأمين",
+    taglinePrimary:   isAr ? "الحارس الأمين للوطن" : "The Nation's Trusted Guardian",
+    taglineCounter:   isAr ? "The Nation's Trusted Guardian" : "الحارس الأمين للوطن",
+    legal:            isAr
+      ? "يتم تسجيل كل وصول وتدقيقه. يُلاحق الاستخدام غير المصرّح به قانونياً وفق قوانين الأمن السيبراني."
+      : "Access is logged and audited. Unauthorized use is prosecuted under applicable cybersecurity law.",
+
+    // Right pane — credentials
+    signInEyebrow:    isAr ? "تسجيل الدخول" : "SIGN IN",
+    title:            isAr ? "بوابة المشغّل" : "Operator Portal",
+    ssoBtn:           isAr ? "المتابعة عبر مزوّد الهوية الحكومي" : "Continue with Government Identity Provider",
+    ssoRedirecting:   isAr ? "جارٍ التوجيه..." : "Redirecting...",
+    divider:          isAr ? "أو سجّل الدخول بمعرّف الضابط" : "OR SIGN IN WITH OFFICER ID",
+    officerIdLabel:   isAr ? "معرّف الضابط" : "Officer ID",
+    passcodeLabel:    isAr ? "رمز المرور" : "Passcode",
+    passcodePh:       "••••••••",
+    submit:           isAr ? "تسجيل الدخول" : "Sign in",
+    submitLoading:    isAr ? "جارٍ التحقق..." : "Verifying...",
+    errorRequired:    isAr ? "يرجى إدخال المعرّف ورمز المرور." : "Enter your Officer ID and passcode.",
+    adminNote:        isAr ? "مشكلة في كلمة المرور؟ تواصل مع مسؤول النظام." : "Password trouble? Contact System Administrator.",
+    ackNote:          isAr
+      ? "بتسجيل الدخول فإنك تقرّ بتسجيل الجلسة وسلسلة القرارات لكل الأحكام."
+      : "By signing in, you acknowledge session recording and lineage logging of all adjudications.",
+
+    // Right pane — OTP
+    otpEyebrow:       isAr ? "التحقق بخطوتين" : "TWO-STEP VERIFICATION",
+    otpTitle:         isAr ? "أدخل رمز التحقق" : "Enter verification code",
+    otpSubtitle:      isAr
+      ? "تم إرسال رمز مكوّن من ٦ أرقام إلى جهاز المصادقة المسجّل."
+      : "A 6-digit code was sent to your registered authenticator.",
+    otpPh:            "• • • • • •",
+    otpVerify:        isAr ? "تحقّق" : "Verify",
+    otpBack:          isAr ? "العودة إلى بيانات الاعتماد" : "Back to credentials",
+    otpResend:        isAr ? "إعادة إرسال الرمز" : "Resend code",
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // ── Handlers ──────────────────────────────────────────────────────────────
+  const handleSSO = () => {
+    setSsoRedirecting(true);
+    setError("");
+    // Simulates browser redirect to the Government IdP then back to /dashboard.
+    setTimeout(() => navigate("/dashboard"), 700);
+  };
+
+  const handleCredentials = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.entityId || !form.username || !form.password) {
-      setError(isAr ? "يرجى ملء جميع الحقول" : "Please fill in all fields");
+    if (!officerId.trim() || !passcode) {
+      setError(t.errorRequired);
       return;
     }
     setError("");
     setLoading(true);
+    // Simulate server call then advance to OTP 2FA.
     setTimeout(() => {
       setLoading(false);
-      navigate("/dashboard?type=hotel");
-    }, 1600);
+      setMode("otp");
+      setOtp("");
+      setTimeout(() => otpRef.current?.focus(), 50);
+    }, 700);
   };
 
-  const t = {
-    authority: isAr ? "الشرطة الوطنية" : "NATIONAL POLICE",
-    authorityFull: isAr ? "نظام مراقبة الحدود" : "BORDER CONTROL SYSTEM",
-    system: isAr ? "الأمين" : "Al-Ameen",
-    systemAr: isAr ? "Al-Ameen" : "الأمين",
-    subtitle: isAr ? "نظام رصد الأنشطة والأحداث والكيانات الوطنية" : "Activity Monitoring for Events & Entities Nationally",
-    entityId: isAr ? "معرّف الجهة" : "Entity ID",
-    entityIdPh: "AMN-ENT-XXXXXX",
-    username: isAr ? "اسم المستخدم" : "Username",
-    usernamePh: isAr ? "اسم المستخدم" : "Username",
-    password: isAr ? "كلمة المرور" : "Password",
-    passwordPh: "••••••••",
-    login: isAr ? "تسجيل الدخول" : "Login",
-    logging: isAr ? "جارٍ الدخول..." : "Logging in...",
-    register: isAr ? "تسجيل جهة جديدة" : "Register New Entity",
-    forgot: isAr ? "نسيت كلمة المرور؟" : "Forgot password?",
-    secure: isAr ? "اتصال آمن ومشفر — TLS 1.3" : "Secure encrypted connection — TLS 1.3",
-    operated: isAr ? "يعمل تحت مظلة نظام مراقبة الحدود" : "Operated under Border Control System",
-    badge: isAr ? "بوابة مقيدة — للجهات المعتمدة فقط" : "RESTRICTED PORTAL — AUTHORIZED ENTITIES ONLY",
-    newEntity: isAr ? "جهة جديدة؟" : "New entity?",
-    hospitality: isAr ? "فندق يستخدم تطبيق الأمين للضيافة؟" : "Hotel using Al-Ameen Hospitality app?",
-    hospitalityNote: isAr ? "لا تحتاج إلى هذه البوابة — التطبيق يتزامن تلقائياً" : "No need for this portal — the app syncs automatically",
+  const handleOtp = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (otp.length !== 6) return;
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      navigate("/dashboard");
+    }, 500);
   };
 
+  // ── Render ────────────────────────────────────────────────────────────────
   return (
     <div
-      className="min-h-screen flex items-center justify-center relative overflow-hidden"
-      style={{ background: "#0B1220" }}
+      className="min-h-screen w-full flex"
+      style={{
+        background: C.midnight800,
+        direction: isAr ? "rtl" : "ltr",
+        fontFamily: fonts.sans,
+      }}
     >
-      {/* Grid background */}
+      {/* ────────── LEFT PANE — ceremonial ────────── */}
       <div
-        className="absolute inset-0 opacity-20"
+        className="hidden md:flex relative overflow-hidden flex-col justify-between"
         style={{
-          backgroundImage: `linear-gradient(rgba(181,142,60,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(181,142,60,0.15) 1px, transparent 1px)`,
-          backgroundSize: "60px 60px",
+          flexBasis: "50%",
+          padding: "4rem 3rem",
+          color: C.ivory100,
+          background:
+            `radial-gradient(ellipse at top, rgba(154,31,36,0.22), transparent 70%), ` +
+            `linear-gradient(180deg, ${C.midnight800}, ${C.midnight900})`,
         }}
-      />
-      {/* Radial glow */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: "radial-gradient(ellipse 70% 60% at 50% 50%, rgba(181,142,60,0.06) 0%, transparent 70%)",
-        }}
-      />
-      {/* Particles */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(22)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute rounded-full"
-            style={{
-              width: (i % 3 === 0 ? 3 : i % 3 === 1 ? 2 : 1.5) + "px",
-              height: (i % 3 === 0 ? 3 : i % 3 === 1 ? 2 : 1.5) + "px",
-              background: i % 5 === 0 ? "rgba(181,142,60,0.4)" : "rgba(181,142,60,0.2)",
-              left: ((i * 4.55) % 100) + "%",
-              top: ((i * 7.7) % 100) + "%",
-              animation: `floatP ${(i % 5) + 8}s ease-in-out infinite`,
-              animationDelay: (i * 0.4) + "s",
-            }}
-          />
-        ))}
-      </div>
-
-      {/* Top-right: Language toggle */}
-      <button
-        onClick={toggleLang}
-        className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center rounded-full border border-gold-500/40 text-gold-400 text-xs font-bold hover:bg-gold-500/10 transition-colors cursor-pointer font-['JetBrains_Mono'] z-20"
       >
-        {isAr ? "EN" : "AR"}
-      </button>
-
-      {/* Top-left: Back to home */}
-      <a
-        href="/"
-        className="absolute top-6 left-6 flex items-center gap-2 text-gray-500 hover:text-gold-400 transition-colors text-sm cursor-pointer z-20 font-['Inter']"
-      >
-        <i className="ri-arrow-left-line" />
-        {isAr ? "الرئيسية" : "Home"}
-      </a>
-
-      {/* Login Card */}
-      <div className="relative z-10 w-full max-w-[420px] mx-4">
+        {/* Gold tracery grid */}
         <div
-          className="rounded-2xl border overflow-hidden"
+          aria-hidden
           style={{
-            background: "rgba(20,29,46,0.88)",
-            borderColor: "rgba(181,142,60,0.2)",
-            backdropFilter: "blur(24px)",
-            boxShadow: "0 0 80px rgba(181,142,60,0.06), 0 0 0 1px rgba(181,142,60,0.05)",
+            position: "absolute",
+            inset: 0,
+            backgroundImage:
+              `linear-gradient(rgba(181,142,60,0.06) 1px, transparent 1px), ` +
+              `linear-gradient(90deg, rgba(181,142,60,0.06) 1px, transparent 1px)`,
+            backgroundSize: "40px 40px",
+            pointerEvents: "none",
           }}
-        >
-          {/* Classification banner */}
+        />
+
+        {/* Top content */}
+        <div style={{ position: "relative", zIndex: 1 }}>
+          {/* Pulsing gold eyebrow pill */}
           <div
-            className="flex items-center justify-center gap-2 py-2 px-4"
-            style={{ background: "rgba(248,113,113,0.08)", borderBottom: "1px solid rgba(248,113,113,0.2)" }}
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 8,
+              padding: "0.375rem 0.875rem",
+              borderRadius: 9999,
+              border: `1px solid rgba(181,142,60,0.45)`,
+              background: "rgba(181,142,60,0.1)",
+              color: C.gold400,
+              fontFamily: fonts.mono,
+              fontSize: "0.6875rem",
+              fontWeight: 600,
+              letterSpacing: "0.15em",
+              textTransform: isAr ? "none" : "uppercase",
+              marginBottom: "2.5rem",
+            }}
           >
-            <i className="ri-lock-line text-red-400 text-xs" />
-            <span className="text-red-400 text-xs font-['JetBrains_Mono'] tracking-widest">{t.badge}</span>
+            <span
+              style={{
+                width: 6,
+                height: 6,
+                borderRadius: 9999,
+                background: C.gold400,
+                boxShadow: `0 0 10px ${C.gold400}`,
+                animation: "pulseGold 2.2s ease-in-out infinite",
+              }}
+            />
+            {t.restricted}
           </div>
 
-          <div className="p-8">
-            {/* Header — National Police Emblem + Branding */}
-            <div className="flex flex-col items-center mb-8">
-              {/* Hexagonal shield emblem */}
-              <div className="relative mb-5">
-                <div
-                  className="w-20 h-20 flex items-center justify-center"
-                  style={{
-                    background: "rgba(181,142,60,0.06)",
-                    border: "2px solid rgba(181,142,60,0.35)",
-                    clipPath: "polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%)",
-                  }}
-                >
-                  <span
-                    className="text-3xl font-black"
-                    style={{
-                      color: "#D4A84B",
-                      fontFamily: "Inter, sans-serif",
-                      textShadow: "0 0 16px rgba(181,142,60,0.7)",
-                    }}
-                  >
-                    A
-                  </span>
-                </div>
-                {/* Outer hex ring */}
-                <div
-                  className="absolute -inset-2 opacity-20"
-                  style={{
-                    border: "1px dashed rgba(181,142,60,0.6)",
-                    clipPath: "polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%)",
-                  }}
-                />
-              </div>
+          {/* Stacked logo */}
+          <div style={{ marginBottom: "2rem" }}>
+            <BrandLogo variant="stacked" tone="light" size="lg" isAr={isAr} />
+          </div>
 
-              {/* Authority name */}
-              <p
-                className="text-white font-bold text-xs tracking-[0.25em] font-['Inter'] mb-0.5 uppercase"
-              >
-                {t.authority}
-              </p>
-              <p className="text-gray-600 text-xs tracking-widest font-['JetBrains_Mono'] mb-3">
-                {t.authorityFull}
-              </p>
-
-              {/* System name */}
-              <div className="flex flex-col items-center">
-                <span
-                  className="text-3xl font-black tracking-widest font-['Inter']"
-                  style={{ color: "#D4A84B", textShadow: "0 0 20px rgba(181,142,60,0.4)" }}
-                >
-                  {t.system}
-                </span>
-                <span className="text-gold-400/60 text-base font-['Cairo'] mt-0.5">
-                  {t.systemAr}
-                </span>
-              </div>
-
-              <p className="text-gray-500 text-xs text-center font-['Inter'] max-w-xs mt-2 leading-relaxed">
-                {t.subtitle}
-              </p>
-            </div>
-
-            {/* Login Form */}
-            <form onSubmit={handleSubmit} className="space-y-4">
-              {/* Entity ID */}
-              <div>
-                <label className="block text-gray-400 text-xs mb-1.5 font-['Inter']">{t.entityId}</label>
-                <div className="relative">
-                  <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none w-5 h-full">
-                    <i className="ri-building-2-line text-gray-600 text-sm" />
-                  </div>
-                  <input
-                    type="text"
-                    value={form.entityId}
-                    onChange={(e) => setForm({ ...form, entityId: e.target.value })}
-                    placeholder={t.entityIdPh}
-                    className="w-full pl-9 pr-4 py-3 rounded-lg text-sm text-white placeholder-gray-700 outline-none transition-all font-['JetBrains_Mono']"
-                    style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}
-                    onFocus={(e) => (e.target.style.borderColor = "rgba(181,142,60,0.5)")}
-                    onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.08)")}
-                  />
-                </div>
-              </div>
-
-              {/* Username */}
-              <div>
-                <label className="block text-gray-400 text-xs mb-1.5 font-['Inter']">{t.username}</label>
-                <div className="relative">
-                  <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none w-5 h-full">
-                    <i className="ri-user-line text-gray-600 text-sm" />
-                  </div>
-                  <input
-                    type="text"
-                    value={form.username}
-                    onChange={(e) => setForm({ ...form, username: e.target.value })}
-                    placeholder={t.usernamePh}
-                    className="w-full pl-9 pr-4 py-3 rounded-lg text-sm text-white placeholder-gray-700 outline-none transition-all font-['Inter']"
-                    style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}
-                    onFocus={(e) => (e.target.style.borderColor = "rgba(181,142,60,0.5)")}
-                    onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.08)")}
-                  />
-                </div>
-              </div>
-
-              {/* Password */}
-              <div>
-                <div className="flex items-center justify-between mb-1.5">
-                  <label className="text-gray-400 text-xs font-['Inter']">{t.password}</label>
-                  <button
-                    type="button"
-                    className="text-gold-400 text-xs hover:text-gold-300 cursor-pointer font-['Inter']"
-                  >
-                    {t.forgot}
-                  </button>
-                </div>
-                <div className="relative">
-                  <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none w-5 h-full">
-                    <i className="ri-lock-password-line text-gray-600 text-sm" />
-                  </div>
-                  <input
-                    type={showPass ? "text" : "password"}
-                    value={form.password}
-                    onChange={(e) => setForm({ ...form, password: e.target.value })}
-                    placeholder={t.passwordPh}
-                    className="w-full pl-9 pr-10 py-3 rounded-lg text-sm text-white placeholder-gray-700 outline-none transition-all font-['Inter']"
-                    style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}
-                    onFocus={(e) => (e.target.style.borderColor = "rgba(181,142,60,0.5)")}
-                    onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.08)")}
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPass(!showPass)}
-                    className="absolute inset-y-0 right-3 flex items-center w-5 h-full cursor-pointer text-gray-600 hover:text-gray-400"
-                  >
-                    <i className={showPass ? "ri-eye-off-line text-sm" : "ri-eye-line text-sm"} />
-                  </button>
-                </div>
-              </div>
-
-              {/* Error */}
-              {error && (
-                <div
-                  className="flex items-center gap-2 p-3 rounded-lg border"
-                  style={{ borderColor: "rgba(248,113,113,0.3)", background: "rgba(248,113,113,0.05)" }}
-                >
-                  <i className="ri-error-warning-line text-red-400 text-sm" />
-                  <p className="text-red-400 text-xs font-['Inter']">{error}</p>
-                </div>
-              )}
-
-              {/* Submit */}
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full flex items-center justify-center gap-2 py-3 rounded-lg font-bold hover:opacity-90 transition-all duration-200 cursor-pointer text-sm font-['Inter'] disabled:opacity-60 mt-2"
-                style={{ background: "#D4A84B", color: "#0B1220" }}
-              >
-                {loading ? (
-                  <>
-                    <i className="ri-loader-4-line animate-spin" />
-                    {t.logging}
-                  </>
-                ) : (
-                  <>
-                    <i className="ri-login-box-line" />
-                    {t.login}
-                  </>
-                )}
-              </button>
-            </form>
-
-            {/* Register link */}
-            <div className="mt-5 text-center">
-              <span className="text-gray-600 text-xs font-['Inter']">{t.newEntity} </span>
-              <button
-                onClick={() => navigate("/register")}
-                className="text-gold-400 text-xs font-semibold hover:text-gold-300 transition-colors cursor-pointer font-['Inter']"
-              >
-                {t.register} <i className="ri-arrow-right-line" />
-              </button>
-            </div>
-
-            {/* Hospitality note */}
+          {/* Tagline — primary in display italic (EN) or Readex Pro 500 (AR) */}
+          <div style={{ maxWidth: 440 }}>
             <div
-              className="mt-4 p-3 rounded-lg border"
-              style={{ background: "rgba(74,222,128,0.04)", borderColor: "rgba(74,222,128,0.15)" }}
+              style={{
+                fontFamily: isAr ? "'Readex Pro', 'Tajawal', sans-serif" : fonts.display,
+                fontStyle: isAr ? "normal" : "italic",
+                fontWeight: isAr ? 500 : 400,
+                color: C.ivory100,
+                fontSize: "1.375rem",
+                lineHeight: 1.4,
+                marginBottom: "0.375rem",
+                direction: isAr ? "rtl" : "ltr",
+              }}
             >
-              <p className="text-green-400/80 text-xs font-['Inter'] text-center">
-                <i className="ri-hotel-line mr-1" />
-                {t.hospitality}
-              </p>
-              <p className="text-gray-600 text-xs font-['Inter'] text-center mt-0.5">
-                {t.hospitalityNote}
-              </p>
+              {t.taglinePrimary}
             </div>
-
-            {/* Security footer */}
-            <div className="mt-6 pt-5 border-t border-white/5 flex flex-col items-center gap-1.5">
-              <div className="flex items-center gap-1.5">
-                <i className="ri-shield-check-line text-green-400 text-xs" />
-                <span className="text-gray-600 text-xs font-['JetBrains_Mono']">{t.secure}</span>
-              </div>
-              <span className="text-gray-700 text-xs font-['Inter']">{t.operated}</span>
+            {/* Counterpart — smaller, opposite language */}
+            <div
+              style={{
+                fontFamily: isAr ? fonts.display : "'Readex Pro', 'Tajawal', sans-serif",
+                fontStyle: isAr ? "italic" : "normal",
+                color: C.midnight200,
+                fontSize: "0.9375rem",
+                direction: isAr ? "ltr" : "rtl",
+                opacity: 0.9,
+              }}
+            >
+              {t.taglineCounter}
             </div>
           </div>
         </div>
+
+        {/* Bottom legal */}
+        <div
+          style={{
+            position: "relative",
+            zIndex: 1,
+            paddingTop: "2rem",
+            borderTop: `1px solid rgba(181,142,60,0.2)`,
+            color: C.midnight200,
+            fontFamily: fonts.sans,
+            fontSize: "0.75rem",
+            lineHeight: 1.7,
+            maxWidth: 520,
+          }}
+        >
+          {t.legal}
+        </div>
       </div>
 
+      {/* ────────── RIGHT PANE — form ────────── */}
+      <div
+        className="flex-1 flex items-center justify-center relative"
+        style={{
+          background: C.ivory100,
+          color: C.midnight800,
+          padding: "4rem 2rem",
+        }}
+      >
+        {/* Top-right locale toggle (flips to top-left in RTL) */}
+        <button
+          type="button"
+          onClick={toggleLang}
+          style={{
+            position: "absolute",
+            top: "1.5rem",
+            insetInlineEnd: "1.5rem",
+            padding: "0.375rem 0.75rem",
+            fontFamily: fonts.mono,
+            fontSize: "0.75rem",
+            fontWeight: 600,
+            letterSpacing: "0.12em",
+            color: C.gold700,
+            background: "transparent",
+            border: `1px solid ${C.gold600}`,
+            borderRadius: 6,
+            cursor: "pointer",
+          }}
+        >
+          {isAr ? "EN" : "AR"}
+        </button>
+
+        <div style={{ width: "100%", maxWidth: 420 }}>
+          {mode === "credentials" ? (
+            <>
+              {/* Eyebrow */}
+              <div
+                style={{
+                  fontFamily: fonts.mono,
+                  fontSize: "0.75rem",
+                  fontWeight: 600,
+                  letterSpacing: "0.18em",
+                  color: C.gold700,
+                  textTransform: isAr ? "none" : "uppercase",
+                  marginBottom: "0.75rem",
+                }}
+              >
+                {t.signInEyebrow}
+              </div>
+
+              {/* Title */}
+              <h1
+                style={{
+                  fontFamily: fonts.display,
+                  fontSize: "2rem",
+                  fontWeight: isAr ? 600 : 500,
+                  letterSpacing: "-0.01em",
+                  color: C.midnight800,
+                  marginBottom: "2rem",
+                  lineHeight: 1.15,
+                }}
+              >
+                {t.title}
+              </h1>
+
+              {/* SSO — primary */}
+              <button
+                type="button"
+                onClick={handleSSO}
+                disabled={ssoRedirecting}
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "0.625rem",
+                  padding: "0.875rem 1rem",
+                  borderRadius: 8,
+                  background: C.midnight800,
+                  color: C.ivory100,
+                  fontFamily: fonts.sans,
+                  fontSize: "0.9375rem",
+                  fontWeight: 500,
+                  border: "none",
+                  cursor: ssoRedirecting ? "wait" : "pointer",
+                  opacity: ssoRedirecting ? 0.8 : 1,
+                  transition: "filter 150ms",
+                  boxShadow: "0 2px 6px rgba(5,8,15,0.15)",
+                }}
+                onMouseEnter={(e) => { if (!ssoRedirecting) e.currentTarget.style.filter = "brightness(1.15)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.filter = "none"; }}
+              >
+                {/* Gold ministry shield icon */}
+                <svg width="20" height="20" viewBox="0 0 120 120" aria-hidden>
+                  <path
+                    d="M60 6 L104 18 L104 62 C104 86 86 104 60 114 C34 104 16 86 16 62 L16 18 Z"
+                    fill="none" stroke={C.gold400} strokeWidth={6}
+                  />
+                  <circle cx="60" cy="46" r="12" fill={C.gold400} />
+                  <rect x="57" y="62" width="6" height="30" rx="3" fill={C.gold400} />
+                </svg>
+                <span>{ssoRedirecting ? t.ssoRedirecting : t.ssoBtn}</span>
+                {!ssoRedirecting && <span aria-hidden>{isAr ? "←" : "→"}</span>}
+              </button>
+
+              {/* Divider */}
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.75rem",
+                  margin: "1.75rem 0",
+                }}
+              >
+                <div style={{ flex: 1, height: 1, background: C.ivory400 }} />
+                <span
+                  style={{
+                    fontFamily: fonts.mono,
+                    fontSize: "0.6875rem",
+                    letterSpacing: "0.15em",
+                    color: C.ivory800,
+                    textTransform: isAr ? "none" : "uppercase",
+                  }}
+                >
+                  {t.divider}
+                </span>
+                <div style={{ flex: 1, height: 1, background: C.ivory400 }} />
+              </div>
+
+              {/* Credentials form */}
+              <form onSubmit={handleCredentials} noValidate>
+                {/* Officer ID */}
+                <label
+                  style={{
+                    display: "block",
+                    fontFamily: fonts.sans,
+                    fontSize: "0.75rem",
+                    fontWeight: 500,
+                    color: C.midnight600,
+                    marginBottom: "0.375rem",
+                  }}
+                >
+                  {t.officerIdLabel}
+                </label>
+                <input
+                  type="text"
+                  value={officerId}
+                  onChange={(e) => setOfficerId(e.target.value)}
+                  placeholder="OPR-•••••"
+                  autoComplete="username"
+                  spellCheck={false}
+                  style={{
+                    width: "100%",
+                    padding: "0.75rem 0.875rem",
+                    marginBottom: "1rem",
+                    fontFamily: fonts.mono,
+                    fontSize: "0.9375rem",
+                    color: C.midnight800,
+                    background: C.ivory000,
+                    border: `1px solid ${C.ivory400}`,
+                    borderRadius: 6,
+                    outline: "none",
+                    transition: "border-color 150ms",
+                  }}
+                  onFocus={(e) => (e.currentTarget.style.borderColor = C.gold500)}
+                  onBlur={(e) => (e.currentTarget.style.borderColor = C.ivory400)}
+                />
+
+                {/* Passcode */}
+                <label
+                  style={{
+                    display: "block",
+                    fontFamily: fonts.sans,
+                    fontSize: "0.75rem",
+                    fontWeight: 500,
+                    color: C.midnight600,
+                    marginBottom: "0.375rem",
+                  }}
+                >
+                  {t.passcodeLabel}
+                </label>
+                <div style={{ position: "relative", marginBottom: "1.25rem" }}>
+                  <input
+                    type={showPass ? "text" : "password"}
+                    value={passcode}
+                    onChange={(e) => setPasscode(e.target.value)}
+                    placeholder={t.passcodePh}
+                    autoComplete="current-password"
+                    style={{
+                      width: "100%",
+                      padding: "0.75rem 2.5rem 0.75rem 0.875rem",
+                      fontFamily: fonts.sans,
+                      fontSize: "0.9375rem",
+                      color: C.midnight800,
+                      background: C.ivory000,
+                      border: `1px solid ${C.ivory400}`,
+                      borderRadius: 6,
+                      outline: "none",
+                      transition: "border-color 150ms",
+                      paddingInlineEnd: "2.5rem",
+                    }}
+                    onFocus={(e) => (e.currentTarget.style.borderColor = C.gold500)}
+                    onBlur={(e) => (e.currentTarget.style.borderColor = C.ivory400)}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPass((v) => !v)}
+                    aria-label={showPass ? "Hide passcode" : "Show passcode"}
+                    style={{
+                      position: "absolute",
+                      insetBlockStart: 0,
+                      insetBlockEnd: 0,
+                      insetInlineEnd: 8,
+                      padding: "0 0.5rem",
+                      background: "transparent",
+                      border: "none",
+                      color: C.ivory800,
+                      cursor: "pointer",
+                      fontFamily: fonts.mono,
+                      fontSize: "0.7rem",
+                      letterSpacing: "0.1em",
+                    }}
+                  >
+                    {showPass ? (isAr ? "إخفاء" : "HIDE") : (isAr ? "إظهار" : "SHOW")}
+                  </button>
+                </div>
+
+                {error && (
+                  <div
+                    role="alert"
+                    style={{
+                      padding: "0.625rem 0.875rem",
+                      marginBottom: "1rem",
+                      fontFamily: fonts.sans,
+                      fontSize: "0.8125rem",
+                      color: C.omanRed600,
+                      background: "rgba(154,31,36,0.08)",
+                      border: `1px solid rgba(154,31,36,0.3)`,
+                      borderRadius: 6,
+                    }}
+                  >
+                    {error}
+                  </div>
+                )}
+
+                {/* Submit — oman red gradient */}
+                <button
+                  type="submit"
+                  disabled={loading}
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "0.5rem",
+                    padding: "0.875rem 1rem",
+                    borderRadius: 8,
+                    background: `linear-gradient(180deg, ${C.omanRed500} 0%, ${C.omanRed600} 100%)`,
+                    color: C.ivory100,
+                    fontFamily: fonts.sans,
+                    fontSize: "0.9375rem",
+                    fontWeight: 600,
+                    border: "none",
+                    cursor: loading ? "wait" : "pointer",
+                    opacity: loading ? 0.85 : 1,
+                    boxShadow: "0 2px 8px rgba(154,31,36,0.28)",
+                    transition: "filter 150ms, box-shadow 150ms",
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!loading) {
+                      e.currentTarget.style.filter = "brightness(1.08)";
+                      e.currentTarget.style.boxShadow = "0 4px 14px rgba(154,31,36,0.38)";
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.filter = "none";
+                    e.currentTarget.style.boxShadow = "0 2px 8px rgba(154,31,36,0.28)";
+                  }}
+                >
+                  {loading ? t.submitLoading : t.submit}
+                  {!loading && <span aria-hidden>{isAr ? "←" : "→"}</span>}
+                </button>
+              </form>
+
+              {/* Admin note */}
+              <p
+                style={{
+                  marginTop: "1.25rem",
+                  fontFamily: fonts.sans,
+                  fontSize: "0.75rem",
+                  color: C.ivory800,
+                  lineHeight: 1.5,
+                }}
+              >
+                {t.adminNote}
+              </p>
+
+              {/* Ack note */}
+              <p
+                style={{
+                  marginTop: "0.75rem",
+                  fontFamily: fonts.sans,
+                  fontSize: "0.6875rem",
+                  color: C.ivory700,
+                  lineHeight: 1.6,
+                }}
+              >
+                {t.ackNote}
+              </p>
+            </>
+          ) : (
+            /* ────────── OTP SCREEN ────────── */
+            <>
+              <div
+                style={{
+                  fontFamily: fonts.mono,
+                  fontSize: "0.75rem",
+                  fontWeight: 600,
+                  letterSpacing: "0.18em",
+                  color: C.gold700,
+                  textTransform: isAr ? "none" : "uppercase",
+                  marginBottom: "0.75rem",
+                }}
+              >
+                {t.otpEyebrow}
+              </div>
+              <h1
+                style={{
+                  fontFamily: fonts.display,
+                  fontSize: "2rem",
+                  fontWeight: isAr ? 600 : 500,
+                  letterSpacing: "-0.01em",
+                  color: C.midnight800,
+                  marginBottom: "0.5rem",
+                  lineHeight: 1.15,
+                }}
+              >
+                {t.otpTitle}
+              </h1>
+              <p
+                style={{
+                  fontFamily: fonts.sans,
+                  fontSize: "0.875rem",
+                  color: C.midnight600,
+                  marginBottom: "2rem",
+                  lineHeight: 1.55,
+                }}
+              >
+                {t.otpSubtitle}
+              </p>
+
+              <form onSubmit={handleOtp} noValidate>
+                <input
+                  ref={otpRef}
+                  type="text"
+                  inputMode="numeric"
+                  pattern="[0-9]*"
+                  maxLength={6}
+                  value={otp}
+                  onChange={(e) => {
+                    const digits = e.target.value.replace(/\D/g, "").slice(0, 6);
+                    setOtp(digits);
+                  }}
+                  placeholder={t.otpPh}
+                  autoComplete="one-time-code"
+                  style={{
+                    width: "100%",
+                    padding: "1rem 1.25rem",
+                    textAlign: "center",
+                    letterSpacing: "0.5em",
+                    fontFamily: fonts.mono,
+                    fontSize: "1.5rem",
+                    color: C.midnight800,
+                    background: C.ivory000,
+                    border: `1px solid ${C.ivory400}`,
+                    borderRadius: 8,
+                    outline: "none",
+                    marginBottom: "1.25rem",
+                    transition: "border-color 150ms",
+                  }}
+                  onFocus={(e) => (e.currentTarget.style.borderColor = C.gold500)}
+                  onBlur={(e) => (e.currentTarget.style.borderColor = C.ivory400)}
+                />
+
+                <button
+                  type="submit"
+                  disabled={otp.length !== 6 || loading}
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "0.5rem",
+                    padding: "0.875rem 1rem",
+                    borderRadius: 8,
+                    background: otp.length === 6
+                      ? `linear-gradient(180deg, ${C.omanRed500} 0%, ${C.omanRed600} 100%)`
+                      : C.ivory300,
+                    color: otp.length === 6 ? C.ivory100 : C.ivory800,
+                    fontFamily: fonts.sans,
+                    fontSize: "0.9375rem",
+                    fontWeight: 600,
+                    border: "none",
+                    cursor: otp.length === 6 && !loading ? "pointer" : "not-allowed",
+                    boxShadow: otp.length === 6 ? "0 2px 8px rgba(154,31,36,0.28)" : "none",
+                    transition: "filter 150ms",
+                  }}
+                >
+                  {loading ? t.submitLoading : t.otpVerify}
+                  {otp.length === 6 && !loading && <span aria-hidden>{isAr ? "←" : "→"}</span>}
+                </button>
+              </form>
+
+              {/* Back + resend */}
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  marginTop: "1.25rem",
+                }}
+              >
+                <button
+                  type="button"
+                  onClick={() => { setMode("credentials"); setError(""); }}
+                  style={{
+                    background: "transparent",
+                    border: "none",
+                    padding: 0,
+                    color: C.midnight600,
+                    fontFamily: fonts.sans,
+                    fontSize: "0.8125rem",
+                    cursor: "pointer",
+                    textDecoration: "none",
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = C.omanRed600)}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = C.midnight600)}
+                >
+                  {isAr ? "→" : "←"} {t.otpBack}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => { setOtp(""); otpRef.current?.focus(); }}
+                  style={{
+                    background: "transparent",
+                    border: "none",
+                    padding: 0,
+                    color: C.gold700,
+                    fontFamily: fonts.sans,
+                    fontSize: "0.8125rem",
+                    fontWeight: 600,
+                    cursor: "pointer",
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = C.gold600)}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = C.gold700)}
+                >
+                  {t.otpResend}
+                </button>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+
+      {/* Keyframes — pulsing gold dot on the eyebrow pill */}
+      <style>{`
+        @keyframes pulseGold {
+          0%, 100% { opacity: 1;   transform: scale(1); }
+          50%      { opacity: 0.4; transform: scale(0.85); }
+        }
+      `}</style>
     </div>
   );
 };

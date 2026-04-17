@@ -5,6 +5,33 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ================================================================ *
+ * Typography service — CSS-variable mirror of src/brand/typography.ts
+ * ----------------------------------------------------------------
+ * Exposes the same font stacks to plain CSS so chart tooltips,
+ * native controls, and third-party widgets can use them without
+ * pulling in React. Always prefer `useBrandFonts()` in components;
+ * these vars are the escape hatch.
+ * ================================================================ */
+:root {
+  --alm-font-display-en: 'Cormorant Garamond', Georgia, serif;
+  --alm-font-display-ar: 'Readex Pro', 'Tajawal', sans-serif;
+  --alm-font-sans-en:    'Inter', ui-sans-serif, system-ui, sans-serif;
+  --alm-font-sans-ar:    'Readex Pro', 'Tajawal', 'IBM Plex Sans Arabic', sans-serif;
+  --alm-font-mono:       'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+}
+html[lang="ar"] {
+  --alm-font-display: var(--alm-font-display-ar);
+  --alm-font-sans:    var(--alm-font-sans-ar);
+}
+html[lang="en"], html:not([lang]) {
+  --alm-font-display: var(--alm-font-display-en);
+  --alm-font-sans:    var(--alm-font-sans-en);
+}
+body {
+  font-family: var(--alm-font-sans);
+}
+
 /* ── Global keyframes used across pages ── */
 @keyframes floatP {
   0%, 100% { transform: translateY(0px); opacity: 0.2; }

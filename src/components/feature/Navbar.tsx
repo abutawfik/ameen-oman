@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import i18n from "@/i18n";
+import BrandLogo from "@/brand/BrandLogo";
+import { useBrandFonts } from "@/brand/typography";
 
 // ─── Inline brand tokens — never depend on JIT utilities for brand-critical
 //     chrome. These are the same values as the style-guide `.topnav`. ─────────
@@ -14,14 +16,14 @@ const C = {
   bgPanelSolid: "rgba(11,18,32,0.98)",
 };
 
-const FF_SANS = "'Inter', ui-sans-serif, system-ui, sans-serif";
-
 const Navbar = () => {
   const { t } = useTranslation();
+  const brand = useBrandFonts();
+  const FF_SANS = brand.sans;
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [hoverLogin, setHoverLogin] = useState(false);
-  const isAr = i18n.language === "ar";
+  const isAr = brand.isAr;
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
@@ -63,16 +65,17 @@ const Navbar = () => {
       <div className="max-w-[1400px] mx-auto px-4 md:px-8">
         <div className="flex items-center justify-between" style={{ height: 72 }}>
 
-          {/* Left — horizontal lockup at ~40px height */}
+          {/* Left — brand lockup with language-flipping hierarchy + strapline */}
           <a
             href="#home"
             onClick={(e) => { e.preventDefault(); scrollTo("#home"); }}
             className="flex items-center cursor-pointer"
           >
-            <img
-              src="/brand/al-ameen-primary-horizontal.svg"
-              alt="Al-Ameen"
-              style={{ height: 40, width: "auto", display: "block" }}
+            <BrandLogo
+              variant="horizontal"
+              tone="light"
+              size="md"
+              showTagline
             />
           </a>
 
