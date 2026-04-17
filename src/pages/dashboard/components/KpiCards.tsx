@@ -70,7 +70,7 @@ const KpiCards = ({ entityType, isAr }: Props) => {
                 else if (entityType === "mobile") navigate("/dashboard/mobile-events");
                 else if (entityType === "municipality") navigate("/dashboard/municipality-events");
                 else if (entityType === "payment") navigate("/dashboard/financial-events");
-                else if (entityType === "border") navigate("/dashboard/border-intelligence");
+                else if (entityType === "borders") navigate("/dashboard/border-intelligence");
                 else if (entityType === "utility") navigate("/dashboard/utility-events");
                 else if (entityType === "transport") navigate("/dashboard/transport-intelligence");
                 else if (entityType === "employment") navigate("/dashboard/employment-registry");

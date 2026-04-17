@@ -17,7 +17,7 @@ const COMMUNITY_PALETTE = ["#D6B47E", "#A78BFA", "#4ADE80", "#C98A1B", "#F472B6"
 
 const LinkAnalysisPage = () => {
   const navigate = useNavigate();
-  const { isAr } = useOutletContext<DashboardOutletContext>();
+  const { isAr, toggleLang } = useOutletContext<DashboardOutletContext>();
 
   const [nodes, setNodes] = useState<GraphNode[]>(initialNodes);
   const [edges, setEdges] = useState<GraphEdge[]>(initialEdges);
@@ -301,7 +301,7 @@ const LinkAnalysisPage = () => {
             </span>
           </div>
           <button
-            onClick={() => i18n.changeLanguage(isAr ? "en" : "ar")}
+            onClick={toggleLang}
             className="w-8 h-8 flex items-center justify-center rounded-full border text-xs font-bold cursor-pointer transition-colors font-['JetBrains_Mono']"
             style={{ borderColor: "rgba(184,138,60,0.3)", color: "#D6B47E" }}
           >

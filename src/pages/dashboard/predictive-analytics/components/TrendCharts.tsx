@@ -1,7 +1,9 @@
 import { useState } from 'react';
-import { trendData, lastWeekTrendData } from '@/mocks/predictiveAnalyticsData';
+import { trendData, lastWeekTrendData, type TrendPoint } from '@/mocks/predictiveAnalyticsData';
 
-const CATEGORIES = [
+type TrendCategoryKey = Exclude<keyof TrendPoint, 'label'>;
+
+const CATEGORIES: { key: TrendCategoryKey; label: string; color: string }[] = [
   { key: 'arrival',       label: 'Arrival',       color: '#D6B47E' },
   { key: 'financial',     label: 'Financial',     color: '#4ADE80' },
   { key: 'identity',      label: 'Identity',      color: '#C94A5E' },
@@ -36,7 +38,7 @@ export default function TrendCharts() {
 
   const getDayTotal = (data: typeof trendData, i: number) =>
     CATEGORIES.filter(c => activeCategories.has(c.key))
-      .reduce((sum, c) => sum + (data[i] as Record<string, number>)[c.key], 0);
+      .reduce((sum, c) => sum + data[i][c.key], 0);
 
   const thisWeekTotals = trendData.map((_, i) => getDayTotal(trendData, i));
   const lastWeekTotals = lastWeekTrendData.map((_, i) => getDayTotal(lastWeekTrendData, i));
@@ -145,7 +147,7 @@ export default function TrendCharts() {
                     {activeCats.map(c => (
                       <div key={c.key} className="flex items-center justify-between gap-3 text-xs">
                         <span style={{ color: c.color }}>{c.label}</span>
-                        <span className="text-white font-mono">{(day as Record<string, number>)[c.key]}</span>
+                        <span className="text-white font-mono">{day[c.key]}</span>
                       </div>
                     ))}
                     {viewMode === 'compare' && (
@@ -169,7 +171,7 @@ export default function TrendCharts() {
                     }}
                   >
                     {activeCats.map(cat => {
-                      const val = (day as Record<string, number>)[cat.key];
+                      const val = day[cat.key];
                       const pct = total > 0 ? (val / total) * 100 : 0;
                       return (
                         <div

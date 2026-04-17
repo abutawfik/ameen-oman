@@ -1,6 +1,17 @@
 import { useNavigate } from "react-router-dom";
 
-const steps = [
+interface Step {
+  num: string;
+  title: string;
+  desc: string;
+  icon: string;
+  color: string;
+  action: string;
+  route: string;
+  tab?: string;
+}
+
+const steps: Step[] = [
   {
     num: "01",
     title: "Register Your Entity",
@@ -142,7 +153,7 @@ const PortalHome = ({ onTabChange }: Props) => {
           {steps.map((step, idx) => (
             <div key={step.num} className="rounded-xl p-5 relative group cursor-pointer transition-all hover:border-gold-400/30"
               style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.1)" }}
-              onClick={() => step.tab ? onTabChange(step.tab as string) : navigate(step.route)}
+              onClick={() => step.tab ? onTabChange(step.tab) : navigate(step.route)}
             >
               {/* Connector line */}
               {idx < steps.length - 1 && (

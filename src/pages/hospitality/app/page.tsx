@@ -317,7 +317,7 @@ export default function HospitalityAppPage() {
                     <div className="grid grid-cols-6 gap-3">
                       {floorRooms.map(room => {
                         const sc = roomStatusConfig[room.status];
-                        const booking = bookings.find(b => b.roomId === room.id && (b.status === 'checked_in' || b.status === 'reserved' || b.status === 'confirmed'));
+                        const booking = bookings.find(b => b.roomId === room.id && (b.status === 'checked_in' || b.status === 'confirmed'));
                         return (
                           <div
                             key={room.id}
