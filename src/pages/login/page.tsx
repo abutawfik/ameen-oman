@@ -16,15 +16,18 @@ import BrandLogo from "@/brand/BrandLogo";
 import { useBrandFonts } from "@/brand/typography";
 
 // ── Inline brand tokens (hex from tokens.css) ───────────────────────────────
+// Midnight/ocean ramp resolves via CSS vars so the runtime palette switcher
+// (src/brand/PaletteSwitcher.tsx) flips v1.0 ↔ v1.1 live. All other families
+// remain inline hex.
 const C = {
-  midnight900: "#020A14",
-  midnight800: "#051428",
-  midnight700: "#0A2540",
-  midnight600: "#10325A",
-  midnight500: "#1A4578",
-  midnight400: "#2C5F8F",
-  midnight300: "#4A7AA8",
-  midnight200: "#7A9CBF",
+  midnight900: "var(--alm-ocean-900)",
+  midnight800: "var(--alm-ocean-800)",
+  midnight700: "var(--alm-ocean-700)",
+  midnight600: "var(--alm-ocean-600)",
+  midnight500: "var(--alm-ocean-500)",
+  midnight400: "var(--alm-ocean-400)",
+  midnight300: "var(--alm-ocean-300)",
+  midnight200: "var(--alm-ocean-200)",
 
   ivory000: "#FFFFFF",
   ivory100: "#F8F5F0",

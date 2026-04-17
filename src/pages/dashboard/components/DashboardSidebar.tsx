@@ -50,7 +50,8 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
       className="flex flex-col flex-shrink-0 border-r transition-all duration-300"
       style={{
         width: collapsed ? "64px" : "220px",
-        background: "#0A2540", // midnight-700
+        // ocean-700 card surface — runtime palette toggle re-tints this.
+        background: "var(--alm-ocean-700)",
         borderColor: "rgba(184,138,60,0.1)",
         minHeight: "100%",
       }}

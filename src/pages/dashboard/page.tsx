@@ -24,7 +24,7 @@ const DashboardPage = () => {
   }, [role]);
 
   return (
-    <div className="min-h-screen font-['Inter']" style={{ background: "#051428" }} dir={isAr ? "rtl" : "ltr"}>
+    <div className="min-h-screen font-['Inter']" style={{ background: "var(--alm-ocean-800)" }} dir={isAr ? "rtl" : "ltr"}>
       {/* Subtle grid texture — matches the OSINT engine page look */}
       <div
         className="fixed inset-0 pointer-events-none"
@@ -39,7 +39,7 @@ const DashboardPage = () => {
       <div
         className="sticky top-0 z-30 flex items-center justify-between px-6 py-3 border-b"
         style={{
-          background: "rgba(5,20,40,0.92)",
+          background: "rgba(var(--alm-ocean-800-rgb), 0.92)",
           borderColor: "rgba(184,138,60,0.08)",
           backdropFilter: "blur(12px)",
         }}

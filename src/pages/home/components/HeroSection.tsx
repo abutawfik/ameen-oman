@@ -2,9 +2,11 @@ import { useTranslation } from "react-i18next";
 import i18n from "@/i18n";
 
 // ─── Brand token constants — inline hex so we never depend on JIT-compiled
-//     utility classes. These mirror al-ameen-brand/style-guide.html. ───────────
+//     utility classes. These mirror al-ameen-brand/style-guide.html.
+//     Ocean (midnight) ramp now resolves via CSS vars so the runtime palette
+//     switcher (src/brand/PaletteSwitcher.tsx) can flip v1.0 ↔ v1.1 live. ────
 const C = {
-  midnight800: "#051428",
+  midnight800: "var(--alm-ocean-800)",
   ivory100:    "#F8F5F0",
   ivory200:    "#EFE8D7",
   gold400:     "#D6B47E",

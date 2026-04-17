@@ -5,15 +5,18 @@ import BrandLogo from "@/brand/BrandLogo";
 import { useBrandFonts } from "@/brand/typography";
 
 // ─── Inline brand tokens — never depend on JIT utilities for brand-critical
-//     chrome. These are the same values as the style-guide `.topnav`. ─────────
+//     chrome. These are the same values as the style-guide `.topnav`.
+//     The glass panel colors are derived from the ocean-800 RGB channels so
+//     the runtime palette switcher (src/brand/PaletteSwitcher.tsx) re-tints
+//     the navbar when v1.0 ↔ v1.1 is toggled. ─────────────────────────────────
 const C = {
   ivory100: "#F8F5F0",
   ivory200: "#EFE8D7",
   gold400:  "#D6B47E",
   omanRed600: "#8A1F3C",
   omanRed500: "#A52844",
-  bgPanel:  "rgba(11,18,32,0.9)",
-  bgPanelSolid: "rgba(11,18,32,0.98)",
+  bgPanel:  "rgba(var(--alm-ocean-800-rgb), 0.9)",
+  bgPanelSolid: "rgba(var(--alm-ocean-800-rgb), 0.98)",
 };
 
 const Navbar = () => {

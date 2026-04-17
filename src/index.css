@@ -22,6 +22,70 @@
   --alm-font-sans-ar:    'Cairo', 'Tajawal', 'IBM Plex Sans Arabic', sans-serif;
   --alm-font-mono:       'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
 }
+
+/* ================================================================ *
+ * Runtime palette toggle — Majlis Azure ocean ramp
+ * ----------------------------------------------------------------
+ * src/brand/PaletteSwitcher.tsx flips `<html data-palette="...">`.
+ * Everything else is these variables. Brass / Persian Rose /
+ * Alabaster / Risk Tiers live in al-ameen-brand/tokens/tokens.css
+ * and are held constant across palettes — only the ocean scale
+ * changes between v1.0 and v1.1.
+ *
+ * The *-rgb companion vars expose the channels as "R, G, B" so that
+ * `rgba(var(--alm-ocean-800-rgb), 0.9)` works for translucent
+ * overlays. Without this, toggling the solid hex only flips opaque
+ * surfaces and the `rgba(11,18,32,0.9)` / `rgba(5,20,40,0.92)`
+ * glass navbars stay on the v1.0 tint.
+ * ================================================================ */
+
+/* Majlis Azure v1.0 — default. Also applied when data-palette="v1"
+   or when no data-palette attr is set. */
+:root,
+html[data-palette="v1"] {
+  --alm-ocean-900: #020A14;
+  --alm-ocean-800: #051428;
+  --alm-ocean-700: #0A2540;
+  --alm-ocean-600: #10325A;
+  --alm-ocean-500: #1A4578;
+  --alm-ocean-400: #2C5F8F;
+  --alm-ocean-300: #4A7AA8;
+  --alm-ocean-200: #7A9CBF;
+  --alm-ocean-100: #B0C5DB;
+
+  --alm-ocean-900-rgb:   2,  10,  20;
+  --alm-ocean-800-rgb:   5,  20,  40;
+  --alm-ocean-700-rgb:  10,  37,  64;
+  --alm-ocean-600-rgb:  16,  50,  90;
+  --alm-ocean-500-rgb:  26,  69, 120;
+  --alm-ocean-400-rgb:  44,  95, 143;
+  --alm-ocean-300-rgb:  74, 122, 168;
+  --alm-ocean-200-rgb: 122, 156, 191;
+  --alm-ocean-100-rgb: 176, 197, 219;
+}
+
+/* Majlis Azure v1.1 — brighter royal blue */
+html[data-palette="v1.1"] {
+  --alm-ocean-900: #06143A;
+  --alm-ocean-800: #0F2B5C;
+  --alm-ocean-700: #163B78;
+  --alm-ocean-600: #1F4B92;
+  --alm-ocean-500: #2D5AA8;
+  --alm-ocean-400: #4571B8;
+  --alm-ocean-300: #6B8FCC;
+  --alm-ocean-200: #9AB3E0;
+  --alm-ocean-100: #C4D2EC;
+
+  --alm-ocean-900-rgb:   6,  20,  58;
+  --alm-ocean-800-rgb:  15,  43,  92;
+  --alm-ocean-700-rgb:  22,  59, 120;
+  --alm-ocean-600-rgb:  31,  75, 146;
+  --alm-ocean-500-rgb:  45,  90, 168;
+  --alm-ocean-400-rgb:  69, 113, 184;
+  --alm-ocean-300-rgb: 107, 143, 204;
+  --alm-ocean-200-rgb: 154, 179, 224;
+  --alm-ocean-100-rgb: 196, 210, 236;
+}
 html[lang="ar"] {
   --alm-font-display: var(--alm-font-display-ar);
   --alm-font-sans:    var(--alm-font-sans-ar);

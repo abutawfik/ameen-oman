@@ -3,6 +3,7 @@ import { AppRoutes } from "./router";
 import { I18nextProvider } from "react-i18next";
 import i18n from "./i18n";
 import { useEffect } from "react";
+import PaletteSwitcher from "./brand/PaletteSwitcher";
 
 // Scroll to top on every route change
 const ScrollToTop = () => {
@@ -19,6 +20,10 @@ function App() {
       <BrowserRouter basename={__BASE_PATH__}>
         <ScrollToTop />
         <AppRoutes />
+        {/* Runtime ocean-palette toggle — floats over every page so brand reviews
+            can compare v1.0 vs v1.1 without a rebuild. Reads/writes to
+            localStorage["ameen:palette"] and flips <html data-palette="..."> */}
+        <PaletteSwitcher />
       </BrowserRouter>
     </I18nextProvider>
   );

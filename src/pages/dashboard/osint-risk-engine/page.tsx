@@ -251,7 +251,8 @@ const OsintRiskEnginePage = () => {
     <div
       className="min-h-screen font-['Inter']"
       style={{
-        background: "#051428",
+        // ocean-800 shell — flips with runtime palette toggle
+        background: "var(--alm-ocean-800)",
         // F1 — scale the page up 15% in presenter mode
         fontSize: presenterMode ? "1.15em" : "1em",
         outline: presenterMode ? "1px solid rgba(184,138,60,0.55)" : "none",
@@ -288,7 +289,7 @@ const OsintRiskEnginePage = () => {
       {/* Header */}
       <header
         className="sticky top-0 z-40 flex items-center justify-between px-6 py-3 border-b"
-        style={{ background: "rgba(5,20,40,0.97)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}
+        style={{ background: "rgba(var(--alm-ocean-800-rgb), 0.97)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}
       >
         <div className="flex items-center gap-4">
           <button type="button" onClick={() => navigate("/dashboard")}
@@ -351,7 +352,7 @@ const OsintRiskEnginePage = () => {
 
       {/* Tabs */}
       <nav className="sticky top-[57px] z-30 flex items-center gap-1 px-6 py-2 border-b overflow-x-auto"
-        style={{ background: "rgba(5,20,40,0.92)", borderColor: "rgba(184,138,60,0.08)", backdropFilter: "blur(12px)" }}>
+        style={{ background: "rgba(var(--alm-ocean-800-rgb), 0.92)", borderColor: "rgba(184,138,60,0.08)", backdropFilter: "blur(12px)" }}>
         {TABS.map((tab) => {
           const isActive = activeTab === tab.id;
           return (

@@ -97,7 +97,8 @@ const DashboardTitleBar = ({ isAr, onToggleLang, onToggleAr }: Props) => {
       className="flex items-center justify-between px-4 md:px-6 flex-shrink-0 relative z-30"
       style={{
         height: 64,
-        background: "rgba(5,20,40,0.9)",
+        // Ocean-800 tinted glass — flips with the runtime palette toggle.
+        background: "rgba(var(--alm-ocean-800-rgb), 0.9)",
         borderBottom: "1px solid rgba(184,138,60,0.15)",
         backdropFilter: "blur(16px)",
         WebkitBackdropFilter: "blur(16px)",
@@ -201,7 +202,7 @@ const DashboardTitleBar = ({ isAr, onToggleLang, onToggleAr }: Props) => {
                 className={`absolute -top-1 min-w-[18px] h-[18px] flex items-center justify-center rounded-full text-[10px] font-bold px-1 ${isAr ? "-left-1" : "-right-1"}`}
                 style={{
                   background: criticalCount > 0 ? "#8A1F3C" : "#D6B47E",
-                  color: "#051428",
+                  color: "var(--alm-ocean-800)",
                   fontFamily: fonts.mono,
                 }}
               >
@@ -213,7 +214,7 @@ const DashboardTitleBar = ({ isAr, onToggleLang, onToggleAr }: Props) => {
             <div
               className={`absolute top-full mt-2 w-80 rounded-xl overflow-hidden z-50 ${isAr ? "left-0" : "right-0"}`}
               style={{
-                background: "rgba(10,37,64,0.98)",
+                background: "rgba(var(--alm-ocean-700-rgb), 0.98)",
                 border: "1px solid rgba(184,138,60,0.25)",
                 backdropFilter: "blur(16px)",
               }}
@@ -326,7 +327,7 @@ const DashboardTitleBar = ({ isAr, onToggleLang, onToggleAr }: Props) => {
             <div
               className={`absolute top-full mt-1 w-48 rounded-xl overflow-hidden z-50 ${isAr ? "left-0" : "right-0"}`}
               style={{
-                background: "rgba(10,37,64,0.98)",
+                background: "rgba(var(--alm-ocean-700-rgb), 0.98)",
                 border: "1px solid rgba(184,138,60,0.25)",
                 backdropFilter: "blur(16px)",
               }}

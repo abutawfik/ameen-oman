@@ -43,7 +43,7 @@ const DashboardLayout = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen overflow-hidden" style={{ background: "#051428" }}>
+    <div className="flex flex-col h-screen overflow-hidden" style={{ background: "var(--alm-ocean-800)" }}>
       <DashboardTitleBar
         isAr={isAr}
         onToggleLang={toggleLang}
