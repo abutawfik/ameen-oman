@@ -16,14 +16,14 @@ interface User {
 }
 
 const USERS: User[] = [
-  { id: "u1", name: "Ahmed Al-Rashidi",    nameAr: "أحمد الراشدي",    email: "a.rashidi@rop.gov.om",    role: "admin",    status: "active",    lastLogin: "2026-04-05 09:14", module: "All Modules",        moduleAr: "جميع الوحدات",       joined: "2024-01-15" },
-  { id: "u2", name: "Fatima Al-Zadjali",   nameAr: "فاطمة الزدجالية", email: "f.zadjali@rop.gov.om",    role: "operator", status: "active",    lastLogin: "2026-04-05 08:32", module: "Hotel, Car Rental",  moduleAr: "فنادق، تأجير سيارات",joined: "2024-03-20" },
-  { id: "u3", name: "Mohammed Al-Balushi", nameAr: "محمد البلوشي",    email: "m.balushi@rop.gov.om",    role: "operator", status: "active",    lastLogin: "2026-04-04 17:45", module: "Mobile, Financial",  moduleAr: "اتصالات، مالية",     joined: "2024-02-10" },
-  { id: "u4", name: "Khalid Al-Amri",      nameAr: "خالد العامري",    email: "k.amri@rop.gov.om",       role: "viewer",   status: "active",    lastLogin: "2026-04-05 07:20", module: "Border Intelligence",moduleAr: "استخبارات الحدود",   joined: "2024-06-01" },
-  { id: "u5", name: "Layla Al-Hinai",      nameAr: "ليلى الهنائية",   email: "l.hinai@rop.gov.om",      role: "operator", status: "inactive",  lastLogin: "2026-03-28 14:00", module: "Employment, Utility",moduleAr: "توظيف، مرافق",       joined: "2024-04-15" },
-  { id: "u6", name: "Omar Al-Farsi",       nameAr: "عمر الفارسي",     email: "o.farsi@rop.gov.om",      role: "viewer",   status: "active",    lastLogin: "2026-04-05 10:05", module: "Transport Intel",    moduleAr: "استخبارات النقل",    joined: "2024-07-22" },
-  { id: "u7", name: "Nadia Al-Rashidi",    nameAr: "نادية الراشدية",  email: "n.rashidi@rop.gov.om",    role: "admin",    status: "active",    lastLogin: "2026-04-05 09:50", module: "All Modules",        moduleAr: "جميع الوحدات",       joined: "2023-11-05" },
-  { id: "u8", name: "Hamad Al-Zadjali",    nameAr: "حمد الزدجالي",    email: "h.zadjali@rop.gov.om",    role: "operator", status: "suspended", lastLogin: "2026-03-15 11:30", module: "E-Commerce, Social", moduleAr: "تجارة، تواصل",       joined: "2024-08-10" },
+  { id: "u1", name: "Ahmed Al-Rashidi",    nameAr: "أحمد الراشدي",    email: "a.rashidi@police.gov",    role: "admin",    status: "active",    lastLogin: "2026-04-05 09:14", module: "All Modules",        moduleAr: "جميع الوحدات",       joined: "2024-01-15" },
+  { id: "u2", name: "Fatima Al-Zadjali",   nameAr: "فاطمة الزدجالية", email: "f.zadjali@police.gov",    role: "operator", status: "active",    lastLogin: "2026-04-05 08:32", module: "Hotel, Car Rental",  moduleAr: "فنادق، تأجير سيارات",joined: "2024-03-20" },
+  { id: "u3", name: "Mohammed Al-Balushi", nameAr: "محمد البلوشي",    email: "m.balushi@police.gov",    role: "operator", status: "active",    lastLogin: "2026-04-04 17:45", module: "Mobile, Financial",  moduleAr: "اتصالات، مالية",     joined: "2024-02-10" },
+  { id: "u4", name: "Khalid Al-Amri",      nameAr: "خالد العامري",    email: "k.amri@police.gov",       role: "viewer",   status: "active",    lastLogin: "2026-04-05 07:20", module: "Border Intelligence",moduleAr: "استخبارات الحدود",   joined: "2024-06-01" },
+  { id: "u5", name: "Layla Al-Hinai",      nameAr: "ليلى الهنائية",   email: "l.hinai@police.gov",      role: "operator", status: "inactive",  lastLogin: "2026-03-28 14:00", module: "Employment, Utility",moduleAr: "توظيف، مرافق",       joined: "2024-04-15" },
+  { id: "u6", name: "Omar Al-Farsi",       nameAr: "عمر الفارسي",     email: "o.farsi@police.gov",      role: "viewer",   status: "active",    lastLogin: "2026-04-05 10:05", module: "Transport Intel",    moduleAr: "استخبارات النقل",    joined: "2024-07-22" },
+  { id: "u7", name: "Nadia Al-Rashidi",    nameAr: "نادية الراشدية",  email: "n.rashidi@police.gov",    role: "admin",    status: "active",    lastLogin: "2026-04-05 09:50", module: "All Modules",        moduleAr: "جميع الوحدات",       joined: "2023-11-05" },
+  { id: "u8", name: "Hamad Al-Zadjali",    nameAr: "حمد الزدجالي",    email: "h.zadjali@police.gov",    role: "operator", status: "suspended", lastLogin: "2026-03-15 11:30", module: "E-Commerce, Social", moduleAr: "تجارة، تواصل",       joined: "2024-08-10" },
 ];
 
 const ROLE_CONFIG = {
@@ -132,7 +132,7 @@ const ManageUsers = ({ isAr }: Props) => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             {[
               { key: "name", label: isAr ? "الاسم الكامل" : "Full Name", type: "text", placeholder: isAr ? "أدخل الاسم" : "Enter name" },
-              { key: "email", label: isAr ? "البريد الإلكتروني" : "Email", type: "email", placeholder: "user@rop.gov.om" },
+              { key: "email", label: isAr ? "البريد الإلكتروني" : "Email", type: "email", placeholder: "user@police.gov" },
             ].map((field) => (
               <div key={field.key}>
                 <label className="text-gray-500 text-xs font-['JetBrains_Mono'] uppercase tracking-wider block mb-1">{field.label}</label>

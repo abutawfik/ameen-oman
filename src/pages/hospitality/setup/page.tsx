@@ -52,7 +52,7 @@ export default function SetupWizardPage() {
   const [testScanDone, setTestScanDone] = useState(false);
 
   // Step 4
-  const [serverUrl] = useState('https://api.ameen.rop.gov.om/v2');
+  const [serverUrl] = useState('https://api.ameen.ameen.gov/v2');
   const [apiKey, setApiKey] = useState('');
   const [connStatus, setConnStatus] = useState<'idle' | 'testing' | 'success' | 'failed'>('idle');
 
@@ -251,8 +251,8 @@ export default function SetupWizardPage() {
             </div>
             <p className="text-gray-500 text-xs leading-relaxed">
               {isAr
-                ? 'هذا النظام مقدم مجاناً من شرطة عُمان السلطانية لجميع الفنادق المسجلة في برنامج أمين.'
-                : 'This system is provided free by Royal Oman Police to all AMEEN-registered hotels.'}
+                ? 'هذا النظام مقدم مجاناً من الشرطة الوطنية لجميع الفنادق المسجلة في برنامج أمين.'
+                : 'This system is provided free by National Police to all AMEEN-registered hotels.'}
             </p>
           </div>
         </div>
@@ -348,7 +348,7 @@ export default function SetupWizardPage() {
                   <div>
                     <label className={labelCls}>
                       {isAr ? 'رقم تسجيل أمين' : 'AMEEN Registration Number'}
-                      <span className="text-cyan-500/50 ml-2 normal-case">{isAr ? '(من شرطة عُمان السلطانية)' : '(obtained from ROP)'}</span>
+                      <span className="text-cyan-500/50 ml-2 normal-case">{isAr ? '(من الشرطة الوطنية)' : '(obtained from National Police)'}</span>
                     </label>
                     <div className="relative">
                       <i className={`ri-shield-star-line absolute top-1/2 -translate-y-1/2 text-cyan-500/50 text-sm ${isAr ? 'right-3' : 'left-3'}`} />
@@ -599,8 +599,8 @@ export default function SetupWizardPage() {
                       <i className="ri-information-line text-cyan-400 text-base mt-0.5 shrink-0" />
                       <p className="text-cyan-300 text-xs leading-relaxed">
                         {isAr
-                          ? 'مفتاح API مقدم من شرطة عُمان السلطانية عند التسجيل في برنامج أمين. إذا لم يكن لديك مفتاح، تواصل مع مركز قيادة أمين على الرقم 2400-0000.'
-                          : 'API Key is provided by Royal Oman Police upon AMEEN program registration. If you don\'t have a key, contact AMEEN Command Center at 2400-0000.'}
+                          ? 'مفتاح API مقدم من الشرطة الوطنية عند التسجيل في برنامج أمين. إذا لم يكن لديك مفتاح، تواصل مع مركز قيادة أمين على الرقم 2400-0000.'
+                          : 'API Key is provided by National Police upon AMEEN program registration. If you don\'t have a key, contact AMEEN Command Center at 2400-0000.'}
                       </p>
                     </div>
                   </div>
@@ -630,7 +630,7 @@ export default function SetupWizardPage() {
                         type="password"
                         value={apiKey}
                         onChange={e => setApiKey(e.target.value)}
-                        placeholder={isAr ? 'أدخل مفتاح API المقدم من ROP' : 'Enter API Key provided by ROP'}
+                        placeholder={isAr ? 'أدخل مفتاح API المقدم من الشرطة الوطنية' : 'Enter API Key provided by National Police'}
                         className={`${inputCls} font-mono`}
                         style={{ paddingLeft: isAr ? 12 : 36, paddingRight: isAr ? 36 : 12 }}
                       />
@@ -660,7 +660,7 @@ export default function SetupWizardPage() {
                       </div>
                       <div className="grid grid-cols-2 gap-2 text-xs">
                         {[
-                          [isAr ? 'الخادم' : 'Server', 'api.ameen.rop.gov.om'],
+                          [isAr ? 'الخادم' : 'Server', 'api.ameen.ameen.gov'],
                           [isAr ? 'الكمون' : 'Latency', '42ms'],
                           [isAr ? 'الإصدار' : 'API Version', 'v2.4'],
                           [isAr ? 'الحالة' : 'Status', 'Authorized ✓'],

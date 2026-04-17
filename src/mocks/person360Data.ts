@@ -329,7 +329,7 @@ export const mockTimeline: TimelineEvent[] = [
     datetime: "2026-03-30 11:00",
     title: "Cargo Clearance — Seeb Port",
     description: "Cargo shipment cleared. Declared value 1,200 OMR. Estimated market value 3,800 OMR — 68% variance.",
-    entity: "Royal Oman Customs",
+    entity: "Oman Customs",
     location: "Seeb Port, Capital City",
     isAlert: true,
     alertType: "Invoice Manipulation — Value Variance 68%",

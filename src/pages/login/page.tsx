@@ -45,7 +45,7 @@ const LoginPage = () => {
   };
 
   const t = {
-    authority: isAr ? "المديرية العامة للشرطة" : "NATIONAL POLICE",
+    authority: isAr ? "الشرطة الوطنية" : "NATIONAL POLICE",
     authorityFull: isAr ? "نظام مراقبة الحدود" : "BORDER CONTROL SYSTEM",
     system: isAr ? "الامين" : "AL-AMEEN",
     systemAr: isAr ? "Al-Ameen" : "الامين",

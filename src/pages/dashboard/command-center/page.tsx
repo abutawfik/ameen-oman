@@ -187,7 +187,7 @@ const CommandCenterPage = () => {
         <div className="flex items-center gap-2">
           <span className="text-red-300 text-xs font-['JetBrains_Mono'] opacity-70">CLASSIFICATION: SECRET</span>
           <span className="text-red-300 text-xs font-['JetBrains_Mono'] opacity-70">|</span>
-          <span className="text-red-300 text-xs font-['JetBrains_Mono'] opacity-70">ROP-AMEEN-CC-2026</span>
+          <span className="text-red-300 text-xs font-['JetBrains_Mono'] opacity-70">AMEEN-CC-2026</span>
         </div>
       </div>
 
@@ -219,7 +219,7 @@ const CommandCenterPage = () => {
                   {isAr ? "سري" : "SECRET"}
                 </span>
               </div>
-              <p className="text-gray-500 text-xs font-['JetBrains_Mono']">مركز قيادة أمين · ROP Internal</p>
+              <p className="text-gray-500 text-xs font-['JetBrains_Mono']">مركز قيادة أمين · Police Internal</p>
             </div>
           </div>
         </div>
@@ -411,7 +411,7 @@ const CommandCenterPage = () => {
                     style={{ background: "rgba(34,211,238,0.1)", border: "1px solid rgba(34,211,238,0.2)" }}>
                     <i className="ri-map-2-line text-cyan-400 text-xs" />
                   </div>
-                  <span className="text-white font-bold text-sm">{isAr ? "خريطة سلطنة عُمان — كثافة الأحداث" : "Sultanate of Oman — Event Density Map"}</span>
+                  <span className="text-white font-bold text-sm">{isAr ? "خريطة عُمان — كثافة الأحداث" : "Oman — Event Density Map"}</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="flex items-center gap-1.5">
@@ -485,7 +485,7 @@ const CommandCenterPage = () => {
                 )}
                 {/* Map label */}
                 <div className="absolute bottom-3 left-3 text-gray-700 text-xs font-['JetBrains_Mono']">
-                  {isAr ? "سلطنة عُمان — تمثيل تخطيطي" : "Sultanate of Oman — Schematic Representation"}
+                  {isAr ? "عُمان — تمثيل تخطيطي" : "Oman — Schematic Representation"}
                 </div>
               </div>
             </div>
@@ -857,12 +857,12 @@ const CommandCenterPage = () => {
           <>
             <div>
               <h1 className="text-white text-2xl font-bold mb-1">{isAr ? "مراقبة تكرار VIS" : "VIS Replication Monitor"}</h1>
-              <p className="text-gray-400 text-sm">{isAr ? "مراقبة مزامنة قواعد البيانات المتكررة RL1 وRL2" : "Monitor synchronization of replicated databases RL1 and RL2"}</p>
+              <p className="text-gray-400 text-sm">{isAr ? "مراقبة مزامنة قواعد البيانات المتكررة RES-A وRES-B" : "Monitor synchronization of replicated databases RES-A and RES-B"}</p>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {[
-                { id: "RL1", lag: rl1Lag, events: rl1Events, host: "vis-rl1.rop.gov.om", location: "Muscat DC", locationAr: "مركز بيانات مسقط" },
-                { id: "RL2", lag: rl2Lag, events: rl2Events, host: "vis-rl2.rop.gov.om", location: "Salalah DC", locationAr: "مركز بيانات صلالة" },
+                { id: "RES-A", lag: rl1Lag, events: rl1Events, host: "vis-a.police.gov", location: "Muscat DC", locationAr: "مركز بيانات مسقط" },
+                { id: "RES-B", lag: rl2Lag, events: rl2Events, host: "vis-b.police.gov", location: "Salalah DC", locationAr: "مركز بيانات صلالة" },
               ].map((rl) => {
                 const lagOk = rl.lag < 5;
                 const lagColor = rl.lag < 1 ? "#4ADE80" : rl.lag < 3 ? "#FACC15" : "#F87171";
@@ -952,8 +952,8 @@ const CommandCenterPage = () => {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {[
                   { label: isAr ? "الأحداث الرئيسية" : "Primary Events",  value: liveEvents.toLocaleString(), color: "#22D3EE" },
-                  { label: isAr ? "أحداث RL1" : "RL1 Events",             value: rl1Events.toLocaleString(),  color: "#4ADE80" },
-                  { label: isAr ? "أحداث RL2" : "RL2 Events",             value: rl2Events.toLocaleString(),  color: "#A78BFA" },
+                  { label: isAr ? "أحداث RES-A" : "RES-A Events",         value: rl1Events.toLocaleString(),  color: "#4ADE80" },
+                  { label: isAr ? "أحداث RES-B" : "RES-B Events",         value: rl2Events.toLocaleString(),  color: "#A78BFA" },
                   { label: isAr ? "الفجوة القصوى" : "Max Gap",            value: `${Math.abs(liveEvents - rl2Events)}`, color: rl2Lag > 5 ? "#F87171" : "#FACC15" },
                 ].map((s) => (
                   <div key={s.label} className="px-4 py-3 rounded-xl" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>

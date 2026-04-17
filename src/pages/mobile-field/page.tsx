@@ -95,7 +95,7 @@ const MobileFieldPage = () => {
             <span className="text-cyan-400 font-black text-lg font-['Inter'] tracking-widest">AMEEN Mobile</span>
           </div>
           <p className="text-gray-400 text-sm font-['Inter'] leading-relaxed">
-            Field Officer Application for Royal Oman Police. Secure, offline-capable intelligence tool for field operations.
+            Field Officer Application for National Police. Secure, offline-capable intelligence tool for field operations.
           </p>
         </div>
         <div className="space-y-2 w-full">
@@ -166,7 +166,7 @@ const MobileFieldPage = () => {
         >
           <i className="ri-shield-fill text-white text-[10px]" />
           <span className="text-white text-[9px] font-black font-['JetBrains_Mono'] uppercase tracking-widest">
-            {isAr ? "سري للغاية — ROP AMEEN" : "TOP SECRET — ROP AMEEN CLASSIFIED"}
+            {isAr ? "سري للغاية — AMEEN" : "TOP SECRET — AMEEN CLASSIFIED"}
           </span>
           <i className="ri-shield-fill text-white text-[10px]" />
         </div>
@@ -196,7 +196,7 @@ const MobileFieldPage = () => {
           {/* LOCK SCREEN */}
           {screen === "lock" && (
             <div className="flex flex-col items-center justify-center h-full px-8 gap-6" style={{ background: "#060D1A" }}>
-              {/* ROP emblem */}
+              {/* Police emblem */}
               <div className="flex flex-col items-center gap-2">
                 <div className="w-16 h-16 rounded-full flex items-center justify-center" style={{ background: "rgba(34,211,238,0.1)", border: "2px solid rgba(34,211,238,0.4)", boxShadow: "0 0 24px rgba(34,211,238,0.15)" }}>
                   <i className="ri-shield-star-fill text-cyan-400 text-3xl" />

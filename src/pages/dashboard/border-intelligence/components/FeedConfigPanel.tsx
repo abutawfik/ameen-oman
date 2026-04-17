@@ -95,7 +95,7 @@ const FeedConfigPanel = ({ isAr }: Props) => {
             </div>
             <div>
               <h3 className="text-white font-bold text-sm">{isAr ? "أنظمة المصدر" : "Source Systems"}</h3>
-              <p className="text-gray-500 text-xs">{isAr ? "تغذية تلقائية من ROP — لا إدخال يدوي" : "Automated feed from ROP — no manual entry"}</p>
+              <p className="text-gray-500 text-xs">{isAr ? "تغذية تلقائية من الشرطة — لا إدخال يدوي" : "Automated feed from Police — no manual entry"}</p>
             </div>
           </div>
           <div className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border transition-all ${syncPulse ? "opacity-100" : "opacity-70"}`} style={{ background: "rgba(74,222,128,0.06)", borderColor: "rgba(74,222,128,0.2)" }}>
@@ -210,8 +210,8 @@ const FeedConfigPanel = ({ isAr }: Props) => {
         <i className="ri-information-line text-cyan-400 text-sm mt-0.5 flex-shrink-0" />
         <p className="text-gray-400 text-sm">
           {isAr
-            ? "AMEEN لا يتحكم في أنظمة الحدود. هذه تغذية نظام إلى نظام من منصات iBorders وeVisa التابعة لـ ROP. يقوم AMEEN بإثراء هذه البيانات بتحليلات متعددة التدفقات."
-            : "AMEEN does NOT control border systems. This is a system-to-system feed from ROP's iBorders and eVisa platforms. AMEEN enriches this data with cross-stream analytics."}
+            ? "AMEEN لا يتحكم في أنظمة الحدود. هذه تغذية نظام إلى نظام من منصات iBorders وeVisa. يقوم AMEEN بإثراء هذه البيانات بتحليلات متعددة التدفقات."
+            : "AMEEN does NOT control border systems. This is a system-to-system feed from iBorders and eVisa platforms. AMEEN enriches this data with cross-stream analytics."}
         </p>
       </div>
     </div>

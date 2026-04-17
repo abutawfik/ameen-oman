@@ -256,7 +256,7 @@ const NewConnectionForm = ({ isAr, onCancel }: Props) => {
               <SelectInput options={COUNTRIES} placeholder={isAr ? "اختر الدولة" : "Select country"} value={issuingCountry} onChange={(e) => setIssuingCountry(e.target.value)} />
             </FormField>
             <FormField label={t.issuingAuthority}>
-              <TextInput placeholder={isAr ? "جهة الإصدار" : "e.g. Ministry of Interior"} value={issuingAuthority} onChange={(e) => setIssuingAuthority(e.target.value)} autoFilled={autoFilled && !!issuingAuthority} />
+              <TextInput placeholder={isAr ? "جهة الإصدار" : "e.g. Government"} value={issuingAuthority} onChange={(e) => setIssuingAuthority(e.target.value)} autoFilled={autoFilled && !!issuingAuthority} />
             </FormField>
             <div className="grid grid-cols-2 gap-3">
               <FormField label={t.issueDate} required>

@@ -1,6 +1,4 @@
 import { useState } from "react";
-import DashboardSidebar from "@/pages/dashboard/components/DashboardSidebar";
-import DashboardTitleBar from "@/pages/dashboard/components/DashboardTitleBar";
 import IocFeed from "./components/IocFeed";
 import DarkWebMonitor from "./components/DarkWebMonitor";
 import ThreatActors from "./components/ThreatActors";
@@ -9,9 +7,7 @@ import { iocEntries, feedSources } from "@/mocks/threatIntelData";
 type Tab = "ioc" | "darkweb" | "actors";
 
 const ThreatIntelPage = () => {
-  const [isAr, setIsAr] = useState(false);
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-  const [activeNav, setActiveNav] = useState("threat-intel");
+  const [isAr] = useState(false);
   const [activeTab, setActiveTab] = useState<Tab>("ioc");
 
   const tabs: { key: Tab; label: string; icon: string; badge?: string }[] = [
@@ -24,7 +20,7 @@ const ThreatIntelPage = () => {
   const onlineSources = feedSources.filter(s => s.status === "online").length;
 
   return (
-    <div className="flex h-screen overflow-hidden" style={{ background: "#060D1A" }}>
+    <div className="flex flex-col h-full" style={{ background: "#060D1A" }}>
       {/* Background grid */}
       <div className="fixed inset-0 pointer-events-none z-0 opacity-[0.025]">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
@@ -37,23 +33,7 @@ const ThreatIntelPage = () => {
         </svg>
       </div>
 
-      <DashboardSidebar
-        activeNav={activeNav}
-        onNavChange={setActiveNav}
-        entityType="borders"
-        isAr={isAr}
-        collapsed={sidebarCollapsed}
-        onToggleCollapse={() => setSidebarCollapsed(!sidebarCollapsed)}
-      />
-
       <div className="flex-1 flex flex-col overflow-hidden relative z-10">
-        <DashboardTitleBar
-          entityType="borders"
-          isAr={isAr}
-          onToggleLang={() => setIsAr(!isAr)}
-          onToggleSidebar={() => setSidebarCollapsed(!sidebarCollapsed)}
-        />
-
         {/* Page header */}
         <div className="flex items-center justify-between px-6 py-3 border-b flex-shrink-0" style={{ borderColor: "rgba(248,113,113,0.15)", background: "rgba(10,22,40,0.6)" }}>
           <div className="flex items-center gap-3">

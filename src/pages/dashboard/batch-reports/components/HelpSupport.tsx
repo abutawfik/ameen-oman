@@ -36,8 +36,8 @@ const FAQS = [
   {
     q: "How is data privacy maintained?",
     qAr: "كيف يتم الحفاظ على خصوصية البيانات؟",
-    a: "AMEEN operates under ROP data governance policies. All data is encrypted in transit and at rest. Access is role-based and logged. Personal data is masked in exports. The system complies with Oman's Personal Data Protection Law.",
-    aAr: "يعمل AMEEN وفق سياسات حوكمة بيانات الشرطة الملكية العُمانية. جميع البيانات مشفرة أثناء النقل والتخزين. الوصول قائم على الأدوار ومسجّل. البيانات الشخصية مُخفاة في التصديرات. النظام متوافق مع قانون حماية البيانات الشخصية العُماني.",
+    a: "AMEEN operates under National Police data governance policies. All data is encrypted in transit and at rest. Access is role-based and logged. Personal data is masked in exports. The system complies with Oman's Personal Data Protection Law.",
+    aAr: "يعمل AMEEN وفق سياسات حوكمة بيانات الشرطة الوطنية. جميع البيانات مشفرة أثناء النقل والتخزين. الوصول قائم على الأدوار ومسجّل. البيانات الشخصية مُخفاة في التصديرات. النظام متوافق مع قانون حماية البيانات الشخصية العُماني.",
   },
 ];
 

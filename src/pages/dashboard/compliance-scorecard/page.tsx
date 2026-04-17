@@ -1,8 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import DashboardSidebar from "@/pages/dashboard/components/DashboardSidebar";
-import DashboardTitleBar from "@/pages/dashboard/components/DashboardTitleBar";
-import type { EntityType } from "@/mocks/dashboardData";
 
 type MainTab = "overview" | "streams" | "violations" | "trends";
 
@@ -53,9 +50,7 @@ const severityConfig: Record<string, { color: string; bg: string }> = {
 
 const ComplianceScorecardPage = () => {
   const navigate = useNavigate();
-  const [isAr, setIsAr] = useState(false);
-  const [collapsed, setCollapsed] = useState(false);
-  const [activeNav, setActiveNav] = useState("compliance");
+  const [isAr] = useState(false);
   const [mainTab, setMainTab] = useState<MainTab>("overview");
   const [statusFilter, setStatusFilter] = useState("all");
   const [selectedStream, setSelectedStream] = useState(STREAMS[0]);
@@ -80,15 +75,11 @@ const ComplianceScorecardPage = () => {
   ];
 
   return (
-    <div className="flex h-screen overflow-hidden" style={{ background: "#060D1A", direction: isAr ? "rtl" : "ltr" }}>
+    <div className="flex flex-col h-full" style={{ background: "#060D1A", direction: isAr ? "rtl" : "ltr" }}>
       <div className="fixed inset-0 pointer-events-none"
         style={{ backgroundImage: "linear-gradient(rgba(34,211,238,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.025) 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
 
-      <DashboardSidebar activeNav={activeNav} onNavChange={setActiveNav} entityType={"hotel" as EntityType} isAr={isAr} collapsed={collapsed} onToggleCollapse={() => setCollapsed(!collapsed)} />
-
       <div className="flex-1 flex flex-col overflow-hidden">
-        <DashboardTitleBar isAr={isAr} onToggleLang={() => setIsAr(!isAr)} entityType={"hotel" as EntityType} />
-
         <main className="flex-1 overflow-y-auto p-6 space-y-5">
           {/* Page Header */}
           <div className="flex items-center justify-between">

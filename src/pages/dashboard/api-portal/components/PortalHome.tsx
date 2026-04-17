@@ -222,8 +222,8 @@ const PortalHome = ({ onTabChange }: Props) => {
         </h2>
         <div className="grid grid-cols-2 gap-4">
           {[
-            { label: "Production", url: "https://api.ameen.rop.gov.om/v2", color: "#4ADE80" },
-            { label: "Sandbox",    url: "https://sandbox.ameen.rop.gov.om/v2", color: "#FACC15" },
+            { label: "Production", url: "https://api.ameen.ameen.gov/v2", color: "#4ADE80" },
+            { label: "Sandbox",    url: "https://sandbox.ameen.ameen.gov/v2", color: "#FACC15" },
           ].map((env) => (
             <div key={env.label} className="p-3 rounded-lg" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
               <div className="flex items-center gap-2 mb-2">

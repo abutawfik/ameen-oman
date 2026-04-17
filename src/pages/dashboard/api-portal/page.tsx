@@ -1,6 +1,4 @@
 import { useState } from "react";
-import DashboardSidebar from "@/pages/dashboard/components/DashboardSidebar";
-import DashboardTitleBar from "@/pages/dashboard/components/DashboardTitleBar";
 import PortalHome from "./components/PortalHome";
 import ApiKeyManager from "./components/ApiKeyManager";
 import InteractiveDocs from "./components/InteractiveDocs";
@@ -23,9 +21,6 @@ const webhookSectionMap: Record<string, "webhooks" | "sandbox" | "guides"> = {
 };
 
 const ApiPortalPage = () => {
-  const [activeNav, setActiveNav] = useState("api-portal");
-  const [isAr, setIsAr] = useState(false);
-  const [collapsed, setCollapsed] = useState(false);
   const [activeTab, setActiveTab] = useState("home");
 
   const handleTabChange = (tab: string) => {
@@ -39,7 +34,7 @@ const ApiPortalPage = () => {
   const showWbs = ["webhooks", "sandbox", "guides"].includes(activeTab);
 
   return (
-    <div className="flex h-screen overflow-hidden" style={{ background: "#060D1A", fontFamily: "'Inter', sans-serif" }}>
+    <div className="flex flex-col h-full" style={{ background: "#060D1A", fontFamily: "'Inter', sans-serif" }}>
       {/* Background grid */}
       <div className="fixed inset-0 pointer-events-none" style={{
         backgroundImage: "linear-gradient(rgba(34,211,238,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.025) 1px, transparent 1px)",
@@ -47,22 +42,7 @@ const ApiPortalPage = () => {
         zIndex: 0,
       }} />
 
-      <DashboardSidebar
-        activeNav={activeNav}
-        onNavChange={setActiveNav}
-        entityType="hotel"
-        isAr={isAr}
-        collapsed={collapsed}
-        onToggleCollapse={() => setCollapsed(!collapsed)}
-      />
-
       <div className="flex-1 flex flex-col overflow-hidden relative z-10">
-        <DashboardTitleBar
-          entityType="hotel"
-          isAr={isAr}
-          onToggleLang={() => setIsAr(!isAr)}
-        />
-
         {/* Page Header */}
         <div className="px-6 pt-5 pb-0 flex-shrink-0">
           <div className="flex items-center justify-between mb-4">
@@ -84,7 +64,7 @@ const ApiPortalPage = () => {
                 <span className="text-cyan-400 text-xs font-['JetBrains_Mono']">v2.1.0</span>
               </div>
               <a
-                href="https://api.ameen.rop.gov.om/v2/openapi.json"
+                href="https://api.ameen.ameen.gov/v2/openapi.json"
                 target="_blank"
                 rel="nofollow noopener noreferrer"
                 className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap transition-all"

@@ -18,7 +18,7 @@ export interface EntityNotification {
   ref?: string;
 }
 
-export interface RopAlert {
+export interface PoliceAlert {
   id: string;
   priority: NotifPriority;
   title: string;
@@ -160,7 +160,7 @@ export const entityNotifications: EntityNotification[] = [
   },
 ];
 
-export const ropAlerts: RopAlert[] = [
+export const policeAlerts: PoliceAlert[] = [
   {
     id: "ra1", priority: "critical",
     title: "Watchlist Person Detected — Border Entry",
@@ -323,7 +323,7 @@ export const alertRules: AlertRule[] = [
     ],
     actions: [
       { type: "In-App Alert", target: "Entity Admin", channel: "in-app" },
-      { type: "Email Notice", target: "Entity Admin + ROP Compliance", channel: "email" },
+      { type: "Email Notice", target: "Entity Admin + Police Compliance", channel: "email" },
     ],
     triggerCount: 47, lastTriggered: "2025-04-05 11:30", priority: "high",
   },

@@ -1,6 +1,4 @@
 import { useState } from "react";
-import DashboardSidebar from "@/pages/dashboard/components/DashboardSidebar";
-import DashboardTitleBar from "@/pages/dashboard/components/DashboardTitleBar";
 import DossierBuilder from "./components/DossierBuilder";
 import DossierPreview from "./components/DossierPreview";
 import DossierHistory from "./components/DossierHistory";
@@ -32,9 +30,7 @@ interface GenerationConfig {
 type GenerationState = "idle" | "generating" | "ready";
 
 const DigitalDossierPage = () => {
-  const [isAr, setIsAr] = useState(false);
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-  const [activeNav, setActiveNav] = useState("dossier");
+  const [isAr] = useState(false);
   const [activeTab, setActiveTab] = useState<Tab>("builder");
   const [generationState, setGenerationState] = useState<GenerationState>("idle");
   const [generationConfig, setGenerationConfig] = useState<GenerationConfig | null>(null);
@@ -93,7 +89,7 @@ const DigitalDossierPage = () => {
     : 0;
 
   return (
-    <div className="flex h-screen overflow-hidden" style={{ background: "#060D1A" }}>
+    <div className="flex flex-col h-full" style={{ background: "#060D1A" }}>
       {/* Background grid */}
       <div className="fixed inset-0 pointer-events-none z-0 opacity-[0.03]">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
@@ -106,23 +102,7 @@ const DigitalDossierPage = () => {
         </svg>
       </div>
 
-      <DashboardSidebar
-        activeNav={activeNav}
-        onNavChange={setActiveNav}
-        entityType="borders"
-        isAr={isAr}
-        collapsed={sidebarCollapsed}
-        onToggleCollapse={() => setSidebarCollapsed(!sidebarCollapsed)}
-      />
-
       <div className="flex-1 flex flex-col overflow-hidden relative z-10">
-        <DashboardTitleBar
-          entityType="borders"
-          isAr={isAr}
-          onToggleLang={() => setIsAr(!isAr)}
-          onToggleSidebar={() => setSidebarCollapsed(!sidebarCollapsed)}
-        />
-
         {/* Page header */}
         <div
           className="flex items-center justify-between px-6 py-3 border-b flex-shrink-0"

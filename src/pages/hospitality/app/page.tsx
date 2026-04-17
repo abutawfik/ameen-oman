@@ -428,7 +428,7 @@ export default function HospitalityAppPage() {
                   style={{ background: 'rgba(34,211,238,0.05)' }}
                 >
                   <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-                  <span className="text-cyan-400 text-xs">{isAr ? 'الخادم: api.ameen.rop.gov.om' : 'Server: api.ameen.rop.gov.om'}</span>
+                  <span className="text-cyan-400 text-xs">{isAr ? 'الخادم: api.ameen.ameen.gov' : 'Server: api.ameen.ameen.gov'}</span>
                 </div>
               </div>
 
@@ -559,7 +559,7 @@ export default function HospitalityAppPage() {
               <div className="mt-5 rounded-xl border border-cyan-500/20 p-4" style={{ background: 'rgba(34,211,238,0.04)' }}>
                 <p className="text-cyan-400 font-semibold text-sm mb-2">{isAr ? 'الدعم الفني' : 'Technical Support'}</p>
                 <div className="space-y-1">
-                  <p className="text-gray-400 text-xs"><i className="ri-mail-line mr-2 text-cyan-500/60" />support@ameen.rop.gov.om</p>
+                  <p className="text-gray-400 text-xs"><i className="ri-mail-line mr-2 text-cyan-500/60" />support@ameen.ameen.gov</p>
                   <p className="text-gray-400 text-xs"><i className="ri-phone-line mr-2 text-cyan-500/60" />+968 2400 0000</p>
                   <p className="text-gray-500 text-xs mt-1">{isAr ? 'متاح 24/7 لجميع الفنادق المسجلة' : 'Available 24/7 for all registered hotels'}</p>
                 </div>

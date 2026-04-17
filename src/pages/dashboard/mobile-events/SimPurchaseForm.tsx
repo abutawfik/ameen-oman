@@ -83,7 +83,7 @@ const SimPurchaseForm = ({ isAr, onCancel }: Props) => {
   const handleScan = () => {
     setDoc({
       holderStatus: "primary", docType: "passport", docNumber: "P87654321",
-      issuingCountry: "OM", placeOfIssue: "Muscat", issuingAuthority: "Royal Oman Police",
+      issuingCountry: "OM", placeOfIssue: "Muscat", issuingAuthority: "National Police",
       issueDate: "2021-06-10", expiryDate: "2031-06-09",
     });
     setPersonal({

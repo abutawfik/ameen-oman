@@ -209,7 +209,7 @@ const DarkWebMonitor = ({ isAr }: Props) => {
               { word: "BTC", count: 9, color: "#4ADE80" },
               { word: "credentials", count: 4, color: "#F87171" },
               { word: "Salalah", count: 3, color: "#FB923C" },
-              { word: "ROP", count: 4, color: "#F87171" },
+              { word: "Police", count: 4, color: "#F87171" },
               { word: "money mule", count: 3, color: "#FACC15" },
               { word: "database", count: 5, color: "#A78BFA" },
             ].map((kw) => (

@@ -49,7 +49,7 @@ const BorderIntelligencePage = () => {
                 <span className="text-white font-bold text-sm">{isAr ? "ذكاء الحدود والهجرة" : "Borders & Immigration Intelligence"}</span>
                 <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(34,211,238,0.12)", color: "#22D3EE", border: "1px solid rgba(34,211,238,0.2)" }}>AMEEN</span>
               </div>
-              <p className="text-gray-500 text-xs">{isAr ? "تغذية تلقائية من iBorders وeVisa — ROP" : "Automated feed from ROP iBorders & eVisa"}</p>
+              <p className="text-gray-500 text-xs">{isAr ? "تغذية تلقائية من iBorders وeVisa" : "Automated feed from iBorders & eVisa"}</p>
             </div>
           </div>
         </div>
@@ -61,10 +61,10 @@ const BorderIntelligencePage = () => {
             <span className="text-cyan-400 text-xs font-bold font-['JetBrains_Mono']">{timeStr}</span>
             <span className="text-gray-600 text-xs font-['JetBrains_Mono']">{dateStr}</span>
           </div>
-          {/* ROP badge */}
+          {/* Police badge */}
           <div className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full border" style={{ background: "rgba(167,139,250,0.06)", borderColor: "rgba(167,139,250,0.2)" }}>
             <i className="ri-shield-star-line text-purple-400 text-xs" />
-            <span className="text-purple-400 text-xs font-semibold font-['JetBrains_Mono']">ROP Internal</span>
+            <span className="text-purple-400 text-xs font-semibold font-['JetBrains_Mono']">Police Internal</span>
           </div>
           {/* Live badge */}
           <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border" style={{ background: "rgba(74,222,128,0.06)", borderColor: "rgba(74,222,128,0.2)" }}>
@@ -181,7 +181,7 @@ const BorderIntelligencePage = () => {
             <div className="flex items-start justify-between mb-2">
               <div>
                 <h1 className="text-white text-2xl font-bold mb-1">{isAr ? "إعداد تغذية البيانات" : "Feed Configuration"}</h1>
-                <p className="text-gray-400 text-sm">{isAr ? "إدارة مصادر البيانات وأنواع الأحداث المستلمة من ROP" : "Manage data sources and event types received from ROP systems"}</p>
+                <p className="text-gray-400 text-sm">{isAr ? "إدارة مصادر البيانات وأنواع الأحداث المستلمة من أنظمة الشرطة" : "Manage data sources and event types received from Police systems"}</p>
               </div>
               <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg border flex-shrink-0" style={{ background: "rgba(167,139,250,0.06)", borderColor: "rgba(167,139,250,0.15)" }}>
                 <i className="ri-shield-star-line text-purple-400 text-xs" />

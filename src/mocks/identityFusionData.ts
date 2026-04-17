@@ -209,7 +209,7 @@ export const personRecords: PersonRecord[] = [
       { type: 'National ID', number: 'OM-NID-55123', issueCountry: 'Oman', expiry: '2026-12-31' },
     ],
     phones: ['+968 9778 9900'],
-    emails: ['hassan.zadjali@rop.gov.om'],
+    emails: ['hassan.zadjali@police.gov'],
     addresses: ['Plot 234, Barka Industrial, Al Batinah'],
     imeis: ['867686021642099'],
     streams: ['financial', 'utility', 'transport', 'marine', 'postal'],

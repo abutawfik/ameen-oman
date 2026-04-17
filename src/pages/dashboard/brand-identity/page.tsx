@@ -1,6 +1,4 @@
 import { useState } from "react";
-import DashboardSidebar from "@/pages/dashboard/components/DashboardSidebar";
-import DashboardTitleBar from "@/pages/dashboard/components/DashboardTitleBar";
 import LogoShowcase from "./components/LogoShowcase";
 import BrandGuidelines from "./components/BrandGuidelines";
 import BrandApplications from "./components/BrandApplications";
@@ -13,15 +11,12 @@ const tabs = [
 ];
 
 const BrandIdentityPage = () => {
-  const [activeNav, setActiveNav] = useState("brand-identity");
-  const [isAr, setIsAr] = useState(false);
-  const [collapsed, setCollapsed] = useState(false);
   const [activeTab, setActiveTab] = useState("logo");
 
   const currentTab = tabs.find((t) => t.id === activeTab)!;
 
   return (
-    <div className="flex h-screen overflow-hidden" style={{ background: "#060D1A", fontFamily: "'Inter', sans-serif" }}>
+    <div className="flex flex-col h-full" style={{ background: "#060D1A", fontFamily: "'Inter', sans-serif" }}>
       {/* Background grid */}
       <div className="fixed inset-0 pointer-events-none" style={{
         backgroundImage: "linear-gradient(rgba(34,211,238,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.025) 1px, transparent 1px)",
@@ -29,22 +24,7 @@ const BrandIdentityPage = () => {
         zIndex: 0,
       }} />
 
-      <DashboardSidebar
-        activeNav={activeNav}
-        onNavChange={setActiveNav}
-        entityType="hotel"
-        isAr={isAr}
-        collapsed={collapsed}
-        onToggleCollapse={() => setCollapsed(!collapsed)}
-      />
-
       <div className="flex-1 flex flex-col overflow-hidden relative z-10">
-        <DashboardTitleBar
-          entityType="hotel"
-          isAr={isAr}
-          onToggleLang={() => setIsAr(!isAr)}
-        />
-
         {/* Page Header — full-width hero */}
         <div className="flex-shrink-0 relative overflow-hidden" style={{ background: "linear-gradient(135deg, #060D1A 0%, #0A1628 50%, #060D1A 100%)", borderBottom: "1px solid rgba(34,211,238,0.12)" }}>
           <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: "radial-gradient(ellipse at 70% 50%, rgba(34,211,238,0.07) 0%, transparent 55%)" }} />
@@ -70,8 +50,8 @@ const BrandIdentityPage = () => {
             <div className="flex items-center gap-3">
               <div className="text-right">
                 <p className="text-gray-600 text-xs font-['JetBrains_Mono']">Operated by</p>
-                <p className="text-white text-sm font-semibold font-['Inter']">Royal Oman Police</p>
-                <p className="text-gray-500 text-xs font-['Inter']">Sultanate of Oman</p>
+                <p className="text-white text-sm font-semibold font-['Inter']">National Police</p>
+                <p className="text-gray-500 text-xs font-['Inter']">Oman</p>
               </div>
               <div className="w-px h-10" style={{ background: "rgba(34,211,238,0.2)" }} />
               <div className="px-3 py-1.5 rounded-lg" style={{ background: "rgba(248,113,113,0.08)", border: "1px solid rgba(248,113,113,0.2)" }}>

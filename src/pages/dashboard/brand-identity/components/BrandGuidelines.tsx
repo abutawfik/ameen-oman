@@ -42,7 +42,7 @@ const voiceExamples = [
   { label: "Authoritative",  good: "Al-Ameen monitors 14 data streams in real-time across the nation.",       bad: "We track lots of stuff happening around the country." },
   { label: "Precise",        good: "Risk score: 87/100 — 3 pattern alerts triggered in the last 24 hours.",   bad: "This person seems pretty risky based on recent activity." },
   { label: "Bilingual-native",good:"الحارس الامين للوطن — The Nation's Trusted Guardian",                    bad: "Guardian of the Nation (translated from Arabic)" },
-  { label: "Technical confidence",good:"VIS RL1 replication lag: 1.2 min — within SLA threshold.",           bad: "The system is a bit slow right now but should be fine." },
+  { label: "Technical confidence",good:"VIS RES-A replication lag: 1.2 min — within SLA threshold.",         bad: "The system is a bit slow right now but should be fine." },
 ];
 
 const BrandGuidelines = () => (
@@ -71,7 +71,7 @@ const BrandGuidelines = () => (
           <div className="space-y-3">
             {[
               { role: "Government Officials",    desc: "Ministers, directors, senior decision-makers requiring strategic intelligence" },
-              { role: "Security Decision-Makers",desc: "ROP commanders, analysts, field officers requiring operational data" },
+              { role: "Security Decision-Makers",desc: "Police commanders, analysts, field officers requiring operational data" },
               { role: "Entity Operators",        desc: "Hotels, car rentals, telecoms — submitting events via the platform" },
               { role: "System Integrators",      desc: "Technical teams building API integrations" },
             ].map((a) => (

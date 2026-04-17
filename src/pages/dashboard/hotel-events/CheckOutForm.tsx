@@ -62,7 +62,7 @@ const CheckOutForm = ({ isAr, onCancel, onSaved }: Props) => {
       setDoc({
         holderStatus: "primary", docType: "passport", docNumber: "G8823401",
         issuingCountry: "SA", placeOfIssue: "Riyadh",
-        issuingAuthority: "Ministry of Interior",
+        issuingAuthority: "Government",
         issueDate: "2021-03-10", expiryDate: "2031-03-09",
       });
       setAutoFilled(true);

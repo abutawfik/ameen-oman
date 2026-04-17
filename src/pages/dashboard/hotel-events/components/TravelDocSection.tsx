@@ -107,7 +107,7 @@ const TravelDocSection = ({ data, onChange, isAr, scannerConnected, autoFilled, 
 
         <FormField label={t.issuingAuthority}>
           <TextInput
-            placeholder={isAr ? "مثال: وزارة الداخلية" : "e.g. Ministry of Interior"}
+            placeholder={isAr ? "مثال: الحكومة" : "e.g. Government"}
             value={data.issuingAuthority}
             onChange={(e) => onChange("issuingAuthority", e.target.value)}
             autoFilled={autoFilled && !!data.issuingAuthority}

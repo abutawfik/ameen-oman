@@ -156,7 +156,7 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
         ))}
       </nav>
 
-      {/* Bottom: Network status + collapse toggle */}
+      {/* Bottom: Network status + collapse toggle + sign out */}
       <div className="border-t p-3" style={{ borderColor: "rgba(34,211,238,0.08)" }}>
         {!collapsed && (
           <div className="flex items-center gap-2 mb-3 px-1">
@@ -178,6 +178,57 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
           <i className={`text-sm ${collapsed ? "ri-arrow-right-s-line" : "ri-arrow-left-s-line"}`} />
           {!collapsed && <span className="text-xs font-['Inter']">{isAr ? "طي" : "Collapse"}</span>}
         </button>
+
+        {/* Divider between collapse toggle and sign-out */}
+        <div className="my-3 border-t" style={{ borderColor: "rgba(34,211,238,0.08)" }} />
+
+        {/* Sign out button — big, red gradient, prominent */}
+        {!collapsed ? (
+          <button
+            onClick={() => navigate("/login")}
+            className="w-full flex items-center justify-center gap-2 py-2.5 rounded-lg transition-all duration-200 cursor-pointer group"
+            style={{
+              background: "linear-gradient(135deg, #DC2626, #B91C1C)",
+              boxShadow: "0 2px 8px rgba(220,38,38,0.25)",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.boxShadow = "0 4px 16px rgba(220,38,38,0.55), 0 0 0 1px rgba(220,38,38,0.4)";
+              e.currentTarget.style.filter = "brightness(1.08)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.boxShadow = "0 2px 8px rgba(220,38,38,0.25)";
+              e.currentTarget.style.filter = "brightness(1)";
+            }}
+            title={isAr ? "تسجيل الخروج" : "Sign Out"}
+          >
+            <i className="ri-logout-box-r-line text-white text-base" />
+            <span className="text-white text-sm font-bold font-['Inter']">
+              {isAr ? "تسجيل الخروج" : "SIGN OUT"}
+            </span>
+          </button>
+        ) : (
+          <div className="flex justify-center">
+            <button
+              onClick={() => navigate("/login")}
+              className="w-9 h-9 flex items-center justify-center rounded-lg transition-all duration-200 cursor-pointer"
+              style={{
+                background: "linear-gradient(135deg, #DC2626, #B91C1C)",
+                boxShadow: "0 2px 8px rgba(220,38,38,0.25)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow = "0 4px 16px rgba(220,38,38,0.55), 0 0 0 1px rgba(220,38,38,0.4)";
+                e.currentTarget.style.filter = "brightness(1.08)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = "0 2px 8px rgba(220,38,38,0.25)";
+                e.currentTarget.style.filter = "brightness(1)";
+              }}
+              title={isAr ? "تسجيل الخروج" : "Sign Out"}
+            >
+              <i className="ri-logout-box-r-line text-white text-base" />
+            </button>
+          </div>
+        )}
       </div>
     </aside>
   );

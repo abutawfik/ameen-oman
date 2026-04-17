@@ -26,7 +26,7 @@ const FLOW_STEPS = [
   { label: "Sec Dept 1", labelAr: "أمن 1",         icon: "ri-server-line",       color: "#22D3EE", done: true  },
   { label: "Sec Dept 2", labelAr: "أمن 2",         icon: "ri-server-line",       color: "#22D3EE", done: true  },
   { label: "Assessment", labelAr: "تقييم",         icon: "ri-shield-line",       color: "#FACC15", done: true  },
-  { label: "ROP DB",     labelAr: "قاعدة ROP",     icon: "ri-database-line",     color: "#4ADE80", done: false },
+  { label: "Police DB",  labelAr: "قاعدة الشرطة",  icon: "ri-database-line",     color: "#4ADE80", done: false },
 ];
 
 const FlaggedEventDetail = ({ person, isAr, onClose, onConfirm, onDismiss, onEscalate }: FlaggedEventDetailProps) => {
@@ -70,7 +70,7 @@ const FlaggedEventDetail = ({ person, isAr, onClose, onConfirm, onDismiss, onEsc
               {isAr ? "سري — للأفراد المخوّلين فقط" : "RESTRICTED — Authorized Personnel Only"}
             </span>
           </div>
-          <span className="text-red-300 text-xs font-['JetBrains_Mono'] opacity-60">ROP-AMEEN-RA-2026</span>
+          <span className="text-red-300 text-xs font-['JetBrains_Mono'] opacity-60">AMEEN-RA-2026</span>
         </div>
 
         {/* Header */}
@@ -94,7 +94,7 @@ const FlaggedEventDetail = ({ person, isAr, onClose, onConfirm, onDismiss, onEsc
                 </span>
               </div>
               <p className="text-gray-600 text-xs font-['JetBrains_Mono'] mt-0.5">
-                {isAr ? "الحدث → قاعدة أمين → RL1+RL2 → تقييم مستقل → صح/خطأ → قاعدة ROP" : "Event → AMEEN DB → Replicate RL1+RL2 → Independent Assessment → True/False → ROP DB"}
+                {isAr ? "الحدث → قاعدة أمين → RES-A+RES-B → تقييم مستقل → صح/خطأ → قاعدة الشرطة" : "Event → AMEEN DB → Replicate RES-A+RES-B → Independent Assessment → True/False → Police DB"}
               </p>
             </div>
           </div>
@@ -481,7 +481,7 @@ const FlaggedEventDetail = ({ person, isAr, onClose, onConfirm, onDismiss, onEsc
             className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold cursor-pointer whitespace-nowrap transition-all hover:opacity-90"
             style={{ background: "#22D3EE", color: "#060D1A" }}>
             <i className="ri-checkbox-circle-line text-xs" />
-            {isAr ? "تأكيد التنبيه → ROP DB" : "Confirm Flag → ROP DB"}
+            {isAr ? "تأكيد التنبيه → Police DB" : "Confirm Flag → Police DB"}
           </button>
 
           {/* Escalate */}

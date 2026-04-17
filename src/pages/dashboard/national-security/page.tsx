@@ -73,7 +73,7 @@ const NationalSecurityDashboard = () => {
         <div className="flex items-center gap-2">
           <span className="text-red-300 text-xs font-['JetBrains_Mono'] opacity-70">CLASSIFICATION: TOP SECRET</span>
           <span className="text-red-300 text-xs font-['JetBrains_Mono'] opacity-70">|</span>
-          <span className="text-red-300 text-xs font-['JetBrains_Mono'] opacity-70">ROP-AMEEN-NSD-2026</span>
+          <span className="text-red-300 text-xs font-['JetBrains_Mono'] opacity-70">AMEEN-NSD-2026</span>
         </div>
       </div>
 
@@ -102,7 +102,7 @@ const NationalSecurityDashboard = () => {
                   {isAr ? cfg.labelAr : cfg.label}
                 </span>
               </div>
-              <p className="text-gray-500 text-xs font-['JetBrains_Mono']">لوحة الأمن الوطني · ROP Internal · All 16 Streams</p>
+              <p className="text-gray-500 text-xs font-['JetBrains_Mono']">لوحة الأمن الوطني · Police Internal · All 16 Streams</p>
             </div>
           </div>
         </div>

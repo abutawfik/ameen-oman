@@ -1,14 +1,10 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import WatchlistDashboard from './components/WatchlistDashboard';
 import WatchlistManager from './components/WatchlistManager';
 import TargetDetail from './components/TargetDetail';
 import AlertBehavior from './components/AlertBehavior';
 import WatchlistAnalytics from './components/WatchlistAnalytics';
 import ImportExport from './components/ImportExport';
-import DashboardSidebar from '@/pages/dashboard/components/DashboardSidebar';
-import DashboardTitleBar from '@/pages/dashboard/components/DashboardTitleBar';
-import { type EntityType } from '@/mocks/dashboardData';
 
 type Tab = 'dashboard' | 'manage' | 'target' | 'alerts' | 'analytics' | 'import';
 
@@ -21,11 +17,7 @@ const tabs = [
 ] as const;
 
 const WatchlistPage = () => {
-  const navigate = useNavigate();
-  const [isAr, setIsAr] = useState(false);
-  const [collapsed, setCollapsed] = useState(false);
-  const [activeNav, setActiveNav] = useState('watchlist');
-  const [entityType] = useState<EntityType>('hotel');
+  const [isAr] = useState(false);
   const [activeTab, setActiveTab] = useState<Tab>('dashboard');
   const [selectedWatchlistId, setSelectedWatchlistId] = useState<string | null>(null);
   const [selectedTargetId, setSelectedTargetId] = useState<string | null>(null);
@@ -55,7 +47,7 @@ const WatchlistPage = () => {
   };
 
   return (
-    <div className="flex h-screen overflow-hidden" style={{ background: '#060D1A' }}>
+    <div className="flex flex-col h-full" style={{ background: '#060D1A' }}>
       {/* Grid texture */}
       <div className="fixed inset-0 pointer-events-none z-0"
         style={{
@@ -63,22 +55,7 @@ const WatchlistPage = () => {
           backgroundSize: '40px 40px',
         }} />
 
-      <DashboardSidebar
-        activeNav={activeNav}
-        onNavChange={setActiveNav}
-        entityType={entityType}
-        isAr={isAr}
-        collapsed={collapsed}
-        onToggleCollapse={() => setCollapsed(p => !p)}
-      />
-
       <div className="flex-1 flex flex-col overflow-hidden relative z-10">
-        <DashboardTitleBar
-          entityType={entityType}
-          isAr={isAr}
-          onToggleLang={() => setIsAr(p => !p)}
-        />
-
         {/* Page header */}
         <div className="flex-shrink-0 px-6 pt-5 pb-4 border-b"
           style={{ borderColor: 'rgba(34,211,238,0.08)' }}>

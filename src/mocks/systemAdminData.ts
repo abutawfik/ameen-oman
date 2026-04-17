@@ -316,17 +316,17 @@ export const auditEntries: AuditEntry[] = [
   { id: "a6",  timestamp: "2025-04-05 09:08:17", user: "unknown",         role: "—",               action: "LOGIN_FAILED",       target: "admin.khalid",             ip: "185.220.101.3",result: "failure", details: "3 failed login attempts — IP blocked" },
   { id: "a7",  timestamp: "2025-04-05 08:55:02", user: "admin.khalid",    role: "System Admin",    action: "RULE_MODIFIED",      target: "VR-004 Large Cash",        ip: "10.0.1.45",   result: "success", details: "Threshold changed from 5000 to 10000" },
   { id: "a8",  timestamp: "2025-04-05 08:44:19", user: "analyst.fatima",  role: "Senior Analyst",  action: "PURGE_APPROVED",     target: "Health Events — 2017",     ip: "10.0.1.67",   result: "warning", details: "Data purge approved — awaiting second approval" },
-  { id: "a9",  timestamp: "2025-04-05 08:33:55", user: "admin.sara",      role: "System Admin",    action: "API_KEY_ROTATED",    target: "VIS-RL1 Integration",      ip: "10.0.1.89",   result: "success", details: "API key rotated — 90-day cycle" },
+  { id: "a9",  timestamp: "2025-04-05 08:33:55", user: "admin.sara",      role: "System Admin",    action: "API_KEY_ROTATED",    target: "VIS-A Integration",        ip: "10.0.1.89",   result: "success", details: "API key rotated — 90-day cycle" },
   { id: "a10", timestamp: "2025-04-05 08:21:08", user: "analyst.ahmed",   role: "Analyst",         action: "PERSON_LOOKUP",      target: "P-2025-00441",             ip: "10.0.2.12",   result: "success", details: "Person 360 profile accessed — case investigation" },
   { id: "a11", timestamp: "2025-04-05 08:12:34", user: "admin.khalid",    role: "System Admin",    action: "RETENTION_UPDATED",  target: "Financial Stream",         ip: "10.0.1.45",   result: "success", details: "Retention period updated to 10 years" },
   { id: "a12", timestamp: "2025-04-05 07:58:22", user: "system",          role: "Automated",       action: "BACKUP_COMPLETED",   target: "Full System Backup",       ip: "10.0.0.1",    result: "success", details: "Nightly backup completed — 2.4TB" },
   { id: "a13", timestamp: "2025-04-05 07:45:11", user: "analyst.fatima",  role: "Senior Analyst",  action: "ALERT_ACKNOWLEDGED", target: "CRIT-2025-0441",           ip: "10.0.1.67",   result: "success", details: "Critical alert acknowledged — assigned to field team" },
   { id: "a14", timestamp: "2025-04-05 07:31:44", user: "admin.sara",      role: "System Admin",    action: "CONFIG_UPDATE",      target: "SMTP Gateway",             ip: "10.0.1.89",   result: "success", details: "SMTP server updated — new relay host" },
-  { id: "a15", timestamp: "2025-04-05 07:18:09", user: "system",          role: "Automated",       action: "REPLICATION_ALERT",  target: "VIS-RL2",                  ip: "10.0.0.1",    result: "warning", details: "Replication lag exceeded 5min threshold — auto-resolved" },
+  { id: "a15", timestamp: "2025-04-05 07:18:09", user: "system",          role: "Automated",       action: "REPLICATION_ALERT",  target: "VIS-B",                    ip: "10.0.0.1",    result: "warning", details: "Replication lag exceeded 5min threshold — auto-resolved" },
 ];
 
 export const incidents: IncidentEntry[] = [
-  { id: "i1", timestamp: "2025-04-05 06:12:00", severity: "high",     title: "VIS-RL2 Replication Lag — 8.3 min",          status: "resolved",      duration: "23 min" },
+  { id: "i1", timestamp: "2025-04-05 06:12:00", severity: "high",     title: "VIS-B Replication Lag — 8.3 min",            status: "resolved",      duration: "23 min" },
   { id: "i2", timestamp: "2025-04-04 22:45:00", severity: "medium",   title: "API Gateway Elevated Latency — p99 > 2s",     status: "resolved",      duration: "41 min" },
   { id: "i3", timestamp: "2025-04-04 14:30:00", severity: "critical", title: "Financial Stream Queue Depth Spike — 12,400", status: "resolved",      duration: "8 min" },
   { id: "i4", timestamp: "2025-04-03 09:15:00", severity: "low",      title: "Scheduled Maintenance — DB Index Rebuild",    status: "resolved",      duration: "2 hr" },

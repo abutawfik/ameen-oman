@@ -248,7 +248,7 @@ const PatternEnginePage = () => {
             {isAr ? "سري — للأفراد المخوّلين فقط" : "RESTRICTED — Authorized Personnel Only"}
           </span>
         </div>
-        <span className="text-red-300 text-xs font-['JetBrains_Mono'] opacity-70">ROP-AMEEN-PE-2026</span>
+        <span className="text-red-300 text-xs font-['JetBrains_Mono'] opacity-70">AMEEN-PE-2026</span>
       </div>
 
       {/* Header */}
@@ -274,7 +274,7 @@ const PatternEnginePage = () => {
                   {isAr ? "سري" : "SECRET"}
                 </span>
               </div>
-              <p className="text-gray-500 text-xs font-['JetBrains_Mono']">Predictive Analytics · Cross-Stream Correlation · ROP Internal</p>
+              <p className="text-gray-500 text-xs font-['JetBrains_Mono']">Predictive Analytics · Cross-Stream Correlation · Police Internal</p>
             </div>
           </div>
         </div>

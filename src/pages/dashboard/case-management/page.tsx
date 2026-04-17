@@ -1,14 +1,10 @@
 import { useState } from "react";
-import DashboardSidebar from "@/pages/dashboard/components/DashboardSidebar";
-import DashboardTitleBar from "@/pages/dashboard/components/DashboardTitleBar";
 import CaseList from "./components/CaseList";
 import CaseDetail from "./components/CaseDetail";
 import { cases } from "@/mocks/caseManagementData";
 
 const CaseManagementPage = () => {
-  const [isAr, setIsAr] = useState(false);
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-  const [activeNav, setActiveNav] = useState("case-management");
+  const [isAr] = useState(false);
   const [selectedCaseId, setSelectedCaseId] = useState<string | null>(cases[0].id);
 
   const selectedCase = cases.find((c) => c.id === selectedCaseId) || null;
@@ -18,7 +14,7 @@ const CaseManagementPage = () => {
   const criticalCount = cases.filter((c) => c.priority === "critical").length;
 
   return (
-    <div className="flex h-screen overflow-hidden" style={{ background: "#060D1A" }}>
+    <div className="flex flex-col h-full" style={{ background: "#060D1A" }}>
       <div className="fixed inset-0 pointer-events-none z-0 opacity-[0.025]">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -30,11 +26,7 @@ const CaseManagementPage = () => {
         </svg>
       </div>
 
-      <DashboardSidebar activeNav={activeNav} onNavChange={setActiveNav} entityType="borders" isAr={isAr} collapsed={sidebarCollapsed} onToggleCollapse={() => setSidebarCollapsed(!sidebarCollapsed)} />
-
       <div className="flex-1 flex flex-col overflow-hidden relative z-10">
-        <DashboardTitleBar entityType="borders" isAr={isAr} onToggleLang={() => setIsAr(!isAr)} onToggleSidebar={() => setSidebarCollapsed(!sidebarCollapsed)} />
-
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-3 border-b flex-shrink-0" style={{ borderColor: "rgba(167,139,250,0.15)", background: "rgba(10,22,40,0.6)" }}>
           <div className="flex items-center gap-3">

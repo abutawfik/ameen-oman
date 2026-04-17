@@ -19,7 +19,7 @@ const recipientOptions = [
   { value: "mobile",       labelEn: "By Type — Mobile Operators (8)", labelAr: "حسب النوع — مشغلو الاتصالات (8)" },
   { value: "muscat",       labelEn: "By Governorate — Muscat",        labelAr: "حسب المحافظة — مسقط" },
   { value: "dhofar",       labelEn: "By Governorate — Dhofar",        labelAr: "حسب المحافظة — ظفار" },
-  { value: "analysts",     labelEn: "ROP Analysts (47)",              labelAr: "محللو ROP (47)" },
+  { value: "analysts",     labelEn: "Police Analysts (47)",           labelAr: "محللو الشرطة (47)" },
   { value: "individual",   labelEn: "Individual Entity",              labelAr: "كيان فردي" },
 ];
 
@@ -67,7 +67,7 @@ const CommunicationHub = ({ isAr }: Props) => {
           </div>
           <div>
             <h2 className="text-white text-sm font-bold font-['Inter']">{isAr ? "مركز الاتصالات" : "Communication Hub"}</h2>
-            <p className="text-gray-500 text-xs font-['JetBrains_Mono']">{isAr ? "إدارة ROP" : "ROP Admin"}</p>
+            <p className="text-gray-500 text-xs font-['JetBrains_Mono']">{isAr ? "إدارة الشرطة" : "Police Admin"}</p>
           </div>
         </div>
       </div>

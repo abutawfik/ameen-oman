@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { branches, entityMeta, type EntityType } from "@/mocks/dashboardData";
-import { entityNotifications, ropAlerts } from "@/mocks/notificationsData";
+import { entityNotifications, policeAlerts } from "@/mocks/notificationsData";
 
 interface Props {
   entityType?: EntityType;
@@ -23,7 +23,7 @@ const DashboardTitleBar = ({ entityType, isAr, onToggleLang, onToggleAr, selecte
   const handleToggleLang = onToggleLang || onToggleAr || (() => {});
 
   const unreadCount = entityNotifications.filter((n) => !n.read).length;
-  const criticalCount = ropAlerts.filter((a) => a.priority === "critical" && !a.acknowledged).length;
+  const criticalCount = policeAlerts.filter((a) => a.priority === "critical" && !a.acknowledged).length;
   const totalBadge = unreadCount + (criticalCount > 0 ? criticalCount : 0);
 
   const notifications = entityNotifications.slice(0, 4);
@@ -128,7 +128,7 @@ const DashboardTitleBar = ({ entityType, isAr, onToggleLang, onToggleAr, selecte
                   onClick={() => { setNotifOpen(false); navigate("/dashboard/notifications"); }}>
                   <div className="w-2 h-2 rounded-full bg-red-400 animate-pulse flex-shrink-0" />
                   <span className="text-red-400 text-xs font-bold font-['JetBrains_Mono']">
-                    {criticalCount} {isAr ? "تنبيه حرج في مركز ROP" : "CRITICAL alerts in ROP Center"}
+                    {criticalCount} {isAr ? "تنبيه حرج في مركز الشرطة" : "CRITICAL alerts in Police Center"}
                   </span>
                   <i className="ri-arrow-right-line text-red-400 text-xs ml-auto" />
                 </div>

@@ -19,7 +19,7 @@ const SCANNER_DATA = {
   expiryDate: '2030-01-14',
   issuingCountry: 'Oman',
   issuingPlace: 'Muscat',
-  issuingAuthority: 'Royal Oman Police',
+  issuingAuthority: 'National Police',
   birthPlace: 'Muscat',
 };
 
@@ -257,7 +257,7 @@ export default function CheckInForm({ lang, onCancel }: Props) {
 
           <div>
             <label className={labelCls}>{isAr ? 'جهة الإصدار' : 'Issuing Authority'}</label>
-            <input type="text" value={issuingAuthority} onChange={e => setIssuingAuthority(e.target.value)} placeholder="Royal Oman Police" className={inputCls(!!issuingAuthority)} />
+            <input type="text" value={issuingAuthority} onChange={e => setIssuingAuthority(e.target.value)} placeholder="National Police" className={inputCls(!!issuingAuthority)} />
           </div>
 
           <div className="grid grid-cols-2 gap-3">

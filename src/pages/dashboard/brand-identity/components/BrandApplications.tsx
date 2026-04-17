@@ -45,7 +45,7 @@ const LetterheadMockup = () => (
       {/* Footer */}
       <div className="px-6 py-2 flex items-center justify-between" style={{ borderTop: "1px solid #E5E7EB" }}>
         <p style={{ color: "#9CA3AF", fontSize: "8px", fontFamily: "'Inter', sans-serif" }}>CONFIDENTIAL — FOR OFFICIAL USE ONLY</p>
-        <p style={{ color: "#9CA3AF", fontSize: "8px", fontFamily: "'JetBrains_Mono', monospace" }}>ameen.rop.gov.om</p>
+        <p style={{ color: "#9CA3AF", fontSize: "8px", fontFamily: "'JetBrains_Mono', monospace" }}>ameen.ameen.gov</p>
       </div>
     </div>
   </div>
@@ -60,15 +60,15 @@ const EmailSignatureMockup = () => (
         <div>
           <p style={{ color: "#060D1A", fontSize: "13px", fontWeight: 700, fontFamily: "'Inter', sans-serif" }}>Ahmed Al-Amri</p>
           <p style={{ color: "#374151", fontSize: "10px", fontFamily: "'Inter', sans-serif" }}>Senior Intelligence Analyst</p>
-          <p style={{ color: "#6B7280", fontSize: "10px", fontFamily: "'Inter', sans-serif" }}>Royal Oman Police — AMEEN Platform</p>
+          <p style={{ color: "#6B7280", fontSize: "10px", fontFamily: "'Inter', sans-serif" }}>National Police — AMEEN Platform</p>
         </div>
       </div>
       <div className="grid grid-cols-2 gap-2">
         {[
           { icon: "ri-phone-line", val: "+968 2456 7890" },
-          { icon: "ri-mail-line",  val: "a.alamri@rop.gov.om" },
-          { icon: "ri-global-line",val: "ameen.rop.gov.om" },
-          { icon: "ri-map-pin-line",val: "Muscat, Sultanate of Oman" },
+          { icon: "ri-mail-line",  val: "a.alamri@ameen.gov" },
+          { icon: "ri-global-line",val: "ameen.ameen.gov" },
+          { icon: "ri-map-pin-line",val: "Muscat, Oman" },
         ].map((c) => (
           <div key={c.val} className="flex items-center gap-1.5">
             <i className={`${c.icon} text-xs`} style={{ color: cyan }} />
@@ -163,7 +163,7 @@ const PresentationSlideMockup = () => (
         <div>
           <p style={{ color: cyan, fontSize: "10px", fontFamily: "'JetBrains_Mono', monospace", letterSpacing: "0.15em", marginBottom: "6px" }}>AMEEN INTELLIGENCE PLATFORM</p>
           <p style={{ color: "#FFFFFF", fontSize: "20px", fontWeight: 700, fontFamily: "'Inter', sans-serif", lineHeight: 1.2 }}>National Activity Monitoring<br />for Events &amp; Entities</p>
-          <p style={{ color: "#9CA3AF", fontSize: "10px", fontFamily: "'Inter', sans-serif", marginTop: "8px" }}>Sultanate of Oman — Royal Oman Police</p>
+          <p style={{ color: "#9CA3AF", fontSize: "10px", fontFamily: "'Inter', sans-serif", marginTop: "8px" }}>Oman — National Police</p>
         </div>
       </div>
       {/* Bottom bar */}

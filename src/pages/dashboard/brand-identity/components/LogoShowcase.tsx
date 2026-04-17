@@ -41,7 +41,7 @@ const LogoShowcase = () => (
         {/* 6. Co-branded */}
         <div className="rounded-2xl p-8 flex flex-col items-center justify-center min-h-56" style={{ background: "#060D1A", border: "1px solid rgba(34,211,238,0.15)" }}>
           <AmeenLogo variant="cobranded" size={80} />
-          <p className="text-gray-600 text-xs font-['JetBrains_Mono'] mt-4 uppercase tracking-wider">06 — ROP Co-branded</p>
+          <p className="text-gray-600 text-xs font-['JetBrains_Mono'] mt-4 uppercase tracking-wider">06 — Police Co-branded</p>
         </div>
       </div>
     </div>

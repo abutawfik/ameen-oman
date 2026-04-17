@@ -260,10 +260,10 @@ export interface BiometricResult {
 }
 
 export const fieldOfficers: FieldOfficer[] = [
-  { id: "off1", name: "Sgt. Hassan Al-Balushi", nameAr: "رقيب حسن البلوشي", badge: "ROP-4421", rank: "Sergeant", sector: "Alpha", status: "on-duty", distance: "0.3 km", lat: 23.5970, lng: 58.3950 },
-  { id: "off2", name: "Cpl. Fatima Al-Zadjali", nameAr: "عريف فاطمة الزدجالية", badge: "ROP-3312", rank: "Corporal", sector: "Alpha", status: "en-route", distance: "1.1 km", lat: 23.5900, lng: 58.3880 },
-  { id: "off3", name: "Sgt. Khalid Al-Amri", nameAr: "رقيب خالد العامري", badge: "ROP-5567", rank: "Sergeant", sector: "Bravo", status: "on-scene", distance: "2.4 km", lat: 23.6050, lng: 58.4100 },
-  { id: "off4", name: "Cpl. Omar Al-Farsi", nameAr: "عريف عمر الفارسي", badge: "ROP-2234", rank: "Corporal", sector: "Bravo", status: "on-duty", distance: "3.8 km", lat: 23.6200, lng: 58.4300 },
+  { id: "off1", name: "Sgt. Hassan Al-Balushi", nameAr: "رقيب حسن البلوشي", badge: "NP-4421", rank: "Sergeant", sector: "Alpha", status: "on-duty", distance: "0.3 km", lat: 23.5970, lng: 58.3950 },
+  { id: "off2", name: "Cpl. Fatima Al-Zadjali", nameAr: "عريف فاطمة الزدجالية", badge: "NP-3312", rank: "Corporal", sector: "Alpha", status: "en-route", distance: "1.1 km", lat: 23.5900, lng: 58.3880 },
+  { id: "off3", name: "Sgt. Khalid Al-Amri", nameAr: "رقيب خالد العامري", badge: "NP-5567", rank: "Sergeant", sector: "Bravo", status: "on-scene", distance: "2.4 km", lat: 23.6050, lng: 58.4100 },
+  { id: "off4", name: "Cpl. Omar Al-Farsi", nameAr: "عريف عمر الفارسي", badge: "NP-2234", rank: "Corporal", sector: "Bravo", status: "on-duty", distance: "3.8 km", lat: 23.6200, lng: 58.4300 },
 ];
 
 export const mockWatchlistHits: WatchlistHit[] = [
@@ -280,7 +280,7 @@ export const mockBiometricResults: BiometricResult[] = [
 export const currentOfficer = {
   name: "Officer Ahmed Al-Rashidi",
   nameAr: "الضابط أحمد الراشدي",
-  badge: "ROP-7891",
+  badge: "NP-7891",
   rank: "Corporal",
   sector: "Alpha-3",
   shiftStart: "08:00",

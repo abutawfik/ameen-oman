@@ -105,7 +105,7 @@ const RiskAssessmentPage = () => {
             {isAr ? "سري — للأفراد المخوّلين فقط" : "RESTRICTED — Authorized Personnel Only"}
           </span>
         </div>
-        <span className="text-red-300 text-xs font-['JetBrains_Mono'] opacity-70">ROP-AMEEN-RA-2026</span>
+        <span className="text-red-300 text-xs font-['JetBrains_Mono'] opacity-70">AMEEN-RA-2026</span>
       </div>
 
       {/* Header */}
@@ -132,7 +132,7 @@ const RiskAssessmentPage = () => {
                   {isAr ? "سري" : "SECRET"}
                 </span>
               </div>
-              <p className="text-gray-500 text-xs font-['JetBrains_Mono']">تقييم المخاطر · ROP Internal · Phase 1 + Phase 2</p>
+              <p className="text-gray-500 text-xs font-['JetBrains_Mono']">تقييم المخاطر · Police Internal · Phase 1 + Phase 2</p>
             </div>
           </div>
         </div>
@@ -193,7 +193,7 @@ const RiskAssessmentPage = () => {
               <div>
                 <h1 className="text-white text-2xl font-bold mb-1">{isAr ? "المرحلة 1 — التنبيه الثنائي" : "Phase 1 — Binary Flag"}</h1>
                 <p className="text-gray-400 text-sm font-['JetBrains_Mono']">
-                  {isAr ? "الحدث → قاعدة أمين → RL1+RL2 → تقييم مستقل → صح/خطأ → قاعدة ROP" : "Event → AMEEN DB → Replicate RL1+RL2 → Independent Assessment → True/False → ROP DB"}
+                  {isAr ? "الحدث → قاعدة أمين → RES-A+RES-B → تقييم مستقل → صح/خطأ → قاعدة الشرطة" : "Event → AMEEN DB → Replicate RES-A+RES-B → Independent Assessment → True/False → Police DB"}
                 </p>
               </div>
               {/* Risk filter */}
@@ -329,7 +329,7 @@ const RiskAssessmentPage = () => {
             {confirmedPersons.length > 0 && (
               <div>
                 <h3 className="text-green-400 text-xs font-bold font-['JetBrains_Mono'] uppercase tracking-wider mb-3">
-                  {isAr ? "مؤكد — تم الإرسال إلى قاعدة ROP" : "CONFIRMED — Sent to ROP DB"}
+                  {isAr ? "مؤكد — تم الإرسال إلى قاعدة الشرطة" : "CONFIRMED — Sent to Police DB"}
                 </h3>
                 <div className="space-y-2">
                   {confirmedPersons.map((p) => (
@@ -339,7 +339,7 @@ const RiskAssessmentPage = () => {
                       <img src={p.photo} alt={p.name} className="w-7 h-7 rounded-lg object-cover object-top" />
                       <span className="text-white text-xs font-semibold">{isAr ? p.nameAr : p.name}</span>
                       <span className="text-gray-500 text-xs font-['JetBrains_Mono']">{p.docNumber}</span>
-                      <span className="ml-auto text-green-400 text-xs font-bold">{isAr ? "مؤكد → قاعدة ROP" : "CONFIRMED → ROP DB"}</span>
+                      <span className="ml-auto text-green-400 text-xs font-bold">{isAr ? "مؤكد → قاعدة الشرطة" : "CONFIRMED → Police DB"}</span>
                     </div>
                   ))}
                 </div>

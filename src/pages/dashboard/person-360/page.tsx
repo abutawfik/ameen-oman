@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import DashboardSidebar from "@/pages/dashboard/components/DashboardSidebar";
-import DashboardTitleBar from "@/pages/dashboard/components/DashboardTitleBar";
 import IdentityCard from "./components/IdentityCard";
 import StreamSummaryRow from "./components/StreamSummaryRow";
 import MovementTimeline from "./components/MovementTimeline";
@@ -20,9 +18,7 @@ import {
 
 const Person360Page = () => {
   const navigate = useNavigate();
-  const [isAr, setIsAr] = useState(false);
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-  const [activeNav, setActiveNav] = useState("person360");
+  const [isAr] = useState(false);
   const [streamFilter, setStreamFilter] = useState<string | null>(null);
   const [activeSection, setActiveSection] = useState<"timeline" | "connections" | "social" | "travel">("timeline");
   const [showDossierModal, setShowDossierModal] = useState(false);
@@ -49,7 +45,7 @@ const Person360Page = () => {
   const alertCount = mockTimeline.filter((e) => e.isAlert).length;
 
   return (
-    <div className="flex h-screen overflow-hidden" style={{ background: "#060D1A" }}>
+    <div className="flex flex-col h-full" style={{ background: "#060D1A" }}>
       {/* Background grid */}
       <div className="fixed inset-0 pointer-events-none z-0 opacity-[0.03]">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
@@ -62,28 +58,8 @@ const Person360Page = () => {
         </svg>
       </div>
 
-      {/* Sidebar */}
-      <DashboardSidebar
-        activeNav={activeNav}
-        onNavChange={(key) => {
-          setActiveNav(key);
-        }}
-        entityType="borders"
-        isAr={isAr}
-        collapsed={sidebarCollapsed}
-        onToggleCollapse={() => setSidebarCollapsed(!sidebarCollapsed)}
-      />
-
       {/* Main content */}
       <div className="flex-1 flex flex-col overflow-hidden relative z-10">
-        {/* Title bar */}
-        <DashboardTitleBar
-          entityType="borders"
-          isAr={isAr}
-          onToggleLang={() => setIsAr(!isAr)}
-          onToggleSidebar={() => setSidebarCollapsed(!sidebarCollapsed)}
-        />
-
         {/* Page header */}
         <div
           className="flex items-center justify-between px-6 py-3 border-b flex-shrink-0"

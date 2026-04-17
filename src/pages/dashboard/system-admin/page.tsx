@@ -1,6 +1,4 @@
 import { useState } from "react";
-import DashboardSidebar from "@/pages/dashboard/components/DashboardSidebar";
-import DashboardTitleBar from "@/pages/dashboard/components/DashboardTitleBar";
 import SystemConfig from "./components/SystemConfig";
 import StreamManagement from "./components/StreamManagement";
 import ValidationRulesEngine from "./components/ValidationRulesEngine";
@@ -20,15 +18,13 @@ const tabs = [
 ];
 
 const SystemAdminPage = () => {
-  const [activeNav, setActiveNav] = useState("system-admin");
-  const [isAr, setIsAr] = useState(false);
-  const [collapsed, setCollapsed] = useState(false);
+  const [isAr] = useState(false);
   const [activeTab, setActiveTab] = useState("health");
 
   const currentTab = tabs.find((t) => t.id === activeTab)!;
 
   return (
-    <div className="flex h-screen overflow-hidden" style={{ background: "#060D1A", fontFamily: "'Inter', sans-serif" }}>
+    <div className="flex flex-col h-full" style={{ background: "#060D1A", fontFamily: "'Inter', sans-serif" }}>
       {/* Background grid texture */}
       <div className="fixed inset-0 pointer-events-none" style={{
         backgroundImage: "linear-gradient(rgba(34,211,238,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.03) 1px, transparent 1px)",
@@ -36,22 +32,7 @@ const SystemAdminPage = () => {
         zIndex: 0,
       }} />
 
-      <DashboardSidebar
-        activeNav={activeNav}
-        onNavChange={setActiveNav}
-        entityType="hotel"
-        isAr={isAr}
-        collapsed={collapsed}
-        onToggleCollapse={() => setCollapsed(!collapsed)}
-      />
-
       <div className="flex-1 flex flex-col overflow-hidden relative z-10">
-        <DashboardTitleBar
-          entityType="hotel"
-          isAr={isAr}
-          onToggleLang={() => setIsAr(!isAr)}
-        />
-
         {/* Page Header */}
         <div className="px-6 pt-5 pb-0 flex-shrink-0">
           <div className="flex items-center justify-between mb-4">

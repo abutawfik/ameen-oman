@@ -78,15 +78,15 @@ const SystemConfig = () => {
   const [auditAllActions, setAuditAllActions] = useState(true);
 
   // Integration — Security Dept 1 + 2
-  const [sd1Name, setSd1Name] = useState("Security Dept 1 — Royal Oman Police");
-  const [sd1Url, setSd1Url] = useState("https://vis-rl1.rop.gov.om/api/v2");
+  const [sd1Name, setSd1Name] = useState("Security Dept 1 — National Police");
+  const [sd1Url, setSd1Url] = useState("https://vis-a.police.gov/api/v2");
   const [sd1ApiKey, setSd1ApiKey] = useState("••••••••••••••••••••••••••••••••");
   const [sd1Heartbeat, setSd1Heartbeat] = useState("30");
   const [sd1RepTimeout, setSd1RepTimeout] = useState("300");
   const [sd1Enabled, setSd1Enabled] = useState(true);
 
   const [sd2Name, setSd2Name] = useState("Security Dept 2 — State Security");
-  const [sd2Url, setSd2Url] = useState("https://vis-rl2.iss.gov.om/api/v2");
+  const [sd2Url, setSd2Url] = useState("https://vis-b.iss.gov/api/v2");
   const [sd2ApiKey, setSd2ApiKey] = useState("••••••••••••••••••••••••••••••••");
   const [sd2Heartbeat, setSd2Heartbeat] = useState("30");
   const [sd2RepTimeout, setSd2RepTimeout] = useState("300");
@@ -205,7 +205,7 @@ const SystemConfig = () => {
       </ConfigSection>
 
       {/* Integration — Security Dept 1 */}
-      <ConfigSection title="Security Dept 1 Integration" icon="ri-shield-star-line" badge="ROP" badgeColor="#22D3EE">
+      <ConfigSection title="Security Dept 1 Integration" icon="ri-shield-star-line" badge="Police" badgeColor="#22D3EE">
         <div className="mb-3 flex items-center justify-between">
           <DarkInput label="Department Name" value={sd1Name} onChange={setSd1Name} />
           <div className="ml-4 flex items-center gap-2 flex-shrink-0 mt-5">

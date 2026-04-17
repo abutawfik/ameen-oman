@@ -148,13 +148,13 @@ const AmeenLogo = ({ variant = "full", size = 64, className = "" }: LogoProps) =
   if (variant === "cobranded") {
     return (
       <div className={`flex items-center gap-4 ${className}`}>
-        {/* ROP Emblem placeholder */}
+        {/* Police Emblem placeholder */}
         <div className="flex flex-col items-center">
           <div className="rounded-full flex items-center justify-center" style={{ width: size * 0.7, height: size * 0.7, background: "rgba(34,211,238,0.08)", border: "2px solid rgba(34,211,238,0.3)" }}>
-            <span style={{ color: cyan, fontSize: size * 0.22, fontFamily: "'JetBrains Mono', monospace", fontWeight: 900 }}>ROP</span>
+            <span style={{ color: cyan, fontSize: size * 0.22, fontFamily: "'JetBrains Mono', monospace", fontWeight: 900 }}>NP</span>
           </div>
           <div style={{ color: "#9CA3AF", fontSize: size * 0.1, fontFamily: "'Inter', sans-serif", marginTop: 4, letterSpacing: "0.05em" }}>
-            Royal Oman Police
+            National Police
           </div>
         </div>
         {/* Divider */}

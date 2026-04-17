@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ropAlerts, type RopAlert, type NotifPriority } from "@/mocks/notificationsData";
+import { policeAlerts, type PoliceAlert, type NotifPriority } from "@/mocks/notificationsData";
 
 interface Props {
   isAr: boolean;
@@ -12,8 +12,8 @@ const priorityConfig: Record<NotifPriority, { label: string; labelAr: string; co
   low:      { label: "LOW",      labelAr: "منخفض",  color: "#22D3EE", bg: "rgba(34,211,238,0.05)",  border: "rgba(34,211,238,0.2)",   icon: "ri-notification-3-fill" },
 };
 
-const RopAlertCenter = ({ isAr }: Props) => {
-  const [alerts, setAlerts] = useState<RopAlert[]>(ropAlerts);
+const PoliceAlertCenter = ({ isAr }: Props) => {
+  const [alerts, setAlerts] = useState<PoliceAlert[]>(policeAlerts);
   const [filterPriority, setFilterPriority] = useState<NotifPriority | "all">("all");
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [pulse, setPulse] = useState(true);
@@ -56,7 +56,7 @@ const RopAlertCenter = ({ isAr }: Props) => {
               <i className="ri-alarm-warning-line text-sm" style={{ color: criticalCount > 0 ? "#F87171" : "#22D3EE" }} />
             </div>
             <div>
-              <h2 className="text-white text-sm font-bold font-['Inter']">{isAr ? "مركز تنبيهات ROP" : "ROP Alert Center"}</h2>
+              <h2 className="text-white text-sm font-bold font-['Inter']">{isAr ? "مركز تنبيهات الشرطة" : "Police Alert Center"}</h2>
               <p className="text-gray-500 text-xs font-['JetBrains_Mono']">
                 {unacknowledgedCount} {isAr ? "غير مؤكد" : "unacknowledged"}
               </p>
@@ -243,4 +243,4 @@ const RopAlertCenter = ({ isAr }: Props) => {
   );
 };
 
-export default RopAlertCenter;
+export default PoliceAlertCenter;

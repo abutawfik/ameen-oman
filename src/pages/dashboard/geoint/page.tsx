@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import DashboardSidebar from "@/pages/dashboard/components/DashboardSidebar";
-import DashboardTitleBar from "@/pages/dashboard/components/DashboardTitleBar";
 import MovementTrailMap from "./components/MovementTrailMap";
 import HotspotClustering from "./components/HotspotClustering";
 import CrossStreamLocationCorrelation from "./components/CrossStreamLocationCorrelation";
@@ -28,10 +26,6 @@ const kpiCards = [
 
 const GeointPage = () => {
   const navigate = useNavigate();
-  const [activeNav, setActiveNav] = useState("geoint");
-  const [entityType] = useState<"hotel">("hotel");
-  const [isAr] = useState(false);
-  const [collapsed, setCollapsed] = useState(false);
   const [activeTab, setActiveTab] = useState<Tab>("movement");
   const [selectedSubjectId, setSelectedSubjectId] = useState<string | null>(null);
   const [liveTime, setLiveTime] = useState(new Date());
@@ -45,19 +39,8 @@ const GeointPage = () => {
   const newAlerts = geoAlerts.filter((a) => a.status === "new").length;
 
   return (
-    <div className="flex h-screen overflow-hidden" style={{ background: "#060E1A", fontFamily: "Inter, sans-serif" }}>
-      <DashboardSidebar
-        activeNav={activeNav}
-        onNavChange={setActiveNav}
-        entityType={entityType}
-        isAr={isAr}
-        collapsed={collapsed}
-        onToggleCollapse={() => setCollapsed((c) => !c)}
-      />
-
+    <div className="flex flex-col h-full" style={{ background: "#060E1A", fontFamily: "Inter, sans-serif" }}>
       <div className="flex-1 flex flex-col overflow-hidden">
-        <DashboardTitleBar isAr={isAr} onToggleAr={() => {}} />
-
         {/* Page header */}
         <div className="flex-shrink-0 px-6 pt-4 pb-3" style={{ borderBottom: "1px solid rgba(34,211,238,0.08)" }}>
           <div className="flex items-center justify-between mb-4">

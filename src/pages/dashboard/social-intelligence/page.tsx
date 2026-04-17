@@ -285,7 +285,7 @@ const SocialIntelligencePage = () => {
                 {[
                   { code: "AMN-OSI-20260405-0091", label: isAr ? "بحث هاتف — Reza Tehrani" : "Phone Lookup — Reza Tehrani", color: "#22D3EE" },
                   { code: "AMN-OSI-20260405-0094", label: isAr ? "تنبيه كلمة مفتاحية — نزوى" : "Keyword Alert — Nizwa", color: "#FACC15" },
-                  { code: "AMN-OSI-20260405-0097", label: isAr ? "تنبيه مرتفع — ROP" : "Elevated Alert — ROP", color: "#F87171" },
+                  { code: "AMN-OSI-20260405-0097", label: isAr ? "تنبيه مرتفع — الشرطة" : "Elevated Alert — Police", color: "#F87171" },
                 ].map((ex) => (
                   <div key={ex.code} className="flex items-center gap-3 px-4 py-3 rounded-xl" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
                     <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: ex.color }} />

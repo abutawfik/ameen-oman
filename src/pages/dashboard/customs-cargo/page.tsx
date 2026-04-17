@@ -1,6 +1,4 @@
 import { useState } from "react";
-import DashboardSidebar from "@/pages/dashboard/components/DashboardSidebar";
-import DashboardTitleBar from "@/pages/dashboard/components/DashboardTitleBar";
 import CustomsLiveCounters from "./components/CustomsLiveCounters";
 import ImportDeclarationForm from "./components/ImportDeclarationForm";
 import ExportDeclarationForm from "./components/ExportDeclarationForm";
@@ -12,7 +10,6 @@ import CusConfirmation from "./components/CusConfirmation";
 import CargoIntelligence from "./components/CargoIntelligence";
 import CustomsBrokerRegistry from "./components/CustomsBrokerRegistry";
 import CrossStreamIntelligence from "./components/CrossStreamIntelligence";
-import type { EntityType } from "@/mocks/dashboardData";
 
 type EventType = "overview" | "import" | "export" | "transit" | "freezone" | "seizure" | "personal";
 type MainTab = "declarations" | "cargo-intel" | "brokers" | "cross-stream";
@@ -42,9 +39,7 @@ const mainTabs: { id: MainTab; labelEn: string; labelAr: string; icon: string; c
 ];
 
 const CustomsCargoPage = () => {
-  const [isAr, setIsAr] = useState(false);
-  const [collapsed, setCollapsed] = useState(false);
-  const [activeNav, setActiveNav] = useState("customs");
+  const [isAr] = useState(false);
   const [mainTab, setMainTab] = useState<MainTab>("declarations");
   const [activeEvent, setActiveEvent] = useState<EventType>("overview");
   const [confirmation, setConfirmation] = useState<{ ref: string; type: string } | null>(null);
@@ -74,15 +69,11 @@ const CustomsCargoPage = () => {
   const activeEventMeta = eventTypes.find((e) => e.id === activeEvent);
 
   return (
-    <div className="flex h-screen overflow-hidden" style={{ background: "#060D1A", direction: isAr ? "rtl" : "ltr" }}>
+    <div className="flex flex-col h-full" style={{ background: "#060D1A", direction: isAr ? "rtl" : "ltr" }}>
       <div className="fixed inset-0 pointer-events-none"
         style={{ backgroundImage: "linear-gradient(rgba(34,211,238,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.03) 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
 
-      <DashboardSidebar activeNav={activeNav} onNavChange={setActiveNav} entityType={"hotel" as EntityType} isAr={isAr} collapsed={collapsed} onToggleCollapse={() => setCollapsed(!collapsed)} />
-
       <div className="flex-1 flex flex-col overflow-hidden">
-        <DashboardTitleBar isAr={isAr} onToggleLang={() => setIsAr(!isAr)} entityType={"hotel" as EntityType} />
-
         <main className="flex-1 overflow-y-auto p-6">
           {/* Page Header */}
           <div className="mb-5">

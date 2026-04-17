@@ -1,6 +1,4 @@
 import { useState } from "react";
-import DashboardSidebar from "@/pages/dashboard/components/DashboardSidebar";
-import DashboardTitleBar from "@/pages/dashboard/components/DashboardTitleBar";
 import { execKpis, streamHealth, threatTrend, topRiskSubjects, morningBriefing, regionalThreats } from "@/mocks/executiveDashboardData";
 
 const TrendSparkline = ({ data, color }: { data: number[]; color: string }) => {
@@ -17,9 +15,6 @@ const TrendSparkline = ({ data, color }: { data: number[]; color: string }) => {
 };
 
 const ExecutiveDashboardPage = () => {
-  const [isAr, setIsAr] = useState(false);
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-  const [activeNav, setActiveNav] = useState("executive");
   const [briefingExpanded, setBriefingExpanded] = useState<string | null>(null);
 
   const priorityColors = { critical: "#F87171", high: "#FB923C", medium: "#FACC15" };
@@ -27,7 +22,7 @@ const ExecutiveDashboardPage = () => {
   const statusColors = { nominal: "#4ADE80", elevated: "#FACC15", critical: "#F87171" };
 
   return (
-    <div className="flex h-screen overflow-hidden" style={{ background: "#060D1A" }}>
+    <div className="flex flex-col h-full" style={{ background: "#060D1A" }}>
       <div className="fixed inset-0 pointer-events-none z-0 opacity-[0.02]">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
           <defs><pattern id="ex-grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="#22D3EE" strokeWidth="0.5" /></pattern></defs>
@@ -35,11 +30,7 @@ const ExecutiveDashboardPage = () => {
         </svg>
       </div>
 
-      <DashboardSidebar activeNav={activeNav} onNavChange={setActiveNav} entityType="borders" isAr={isAr} collapsed={sidebarCollapsed} onToggleCollapse={() => setSidebarCollapsed(!sidebarCollapsed)} />
-
       <div className="flex-1 flex flex-col overflow-hidden relative z-10">
-        <DashboardTitleBar entityType="borders" isAr={isAr} onToggleLang={() => setIsAr(!isAr)} onToggleSidebar={() => setSidebarCollapsed(!sidebarCollapsed)} />
-
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-3 border-b flex-shrink-0" style={{ borderColor: "rgba(34,211,238,0.1)", background: "rgba(10,22,40,0.7)" }}>
           <div className="flex items-center gap-3">

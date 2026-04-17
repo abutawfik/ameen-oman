@@ -139,7 +139,7 @@ const TravelPattern = ({ stops, isAr, onGenerateDossier }: Props) => {
               className="px-2 py-1 rounded text-[10px] font-['JetBrains_Mono'] font-bold"
               style={{ background: "rgba(6,13,26,0.85)", color: "#22D3EE", border: "1px solid rgba(34,211,238,0.2)" }}
             >
-              {isAr ? "سلطنة عُمان" : "SULTANATE OF OMAN"}
+              {isAr ? "عُمان" : "OMAN"}
             </span>
           </div>
 

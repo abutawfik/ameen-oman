@@ -17,8 +17,8 @@ export const apiEndpoints = [
 ];
 
 export const integrationSteps = [
-  { step: 1, title: "Request API Access", titleAr: "طلب وصول API", desc: "Submit your organization details and integration requirements to ROP." },
-  { step: 2, title: "Receive Credentials", titleAr: "استلام بيانات الاعتماد", desc: "ROP issues your entity ID, API key, and sandbox credentials." },
+  { step: 1, title: "Request API Access", titleAr: "طلب وصول API", desc: "Submit your organization details and integration requirements to the National Police." },
+  { step: 2, title: "Receive Credentials", titleAr: "استلام بيانات الاعتماد", desc: "The National Police issues your entity ID, API key, and sandbox credentials." },
   { step: 3, title: "Test in Sandbox", titleAr: "الاختبار في البيئة التجريبية", desc: "Validate your integration against the full sandbox environment." },
-  { step: 4, title: "Go Live", titleAr: "البدء الفعلي", desc: "After ROP approval, switch to production endpoints and begin live data submission." },
+  { step: 4, title: "Go Live", titleAr: "البدء الفعلي", desc: "After National Police approval, switch to production endpoints and begin live data submission." },
 ];

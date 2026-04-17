@@ -78,7 +78,7 @@ export default function HospitalityLoginPage() {
             <div>
               <p className="text-white font-bold text-lg leading-tight">Al-Ameen</p>
               <p className="text-cyan-400/80 text-sm" style={{ fontFamily: 'serif' }}>الأمين</p>
-              <p className="text-gray-500 text-xs mt-0.5">Royal Oman Police · iBorders</p>
+              <p className="text-gray-500 text-xs mt-0.5">National Police · iBorders</p>
             </div>
           </div>
 
@@ -91,8 +91,8 @@ export default function HospitalityLoginPage() {
             <p className="text-cyan-400/60 text-xl" style={{ fontFamily: 'serif' }}>الأمين للضيافة</p>
             <p className="text-gray-500 text-sm mt-3 leading-relaxed">
               {isAr
-                ? 'نظام إدارة الفنادق المتكامل — مقدم مجاناً من شرطة عُمان السلطانية للفنادق المسجلة في برنامج أمين.'
-                : 'Integrated Hotel Management System — provided free by Royal Oman Police to all AMEEN-registered properties.'}
+                ? 'نظام إدارة الفنادق المتكامل — مقدم مجاناً من الشرطة الوطنية للفنادق المسجلة في برنامج أمين.'
+                : 'Integrated Hotel Management System — provided free by National Police to all AMEEN-registered properties.'}
             </p>
           </div>
 
@@ -124,7 +124,7 @@ export default function HospitalityLoginPage() {
           <p className="text-gray-600 text-xs">
             {isAr ? 'إصدار' : 'Version'} 2.4.1 · {isAr ? 'جميع الحقوق محفوظة' : 'All rights reserved'} © 2025
           </p>
-          <p className="text-gray-700 text-xs mt-0.5">Royal Oman Police — National Intelligence Platform</p>
+          <p className="text-gray-700 text-xs mt-0.5">National Police — National Intelligence Platform</p>
         </div>
       </div>
 
@@ -315,7 +315,7 @@ export default function HospitalityLoginPage() {
 
           <p className="text-center text-gray-700 text-xs mt-4">
             {isAr ? 'مقدم من' : 'Provided by'}{' '}
-            <span className="text-cyan-600/60">Royal Oman Police — iBorders</span>
+            <span className="text-cyan-600/60">National Police — iBorders</span>
             {' · '}v2.4.1
           </p>
         </div>
