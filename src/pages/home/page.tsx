@@ -3,8 +3,8 @@ import i18n from "@/i18n";
 import Navbar from "@/components/feature/Navbar";
 import Footer from "@/components/feature/Footer";
 import HeroSection from "./components/HeroSection";
-import ServicesSection from "./components/ServicesSection";
-import DataStreamsSection from "./components/DataStreamsSection";
+import IntelligenceLayer from "./components/IntelligenceLayer";
+import DataFlowArchitecture from "./components/DataFlowArchitecture";
 
 const Home = () => {
   useEffect(() => {
@@ -23,9 +23,8 @@ const Home = () => {
     <div className="min-h-screen" style={{ background: "#0B1220", fontFamily: "Inter, Cairo, sans-serif" }}>
       <Navbar />
       <HeroSection />
-      <ServicesSection type="core" />
-      <ServicesSection type="extended" />
-      <DataStreamsSection />
+      <IntelligenceLayer />
+      <DataFlowArchitecture />
       <Footer />
     </div>
   );

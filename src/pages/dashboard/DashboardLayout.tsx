@@ -45,11 +45,8 @@ const DashboardLayout = () => {
   return (
     <div className="flex flex-col h-screen overflow-hidden" style={{ background: "#0B1220" }}>
       <DashboardTitleBar
-        entityType={entityType}
         isAr={isAr}
         onToggleLang={toggleLang}
-        selectedBranch={selectedBranch}
-        onBranchChange={setSelectedBranch}
       />
       <div className="flex flex-1 overflow-hidden">
         <DashboardSidebar

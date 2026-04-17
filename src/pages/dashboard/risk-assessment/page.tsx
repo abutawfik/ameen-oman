@@ -106,7 +106,7 @@ const RiskAssessmentPage = () => {
             {isAr ? "سري — للأفراد المخوّلين فقط" : "RESTRICTED — Authorized Personnel Only"}
           </span>
         </div>
-        <span className="text-red-300 text-xs font-['JetBrains_Mono'] opacity-70">AMEEN-RA-2026</span>
+        <span className="text-red-300 text-xs font-['JetBrains_Mono'] opacity-70">AL-AMEEN-RA-2026</span>
       </div>
 
       {/* Header */}

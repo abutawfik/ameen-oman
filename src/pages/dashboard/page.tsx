@@ -35,7 +35,7 @@ const DashboardPage = () => {
         }}
       />
 
-      {/* Sticky role-switcher bar */}
+      {/* Sticky role-switcher bar — brand identity lives in the global title-bar */}
       <div
         className="sticky top-0 z-30 flex items-center justify-between px-6 py-3 border-b"
         style={{
@@ -44,27 +44,15 @@ const DashboardPage = () => {
           backdropFilter: "blur(12px)",
         }}
       >
-        <div className="flex items-center gap-3">
-          <div
-            className="w-9 h-9 flex items-center justify-center rounded-xl"
-            style={{ background: "rgba(181,142,60,0.1)", border: "2px solid rgba(181,142,60,0.3)" }}
-          >
-            <i className="ri-radar-line text-gold-400 text-base" />
-          </div>
-          <div>
-            <div className="flex items-center gap-2">
-              <span className="text-gold-400 font-semibold text-base tracking-wide" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>Al-Ameen</span>
-              <span className="text-ivory-200/60">·</span>
-              <span className="text-white font-bold text-sm">
-                {isAr ? "محرّك المخاطر" : "Risk Engine"}
-              </span>
-            </div>
-            <p className="text-gray-500 text-[11px] font-['JetBrains_Mono']">
-              {isAr
-                ? "لوحة تحكم حسب الدور · محلل / مشرف / مدير"
-                : "role-based home · analyst / supervisor / manager"}
-            </p>
-          </div>
+        <div>
+          <p className="text-white font-bold text-sm">
+            {isAr ? "لوحة تحكّم المشغّل" : "Operator Console"}
+          </p>
+          <p className="text-gray-500 text-[11px] font-['JetBrains_Mono']">
+            {isAr
+              ? "اعرض حسب الدور · محلل / مشرف / مدير"
+              : "role-based view · analyst / supervisor / manager"}
+          </p>
         </div>
         <RoleSwitcher value={role} onChange={setRole} isAr={isAr} />
       </div>

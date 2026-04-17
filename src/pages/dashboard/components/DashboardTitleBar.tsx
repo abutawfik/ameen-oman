@@ -1,24 +1,83 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { branches, entityMeta, type EntityType } from "@/mocks/dashboardData";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { entityNotifications, policeAlerts } from "@/mocks/notificationsData";
+import BrandLogo from "@/brand/BrandLogo";
+import { useBrandFonts } from "@/brand/typography";
 
 interface Props {
-  entityType?: EntityType;
   isAr: boolean;
   onToggleLang?: () => void;
   onToggleAr?: () => void;
-  selectedBranch?: string;
-  onBranchChange?: (id: string) => void;
+  // Legacy props kept in the signature so existing layout callers don't break.
+  // They are intentionally unused — the gov-operator chrome has no branch picker
+  // or entity concept.
+  entityType?: unknown;
+  selectedBranch?: unknown;
+  onBranchChange?: unknown;
 }
 
-const DashboardTitleBar = ({ entityType, isAr, onToggleLang, onToggleAr, selectedBranch = "main", onBranchChange }: Props) => {
+// ── Path → module name map ─────────────────────────────────────────────────
+// Derives the centre breadcrumb from window.location.pathname. Anything not
+// mapped renders as an empty breadcrumb (nothing shown).
+const MODULE_MAP: Record<string, { en: string; ar: string }> = {
+  "/dashboard":                          { en: "Risk Engine \u00B7 Command Center", ar: "\u0645\u062D\u0631\u0651\u0643 \u0627\u0644\u0645\u062E\u0627\u0637\u0631 \u00B7 \u0645\u0631\u0643\u0632 \u0627\u0644\u0642\u064A\u0627\u062F\u0629" },
+  "/dashboard/osint-risk-engine":        { en: "Risk Engine \u00B7 OSINT Module",   ar: "\u0645\u062D\u0631\u0651\u0643 \u0627\u0644\u0645\u062E\u0627\u0637\u0631 \u00B7 \u0648\u062D\u062F\u0629 OSINT" },
+  "/dashboard/risk-assessment":          { en: "Risk Assessment",                   ar: "\u062A\u0642\u064A\u064A\u0645 \u0627\u0644\u0645\u062E\u0627\u0637\u0631" },
+  "/dashboard/watchlist":                { en: "Watchlist & Targets",               ar: "\u0642\u0627\u0626\u0645\u0629 \u0627\u0644\u0645\u0631\u0627\u0642\u0628\u0629 \u0648\u0627\u0644\u0623\u0647\u062F\u0627\u0641" },
+  "/dashboard/case-management":          { en: "Case Management",                   ar: "\u0625\u062F\u0627\u0631\u0629 \u0627\u0644\u0642\u0636\u0627\u064A\u0627" },
+  "/dashboard/person-360":               { en: "Person 360\u00B0",                  ar: "\u0627\u0644\u0645\u0644\u0641 \u0627\u0644\u0634\u062E\u0635\u064A 360\u00B0" },
+  "/dashboard/notifications":            { en: "Notifications Center",              ar: "\u0645\u0631\u0643\u0632 \u0627\u0644\u0625\u0634\u0639\u0627\u0631\u0627\u062A" },
+  "/dashboard/system-admin":             { en: "System Administration",             ar: "\u0625\u062F\u0627\u0631\u0629 \u0627\u0644\u0646\u0638\u0627\u0645" },
+  "/dashboard/compliance-scorecard":     { en: "Compliance Scorecard",              ar: "\u0628\u0637\u0627\u0642\u0629 \u0627\u0644\u0627\u0645\u062A\u062B\u0627\u0644" },
+  "/dashboard/command-center":           { en: "Command Center",                    ar: "\u0645\u0631\u0643\u0632 \u0627\u0644\u0642\u064A\u0627\u062F\u0629" },
+  "/dashboard/executive":                { en: "Executive Dashboard",               ar: "\u0644\u0648\u062D\u0629 \u0627\u0644\u0625\u062F\u0627\u0631\u0629 \u0627\u0644\u062A\u0646\u0641\u064A\u0630\u064A\u0629" },
+  "/dashboard/reports":                  { en: "Reports",                           ar: "\u0627\u0644\u062A\u0642\u0627\u0631\u064A\u0631" },
+  "/dashboard/batch-upload":             { en: "Batch Upload",                      ar: "\u0631\u0641\u0639 \u0645\u062C\u0645\u0651\u0639" },
+  "/dashboard/manage-users":             { en: "Manage Users",                      ar: "\u0625\u062F\u0627\u0631\u0629 \u0627\u0644\u0645\u0633\u062A\u062E\u062F\u0645\u064A\u0646" },
+  "/dashboard/help":                     { en: "Help & Support",                    ar: "\u0627\u0644\u0645\u0633\u0627\u0639\u062F\u0629 \u0648\u0627\u0644\u062F\u0639\u0645" },
+  "/dashboard/calendar":                 { en: "Calendar",                          ar: "\u0627\u0644\u062A\u0642\u0648\u064A\u0645" },
+  "/dashboard/event-list":               { en: "Event List",                        ar: "\u0642\u0627\u0626\u0645\u0629 \u0627\u0644\u0623\u062D\u062F\u0627\u062B" },
+  "/dashboard/api-portal":               { en: "API Portal",                        ar: "\u0628\u0648\u0627\u0628\u0629 API" },
+  "/dashboard/brand-identity":           { en: "Brand Identity",                    ar: "\u0627\u0644\u0647\u0648\u064A\u0629 \u0627\u0644\u0628\u0635\u0631\u064A\u0629" },
+  "/dashboard/identity-fusion":          { en: "Identity Fusion",                   ar: "\u062F\u0645\u062C \u0627\u0644\u0647\u0648\u064A\u0627\u062A" },
+  "/dashboard/link-analysis":            { en: "Link Analysis",                     ar: "\u062A\u062D\u0644\u064A\u0644 \u0627\u0644\u0631\u0648\u0627\u0628\u0637" },
+  "/dashboard/customs-cargo":            { en: "Customs & Cargo",                   ar: "\u0627\u0644\u062C\u0645\u0627\u0631\u0643 \u0648\u0627\u0644\u0634\u062D\u0646" },
+  "/dashboard/national-security":        { en: "National Security",                 ar: "\u0627\u0644\u0623\u0645\u0646 \u0627\u0644\u0648\u0637\u0646\u064A" },
+  "/dashboard/digital-dossier":          { en: "Digital Dossier",                   ar: "\u0627\u0644\u0645\u0644\u0641 \u0627\u0644\u0631\u0642\u0645\u064A" },
+  "/dashboard/geoint":                   { en: "GEOINT",                            ar: "\u0627\u0644\u0627\u0633\u062A\u062E\u0628\u0627\u0631\u0627\u062A \u0627\u0644\u062C\u063A\u0631\u0627\u0641\u064A\u0629" },
+  "/dashboard/threat-intel":             { en: "Threat Intelligence",               ar: "\u0627\u0633\u062A\u062E\u0628\u0627\u0631\u0627\u062A \u0627\u0644\u062A\u0647\u062F\u064A\u062F\u0627\u062A" },
+  "/dashboard/pattern-engine":           { en: "Pattern Engine",                    ar: "\u0645\u062D\u0631\u0651\u0643 \u0627\u0644\u0623\u0646\u0645\u0627\u0637" },
+  "/dashboard/predictive-analytics":     { en: "Predictive Analytics",              ar: "\u0627\u0644\u062A\u062D\u0644\u064A\u0644\u0627\u062A \u0627\u0644\u062A\u0646\u0628\u0624\u064A\u0629" },
+  "/dashboard/border-intelligence":      { en: "Border Intelligence",               ar: "\u0627\u0633\u062A\u062E\u0628\u0627\u0631\u0627\u062A \u0627\u0644\u062D\u062F\u0648\u062F" },
+  "/dashboard/transport-intelligence":   { en: "Transport Intelligence",            ar: "\u0627\u0633\u062A\u062E\u0628\u0627\u0631\u0627\u062A \u0627\u0644\u0646\u0642\u0644" },
+  "/dashboard/employment-registry":      { en: "Employment Registry",               ar: "\u0633\u062C\u0644 \u0627\u0644\u062A\u0648\u0638\u064A\u0641" },
+  "/dashboard/ecommerce-intelligence":   { en: "E-Commerce Intelligence",           ar: "\u0627\u0633\u062A\u062E\u0628\u0627\u0631\u0627\u062A \u0627\u0644\u062A\u062C\u0627\u0631\u0629 \u0627\u0644\u0625\u0644\u0643\u062A\u0631\u0648\u0646\u064A\u0629" },
+  "/dashboard/social-intelligence":      { en: "Social Intelligence",               ar: "\u0627\u0633\u062A\u062E\u0628\u0627\u0631\u0627\u062A \u0627\u0644\u062A\u0648\u0627\u0635\u0644" },
+  "/dashboard/hotel-events":             { en: "Hotel Events",                      ar: "\u0623\u062D\u062F\u0627\u062B \u0627\u0644\u0641\u0646\u0627\u062F\u0642" },
+  "/dashboard/car-rental-events":        { en: "Car Rental Events",                 ar: "\u0623\u062D\u062F\u0627\u062B \u062A\u0623\u062C\u064A\u0631 \u0627\u0644\u0633\u064A\u0627\u0631\u0627\u062A" },
+  "/dashboard/mobile-events":            { en: "Mobile Events",                     ar: "\u0623\u062D\u062F\u0627\u062B \u0627\u0644\u0627\u062A\u0635\u0627\u0644\u0627\u062A" },
+  "/dashboard/municipality-events":      { en: "Municipality Events",               ar: "\u0623\u062D\u062F\u0627\u062B \u0627\u0644\u0628\u0644\u062F\u064A\u0627\u062A" },
+  "/dashboard/financial-events":         { en: "Financial Events",                  ar: "\u0627\u0644\u0623\u062D\u062F\u0627\u062B \u0627\u0644\u0645\u0627\u0644\u064A\u0629" },
+  "/dashboard/utility-events":           { en: "Utility Events",                    ar: "\u0623\u062D\u062F\u0627\u062B \u0627\u0644\u0645\u0631\u0627\u0641\u0642" },
+  "/dashboard/healthcare-events":        { en: "Healthcare Events",                 ar: "\u0627\u0644\u0623\u062D\u062F\u0627\u062B \u0627\u0644\u0635\u062D\u064A\u0629" },
+  "/dashboard/tourism-events":           { en: "Tourism Events",                    ar: "\u0623\u062D\u062F\u0627\u062B \u0627\u0644\u0633\u064A\u0627\u062D\u0629" },
+  "/dashboard/marine-events":            { en: "Marine Events",                     ar: "\u0627\u0644\u0623\u062D\u062F\u0627\u062B \u0627\u0644\u0628\u062D\u0631\u064A\u0629" },
+  "/dashboard/postal-events":            { en: "Postal Events",                     ar: "\u0623\u062D\u062F\u0627\u062B \u0627\u0644\u0628\u0631\u064A\u062F" },
+  "/dashboard/education-events":         { en: "Education Events",                  ar: "\u0623\u062D\u062F\u0627\u062B \u0627\u0644\u062A\u0639\u0644\u064A\u0645" },
+};
+
+const DashboardTitleBar = ({ isAr, onToggleLang, onToggleAr }: Props) => {
   const navigate = useNavigate();
-  const [branchOpen, setBranchOpen] = useState(false);
+  const location = useLocation();
+  const fonts = useBrandFonts();
   const [notifOpen, setNotifOpen] = useState(false);
   const [userOpen, setUserOpen] = useState(false);
-  const meta = entityType ? entityMeta[entityType] : null;
-  const branch = branches.find((b) => b.id === selectedBranch) || branches[0];
+  const [now, setNow] = useState(new Date());
+
+  useEffect(() => {
+    const t = window.setInterval(() => setNow(new Date()), 1000);
+    return () => window.clearInterval(t);
+  }, []);
 
   const handleToggleLang = onToggleLang || onToggleAr || (() => {});
 
@@ -28,129 +87,211 @@ const DashboardTitleBar = ({ entityType, isAr, onToggleLang, onToggleAr, selecte
 
   const notifications = entityNotifications.slice(0, 4);
 
+  const timeStr = now.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+  const dateStr = now.toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" });
+
+  const moduleLabel = MODULE_MAP[location.pathname] ?? null;
+
   return (
-    <header className="flex items-center justify-between px-4 md:px-6 h-16 border-b flex-shrink-0 relative z-30"
-      style={{ background: "rgba(11,18,32,0.98)", borderColor: "rgba(181,142,60,0.18)", backdropFilter: "blur(12px)" }}>
+    <header
+      className="flex items-center justify-between px-4 md:px-6 flex-shrink-0 relative z-30"
+      style={{
+        height: 64,
+        background: "rgba(11,18,32,0.9)",
+        borderBottom: "1px solid rgba(181,142,60,0.15)",
+        backdropFilter: "blur(16px)",
+        WebkitBackdropFilter: "blur(16px)",
+        position: "sticky",
+        top: 0,
+      }}
+    >
+      {/* LEFT — logo IS the identity */}
+      <div className="flex items-center flex-shrink-0">
+        <BrandLogo variant="horizontal" tone="light" size="md" isAr={isAr} />
+      </div>
 
-      {/* Left: Logo — horizontal lockup already carries the wordmark; no text */}
-      <div className="flex items-center gap-3">
-        <img
-          src="/brand/al-ameen-primary-horizontal.svg"
-          alt="Al-Ameen"
-          className="h-8 md:h-9 w-auto object-contain flex-shrink-0"
-        />
-        <div className="hidden md:block w-px h-6 bg-ivory-100/10 mx-2" />
-        {meta && (
-          <div className="hidden md:flex items-center gap-1.5 px-2 py-1 rounded-md" style={{ background: "rgba(181,142,60,0.08)", border: "1px solid rgba(181,142,60,0.22)" }}>
-            <i className={`${meta.icon} text-xs`} style={{ color: meta.color }} />
-            <span className="text-ivory-200/80 text-xs font-['Inter'] max-w-[140px] truncate">{isAr ? meta.categoryAr : meta.category}</span>
-          </div>
+      {/* CENTER — active module breadcrumb (mono) */}
+      <div className="hidden md:flex items-center justify-center flex-1 px-6 min-w-0">
+        {moduleLabel && (
+          <span
+            className="truncate"
+            style={{
+              fontFamily: fonts.mono,
+              fontSize: "0.75rem",
+              letterSpacing: "0.08em",
+              color: "#D4A84B",
+              textTransform: "uppercase",
+              opacity: 0.9,
+            }}
+          >
+            {isAr ? moduleLabel.ar : moduleLabel.en}
+          </span>
         )}
       </div>
 
-      {/* Center: Entity + Branch */}
-      <div className="flex items-center gap-3">
-        {meta && (
-          <div className="hidden sm:flex flex-col items-end">
-            <span className="text-ivory-100 text-sm font-semibold font-['Inter'] truncate max-w-[160px]">{isAr ? meta.nameAr : meta.name}</span>
-            <span className="text-midnight-300 text-xs font-mono">AMN-ENT-{(entityType || "").toUpperCase().slice(0,3)}-00482</span>
-          </div>
-        )}
-
-        {/* Branch dropdown */}
-        <div className="relative">
-          <button onClick={() => { setBranchOpen(!branchOpen); setNotifOpen(false); setUserOpen(false); }}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-lg border cursor-pointer transition-colors hover:border-gold-500/40 whitespace-nowrap"
-            style={{ background: "rgba(20,29,46,0.8)", borderColor: "rgba(255,255,255,0.1)" }}>
-            <i className="ri-map-pin-line text-gold-400 text-xs" />
-            <span className="text-ivory-200 text-xs font-['Inter'] max-w-[120px] truncate">{isAr ? branch.nameAr : branch.name}</span>
-            <i className={`ri-arrow-down-s-line text-midnight-300 text-xs transition-transform ${branchOpen ? "rotate-180" : ""}`} />
-          </button>
-          {branchOpen && (
-            <div className={`absolute top-full mt-1 w-56 rounded-xl border overflow-hidden z-50 ${isAr ? "left-0" : "right-0"}`}
-              style={{ background: "rgba(20,29,46,0.98)", borderColor: "rgba(181,142,60,0.25)", backdropFilter: "blur(16px)" }}>
-              {branches.map((b) => (
-                <button key={b.id} onClick={() => { onBranchChange?.(b.id); setBranchOpen(false); }}
-                  className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gold-500/5 transition-colors cursor-pointer text-left border-b border-ivory-100/5 last:border-0"
-                  style={{ background: selectedBranch === b.id ? "rgba(181,142,60,0.08)" : "transparent" }}>
-                  <i className="ri-map-pin-line text-gold-400/70 text-xs" />
-                  <div>
-                    <p className="text-ivory-100 text-xs font-semibold font-['Inter']">{isAr ? b.nameAr : b.name}</p>
-                    <p className="text-midnight-300 text-xs font-['Inter']">{b.location}</p>
-                  </div>
-                  {selectedBranch === b.id && <i className="ri-check-line text-gold-400 text-xs ml-auto" />}
-                </button>
-              ))}
-            </div>
-          )}
+      {/* RIGHT — clock / lang pill / notifications / operator menu */}
+      <div className="flex items-center gap-2 flex-shrink-0">
+        {/* 1. Live clock */}
+        <div
+          className="hidden lg:flex flex-col items-end px-3 py-1 rounded-md"
+          style={{
+            background: "rgba(181,142,60,0.04)",
+            border: "1px solid rgba(181,142,60,0.12)",
+          }}
+        >
+          <span
+            style={{
+              fontFamily: fonts.mono,
+              fontSize: "0.75rem",
+              fontWeight: 700,
+              color: "#D4A84B",
+              lineHeight: 1.1,
+              letterSpacing: "0.04em",
+            }}
+          >
+            {timeStr}
+          </span>
+          <span
+            style={{
+              fontFamily: fonts.mono,
+              fontSize: "0.625rem",
+              color: "#6B7280",
+              lineHeight: 1.2,
+              letterSpacing: "0.04em",
+            }}
+          >
+            {dateStr}
+          </span>
         </div>
-      </div>
 
-      {/* Right: Actions */}
-      <div className="flex items-center gap-2">
-        {/* Lang toggle */}
-        <button onClick={handleToggleLang}
-          className="w-9 h-9 flex items-center justify-center rounded-full border border-gold-500/35 text-gold-400 text-xs font-bold hover:bg-gold-500/10 transition-colors cursor-pointer font-mono">
+        {/* 2. AR / EN ghost-gold pill */}
+        <button
+          type="button"
+          onClick={handleToggleLang}
+          className="flex items-center justify-center px-3 h-8 rounded-full cursor-pointer transition-colors"
+          style={{
+            background: "transparent",
+            border: "1px solid rgba(181,142,60,0.35)",
+            color: "#D4A84B",
+            fontFamily: fonts.mono,
+            fontSize: "0.6875rem",
+            fontWeight: 700,
+            letterSpacing: "0.08em",
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(181,142,60,0.08)")}
+          onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+        >
           {isAr ? "EN" : "AR"}
         </button>
 
-        {/* Notifications bell */}
+        {/* 3. Notifications bell */}
         <div className="relative">
           <button
-            onClick={() => { setNotifOpen(!notifOpen); setBranchOpen(false); setUserOpen(false); }}
-            className="relative w-9 h-9 flex items-center justify-center rounded-full hover:bg-gold-500/10 transition-colors cursor-pointer"
-            style={{ border: "1px solid rgba(181,142,60,0.3)" }}
+            type="button"
+            onClick={() => { setNotifOpen(!notifOpen); setUserOpen(false); }}
+            className="relative w-9 h-9 flex items-center justify-center rounded-full cursor-pointer transition-colors"
+            style={{ border: "1px solid rgba(181,142,60,0.3)", background: "transparent" }}
+            onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(181,142,60,0.08)")}
+            onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+            aria-label={isAr ? "الإشعارات" : "Notifications"}
           >
-            <i className="ri-notification-3-line text-gold-400 text-lg" />
+            <i className="ri-notification-3-line text-lg" style={{ color: "#D4A84B" }} />
             {totalBadge > 0 && (
               <span
-                className={`absolute -top-1 min-w-[18px] h-[18px] flex items-center justify-center rounded-full text-[10px] font-bold font-mono px-1 ${isAr ? "-left-1" : "-right-1"}`}
-                style={{ background: criticalCount > 0 ? "#9A1F24" : "#D4A84B", color: "#0B1220" }}
+                className={`absolute -top-1 min-w-[18px] h-[18px] flex items-center justify-center rounded-full text-[10px] font-bold px-1 ${isAr ? "-left-1" : "-right-1"}`}
+                style={{
+                  background: criticalCount > 0 ? "#9A1F24" : "#D4A84B",
+                  color: "#0B1220",
+                  fontFamily: fonts.mono,
+                }}
               >
                 {totalBadge}
               </span>
             )}
           </button>
           {notifOpen && (
-            <div className={`absolute top-full mt-2 w-80 rounded-xl border overflow-hidden z-50 ${isAr ? "left-0" : "right-0"}`}
-              style={{ background: "rgba(20,29,46,0.98)", borderColor: "rgba(181,142,60,0.25)", backdropFilter: "blur(16px)" }}>
-              <div className="px-4 py-3 border-b border-ivory-100/5 flex items-center justify-between">
-                <p className="text-ivory-100 text-sm font-semibold font-['Inter']">{isAr ? "الإشعارات" : "Notifications"}</p>
+            <div
+              className={`absolute top-full mt-2 w-80 rounded-xl overflow-hidden z-50 ${isAr ? "left-0" : "right-0"}`}
+              style={{
+                background: "rgba(20,29,46,0.98)",
+                border: "1px solid rgba(181,142,60,0.25)",
+                backdropFilter: "blur(16px)",
+              }}
+            >
+              <div
+                className="px-4 py-3 flex items-center justify-between"
+                style={{ borderBottom: "1px solid rgba(245,239,227,0.05)" }}
+              >
+                <p className="text-sm font-semibold" style={{ color: "#F5EFE3", fontFamily: fonts.sans }}>
+                  {isAr ? "الإشعارات" : "Notifications"}
+                </p>
                 <button
+                  type="button"
                   onClick={() => { setNotifOpen(false); navigate("/dashboard/notifications"); }}
-                  className="text-gold-400 text-xs font-mono cursor-pointer hover:underline"
+                  className="text-xs cursor-pointer hover:underline"
+                  style={{ color: "#D4A84B", fontFamily: fonts.mono }}
                 >
                   {isAr ? "عرض الكل" : "View All"}
                 </button>
               </div>
               {criticalCount > 0 && (
-                <div className="flex items-center gap-2 px-4 py-2.5 border-b border-ivory-100/5 cursor-pointer" style={{ background: "rgba(154,31,36,0.1)" }}
-                  onClick={() => { setNotifOpen(false); navigate("/dashboard/notifications"); }}>
-                  <div className="w-2 h-2 rounded-full bg-oman-500 animate-pulse flex-shrink-0" />
-                  <span className="text-oman-400 text-xs font-bold font-mono">
-                    {criticalCount} {isAr ? "تنبيه حرج في مركز الشرطة" : "CRITICAL alerts in Police Center"}
+                <div
+                  className="flex items-center gap-2 px-4 py-2.5 cursor-pointer"
+                  style={{ background: "rgba(154,31,36,0.1)", borderBottom: "1px solid rgba(245,239,227,0.05)" }}
+                  onClick={() => { setNotifOpen(false); navigate("/dashboard/notifications"); }}
+                >
+                  <div className="w-2 h-2 rounded-full animate-pulse flex-shrink-0" style={{ background: "#9A1F24" }} />
+                  <span className="text-xs font-bold" style={{ color: "#F87171", fontFamily: fonts.mono }}>
+                    {criticalCount} {isAr ? "تنبيه حرج" : "CRITICAL alerts"}
                   </span>
-                  <i className={`${isAr ? "ri-arrow-left-line" : "ri-arrow-right-line"} text-oman-400 text-xs ms-auto`} />
+                  <i
+                    className={`${isAr ? "ri-arrow-left-line" : "ri-arrow-right-line"} text-xs ms-auto`}
+                    style={{ color: "#F87171" }}
+                  />
                 </div>
               )}
               {notifications.map((n) => (
-                <div key={n.id} className="flex items-start gap-3 px-4 py-3 hover:bg-ivory-100/[0.02] border-b border-ivory-100/5 last:border-0 cursor-pointer"
-                  style={{ background: n.read ? "transparent" : "rgba(181,142,60,0.04)" }}>
-                  <div className="w-7 h-7 flex items-center justify-center rounded-lg flex-shrink-0 mt-0.5" style={{ background: `${n.color}15`, border: `1px solid ${n.color}33` }}>
+                <div
+                  key={n.id}
+                  className="flex items-start gap-3 px-4 py-3 cursor-pointer"
+                  style={{
+                    background: n.read ? "transparent" : "rgba(181,142,60,0.04)",
+                    borderBottom: "1px solid rgba(245,239,227,0.05)",
+                  }}
+                >
+                  <div
+                    className="w-7 h-7 flex items-center justify-center rounded-lg flex-shrink-0 mt-0.5"
+                    style={{ background: `${n.color}15`, border: `1px solid ${n.color}33` }}
+                  >
                     <i className={`${n.icon} text-xs`} style={{ color: n.color }} />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className={`text-xs font-['Inter'] font-semibold ${n.read ? "text-ivory-200/70" : "text-ivory-100"}`}>{isAr ? n.titleAr : n.title}</p>
-                    <p className="text-midnight-300 text-[10px] mt-0.5 font-mono">{n.time}</p>
+                    <p
+                      className="text-xs font-semibold"
+                      style={{ color: n.read ? "rgba(239,231,211,0.7)" : "#F5EFE3", fontFamily: fonts.sans }}
+                    >
+                      {isAr ? n.titleAr : n.title}
+                    </p>
+                    <p className="text-[10px] mt-0.5" style={{ color: "#6B7280", fontFamily: fonts.mono }}>
+                      {n.time}
+                    </p>
                   </div>
-                  {!n.read && <div className="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0" style={{ background: n.color }} />}
+                  {!n.read && (
+                    <div className="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0" style={{ background: n.color }} />
+                  )}
                 </div>
               ))}
-              <div className="px-4 py-2.5 border-t border-ivory-100/5">
+              <div className="px-4 py-2.5" style={{ borderTop: "1px solid rgba(245,239,227,0.05)" }}>
                 <button
+                  type="button"
                   onClick={() => { setNotifOpen(false); navigate("/dashboard/notifications"); }}
-                  className="w-full py-2 rounded-lg text-xs font-['Inter'] font-semibold cursor-pointer transition-colors"
-                  style={{ background: "rgba(181,142,60,0.1)", color: "#D4A84B", border: "1px solid rgba(181,142,60,0.25)" }}
+                  className="w-full py-2 rounded-lg text-xs font-semibold cursor-pointer transition-colors"
+                  style={{
+                    background: "rgba(181,142,60,0.1)",
+                    color: "#D4A84B",
+                    border: "1px solid rgba(181,142,60,0.25)",
+                    fontFamily: fonts.sans,
+                  }}
                 >
                   {isAr ? "فتح مركز الإشعارات" : "Open Notification Center"}
                 </button>
@@ -159,31 +300,66 @@ const DashboardTitleBar = ({ entityType, isAr, onToggleLang, onToggleAr, selecte
           )}
         </div>
 
-        {/* User menu */}
+        {/* 4. Operator avatar + menu */}
         <div className="relative">
-          <button onClick={() => { setUserOpen(!userOpen); setBranchOpen(false); setNotifOpen(false); }}
-            className="flex items-center gap-2 px-2 py-1 rounded-lg hover:bg-ivory-100/5 transition-colors cursor-pointer">
-            <div className="w-8 h-8 flex items-center justify-center rounded-full bg-gold-500/15 border border-gold-500/35">
-              <span className="text-gold-400 text-xs font-bold font-['Inter']">AA</span>
+          <button
+            type="button"
+            onClick={() => { setUserOpen(!userOpen); setNotifOpen(false); }}
+            className="flex items-center gap-2 px-2 py-1 rounded-lg cursor-pointer transition-colors"
+            onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(245,239,227,0.04)")}
+            onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+          >
+            <div
+              className="w-8 h-8 flex items-center justify-center rounded-full"
+              style={{ background: "rgba(181,142,60,0.15)", border: "1px solid rgba(181,142,60,0.35)" }}
+            >
+              <span className="text-xs font-bold" style={{ color: "#D4A84B", fontFamily: fonts.sans }}>
+                AA
+              </span>
             </div>
-            <i className={`ri-arrow-down-s-line text-midnight-300 text-xs hidden sm:block transition-transform ${userOpen ? "rotate-180" : ""}`} />
+            <i
+              className={`ri-arrow-down-s-line text-xs hidden sm:block transition-transform ${userOpen ? "rotate-180" : ""}`}
+              style={{ color: "#6B7280" }}
+            />
           </button>
           {userOpen && (
-            <div className={`absolute top-full mt-1 w-48 rounded-xl border overflow-hidden z-50 ${isAr ? "left-0" : "right-0"}`}
-              style={{ background: "rgba(20,29,46,0.98)", borderColor: "rgba(181,142,60,0.25)", backdropFilter: "blur(16px)" }}>
+            <div
+              className={`absolute top-full mt-1 w-48 rounded-xl overflow-hidden z-50 ${isAr ? "left-0" : "right-0"}`}
+              style={{
+                background: "rgba(20,29,46,0.98)",
+                border: "1px solid rgba(181,142,60,0.25)",
+                backdropFilter: "blur(16px)",
+              }}
+            >
               {[
-                { icon: "ri-user-line", labelEn: "Profile", labelAr: "الملف الشخصي" },
+                { icon: "ri-user-line",     labelEn: "Profile",  labelAr: "الملف الشخصي" },
                 { icon: "ri-settings-line", labelEn: "Settings", labelAr: "الإعدادات" },
-                { icon: "ri-question-line", labelEn: "Help", labelAr: "المساعدة" },
+                { icon: "ri-question-line", labelEn: "Help",     labelAr: "المساعدة" },
               ].map((item) => (
-                <button key={item.icon} className="w-full flex items-center gap-3 px-4 py-2.5 hover:bg-ivory-100/5 transition-colors cursor-pointer border-b border-ivory-100/5 last:border-0">
-                  <i className={`${item.icon} text-ivory-200/70 text-sm`} />
-                  <span className="text-ivory-200 text-xs font-['Inter']">{isAr ? item.labelAr : item.labelEn}</span>
+                <button
+                  key={item.icon}
+                  type="button"
+                  className="w-full flex items-center gap-3 px-4 py-2.5 cursor-pointer transition-colors"
+                  style={{ borderBottom: "1px solid rgba(245,239,227,0.05)" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(245,239,227,0.04)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+                >
+                  <i className={`${item.icon} text-sm`} style={{ color: "rgba(239,231,211,0.7)" }} />
+                  <span className="text-xs" style={{ color: "#EFE7D3", fontFamily: fonts.sans }}>
+                    {isAr ? item.labelAr : item.labelEn}
+                  </span>
                 </button>
               ))}
-              <a href="/login" className="w-full flex items-center gap-3 px-4 py-2.5 hover:bg-oman-500/10 transition-colors cursor-pointer">
-                <i className="ri-logout-box-line text-oman-400 text-sm" />
-                <span className="text-oman-400 text-xs font-['Inter']">{isAr ? "تسجيل الخروج" : "Logout"}</span>
+              <a
+                href="/login"
+                className="w-full flex items-center gap-3 px-4 py-2.5 cursor-pointer transition-colors"
+                onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(154,31,36,0.1)")}
+                onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+              >
+                <i className="ri-logout-box-line text-sm" style={{ color: "#F87171" }} />
+                <span className="text-xs" style={{ color: "#F87171", fontFamily: fonts.sans }}>
+                  {isAr ? "تسجيل الخروج" : "Logout"}
+                </span>
               </a>
             </div>
           )}

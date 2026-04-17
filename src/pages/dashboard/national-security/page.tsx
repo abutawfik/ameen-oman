@@ -74,7 +74,7 @@ const NationalSecurityDashboard = () => {
         <div className="flex items-center gap-2">
           <span className="text-red-300 text-xs font-['JetBrains_Mono'] opacity-70">CLASSIFICATION: TOP SECRET</span>
           <span className="text-red-300 text-xs font-['JetBrains_Mono'] opacity-70">|</span>
-          <span className="text-red-300 text-xs font-['JetBrains_Mono'] opacity-70">AMEEN-NSD-2026</span>
+          <span className="text-red-300 text-xs font-['JetBrains_Mono'] opacity-70">AL-AMEEN-NSD-2026</span>
         </div>
       </div>
 

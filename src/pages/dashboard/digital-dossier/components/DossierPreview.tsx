@@ -58,7 +58,7 @@ const DossierPreview = ({ subject, classification, format, sections, purpose, ca
             </div>
             <div className="grid grid-cols-2 gap-3 text-xs font-['JetBrains_Mono']">
               {[
-                { label: "Document Ref", value: `AMEEN-DOS-2026-${subject.id.split("-").pop()}` },
+                { label: "Document Ref", value: `AL-AMEEN-DOS-2026-${subject.id.split("-").pop()}` },
                 { label: "Generated", value: new Date().toISOString().slice(0, 16).replace("T", " ") },
                 { label: "Classification", value: classification },
                 { label: "Format", value: format },

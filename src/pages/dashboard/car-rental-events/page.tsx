@@ -144,7 +144,7 @@ const CarRentalEventsPage = () => {
                 </span>
               </div>
               <p className="text-gray-600 text-xs font-['JetBrains_Mono']">
-                {isAr ? "شركة تأجير السيارات — الفرع الرئيسي" : "Car Rental Co. — Main Branch"}
+                {isAr ? "تدفّق الأحداث · مراقبة المشغّل" : "Event stream \u00B7 Operator monitoring"}
               </p>
             </div>
           </div>

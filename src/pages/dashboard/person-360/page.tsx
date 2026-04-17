@@ -297,7 +297,7 @@ const Person360Page = () => {
                     {isAr ? "تم تجميع 18 حدثاً من 10 تدفقات" : "18 events compiled from 10 streams"}
                   </p>
                   <p className="text-gray-600 text-xs font-['JetBrains_Mono'] mt-1">
-                    AMEEN-DOSSIER-P-2025-00441-20250405.pdf · 2.4 MB
+                    AL-AMEEN-DOSSIER-P-2025-00441-20250405.pdf · 2.4 MB
                   </p>
                 </div>
                 <div className="flex gap-3 w-full">
