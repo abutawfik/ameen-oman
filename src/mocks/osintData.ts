@@ -654,6 +654,139 @@ export const RISK_RULES: RiskRule[] = [
     version: "v0.9",
     firesLast24h: 0,
   },
+  // ── Tech Spec v1.0 §7 + Appendix B expansion (11 new rules) ─────────────
+  {
+    id: "R-SNC-004",
+    category: "sanctions",
+    description: "PEP exposure via OpenSanctions (direct match)",
+    descriptionAr: "تعرّض شخصية سياسية عبر OpenSanctions (تطابق مباشر)",
+    contribution: 0.8,
+    threshold: "PEP list match ≥ 0.90 confidence on name + DOB",
+    enabled: true,
+    version: "v1.2",
+    firesLast24h: 9,
+  },
+  {
+    id: "R-GEO-003",
+    category: "geopolitical",
+    description: "ACLED armed-conflict event within 50km of origin airport (7d)",
+    descriptionAr: "حدث نزاع مسلّح ضمن 50كم من مطار المنشأ خلال 7 أيام (ACLED)",
+    contribution: 0.65,
+    threshold: "ACLED fatalities > 0 within 50km radius, rolling 7-day window",
+    enabled: true,
+    version: "v1.1",
+    firesLast24h: 48,
+  },
+  {
+    id: "R-GEO-004",
+    category: "geopolitical",
+    description: "Country travel-advisory level 4 (do not travel)",
+    descriptionAr: "تحذير السفر لبلد المنشأ مستوى 4 (لا تسافر)",
+    contribution: 0.75,
+    threshold: "Advisory level = 4 at scan time",
+    enabled: true,
+    version: "v1.0",
+    firesLast24h: 22,
+  },
+  {
+    id: "R-BIO-002",
+    category: "biosecurity",
+    description: "ECDC surveillance cluster at origin within outbreak window",
+    descriptionAr: "تجمّع مراقبة ECDC عند المنشأ ضمن نافذة التفشي",
+    contribution: 0.55,
+    threshold: "ECDC cluster status = active and origin country match",
+    enabled: true,
+    version: "v1.0",
+    firesLast24h: 6,
+  },
+  {
+    id: "R-RTE-003",
+    category: "routing",
+    description: "Routing deviation from historical origin-destination pattern (z>2.5)",
+    descriptionAr: "انحراف المسار عن نمط المنشأ-الوجهة التاريخي (z>2.5)",
+    contribution: 0.5,
+    threshold: "Z-score > 2.5 vs 36-month OD baseline for nationality",
+    enabled: true,
+    version: "v1.1",
+    firesLast24h: 31,
+  },
+  {
+    id: "R-ENT-002",
+    category: "entity",
+    description: "Sponsor has >10 unrelated applicants in rolling 180 days",
+    descriptionAr: "الكفيل لديه أكثر من 10 مقدّمين غير مرتبطين خلال 180 يوماً",
+    contribution: 0.6,
+    threshold: "distinct_applicant_count(sponsor, 180d) > 10",
+    enabled: true,
+    version: "v1.0",
+    firesLast24h: 14,
+  },
+  {
+    id: "R-ENT-003",
+    category: "entity",
+    description: "Sponsor corporate record missing in OpenCorporates",
+    descriptionAr: "سجل الكفيل مفقود في OpenCorporates",
+    contribution: 0.45,
+    threshold: "OpenCorporates lookup returns 0 results for sponsor name",
+    enabled: true,
+    version: "v1.0",
+    firesLast24h: 17,
+  },
+  {
+    id: "R-BEH-001",
+    category: "behavioral",
+    description: "Prior overstay count ≥ 2 per Entry/Exit history",
+    descriptionAr: "عدد تجاوزات الإقامة السابقة ≥ 2 حسب سجل الدخول/الخروج",
+    contribution: 0.7,
+    threshold: "overstay_count(traveler, all-time) ≥ 2",
+    enabled: true,
+    version: "v1.1",
+    firesLast24h: 12,
+  },
+  {
+    id: "R-BEH-002",
+    category: "behavioral",
+    description: "Visa denial count ≥ 1 in last 24 months",
+    descriptionAr: "عدد رفضات التأشيرة ≥ 1 خلال 24 شهراً",
+    contribution: 0.55,
+    threshold: "denial_count(traveler, 24mo) ≥ 1",
+    enabled: true,
+    version: "v1.0",
+    firesLast24h: 21,
+  },
+  {
+    id: "R-DEC-001",
+    category: "declaration",
+    description: "Declared employer not found in MOL active records",
+    descriptionAr: "صاحب العمل المُعلن غير موجود في سجلات وزارة العمل النشطة",
+    contribution: 0.6,
+    threshold: "declared_employer ∉ MOL active registry",
+    enabled: true,
+    version: "v1.0",
+    firesLast24h: 19,
+  },
+  {
+    id: "R-DEC-002",
+    category: "declaration",
+    description: "Declared address mismatch vs hotel check-in address",
+    descriptionAr: "عدم تطابق العنوان المُعلن مع عنوان تسجيل الفندق",
+    contribution: 0.5,
+    threshold: "fuzzy_match(declared_address, hotel_address) < 0.70",
+    enabled: true,
+    version: "v1.0",
+    firesLast24h: 26,
+  },
+  {
+    id: "R-PRE-001",
+    category: "presence",
+    description: "APIS arrival → first hotel check-in gap > 48 hours (anomalous)",
+    descriptionAr: "فجوة وصول APIS → أول فندق > 48 ساعة (شاذة)",
+    contribution: 0.65,
+    threshold: "hours(apis_arrival → first_hotel_checkin) > 48",
+    enabled: true,
+    version: "v1.1",
+    firesLast24h: 11,
+  },
 ];
 
 // ─────────────────────────────────────────────────────────────────────────
@@ -868,7 +1001,7 @@ const demoScenarios: ScoredRecord[] = [
       { type: "ml_feature", ref: "declared_address_match", subScore: "declaration", observed: "Declared hotel address partial match (0.74)", contribution: 14, source: "Hotels", confidence: "Medium-High" },
     ],
     "borderline-context",
-    { classification: "internal" },
+    { classification: "internal", rulesSkipped: ["R-DEC-001"] },
   ),
   rec(
     "demo-highrisk-sponsor",
@@ -890,7 +1023,7 @@ const demoScenarios: ScoredRecord[] = [
       { type: "rule", ref: "R-DEC-001", subScore: "declaration", observed: "Declared employer does not match MOL record", contribution: 22, source: "MOL employment", confidence: "High" },
     ],
     "high-risk-sponsor",
-    { classification: "restricted" },
+    { classification: "restricted", rulesSkipped: ["R-BIO-002"] },
   ),
   rec(
     "demo-anomaly",
@@ -911,7 +1044,7 @@ const demoScenarios: ScoredRecord[] = [
       { type: "ml_feature", ref: "presence_gap_apis_hotel", subScore: "presence", observed: "APIS→first hotel gap 62h (typical ≤4h)", contribution: 58, source: "APIS + Hotels", confidence: "High" },
     ],
     "anomaly-driven",
-    { classification: "internal", sourcesUnavailable: ["ECDC"], rulesSkipped: ["R-TMP-002"] },
+    { classification: "internal", sourcesUnavailable: ["ECDC"], rulesSkipped: ["R-TMP-002", "R-BIO-002"] },
   ),
   rec(
     "demo-health",
@@ -1518,5 +1651,415 @@ export const SEQUENCE_TIMELINES: SequenceTimeline[] = [
     verdict: "mildly-gapped",
     narrativeEn: "No SIM activation observed — unusual given vehicle rental present. Possible roaming SIM use, flagged for analyst review.",
     narrativeAr: "لم يُرصد تفعيل شريحة — غير معتاد مع وجود تأجير مركبة. احتمال استخدام شريحة تجوال، مرفوع للمراجعة.",
+  },
+];
+
+// ─────────────────────────────────────────────────────────────────────────
+// Model Governance (Wave 1 · Deliverable 2)
+// Drift / calibration / fairness / registry seeds for the Model Governance tab.
+// ─────────────────────────────────────────────────────────────────────────
+
+export interface ScoreDriftPoint {
+  date: string;       // YYYY-MM-DD
+  meanScore: number;  // 0-100
+  stdDev: number;     // ± range
+  population: number; // records scored that day
+}
+
+// Deterministic 30-day drift series ending 2026-04-17.
+const buildScoreDrift = (): ScoreDriftPoint[] => {
+  const out: ScoreDriftPoint[] = [];
+  const end = new Date("2026-04-17T00:00:00Z").getTime();
+  for (let i = 29; i >= 0; i--) {
+    const d = new Date(end - i * 86_400_000);
+    const iso = d.toISOString().slice(0, 10);
+    const seed = i * 5.3 + 1.9;
+    const wave = Math.sin(seed / 3.8) * 3.2 + Math.cos(seed / 5.1) * 2.1;
+    const mean = +(42.5 + wave + (i < 3 ? 1.4 : 0)).toFixed(2);
+    const sd = +(6.5 + Math.abs(Math.sin(seed / 6)) * 1.2).toFixed(2);
+    const pop = Math.round(16800 + wave * 380 + (i % 7 === 0 ? -1200 : 0));
+    out.push({ date: iso, meanScore: mean, stdDev: sd, population: pop });
+  }
+  return out;
+};
+
+export const SCORE_DRIFT_30D: ScoreDriftPoint[] = buildScoreDrift();
+
+// Calibration curve — 20 reliability points (expected vs observed risk %).
+export const CALIBRATION_CURVE: { expectedPct: number; observedPct: number }[] = [
+  { expectedPct:  5, observedPct:  4.2 },
+  { expectedPct: 10, observedPct:  9.1 },
+  { expectedPct: 15, observedPct: 14.0 },
+  { expectedPct: 20, observedPct: 18.7 },
+  { expectedPct: 25, observedPct: 24.6 },
+  { expectedPct: 30, observedPct: 28.9 },
+  { expectedPct: 35, observedPct: 33.8 },
+  { expectedPct: 40, observedPct: 39.3 },
+  { expectedPct: 45, observedPct: 44.1 },
+  { expectedPct: 50, observedPct: 49.6 },
+  { expectedPct: 55, observedPct: 54.2 },
+  { expectedPct: 60, observedPct: 59.8 },
+  { expectedPct: 65, observedPct: 64.4 },
+  { expectedPct: 70, observedPct: 69.1 },
+  { expectedPct: 75, observedPct: 74.8 },
+  { expectedPct: 80, observedPct: 79.5 },
+  { expectedPct: 85, observedPct: 83.9 },
+  { expectedPct: 90, observedPct: 88.7 },
+  { expectedPct: 95, observedPct: 93.2 },
+  { expectedPct: 99, observedPct: 97.4 },
+];
+
+export interface NationalityFairness {
+  iso3: string;
+  name: string;
+  flagRatePct: number;       // 0-100
+  deviationSigma: number;    // vs global mean (σ units, signed)
+}
+
+// 15 nationalities — flag rate deviation from global mean in σ units.
+// Max |σ| stays ≤ 1.9 to honor the "0 breaching 2σ threshold" panel headline.
+export const NATIONALITY_FAIRNESS: NationalityFairness[] = [
+  { iso3: "YEM", name: "Yemen",        flagRatePct: 42.1, deviationSigma:  1.85 },
+  { iso3: "SYR", name: "Syria",        flagRatePct: 39.7, deviationSigma:  1.78 },
+  { iso3: "IRN", name: "Iran",         flagRatePct: 31.2, deviationSigma:  1.42 },
+  { iso3: "IRQ", name: "Iraq",         flagRatePct: 28.6, deviationSigma:  1.28 },
+  { iso3: "LBY", name: "Libya",        flagRatePct: 26.9, deviationSigma:  1.18 },
+  { iso3: "AFG", name: "Afghanistan",  flagRatePct: 25.4, deviationSigma:  1.10 },
+  { iso3: "PAK", name: "Pakistan",     flagRatePct: 14.8, deviationSigma:  0.62 },
+  { iso3: "RUS", name: "Russia",       flagRatePct: 12.3, deviationSigma:  0.48 },
+  { iso3: "IND", name: "India",        flagRatePct:  9.1, deviationSigma:  0.22 },
+  { iso3: "EGY", name: "Egypt",        flagRatePct:  8.4, deviationSigma:  0.15 },
+  { iso3: "USA", name: "United States",flagRatePct:  4.2, deviationSigma: -0.42 },
+  { iso3: "GBR", name: "United Kingdom",flagRatePct: 3.8, deviationSigma: -0.48 },
+  { iso3: "DEU", name: "Germany",      flagRatePct:  3.2, deviationSigma: -0.55 },
+  { iso3: "CHN", name: "China",        flagRatePct:  2.8, deviationSigma: -0.62 },
+  { iso3: "JPN", name: "Japan",        flagRatePct:  1.9, deviationSigma: -0.74 },
+];
+
+export interface ModelRegistryMilestone {
+  version: string;
+  deployedAt: string;          // ISO date
+  retiredAt: string | null;    // null = currently running
+  status: "active" | "shadow" | "retired";
+  noteEn: string;
+  noteAr: string;
+}
+
+export const MODEL_REGISTRY_TIMELINE: ModelRegistryMilestone[] = [
+  { version: "mvp-0.1.0",   deployedAt: "2025-11-12", retiredAt: "2025-12-18", status: "retired", noteEn: "Initial PoC — rules only, 6 sub-scores", noteAr: "إصدار PoC أول — قواعد فقط، 6 درجات فرعية" },
+  { version: "mvp-0.2.0",   deployedAt: "2025-12-18", retiredAt: "2026-02-10", status: "retired", noteEn: "Added ML routing anomaly (Isolation Forest)", noteAr: "إضافة شذوذ المسار عبر ML (Isolation Forest)" },
+  { version: "mvp-0.2.5",   deployedAt: "2026-02-10", retiredAt: "2026-03-18", status: "retired", noteEn: "Entity-graph PageRank, sanctions 2-hop", noteAr: "PageRank لرسم الكيان، درجتان للعقوبات" },
+  { version: "mvp-0.3.0",   deployedAt: "2026-03-18", retiredAt: "2026-04-03", status: "retired", noteEn: "Sequence-coherence Model 3 + 9 sub-scores", noteAr: "النموذج الثالث لتماسك التسلسل + 9 درجات فرعية" },
+  { version: "mvp-0.3.1",   deployedAt: "2026-04-03", retiredAt: null,         status: "active",  noteEn: "Calibrated percentile output, fairness-aware", noteAr: "مُعاير بالنسب، واعٍ بالعدالة" },
+  { version: "mvp-0.3.2-rc1", deployedAt: "2026-04-12", retiredAt: null,       status: "shadow",  noteEn: "Shadow — adds declaration-match features", noteAr: "ظلّ — يضيف ميزات مطابقة الإقرار" },
+];
+
+// ─────────────────────────────────────────────────────────────────────────
+// Audit Log (Wave 1 · Deliverable 3)
+// 50 synthetic entries across all event types + actor roles.
+// ─────────────────────────────────────────────────────────────────────────
+
+export interface AuditEntry {
+  id: string;
+  occurredAt: string; // ISO
+  actor: { id: string; name: string; role: "analyst"|"supervisor"|"manager"|"admin"|"system" };
+  eventType: "score_computed"|"rule_fired"|"source_ingested"|"source_failed"|"classified_accessed"|"weight_changed"|"rule_toggled"|"rollback_triggered";
+  targetId: string;
+  classification: Classification;
+  details: Record<string, unknown>;
+}
+
+const AUDIT_ACTORS = [
+  { id: "u-001", name: "Ahmed Al-Amri",       role: "analyst"    as const },
+  { id: "u-002", name: "Fatima Al-Mansoori",  role: "analyst"    as const },
+  { id: "u-003", name: "Omar Z. Qureshi",     role: "analyst"    as const },
+  { id: "u-004", name: "Leila D. Benaissa",   role: "analyst"    as const },
+  { id: "s-001", name: "Hasan M. Al-Bakri",   role: "supervisor" as const },
+  { id: "s-002", name: "Noor F. Al-Hakim",    role: "supervisor" as const },
+  { id: "m-001", name: "Mohamed O. El-Sayed", role: "manager"    as const },
+  { id: "a-001", name: "Khaled A. Saleh",     role: "admin"      as const },
+  { id: "sys",   name: "risk-engine",         role: "system"     as const },
+];
+
+const AUDIT_TARGET_POOL = [
+  "demo-lowrisk", "demo-borderline", "demo-highrisk-sponsor", "demo-anomaly", "demo-health",
+  "rec-000127", "rec-000128", "rec-000129", "rec-000130", "rec-000131",
+  "rec-000132", "rec-000133", "rec-000134", "rec-000135", "rec-000136",
+  "rec-000137", "rec-000138",
+];
+
+// Deterministic hashy picker so seeded entries stay stable across reloads.
+const pick = <T,>(arr: T[], seed: number): T => arr[Math.abs(seed) % arr.length];
+
+const buildAuditLog = (): AuditEntry[] => {
+  const out: AuditEntry[] = [];
+  const end = new Date("2026-04-17T11:55:00Z").getTime();
+  const eventTypes: AuditEntry["eventType"][] = [
+    "score_computed", "rule_fired", "source_ingested", "source_failed",
+    "classified_accessed", "weight_changed", "rule_toggled", "rollback_triggered",
+  ];
+
+  for (let i = 0; i < 50; i++) {
+    const seed = i * 7 + 3;
+    const ts = new Date(end - i * 47 * 60_000 - (i % 5) * 13 * 60_000).toISOString();
+    // Bias distribution: score_computed & rule_fired more common; rollback rare.
+    const etIdx = i % 10 === 0 ? 7 : (i % 6 === 0 ? 4 : (i % 3 === 0 ? 1 : (i % 2 === 0 ? 0 : (i % 5)) + 0));
+    const eventType = eventTypes[etIdx % eventTypes.length];
+    // System actor for automatic events; otherwise pick a human.
+    const systemEvents: AuditEntry["eventType"][] = ["score_computed", "source_ingested", "source_failed"];
+    const actor = systemEvents.includes(eventType)
+      ? AUDIT_ACTORS[AUDIT_ACTORS.length - 1]
+      : pick(AUDIT_ACTORS.slice(0, -1), seed);
+    const targetId = eventType === "source_ingested" || eventType === "source_failed"
+      ? pick(["OpenSanctions", "GDELT", "ACLED", "WHO", "ECDC", "OpenSky", "Advisories", "OpenCorporates", "ReliefWeb"], seed)
+      : eventType === "weight_changed"
+        ? pick(["sanctions", "geopolitical", "biosecurity", "routing", "behavioral", "declaration", "entity", "presence", "document"], seed)
+        : eventType === "rule_toggled"
+          ? pick(["R-SNC-001", "R-GEO-001", "R-RTE-001", "R-TMP-002", "R-BEH-001", "R-DEC-001"], seed)
+          : eventType === "rollback_triggered"
+            ? "mvp-0.3.0"
+            : pick(AUDIT_TARGET_POOL, seed);
+
+    // Classification: classified_accessed events are classified; score_computed on
+    // restricted records stays restricted; the rest default internal/public.
+    const classification: Classification = eventType === "classified_accessed"
+      ? "classified"
+      : eventType === "rollback_triggered" || eventType === "weight_changed"
+        ? "restricted"
+        : eventType === "source_ingested" || eventType === "source_failed"
+          ? "public"
+          : "internal";
+
+    // Build shape-appropriate details payload.
+    let details: Record<string, unknown>;
+    switch (eventType) {
+      case "score_computed":
+        details = { unifiedScore: 28 + (i % 60), modelVersion: "mvp-0.3.1", latencyMs: 180 + (i % 120) };
+        break;
+      case "rule_fired":
+        details = { ruleId: pick(["R-SNC-001", "R-GEO-001", "R-ENT-001", "R-BIO-001", "R-RTE-001"], seed), contribution: +((0.2 + (i % 10) / 20).toFixed(2)), observed: "threshold exceeded" };
+        break;
+      case "source_ingested":
+        details = { records: 100 + i * 37, durationMs: 820 + i * 13, checksumOk: true };
+        break;
+      case "source_failed":
+        details = { errorCode: pick(["ETIMEDOUT", "EAUTH", "E429", "E503"], seed), retryAttempt: 1 + (i % 3) };
+        break;
+      case "classified_accessed":
+        details = { classification: "classified", accessReason: "operator_queue_detail_open", approver: "s-001" };
+        break;
+      case "weight_changed":
+        details = { key: targetId, oldValue: 12, newValue: 12 + (i % 6) - 2, profileId: "default" };
+        break;
+      case "rule_toggled":
+        details = { ruleId: targetId, newState: i % 2 === 0 ? "enabled" : "disabled" };
+        break;
+      case "rollback_triggered":
+        details = { fromVersion: "mvp-0.3.1", toVersion: "mvp-0.3.0", reason: "fairness_breach_drill" };
+        break;
+    }
+
+    out.push({
+      id: `audit-${String(i + 1).padStart(4, "0")}`,
+      occurredAt: ts,
+      actor: { id: actor.id, name: actor.name, role: actor.role },
+      eventType,
+      targetId,
+      classification,
+      details,
+    });
+  }
+  return out;
+};
+
+export const AUDIT_LOG: AuditEntry[] = buildAuditLog();
+
+// ─────────────────────────────────────────────────────────────────────────
+// Feature Vector (Wave 1 · Deliverable 4)
+// ML scoring inputs keyed by scored-record id.
+// ─────────────────────────────────────────────────────────────────────────
+
+export interface FeatureVector {
+  traveler_id: string;
+  decision_point: DecisionPoint;
+  as_of: string;
+  // Routing
+  origin_iata: string | null;
+  carrier_iata: string | null;
+  nationality: string;
+  stopover_count: number;
+  hour_of_arrival: number;
+  dow_of_arrival: number;
+  booking_to_departure_days: number | null;
+  // Behavioral
+  prior_overstays: number | null;
+  visit_cadence_days: number | null;
+  mean_length_of_stay_days: number | null;
+  visa_denial_count: number | null;
+  // Declaration
+  declared_address_matches_hotel: boolean | null;
+  declared_address_matches_municipality: boolean | null;
+  declared_employer_matches_mol: boolean | null;
+  declared_length_vs_actual_days: number | null;
+  // Presence
+  hours_apis_to_first_hotel: number | null;
+  hours_apis_to_first_sim: number | null;
+  hours_apis_to_first_rental_or_mol: number | null;
+  missing_presence_signals_count: number;
+  // Entity graph
+  sponsor_propagated_risk: number | null;
+  employer_propagated_risk: number | null;
+  sponsor_graph_degree: number | null;
+  // OSINT context
+  origin_conflict_intensity_7d: number | null;
+  origin_travel_advisory_level: number | null;
+  outbreak_active_at_origin: boolean;
+  // Meta
+  missing_feature_mask: Record<string, boolean>;
+  feature_schema_version: string;
+}
+
+// Derive a plausible feature vector from the already-scored record so values
+// round-trip with what the Explain tab already shows (no contradictions).
+const buildFeatureVector = (r: ScoredRecord): FeatureVector => {
+  const arrival = new Date(r.arrivalTs);
+  const hour = arrival.getUTCHours();
+  const dow = arrival.getUTCDay();
+  const scen = r.demoScenario ?? "";
+  // Sprinkle nulls on the lower-risk records to demo "missing feature" highlighting.
+  const isClean = r.unifiedScore < 25;
+  const priorOverstays = isClean ? 0 : Math.round(r.subScores.behavioral / 25);
+  const visaDenials = isClean ? 0 : Math.round(r.subScores.behavioral / 30);
+  const declAddrHotel = scen === "anomaly-driven" ? false : (isClean ? true : null);
+  const declEmployerMol = scen === "high-risk-sponsor" ? false : (isClean ? true : null);
+  const hoursApisToHotel = scen === "anomaly-driven" ? 62 : scen === "high-risk-sponsor" ? null : 4;
+  const hoursApisToSim = scen === "high-risk-sponsor" ? null : 6;
+  const hoursApisToRentalMol = scen === "high-risk-sponsor" ? null : (isClean ? 12 : 28);
+  const sponsorRisk = r.sponsor ? +(r.subScores.entity / 100).toFixed(2) : null;
+  const sponsorDegree = r.sponsor ? Math.round(3 + r.subScores.entity / 15) : null;
+
+  const vec: FeatureVector = {
+    traveler_id: r.id,
+    decision_point: r.decisionPoint,
+    as_of: r.computedAt,
+    // Routing
+    origin_iata: r.originIata,
+    carrier_iata: r.carrierIata,
+    nationality: r.nationality,
+    stopover_count: scen === "anomaly-driven" ? 2 : 0,
+    hour_of_arrival: hour,
+    dow_of_arrival: dow,
+    booking_to_departure_days: scen === "anomaly-driven" ? 0 : (isClean ? 38 : 7),
+    // Behavioral
+    prior_overstays: priorOverstays,
+    visit_cadence_days: isClean ? 95 : null,
+    mean_length_of_stay_days: isClean ? 6 : null,
+    visa_denial_count: visaDenials,
+    // Declaration
+    declared_address_matches_hotel: declAddrHotel,
+    declared_address_matches_municipality: scen === "anomaly-driven" ? false : (isClean ? true : null),
+    declared_employer_matches_mol: declEmployerMol,
+    declared_length_vs_actual_days: isClean ? 0 : null,
+    // Presence
+    hours_apis_to_first_hotel: hoursApisToHotel,
+    hours_apis_to_first_sim: hoursApisToSim,
+    hours_apis_to_first_rental_or_mol: hoursApisToRentalMol,
+    missing_presence_signals_count:
+      (hoursApisToHotel === null ? 1 : 0) +
+      (hoursApisToSim === null ? 1 : 0) +
+      (hoursApisToRentalMol === null ? 1 : 0),
+    // Entity
+    sponsor_propagated_risk: sponsorRisk,
+    employer_propagated_risk: r.sponsor ? +((r.subScores.entity * 0.7) / 100).toFixed(2) : null,
+    sponsor_graph_degree: sponsorDegree,
+    // OSINT context
+    origin_conflict_intensity_7d: r.subScores.geopolitical > 40 ? r.subScores.geopolitical * 2 : null,
+    origin_travel_advisory_level: r.subScores.geopolitical > 70 ? 4 : r.subScores.geopolitical > 45 ? 3 : r.subScores.geopolitical > 20 ? 2 : 1,
+    outbreak_active_at_origin: scen === "health-overlap",
+    // Meta
+    missing_feature_mask: {},
+    feature_schema_version: "v1.2.0",
+  };
+
+  // Build the missing_feature_mask from any null values above.
+  const mask: Record<string, boolean> = {};
+  (Object.entries(vec) as [string, unknown][]).forEach(([k, v]) => {
+    if (v === null) mask[k] = true;
+  });
+  vec.missing_feature_mask = mask;
+  return vec;
+};
+
+export const FEATURE_VECTORS: Record<string, FeatureVector> = SCORED_RECORDS.reduce(
+  (acc, r) => {
+    acc[r.id] = buildFeatureVector(r);
+    return acc;
+  },
+  {} as Record<string, FeatureVector>,
+);
+
+// ─────────────────────────────────────────────────────────────────────────
+// Weight Profiles (Wave 1 · Deliverable 5)
+// Named profiles replace the single default weight set in the Config tab.
+// ─────────────────────────────────────────────────────────────────────────
+
+export interface WeightProfile {
+  id: string;
+  name: string;
+  nameAr: string;
+  description: string;
+  descriptionAr: string;
+  decisionPoint: DecisionPoint | "both";
+  sourceClass: Classification | "all";
+  weights: Record<SubScoreKey, number>; // percentage points; must sum to 100
+  createdAt: string;
+  isDefault?: boolean;
+}
+
+export const WEIGHT_PROFILES: WeightProfile[] = [
+  {
+    id: "default",
+    name: "Balanced · default",
+    nameAr: "الملف الافتراضي",
+    description: "PoC-calibrated baseline weights (Tech Spec §6.2)",
+    descriptionAr: "الأوزان الأساسية المُعايَرة لمرحلة PoC (§6.2)",
+    decisionPoint: "both",
+    sourceClass: "all",
+    weights: { sanctions: 15, geopolitical: 12, biosecurity: 5, routing: 12, behavioral: 15, declaration: 12, entity: 10, presence: 10, document: 9 },
+    createdAt: "2026-03-18T00:00:00Z",
+    isDefault: true,
+  },
+  {
+    id: "eta-heavy-sanctions",
+    name: "ETA · Sanctions-heavy",
+    nameAr: "تأشيرة · ثقيل على العقوبات",
+    description: "ETA adjudication leans on sanctions/entity signal; low biosec",
+    descriptionAr: "تقدير التأشيرة يعتمد على العقوبات/الكيان وتقليل الوزن الحيوي",
+    decisionPoint: "ETA",
+    sourceClass: "all",
+    weights: { sanctions: 25, geopolitical: 15, biosecurity: 3, routing: 10, behavioral: 10, declaration: 10, entity: 12, presence: 8, document: 7 },
+    createdAt: "2026-03-28T00:00:00Z",
+  },
+  {
+    id: "pnr-behavioral",
+    name: "API/PNR · Behavioral-focus",
+    nameAr: "ركاب · سلوكي",
+    description: "API/PNR pre-arrival emphasizes behavioral + routing anomaly",
+    descriptionAr: "ما قبل الوصول يركّز على السلوك وشذوذ المسار",
+    decisionPoint: "API_PNR",
+    sourceClass: "all",
+    weights: { sanctions: 12, geopolitical: 10, biosecurity: 5, routing: 18, behavioral: 22, declaration: 12, entity: 8, presence: 8, document: 5 },
+    createdAt: "2026-04-02T00:00:00Z",
+  },
+  {
+    id: "classified-rasad",
+    name: "Classified · Rasad-weighted",
+    nameAr: "مصنّف · رصد",
+    description: "Classified feed boost — raises entity + behavioral, tunes document",
+    descriptionAr: "تعزيز التغذية المصنّفة — رفع الكيان والسلوك وضبط الوثيقة",
+    decisionPoint: "both",
+    sourceClass: "classified",
+    weights: { sanctions: 10, geopolitical: 15, biosecurity: 5, routing: 12, behavioral: 15, declaration: 10, entity: 15, presence: 10, document: 8 },
+    createdAt: "2026-04-08T00:00:00Z",
   },
 ];

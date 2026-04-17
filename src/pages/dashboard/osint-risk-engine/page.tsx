@@ -3,7 +3,7 @@ import { useNavigate, useOutletContext } from "react-router-dom";
 import type { DashboardOutletContext } from "../DashboardLayout";
 import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
-  BarChart, Bar, Cell,
+  BarChart, Bar, Cell, ScatterChart, Scatter, Line, ReferenceLine,
 } from "recharts";
 import {
   OSINT_SOURCES,
@@ -15,6 +15,13 @@ import {
   SCORE_BAND_META,
   CLASSIFICATION_META,
   SEQUENCE_TIMELINES,
+  SCORE_DRIFT_30D,
+  CALIBRATION_CURVE,
+  NATIONALITY_FAIRNESS,
+  MODEL_REGISTRY_TIMELINE,
+  MODEL_GOVERNANCE,
+  FEATURE_VECTORS,
+  WEIGHT_PROFILES,
   aggregate,
   type ScoredRecord,
   type SubScoreWeight,
@@ -26,9 +33,10 @@ import {
   type Classification,
   type SequenceTimeline,
   type SequenceTouchpoint,
+  type FeatureVector,
 } from "@/mocks/osintData";
 
-type Tab = "overview" | "queue" | "explain" | "sequence" | "sources" | "config";
+type Tab = "overview" | "queue" | "explain" | "sequence" | "sources" | "config" | "governance";
 type SourceFilter = "all" | "osint" | "internal";
 
 // ─── Shared helpers ─────────────────────────────────────────────────────────
@@ -165,6 +173,17 @@ const OsintRiskEnginePage = () => {
   const [selected, setSelected] = useState<ScoredRecord | null>(null);
   const [weights, setWeights] = useState<SubScoreWeight[]>(DEFAULT_SUB_SCORE_WEIGHTS);
   const [rules, setRules] = useState<RiskRule[]>(RISK_RULES);
+  // D5 — weight profile manager (persists selection to localStorage)
+  const WEIGHT_PROFILE_STORAGE_KEY = "ameen:risk-engine:weight-profile";
+  const [activeProfileId, setActiveProfileId] = useState<string>(() => {
+    try {
+      const saved = typeof window !== "undefined" ? window.localStorage.getItem(WEIGHT_PROFILE_STORAGE_KEY) : null;
+      return saved && WEIGHT_PROFILES.some((p) => p.id === saved) ? saved : "default";
+    } catch { return "default"; }
+  });
+  useEffect(() => {
+    try { window.localStorage.setItem(WEIGHT_PROFILE_STORAGE_KEY, activeProfileId); } catch { /* noop */ }
+  }, [activeProfileId]);
   // F1 — presenter mode
   const [presenterMode, setPresenterMode] = useState(false);
   // F2 — scenario-filter + toast
@@ -211,6 +230,17 @@ const OsintRiskEnginePage = () => {
   const handleRuleToggle = (id: string) => {
     setRules((prev) => prev.map((r) => (r.id === id ? { ...r, enabled: !r.enabled } : r)));
   };
+  // D5 — switching profile rebuilds the SubScoreWeight[] using the stored profile weights
+  const handleProfileSelect = (profileId: string) => {
+    const profile = WEIGHT_PROFILES.find((p) => p.id === profileId);
+    if (!profile) return;
+    setActiveProfileId(profileId);
+    setWeights(DEFAULT_SUB_SCORE_WEIGHTS.map((w) => ({
+      ...w,
+      weight: profile.weights[w.key] ?? w.defaultWeight,
+    })));
+  };
+  const handleProfileDiscard = () => handleProfileSelect(activeProfileId); // reset sliders to stored profile
 
   // F2 — scenario card click handler
   const handleScenarioLoad = (scenarioKey: string) => {
@@ -245,6 +275,7 @@ const OsintRiskEnginePage = () => {
     { id: "sequence", icon: "ri-flow-chart",        labelEn: "Sequence Coherence",labelAr: "تماسك التسلسل" },
     { id: "sources",  icon: "ri-broadcast-line",    labelEn: "Sources",           labelAr: "المصادر", badge: TOTAL_OSINT_BASELINE + INTERNAL_STREAMS.length, badgeColor: "#4ADE80" },
     { id: "config",   icon: "ri-equalizer-line",    labelEn: "Configuration",     labelAr: "الإعدادات" },
+    { id: "governance", icon: "ri-shield-star-line", labelEn: "Model Governance",  labelAr: "حوكمة النموذج" },
   ];
 
   return (
@@ -406,6 +437,7 @@ const OsintRiskEnginePage = () => {
             presenterMode={presenterMode}
             scenarioToast={scenarioToast}
             onDismissToast={() => setScenarioToast(null)}
+            featureVector={selected ? FEATURE_VECTORS[selected.id] ?? null : null}
           />
         )}
         {activeTab === "sequence" && <SequenceTab isAr={isAr} />}
@@ -419,8 +451,12 @@ const OsintRiskEnginePage = () => {
             onWeightChange={handleWeightChange}
             onWeightReset={handleWeightReset}
             onRuleToggle={handleRuleToggle}
+            activeProfileId={activeProfileId}
+            onProfileSelect={handleProfileSelect}
+            onProfileDiscard={handleProfileDiscard}
           />
         )}
+        {activeTab === "governance" && <GovernanceTab isAr={isAr} />}
       </main>
     </div>
   );
@@ -772,7 +808,7 @@ const QueueTab = ({
 // ─── Explainability tab ─────────────────────────────────────────────────────
 
 const ExplainTab = ({
-  isAr, record, weights, onBack, presenterMode, scenarioToast, onDismissToast,
+  isAr, record, weights, onBack, presenterMode, scenarioToast, onDismissToast, featureVector,
 }: {
   isAr: boolean;
   record: ScoredRecord | null;
@@ -781,6 +817,7 @@ const ExplainTab = ({
   presenterMode: boolean;
   scenarioToast: string | null;
   onDismissToast: () => void;
+  featureVector: FeatureVector | null;
 }) => {
   if (!record) {
     return (
@@ -1040,6 +1077,154 @@ const ExplainTab = ({
           })}
         </div>
       </div>
+
+      {/* D4 — Feature Vector inspector (developer mode, hidden in presenter) */}
+      {!presenterMode && featureVector && (
+        <FeatureVectorInspector isAr={isAr} vector={featureVector} />
+      )}
+    </div>
+  );
+};
+
+// ─── Feature Vector inspector (D4) ─────────────────────────────────────────
+
+const FV_GROUPS: { key: string; labelEn: string; labelAr: string; fields: (keyof FeatureVector)[] }[] = [
+  { key: "routing",     labelEn: "Routing",     labelAr: "المسار",      fields: ["origin_iata", "carrier_iata", "nationality", "stopover_count", "hour_of_arrival", "dow_of_arrival", "booking_to_departure_days"] },
+  { key: "behavioral",  labelEn: "Behavioral",  labelAr: "السلوك",       fields: ["prior_overstays", "visit_cadence_days", "mean_length_of_stay_days", "visa_denial_count"] },
+  { key: "declaration", labelEn: "Declaration", labelAr: "الإقرار",      fields: ["declared_address_matches_hotel", "declared_address_matches_municipality", "declared_employer_matches_mol", "declared_length_vs_actual_days"] },
+  { key: "presence",    labelEn: "Presence",    labelAr: "الحضور",       fields: ["hours_apis_to_first_hotel", "hours_apis_to_first_sim", "hours_apis_to_first_rental_or_mol", "missing_presence_signals_count"] },
+  { key: "entity",      labelEn: "Entity",      labelAr: "الكيان",       fields: ["sponsor_propagated_risk", "employer_propagated_risk", "sponsor_graph_degree"] },
+  { key: "osint",       labelEn: "OSINT",       labelAr: "OSINT",         fields: ["origin_conflict_intensity_7d", "origin_travel_advisory_level", "outbreak_active_at_origin"] },
+  { key: "meta",        labelEn: "Meta",        labelAr: "بيانات الوصف",  fields: ["traveler_id", "decision_point", "as_of", "feature_schema_version"] },
+];
+
+const renderFeatureValue = (v: unknown): string => {
+  if (v === null) return "null";
+  if (v === undefined) return "undefined";
+  if (typeof v === "boolean") return v ? "true" : "false";
+  if (typeof v === "number" || typeof v === "string") return JSON.stringify(v);
+  return JSON.stringify(v);
+};
+
+const FeatureVectorInspector = ({ isAr, vector }: { isAr: boolean; vector: FeatureVector }) => {
+  const [open, setOpen] = useState(false);
+  const [openGroups, setOpenGroups] = useState<Record<string, boolean>>(
+    () => Object.fromEntries(FV_GROUPS.map((g) => [g.key, true])),
+  );
+  const [copied, setCopied] = useState(false);
+
+  const copyJson = () => {
+    try {
+      const json = JSON.stringify(vector, null, 2);
+      navigator.clipboard?.writeText(json);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1800);
+    } catch { /* noop */ }
+  };
+
+  const missingMask = vector.missing_feature_mask ?? {};
+
+  return (
+    <div className="rounded-xl border overflow-hidden"
+      style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.12)" }}>
+      {/* Header row */}
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        className="w-full flex items-center justify-between gap-3 px-5 py-3 cursor-pointer text-left"
+        style={{ background: open ? "rgba(184,138,60,0.06)" : "transparent" }}
+      >
+        <div className="flex items-center gap-2">
+          <i className={`ri-code-s-slash-line text-base`} style={{ color: "#D6B47E" }} />
+          <h3 className="text-white text-sm font-bold">
+            {isAr ? "متجه الميزات" : "Feature Vector"}
+            <span className="ml-2 text-[10px] tracking-widest font-['JetBrains_Mono'] px-2 py-0.5 rounded"
+              style={{ background: "rgba(107,79,174,0.15)", color: "#6B4FAE" }}>
+              {isAr ? "وضع المطوّر" : "DEVELOPER MODE"}
+            </span>
+          </h3>
+        </div>
+        <div className="flex items-center gap-3">
+          <span className="text-gray-600 text-[10px] font-['JetBrains_Mono']">
+            {isAr ? "مدخلات الـ ML بالضبط · مخطط v1.2.0" : "Exact inputs for ML scoring · schema v1.2.0"}
+          </span>
+          <i className={open ? "ri-arrow-up-s-line text-xl text-gray-400" : "ri-arrow-down-s-line text-xl text-gray-400"} />
+        </div>
+      </button>
+
+      {open && (
+        <div className="p-5 pt-3 border-t" style={{ borderColor: "rgba(184,138,60,0.08)" }}>
+          <div className="flex items-center justify-between mb-3">
+            <p className="text-gray-500 text-[11px] font-['JetBrains_Mono']">
+              {Object.keys(missingMask).length > 0
+                ? (isAr
+                    ? `${Object.keys(missingMask).length} حقل/حقول مفقودة — مُظلَّلة بالكهرماني`
+                    : `${Object.keys(missingMask).length} missing feature(s) highlighted in amber`)
+                : (isAr ? "جميع الحقول متوفرة" : "All fields present")}
+            </p>
+            <button onClick={copyJson}
+              className="px-3 py-1 rounded-md text-[11px] font-bold font-['JetBrains_Mono'] tracking-widest cursor-pointer flex items-center gap-1.5"
+              style={{ background: "rgba(184,138,60,0.06)", border: "1px solid #D6B47E55", color: "#D6B47E" }}>
+              <i className={copied ? "ri-check-line" : "ri-file-copy-line"} />
+              {copied ? (isAr ? "تم النسخ" : "COPIED") : (isAr ? "نسخ JSON" : "COPY JSON")}
+            </button>
+          </div>
+
+          <div className="space-y-2">
+            {FV_GROUPS.map((g) => {
+              const groupOpen = openGroups[g.key] ?? true;
+              return (
+                <div key={g.key} className="rounded-md overflow-hidden"
+                  style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
+                  <button type="button"
+                    onClick={() => setOpenGroups((prev) => ({ ...prev, [g.key]: !groupOpen }))}
+                    className="w-full flex items-center justify-between px-3 py-1.5 cursor-pointer text-left">
+                    <span className="text-[11px] font-bold tracking-widest uppercase font-['JetBrains_Mono']"
+                      style={{ color: "#D6B47E" }}>
+                      {isAr ? g.labelAr : g.labelEn} · <span className="text-gray-500">{g.fields.length}</span>
+                    </span>
+                    <i className={groupOpen ? "ri-arrow-up-s-line text-gray-500" : "ri-arrow-down-s-line text-gray-500"} />
+                  </button>
+                  {groupOpen && (
+                    <div className="px-3 pb-2 space-y-1">
+                      {g.fields.map((f) => {
+                        const val = vector[f];
+                        const missing = missingMask[f as string] === true;
+                        return (
+                          <div key={String(f)}
+                            className="flex items-baseline gap-3 rounded-sm px-2 py-1"
+                            style={{
+                              background: missing ? "rgba(201,138,27,0.10)" : "transparent",
+                              borderLeft: missing ? "2px solid #C98A1B" : "2px solid transparent",
+                            }}>
+                            <span className="text-[11px] font-['JetBrains_Mono'] text-gray-400 w-56 truncate">{String(f)}</span>
+                            <span className="text-gray-600 text-[11px]">:</span>
+                            <span className="text-[11px] font-['JetBrains_Mono'] font-bold"
+                              style={{ color: missing ? "#C98A1B" : "#D6B47E" }}>
+                              {renderFeatureValue(val)}
+                            </span>
+                            {missing && (
+                              <span className="text-[9px] font-['JetBrains_Mono'] text-[#C98A1B]/80 ml-auto tracking-widest">
+                                {isAr ? "مفقودة" : "MISSING"}
+                              </span>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          <p className="text-gray-600 text-[10px] font-['JetBrains_Mono'] mt-3">
+            {isAr
+              ? "هذا المتجه هو المدخل الدقيق لنموذج التسجيل — مُسجَّل في كل مرة يتم فيها الحساب."
+              : "This vector is the exact input to the scoring model — logged on every computation."}
+          </p>
+        </div>
+      )}
     </div>
   );
 };
@@ -1323,6 +1508,7 @@ const SourcesTab = ({ isAr, presenterMode }: { isAr: boolean; presenterMode: boo
 
 const ConfigTab = ({
   isAr, weights, totalWeight, rules, onWeightChange, onWeightReset, onRuleToggle,
+  activeProfileId, onProfileSelect, onProfileDiscard,
 }: {
   isAr: boolean;
   weights: SubScoreWeight[];
@@ -1331,8 +1517,23 @@ const ConfigTab = ({
   onWeightChange: (key: SubScoreKey, value: number) => void;
   onWeightReset: () => void;
   onRuleToggle: (id: string) => void;
+  activeProfileId: string;
+  onProfileSelect: (id: string) => void;
+  onProfileDiscard: () => void;
 }) => {
   const balanced = totalWeight === 100;
+  // D5 — active profile + dirty-state detection
+  const activeProfile = WEIGHT_PROFILES.find((p) => p.id === activeProfileId) ?? WEIGHT_PROFILES[0];
+  const isDirty = weights.some((w) => w.weight !== (activeProfile.weights[w.key] ?? w.defaultWeight));
+  const [saveToast, setSaveToast] = useState<string | null>(null);
+  const handleSaveAttempt = () => {
+    setSaveToast(isAr ? "حفظ الملفات يأتي في المرحلة 2" : "Profile saving is Phase 2");
+    setTimeout(() => setSaveToast(null), 2600);
+  };
+  const handleNewProfile = () => {
+    setSaveToast(isAr ? "إنشاء ملفات جديدة يأتي في المرحلة 2" : "New profile creation is Phase 2");
+    setTimeout(() => setSaveToast(null), 2600);
+  };
 
   // F3 — recompute top-5 records under current weights vs default.
   const computeWithWeights = (ws: SubScoreWeight[]) => {
@@ -1361,13 +1562,108 @@ const ConfigTab = ({
 
   return (
     <div className="space-y-4">
+      {/* D5 — Weight Profile manager */}
+      <div className="rounded-xl border p-4"
+        style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.12)" }}>
+        <div className="flex items-start justify-between mb-3 gap-3 flex-wrap">
+          <div>
+            <h3 className="text-white text-sm font-bold flex items-center gap-2">
+              <i className="ri-stack-line text-[#D6B47E]" />
+              {isAr ? "ملفات الأوزان" : "Weight profiles"}
+            </h3>
+            <p className="text-gray-500 text-[11px] font-['JetBrains_Mono']">
+              {isAr
+                ? "اختر ملفاً لتوجيه التسجيل بأوزان مختلفة لكل نقطة قرار أو تصنيف مصدر"
+                : "Pick a profile to steer scoring with different weights per decision point / source class"}
+            </p>
+          </div>
+          <button onClick={handleNewProfile}
+            className="px-3 py-1.5 rounded-md text-xs font-semibold cursor-pointer flex items-center gap-1.5"
+            style={{ background: "transparent", border: "1px solid #D6B47E55", color: "#D6B47E" }}>
+            <i className="ri-add-line" />
+            {isAr ? "ملف جديد" : "New Profile"}
+          </button>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {WEIGHT_PROFILES.map((p) => {
+            const active = p.id === activeProfileId;
+            const dpChip = p.decisionPoint === "both"
+              ? { label: "ETA + API/PNR", color: "#D6B47E" }
+              : { label: p.decisionPoint, color: p.decisionPoint === "ETA" ? "#D6B47E" : "#6B4FAE" };
+            const scChip = p.sourceClass === "all" ? null : CLASSIFICATION_META[p.sourceClass];
+            return (
+              <button key={p.id} onClick={() => onProfileSelect(p.id)}
+                className="flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-semibold cursor-pointer transition-all"
+                style={{
+                  background: active
+                    ? "linear-gradient(135deg, rgba(184,138,60,0.18), rgba(10,37,64,0.9))"
+                    : "rgba(10,37,64,0.85)",
+                  color: active ? "#D6B47E" : "#9CA3AF",
+                  border: `1px solid ${active ? "#D6B47E" : "rgba(255,255,255,0.1)"}`,
+                  boxShadow: active ? "0 0 12px rgba(184,138,60,0.15)" : "none",
+                }}>
+                <span>{isAr ? p.nameAr : p.name}</span>
+                <span className="px-1.5 py-0.5 rounded text-[9px] font-['JetBrains_Mono']"
+                  style={{ background: `${dpChip.color}15`, color: dpChip.color }}>
+                  {dpChip.label}
+                </span>
+                {scChip && (
+                  <span className="px-1.5 py-0.5 rounded text-[9px] font-['JetBrains_Mono']"
+                    style={{ background: scChip.bg, color: scChip.color }}>
+                    {isAr ? scChip.labelAr : scChip.label}
+                  </span>
+                )}
+                {p.isDefault && (
+                  <i className="ri-star-fill text-[10px]" style={{ color: "#D6B47E" }} />
+                )}
+              </button>
+            );
+          })}
+        </div>
+        <div className="mt-3 pt-3 border-t flex items-center justify-between gap-3 flex-wrap"
+          style={{ borderColor: "rgba(184,138,60,0.08)" }}>
+          <p className="text-gray-400 text-xs">
+            <span className="text-[#D6B47E] font-semibold">{isAr ? activeProfile.nameAr : activeProfile.name}</span>
+            <span className="text-gray-600"> · </span>
+            <span className="text-gray-500">{isAr ? activeProfile.descriptionAr : activeProfile.description}</span>
+          </p>
+          {isDirty && (
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] font-bold font-['JetBrains_Mono'] tracking-widest" style={{ color: "#C98A1B" }}>
+                {isAr ? "تعديلات غير محفوظة" : "UNSAVED CHANGES"}
+              </span>
+              <button onClick={onProfileDiscard}
+                className="px-3 py-1 rounded-md text-[11px] font-semibold cursor-pointer"
+                style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)", color: "#9CA3AF" }}>
+                {isAr ? "تجاهل" : "Discard"}
+              </button>
+              <button onClick={handleSaveAttempt}
+                className="px-3 py-1 rounded-md text-[11px] font-bold cursor-pointer"
+                style={{ background: "rgba(184,138,60,0.15)", border: "1px solid #D6B47E", color: "#D6B47E" }}>
+                {isAr ? "حفظ" : "Save"}
+              </button>
+            </div>
+          )}
+          {saveToast && (
+            <span className="text-[11px] font-['JetBrains_Mono']" style={{ color: "#6B4FAE" }}>
+              <i className="ri-information-line mr-1" />{saveToast}
+            </span>
+          )}
+        </div>
+      </div>
+
       {/* Weights + preview */}
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
         <div className="xl:col-span-2 rounded-xl border p-5"
           style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.12)" }}>
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h3 className="text-white text-sm font-bold">{isAr ? "أوزان الدرجات الفرعية" : "Sub-score weights"}</h3>
+              <h3 className="text-white text-sm font-bold">
+                {isAr ? "أوزان الدرجات الفرعية" : "Sub-score weights"}
+                <span className="ml-2 text-[10px] font-['JetBrains_Mono'] text-gray-500">
+                  {isAr ? `الملف النشط: ${activeProfile.nameAr}` : `active: ${activeProfile.name}`}
+                </span>
+              </h3>
               <p className="text-gray-500 text-[11px] font-['JetBrains_Mono']">
                 {isAr ? "اضبط الأوزان. يجب أن يساوي المجموع 100%" : "Tune weights — total must equal 100%"}
               </p>
@@ -1504,6 +1800,322 @@ const ConfigTab = ({
               </button>
             );
           })}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// ─── Model Governance tab (D2) ──────────────────────────────────────────────
+
+const GovernanceTab = ({ isAr }: { isAr: boolean }) => {
+  // Drift: z-score of today's mean vs 30-day baseline using daily stdDev.
+  const todayPoint = SCORE_DRIFT_30D[SCORE_DRIFT_30D.length - 1];
+  const baseline = SCORE_DRIFT_30D.slice(0, -1);
+  const baselineMean = baseline.reduce((s, p) => s + p.meanScore, 0) / baseline.length;
+  const baselineSd = Math.sqrt(
+    baseline.reduce((s, p) => s + (p.meanScore - baselineMean) ** 2, 0) / baseline.length,
+  ) || 1;
+  const todayZ = (todayPoint.meanScore - baselineMean) / baselineSd;
+  const driftLabel = Math.abs(todayZ) < 2
+    ? { en: "Drift · OK", ar: "الانحراف · سليم", color: "#4ADE80" }
+    : Math.abs(todayZ) <= 3
+      ? { en: "Drift · WATCH", ar: "الانحراف · مراقبة", color: "#C98A1B" }
+      : { en: "Drift · BREACH", ar: "الانحراف · خرق", color: "#C94A5E" };
+
+  // Recharts-friendly drift data — compute upper/lower band per day.
+  const driftChartData = SCORE_DRIFT_30D.map((p) => ({
+    date: p.date.slice(5), // MM-DD
+    mean: p.meanScore,
+    upper: +(p.meanScore + p.stdDev).toFixed(2),
+    lower: +(p.meanScore - p.stdDev).toFixed(2),
+    population: p.population,
+  }));
+
+  const fairnessBreaches = NATIONALITY_FAIRNESS.filter((n) => Math.abs(n.deviationSigma) > 2).length;
+  const fairnessSorted = [...NATIONALITY_FAIRNESS].sort((a, b) => b.flagRatePct - a.flagRatePct);
+
+  const [rollbackConfirm, setRollbackConfirm] = useState(false);
+  const [rollbackToast, setRollbackToast] = useState<string | null>(null);
+  const confirmRollback = () => {
+    setRollbackToast(isAr
+      ? "تنفيذ التراجع محجوز للمرحلة 2 — تم تسجيل الطلب"
+      : "Rollback execution is Phase 2 — request logged");
+    setRollbackConfirm(false);
+    setTimeout(() => setRollbackToast(null), 2800);
+  };
+
+  return (
+    <div className="space-y-4">
+      {/* 12-col governance grid */}
+      <div className="grid grid-cols-12 gap-4">
+
+        {/* Panel 1 — Version stack (col-span 4) */}
+        <div className="col-span-12 lg:col-span-4 rounded-xl border p-5 flex flex-col gap-3"
+          style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.12)" }}>
+          <div className="flex items-center gap-2">
+            <i className="ri-git-commit-line text-[#D6B47E] text-base" />
+            <h3 className="text-white text-sm font-bold">{isAr ? "مكدّس الإصدار" : "Version stack"}</h3>
+          </div>
+
+          <div className="rounded-lg p-3"
+            style={{ background: "linear-gradient(135deg, rgba(107,79,174,0.1), rgba(10,37,64,0.75))", border: "1px solid rgba(107,79,174,0.3)" }}>
+            <div className="text-[10px] font-bold tracking-widest text-gray-500 font-['JetBrains_Mono']">
+              {isAr ? "نشط" : "ACTIVE"}
+            </div>
+            <div className="text-white text-lg font-black font-['JetBrains_Mono']">{MODEL_GOVERNANCE.activeVersion}</div>
+            <div className="text-gray-500 text-[10px] font-['JetBrains_Mono'] mt-1">
+              v{"{SCHEMA}.{REGISTRY}.{PATCH}"}-if{"{IF}"}-prank{"{PR}"}-seq{"{SQ}"}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-2 text-xs">
+            <div className="rounded-md p-2" style={{ background: "rgba(255,255,255,0.03)" }}>
+              <div className="text-[9px] tracking-widest text-gray-600 font-['JetBrains_Mono']">{isAr ? "السابق" : "PREVIOUS"}</div>
+              <div className="text-gray-300 font-['JetBrains_Mono'] text-xs">{MODEL_GOVERNANCE.previousVersion}</div>
+            </div>
+            <div className="rounded-md p-2" style={{ background: "rgba(255,255,255,0.03)" }}>
+              <div className="text-[9px] tracking-widest text-gray-600 font-['JetBrains_Mono']">{isAr ? "أيام الإنتاج" : "PROD DAYS"}</div>
+              <div className="text-gray-300 font-['JetBrains_Mono'] text-xs">{MODEL_GOVERNANCE.daysInProduction}d</div>
+            </div>
+            <div className="rounded-md p-2" style={{ background: "rgba(255,255,255,0.03)" }}>
+              <div className="text-[9px] tracking-widest text-gray-600 font-['JetBrains_Mono']">{isAr ? "آخر تدريب" : "LAST RETRAIN"}</div>
+              <div className="text-gray-300 font-['JetBrains_Mono'] text-xs">{MODEL_GOVERNANCE.lastRetrain}</div>
+            </div>
+            <div className="rounded-md p-2" style={{ background: "rgba(255,255,255,0.03)" }}>
+              <div className="text-[9px] tracking-widest text-gray-600 font-['JetBrains_Mono']">{isAr ? "المراجعة القادمة" : "NEXT REVIEW"}</div>
+              <div className="text-gray-300 font-['JetBrains_Mono'] text-xs">{MODEL_GOVERNANCE.nextScheduledReview}</div>
+            </div>
+          </div>
+
+          <div className="mt-auto pt-2 relative">
+            <button onClick={() => setRollbackConfirm(true)}
+              className="w-full px-3 py-2 rounded-md text-xs font-bold cursor-pointer flex items-center justify-center gap-2"
+              style={{ background: "rgba(201,74,94,0.08)", border: "1px solid #C94A5E", color: "#C94A5E" }}
+              title={isAr ? "العودة إلى الإصدار السابق" : "Revert to previous version"}>
+              <i className="ri-arrow-go-back-line" />
+              {isAr ? `التراجع إلى ${MODEL_GOVERNANCE.previousVersion}` : `Revert to ${MODEL_GOVERNANCE.previousVersion}`}
+            </button>
+            {rollbackConfirm && (
+              <div className="absolute inset-x-0 bottom-10 rounded-lg p-3 z-20"
+                style={{ background: "#0A2540", border: "1px solid #C94A5E", boxShadow: "0 8px 24px rgba(0,0,0,0.5)" }}>
+                <p className="text-gray-300 text-[11px] mb-2">
+                  {isAr
+                    ? `تأكيد التراجع إلى ${MODEL_GOVERNANCE.previousVersion}؟ سيتم إنشاء سجل تدقيق.`
+                    : `Confirm rollback to ${MODEL_GOVERNANCE.previousVersion}? An audit entry will be created.`}
+                </p>
+                <div className="flex gap-2">
+                  <button onClick={() => setRollbackConfirm(false)}
+                    className="flex-1 px-2 py-1 rounded text-[11px] font-semibold cursor-pointer"
+                    style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)", color: "#9CA3AF" }}>
+                    {isAr ? "إلغاء" : "Cancel"}
+                  </button>
+                  <button onClick={confirmRollback}
+                    className="flex-1 px-2 py-1 rounded text-[11px] font-bold cursor-pointer"
+                    style={{ background: "#C94A5E", color: "white" }}>
+                    {isAr ? "تأكيد" : "Confirm"}
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {rollbackToast && (
+            <p className="text-[11px] font-['JetBrains_Mono']" style={{ color: "#C98A1B" }}>
+              <i className="ri-information-line mr-1" />{rollbackToast}
+            </p>
+          )}
+        </div>
+
+        {/* Panel 2 — Score distribution + drift (col-span 8) */}
+        <div className="col-span-12 lg:col-span-8 rounded-xl border p-5"
+          style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.12)" }}>
+          <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
+            <div>
+              <h3 className="text-white text-sm font-bold flex items-center gap-2">
+                <i className="ri-line-chart-line text-[#6B4FAE]" />
+                {isAr ? "توزيع الدرجات والانحراف · 30 يوماً" : "Score distribution + drift · 30d"}
+              </h3>
+              <p className="text-gray-500 text-[11px] font-['JetBrains_Mono']">
+                {isAr ? "المتوسط اليومي ±1 انحراف معياري" : "daily mean score with ±1σ band"}
+              </p>
+            </div>
+            <div className="flex items-center gap-3">
+              <span className="text-[10px] tracking-widest font-['JetBrains_Mono'] text-gray-500">
+                {isAr ? "z اليوم:" : "today z:"}
+                <span className="ml-1 font-bold" style={{ color: driftLabel.color }}>
+                  {todayZ.toFixed(2)}σ
+                </span>
+              </span>
+              <span className="px-2 py-0.5 rounded-md text-[10px] font-bold tracking-widest font-['JetBrains_Mono']"
+                style={{ background: `${driftLabel.color}22`, color: driftLabel.color, border: `1px solid ${driftLabel.color}55` }}>
+                {isAr ? driftLabel.ar : driftLabel.en}
+              </span>
+            </div>
+          </div>
+          <div style={{ height: 220 }}>
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart data={driftChartData}>
+                <defs>
+                  <linearGradient id="g-drift-band" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%"  stopColor="#6B4FAE" stopOpacity={0.35} />
+                    <stop offset="100%" stopColor="#6B4FAE" stopOpacity={0.04} />
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(184,138,60,0.08)" />
+                <XAxis dataKey="date" stroke="#6B7280" tick={{ fontSize: 10, fontFamily: "JetBrains Mono" }} />
+                <YAxis stroke="#6B7280" tick={{ fontSize: 10, fontFamily: "JetBrains Mono" }} domain={["dataMin - 3", "dataMax + 3"]} />
+                <Tooltip contentStyle={{ background: "#0A2540", border: "1px solid rgba(184,138,60,0.3)", borderRadius: 8, fontSize: 12, fontFamily: "JetBrains Mono" }} />
+                <Area type="monotone" dataKey="upper" stroke="none" fill="url(#g-drift-band)" />
+                <Area type="monotone" dataKey="lower" stroke="none" fill="#0A2540" />
+                <Line type="monotone" dataKey="mean" stroke="#D6B47E" strokeWidth={2} dot={false} />
+              </AreaChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Panel 3 — Calibration curve (col-span 6) */}
+        <div className="col-span-12 lg:col-span-6 rounded-xl border p-5"
+          style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.12)" }}>
+          <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
+            <div>
+              <h3 className="text-white text-sm font-bold flex items-center gap-2">
+                <i className="ri-crosshair-2-line text-[#4ADE80]" />
+                {isAr ? "منحنى المعايرة" : "Calibration curve"}
+              </h3>
+              <p className="text-gray-500 text-[11px] font-['JetBrains_Mono']">
+                {isAr ? "متوقَّع مقابل مُلاحَظ" : "expected vs observed risk"}
+              </p>
+            </div>
+            <span className="text-[10px] tracking-widest font-['JetBrains_Mono']" style={{ color: "#4ADE80" }}>
+              <i className="ri-checkbox-circle-fill mr-1" />
+              {isAr ? "آخر تشغيل: 2026-04-17 02:15 UTC · سليم" : "Last run: 2026-04-17 02:15 UTC · OK"}
+            </span>
+          </div>
+          <div style={{ height: 220 }}>
+            <ResponsiveContainer width="100%" height="100%">
+              <ScatterChart margin={{ top: 8, right: 8, left: 0, bottom: 4 }}>
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(184,138,60,0.08)" />
+                <XAxis type="number" dataKey="expectedPct" domain={[0, 100]} stroke="#6B7280"
+                  tick={{ fontSize: 10, fontFamily: "JetBrains Mono" }}
+                  label={{ value: isAr ? "المتوقَّع %" : "expected %", fill: "#6B7280", fontSize: 10, position: "insideBottomRight", offset: -2 }} />
+                <YAxis type="number" dataKey="observedPct" domain={[0, 100]} stroke="#6B7280"
+                  tick={{ fontSize: 10, fontFamily: "JetBrains Mono" }}
+                  label={{ value: isAr ? "المُلاحَظ %" : "observed %", fill: "#6B7280", fontSize: 10, angle: -90, position: "insideLeft" }} />
+                <Tooltip contentStyle={{ background: "#0A2540", border: "1px solid rgba(184,138,60,0.3)", borderRadius: 8, fontSize: 12, fontFamily: "JetBrains Mono" }} />
+                <ReferenceLine segment={[{ x: 0, y: 0 }, { x: 100, y: 100 }]} stroke="#D6B47E" strokeDasharray="4 4" />
+                <Scatter data={CALIBRATION_CURVE} fill="#4ADE80" />
+              </ScatterChart>
+            </ResponsiveContainer>
+          </div>
+          <p className="text-gray-500 text-[10px] font-['JetBrains_Mono'] mt-2">
+            {isAr
+              ? "النسب المحسوبة مُعايَرة ليلياً · المجموع المحدود المرئي = المخرَج المُعايَر"
+              : "Percentile mapping re-calibrated nightly · bounded sum visible = calibrated output"}
+          </p>
+        </div>
+
+        {/* Panel 4 — Per-nationality fairness (col-span 6) */}
+        <div className="col-span-12 lg:col-span-6 rounded-xl border p-5"
+          style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.12)" }}>
+          <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
+            <div>
+              <h3 className="text-white text-sm font-bold flex items-center gap-2">
+                <i className="ri-scales-3-line text-[#D6B47E]" />
+                {isAr ? "العدالة عبر الجنسيات" : "Per-nationality fairness"}
+              </h3>
+              <p className="text-gray-500 text-[11px] font-['JetBrains_Mono']">
+                {isAr ? "أعلى 10 معدل رفع + انحراف عن المتوسط العالمي" : "top 10 flag-rate + deviation vs global mean"}
+              </p>
+            </div>
+            <span className="px-2 py-0.5 rounded-md text-[10px] font-bold tracking-widest font-['JetBrains_Mono']"
+              style={{ background: fairnessBreaches === 0 ? "rgba(74,222,128,0.15)" : "rgba(201,74,94,0.15)", color: fairnessBreaches === 0 ? "#4ADE80" : "#C94A5E" }}>
+              {isAr
+                ? `${fairnessBreaches} جنسيات تتجاوز حد 2σ`
+                : `${fairnessBreaches} nationalities breaching 2σ`}
+            </span>
+          </div>
+          <div className="space-y-1.5">
+            {fairnessSorted.slice(0, 10).map((n) => {
+              const absSigma = Math.abs(n.deviationSigma);
+              const sigmaColor = absSigma <= 1 ? "#4ADE80" : absSigma <= 2 ? "#C98A1B" : "#C94A5E";
+              const barPct = Math.min(100, n.flagRatePct * 2);
+              return (
+                <div key={n.iso3} className="flex items-center gap-2 text-xs">
+                  <span className="w-12 text-gray-400 font-['JetBrains_Mono']">{n.iso3}</span>
+                  <span className="w-28 text-gray-300 truncate">{n.name}</span>
+                  <div className="flex-1 h-3.5 rounded-sm relative overflow-hidden"
+                    style={{ background: "rgba(255,255,255,0.04)" }}>
+                    <div className="h-full"
+                      style={{ width: `${barPct}%`, background: sigmaColor, opacity: 0.85 }} />
+                  </div>
+                  <span className="w-12 text-right font-bold font-['JetBrains_Mono']" style={{ color: sigmaColor }}>
+                    {n.flagRatePct.toFixed(1)}%
+                  </span>
+                  <span className="w-14 text-right font-['JetBrains_Mono']" style={{ color: sigmaColor }}>
+                    {n.deviationSigma > 0 ? "+" : ""}{n.deviationSigma.toFixed(2)}σ
+                  </span>
+                  {absSigma > 2 && (
+                    <i className="ri-error-warning-line text-base" style={{ color: "#C94A5E" }} />
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Panel 5 — Model registry timeline (col-span 12) */}
+        <div className="col-span-12 rounded-xl border p-5"
+          style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.12)" }}>
+          <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
+            <div>
+              <h3 className="text-white text-sm font-bold flex items-center gap-2">
+                <i className="ri-timeline-view text-[#D6B47E]" />
+                {isAr ? "الخط الزمني للسجل" : "Model registry timeline"}
+              </h3>
+              <p className="text-gray-500 text-[11px] font-['JetBrains_Mono']">
+                {isAr ? "آخر 6 إصدارات منشورة" : "last 6 versions deployed"}
+              </p>
+            </div>
+            <span className="flex items-center gap-1.5 text-[11px] font-['JetBrains_Mono']" style={{ color: "#6B4FAE" }}>
+              <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: "#6B4FAE" }} />
+              {isAr
+                ? "يعمل حالياً v0.3.2-rc1 في وضع الظل للتقييم"
+                : "Currently running v0.3.2-rc1 in shadow mode for evaluation"}
+            </span>
+          </div>
+
+          <div className="relative pt-4 pb-6">
+            <div className="absolute left-0 right-0 top-[50%] h-[2px]" style={{ background: "rgba(184,138,60,0.2)" }} />
+            <div className="grid grid-flow-col auto-cols-fr gap-2 relative">
+              {MODEL_REGISTRY_TIMELINE.map((m) => {
+                const statusMeta = m.status === "active"
+                  ? { color: "#4ADE80", label: isAr ? "نشط" : "ACTIVE",   icon: "ri-check-double-line" }
+                  : m.status === "shadow"
+                    ? { color: "#6B4FAE", label: isAr ? "ظل" : "SHADOW", icon: "ri-moon-line" }
+                    : { color: "#6B7280", label: isAr ? "متقاعد" : "RETIRED", icon: "ri-pause-circle-line" };
+                return (
+                  <div key={m.version} className="flex flex-col items-center gap-2">
+                    <div className="text-[10px] text-gray-500 font-['JetBrains_Mono']">{m.deployedAt}</div>
+                    <div className="w-5 h-5 rounded-full relative z-10 flex items-center justify-center"
+                      style={{ background: `${statusMeta.color}22`, border: `2px solid ${statusMeta.color}` }}>
+                      {m.status !== "retired" && (
+                        <span className="w-2 h-2 rounded-full" style={{ background: statusMeta.color }} />
+                      )}
+                    </div>
+                    <div className="text-xs font-bold text-white font-['JetBrains_Mono']">{m.version}</div>
+                    <span className="px-1.5 py-0.5 rounded text-[9px] font-bold font-['JetBrains_Mono'] tracking-widest"
+                      style={{ background: `${statusMeta.color}18`, color: statusMeta.color }}>
+                      <i className={`${statusMeta.icon} mr-0.5`} />{statusMeta.label}
+                    </span>
+                    <p className="text-[10px] text-gray-500 text-center max-w-[160px] leading-tight">
+                      {isAr ? m.noteAr : m.noteEn}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
     </div>

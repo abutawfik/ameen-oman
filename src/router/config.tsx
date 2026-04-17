@@ -48,6 +48,7 @@ import GeointPage from "../pages/dashboard/geoint/page";
 import ThreatIntelPage from "../pages/dashboard/threat-intel/page";
 import CaseManagementPage from "../pages/dashboard/case-management/page";
 import ExecutiveDashboardPage from "../pages/dashboard/executive/page";
+import AuditLogPage from "../pages/dashboard/audit-log/page";
 
 const routes: RouteObject[] = [
   {
@@ -110,6 +111,7 @@ const routes: RouteObject[] = [
       { path: "threat-intel", element: <ThreatIntelPage /> },
       { path: "case-management", element: <CaseManagementPage /> },
       { path: "executive", element: <ExecutiveDashboardPage /> },
+      { path: "audit-log", element: <AuditLogPage /> },
     ],
   },
   {
