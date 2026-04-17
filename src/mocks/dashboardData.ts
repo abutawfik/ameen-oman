@@ -242,6 +242,7 @@ export const branches: BranchOption[] = [
 export const navItems = [
   { key: "home",            icon: "ri-home-5-line",          labelEn: "Home",               labelAr: "الرئيسية",          route: "/dashboard",                   group: "main"  },
   { key: "risk",            icon: "ri-shield-cross-line",    labelEn: "Risk Assessment",    labelAr: "تقييم المخاطر",     route: "/dashboard/risk-assessment",   group: "admin" },
+  { key: "osint-engine",    icon: "ri-radar-line",           labelEn: "OSINT Risk Engine",  labelAr: "محرّك المخاطر OSINT", route: "/dashboard/osint-risk-engine", group: "admin" },
   { key: "watchlist",       icon: "ri-eye-line",             labelEn: "Watchlist & Targets",labelAr: "قوائم المراقبة",    route: "/dashboard/watchlist",         group: "admin" },
   { key: "case-management", icon: "ri-folder-shield-2-line", labelEn: "Case Management",    labelAr: "إدارة القضايا",     route: "/dashboard/case-management",   group: "admin" },
   { key: "person360",       icon: "ri-user-search-line",     labelEn: "Person 360°",        labelAr: "ملف الشخص 360°",    route: "/dashboard/person-360",        group: "admin" },

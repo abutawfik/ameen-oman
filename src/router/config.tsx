@@ -24,6 +24,7 @@ import CalendarEventsPage from "../pages/dashboard/calendar-events/page";
 import BatchReportsPage from "../pages/dashboard/batch-reports/page";
 import CommandCenterPage from "../pages/dashboard/command-center/page";
 import RiskAssessmentPage from "../pages/dashboard/risk-assessment/page";
+import OsintRiskEnginePage from "../pages/dashboard/osint-risk-engine/page";
 import PatternEnginePage from "../pages/dashboard/pattern-engine/page";
 import PredictiveAnalyticsPage from "../pages/dashboard/predictive-analytics/page";
 import Person360Page from "../pages/dashboard/person-360/page";
@@ -159,6 +160,10 @@ const routes: RouteObject[] = [
   {
     path: "/dashboard/risk-assessment",
     element: <RiskAssessmentPage />,
+  },
+  {
+    path: "/dashboard/osint-risk-engine",
+    element: <OsintRiskEnginePage />,
   },
   {
     path: "/dashboard/pattern-engine",
