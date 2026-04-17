@@ -111,13 +111,20 @@ const HeroSection = () => {
           {isAr ? "الأمين" : "Al-Ameen"}
         </h1>
 
-        {/* Tagline row — [rule] text [rule], active language only */}
+        {/* Tagline block — bilingual: primary language between gold rules,
+            counterpart below as a smaller subordinate line. Both languages
+            show regardless of UI mode so the Arabic slogan الحارس الأمين للوطن
+            is always visible on the home page (per brand's bilingual-equality
+            principle). */}
         <div
-          className="animate-fade-in"
+          className="animate-fade-in flex flex-col items-center gap-2"
           style={{ marginBottom: "1.5rem", animationDelay: "0.4s" }}
-          dir={isAr ? "rtl" : "ltr"}
         >
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "1.25rem" }}>
+          {/* Primary tagline — in the current UI language, between gold rules */}
+          <div
+            dir={isAr ? "rtl" : "ltr"}
+            style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "1.25rem" }}
+          >
             <span style={{ height: 1, width: 60, background: "linear-gradient(90deg, transparent, " + C.gold500 + ")" }} />
             <span
               style={{
@@ -128,15 +135,30 @@ const HeroSection = () => {
                 color: C.ivory100,
               }}
             >
-              {/* i18n's `t("hero.tagline")` auto-resolves to the current
-                  locale's value — EN file has the English tagline under this
-                  key, AR file has الحارس الأمين للوطن. Don't branch on isAr
-                  here (that would flip to the COUNTERPART key and render the
-                  wrong language). */}
+              {/* `t("hero.tagline")` auto-resolves to the current locale's value:
+                  EN → "The Nation's Trusted Guardian" · AR → الحارس الأمين للوطن */}
               {t("hero.tagline")}
             </span>
             <span style={{ height: 1, width: 60, background: "linear-gradient(90deg, " + C.gold500 + ", transparent)" }} />
           </div>
+          {/* Counterpart — opposite-language version. In EN mode this is the
+              Arabic slogan (gold Cairo). In AR mode this is the English italic
+              tagline. `t("hero.arabicTagline")` carries the counterpart in
+              each locale file. */}
+          <span
+            dir={isAr ? "ltr" : "rtl"}
+            style={{
+              fontFamily: isAr ? FF_DISPLAY : FF_ARABIC,
+              fontSize: isAr ? "0.875rem" : "1rem",
+              fontWeight: isAr ? 400 : 500,
+              fontStyle: isAr ? "italic" : "normal",
+              color: C.gold400,
+              opacity: 0.9,
+              letterSpacing: isAr ? "0.01em" : "0.02em",
+            }}
+          >
+            {t("hero.arabicTagline")}
+          </span>
         </div>
 
       </div>
