@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import VersionBadge from "@/components/VersionBadge";
 
 const Footer = () => {
   const { t } = useTranslation();
@@ -85,6 +86,8 @@ const Footer = () => {
             <a href="#" className="text-gray-600 text-xs hover:text-gold-400 transition-colors cursor-pointer font-['Inter']">{t("footer.privacy")}</a>
             <span className="text-gray-700">|</span>
             <a href="#" className="text-gray-600 text-xs hover:text-gold-400 transition-colors cursor-pointer font-['Inter']">{t("footer.terms")}</a>
+            <span className="text-gray-700">|</span>
+            <VersionBadge tone="light" size="sm" />
           </div>
         </div>
       </div>

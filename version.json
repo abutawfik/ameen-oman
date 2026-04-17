@@ -1,0 +1,8 @@
+{
+  "_comment": "Single source of truth for the Al-Ameen portal version. Follows SemVer — MAJOR.MINOR.PATCH.BUILD plus optional pre-release label (alpha/beta/rc). Do NOT edit the numeric fields by hand — use `npm run version:<segment>`. BUILD auto-increments on every CI pipeline run via `npm run version:build`. When any higher segment increments, all lower segments reset to 0 per SemVer. Commit hash + build timestamp populate at build time (vite.config.ts) and expose to the app via __APP_VERSION__ / __APP_VERSION_META__.",
+  "major": 1,
+  "minor": 0,
+  "patch": 0,
+  "build": 1,
+  "preRelease": null
+}

@@ -19,7 +19,7 @@ Version 1.0 · Tech Spec buildout complete · Prepared for SITA Borders MEA
 
 | Target | URL |
 | --- | --- |
-| Primary (live)   | `https://al-ameen.vercel.app` (confirm the exact deploy URL with the account team before the meeting) |
+| Primary (live)   | `https://ameen-oman.vercel.app` (confirm the exact deploy URL with the account team before the meeting) |
 | Local fallback   | `http://localhost:5173` after `npm run dev` |
 | Seeded narration | Append `?narrate=<step-id>` to any route to deep-link a specific highlight |
 
@@ -322,7 +322,7 @@ Send within 24 hours of the meeting.
 
 | Artifact | Where |
 | --- | --- |
-| Live deploy URL | `https://al-ameen.vercel.app` (confirm with account team) |
+| Live deploy URL | `https://ameen-oman.vercel.app` (confirm with account team) |
 | PDF of this walkthrough | Export this file via `pandoc DEMO_WALKTHROUGH.md -o walkthrough.pdf` or Chrome print-to-PDF |
 | Tech Spec v1.0 | Separate secure channel — do not attach to email |
 | Integration workshop invite | 2-hour session, on-site at NHQ, dates via account team |
@@ -392,4 +392,4 @@ Built-in `N`-key walkthroughs. Twelve pages, fifty steps total. Array lives in `
 | `/dashboard/reports` | 4 | Template grid → generate now → custom tile → scheduled link |
 | `/dashboard/risk-assessment` | 3 | Phase 1 binary → Phase 2 weighted → score config |
 
-**Unattended presenter mode:** queue narration via `?narrate=<step-id>`. Example: `https://al-ameen.vercel.app/dashboard/osint-risk-engine?narrate=osint-sequence-gap` lands directly on the Sequence Coherence anomaly with the highlight already active. Useful for demo stations that loop without a human at the keyboard.
+**Unattended presenter mode:** queue narration via `?narrate=<step-id>`. Example: `https://ameen-oman.vercel.app/dashboard/osint-risk-engine?narrate=osint-sequence-gap` lands directly on the Sequence Coherence anomaly with the highlight already active. Useful for demo stations that loop without a human at the keyboard.

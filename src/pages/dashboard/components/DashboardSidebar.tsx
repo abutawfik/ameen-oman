@@ -1,6 +1,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { navItems, entityMeta, type EntityType } from "@/mocks/dashboardData";
 import BrandLogo from "@/brand/BrandLogo";
+import VersionBadge from "@/components/VersionBadge";
 
 interface Props {
   activeNav: string;
@@ -213,6 +214,13 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
           }`} />
           {!collapsed && <span className="text-xs font-['Inter']">{isAr ? "طي" : "Collapse"}</span>}
         </button>
+
+        {/* Version badge — only in expanded mode. Compile-time build + commit. */}
+        {!collapsed && (
+          <div className="mt-3 flex justify-center">
+            <VersionBadge tone="light" size="sm" />
+          </div>
+        )}
 
         {/* Divider between collapse toggle and sign-out */}
         <div className="my-3 border-t" style={{ borderColor: "rgba(184,138,60,0.08)" }} />
