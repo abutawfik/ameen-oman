@@ -9,13 +9,24 @@ export type SubScoreKey =
   | "geopolitical"
   | "biosecurity"
   | "routing"
+  | "behavioral"
+  | "declaration"
   | "entity"
+  | "presence"
   | "document";
 
 export type DecisionPoint = "ETA" | "API_PNR";
 export type RiskBand = "low" | "borderline" | "elevated" | "high" | "critical";
 export type SourceConfidence = "High" | "Medium-High" | "Medium" | "Low";
 export type SourceStatus = "healthy" | "degraded" | "stale" | "down";
+export type Classification = "public" | "internal" | "restricted" | "classified";
+
+export const CLASSIFICATION_META: Record<Classification, { color: string; bg: string; label: string; labelAr: string }> = {
+  public:     { color: "#22D3EE", bg: "rgba(34,211,238,0.1)",  label: "PUBLIC",     labelAr: "عام" },
+  internal:   { color: "#4ADE80", bg: "rgba(74,222,128,0.1)",  label: "INTERNAL",   labelAr: "داخلي" },
+  restricted: { color: "#FB923C", bg: "rgba(251,146,60,0.1)",  label: "RESTRICTED", labelAr: "مقيّد" },
+  classified: { color: "#F87171", bg: "rgba(248,113,113,0.1)", label: "CLASSIFIED", labelAr: "سرّي" },
+};
 
 // ─────────────────────────────────────────────────────────────────────────
 // Sub-score weights (defaults per PoC §6.2, tunable via Config tab)
@@ -38,8 +49,8 @@ export const DEFAULT_SUB_SCORE_WEIGHTS: SubScoreWeight[] = [
     key: "sanctions",
     labelEn: "Sanctions / PEP",
     labelAr: "العقوبات / الشخصيات السياسية",
-    defaultWeight: 25,
-    weight: 25,
+    defaultWeight: 15,
+    weight: 15,
     color: "#F87171",
     icon: "ri-shield-cross-line",
     primarySources: ["OpenSanctions"],
@@ -49,8 +60,8 @@ export const DEFAULT_SUB_SCORE_WEIGHTS: SubScoreWeight[] = [
     key: "geopolitical",
     labelEn: "Geopolitical Origin",
     labelAr: "المخاطر الجيوسياسية",
-    defaultWeight: 20,
-    weight: 20,
+    defaultWeight: 12,
+    weight: 12,
     color: "#FB923C",
     icon: "ri-global-line",
     primarySources: ["GDELT", "ACLED", "Advisories"],
@@ -60,8 +71,8 @@ export const DEFAULT_SUB_SCORE_WEIGHTS: SubScoreWeight[] = [
     key: "biosecurity",
     labelEn: "Biosecurity",
     labelAr: "الأمن الحيوي",
-    defaultWeight: 10,
-    weight: 10,
+    defaultWeight: 5,
+    weight: 5,
     color: "#FACC15",
     icon: "ri-heart-pulse-line",
     primarySources: ["WHO", "ECDC", "ReliefWeb"],
@@ -71,30 +82,63 @@ export const DEFAULT_SUB_SCORE_WEIGHTS: SubScoreWeight[] = [
     key: "routing",
     labelEn: "Routing Anomaly",
     labelAr: "شذوذ المسار",
-    defaultWeight: 20,
-    weight: 20,
+    defaultWeight: 12,
+    weight: 12,
     color: "#AA95FF",
     icon: "ri-route-line",
     primarySources: ["OpenSky", "flight history"],
     method: "Isolation Forest (unsupervised)",
   },
   {
+    key: "behavioral",
+    labelEn: "Behavioral History",
+    labelAr: "السجل السلوكي",
+    defaultWeight: 15,
+    weight: 15,
+    color: "#EC4899",
+    icon: "ri-user-heart-line",
+    primarySources: ["eVisa history", "Entry/Exit", "Historical border"],
+    method: "Prior-overstays / visit-cadence / denial count",
+  },
+  {
+    key: "declaration",
+    labelEn: "Declaration Match",
+    labelAr: "مطابقة الإقرار",
+    defaultWeight: 12,
+    weight: 12,
+    color: "#14B8A6",
+    icon: "ri-contacts-book-line",
+    primarySources: ["MOL employment", "Hotels", "Municipality"],
+    method: "Declared employer / address match score",
+  },
+  {
     key: "entity",
     labelEn: "Sponsor / Entity",
     labelAr: "الكفيل / الكيان",
-    defaultWeight: 15,
-    weight: 15,
+    defaultWeight: 10,
+    weight: 10,
     color: "#22D3EE",
     icon: "ri-organization-chart",
     primarySources: ["OpenCorporates", "OpenSanctions"],
     method: "Personalized PageRank (decay 0.5)",
   },
   {
+    key: "presence",
+    labelEn: "Presence Coherence",
+    labelAr: "تماسك الحضور",
+    defaultWeight: 10,
+    weight: 10,
+    color: "#F59E0B",
+    icon: "ri-time-line",
+    primarySources: ["APIS", "Hotels", "Mobile operators", "Car rentals"],
+    method: "Cross-stream timeline-gap detection (Model 3)",
+  },
+  {
     key: "document",
     labelEn: "Document & Identity",
     labelAr: "الوثائق والهوية",
-    defaultWeight: 10,
-    weight: 10,
+    defaultWeight: 9,
+    weight: 9,
     color: "#4ADE80",
     icon: "ri-passport-line",
     primarySources: ["Advisories", "internal flags"],
@@ -121,6 +165,8 @@ export interface OsintSource {
   signalContribution: string;
   endpoint: string;
   color: string;
+  sourceType: "osint" | "internal";
+  classification: Classification;
 }
 
 export const OSINT_SOURCES: OsintSource[] = [
@@ -139,6 +185,8 @@ export const OSINT_SOURCES: OsintSource[] = [
     signalContribution: "UN/OFAC/EU/UK lists, PEP exposure",
     endpoint: "data.opensanctions.org/datasets/latest/default/entities.ftm.json",
     color: "#F87171",
+    sourceType: "osint",
+    classification: "public",
   },
   {
     id: "gdelt",
@@ -155,6 +203,8 @@ export const OSINT_SOURCES: OsintSource[] = [
     signalContribution: "Country-of-origin conflict intensity, unrest signal",
     endpoint: "api.gdeltproject.org/api/v2/doc/doc",
     color: "#FB923C",
+    sourceType: "osint",
+    classification: "public",
   },
   {
     id: "acled",
@@ -171,6 +221,8 @@ export const OSINT_SOURCES: OsintSource[] = [
     signalContribution: "Conflict event density, actor proximity, location risk",
     endpoint: "api.acleddata.com/acled/read",
     color: "#FB923C",
+    sourceType: "osint",
+    classification: "public",
   },
   {
     id: "who",
@@ -187,6 +239,8 @@ export const OSINT_SOURCES: OsintSource[] = [
     signalContribution: "Outbreak origin, traveler health advisory overlap",
     endpoint: "who.int/feeds/entity/csr/don/en/rss.xml",
     color: "#FACC15",
+    sourceType: "osint",
+    classification: "public",
   },
   {
     id: "ecdc",
@@ -203,6 +257,8 @@ export const OSINT_SOURCES: OsintSource[] = [
     signalContribution: "Disease surveillance, traveler advisory overlap",
     endpoint: "ecdc.europa.eu/en/publications-data",
     color: "#FACC15",
+    sourceType: "osint",
+    classification: "public",
   },
   {
     id: "opensky",
@@ -219,6 +275,8 @@ export const OSINT_SOURCES: OsintSource[] = [
     signalContribution: "Routing anomaly, aircraft history, flight path deviation",
     endpoint: "opensky-network.org/api/flights/all",
     color: "#AA95FF",
+    sourceType: "osint",
+    classification: "public",
   },
   {
     id: "advisories",
@@ -235,6 +293,8 @@ export const OSINT_SOURCES: OsintSource[] = [
     signalContribution: "Origin-country advisory level alignment",
     endpoint: "travel.state.gov, gov.uk/foreign-travel-advice",
     color: "#22D3EE",
+    sourceType: "osint",
+    classification: "public",
   },
   {
     id: "opencorporates",
@@ -251,6 +311,8 @@ export const OSINT_SOURCES: OsintSource[] = [
     signalContribution: "Sponsor entity resolution, beneficial ownership",
     endpoint: "api.opencorporates.com/v0.4",
     color: "#22D3EE",
+    sourceType: "osint",
+    classification: "public",
   },
   {
     id: "reliefweb",
@@ -267,6 +329,178 @@ export const OSINT_SOURCES: OsintSource[] = [
     signalContribution: "Displacement flow signal, emergency origin mapping",
     endpoint: "api.reliefweb.int/v1",
     color: "#4ADE80",
+    sourceType: "osint",
+    classification: "public",
+  },
+];
+
+// ─────────────────────────────────────────────────────────────────────────
+// ROP internal streams (Tech Spec §4.2.1)
+// Nine internal data streams the risk engine consumes alongside OSINT.
+// ─────────────────────────────────────────────────────────────────────────
+
+export const INTERNAL_STREAMS: OsintSource[] = [
+  {
+    id: "entry-exit",
+    name: "Entry / Exit Records",
+    category: "Border movements",
+    format: "Internal stream",
+    refresh: "Real-time",
+    refreshMinutes: 0,
+    confidence: "High",
+    status: "healthy",
+    lastSuccess: "2026-04-17T11:57:18Z",
+    lastFailure: null,
+    records24h: 34820,
+    signalContribution: "Arrival/departure stamps, dwell time, overstays",
+    endpoint: "int.rop.om/borders/entry-exit",
+    color: "#22D3EE",
+    sourceType: "internal",
+    classification: "internal",
+  },
+  {
+    id: "apis",
+    name: "APIS / Advance Passenger Info",
+    category: "Pre-arrival",
+    format: "EDIFACT / JSON",
+    refresh: "Flight-bound",
+    refreshMinutes: 5,
+    confidence: "High",
+    status: "healthy",
+    lastSuccess: "2026-04-17T11:55:02Z",
+    lastFailure: null,
+    records24h: 28410,
+    signalContribution: "Pre-arrival passenger manifests, travel document data",
+    endpoint: "int.rop.om/apis/inbound",
+    color: "#AA95FF",
+    sourceType: "internal",
+    classification: "internal",
+  },
+  {
+    id: "evisa",
+    name: "eVisa History",
+    category: "Visa issuance",
+    format: "Internal stream",
+    refresh: "Daily",
+    refreshMinutes: 1440,
+    confidence: "High",
+    status: "healthy",
+    lastSuccess: "2026-04-17T03:00:15Z",
+    lastFailure: null,
+    records24h: 12240,
+    signalContribution: "Prior visa denials, renewals, issuance velocity",
+    endpoint: "int.rop.om/evisa/history",
+    color: "#EC4899",
+    sourceType: "internal",
+    classification: "internal",
+  },
+  {
+    id: "historical-border",
+    name: "Historical Border Data",
+    category: "Archive",
+    format: "Bulk / warehouse",
+    refresh: "Hourly",
+    refreshMinutes: 60,
+    confidence: "High",
+    status: "healthy",
+    lastSuccess: "2026-04-17T11:00:00Z",
+    lastFailure: null,
+    records24h: 182400,
+    signalContribution: "Long-horizon pattern baselines (36 months)",
+    endpoint: "int.rop.om/warehouse/borders",
+    color: "#4ADE80",
+    sourceType: "internal",
+    classification: "internal",
+  },
+  {
+    id: "hotels",
+    name: "Hotel Check-ins",
+    category: "Presence",
+    format: "Hospitality feed",
+    refresh: "Near real-time",
+    refreshMinutes: 10,
+    confidence: "Medium-High",
+    status: "healthy",
+    lastSuccess: "2026-04-17T11:50:44Z",
+    lastFailure: "2026-04-16T19:12:00Z",
+    records24h: 8420,
+    signalContribution: "First touchpoint in-country, declared address match",
+    endpoint: "int.rop.om/hospitality/checkins",
+    color: "#F59E0B",
+    sourceType: "internal",
+    classification: "internal",
+  },
+  {
+    id: "mobile-ops",
+    name: "Mobile Operators",
+    category: "Telecom",
+    format: "Carrier feed",
+    refresh: "Hourly",
+    refreshMinutes: 60,
+    confidence: "Medium-High",
+    status: "healthy",
+    lastSuccess: "2026-04-17T11:05:22Z",
+    lastFailure: null,
+    records24h: 4280,
+    signalContribution: "SIM activation time, device-traveler linkage",
+    endpoint: "int.rop.om/telecom/sim-activations",
+    color: "#F87171",
+    sourceType: "internal",
+    classification: "restricted",
+  },
+  {
+    id: "car-rentals",
+    name: "Car Rentals",
+    category: "Mobility",
+    format: "Operator feed",
+    refresh: "Hourly",
+    refreshMinutes: 60,
+    confidence: "Medium",
+    status: "healthy",
+    lastSuccess: "2026-04-17T11:10:08Z",
+    lastFailure: null,
+    records24h: 1240,
+    signalContribution: "Vehicle rental first-use, identity cross-check",
+    endpoint: "int.rop.om/mobility/rentals",
+    color: "#FB923C",
+    sourceType: "internal",
+    classification: "internal",
+  },
+  {
+    id: "municipality",
+    name: "Municipality Records",
+    category: "Address registry",
+    format: "Registry feed",
+    refresh: "Daily",
+    refreshMinutes: 1440,
+    confidence: "Medium-High",
+    status: "healthy",
+    lastSuccess: "2026-04-17T02:30:00Z",
+    lastFailure: null,
+    records24h: 540,
+    signalContribution: "Declared address verification",
+    endpoint: "int.rop.om/municipality/addresses",
+    color: "#14B8A6",
+    sourceType: "internal",
+    classification: "internal",
+  },
+  {
+    id: "mol",
+    name: "MOL Employment",
+    category: "Labour registry",
+    format: "MOL feed",
+    refresh: "Daily",
+    refreshMinutes: 1440,
+    confidence: "High",
+    status: "healthy",
+    lastSuccess: "2026-04-17T02:45:04Z",
+    lastFailure: null,
+    records24h: 2180,
+    signalContribution: "Declared employer validation, work permit status",
+    endpoint: "int.rop.om/mol/employment",
+    color: "#22D3EE",
+    sourceType: "internal",
+    classification: "internal",
   },
 ];
 
@@ -461,6 +695,11 @@ export interface ScoredRecord {
   modelVersion: string;
   computedAt: string;
   demoScenario?: string;
+  // B2 — classification + coverage metadata
+  classification: Classification;
+  sourcesAvailable: string[];
+  sourcesUnavailable: string[];
+  rulesSkipped: string[];
 }
 
 const band = (score: number): RiskBand => {
@@ -479,6 +718,42 @@ export const SCORE_BAND_META: Record<RiskBand, { labelEn: string; labelAr: strin
   low:        { labelEn: "LOW",        labelAr: "منخفض",   color: "#4ADE80" },
 };
 
+// Default sources expected by every record — used for sourcesAvailable default.
+const DEFAULT_SOURCES_EXPECTED = [
+  "OpenSanctions", "GDELT", "ACLED", "WHO", "ECDC", "OpenSky", "Advisories", "OpenCorporates",
+];
+
+// Compute unified score from a full 9-dim subScores map using the defaults.
+const computeUnified = (subScores: Record<SubScoreKey, number>): number =>
+  Math.round(
+    DEFAULT_SUB_SCORE_WEIGHTS.reduce(
+      (sum, w) => sum + subScores[w.key] * (w.defaultWeight / 100),
+      0,
+    ),
+  );
+
+// Legacy 6-dim subScores shape — older call sites pass this; we fill in
+// sensible values for the 3 new dimensions from the existing ones.
+type LegacySubScores = {
+  sanctions: number;
+  geopolitical: number;
+  biosecurity: number;
+  routing: number;
+  entity: number;
+  document: number;
+  // optional overrides for the 3 new dimensions
+  behavioral?: number;
+  declaration?: number;
+  presence?: number;
+};
+
+interface RecMeta {
+  classification?: Classification;
+  sourcesAvailable?: string[];
+  sourcesUnavailable?: string[];
+  rulesSkipped?: string[];
+}
+
 // Helper — build a ScoredRecord quickly
 const rec = (
   id: string,
@@ -493,18 +768,34 @@ const rec = (
   arrivalTs: string,
   sponsor: string | null,
   visaType: string,
-  subScores: Record<SubScoreKey, number>,
+  legacySubs: LegacySubScores,
   contributions: ScoreContribution[],
   demoScenario?: string,
+  meta?: RecMeta,
 ): ScoredRecord => {
-  const unified = Math.round(
-    subScores.sanctions * 0.25 +
-    subScores.geopolitical * 0.20 +
-    subScores.biosecurity * 0.10 +
-    subScores.routing * 0.20 +
-    subScores.entity * 0.15 +
-    subScores.document * 0.10,
-  );
+  // Derive the 3 new sub-scores from existing ones unless explicitly set.
+  // Behavioral tracks entity/sanctions pressure, declaration mirrors entity/document
+  // gaps, presence nudges upward on routing anomalies.
+  const behavioral = legacySubs.behavioral ??
+    Math.min(90, Math.round(legacySubs.entity * 0.25 + legacySubs.sanctions * 0.15 + 4));
+  const declaration = legacySubs.declaration ??
+    Math.min(90, Math.round(legacySubs.entity * 0.2 + legacySubs.document * 0.35 + 3));
+  const presence = legacySubs.presence ??
+    Math.min(90, Math.round(legacySubs.routing * 0.2 + legacySubs.biosecurity * 0.1 + 5));
+
+  const subScores: Record<SubScoreKey, number> = {
+    sanctions: legacySubs.sanctions,
+    geopolitical: legacySubs.geopolitical,
+    biosecurity: legacySubs.biosecurity,
+    routing: legacySubs.routing,
+    behavioral,
+    declaration,
+    entity: legacySubs.entity,
+    presence,
+    document: legacySubs.document,
+  };
+
+  const unified = computeUnified(subScores);
   return {
     id,
     decisionPoint,
@@ -527,6 +818,10 @@ const rec = (
     modelVersion: "mvp-0.3.1",
     computedAt: new Date().toISOString(),
     demoScenario,
+    classification: meta?.classification ?? "internal",
+    sourcesAvailable: meta?.sourcesAvailable ?? DEFAULT_SOURCES_EXPECTED,
+    sourcesUnavailable: meta?.sourcesUnavailable ?? [],
+    rulesSkipped: meta?.rulesSkipped ?? [],
   };
 };
 
@@ -543,12 +838,14 @@ const demoScenarios: ScoredRecord[] = [
     "2026-04-18T09:15:00Z",
     "Bechtel Corporation",
     "Business Single-Entry",
-    { sanctions: 2, geopolitical: 8, biosecurity: 5, routing: 12, entity: 6, document: 4 },
+    { sanctions: 2, geopolitical: 8, biosecurity: 5, routing: 12, entity: 6, document: 4, behavioral: 6, declaration: 8, presence: 7 },
     [
       { type: "rule", ref: "R-GEO-002", subScore: "geopolitical", observed: "Advisory level 2 (normal precautions)", contribution: 6, source: "Travel Advisories", confidence: "High" },
       { type: "ml_feature", ref: "route_common_pattern", subScore: "routing", observed: "Origin-destination common for nationality (p>0.95)", contribution: 2, source: "OpenSky", confidence: "Medium" },
+      { type: "ml_feature", ref: "prior_cadence", subScore: "behavioral", observed: "4 prior business visits, all clean", contribution: 3, source: "eVisa history", confidence: "High" },
     ],
     "low-risk-routine",
+    { classification: "internal" },
   ),
   rec(
     "demo-borderline",
@@ -560,14 +857,16 @@ const demoScenarios: ScoredRecord[] = [
     "2026-04-18T04:42:00Z",
     "Pearl Logistics LLC",
     "Tourist Multiple-Entry",
-    { sanctions: 6, geopolitical: 62, biosecurity: 28, routing: 22, entity: 14, document: 10 },
+    { sanctions: 18, geopolitical: 68, biosecurity: 32, routing: 42, entity: 24, document: 18, behavioral: 44, declaration: 38, presence: 36 },
     [
       { type: "rule", ref: "R-GEO-001", subScore: "geopolitical", observed: "GDELT conflict intensity 164 (> 120)", contribution: 48, source: "GDELT", confidence: "Medium-High" },
       { type: "rule", ref: "R-GEO-002", subScore: "geopolitical", observed: "Advisory level 3 — reconsider travel", contribution: 22, source: "Travel Advisories", confidence: "High" },
       { type: "rule", ref: "R-TMP-001", subScore: "geopolitical", observed: "Advisory escalation 9 days ago", contribution: 16, source: "Travel Advisories", confidence: "High" },
       { type: "ml_feature", ref: "nationality_origin_rarity", subScore: "routing", observed: "Origin within top-20 for nationality", contribution: 12, source: "OpenSky", confidence: "Medium" },
+      { type: "ml_feature", ref: "declared_address_match", subScore: "declaration", observed: "Declared hotel address partial match (0.74)", contribution: 14, source: "Hotels", confidence: "Medium-High" },
     ],
     "borderline-context",
+    { classification: "internal" },
   ),
   rec(
     "demo-highrisk-sponsor",
@@ -579,14 +878,17 @@ const demoScenarios: ScoredRecord[] = [
     "2026-04-18T22:05:00Z",
     "Volga Holdings International",
     "Business Multiple-Entry",
-    { sanctions: 72, geopolitical: 48, biosecurity: 6, routing: 18, entity: 86, document: 12 },
+    { sanctions: 82, geopolitical: 72, biosecurity: 12, routing: 48, entity: 92, document: 36, behavioral: 88, declaration: 78, presence: 52 },
     [
       { type: "rule", ref: "R-SNC-003", subScore: "entity", observed: "Sponsor 2 hops from EU-sanctioned oligarch", contribution: 60, source: "OpenSanctions + OpenCorporates", confidence: "High" },
       { type: "rule", ref: "R-SNC-002", subScore: "sanctions", observed: "Sponsor parent entity on UK sanctions list (pending appeal)", contribution: 54, source: "OpenSanctions", confidence: "High" },
       { type: "rule", ref: "R-GEO-002", subScore: "geopolitical", observed: "Advisory level 3 — travel restrictions", contribution: 28, source: "Travel Advisories", confidence: "High" },
       { type: "ml_feature", ref: "entity_graph_pagerank", subScore: "entity", observed: "Personalized PageRank 0.91 (top 2%)", contribution: 22, source: "Graph Engine", confidence: "High" },
+      { type: "ml_feature", ref: "prior_denial_count", subScore: "behavioral", observed: "3 prior visa denials (2024–2025) on same sponsor", contribution: 48, source: "eVisa history", confidence: "High" },
+      { type: "rule", ref: "R-DEC-001", subScore: "declaration", observed: "Declared employer does not match MOL record", contribution: 22, source: "MOL employment", confidence: "High" },
     ],
     "high-risk-sponsor",
+    { classification: "restricted" },
   ),
   rec(
     "demo-anomaly",
@@ -598,14 +900,16 @@ const demoScenarios: ScoredRecord[] = [
     "2026-04-18T17:30:00Z",
     null,
     "Tourist Single-Entry",
-    { sanctions: 4, geopolitical: 22, biosecurity: 14, routing: 84, entity: 32, document: 20 },
+    { sanctions: 18, geopolitical: 58, biosecurity: 34, routing: 96, entity: 68, document: 44, behavioral: 82, declaration: 86, presence: 96 },
     [
       { type: "ml_feature", ref: "iforest_anomaly", subScore: "routing", observed: "Isolation Forest anomaly_score 0.89", contribution: 56, source: "RoutingAnomalyDetector", confidence: "Medium-High" },
       { type: "rule", ref: "R-RTE-001", subScore: "routing", observed: "Origin CDG rare for DZA→MCT (<1%)", contribution: 28, source: "OpenSky", confidence: "Medium" },
       { type: "rule", ref: "R-RTE-002", subScore: "routing", observed: "3 near-simultaneous PNR records in 3 hours", contribution: 22, source: "PNR", confidence: "High" },
       { type: "ml_feature", ref: "booking_to_departure_days", subScore: "routing", observed: "Booked 11 hours before departure (top 0.5%)", contribution: 12, source: "PNR", confidence: "High" },
+      { type: "ml_feature", ref: "presence_gap_apis_hotel", subScore: "presence", observed: "APIS→first hotel gap 62h (typical ≤4h)", contribution: 58, source: "APIS + Hotels", confidence: "High" },
     ],
     "anomaly-driven",
+    { classification: "internal", sourcesUnavailable: ["ECDC"], rulesSkipped: ["R-TMP-002"] },
   ),
   rec(
     "demo-health",
@@ -617,13 +921,14 @@ const demoScenarios: ScoredRecord[] = [
     "2026-04-19T05:40:00Z",
     "Hanoi Tech Exchange",
     "Business Single-Entry",
-    { sanctions: 2, geopolitical: 12, biosecurity: 78, routing: 18, entity: 8, document: 6 },
+    { sanctions: 8, geopolitical: 52, biosecurity: 96, routing: 44, entity: 28, document: 22, behavioral: 38, declaration: 32, presence: 52 },
     [
       { type: "rule", ref: "R-BIO-001", subScore: "biosecurity", observed: "Origin in active avian-influenza outbreak (WHO DON 2026-04-11)", contribution: 62, source: "WHO", confidence: "High" },
       { type: "rule", ref: "R-BIO-001", subScore: "biosecurity", observed: "ECDC surveillance flag: poultry cluster SGN", contribution: 24, source: "ECDC", confidence: "High" },
       { type: "ml_feature", ref: "nationality_origin_rarity", subScore: "routing", observed: "Common routing — no anomaly", contribution: 8, source: "OpenSky", confidence: "Medium" },
     ],
     "health-overlap",
+    { classification: "internal" },
   ),
 ];
 
@@ -1027,4 +1332,189 @@ export const SLA_SUMMARY_30D: SlaSummary[] = [
   { severity: "HIGH",     met: 1184, breached: 62, inFlight: 0 },
   { severity: "MEDIUM",   met: 2864, breached: 104, inFlight: 0 },
   { severity: "LOW",      met: 3968, breached: 52,  inFlight: 0 },
+];
+
+// ─────────────────────────────────────────────────────────────────────────
+// A2 — Sequence Coherence (Model 3)
+// Multi-stream timeline data per traveler. Each touchpoint records when
+// the cross-stream signal was observed vs when it was expected (hours
+// after APIS arrival).
+// ─────────────────────────────────────────────────────────────────────────
+
+export interface SequenceTouchpoint {
+  stream: string;            // APIS | Hotel | SIM | Rental | MOL
+  icon: string;              // remixicon class
+  color: string;             // render color
+  labelEn: string;
+  labelAr: string;
+  occurredAt: string | null; // ISO; null = signal never observed
+  expectedWithinHrs: number; // expected hours post-APIS arrival
+  observedHrs: number | null;// actual hours post-APIS (derived)
+}
+
+export interface SequenceTimeline {
+  travelerId: string;
+  travelerName: string;
+  travelerNameAr: string;
+  nationality: string;
+  classification: Classification;
+  apisArrivalTs: string;
+  touchpoints: SequenceTouchpoint[];
+  presenceCoherenceScore: number; // 0-100 (higher = more anomalous)
+  verdict: "coherent" | "mildly-gapped" | "strongly-gapped" | "missing";
+  narrativeEn: string;
+  narrativeAr: string;
+}
+
+// Helper for building touchpoints with derived observedHrs.
+const tp = (
+  stream: string,
+  icon: string,
+  color: string,
+  labelEn: string,
+  labelAr: string,
+  apisIso: string,
+  observedIso: string | null,
+  expectedWithinHrs: number,
+): SequenceTouchpoint => {
+  const observedHrs = observedIso === null
+    ? null
+    : Math.round((new Date(observedIso).getTime() - new Date(apisIso).getTime()) / 3_600_000);
+  return { stream, icon, color, labelEn, labelAr, occurredAt: observedIso, expectedWithinHrs, observedHrs };
+};
+
+const apis1 = "2026-04-17T04:10:00Z";
+const apis2 = "2026-04-17T06:45:00Z";
+const apis3 = "2026-04-16T22:00:00Z";
+const apis4 = "2026-04-17T01:30:00Z";
+const apis5 = "2026-04-16T18:40:00Z";
+const apis6 = "2026-04-17T09:15:00Z";
+
+const ICON_APIS   = { icon: "ri-flight-land-line",    color: "#22D3EE" };
+const ICON_HOTEL  = { icon: "ri-hotel-line",          color: "#F59E0B" };
+const ICON_SIM    = { icon: "ri-sim-card-2-line",     color: "#EC4899" };
+const ICON_RENTAL = { icon: "ri-car-line",            color: "#AA95FF" };
+const ICON_MOL    = { icon: "ri-briefcase-4-line",    color: "#14B8A6" };
+
+export const SEQUENCE_TIMELINES: SequenceTimeline[] = [
+  // 1. Coherent — everything lands within expected windows
+  {
+    travelerId: "seq-001",
+    travelerName: "James W. Carter",
+    travelerNameAr: "جيمس كارتر",
+    nationality: "USA",
+    classification: "internal",
+    apisArrivalTs: apis1,
+    touchpoints: [
+      tp("APIS",   ICON_APIS.icon,   ICON_APIS.color,   "APIS arrival",     "وصول APIS",       apis1, apis1,                     0),
+      tp("Hotel",  ICON_HOTEL.icon,  ICON_HOTEL.color,  "First hotel",      "الفندق الأول",     apis1, "2026-04-17T05:55:00Z",    4),
+      tp("SIM",    ICON_SIM.icon,    ICON_SIM.color,    "SIM activation",   "تفعيل الشريحة",   apis1, "2026-04-17T06:20:00Z",    6),
+      tp("Rental", ICON_RENTAL.icon, ICON_RENTAL.color, "Vehicle rental",   "تأجير مركبة",      apis1, "2026-04-17T09:45:00Z",   12),
+      tp("MOL",    ICON_MOL.icon,    ICON_MOL.color,    "MOL touchpoint",   "بصمة وزارة العمل", apis1, null,                     48),
+    ],
+    presenceCoherenceScore: 8,
+    verdict: "coherent",
+    narrativeEn: "All touchpoints land inside expected windows. Business traveler — MOL touchpoint not expected.",
+    narrativeAr: "جميع نقاط الاتصال ضمن النوافذ المتوقعة. مسافر أعمال — لا يُتوقع تماسّ مع وزارة العمل.",
+  },
+  // 2. Mildly gapped — hotel 8h vs typical 4h
+  {
+    travelerId: "seq-002",
+    travelerName: "Yasir A. Karim",
+    travelerNameAr: "ياسر كريم",
+    nationality: "PAK",
+    classification: "internal",
+    apisArrivalTs: apis2,
+    touchpoints: [
+      tp("APIS",   ICON_APIS.icon,   ICON_APIS.color,   "APIS arrival",     "وصول APIS",       apis2, apis2,                     0),
+      tp("Hotel",  ICON_HOTEL.icon,  ICON_HOTEL.color,  "First hotel",      "الفندق الأول",     apis2, "2026-04-17T15:00:00Z",    4),
+      tp("SIM",    ICON_SIM.icon,    ICON_SIM.color,    "SIM activation",   "تفعيل الشريحة",   apis2, "2026-04-17T11:10:00Z",    6),
+      tp("Rental", ICON_RENTAL.icon, ICON_RENTAL.color, "Vehicle rental",   "تأجير مركبة",      apis2, null,                     12),
+      tp("MOL",    ICON_MOL.icon,    ICON_MOL.color,    "MOL touchpoint",   "بصمة وزارة العمل", apis2, null,                     48),
+    ],
+    presenceCoherenceScore: 28,
+    verdict: "mildly-gapped",
+    narrativeEn: "Hotel check-in 8h after arrival vs typical 4h. Within operator tolerance — flagged for watch only.",
+    narrativeAr: "تسجيل دخول الفندق بعد 8 ساعات من الوصول مقابل 4 ساعات المعتادة. ضمن هامش التسامح — للمراقبة فقط.",
+  },
+  // 3. Strongly gapped — the dramatic 62h APIS → hotel gap (ties to demo-anomaly)
+  {
+    travelerId: "seq-003",
+    travelerName: "Leila D. Benaissa",
+    travelerNameAr: "ليلى بن عيسى",
+    nationality: "DZA",
+    classification: "internal",
+    apisArrivalTs: apis3,
+    touchpoints: [
+      tp("APIS",   ICON_APIS.icon,   ICON_APIS.color,   "APIS arrival",     "وصول APIS",       apis3, apis3,                     0),
+      tp("Hotel",  ICON_HOTEL.icon,  ICON_HOTEL.color,  "First hotel",      "الفندق الأول",     apis3, "2026-04-19T12:30:00Z",    4),
+      tp("SIM",    ICON_SIM.icon,    ICON_SIM.color,    "SIM activation",   "تفعيل الشريحة",   apis3, "2026-04-19T14:05:00Z",    6),
+      tp("Rental", ICON_RENTAL.icon, ICON_RENTAL.color, "Vehicle rental",   "تأجير مركبة",      apis3, null,                     12),
+      tp("MOL",    ICON_MOL.icon,    ICON_MOL.color,    "MOL touchpoint",   "بصمة وزارة العمل", apis3, null,                     48),
+    ],
+    presenceCoherenceScore: 82,
+    verdict: "strongly-gapped",
+    narrativeEn: "APIS → first hotel gap = 62h (typical ≤4h). SIM activation co-located with hotel check-in 2.5 days in-country — unaccounted presence window is the Model 3 signal.",
+    narrativeAr: "فجوة APIS → أول فندق = 62 ساعة (المعتاد ≤4 ساعات). تفعيل الشريحة متزامن مع دخول الفندق بعد 2.5 يوم — نافذة الحضور غير المُبرّرة هي إشارة النموذج الثالث.",
+  },
+  // 4. Missing — signals never arrived
+  {
+    travelerId: "seq-004",
+    travelerName: "Mikhail V. Petrov",
+    travelerNameAr: "ميخائيل بيتروف",
+    nationality: "RUS",
+    classification: "restricted",
+    apisArrivalTs: apis4,
+    touchpoints: [
+      tp("APIS",   ICON_APIS.icon,   ICON_APIS.color,   "APIS arrival",     "وصول APIS",       apis4, apis4,                     0),
+      tp("Hotel",  ICON_HOTEL.icon,  ICON_HOTEL.color,  "First hotel",      "الفندق الأول",     apis4, null,                      4),
+      tp("SIM",    ICON_SIM.icon,    ICON_SIM.color,    "SIM activation",   "تفعيل الشريحة",   apis4, null,                      6),
+      tp("Rental", ICON_RENTAL.icon, ICON_RENTAL.color, "Vehicle rental",   "تأجير مركبة",      apis4, null,                     12),
+      tp("MOL",    ICON_MOL.icon,    ICON_MOL.color,    "MOL touchpoint",   "بصمة وزارة العمل", apis4, null,                     48),
+    ],
+    presenceCoherenceScore: 71,
+    verdict: "missing",
+    narrativeEn: "No cross-stream touchpoints observed. Either unreported private-host stay or in-transit case. Raises presence-coherence flag pending sponsor confirmation.",
+    narrativeAr: "لم تُرصد أي نقاط اتصال متقاطعة. إما إقامة خاصة غير مُبلّغ عنها أو حالة عبور. يُرفع علم تماسك الحضور في انتظار تأكيد الكفيل.",
+  },
+  // 5. Coherent with SIM delay
+  {
+    travelerId: "seq-005",
+    travelerName: "Sarah M. Nguyen",
+    travelerNameAr: "سارة نغوين",
+    nationality: "VNM",
+    classification: "internal",
+    apisArrivalTs: apis5,
+    touchpoints: [
+      tp("APIS",   ICON_APIS.icon,   ICON_APIS.color,   "APIS arrival",     "وصول APIS",       apis5, apis5,                     0),
+      tp("Hotel",  ICON_HOTEL.icon,  ICON_HOTEL.color,  "First hotel",      "الفندق الأول",     apis5, "2026-04-16T21:40:00Z",    4),
+      tp("SIM",    ICON_SIM.icon,    ICON_SIM.color,    "SIM activation",   "تفعيل الشريحة",   apis5, "2026-04-17T09:20:00Z",    6),
+      tp("Rental", ICON_RENTAL.icon, ICON_RENTAL.color, "Vehicle rental",   "تأجير مركبة",      apis5, null,                     12),
+      tp("MOL",    ICON_MOL.icon,    ICON_MOL.color,    "MOL touchpoint",   "بصمة وزارة العمل", apis5, "2026-04-18T10:00:00Z",   48),
+    ],
+    presenceCoherenceScore: 14,
+    verdict: "coherent",
+    narrativeEn: "Business traveler — hotel + MOL checkpoints clean. SIM activation modestly late (14.5h vs 6h target) but within confidence band.",
+    narrativeAr: "مسافر أعمال — نقاط الفندق ووزارة العمل سليمة. تفعيل الشريحة متأخر قليلاً (14.5 ساعة مقابل 6) لكن ضمن نطاق الثقة.",
+  },
+  // 6. Mildly gapped — SIM activation anomaly
+  {
+    travelerId: "seq-006",
+    travelerName: "Elena S. Marković",
+    travelerNameAr: "إيلينا ماركوفيتش",
+    nationality: "SRB",
+    classification: "internal",
+    apisArrivalTs: apis6,
+    touchpoints: [
+      tp("APIS",   ICON_APIS.icon,   ICON_APIS.color,   "APIS arrival",     "وصول APIS",       apis6, apis6,                     0),
+      tp("Hotel",  ICON_HOTEL.icon,  ICON_HOTEL.color,  "First hotel",      "الفندق الأول",     apis6, "2026-04-17T14:00:00Z",    4),
+      tp("SIM",    ICON_SIM.icon,    ICON_SIM.color,    "SIM activation",   "تفعيل الشريحة",   apis6, null,                      6),
+      tp("Rental", ICON_RENTAL.icon, ICON_RENTAL.color, "Vehicle rental",   "تأجير مركبة",      apis6, "2026-04-17T16:30:00Z",   12),
+      tp("MOL",    ICON_MOL.icon,    ICON_MOL.color,    "MOL touchpoint",   "بصمة وزارة العمل", apis6, null,                     48),
+    ],
+    presenceCoherenceScore: 38,
+    verdict: "mildly-gapped",
+    narrativeEn: "No SIM activation observed — unusual given vehicle rental present. Possible roaming SIM use, flagged for analyst review.",
+    narrativeAr: "لم يُرصد تفعيل شريحة — غير معتاد مع وجود تأجير مركبة. احتمال استخدام شريحة تجوال، مرفوع للمراجعة.",
+  },
 ];
