@@ -1,15 +1,13 @@
-import { useSearchParams } from "react-router-dom";
-import i18n from "@/i18n";
-import { type EntityType } from "@/mocks/dashboardData";
+import { useOutletContext } from "react-router-dom";
+import type { DashboardOutletContext } from "./DashboardLayout";
 import DashboardMain from "./components/DashboardMain";
 
 // Home view for /dashboard — renders inside DashboardLayout's <Outlet />.
 // The title bar + sidebar are provided by the layout, so this page just
-// supplies the primary content area.
+// supplies the primary content area. Language state flows from the layout
+// via outlet context so the AR toggle in the title bar actually reaches here.
 const DashboardPage = () => {
-  const [searchParams] = useSearchParams();
-  const entityType = (searchParams.get("type") as EntityType) || "hotel";
-  const isAr = (i18n.language || "en") === "ar";
+  const { isAr, entityType } = useOutletContext<DashboardOutletContext>();
   return <DashboardMain entityType={entityType} isAr={isAr} />;
 };
 

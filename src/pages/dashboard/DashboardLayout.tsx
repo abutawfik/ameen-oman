@@ -5,6 +5,16 @@ import { type EntityType, navItems } from "@/mocks/dashboardData";
 import DashboardTitleBar from "./components/DashboardTitleBar";
 import DashboardSidebar from "./components/DashboardSidebar";
 
+// Context threaded to every child route via <Outlet context={...} />.
+// Child pages consume via `const { isAr } = useOutletContext<DashboardOutletContext>();`
+// so the layout's single lang toggle reaches everything rendered in the outlet.
+export type DashboardOutletContext = {
+  isAr: boolean;
+  lang: string;
+  toggleLang: () => void;
+  entityType: EntityType;
+};
+
 // Persistent chrome for every /dashboard/* route.
 // Title bar + sidebar render once at the layout level; child pages render in the <Outlet />.
 const DashboardLayout = () => {
@@ -51,7 +61,7 @@ const DashboardLayout = () => {
           onToggleCollapse={() => setSidebarCollapsed(!sidebarCollapsed)}
         />
         <main className="flex-1 overflow-auto">
-          <Outlet />
+          <Outlet context={{ isAr, lang, toggleLang, entityType } satisfies DashboardOutletContext} />
         </main>
       </div>
     </div>

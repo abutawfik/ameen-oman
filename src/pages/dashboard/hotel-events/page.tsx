@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import i18n from "@/i18n";
+import { useState } from "react";
+import { useNavigate, useOutletContext } from "react-router-dom";
+import type { DashboardOutletContext } from "../DashboardLayout";
 import CheckInForm from "./CheckInForm";
 import CheckOutForm from "./CheckOutForm";
 import BookingForm from "./BookingForm";
@@ -17,21 +17,9 @@ const FORM_TABS: { key: FormType; icon: string; labelEn: string; labelAr: string
 
 const HotelEventsPage = () => {
   const navigate = useNavigate();
-  const [lang, setLang] = useState(i18n.language || "en");
+  const { isAr } = useOutletContext<DashboardOutletContext>();
   const [activeForm, setActiveForm] = useState<FormType>("checkin");
   const [formKey, setFormKey] = useState(0);
-  const isAr = lang === "ar";
-
-  useEffect(() => {
-    document.documentElement.dir = isAr ? "rtl" : "ltr";
-    document.documentElement.lang = lang;
-  }, [lang, isAr]);
-
-  const toggleLang = () => {
-    const next = isAr ? "en" : "ar";
-    setLang(next);
-    i18n.changeLanguage(next);
-  };
 
   const handleSaved = () => {
     setFormKey((k) => k + 1);
@@ -54,7 +42,7 @@ const HotelEventsPage = () => {
           <div className="flex items-center gap-3">
             <button onClick={() => navigate("/dashboard?type=hotel")}
               className="flex items-center gap-2 text-gray-500 hover:text-cyan-400 transition-colors cursor-pointer text-sm font-['Inter']">
-              <i className="ri-arrow-left-line" />
+              <i className={isAr ? "ri-arrow-right-line" : "ri-arrow-left-line"} />
               {isAr ? "لوحة التحكم" : "Dashboard"}
             </button>
             <div className="w-px h-5 bg-white/10" />
@@ -71,10 +59,6 @@ const HotelEventsPage = () => {
               <span className="text-gray-400 text-xs font-['Inter']">Grand Capital Hotel</span>
               <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
             </div>
-            <button onClick={toggleLang}
-              className="w-9 h-9 flex items-center justify-center rounded-full border border-cyan-500/30 text-cyan-400 text-xs font-bold hover:bg-cyan-500/10 transition-colors cursor-pointer font-['JetBrains_Mono']">
-              {isAr ? "EN" : "AR"}
-            </button>
           </div>
         </div>
       </header>

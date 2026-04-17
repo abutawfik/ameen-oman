@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
+import type { DashboardOutletContext } from "../DashboardLayout";
 import POBoxRegistrationForm from "./POBoxRegistrationForm";
 import PackageReceiptForm from "./PackageReceiptForm";
 
@@ -35,7 +36,7 @@ const EVENT_CARDS: EventCard[] = [
 
 const PostalEventsPage = () => {
   const navigate = useNavigate();
-  const [isAr, setIsAr] = useState(false);
+  const { isAr } = useOutletContext<DashboardOutletContext>();
   const [activeEvent, setActiveEvent] = useState<EventType>(null);
   const [formKey, setFormKey] = useState(0);
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -62,7 +63,7 @@ const PostalEventsPage = () => {
             style={{ background: "transparent", borderColor: "rgba(255,255,255,0.1)", color: "#9CA3AF" }}
             onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "#D1D5DB"; }}
             onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "#9CA3AF"; }}>
-            <i className="ri-arrow-left-line" />{isAr ? "لوحة التحكم" : "Dashboard"}
+            <i className={isAr ? "ri-arrow-right-line" : "ri-arrow-left-line"} />{isAr ? "لوحة التحكم" : "Dashboard"}
           </button>
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(34,211,238,0.1)", border: "1px solid rgba(34,211,238,0.2)" }}>
@@ -86,13 +87,6 @@ const PostalEventsPage = () => {
             <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
             <span className="text-green-400 text-xs font-semibold font-['JetBrains_Mono']">LIVE</span>
           </div>
-          <button type="button" onClick={() => setIsAr(v => !v)}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-semibold cursor-pointer whitespace-nowrap transition-colors"
-            style={{ background: "rgba(255,255,255,0.04)", borderColor: "rgba(255,255,255,0.1)", color: "#9CA3AF" }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "#22D3EE"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(34,211,238,0.3)"; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "#9CA3AF"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.1)"; }}>
-            <i className="ri-translate-2 text-xs" />{isAr ? "EN" : "عربي"}
-          </button>
         </div>
       </header>
 

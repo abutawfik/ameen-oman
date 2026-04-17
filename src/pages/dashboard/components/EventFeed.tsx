@@ -11,6 +11,20 @@ const statusConfig = {
   rejected: { color: "#F87171", bg: "rgba(248,113,113,0.1)", labelEn: "Rejected", labelAr: "مرفوض" },
 };
 
+// Lightweight Arabic-ization of the canned English relative-time strings in mock data
+// ("2 min ago", "1 hr ago", "1.5 hr ago", "just now"). Numeric digits stay Western as
+// that matches the JetBrains_Mono aesthetic used elsewhere in the feed.
+const formatTimeAr = (t: string): string => {
+  const s = t.trim().toLowerCase();
+  if (s === "just now") return "الآن";
+  const m = s.match(/^([\d.]+)\s*(min|mins|minute|minutes|hr|hrs|hour|hours|sec|secs|second|seconds|day|days)\s*ago$/);
+  if (!m) return t;
+  const value = m[1];
+  const unit = m[2];
+  const unitAr = unit.startsWith("sec") ? "ث" : unit.startsWith("min") ? "د" : unit.startsWith("hr") || unit.startsWith("hour") ? "س" : "يوم";
+  return `قبل ${value} ${unitAr}`;
+};
+
 const EventFeed = ({ entityType, isAr }: Props) => {
   const events = eventFeedByType[entityType] || eventFeedByType["hotel"];
 
@@ -30,7 +44,7 @@ const EventFeed = ({ entityType, isAr }: Props) => {
         </div>
         <div className="flex items-center gap-1.5">
           <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-          <span className="text-green-400 text-xs font-['JetBrains_Mono']">LIVE</span>
+          <span className="text-green-400 text-xs font-['JetBrains_Mono']">{isAr ? "مباشر" : "LIVE"}</span>
         </div>
       </div>
 
@@ -64,7 +78,7 @@ const EventFeed = ({ entityType, isAr }: Props) => {
                   >
                     {isAr ? sc.labelAr : sc.labelEn}
                   </span>
-                  <span className="text-gray-600 text-xs font-['JetBrains_Mono'] whitespace-nowrap">{ev.time}</span>
+                  <span className="text-gray-600 text-xs font-['JetBrains_Mono'] whitespace-nowrap">{isAr ? formatTimeAr(ev.time) : ev.time}</span>
                 </div>
               </div>
 

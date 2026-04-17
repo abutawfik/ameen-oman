@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useOutletContext } from "react-router-dom";
+import type { DashboardOutletContext } from "../DashboardLayout";
 import IocFeed from "./components/IocFeed";
 import DarkWebMonitor from "./components/DarkWebMonitor";
 import ThreatActors from "./components/ThreatActors";
@@ -7,7 +9,7 @@ import { iocEntries, feedSources } from "@/mocks/threatIntelData";
 type Tab = "ioc" | "darkweb" | "actors";
 
 const ThreatIntelPage = () => {
-  const [isAr] = useState(false);
+  const { isAr } = useOutletContext<DashboardOutletContext>();
   const [activeTab, setActiveTab] = useState<Tab>("ioc");
 
   const tabs: { key: Tab; label: string; icon: string; badge?: string }[] = [

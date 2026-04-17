@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { useOutletContext } from 'react-router-dom';
+import type { DashboardOutletContext } from '../DashboardLayout';
 import WatchlistDashboard from './components/WatchlistDashboard';
 import WatchlistManager from './components/WatchlistManager';
 import TargetDetail from './components/TargetDetail';
@@ -17,7 +19,7 @@ const tabs = [
 ] as const;
 
 const WatchlistPage = () => {
-  const [isAr] = useState(false);
+  const { isAr } = useOutletContext<DashboardOutletContext>();
   const [activeTab, setActiveTab] = useState<Tab>('dashboard');
   const [selectedWatchlistId, setSelectedWatchlistId] = useState<string | null>(null);
   const [selectedTargetId, setSelectedTargetId] = useState<string | null>(null);

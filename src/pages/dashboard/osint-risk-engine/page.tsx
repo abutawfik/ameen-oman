@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
+import type { DashboardOutletContext } from "../DashboardLayout";
 import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   BarChart, Bar, Cell,
@@ -54,7 +55,7 @@ const timeSince = (iso: string): string => {
 
 const OsintRiskEnginePage = () => {
   const navigate = useNavigate();
-  const [isAr, setIsAr] = useState(false);
+  const { isAr } = useOutletContext<DashboardOutletContext>();
   const [activeTab, setActiveTab] = useState<Tab>("overview");
   const [currentTime, setCurrentTime] = useState(new Date());
   const [filterBand, setFilterBand] = useState<"all" | RiskBand>("all");
@@ -134,7 +135,7 @@ const OsintRiskEnginePage = () => {
           <button type="button" onClick={() => navigate("/dashboard")}
             className="flex items-center gap-2 px-3 py-1.5 rounded-lg border text-sm font-semibold cursor-pointer whitespace-nowrap"
             style={{ background: "transparent", borderColor: "rgba(255,255,255,0.1)", color: "#9CA3AF" }}>
-            <i className="ri-arrow-left-line" />
+            <i className={isAr ? "ri-arrow-right-line" : "ri-arrow-left-line"} />
             {isAr ? "لوحة التحكم" : "Dashboard"}
           </button>
           <div className="flex items-center gap-3">
@@ -171,11 +172,6 @@ const OsintRiskEnginePage = () => {
               {agg.sourcesHealthy}/{agg.sourcesTotal} {isAr ? "مصادر حيّة" : "SOURCES LIVE"}
             </span>
           </div>
-          <button type="button" onClick={() => setIsAr((v) => !v)}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-semibold cursor-pointer whitespace-nowrap"
-            style={{ background: "rgba(255,255,255,0.04)", borderColor: "rgba(255,255,255,0.1)", color: "#9CA3AF" }}>
-            <i className="ri-translate-2 text-xs" />{isAr ? "EN" : "عربي"}
-          </button>
         </div>
       </header>
 
@@ -433,13 +429,13 @@ const QueueTab = ({
         style={{ background: "rgba(10,22,40,0.65)", borderColor: "rgba(34,211,238,0.12)" }}>
         <div className="grid grid-cols-12 gap-2 px-4 py-2.5 border-b text-[10px] font-bold tracking-widest uppercase font-['JetBrains_Mono']"
           style={{ borderColor: "rgba(34,211,238,0.08)", color: "#6B7280" }}>
-          <div className="col-span-1">Score</div>
+          <div className="col-span-1">{isAr ? "الدرجة" : "Score"}</div>
           <div className="col-span-3">{isAr ? "المسافر" : "Traveler"}</div>
-          <div className="col-span-1">Nat.</div>
+          <div className="col-span-1">{isAr ? "الجنسية" : "Nat."}</div>
           <div className="col-span-2">{isAr ? "الرحلة" : "Flight"}</div>
           <div className="col-span-2">{isAr ? "الكفيل" : "Sponsor / Visa"}</div>
-          <div className="col-span-1">Point</div>
-          <div className="col-span-1">Band</div>
+          <div className="col-span-1">{isAr ? "النقطة" : "Point"}</div>
+          <div className="col-span-1">{isAr ? "النطاق" : "Band"}</div>
           <div className="col-span-1 text-right">{isAr ? "الشرح" : "Explain"}</div>
         </div>
         {records.map((r) => (
@@ -724,15 +720,15 @@ const SourcesTab = ({ isAr }: { isAr: boolean }) => {
 
               <div className="grid grid-cols-3 gap-2 text-center">
                 <div className="rounded-md py-1.5" style={{ background: "rgba(255,255,255,0.03)" }}>
-                  <div className="text-[10px] text-gray-600 uppercase tracking-widest font-['JetBrains_Mono']">Refresh</div>
+                  <div className="text-[10px] text-gray-600 uppercase tracking-widest font-['JetBrains_Mono']">{isAr ? "التحديث" : "Refresh"}</div>
                   <div className="text-[11px] font-bold font-['JetBrains_Mono']" style={{ color: s.color }}>{s.refresh}</div>
                 </div>
                 <div className="rounded-md py-1.5" style={{ background: "rgba(255,255,255,0.03)" }}>
-                  <div className="text-[10px] text-gray-600 uppercase tracking-widest font-['JetBrains_Mono']">24h records</div>
+                  <div className="text-[10px] text-gray-600 uppercase tracking-widest font-['JetBrains_Mono']">{isAr ? "سجلات 24 ساعة" : "24h records"}</div>
                   <div className="text-[11px] font-bold text-white font-['JetBrains_Mono']">{s.records24h.toLocaleString()}</div>
                 </div>
                 <div className="rounded-md py-1.5" style={{ background: "rgba(255,255,255,0.03)" }}>
-                  <div className="text-[10px] text-gray-600 uppercase tracking-widest font-['JetBrains_Mono']">Confidence</div>
+                  <div className="text-[10px] text-gray-600 uppercase tracking-widest font-['JetBrains_Mono']">{isAr ? "الثقة" : "Confidence"}</div>
                   <div className="text-[11px] font-bold font-['JetBrains_Mono']" style={{ color: confidenceColor[s.confidence] }}>
                     {s.confidence}
                   </div>

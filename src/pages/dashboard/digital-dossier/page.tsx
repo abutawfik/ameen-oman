@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useOutletContext } from "react-router-dom";
+import type { DashboardOutletContext } from "../DashboardLayout";
 import DossierBuilder from "./components/DossierBuilder";
 import DossierPreview from "./components/DossierPreview";
 import DossierHistory from "./components/DossierHistory";
@@ -30,7 +32,7 @@ interface GenerationConfig {
 type GenerationState = "idle" | "generating" | "ready";
 
 const DigitalDossierPage = () => {
-  const [isAr] = useState(false);
+  const { isAr } = useOutletContext<DashboardOutletContext>();
   const [activeTab, setActiveTab] = useState<Tab>("builder");
   const [generationState, setGenerationState] = useState<GenerationState>("idle");
   const [generationConfig, setGenerationConfig] = useState<GenerationConfig | null>(null);

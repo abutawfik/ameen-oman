@@ -126,9 +126,13 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
                   }}
                   title={collapsed ? (isAr ? item.labelAr : item.labelEn) : undefined}
                 >
-                  {/* Active bar */}
+                  {/* Active bar — anchors to the edge of the sidebar closest to content */}
                   {isActive && (
-                    <div className="absolute left-0 top-0 bottom-0 w-0.5 rounded-r-full bg-cyan-400" />
+                    <div
+                      className={`absolute top-0 bottom-0 w-0.5 bg-cyan-400 ${
+                        isAr ? "right-0 rounded-l-full" : "left-0 rounded-r-full"
+                      }`}
+                    />
                   )}
                   <div className="w-5 h-5 flex items-center justify-center flex-shrink-0">
                     <i className={`${item.icon} text-base`} />
@@ -142,10 +146,14 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
                   {!collapsed && item.route && !isActive && (
                     <div className="ml-auto w-1 h-1 rounded-full bg-cyan-400/30 flex-shrink-0" />
                   )}
-                  {/* Hover tooltip when collapsed */}
+                  {/* Hover tooltip when collapsed — anchors to the content side in both LTR and RTL */}
                   {collapsed && (
-                    <div className="absolute left-full ml-2 px-2 py-1 rounded-md text-xs text-white whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 font-['Inter']"
-                      style={{ background: "rgba(10,22,40,0.95)", border: "1px solid rgba(34,211,238,0.2)" }}>
+                    <div
+                      className={`absolute px-2 py-1 rounded-md text-xs text-white whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 font-['Inter'] ${
+                        isAr ? "right-full mr-2" : "left-full ml-2"
+                      }`}
+                      style={{ background: "rgba(10,22,40,0.95)", border: "1px solid rgba(34,211,238,0.2)" }}
+                    >
                       {isAr ? item.labelAr : item.labelEn}
                     </div>
                   )}
@@ -175,7 +183,11 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
           onClick={onToggleCollapse}
           className="w-full flex items-center justify-center gap-2 py-1.5 rounded-lg hover:bg-white/5 transition-colors cursor-pointer text-gray-600 hover:text-gray-400"
         >
-          <i className={`text-sm ${collapsed ? "ri-arrow-right-s-line" : "ri-arrow-left-s-line"}`} />
+          <i className={`text-sm ${
+            collapsed
+              ? (isAr ? "ri-arrow-left-s-line" : "ri-arrow-right-s-line")
+              : (isAr ? "ri-arrow-right-s-line" : "ri-arrow-left-s-line")
+          }`} />
           {!collapsed && <span className="text-xs font-['Inter']">{isAr ? "طي" : "Collapse"}</span>}
         </button>
 

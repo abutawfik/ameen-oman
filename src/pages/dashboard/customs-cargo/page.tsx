@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useOutletContext } from "react-router-dom";
+import type { DashboardOutletContext } from "../DashboardLayout";
 import CustomsLiveCounters from "./components/CustomsLiveCounters";
 import ImportDeclarationForm from "./components/ImportDeclarationForm";
 import ExportDeclarationForm from "./components/ExportDeclarationForm";
@@ -39,7 +41,7 @@ const mainTabs: { id: MainTab; labelEn: string; labelAr: string; icon: string; c
 ];
 
 const CustomsCargoPage = () => {
-  const [isAr] = useState(false);
+  const { isAr } = useOutletContext<DashboardOutletContext>();
   const [mainTab, setMainTab] = useState<MainTab>("declarations");
   const [activeEvent, setActiveEvent] = useState<EventType>("overview");
   const [confirmation, setConfirmation] = useState<{ ref: string; type: string } | null>(null);

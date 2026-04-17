@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
-import i18n from "@/i18n";
+import { useNavigate, useOutletContext } from "react-router-dom";
+import type { DashboardOutletContext } from "../DashboardLayout";
 import {
   initialNodes, initialEdges, mockAnnotations,
   GraphNode, GraphEdge, Annotation, NodeType,
@@ -17,7 +17,7 @@ const COMMUNITY_PALETTE = ["#22D3EE", "#A78BFA", "#4ADE80", "#FB923C", "#F472B6"
 
 const LinkAnalysisPage = () => {
   const navigate = useNavigate();
-  const isAr = i18n.language === "ar";
+  const { isAr } = useOutletContext<DashboardOutletContext>();
 
   const [nodes, setNodes] = useState<GraphNode[]>(initialNodes);
   const [edges, setEdges] = useState<GraphEdge[]>(initialEdges);

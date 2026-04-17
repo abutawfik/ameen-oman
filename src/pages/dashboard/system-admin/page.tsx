@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useOutletContext } from "react-router-dom";
+import type { DashboardOutletContext } from "../DashboardLayout";
 import SystemConfig from "./components/SystemConfig";
 import StreamManagement from "./components/StreamManagement";
 import ValidationRulesEngine from "./components/ValidationRulesEngine";
@@ -18,7 +20,7 @@ const tabs = [
 ];
 
 const SystemAdminPage = () => {
-  const [isAr] = useState(false);
+  const { isAr } = useOutletContext<DashboardOutletContext>();
   const [activeTab, setActiveTab] = useState("health");
 
   const currentTab = tabs.find((t) => t.id === activeTab)!;

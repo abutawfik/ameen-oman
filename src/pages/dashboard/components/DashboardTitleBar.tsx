@@ -67,7 +67,7 @@ const DashboardTitleBar = ({ entityType, isAr, onToggleLang, onToggleAr, selecte
             <i className={`ri-arrow-down-s-line text-gray-500 text-xs transition-transform ${branchOpen ? "rotate-180" : ""}`} />
           </button>
           {branchOpen && (
-            <div className="absolute top-full mt-1 right-0 w-56 rounded-xl border overflow-hidden z-50"
+            <div className={`absolute top-full mt-1 w-56 rounded-xl border overflow-hidden z-50 ${isAr ? "left-0" : "right-0"}`}
               style={{ background: "rgba(10,22,40,0.98)", borderColor: "rgba(34,211,238,0.2)", backdropFilter: "blur(16px)" }}>
               {branches.map((b) => (
                 <button key={b.id} onClick={() => { onBranchChange?.(b.id); setBranchOpen(false); }}
@@ -104,7 +104,7 @@ const DashboardTitleBar = ({ entityType, isAr, onToggleLang, onToggleAr, selecte
             <i className="ri-notification-3-line text-cyan-400 text-lg" />
             {totalBadge > 0 && (
               <span
-                className="absolute -top-1 -right-1 min-w-[18px] h-[18px] flex items-center justify-center rounded-full text-[10px] font-bold font-['JetBrains_Mono'] px-1"
+                className={`absolute -top-1 min-w-[18px] h-[18px] flex items-center justify-center rounded-full text-[10px] font-bold font-['JetBrains_Mono'] px-1 ${isAr ? "-left-1" : "-right-1"}`}
                 style={{ background: criticalCount > 0 ? "#F87171" : "#22D3EE", color: "#060D1A" }}
               >
                 {totalBadge}
@@ -112,7 +112,7 @@ const DashboardTitleBar = ({ entityType, isAr, onToggleLang, onToggleAr, selecte
             )}
           </button>
           {notifOpen && (
-            <div className="absolute top-full mt-2 right-0 w-80 rounded-xl border overflow-hidden z-50"
+            <div className={`absolute top-full mt-2 w-80 rounded-xl border overflow-hidden z-50 ${isAr ? "left-0" : "right-0"}`}
               style={{ background: "rgba(10,22,40,0.98)", borderColor: "rgba(34,211,238,0.2)", backdropFilter: "blur(16px)" }}>
               <div className="px-4 py-3 border-b border-white/5 flex items-center justify-between">
                 <p className="text-white text-sm font-semibold font-['Inter']">{isAr ? "الإشعارات" : "Notifications"}</p>
@@ -130,7 +130,7 @@ const DashboardTitleBar = ({ entityType, isAr, onToggleLang, onToggleAr, selecte
                   <span className="text-red-400 text-xs font-bold font-['JetBrains_Mono']">
                     {criticalCount} {isAr ? "تنبيه حرج في مركز الشرطة" : "CRITICAL alerts in Police Center"}
                   </span>
-                  <i className="ri-arrow-right-line text-red-400 text-xs ml-auto" />
+                  <i className={`${isAr ? "ri-arrow-left-line" : "ri-arrow-right-line"} text-red-400 text-xs ms-auto`} />
                 </div>
               )}
               {notifications.map((n) => (
@@ -169,7 +169,7 @@ const DashboardTitleBar = ({ entityType, isAr, onToggleLang, onToggleAr, selecte
             <i className={`ri-arrow-down-s-line text-gray-500 text-xs hidden sm:block transition-transform ${userOpen ? "rotate-180" : ""}`} />
           </button>
           {userOpen && (
-            <div className="absolute top-full mt-1 right-0 w-48 rounded-xl border overflow-hidden z-50"
+            <div className={`absolute top-full mt-1 w-48 rounded-xl border overflow-hidden z-50 ${isAr ? "left-0" : "right-0"}`}
               style={{ background: "rgba(10,22,40,0.98)", borderColor: "rgba(34,211,238,0.2)", backdropFilter: "blur(16px)" }}>
               {[
                 { icon: "ri-user-line", labelEn: "Profile", labelAr: "الملف الشخصي" },

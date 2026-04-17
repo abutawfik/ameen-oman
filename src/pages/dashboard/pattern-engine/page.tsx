@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
+import type { DashboardOutletContext } from "../DashboardLayout";
 import {
   PRE_BUILT_RULES, CATEGORY_META, RISK_CONFIG,
   STREAM_OPTIONS, EVENT_OPTIONS, OPERATOR_OPTIONS, ACTION_OPTIONS,
@@ -146,7 +147,7 @@ const RuleCard = ({
 
 const PatternEnginePage = () => {
   const navigate = useNavigate();
-  const [isAr, setIsAr] = useState(false);
+  const { isAr } = useOutletContext<DashboardOutletContext>();
   const [activeTab, setActiveTab] = useState<Tab>("rules");
   const [currentTime, setCurrentTime] = useState(new Date());
 
@@ -258,7 +259,7 @@ const PatternEnginePage = () => {
           <button type="button" onClick={() => navigate("/dashboard")}
             className="flex items-center gap-2 px-3 py-1.5 rounded-lg border text-sm font-semibold cursor-pointer whitespace-nowrap"
             style={{ background: "transparent", borderColor: "rgba(255,255,255,0.1)", color: "#9CA3AF" }}>
-            <i className="ri-arrow-left-line" />{isAr ? "لوحة التحكم" : "Dashboard"}
+            <i className={isAr ? "ri-arrow-right-line" : "ri-arrow-left-line"} />{isAr ? "لوحة التحكم" : "Dashboard"}
           </button>
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 flex items-center justify-center rounded-xl flex-shrink-0"
@@ -289,11 +290,6 @@ const PatternEnginePage = () => {
             <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
             <span className="text-green-400 text-xs font-semibold font-['JetBrains_Mono']">{enabledCount} {isAr ? "قاعدة نشطة" : "RULES ACTIVE"}</span>
           </div>
-          <button type="button" onClick={() => setIsAr((v) => !v)}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-semibold cursor-pointer whitespace-nowrap"
-            style={{ background: "rgba(255,255,255,0.04)", borderColor: "rgba(255,255,255,0.1)", color: "#9CA3AF" }}>
-            <i className="ri-translate-2 text-xs" />{isAr ? "EN" : "عربي"}
-          </button>
         </div>
       </header>
 

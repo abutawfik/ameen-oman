@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
+import type { DashboardOutletContext } from "../DashboardLayout";
 
 type Tab = "live" | "entities" | "alerts" | "replication" | "audit";
 
@@ -98,7 +99,7 @@ const ACTION_COLORS: Record<string, string> = {
 
 const CommandCenterPage = () => {
   const navigate = useNavigate();
-  const [isAr, setIsAr] = useState(false);
+  const { isAr } = useOutletContext<DashboardOutletContext>();
   const [activeTab, setActiveTab] = useState<Tab>("live");
   const [currentTime, setCurrentTime] = useState(new Date());
   const [liveEvents, setLiveEvents] = useState(48291);
@@ -200,7 +201,7 @@ const CommandCenterPage = () => {
             style={{ background: "transparent", borderColor: "rgba(255,255,255,0.1)", color: "#9CA3AF" }}
             onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "#D1D5DB"; }}
             onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "#9CA3AF"; }}>
-            <i className="ri-arrow-left-line" />
+            <i className={isAr ? "ri-arrow-right-line" : "ri-arrow-left-line"} />
             {isAr ? "لوحة التحكم" : "Dashboard"}
           </button>
 
@@ -257,11 +258,6 @@ const CommandCenterPage = () => {
           </div>
 
           {/* Language */}
-          <button type="button" onClick={() => setIsAr((v) => !v)}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-semibold cursor-pointer whitespace-nowrap"
-            style={{ background: "rgba(255,255,255,0.04)", borderColor: "rgba(255,255,255,0.1)", color: "#9CA3AF" }}>
-            <i className="ri-translate-2 text-xs" />{isAr ? "EN" : "عربي"}
-          </button>
         </div>
       </header>
 

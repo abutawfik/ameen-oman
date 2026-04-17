@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
+import type { DashboardOutletContext } from "../DashboardLayout";
 import VehicleBookForm from "./VehicleBookForm";
 import VehiclePickUpForm from "./VehiclePickUpForm";
 import RentExtendedForm from "./RentExtendedForm";
@@ -63,7 +64,7 @@ const EVENT_CARDS: EventCard[] = [
 
 const CarRentalEventsPage = () => {
   const navigate = useNavigate();
-  const [isAr, setIsAr] = useState(false);
+  const { isAr } = useOutletContext<DashboardOutletContext>();
   const [activeEvent, setActiveEvent] = useState<EventType | null>(null);
   const [formKey, setFormKey] = useState(0);
 
@@ -117,7 +118,7 @@ const CarRentalEventsPage = () => {
               (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.08)";
             }}
           >
-            <i className="ri-arrow-left-line text-xs" />
+            <i className={`${isAr ? "ri-arrow-right-line" : "ri-arrow-left-line"} text-xs`} />
             {activeEvent ? (isAr ? "العودة للأحداث" : "Back to Events") : (isAr ? "لوحة التحكم" : "Dashboard")}
           </button>
 
@@ -171,16 +172,6 @@ const CarRentalEventsPage = () => {
             </div>
           )}
 
-          <button
-            type="button"
-            onClick={() => setIsAr((v) => !v)}
-            className="w-9 h-9 flex items-center justify-center rounded-full border text-xs font-bold cursor-pointer transition-colors font-['JetBrains_Mono']"
-            style={{ background: "rgba(255,255,255,0.03)", borderColor: "rgba(34,211,238,0.2)", color: "#22D3EE" }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(34,211,238,0.08)"; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.03)"; }}
-          >
-            {isAr ? "EN" : "AR"}
-          </button>
         </div>
       </header>
 

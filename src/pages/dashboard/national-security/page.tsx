@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
+import type { DashboardOutletContext } from "../DashboardLayout";
 import ThreatLevelGauge from "./components/ThreatLevelGauge";
 import ActiveInvestigations from "./components/ActiveInvestigations";
 import WatchlistHitRate from "./components/WatchlistHitRate";
@@ -17,7 +18,7 @@ type Tab = "overview" | "investigations" | "watchlist" | "correlations";
 
 const NationalSecurityDashboard = () => {
   const navigate = useNavigate();
-  const [isAr, setIsAr] = useState(false);
+  const { isAr } = useOutletContext<DashboardOutletContext>();
   const [activeTab, setActiveTab] = useState<Tab>("overview");
   const [currentTime, setCurrentTime] = useState(new Date());
   const [liveEvents, setLiveEvents] = useState(48291);
@@ -84,7 +85,7 @@ const NationalSecurityDashboard = () => {
           <button type="button" onClick={() => navigate("/dashboard")}
             className="flex items-center gap-2 px-3 py-1.5 rounded-lg border text-sm font-semibold cursor-pointer whitespace-nowrap transition-colors"
             style={{ background: "transparent", borderColor: "rgba(255,255,255,0.1)", color: "#9CA3AF" }}>
-            <i className="ri-arrow-left-line" />
+            <i className={isAr ? "ri-arrow-right-line" : "ri-arrow-left-line"} />
             {isAr ? "لوحة التحكم" : "Dashboard"}
           </button>
 
@@ -142,11 +143,6 @@ const NationalSecurityDashboard = () => {
           </div>
 
           {/* Language */}
-          <button type="button" onClick={() => setIsAr((v) => !v)}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-semibold cursor-pointer whitespace-nowrap"
-            style={{ background: "rgba(255,255,255,0.04)", borderColor: "rgba(255,255,255,0.1)", color: "#9CA3AF" }}>
-            <i className="ri-translate-2 text-xs" />{isAr ? "EN" : "عربي"}
-          </button>
         </div>
       </header>
 

@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
+import type { DashboardOutletContext } from "../DashboardLayout";
 import NewConnectionForm from "./NewConnectionForm";
 import ServiceTransferForm from "./ServiceTransferForm";
 import DisconnectionForm from "./DisconnectionForm";
@@ -81,7 +82,7 @@ const EVENT_CARDS: EventCard[] = [
 
 const UtilityEventsPage = () => {
   const navigate = useNavigate();
-  const [isAr, setIsAr] = useState(false);
+  const { isAr } = useOutletContext<DashboardOutletContext>();
   const [activeEvent, setActiveEvent] = useState<EventType | null>(null);
   const activeCard = EVENT_CARDS.find((c) => c.id === activeEvent);
 
@@ -99,7 +100,7 @@ const UtilityEventsPage = () => {
             style={{ background: "transparent", borderColor: "rgba(255,255,255,0.1)", color: "#9CA3AF" }}
             onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "#D1D5DB"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.2)"; }}
             onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "#9CA3AF"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.1)"; }}>
-            <i className="ri-arrow-left-line" />
+            <i className={isAr ? "ri-arrow-right-line" : "ri-arrow-left-line"} />
             {activeEvent ? (isAr ? "العودة" : "Back") : (isAr ? "لوحة التحكم" : "Dashboard")}
           </button>
           <div className="flex items-center gap-2">
@@ -145,13 +146,6 @@ const UtilityEventsPage = () => {
             </div>
           )}
 
-          <button type="button" onClick={() => setIsAr((v) => !v)}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-semibold cursor-pointer whitespace-nowrap transition-colors"
-            style={{ background: "rgba(255,255,255,0.04)", borderColor: "rgba(255,255,255,0.1)", color: "#9CA3AF" }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "#22D3EE"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(34,211,238,0.3)"; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "#9CA3AF"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.1)"; }}>
-            <i className="ri-translate-2 text-xs" />{isAr ? "EN" : "عربي"}
-          </button>
         </div>
       </header>
 

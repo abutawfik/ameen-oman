@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useOutletContext } from 'react-router-dom';
+import type { DashboardOutletContext } from '../DashboardLayout';
 import { mergeCandidates, personRecords, matchingRules } from '@/mocks/identityFusionData';
 import FusionDashboard from './components/FusionDashboard';
 import CandidateReviewQueue from './components/CandidateReviewQueue';
@@ -66,8 +68,7 @@ const tabs: { key: Tab; labelEn: string; labelAr: string; icon: string }[] = [
 
 export default function IdentityFusionPage() {
   const [activeTab, setActiveTab] = useState<Tab>('dashboard');
-  const [lang, setLang] = useState<'en' | 'ar'>('en');
-  const isAr = lang === 'ar';
+  const { isAr } = useOutletContext<DashboardOutletContext>();
 
   const pendingCount = mergeCandidates.filter(c => c.status === 'pending').length;
 
@@ -134,13 +135,6 @@ export default function IdentityFusionPage() {
                 {matchingRules.filter(r => r.enabled).length} {isAr ? 'قواعد نشطة' : 'active rules'}
               </span>
             </div>
-            {/* Lang toggle */}
-            <button
-              onClick={() => setLang(l => l === 'en' ? 'ar' : 'en')}
-              className="px-3 py-2 rounded-xl border border-cyan-500/25 text-cyan-400 text-xs cursor-pointer hover:bg-cyan-500/8 transition-colors whitespace-nowrap font-['JetBrains_Mono']"
-            >
-              {isAr ? 'EN' : 'عربي'}
-            </button>
           </div>
         </div>
 

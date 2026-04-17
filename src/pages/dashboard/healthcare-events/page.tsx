@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
+import type { DashboardOutletContext } from "../DashboardLayout";
 import PatientRegistrationForm from "./PatientRegistrationForm";
 import EmergencyVisitForm from "./EmergencyVisitForm";
 import PharmacyPrescriptionForm from "./PharmacyPrescriptionForm";
@@ -14,7 +15,7 @@ const EVENT_CARDS = [
 
 const HealthcareEventsPage = () => {
   const navigate = useNavigate();
-  const [isAr, setIsAr] = useState(false);
+  const { isAr } = useOutletContext<DashboardOutletContext>();
   const [activeEvent, setActiveEvent] = useState<EventType | null>(null);
   const [formKey, setFormKey] = useState(0);
   const activeCard = EVENT_CARDS.find(c => c.id === activeEvent);
@@ -28,7 +29,7 @@ const HealthcareEventsPage = () => {
       <header className="sticky top-0 z-40 flex items-center justify-between px-6 py-3 border-b" style={{ background: "rgba(6,13,26,0.95)", borderColor: "rgba(34,211,238,0.12)", backdropFilter: "blur(12px)" }}>
         <div className="flex items-center gap-4">
           <button type="button" onClick={() => activeEvent ? setActiveEvent(null) : navigate("/dashboard")} className="flex items-center gap-2 px-3 py-1.5 rounded-lg border text-sm font-semibold cursor-pointer whitespace-nowrap transition-colors" style={{ background: "transparent", borderColor: "rgba(255,255,255,0.1)", color: "#9CA3AF" }} onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "#D1D5DB"; }} onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "#9CA3AF"; }}>
-            <i className="ri-arrow-left-line" />{activeEvent ? (isAr ? "العودة" : "Back") : (isAr ? "لوحة التحكم" : "Dashboard")}
+            <i className={isAr ? "ri-arrow-right-line" : "ri-arrow-left-line"} />{activeEvent ? (isAr ? "العودة" : "Back") : (isAr ? "لوحة التحكم" : "Dashboard")}
           </button>
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(248,113,113,0.1)", border: "1px solid rgba(248,113,113,0.2)" }}>
@@ -49,9 +50,6 @@ const HealthcareEventsPage = () => {
             <span className="text-green-400 text-xs font-semibold font-['JetBrains_Mono']">LIVE</span>
           </div>
           {activeCard && <div className="hidden sm:block px-3 py-1.5 rounded-lg border text-xs font-bold font-['JetBrains_Mono']" style={{ background: `${activeCard.color}10`, borderColor: `${activeCard.color}30`, color: activeCard.color }}>{activeCard.code}</div>}
-          <button type="button" onClick={() => setIsAr(v => !v)} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-semibold cursor-pointer whitespace-nowrap transition-colors" style={{ background: "rgba(255,255,255,0.04)", borderColor: "rgba(255,255,255,0.1)", color: "#9CA3AF" }} onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "#22D3EE"; }} onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "#9CA3AF"; }}>
-            <i className="ri-translate-2 text-xs" />{isAr ? "EN" : "عربي"}
-          </button>
         </div>
       </header>
 

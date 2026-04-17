@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
+import type { DashboardOutletContext } from "../DashboardLayout";
 
 type MainTab = "overview" | "streams" | "violations" | "trends";
 
@@ -50,7 +51,7 @@ const severityConfig: Record<string, { color: string; bg: string }> = {
 
 const ComplianceScorecardPage = () => {
   const navigate = useNavigate();
-  const [isAr] = useState(false);
+  const { isAr } = useOutletContext<DashboardOutletContext>();
   const [mainTab, setMainTab] = useState<MainTab>("overview");
   const [statusFilter, setStatusFilter] = useState("all");
   const [selectedStream, setSelectedStream] = useState(STREAMS[0]);

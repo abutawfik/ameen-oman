@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useOutletContext } from "react-router-dom";
+import type { DashboardOutletContext } from "../DashboardLayout";
 import EntityNotifPanel from "./components/EntityNotifPanel";
 import PoliceAlertCenter from "./components/PoliceAlertCenter";
 import CommunicationHub from "./components/CommunicationHub";
@@ -8,7 +10,7 @@ import { entityNotifications, policeAlerts } from "@/mocks/notificationsData";
 type MainTab = "entity" | "police-alerts" | "comms" | "rules";
 
 const NotificationsPage = () => {
-  const [isAr] = useState(false);
+  const { isAr } = useOutletContext<DashboardOutletContext>();
   const [activeTab, setActiveTab] = useState<MainTab>("entity");
 
   const unreadEntity = entityNotifications.filter((n) => !n.read).length;

@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { useOutletContext } from "react-router-dom";
+import type { DashboardOutletContext } from "../DashboardLayout";
 import CaseList from "./components/CaseList";
 import CaseDetail from "./components/CaseDetail";
 import { cases } from "@/mocks/caseManagementData";
 
 const CaseManagementPage = () => {
-  const [isAr] = useState(false);
+  const { isAr } = useOutletContext<DashboardOutletContext>();
   const [selectedCaseId, setSelectedCaseId] = useState<string | null>(cases[0].id);
 
   const selectedCase = cases.find((c) => c.id === selectedCaseId) || null;

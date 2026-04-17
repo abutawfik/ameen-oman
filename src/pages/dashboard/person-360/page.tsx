@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
+import type { DashboardOutletContext } from "../DashboardLayout";
 import IdentityCard from "./components/IdentityCard";
 import StreamSummaryRow from "./components/StreamSummaryRow";
 import MovementTimeline from "./components/MovementTimeline";
@@ -18,7 +19,7 @@ import {
 
 const Person360Page = () => {
   const navigate = useNavigate();
-  const [isAr] = useState(false);
+  const { isAr } = useOutletContext<DashboardOutletContext>();
   const [streamFilter, setStreamFilter] = useState<string | null>(null);
   const [activeSection, setActiveSection] = useState<"timeline" | "connections" | "social" | "travel">("timeline");
   const [showDossierModal, setShowDossierModal] = useState(false);
@@ -70,7 +71,7 @@ const Person360Page = () => {
               onClick={() => navigate("/dashboard/risk-assessment")}
               className="flex items-center gap-1.5 text-gray-500 hover:text-gray-300 transition-colors cursor-pointer text-sm font-['Inter']"
             >
-              <i className="ri-arrow-left-line" />
+              <i className={isAr ? "ri-arrow-right-line" : "ri-arrow-left-line"} />
               {isAr ? "رجوع" : "Back"}
             </button>
             <div className="w-px h-4 bg-gray-700" />
