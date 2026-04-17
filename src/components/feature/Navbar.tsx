@@ -38,12 +38,13 @@ const Navbar = () => {
     document.documentElement.lang = next;
   };
 
+  // Matches the new home-page structure:
+  //   Hero → IntelligenceLayer (id="intelligence-layers")
+  //   → DataFlowArchitecture (id="data-flow-architecture") → Footer
   const navLinks = [
-    { key: "home", href: "#home" },
-    { key: "coreServices", href: "#core-services" },
-    { key: "extendedServices", href: "#extended-services" },
-    { key: "dataStreams", href: "#data-streams" },
-    { key: "about", href: "#about" },
+    { key: "home",               href: "#home" },
+    { key: "intelligenceLayers", href: "#intelligence-layers" },
+    { key: "dataFlow",           href: "#data-flow-architecture" },
   ];
 
   const scrollTo = (href: string) => {

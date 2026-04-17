@@ -1,13 +1,16 @@
 const en = {
   nav: {
     home: "Home",
+    intelligenceLayers: "Intelligence Layers",
+    dataFlow: "Data Flow",
+    portalLogin: "Portal Login",
+    language: "AR",
+    // Legacy keys retained for backward compatibility (some footer/mock usages)
     coreServices: "Core Services",
     extendedServices: "Extended Services",
     dataStreams: "Data Streams",
     apiIntegration: "API & Integration",
     about: "About & Contact",
-    portalLogin: "Portal Login",
-    language: "AR",
   },
   hero: {
     badge: "Operated by National Police HQ | Border Control System",

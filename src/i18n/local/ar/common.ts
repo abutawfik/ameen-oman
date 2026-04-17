@@ -1,13 +1,16 @@
 const ar = {
   nav: {
     home: "الرئيسية",
+    intelligenceLayers: "طبقات الاستخبارات",
+    dataFlow: "تدفق البيانات",
+    portalLogin: "دخول البوابة",
+    language: "EN",
+    // Legacy keys retained
     coreServices: "الخدمات الأساسية",
     extendedServices: "الخدمات الموسعة",
     dataStreams: "مصادر البيانات",
     apiIntegration: "واجهة برمجة التطبيقات",
     about: "حول وتواصل",
-    portalLogin: "دخول البوابة",
-    language: "EN",
   },
   hero: {
     badge: "تحت إشراف الشرطة الوطنية | نظام مراقبة الحدود",
