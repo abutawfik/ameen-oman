@@ -2063,3 +2063,715 @@ export const WEIGHT_PROFILES: WeightProfile[] = [
     createdAt: "2026-04-08T00:00:00Z",
   },
 ];
+
+// ─────────────────────────────────────────────────────────────────────────
+// Wave 2 · Movement events (Person 360° tab 2)
+// ─────────────────────────────────────────────────────────────────────────
+
+export type MovementEventType =
+  | "BORDER_ENTRY" | "BORDER_EXIT"
+  | "HOTEL_CHECKIN" | "HOTEL_CHECKOUT"
+  | "SIM_ACTIVATION"
+  | "VEHICLE_RENTAL_START" | "VEHICLE_RENTAL_END"
+  | "MOL_EMPLOYMENT_START" | "MOL_EMPLOYMENT_END"
+  | "MUNICIPALITY_LEASE";
+
+export interface MovementEvent {
+  id: string;
+  travelerId: string;
+  type: MovementEventType;
+  occurredAt: string;
+  location: { iata?: string; city: string; country: string };
+  source: string;
+  sourceClass: Classification;
+  payload: Record<string, unknown>;
+  coherenceGapHours?: number;
+}
+
+// Seeded events covering the first 3 scored records (demo-lowrisk, demo-borderline, demo-highrisk-sponsor)
+export const MOVEMENT_EVENTS: MovementEvent[] = [
+  // ── demo-lowrisk · James W. Carter · USA ────────────────────────────────
+  { id: "mv-l01", travelerId: "demo-lowrisk", type: "BORDER_ENTRY", occurredAt: "2026-02-14T08:30:00Z", location: { iata: "MCT", city: "Muscat", country: "OMN" }, source: "Border Entry/Exit", sourceClass: "internal", payload: { flight: "EK204", stampNo: "A90123" } },
+  { id: "mv-l02", travelerId: "demo-lowrisk", type: "HOTEL_CHECKIN", occurredAt: "2026-02-14T11:15:00Z", location: { city: "Muscat", country: "OMN" }, source: "Shangri-La Al Husn", sourceClass: "internal", payload: { reservation: "SHR-20262-1104", room: "812" } },
+  { id: "mv-l03", travelerId: "demo-lowrisk", type: "SIM_ACTIVATION", occurredAt: "2026-02-14T12:02:00Z", location: { city: "Muscat", country: "OMN" }, source: "Omantel", sourceClass: "restricted", payload: { msisdn: "+968 9xxxx ••210", planAr: "Visitor 30-day" } },
+  { id: "mv-l04", travelerId: "demo-lowrisk", type: "VEHICLE_RENTAL_START", occurredAt: "2026-02-14T13:45:00Z", location: { iata: "MCT", city: "Muscat", country: "OMN" }, source: "Europcar Muscat Intl.", sourceClass: "internal", payload: { plate: "8-2419 A", modelEn: "Toyota Prado" } },
+  { id: "mv-l05", travelerId: "demo-lowrisk", type: "HOTEL_CHECKOUT", occurredAt: "2026-02-19T09:10:00Z", location: { city: "Muscat", country: "OMN" }, source: "Shangri-La Al Husn", sourceClass: "internal", payload: { reservation: "SHR-20262-1104" } },
+  { id: "mv-l06", travelerId: "demo-lowrisk", type: "VEHICLE_RENTAL_END", occurredAt: "2026-02-19T12:25:00Z", location: { iata: "MCT", city: "Muscat", country: "OMN" }, source: "Europcar Muscat Intl.", sourceClass: "internal", payload: { plate: "8-2419 A", distanceKm: 482 } },
+  { id: "mv-l07", travelerId: "demo-lowrisk", type: "BORDER_EXIT", occurredAt: "2026-02-19T14:10:00Z", location: { iata: "MCT", city: "Muscat", country: "OMN" }, source: "Border Entry/Exit", sourceClass: "internal", payload: { flight: "EK207" } },
+  { id: "mv-l08", travelerId: "demo-lowrisk", type: "BORDER_ENTRY", occurredAt: "2026-04-18T09:15:00Z", location: { iata: "MCT", city: "Muscat", country: "OMN" }, source: "Border Entry/Exit", sourceClass: "internal", payload: { flight: "EK204", stampNo: "A91884" } },
+  { id: "mv-l09", travelerId: "demo-lowrisk", type: "HOTEL_CHECKIN", occurredAt: "2026-04-18T11:05:00Z", location: { city: "Muscat", country: "OMN" }, source: "Chedi Muscat", sourceClass: "internal", payload: { reservation: "CHD-20264-0821" } },
+  { id: "mv-l10", travelerId: "demo-lowrisk", type: "MOL_EMPLOYMENT_START", occurredAt: "2026-04-18T00:00:00Z", location: { city: "Muscat", country: "OMN" }, source: "MOL registry", sourceClass: "restricted", payload: { employer: "Bechtel Corporation", category: "Consulting" } },
+  { id: "mv-l11", travelerId: "demo-lowrisk", type: "SIM_ACTIVATION", occurredAt: "2026-04-18T13:40:00Z", location: { city: "Muscat", country: "OMN" }, source: "Ooredoo", sourceClass: "restricted", payload: { msisdn: "+968 9xxxx ••553" } },
+  { id: "mv-l12", travelerId: "demo-lowrisk", type: "MUNICIPALITY_LEASE", occurredAt: "2026-04-18T15:00:00Z", location: { city: "Muscat", country: "OMN" }, source: "Muscat Municipality", sourceClass: "internal", payload: { unit: "Al Mouj Towers A-17" } },
+
+  // ── demo-borderline · Yasir A. Karim · PAK ──────────────────────────────
+  { id: "mv-b01", travelerId: "demo-borderline", type: "BORDER_ENTRY", occurredAt: "2025-11-04T03:20:00Z", location: { iata: "MCT", city: "Muscat", country: "OMN" }, source: "Border Entry/Exit", sourceClass: "internal", payload: { flight: "PK207", stampNo: "B18003" } },
+  { id: "mv-b02", travelerId: "demo-borderline", type: "HOTEL_CHECKIN", occurredAt: "2025-11-04T07:00:00Z", location: { city: "Muscat", country: "OMN" }, source: "Radisson Blu Muscat", sourceClass: "internal", payload: { reservation: "RBM-2025-9930", room: "416" } },
+  { id: "mv-b03", travelerId: "demo-borderline", type: "SIM_ACTIVATION", occurredAt: "2025-11-04T10:48:00Z", location: { city: "Muscat", country: "OMN" }, source: "Vodafone Oman", sourceClass: "restricted", payload: { msisdn: "+968 9xxxx ••097" } },
+  { id: "mv-b04", travelerId: "demo-borderline", type: "MUNICIPALITY_LEASE", occurredAt: "2025-11-06T12:00:00Z", location: { city: "Muscat", country: "OMN" }, source: "Muscat Municipality", sourceClass: "internal", payload: { unit: "Ghubra Heights B-04", leaseMonths: 6 } },
+  { id: "mv-b05", travelerId: "demo-borderline", type: "MOL_EMPLOYMENT_START", occurredAt: "2025-11-09T00:00:00Z", location: { city: "Muscat", country: "OMN" }, source: "MOL registry", sourceClass: "restricted", payload: { employer: "Pearl Logistics LLC" } },
+  { id: "mv-b06", travelerId: "demo-borderline", type: "VEHICLE_RENTAL_START", occurredAt: "2025-11-12T14:00:00Z", location: { city: "Muscat", country: "OMN" }, source: "Budget Oman", sourceClass: "internal", payload: { plate: "2-7701 B", modelEn: "Hyundai Accent" } },
+  { id: "mv-b07", travelerId: "demo-borderline", type: "VEHICLE_RENTAL_END", occurredAt: "2025-11-18T16:00:00Z", location: { city: "Muscat", country: "OMN" }, source: "Budget Oman", sourceClass: "internal", payload: { plate: "2-7701 B", distanceKm: 1824 } },
+  { id: "mv-b08", travelerId: "demo-borderline", type: "HOTEL_CHECKOUT", occurredAt: "2025-11-22T10:00:00Z", location: { city: "Muscat", country: "OMN" }, source: "Radisson Blu Muscat", sourceClass: "internal", payload: { reservation: "RBM-2025-9930" } },
+  { id: "mv-b09", travelerId: "demo-borderline", type: "BORDER_EXIT", occurredAt: "2025-11-23T12:15:00Z", location: { iata: "MCT", city: "Muscat", country: "OMN" }, source: "Border Entry/Exit", sourceClass: "internal", payload: { flight: "PK208" } },
+  { id: "mv-b10", travelerId: "demo-borderline", type: "BORDER_ENTRY", occurredAt: "2026-04-18T04:42:00Z", location: { iata: "MCT", city: "Muscat", country: "OMN" }, source: "Border Entry/Exit", sourceClass: "internal", payload: { flight: "PK207", stampNo: "B21770" } },
+  { id: "mv-b11", travelerId: "demo-borderline", type: "SIM_ACTIVATION", occurredAt: "2026-04-18T08:20:00Z", location: { city: "Muscat", country: "OMN" }, source: "Vodafone Oman", sourceClass: "restricted", payload: { msisdn: "+968 9xxxx ••441" } },
+  { id: "mv-b12", travelerId: "demo-borderline", type: "HOTEL_CHECKIN", occurredAt: "2026-04-18T10:30:00Z", location: { city: "Muscat", country: "OMN" }, source: "Crowne Plaza Muscat", sourceClass: "internal", payload: { reservation: "CRP-20264-5551", room: "1103" } },
+  { id: "mv-b13", travelerId: "demo-borderline", type: "MOL_EMPLOYMENT_END", occurredAt: "2025-12-01T00:00:00Z", location: { city: "Muscat", country: "OMN" }, source: "MOL registry", sourceClass: "restricted", payload: { employer: "Pearl Logistics LLC", reason: "contract_expired" } },
+
+  // ── demo-highrisk-sponsor · Mikhail V. Petrov · RUS ─────────────────────
+  { id: "mv-h01", travelerId: "demo-highrisk-sponsor", type: "BORDER_ENTRY", occurredAt: "2026-01-23T22:50:00Z", location: { iata: "MCT", city: "Muscat", country: "OMN" }, source: "Border Entry/Exit", sourceClass: "internal", payload: { flight: "EK865" } },
+  { id: "mv-h02", travelerId: "demo-highrisk-sponsor", type: "HOTEL_CHECKIN", occurredAt: "2026-01-24T00:05:00Z", location: { city: "Muscat", country: "OMN" }, source: "Kempinski Muscat", sourceClass: "internal", payload: { reservation: "KMP-2026-0118", room: "2701" } },
+  { id: "mv-h03", travelerId: "demo-highrisk-sponsor", type: "SIM_ACTIVATION", occurredAt: "2026-01-24T10:45:00Z", location: { city: "Muscat", country: "OMN" }, source: "Omantel", sourceClass: "restricted", payload: { msisdn: "+968 9xxxx ••118" } },
+  { id: "mv-h04", travelerId: "demo-highrisk-sponsor", type: "MOL_EMPLOYMENT_START", occurredAt: "2026-01-25T00:00:00Z", location: { city: "Muscat", country: "OMN" }, source: "MOL registry", sourceClass: "restricted", payload: { employer: "Volga Holdings International", note: "declared employer mismatch" } },
+  { id: "mv-h05", travelerId: "demo-highrisk-sponsor", type: "VEHICLE_RENTAL_START", occurredAt: "2026-01-26T09:10:00Z", location: { city: "Muscat", country: "OMN" }, source: "Sixt Oman", sourceClass: "internal", payload: { plate: "1-0091 C", modelEn: "Range Rover Sport" } },
+  { id: "mv-h06", travelerId: "demo-highrisk-sponsor", type: "MUNICIPALITY_LEASE", occurredAt: "2026-01-28T10:00:00Z", location: { city: "Muscat", country: "OMN" }, source: "Muscat Municipality", sourceClass: "internal", payload: { unit: "Qurum Heights 12-C", leaseMonths: 12 } },
+  { id: "mv-h07", travelerId: "demo-highrisk-sponsor", type: "VEHICLE_RENTAL_END", occurredAt: "2026-02-09T15:00:00Z", location: { city: "Muscat", country: "OMN" }, source: "Sixt Oman", sourceClass: "internal", payload: { plate: "1-0091 C", distanceKm: 918 } },
+  { id: "mv-h08", travelerId: "demo-highrisk-sponsor", type: "HOTEL_CHECKOUT", occurredAt: "2026-02-10T11:30:00Z", location: { city: "Muscat", country: "OMN" }, source: "Kempinski Muscat", sourceClass: "internal", payload: { reservation: "KMP-2026-0118" } },
+  { id: "mv-h09", travelerId: "demo-highrisk-sponsor", type: "BORDER_EXIT", occurredAt: "2026-02-10T14:20:00Z", location: { iata: "MCT", city: "Muscat", country: "OMN" }, source: "Border Entry/Exit", sourceClass: "internal", payload: { flight: "EK866" } },
+  { id: "mv-h10", travelerId: "demo-highrisk-sponsor", type: "BORDER_ENTRY", occurredAt: "2026-04-18T22:05:00Z", location: { iata: "MCT", city: "Muscat", country: "OMN" }, source: "Border Entry/Exit", sourceClass: "internal", payload: { flight: "EK865" } },
+  // Big coherence gap — no hotel check-in for 72h after arrival
+  { id: "mv-h11", travelerId: "demo-highrisk-sponsor", type: "HOTEL_CHECKIN", occurredAt: "2026-04-21T22:40:00Z", location: { city: "Muscat", country: "OMN" }, source: "Al Bustan Palace", sourceClass: "internal", payload: { reservation: "ABP-2026-9120", room: "1911" }, coherenceGapHours: 72 },
+  { id: "mv-h12", travelerId: "demo-highrisk-sponsor", type: "SIM_ACTIVATION", occurredAt: "2026-04-21T23:45:00Z", location: { city: "Muscat", country: "OMN" }, source: "Vodafone Oman", sourceClass: "restricted", payload: { msisdn: "+968 9xxxx ••902" } },
+  { id: "mv-h13", travelerId: "demo-highrisk-sponsor", type: "MOL_EMPLOYMENT_END", occurredAt: "2026-02-10T00:00:00Z", location: { city: "Muscat", country: "OMN" }, source: "MOL registry", sourceClass: "restricted", payload: { employer: "Volga Holdings International" } },
+];
+
+// ─────────────────────────────────────────────────────────────────────────
+// Wave 2 · Entity graph for Person 360° relationships tab
+// ─────────────────────────────────────────────────────────────────────────
+
+export interface GraphNode {
+  id: string;
+  type: "person" | "sponsor" | "employer" | "address" | "vehicle" | "sim" | "organization";
+  label: string;
+  labelAr?: string;
+  riskScore?: number;
+  classification?: Classification;
+  sanctioned?: boolean;
+}
+export interface GraphEdge {
+  from: string;
+  to: string;
+  type: "sponsor_of" | "employed_by" | "resided_at" | "rented" | "activated" | "traveled_with" | "sanctioned_by" | "related_to";
+  label?: string;
+  weight?: number;
+}
+
+export const ENTITY_GRAPHS: Record<string, { nodes: GraphNode[]; edges: GraphEdge[] }> = {
+  "demo-lowrisk": {
+    nodes: [
+      { id: "subject", type: "person", label: "James W. Carter", labelAr: "جيمس كارتر", riskScore: 11, classification: "internal" },
+      { id: "emp-bechtel", type: "employer", label: "Bechtel Corporation", labelAr: "شركة بكتل", classification: "public" },
+      { id: "addr-almouj", type: "address", label: "Al Mouj Towers A-17", labelAr: "أبراج الموج أ-17" },
+      { id: "sim-omantel", type: "sim", label: "Omantel SIM ••553", labelAr: "شريحة عمانتل" },
+      { id: "veh-europcar", type: "vehicle", label: "Toyota Prado 8-2419 A", labelAr: "تويوتا برادو 8-2419 أ" },
+      { id: "hotel-chedi", type: "organization", label: "Chedi Muscat", labelAr: "شيدي مسقط" },
+    ],
+    edges: [
+      { from: "subject", to: "emp-bechtel", type: "employed_by", label: "employed_by" },
+      { from: "subject", to: "addr-almouj", type: "resided_at", label: "resided_at" },
+      { from: "subject", to: "sim-omantel", type: "activated", label: "activated" },
+      { from: "subject", to: "veh-europcar", type: "rented", label: "rented" },
+      { from: "subject", to: "hotel-chedi", type: "resided_at", label: "stayed_at" },
+    ],
+  },
+  "demo-borderline": {
+    nodes: [
+      { id: "subject", type: "person", label: "Yasir A. Karim", labelAr: "ياسر كريم", riskScore: 38, classification: "internal" },
+      { id: "spon-pearl", type: "sponsor", label: "Pearl Logistics LLC", labelAr: "لؤلؤة اللوجستيات" },
+      { id: "emp-pearl", type: "employer", label: "Pearl Logistics LLC", labelAr: "لؤلؤة اللوجستيات" },
+      { id: "addr-ghubra", type: "address", label: "Ghubra Heights B-04", labelAr: "غبرة هايتس ب-04" },
+      { id: "sim-vodafone", type: "sim", label: "Vodafone SIM ••441" },
+      { id: "veh-budget", type: "vehicle", label: "Hyundai Accent 2-7701 B" },
+      { id: "person-travel-companion", type: "person", label: "Bilal R. Karim", labelAr: "بلال كريم", riskScore: 26 },
+      { id: "hotel-radisson", type: "organization", label: "Radisson Blu Muscat" },
+    ],
+    edges: [
+      { from: "subject", to: "spon-pearl", type: "sponsor_of", label: "sponsor_of" },
+      { from: "subject", to: "emp-pearl", type: "employed_by", label: "employed_by" },
+      { from: "subject", to: "addr-ghubra", type: "resided_at", label: "resided_at" },
+      { from: "subject", to: "sim-vodafone", type: "activated" },
+      { from: "subject", to: "veh-budget", type: "rented" },
+      { from: "subject", to: "person-travel-companion", type: "traveled_with", label: "traveled_with" },
+      { from: "subject", to: "hotel-radisson", type: "resided_at", label: "stayed_at" },
+    ],
+  },
+  "demo-highrisk-sponsor": {
+    nodes: [
+      { id: "subject", type: "person", label: "Mikhail V. Petrov", labelAr: "ميخائيل بيتروف", riskScore: 71, classification: "restricted" },
+      { id: "spon-volga", type: "sponsor", label: "Volga Holdings International", labelAr: "فولغا القابضة", riskScore: 88, classification: "restricted" },
+      { id: "emp-volga", type: "employer", label: "Volga Holdings International", labelAr: "فولغا القابضة", riskScore: 88 },
+      { id: "org-parent", type: "organization", label: "Rusenergy Ventures Ltd.", labelAr: "روس إنرجي", riskScore: 92, sanctioned: true, classification: "classified" },
+      { id: "person-oligarch", type: "person", label: "A. K. Gavrilov (EU-sanctioned)", labelAr: "أ. غافريلوف (مُعاقَب)", riskScore: 96, sanctioned: true, classification: "classified" },
+      { id: "addr-qurum", type: "address", label: "Qurum Heights 12-C", labelAr: "قرم هايتس 12-ج" },
+      { id: "sim-vodafone-902", type: "sim", label: "Vodafone SIM ••902" },
+      { id: "veh-sixt", type: "vehicle", label: "Range Rover Sport 1-0091 C" },
+      { id: "hotel-kempinski", type: "organization", label: "Kempinski Muscat" },
+    ],
+    edges: [
+      { from: "subject", to: "spon-volga", type: "sponsor_of", label: "sponsor_of" },
+      { from: "subject", to: "emp-volga", type: "employed_by", label: "employed_by" },
+      { from: "spon-volga", to: "org-parent", type: "related_to", label: "parent_of" },
+      { from: "org-parent", to: "person-oligarch", type: "sanctioned_by", label: "2-hop · sanctioned" },
+      { from: "subject", to: "addr-qurum", type: "resided_at" },
+      { from: "subject", to: "sim-vodafone-902", type: "activated" },
+      { from: "subject", to: "veh-sixt", type: "rented" },
+      { from: "subject", to: "hotel-kempinski", type: "resided_at", label: "stayed_at" },
+    ],
+  },
+};
+
+// ─────────────────────────────────────────────────────────────────────────
+// Wave 2 · Case management — full lifecycle + disposition
+// ─────────────────────────────────────────────────────────────────────────
+
+export type CaseStatus = "DRAFT" | "OPEN" | "INVESTIGATING" | "PENDING_REVIEW" | "CLOSED";
+export type CaseDisposition = "CONFIRMED_THREAT" | "FALSE_POSITIVE" | "INSUFFICIENT_EVIDENCE" | "TRANSFERRED";
+
+export interface CaseNote {
+  id: string;
+  authorId: string;
+  authorName: string;
+  createdAt: string;
+  body: string;
+}
+
+export interface Case {
+  id: string;
+  title: string;
+  titleAr: string;
+  status: CaseStatus;
+  severity: "CRITICAL" | "HIGH" | "MEDIUM" | "LOW";
+  ownerId: string;
+  ownerName: string;
+  subjectTravelerId: string;
+  subjectName: string;
+  linkedEvents: string[];
+  linkedScores: string[];
+  linkedSignals: string[];
+  notes: CaseNote[];
+  disposition?: CaseDisposition;
+  dispositionReason?: string;
+  openedAt: string;
+  lastActivityAt: string;
+  closedAt?: string;
+  classification: Classification;
+}
+
+export const CASES: Case[] = [
+  {
+    id: "CASE-2026-00118",
+    title: "Sanctions-proximate sponsor — 2-hop review",
+    titleAr: "كفيل قريب من قائمة العقوبات — مراجعة مسارين",
+    status: "INVESTIGATING",
+    severity: "HIGH",
+    ownerId: "analyst-rahma",
+    ownerName: "Rahma Al-Kindi",
+    subjectTravelerId: "demo-highrisk-sponsor",
+    subjectName: "Mikhail V. Petrov",
+    linkedEvents: ["mv-h01", "mv-h04", "mv-h10"],
+    linkedScores: ["demo-highrisk-sponsor"],
+    linkedSignals: ["R-SNC-003", "R-SNC-002", "R-DEC-001"],
+    notes: [
+      { id: "n1", authorId: "analyst-rahma", authorName: "Rahma Al-Kindi", createdAt: "2026-04-16T09:12:00Z", body: "Opened after sponsor graph-walk flagged Volga → Rusenergy → Gavrilov (EU sanctions). Subject has declared-employer mismatch against MOL. Pulling corporate filings from OpenCorporates for parent." },
+      { id: "n2", authorId: "analyst-rahma", authorName: "Rahma Al-Kindi", createdAt: "2026-04-16T14:40:00Z", body: "OpenCorporates confirms Volga is 82% owned by Rusenergy. Rusenergy director since 2022 is Gavrilov. 2-hop path valid." },
+      { id: "n3", authorId: "supervisor-ahmed", authorName: "Ahmed Al-Lawati", createdAt: "2026-04-17T07:30:00Z", body: "Requesting MOL attestation on Volga employment. Hold on border gate until status clarified." },
+    ],
+    openedAt: "2026-04-16T09:12:00Z",
+    lastActivityAt: "2026-04-17T07:30:00Z",
+    classification: "restricted",
+  },
+  {
+    id: "CASE-2026-00119",
+    title: "Presence coherence gap — 72h APIS→hotel",
+    titleAr: "فجوة تماسك الحضور — 72 ساعة",
+    status: "OPEN",
+    severity: "MEDIUM",
+    ownerId: "analyst-salim",
+    ownerName: "Salim Al-Mahrouqi",
+    subjectTravelerId: "demo-highrisk-sponsor",
+    subjectName: "Mikhail V. Petrov",
+    linkedEvents: ["mv-h10", "mv-h11", "mv-h12"],
+    linkedScores: ["demo-highrisk-sponsor"],
+    linkedSignals: ["presence_gap_apis_hotel"],
+    notes: [
+      { id: "n4", authorId: "analyst-salim", authorName: "Salim Al-Mahrouqi", createdAt: "2026-04-17T06:00:00Z", body: "Subject's arrival APIS on 18 Apr then nothing until Al Bustan check-in 72h later. Unusual for this traveler." },
+    ],
+    openedAt: "2026-04-17T06:00:00Z",
+    lastActivityAt: "2026-04-17T06:00:00Z",
+    classification: "internal",
+  },
+  {
+    id: "CASE-2026-00120",
+    title: "Routing anomaly cluster — CDG origin",
+    titleAr: "تجمّع شذوذ في المسار — منشأ CDG",
+    status: "PENDING_REVIEW",
+    severity: "HIGH",
+    ownerId: "analyst-noor",
+    ownerName: "Noor Al-Farsi",
+    subjectTravelerId: "demo-anomaly",
+    subjectName: "Leila D. Benaissa",
+    linkedEvents: [],
+    linkedScores: ["demo-anomaly"],
+    linkedSignals: ["iforest_anomaly", "R-RTE-001", "R-RTE-002"],
+    notes: [
+      { id: "n5", authorId: "analyst-noor", authorName: "Noor Al-Farsi", createdAt: "2026-04-15T12:00:00Z", body: "Booking made 11h before departure. Origin CDG rare for DZA→MCT. Escalating to supervisor for routing review." },
+      { id: "n6", authorId: "analyst-noor", authorName: "Noor Al-Farsi", createdAt: "2026-04-16T09:20:00Z", body: "No prior advisories. Subject cleared biometric match. Awaiting final review and disposition." },
+    ],
+    openedAt: "2026-04-15T10:00:00Z",
+    lastActivityAt: "2026-04-16T09:20:00Z",
+    classification: "internal",
+  },
+  {
+    id: "CASE-2026-00121",
+    title: "Borderline-context review (PAK · GDELT)",
+    titleAr: "مراجعة سياق حدّي (باكستان · GDELT)",
+    status: "OPEN",
+    severity: "MEDIUM",
+    ownerId: "analyst-rahma",
+    ownerName: "Rahma Al-Kindi",
+    subjectTravelerId: "demo-borderline",
+    subjectName: "Yasir A. Karim",
+    linkedEvents: ["mv-b10", "mv-b11", "mv-b12"],
+    linkedScores: ["demo-borderline"],
+    linkedSignals: ["R-GEO-001", "R-GEO-002", "R-TMP-001"],
+    notes: [
+      { id: "n7", authorId: "analyst-rahma", authorName: "Rahma Al-Kindi", createdAt: "2026-04-17T08:00:00Z", body: "Routine borderline review. Subject has previously cleared visits. Advisory level 3 is the main driver." },
+    ],
+    openedAt: "2026-04-17T08:00:00Z",
+    lastActivityAt: "2026-04-17T08:00:00Z",
+    classification: "internal",
+  },
+  {
+    id: "CASE-2026-00122",
+    title: "Low-risk routine sample",
+    titleAr: "عيّنة منخفضة المخاطر",
+    status: "DRAFT",
+    severity: "LOW",
+    ownerId: "analyst-salim",
+    ownerName: "Salim Al-Mahrouqi",
+    subjectTravelerId: "demo-lowrisk",
+    subjectName: "James W. Carter",
+    linkedEvents: ["mv-l08"],
+    linkedScores: ["demo-lowrisk"],
+    linkedSignals: [],
+    notes: [],
+    openedAt: "2026-04-17T11:00:00Z",
+    lastActivityAt: "2026-04-17T11:00:00Z",
+    classification: "public",
+  },
+  {
+    id: "CASE-2026-00115",
+    title: "Confirmed sanctions hit — entity resolution",
+    titleAr: "تطابق عقوبات مؤكد",
+    status: "CLOSED",
+    severity: "CRITICAL",
+    ownerId: "analyst-noor",
+    ownerName: "Noor Al-Farsi",
+    subjectTravelerId: "rec-000136",
+    subjectName: "Amr H. Barakat",
+    linkedEvents: [],
+    linkedScores: ["rec-000136"],
+    linkedSignals: ["R-SNC-003"],
+    notes: [
+      { id: "n8", authorId: "analyst-noor", authorName: "Noor Al-Farsi", createdAt: "2026-04-10T10:00:00Z", body: "Sponsor Tripoli Offshore Services confirmed as front entity for UN-sanctioned network." },
+      { id: "n9", authorId: "supervisor-ahmed", authorName: "Ahmed Al-Lawati", createdAt: "2026-04-12T11:00:00Z", body: "Confirmed threat. Closing with disposition CONFIRMED_THREAT and transferring to ROP Special Branch." },
+    ],
+    disposition: "CONFIRMED_THREAT",
+    dispositionReason: "Sponsor confirmed as front entity for UN-sanctioned network after OpenCorporates + OFAC cross-check. Transferred to ROP Special Branch for follow-up.",
+    openedAt: "2026-04-10T10:00:00Z",
+    lastActivityAt: "2026-04-12T11:10:00Z",
+    closedAt: "2026-04-12T11:10:00Z",
+    classification: "classified",
+  },
+  {
+    id: "CASE-2026-00110",
+    title: "Anomaly false-positive — conference travel",
+    titleAr: "نتيجة إيجابية خاطئة — سفر مؤتمرات",
+    status: "CLOSED",
+    severity: "MEDIUM",
+    ownerId: "analyst-rahma",
+    ownerName: "Rahma Al-Kindi",
+    subjectTravelerId: "rec-000135",
+    subjectName: "Chen Wei",
+    linkedEvents: [],
+    linkedScores: ["rec-000135"],
+    linkedSignals: [],
+    notes: [
+      { id: "n10", authorId: "analyst-rahma", authorName: "Rahma Al-Kindi", createdAt: "2026-04-05T08:00:00Z", body: "Routing anomaly score 0.62. Subject attending Oman Energy Conference." },
+      { id: "n11", authorId: "analyst-rahma", authorName: "Rahma Al-Kindi", createdAt: "2026-04-07T14:00:00Z", body: "Conference attendance confirmed by host. Closing as false positive — to be added to labelled training pipeline." },
+    ],
+    disposition: "FALSE_POSITIVE",
+    dispositionReason: "Anomaly signal triggered by late booking for an attended Oman Energy Conference event. Host confirmation on file.",
+    openedAt: "2026-04-05T08:00:00Z",
+    lastActivityAt: "2026-04-07T14:05:00Z",
+    closedAt: "2026-04-07T14:05:00Z",
+    classification: "internal",
+  },
+  {
+    id: "CASE-2026-00108",
+    title: "Sponsor dissolution — insufficient evidence",
+    titleAr: "حلّ الكفيل — أدلة غير كافية",
+    status: "CLOSED",
+    severity: "HIGH",
+    ownerId: "analyst-noor",
+    ownerName: "Noor Al-Farsi",
+    subjectTravelerId: "rec-000131",
+    subjectName: "Hasan M. Al-Bakri",
+    linkedEvents: [],
+    linkedScores: ["rec-000131"],
+    linkedSignals: ["R-ENT-001"],
+    notes: [
+      { id: "n12", authorId: "analyst-noor", authorName: "Noor Al-Farsi", createdAt: "2026-04-01T08:00:00Z", body: "Sponsor OpenCorporates inactive Q4 2024. Unable to resolve beneficial ownership." },
+      { id: "n13", authorId: "supervisor-ahmed", authorName: "Ahmed Al-Lawati", createdAt: "2026-04-03T16:00:00Z", body: "Closed with insufficient evidence. Will retrigger if sponsor reactivates." },
+    ],
+    disposition: "INSUFFICIENT_EVIDENCE",
+    dispositionReason: "OpenCorporates record inactive Q4 2024, no substitute beneficial-ownership chain. Continued monitoring flag added.",
+    openedAt: "2026-04-01T08:00:00Z",
+    lastActivityAt: "2026-04-03T16:05:00Z",
+    closedAt: "2026-04-03T16:05:00Z",
+    classification: "restricted",
+  },
+  {
+    id: "CASE-2026-00125",
+    title: "Draft — potential visa-denial repeat",
+    titleAr: "مسودة — احتمال تكرار رفض التأشيرة",
+    status: "DRAFT",
+    severity: "MEDIUM",
+    ownerId: "analyst-salim",
+    ownerName: "Salim Al-Mahrouqi",
+    subjectTravelerId: "rec-000129",
+    subjectName: "Abdul R. Hashemi",
+    linkedEvents: [],
+    linkedScores: ["rec-000129"],
+    linkedSignals: [],
+    notes: [],
+    openedAt: "2026-04-17T12:00:00Z",
+    lastActivityAt: "2026-04-17T12:00:00Z",
+    classification: "internal",
+  },
+  {
+    id: "CASE-2026-00126",
+    title: "Biosecurity overlap — ROP coordination",
+    titleAr: "تراكب أمن حيوي — تنسيق الشرطة",
+    status: "INVESTIGATING",
+    severity: "HIGH",
+    ownerId: "analyst-rahma",
+    ownerName: "Rahma Al-Kindi",
+    subjectTravelerId: "demo-health",
+    subjectName: "Sarah M. Nguyen",
+    linkedEvents: [],
+    linkedScores: ["demo-health"],
+    linkedSignals: ["R-BIO-001"],
+    notes: [
+      { id: "n14", authorId: "analyst-rahma", authorName: "Rahma Al-Kindi", createdAt: "2026-04-16T07:00:00Z", body: "Origin SGN in active avian-influenza cluster (WHO DON). Notifying Ministry of Health for secondary screening at MCT." },
+    ],
+    openedAt: "2026-04-16T07:00:00Z",
+    lastActivityAt: "2026-04-16T07:00:00Z",
+    classification: "internal",
+  },
+  {
+    id: "CASE-2026-00104",
+    title: "Transferred — cross-agency (ROP)",
+    titleAr: "نقل — تنسيق شرطي",
+    status: "CLOSED",
+    severity: "CRITICAL",
+    ownerId: "analyst-noor",
+    ownerName: "Noor Al-Farsi",
+    subjectTravelerId: "rec-000127",
+    subjectName: "Khaled A. Saleh",
+    linkedEvents: [],
+    linkedScores: ["rec-000127"],
+    linkedSignals: [],
+    notes: [
+      { id: "n15", authorId: "supervisor-ahmed", authorName: "Ahmed Al-Lawati", createdAt: "2026-03-28T09:00:00Z", body: "Transferred to Royal Oman Police Special Branch for kinetic handling." },
+    ],
+    disposition: "TRANSFERRED",
+    dispositionReason: "Transferred to Royal Oman Police Special Branch — case beyond civil adjudication scope.",
+    openedAt: "2026-03-27T08:00:00Z",
+    lastActivityAt: "2026-03-28T09:05:00Z",
+    closedAt: "2026-03-28T09:05:00Z",
+    classification: "classified",
+  },
+  {
+    id: "CASE-2026-00127",
+    title: "Pending review — document anomaly",
+    titleAr: "قيد المراجعة — شذوذ وثيقة",
+    status: "PENDING_REVIEW",
+    severity: "LOW",
+    ownerId: "analyst-salim",
+    ownerName: "Salim Al-Mahrouqi",
+    subjectTravelerId: "rec-000136",
+    subjectName: "Amr H. Barakat",
+    linkedEvents: [],
+    linkedScores: ["rec-000136"],
+    linkedSignals: ["R-DOC-001"],
+    notes: [
+      { id: "n16", authorId: "analyst-salim", authorName: "Salim Al-Mahrouqi", createdAt: "2026-04-16T10:00:00Z", body: "Passport format inconsistent. Supervisor to finalize before close." },
+    ],
+    openedAt: "2026-04-16T10:00:00Z",
+    lastActivityAt: "2026-04-16T10:00:00Z",
+    classification: "internal",
+  },
+];
+
+// ─────────────────────────────────────────────────────────────────────────
+// Wave 2 · Entity resolution review queue (0.70–0.85 similarity band)
+// ─────────────────────────────────────────────────────────────────────────
+
+export interface EntityMatchCandidate {
+  id: string;
+  entityA: { id: string; type: "person" | "organization" | "sponsor"; canonicalName: string; aliases: string[]; attributes: Record<string, unknown>; sources: string[] };
+  entityB: { id: string; type: "person" | "organization" | "sponsor"; canonicalName: string; aliases: string[]; attributes: Record<string, unknown>; sources: string[] };
+  similarity: number;
+  factors: {
+    name_token_set_ratio: number;
+    alias_overlap_jaccard: number;
+    country_match: 0 | 0.5 | 1;
+    dob_proximity: number;
+    contextual_source_agreement: number;
+  };
+  createdAt: string;
+  status: "PENDING" | "MERGED" | "KEPT_SEPARATE" | "ESCALATED";
+}
+
+export const ENTITY_MATCH_QUEUE: EntityMatchCandidate[] = [
+  {
+    id: "ERQ-0001",
+    entityA: { id: "ent-1001", type: "person", canonicalName: "Mohammad A. Rahman", aliases: ["Mohammed Abdul Rahman", "M. A. Rahman"], attributes: { dob: "1983-05-14", nationality: "PAK", passportNumber: "AX1820233" }, sources: ["eVisa history", "MOL registry"] },
+    entityB: { id: "ent-1044", type: "person", canonicalName: "Muhammad Abdur Rahman", aliases: ["Mohammad Rahman", "M A Rahman"], attributes: { dob: "1983-05-15", nationality: "PAK", passportNumber: "AX1820239" }, sources: ["OpenSanctions", "Hotels"] },
+    similarity: 0.82,
+    factors: { name_token_set_ratio: 0.88, alias_overlap_jaccard: 0.66, country_match: 1, dob_proximity: 0.92, contextual_source_agreement: 0.70 },
+    createdAt: "2026-04-17T06:10:00Z",
+    status: "PENDING",
+  },
+  {
+    id: "ERQ-0002",
+    entityA: { id: "ent-1102", type: "organization", canonicalName: "Pearl Logistics LLC", aliases: ["Pearl Logistics", "Pearl Log"], attributes: { country: "OMN", registered: "2018-06-01", industry: "Freight" }, sources: ["OpenCorporates", "MOL"] },
+    entityB: { id: "ent-1207", type: "organization", canonicalName: "Pearl Logistics (Oman) LLC", aliases: ["Pearl Logistics Oman"], attributes: { country: "OMN", registered: "2018-06-15", industry: "Logistics" }, sources: ["OpenCorporates"] },
+    similarity: 0.78,
+    factors: { name_token_set_ratio: 0.85, alias_overlap_jaccard: 0.50, country_match: 1, dob_proximity: 0.95, contextual_source_agreement: 0.60 },
+    createdAt: "2026-04-17T04:18:00Z",
+    status: "PENDING",
+  },
+  {
+    id: "ERQ-0003",
+    entityA: { id: "ent-1220", type: "person", canonicalName: "Leila D. Benaissa", aliases: ["Leïla Ben-Aïssa", "Layla Benaissa"], attributes: { dob: "1991-02-09", nationality: "DZA", passportNumber: "DZ5593120" }, sources: ["eVisa history"] },
+    entityB: { id: "ent-1288", type: "person", canonicalName: "Layla Ben Aissa", aliases: ["Leila Benaissa"], attributes: { dob: "1991-02-09", nationality: "DZA", passportNumber: "DZ5593120" }, sources: ["Hotels", "OpenSanctions"] },
+    similarity: 0.84,
+    factors: { name_token_set_ratio: 0.80, alias_overlap_jaccard: 0.80, country_match: 1, dob_proximity: 1, contextual_source_agreement: 0.72 },
+    createdAt: "2026-04-17T02:40:00Z",
+    status: "PENDING",
+  },
+  {
+    id: "ERQ-0004",
+    entityA: { id: "ent-1302", type: "sponsor", canonicalName: "Volga Holdings International", aliases: ["Volga Holdings", "Volga Intl."], attributes: { country: "RUS", registered: "2011-03-12" }, sources: ["OpenCorporates"] },
+    entityB: { id: "ent-1355", type: "sponsor", canonicalName: "Volga Holding Intl FZ-LLC", aliases: ["Volga FZ"], attributes: { country: "UAE", registered: "2020-09-08" }, sources: ["OpenCorporates", "OpenSanctions"] },
+    similarity: 0.73,
+    factors: { name_token_set_ratio: 0.78, alias_overlap_jaccard: 0.33, country_match: 0.5, dob_proximity: 0.80, contextual_source_agreement: 0.70 },
+    createdAt: "2026-04-16T20:30:00Z",
+    status: "PENDING",
+  },
+  {
+    id: "ERQ-0005",
+    entityA: { id: "ent-1410", type: "person", canonicalName: "Chen Wei", aliases: ["Wei Chen"], attributes: { dob: "1978-07-21", nationality: "CHN", passportNumber: "CN4410928" }, sources: ["eVisa history"] },
+    entityB: { id: "ent-1488", type: "person", canonicalName: "Chen Wei", aliases: ["Chen W."], attributes: { dob: "1978-07-22", nationality: "CHN", passportNumber: "CN4410921" }, sources: ["Hotels"] },
+    similarity: 0.76,
+    factors: { name_token_set_ratio: 1, alias_overlap_jaccard: 0.33, country_match: 1, dob_proximity: 0.92, contextual_source_agreement: 0.54 },
+    createdAt: "2026-04-16T19:10:00Z",
+    status: "PENDING",
+  },
+  {
+    id: "ERQ-0006",
+    entityA: { id: "ent-1501", type: "person", canonicalName: "Khaled A. Saleh", aliases: ["Khalid Al-Saleh"], attributes: { dob: "1986-09-03", nationality: "YEM" }, sources: ["eVisa history"] },
+    entityB: { id: "ent-1545", type: "person", canonicalName: "Khaled Abdullah Saleh", aliases: ["K. A. Saleh"], attributes: { dob: "1986-09-03", nationality: "YEM" }, sources: ["OpenSanctions"] },
+    similarity: 0.81,
+    factors: { name_token_set_ratio: 0.90, alias_overlap_jaccard: 0.50, country_match: 1, dob_proximity: 1, contextual_source_agreement: 0.66 },
+    createdAt: "2026-04-16T16:55:00Z",
+    status: "MERGED",
+  },
+  {
+    id: "ERQ-0007",
+    entityA: { id: "ent-1610", type: "organization", canonicalName: "Bechtel Corporation", aliases: ["Bechtel Corp", "Bechtel"], attributes: { country: "USA" }, sources: ["OpenCorporates"] },
+    entityB: { id: "ent-1660", type: "organization", canonicalName: "Bechtel Infrastructure & Power", aliases: ["Bechtel I&P"], attributes: { country: "USA" }, sources: ["OpenCorporates"] },
+    similarity: 0.71,
+    factors: { name_token_set_ratio: 0.62, alias_overlap_jaccard: 0.25, country_match: 1, dob_proximity: 0.85, contextual_source_agreement: 0.80 },
+    createdAt: "2026-04-16T15:20:00Z",
+    status: "KEPT_SEPARATE",
+  },
+  {
+    id: "ERQ-0008",
+    entityA: { id: "ent-1701", type: "person", canonicalName: "Abdul R. Hashemi", aliases: ["Abdulrahim Hashemi"], attributes: { dob: "1975-11-02", nationality: "IRN" }, sources: ["eVisa history"] },
+    entityB: { id: "ent-1760", type: "person", canonicalName: "Abd Al-Rahim Hashimi", aliases: ["Abd al Rahim Hashemi"], attributes: { dob: "1975-11-02", nationality: "IRN" }, sources: ["OpenSanctions"] },
+    similarity: 0.77,
+    factors: { name_token_set_ratio: 0.78, alias_overlap_jaccard: 0.55, country_match: 1, dob_proximity: 1, contextual_source_agreement: 0.52 },
+    createdAt: "2026-04-16T13:30:00Z",
+    status: "ESCALATED",
+  },
+  {
+    id: "ERQ-0009",
+    entityA: { id: "ent-1801", type: "person", canonicalName: "Stefan K. Larsson", aliases: ["Stefan Larsson"], attributes: { dob: "1989-08-18", nationality: "SWE" }, sources: ["eVisa history"] },
+    entityB: { id: "ent-1844", type: "person", canonicalName: "Stefan Larsson", aliases: ["S. Larsson"], attributes: { dob: "1989-08-19", nationality: "SWE" }, sources: ["Hotels"] },
+    similarity: 0.79,
+    factors: { name_token_set_ratio: 0.92, alias_overlap_jaccard: 0.50, country_match: 1, dob_proximity: 0.92, contextual_source_agreement: 0.58 },
+    createdAt: "2026-04-16T11:10:00Z",
+    status: "PENDING",
+  },
+  {
+    id: "ERQ-0010",
+    entityA: { id: "ent-1901", type: "organization", canonicalName: "Arabian Gulf Trading", aliases: ["AG Trading", "Arabian Trading"], attributes: { country: "YEM" }, sources: ["OpenCorporates"] },
+    entityB: { id: "ent-1955", type: "organization", canonicalName: "Arabian Gulf Trade & Commerce", aliases: ["AG Trade"], attributes: { country: "YEM" }, sources: ["OpenCorporates"] },
+    similarity: 0.74,
+    factors: { name_token_set_ratio: 0.70, alias_overlap_jaccard: 0.30, country_match: 1, dob_proximity: 0.88, contextual_source_agreement: 0.65 },
+    createdAt: "2026-04-16T09:50:00Z",
+    status: "PENDING",
+  },
+  {
+    id: "ERQ-0011",
+    entityA: { id: "ent-2001", type: "person", canonicalName: "Priya N. Raman", aliases: ["Priya Raman"], attributes: { dob: "1992-01-04", nationality: "IND" }, sources: ["eVisa history"] },
+    entityB: { id: "ent-2050", type: "person", canonicalName: "Priya Narayan Raman", aliases: ["P. N. Raman"], attributes: { dob: "1992-01-04", nationality: "IND" }, sources: ["Hotels"] },
+    similarity: 0.83,
+    factors: { name_token_set_ratio: 0.92, alias_overlap_jaccard: 0.60, country_match: 1, dob_proximity: 1, contextual_source_agreement: 0.62 },
+    createdAt: "2026-04-16T07:40:00Z",
+    status: "PENDING",
+  },
+  {
+    id: "ERQ-0012",
+    entityA: { id: "ent-2101", type: "sponsor", canonicalName: "Levant Holdings", aliases: ["Levant Hldgs"], attributes: { country: "SYR" }, sources: ["OpenCorporates"] },
+    entityB: { id: "ent-2155", type: "sponsor", canonicalName: "Levant Holdings Group", aliases: ["LHG"], attributes: { country: "SYR" }, sources: ["OpenCorporates", "OpenSanctions"] },
+    similarity: 0.72,
+    factors: { name_token_set_ratio: 0.70, alias_overlap_jaccard: 0.30, country_match: 1, dob_proximity: 0.85, contextual_source_agreement: 0.72 },
+    createdAt: "2026-04-16T05:00:00Z",
+    status: "PENDING",
+  },
+  {
+    id: "ERQ-0013",
+    entityA: { id: "ent-2201", type: "person", canonicalName: "Mikhail V. Petrov", aliases: ["M. Petrov"], attributes: { dob: "1971-04-09", nationality: "RUS" }, sources: ["eVisa history"] },
+    entityB: { id: "ent-2244", type: "person", canonicalName: "Mikhail Vladimirovich Petrov", aliases: ["M. V. Petrov"], attributes: { dob: "1971-04-09", nationality: "RUS" }, sources: ["OpenSanctions"] },
+    similarity: 0.85,
+    factors: { name_token_set_ratio: 0.95, alias_overlap_jaccard: 0.66, country_match: 1, dob_proximity: 1, contextual_source_agreement: 0.68 },
+    createdAt: "2026-04-15T22:10:00Z",
+    status: "PENDING",
+  },
+  {
+    id: "ERQ-0014",
+    entityA: { id: "ent-2301", type: "person", canonicalName: "Mohamed O. El-Sayed", aliases: ["Mohamed El Sayed", "M. El Sayed"], attributes: { dob: "1982-12-17", nationality: "EGY" }, sources: ["eVisa history"] },
+    entityB: { id: "ent-2345", type: "person", canonicalName: "Mohammed Omar El Sayed", aliases: ["Mohamed O. Elsayed"], attributes: { dob: "1982-12-17", nationality: "EGY" }, sources: ["MOL", "Hotels"] },
+    similarity: 0.80,
+    factors: { name_token_set_ratio: 0.88, alias_overlap_jaccard: 0.55, country_match: 1, dob_proximity: 1, contextual_source_agreement: 0.62 },
+    createdAt: "2026-04-15T18:40:00Z",
+    status: "PENDING",
+  },
+  {
+    id: "ERQ-0015",
+    entityA: { id: "ent-2401", type: "person", canonicalName: "Omar Z. Qureshi", aliases: ["Omar Qureshi"], attributes: { dob: "1980-06-02", nationality: "PAK" }, sources: ["eVisa history"] },
+    entityB: { id: "ent-2444", type: "person", canonicalName: "Omar Zahid Qureshi", aliases: ["O. Z. Qureshi"], attributes: { dob: "1980-06-02", nationality: "PAK" }, sources: ["MOL"] },
+    similarity: 0.80,
+    factors: { name_token_set_ratio: 0.92, alias_overlap_jaccard: 0.50, country_match: 1, dob_proximity: 1, contextual_source_agreement: 0.58 },
+    createdAt: "2026-04-15T16:20:00Z",
+    status: "PENDING",
+  },
+];
+
+// ─────────────────────────────────────────────────────────────────────────
+// Wave 2 · Notifications routing + channels
+// ─────────────────────────────────────────────────────────────────────────
+
+export interface RoutingRule {
+  severity: "CRITICAL" | "HIGH" | "MEDIUM" | "LOW";
+  recipients: string[];
+  channels: ("in_app" | "email" | "sms" | "webhook" | "voice")[];
+  ackSlaMinutes: number | null;
+  escalateAfterMinutes: number | null;
+  escalateTo: string | null;
+}
+
+export const ROUTING_RULES: RoutingRule[] = [
+  { severity: "CRITICAL", recipients: ["on-duty analyst", "team lead"], channels: ["in_app", "sms", "email"], ackSlaMinutes: 15,  escalateAfterMinutes: 15,  escalateTo: "supervisor" },
+  { severity: "HIGH",     recipients: ["on-duty analyst"],              channels: ["in_app", "email"],        ackSlaMinutes: 60,  escalateAfterMinutes: 60,  escalateTo: "supervisor" },
+  { severity: "MEDIUM",   recipients: ["queue"],                         channels: ["in_app"],                  ackSlaMinutes: 480, escalateAfterMinutes: 480, escalateTo: "end-of-shift digest" },
+  { severity: "LOW",      recipients: [],                                channels: ["email"],                   ackSlaMinutes: null, escalateAfterMinutes: null, escalateTo: null },
+];
+
+export interface NotificationChannel {
+  id: string;
+  name: string;
+  icon: string;
+  enabled: boolean;
+  health: "healthy" | "degraded" | "down";
+  provider: string;
+  lastTestAt: string;
+  config: Record<string, string>;
+}
+
+export const NOTIFICATION_CHANNELS: NotificationChannel[] = [
+  { id: "in_app",  name: "In-App",   icon: "ri-notification-3-line", enabled: true,  health: "healthy", provider: "Al-Ameen Core", lastTestAt: "2026-04-17T05:30:00Z", config: { topic: "alerts.*", retention: "30d" } },
+  { id: "email",   name: "Email",    icon: "ri-mail-line",            enabled: true,  health: "healthy",  provider: "AWS SES",        lastTestAt: "2026-04-17T03:05:00Z", config: { sender: "alerts@alameen.gov.om", rateLimit: "500/min" } },
+  { id: "sms",     name: "SMS",      icon: "ri-smartphone-line",      enabled: true,  health: "degraded", provider: "Omantel SMS GW", lastTestAt: "2026-04-17T02:40:00Z", config: { sender: "ALAMEEN", rateLimit: "120/min" } },
+  { id: "webhook", name: "Webhook",  icon: "ri-plug-line",             enabled: true,  health: "healthy",  provider: "Internal ESB",   lastTestAt: "2026-04-17T04:12:00Z", config: { url: "https://esb.alameen.gov.om/notify", rateLimit: "10000/min" } },
+  { id: "voice",   name: "Voice Call", icon: "ri-phone-line",          enabled: false, health: "down",     provider: "Omantel Voice",  lastTestAt: "2026-04-14T11:15:00Z", config: { sender: "ALAMEEN", note: "pending Phase 2 contract" } },
+];
+
+// ─────────────────────────────────────────────────────────────────────────
+// Wave 2 · Scoring "As-of" replay (spec §8.1)
+// ─────────────────────────────────────────────────────────────────────────
+
+export interface AsOfSnapshot {
+  recordId: string;
+  asOf: string;
+  unifiedScore: number;
+  subScores: Record<SubScoreKey, number>;
+  featureSnapshotHash: string;
+  differences: { source: string; thenValue: string; nowValue: string }[];
+}
+
+// Deterministic decay — % of current per age bucket (older = smaller)
+const AS_OF_DECAY: Record<string, number> = { "24h": 0.96, "7d": 0.88, "30d": 0.78 };
+
+const buildAsOfSnapshots = (): Record<string, AsOfSnapshot[]> => {
+  const out: Record<string, AsOfSnapshot[]> = {};
+  const buckets: { label: string; offsetMs: number }[] = [
+    { label: "24h", offsetMs: 24 * 3_600_000 },
+    { label: "7d",  offsetMs: 7 * 24 * 3_600_000 },
+    { label: "30d", offsetMs: 30 * 24 * 3_600_000 },
+  ];
+  // Simple FNV-1a-ish string hash for stable pseudo-SHA prefixes.
+  const shortHash = (s: string): string => {
+    let h = 2166136261;
+    for (let i = 0; i < s.length; i++) {
+      h ^= s.charCodeAt(i);
+      h = (h + ((h << 1) + (h << 4) + (h << 7) + (h << 8) + (h << 24))) >>> 0;
+    }
+    return h.toString(16).padStart(8, "0").slice(0, 8);
+  };
+
+  SCORED_RECORDS.forEach((r) => {
+    out[r.id] = buckets.map((b) => {
+      const decay = AS_OF_DECAY[b.label];
+      const subScores = Object.fromEntries(
+        (Object.keys(r.subScores) as SubScoreKey[]).map((k) => [k, Math.round(r.subScores[k] * decay)]),
+      ) as Record<SubScoreKey, number>;
+      const unifiedScore = computeUnified(subScores);
+      const asOfDate = new Date(new Date(r.computedAt).getTime() - b.offsetMs).toISOString();
+      const hash = `sha:${shortHash(r.id + b.label)}…`;
+      // Synthesize a short differences list based on the biggest deltas.
+      const deltas = (Object.keys(r.subScores) as SubScoreKey[])
+        .map((k) => ({ k, delta: r.subScores[k] - subScores[k] }))
+        .sort((a, b) => b.delta - a.delta)
+        .slice(0, 3);
+      const differences = deltas.map(({ k }) => {
+        const meta = DEFAULT_SUB_SCORE_WEIGHTS.find((w) => w.key === k)!;
+        return {
+          source: meta.primarySources[0] ?? "Internal",
+          thenValue: `${meta.labelEn}: ${subScores[k]}`,
+          nowValue: `${meta.labelEn}: ${r.subScores[k]}`,
+        };
+      });
+      return { recordId: r.id, asOf: asOfDate, unifiedScore, subScores, featureSnapshotHash: hash, differences };
+    });
+  });
+
+  return out;
+};
+
+export const AS_OF_SNAPSHOTS: Record<string, AsOfSnapshot[]> = buildAsOfSnapshots();

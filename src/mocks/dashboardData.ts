@@ -250,6 +250,7 @@ export const navItems = [
   { key: "reports",         icon: "ri-bar-chart-2-line",     labelEn: "Reports",            labelAr: "التقارير",          route: "/dashboard/reports",           group: "admin" },
   { key: "users",           icon: "ri-team-line",            labelEn: "Manage Users",       labelAr: "إدارة المستخدمين", route: "/dashboard/manage-users",      group: "admin" },
   { key: "audit-log",       icon: "ri-archive-line",         labelEn: "Audit Log",          labelAr: "سجل التدقيق",       route: "/dashboard/audit-log",         group: "admin" },
+  { key: "entity-resolution", icon: "ri-git-merge-line",      labelEn: "Entity Resolution",  labelAr: "دمج الكيانات",      route: "/dashboard/entity-resolution", group: "admin" },
   { key: "system-admin",    icon: "ri-shield-keyhole-line",  labelEn: "System Admin",       labelAr: "إدارة النظام",      route: "/dashboard/system-admin",      group: "admin" },
   { key: "help",            icon: "ri-question-line",        labelEn: "Help",               labelAr: "المساعدة",          route: "/dashboard/help",              group: "admin" },
 ];
