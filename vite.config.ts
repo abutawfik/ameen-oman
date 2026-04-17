@@ -109,6 +109,29 @@ export default defineConfig({
   build: {
     sourcemap: true,
     outDir: 'out',
+    chunkSizeWarningLimit: 600,
+    rollupOptions: {
+      output: {
+        // Split heavy vendor deps into their own chunks so the initial
+        // page paint doesn't have to parse charts/i18n code for users
+        // who haven't entered a dashboard yet.
+        manualChunks(id) {
+          if (!id.includes("node_modules")) return;
+          if (id.includes("recharts") || id.includes("d3-") || id.includes("victory-vendor")) {
+            return "vendor-charts";
+          }
+          if (id.includes("i18next") || id.includes("react-i18next")) {
+            return "vendor-i18n";
+          }
+          if (id.includes("react-router")) {
+            return "vendor-router";
+          }
+          if (id.includes("react-dom") || id.includes("/react/") || id.includes("scheduler")) {
+            return "vendor-react";
+          }
+        },
+      },
+    },
   },
   resolve: {
     alias: {
