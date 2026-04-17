@@ -243,7 +243,7 @@ const LoginPage = () => {
           <div style={{ maxWidth: 440 }}>
             <div
               style={{
-                fontFamily: isAr ? "'Readex Pro', 'Tajawal', sans-serif" : fonts.display,
+                fontFamily: isAr ? "'Cairo', 'Tajawal', 'IBM Plex Sans Arabic', sans-serif" : fonts.display,
                 fontStyle: isAr ? "normal" : "italic",
                 fontWeight: isAr ? 500 : 400,
                 color: C.ivory100,
@@ -258,7 +258,7 @@ const LoginPage = () => {
             {/* Counterpart — smaller, opposite language */}
             <div
               style={{
-                fontFamily: isAr ? fonts.display : "'Readex Pro', 'Tajawal', sans-serif",
+                fontFamily: isAr ? fonts.display : "'Cairo', 'Tajawal', 'IBM Plex Sans Arabic', sans-serif",
                 fontStyle: isAr ? "italic" : "normal",
                 color: C.midnight200,
                 fontSize: "0.9375rem",

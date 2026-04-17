@@ -93,7 +93,7 @@ export default {
       fontFamily: {
         display: ["Cormorant Garamond", "Canela", "Playfair Display", "Georgia", "serif"],
         sans:    ["Inter", "Geist", "ui-sans-serif", "system-ui", "sans-serif"],
-        arabic:  ["Readex Pro", "Tajawal", "IBM Plex Sans Arabic", "Cairo", "Noto Sans Arabic", "sans-serif"],
+        arabic:  ["Cairo", "Tajawal", "IBM Plex Sans Arabic", "Noto Sans Arabic", "sans-serif"],
         mono:    ["JetBrains Mono", "IBM Plex Mono", "ui-monospace", "monospace"],
       },
       fontSize: {

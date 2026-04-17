@@ -20,19 +20,24 @@ import { useEffect, useState } from "react";
 import i18n from "@/i18n";
 
 // ── Raw family stacks ────────────────────────────────────────────────────────
+// Arabic family locked to Cairo per brand decision 17-Apr-2026
+// (`al-ameen-brand/arabic-font-options.html` Option C).
+// Cairo reads clean, modern, and pairs well with Cormorant Garamond's
+// ceremonial English serif.
 export const BRAND_FONTS = {
   // Display — ceremonial headlines
   display: {
     en: "'Cormorant Garamond', Georgia, serif",
-    ar: "'Readex Pro', 'Tajawal', sans-serif",
+    ar: "'Cairo', 'Tajawal', 'IBM Plex Sans Arabic', sans-serif",
   },
   // Body / UI
   sans: {
     en: "'Inter', ui-sans-serif, system-ui, sans-serif",
-    ar: "'Readex Pro', 'Tajawal', 'IBM Plex Sans Arabic', sans-serif",
+    ar: "'Cairo', 'Tajawal', 'IBM Plex Sans Arabic', sans-serif",
   },
-  // Always-Arabic counterpart (when rendered alongside an EN primary)
-  arabic: "'Readex Pro', 'Tajawal', sans-serif",
+  // Always-Arabic counterpart (when rendered alongside an EN primary —
+  // rare, mostly inside <BrandLogo /> when both wordmarks show together)
+  arabic: "'Cairo', 'Tajawal', 'IBM Plex Sans Arabic', sans-serif",
   // Monospace — tech / audit metadata
   mono: "'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace",
 } as const;

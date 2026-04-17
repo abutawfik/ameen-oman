@@ -65,7 +65,7 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
           {isAr && (
             <div
               style={{
-                fontFamily: "'Readex Pro', 'Tajawal', sans-serif",
+                fontFamily: "'Cairo', 'Tajawal', 'IBM Plex Sans Arabic', sans-serif",
                 fontWeight: 500,
                 fontSize: "0.6875rem",
                 color: "#D4A84B",

@@ -14,10 +14,12 @@
  * these vars are the escape hatch.
  * ================================================================ */
 :root {
+  /* Arabic stack locked to Cairo per brand decision 17-Apr-2026
+     (al-ameen-brand/arabic-font-options.html · Option C). */
   --alm-font-display-en: 'Cormorant Garamond', Georgia, serif;
-  --alm-font-display-ar: 'Readex Pro', 'Tajawal', sans-serif;
+  --alm-font-display-ar: 'Cairo', 'Tajawal', 'IBM Plex Sans Arabic', sans-serif;
   --alm-font-sans-en:    'Inter', ui-sans-serif, system-ui, sans-serif;
-  --alm-font-sans-ar:    'Readex Pro', 'Tajawal', 'IBM Plex Sans Arabic', sans-serif;
+  --alm-font-sans-ar:    'Cairo', 'Tajawal', 'IBM Plex Sans Arabic', sans-serif;
   --alm-font-mono:       'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
 }
 html[lang="ar"] {

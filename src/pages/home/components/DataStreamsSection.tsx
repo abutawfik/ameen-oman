@@ -11,7 +11,7 @@ const C = {
 };
 
 const FF_DISPLAY = "'Cormorant Garamond', Georgia, serif";
-const FF_ARABIC  = "'Readex Pro', 'Tajawal', sans-serif";
+const FF_ARABIC  = "'Cairo', 'Tajawal', 'IBM Plex Sans Arabic', sans-serif";
 const FF_SANS    = "'Inter', ui-sans-serif, system-ui, sans-serif";
 const FF_MONO    = "'JetBrains Mono', ui-monospace, monospace";
 

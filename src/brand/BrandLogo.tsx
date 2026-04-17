@@ -5,7 +5,7 @@
 // wordmark whose hierarchy flips based on the active language:
 //
 //   · EN mode → "Al-Ameen" primary (Cormorant Garamond), "الأمين" counterpart
-//   · AR mode → "الأمين" primary (Readex Pro),          "Al-Ameen" counterpart
+//   · AR mode → "الأمين" primary (Cairo),                "Al-Ameen" counterpart
 //
 // The shipped brand bundle only includes the English-primary lockup as an
 // SVG. Rather than author a new Arabic-primary SVG, we re-compose the mark
@@ -70,7 +70,7 @@ const counterpartColor = (tone: BrandLogoTone): string =>
 const taglineColor = (tone: BrandLogoTone): string =>
   tone === "dark" ? TOKENS.midnight700 : TOKENS.ivory200;
 
-// Tagline copy — EN italic display-font / AR Readex Pro 500.
+// Tagline copy — EN italic display-font / AR Cairo 500.
 const TAGLINE = {
   en: "The Nation's Trusted Guardian",
   ar: "الحارس الأمين للوطن",
@@ -98,7 +98,7 @@ const BrandLogo = ({
   // Primary / counterpart text + font stacks.
   const primaryText     = isAr ? WORDMARK.ar : WORDMARK.en;
   const counterpartText = isAr ? WORDMARK.en : WORDMARK.ar;
-  const primaryFont     = isAr ? fonts.display /* Readex Pro in AR */ : fonts.display /* Cormorant in EN */;
+  const primaryFont     = isAr ? fonts.display /* Cairo in AR */ : fonts.display /* Cormorant in EN */;
   // Counterpart is always in the *opposite* script, so we pick the always-arabic
   // stack when the UI is in EN, and the EN display stack when the UI is in AR.
   const counterpartFont = isAr
@@ -235,8 +235,8 @@ const BrandLogo = ({
   );
 };
 
-// Separate constant so the JSX above stays readable. Readex Pro carries the
-// Arabic tagline; Cormorant italic carries the English one.
-const BRAND_FONT_AR_TAGLINE = "'Readex Pro', 'Tajawal', sans-serif";
+// Separate constant so the JSX above stays readable. Cairo carries the
+// Arabic tagline (brand-locked per Option C); Cormorant italic the English one.
+const BRAND_FONT_AR_TAGLINE = "'Cairo', 'Tajawal', 'IBM Plex Sans Arabic', sans-serif";
 
 export default BrandLogo;
