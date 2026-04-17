@@ -765,3 +765,266 @@ export const aggregate = () => {
     sourcesTotal: OSINT_SOURCES.length,
   };
 };
+
+// ─────────────────────────────────────────────────────────────────────────
+// Risk Engine Home — role-based dashboards mock extensions
+// All net-new, scoped to the home dashboard (analyst/supervisor/manager views).
+// Consumed by src/pages/dashboard/components/home/*.
+// ─────────────────────────────────────────────────────────────────────────
+
+// ─── Team roster (for Supervisor workload panel) ─────────────────────────
+export interface AnalystWorkload {
+  id: string;
+  name: string;
+  nameAr: string;
+  avatarInitials: string;
+  status: "on_shift" | "break" | "off";
+  openAlerts: number;
+  ackedToday: number;
+  closedToday: number;
+  avgResponseMins: number; // lower = better
+  slaMetPct: number;        // 0-100
+}
+
+export const TEAM_ROSTER: AnalystWorkload[] = [
+  { id: "u-001", name: "Ahmed Al-Amri",       nameAr: "أحمد العامري",    avatarInitials: "AA", status: "on_shift", openAlerts: 6, ackedToday: 18, closedToday: 11, avgResponseMins: 3.4, slaMetPct: 96 },
+  { id: "u-002", name: "Fatima Al-Mansoori",  nameAr: "فاطمة المنصوري",  avatarInitials: "FM", status: "on_shift", openAlerts: 4, ackedToday: 22, closedToday: 14, avgResponseMins: 2.8, slaMetPct: 98 },
+  { id: "u-003", name: "Omar Z. Qureshi",     nameAr: "عمر قريشي",        avatarInitials: "OQ", status: "on_shift", openAlerts: 9, ackedToday: 15, closedToday: 8,  avgResponseMins: 5.1, slaMetPct: 88 },
+  { id: "u-004", name: "Leila D. Benaissa",   nameAr: "ليلى بن عيسى",     avatarInitials: "LB", status: "on_shift", openAlerts: 3, ackedToday: 19, closedToday: 12, avgResponseMins: 3.0, slaMetPct: 94 },
+  { id: "u-005", name: "Hasan M. Al-Bakri",   nameAr: "حسن البكري",       avatarInitials: "HB", status: "break",    openAlerts: 5, ackedToday: 12, closedToday: 7,  avgResponseMins: 4.2, slaMetPct: 90 },
+  { id: "u-006", name: "Noor F. Al-Hakim",    nameAr: "نور الحكيم",       avatarInitials: "NH", status: "on_shift", openAlerts: 2, ackedToday: 20, closedToday: 15, avgResponseMins: 2.6, slaMetPct: 99 },
+  { id: "u-007", name: "Mohamed O. El-Sayed", nameAr: "محمد السيد",       avatarInitials: "ME", status: "off",      openAlerts: 0, ackedToday: 0,  closedToday: 0,  avgResponseMins: 0,   slaMetPct: 92 },
+  { id: "u-008", name: "Khaled A. Saleh",     nameAr: "خالد صالح",        avatarInitials: "KS", status: "on_shift", openAlerts: 7, ackedToday: 14, closedToday: 9,  avgResponseMins: 4.7, slaMetPct: 86 },
+];
+
+// ─── Personal queue (for Analyst home) ───────────────────────────────────
+export interface PersonalQueueItem {
+  id: string;
+  type: "alert" | "case_note" | "reassignment";
+  severity: "CRITICAL" | "HIGH" | "MEDIUM" | "LOW";
+  title: string;
+  titleAr: string;
+  subject: string;
+  slaDeadline: string; // ISO
+  createdAt: string;
+  linkedRecordId?: string;
+}
+
+// NOTE: SLA deadlines seeded as offsets from build time so countdowns stay fresh in demo.
+const nowMs = Date.now();
+const mins = (m: number) => new Date(nowMs + m * 60_000).toISOString();
+const minsAgo = (m: number) => new Date(nowMs - m * 60_000).toISOString();
+
+export const PERSONAL_QUEUE: PersonalQueueItem[] = [
+  { id: "pq-001", type: "alert",        severity: "CRITICAL", title: "Sponsor 2-hop match on sanctions graph", titleAr: "تطابق الكفيل على درجتين مع قائمة العقوبات", subject: "Mikhail V. Petrov",   slaDeadline: mins(3),   createdAt: minsAgo(12), linkedRecordId: "demo-highrisk-sponsor" },
+  { id: "pq-002", type: "alert",        severity: "HIGH",     title: "Conflict-zone origin + advisory L4",     titleAr: "منشأ نزاع + تحذير مستوى 4",                 subject: "Hasan M. Al-Bakri",   slaDeadline: mins(8),   createdAt: minsAgo(5),  linkedRecordId: "rec-000131" },
+  { id: "pq-003", type: "case_note",    severity: "MEDIUM",   title: "Routing anomaly confirmed, ready to close",titleAr: "تأكد شذوذ المسار، جاهز للإغلاق",            subject: "Leila D. Benaissa",   slaDeadline: mins(24),  createdAt: minsAgo(34), linkedRecordId: "demo-anomaly" },
+  { id: "pq-004", type: "alert",        severity: "HIGH",     title: "Origin country advisory escalated to L3",titleAr: "تم تصعيد تحذير بلد المنشأ إلى المستوى 3",    subject: "Yasir A. Karim",      slaDeadline: mins(41),  createdAt: minsAgo(18), linkedRecordId: "demo-borderline" },
+  { id: "pq-005", type: "reassignment", severity: "MEDIUM",   title: "Reassigned from Omar — biosec context",  titleAr: "أعيد تعيينه من عمر — سياق بيولوجي",          subject: "Sarah M. Nguyen",     slaDeadline: mins(62),  createdAt: minsAgo(41), linkedRecordId: "demo-health" },
+  { id: "pq-006", type: "alert",        severity: "LOW",      title: "Document format check pending",          titleAr: "فحص تنسيق المستند معلّق",                    subject: "Amr H. Barakat",      slaDeadline: mins(95),  createdAt: minsAgo(21), linkedRecordId: "rec-000136" },
+  { id: "pq-007", type: "case_note",    severity: "LOW",      title: "Second-opinion requested on routing",    titleAr: "طُلب رأي ثانٍ بشأن المسار",                  subject: "Elena S. Marković",   slaDeadline: mins(118), createdAt: minsAgo(56), linkedRecordId: "rec-000128" },
+];
+
+// ─── Escalations log (for Supervisor) ────────────────────────────────────
+export interface EscalationEntry {
+  id: string;
+  escalatedAt: string;
+  fromAnalystId: string;
+  toRole: "supervisor" | "manager";
+  caseId: string;
+  severity: "CRITICAL" | "HIGH" | "MEDIUM";
+  reason: string;
+  reasonAr: string;
+  status: "pending" | "reviewed" | "actioned";
+}
+
+export const RECENT_ESCALATIONS: EscalationEntry[] = [
+  { id: "esc-001", escalatedAt: minsAgo(4),   fromAnalystId: "u-003", toRole: "supervisor", caseId: "demo-highrisk-sponsor", severity: "CRITICAL", reason: "Sponsor graph 2-hop to EU-sanctioned entity — needs supervisor sign-off", reasonAr: "الكفيل ضمن درجتين من كيان خاضع للعقوبات — يتطلب موافقة المشرف", status: "pending" },
+  { id: "esc-002", escalatedAt: minsAgo(17),  fromAnalystId: "u-008", toRole: "supervisor", caseId: "rec-000131",            severity: "HIGH",     reason: "Advisory escalation + conflict intensity — deny recommended", reasonAr: "تصعيد تحذيري + كثافة نزاع — يُوصى بالرفض", status: "reviewed" },
+  { id: "esc-003", escalatedAt: minsAgo(38),  fromAnalystId: "u-004", toRole: "manager",    caseId: "demo-anomaly",          severity: "HIGH",     reason: "Anomaly cluster spanning 3 PNRs, possible trafficking pattern",          reasonAr: "تجمّع شذوذ يغطي 3 حجوزات، نمط تهريب محتمل",     status: "actioned" },
+  { id: "esc-004", escalatedAt: minsAgo(72),  fromAnalystId: "u-005", toRole: "supervisor", caseId: "rec-000136",            severity: "MEDIUM",   reason: "Document format flag + sponsor corporate gap",                             reasonAr: "علامة تنسيق المستند + فجوة كيان الكفيل",           status: "reviewed" },
+  { id: "esc-005", escalatedAt: minsAgo(104), fromAnalystId: "u-003", toRole: "supervisor", caseId: "rec-000129",            severity: "HIGH",     reason: "Sponsor 2-hop match, originating from IKA",                                reasonAr: "تطابق كفيل على درجتين، منشأ من طهران",             status: "actioned" },
+  { id: "esc-006", escalatedAt: minsAgo(148), fromAnalystId: "u-001", toRole: "supervisor", caseId: "rec-000137",            severity: "MEDIUM",   reason: "Conflict intensity 128 + advisory L3",                                     reasonAr: "كثافة نزاع 128 + تحذير مستوى 3",                 status: "actioned" },
+  { id: "esc-007", escalatedAt: minsAgo(195), fromAnalystId: "u-002", toRole: "manager",    caseId: "demo-health",           severity: "MEDIUM",   reason: "Biosec outbreak overlap during peak-season",                               reasonAr: "تداخل تفشٍ حيوي خلال الذروة",                    status: "actioned" },
+  { id: "esc-008", escalatedAt: minsAgo(260), fromAnalystId: "u-006", toRole: "supervisor", caseId: "rec-000128",            severity: "MEDIUM",   reason: "Rare origin-nationality combination, second opinion requested",            reasonAr: "مزيج منشأ-جنسية نادر، طُلب رأي ثانٍ",              status: "actioned" },
+];
+
+// ─── Origin-country risk (for map + league table) ────────────────────────
+export interface OriginRisk {
+  iso2: string; // lowercase
+  iso3: string;
+  nameEn: string;
+  nameAr: string;
+  arrivals24h: number;
+  flagged24h: number;
+  avgScore: number;
+  topBand: RiskBand;
+  // Optional centroid (lon, lat) for bubble rendering on the map.
+  lon: number;
+  lat: number;
+}
+
+const bandOf = (score: number): RiskBand => {
+  if (score >= 80) return "critical";
+  if (score >= 65) return "high";
+  if (score >= 45) return "elevated";
+  if (score >= 25) return "borderline";
+  return "low";
+};
+
+const mkOrigin = (
+  iso2: string, iso3: string, nameEn: string, nameAr: string,
+  arrivals24h: number, flagged24h: number, avgScore: number,
+  lon: number, lat: number,
+): OriginRisk => ({
+  iso2, iso3, nameEn, nameAr, arrivals24h, flagged24h, avgScore, topBand: bandOf(avgScore), lon, lat,
+});
+
+export const ORIGIN_RISK: OriginRisk[] = [
+  // GCC + Oman neighbourhood
+  mkOrigin("ae", "ARE", "United Arab Emirates", "الإمارات",        1420, 18, 14, 54.37, 24.47),
+  mkOrigin("sa", "SAU", "Saudi Arabia",         "السعودية",         1180, 24, 22, 45.07, 23.88),
+  mkOrigin("qa", "QAT", "Qatar",                "قطر",              420,  5,  16, 51.18, 25.35),
+  mkOrigin("kw", "KWT", "Kuwait",               "الكويت",           380,  7,  19, 47.48, 29.31),
+  mkOrigin("bh", "BHR", "Bahrain",              "البحرين",          210,  3,  17, 50.55, 26.07),
+  // MENA — higher risk
+  mkOrigin("ye", "YEM", "Yemen",                "اليمن",            142, 62, 74, 48.52, 15.55),
+  mkOrigin("sy", "SYR", "Syria",                "سوريا",             88, 48, 82, 38.99, 34.80),
+  mkOrigin("iq", "IRQ", "Iraq",                 "العراق",           186, 58, 66, 43.67, 33.22),
+  mkOrigin("ir", "IRN", "Iran",                 "إيران",            312, 84, 68, 53.68, 32.43),
+  mkOrigin("ly", "LBY", "Libya",                "ليبيا",             72, 34, 71, 17.23, 26.34),
+  mkOrigin("sd", "SDN", "Sudan",                "السودان",           96, 38, 69, 30.22, 12.86),
+  mkOrigin("eg", "EGY", "Egypt",                "مصر",              620, 24, 28, 30.80, 26.82),
+  mkOrigin("jo", "JOR", "Jordan",               "الأردن",           240, 11, 26, 36.23, 30.59),
+  mkOrigin("lb", "LBN", "Lebanon",              "لبنان",            184, 22, 44, 35.86, 33.85),
+  mkOrigin("dz", "DZA", "Algeria",              "الجزائر",          162, 14, 34, 1.66,  28.03),
+  mkOrigin("ma", "MAR", "Morocco",              "المغرب",           210, 8,  24, -7.09, 31.79),
+  mkOrigin("tn", "TUN", "Tunisia",              "تونس",              118, 6,  28, 9.54,  33.89),
+  // South Asia
+  mkOrigin("pk", "PAK", "Pakistan",             "باكستان",          820, 58, 48, 69.35, 30.37),
+  mkOrigin("in", "IND", "India",                "الهند",            2240, 42, 22, 78.96, 20.59),
+  mkOrigin("bd", "BGD", "Bangladesh",           "بنغلاديش",         640, 28, 32, 90.36, 23.68),
+  mkOrigin("lk", "LKA", "Sri Lanka",            "سريلانكا",         220, 8,  24, 80.77, 7.87),
+  mkOrigin("np", "NPL", "Nepal",                "نيبال",            180, 6,  22, 84.12, 28.39),
+  mkOrigin("af", "AFG", "Afghanistan",          "أفغانستان",         58, 34, 72, 67.70, 33.93),
+  // South-East Asia
+  mkOrigin("ph", "PHL", "Philippines",          "الفلبين",          560, 16, 22, 121.77, 12.87),
+  mkOrigin("id", "IDN", "Indonesia",            "إندونيسيا",        380, 10, 20, 113.92, -0.78),
+  mkOrigin("vn", "VNM", "Vietnam",              "فيتنام",            180, 18, 48, 108.27, 14.06),
+  mkOrigin("th", "THA", "Thailand",             "تايلاند",           240, 8,  22, 100.99, 15.87),
+  mkOrigin("my", "MYS", "Malaysia",             "ماليزيا",          148, 4,  18, 101.97, 4.21),
+  // Africa
+  mkOrigin("ng", "NGA", "Nigeria",              "نيجيريا",          128, 14, 36, 8.67,  9.08),
+  mkOrigin("ke", "KEN", "Kenya",                "كينيا",             94, 6,  24, 37.90, -0.02),
+  mkOrigin("et", "ETH", "Ethiopia",             "إثيوبيا",           78, 8,  32, 40.49, 9.15),
+  mkOrigin("so", "SOM", "Somalia",              "الصومال",           42, 22, 74, 46.20, 5.15),
+  mkOrigin("za", "ZAF", "South Africa",         "جنوب أفريقيا",     104, 4,  18, 22.94, -30.56),
+  // Europe
+  mkOrigin("gb", "GBR", "United Kingdom",       "المملكة المتحدة",  620, 8,  14, -3.44, 55.38),
+  mkOrigin("de", "DEU", "Germany",              "ألمانيا",          440, 6,  12, 10.45, 51.17),
+  mkOrigin("fr", "FRA", "France",               "فرنسا",            420, 8,  16, 2.21,  46.23),
+  mkOrigin("it", "ITA", "Italy",                "إيطاليا",          260, 5,  14, 12.57, 41.87),
+  mkOrigin("es", "ESP", "Spain",                "إسبانيا",          220, 4,  14, -3.75, 40.46),
+  mkOrigin("nl", "NLD", "Netherlands",          "هولندا",           160, 3,  12, 5.29,  52.13),
+  mkOrigin("ru", "RUS", "Russia",               "روسيا",            180, 58, 62, 105.32, 61.52),
+  mkOrigin("rs", "SRB", "Serbia",               "صربيا",             68, 10, 38, 21.01, 44.02),
+  mkOrigin("tr", "TUR", "Turkey",               "تركيا",             480, 18, 32, 35.24, 38.96),
+  mkOrigin("ua", "UKR", "Ukraine",              "أوكرانيا",          92, 14, 52, 31.17, 48.38),
+  // East Asia
+  mkOrigin("cn", "CHN", "China",                "الصين",            920, 10, 14, 104.20, 35.86),
+  mkOrigin("jp", "JPN", "Japan",                "اليابان",          340, 3,  10, 138.25, 36.20),
+  mkOrigin("kr", "KOR", "South Korea",          "كوريا الجنوبية",   260, 4,  12, 127.77, 35.91),
+  // Americas
+  mkOrigin("us", "USA", "United States",        "الولايات المتحدة",  620, 12, 14, -95.71, 37.09),
+  mkOrigin("ca", "CAN", "Canada",               "كندا",             220, 4,  12, -106.35, 56.13),
+  mkOrigin("br", "BRA", "Brazil",               "البرازيل",         140, 5,  18, -51.92, -14.23),
+  mkOrigin("mx", "MEX", "Mexico",               "المكسيك",            84, 6,  22, -102.55, 23.63),
+  // Oceania
+  mkOrigin("au", "AUS", "Australia",            "أستراليا",          220, 4,  12, 133.77, -25.27),
+];
+
+// ─── 30-day program KPIs (for Manager) ────────────────────────────────────
+export interface ProgramKpiDaily {
+  date: string; // YYYY-MM-DD
+  cases_closed: number;
+  confirmed_threats: number;
+  false_positives: number;
+  avg_score: number;
+  unique_entities: number;
+}
+
+const buildProgramKpis = (): ProgramKpiDaily[] => {
+  const out: ProgramKpiDaily[] = [];
+  const today = new Date("2026-04-17T00:00:00Z");
+  for (let i = 29; i >= 0; i--) {
+    const d = new Date(today.getTime() - i * 86_400_000);
+    const iso = d.toISOString().slice(0, 10);
+    // Deterministic pseudo-noise so chart has shape without Math.random instability.
+    const seed = i * 7.3 + 2.1;
+    const wave = Math.sin(seed / 4) * 0.4 + Math.cos(seed / 6.5) * 0.3;
+    const closed = Math.round(58 + wave * 18 + (i % 7 === 0 ? -12 : 0));
+    const threats = Math.max(1, Math.round(closed * (0.18 + Math.sin(seed / 3) * 0.04)));
+    const fp = Math.max(1, Math.round(closed * (0.22 + Math.cos(seed / 5) * 0.06)));
+    const avg = Math.round(42 + wave * 10);
+    const entities = Math.round(1200 + wave * 300 + (i % 7 === 0 ? -180 : 0));
+    out.push({ date: iso, cases_closed: closed, confirmed_threats: threats, false_positives: fp, avg_score: avg, unique_entities: entities });
+  }
+  return out;
+};
+
+export const PROGRAM_KPIS_30D: ProgramKpiDaily[] = buildProgramKpis();
+
+export interface ContributionMix {
+  day: string;
+  rules: number;
+  ml: number;
+  watchlist: number;
+  manual: number;
+}
+
+export const CONTRIBUTION_MIX_7D: ContributionMix[] = [
+  { day: "Thu", rules: 142, ml: 98,  watchlist: 46, manual: 18 },
+  { day: "Fri", rules: 158, ml: 112, watchlist: 52, manual: 22 },
+  { day: "Sat", rules: 126, ml: 88,  watchlist: 38, manual: 16 },
+  { day: "Sun", rules: 134, ml: 94,  watchlist: 42, manual: 14 },
+  { day: "Mon", rules: 172, ml: 124, watchlist: 58, manual: 24 },
+  { day: "Tue", rules: 168, ml: 118, watchlist: 54, manual: 20 },
+  { day: "Wed", rules: 184, ml: 136, watchlist: 62, manual: 26 },
+];
+
+// ─── Model governance snapshot ────────────────────────────────────────────
+export const MODEL_GOVERNANCE = {
+  activeVersion: "mvp-0.3.1",
+  previousVersion: "mvp-0.3.0",
+  daysInProduction: 14,
+  drift: {
+    status: "ok" as "ok" | "watch" | "breach",
+    scoreDistShift: 0.12,
+    nationalityFairnessFlags: 0,
+  },
+  lastRetrain: "2026-03-18",
+  nextScheduledReview: "2026-05-01",
+};
+
+// ─── SLA rollup (for Supervisor + Manager) ────────────────────────────────
+export interface SlaSummary {
+  severity: "CRITICAL" | "HIGH" | "MEDIUM" | "LOW";
+  met: number;
+  breached: number;
+  inFlight: number;
+}
+
+export const SLA_SUMMARY_24H: SlaSummary[] = [
+  { severity: "CRITICAL", met: 14, breached: 1, inFlight: 3 },
+  { severity: "HIGH",     met: 42, breached: 4, inFlight: 8 },
+  { severity: "MEDIUM",   met: 96, breached: 6, inFlight: 12 },
+  { severity: "LOW",      met: 128, breached: 2, inFlight: 6 },
+];
+
+// Monthly aggregate — same shape, used by Manager "Operational SLAs" panel.
+export const SLA_SUMMARY_30D: SlaSummary[] = [
+  { severity: "CRITICAL", met: 412,  breached: 18, inFlight: 0 },
+  { severity: "HIGH",     met: 1184, breached: 62, inFlight: 0 },
+  { severity: "MEDIUM",   met: 2864, breached: 104, inFlight: 0 },
+  { severity: "LOW",      met: 3968, breached: 52,  inFlight: 0 },
+];
