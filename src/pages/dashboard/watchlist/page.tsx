@@ -61,7 +61,7 @@ const WatchlistPage = () => {
         {/* Page header */}
         <div className="flex-shrink-0 px-6 pt-5 pb-4 border-b"
           style={{ borderColor: 'rgba(184,138,60,0.08)' }}>
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center justify-between mb-4" data-narrate-id="watchlist-header-kpis">
             <div>
               <div className="flex items-center gap-3 mb-1">
                 <div className="w-8 h-8 flex items-center justify-center rounded-xl"
@@ -100,6 +100,13 @@ const WatchlistPage = () => {
             {tabs.map(tab => (
               <button key={tab.key}
                 onClick={() => setActiveTab(tab.key as Tab)}
+                data-narrate-id={
+                  tab.key === 'manage'
+                    ? 'watchlist-target-list'
+                    : tab.key === 'import'
+                    ? 'watchlist-import-export'
+                    : undefined
+                }
                 className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold font-['Inter'] whitespace-nowrap cursor-pointer transition-all"
                 style={{
                   background: activeTab === tab.key ? '#D6B47E' : 'rgba(10,37,64,0.6)',
@@ -122,7 +129,7 @@ const WatchlistPage = () => {
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-6" data-narrate-id="watchlist-empty-state">
           {activeTab === 'dashboard' && (
             <WatchlistDashboard
               isAr={isAr}

@@ -179,6 +179,7 @@ const LoginPage = () => {
     >
       {/* ────────── LEFT PANE — ceremonial ────────── */}
       <div
+        data-narrate-id="login-ceremonial-pane"
         className="hidden md:flex relative overflow-hidden flex-col justify-between"
         style={{
           flexBasis: "50%",
@@ -276,6 +277,7 @@ const LoginPage = () => {
 
         {/* Bottom legal */}
         <div
+          data-narrate-id="login-legal-footer"
           style={{
             position: "relative",
             zIndex: 1,
@@ -359,6 +361,7 @@ const LoginPage = () => {
 
               {/* SSO — primary */}
               <button
+                data-narrate-id="login-sso-button"
                 type="button"
                 onClick={handleSSO}
                 disabled={ssoRedirecting}

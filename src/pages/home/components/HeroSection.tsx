@@ -55,6 +55,7 @@ const HeroSection = () => {
 
         {/* Ceremonial eyebrow pill */}
         <div
+          data-narrate-id="home-hero-eyebrow"
           className="inline-flex items-center gap-2 mb-8 animate-fade-in"
           style={{
             padding: "0.375rem 1rem",
@@ -119,6 +120,7 @@ const HeroSection = () => {
             is always visible on the home page (per brand's bilingual-equality
             principle). */}
         <div
+          data-narrate-id="home-hero-tagline"
           className="animate-fade-in flex flex-col items-center gap-2"
           style={{ marginBottom: "1.5rem", animationDelay: "0.4s" }}
         >

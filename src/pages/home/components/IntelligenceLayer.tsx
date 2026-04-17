@@ -113,6 +113,7 @@ const IntelligenceLayer = () => {
 
         {/* Tab row */}
         <div
+          data-narrate-id="home-intelligence-tabs"
           role="tablist"
           aria-label={isAr ? "تصفية الطبقات" : "Filter layers"}
           className="flex items-center justify-center gap-2 mb-8 flex-wrap"

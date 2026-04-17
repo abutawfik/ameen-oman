@@ -119,6 +119,7 @@ const DataFlowArchitecture = () => {
   return (
     <section
       id="data-flow-architecture"
+      data-narrate-id="home-data-flow"
       className="py-20 md:py-28 relative"
       style={{
         background: `linear-gradient(180deg, ${C.midnight900} 0%, ${C.midnight800} 100%)`,

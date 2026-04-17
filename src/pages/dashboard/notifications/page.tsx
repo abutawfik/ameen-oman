@@ -107,6 +107,15 @@ const NotificationsPage = () => {
         style={{ background: "rgba(10,37,64,0.65)", border: "1px solid rgba(184,138,60,0.1)" }}>
         {tabs.map((t) => (
           <button key={t.key} onClick={() => setTab(t.key)}
+            data-narrate-id={
+              t.key === "inbox"
+                ? "notifications-inbox-tab"
+                : t.key === "rules"
+                ? "notifications-routing-rules"
+                : t.key === "channels"
+                ? "notifications-channel-config"
+                : undefined
+            }
             className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm cursor-pointer transition-all"
             style={{
               background: tab === t.key ? "rgba(184,138,60,0.12)" : "transparent",
@@ -151,8 +160,10 @@ const NotificationsPage = () => {
               </tr>
             </thead>
             <tbody>
-              {rules.map((r) => (
-                <tr key={r.severity} className="border-b" style={{ borderColor: "rgba(255,255,255,0.04)" }}>
+              {rules.map((r, idx) => (
+                <tr key={r.severity} className="border-b"
+                  data-narrate-id={idx === 0 ? "notifications-rules-row" : undefined}
+                  style={{ borderColor: "rgba(255,255,255,0.04)" }}>
                   <td className="px-4 py-3">
                     <span className="px-2 py-0.5 rounded text-[10px] tracking-widest font-bold"
                       style={{ background: `${SEVERITY_COLOR[r.severity]}22`, color: SEVERITY_COLOR[r.severity], border: `1px solid ${SEVERITY_COLOR[r.severity]}55`, fontFamily: fonts.mono }}>

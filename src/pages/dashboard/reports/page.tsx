@@ -156,6 +156,7 @@ const ReportsPage = () => {
             const count = m === "templates" ? (REPORT_TEMPLATES.length + customTemplates.length) : scheduledRows.filter((r) => r.enabled).length;
             return (
               <button key={m} type="button" onClick={() => setMode(m)}
+                data-narrate-id={m === "scheduled" ? "reports-scheduled-link" : undefined}
                 className="px-4 py-1.5 rounded-md text-sm font-semibold cursor-pointer transition-all flex items-center gap-2"
                 style={{
                   background: active ? "rgba(184,138,60,0.15)" : "transparent",
@@ -256,12 +257,13 @@ const TemplatesGrid = ({
   const fonts = useBrandFonts();
   const all = [...templates, ...customTemplates];
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {all.map((t) => {
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" data-narrate-id="reports-template-grid">
+      {all.map((t, tplIdx) => {
         const isCustom = (t as CustomReportTemplate).isCustom === true;
         return (
         <div key={t.id}
           className="rounded-xl border p-5 flex flex-col gap-3 transition-all"
+          data-narrate-id={tplIdx === 0 ? "reports-daily-ops-card" : undefined}
           style={{
             background: "rgba(10,37,64,0.65)",
             borderColor: `${t.color}33`,
@@ -342,6 +344,7 @@ const TemplatesGrid = ({
       {/* Wave 4 · D4 — "+ Custom template" tile in brass dashed outline */}
       <button type="button"
         onClick={onOpenBuilder}
+        data-narrate-id="reports-custom-tile"
         className="rounded-xl p-5 flex flex-col items-center justify-center gap-2 cursor-pointer transition-all min-h-[240px]"
         style={{
           background: "rgba(184,138,60,0.04)",
