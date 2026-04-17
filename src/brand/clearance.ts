@@ -1,5 +1,5 @@
 // ============================================================================
-// Al-Ameen · Clearance simulator (Wave 3 · Deliverable 5)
+// Al-Ameen · Clearance simulator (Wave 3 · Deliverable 5 + Wave 4 · D3)
 // ----------------------------------------------------------------------------
 // Demo-only clearance context. In production each operator has a static
 // clearance assigned via RBAC; for the demo we expose a pill in the title bar
@@ -9,15 +9,21 @@
 //
 // Ordinal rule: higher clearance dominates. A field classified `restricted`
 // is viewable iff viewer clearance >= restricted.
+//
+// Wave 4 · D3 — every clearance cycle now writes a synthetic AuditEntry into
+// a module-level mutable log AND dispatches a custom window event so the
+// Audit Log page can merge live changes into its seeded roster without a
+// full re-render of its data source.
 // ============================================================================
 
 import { createContext, useContext, useEffect, useState, type ReactNode, createElement } from "react";
-import type { Classification } from "@/mocks/osintData";
+import type { AuditEntry, Classification } from "@/mocks/osintData";
 
 // Ordered low → high. Index acts as the ordinal used by canView().
 export const CLEARANCE_LEVELS: Classification[] = ["public", "internal", "restricted", "classified"];
 
 const STORAGE_KEY = "ameen:clearance";
+export const CLEARANCE_AUDIT_EVENT = "ameen:audit:clearance-changed";
 
 const clearanceRank = (c: Classification): number => CLEARANCE_LEVELS.indexOf(c);
 
@@ -32,6 +38,38 @@ export const canView = (fieldClass: Classification, viewerClearance: Classificat
 /** Monospaced █ block used everywhere a redacted value is rendered. */
 export const REDACTED_GLYPH = "█████████";
 
+/**
+ * Module-level mutable log — the Audit Log page reads from this alongside
+ * the seeded AUDIT_LOG to surface runtime clearance cycles.
+ */
+export const CLEARANCE_CHANGE_LOG: AuditEntry[] = [];
+
+const currentOperator = {
+  id: "current-operator",
+  name: "Ahmed Al-Amri",
+  role: "analyst" as const,
+};
+
+/**
+ * Build the synthetic AuditEntry for a cycle event. Kept lightweight —
+ * classification on the entry mirrors the new clearance level so the row
+ * colors visibly shift when the viewer steps up.
+ */
+const buildClearanceEntry = (prev: Classification, next: Classification): AuditEntry => ({
+  id: `AU-CLR-${Date.now()}`,
+  occurredAt: new Date().toISOString(),
+  actor: { ...currentOperator },
+  eventType: "clearance_changed",
+  targetId: `clearance:${prev}→${next}`,
+  classification: next,
+  details: {
+    prev,
+    next,
+    interactive: true,
+    source: "clearance_pill_cycle",
+  },
+});
+
 interface ClearanceContextShape {
   clearance: Classification;
   setClearance: (next: Classification) => void;
@@ -42,7 +80,7 @@ interface ClearanceContextShape {
 const ClearanceContext = createContext<ClearanceContextShape | null>(null);
 
 export const ClearanceProvider = ({ children }: { children: ReactNode }) => {
-  const [clearance, setClearance] = useState<Classification>(() => {
+  const [clearance, setClearanceState] = useState<Classification>(() => {
     try {
       const saved = typeof window !== "undefined" ? window.localStorage.getItem(STORAGE_KEY) : null;
       if (saved && (CLEARANCE_LEVELS as string[]).includes(saved)) {
@@ -56,10 +94,32 @@ export const ClearanceProvider = ({ children }: { children: ReactNode }) => {
     try { window.localStorage.setItem(STORAGE_KEY, clearance); } catch { /* noop */ }
   }, [clearance]);
 
+  // Write an audit entry whenever the clearance actually changes. We gate on
+  // prev !== next so idempotent setClearance(prev) calls don't spam the log.
+  const recordChange = (prev: Classification, next: Classification) => {
+    if (prev === next) return;
+    const entry = buildClearanceEntry(prev, next);
+    CLEARANCE_CHANGE_LOG.unshift(entry);
+    try {
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new CustomEvent(CLEARANCE_AUDIT_EVENT, { detail: entry }));
+      }
+    } catch { /* noop */ }
+  };
+
+  const setClearance = (next: Classification) => {
+    setClearanceState((prev) => {
+      recordChange(prev, next);
+      return next;
+    });
+  };
+
   const cycleClearance = () => {
-    setClearance((cur) => {
+    setClearanceState((cur) => {
       const idx = CLEARANCE_LEVELS.indexOf(cur);
-      return CLEARANCE_LEVELS[(idx + 1) % CLEARANCE_LEVELS.length];
+      const next = CLEARANCE_LEVELS[(idx + 1) % CLEARANCE_LEVELS.length];
+      recordChange(cur, next);
+      return next;
     });
   };
 

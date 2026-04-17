@@ -1,16 +1,22 @@
-// Demo narration overlay — Wave 3 · Deliverable 4
+// Demo narration overlay — Wave 3 · Deliverable 4 (+ Wave 4 · Deliverable 1)
 // Press `N` to toggle. While active, the current route's scripted narration
 // walks the viewer through key elements: traveling tooltip + brass highlight
 // + dim backdrop. Used for recorded walkthroughs or unattended kiosk demos.
+//
+// Wave 4 additions:
+//   · Deep-link via ?narrate=<id|index|true|1>
+//   · Copy-deep-link button
+//   · Cmd/Ctrl+Shift+N → log current script JSON to console
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { DEMO_NARRATIONS, type NarrationScript } from "@/mocks/osintData";
 import { useBrandFonts } from "@/brand/typography";
 
 const STORAGE_KEY = "ameen:narration";
 const STEP_DURATION_MS = 6000;
 const POLL_MS = 120;
+const DEEP_LINK_PARAM = "narrate";
 
 interface HighlightBox {
   top: number;
@@ -30,18 +36,60 @@ const findScript = (pathname: string): NarrationScript | null => {
   return prefix ?? null;
 };
 
+// Extract a `data-narrate-id="…"` value from a target selector so deep-links
+// survive across reloads without needing the full selector string.
+const narrateIdFromSelector = (selector: string): string | null => {
+  const m = selector.match(/\[data-narrate-id=['"]([^'"]+)['"]\]/);
+  return m ? m[1] : null;
+};
+
+const resolveInitialStep = (
+  script: NarrationScript | null,
+  param: string | null,
+): number => {
+  if (!script || !param) return 0;
+  // Boolean-ish — always start at zero.
+  if (param === "true" || param === "1") return 0;
+  // Numeric index — clamp.
+  const asInt = Number.parseInt(param, 10);
+  if (!Number.isNaN(asInt) && Number.isFinite(asInt)) {
+    return Math.min(Math.max(asInt, 0), script.steps.length - 1);
+  }
+  // Otherwise treat as a narrate-id target. Match by stripping the
+  // [data-narrate-id="…"] prefix so callers can pass the raw id.
+  const stepIdx = script.steps.findIndex((s) => narrateIdFromSelector(s.targetSelector) === param);
+  return stepIdx >= 0 ? stepIdx : 0;
+};
+
 const DemoNarration = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const fonts = useBrandFonts();
+  // Pull once per render — we read the incoming deep-link param eagerly.
+  const deepLinkParam = searchParams.get(DEEP_LINK_PARAM);
+
   const [active, setActive] = useState<boolean>(() => {
+    // If a deep-link param is present on first mount, force-activate regardless
+    // of the persisted toggle. Otherwise honor the saved preference.
+    try {
+      if (typeof window !== "undefined") {
+        const url = new URL(window.location.href);
+        if (url.searchParams.get(DEEP_LINK_PARAM)) return true;
+      }
+    } catch { /* noop */ }
     try { return window.localStorage.getItem(STORAGE_KEY) === "on"; } catch { return false; }
   });
   const [stepIdx, setStepIdx] = useState(0);
   const [highlight, setHighlight] = useState<HighlightBox | null>(null);
   const [autoAdvance, setAutoAdvance] = useState(true);
   const [paused, setPaused] = useState(false);
+  const [copyToast, setCopyToast] = useState<string | null>(null);
   const tickerRef = useRef<number | null>(null);
   const timerRef = useRef<number | null>(null);
+  // Remember which param value we've already consumed so React Strict-mode
+  // double-invokes don't re-apply it on every render.
+  const consumedParamRef = useRef<string | null>(null);
 
   const script = useMemo(() => findScript(location.pathname), [location.pathname]);
   const step = script?.steps[stepIdx] ?? null;
@@ -51,15 +99,37 @@ const DemoNarration = () => {
     try { window.localStorage.setItem(STORAGE_KEY, active ? "on" : "off"); } catch { /* noop */ }
   }, [active]);
 
+  // Reset step on route change — but if a deep-link param is present on this
+  // route, honor it instead of dropping back to step 0.
   useEffect(() => {
-    setStepIdx(0);
-  }, [location.pathname]);
+    if (deepLinkParam) {
+      setStepIdx(resolveInitialStep(script, deepLinkParam));
+      // Force-activate if the URL asked us to.
+      setActive(true);
+      consumedParamRef.current = deepLinkParam;
+    } else {
+      setStepIdx(0);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.pathname, deepLinkParam, script?.route]);
 
-  // Keyboard: N toggles narration; arrow keys / space walk steps.
+  // Keyboard: N toggles narration; arrow keys / space walk steps;
+  // Cmd/Ctrl+Shift+N logs current script JSON for developers.
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       const tgt = e.target as HTMLElement | null;
-      if (tgt && (tgt.tagName === "INPUT" || tgt.tagName === "TEXTAREA" || tgt.isContentEditable)) return;
+      const inField = tgt && (tgt.tagName === "INPUT" || tgt.tagName === "TEXTAREA" || tgt.isContentEditable);
+      // Dev shortcut — Cmd/Ctrl+Shift+N
+      if ((e.metaKey || e.ctrlKey) && e.shiftKey && (e.key === "n" || e.key === "N")) {
+        e.preventDefault();
+        // eslint-disable-next-line no-console
+        console.log(
+          `[narration] route=${location.pathname} script=`,
+          script ? JSON.stringify(script, null, 2) : "(no script for this route)",
+        );
+        return;
+      }
+      if (inField) return;
       if (e.key === "n" || e.key === "N") {
         setActive((v) => !v);
         return;
@@ -72,12 +142,27 @@ const DemoNarration = () => {
         e.preventDefault();
         setStepIdx((i) => Math.max(i - 1, 0));
       } else if (e.key === "Escape") {
-        setActive(false);
+        closeWithCleanup();
       }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [active, script]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [active, script, location.pathname]);
+
+  // Strip the ?narrate= param from the URL so refreshing doesn't retrigger.
+  const stripDeepLink = () => {
+    if (!searchParams.has(DEEP_LINK_PARAM)) return;
+    const next = new URLSearchParams(searchParams);
+    next.delete(DEEP_LINK_PARAM);
+    const qs = next.toString();
+    navigate(`${location.pathname}${qs ? `?${qs}` : ""}${location.hash || ""}`, { replace: true });
+  };
+
+  const closeWithCleanup = () => {
+    setActive(false);
+    stripDeepLink();
+  };
 
   // Poll for the target element so the highlight tracks scroll + DOM updates.
   useEffect(() => {
@@ -130,6 +215,33 @@ const DemoNarration = () => {
     }, duration);
     return () => { if (timerRef.current) window.clearTimeout(timerRef.current); };
   }, [active, script, stepIdx, autoAdvance, paused, step?.durationMs]);
+
+  // Copy deep-link for current step to clipboard.
+  const handleCopyDeepLink = async () => {
+    if (typeof window === "undefined" || !step) return;
+    const id = narrateIdFromSelector(step.targetSelector);
+    const url = new URL(window.location.href);
+    url.searchParams.set(DEEP_LINK_PARAM, id ?? String(stepIdx));
+    try {
+      await navigator.clipboard.writeText(url.toString());
+      setCopyToast(fonts.isAr ? "تم نسخ الرابط" : "Deep link copied");
+    } catch {
+      // Fallback: create a temp textarea.
+      try {
+        const ta = document.createElement("textarea");
+        ta.value = url.toString();
+        ta.style.position = "fixed"; ta.style.left = "-9999px";
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        document.body.removeChild(ta);
+        setCopyToast(fonts.isAr ? "تم نسخ الرابط" : "Deep link copied");
+      } catch {
+        setCopyToast(fonts.isAr ? "تعذّر النسخ" : "Copy failed");
+      }
+    }
+    window.setTimeout(() => setCopyToast(null), 2400);
+  };
 
   if (!active) return null;
 
@@ -204,6 +316,15 @@ const DemoNarration = () => {
                 {stepIdx + 1} / {script.steps.length}
               </span>
             )}
+            {/* Copy deep link */}
+            {script && step && (
+              <button type="button" onClick={handleCopyDeepLink}
+                className="w-7 h-7 rounded-md flex items-center justify-center cursor-pointer"
+                style={{ background: "rgba(184,138,60,0.12)", color: "#D6B47E", border: "1px solid #D6B47E55" }}
+                title={fonts.isAr ? "نسخ رابط هذه الخطوة" : "Copy deep link to this step"}>
+                <i className="ri-link" />
+              </button>
+            )}
             <button type="button" onClick={() => setPaused((p) => !p)}
               className="w-7 h-7 rounded-md flex items-center justify-center cursor-pointer"
               style={{ background: "rgba(255,255,255,0.04)", color: "#9CA3AF", border: "1px solid rgba(255,255,255,0.1)" }}
@@ -220,7 +341,7 @@ const DemoNarration = () => {
               title={autoAdvance ? "Auto-advance on" : "Auto-advance off"}>
               <i className="ri-timer-line" />
             </button>
-            <button type="button" onClick={() => setActive(false)}
+            <button type="button" onClick={closeWithCleanup}
               className="w-7 h-7 rounded-md flex items-center justify-center cursor-pointer"
               style={{ background: "rgba(201,74,94,0.12)", color: "#C94A5E", border: "1px solid #C94A5E55" }}
               title="Close (N or Esc)">
@@ -228,6 +349,15 @@ const DemoNarration = () => {
             </button>
           </div>
         </div>
+
+        {/* Copy toast — ephemeral, sits above the step body */}
+        {copyToast && (
+          <div className="mb-2 rounded-md px-2 py-1 text-[11px]"
+            style={{ background: "rgba(74,222,128,0.1)", color: "#4ADE80", border: "1px solid rgba(74,222,128,0.3)", fontFamily: fonts.mono }}>
+            <i className="ri-check-double-line mr-1" />
+            {copyToast}
+          </div>
+        )}
 
         {script && step ? (
           <>

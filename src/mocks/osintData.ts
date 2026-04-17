@@ -1145,6 +1145,78 @@ const additionalRecords: ScoredRecord[] = [
 export const SCORED_RECORDS: ScoredRecord[] = [...demoScenarios, ...additionalRecords];
 
 // ─────────────────────────────────────────────────────────────────────────
+// Wave 4 · Deliverable 5 — Rasad shadow simulation
+// Deterministic synthetic boosts over each scored record. Drives the
+// ScatterChart on the OSINT Risk Engine → Rasad tab.
+// ─────────────────────────────────────────────────────────────────────────
+
+export interface RasadShadowScore {
+  recordId: string;
+  travelerName: string;
+  classification: Classification;
+  osintScore: number;
+  rasadScore: number;        // OSINT + simulated classified boost
+  delta: number;
+  topClassifiedContributor: string;
+  topClassifiedContributorAr: string;
+}
+
+// Tiny deterministic hash → [0, 1). Keeps the chart stable across reloads.
+const seededFraction = (seed: string): number => {
+  let h = 2166136261 >>> 0;
+  for (let i = 0; i < seed.length; i++) {
+    h ^= seed.charCodeAt(i);
+    h = Math.imul(h, 16777619) >>> 0;
+  }
+  return (h % 1000) / 1000;
+};
+
+const RASAD_CONTRIBUTORS_EN = [
+  "Rasad: sponsor matched to 2024 intelligence bulletin #IB-0142",
+  "Rasad: HUMINT source corroborated travel intent",
+  "Rasad: undeclared beneficial owner on sponsor graph",
+  "Rasad: device proximity cluster at origin airport",
+  "Rasad: prior watchlist hit (sealed, 2023-Q3)",
+  "Rasad: classified financial flow to sanctioned intermediary",
+  "Rasad: elicitation flag raised by sister-service partner",
+  "Rasad: passport biometric overlap with prior alias file",
+];
+
+const RASAD_CONTRIBUTORS_AR = [
+  "رصد: الكفيل مرتبط بنشرة استخبارات 2024 #IB-0142",
+  "رصد: مصدر HUMINT يؤكّد نيّة السفر",
+  "رصد: مالك مستتر غير مُعلَن في رسم الكفيل",
+  "رصد: تجمّع قرب الأجهزة في مطار المنشأ",
+  "رصد: إصابة سابقة في قائمة المراقبة (مختومة 2023-Q3)",
+  "رصد: تدفق مالي مُصنَّف إلى وسيط مُعاقَب",
+  "رصد: تنبيه استمالة من جهاز شقيق",
+  "رصد: تطابق بيومتري في ملف اسم مستعار سابق",
+];
+
+export const RASAD_SHADOW_SCORES: RasadShadowScore[] = SCORED_RECORDS.map((r) => {
+  // Boost bands per classification — wider range on CLASSIFIED so the shift
+  // is visually meaningful, zero on PUBLIC so the identity line stays honest.
+  const frac = seededFraction(r.id);
+  let boost = 0;
+  if (r.classification === "classified") boost = Math.round(12 + frac * 6);       // 12-18
+  else if (r.classification === "restricted") boost = Math.round(5 + frac * 5);   // 5-10
+  else if (r.classification === "internal") boost = Math.round(frac * 3);         // 0-3
+  else boost = 0;                                                                 // public
+  const rasadScore = Math.min(100, r.unifiedScore + boost);
+  const contributorIdx = Math.floor(frac * RASAD_CONTRIBUTORS_EN.length);
+  return {
+    recordId: r.id,
+    travelerName: r.travelerName,
+    classification: r.classification,
+    osintScore: r.unifiedScore,
+    rasadScore,
+    delta: rasadScore - r.unifiedScore,
+    topClassifiedContributor: RASAD_CONTRIBUTORS_EN[contributorIdx],
+    topClassifiedContributorAr: RASAD_CONTRIBUTORS_AR[contributorIdx],
+  };
+});
+
+// ─────────────────────────────────────────────────────────────────────────
 // Pipeline throughput (for Overview KPIs + chart)
 // ─────────────────────────────────────────────────────────────────────────
 
@@ -1763,7 +1835,7 @@ export interface AuditEntry {
   id: string;
   occurredAt: string; // ISO
   actor: { id: string; name: string; role: "analyst"|"supervisor"|"manager"|"admin"|"system" };
-  eventType: "score_computed"|"rule_fired"|"source_ingested"|"source_failed"|"classified_accessed"|"weight_changed"|"rule_toggled"|"rollback_triggered";
+  eventType: "score_computed"|"rule_fired"|"source_ingested"|"source_failed"|"classified_accessed"|"weight_changed"|"rule_toggled"|"rollback_triggered"|"clearance_changed";
   targetId: string;
   classification: Classification;
   details: Record<string, unknown>;

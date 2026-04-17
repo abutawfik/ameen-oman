@@ -1,9 +1,9 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
 import type { DashboardOutletContext } from "../DashboardLayout";
 import { useClearance, REDACTED_GLYPH } from "@/brand/clearance";
 import {
-  AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
+  AreaChart, Area, XAxis, YAxis, ZAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   BarChart, Bar, Cell, ScatterChart, Scatter, Line, ReferenceLine,
 } from "recharts";
 import {
@@ -24,6 +24,7 @@ import {
   FEATURE_VECTORS,
   WEIGHT_PROFILES,
   AS_OF_SNAPSHOTS,
+  RASAD_SHADOW_SCORES,
   aggregate,
   type ScoredRecord,
   type SubScoreWeight,
@@ -36,6 +37,7 @@ import {
   type SequenceTimeline,
   type SequenceTouchpoint,
   type FeatureVector,
+  type RasadShadowScore,
 } from "@/mocks/osintData";
 
 type Tab = "overview" | "queue" | "explain" | "sequence" | "sources" | "config" | "governance" | "rasad";
@@ -2029,6 +2031,191 @@ const buildRulesYaml = (rules: RiskRule[]): string => {
   return `${header}${body}`;
 };
 
+// ─── Line diff (Wave 4 · D2) ──────────────────────────────────────────────
+// Minimal LCS-based line differ — no deps, O(m·n) space which is fine for
+// the ~600-line rules.yaml we diff against. Returns a unified op stream so
+// both columns can render identical ordering with interleaved add/remove
+// markers. Equal lines are paired; edits surface as remove+add pairs.
+interface DiffOp {
+  kind: "equal" | "remove" | "add";
+  text: string;
+  oldLine?: number; // 1-based original line number when defined
+  newLine?: number; // 1-based updated line number when defined
+}
+
+const diffLines = (aText: string, bText: string): DiffOp[] => {
+  const a = aText.split("\n");
+  const b = bText.split("\n");
+  const m = a.length, n = b.length;
+
+  // Build the LCS length table. Rows indexed 0..m, cols 0..n.
+  const dp: number[][] = Array.from({ length: m + 1 }, () => new Array<number>(n + 1).fill(0));
+  for (let i = 1; i <= m; i++) {
+    for (let j = 1; j <= n; j++) {
+      if (a[i - 1] === b[j - 1]) dp[i][j] = dp[i - 1][j - 1] + 1;
+      else dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+    }
+  }
+
+  // Walk back from (m, n) → (0, 0) to produce ops in reverse.
+  const ops: DiffOp[] = [];
+  let i = m, j = n;
+  while (i > 0 && j > 0) {
+    if (a[i - 1] === b[j - 1]) {
+      ops.push({ kind: "equal", text: a[i - 1], oldLine: i, newLine: j });
+      i--; j--;
+    } else if (dp[i - 1][j] >= dp[i][j - 1]) {
+      ops.push({ kind: "remove", text: a[i - 1], oldLine: i });
+      i--;
+    } else {
+      ops.push({ kind: "add", text: b[j - 1], newLine: j });
+      j--;
+    }
+  }
+  while (i > 0) { ops.push({ kind: "remove", text: a[i - 1], oldLine: i }); i--; }
+  while (j > 0) { ops.push({ kind: "add", text: b[j - 1], newLine: j }); j--; }
+  return ops.reverse();
+};
+
+// Count how many rule blocks (anchored by `- id: …` lines) the diff touches.
+// Cheap and good enough for the "X rules modified" header.
+const countRulesModified = (ops: DiffOp[]): number => {
+  const rulesTouched = new Set<string>();
+  let currentOldRule: string | null = null;
+  let currentNewRule: string | null = null;
+  for (const op of ops) {
+    const idMatch = op.text.match(/^\s*-\s*id:\s*(\S+)/);
+    if (idMatch) {
+      if (op.kind !== "add") currentOldRule = idMatch[1];
+      if (op.kind !== "remove") currentNewRule = idMatch[1];
+    }
+    if (op.kind === "add" || op.kind === "remove") {
+      if (currentNewRule) rulesTouched.add(currentNewRule);
+      if (currentOldRule) rulesTouched.add(currentOldRule);
+    }
+  }
+  return rulesTouched.size;
+};
+
+// Split-column diff view. Left side = "file on disk" (ocean-900, red
+// strikethrough for removed lines). Right side = "pending buffer" (ocean-800,
+// green background for added lines). Equal lines render muted on both sides
+// so the visual delta pops.
+const YamlDiffView = ({ isAr, original, current }: { isAr: boolean; original: string; current: string }) => {
+  const ops = useMemo(() => diffLines(original, current), [original, current]);
+  const added = ops.filter((o) => o.kind === "add").length;
+  const removed = ops.filter((o) => o.kind === "remove").length;
+  const rulesModified = countRulesModified(ops);
+
+  // Each op produces a paired row — one left cell (original) and one right
+  // cell (updated). For `equal` rows both cells show the same text. For
+  // `remove` only left has content; for `add` only right has content.
+  const rows = ops.map((op, i) => {
+    let leftText = "", rightText = "";
+    let leftLine: number | undefined, rightLine: number | undefined;
+    if (op.kind === "equal") {
+      leftText = op.text; rightText = op.text;
+      leftLine = op.oldLine; rightLine = op.newLine;
+    } else if (op.kind === "remove") {
+      leftText = op.text;
+      leftLine = op.oldLine;
+    } else {
+      rightText = op.text;
+      rightLine = op.newLine;
+    }
+    return { key: i, kind: op.kind, leftText, rightText, leftLine, rightLine };
+  });
+
+  return (
+    <div className="space-y-2">
+      {/* Header — summary of what changed */}
+      <div className="flex items-center justify-between flex-wrap gap-2 px-3 py-2 rounded-md"
+        style={{ background: "rgba(107,79,174,0.08)", border: "1px solid rgba(107,79,174,0.3)" }}>
+        <div className="flex items-center gap-3 text-[11px] font-['JetBrains_Mono']" style={{ color: "#B8A0FF" }}>
+          <span className="flex items-center gap-1">
+            <i className="ri-git-pull-request-line" />
+            {rulesModified} {isAr ? "قواعد معدَّلة" : "rules modified"}
+          </span>
+          <span style={{ color: "#4ADE80" }}>+ {added} {isAr ? "سطراً مضافاً" : "lines added"}</span>
+          <span style={{ color: "#C94A5E" }}>− {removed} {isAr ? "سطراً محذوفاً" : "lines removed"}</span>
+        </div>
+        <span className="text-[10px] tracking-widest uppercase font-['JetBrains_Mono']" style={{ color: "#B8A0FF" }}>
+          {isAr ? "مقارنة ثنائية · الملف ↔ المسودّة" : "Side-by-side · file ↔ pending"}
+        </span>
+      </div>
+
+      {/* Column headers */}
+      <div className="grid grid-cols-2 gap-2">
+        <div className="text-[10px] tracking-widest uppercase font-['JetBrains_Mono'] px-3" style={{ color: "#C94A5E" }}>
+          {isAr ? "الأصل (ملف)" : "Original · on disk"}
+        </div>
+        <div className="text-[10px] tracking-widest uppercase font-['JetBrains_Mono'] px-3" style={{ color: "#4ADE80" }}>
+          {isAr ? "الحالي (معلَّق)" : "Current · pending"}
+        </div>
+      </div>
+
+      {/* Diff body — two scrollable panels sharing a synced row iterator. */}
+      <div className="grid grid-cols-2 gap-2">
+        <div className="rounded-lg overflow-auto"
+          style={{ background: "var(--alm-ocean-900, #061B30)", border: "1px solid rgba(201,74,94,0.25)", maxHeight: 420, fontFamily: "'JetBrains Mono', monospace" }}>
+          {rows.map((r) => {
+            const isRemove = r.kind === "remove";
+            const bg = isRemove ? "rgba(201,74,94,0.18)" : "transparent";
+            const color = isRemove ? "#F7C6CE" : r.leftText ? "#9CA3AF" : "transparent";
+            const textDecoration = isRemove ? "line-through" : "none";
+            return (
+              <div key={`l-${r.key}`}
+                className="flex items-start gap-2 px-2 py-[1px]"
+                style={{ background: bg, fontSize: 12, lineHeight: 1.55 }}>
+                <span style={{ color: "#4A6078", minWidth: 32, textAlign: "right", userSelect: "none" }}>
+                  {r.leftLine ?? ""}
+                </span>
+                <span style={{ color: isRemove ? "#C94A5E" : "transparent", width: 10, userSelect: "none" }}>
+                  {isRemove ? "−" : "\u00A0"}
+                </span>
+                <span style={{ color, textDecoration, whiteSpace: "pre" }}>
+                  {r.leftText || "\u00A0"}
+                </span>
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="rounded-lg overflow-auto"
+          style={{ background: "rgba(10,37,64,0.85)", border: "1px solid rgba(74,222,128,0.25)", maxHeight: 420, fontFamily: "'JetBrains Mono', monospace" }}>
+          {rows.map((r) => {
+            const isAdd = r.kind === "add";
+            const bg = isAdd ? "rgba(74,222,128,0.16)" : "transparent";
+            const color = isAdd ? "#C7F3CF" : r.rightText ? "#D6B47E" : "transparent";
+            return (
+              <div key={`r-${r.key}`}
+                className="flex items-start gap-2 px-2 py-[1px]"
+                style={{ background: bg, fontSize: 12, lineHeight: 1.55 }}>
+                <span style={{ color: "#4A6078", minWidth: 32, textAlign: "right", userSelect: "none" }}>
+                  {r.rightLine ?? ""}
+                </span>
+                <span style={{ color: isAdd ? "#4ADE80" : "transparent", width: 10, userSelect: "none" }}>
+                  {isAdd ? "+" : "\u00A0"}
+                </span>
+                <span style={{ color, whiteSpace: "pre" }}>
+                  {r.rightText || "\u00A0"}
+                </span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Empty state — means user toggled Diff with no real changes */}
+      {added === 0 && removed === 0 && (
+        <div className="text-center text-xs py-4 font-['JetBrains_Mono']" style={{ color: "#6B7280" }}>
+          {isAr ? "لا اختلاف — المسودّة تطابق الملف." : "No differences — pending buffer matches the file."}
+        </div>
+      )}
+    </div>
+  );
+};
+
 const RulesSection = ({
   isAr, rules, onRuleToggle,
 }: {
@@ -2039,14 +2226,24 @@ const RulesSection = ({
   const [view, setView] = useState<"list" | "yaml">("list");
   const [editable, setEditable] = useState(false);
   const [dirty, setDirty] = useState(false);
+  const [diffVisible, setDiffVisible] = useState(false);
   const [docReference, setDocReference] = useState(false);
   const [yamlText, setYamlText] = useState(() => buildRulesYaml(rules));
   const [toast, setToast] = useState<{ msg: string; kind: "ok" | "reload" | "info" } | null>(null);
 
+  // Snapshot of the original YAML captured once at first render so the diff
+  // compares against the "file on disk" rather than whatever the last
+  // buildRulesYaml() call produced (which can drift as toggles fire).
+  const originalYamlRef = useRef<string>(yamlText);
+
   // Whenever the rule toggle changes upstream, regenerate the YAML unless the
   // user has actively edited it (then we preserve their pending text).
   useEffect(() => {
-    if (!dirty) setYamlText(buildRulesYaml(rules));
+    if (!dirty) {
+      const next = buildRulesYaml(rules);
+      setYamlText(next);
+      originalYamlRef.current = next;
+    }
   }, [rules, dirty]);
 
   const fireToast = (msg: string, kind: "ok" | "reload" | "info") => {
@@ -2071,12 +2268,19 @@ const RulesSection = ({
         : `Reloading... ✓ Rules applied to live scoring · completed in 340ms · audit entry ${auditId} created`,
       "reload",
     );
+    // Promote pending YAML to the new "original" so subsequent edits diff
+    // against what just got reloaded.
+    originalYamlRef.current = yamlText;
     setDirty(false);
+    setDiffVisible(false);
   };
 
   const handleReset = () => {
-    setYamlText(buildRulesYaml(rules));
+    const base = buildRulesYaml(rules);
+    setYamlText(base);
+    originalYamlRef.current = base;
     setDirty(false);
+    setDiffVisible(false);
     fireToast(isAr ? "تمّ استرجاع الملف من الذاكرة" : "Reverted to file contents", "info");
   };
 
@@ -2144,16 +2348,43 @@ const RulesSection = ({
           </div>
 
           {view === "yaml" && (
-            <button type="button" onClick={() => setEditable((e) => !e)}
-              className="px-3 py-1.5 rounded-md text-xs font-bold cursor-pointer flex items-center gap-1.5"
-              style={{
-                background: editable ? "rgba(74,222,128,0.12)" : "rgba(255,255,255,0.04)",
-                color: editable ? "#4ADE80" : "#9CA3AF",
-                border: `1px solid ${editable ? "#4ADE8055" : "rgba(255,255,255,0.1)"}`,
-              }}>
-              <i className={editable ? "ri-edit-fill" : "ri-edit-line"} />
-              {editable ? (isAr ? "وضع التحرير" : "Edit mode") : (isAr ? "تحرير" : "Edit")}
-            </button>
+            <>
+              <button type="button"
+                onClick={() => setEditable((e) => !e)}
+                disabled={diffVisible}
+                title={diffVisible ? (isAr ? "عرض الفرق نشط — أغلق الفرق للتحرير" : "Diff view active — exit diff to edit") : undefined}
+                className="px-3 py-1.5 rounded-md text-xs font-bold cursor-pointer flex items-center gap-1.5 disabled:opacity-40 disabled:cursor-not-allowed"
+                style={{
+                  background: editable ? "rgba(74,222,128,0.12)" : "rgba(255,255,255,0.04)",
+                  color: editable ? "#4ADE80" : "#9CA3AF",
+                  border: `1px solid ${editable ? "#4ADE8055" : "rgba(255,255,255,0.1)"}`,
+                }}>
+                <i className={editable ? "ri-edit-fill" : "ri-edit-line"} />
+                {editable ? (isAr ? "وضع التحرير" : "Edit mode") : (isAr ? "تحرير" : "Edit")}
+              </button>
+              {/* Diff toggle — only actionable when there are pending edits */}
+              <button type="button"
+                onClick={() => {
+                  if (!dirty) return;
+                  setDiffVisible((d) => {
+                    const next = !d;
+                    // Entering diff auto-exits edit mode so the Edit button
+                    // shows as disabled per the brief.
+                    if (next) setEditable(false);
+                    return next;
+                  });
+                }}
+                disabled={!dirty}
+                className="px-3 py-1.5 rounded-md text-xs font-bold cursor-pointer flex items-center gap-1.5 disabled:opacity-40 disabled:cursor-not-allowed"
+                style={{
+                  background: diffVisible ? "rgba(107,79,174,0.18)" : "rgba(255,255,255,0.04)",
+                  color: diffVisible ? "#B8A0FF" : "#9CA3AF",
+                  border: `1px solid ${diffVisible ? "#6B4FAE88" : "rgba(255,255,255,0.1)"}`,
+                }}>
+                <i className="ri-git-pull-request-line" />
+                {isAr ? "الفرق" : "Diff"}
+              </button>
+            </>
           )}
         </div>
       </div>
@@ -2249,44 +2480,52 @@ const RulesSection = ({
             </span>
           </div>
 
-          {/* Editor — textarea + gutter. Mono theme keeps it honest without
-              pulling in Monaco. */}
-          <div className="rounded-lg overflow-hidden flex"
-            style={{ background: "var(--alm-ocean-900, #061B30)", border: "1px solid rgba(184,138,60,0.25)" }}>
-            <div className="flex-shrink-0 px-3 py-3 select-none text-right"
-              style={{
-                background: "rgba(10,37,64,0.85)",
-                borderRight: "1px solid rgba(184,138,60,0.15)",
-                minWidth: 48,
-                fontFamily: "'JetBrains Mono', monospace",
-                fontSize: 12,
-                lineHeight: 1.55,
-                color: "#6B7280",
-              }}>
-              {lineNumbers.map((n) => <div key={n}>{n}</div>)}
-            </div>
-            <textarea
-              value={yamlText}
-              readOnly={!editable}
-              spellCheck={false}
-              wrap="off"
-              onChange={(e) => {
-                setYamlText(e.target.value);
-                setDirty(true);
-              }}
-              className="flex-1 p-3 min-h-[360px] outline-none resize-vertical"
-              style={{
-                background: "transparent",
-                color: "#D6B47E",
-                fontFamily: "'JetBrains Mono', monospace",
-                fontSize: 12,
-                lineHeight: 1.55,
-                whiteSpace: "pre",
-                overflowX: "auto",
-                caretColor: "#D6B47E",
-              }}
+          {diffVisible ? (
+            <YamlDiffView
+              isAr={isAr}
+              original={originalYamlRef.current}
+              current={yamlText}
             />
-          </div>
+          ) : (
+            /* Editor — textarea + gutter. Mono theme keeps it honest without
+                pulling in Monaco. */
+            <div className="rounded-lg overflow-hidden flex"
+              style={{ background: "var(--alm-ocean-900, #061B30)", border: "1px solid rgba(184,138,60,0.25)" }}>
+              <div className="flex-shrink-0 px-3 py-3 select-none text-right"
+                style={{
+                  background: "rgba(10,37,64,0.85)",
+                  borderRight: "1px solid rgba(184,138,60,0.15)",
+                  minWidth: 48,
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: 12,
+                  lineHeight: 1.55,
+                  color: "#6B7280",
+                }}>
+                {lineNumbers.map((n) => <div key={n}>{n}</div>)}
+              </div>
+              <textarea
+                value={yamlText}
+                readOnly={!editable}
+                spellCheck={false}
+                wrap="off"
+                onChange={(e) => {
+                  setYamlText(e.target.value);
+                  setDirty(true);
+                }}
+                className="flex-1 p-3 min-h-[360px] outline-none resize-vertical"
+                style={{
+                  background: "transparent",
+                  color: "#D6B47E",
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: 12,
+                  lineHeight: 1.55,
+                  whiteSpace: "pre",
+                  overflowX: "auto",
+                  caretColor: "#D6B47E",
+                }}
+              />
+            </div>
+          )}
 
           {/* Predicate DSL reference — collapsible help panel */}
           <button type="button"
@@ -2671,12 +2910,6 @@ const RasadTab = ({
   ];
   const totalDays = TRANSITION_STEPS.reduce((s, x) => s + x.days, 0);
 
-  // Pick 3 records for the shadow-mode preview — grab variety of bands.
-  const shadowRecords = useMemo(() => {
-    const byId = (id: string) => SCORED_RECORDS.find((r) => r.id === id)!;
-    return [byId("demo-borderline"), byId("demo-highrisk-sponsor"), byId("demo-anomaly")].filter(Boolean) as ScoredRecord[];
-  }, []);
-
   return (
     <div className="space-y-4">
       {/* Banner — framing + classification chip */}
@@ -2835,76 +3068,260 @@ const RasadTab = ({
         </div>
       </div>
 
-      {/* Panel 4 — Shadow-mode preview */}
-      <div className="rounded-xl border p-5"
-        style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.12)" }}>
-        <div className="flex items-start justify-between mb-4 flex-wrap gap-2">
-          <div>
-            <h3 className="text-white text-sm font-bold flex items-center gap-2">
-              <i className="ri-shadow-line text-[#D6B47E]" />
-              {isAr ? "معاينة وضع الظل" : "Shadow-mode preview"}
-            </h3>
-            <p className="text-gray-500 text-[11px] font-['JetBrains_Mono']">
-              {isAr
-                ? "وضع الظل — لا بيانات رصد حقيقية. هذه المعاينة تستخدم تعزيزات اصطناعية +12 نقطة لتوضيح كيف تضيف رصد الفروق الدقيقة."
-                : "Shadow-mode — no Rasad data actually ingested. This preview uses synthetic +12-point boosts to illustrate the integration."}
-            </p>
+      {/* Panel 4 — Shadow-mode scatter (Wave 4 · D5) */}
+      <RasadShadowScatterPanel isAr={isAr} />
+    </div>
+  );
+};
+
+// ─── Rasad shadow scatter — Wave 4 · D5 ────────────────────────────────────
+// Recharts ScatterChart of every scored record plotted as OSINT-only vs
+// OSINT + simulated classified boost. Dashed y=x reference line makes "no
+// change" legible; point size scales with |delta|; color mirrors the record's
+// classification. Clicking a point highlights the mirrored row in the
+// right-hand contributor panel.
+
+const RasadShadowScatterPanel = ({ isAr }: { isAr: boolean }) => {
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+
+  // Classify into buckets so Recharts can color each Scatter series distinctly.
+  const byClassification = useMemo(() => {
+    const groups: Record<Classification, RasadShadowScore[]> = {
+      public: [], internal: [], restricted: [], classified: [],
+    };
+    RASAD_SHADOW_SCORES.forEach((s) => { groups[s.classification].push(s); });
+    return groups;
+  }, []);
+
+  const stats = useMemo(() => {
+    const upward = RASAD_SHADOW_SCORES.filter((s) => s.delta > 0);
+    const avg = upward.length
+      ? upward.reduce((sum, s) => sum + s.delta, 0) / upward.length
+      : 0;
+    const largest = RASAD_SHADOW_SCORES.reduce(
+      (best, s) => (s.delta > best.delta ? s : best),
+      RASAD_SHADOW_SCORES[0],
+    );
+    return {
+      upwardCount: upward.length,
+      total: RASAD_SHADOW_SCORES.length,
+      avgDelta: Math.round(avg * 10) / 10,
+      largestDelta: largest.delta,
+      largestName: largest.travelerName,
+      largestClassification: largest.classification,
+    };
+  }, []);
+
+  // z-axis range drives point size. Using |delta| scaled into 60-360.
+  const zRange: [number, number] = [60, 360];
+
+  const handleDotClick = (dataPoint: unknown) => {
+    const p = dataPoint as { recordId?: string };
+    if (p?.recordId) setSelectedId((cur) => (cur === p.recordId ? null : p.recordId!));
+  };
+
+  return (
+    <div className="rounded-xl border p-5"
+      style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.12)" }}>
+      <div className="flex items-start justify-between mb-4 flex-wrap gap-2">
+        <div>
+          <h3 className="text-white text-sm font-bold flex items-center gap-2">
+            <i className="ri-shadow-line text-[#D6B47E]" />
+            {isAr ? "معاينة وضع الظل" : "Shadow-mode preview"}
+          </h3>
+          <p className="text-gray-500 text-[11px] font-['JetBrains_Mono']">
+            {isAr
+              ? "وضع الظل — لا بيانات رصد حقيقية. نقاط مُلوَّنة حسب التصنيف، الحجم يُمثّل مقدار الإزاحة."
+              : "Shadow-mode — no Rasad data ingested. Color = classification, size = |Δ|."}
+          </p>
+        </div>
+        <div className="flex items-center gap-3 text-[10px] font-['JetBrains_Mono'] text-gray-500">
+          {(["public", "internal", "restricted", "classified"] as Classification[]).map((c) => (
+            <span key={c} className="flex items-center gap-1">
+              <span className="inline-block w-2.5 h-2.5 rounded-full" style={{ background: CLASSIFICATION_META[c].color }} />
+              {isAr ? CLASSIFICATION_META[c].labelAr : CLASSIFICATION_META[c].label}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <div className="grid grid-cols-12 gap-4">
+        {/* Scatter on the left (8 cols) */}
+        <div className="col-span-12 lg:col-span-8">
+          <div className="rounded-lg p-2"
+            style={{ background: "var(--alm-ocean-900, #061B30)", border: "1px solid rgba(184,138,60,0.12)" }}>
+            <ResponsiveContainer width="100%" height={340}>
+              <ScatterChart margin={{ top: 12, right: 16, bottom: 32, left: 24 }}>
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(184,138,60,0.08)" />
+                <XAxis type="number" dataKey="osintScore" domain={[0, 100]}
+                  stroke="#6B7280" tick={{ fontSize: 11, fontFamily: "'JetBrains Mono', monospace" }}
+                  label={{ value: isAr ? "درجة OSINT" : "OSINT-only score", position: "insideBottom", offset: -12, fill: "#9CA3AF", fontSize: 12 }} />
+                <YAxis type="number" dataKey="rasadScore" domain={[0, 100]}
+                  stroke="#6B7280" tick={{ fontSize: 11, fontFamily: "'JetBrains Mono', monospace" }}
+                  label={{ value: isAr ? "OSINT + رصد" : "OSINT + Rasad", angle: -90, position: "insideLeft", fill: "#9CA3AF", fontSize: 12 }} />
+                {/* Size axis — |delta| mapped to point area */}
+                <ZAxis type="number" dataKey="sizeKey" range={zRange} />
+                {/* y = x identity line. ReferenceLine with segment for dashed look */}
+                <ReferenceLine
+                  segment={[{ x: 0, y: 0 }, { x: 100, y: 100 }]}
+                  stroke="#D6B47E"
+                  strokeDasharray="5 5"
+                  strokeWidth={1.25}
+                  ifOverflow="extendDomain"
+                />
+                <Tooltip
+                  cursor={{ stroke: "#D6B47E", strokeWidth: 1, strokeDasharray: "3 3" }}
+                  contentStyle={{
+                    background: "#051428",
+                    border: "1px solid rgba(184,138,60,0.3)",
+                    borderRadius: 8,
+                    fontSize: 12,
+                    fontFamily: "'JetBrains Mono', monospace",
+                  }}
+                  labelStyle={{ color: "#D6B47E" }}
+                  itemStyle={{ color: "#D6D6D6" }}
+                  formatter={() => [""]}
+                  content={({ active, payload }) => {
+                    if (!active || !payload || !payload.length) return null;
+                    const p = payload[0].payload as (RasadShadowScore & { nationality?: string });
+                    return (
+                      <div style={{ background: "#051428", border: "1px solid rgba(184,138,60,0.3)", padding: 8, borderRadius: 8, fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: "#D6D6D6", minWidth: 220 }}>
+                        <div style={{ color: "#D6B47E", fontWeight: 700, marginBottom: 4 }}>{p.travelerName}</div>
+                        <div style={{ color: "#9CA3AF" }}>{isAr ? "التصنيف" : "class"}: <span style={{ color: CLASSIFICATION_META[p.classification].color }}>{isAr ? CLASSIFICATION_META[p.classification].labelAr : CLASSIFICATION_META[p.classification].label}</span></div>
+                        <div>OSINT: {p.osintScore}</div>
+                        <div>+ Rasad: {p.rasadScore}</div>
+                        <div style={{ color: p.delta > 0 ? "#4ADE80" : "#6B7280" }}>Δ: {p.delta >= 0 ? "+" : ""}{p.delta}</div>
+                        <div style={{ color: "#D6B47E", marginTop: 4, whiteSpace: "normal" }}>
+                          {isAr ? p.topClassifiedContributorAr : p.topClassifiedContributor}
+                        </div>
+                      </div>
+                    );
+                  }}
+                />
+                {(Object.keys(byClassification) as Classification[]).map((cls) => {
+                  const data = byClassification[cls].map((d) => ({
+                    ...d,
+                    sizeKey: Math.max(Math.abs(d.delta), 1),
+                  }));
+                  if (!data.length) return null;
+                  return (
+                    <Scatter key={cls} name={cls} data={data} fill={CLASSIFICATION_META[cls].color}
+                      fillOpacity={0.82}
+                      stroke={CLASSIFICATION_META[cls].color}
+                      strokeWidth={1}
+                      onClick={handleDotClick}
+                      shape={(props: unknown) => {
+                        // Override selected-point rendering with a halo ring.
+                        const { cx, cy, fill, payload, size } = props as { cx: number; cy: number; fill: string; payload: RasadShadowScore; size: number };
+                        const r = Math.sqrt((size ?? 100) / Math.PI);
+                        const selected = selectedId === payload.recordId;
+                        return (
+                          <g>
+                            {selected && (
+                              <circle cx={cx} cy={cy} r={r + 6} fill="none" stroke="#D6B47E" strokeWidth={2} opacity={0.9} />
+                            )}
+                            <circle cx={cx} cy={cy} r={r} fill={fill} stroke={selected ? "#FFFFFF" : fill} strokeWidth={selected ? 2 : 1} />
+                          </g>
+                        );
+                      }} />
+                  );
+                })}
+              </ScatterChart>
+            </ResponsiveContainer>
+          </div>
+
+          {/* Caption */}
+          <p className="text-gray-400 text-xs mt-3 leading-relaxed" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+            {isAr
+              ? `محاكاة وضع الظل · ${stats.total} سجلات · إدماج رصد سيُزيح ${stats.upwardCount} سجلاً فوق خط y=x بمتوسط +${stats.avgDelta} نقطة.`
+              : `Shadow-mode simulation · ${stats.total} records · Rasad integration would shift ${stats.upwardCount} records above the y=x line by an average of +${stats.avgDelta} points.`}
+          </p>
+
+          {/* Compact KPI stats row */}
+          <div className="grid grid-cols-3 gap-3 mt-3">
+            <div className="rounded-md p-3" style={{ background: "rgba(74,222,128,0.08)", border: "1px solid rgba(74,222,128,0.25)" }}>
+              <p className="text-[9px] tracking-widest uppercase" style={{ color: "#4ADE80", fontFamily: "'JetBrains Mono', monospace" }}>
+                {isAr ? "إزاحة صاعدة" : "Net upward shift"}
+              </p>
+              <p className="text-white text-lg font-black" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+                {stats.upwardCount}/{stats.total}
+              </p>
+            </div>
+            <div className="rounded-md p-3" style={{ background: "rgba(184,138,60,0.08)", border: "1px solid rgba(184,138,60,0.25)" }}>
+              <p className="text-[9px] tracking-widest uppercase" style={{ color: "#D6B47E", fontFamily: "'JetBrains Mono', monospace" }}>
+                {isAr ? "متوسط Δ" : "Average Δ"}
+              </p>
+              <p className="text-white text-lg font-black" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+                +{stats.avgDelta}
+              </p>
+            </div>
+            <div className="rounded-md p-3" style={{ background: "rgba(107,79,174,0.08)", border: "1px solid rgba(107,79,174,0.3)" }}>
+              <p className="text-[9px] tracking-widest uppercase" style={{ color: "#B8A0FF", fontFamily: "'JetBrains Mono', monospace" }}>
+                {isAr ? "أكبر إزاحة" : "Largest shift"}
+              </p>
+              <p className="text-white text-sm font-black leading-tight" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+                +{stats.largestDelta}
+              </p>
+              <p className="text-gray-400 text-[10px] leading-tight">
+                {stats.largestName} · <span style={{ color: CLASSIFICATION_META[stats.largestClassification].color }}>{(isAr ? CLASSIFICATION_META[stats.largestClassification].labelAr : CLASSIFICATION_META[stats.largestClassification].label)}</span>
+              </p>
+            </div>
           </div>
         </div>
 
-        <div className="space-y-2">
-          {/* Header row */}
-          <div className="grid grid-cols-12 gap-2 px-3 py-2 text-[10px] font-bold tracking-widest uppercase font-['JetBrains_Mono'] text-gray-500 border-b"
-            style={{ borderColor: "rgba(184,138,60,0.08)" }}>
-            <div className="col-span-3">{isAr ? "المسافر" : "Traveler"}</div>
-            <div className="col-span-2 text-center">{isAr ? "درجة OSINT" : "OSINT-only"}</div>
-            <div className="col-span-1 text-center" />
-            <div className="col-span-2 text-center">{isAr ? "OSINT + رصد" : "OSINT + Rasad"}</div>
-            <div className="col-span-1 text-center">{isAr ? "Δ" : "Δ"}</div>
-            <div className="col-span-3">{isAr ? "المُساهم من رصد (محاكى)" : "Top contributor from Rasad (simulated)"}</div>
-          </div>
+        {/* Contributor panel on the right (4 cols) */}
+        <div className="col-span-12 lg:col-span-4">
+          <div className="rounded-lg h-full p-4 flex flex-col"
+            style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(184,138,60,0.12)" }}>
+            <h4 className="text-white text-sm font-bold flex items-center gap-2 mb-2">
+              <i className="ri-sparkling-line text-[#D6B47E]" />
+              {isAr ? "أبرز المُساهمين من رصد (محاكى)" : "Top contributor from Rasad (simulated)"}
+            </h4>
+            <p className="text-gray-500 text-[10px] mb-3" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+              {isAr ? "اضغط على أي نقطة لإبراز صفها" : "Click any point to highlight its row"}
+            </p>
 
-          {shadowRecords.map((r, i) => {
-            const rasadBoost = 12 + (i * 2); // +12 / +14 / +16 synthetic
-            const withRasad = Math.min(100, r.unifiedScore + rasadBoost);
-            const simulatedContributor = i === 0
-              ? { en: "Classified HUMINT source — travel intent corroboration", ar: "مصدر استخبارات بشرية مُصنَّف — تأكيد نيّة السفر" }
-              : i === 1
-                ? { en: "Classified sponsor graph edge — undeclared beneficial owner", ar: "حافّة رسم بياني مُصنَّفة — مالك مستتر غير مُعلَن" }
-                : { en: "Classified telemetry — device proximity cluster at origin", ar: "قياسات مُصنَّفة — تجمّع قرب الأجهزة عند المنشأ" };
-            return (
-              <div key={r.id} className="grid grid-cols-12 gap-2 px-3 py-3 items-center rounded-md"
-                style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.04)" }}>
-                <div className="col-span-3 flex items-center gap-2 min-w-0">
-                  <span className="text-white text-sm font-semibold truncate">{r.travelerName}</span>
-                  <ClassificationPill classification={r.classification} isAr={isAr} compact />
-                </div>
-                <div className="col-span-2 text-center">
-                  <span className="inline-flex items-center justify-center w-12 h-12 rounded-lg font-black font-['JetBrains_Mono']"
-                    style={{ background: `${scoreColor(r.band)}18`, color: scoreColor(r.band), border: `2px solid ${scoreColor(r.band)}55` }}>
-                    {r.unifiedScore}
-                  </span>
-                </div>
-                <div className="col-span-1 text-center text-gray-500 text-2xl">
-                  <i className="ri-arrow-right-s-line" />
-                </div>
-                <div className="col-span-2 text-center">
-                  <span className="inline-flex items-center justify-center w-12 h-12 rounded-lg font-black font-['JetBrains_Mono']"
-                    style={{ background: "rgba(184,138,60,0.18)", color: "#D6B47E", border: "2px solid #D6B47E" }}>
-                    {withRasad}
-                  </span>
-                </div>
-                <div className="col-span-1 text-center font-bold text-sm font-['JetBrains_Mono']"
-                  style={{ color: "#D6B47E" }}>
-                  +{rasadBoost}
-                </div>
-                <div className="col-span-3 text-gray-300 text-xs leading-snug">
-                  <i className="ri-sparkling-line mr-1" style={{ color: "#D6B47E" }} />
-                  <span className="italic">{isAr ? simulatedContributor.ar : simulatedContributor.en}</span>
-                </div>
-              </div>
-            );
-          })}
+            {/* Top 3 contributors by delta, plus selected if not already in top 3 */}
+            <div className="flex-1 space-y-2 overflow-y-auto" style={{ maxHeight: 380 }}>
+              {(() => {
+                const top = [...RASAD_SHADOW_SCORES].sort((a, b) => b.delta - a.delta).slice(0, 3);
+                const inTop = selectedId ? top.some((r) => r.recordId === selectedId) : true;
+                const selectedRec = !inTop && selectedId ? RASAD_SHADOW_SCORES.find((r) => r.recordId === selectedId) : null;
+                const list = selectedRec ? [...top, selectedRec] : top;
+                return list.map((r) => {
+                  const isSelected = selectedId === r.recordId;
+                  return (
+                    <button type="button" key={r.recordId}
+                      onClick={() => setSelectedId((cur) => (cur === r.recordId ? null : r.recordId))}
+                      className="w-full text-left rounded-md p-2.5 cursor-pointer transition-all"
+                      style={{
+                        background: isSelected ? "rgba(184,138,60,0.18)" : "rgba(255,255,255,0.03)",
+                        border: `1px solid ${isSelected ? "#D6B47E" : "rgba(184,138,60,0.15)"}`,
+                      }}>
+                      <div className="flex items-center justify-between gap-2 mb-1">
+                        <span className="text-white text-xs font-bold truncate">{r.travelerName}</span>
+                        <span className="px-1.5 py-0.5 rounded text-[9px] font-bold tracking-widest font-['JetBrains_Mono']"
+                          style={{ background: CLASSIFICATION_META[r.classification].bg, color: CLASSIFICATION_META[r.classification].color, border: `1px solid ${CLASSIFICATION_META[r.classification].color}44` }}>
+                          {isAr ? CLASSIFICATION_META[r.classification].labelAr : CLASSIFICATION_META[r.classification].label}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2 text-[10px] font-['JetBrains_Mono'] text-gray-400 mb-1.5">
+                        <span>{r.osintScore}</span>
+                        <i className="ri-arrow-right-s-line" />
+                        <span style={{ color: "#D6B47E" }}>{r.rasadScore}</span>
+                        <span style={{ color: r.delta > 0 ? "#4ADE80" : "#6B7280" }}>
+                          ({r.delta >= 0 ? "+" : ""}{r.delta})
+                        </span>
+                      </div>
+                      <p className="text-gray-300 text-[11px] italic leading-snug">
+                        {isAr ? r.topClassifiedContributorAr : r.topClassifiedContributor}
+                      </p>
+                    </button>
+                  );
+                });
+              })()}
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -2,7 +2,7 @@
 // Tamper-evident view of model + operator activity (Tech Spec §9).
 // Renders inside DashboardLayout's <Outlet /> — no sidebar/titlebar of its own.
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import type { DashboardOutletContext } from "../DashboardLayout";
 import {
@@ -11,7 +11,12 @@ import {
   type AuditEntry,
   type Classification,
 } from "@/mocks/osintData";
-import { useClearance, REDACTED_GLYPH } from "@/brand/clearance";
+import {
+  useClearance,
+  REDACTED_GLYPH,
+  CLEARANCE_AUDIT_EVENT,
+  CLEARANCE_CHANGE_LOG,
+} from "@/brand/clearance";
 
 // ── Meta maps (event type + role) ──────────────────────────────────────────
 type EventType = AuditEntry["eventType"];
@@ -27,6 +32,7 @@ const EVENT_META: Record<EventType, { labelEn: string; labelAr: string; color: s
   weight_changed:      { labelEn: "Weight changed",      labelAr: "تغيير الوزن",         color: "#C98A1B", icon: "ri-equalizer-line" },
   rule_toggled:        { labelEn: "Rule toggled",        labelAr: "تبديل قاعدة",         color: "#F59E0B", icon: "ri-toggle-line" },
   rollback_triggered:  { labelEn: "Rollback triggered",  labelAr: "تشغيل تراجع",         color: "#C94A5E", icon: "ri-arrow-go-back-line" },
+  clearance_changed:   { labelEn: "Clearance changed",   labelAr: "تغيير التصريح",       color: "#D6B47E", icon: "ri-shield-user-line" },
 };
 
 const ROLE_META: Record<Role, { labelEn: string; labelAr: string; color: string }> = {
@@ -68,17 +74,43 @@ const AuditLogPage = () => {
   const [page, setPage] = useState(0);
   const [selected, setSelected] = useState<AuditEntry | null>(null);
 
-  // Unique actors for the actor filter dropdown.
+  // Wave 4 · D3 — in-memory runtime entries merged on top of AUDIT_LOG.
+  // Seeded from the module-level clearance log so entries persist across
+  // page navigations within the same session.
+  const [runtimeEntries, setRuntimeEntries] = useState<AuditEntry[]>(() => [...CLEARANCE_CHANGE_LOG]);
+
+  useEffect(() => {
+    const handler = (evt: Event) => {
+      const ce = evt as CustomEvent<AuditEntry>;
+      if (!ce.detail) return;
+      setRuntimeEntries((prev) => {
+        // De-dupe by id so a replayed event can't balloon the list.
+        if (prev.some((e) => e.id === ce.detail.id)) return prev;
+        return [ce.detail, ...prev];
+      });
+    };
+    window.addEventListener(CLEARANCE_AUDIT_EVENT, handler as EventListener);
+    return () => window.removeEventListener(CLEARANCE_AUDIT_EVENT, handler as EventListener);
+  }, []);
+
+  // Merge seeded + runtime entries. Runtime entries sort naturally on top
+  // because they were pushed with fresher timestamps.
+  const combined = useMemo(
+    () => [...runtimeEntries, ...AUDIT_LOG],
+    [runtimeEntries],
+  );
+
+  // Unique actors for the actor filter dropdown — includes runtime actors.
   const actors = useMemo(() => {
     const map = new Map<string, { id: string; name: string; role: Role }>();
-    AUDIT_LOG.forEach((e) => { map.set(e.actor.id, e.actor); });
+    combined.forEach((e) => { map.set(e.actor.id, e.actor); });
     return Array.from(map.values());
-  }, []);
+  }, [combined]);
 
   const filtered = useMemo(() => {
     const cutoffHours = timeRange === "24h" ? 24 : timeRange === "7d" ? 24 * 7 : 24 * 30;
     const cutoff = now - cutoffHours * 3_600_000;
-    return AUDIT_LOG.filter((e) => {
+    return combined.filter((e) => {
       if (actorFilter !== "all" && e.actor.id !== actorFilter) return false;
       if (eventFilter !== "all" && e.eventType !== eventFilter) return false;
       if (classFilter !== "all" && e.classification !== classFilter) return false;
@@ -87,7 +119,7 @@ const AuditLogPage = () => {
       }
       return true;
     });
-  }, [actorFilter, eventFilter, classFilter, timeRange, now]);
+  }, [combined, actorFilter, eventFilter, classFilter, timeRange, now]);
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const pageRows = filtered.slice(page * PAGE_SIZE, page * PAGE_SIZE + PAGE_SIZE);
@@ -137,7 +169,7 @@ const AuditLogPage = () => {
                 </h1>
                 <span className="px-2 py-0.5 rounded-md text-[10px] font-bold font-['JetBrains_Mono'] tracking-widest"
                   style={{ background: "rgba(184,138,60,0.12)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.3)" }}>
-                  {AUDIT_LOG.length} {isAr ? "سجلات" : "ENTRIES"}
+                  {combined.length} {isAr ? "سجلات" : "ENTRIES"}
                 </span>
               </div>
               <p className="text-gray-400 text-sm font-['Inter'] ml-12">
@@ -277,8 +309,21 @@ const AuditLogPage = () => {
               const ev = EVENT_META[e.eventType];
               const role = ROLE_META[e.actor.role];
               const critical = e.eventType === CRITICAL_EVENT;
+              const clearanceEvent = e.eventType === "clearance_changed";
               const ts = new Date(e.occurredAt);
               const tsStr = `${ts.toISOString().slice(0, 10)} ${ts.toISOString().slice(11, 19)}Z`;
+              // Brass left-border for clearance cycles (lower-severity than the
+              // critical red reserved for classified_accessed).
+              const leftBorder = critical
+                ? "3px solid #C94A5E"
+                : clearanceEvent
+                  ? "3px solid #D6B47E"
+                  : "3px solid transparent";
+              const rowBg = critical
+                ? "rgba(201,74,94,0.04)"
+                : clearanceEvent
+                  ? "rgba(184,138,60,0.04)"
+                  : "transparent";
               return (
                 <button key={e.id}
                   data-narrate-id={rowIdx === 0 ? "audit-first-row" : undefined}
@@ -286,8 +331,8 @@ const AuditLogPage = () => {
                   className="w-full grid grid-cols-12 gap-2 px-4 py-2.5 border-b text-left cursor-pointer transition-colors hover:bg-white/[0.03]"
                   style={{
                     borderColor: "rgba(184,138,60,0.05)",
-                    borderLeft: critical ? "3px solid #C94A5E" : "3px solid transparent",
-                    background: critical ? "rgba(201,74,94,0.04)" : "transparent",
+                    borderLeft: leftBorder,
+                    background: rowBg,
                   }}>
                   <div className="col-span-2 text-gray-400 text-[11px] font-['JetBrains_Mono'] truncate">{tsStr}</div>
                   <div className="col-span-2 flex flex-col min-w-0">
