@@ -172,6 +172,7 @@ const DashboardTitleBar = ({ isAr, onToggleLang, onToggleAr }: Props) => {
         <button
           type="button"
           onClick={handleToggleLang}
+          aria-label={isAr ? "Switch language to English" : "تغيير اللغة إلى العربية"}
           className="flex items-center justify-center px-3 h-8 rounded-full cursor-pointer transition-colors"
           style={{
             background: "transparent",
@@ -195,30 +196,46 @@ const DashboardTitleBar = ({ isAr, onToggleLang, onToggleAr }: Props) => {
         {(() => {
           const meta = CLASSIFICATION_META[clearance];
           const idx = CLEARANCE_LEVELS.indexOf(clearance);
+          const clearanceLabel = isAr ? meta.labelAr : meta.label;
+          const ariaLabel = isAr
+            ? `الصلاحية الحالية: ${meta.labelAr}. اضغط للتبديل إلى مستوى الصلاحية التالي.`
+            : `Current clearance: ${meta.label}. Press to cycle to the next clearance level.`;
+          const liveAnnouncement = isAr
+            ? `صلاحيتك الآن ${meta.labelAr}. قد تتغيّر البيانات المعروضة.`
+            : `Your clearance is now ${meta.label}. Visible data may change.`;
           return (
-            <button
-              type="button"
-              onClick={cycleClearance}
-              className="flex items-center justify-center gap-1.5 px-2.5 h-8 rounded-full cursor-pointer transition-colors"
-              style={{
-                background: meta.bg,
-                border: `1px solid ${meta.color}66`,
-                color: meta.color,
-                fontFamily: fonts.mono,
-                fontSize: "0.6875rem",
-                fontWeight: 700,
-                letterSpacing: "0.08em",
-              }}
-              title={isAr
-                ? `الصلاحية: ${meta.labelAr} · اضغط للتبديل`
-                : `Clearance: ${meta.label} · click to cycle`}
-            >
-              <i className="ri-shield-user-line" style={{ fontSize: 12 }} />
-              {isAr ? meta.labelAr : meta.label}
-              <span className="ml-1 opacity-60" style={{ fontSize: "0.625rem" }}>
-                {idx + 1}/{CLEARANCE_LEVELS.length}
+            <>
+              <button
+                type="button"
+                onClick={cycleClearance}
+                aria-label={ariaLabel}
+                className="flex items-center justify-center gap-1.5 px-2.5 h-8 rounded-full cursor-pointer transition-colors"
+                style={{
+                  background: meta.bg,
+                  border: `1px solid ${meta.color}66`,
+                  color: meta.color,
+                  fontFamily: fonts.mono,
+                  fontSize: "0.6875rem",
+                  fontWeight: 700,
+                  letterSpacing: "0.08em",
+                }}
+                title={isAr
+                  ? `الصلاحية: ${meta.labelAr} · اضغط للتبديل`
+                  : `Clearance: ${meta.label} · click to cycle`}
+              >
+                <i className="ri-shield-user-line" style={{ fontSize: 12 }} aria-hidden="true" />
+                <span aria-hidden="true">{clearanceLabel}</span>
+                <span className="ml-1 opacity-60" style={{ fontSize: "0.625rem" }} aria-hidden="true">
+                  {idx + 1}/{CLEARANCE_LEVELS.length}
+                </span>
+              </button>
+              {/* Invisible live region — fires a polite SR announcement
+                  whenever clearance cycles, so screen-reader users know that
+                  redacted fields may have just become visible (or vice versa). */}
+              <span role="status" aria-live="polite" className="sr-only">
+                {liveAnnouncement}
               </span>
-            </button>
+            </>
           );
         })()}
 
@@ -231,9 +248,15 @@ const DashboardTitleBar = ({ isAr, onToggleLang, onToggleAr }: Props) => {
             style={{ border: "1px solid rgba(184,138,60,0.3)", background: "transparent" }}
             onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(184,138,60,0.08)")}
             onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
-            aria-label={isAr ? "الإشعارات" : "Notifications"}
+            aria-label={
+              totalBadge > 0
+                ? (isAr ? `الإشعارات، ${totalBadge} جديدة` : `Notifications, ${totalBadge} unread`)
+                : (isAr ? "الإشعارات" : "Notifications")
+            }
+            aria-haspopup="menu"
+            aria-expanded={notifOpen}
           >
-            <i className="ri-notification-3-line text-lg" style={{ color: "#D6B47E" }} />
+            <i className="ri-notification-3-line text-lg" style={{ color: "#D6B47E" }} aria-hidden="true" />
             {totalBadge > 0 && (
               <span
                 className={`absolute -top-1 min-w-[18px] h-[18px] flex items-center justify-center rounded-full text-[10px] font-bold px-1 ${isAr ? "-left-1" : "-right-1"}`}
@@ -346,6 +369,9 @@ const DashboardTitleBar = ({ isAr, onToggleLang, onToggleAr }: Props) => {
             className="flex items-center gap-2 px-2 py-1 rounded-lg cursor-pointer transition-colors"
             onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(248,245,240,0.04)")}
             onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+            aria-label={isAr ? "قائمة المشغّل" : "Operator menu"}
+            aria-haspopup="menu"
+            aria-expanded={userOpen}
           >
             <div
               className="w-8 h-8 flex items-center justify-center rounded-full"

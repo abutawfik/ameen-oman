@@ -13,6 +13,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import i18n from "@/i18n";
 import BrandLogo from "@/brand/BrandLogo";
+import SkipToMain from "@/components/SkipToMain";
 import { useBrandFonts } from "@/brand/typography";
 
 // ── Inline brand tokens (hex from tokens.css) ───────────────────────────────
@@ -177,9 +178,11 @@ const LoginPage = () => {
         fontFamily: fonts.sans,
       }}
     >
+      <SkipToMain />
       {/* ────────── LEFT PANE — ceremonial ────────── */}
-      <div
+      <aside
         data-narrate-id="login-ceremonial-pane"
+        aria-label={isAr ? "معلومات البوابة الرسمية" : "Portal information"}
         className="hidden md:flex relative overflow-hidden flex-col justify-between"
         style={{
           flexBasis: "50%",
@@ -246,6 +249,8 @@ const LoginPage = () => {
           {/* Tagline — primary in display italic (EN) or Cairo 500 (AR) */}
           <div style={{ maxWidth: 440 }}>
             <div
+              lang={isAr ? "ar" : "en"}
+              dir={isAr ? "rtl" : "ltr"}
               style={{
                 fontFamily: isAr ? "'Cairo', 'Tajawal', 'IBM Plex Sans Arabic', sans-serif" : fonts.display,
                 fontStyle: isAr ? "normal" : "italic",
@@ -254,19 +259,19 @@ const LoginPage = () => {
                 fontSize: "1.375rem",
                 lineHeight: 1.4,
                 marginBottom: "0.375rem",
-                direction: isAr ? "rtl" : "ltr",
               }}
             >
               {t.taglinePrimary}
             </div>
             {/* Counterpart — smaller, opposite language */}
             <div
+              lang={isAr ? "en" : "ar"}
+              dir={isAr ? "ltr" : "rtl"}
               style={{
                 fontFamily: isAr ? fonts.display : "'Cairo', 'Tajawal', 'IBM Plex Sans Arabic', sans-serif",
                 fontStyle: isAr ? "italic" : "normal",
                 color: C.midnight200,
                 fontSize: "0.9375rem",
-                direction: isAr ? "ltr" : "rtl",
                 opacity: 0.9,
               }}
             >
@@ -292,11 +297,13 @@ const LoginPage = () => {
         >
           {t.legal}
         </div>
-      </div>
+      </aside>
 
       {/* ────────── RIGHT PANE — form ────────── */}
-      <div
-        className="flex-1 flex items-center justify-center relative"
+      <main
+        id="main"
+        className="alm-on-light flex-1 flex items-center justify-center relative"
+        aria-label={isAr ? "نموذج تسجيل الدخول" : "Sign-in form"}
         style={{
           background: C.ivory100,
           color: C.midnight800,
@@ -307,6 +314,7 @@ const LoginPage = () => {
         <button
           type="button"
           onClick={toggleLang}
+          aria-label={isAr ? "Switch language to English" : "تغيير اللغة إلى العربية"}
           style={{
             position: "absolute",
             top: "1.5rem",
@@ -425,9 +433,10 @@ const LoginPage = () => {
               </div>
 
               {/* Credentials form */}
-              <form onSubmit={handleCredentials} noValidate>
+              <form onSubmit={handleCredentials} noValidate aria-describedby={error ? "login-error" : undefined}>
                 {/* Officer ID */}
                 <label
+                  htmlFor="login-officer-id"
                   style={{
                     display: "block",
                     fontFamily: fonts.sans,
@@ -440,12 +449,14 @@ const LoginPage = () => {
                   {t.officerIdLabel}
                 </label>
                 <input
+                  id="login-officer-id"
                   type="text"
                   value={officerId}
                   onChange={(e) => setOfficerId(e.target.value)}
                   placeholder="OPR-•••••"
                   autoComplete="username"
                   spellCheck={false}
+                  aria-invalid={!!error}
                   style={{
                     width: "100%",
                     padding: "0.75rem 0.875rem",
@@ -465,6 +476,7 @@ const LoginPage = () => {
 
                 {/* Passcode */}
                 <label
+                  htmlFor="login-passcode"
                   style={{
                     display: "block",
                     fontFamily: fonts.sans,
@@ -478,11 +490,13 @@ const LoginPage = () => {
                 </label>
                 <div style={{ position: "relative", marginBottom: "1.25rem" }}>
                   <input
+                    id="login-passcode"
                     type={showPass ? "text" : "password"}
                     value={passcode}
                     onChange={(e) => setPasscode(e.target.value)}
                     placeholder={t.passcodePh}
                     autoComplete="current-password"
+                    aria-invalid={!!error}
                     style={{
                       width: "100%",
                       padding: "0.75rem 2.5rem 0.75rem 0.875rem",
@@ -502,7 +516,12 @@ const LoginPage = () => {
                   <button
                     type="button"
                     onClick={() => setShowPass((v) => !v)}
-                    aria-label={showPass ? "Hide passcode" : "Show passcode"}
+                    aria-label={
+                      showPass
+                        ? (isAr ? "إخفاء رمز المرور" : "Hide passcode")
+                        : (isAr ? "إظهار رمز المرور" : "Show passcode")
+                    }
+                    aria-pressed={showPass}
                     style={{
                       position: "absolute",
                       insetBlockStart: 0,
@@ -524,7 +543,9 @@ const LoginPage = () => {
 
                 {error && (
                   <div
+                    id="login-error"
                     role="alert"
+                    aria-live="assertive"
                     style={{
                       padding: "0.625rem 0.875rem",
                       marginBottom: "1rem",
@@ -647,7 +668,11 @@ const LoginPage = () => {
               </p>
 
               <form onSubmit={handleOtp} noValidate>
+                <label htmlFor="login-otp" className="sr-only">
+                  {t.otpTitle}
+                </label>
                 <input
+                  id="login-otp"
                   ref={otpRef}
                   type="text"
                   inputMode="numeric"
@@ -660,6 +685,7 @@ const LoginPage = () => {
                   }}
                   placeholder={t.otpPh}
                   autoComplete="one-time-code"
+                  aria-label={t.otpTitle}
                   style={{
                     width: "100%",
                     padding: "1rem 1.25rem",
@@ -757,7 +783,7 @@ const LoginPage = () => {
             </>
           )}
         </div>
-      </div>
+      </main>
 
       {/* Keyframes — pulsing gold dot on the eyebrow pill */}
       <style>{`

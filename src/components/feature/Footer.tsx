@@ -26,12 +26,12 @@ const Footer = () => {
                 <span className="text-lg font-black" style={{ color: "#D6B47E", fontFamily: "Inter, sans-serif" }}>A</span>
               </div>
               <div>
-                <p className="text-white font-bold text-base font-['Inter'] tracking-widest">Al-Ameen</p>
-                <p className="text-gold-400 text-xs font-['Cairo']">الأمين</p>
+                <p className="text-white font-bold text-base font-['Inter'] tracking-widest" lang="en">Al-Ameen</p>
+                <p className="text-gold-400 text-xs font-['Cairo']" lang="ar" dir="rtl">الأمين</p>
               </div>
             </div>
             <p className="text-gold-400 text-sm font-semibold font-['Inter'] mb-1">{t("footer.tagline")}</p>
-            <p className="text-gray-600 text-xs font-['Cairo'] mb-3">{t("footer.arabicTagline")}</p>
+            <p className="text-gray-600 text-xs font-['Cairo'] mb-3" lang="ar" dir="rtl">{t("footer.arabicTagline")}</p>
             <p className="text-gray-500 text-xs leading-relaxed font-['Inter'] mb-4">{t("footer.description")}</p>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gold-500/20 bg-gold-500/5">
               <i className="ri-shield-check-line text-gold-400 text-xs" />

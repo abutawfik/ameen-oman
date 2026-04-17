@@ -100,9 +100,15 @@ const GovernanceTab = ({ isAr }: { isAr: boolean }) => {
               {isAr ? `التراجع إلى ${MODEL_GOVERNANCE.previousVersion}` : `Revert to ${MODEL_GOVERNANCE.previousVersion}`}
             </button>
             {rollbackConfirm && (
-              <div className="absolute inset-x-0 bottom-10 rounded-lg p-3 z-20"
-                style={{ background: "#0A2540", border: "1px solid #C94A5E", boxShadow: "0 8px 24px rgba(0,0,0,0.5)" }}>
-                <p className="text-gray-300 text-[11px] mb-2">
+              <div
+                role="alertdialog"
+                aria-modal="false"
+                aria-labelledby="rollback-confirm-title"
+                className="absolute inset-x-0 bottom-10 rounded-lg p-3 z-20"
+                style={{ background: "#0A2540", border: "1px solid #C94A5E", boxShadow: "0 8px 24px rgba(0,0,0,0.5)" }}
+                onKeyDown={(e) => { if (e.key === "Escape") setRollbackConfirm(false); }}
+              >
+                <p id="rollback-confirm-title" className="text-gray-300 text-[11px] mb-2">
                   {isAr
                     ? `تأكيد التراجع إلى ${MODEL_GOVERNANCE.previousVersion}؟ سيتم إنشاء سجل تدقيق.`
                     : `Confirm rollback to ${MODEL_GOVERNANCE.previousVersion}? An audit entry will be created.`}
@@ -114,6 +120,7 @@ const GovernanceTab = ({ isAr }: { isAr: boolean }) => {
                     {isAr ? "إلغاء" : "Cancel"}
                   </button>
                   <button onClick={confirmRollback}
+                    autoFocus
                     className="flex-1 px-2 py-1 rounded text-[11px] font-bold cursor-pointer"
                     style={{ background: "#C94A5E", color: "white" }}>
                     {isAr ? "تأكيد" : "Confirm"}
@@ -156,7 +163,13 @@ const GovernanceTab = ({ isAr }: { isAr: boolean }) => {
               </span>
             </div>
           </div>
-          <div style={{ height: 220 }}>
+          <div
+            style={{ height: 220 }}
+            role="img"
+            aria-label={isAr
+              ? "رسم الانحراف خلال 30 يوماً يعرض متوسط الدرجة الموحَّدة مع نطاق ±1 انحراف معياري"
+              : "30-day score drift chart showing mean unified score with ±1 standard-deviation band"}
+          >
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={driftChartData}>
                 <defs>
@@ -195,7 +208,13 @@ const GovernanceTab = ({ isAr }: { isAr: boolean }) => {
               {isAr ? "آخر تشغيل: 2026-04-17 02:15 UTC · سليم" : "Last run: 2026-04-17 02:15 UTC · OK"}
             </span>
           </div>
-          <div style={{ height: 220 }}>
+          <div
+            style={{ height: 220 }}
+            role="img"
+            aria-label={isAr
+              ? "منحنى المعايرة يظهر المخاطر المتوقَّعة مقابل المُلاحَظة؛ الخط المنقط يمثل المعايرة المثالية"
+              : "Calibration scatter plot showing expected versus observed risk percentages with a dashed ideal-calibration reference line"}
+          >
             <ResponsiveContainer width="100%" height="100%">
               <ScatterChart margin={{ top: 8, right: 8, left: 0, bottom: 4 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(184,138,60,0.08)" />

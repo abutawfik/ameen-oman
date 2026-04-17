@@ -127,6 +127,7 @@ const Navbar = () => {
           <div className="flex items-center gap-3">
             <button
               onClick={toggleLang}
+              aria-label={isAr ? "Switch language to English" : "تغيير اللغة إلى العربية"}
               className="hidden md:inline-flex items-center justify-center cursor-pointer"
               style={{
                 padding: "0.375rem 0.75rem",
@@ -175,6 +176,13 @@ const Navbar = () => {
             <button
               className="lg:hidden flex items-center justify-center cursor-pointer"
               onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label={
+                mobileOpen
+                  ? (isAr ? "إغلاق القائمة" : "Close menu")
+                  : (isAr ? "فتح القائمة" : "Open menu")
+              }
+              aria-expanded={mobileOpen}
+              aria-controls="navbar-mobile-menu"
               style={{
                 width: 40,
                 height: 40,
@@ -184,7 +192,7 @@ const Navbar = () => {
                 borderRadius: 4,
               }}
             >
-              <i className={`text-xl ${mobileOpen ? "ri-close-line" : "ri-menu-3-line"}`} />
+              <i className={`text-xl ${mobileOpen ? "ri-close-line" : "ri-menu-3-line"}`} aria-hidden="true" />
             </button>
           </div>
         </div>
@@ -193,6 +201,7 @@ const Navbar = () => {
       {/* Mobile menu */}
       {mobileOpen && (
         <div
+          id="navbar-mobile-menu"
           className="lg:hidden"
           style={{
             background: C.bgPanelSolid,

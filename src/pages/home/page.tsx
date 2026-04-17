@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import i18n from "@/i18n";
 import Navbar from "@/components/feature/Navbar";
 import Footer from "@/components/feature/Footer";
+import SkipToMain from "@/components/SkipToMain";
 import HeroSection from "./components/HeroSection";
 import IntelligenceLayer from "./components/IntelligenceLayer";
 import DataFlowArchitecture from "./components/DataFlowArchitecture";
@@ -21,10 +22,13 @@ const Home = () => {
 
   return (
     <div className="min-h-screen" style={{ background: "#051428", fontFamily: "Inter, Cairo, sans-serif" }}>
+      <SkipToMain />
       <Navbar />
-      <HeroSection />
-      <IntelligenceLayer />
-      <DataFlowArchitecture />
+      <main id="main">
+        <HeroSection />
+        <IntelligenceLayer />
+        <DataFlowArchitecture />
+      </main>
       <Footer />
     </div>
   );

@@ -127,7 +127,13 @@ const AsOfReplayPanel = ({ isAr, record }: { isAr: boolean; record: ScoredRecord
             <h4 className="text-white text-sm font-bold mb-3">
               {isAr ? "مقارنة الدرجات الفرعية" : "Sub-score comparison"}
             </h4>
-            <div style={{ height: 260 }}>
+            <div
+              style={{ height: 260 }}
+              role="img"
+              aria-label={isAr
+                ? "رسم شريطي يقارن الدرجات الفرعية في تاريخ المحدَّد مع الدرجات الحالية"
+                : "Bar chart comparing sub-scores at the selected as-of date against the current values"}
+            >
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={subChartData} layout="vertical" margin={{ left: 20, right: 20 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(184,138,60,0.08)" horizontal={false} />

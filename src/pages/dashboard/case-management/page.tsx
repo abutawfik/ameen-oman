@@ -3,10 +3,11 @@
 // Query param: ?id=CASE-XYZ pre-selects.
 // Renders inside DashboardLayout's <Outlet />.
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useOutletContext, useSearchParams } from "react-router-dom";
 import type { DashboardOutletContext } from "../DashboardLayout";
 import { useBrandFonts } from "@/brand/typography";
+import useFocusTrap from "@/components/FocusTrap";
 import {
   CASES,
   CLASSIFICATION_META,
@@ -80,6 +81,10 @@ const CaseManagementPage = () => {
   const [dispSeverity, setDispSeverity] = useState<Case["severity"]>("HIGH");
   const [toast, setToast] = useState<string | null>(null);
   const [noteDraft, setNoteDraft] = useState("");
+  const dispModalRef = useRef<HTMLDivElement>(null);
+  useFocusTrap(dispModalRef, showDispositionModal, {
+    onEscape: () => setShowDispositionModal(false),
+  });
 
   // Query param sync
   useEffect(() => {
@@ -180,9 +185,13 @@ const CaseManagementPage = () => {
           </p>
         </div>
         {toast && (
-          <div className="rounded-lg px-4 py-2 flex items-center gap-2"
-            style={{ background: "rgba(74,142,58,0.18)", border: "1px solid #4A8E3A66", fontFamily: fonts.sans }}>
-            <i className="ri-check-line" style={{ color: "#4A8E3A" }} />
+          <div
+            role="status"
+            aria-live="polite"
+            className="rounded-lg px-4 py-2 flex items-center gap-2"
+            style={{ background: "rgba(74,142,58,0.18)", border: "1px solid #4A8E3A66", fontFamily: fonts.sans }}
+          >
+            <i className="ri-check-line" style={{ color: "#4A8E3A" }} aria-hidden="true" />
             <span className="text-white text-xs">{toast}</span>
           </div>
         )}
@@ -192,14 +201,24 @@ const CaseManagementPage = () => {
         {/* Left: Case list */}
         <div className="col-span-12 lg:col-span-4 flex flex-col gap-3">
           {/* Status tabs */}
-          <div className="rounded-xl border p-2 flex flex-wrap gap-1"
-            style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.15)" }}>
+          <div
+            role="tablist"
+            aria-label={isAr ? "تصفية القضايا بالحالة" : "Filter cases by status"}
+            className="rounded-xl border p-2 flex flex-wrap gap-1"
+            style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.15)" }}
+          >
             {statusFilters.map((s) => {
               const active = statusTab === s;
               const color = s === "ALL" ? "#D6B47E" : STATUS_META[s as CaseStatus].color;
+              const label = s === "ALL"
+                ? (isAr ? "الكل" : "All")
+                : (isAr ? STATUS_META[s as CaseStatus].labelAr : STATUS_META[s as CaseStatus].labelEn);
               return (
                 <button
                   key={s}
+                  role="tab"
+                  aria-selected={active}
+                  tabIndex={active ? 0 : -1}
                   onClick={() => setStatusTab(s)}
                   className="flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] cursor-pointer"
                   style={{
@@ -210,8 +229,10 @@ const CaseManagementPage = () => {
                     fontWeight: active ? 700 : 500,
                   }}
                 >
-                  {s === "ALL" ? (isAr ? "الكل" : "All") : (isAr ? STATUS_META[s as CaseStatus].labelAr : STATUS_META[s as CaseStatus].labelEn)}
-                  <span className="px-1 rounded" style={{ background: "rgba(255,255,255,0.06)", fontFamily: fonts.mono }}>{countsByStatus[s]}</span>
+                  {label}
+                  <span className="px-1 rounded" style={{ background: "rgba(255,255,255,0.06)", fontFamily: fonts.mono }} aria-label={isAr ? `${countsByStatus[s]} قضية` : `${countsByStatus[s]} cases`}>
+                    {countsByStatus[s]}
+                  </span>
                 </button>
               );
             })}
@@ -240,13 +261,19 @@ const CaseManagementPage = () => {
           {/* Search */}
           <div className="rounded-lg flex items-center px-3 py-2"
             style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)" }}>
-            <i className="ri-search-line text-gray-500" />
+            <i className="ri-search-line text-gray-500" aria-hidden="true" />
+            <label htmlFor="case-search" className="sr-only">
+              {isAr ? "بحث في القضايا" : "Search cases"}
+            </label>
             <input
+              id="case-search"
+              type="search"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder={isAr ? "بحث..." : "Search cases..."}
               className="flex-1 bg-transparent outline-none text-xs px-2 text-white"
               style={{ fontFamily: fonts.sans }}
+              aria-label={isAr ? "بحث في القضايا" : "Search cases"}
             />
           </div>
 
@@ -475,47 +502,74 @@ const CaseManagementPage = () => {
 
       {/* Disposition modal */}
       {showDispositionModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center" style={{ background: "rgba(5,20,40,0.85)", backdropFilter: "blur(6px)" }}>
-          <div className="w-full max-w-md rounded-2xl p-6" style={{ background: "rgba(10,37,64,0.95)", border: "1px solid rgba(184,138,60,0.3)" }}>
-            <h3 className="text-white text-lg font-bold mb-4" style={{ fontFamily: fonts.display }}>
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center"
+          style={{ background: "rgba(5,20,40,0.85)", backdropFilter: "blur(6px)" }}
+          onClick={(e) => { if (e.target === e.currentTarget) setShowDispositionModal(false); }}
+        >
+          <div
+            ref={dispModalRef}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="disp-modal-title"
+            className="w-full max-w-md rounded-2xl p-6"
+            style={{ background: "rgba(10,37,64,0.95)", border: "1px solid rgba(184,138,60,0.3)" }}
+          >
+            <h3 id="disp-modal-title" className="text-white text-lg font-bold mb-4" style={{ fontFamily: fonts.display }}>
               {isAr ? "إغلاق القضية بنتيجة" : "Close case with disposition"}
             </h3>
 
-            <label className="block text-[10px] tracking-widest text-gray-400 mb-1" style={{ fontFamily: fonts.mono }}>
-              {isAr ? "تأكيد الخطورة" : "Confirm severity"}
-            </label>
-            <div className="flex gap-2 mb-4">
-              {(["CRITICAL", "HIGH", "MEDIUM", "LOW"] as Case["severity"][]).map((s) => (
-                <button key={s} onClick={() => setDispSeverity(s)}
-                  className="px-3 py-1 rounded text-[10px] font-bold cursor-pointer"
-                  style={{
-                    background: dispSeverity === s ? `${SEVERITY_META[s].color}22` : "transparent",
-                    color: dispSeverity === s ? SEVERITY_META[s].color : "#9CA3AF",
-                    border: `1px solid ${dispSeverity === s ? SEVERITY_META[s].color : "rgba(255,255,255,0.1)"}`,
-                    fontFamily: fonts.mono,
-                  }}>{s}</button>
-              ))}
-            </div>
+            <fieldset className="mb-4">
+              <legend className="block text-[10px] tracking-widest text-gray-400 mb-1" style={{ fontFamily: fonts.mono }}>
+                {isAr ? "تأكيد الخطورة" : "Confirm severity"}
+              </legend>
+              <div className="flex gap-2">
+                {(["CRITICAL", "HIGH", "MEDIUM", "LOW"] as Case["severity"][]).map((s) => (
+                  <button
+                    key={s}
+                    onClick={() => setDispSeverity(s)}
+                    aria-pressed={dispSeverity === s}
+                    className="px-3 py-1 rounded text-[10px] font-bold cursor-pointer"
+                    style={{
+                      background: dispSeverity === s ? `${SEVERITY_META[s].color}22` : "transparent",
+                      color: dispSeverity === s ? SEVERITY_META[s].color : "#9CA3AF",
+                      border: `1px solid ${dispSeverity === s ? SEVERITY_META[s].color : "rgba(255,255,255,0.1)"}`,
+                      fontFamily: fonts.mono,
+                    }}
+                  >
+                    {s}
+                  </button>
+                ))}
+              </div>
+            </fieldset>
 
-            <label className="block text-[10px] tracking-widest text-gray-400 mb-2" style={{ fontFamily: fonts.mono }}>
-              {isAr ? "النتيجة" : "Disposition"}
-            </label>
-            <div className="space-y-1.5 mb-4">
-              {(Object.keys(DISPOSITION_META) as CaseDisposition[]).map((d) => (
-                <label key={d} className="flex items-center gap-2 cursor-pointer text-sm text-white" style={{ fontFamily: fonts.sans }}>
-                  <input type="radio" name="disp" checked={dispChoice === d} onChange={() => setDispChoice(d)} />
-                  {isAr ? DISPOSITION_META[d].labelAr : DISPOSITION_META[d].labelEn}
-                </label>
-              ))}
-            </div>
+            <fieldset className="mb-4">
+              <legend className="block text-[10px] tracking-widest text-gray-400 mb-2" style={{ fontFamily: fonts.mono }}>
+                {isAr ? "النتيجة" : "Disposition"}
+              </legend>
+              <div className="space-y-1.5">
+                {(Object.keys(DISPOSITION_META) as CaseDisposition[]).map((d) => (
+                  <label key={d} className="flex items-center gap-2 cursor-pointer text-sm text-white" style={{ fontFamily: fonts.sans }}>
+                    <input type="radio" name="disp" checked={dispChoice === d} onChange={() => setDispChoice(d)} />
+                    {isAr ? DISPOSITION_META[d].labelAr : DISPOSITION_META[d].labelEn}
+                  </label>
+                ))}
+              </div>
+            </fieldset>
 
-            <label className="block text-[10px] tracking-widest text-gray-400 mb-1" style={{ fontFamily: fonts.mono }}>
+            <label htmlFor="disp-reason" className="block text-[10px] tracking-widest text-gray-400 mb-1" style={{ fontFamily: fonts.mono }}>
               {isAr ? "السبب (إلزامي)" : "Reason (required)"}
             </label>
-            <textarea value={dispReason} onChange={(e) => setDispReason(e.target.value)}
+            <textarea
+              id="disp-reason"
+              value={dispReason}
+              onChange={(e) => setDispReason(e.target.value)}
+              required
+              aria-required="true"
               className="w-full bg-transparent outline-none text-xs text-white resize-none px-2 py-1.5 rounded mb-4"
               style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.08)", fontFamily: fonts.sans, minHeight: 80 }}
-              placeholder={isAr ? "وصف موجز للقرار..." : "Briefly describe the decision..."} />
+              placeholder={isAr ? "وصف موجز للقرار..." : "Briefly describe the decision..."}
+            />
 
             <div className="flex justify-end gap-2">
               <button onClick={() => setShowDispositionModal(false)}

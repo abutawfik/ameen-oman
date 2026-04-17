@@ -2,7 +2,7 @@
 // Tamper-evident view of model + operator activity (Tech Spec §9).
 // Renders inside DashboardLayout's <Outlet /> — no sidebar/titlebar of its own.
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import type { DashboardOutletContext } from "../DashboardLayout";
 import {
@@ -17,6 +17,7 @@ import {
   CLEARANCE_AUDIT_EVENT,
   CLEARANCE_CHANGE_LOG,
 } from "@/brand/clearance";
+import useFocusTrap from "@/components/FocusTrap";
 
 // ── Meta maps (event type + role) ──────────────────────────────────────────
 type EventType = AuditEntry["eventType"];
@@ -73,6 +74,8 @@ const AuditLogPage = () => {
   const [classFilter, setClassFilter]   = useState<Classification | "all">("all");
   const [page, setPage] = useState(0);
   const [selected, setSelected] = useState<AuditEntry | null>(null);
+  const drawerRef = useRef<HTMLDivElement>(null);
+  useFocusTrap(drawerRef, !!selected, { onEscape: () => setSelected(null) });
 
   // Wave 4 · D3 — in-memory runtime entries merged on top of AUDIT_LOG.
   // Seeded from the module-level clearance log so entries persist across
@@ -292,8 +295,13 @@ const AuditLogPage = () => {
 
         {/* Results table */}
         <div className="flex-1 overflow-y-auto p-6">
-          <div className="rounded-xl border overflow-hidden"
-            style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.12)" }}>
+          <div
+            role="region"
+            aria-live="polite"
+            aria-label={isAr ? "سجل التدقيق" : "Audit log"}
+            className="rounded-xl border overflow-hidden"
+            style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.12)" }}
+          >
             {/* Header row */}
             <div className="grid grid-cols-12 gap-2 px-4 py-2.5 border-b text-[10px] font-bold tracking-widest uppercase font-['JetBrains_Mono']"
               style={{ borderColor: "rgba(184,138,60,0.08)", color: "#6B7280" }}>
@@ -409,21 +417,28 @@ const AuditLogPage = () => {
       {selected && (
         <div className="fixed inset-0 z-50 flex" onClick={() => setSelected(null)}>
           <div className="flex-1 bg-black/50" />
-          <div className="w-full max-w-xl h-full overflow-y-auto shadow-2xl"
+          <div
+            ref={drawerRef}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="audit-drawer-title"
+            className="w-full max-w-xl h-full overflow-y-auto shadow-2xl"
             onClick={(e) => e.stopPropagation()}
-            style={{ background: "#0A2540", borderLeft: "1px solid rgba(184,138,60,0.3)" }}>
+            style={{ background: "#0A2540", borderLeft: "1px solid rgba(184,138,60,0.3)" }}
+          >
             <div className="sticky top-0 flex items-center justify-between px-5 py-3 border-b z-10"
               style={{ background: "#0A2540", borderColor: "rgba(184,138,60,0.2)" }}>
               <div className="flex items-center gap-2">
-                <i className={`${EVENT_META[selected.eventType].icon} text-lg`} style={{ color: EVENT_META[selected.eventType].color }} />
-                <h3 className="text-white text-sm font-bold">
+                <i className={`${EVENT_META[selected.eventType].icon} text-lg`} style={{ color: EVENT_META[selected.eventType].color }} aria-hidden="true" />
+                <h3 id="audit-drawer-title" className="text-white text-sm font-bold">
                   {isAr ? EVENT_META[selected.eventType].labelAr : EVENT_META[selected.eventType].labelEn}
                 </h3>
                 <ClassificationPill classification={selected.classification} isAr={isAr} />
               </div>
               <button onClick={() => setSelected(null)}
+                aria-label={isAr ? "إغلاق التفاصيل" : "Close details"}
                 className="text-gray-400 hover:text-white cursor-pointer p-1">
-                <i className="ri-close-line text-xl" />
+                <i className="ri-close-line text-xl" aria-hidden="true" />
               </button>
             </div>
 

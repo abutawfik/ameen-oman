@@ -269,7 +269,13 @@ const EntityResolutionPage = () => {
               <h4 className="text-white text-sm font-bold mb-3" style={{ fontFamily: fonts.sans }}>
                 {isAr ? "تفصيل عوامل التشابه" : "Similarity factor breakdown"}
               </h4>
-              <div style={{ height: 160 }}>
+              <div
+                style={{ height: 160 }}
+                role="img"
+                aria-label={isAr
+                  ? "رسم شريطي لتفصيل عوامل التشابه في دمج الكيانات"
+                  : "Horizontal bar chart breaking down entity-resolution similarity factors"}
+              >
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={factorData} layout="vertical" margin={{ left: 120, right: 30 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="rgba(184,138,60,0.08)" horizontal={false} />

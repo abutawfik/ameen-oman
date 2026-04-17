@@ -88,8 +88,14 @@ const RasadShadowScatterPanel = ({ isAr }: { isAr: boolean }) => {
       <div className="grid grid-cols-12 gap-4">
         {/* Scatter on the left (8 cols) */}
         <div className="col-span-12 lg:col-span-8">
-          <div className="rounded-lg p-2"
-            style={{ background: "var(--alm-ocean-900, #061B30)", border: "1px solid rgba(184,138,60,0.12)" }}>
+          <div
+            className="rounded-lg p-2"
+            style={{ background: "var(--alm-ocean-900, #061B30)", border: "1px solid rgba(184,138,60,0.12)" }}
+            role="img"
+            aria-label={isAr
+              ? "رسم تبعثر يقارن درجة OSINT فقط مع درجة OSINT + رصد لكل سجل؛ الخط المنقط يمثل تساوي الدرجتين"
+              : "Scatter plot comparing OSINT-only score against OSINT + Rasad score for each record; the dashed line represents equal scores"}
+          >
             <ResponsiveContainer width="100%" height={340}>
               <ScatterChart margin={{ top: 12, right: 16, bottom: 32, left: 24 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(184,138,60,0.08)" />

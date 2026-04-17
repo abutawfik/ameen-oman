@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Outlet, useSearchParams, useLocation } from "react-router-dom";
 import i18n from "@/i18n";
 import { type EntityType, navItems } from "@/mocks/dashboardData";
+import SkipToMain from "@/components/SkipToMain";
 import DashboardTitleBar from "./components/DashboardTitleBar";
 import DashboardSidebar from "./components/DashboardSidebar";
 
@@ -44,6 +45,7 @@ const DashboardLayout = () => {
 
   return (
     <div className="flex flex-col h-screen overflow-hidden" style={{ background: "var(--alm-ocean-800)" }}>
+      <SkipToMain />
       <DashboardTitleBar
         isAr={isAr}
         onToggleLang={toggleLang}
@@ -57,7 +59,7 @@ const DashboardLayout = () => {
           collapsed={sidebarCollapsed}
           onToggleCollapse={() => setSidebarCollapsed(!sidebarCollapsed)}
         />
-        <main className="flex-1 overflow-auto">
+        <main id="main" className="flex-1 overflow-auto" aria-label={isAr ? "المحتوى الرئيسي" : "Main content"}>
           <Outlet context={{ isAr, lang, toggleLang, entityType } satisfies DashboardOutletContext} />
         </main>
       </div>

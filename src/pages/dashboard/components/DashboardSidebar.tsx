@@ -49,6 +49,7 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
   return (
     <aside
       className="flex flex-col flex-shrink-0 border-r transition-all duration-300"
+      aria-label={isAr ? "التنقّل الرئيسي" : "Primary navigation"}
       style={{
         width: collapsed ? "64px" : "220px",
         // ocean-700 card surface — runtime palette toggle re-tints this.
@@ -66,12 +67,13 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
           <BrandLogo variant="horizontal" tone="light" size="sm" showTagline isAr={isAr} />
           {isAr && (
             <div
+              lang="ar"
+              dir="rtl"
               style={{
                 fontFamily: "'Cairo', 'Tajawal', 'IBM Plex Sans Arabic', sans-serif",
                 fontWeight: 500,
                 fontSize: "0.6875rem",
                 color: "#D6B47E",
-                direction: "rtl",
                 paddingInlineStart: 36,
               }}
             >
@@ -139,6 +141,7 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
 
             {items.map((item) => {
               const isActive = isItemActive(item);
+              const label = isAr ? item.labelAr : item.labelEn;
               return (
                 <button
                   key={item.key}
@@ -148,18 +151,21 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
                     background: isActive ? "rgba(184,138,60,0.1)" : "transparent",
                     color: isActive ? "#D6B47E" : "#7A9CBF",
                   }}
-                  title={collapsed ? (isAr ? item.labelAr : item.labelEn) : undefined}
+                  title={collapsed ? label : undefined}
+                  aria-label={collapsed ? label : undefined}
+                  aria-current={isActive ? "page" : undefined}
                 >
                   {/* Active bar — gold, anchors to the edge of the sidebar closest to content */}
                   {isActive && (
                     <div
+                      aria-hidden="true"
                       className={`absolute top-0 bottom-0 w-0.5 bg-gold-400 ${
                         isAr ? "right-0 rounded-l-full" : "left-0 rounded-r-full"
                       }`}
                     />
                   )}
                   <div className="w-5 h-5 flex items-center justify-center flex-shrink-0">
-                    <i className={`${item.icon} text-base`} />
+                    <i className={`${item.icon} text-base`} aria-hidden="true" />
                   </div>
                   {!collapsed && (
                     <span className="text-sm font-['Inter'] font-medium whitespace-nowrap">
@@ -206,8 +212,14 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
         <button
           onClick={onToggleCollapse}
           className="w-full flex items-center justify-center gap-2 py-1.5 rounded-lg hover:bg-ivory-100/5 transition-colors cursor-pointer text-midnight-300 hover:text-ivory-200"
+          aria-label={
+            collapsed
+              ? (isAr ? "توسيع الشريط الجانبي" : "Expand sidebar")
+              : (isAr ? "طي الشريط الجانبي" : "Collapse sidebar")
+          }
+          aria-expanded={!collapsed}
         >
-          <i className={`text-sm ${
+          <i aria-hidden="true" className={`text-sm ${
             collapsed
               ? (isAr ? "ri-arrow-left-s-line" : "ri-arrow-right-s-line")
               : (isAr ? "ri-arrow-right-s-line" : "ri-arrow-left-s-line")
@@ -243,8 +255,9 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
               e.currentTarget.style.filter = "brightness(1)";
             }}
             title={isAr ? "تسجيل الخروج" : "Sign Out"}
+            aria-label={isAr ? "تسجيل الخروج" : "Sign out"}
           >
-            <i className="ri-logout-box-r-line text-white text-base" />
+            <i className="ri-logout-box-r-line text-white text-base" aria-hidden="true" />
             <span className="text-white text-sm font-bold font-['Inter']">
               {isAr ? "تسجيل الخروج" : "SIGN OUT"}
             </span>
@@ -267,8 +280,9 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
                 e.currentTarget.style.filter = "brightness(1)";
               }}
               title={isAr ? "تسجيل الخروج" : "Sign Out"}
+              aria-label={isAr ? "تسجيل الخروج" : "Sign out"}
             >
-              <i className="ri-logout-box-r-line text-white text-base" />
+              <i className="ri-logout-box-r-line text-white text-base" aria-hidden="true" />
             </button>
           </div>
         )}

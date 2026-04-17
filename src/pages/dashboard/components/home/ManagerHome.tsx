@@ -163,7 +163,13 @@ const ManagerHome = ({ isAr }: Props) => {
               </span>
             </div>
           </div>
-          <div className="h-72">
+          <div
+            className="h-72"
+            role="img"
+            aria-label={isAr
+              ? "رسم مساحي أسبوعي يوضح القضايا المغلقة والتهديدات المؤكَّدة والإيجابيات الكاذبة"
+              : "Weekly area chart showing cases closed, confirmed threats, and false positives"}
+          >
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={weeklyTrend} margin={{ top: 8, right: 16, left: 0, bottom: 0 }}>
                 <defs>
@@ -213,7 +219,13 @@ const ManagerHome = ({ isAr }: Props) => {
               {isAr ? "قواعد / تعلّم آلي / قائمة مراقبة / يدوي" : "rules vs. ML vs. watchlist vs. manual"}
             </p>
           </div>
-          <div className="h-72">
+          <div
+            className="h-72"
+            role="img"
+            aria-label={isAr
+              ? "رسم شريطي مكدّس يقارن إسهامات القواعد والتعلّم الآلي وقائمة المراقبة والإدخال اليدوي خلال 7 أيام"
+              : "Stacked bar chart comparing contributions from rules, machine learning, watchlist, and manual inputs over 7 days"}
+          >
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={CONTRIBUTION_MIX_7D} margin={{ top: 8, right: 16, left: 0, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(184,138,60,0.08)" />

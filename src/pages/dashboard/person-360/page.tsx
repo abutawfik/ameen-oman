@@ -946,7 +946,13 @@ const RiskTab = ({ subject, isAr }: { subject: ScoredRecord; isAr: boolean }) =>
             {isAr ? "آخر 7 أيام" : "7-DAY TREND"}
           </span>
         </div>
-        <div style={{ height: 180 }}>
+        <div
+          style={{ height: 180 }}
+          role="img"
+          aria-label={isAr
+            ? "رسم مساحي يعرض اتجاه درجة المخاطر خلال آخر 7 أيام"
+            : "Area chart showing risk-score trend over the last 7 days"}
+        >
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={trend} margin={{ left: 0, right: 16, top: 4, bottom: 0 }}>
               <defs>
@@ -1127,35 +1133,65 @@ const Person360Page = () => {
       <SubjectHeader subject={subject} isAr={isAr} all={subjects} onSelect={setSubjectId} />
 
       {/* Tab bar */}
-      <div className="flex items-center gap-1 p-1 rounded-xl mb-4"
-        style={{ background: "rgba(10,37,64,0.65)", border: "1px solid rgba(184,138,60,0.1)" }}>
-        {tabs.map((t) => (
-          <button
-            key={t.key}
-            data-narrate-id={`person-tab-${t.key}`}
-            onClick={() => setTab(t.key)}
-            className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm cursor-pointer transition-all"
-            style={{
-              background: tab === t.key ? "rgba(184,138,60,0.12)" : "transparent",
-              color: tab === t.key ? "#D6B47E" : "#9CA3AF",
-              border: `1px solid ${tab === t.key ? "rgba(184,138,60,0.25)" : "transparent"}`,
-              fontFamily: fonts.sans,
-              fontWeight: tab === t.key ? 700 : 500,
-            }}
-          >
-            <i className={t.icon} />
-            {isAr ? t.labelAr : t.labelEn}
-          </button>
-        ))}
+      <div
+        role="tablist"
+        aria-label={isAr ? "أقسام الملف الشخصي" : "Person 360 sections"}
+        className="flex items-center gap-1 p-1 rounded-xl mb-4"
+        style={{ background: "rgba(10,37,64,0.65)", border: "1px solid rgba(184,138,60,0.1)" }}
+        onKeyDown={(e) => {
+          if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+          const idx = tabs.findIndex((tk) => tk.key === tab);
+          const delta = (isAr ? -1 : 1) * (e.key === "ArrowRight" ? 1 : -1);
+          const next = tabs[(idx + delta + tabs.length) % tabs.length];
+          if (next) {
+            e.preventDefault();
+            setTab(next.key);
+            window.setTimeout(() => document.getElementById(`p360-tab-${next.key}`)?.focus(), 0);
+          }
+        }}
+      >
+        {tabs.map((t) => {
+          const isActive = tab === t.key;
+          return (
+            <button
+              key={t.key}
+              id={`p360-tab-${t.key}`}
+              role="tab"
+              aria-selected={isActive}
+              aria-controls={`p360-panel-${t.key}`}
+              tabIndex={isActive ? 0 : -1}
+              data-narrate-id={`person-tab-${t.key}`}
+              onClick={() => setTab(t.key)}
+              className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm cursor-pointer transition-all"
+              style={{
+                background: isActive ? "rgba(184,138,60,0.12)" : "transparent",
+                color: isActive ? "#D6B47E" : "#9CA3AF",
+                border: `1px solid ${isActive ? "rgba(184,138,60,0.25)" : "transparent"}`,
+                fontFamily: fonts.sans,
+                fontWeight: isActive ? 700 : 500,
+              }}
+            >
+              <i className={t.icon} aria-hidden="true" />
+              {isAr ? t.labelAr : t.labelEn}
+            </button>
+          );
+        })}
       </div>
 
-      {/* Content */}
-      {tab === "identity"      && <IdentityTab     subject={subject} isAr={isAr} />}
-      {tab === "movements"     && <MovementsTab    subject={subject} isAr={isAr} />}
-      {tab === "relationships" && <RelationshipsTab subject={subject} isAr={isAr} />}
-      {tab === "activity"      && <ActivityTab     subject={subject} isAr={isAr} />}
-      {tab === "risk"          && <RiskTab         subject={subject} isAr={isAr} />}
-      {tab === "cases"         && <CasesTab        subject={subject} isAr={isAr} />}
+      {/* Content — one tabpanel per active tab, labelled by the button */}
+      <div
+        role="tabpanel"
+        id={`p360-panel-${tab}`}
+        aria-labelledby={`p360-tab-${tab}`}
+        tabIndex={0}
+      >
+        {tab === "identity"      && <IdentityTab     subject={subject} isAr={isAr} />}
+        {tab === "movements"     && <MovementsTab    subject={subject} isAr={isAr} />}
+        {tab === "relationships" && <RelationshipsTab subject={subject} isAr={isAr} />}
+        {tab === "activity"      && <ActivityTab     subject={subject} isAr={isAr} />}
+        {tab === "risk"          && <RiskTab         subject={subject} isAr={isAr} />}
+        {tab === "cases"         && <CasesTab        subject={subject} isAr={isAr} />}
+      </div>
     </div>
   );
 };

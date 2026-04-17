@@ -150,6 +150,95 @@ html[dir="rtl"] .fas, html[dir="rtl"] .far, html[dir="rtl"] .fab, html[dir="rtl"
   font-family: 'Font Awesome 6 Free', 'Font Awesome 6 Brands', 'Font Awesome 6 Pro', 'FontAwesome' !important;
 }
 
+/* ================================================================ *
+ * Accessibility — WCAG 2.1 AA baseline
+ * ----------------------------------------------------------------
+ * Global rules that apply across every page in the app. Component-
+ * level tweaks still win via selector specificity or inline styles,
+ * but these cover the 90% case:
+ *   · :focus-visible — brass outline visible on dark & light surfaces
+ *   · .sr-only       — visually hidden but announced by screen readers
+ *   · scroll-margin  — skip-link anchor jumps don't land behind sticky
+ *                      headers
+ *   · prefers-reduced-motion — respects the OS setting for users with
+ *     vestibular disorders; shrinks all animations to near-zero rather
+ *     than disabling them outright so layout-dependent transitions
+ *     (e.g. focus rings) still fire
+ * ================================================================ */
+
+:root {
+  --alm-focus-ring: #D6B47E; /* brass-400 — 4.5:1+ on ocean-800 and ivory-100 */
+}
+
+/* Keyboard focus ring — only rendered when focus arrives via keyboard
+   (or programmatic :focus). Pointer focus stays ring-free so mouse users
+   don't see outlines on every click. */
+*:focus-visible {
+  outline: 2px solid var(--alm-focus-ring);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Re-assert for common interactive elements in case a component author
+   overrides `outline: none` in a local style. */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[role="button"]:focus-visible,
+[role="tab"]:focus-visible,
+[role="link"]:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--alm-focus-ring) !important;
+  outline-offset: 2px !important;
+}
+
+/* Form inputs on light (ivory) surfaces — use a darker brass so the ring
+   keeps AA contrast against ivory-100 (#F8F5F0). Brass-700 #96732C on
+   ivory-100 is 5.1:1; that's our safety margin. */
+.alm-on-light:focus-visible,
+.alm-on-light *:focus-visible {
+  outline-color: #96732C !important;
+}
+
+/* Screen-reader-only — visually hidden but reachable by AT. Used for
+   context labels (e.g. "Clearance is now CLASSIFIED"), icon-only button
+   annotations, and invisible live-region announcements. */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Skip-link target lands below the sticky title bar, not behind it. */
+#main {
+  scroll-margin-top: 80px;
+}
+
+/* Respect the OS "Reduce Motion" preference. We keep transitions short
+   enough that they still communicate state (focus rings, hovers) but
+   eliminate the long decorative floats + fades. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-fade-in,
+  .animate-bounce,
+  .animate-pulse {
+    animation: none !important;
+  }
+}
+
 /* ── Global keyframes used across pages ── */
 @keyframes floatP {
   0%, 100% { transform: translateY(0px); opacity: 0.2; }

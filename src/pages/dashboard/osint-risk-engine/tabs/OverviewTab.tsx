@@ -62,7 +62,13 @@ const OverviewTab = ({ isAr, agg, presenterMode }: { isAr: boolean; agg: ReturnT
             <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm" style={{ background: "#C94A5E" }} /> <span className="text-gray-400">flagged</span></span>
           </div>
         </div>
-        <div className="h-64">
+        <div
+          className="h-64"
+          role="img"
+          aria-label={isAr
+            ? "رسم مساحي يوضّح إنتاجية المحرّك خلال آخر 24 ساعة: سجلات مفحوصة مقابل سجلات مُعلَّمة لكل ساعة"
+            : "Area chart showing engine throughput over the last 24 hours: scored vs flagged records per hour"}
+        >
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={THROUGHPUT_24H}>
               <defs>

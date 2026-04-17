@@ -277,10 +277,12 @@ const DemoNarration = () => {
         <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.35)", zIndex: 90, pointerEvents: "none" }} />
       )}
 
-      {/* Floating narration panel */}
+      {/* Floating narration panel — aria-label only, no focus trap per design.
+          The user must still be able to Tab to underlying page content. */}
       <div
         role="dialog"
-        aria-label="Demo narration"
+        aria-label={fonts.isAr ? "شرح العرض التوضيحي" : "Demo narration"}
+        aria-describedby="narration-keyboard-help"
         style={{
           position: "fixed",
           top: 76,
@@ -321,15 +323,18 @@ const DemoNarration = () => {
               <button type="button" onClick={handleCopyDeepLink}
                 className="w-7 h-7 rounded-md flex items-center justify-center cursor-pointer"
                 style={{ background: "rgba(184,138,60,0.12)", color: "#D6B47E", border: "1px solid #D6B47E55" }}
-                title={fonts.isAr ? "نسخ رابط هذه الخطوة" : "Copy deep link to this step"}>
-                <i className="ri-link" />
+                title={fonts.isAr ? "نسخ رابط هذه الخطوة" : "Copy deep link to this step"}
+                aria-label={fonts.isAr ? "نسخ رابط هذه الخطوة" : "Copy deep link to this step"}>
+                <i className="ri-link" aria-hidden="true" />
               </button>
             )}
             <button type="button" onClick={() => setPaused((p) => !p)}
               className="w-7 h-7 rounded-md flex items-center justify-center cursor-pointer"
               style={{ background: "rgba(255,255,255,0.04)", color: "#9CA3AF", border: "1px solid rgba(255,255,255,0.1)" }}
-              title={paused ? "Resume" : "Pause"}>
-              <i className={paused ? "ri-play-mini-line" : "ri-pause-mini-line"} />
+              title={paused ? "Resume" : "Pause"}
+              aria-label={paused ? (fonts.isAr ? "استئناف" : "Resume") : (fonts.isAr ? "إيقاف مؤقت" : "Pause")}
+              aria-pressed={paused}>
+              <i className={paused ? "ri-play-mini-line" : "ri-pause-mini-line"} aria-hidden="true" />
             </button>
             <button type="button" onClick={() => setAutoAdvance((v) => !v)}
               className="w-7 h-7 rounded-md flex items-center justify-center cursor-pointer"
@@ -338,14 +343,17 @@ const DemoNarration = () => {
                 color: autoAdvance ? "#4ADE80" : "#9CA3AF",
                 border: `1px solid ${autoAdvance ? "#4ADE8055" : "rgba(255,255,255,0.1)"}`,
               }}
-              title={autoAdvance ? "Auto-advance on" : "Auto-advance off"}>
-              <i className="ri-timer-line" />
+              title={autoAdvance ? "Auto-advance on" : "Auto-advance off"}
+              aria-label={fonts.isAr ? "التقدّم التلقائي" : "Auto-advance"}
+              aria-pressed={autoAdvance}>
+              <i className="ri-timer-line" aria-hidden="true" />
             </button>
             <button type="button" onClick={closeWithCleanup}
               className="w-7 h-7 rounded-md flex items-center justify-center cursor-pointer"
               style={{ background: "rgba(201,74,94,0.12)", color: "#C94A5E", border: "1px solid #C94A5E55" }}
-              title="Close (N or Esc)">
-              <i className="ri-close-line" />
+              title="Close (N or Esc)"
+              aria-label={fonts.isAr ? "إغلاق الشرح" : "Close narration"}>
+              <i className="ri-close-line" aria-hidden="true" />
             </button>
           </div>
         </div>
@@ -395,7 +403,7 @@ const DemoNarration = () => {
                   <i className="ri-arrow-right-s-line" />
                 </button>
               </div>
-              <span className="text-[10px]" style={{ color: "#6B7280", fontFamily: fonts.mono }}>
+              <span id="narration-keyboard-help" className="text-[10px]" style={{ color: "#6B7280", fontFamily: fonts.mono }}>
                 {fonts.isAr ? "اضغط N للإغلاق · → / ← للتنقّل" : "Press N to close · → / ← to navigate"}
               </span>
             </div>

@@ -4,10 +4,11 @@
 // Wave 4 · D4 — a seventh "+ Custom template" tile opens a bilingual builder
 // modal that appends to an in-memory CUSTOM_REPORT_TEMPLATES list.
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import type { DashboardOutletContext } from "../DashboardLayout";
 import { useBrandFonts } from "@/brand/typography";
+import useFocusTrap from "@/components/FocusTrap";
 import {
   REPORT_TEMPLATES,
   SCHEDULED_REPORTS,
@@ -149,13 +150,23 @@ const ReportsPage = () => {
         </div>
 
         {/* Mode pill toggle */}
-        <div className="flex gap-1 p-1 rounded-lg"
-          style={{ background: "rgba(10,37,64,0.85)", border: "1px solid rgba(184,138,60,0.15)" }}>
+        <div
+          role="tablist"
+          aria-label={isAr ? "وضع التقارير" : "Reports mode"}
+          className="flex gap-1 p-1 rounded-lg"
+          style={{ background: "rgba(10,37,64,0.85)", border: "1px solid rgba(184,138,60,0.15)" }}
+        >
           {(["templates", "scheduled"] as Mode[]).map((m) => {
             const active = mode === m;
             const count = m === "templates" ? (REPORT_TEMPLATES.length + customTemplates.length) : scheduledRows.filter((r) => r.enabled).length;
             return (
-              <button key={m} type="button" onClick={() => setMode(m)}
+              <button
+                key={m}
+                role="tab"
+                aria-selected={active}
+                tabIndex={active ? 0 : -1}
+                type="button"
+                onClick={() => setMode(m)}
                 data-narrate-id={m === "scheduled" ? "reports-scheduled-link" : undefined}
                 className="px-4 py-1.5 rounded-md text-sm font-semibold cursor-pointer transition-all flex items-center gap-2"
                 style={{
@@ -164,7 +175,7 @@ const ReportsPage = () => {
                   border: `1px solid ${active ? "#D6B47E" : "transparent"}`,
                   fontFamily: fonts.sans,
                 }}>
-                <i className={m === "templates" ? "ri-layout-grid-line" : "ri-calendar-schedule-line"} />
+                <i aria-hidden="true" className={m === "templates" ? "ri-layout-grid-line" : "ri-calendar-schedule-line"} />
                 {m === "templates"
                   ? (isAr ? "القوالب" : "Templates")
                   : (isAr ? "مجدول" : "Scheduled")}
@@ -180,12 +191,16 @@ const ReportsPage = () => {
 
       {/* Toast */}
       {toast && (
-        <div className="rounded-lg border px-4 py-2.5 mb-4 flex items-center gap-3"
+        <div
+          role="status"
+          aria-live="polite"
+          className="rounded-lg border px-4 py-2.5 mb-4 flex items-center gap-3"
           style={{
             background: "linear-gradient(135deg, rgba(74,222,128,0.12), rgba(10,37,64,0.8))",
             borderColor: "rgba(74,222,128,0.4)",
-          }}>
-          <i className="ri-check-double-line text-lg" style={{ color: "#4ADE80" }} />
+          }}
+        >
+          <i className="ri-check-double-line text-lg" style={{ color: "#4ADE80" }} aria-hidden="true" />
           <span className="text-white text-sm" style={{ fontFamily: fonts.sans }}>{toast}</span>
         </div>
       )}
@@ -483,6 +498,8 @@ const PreviewModal = ({
 }) => {
   const fonts = useBrandFonts();
   const agg = useMemo(() => aggregate(), []);
+  const modalRef = useRef<HTMLDivElement>(null);
+  useFocusTrap(modalRef, true, { onEscape: onClose });
 
   // Synthetic mini-chart bars for the KPI strip (12 data points).
   const sparkline = useMemo(() => {
@@ -502,10 +519,12 @@ const PreviewModal = ({
       className="fixed inset-0 z-[70] flex items-center justify-center p-4"
       style={{ background: "rgba(0,0,0,0.75)", backdropFilter: "blur(6px)" }}
       onClick={onClose}
-      role="dialog"
-      aria-modal="true"
     >
       <div
+        ref={modalRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="preview-modal-title"
         className="w-full max-w-4xl max-h-[90vh] rounded-2xl border overflow-hidden flex flex-col"
         style={{
           background: "var(--alm-ocean-800, #0A2540)",
@@ -520,10 +539,10 @@ const PreviewModal = ({
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 flex items-center justify-center rounded-lg"
               style={{ background: `${template.color}18`, border: `1px solid ${template.color}44` }}>
-              <i className={`${template.icon} text-lg`} style={{ color: template.color }} />
+              <i className={`${template.icon} text-lg`} style={{ color: template.color }} aria-hidden="true" />
             </div>
             <div>
-              <h2 className="text-white text-base font-bold" style={{ fontFamily: fonts.sans }}>
+              <h2 id="preview-modal-title" className="text-white text-base font-bold" style={{ fontFamily: fonts.sans }}>
                 {isAr ? template.nameAr : template.name}
               </h2>
               <p className="text-gray-500 text-[10px]" style={{ fontFamily: fonts.mono }}>
@@ -539,9 +558,10 @@ const PreviewModal = ({
               {isAr ? "تنزيل PDF" : "Download PDF"}
             </button>
             <button type="button" onClick={onClose}
+              aria-label={isAr ? "إغلاق المعاينة" : "Close preview"}
               className="w-8 h-8 flex items-center justify-center rounded-md cursor-pointer"
               style={{ background: "rgba(255,255,255,0.05)", color: "#9CA3AF", border: "1px solid rgba(255,255,255,0.08)" }}>
-              <i className="ri-close-line" />
+              <i className="ri-close-line" aria-hidden="true" />
             </button>
           </div>
         </header>
@@ -706,6 +726,8 @@ const CustomTemplateBuilder = ({
   const [cadenceDay, setCadenceDay] = useState("Monday");
   const [cronExpr, setCronExpr] = useState("0 9 * * 1");
   const [format, setFormat] = useState<Format>("PDF");
+  const builderRef = useRef<HTMLDivElement>(null);
+  useFocusTrap(builderRef, true, { onEscape: onClose });
 
   const toggleSection = (id: string) => {
     setSelectedSections((prev) => (prev.includes(id) ? prev.filter((s) => s !== id) : [...prev, id]));
@@ -787,10 +809,12 @@ const CustomTemplateBuilder = ({
       className="fixed inset-0 z-[80] flex items-center justify-center p-4"
       style={{ background: "rgba(0,0,0,0.75)", backdropFilter: "blur(6px)" }}
       onClick={onClose}
-      role="dialog"
-      aria-modal="true"
     >
       <div
+        ref={builderRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="builder-modal-title"
         className="w-full max-w-3xl max-h-[92vh] rounded-2xl border overflow-hidden flex flex-col"
         style={{ background: "var(--alm-ocean-800, #0A2540)", borderColor: "rgba(184,138,60,0.4)", boxShadow: "0 25px 80px rgba(0,0,0,0.6)" }}
         onClick={(e) => e.stopPropagation()}
@@ -801,10 +825,10 @@ const CustomTemplateBuilder = ({
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 flex items-center justify-center rounded-lg"
               style={{ background: "rgba(184,138,60,0.18)", border: "1px solid #D6B47E55" }}>
-              <i className="ri-magic-line text-lg" style={{ color: "#D6B47E" }} />
+              <i className="ri-magic-line text-lg" style={{ color: "#D6B47E" }} aria-hidden="true" />
             </div>
             <div>
-              <h2 className="text-white text-base font-bold" style={{ fontFamily: fonts.sans }}>
+              <h2 id="builder-modal-title" className="text-white text-base font-bold" style={{ fontFamily: fonts.sans }}>
                 {isAr ? "منشئ القوالب المخصَّصة" : "Custom template builder"}
               </h2>
               <p className="text-gray-500 text-[10px]" style={{ fontFamily: fonts.mono }}>
@@ -813,9 +837,10 @@ const CustomTemplateBuilder = ({
             </div>
           </div>
           <button type="button" onClick={onClose}
+            aria-label={isAr ? "إغلاق المنشئ" : "Close builder"}
             className="w-8 h-8 flex items-center justify-center rounded-md cursor-pointer"
             style={{ background: "rgba(255,255,255,0.05)", color: "#9CA3AF", border: "1px solid rgba(255,255,255,0.08)" }}>
-            <i className="ri-close-line" />
+            <i className="ri-close-line" aria-hidden="true" />
           </button>
         </header>
 

@@ -187,7 +187,13 @@ const ExplainTab = ({
         <div className="rounded-xl border p-5"
           style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.12)" }}>
           <h3 className="text-white text-sm font-bold mb-4">{isAr ? "الدرجات الفرعية" : "Sub-score contribution"}</h3>
-          <div style={{ height: presenterMode ? 340 : 260 }}>
+          <div
+            style={{ height: presenterMode ? 340 : 260 }}
+            role="img"
+            aria-label={isAr
+              ? "رسم شريطي أفقي يوضّح إسهام كل درجة فرعية في الدرجة الموحَّدة"
+              : "Horizontal bar chart showing each sub-score's contribution to the unified score"}
+          >
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={subChartData} layout="vertical" margin={{ left: 20, right: 20 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(184,138,60,0.08)" horizontal={false} />

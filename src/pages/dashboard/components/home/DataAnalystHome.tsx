@@ -85,6 +85,9 @@ const DataAnalystHome = ({ isAr }: Props) => {
     <div className="relative z-10 p-4 md:p-6 max-w-[1600px] mx-auto space-y-5">
       {/* 1. SLA countdown bar */}
       <div
+        role="status"
+        aria-live="polite"
+        aria-label={isAr ? "مؤشّر مهلة الاستجابة" : "SLA watch"}
         className="rounded-xl border p-4 flex flex-col md:flex-row md:items-center gap-4"
         style={{
           background: isCrit

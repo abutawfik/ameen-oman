@@ -19,13 +19,16 @@ const RedactableText = ({
     return <span className={className} style={style}>{value}</span>;
   }
   const needed = CLASSIFICATION_META[fieldClass].label;
+  const ariaLabel = `Redacted — ${needed} clearance required (viewer: ${CLASSIFICATION_META[clearance].label})`;
   return (
     <span
       className={className}
       style={{ ...style, fontFamily: "'JetBrains Mono', monospace", letterSpacing: "0.05em", color: "#6B7280" }}
       title={`Redacted · ${needed} clearance required (viewer: ${CLASSIFICATION_META[clearance].label})`}
+      aria-label={ariaLabel}
+      role="img"
     >
-      {REDACTED_GLYPH}
+      <span aria-hidden="true">{REDACTED_GLYPH}</span>
     </span>
   );
 };

@@ -117,6 +117,16 @@ const IntelligenceLayer = () => {
           role="tablist"
           aria-label={isAr ? "تصفية الطبقات" : "Filter layers"}
           className="flex items-center justify-center gap-2 mb-8 flex-wrap"
+          onKeyDown={(e) => {
+            if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+            const idx = tabs.findIndex((tk) => tk.key === tab);
+            const delta = (isAr ? -1 : 1) * (e.key === "ArrowRight" ? 1 : -1);
+            const next = tabs[(idx + delta + tabs.length) % tabs.length];
+            if (next) {
+              e.preventDefault();
+              setTab(next.key);
+            }
+          }}
         >
           {tabs.map((t) => {
             const active = tab === t.key;
@@ -125,6 +135,7 @@ const IntelligenceLayer = () => {
                 key={t.key}
                 role="tab"
                 aria-selected={active}
+                tabIndex={active ? 0 : -1}
                 onClick={() => setTab(t.key)}
                 style={{
                   padding: "0.5rem 1rem",

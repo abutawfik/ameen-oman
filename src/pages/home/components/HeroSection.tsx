@@ -151,6 +151,7 @@ const HeroSection = () => {
               each locale file. */}
           <span
             dir={isAr ? "ltr" : "rtl"}
+            lang={isAr ? "en" : "ar"}
             style={{
               fontFamily: isAr ? FF_DISPLAY : FF_ARABIC,
               fontSize: isAr ? "0.875rem" : "1rem",

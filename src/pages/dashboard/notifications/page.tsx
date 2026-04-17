@@ -103,31 +103,56 @@ const NotificationsPage = () => {
       </div>
 
       {/* Tab bar */}
-      <div className="flex items-center gap-1 p-1 rounded-xl mb-4 inline-flex"
-        style={{ background: "rgba(10,37,64,0.65)", border: "1px solid rgba(184,138,60,0.1)" }}>
-        {tabs.map((t) => (
-          <button key={t.key} onClick={() => setTab(t.key)}
-            data-narrate-id={
-              t.key === "inbox"
-                ? "notifications-inbox-tab"
-                : t.key === "rules"
-                ? "notifications-routing-rules"
-                : t.key === "channels"
-                ? "notifications-channel-config"
-                : undefined
-            }
-            className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm cursor-pointer transition-all"
-            style={{
-              background: tab === t.key ? "rgba(184,138,60,0.12)" : "transparent",
-              color: tab === t.key ? "#D6B47E" : "#9CA3AF",
-              border: `1px solid ${tab === t.key ? "rgba(184,138,60,0.25)" : "transparent"}`,
-              fontFamily: fonts.sans,
-              fontWeight: tab === t.key ? 700 : 500,
-            }}>
-            <i className={t.icon} />
-            {isAr ? t.labelAr : t.labelEn}
-          </button>
-        ))}
+      <div
+        role="tablist"
+        aria-label={isAr ? "أقسام نظام الإشعارات" : "Notifications sections"}
+        className="flex items-center gap-1 p-1 rounded-xl mb-4 inline-flex"
+        style={{ background: "rgba(10,37,64,0.65)", border: "1px solid rgba(184,138,60,0.1)" }}
+        onKeyDown={(e) => {
+          if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+          const idx = tabs.findIndex((tk) => tk.key === tab);
+          const delta = (isAr ? -1 : 1) * (e.key === "ArrowRight" ? 1 : -1);
+          const next = tabs[(idx + delta + tabs.length) % tabs.length];
+          if (next) {
+            e.preventDefault();
+            setTab(next.key);
+          }
+        }}
+      >
+        {tabs.map((t) => {
+          const isActive = tab === t.key;
+          return (
+            <button
+              key={t.key}
+              role="tab"
+              aria-selected={isActive}
+              tabIndex={isActive ? 0 : -1}
+              aria-controls={`notif-panel-${t.key}`}
+              id={`notif-tab-${t.key}`}
+              onClick={() => setTab(t.key)}
+              data-narrate-id={
+                t.key === "inbox"
+                  ? "notifications-inbox-tab"
+                  : t.key === "rules"
+                  ? "notifications-routing-rules"
+                  : t.key === "channels"
+                  ? "notifications-channel-config"
+                  : undefined
+              }
+              className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm cursor-pointer transition-all"
+              style={{
+                background: isActive ? "rgba(184,138,60,0.12)" : "transparent",
+                color: isActive ? "#D6B47E" : "#9CA3AF",
+                border: `1px solid ${isActive ? "rgba(184,138,60,0.25)" : "transparent"}`,
+                fontFamily: fonts.sans,
+                fontWeight: isActive ? 700 : 500,
+              }}
+            >
+              <i className={t.icon} aria-hidden="true" />
+              {isAr ? t.labelAr : t.labelEn}
+            </button>
+          );
+        })}
       </div>
 
       {/* Content */}

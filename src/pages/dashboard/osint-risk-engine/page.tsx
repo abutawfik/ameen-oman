@@ -252,14 +252,38 @@ const OsintRiskEnginePage = () => {
         </div>
       </header>
 
-      {/* Tabs */}
-      <nav className="sticky top-[57px] z-30 flex items-center gap-1 px-6 py-2 border-b overflow-x-auto"
-        style={{ background: "rgba(var(--alm-ocean-800-rgb), 0.92)", borderColor: "rgba(184,138,60,0.08)", backdropFilter: "blur(12px)" }}>
+      {/* Tabs — ARIA tablist for SR + keyboard arrow-key navigation */}
+      <div
+        role="tablist"
+        aria-label={isAr ? "أقسام محرّك المخاطر" : "Risk Engine sections"}
+        className="sticky top-[57px] z-30 flex items-center gap-1 px-6 py-2 border-b overflow-x-auto"
+        style={{ background: "rgba(var(--alm-ocean-800-rgb), 0.92)", borderColor: "rgba(184,138,60,0.08)", backdropFilter: "blur(12px)" }}
+        onKeyDown={(e) => {
+          if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+          const idx = TABS.findIndex((t) => t.id === activeTab);
+          const delta = (isAr ? -1 : 1) * (e.key === "ArrowRight" ? 1 : -1);
+          const next = TABS[(idx + delta + TABS.length) % TABS.length];
+          if (next) {
+            e.preventDefault();
+            setActiveTab(next.id);
+            // Defer focus so the new tab renders before we move keyboard focus.
+            window.setTimeout(() => {
+              const el = document.getElementById(`osint-tab-${next.id}`);
+              el?.focus();
+            }, 0);
+          }
+        }}
+      >
         {TABS.map((tab) => {
           const isActive = activeTab === tab.id;
           return (
             <button
               key={tab.id}
+              id={`osint-tab-${tab.id}`}
+              role="tab"
+              aria-selected={isActive}
+              aria-controls={`osint-panel-${tab.id}`}
+              tabIndex={isActive ? 0 : -1}
               onClick={() => setActiveTab(tab.id)}
               className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold whitespace-nowrap cursor-pointer transition-all"
               style={{
@@ -268,7 +292,7 @@ const OsintRiskEnginePage = () => {
                 border: isActive ? "1px solid rgba(184,138,60,0.3)" : "1px solid transparent",
               }}
             >
-              <i className={tab.icon} />
+              <i className={tab.icon} aria-hidden="true" />
               <span>{isAr ? tab.labelAr : tab.labelEn}</span>
               {!presenterMode && typeof tab.badge === "number" && tab.badge > 0 && (
                 <span className="px-1.5 py-0.5 rounded-full text-xs font-bold font-['JetBrains_Mono']"
@@ -279,10 +303,16 @@ const OsintRiskEnginePage = () => {
             </button>
           );
         })}
-      </nav>
+      </div>
 
-      {/* Content */}
-      <main className="relative z-10 px-6 py-6 max-w-[1600px] mx-auto">
+      {/* Content — each panel is a labelledby region targeting the tab button */}
+      <div
+        role="tabpanel"
+        id={`osint-panel-${activeTab}`}
+        aria-labelledby={`osint-tab-${activeTab}`}
+        tabIndex={0}
+        className="relative z-10 px-6 py-6 max-w-[1600px] mx-auto"
+      >
         {activeTab === "overview" && <OverviewTab isAr={isAr} agg={agg} presenterMode={presenterMode} />}
         {activeTab === "queue" && (
           <QueueTab
@@ -329,7 +359,7 @@ const OsintRiskEnginePage = () => {
         )}
         {activeTab === "governance" && <GovernanceTab isAr={isAr} />}
         {activeTab === "rasad" && <RasadTab isAr={isAr} onOpenConfig={() => setActiveTab("config")} onOpenAudit={() => navigate("/dashboard/audit-log")} />}
-      </main>
+      </div>
     </div>
   );
 };
