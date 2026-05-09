@@ -28,6 +28,7 @@ const MODULE_MAP: Record<string, { en: string; ar: string }> = {
   "/dashboard/watchlist":                { en: "Watchlist & Targets",               ar: "\u0642\u0627\u0626\u0645\u0629 \u0627\u0644\u0645\u0631\u0627\u0642\u0628\u0629 \u0648\u0627\u0644\u0623\u0647\u062F\u0627\u0641" },
   "/dashboard/case-management":          { en: "Case Management",                   ar: "\u0625\u062F\u0627\u0631\u0629 \u0627\u0644\u0642\u0636\u0627\u064A\u0627" },
   "/dashboard/person-360":               { en: "Person 360\u00B0",                  ar: "\u0627\u0644\u0645\u0644\u0641 \u0627\u0644\u0634\u062E\u0635\u064A 360\u00B0" },
+  "/dashboard/subject-timeline":         { en: "Subject Activity Timeline",         ar: "\u0627\u0644\u062C\u062F\u0648\u0644 \u0627\u0644\u0632\u0645\u0646\u064A" },
   "/dashboard/notifications":            { en: "Notifications Center",              ar: "\u0645\u0631\u0643\u0632 \u0627\u0644\u0625\u0634\u0639\u0627\u0631\u0627\u062A" },
   "/dashboard/system-admin":             { en: "System Administration",             ar: "\u0625\u062F\u0627\u0631\u0629 \u0627\u0644\u0646\u0638\u0627\u0645" },
   "/dashboard/compliance-scorecard":     { en: "Compliance Scorecard",              ar: "\u0628\u0637\u0627\u0642\u0629 \u0627\u0644\u0627\u0645\u062A\u062B\u0627\u0644" },

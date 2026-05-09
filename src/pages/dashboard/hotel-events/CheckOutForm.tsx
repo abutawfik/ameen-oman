@@ -5,6 +5,7 @@ import {
 } from "./components/FormComponents";
 import TravelDocSection, { type TravelDocData } from "./components/TravelDocSection";
 import PersonalDetailsSection, { type PersonalData } from "./components/PersonalDetailsSection";
+import { pushEvent } from "@/services/ameenEventBus";
 
 const emptyPersonal = (): PersonalData => ({
   firstName: "", lastName: "", gender: "", dob: "", nationality: "",
@@ -76,6 +77,16 @@ const CheckOutForm = ({ isAr, onCancel, onSaved }: Props) => {
     setTimeout(() => {
       setSaving(false);
       setSaved(true);
+      pushEvent({
+        source: "deiyafa",
+        eventType: "HOTEL_CHECKOUT",
+        guestName: `${personal.firstName} ${personal.lastName}`.trim() || "Unknown Guest",
+        docNumber: doc.docNumber || undefined,
+        nationality: personal.nationality || undefined,
+        roomNumber: room || undefined,
+        hotelBranch: branch || undefined,
+        status: "success",
+      });
       setTimeout(() => { setSaved(false); onSaved(); }, 2000);
     }, 1500);
   };

@@ -246,6 +246,7 @@ export const navItems = [
   { key: "watchlist",       icon: "ri-eye-line",             labelEn: "Watchlist & Targets",labelAr: "قوائم المراقبة",    route: "/dashboard/watchlist",         group: "admin" },
   { key: "case-management", icon: "ri-folder-shield-2-line", labelEn: "Case Management",    labelAr: "إدارة القضايا",     route: "/dashboard/case-management",   group: "admin" },
   { key: "person360",       icon: "ri-user-search-line",     labelEn: "Person 360°",        labelAr: "ملف الشخص 360°",    route: "/dashboard/person-360",        group: "admin" },
+  { key: "subject-timeline",icon: "ri-time-line",            labelEn: "Subject Timeline",   labelAr: "الجدول الزمني",     route: "/dashboard/subject-timeline",  group: "admin" },
   { key: "notifications",   icon: "ri-notification-3-line",  labelEn: "Notifications",      labelAr: "الإشعارات",         route: "/dashboard/notifications",     group: "admin" },
   { key: "reports",         icon: "ri-bar-chart-2-line",     labelEn: "Reports",            labelAr: "التقارير",          route: "/dashboard/reports",           group: "admin" },
   { key: "users",           icon: "ri-team-line",            labelEn: "Manage Users",       labelAr: "إدارة المستخدمين", route: "/dashboard/manage-users",      group: "admin" },

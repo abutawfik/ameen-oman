@@ -3,6 +3,7 @@ import {
   SectionCard, FormField, TextInput, SelectInput, TipBanner, FormActions,
   LookupButton, BRANCHES,
 } from "@/pages/dashboard/hotel-events/components/FormComponents";
+import { pushEvent } from "@/services/ameenEventBus";
 import FuelGauge, { type FuelLevel } from "./components/FuelGauge";
 import PhotoUploadZones from "./components/PhotoUploadZones";
 import ConfirmationPanel from "./components/ConfirmationPanel";
@@ -61,7 +62,18 @@ const VehiclePickUpForm = ({ isAr, onCancel }: Props) => {
     setTimeout(() => {
       setSaving(false);
       const seq = String(Math.floor(Math.random() * 9000) + 1000);
-      setRefNumber(`AMN-CAR-${Date.now()}-${seq}`);
+      const ref = `AMN-CAR-${Date.now()}-${seq}`;
+      setRefNumber(ref);
+      pushEvent({
+        source: "car_rental",
+        category: "car_rental",
+        eventType: "CAR_PICKUP",
+        severity: "clear",
+        guestName: renterName || undefined,
+        vehiclePlate: plate || undefined,
+        location: branch || undefined,
+        status: "success",
+      });
       setConfirmed(true);
     }, 1800);
   };

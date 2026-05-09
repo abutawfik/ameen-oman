@@ -5,6 +5,7 @@ import {
 } from "./components/FormComponents";
 import TravelDocSection, { type TravelDocData } from "./components/TravelDocSection";
 import PersonalDetailsSection, { type PersonalData } from "./components/PersonalDetailsSection";
+import { pushEvent } from "@/services/ameenEventBus";
 
 // ─── Mock booking lookup ──────────────────────────────────────────────────────
 const MOCK_BOOKINGS: Record<string, {
@@ -147,6 +148,19 @@ const CheckInForm = ({ isAr, onCancel, onSaved }: Props) => {
     setTimeout(() => {
       setSaving(false);
       setSaved(true);
+      const primary = guests[0];
+      pushEvent({
+        source: "deiyafa",
+        eventType: "HOTEL_CHECKIN",
+        guestName: primary
+          ? `${primary.personal.firstName} ${primary.personal.lastName}`.trim() || "Unknown Guest"
+          : "Unknown Guest",
+        docNumber: primary?.doc.docNumber || undefined,
+        nationality: primary?.personal.nationality || undefined,
+        roomNumber: room || undefined,
+        hotelBranch: branch || undefined,
+        status: "success",
+      });
       setTimeout(() => { setSaved(false); onSaved(); }, 2000);
     }, 1500);
   };

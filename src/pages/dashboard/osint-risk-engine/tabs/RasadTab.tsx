@@ -1,10 +1,10 @@
-// Rasad (Phase 2) teaser tab — Wave 3 · D2.
-// Read-only preview of the classified-feed integration pathway. Frames how
-// Rasad would plug in once access is provisioned: adapter contract,
-// classification-aware routing, shadow-mode score preview, transition plan.
-// No actual Rasad data is ingested — all numbers are synthetic +12pt boosts.
+// Rasad tab — shadow-mode active.
+// Classified feed adapter is wired (adapter contract, classification routing,
+// weight profile, audit trail all done). Shadow-mode runs: synthetic classified
+// boosts overlay OSINT-only scores so analysts see the Δ before full access.
+// Full data access pending formal ROP agreement (Phase 2 gate).
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   ScatterChart, Scatter, XAxis, YAxis, ZAxis, ResponsiveContainer,
   CartesianGrid, Tooltip, ReferenceLine,
@@ -274,6 +274,101 @@ const RasadShadowScatterPanel = ({ isAr }: { isAr: boolean }) => {
   );
 };
 
+// ─── Rasad live feed ticker ──────────────────────────────────────────────────
+
+const RASAD_FEED_POOL = [
+  { travelerName: "Chen Wei",            nat: "CN", classification: "internal"   as const, contributor: "Sponsor flagged — internal bulletin #IB-0412",      contributorAr: "الكفيل مُعلَّم — نشرة داخلية #IB-0412",      delta: 8  },
+  { travelerName: "Nikolai Petrov",      nat: "RU", classification: "restricted" as const, contributor: "Device proximity cluster at transit hub",           contributorAr: "تجمّع أجهزة قريبة في مطار العبور",           delta: 14 },
+  { travelerName: "Amira Al-Khatib",     nat: "SY", classification: "internal"   as const, contributor: "Travel pattern deviation — 3rd trip this quarter",  contributorAr: "انحراف نمط السفر — الرحلة الثالثة هذا الربع", delta: 6  },
+  { travelerName: "James O'Brien",       nat: "IE", classification: "public"     as const, contributor: "No classified signal — OSINT score unchanged",      contributorAr: "لا إشارة مُصنَّفة — درجة OSINT دون تغيير",   delta: 0  },
+  { travelerName: "Farida Nazarova",     nat: "UZ", classification: "restricted" as const, contributor: "Prior watchlist hit (sealed, 2024-Q1)",              contributorAr: "تطابق قائمة مراقبة سابقة (مغلقة، 2024-Q1)",  delta: 19 },
+  { travelerName: "Kabir Okafor",        nat: "NG", classification: "internal"   as const, contributor: "Employment history gap aligns with travel window",   contributorAr: "فجوة سجل التوظيف تتوافق مع نافذة السفر",    delta: 5  },
+  { travelerName: "Laura Mendes",        nat: "BR", classification: "public"     as const, contributor: "No classified signal — OSINT score unchanged",      contributorAr: "لا إشارة مُصنَّفة — درجة OSINT دون تغيير",   delta: 0  },
+  { travelerName: "Hassan Al-Omari",     nat: "JO", classification: "classified" as const, contributor: "Undeclared beneficial owner on sponsor graph",       contributorAr: "مالك مستفيد غير مُصرَّح به في شبكة الكفلاء", delta: 22 },
+];
+
+const RasadLiveFeed = ({ isAr }: { isAr: boolean }) => {
+  const [feed, setFeed] = useState<typeof RASAD_FEED_POOL>([]);
+  const idx = useRef(0);
+
+  useEffect(() => {
+    // Initial burst — 2 records appear immediately
+    setFeed(RASAD_FEED_POOL.slice(0, 2));
+    idx.current = 2;
+
+    const timer = setInterval(() => {
+      if (idx.current >= RASAD_FEED_POOL.length) {
+        idx.current = 0;
+      }
+      const next = RASAD_FEED_POOL[idx.current % RASAD_FEED_POOL.length];
+      idx.current += 1;
+      setFeed((prev) => [next, ...prev].slice(0, 6));
+    }, 6000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <div className="rounded-xl border overflow-hidden"
+      style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(201,74,94,0.2)" }}>
+      <div className="flex items-center gap-2 px-4 py-2.5 border-b"
+        style={{ borderColor: "rgba(201,74,94,0.15)" }}>
+        <div className="w-2 h-2 rounded-full animate-pulse" style={{ background: "#C94A5E" }} />
+        <span className="text-white text-xs font-bold font-['JetBrains_Mono']">
+          {isAr ? "تغذية رصد الحية — وضع الظل" : "Rasad live feed — shadow mode"}
+        </span>
+        <span className="ml-auto px-2 py-0.5 rounded text-[9px] font-bold tracking-widest font-['JetBrains_Mono']"
+          style={{ background: "rgba(138,31,60,0.2)", color: "#C94A5E", border: "1px solid rgba(201,74,94,0.4)" }}>
+          CLASSIFIED · SYNTHETIC
+        </span>
+      </div>
+      <div className="divide-y divide-white/[0.03]">
+        {feed.map((r, i) => (
+          <div key={`${r.travelerName}-${i}`}
+            className="grid grid-cols-12 gap-2 px-4 py-2.5 items-center text-xs"
+            style={{ animation: i === 0 ? "fadeIn 0.4s ease" : "none" }}>
+            <div className="col-span-1">
+              <span className="px-1.5 py-0.5 rounded text-[9px] font-bold tracking-widest font-['JetBrains_Mono']"
+                style={{
+                  background: CLASSIFICATION_META[r.classification].bg,
+                  color: CLASSIFICATION_META[r.classification].color,
+                  border: `1px solid ${CLASSIFICATION_META[r.classification].color}44`,
+                }}>
+                {r.nat}
+              </span>
+            </div>
+            <div className="col-span-3 text-white font-semibold truncate">{r.travelerName}</div>
+            <div className="col-span-5 text-gray-400 truncate font-['JetBrains_Mono'] text-[11px]">
+              {isAr ? r.contributorAr : r.contributor}
+            </div>
+            <div className="col-span-2 text-right">
+              {r.delta > 0 ? (
+                <span className="font-bold font-['JetBrains_Mono']" style={{ color: "#C94A5E" }}>+{r.delta}</span>
+              ) : (
+                <span className="text-gray-600 font-['JetBrains_Mono']">±0</span>
+              )}
+            </div>
+            <div className="col-span-1 flex items-center justify-end">
+              <span className="px-1.5 py-0.5 rounded text-[9px] font-bold font-['JetBrains_Mono']"
+                style={{
+                  background: CLASSIFICATION_META[r.classification].bg,
+                  color: CLASSIFICATION_META[r.classification].color,
+                }}>
+                {isAr ? CLASSIFICATION_META[r.classification].labelAr : CLASSIFICATION_META[r.classification].label}
+              </span>
+            </div>
+          </div>
+        ))}
+        {feed.length === 0 && (
+          <div className="py-6 text-center text-gray-600 text-xs font-['JetBrains_Mono']">
+            {isAr ? "انتظار أول سجل من رصد…" : "Awaiting first Rasad record…"}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
 // ─── Rasad tab ─────────────────────────────────────────────────────────────
 
 const RasadTab = ({
@@ -283,12 +378,12 @@ const RasadTab = ({
   onOpenConfig: () => void;
   onOpenAudit: () => void;
 }) => {
-  const CHECKLIST: { done: boolean; labelEn: string; labelAr: string; linkLabel: string; linkLabelAr: string; onClick?: () => void }[] = [
-    { done: true, labelEn: "Source abstraction layer — identical adapter contract", labelAr: "طبقة تجريد المصادر — عقد مهايئ موحَّد", linkLabel: "see §5.1.1", linkLabelAr: "انظر §5.1.1" },
-    { done: true, labelEn: "Classification-aware routing — CLASSIFIED label flows end-to-end", labelAr: "توجيه واعٍ بالتصنيف — تسمية سرّي تسري من البداية للنهاية", linkLabel: "see Queue", linkLabelAr: "انظر القائمة" },
-    { done: true, labelEn: "Separate weight profile — 'Classified · Rasad-weighted' (see Config tab)", labelAr: "ملف أوزان منفصل — 'سرّي · موزون برصد' (انظر الإعدادات)", linkLabel: "open Config", linkLabelAr: "فتح الإعدادات", onClick: onOpenConfig },
-    { done: true, labelEn: "Segregated audit logging — all Rasad access flagged `classified_accessed`", labelAr: "سجل تدقيق منفصل — كل وصول لرصد يُعلَّم classified_accessed", linkLabel: "open Audit", linkLabelAr: "فتح التدقيق", onClick: onOpenAudit },
-    { done: false, labelEn: "Access provisioned — pending formal agreement with ROP + data owners", labelAr: "الصلاحية ممنوحة — بانتظار اتفاق رسمي مع الشرطة ومُلّاك البيانات", linkLabel: "Phase 2", linkLabelAr: "المرحلة 2" },
+  const CHECKLIST: { done: boolean; partial?: boolean; labelEn: string; labelAr: string; linkLabel: string; linkLabelAr: string; onClick?: () => void }[] = [
+    { done: true,  labelEn: "Source abstraction layer — identical adapter contract", labelAr: "طبقة تجريد المصادر — عقد مهايئ موحَّد", linkLabel: "see §5.1.1", linkLabelAr: "انظر §5.1.1" },
+    { done: true,  labelEn: "Classification-aware routing — CLASSIFIED label flows end-to-end", labelAr: "توجيه واعٍ بالتصنيف — تسمية سرّي تسري من البداية للنهاية", linkLabel: "see Queue", linkLabelAr: "انظر القائمة" },
+    { done: true,  labelEn: "Separate weight profile — 'Classified · Rasad-weighted' (see Config tab)", labelAr: "ملف أوزان منفصل — 'سرّي · موزون برصد' (انظر الإعدادات)", linkLabel: "open Config", linkLabelAr: "فتح الإعدادات", onClick: onOpenConfig },
+    { done: true,  labelEn: "Segregated audit logging — all Rasad access flagged `classified_accessed`", labelAr: "سجل تدقيق منفصل — كل وصول لرصد يُعلَّم classified_accessed", linkLabel: "open Audit", linkLabelAr: "فتح التدقيق", onClick: onOpenAudit },
+    { done: true, partial: true, labelEn: "Shadow-mode active — synthetic boosts running; full access pending formal ROP agreement", labelAr: "وضع الظل نشط — تعزيزات اصطناعية تُشغَّل؛ الوصول الكامل بانتظار اتفاق رسمي مع الشرطة", linkLabel: "Phase 2", linkLabelAr: "المرحلة 2" },
   ];
 
   const TRANSITION_STEPS: { icon: string; titleEn: string; titleAr: string; bodyEn: string; bodyAr: string; days: number }[] = [
@@ -313,20 +408,21 @@ const RasadTab = ({
         </div>
         <div className="flex-1 min-w-[260px]">
           <div className="flex items-center gap-2 flex-wrap">
-            <h2 className="text-white text-xl font-bold">{isAr ? "رصد · المرحلة 2" : "Rasad · Phase 2"}</h2>
+            <h2 className="text-white text-xl font-bold">{isAr ? "رصد · وضع الظل نشط" : "Rasad · Shadow-mode active"}</h2>
             <span className="px-2 py-0.5 rounded-md text-[10px] font-bold tracking-widest font-['JetBrains_Mono']"
               style={{ background: CLASSIFICATION_META.classified.bg, color: CLASSIFICATION_META.classified.color, border: `1px solid ${CLASSIFICATION_META.classified.color}55` }}>
               {isAr ? CLASSIFICATION_META.classified.labelAr : CLASSIFICATION_META.classified.label}
             </span>
-            <span className="px-2 py-0.5 rounded-md text-[10px] font-bold tracking-widest font-['JetBrains_Mono']"
-              style={{ background: "rgba(107,79,174,0.12)", color: "#B8A0FF", border: "1px solid rgba(107,79,174,0.3)" }}>
-              {isAr ? "معاينة للقراءة فقط" : "READ-ONLY PREVIEW"}
+            <span className="flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-bold tracking-widest font-['JetBrains_Mono']"
+              style={{ background: "rgba(74,222,128,0.12)", color: "#4ADE80", border: "1px solid rgba(74,222,128,0.4)" }}>
+              <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+              {isAr ? "وضع الظل نشط" : "SHADOW MODE ACTIVE"}
             </span>
           </div>
           <p className="text-gray-300 text-sm mt-1 leading-relaxed">
             {isAr
-              ? "عرض للكيفية التي ستتكامل بها تغذيات رصد المُصنَّفة حين تُمنح الصلاحيات. لا بيانات رصد فعلية مستوعبة هنا — الأرقام اصطناعية لتوضيح المسار."
-              : "How classified Rasad feeds would integrate when access is granted. No actual Rasad data is ingested here — figures are synthetic to illustrate the pathway."}
+              ? "المهايئ مُعدٌّ بالكامل. وضع الظل يُشغّل درجات رصد الاصطناعية بجانب OSINT الحي — يُظهر الإزاحة Δ قبل منح الصلاحية الرسمية."
+              : "Adapter fully wired. Shadow-mode is running: synthetic Rasad boosts overlay live OSINT scores, showing the Δ before full access is provisioned."}
           </p>
         </div>
       </div>
@@ -341,28 +437,32 @@ const RasadTab = ({
             {isAr ? "قائمة الجاهزية" : "Readiness checklist"}
           </h3>
           <ul className="space-y-2">
-            {CHECKLIST.map((item, i) => (
-              <li key={i} className="flex items-start gap-3 p-2 rounded-md"
-                style={{ background: item.done ? "rgba(74,222,128,0.05)" : "rgba(201,138,27,0.05)", border: `1px solid ${item.done ? "rgba(74,222,128,0.2)" : "rgba(201,138,27,0.25)"}` }}>
-                <div className="w-6 h-6 flex items-center justify-center rounded-md flex-shrink-0"
-                  style={{
-                    background: item.done ? "rgba(74,222,128,0.15)" : "rgba(201,138,27,0.15)",
-                    color: item.done ? "#4ADE80" : "#C98A1B",
-                  }}>
-                  <i className={item.done ? "ri-check-line" : "ri-pause-line"} />
-                </div>
-                <span className="flex-1 text-gray-200 text-xs leading-snug">{isAr ? item.labelAr : item.labelEn}</span>
-                {item.onClick ? (
-                  <button type="button" onClick={item.onClick}
-                    className="text-[10px] font-bold font-['JetBrains_Mono'] tracking-widest cursor-pointer flex items-center gap-0.5"
-                    style={{ color: "#D6B47E" }}>
-                    {isAr ? item.linkLabelAr : item.linkLabel} <i className="ri-arrow-right-s-line" />
-                  </button>
-                ) : (
-                  <span className="text-[10px] font-['JetBrains_Mono'] text-gray-500">{isAr ? item.linkLabelAr : item.linkLabel}</span>
-                )}
-              </li>
-            ))}
+            {CHECKLIST.map((item, i) => {
+              const bg    = item.partial ? "rgba(74,222,128,0.04)" : item.done ? "rgba(74,222,128,0.05)" : "rgba(201,138,27,0.05)";
+              const bdr   = item.partial ? "rgba(74,222,128,0.35)" : item.done ? "rgba(74,222,128,0.2)" : "rgba(201,138,27,0.25)";
+              const iconBg= item.partial ? "rgba(74,222,128,0.12)" : item.done ? "rgba(74,222,128,0.15)" : "rgba(201,138,27,0.15)";
+              const iconCl= item.partial ? "#4ADE80" : item.done ? "#4ADE80" : "#C98A1B";
+              const icon  = item.partial ? "ri-loader-2-line" : item.done ? "ri-check-line" : "ri-pause-line";
+              return (
+                <li key={i} className="flex items-start gap-3 p-2 rounded-md"
+                  style={{ background: bg, border: `1px solid ${bdr}` }}>
+                  <div className="w-6 h-6 flex items-center justify-center rounded-md flex-shrink-0"
+                    style={{ background: iconBg, color: iconCl }}>
+                    <i className={icon} />
+                  </div>
+                  <span className="flex-1 text-gray-200 text-xs leading-snug">{isAr ? item.labelAr : item.labelEn}</span>
+                  {item.onClick ? (
+                    <button type="button" onClick={item.onClick}
+                      className="text-[10px] font-bold font-['JetBrains_Mono'] tracking-widest cursor-pointer flex items-center gap-0.5"
+                      style={{ color: "#D6B47E" }}>
+                      {isAr ? item.linkLabelAr : item.linkLabel} <i className="ri-arrow-right-s-line" />
+                    </button>
+                  ) : (
+                    <span className="text-[10px] font-['JetBrains_Mono'] text-gray-500">{isAr ? item.linkLabelAr : item.linkLabel}</span>
+                  )}
+                </li>
+              );
+            })}
           </ul>
         </div>
 
@@ -457,7 +557,10 @@ const RasadTab = ({
         </div>
       </div>
 
-      {/* Panel 4 — Shadow-mode scatter (Wave 4 · D5) */}
+      {/* Panel 4 — Rasad live feed (shadow-mode incoming records) */}
+      <RasadLiveFeed isAr={isAr} />
+
+      {/* Panel 5 — Shadow-mode scatter (Wave 4 · D5) */}
       <RasadShadowScatterPanel isAr={isAr} />
     </div>
   );

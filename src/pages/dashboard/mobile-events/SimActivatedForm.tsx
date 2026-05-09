@@ -3,6 +3,7 @@ import {
   SectionCard, FormField, TextInput, SelectInput, TipBanner, FormActions, BRANCHES,
 } from "@/pages/dashboard/hotel-events/components/FormComponents";
 import { LookupBar, generateMobRef, MobileConfirmationPanel } from "./components/MobileFormComponents";
+import { pushEvent } from "@/services/ameenEventBus";
 
 const ACTIVATED_BY = [
   { value: "store_agent",  label: "Store Agent" },
@@ -41,6 +42,15 @@ const SimActivatedForm = ({ isAr, onCancel }: Props) => {
     setTimeout(() => {
       setSaving(false);
       setRefNumber(generateMobRef());
+      pushEvent({
+        source: "mobile",
+        category: "mobile",
+        eventType: "SIM_ACTIVATION",
+        severity: "info",
+        guestName: subscriberName || undefined,
+        location: branch || undefined,
+        status: "success",
+      });
       setConfirmed(true);
     }, 1800);
   };

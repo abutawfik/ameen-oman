@@ -327,6 +327,7 @@ const OsintRiskEnginePage = () => {
             onScenarioLoad={handleScenarioLoad}
             onClearScenario={() => setScenarioFilter(null)}
             presenterMode={presenterMode}
+            activeProfileId={activeProfileId}
           />
         )}
         {activeTab === "explain" && (

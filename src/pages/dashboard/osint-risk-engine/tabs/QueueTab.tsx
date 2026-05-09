@@ -2,7 +2,8 @@
 // All filter state + selection live in the page shell; this tab only renders
 // and emits events via the `setFilter*` / `onSelect` / `onScenarioLoad` props.
 
-import { SCORE_BAND_META, type DecisionPoint, type RiskBand, type ScoredRecord } from "@/mocks/osintData";
+import { useMemo } from "react";
+import { SCORE_BAND_META, RASAD_SHADOW_SCORES, type DecisionPoint, type RiskBand, type ScoredRecord } from "@/mocks/osintData";
 import ClassificationPill from "../components/ClassificationPill";
 import RedactableText from "../components/RedactableText";
 import { scoreColor } from "../helpers/shared";
@@ -10,7 +11,7 @@ import { DEMO_SCENARIO_CARDS } from "../helpers/demoScenarios";
 
 const QueueTab = ({
   isAr, records, filterBand, setFilterBand, filterDecision, setFilterDecision,
-  onSelect, scenarioFilter, onScenarioLoad, onClearScenario, presenterMode,
+  onSelect, scenarioFilter, onScenarioLoad, onClearScenario, presenterMode, activeProfileId,
 }: {
   isAr: boolean;
   records: ScoredRecord[];
@@ -23,9 +24,16 @@ const QueueTab = ({
   onScenarioLoad: (scenarioKey: string) => void;
   onClearScenario: () => void;
   presenterMode: boolean;
+  activeProfileId: string;
 }) => {
   const BANDS: ("all" | RiskBand)[] = ["all", "critical", "high", "elevated", "borderline", "low"];
   const DPOINTS: ("all" | DecisionPoint)[] = ["all", "ETA", "API_PNR"];
+
+  const rasadActive = activeProfileId === "classified-rasad";
+  const rasadMap = useMemo(
+    () => new Map(RASAD_SHADOW_SCORES.map((s) => [s.recordId, s])),
+    []
+  );
 
   return (
     <div className="space-y-4">
@@ -136,9 +144,25 @@ const QueueTab = ({
         </div>
       </div>
 
+      {/* Rasad active banner */}
+      {rasadActive && (
+        <div className="flex items-center gap-3 px-4 py-2.5 rounded-xl border"
+          style={{ background: "rgba(138,31,60,0.10)", borderColor: "rgba(201,74,94,0.4)" }}>
+          <div className="w-2 h-2 rounded-full animate-pulse" style={{ background: "#C94A5E" }} />
+          <i className="ri-shield-keyhole-line text-sm" style={{ color: "#C94A5E" }} />
+          <span className="text-sm font-bold" style={{ color: "#C94A5E" }}>
+            {isAr ? "وضع رصد — الدرجات تشمل الإشارة المُصنَّفة" : "Rasad shadow-mode — scores include classified signal boost"}
+          </span>
+          <span className="ml-auto px-2 py-0.5 rounded text-[9px] font-bold tracking-widest font-['JetBrains_Mono']"
+            style={{ background: "rgba(138,31,60,0.2)", color: "#C94A5E", border: "1px solid rgba(201,74,94,0.4)" }}>
+            CLASSIFIED · SHADOW
+          </span>
+        </div>
+      )}
+
       {/* Table */}
       <div className="rounded-xl border overflow-hidden"
-        style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.12)" }}>
+        style={{ background: "rgba(10,37,64,0.65)", borderColor: rasadActive ? "rgba(201,74,94,0.25)" : "rgba(184,138,60,0.12)" }}>
         <div className="grid grid-cols-12 gap-2 px-4 py-2.5 border-b text-[10px] font-bold tracking-widest uppercase font-['JetBrains_Mono']"
           style={{ borderColor: "rgba(184,138,60,0.08)", color: "#6B7280" }}>
           <div className="col-span-1">{isAr ? "الدرجة" : "Score"}</div>
@@ -158,21 +182,36 @@ const QueueTab = ({
             className="w-full grid grid-cols-12 gap-2 px-4 py-3 border-b cursor-pointer transition-colors text-left hover:bg-white/[0.03]"
             style={{ borderColor: "rgba(184,138,60,0.05)" }}
           >
-            {/* Score */}
-            <div className="col-span-1 flex items-center">
-              <div className="relative flex items-center justify-center rounded-lg"
-                style={{
-                  background: `${scoreColor(r.band)}18`,
-                  border: `2px solid ${scoreColor(r.band)}55`,
-                  width: presenterMode ? 56 : 48,
-                  height: presenterMode ? 56 : 48,
-                }}>
-                <span className="font-black font-['JetBrains_Mono']"
-                  style={{ color: scoreColor(r.band), fontSize: presenterMode ? "1.125rem" : "0.875rem" }}>
-                  {r.unifiedScore}
-                </span>
-              </div>
-            </div>
+            {/* Score — shows rasadScore when classified-rasad profile active */}
+            {(() => {
+              const shadow = rasadMap.get(r.id);
+              const displayScore = rasadActive && shadow ? shadow.rasadScore : r.unifiedScore;
+              const delta = rasadActive && shadow ? shadow.delta : 0;
+              return (
+                <div className="col-span-1 flex items-center">
+                  <div className="relative flex flex-col items-center justify-center rounded-lg"
+                    style={{
+                      background: rasadActive ? "rgba(138,31,60,0.15)" : `${scoreColor(r.band)}18`,
+                      border: rasadActive
+                        ? "2px solid rgba(201,74,94,0.55)"
+                        : `2px solid ${scoreColor(r.band)}55`,
+                      width: presenterMode ? 56 : 48,
+                      height: presenterMode ? 56 : 48,
+                    }}>
+                    <span className="font-black font-['JetBrains_Mono'] leading-none"
+                      style={{ color: rasadActive ? "#C94A5E" : scoreColor(r.band), fontSize: presenterMode ? "1.125rem" : "0.875rem" }}>
+                      {displayScore}
+                    </span>
+                    {rasadActive && delta > 0 && (
+                      <span className="text-[8px] font-bold font-['JetBrains_Mono'] leading-none"
+                        style={{ color: "#C94A5E" }}>
+                        +{delta}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              );
+            })()}
             {/* Traveler */}
             <div className="col-span-3 flex flex-col justify-center min-w-0 gap-0.5">
               <div className="flex items-center gap-2 min-w-0">

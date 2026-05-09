@@ -2,6 +2,7 @@ import { useState } from "react";
 import {
   SectionCard, FormField, TextInput, SelectInput, FormActions, BRANCHES, COUNTRIES,
 } from "@/pages/dashboard/hotel-events/components/FormComponents";
+import { pushEvent } from "@/services/ameenEventBus";
 import TravelDocSection, { type TravelDocData } from "@/pages/dashboard/hotel-events/components/TravelDocSection";
 import PersonalDetailsSection, { type PersonalData } from "@/pages/dashboard/hotel-events/components/PersonalDetailsSection";
 import FinConfirmation from "./components/FinConfirmation";
@@ -81,6 +82,20 @@ const WireTransferForm = ({ isAr, onCancel }: Props) => {
       setSaving(false);
       const seq = Math.floor(Math.random() * 9000) + 1000;
       setRefNumber(`AMN-FIN-${Date.now()}-${seq}`);
+      const amtNum = parseFloat(amount) || undefined;
+      pushEvent({
+        source: "financial",
+        category: "financial",
+        eventType: "WIRE_TRANSFER",
+        severity: isFlagged ? "flagged" : "info",
+        guestName: `${personal.firstName} ${personal.lastName}`.trim() || undefined,
+        amount: amtNum,
+        currency,
+        transferTo: recipientName ? `${recipientName}${recipientCountry ? ` — ${recipientCountry}` : ""}` : undefined,
+        location: branch || undefined,
+        status: "success",
+        riskFlag: isFlagged ? `AML: ${currency} ${amtNum?.toLocaleString()} transfer exceeds threshold` : undefined,
+      });
       setConfirmed(true);
     }, 1800);
   };
