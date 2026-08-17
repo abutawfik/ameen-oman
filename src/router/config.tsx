@@ -64,6 +64,9 @@ const SubjectTimelinePage       = lazy(() => import("../pages/dashboard/subject-
 const SearchPage                = lazy(() => import("../pages/dashboard/search/page"));
 const PersonsOfInterestPage     = lazy(() => import("../pages/dashboard/persons-of-interest/page"));
 const RiskTrackerPage           = lazy(() => import("../pages/dashboard/risk-tracker/page"));
+const ManageProfilesPage        = lazy(() => import("../pages/dashboard/manage-profiles/page"));
+const RiskRulesPage             = lazy(() => import("../pages/dashboard/risk-rules/page"));
+const MLModelsPage              = lazy(() => import("../pages/dashboard/ml-models/page"));
 
 // ── Route-level Suspense fallback — brand-aligned, silent, fast ─────────────
 // Renders for ~100-400ms while a lazy chunk loads. Subtle enough to not feel
@@ -154,6 +157,9 @@ const routes: RouteObject[] = [
       { path: "search",                  element: L(SearchPage) },
       { path: "persons-of-interest",     element: L(PersonsOfInterestPage) },
       { path: "risk-tracker",            element: L(RiskTrackerPage) },
+      { path: "manage-profiles",         element: L(ManageProfilesPage) },
+      { path: "risk-rules",              element: L(RiskRulesPage) },
+      { path: "ml-models",              element: L(MLModelsPage) },
       { path: "notifications",           element: L(NotificationsPage) },
       { path: "system-admin",            element: L(SystemAdminPage) },
       { path: "api-portal",              element: L(ApiPortalPage) },

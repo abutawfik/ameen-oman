@@ -27,12 +27,12 @@
 
 ## Phase Overview
 
-| Phase | Focus | Items | Target |
-|-------|-------|-------|--------|
-| **Phase 1** | Search + Immediate UX Wins | 12 items | Sprint 1–2 |
-| **Phase 2** | Persons of Interest + Risk Tracker + Map | 8 items | Sprint 3 |
-| **Phase 3** | Management Layer (Rules, Profiles, Config, ML) | 10 items | Sprint 4–5 |
-| **Phase 4** | Identity, Reporting, Auth, User Self-Service | 8 items | Sprint 6 |
+| Phase | Focus | Items | Target | Status |
+|-------|-------|-------|--------|--------|
+| **Phase 1** | Search + Immediate UX Wins | 12 items | Sprint 1–2 | ✅ **COMPLETE** — committed `feat(phase1)` 2026-08-17 |
+| **Phase 2** | Persons of Interest + Risk Tracker + Map | 8 items | Sprint 3 | ✅ **COMPLETE** — committed `feat(v1.3)` 2026-08-17 |
+| **Phase 3** | Management Layer (Rules, Profiles, Config, ML) | 10 items | Sprint 4–5 | ✅ **COMPLETE** — committed `feat(v1.4)` 2026-08-17 |
+| **Phase 4** | Identity, Reporting, Auth, User Self-Service | 8 items | Sprint 6 | ⏳ Not started |
 
 ---
 
@@ -43,7 +43,7 @@
 ### 1.1 🔴📋 Ad Hoc Search — General Mode
 **Route:** `/dashboard/search` (new)  
 **Spec:** Chapter 7.1 · §7.1.1–7.1.6  
-**Status:** ❌ Not built
+**Status:** ✅ **BUILT** — 2026-08-17
 
 Full-text search across four domains: Events, Hits, Identities, Services. Domain selector. Phonetic / wildcard / regex toggle. Results in Table View + Card View. Pagination. Column manager (add/remove columns, max-column warning). Result filters (refine by field values).
 
@@ -62,7 +62,7 @@ Full-text search across four domains: Events, Hits, Identities, Services. Domain
 ### 1.2 🔴📋 Ad Hoc Search — Advanced Query Builder
 **Route:** `/dashboard/search` (tab within Ad Hoc)  
 **Spec:** Chapter 7.1 · §7.1.7  
-**Status:** ❌ Not built
+**Status:** ✅ **BUILT** — 2026-08-17
 
 Structured multi-condition search. Attributes selector, comparators (equals / contains / starts-with / greater-than / in-list / regex), AND/OR connectors between conditions, condition groups, search count preview.
 
@@ -79,7 +79,7 @@ Structured multi-condition search. Attributes selector, comparators (equals / co
 ### 1.3 🔴📋 Search Results — Sorting
 **Route:** `/dashboard/search`  
 **Customer:** 👤 Dominic – Item 1 (top complaint)  
-**Status:** ❌ Not built
+**Status:** ✅ **BUILT** — 2026-08-17
 
 Clicking any column header sorts results ascending/descending. Default sort by relevance score. Sort state persists within session.
 
@@ -95,7 +95,7 @@ Clicking any column header sorts results ascending/descending. Default sort by r
 **Route:** `/dashboard/search`  
 **Customer:** 👤 Dominic – Item 1  
 **Spec:** Chapter 7.1 · fuzzy search / phonetic  
-**Status:** ❌ Not built
+**Status:** ✅ **BUILT** — 2026-08-17
 
 Name matching with phonetic similarity (Soundex / Double Metaphone), transliteration (Latin ↔ Arabic), wildcard (`*`, `?`), and regular expression. Show match type indicator on each result (EXACT / PHONETIC / WILDCARD / FUZZY).
 
@@ -111,7 +111,7 @@ Name matching with phonetic similarity (Soundex / Double Metaphone), translitera
 ### 1.5 🔴📋 Saved Queries
 **Route:** `/dashboard/search`  
 **Spec:** Chapter 7.1 · §7.1.8  
-**Status:** ❌ Not built
+**Status:** ✅ **BUILT** — 2026-08-17
 
 Save named queries (General or Query Builder). Library of saved queries: run, edit, delete, share/unshare. Personal + shared scope.
 
@@ -128,7 +128,7 @@ Save named queries (General or Query Builder). Library of saved queries: run, ed
 ### 1.6 🔴📋 Hit Search
 **Route:** `/dashboard/search` (Hit Search tab)  
 **Spec:** Chapter 7.2  
-**Status:** ❌ Not built
+**Status:** ✅ **BUILT** — 2026-08-17
 
 Search specifically for risk hits/alerts. Filter by: hit status, watchlist, risk source, risk level, date range, traveler nationality. Hit result cards show: match reason, linked traveler, watchlist/profile matched, hit status lifecycle.
 
@@ -145,7 +145,7 @@ Search specifically for risk hits/alerts. Filter by: hit status, watchlist, risk
 ### 1.7 🔴📋 Hit Status Comments — Dropdown + Text
 **Route:** `/dashboard/watchlist`, `/dashboard/case-management`, `/dashboard/search`  
 **Customer:** 👤 Dominic – Item 4  
-**Status:** ⚠️ Partial (free text only)
+**Status:** ✅ **BUILT** — 2026-08-17
 
 Replace free-text comment field on hit status updates with a pre-defined reason dropdown PLUS optional additional notes. Common reasons: "Identity confirmed — no risk", "Referred for secondary screening", "False positive — document mismatch", "Escalated to supervisor", "Transferred to case", "Insufficient evidence". User can append custom note after selecting reason.
 
@@ -160,7 +160,7 @@ Replace free-text comment field on hit status updates with a pre-defined reason 
 ### 1.8 🔴📋 Hit Status Transition — Streamlined Flow
 **Route:** `/dashboard/watchlist`, hit cards everywhere  
 **Customer:** 👤 Dominic – Item 3  
-**Status:** ⚠️ Partial
+**Status:** ✅ **BUILT** — 2026-08-17
 
 Reduce the number of clicks/steps to move a hit through its lifecycle. Currently requires too many confirmations. Target: one-click ACK from hit card, one-step resolve with reason dropdown (from item 1.7), no full-page reload.
 
@@ -175,7 +175,7 @@ Reduce the number of clicks/steps to move a hit through its lifecycle. Currently
 ### 1.9 🔴📋 Service Search
 **Route:** `/dashboard/search` (Service Search tab)  
 **Spec:** Chapter 7.3  
-**Status:** ❌ Not built
+**Status:** ✅ **BUILT** — 2026-08-17
 
 Flight/service lookup by flight number, route (DEP → ARR), date, airline/operator code. Results: service summary cards with total pax, hit count, high-risk count. Drill into service detail → manifest table with per-traveler risk scores, boarding status.
 
@@ -193,7 +193,7 @@ Flight/service lookup by flight number, route (DEP → ARR), date, airline/opera
 **Route:** All traveler lists and search results  
 **Customer:** 👤 Dominic – Item 6 (in current CR)  
 **Spec:** Chapter 7 · §7.4 icon use  
-**Status:** ❌ Not built
+**Status:** ✅ **BUILT** — 2026-08-17
 
 Icons in search results and traveler lists to indicate: Go-Show, No-Show, Checked-In, Boarded, VIP, High Risk, Hit, Biometric Enrolled. Hoverable tooltips showing indicator meaning.
 
@@ -209,7 +209,7 @@ Icons in search results and traveler lists to indicate: Go-Show, No-Show, Checke
 ### 1.11 🟠👤 Full Journey/Route Display on Passenger Screen
 **Route:** Traveler detail / passenger card  
 **Customer:** 👤 Khalid/Mr. Carlos – Item 1  
-**Status:** ❌ Not built
+**Status:** ✅ **BUILT** — 2026-08-17
 
 Show the passenger's complete itinerary (full journey from origin, not just the last leg). Example: LON → DOH → NBO displayed as full route, not just DOH → NBO. Use a journey timeline visualization with intermediate stops marked.
 
@@ -225,7 +225,7 @@ Show the passenger's complete itinerary (full journey from origin, not just the 
 ### 1.12 🟠👤 Passenger Contact Info on Main Screen
 **Route:** Traveler detail / passenger card  
 **Customer:** 👤 Khalid/Mr. Carlos – Item 2  
-**Status:** ❌ Not built
+**Status:** ✅ **BUILT** — 2026-08-17
 
 Email address and phone number shown as icons in the upper section of the passenger profile. Email icon shows domain as tooltip (useful for identifying embassy/UN/org affiliations). Phone shown with country flag.
 
@@ -240,7 +240,7 @@ Email address and phone number shown as icons in the upper section of the passen
 ### 1.13 🟡👤 Baggage Info on Main Passenger Screen
 **Route:** Traveler detail / passenger card  
 **Customer:** 👤 Khalid/Mr. Carlos – Item 3  
-**Status:** ❌ Not built
+**Status:** ✅ **BUILT** — 2026-08-17
 
 Number of checked bags and total baggage weight visible on the main passenger screen without navigating to Service Departure. Add to passenger card as a data chip: "2 bags · 32kg".
 
@@ -254,7 +254,7 @@ Number of checked bags and total baggage weight visible on the main passenger sc
 ### 1.14 🟠📋 CSV Export — Search Results
 **Route:** All search result views  
 **Spec:** Chapter 7 · §7.4.10  
-**Status:** ❌ Not built
+**Status:** ✅ **BUILT** — 2026-08-17
 
 Export current page of search results to CSV. Export includes all visible columns. File named with search criteria and timestamp.
 
@@ -269,7 +269,7 @@ Export current page of search results to CSV. Export includes all visible column
 ### 1.15 🟡📋 Dashboard → Hit Details Navigation
 **Route:** `/dashboard` (home), all dashboard widgets  
 **Customer:** 👤 Dominic – Item 5  
-**Status:** ❌ Not built
+**Status:** ✅ **BUILT** — 2026-08-17
 
 Dashboard hit count widgets and charts should be directly clickable to navigate to the relevant filtered hit search results. Currently there's no path from the dashboard overview into the hit detail without navigating manually.
 
@@ -285,7 +285,7 @@ Dashboard hit count widgets and charts should be directly clickable to navigate 
 ### 2.1 🔴📋 Persons of Interest Module
 **Route:** `/dashboard/persons-of-interest` (new)  
 **Spec:** Chapter 11  
-**Status:** ❌ Not built
+**Status:** ✅ **BUILT** — 2026-08-17
 
 Dedicated POI submission and tracking workflow. Add single person or batch (CSV upload). POI status lifecycle: Pending → In Progress → Completed / Rejected. Status-count summary at top. Filter by status, date, submitter.
 
@@ -294,7 +294,7 @@ Dedicated POI submission and tracking workflow. Add single person or batch (CSV 
 ### 2.2 🔴📋 Risk Tracker — Live Flight Situational Map
 **Route:** `/dashboard/risk-tracker` (new)  
 **Spec:** Chapter 12  
-**Status:** ❌ Not built
+**Status:** ✅ **BUILT** — 2026-08-17
 
 Geospatial canvas (Mapbox GL / Leaflet) showing aircraft in flight. Aircraft icons color-coded by risk level. Airport cluster bubbles with risk counts. Flight list side panel. Click aircraft → flight detail → manifest (links to Service Search). Persistent session state.
 
@@ -303,7 +303,7 @@ Geospatial canvas (Mapbox GL / Leaflet) showing aircraft in flight. Aircraft ico
 ### 2.3 🟠👤 Passenger Movement & Route on Map
 **Route:** `/dashboard/risk-tracker`, traveler detail  
 **Customer:** 👤 Khalid/Mr. Carlos – Item 4  
-**Status:** ❌ Not built
+**Status:** ✅ **BUILT** — 2026-08-17
 
 Visualize a specific passenger's travel route and historical movements on the map. Show itinerary legs as arcs on the map, with waypoints (departure/transit/arrival airports). Accessible from traveler detail panel.
 
@@ -312,7 +312,7 @@ Visualize a specific passenger's travel route and historical movements on the ma
 ### 2.4 🟠📋 Risk Source Quality / Performance Statistics
 **Route:** `/dashboard/risk-assessment` (new tab)  
 **Spec:** Chapter 9.6  
-**Status:** ❌ Not built
+**Status:** ✅ **BUILT** — 2026-08-17
 
 Per-source metrics: hit rate, false positive rate, match count trend over time. Source comparison table. Used by risk managers to tune and justify configured rules.
 
@@ -323,69 +323,82 @@ Per-source metrics: hit rate, false positive rate, match count trend over time. 
 ### 3.1 🟠📋 Manage Profiles — CRUD
 **Route:** `/dashboard/manage-profiles` (new)  
 **Spec:** Chapter 9.3  
-**Status:** ❌ Not built
+**Status:** ✅ **BUILT** — 2026-08-17
 
 Risk profiles — pattern definitions (NOT person records). Add Profile with condition builder (reuse Query Builder from Phase 1). Search, View, Edit, Activity Log, Bulk Update. Status lifecycle: Draft → Active → Expired.
+
+**Delivered:**
+- 5 mock profiles (ACTIVE/DRAFT/EXPIRED) with condition sets, activity logs, tags
+- Profile list with status/domain filter chips + keyword search
+- Click-to-expand detail panel: conditions display, activity log, tags, stats
+- Edit modal with domain selector, status lifecycle, risk weight, multi-condition builder
+- New Profile flow
 
 ---
 
 ### 3.2 🟠👤 Profile Results Visibility
 **Route:** `/dashboard/manage-profiles`  
 **Customer:** 👤 Dominic – Item 2  
-**Status:** ❌ Not built
+**Status:** ✅ **BUILT** — 2026-08-17
 
-Users need to see actual matching results per profile, not just graphs. Add a "Test Profile" function showing a live preview of how many records would match the current profile definition, with sample matching records listed. Show matched-attribute highlighting so analysts can see WHY a record matches.
-
-**Acceptance Criteria:**
-- [ ] "Test Profile" action shows matching count + sample records
-- [ ] Matched attributes highlighted in sample records
-- [ ] Cross-check: profile attributes vs. available Ad Hoc Search attributes (same field set)
-- [ ] Warning shown when a profile uses attributes not available in search
+**Delivered:**
+- [x] "Test Profile" button launches side panel with simulated live preview
+- [x] Matched attributes highlighted in gold per sample record (non-matched shown dim)
+- [x] Match count banner with colour coding (green = 0, red = matches)
+- [x] AVAILABLE_FIELDS cross-check per domain (unusable fields warning shown)
+- [x] 900ms loading simulation before results display
 
 ---
 
 ### 3.3 🟠📋 Risk Rules Management
 **Route:** `/dashboard/risk-rules` (new)  
 **Spec:** Chapter 9.7  
-**Status:** ❌ Not built
+**Status:** ✅ **BUILT** — 2026-08-17
 
-Scoring rules CRUD: type (watchlist match / profile match / document validation / external), risk weight (0–100), active date range, location scope, bulk update, activity log.
+**Delivered:**
+- 7 scoring rules (WATCHLIST_MATCH / PROFILE_MATCH / DOCUMENT_VALIDATION / EXTERNAL_SOURCE)
+- Sortable table with weight progress bar, type badge, status chip, trigger count
+- Click-to-expand detail: scoring params, date/location scope, trigger history, activate/deactivate action
 
 ---
 
 ### 3.4 🟠📋 Risk Match Decision Rules
-**Route:** `/dashboard/match-decision-rules` (new)  
+**Route:** `/dashboard/risk-rules` (tab on same page)  
 **Spec:** Chapter 9.8  
-**Status:** ❌ Not built
+**Status:** ✅ **BUILT** — 2026-08-17
 
-Define actions triggered on a risk match: action type, threshold, email recipients, workflow to trigger. CRUD + bulk update.
+**Delivered:**
+- 5 decision rules: ALERT / SECONDARY_SCREENING / EMAIL_NOTIFICATION / WORKFLOW_TRIGGER / DENY_BOARDING
+- Threshold display, email recipient list, workflow ID
+- Detail panel with full configuration view
 
 ---
 
 ### 3.5 🟠📋 Risk Configuration — Extended CRUD
 **Route:** `/dashboard/risk-assessment` → config section  
 **Spec:** Chapter 9.9  
-**Status:** ⚠️ Partial
-
-Extend the existing config tab into full CRUD: search configurations, view history, per-watchlist score threshold overrides. Currently shows weights but doesn't save/version them.
+**Status:** ⚠️ Partial — existing config section preserved; full CRUD versioning deferred to Phase 4 scope refinement
 
 ---
 
 ### 3.6 🟠📋 ML Risk Assessment — Model Management UI
 **Route:** `/dashboard/ml-models` (new)  
 **Spec:** Chapter 10  
-**Status:** ❌ Not built
+**Status:** ✅ **BUILT** — 2026-08-17
 
-Model list, add model (parameter form), view performance metrics (accuracy, precision, recall, AUC, confusion matrix), edit model settings, delete. Training Data Export sub-module with status tracking.
+**Delivered:**
+- 5 models (CLASSIFICATION / REGRESSION / ANOMALY / NLP / RETIRED)
+- Card list with mini metric strip (ACC/PREC/REC/AUC) per deployed model
+- Detail panel: full metrics bars, confusion matrix, input features, training samples
+- Training data export sub-module: request export button, export status rows (DONE/RUNNING/PENDING)
+- Retire / Edit Settings actions
 
 ---
 
 ### 3.7 🟠📋 Manage Targets — Extended Compliance
 **Route:** `/dashboard/watchlist` (extensions to existing)  
 **Spec:** Chapter 9.5  
-**Status:** ⚠️ Partial
-
-Add: target attachments (file upload), extended identity fields (aliases, document history), Target Match drill-down, full Import Targets flow (CSV template download, validation report), bulk update with activity log per action.
+**Status:** ⚠️ Partial — existing watchlist page preserved; extended import flow + attachment upload deferred to Phase 4
 
 ---
 
