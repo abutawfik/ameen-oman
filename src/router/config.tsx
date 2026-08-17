@@ -67,6 +67,13 @@ const RiskTrackerPage           = lazy(() => import("../pages/dashboard/risk-tra
 const ManageProfilesPage        = lazy(() => import("../pages/dashboard/manage-profiles/page"));
 const RiskRulesPage             = lazy(() => import("../pages/dashboard/risk-rules/page"));
 const MLModelsPage              = lazy(() => import("../pages/dashboard/ml-models/page"));
+const ManageUsersPage           = lazy(() => import("../pages/dashboard/manage-users/page"));
+const UserProfilePage           = lazy(() => import("../pages/dashboard/user-profile/page"));
+const IdentityComparePage       = lazy(() => import("../pages/dashboard/identity-compare/page"));
+const VizLibraryPage            = lazy(() => import("../pages/dashboard/viz-library/page"));
+const ForgotPasswordPage        = lazy(() => import("../pages/forgot-password/page"));
+const ResetPasswordPage         = lazy(() => import("../pages/reset-password/page"));
+const SetPasswordPage           = lazy(() => import("../pages/set-password/page"));
 
 // ── Route-level Suspense fallback — brand-aligned, silent, fast ─────────────
 // Renders for ~100-400ms while a lazy chunk loads. Subtle enough to not feel
@@ -115,8 +122,11 @@ const L = (El: React.ComponentType) => (
 
 const routes: RouteObject[] = [
   { path: "/",         element: <Home /> },
-  { path: "/login",    element: <LoginPage /> },
-  { path: "/register", element: <RegisterPage /> },
+  { path: "/login",           element: <LoginPage /> },
+  { path: "/register",       element: <RegisterPage /> },
+  { path: "/forgot-password", element: L(ForgotPasswordPage) },
+  { path: "/reset-password",  element: L(ResetPasswordPage) },
+  { path: "/set-password",    element: L(SetPasswordPage) },
 
   {
     path: "/dashboard",
@@ -143,7 +153,7 @@ const routes: RouteObject[] = [
       { path: "event-list",              element: L(CalendarEventsPage) },
       { path: "batch-upload",            element: L(BatchReportsPage) },
       { path: "reports",                 element: L(ReportsPage) },
-      { path: "manage-users",            element: L(BatchReportsPage) },
+      { path: "manage-users",            element: L(ManageUsersPage) },
       { path: "help",                    element: L(BatchReportsPage) },
       { path: "command-center",          element: L(CommandCenterPage) },
       { path: "risk-assessment",         element: L(RiskAssessmentPage) },
@@ -160,6 +170,9 @@ const routes: RouteObject[] = [
       { path: "manage-profiles",         element: L(ManageProfilesPage) },
       { path: "risk-rules",              element: L(RiskRulesPage) },
       { path: "ml-models",              element: L(MLModelsPage) },
+      { path: "user-profile",            element: L(UserProfilePage) },
+      { path: "identity-compare",        element: L(IdentityComparePage) },
+      { path: "viz-library",             element: L(VizLibraryPage) },
       { path: "notifications",           element: L(NotificationsPage) },
       { path: "system-admin",            element: L(SystemAdminPage) },
       { path: "api-portal",              element: L(ApiPortalPage) },
