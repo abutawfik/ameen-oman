@@ -14,6 +14,7 @@ interface Props {
 
 const groupLabels: Record<string, { en: string; ar: string }> = {
   main:    { en: "MAIN",    ar: "الرئيسية" },
+  search:  { en: "SEARCH",  ar: "البحث"    },
   modules: { en: "MODULES", ar: "الوحدات" },
   admin:   { en: "ADMIN",   ar: "الإدارة" },
 };
@@ -38,7 +39,7 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
   };
 
   // Group items — skip groups that have no items
-  const groups = ["main", "modules", "admin"] as const;
+  const groups = ["main", "search", "modules", "admin"] as const;
   const grouped = groups
     .map((g) => ({
       group: g,
