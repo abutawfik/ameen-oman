@@ -62,6 +62,8 @@ const EntityResolutionPage      = lazy(() => import("../pages/dashboard/entity-r
 const ReportsPage               = lazy(() => import("../pages/dashboard/reports/page"));
 const SubjectTimelinePage       = lazy(() => import("../pages/dashboard/subject-timeline/page"));
 const SearchPage                = lazy(() => import("../pages/dashboard/search/page"));
+const PersonsOfInterestPage     = lazy(() => import("../pages/dashboard/persons-of-interest/page"));
+const RiskTrackerPage           = lazy(() => import("../pages/dashboard/risk-tracker/page"));
 
 // ── Route-level Suspense fallback — brand-aligned, silent, fast ─────────────
 // Renders for ~100-400ms while a lazy chunk loads. Subtle enough to not feel
@@ -150,6 +152,8 @@ const routes: RouteObject[] = [
       { path: "person-360",              element: L(Person360Page) },
       { path: "subject-timeline",        element: L(SubjectTimelinePage) },
       { path: "search",                  element: L(SearchPage) },
+      { path: "persons-of-interest",     element: L(PersonsOfInterestPage) },
+      { path: "risk-tracker",            element: L(RiskTrackerPage) },
       { path: "notifications",           element: L(NotificationsPage) },
       { path: "system-admin",            element: L(SystemAdminPage) },
       { path: "api-portal",              element: L(ApiPortalPage) },
