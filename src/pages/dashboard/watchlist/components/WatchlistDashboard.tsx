@@ -13,6 +13,7 @@ const typeConfig: Record<WatchlistType, { label: string; labelAr: string; border
   financial:         { label: 'Financial Watchlist', labelAr: 'القائمة المالية', border: '#FACC15', bg: 'rgba(250,204,21,0.08)', icon: 'ri-money-dollar-circle-line' },
   employment:        { label: 'Employment Violation', labelAr: 'مخالفات التوظيف', border: '#C98A1B', bg: 'rgba(201,138,27,0.06)', icon: 'ri-briefcase-line' },
   interpol:          { label: 'Interpol / International', labelAr: 'الإنتربول / الدولي', border: '#A78BFA', bg: 'rgba(167,139,250,0.08)', icon: 'ri-global-line' },
+  sanctions:         { label: 'Sanctions List', labelAr: 'قائمة العقوبات', border: '#F97316', bg: 'rgba(249,115,22,0.08)', icon: 'ri-flag-line' },
   custom:            { label: 'Custom', labelAr: 'مخصص', border: '#D6B47E', bg: 'rgba(184,138,60,0.08)', icon: 'ri-settings-3-line' },
 };
 

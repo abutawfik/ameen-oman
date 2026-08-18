@@ -13,6 +13,7 @@ const typeConfig: Record<WatchlistType, { label: string; color: string }> = {
   financial:         { label: 'Financial', color: '#FACC15' },
   employment:        { label: 'Employment', color: '#C98A1B' },
   interpol:          { label: 'Interpol', color: '#A78BFA' },
+  sanctions:         { label: 'Sanctions', color: '#F97316' },
   custom:            { label: 'Custom', color: '#D6B47E' },
 };
 
