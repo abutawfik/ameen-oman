@@ -1,8 +1,8 @@
 # Al-Ameen — Product Roadmap
 ## SIT Spec Compliance + Customer Session Enhancements
 
-**Version:** 1.0  
-**Assessment Date:** 2026-08-17  
+**Version:** 1.1  
+**Assessment Date:** 2026-08-17 · **Last Updated:** 2026-08-18  
 **Source Spec:** SITA Intelligence & Targeting (SIT) Functional Specification v2024.3.5  
 **Customer Sessions:** Dominic Sy (DIS feedback) · Khalid AlFarsi + Mr. Carlos (Kenya session, 14 Aug 2026)  
 **Classification:** SITA Internal — Commercial in Confidence
@@ -32,7 +32,7 @@
 | **Phase 1** | Search + Immediate UX Wins | 12 items | Sprint 1–2 | ✅ **COMPLETE** — committed `feat(phase1)` 2026-08-17 |
 | **Phase 2** | Persons of Interest + Risk Tracker + Map | 8 items | Sprint 3 | ✅ **COMPLETE** — committed `feat(v1.3)` 2026-08-17 |
 | **Phase 3** | Management Layer (Rules, Profiles, Config, ML) | 10 items | Sprint 4–5 | ✅ **COMPLETE** — committed `feat(v1.4)` 2026-08-17 |
-| **Phase 4** | Identity, Reporting, Auth, User Self-Service | 8 items | Sprint 6 | ⏳ Not started |
+| **Phase 4** | Identity, Reporting, Auth, User Self-Service | 5 items | Sprint 6 | ✅ **COMPLETE** — committed `feat(v1.5)` 2026-08-18 |
 
 ---
 
@@ -405,47 +405,81 @@ Risk profiles — pattern definitions (NOT person records). Add Profile with con
 ## Phase 4: Identity, Reporting, Auth, User Self-Service
 
 ### 4.1 🟡📋 Manage Identities — Compare / Merge / Split
-**Route:** `/dashboard/entity-resolution` (extensions)  
+**Route:** `/dashboard/identity-compare` (new)  
 **Spec:** Chapter 8  
-**Status:** ⚠️ Partial
+**Status:** ✅ **BUILT** — 2026-08-18
 
-Add guided identity deduplication: side-by-side Compare view, Merge wizard (select master record, choose fields to keep), Split flow (separate previously merged identities).
+Guided identity deduplication workflow. Left queue panel lists candidate pairs with similarity scores and status filter chips (Pending / Merged / Kept Separate / Escalated). Compare panel shows side-by-side attribute table with match/diff colour coding and 5-factor ML score breakdown (name token ratio, alias overlap, country match, DOB proximity, source agreement). 3-step merge wizard: select master record → field-by-field chooser → review + confirm. Actions: Escalate / Keep Separate / Merge Entities. Status updates persist in local queue state.
+
+**Delivered:**
+- [x] Queue of candidate identity pairs from `ENTITY_MATCH_QUEUE` mock
+- [x] Similarity bar + 5-factor breakdown bars per pair
+- [x] Attribute comparison table (match=green, diff=amber, missing=dim)
+- [x] 3-step `MergeWizard` modal (master select → field chooser → confirm)
+- [x] Escalate / Keep Separate / Merge actions update queue status
 
 ---
 
 ### 4.2 🟡📋 Business Reporting — Visualize Library
-**Route:** `/dashboard/reports` (extensions)  
+**Route:** `/dashboard/viz-library` (new)  
 **Spec:** Chapter 13  
-**Status:** ⚠️ Partial
+**Status:** ✅ **BUILT** — 2026-08-18
 
-Pre-defined report widgets + custom visualization builder. Save, search, edit, delete visualizations. Dashboard Library (compose widgets into saved dashboard layouts).
+12-widget gallery with inline SVG previews (no external dependencies). Three tabs: Widget Gallery (category filter: All / Core / Charts / Risk), Dashboard Builder (canvas with Add/Remove widgets, dashboard name, Save), and Saved Dashboards (3 pre-built layouts: Executive Overview, Risk Summary, Operational Daily) with View / Edit / Clone actions.
+
+**Delivered:**
+- [x] 12 inline SVG chart components: Bar, Line, Donut, Heatmap, Stat Tile, Horizontal Bar, Timeline, Funnel, Gauge, Scatter, Data Table, Area Chart
+- [x] Widget Gallery with category filter chips and "Add to Builder" per widget
+- [x] Dashboard Builder canvas with `canvasWidgets` state and remove controls
+- [x] Saved Dashboards tab with 3 pre-built dashboard cards
 
 ---
 
 ### 4.3 🟡📋 Forgot Password / First-Login Flow
-**Route:** `/forgot-password`, `/reset-password/:token`, `/set-password`  
+**Route:** `/forgot-password`, `/reset-password`, `/set-password`  
 **Spec:** Chapter 3.4.4–3.4.5, Chapter 4.11  
-**Status:** ❌ Not built
+**Status:** ✅ **BUILT** — 2026-08-18
 
-Three flows: (1) Forgot password → email token → reset form, (2) New user forced change on first login, (3) Admin-initiated forced password change. Notification screens on success.
+All three standalone auth flows built as split-pane pages matching the login brand design (dark ocean-800 left pane, ivory right pane). Each page is outside DashboardLayout with its own route.
+
+**Delivered:**
+- [x] `/forgot-password` — Officer ID / email input → "Send Recovery Link" → success state ("Check your inbox"), 15-minute expiry notice. Back to Login link.
+- [x] `/reset-password` — New password + confirm with 4-segment strength bar and live requirement checklist (8 chars, uppercase, number, special). Disabled submit until all 4 met. Success state → "Go to Login".
+- [x] `/set-password` — First-login variant with "Activate My Account" CTA and "Account activated" success state with `ri-user-follow-line` icon.
+- [x] Left pane: `BrandLogo variant="stacked" size="lg"`, policy rules, descriptive tagline per flow.
 
 ---
 
 ### 4.4 🟡📋 User Profile / Preferences
-**Route:** Operator menu (expand existing)  
+**Route:** `/dashboard/user-profile` (new)  
 **Spec:** Chapter 3.7  
-**Status:** ⚠️ Partial
+**Status:** ✅ **BUILT** — 2026-08-18
 
-Edit personal info, upload profile photo, set timezone preference, view login history, view assigned roles. Currently the operator menu button exists but the screens don't.
+Full user profile page accessible from the operator menu. Two-column layout: left column for Personal Information, Display Preferences, and Security; right column for Module Access, Recent Logins, and Account Details.
+
+**Delivered:**
+- [x] Personal Information card: avatar initials circle (gradient), role + status + MFA badges, info grid (email, officer ID, unit, phone), inline edit form (name, phone) with Save/Cancel
+- [x] Display Preferences card: language toggle (EN / AR buttons), timezone select dropdown
+- [x] Security card: MFA enabled/disabled status with "Request Reset" button (simulated)
+- [x] Module Access: chip list of assigned modules
+- [x] Recent Logins: last 5 login entries with success/fail colour-coded left borders, IP, device, timestamp
 
 ---
 
 ### 4.5 🟡📋 Manage Users CRUD
-**Route:** `/dashboard/manage-users` (currently placeholder)  
+**Route:** `/dashboard/manage-users` (replaces placeholder)  
 **Spec:** Chapter 5  
-**Status:** ❌ Not built (placeholder routes to BatchReports)
+**Status:** ✅ **BUILT** — 2026-08-18
 
-Add user, search users, view user, edit roles/permissions, activate/deactivate. Portal-side UI (ForgeRock integration is backend scope).
+Full user management page replacing the BatchReports placeholder. 8 mock users from `src/mocks/usersData.ts` (6 roles: SUPER_ADMIN / ADMIN / ANALYST / OPERATOR / AUDITOR / VIEWER; 4 statuses: ACTIVE / SUSPENDED / PENDING / INACTIVE).
+
+**Delivered:**
+- [x] Stats row: Total Users, Active, Suspended, Pending counts
+- [x] Role filter chips (ALL + 6 roles) + Status filter chips (ALL + 4 statuses) + keyword search (name / email / officer ID / unit)
+- [x] Full-width sticky-header table: Name+Email, Officer ID (gold mono), Role badge, Unit, Status badge, Last Login, detail arrow
+- [x] Right detail panel (360px) on row select: `UserDetail` component with avatar, badges, info rows, edit role dropdown, Suspend / Activate / Approve buttons, login history with success/fail indicators
+- [x] `AddUserModal`: name EN+AR, officer ID, role select, email, unit, phone → creates PENDING user in local state
+- [x] `handleStatusChange` and `handleRoleChange` update both the list and selected state inline
 
 ---
 
@@ -499,3 +533,4 @@ These modules are **not required** by the SITA SIT spec but are Oman-specific di
 | Date | Version | Changes | Author |
 |------|---------|---------|--------|
 | 2026-08-17 | 1.0 | Initial gap analysis against SITA SIT v2024.3.5. Incorporates customer session feedback from Dominic Sy and Khalid AlFarsi (14 Aug 2026). | Al-Ameen Team |
+| 2026-08-18 | 1.1 | Phase 4 complete — marked 4.1–4.5 as ✅ BUILT. Delivered: Identity Compare/Merge (`identity-compare`), Viz Library with 12-widget gallery (`viz-library`), three auth flows (forgot/reset/set-password), User Profile page, and Manage Users CRUD. Commit: `feat(v1.5)`. | Al-Ameen Team |
