@@ -10,18 +10,85 @@ interface ScoreConfigProps {
   onReset: () => void;
 }
 
+type ConfigVersion = {
+  id: string;
+  label: string;
+  savedAt: string;
+  savedBy: string;
+  weightsSnapshot: StreamWeight[];
+  multipliersSnapshot: MultiplierRule[];
+  note: string;
+};
+
 const ScoreConfig = ({ weights, multipliers, isAr, onWeightChange, onMultiplierToggle, onReset }: ScoreConfigProps) => {
   const [saved, setSaved] = useState(false);
-  const [activeConfigTab, setActiveConfigTab] = useState<"weights" | "multipliers">("weights");
+  const [activeConfigTab, setActiveConfigTab] = useState<"weights" | "multipliers" | "history">("weights");
 
-  const handleSave = () => {
+  // Versioning state
+  const [versions, setVersions] = useState<ConfigVersion[]>([
+    {
+      id: "v1",
+      label: "Initial Configuration",
+      savedAt: "2026-08-10 09:00",
+      savedBy: "admin.khalid",
+      weightsSnapshot: [...weights],
+      multipliersSnapshot: [...multipliers],
+      note: "Baseline config from spec",
+    },
+    {
+      id: "v2",
+      label: "Post-Audit Adjustment",
+      savedAt: "2026-08-14 14:30",
+      savedBy: "admin.nour",
+      weightsSnapshot: [...weights],
+      multipliersSnapshot: [...multipliers],
+      note: "Increased sanctions weight per audit",
+    },
+    {
+      id: "v3",
+      label: "Current",
+      savedAt: "2026-08-17 11:15",
+      savedBy: "admin.ahmed",
+      weightsSnapshot: [...weights],
+      multipliersSnapshot: [...multipliers],
+      note: "Reduced routing anomaly weight",
+    },
+  ]);
+
+  // Save-as-new-version form state
+  const [showSaveForm, setShowSaveForm] = useState(false);
+  const [newVersionLabel, setNewVersionLabel] = useState("");
+  const [newVersionNote, setNewVersionNote] = useState("");
+
+  const handleSaveNewVersion = () => {
+    if (!newVersionLabel.trim()) return;
+    const newVer: ConfigVersion = {
+      id: `v${versions.length + 1}`,
+      label: newVersionLabel.trim(),
+      savedAt: new Date().toISOString().slice(0, 16).replace("T", " "),
+      savedBy: "admin.current",
+      weightsSnapshot: [...weights],
+      multipliersSnapshot: [...multipliers],
+      note: newVersionNote.trim(),
+    };
+    setVersions(prev => [...prev, newVer]);
+    setNewVersionLabel("");
+    setNewVersionNote("");
+    setShowSaveForm(false);
     setSaved(true);
     setTimeout(() => setSaved(false), 2500);
+  };
+
+  const handleRevert = (ver: ConfigVersion) => {
+    ver.weightsSnapshot.forEach(w => onWeightChange(w.key, w.weight));
   };
 
   const modifiedCount = weights.filter((w) => w.weight !== w.defaultWeight).length;
   const activeMultipliers = multipliers.filter((m) => m.active).length;
   const triggeredMultipliers = multipliers.filter((m) => m.triggered && m.active).length;
+
+  // Newest-first for display
+  const sortedVersions = [...versions].reverse();
 
   return (
     <div className="space-y-5">
@@ -52,6 +119,7 @@ const ScoreConfig = ({ weights, multipliers, isAr, onWeightChange, onMultiplierT
         {[
           { id: "weights" as const,     label: isAr ? "أوزان التدفقات" : "Stream Weights",    icon: "ri-equalizer-line" },
           { id: "multipliers" as const, label: isAr ? "قواعد المضاعف" : "Multiplier Rules",   icon: "ri-flashlight-line" },
+          { id: "history" as const,     label: isAr ? "سجل الإصدارات" : "Version History",    icon: "ri-history-line" },
         ].map((t) => (
           <button key={t.id} type="button" onClick={() => setActiveConfigTab(t.id)}
             className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap transition-all flex-1 justify-center"
@@ -194,17 +262,183 @@ const ScoreConfig = ({ weights, multipliers, isAr, onWeightChange, onMultiplierT
         </div>
       )}
 
-      {/* Save button */}
-      <div className="flex items-center justify-between">
-        <p className="text-gray-600 text-xs">
-          {isAr ? "التغييرات تؤثر على جميع درجات المخاطر المستقبلية" : "Changes affect all future risk score calculations"}
-        </p>
-        <button type="button" onClick={handleSave}
-          className="flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold cursor-pointer whitespace-nowrap transition-all"
-          style={{ background: saved ? "#4ADE80" : "#D6B47E", color: "#051428" }}>
-          <i className={`${saved ? "ri-checkbox-circle-line" : "ri-save-line"} text-sm`} />
-          {saved ? (isAr ? "تم الحفظ!" : "Configuration Saved!") : (isAr ? "حفظ الإعدادات" : "Save Configuration")}
-        </button>
+      {/* Version History */}
+      {activeConfigTab === "history" && (
+        <div className="rounded-2xl border overflow-hidden"
+          style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.1)", backdropFilter: "blur(12px)" }}>
+          <div className="px-5 py-4 border-b" style={{ borderColor: "rgba(184,138,60,0.07)" }}>
+            <h3 className="text-white font-bold text-sm">{isAr ? "سجل الإصدارات" : "Version History"}</h3>
+            <p className="text-gray-500 text-xs mt-0.5">
+              {isAr ? "جميع الإصدارات المحفوظة من إعدادات درجة المخاطر" : "All saved snapshots of the risk score configuration"}
+            </p>
+          </div>
+
+          {/* Table header */}
+          <div className="px-5 py-2 grid text-xs font-semibold text-gray-500"
+            style={{
+              gridTemplateColumns: '140px 130px 130px 1fr 80px',
+              borderBottom: '1px solid rgba(184,138,60,0.05)',
+            }}>
+            <span>{isAr ? 'الإصدار' : 'Version'}</span>
+            <span>{isAr ? 'تاريخ الحفظ' : 'Saved At'}</span>
+            <span>{isAr ? 'بواسطة' : 'Saved By'}</span>
+            <span>{isAr ? 'ملاحظة' : 'Note'}</span>
+            <span>{isAr ? 'إجراءات' : 'Actions'}</span>
+          </div>
+
+          <div className="divide-y" style={{ borderColor: "rgba(255,255,255,0.03)" }}>
+            {sortedVersions.map((ver, idx) => {
+              const isNewest = idx === 0;
+              return (
+                <div key={ver.id}
+                  className="px-5 py-3 grid items-center gap-2 transition-colors"
+                  style={{
+                    gridTemplateColumns: '140px 130px 130px 1fr 80px',
+                    borderLeft: isNewest ? '3px solid rgba(214,180,126,0.5)' : '3px solid transparent',
+                    background: isNewest ? 'rgba(184,138,60,0.03)' : 'transparent',
+                  }}>
+                  {/* Version label */}
+                  <div className="flex items-center gap-2 min-w-0">
+                    <span className="text-xs font-['JetBrains_Mono'] font-bold" style={{ color: '#D6B47E' }}>
+                      {ver.id.toUpperCase()}
+                    </span>
+                    <span className="text-white text-xs font-semibold truncate">{ver.label}</span>
+                    {isNewest && (
+                      <span className="flex-shrink-0 px-1.5 py-0.5 rounded text-xs font-bold"
+                        style={{ background: 'rgba(74,222,128,0.1)', color: '#4ADE80', border: '1px solid rgba(74,222,128,0.2)', fontSize: '9px' }}>
+                        {isAr ? 'الأحدث' : 'LATEST'}
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Saved at */}
+                  <span className="text-gray-400 text-xs font-['JetBrains_Mono']">{ver.savedAt}</span>
+
+                  {/* Saved by */}
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-5 h-5 flex items-center justify-center rounded-full flex-shrink-0"
+                      style={{ background: 'rgba(167,139,250,0.12)', border: '1px solid rgba(167,139,250,0.2)' }}>
+                      <i className="ri-user-line" style={{ fontSize: '9px', color: '#A78BFA' }} />
+                    </div>
+                    <span className="text-gray-400 text-xs font-['JetBrains_Mono']">{ver.savedBy}</span>
+                  </div>
+
+                  {/* Note */}
+                  <span className="text-gray-500 text-xs font-['Inter'] truncate" title={ver.note}>
+                    {ver.note || '—'}
+                  </span>
+
+                  {/* Actions */}
+                  <div className="flex items-center gap-1.5">
+                    {isNewest ? (
+                      <div className="flex items-center gap-1 px-2 py-1 rounded-lg"
+                        style={{ background: 'rgba(74,222,128,0.08)', border: '1px solid rgba(74,222,128,0.15)' }}>
+                        <i className="ri-checkbox-circle-line text-xs" style={{ color: '#4ADE80' }} />
+                        <span className="text-xs font-semibold" style={{ color: '#4ADE80' }}>
+                          {isAr ? 'الحالي' : 'Current'}
+                        </span>
+                      </div>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => handleRevert(ver)}
+                        className="flex items-center gap-1 px-2 py-1 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap transition-all"
+                        style={{ background: 'rgba(184,138,60,0.08)', color: '#D6B47E', border: '1px solid rgba(184,138,60,0.2)' }}>
+                        <i className="ri-arrow-go-back-line text-xs" />
+                        {isAr ? 'استعادة' : 'Revert'}
+                      </button>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {/* Save button + inline form */}
+      <div className="space-y-3">
+        <div className="flex items-center justify-between">
+          <p className="text-gray-600 text-xs">
+            {isAr ? "التغييرات تؤثر على جميع درجات المخاطر المستقبلية" : "Changes affect all future risk score calculations"}
+          </p>
+          <button type="button" onClick={() => setShowSaveForm(prev => !prev)}
+            className="flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold cursor-pointer whitespace-nowrap transition-all"
+            style={{ background: saved ? "#4ADE80" : "#D6B47E", color: "#051428" }}>
+            <i className={`${saved ? "ri-checkbox-circle-line" : "ri-save-3-line"} text-sm`} />
+            {saved
+              ? (isAr ? "تم الحفظ!" : "Configuration Saved!")
+              : (isAr ? "حفظ كإصدار جديد" : "Save as New Version")}
+          </button>
+        </div>
+
+        {/* Inline save form */}
+        {showSaveForm && !saved && (
+          <div className="rounded-xl p-4 space-y-3"
+            style={{ background: "rgba(10,37,64,0.9)", border: "1px solid rgba(184,138,60,0.25)" }}>
+            <h4 className="text-white text-sm font-bold font-['Inter']">
+              {isAr ? 'تفاصيل الإصدار الجديد' : 'New Version Details'}
+            </h4>
+            <div className="space-y-2">
+              <div>
+                <label className="text-gray-400 text-xs font-['Inter'] block mb-1">
+                  {isAr ? 'اسم الإصدار *' : 'Version Label *'}
+                </label>
+                <input
+                  type="text"
+                  value={newVersionLabel}
+                  onChange={e => setNewVersionLabel(e.target.value)}
+                  placeholder={isAr ? 'مثال: تعديل ما بعد المراجعة' : 'e.g. Post-Review Adjustment'}
+                  className="w-full px-3 py-2 rounded-lg text-sm font-['Inter'] outline-none"
+                  style={{
+                    background: 'rgba(5,20,40,0.8)',
+                    border: '1px solid rgba(184,138,60,0.2)',
+                    color: '#D1D5DB',
+                  }}
+                />
+              </div>
+              <div>
+                <label className="text-gray-400 text-xs font-['Inter'] block mb-1">
+                  {isAr ? 'ملاحظة (اختياري)' : 'Note (optional)'}
+                </label>
+                <input
+                  type="text"
+                  value={newVersionNote}
+                  onChange={e => setNewVersionNote(e.target.value)}
+                  placeholder={isAr ? 'وصف موجز للتغييرات' : 'Brief description of changes'}
+                  className="w-full px-3 py-2 rounded-lg text-sm font-['Inter'] outline-none"
+                  style={{
+                    background: 'rgba(5,20,40,0.8)',
+                    border: '1px solid rgba(184,138,60,0.2)',
+                    color: '#D1D5DB',
+                  }}
+                />
+              </div>
+            </div>
+            <div className="flex items-center gap-2 pt-1">
+              <button
+                type="button"
+                onClick={handleSaveNewVersion}
+                disabled={!newVersionLabel.trim()}
+                className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold cursor-pointer whitespace-nowrap transition-all"
+                style={{
+                  background: newVersionLabel.trim() ? '#D6B47E' : 'rgba(214,180,126,0.3)',
+                  color: '#051428',
+                  cursor: newVersionLabel.trim() ? 'pointer' : 'not-allowed',
+                }}>
+                <i className="ri-save-line text-sm" />
+                {isAr ? 'تأكيد الحفظ' : 'Confirm Save'}
+              </button>
+              <button
+                type="button"
+                onClick={() => { setShowSaveForm(false); setNewVersionLabel(""); setNewVersionNote(""); }}
+                className="px-4 py-2 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap transition-all"
+                style={{ border: '1px solid rgba(255,255,255,0.08)', color: '#6B7280' }}>
+                {isAr ? 'إلغاء' : 'Cancel'}
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

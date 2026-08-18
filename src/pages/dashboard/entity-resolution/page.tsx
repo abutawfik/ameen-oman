@@ -21,6 +21,7 @@ const STATUS_META: Record<Status, { labelEn: string; labelAr: string; color: str
   MERGED:         { labelEn: "Merged",         labelAr: "مدمج",          color: "#4A8E3A" },
   KEPT_SEPARATE:  { labelEn: "Kept separate",  labelAr: "منفصل",         color: "#4A7AA8" },
   ESCALATED:      { labelEn: "Escalated",      labelAr: "مصعّد",         color: "#8A1F3C" },
+  SPLIT:          { labelEn: "Split",          labelAr: "مفصول",         color: "#5B7494" },
 };
 
 const simColor = (s: number) => (s >= 0.80 ? "#D6B47E" : "#C98A1B"); // brass / amber
@@ -54,6 +55,7 @@ const EntityResolutionPage = () => {
     MERGED: queue.filter((q) => q.status === "MERGED").length,
     KEPT_SEPARATE: queue.filter((q) => q.status === "KEPT_SEPARATE").length,
     ESCALATED: queue.filter((q) => q.status === "ESCALATED").length,
+    SPLIT: queue.filter((q) => q.status === "SPLIT").length,
   };
 
   const action = (next: Status, requiresNote: boolean) => {

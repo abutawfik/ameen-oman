@@ -70,7 +70,10 @@ const MLModelsPage              = lazy(() => import("../pages/dashboard/ml-model
 const ManageUsersPage           = lazy(() => import("../pages/dashboard/manage-users/page"));
 const UserProfilePage           = lazy(() => import("../pages/dashboard/user-profile/page"));
 const IdentityComparePage       = lazy(() => import("../pages/dashboard/identity-compare/page"));
+const TargetMatchPage           = lazy(() => import("../pages/dashboard/target-match/page"));
 const VizLibraryPage            = lazy(() => import("../pages/dashboard/viz-library/page"));
+const ServicesDashboardPage     = lazy(() => import("../pages/dashboard/services-dashboard/page"));
+const BorderDashboardPage       = lazy(() => import("../pages/dashboard/border-dashboard/page"));
 const ForgotPasswordPage        = lazy(() => import("../pages/forgot-password/page"));
 const ResetPasswordPage         = lazy(() => import("../pages/reset-password/page"));
 const SetPasswordPage           = lazy(() => import("../pages/set-password/page"));
@@ -172,7 +175,10 @@ const routes: RouteObject[] = [
       { path: "ml-models",              element: L(MLModelsPage) },
       { path: "user-profile",            element: L(UserProfilePage) },
       { path: "identity-compare",        element: L(IdentityComparePage) },
+      { path: "target-match",            element: L(TargetMatchPage) },
       { path: "viz-library",             element: L(VizLibraryPage) },
+      { path: "services-dashboard",     element: L(ServicesDashboardPage) },
+      { path: "border-dashboard",       element: L(BorderDashboardPage) },
       { path: "notifications",           element: L(NotificationsPage) },
       { path: "system-admin",            element: L(SystemAdminPage) },
       { path: "api-portal",              element: L(ApiPortalPage) },

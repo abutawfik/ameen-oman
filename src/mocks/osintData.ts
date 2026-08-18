@@ -2604,7 +2604,7 @@ export interface EntityMatchCandidate {
     contextual_source_agreement: number;
   };
   createdAt: string;
-  status: "PENDING" | "MERGED" | "KEPT_SEPARATE" | "ESCALATED";
+  status: "PENDING" | "MERGED" | "KEPT_SEPARATE" | "ESCALATED" | "SPLIT";
 }
 
 export const ENTITY_MATCH_QUEUE: EntityMatchCandidate[] = [

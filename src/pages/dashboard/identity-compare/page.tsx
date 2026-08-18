@@ -16,12 +16,85 @@ const STATUS_COLORS: Record<string, string> = {
   MERGED:        '#4A8E5A',
   KEPT_SEPARATE: '#5B7494',
   ESCALATED:     '#C94A5E',
+  SPLIT:         '#5B7494',
 };
+
+// ── Extended type to include MERGED records with split metadata ───────────────
+
+interface MergedRecord extends EntityMatchCandidate {
+  mergedAt?:    string;
+  mergedLabel?: string;
+}
+
+// ── Two MERGED seed records ───────────────────────────────────────────────────
+
+const MERGED_RECORDS: MergedRecord[] = [
+  {
+    id: 'MERGED-001',
+    entityA: {
+      id: 'ent-m001a', type: 'person',
+      canonicalName: 'Omar Al-Balushi',
+      aliases: ['Omar Balushi', 'O. Al-Balushi'],
+      attributes: { dob: '1979-06-12', nationality: 'OMN', passportNumber: 'OM4411022', occupation: 'Engineer' },
+      sources: ['eVisa history', 'MOL registry'],
+    },
+    entityB: {
+      id: 'ent-m001b', type: 'person',
+      canonicalName: 'Umar Balushi',
+      aliases: ['Umar Al-Balushi', 'U. Balushi'],
+      attributes: { dob: '1979-06-12', nationality: 'OMN', passportNumber: 'OM4411031', occupation: 'Civil Engineer' },
+      sources: ['Hotels', 'OpenSanctions'],
+    },
+    similarity: 0.88,
+    factors: {
+      name_token_set_ratio: 0.85,
+      alias_overlap_jaccard: 0.70,
+      country_match: 1,
+      dob_proximity: 1,
+      contextual_source_agreement: 0.68,
+    },
+    createdAt: '2026-08-10T09:00:00Z',
+    status: 'MERGED',
+    mergedAt: '2026-08-15',
+    mergedLabel: 'Omar Al-Balushi / Umar Balushi',
+  },
+  {
+    id: 'MERGED-002',
+    entityA: {
+      id: 'ent-m002a', type: 'person',
+      canonicalName: 'Sara Ahmed',
+      aliases: ['Sara Ahmad', 'S. Ahmed'],
+      attributes: { dob: '1995-03-22', nationality: 'EGY', passportNumber: 'EG7730019', occupation: 'Teacher' },
+      sources: ['eVisa history'],
+    },
+    entityB: {
+      id: 'ent-m002b', type: 'person',
+      canonicalName: 'Sarah Ahmd',
+      aliases: ['Sarah Ahmed', 'S. Ahmd'],
+      attributes: { dob: '1995-03-22', nationality: 'EGY', passportNumber: 'EG7730022', occupation: 'Educator' },
+      sources: ['OpenSanctions'],
+    },
+    similarity: 0.91,
+    factors: {
+      name_token_set_ratio: 0.90,
+      alias_overlap_jaccard: 0.75,
+      country_match: 1,
+      dob_proximity: 1,
+      contextual_source_agreement: 0.72,
+    },
+    createdAt: '2026-08-12T11:30:00Z',
+    status: 'MERGED',
+    mergedAt: '2026-08-16',
+    mergedLabel: 'Sara Ahmed / Sarah Ahmd',
+  },
+];
+
+// ── Sim bar helper ─────────────────────────────────────────────────────────────
 
 function simBar(value: number, color = GOLD) {
   return (
     <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-      <div style={{ flex: 1, height: 6, background: 'var(--alm-ocean-600)', borderRadius: 3, overflow: 'hidden' }}>
+      <div style={{ flex: 1, height: 6, background: P2, borderRadius: 3, overflow: 'hidden' }}>
         <div style={{ width: `${Math.round(value * 100)}%`, height: '100%', background: color, borderRadius: 3, transition: 'width 0.4s' }} />
       </div>
       <span style={{ color: '#e8dcc8', fontSize: '0.75rem', fontFamily: "'JetBrains Mono', monospace", minWidth: 34, textAlign: 'right' }}>
@@ -33,17 +106,253 @@ function simBar(value: number, color = GOLD) {
 
 type FactorKey = keyof EntityMatchCandidate['factors'];
 const FACTOR_LABELS: Record<FactorKey, { labelEn: string; icon: string }> = {
-  name_token_set_ratio:         { labelEn: 'Name Token Match',     icon: 'ri-text-snippet' },
-  alias_overlap_jaccard:        { labelEn: 'Alias Overlap',         icon: 'ri-user-2-line' },
-  country_match:                { labelEn: 'Country Match',          icon: 'ri-global-line' },
-  dob_proximity:                { labelEn: 'Date of Birth Proximity',icon: 'ri-calendar-line' },
-  contextual_source_agreement:  { labelEn: 'Source Agreement',       icon: 'ri-database-2-line' },
+  name_token_set_ratio:         { labelEn: 'Name Token Match',      icon: 'ri-text-snippet' },
+  alias_overlap_jaccard:        { labelEn: 'Alias Overlap',          icon: 'ri-user-2-line' },
+  country_match:                { labelEn: 'Country Match',           icon: 'ri-global-line' },
+  dob_proximity:                { labelEn: 'Date of Birth Proximity', icon: 'ri-calendar-line' },
+  contextual_source_agreement:  { labelEn: 'Source Agreement',        icon: 'ri-database-2-line' },
 };
 
+// ── Split Wizard Modal ────────────────────────────────────────────────────────
+
+interface SplitWizardProps {
+  candidate: MergedRecord;
+  onClose:    () => void;
+  onComplete: (id: string) => void;
+}
+
+function SplitWizard({ candidate, onClose, onComplete }: SplitWizardProps) {
+  const [step, setStep] = useState<1 | 2 | 3>(1);
+  const allKeys = Array.from(new Set([
+    ...Object.keys(candidate.entityA.attributes),
+    ...Object.keys(candidate.entityB.attributes),
+  ]));
+
+  // For each attribute key, assign it to Record A or Record B
+  const [assign, setAssign] = useState<Record<string, 'A' | 'B'>>(() => {
+    const init: Record<string, 'A' | 'B'> = {};
+    allKeys.forEach(k => { init[k] = 'A'; });
+    return init;
+  });
+
+  // Build resulting records from assignments
+  const recA: Record<string, unknown> = {};
+  const recB: Record<string, unknown> = {};
+  allKeys.forEach(k => {
+    const srcA = candidate.entityA.attributes[k];
+    const srcB = candidate.entityB.attributes[k];
+    if (assign[k] === 'A') {
+      if (srcA !== undefined) recA[k] = srcA;
+      else if (srcB !== undefined) recA[k] = srcB;
+    } else {
+      if (srcB !== undefined) recB[k] = srcB;
+      else if (srcA !== undefined) recB[k] = srcA;
+    }
+  });
+
+  function handleConfirm() {
+    onComplete(candidate.id);
+    onClose();
+  }
+
+  const stepDefs = [
+    { n: 1, label: 'Assign Attributes' },
+    { n: 2, label: 'Review Split' },
+    { n: 3, label: 'Confirm' },
+  ];
+
+  return (
+    <div
+      style={{ position: 'fixed', inset: 0, background: 'rgba(2,10,20,0.82)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 9999 }}
+      onClick={e => { if (e.target === e.currentTarget) onClose(); }}
+    >
+      <div
+        style={{ background: P1, borderRadius: 10, padding: '2rem', width: 660, maxWidth: '95vw', maxHeight: '90vh', overflowY: 'auto', border: `1px solid ${P2}` }}
+      >
+        {/* Steps bar */}
+        <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.75rem', alignItems: 'center' }}>
+          {stepDefs.map(({ n, label }, i, arr) => (
+            <div key={n} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flex: i < arr.length - 1 ? 1 : undefined }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                <div
+                  style={{
+                    width: 24, height: 24, borderRadius: '50%',
+                    background: step >= n ? GOLD2 : P2,
+                    color: step >= n ? '#0a1a2e' : P4,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    fontSize: '0.75rem', fontWeight: 700, fontFamily: "'JetBrains Mono', monospace",
+                    flexShrink: 0,
+                  }}
+                >
+                  {step > n ? <i className="ri-check-line" style={{ fontSize: '0.8rem' }} /> : n}
+                </div>
+                <span style={{ fontSize: '0.75rem', color: step >= n ? GOLD : P4, whiteSpace: 'nowrap' }}>{label}</span>
+              </div>
+              {i < arr.length - 1 && <div style={{ flex: 1, height: 1, background: P2 }} />}
+            </div>
+          ))}
+        </div>
+
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+          <h2 style={{ color: GOLD, margin: 0, fontSize: '1rem', fontFamily: "'JetBrains Mono', monospace" }}>
+            Split Merged Identity
+            <span style={{ color: P4, fontWeight: 400, marginLeft: '0.5rem', fontSize: '0.82rem' }}>
+              — {step === 1 ? 'Step 1: Assign Each Attribute' : step === 2 ? 'Step 2: Review Resulting Records' : 'Step 3: Confirm Split'}
+            </span>
+          </h2>
+          <button onClick={onClose} style={{ background: 'none', border: 'none', color: P4, fontSize: '1.2rem', cursor: 'pointer' }}>
+            <i className="ri-close-line" />
+          </button>
+        </div>
+
+        {/* Step 1: Attribute assignment */}
+        {step === 1 && (
+          <div>
+            <p style={{ color: P4, fontSize: '0.8rem', margin: '0 0 1rem' }}>
+              For each attribute, choose which of the two split records should carry this value.
+              The original merged record (<strong style={{ color: '#e8dcc8' }}>{candidate.entityA.canonicalName}</strong>) will be split into
+              Record A (<strong style={{ color: GOLD }}>{candidate.entityA.canonicalName}</strong>) and
+              Record B (<strong style={{ color: GOLD }}>{candidate.entityB.canonicalName}</strong>).
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.55rem' }}>
+              {allKeys.map(k => {
+                const aVal = String(candidate.entityA.attributes[k] ?? '—');
+                const bVal = String(candidate.entityB.attributes[k] ?? '—');
+                const cur  = assign[k];
+                return (
+                  <div key={k} style={{ background: P2, borderRadius: 6, overflow: 'hidden' }}>
+                    <div style={{ padding: '0.35rem 0.8rem', background: P3 + '66', color: P4, fontSize: '0.7rem', letterSpacing: '0.08em', textTransform: 'uppercase', fontFamily: "'JetBrains Mono', monospace" }}>
+                      {k}
+                    </div>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 1 }}>
+                      {(['A', 'B'] as const).map(side => {
+                        const val     = side === 'A' ? aVal : bVal;
+                        const name    = side === 'A' ? candidate.entityA.canonicalName : candidate.entityB.canonicalName;
+                        const chosen  = cur === side;
+                        return (
+                          <button
+                            key={side}
+                            onClick={() => setAssign(a => ({ ...a, [k]: side }))}
+                            style={{
+                              padding: '0.5rem 0.8rem', textAlign: 'left',
+                              background: chosen ? GOLD2 + '25' : 'transparent',
+                              border: 'none',
+                              borderTop: chosen ? `1.5px solid ${GOLD2}` : '1.5px solid transparent',
+                              cursor: 'pointer',
+                              color: chosen ? '#e8dcc8' : P4,
+                              fontSize: '0.8rem',
+                              display: 'flex', alignItems: 'center', gap: '0.5rem',
+                            }}
+                          >
+                            <i className={chosen ? 'ri-checkbox-circle-fill' : 'ri-checkbox-blank-circle-line'} style={{ color: chosen ? GOLD : P4, fontSize: '0.85rem', flexShrink: 0 }} />
+                            <span>Rec {side} ({name.split(' ')[0]}): </span>
+                            <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.78rem' }}>{val}</span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
+        {/* Step 2: Review side by side */}
+        {step === 2 && (
+          <div>
+            <p style={{ color: P4, fontSize: '0.8rem', margin: '0 0 1rem' }}>
+              Review how each resulting record will look after the split.
+            </p>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+              {(['A', 'B'] as const).map(side => {
+                const rec   = side === 'A' ? recA : recB;
+                const ent   = side === 'A' ? candidate.entityA : candidate.entityB;
+                return (
+                  <div key={side} style={{ background: P2, borderRadius: 7, padding: '0.9rem' }}>
+                    <div style={{ color: GOLD, fontSize: '0.7rem', letterSpacing: '0.08em', textTransform: 'uppercase', fontFamily: "'JetBrains Mono', monospace", marginBottom: '0.5rem' }}>
+                      Record {side}
+                    </div>
+                    <div style={{ color: '#e8dcc8', fontWeight: 700, fontSize: '0.9rem', marginBottom: '0.25rem' }}>{ent.canonicalName}</div>
+                    <div style={{ color: P4, fontSize: '0.72rem', marginBottom: '0.6rem' }}>ID: {ent.id} · Sources: {ent.sources.join(', ')}</div>
+                    {Object.entries(rec).map(([k, v]) => (
+                      <div key={k} style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.2rem' }}>
+                        <span style={{ color: P4, fontSize: '0.7rem', fontFamily: "'JetBrains Mono', monospace", minWidth: 80 }}>{k}</span>
+                        <span style={{ color: '#e8dcc8', fontSize: '0.78rem', fontFamily: "'JetBrains Mono', monospace" }}>{String(v)}</span>
+                      </div>
+                    ))}
+                    {Object.keys(rec).length === 0 && (
+                      <div style={{ color: P4, fontSize: '0.78rem', fontStyle: 'italic' }}>No attributes assigned to this record.</div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
+        {/* Step 3: Confirm */}
+        {step === 3 && (
+          <div>
+            <div style={{ padding: '0.9rem', background: '#D4922A15', border: '1px solid #D4922A55', borderRadius: 6, color: '#D4922A', fontSize: '0.78rem', marginBottom: '1rem', display: 'flex', gap: '0.5rem', alignItems: 'flex-start' }}>
+              <i className="ri-error-warning-line" style={{ flexShrink: 0, marginTop: 1 }} />
+              <span>
+                This will permanently split the merged entity into two separate records.
+                Both records will be marked as <strong>SPLIT</strong> in the audit trail. This action cannot be undone.
+              </span>
+            </div>
+            <div style={{ background: P2, borderRadius: 7, padding: '0.9rem', marginBottom: '0.75rem' }}>
+              <div style={{ color: GOLD, fontSize: '0.7rem', letterSpacing: '0.08em', textTransform: 'uppercase', fontFamily: "'JetBrains Mono', monospace", marginBottom: '0.5rem' }}>
+                Split Summary
+              </div>
+              <div style={{ color: '#e8dcc8', fontSize: '0.85rem' }}>
+                <span style={{ color: P4 }}>Merged record </span>
+                <span style={{ fontFamily: "'JetBrains Mono', monospace" }}>{candidate.id}</span>
+                <span style={{ color: P4 }}> will be split into:</span>
+              </div>
+              <div style={{ marginTop: '0.5rem', display: 'flex', gap: '1rem' }}>
+                <div>
+                  <div style={{ color: GOLD, fontSize: '0.72rem', fontFamily: "'JetBrains Mono', monospace" }}>Record A</div>
+                  <div style={{ color: '#e8dcc8', fontSize: '0.82rem', fontWeight: 600 }}>{candidate.entityA.canonicalName}</div>
+                  <div style={{ color: P4, fontSize: '0.7rem' }}>{candidate.entityA.id}</div>
+                </div>
+                <div style={{ color: P3, alignSelf: 'center', fontSize: '1.2rem' }}>+</div>
+                <div>
+                  <div style={{ color: GOLD, fontSize: '0.72rem', fontFamily: "'JetBrains Mono', monospace" }}>Record B</div>
+                  <div style={{ color: '#e8dcc8', fontSize: '0.82rem', fontWeight: 600 }}>{candidate.entityB.canonicalName}</div>
+                  <div style={{ color: P4, fontSize: '0.7rem' }}>{candidate.entityB.id}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Footer */}
+        <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'flex-end', paddingTop: '1.25rem', borderTop: `1px solid ${P2}`, marginTop: '1.25rem' }}>
+          <button onClick={onClose} style={{ padding: '0.6rem 1.2rem', background: P2, color: '#ccc', border: 'none', borderRadius: 5, cursor: 'pointer' }}>Cancel</button>
+          {step > 1 && (
+            <button onClick={() => setStep(s => (s - 1) as 1 | 2 | 3)} style={{ padding: '0.6rem 1.2rem', background: P2, color: GOLD, border: `1px solid ${P3}`, borderRadius: 5, cursor: 'pointer' }}>Back</button>
+          )}
+          {step < 3 ? (
+            <button onClick={() => setStep(s => (s + 1) as 1 | 2 | 3)} style={{ padding: '0.6rem 1.4rem', background: GOLD2, color: '#0a1a2e', border: 'none', borderRadius: 5, cursor: 'pointer', fontWeight: 700, fontFamily: "'JetBrains Mono', monospace", fontSize: '0.82rem' }}>
+              Next
+            </button>
+          ) : (
+            <button onClick={handleConfirm} style={{ padding: '0.6rem 1.4rem', background: '#D4922A', color: '#0a1a2e', border: 'none', borderRadius: 5, cursor: 'pointer', fontWeight: 700, fontFamily: "'JetBrains Mono', monospace", fontSize: '0.82rem' }}>
+              Confirm Split
+            </button>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ── Merge Wizard Modal ────────────────────────────────────────────────────────
+
 interface MergeWizardProps {
   candidate: EntityMatchCandidate;
-  onClose: () => void;
+  onClose:    () => void;
   onComplete: (id: string) => void;
 }
 function MergeWizard({ candidate, onClose, onComplete }: MergeWizardProps) {
@@ -281,13 +590,15 @@ function MergeWizard({ candidate, onClose, onComplete }: MergeWizardProps) {
 }
 
 // ── Compare Panel ─────────────────────────────────────────────────────────────
+
 interface ComparePanelProps {
-  candidate: EntityMatchCandidate;
-  isAr: boolean;
-  onMerge: () => void;
-  onAction: (id: string, status: 'KEPT_SEPARATE' | 'ESCALATED') => void;
+  candidate:     MergedRecord;
+  isAr:          boolean;
+  onMerge:       () => void;
+  onSplit:       () => void;
+  onAction:      (id: string, status: 'KEPT_SEPARATE' | 'ESCALATED') => void;
 }
-function ComparePanel({ candidate, isAr, onMerge, onAction }: ComparePanelProps) {
+function ComparePanel({ candidate, isAr, onMerge, onSplit, onAction }: ComparePanelProps) {
   const attrKeys = Array.from(new Set([
     ...Object.keys(candidate.entityA.attributes),
     ...Object.keys(candidate.entityB.attributes),
@@ -303,6 +614,8 @@ function ComparePanel({ candidate, isAr, onMerge, onAction }: ComparePanelProps)
     return String(a).toLowerCase() === String(b).toLowerCase() ? 'match' : 'diff';
   }
 
+  const isMerged = candidate.status === 'MERGED' || candidate.status === 'SPLIT';
+
   return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
       {/* Header */}
@@ -311,6 +624,9 @@ function ComparePanel({ candidate, isAr, onMerge, onAction }: ComparePanelProps)
           <div>
             <div style={{ color: P4, fontSize: '0.7rem', letterSpacing: '0.1em', textTransform: 'uppercase', fontFamily: "'JetBrains Mono', monospace", marginBottom: '0.25rem' }}>
               Case {candidate.id}
+              {candidate.mergedAt && (
+                <span style={{ color: '#4A8E5A', marginLeft: '0.6rem' }}>· Merged {candidate.mergedAt}</span>
+              )}
             </div>
             <h2 style={{ color: '#e8dcc8', fontSize: '1rem', margin: '0 0 0.2rem', fontWeight: 700 }}>
               {candidate.entityA.canonicalName} <span style={{ color: P4 }}>vs</span> {candidate.entityB.canonicalName}
@@ -366,7 +682,7 @@ function ComparePanel({ candidate, isAr, onMerge, onAction }: ComparePanelProps)
         {attrKeys.map((k, i) => {
           const aVal = candidate.entityA.attributes[k];
           const bVal = candidate.entityB.attributes[k];
-          const cmp = compareVal(aVal, bVal);
+          const cmp  = compareVal(aVal, bVal);
           const rowBg = i % 2 === 0 ? 'transparent' : P2 + '55';
           return (
             <div key={k} style={{ display: 'grid', gridTemplateColumns: '120px 1fr 1fr', background: rowBg, borderBottom: `1px solid ${P2}` }}>
@@ -403,7 +719,7 @@ function ComparePanel({ candidate, isAr, onMerge, onAction }: ComparePanelProps)
         ))}
       </div>
 
-      {/* Action bar */}
+      {/* Action bar — PENDING: merge / keep separate / escalate */}
       {candidate.status === 'PENDING' && (
         <div style={{ background: P1, borderRadius: 10, padding: '1rem', border: `1px solid ${P2}`, display: 'flex', gap: '0.75rem', justifyContent: 'flex-end' }}>
           <button
@@ -426,20 +742,49 @@ function ComparePanel({ candidate, isAr, onMerge, onAction }: ComparePanelProps)
           </button>
         </div>
       )}
+
+      {/* Action bar — MERGED: split button */}
+      {isMerged && candidate.status !== 'SPLIT' && (
+        <div style={{ background: P1, borderRadius: 10, padding: '1rem', border: `1px solid ${P2}`, display: 'flex', gap: '0.75rem', justifyContent: 'flex-end', alignItems: 'center' }}>
+          <span style={{ color: P4, fontSize: '0.78rem', flex: 1 }}>
+            <i className="ri-information-line" style={{ marginRight: '0.4rem' }} />
+            This record was merged on {(candidate as MergedRecord).mergedAt ?? 'an earlier date'}. You may split it back into two separate identities.
+          </span>
+          <button
+            onClick={onSplit}
+            style={{ padding: '0.6rem 1.4rem', background: '#D4922A22', color: '#D4922A', border: '1px solid #D4922A55', borderRadius: 6, cursor: 'pointer', fontWeight: 700, fontFamily: "'JetBrains Mono', monospace", fontSize: '0.82rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}
+          >
+            <i className="ri-git-branch-line" /> Split Merged Identity
+          </button>
+        </div>
+      )}
+
+      {/* SPLIT confirmation notice */}
+      {candidate.status === 'SPLIT' && (
+        <div style={{ background: '#5B749422', border: '1px solid #5B749455', borderRadius: 7, padding: '0.75rem 1rem', color: '#5B7494', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <i className="ri-git-branch-line" style={{ fontSize: '1.1rem' }} />
+          <span style={{ fontSize: '0.82rem', fontWeight: 600 }}>Identity split. Both records have been restored as separate entities and logged in the audit trail.</span>
+        </div>
+      )}
     </div>
   );
 }
 
 // ── Main Page ──────────────────────────────────────────────────────────────────
-type AnyStatus = EntityMatchCandidate['status'] | 'ALL';
+
+type AnyStatus = EntityMatchCandidate['status'] | 'SPLIT' | 'ALL';
 
 export default function IdentityComparePage() {
   const { isAr } = useOutletContext<DashboardOutletContext>();
 
-  const [queue, setQueue] = useState<EntityMatchCandidate[]>(ENTITY_MATCH_QUEUE);
-  const [selected, setSelected] = useState<EntityMatchCandidate | null>(null);
-  const [statusFilter, setStatusFilter] = useState<AnyStatus>('ALL');
+  const [queue, setQueue] = useState<MergedRecord[]>([
+    ...ENTITY_MATCH_QUEUE,
+    ...MERGED_RECORDS,
+  ]);
+  const [selected,        setSelected]        = useState<MergedRecord | null>(null);
+  const [statusFilter,    setStatusFilter]    = useState<AnyStatus>('ALL');
   const [showMergeWizard, setShowMergeWizard] = useState(false);
+  const [showSplitWizard, setShowSplitWizard] = useState(false);
 
   const filtered = queue.filter(c => statusFilter === 'ALL' || c.status === statusFilter);
 
@@ -453,10 +798,16 @@ export default function IdentityComparePage() {
     setSelected(prev => prev?.id === id ? { ...prev, status: 'MERGED' } : prev);
   }
 
+  function handleSplitComplete(id: string) {
+    setQueue(prev => prev.map(c => c.id === id ? { ...c, status: 'SPLIT' as unknown as EntityMatchCandidate['status'] } : c));
+    setSelected(prev => prev?.id === id ? { ...prev, status: 'SPLIT' as unknown as EntityMatchCandidate['status'] } : prev);
+  }
+
   const pending   = queue.filter(c => c.status === 'PENDING').length;
   const merged    = queue.filter(c => c.status === 'MERGED').length;
   const separate  = queue.filter(c => c.status === 'KEPT_SEPARATE').length;
   const escalated = queue.filter(c => c.status === 'ESCALATED').length;
+  const split     = queue.filter(c => (c.status as string) === 'SPLIT').length;
 
   const CHIP = (active: boolean, color = GOLD): React.CSSProperties => ({
     padding: '0.25rem 0.7rem',
@@ -470,6 +821,8 @@ export default function IdentityComparePage() {
     letterSpacing: '0.06em',
   });
 
+  const liveSelected = selected ? (queue.find(c => c.id === selected.id) ?? selected) : null;
+
   return (
     <div style={{ height: '100%', display: 'flex', background: BG, color: '#e8dcc8', overflow: 'hidden' }}>
       {/* Left queue panel */}
@@ -482,10 +835,11 @@ export default function IdentityComparePage() {
           {/* Summary chips */}
           <div style={{ display: 'flex', gap: '0.35rem', flexWrap: 'wrap' }}>
             {[
-              { label: `${pending} Pending`, status: 'PENDING' as AnyStatus, color: '#D4922A' },
-              { label: `${merged} Merged`, status: 'MERGED' as AnyStatus, color: '#4A8E5A' },
+              { label: `${pending} Pending`,   status: 'PENDING'       as AnyStatus, color: '#D4922A' },
+              { label: `${merged} Merged`,     status: 'MERGED'        as AnyStatus, color: '#4A8E5A' },
               { label: `${separate} Separate`, status: 'KEPT_SEPARATE' as AnyStatus, color: '#5B7494' },
-              { label: `${escalated} Escalated`, status: 'ESCALATED' as AnyStatus, color: '#C94A5E' },
+              { label: `${escalated} Escalated`, status: 'ESCALATED'  as AnyStatus, color: '#C94A5E' },
+              { label: `${split} Split`,       status: 'SPLIT'         as AnyStatus, color: '#5B7494' },
             ].map(({ label, status, color }) => (
               <button key={status} style={CHIP(statusFilter === status, color)} onClick={() => setStatusFilter(statusFilter === status ? 'ALL' : status)}>
                 {label}
@@ -498,7 +852,7 @@ export default function IdentityComparePage() {
         <div style={{ flex: 1, overflowY: 'auto' }}>
           {filtered.map(c => {
             const isSelected = selected?.id === c.id;
-            const sc = STATUS_COLORS[c.status];
+            const sc = STATUS_COLORS[(c.status as string)] ?? '#5B7494';
             const simColor = c.similarity >= 0.85 ? '#C94A5E' : c.similarity >= 0.75 ? '#D4922A' : '#D6B47E';
             return (
               <div
@@ -521,12 +875,17 @@ export default function IdentityComparePage() {
                     background: sc + '22', color: sc,
                     fontSize: '0.62rem', fontFamily: "'JetBrains Mono', monospace",
                   }}>
-                    {c.status.replace('_', ' ')}
+                    {(c.status as string).replace('_', ' ')}
                   </span>
                 </div>
                 <div style={{ color: P4, fontSize: '0.74rem', marginBottom: '0.35rem' }}>
                   vs {c.entityB.canonicalName.split(' ').slice(0, 2).join(' ')}
                 </div>
+                {(c as MergedRecord).mergedAt && (
+                  <div style={{ color: '#4A8E5A', fontSize: '0.66rem', fontFamily: "'JetBrains Mono', monospace", marginBottom: '0.2rem' }}>
+                    Merged {(c as MergedRecord).mergedAt}
+                  </div>
+                )}
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                   <div style={{ flex: 1, height: 4, background: P2, borderRadius: 2, overflow: 'hidden' }}>
                     <div style={{ width: `${Math.round(c.similarity * 100)}%`, height: '100%', background: simColor, borderRadius: 2 }} />
@@ -550,11 +909,12 @@ export default function IdentityComparePage() {
       </div>
 
       {/* Main compare area */}
-      {selected ? (
+      {liveSelected ? (
         <ComparePanel
-          candidate={queue.find(c => c.id === selected.id) ?? selected}
+          candidate={liveSelected}
           isAr={isAr}
           onMerge={() => setShowMergeWizard(true)}
+          onSplit={() => setShowSplitWizard(true)}
           onAction={handleAction}
         />
       ) : (
@@ -567,11 +927,19 @@ export default function IdentityComparePage() {
         </div>
       )}
 
-      {showMergeWizard && selected && (
+      {showMergeWizard && liveSelected && (
         <MergeWizard
-          candidate={queue.find(c => c.id === selected.id) ?? selected}
+          candidate={liveSelected}
           onClose={() => setShowMergeWizard(false)}
           onComplete={handleMergeComplete}
+        />
+      )}
+
+      {showSplitWizard && liveSelected && (
+        <SplitWizard
+          candidate={liveSelected}
+          onClose={() => setShowSplitWizard(false)}
+          onComplete={handleSplitComplete}
         />
       )}
     </div>
