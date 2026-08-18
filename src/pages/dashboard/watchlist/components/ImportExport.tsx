@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 interface Props {
   isAr: boolean;
@@ -15,6 +15,8 @@ interface Attachment {
 }
 
 const importSources = [
+  { id: 'nl-sanctions', name: 'Netherlands Sanctions List', nameAr: 'قائمة العقوبات الهولندية', icon: 'ri-flag-line', color: '#F97316', status: 'connected', lastSync: '2026-08-18 06:00', records: 485 },
+  { id: 'interpol-rn', name: 'Interpol Red Notices', nameAr: 'نشرات الإنتربول الحمراء', icon: 'ri-alarm-warning-line', color: '#EF4444', status: 'connected', lastSync: '2026-08-18 08:00', records: 6842 },
   { id: 'interpol', name: 'Interpol MIND Database', nameAr: 'قاعدة بيانات الإنتربول MIND', icon: 'ri-global-line', color: '#A78BFA', status: 'connected', lastSync: '2025-04-06 06:00', records: 234 },
   { id: 'immigration', name: 'Immigration System', nameAr: 'نظام الهجرة', icon: 'ri-passport-line', color: '#60A5FA', status: 'connected', lastSync: '2025-04-06 08:30', records: 1203 },
   { id: 'gcc', name: 'GCC Security Network', nameAr: 'شبكة أمن دول الخليج', icon: 'ri-shield-line', color: '#4ADE80', status: 'connected', lastSync: '2025-04-05 22:00', records: 89 },
@@ -30,6 +32,8 @@ const exportFormats = [
 ];
 
 const syncHistory = [
+  { source: 'Netherlands Sanctions List', time: '2026-08-18 06:00', added: 5, updated: 480, removed: 0, status: 'success' },
+  { source: 'Interpol Red Notices', time: '2026-08-18 08:00', added: 5, updated: 6837, removed: 0, status: 'success' },
   { source: 'Interpol MIND', time: '2025-04-06 06:00', added: 3, updated: 12, removed: 1, status: 'success' },
   { source: 'Immigration System', time: '2025-04-06 08:30', added: 28, updated: 45, removed: 0, status: 'success' },
   { source: 'GCC Security Network', time: '2025-04-05 22:00', added: 0, updated: 5, removed: 2, status: 'success' },
@@ -56,6 +60,9 @@ const statusBadgeColors: Record<Attachment['status'], string> = {
   REJECTED: '#C94A5E',
 };
 
+type UploadState = 'idle' | 'processing' | 'done';
+interface UploadResult { fileName: string; total: number; added: number; updated: number; errors: number; source: string; }
+
 const ImportExport = ({ isAr }: Props) => {
   const [activeTab, setActiveTab] = useState<'import' | 'export' | 'sync' | 'attachments'>('import');
   const [dragOver, setDragOver] = useState(false);
@@ -64,6 +71,35 @@ const ImportExport = ({ isAr }: Props) => {
   const [selectedFormat, setSelectedFormat] = useState('pdf');
   const [exportWatchlist, setExportWatchlist] = useState('all');
   const [attachments, setAttachments] = useState<Attachment[]>(initialAttachments);
+  const [uploadState, setUploadState] = useState<UploadState>('idle');
+  const [uploadResult, setUploadResult] = useState<UploadResult | null>(null);
+  const [uploadProgress, setUploadProgress] = useState(0);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const simulateUpload = (fileName: string) => {
+    setUploadState('processing');
+    setUploadProgress(0);
+    const nameLower = fileName.toLowerCase();
+    const isNL = nameLower.includes('nether') || nameLower.includes('sanction') || nameLower.includes('nl_') || nameLower.includes('nl-');
+    const isInterpol = nameLower.includes('interpol') || nameLower.includes('red_notice') || nameLower.includes('red-notice');
+    const result: UploadResult = isNL
+      ? { fileName, total: 485, added: 5, updated: 480, errors: 0, source: 'Netherlands Sanctions List' }
+      : isInterpol
+      ? { fileName, total: 6842, added: 5, updated: 6837, errors: 0, source: 'Interpol Red Notices' }
+      : { fileName, total: 312, added: 12, updated: 298, errors: 2, source: 'External List' };
+    let prog = 0;
+    const interval = setInterval(() => {
+      prog += Math.floor(Math.random() * 18) + 8;
+      if (prog >= 100) {
+        prog = 100;
+        clearInterval(interval);
+        setUploadProgress(100);
+        setTimeout(() => { setUploadState('done'); setUploadResult(result); }, 300);
+      } else {
+        setUploadProgress(prog);
+      }
+    }, 120);
+  };
 
   // Validation rule toggles
   const [validationRules, setValidationRules] = useState({
@@ -137,39 +173,111 @@ const ImportExport = ({ isAr }: Props) => {
       {activeTab === 'import' && (
         <div className="space-y-4">
           {/* CSV Upload */}
-          <div
-            className="rounded-2xl p-8 flex flex-col items-center justify-center text-center cursor-pointer transition-all"
-            style={{
-              background: dragOver ? 'rgba(184,138,60,0.08)' : 'rgba(10,37,64,0.6)',
-              border: `2px dashed ${dragOver ? '#D6B47E' : 'rgba(184,138,60,0.2)'}`,
-            }}
-            onDragOver={e => { e.preventDefault(); setDragOver(true); }}
-            onDragLeave={() => setDragOver(false)}
-            onDrop={() => setDragOver(false)}>
-            <div className="w-14 h-14 flex items-center justify-center rounded-2xl mb-4"
-              style={{ background: 'rgba(184,138,60,0.1)' }}>
-              <i className="ri-upload-cloud-2-line text-2xl text-gold-400" />
+          {uploadState === 'idle' && (
+            <div
+              className="rounded-2xl p-8 flex flex-col items-center justify-center text-center cursor-pointer transition-all"
+              style={{
+                background: dragOver ? 'rgba(184,138,60,0.08)' : 'rgba(10,37,64,0.6)',
+                border: `2px dashed ${dragOver ? '#D6B47E' : 'rgba(184,138,60,0.2)'}`,
+              }}
+              onDragOver={e => { e.preventDefault(); setDragOver(true); }}
+              onDragLeave={() => setDragOver(false)}
+              onDrop={e => { e.preventDefault(); setDragOver(false); const f = e.dataTransfer.files[0]; if (f) simulateUpload(f.name); }}>
+              <div className="w-14 h-14 flex items-center justify-center rounded-2xl mb-4"
+                style={{ background: 'rgba(184,138,60,0.1)' }}>
+                <i className="ri-upload-cloud-2-line text-2xl" style={{ color: '#D6B47E' }} />
+              </div>
+              <p className="text-white font-semibold font-['Inter'] text-base mb-1">
+                {isAr ? 'رفع قائمة الأهداف' : 'Upload Target List'}
+              </p>
+              <p className="text-gray-400 text-sm font-['Inter'] mb-1">
+                {isAr ? 'اسحب وأفلت ملف قائمة العقوبات أو نشرات الإنتربول (CSV / XML / JSON)' : 'Drag & drop a sanctions list or Interpol Red Notices file (CSV / XML / JSON)'}
+              </p>
+              <p className="text-gray-600 text-xs font-['JetBrains_Mono'] mb-4">
+                Netherlands Sanctions List · Interpol Red Notices · UN Consolidated List · Custom CSV
+              </p>
+              <div className="flex items-center gap-3">
+                <label className="px-4 py-2 rounded-xl text-sm font-semibold font-['Inter'] whitespace-nowrap cursor-pointer"
+                  style={{ background: '#D6B47E', color: '#051428' }}>
+                  <i className="ri-folder-open-line mr-2" />{isAr ? 'اختر ملفاً' : 'Browse File'}
+                  <input ref={fileInputRef} type="file" accept=".csv,.xml,.json" className="hidden"
+                    onChange={e => { const f = e.target.files?.[0]; if (f) simulateUpload(f.name); e.target.value = ''; }} />
+                </label>
+                <button className="px-4 py-2 rounded-xl text-sm font-semibold font-['Inter'] whitespace-nowrap cursor-pointer"
+                  style={{ border: '1px solid rgba(184,138,60,0.3)', color: '#D6B47E' }}>
+                  <i className="ri-download-line mr-2" />{isAr ? 'تحميل القالب' : 'Download Template'}
+                </button>
+              </div>
+              <p className="text-gray-600 text-xs font-['JetBrains_Mono'] mt-3">
+                {isAr ? 'الحقول المطلوبة: document_number, doc_type, reason' : 'Required fields: document_number, doc_type, reason'}
+              </p>
             </div>
-            <p className="text-white font-semibold font-['Inter'] text-base mb-1">
-              {isAr ? 'رفع ملف CSV' : 'Upload CSV File'}
-            </p>
-            <p className="text-gray-400 text-sm font-['Inter'] mb-4">
-              {isAr ? 'اسحب وأفلت ملف CSV يحتوي على أرقام الوثائق' : 'Drag & drop a CSV file with document numbers'}
-            </p>
-            <div className="flex items-center gap-3">
-              <button className="px-4 py-2 rounded-xl text-sm font-semibold font-['Inter'] whitespace-nowrap cursor-pointer"
-                style={{ background: '#D6B47E', color: '#051428' }}>
-                <i className="ri-folder-open-line mr-2" />{isAr ? 'اختر ملفاً' : 'Browse File'}
-              </button>
-              <button className="px-4 py-2 rounded-xl text-sm font-semibold font-['Inter'] whitespace-nowrap cursor-pointer"
-                style={{ border: '1px solid rgba(184,138,60,0.3)', color: '#D6B47E' }}>
-                <i className="ri-download-line mr-2" />{isAr ? 'تحميل القالب' : 'Download Template'}
-              </button>
+          )}
+
+          {uploadState === 'processing' && (
+            <div className="rounded-2xl p-8 flex flex-col items-center justify-center text-center"
+              style={{ background: 'rgba(10,37,64,0.6)', border: '2px dashed rgba(184,138,60,0.3)' }}>
+              <div className="w-14 h-14 flex items-center justify-center rounded-2xl mb-4"
+                style={{ background: 'rgba(184,138,60,0.1)' }}>
+                <i className="ri-loader-4-line text-2xl animate-spin" style={{ color: '#D6B47E' }} />
+              </div>
+              <p className="text-white font-semibold font-['Inter'] text-base mb-1">
+                {isAr ? 'جارٍ المعالجة…' : 'Processing list…'}
+              </p>
+              <p className="text-gray-400 text-sm font-['Inter'] mb-4">
+                {isAr ? 'التحقق من السجلات وتطبيق قواعد التحقق' : 'Validating records and applying validation rules'}
+              </p>
+              <div className="w-64 h-2 rounded-full overflow-hidden" style={{ background: 'rgba(255,255,255,0.06)' }}>
+                <div className="h-full rounded-full transition-all duration-200"
+                  style={{ width: `${uploadProgress}%`, background: 'linear-gradient(to right, rgba(214,180,126,0.6), #D6B47E)' }} />
+              </div>
+              <p className="text-xs font-['JetBrains_Mono'] mt-2" style={{ color: '#D6B47E' }}>{uploadProgress}%</p>
             </div>
-            <p className="text-gray-600 text-xs font-['JetBrains_Mono'] mt-3">
-              {isAr ? 'الحقول المطلوبة: document_number, doc_type, reason' : 'Required fields: document_number, doc_type, reason'}
-            </p>
-          </div>
+          )}
+
+          {uploadState === 'done' && uploadResult && (
+            <div className="rounded-2xl p-6 space-y-4"
+              style={{ background: 'rgba(10,37,64,0.6)', border: '2px solid rgba(74,222,128,0.3)' }}>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 flex items-center justify-center rounded-xl flex-shrink-0"
+                  style={{ background: 'rgba(74,222,128,0.1)' }}>
+                  <i className="ri-check-double-line text-xl text-green-400" />
+                </div>
+                <div>
+                  <p className="text-white font-semibold font-['Inter'] text-sm">
+                    {isAr ? 'اكتمل الاستيراد' : 'Import Complete'}
+                  </p>
+                  <p className="text-gray-400 text-xs font-['JetBrains_Mono']">{uploadResult.fileName}</p>
+                </div>
+                <button onClick={() => { setUploadState('idle'); setUploadResult(null); setUploadProgress(0); }}
+                  className="ml-auto px-3 py-1.5 rounded-lg text-xs font-semibold font-['Inter'] cursor-pointer"
+                  style={{ border: '1px solid rgba(184,138,60,0.3)', color: '#D6B47E' }}>
+                  {isAr ? 'رفع جديد' : 'Upload Another'}
+                </button>
+              </div>
+              <div className="rounded-xl p-4 grid grid-cols-4 gap-4" style={{ background: 'rgba(5,20,40,0.6)' }}>
+                {[
+                  { label: isAr ? 'إجمالي السجلات' : 'Total Records', value: uploadResult.total.toLocaleString(), color: '#D6B47E' },
+                  { label: isAr ? 'أهداف جديدة' : 'New Targets', value: `+${uploadResult.added}`, color: '#4ADE80' },
+                  { label: isAr ? 'محدَّث' : 'Updated', value: `~${uploadResult.updated.toLocaleString()}`, color: '#60A5FA' },
+                  { label: isAr ? 'أخطاء' : 'Errors', value: String(uploadResult.errors), color: uploadResult.errors > 0 ? '#C94A5E' : '#6B7280' },
+                ].map(stat => (
+                  <div key={stat.label} className="text-center">
+                    <p className="text-lg font-black font-['JetBrains_Mono']" style={{ color: stat.color }}>{stat.value}</p>
+                    <p className="text-gray-500 text-xs font-['Inter'] mt-0.5">{stat.label}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="flex items-center gap-2 p-3 rounded-xl" style={{ background: 'rgba(74,222,128,0.05)', border: '1px solid rgba(74,222,128,0.15)' }}>
+                <i className="ri-shield-check-line text-green-400 text-sm" />
+                <p className="text-green-400 text-xs font-['Inter']">
+                  {isAr
+                    ? `تمت إضافة ${uploadResult.added} هدفاً جديداً إلى ${uploadResult.source} بنجاح`
+                    : `${uploadResult.added} new targets added to ${uploadResult.source} successfully`}
+                </p>
+              </div>
+            </div>
+          )}
 
           {/* External Sources */}
           <h3 className="text-white font-semibold font-['Inter'] text-sm">
@@ -268,6 +376,7 @@ const ImportExport = ({ isAr }: Props) => {
                     <option value="wl-004">Employment Violation</option>
                     <option value="wl-005">Interpol / International</option>
                     <option value="wl-006">Operation Falcon</option>
+                    <option value="wl-007">Netherlands Sanctions</option>
                   </select>
                 </div>
 
