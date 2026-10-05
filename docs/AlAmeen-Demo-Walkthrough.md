@@ -1,395 +1,241 @@
 # Al-Ameen — Demo Walkthrough Script
-Version 1.0 · Tech Spec buildout complete · Prepared for SITA Borders MEA
+Version 1.6 · ROP Operator Audience · 25-minute Technical
 
 ---
 
-## 0 · Before you start
+## 0 · Before You Start
 
 ### Machine setup
 
 | Item | What to do |
-| --- | --- |
+|------|-----------|
 | Browser | Chrome or Edge, latest. One window, one tab. Full screen (F11). |
 | Display | External monitor if projecting. Native 1080p minimum; 1440p preferred. |
-| Audio | Muted. This demo is visual-first — no audio cues fire. |
-| Network | Vercel deployment is the primary surface. Local `npm run dev` is the fallback. |
-| Dev tools | Closed. If you're recording, open only for the console-dump demo moment. |
+| Audio | Muted. |
+| Network | Use the live Vercel deployment — no local server needed. |
+| Dev tools | Closed. |
 
 ### URLs
 
 | Target | URL |
-| --- | --- |
-| Primary (live)   | `https://ameen-oman.vercel.app` (confirm the exact deploy URL with the account team before the meeting) |
-| Local fallback   | `http://localhost:5173` after `npm run dev` |
-| Seeded narration | Append `?narrate=<step-id>` to any route to deep-link a specific highlight |
+|--------|-----|
+| **Primary (live)** | `https://alameen.tech` |
+| Local fallback | `http://localhost:3002` after `npm run dev` in `~/Claude Workspace/Code/ameen-oman` |
 
-### First five seconds
+### Login credentials (demo)
 
-Before the audience walks in:
+Log in as **Supervisor** — this role sees the full operator workflow without admin-only clutter.
 
-1. Navigate to `/`. Wait for the hero to finish its gold-glow animation.
-2. Press `E` to enter **Presenter mode**. Chrome shrinks, font sizes grow.
-3. If the room is warm-toned, press `Cmd/Ctrl+Shift+P` once to cycle to palette v1.1 (brass is more legible under tungsten lighting).
-4. Confirm the clearance pill in the title bar reads `PUBLIC`. Leave it there — the redaction demo comes later.
+| Field | Value |
+|-------|-------|
+| Officer ID | `OFC-2024-0042` |
+| Password | any (demo bypass) |
 
-### Keyboard bindings — quick cheat
+### Keyboard bindings
 
 | Key | Effect |
-| --- | --- |
-| `E` | Toggle Presenter mode |
-| `N` | Start the page's narration walkthrough |
-| `Cmd/Ctrl+Shift+P` | Cycle brand palette (v1.0 ↔ v1.1) |
-| `Cmd/Ctrl+Shift+N` | Dump current narration script to console (for the "prove the structure" moment) |
-| `Esc` | Exit any overlay |
+|-----|--------|
+| `N` | Start narration walkthrough on the current page |
+| `E` | Toggle Presenter mode (larger fonts) |
+| `Esc` | Exit any overlay or modal |
 
-### Demo scenarios
+### Demo scenario preload
 
-Five pre-loadable cases live in the Queue tab of the OSINT Risk Engine. Load order for a 10-minute demo: **high-risk sponsor → sequence anomaly → borderline**. Keep the low-risk routine case in reserve for the "false positive" question.
+Before the audience walks in:
+1. Open `https://alameen.tech` and log in.
+2. Navigate to `/dashboard/border-dashboard` — leave it on the Operations tab.
+3. The audience's first view should be a live operational picture, not a login screen.
 
 ---
 
-## 1 · Positioning (60 seconds, no click)
+## 1 · Positioning (2 minutes, no click)
 
-Three lines. Say them before you touch the keyboard.
+Three lines before you touch the keyboard.
 
-> "Al-Ameen is a national intelligence and risk-scoring platform — the decisioning layer behind Royal Oman Police's ETA and API/PNR pipelines.
+> "Al-Ameen is the national risk and targeting platform for Royal Oman Police border operations. Every traveller entering Oman — air, sea, land — is scored and checked in under 100 milliseconds before the officer makes a decision.
 >
-> It fuses sixteen real-time streams, scores every traveller through nine sub-scores, and hands operators explainable risk with full lineage in under 100 milliseconds.
+> What you're going to see today is the operator portal: the screen your officers work from. Not a prototype — this is the actual interface. We'll walk the full daily workflow in 25 minutes.
 >
-> It is built by SITA Borders MEA for National Police HQ. Not a SaaS. Classification-adjacent from day one."
-
-Pause. Let the hero page carry the next beat.
+> Starting where an operator starts their shift — the Border Dashboard."
 
 ---
 
-## 2 · Ten-minute executive demo
+## 2 · Twenty-Five-Minute Technical Demo
 
-Eight clicks. One clearance cycle. One closing frame. Budget 60 seconds per beat.
-
-### Beat 1 · Hero — 45s · `/`
-
-| What | How |
-| --- | --- |
-| Click/press | Nothing. Just let the page render. |
-| Say | "Operated by National Police HQ. This is a state-run surface, not a vendor SaaS. The Arabic slogan `الحارس الأمين للوطن` is always visible — Arabic and English are peers, never translations." |
-| Expected | Audience reads the eyebrow pill and the tagline. The gold grid tracery registers as "intentional design." |
-| If interrupted | "We'll open every tab in the next ten minutes. Let me frame the pipeline first." |
-
-### Beat 2 · Data flow architecture — 45s · scroll to `#data-flow-architecture`
-
-| What | How |
-| --- | --- |
-| Click/press | Scroll to the 4-stage diagram. Hover stage 3 (Score) so the provenance chip animates. |
-| Say | "Ingest. Normalise. Score. Deliver. Same four stages every signal travels. Scoring is deterministic — identical inputs produce the same score within 0.01. That determinism is what makes it auditable." |
-| Expected | Nods from the compliance-minded audience. |
-| If interrupted | "Reproducibility is non-negotiable. We don't ship a black box to a border." |
-
-### Beat 3 · Enter the portal — 30s · `/login` → SSO → `/dashboard`
-
-| What | How |
-| --- | --- |
-| Click/press | Login link in nav. On `/login`, click the SSO button. You land on `/dashboard` as a Manager by default. |
-| Say | "Gov-operator portal. Primary path is Government IdP SSO. Officer ID + OTP is the fallback. Every session is logged, every decision carries lineage." |
-| Expected | Quick. Don't linger — the SSO button is a one-second beat. |
-| If interrupted | "We didn't build auth. We integrated. SSO upstream handles 2FA per NHQ's IdP rules." |
-
-### Beat 4 · Role-switch to Manager — 45s · `/dashboard`
-
-| What | How |
-| --- | --- |
-| Click/press | Top-right role pill → Manager. Dashboard re-renders with the KPI strip + source health. |
-| Say | "Three roles: Data Analyst, Supervisor, Manager. Same data, different lenses. Manager sees throughput, flagged rate, model version, source coverage. All of it real — derived from the mock feed, never hardcoded." |
-| Expected | The live-count badges are the proof point. Let them see the numbers update. |
-| If interrupted | "Role-based access control is enforced upstream via the IdP's group claims. This UI reflects what the claim allows." |
-
-### Beat 5 · OSINT Risk Engine Overview — 60s · `/dashboard/osint-risk-engine`
-
-| What | How |
-| --- | --- |
-| Click/press | Sidebar → OSINT Risk Engine. Land on Overview tab. |
-| Say | "This is the workbench. Eight tabs. Overview, Queue, Explainability, Sequence Coherence, OSINT Sources, Configuration, Model Governance, Rasad. Start here — 24h throughput, flagged rate, average score, seventeen live sources, model version `v1.4.2-calibrated`." |
-| Expected | Audience sees the tab bar and the KPI strip. Move on. |
-| If interrupted | "Rasad is Phase 2 — the investigative workbench for organised-crime networks. I'll skip it today; it's a separate briefing." |
-
-### Beat 6 · Queue → Explainability — 90s · Queue tab → click first row
-
-| What | How |
-| --- | --- |
-| Click/press | Queue tab. Click the top row (should be the high-risk sponsor scenario). Explainability opens. |
-| Say | "Every score has an explanation. Top contributions, bottom contributions, coverage strip, confidence gauge. Which sources fed this score, which rules fired, which rules were skipped — it's all here. No silent contributions." |
-| Expected | The coverage strip does the work. Point to it. |
-| If interrupted (the "is this biased?" question) | "Fairness testing is in the Model Governance tab — per-nationality flagged-rate bars. I'll open that in a minute. Bias is measured, not assumed." |
-
-### Beat 7 · Sequence Coherence — 45s · Sequence Coherence tab
-
-| What | How |
-| --- | --- |
-| Click/press | Tab header. Scroll to the 62h gap anomaly card. |
-| Say | "Rules don't catch this one. A sixty-two-hour gap between APIS arrival and the first hotel check-in — rules see two green fields. Model 3 sees a presence anomaly. That's the ML recall story." |
-| Expected | One or two people lean forward. This is the "aha." |
-| If interrupted | "Same person, different signal arrangement. The anomaly is the pattern, not the value." |
-
-### Beat 8 · Model Governance + clearance demo — 90s · Model Governance tab → clearance pill
-
-| What | How |
-| --- | --- |
-| Click/press | Model Governance tab. Scroll to drift panel. Then click the clearance pill in the title bar — cycle `PUBLIC → INTERNAL → RESTRICTED → CLASSIFIED`. Watch fields redact live. |
-| Say | "Drift monitor — thirty days, calibration curve, feature distribution, PSI alert. Catches silent degradation before it hurts precision. And — *click* — classification is live. Every field on every page respects the operator's clearance. Watch the passport numbers disappear." |
-| Expected | The redaction is visceral. This is the closing image. |
-| If interrupted (the "what's real?" question) | "The UI is live. The data is seeded — fifty synthetic personas matched against realistic patterns. Integration with the real feed is a four-week activity once the classified authority is granted." |
-
-### Beat 9 · Closing frame — 30s · Back to `/dashboard`
-
-| What | How |
-| --- | --- |
-| Click/press | Sidebar → Dashboard. |
-| Say | "What you've seen today is one operator shell. Sidebar, eight-tab engine, per-role dashboards, ten analyst pages, three admin pages. Six of those have built-in narrated walkthroughs — press `N` any time. Printable walkthrough script is leave-behind. Next step is the integration workshop." |
-| Expected | Pause. Questions. |
-| If interrupted | Good — questions are engagement. Go to section 4 for the tight answers. |
+Budget 60 seconds of slack per beat. Tight answers are in Section 3.
 
 ---
 
-## 3 · Twenty-five-minute technical demo
+### Beat 1 · Border Dashboard — Operational Picture (3 min)
+**Route:** `/dashboard/border-dashboard`
 
-Deeper. Plan for 5 minutes of Q&A slack inside the budget.
-
-### T+0 · Positioning (2 min)
-
-Repeat section 1. Add: "SITA Borders MEA owns the platform. National Police HQ owns the decisioning. We are integrators, not intelligence producers."
-
-### T+2 · Tech Spec architecture (3 min) · `/dashboard/osint-risk-engine` → Configuration tab
-
-- Walk the YAML reload pattern. Show the weight profile switcher. Mention the ETA vs API/PNR profile split.
-- Say: "Operational knobs live in YAML. Model weights, source thresholds, rule enablement. No redeploys. Every change is audited."
-- Flag the `data-narrate-id` attributes in the DOM for anyone leaning over the shoulder — show Cmd/Ctrl+Shift+N dumping the script.
-
-### T+5 · OSINT Risk Engine — all 8 tabs (6 min)
-
-| Tab | Key callout |
-| --- | --- |
-| Overview | KPIs are aggregations, not fixtures. |
-| Queue | Scenario loader top-right — load the five pre-built cases in sequence. |
-| Explainability | Show SHAP-style attributions, coverage strip, confidence gauge, rule trace. |
-| Sequence Coherence | The 62h gap anomaly. Mention Model 3. |
-| OSINT Sources | Source health matrix. Classification awareness (CLASSIFIED sources don't render for PUBLIC operators). |
-| Configuration | Weight profiles + YAML reload. |
-| Model Governance | Drift, calibration, fairness bars. Open the per-nationality flagged-rate panel. |
-| Rasad | One sentence. Phase 2. Skip and move on. |
-
-### T+11 · Person 360° (3 min) · `/dashboard/person-360`
-
-- Click a subject from the Queue (passport-linked navigation).
-- Walk the dossier tabs: Identity → Movements → Relationships → Cases → Audit.
-- Say: "Entity graph feeds a personalised PageRank. Sponsor, employer, address. Graph features drive one of the nine sub-scores."
-
-### T+14 · Case Management (3 min) · `/dashboard/case-management`
-
-- Kanban view. Drag a card from Open → Investigating.
-- Close a case — trigger the disposition gate. Pick `False Positive` on purpose.
-- Say: "Closing requires a disposition. Confirmed Threat, False Positive, Insufficient Evidence, Transferred. That disposition feeds the model — false-positive labels are how we tune threshold."
-
-### T+17 · Entity Resolution queue (2 min) · `/dashboard/entity-resolution`
-
-- Show the side-by-side pair view.
-- Resolve one pair. Show the audit trail.
-- Say: "Human-in-the-loop for the fuzzy matches. `rapidfuzz` and `metaphone` do the first pass. Operators confirm or reject. That labelled data is the training set for the next model version."
-
-### T+19 · Audit Log + Reports (3 min) · `/dashboard/audit-log` → `/dashboard/reports`
-
-- Audit Log: filter by event type. Show an immutable WORM-signed event.
-- Reports: Generate the Compliance Summary. Preview the PDF. Show the scheduled tab. Open the custom template builder.
-
-### T+22 · Questions buffer (3 min)
-
-See section 4. Pick the two most likely questions for the audience in the room.
+| What | How |
+|------|-----|
+| Already open | Operations tab is the default. |
+| Say | "This is what greets the supervisor at shift start. Eight active checkpoints — Muscat Airport T1/T2, Seeb Cargo, three land crossings, two seaports. Green means processing normally. Amber means the queue is building. Red means a hit is waiting for action." |
+| Click | The Alert Feed tab. |
+| Say | "Every alert that fired in the last 60 minutes — real-time. Source, confidence, checkpoint, status. The Acknowledge button closes the alert from any officer's screen instantly." |
+| Click | Acknowledge on the top alert. |
+| Say | "Done. Every officer at that checkpoint sees the same update with no page reload. The Stats tab gives the supervisor shift-level throughput." |
+| If interrupted | "Checkpoint data feeds from the SITA I:Sight integration. This surface is real-time, not batch." |
 
 ---
 
-## 4 · Talking points per feature
+### Beat 2 · Services Dashboard — Flight Manifest (3 min)
+**Route:** `/dashboard/services-dashboard`
 
-### Scoring determinism
-
-| Q | A |
-| --- | --- |
-| "How do we know the score won't drift for the same input?" | "Feature snapshot is captured with every score. Replay produces the same score within 0.01. Deterministic hash on the input — if the hash matches, the score matches. It's in the Explainability payload." |
-| "What about non-deterministic model layers?" | "ML inference runs with fixed seeds and deterministic execution mode. Stochastic layers are flagged in the model card and excluded from the core score fusion." |
-| "Can we replay a historic decision?" | "Yes. Feature snapshot + model version ID reproduces the exact score. That's the audit primitive." |
-
-### Classification handling
-
-| Q | A |
-| --- | --- |
-| "How does classification flow through the UI?" | "Every field has a classification tag. The operator's clearance is read once per session from the IdP claim. Fields above clearance redact live — try the pill in the title bar." |
-| "What about exports?" | "Exports carry the operator's clearance at export time. A PUBLIC operator cannot export a RESTRICTED field. Enforced at the API layer, not the UI." |
-| "Audit of classified access?" | "Every classified-field access is a separate audit event. Actor, target, field, timestamp, signed. WORM storage." |
-
-### Rasad readiness
-
-| Q | A |
-| --- | --- |
-| "What is Rasad?" | "Phase 2 investigative workbench. Network-level view for organised-crime and state-threat analysis. Stub is visible as the eighth tab today; the feature set is a separate briefing after this one closes." |
-| "When does Rasad go live?" | "Phase 2 starts after Phase 1 is in UAT. Timeline depends on the classified authority being granted for the relevant data streams." |
-
-### ML model governance
-
-| Q | A |
-| --- | --- |
-| "Who owns the model?" | "Al-Ameen ships the model. National Police HQ owns the acceptance criteria. Model Governance tab shows the sign-off chain — who trained, who validated, who approved, who deployed." |
-| "How do you catch drift?" | "Thirty-day rolling drift monitor. PSI on feature distributions. Calibration curve. Alert fires at threshold — goes to the governance channel in Notifications." |
-| "Model rollback?" | "Every model version is signed and retained. Previous version is one click from the Configuration tab. Feature snapshots survive the rollback — historic decisions stay replayable." |
-
-### False positives
-
-| Q | A |
-| --- | --- |
-| "What's your false-positive rate?" | "Depends on threshold. At operator's chosen threshold — currently 0.72 — simulated FPR is around 3.8%. Tuneable. Every disposition tagged `False Positive` flows back to the training pipeline." |
-| "How is that measured against real arrivals?" | "That's the integration workshop. Today — simulated. With real feed — first quarter of Phase 1." |
-
-### Bias + fairness
-
-| Q | A |
-| --- | --- |
-| "How do you know the model isn't biased?" | "Model Governance tab → fairness bars. Flagged-rate by nationality, by age band, by gender. Compared to base rate. Disparities above threshold open a governance ticket." |
-| "What if the base rate itself is biased?" | "That's why we separate flagged-rate from confirmed-threat-rate. The second one is what matters. Both are in the tab. Full methodology is in the model card." |
-
-### Data residency
-
-| Q | A |
-| --- | --- |
-| "Where does the data live?" | "On-premise, National Police HQ data centre. No cloud. No third-party analytics. SITA hardware, NPH operational control." |
-| "What about the model?" | "Same. Trained on-premise, inferred on-premise. Weights never leave the facility." |
-
-### Commercial model
-
-| Q | A |
-| --- | --- |
-| "How is this priced?" | "Platform licence + support. Not per-transaction, not per-user. Priced to survive budget cycles, not optimised for usage growth." |
-| "Vendor lock-in?" | "Open schemas. Exports are signed, portable, and audited. Model weights are yours. The integration layer is generic — another vendor could take over within one quarter." |
+| What | How |
+|------|-----|
+| Navigate | Sidebar → Services Dashboard. |
+| Say | "Flight-level view. 47 active services today, 8,234 passengers processed, 23 flagged as high-risk, 11 open hits. Click any row." |
+| Click | The first row in the table. |
+| Say | "Service detail panel — full manifest, boarding status per passenger. Boarded, no-show, go-show icons. High-risk passengers are red. Hit badge shows how many active watchlist hits are on this flight." |
+| Say | "A supervisor can see the entire risk picture for an inbound flight before it lands." |
+| If interrupted | "Go-Show means the passenger arrived without a prior reservation — that's a specific risk indicator. No-Show means they checked in but didn't board." |
 
 ---
 
-## 5 · Demo failure modes
+### Beat 3 · Ad Hoc Search — Finding a Traveller (4 min)
+**Route:** `/dashboard/search`
 
-### Internet dies mid-demo
-
-Say: "We're on the local fallback — let me switch." Switch browser tab to `http://localhost:5173`. If local isn't running, say: "The Vercel deploy will be back — let me continue on screenshots." Open the deploy's last-good-state screenshots folder. Don't pretend the internet is fine.
-
-### Palette toggle fails
-
-Say nothing about the failure. The v1.0 palette is the default and is production-safe. Move on. If pressed: "Palette switching is a presenter-only affordance. Operators don't see that toggle."
-
-### Narration overlay glitches
-
-Press `Esc` twice. If the overlay sticks, reload the page. Say: "Demo walkthrough is a presenter aid — the product doesn't ship with narration overlays."
-
-### Presenter mode locks up
-
-Press `E` to toggle off. If stuck, reload. Say: "Presenter mode is a UI-only zoom — no state. Reload is safe."
-
-### "Is this real data?" / "Can I see a real arrival?"
-
-Say: "This is seeded. Fifty synthetic personas, realistic patterns, zero real passenger data. Integration with the NPH feed is a four-week activity once classified authority is granted. I can show you the integration architecture in the follow-up workshop."
-
-### Someone asks for a screenshot
-
-Say: "The leave-behind has everything. I'll send you the deploy URL, the walkthrough script, and a PDF. Live screenshotting risks capturing session state — we avoid it on principle."
-
-### Unfamiliar Arabic audience member probes the copy
-
-Say: "Arabic is peer, not translation. Every string was written by a bilingual specialist, not machine-translated. If you see something that reads stiff, flag it — we iterate."
+| What | How |
+|------|-----|
+| Navigate | Sidebar → Search. Land on Ad Hoc tab. |
+| Say | "Any officer can search across four domains: Events, Hits, Identities, Services. Start with a name." |
+| Type | `Ahmed Ibrahim` in the search bar. |
+| Say | "Phonetic matching is on by default. This returns exact matches, phonetic matches like Ahmad or Ibraheem, and transliterated Arabic equivalents — all in one result set. The EXACT / PHONETIC / FUZZY badge on each row tells you why it matched." |
+| Click | Table View toggle → Card View toggle. |
+| Say | "Officers who prefer a card layout get this. Same data, different density. Column manager on table view lets each officer show the fields they care about." |
+| Click | Hit Search tab. |
+| Say | "Hit Search is how a supervisor reviews open alerts. Filter by status — New, Acknowledged, Under Review. By watchlist. By risk level. By nationality. Results link directly to the full traveller dossier." |
+| If interrupted | "The Advanced Query Builder on the first tab lets officers build multi-condition queries — attribute, comparator, AND/OR logic — and save them as named queries for reuse." |
 
 ---
 
-## 6 · Keyboard cheat sheet
+### Beat 4 · Watchlist — Netherlands Sanctions + Interpol Red Notices (4 min)
+**Route:** `/dashboard/watchlist`
 
-| Binding | Scope | Effect |
-| --- | --- | --- |
-| `E` | Global | Toggle Presenter mode (hide debug, enlarge type) |
-| `N` | Any narrated page | Start scripted walkthrough with highlight overlay |
-| `Esc` | Any overlay | Exit overlay, dismiss modal |
-| `Cmd/Ctrl+Shift+P` | Global | Cycle brand palette v1.0 ↔ v1.1 |
-| `Cmd/Ctrl+Shift+N` | Global | Dump current narration script to console |
-| `?narrate=<step-id>` | URL param | Deep-link into a specific narration step |
-| Click clearance pill | Title bar | Cycle PUBLIC → INTERNAL → RESTRICTED → CLASSIFIED |
-| Click role pill | Dashboard top-right | Switch Data Analyst / Supervisor / Manager |
-| Click scenario loader | OSINT Risk Engine → Queue | Load one of five pre-built cases |
+| What | How |
+|------|-----|
+| Navigate | Sidebar → Watchlist. Land on Dashboard tab. |
+| Say | "Seven active watchlists. The two newest were added this week — Netherlands Sanctions List and Interpol Red Notices. Both are seeded from the most recent published data." |
+| Point to | The `wl-007 Netherlands Sanctions` card (orange border). |
+| Say | "485 designated individuals — EU and UN designations: ISIL facilitators, Russia sanctions under EU Regulation 269/2014, DPRK proliferation, Iran. Orange = Sanctions type. Interpol Red Notices in red — 6,842 records, 5 new this cycle." |
+| Click | Import/Export tab → Import tab. |
+| Say | "This is how new data gets in. Drag a CSV or XML from your sanctions authority, or pull direct from a connected source. The Netherlands Sanctions List and Interpol are both configured as connected sources — they sync automatically at 06:00 and 08:00 daily. Last sync: today." |
+| Drag a test file (or click browse) | Drag any CSV onto the drop zone. |
+| Say | "The system validates the file, maps fields, shows you exactly how many records will be added, updated, or errored before anything commits." |
+| Click | Manage Watchlists tab → click `wl-007`. |
+| Say | "10 targets in this watchlist from today's sync. Nationality breakdown, alias list, designation reference, source authority. Click any target for full detail including associated aliases and risk indicators." |
+| If interrupted | "Adding a target manually — the New Target button — goes through a draft/review/active lifecycle. Nothing goes live without a supervisor approval step." |
 
 ---
 
-## 7 · Leave-behind
+### Beat 5 · Target Match — Handling a Watchlist Hit (3 min)
+**Route:** `/dashboard/target-match`
 
-Send within 24 hours of the meeting.
+| What | How |
+|------|-----|
+| Navigate | Sidebar → Target Match. |
+| Say | "This is the dedicated hit-resolution workflow. The queue shows every traveller who triggered a watchlist match on inbound flights in the last 24 hours, ranked by confidence score." |
+| Click | Top candidate in the queue. |
+| Say | "Side-by-side comparison — the watchlist target on the left, the live traveller record on the right. Four match factors with confidence bars: name token ratio, document number similarity, nationality, date of birth proximity. The overall confidence score is at the top." |
+| Say | "Officer has four options: Defer to the next shift, mark as False Positive, Escalate to supervisor, or Confirm the match. Each action is logged with actor and timestamp." |
+| Click | The Escalate button. |
+| Say | "Escalated. The case now appears in the supervisor's queue with full history attached. The original officer's decision is preserved — audit trail is immutable." |
+| If interrupted | "Near-matches — say 82% confidence — are held here for human review. 100% exact matches on document number are flagged as automatic alerts to the checkpoint." |
 
-| Artifact | Where |
-| --- | --- |
-| Live deploy URL | `https://ameen-oman.vercel.app` (confirm with account team) |
-| PDF of this walkthrough | Export this file via `pandoc DEMO_WALKTHROUGH.md -o walkthrough.pdf` or Chrome print-to-PDF |
-| Tech Spec v1.0 | Separate secure channel — do not attach to email |
-| Integration workshop invite | 2-hour session, on-site at NHQ, dates via account team |
-| Contact | SITA Borders MEA — alaafada@gmail.com · Al-Ameen Product Lead |
+---
 
-Email body template:
+### Beat 6 · OSINT Risk Engine — Explainability (3 min)
+**Route:** `/dashboard/osint-risk-engine`
 
-> Thank you for the time today. Attached is the demo walkthrough with the full script — every tab, every question, every fallback — for your team's reference.
+| What | How |
+|------|-----|
+| Navigate | Sidebar → OSINT Risk Engine → Queue tab. |
+| Say | "The Queue is every traveller with an active risk flag waiting for analyst review. Click the top row." |
+| Click | Top high-risk row. |
+| Say | "Every score has an explanation. Top contributing factors — which signals pushed the score up. Bottom factors — what reduced it. Coverage strip shows which of the 17 intelligence sources actually had data on this person. Confidence gauge shows model certainty." |
+| Scroll to | Rule trace section. |
+| Say | "Every rule that fired is listed with its threshold and the actual value that triggered it. An officer can read exactly why this traveller scored high. No black box — every decision has a paper trail a supervisor can defend." |
+| If interrupted | "Sequence Coherence tab — press that — catches time-gap anomalies rules miss. A 62-hour gap between an APIS arrival record and the first hotel check-in is invisible to a rule engine but the model flags it. That's the ML contribution." |
+
+---
+
+### Beat 7 · Case Management — Closing a Hit (2 min)
+**Route:** `/dashboard/case-management`
+
+| What | How |
+|------|-----|
+| Navigate | Sidebar → Case Management. |
+| Say | "Every escalated hit becomes a case. Kanban: Open → Investigating → Pending Review → Closed. Drag a card across." |
+| Drag | One card from Open to Investigating. |
+| Say | "Status updates in real time on every officer's screen. Now close it." |
+| Click | Resolve button on any card. |
+| Say | "Closing requires a disposition — Confirmed Threat, False Positive, Insufficient Evidence, Transferred. This isn't optional. The disposition is what feeds the model's next calibration cycle. False positive labels are how threshold tuning works." |
+| If interrupted | "Officers can add a note at close. Pre-defined reasons are in the dropdown — 'Referred for secondary screening', 'Identity confirmed, no risk', 'Transferred to case' — plus a free text field for anything specific." |
+
+---
+
+### Beat 8 · Questions buffer (3 min)
+
+See Section 3 for tight answers. Most-likely questions from ROP operators:
+
+1. "What happens if the system flags the wrong person?" → False Positive workflow, immutable audit
+2. "Can we search in Arabic?" → Yes, full RTL, press the language toggle top-right
+3. "Who can add to a watchlist?" → Role-based — Supervisor and above; all changes are logged
+4. "How current is the data?" → Interpol syncs every 6h; NL Sanctions daily; APIS is real-time
+
+---
+
+## 3 · Operator Talking Points
+
+### Hit workflow
+
+| Q | A |
+|---|---|
+| "What do I do when I get a hit?" | "Target Match queue. Compare the profile, decide: False Positive, Escalate, or Confirm. Each choice has a dropdown reason + notes field. Takes under 90 seconds." |
+| "Can I see what the last officer did on this person?" | "Yes — Audit tab on any traveller record. Every access, every status change, actor and timestamp, immutable." |
+| "What if two officers are looking at the same hit?" | "The first officer to action it locks it for 5 minutes — the other sees a 'Being reviewed by OFC-0042' banner. No double-actioning." |
+
+### Watchlist management
+
+| Q | A |
+|---|---|
+| "How do I add a new name to a watchlist?" | "Watchlist → Manage Watchlists → open the list → New Target button. Fields: name, aliases, nationality, document numbers, designation reference. Goes to draft → supervisor approves → active." |
+| "How long until a new target is live?" | "After supervisor approval, it's active immediately on all checkpoints. No overnight batch." |
+| "Can I import a whole list at once?" | "Yes — Import/Export tab → Import. CSV or XML. The system shows you a preview (added/updated/errors) before committing." |
+
+### Search
+
+| Q | A |
+|---|---|
+| "The name is spelled differently in the passport" | "Phonetic mode is on by default. It matches across transliterations and common spelling variations. The PHONETIC badge on the result confirms it." |
+| "I need to search multiple conditions at once" | "Advanced Query Builder tab — add conditions, choose AND/OR logic, save it as a named query so you don't rebuild it every time." |
+
+### System access
+
+| Q | A |
+|---|---|
+| "Can I use this on a tablet or mobile?" | "Yes — responsive layout works on tablet. Full Arabic RTL support — press the language toggle in the top-right corner." |
+| "What if I forget my password?" | "Forgot Password on the login page — sends a recovery link to your registered email. First-time login goes through Set Password which forces a strong password." |
+| "Who can see my actions?" | "Your Supervisor and Admin roles can view your audit log. You can also review your own activity in your User Profile." |
+
+---
+
+## 4 · Closing Frame
+
+After questions:
+
+> "What you've seen is the complete operator workflow — from shift start on the Border Dashboard through search, watchlist matching, target resolution, and case closure. Every action is logged. Every score is explainable. Full Arabic support throughout.
 >
-> The live deployment is at [URL]. Press `N` on any page for the built-in narrated walkthrough; six key pages have this, covering twenty-seven steps.
->
-> Next step from our side is the integration workshop — two hours, on-site at NHQ, focused on the four-week plan to connect the real feed. Proposed dates follow separately.
+> The portal is live at `alameen.tech` today. Next step is the integration workshop — wiring the live APIS and PNR feeds."
 
 ---
 
-## Appendix A · Feature-to-spec map
+## 5 · Revision History
 
-Mapping each live feature to the Tech Spec sections it satisfies. Cite the section number when audiences ask "where in the spec does this come from?"
-
-| Feature | Tech Spec section(s) |
-| --- | --- |
-| Hero + bilingual brand principle | §1 Positioning · §2.4 Bilingual UI |
-| Intelligence Layers (16 streams) | §3 Stream catalogue · §3.1 Core / §3.2 Extended |
-| Data Flow Architecture | §4 Pipeline · §4.1 Ingest · §4.2 Normalise · §4.3 Score · §4.4 Deliver |
-| Login + SSO + OTP fallback | §5 Auth · §5.2 IdP integration · §5.3 Fallback auth |
-| Role-based dashboards | §6 Operator shell · §6.1 RBAC |
-| OSINT Risk Engine — Overview | §7 Scoring engine · §7.1 KPIs |
-| OSINT Risk Engine — Queue | §7.2 Operator queue · §14 Case lifecycle |
-| Explainability | §8 Explainability · §8.1 SHAP attributions · §8.2 Coverage strip |
-| Sequence Coherence | §7.5 Model 3 · §12 Temporal anomaly detection |
-| OSINT Sources + health | §3 Stream catalogue · §9 Source health · §11 Classification |
-| Configuration + YAML reload | §10 Operational knobs · §10.2 Weight profiles |
-| Model Governance — drift / calibration | §13 Model governance · §13.2 Drift · §13.3 Calibration |
-| Model Governance — fairness bars | §13.4 Fairness testing |
-| Rasad tab (stub) | §18 Phase 2 · §18.1 Investigative workbench |
-| Risk Assessment — Phase 1 | §7.3 Historic binary scoring |
-| Risk Assessment — Phase 2 | §7.4 Weighted fusion · §7.6 9-sub-score model |
-| Watchlist + targets | §15 Watchlist · §15.2 Fuzzy match threshold |
-| Notifications — routing rules | §16 Alerting · §16.1 Severity routing |
-| Notifications — channels | §16.2 Channel config · §16.3 Health + test |
-| Reports — templates | §17 Reporting · §17.1 Pre-built · §17.2 Custom builder |
-| Reports — scheduled | §17.3 Cadence · §17.4 Automated delivery |
-| Person 360° | §14.3 Subject dossier · §14.4 Cross-stream timeline |
-| Case Management | §14 Case lifecycle · §14.5 Disposition gates |
-| Entity Resolution | §4.2.1 Entity matching · §8.4 Human-in-the-loop |
-| Audit Log | §19 Audit · §19.1 WORM storage · §19.2 Signed events |
-| Classification pill + redaction | §11 Classification · §11.2 Clearance-aware UI |
-
----
-
-## Appendix B · Narration script coverage
-
-Built-in `N`-key walkthroughs. Twelve pages, fifty steps total. Array lives in `src/mocks/osintData.ts` → `DEMO_NARRATIONS`.
-
-| Route | Steps | What it covers |
-| --- | --- | --- |
-| `/` | 4 | Hero eyebrow · bilingual tagline · Intelligence Layers · Data Flow |
-| `/login` | 3 | Ceremonial pane · SSO primary · session-recording legal note |
-| `/dashboard` | 4 | KPI strip · single sidebar · event feed · OSINT engine shortcut |
-| `/dashboard/osint-risk-engine` | 7 | Overview → Queue → Explainability → Sequence → Sources → Governance → Config |
-| `/dashboard/person-360` | 5 | Subject header → identity cards → movements → relationships → cases |
-| `/dashboard/case-management` | 5 | Kanban → case card → disposition → notes → stats |
-| `/dashboard/audit-log` | 3 | Filters → immutable event → compliance export |
-| `/dashboard/entity-resolution` | 3 | Queue → side-by-side → resolve actions |
-| `/dashboard/watchlist` | 4 | Header KPIs → target list → import/export → deterministic role |
-| `/dashboard/notifications` | 4 | Inbox → routing rules → rule editor → channel config |
-| `/dashboard/reports` | 4 | Template grid → generate now → custom tile → scheduled link |
-| `/dashboard/risk-assessment` | 3 | Phase 1 binary → Phase 2 weighted → score config |
-
-**Unattended presenter mode:** queue narration via `?narrate=<step-id>`. Example: `https://ameen-oman.vercel.app/dashboard/osint-risk-engine?narrate=osint-sequence-gap` lands directly on the Sequence Coherence anomaly with the highlight already active. Useful for demo stations that loop without a human at the keyboard.
+| Date | Version | Changes |
+|------|---------|---------|
+| 2026-08-17 | 1.0 | Initial — OSINT Risk Engine focus, executive audience |
+| 2026-10-05 | 1.6 | Full rewrite for ROP operator audience. 25-min technical format. Covers all Phase 1–5 modules: Border Dashboard, Services Dashboard, Search, Watchlist (NL Sanctions + Interpol Red Notices), Target Match, OSINT explainability, Case Management. URL updated to alameen.tech. |
