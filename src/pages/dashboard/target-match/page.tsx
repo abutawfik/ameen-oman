@@ -190,7 +190,7 @@ export default function TargetMatchPage() {
   const { isAr } = useOutletContext<DashboardOutletContext>();
 
   const [hits, setHits]           = useState<TravelHit[]>(HITS);
-  const [selected, setSelected]   = useState<TravelHit | null>(null);
+  const [selected, setSelected]   = useState<TravelHit | null>(HITS[0] ?? null);
   const [filter, setFilter]       = useState<FilterTab>('ALL');
   const [banner, setBanner]       = useState<{ id: string; type: 'confirmed' | 'dismissed' } | null>(null);
 
@@ -203,7 +203,13 @@ export default function TargetMatchPage() {
 
   function applyAction(id: string, newStatus: HitStatus, bannerType: 'confirmed' | 'dismissed') {
     setHits(prev => prev.map(h => h.id === id ? { ...h, status: newStatus } : h));
-    setSelected(prev => prev?.id === id ? { ...prev, status: newStatus } : prev);
+    // Auto-advance: select the next pending hit so the queue keeps moving
+    const nextPending = hits.find(h => h.status === 'PENDING' && h.id !== id);
+    if (nextPending) {
+      setSelected(nextPending);
+    } else {
+      setSelected(prev => prev?.id === id ? { ...prev, status: newStatus } : prev);
+    }
     setBanner({ id, type: bannerType });
     setTimeout(() => setBanner(null), 3500);
   }
@@ -273,7 +279,7 @@ export default function TargetMatchPage() {
             return (
               <div
                 key={h.id}
-                onClick={() => setSelected(isSelected ? null : h)}
+                onClick={() => setSelected(h)}
                 style={{
                   padding: '0.85rem 1rem',
                   borderBottom: `1px solid ${C.p2}`,
