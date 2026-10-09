@@ -19,7 +19,7 @@ const C = {
 type CheckpointStatus = 'OPEN' | 'BUSY' | 'CLOSED';
 type CheckpointType = 'ARRIVAL' | 'DEPARTURE' | 'TRANSIT';
 type CrossingStatus = 'CLEARED' | 'FLAGGED' | 'SECONDARY';
-type AlertType = 'WATCHLIST_HIT' | 'DOCUMENT_MISMATCH' | 'BIOMETRIC_FAIL' | 'OVERSTAY';
+type AlertType = 'WATCHLIST_HIT' | 'DOCUMENT_MISMATCH' | 'BIOMETRIC_FAIL' | 'OVERSTAY' | 'TPI_CO_TRAVELER' | 'TPI_TRAFFICKING' | 'TPI_DOC_ANOMALY';
 type Tab = 'operations' | 'alerts' | 'stats';
 
 interface Checkpoint {
@@ -69,12 +69,15 @@ const SAMPLE_CROSSINGS: Crossing[] = [
 ];
 
 const LIVE_ALERTS_INIT: LiveAlert[] = [
-  { id: '1', checkpoint: 'Gate B1',  type: 'WATCHLIST_HIT',    initials: 'RK', timeAgo: '2 min ago',  acknowledged: false },
-  { id: '2', checkpoint: 'Gate A1',  type: 'DOCUMENT_MISMATCH',initials: 'MA', timeAgo: '5 min ago',  acknowledged: false },
-  { id: '3', checkpoint: 'Gate B1',  type: 'BIOMETRIC_FAIL',   initials: 'SH', timeAgo: '8 min ago',  acknowledged: false },
-  { id: '4', checkpoint: 'Cargo',    type: 'WATCHLIST_HIT',    initials: 'TN', timeAgo: '12 min ago', acknowledged: false },
-  { id: '5', checkpoint: 'Gate C1',  type: 'OVERSTAY',         initials: 'WA', timeAgo: '18 min ago', acknowledged: false },
-  { id: '6', checkpoint: 'Gate A1',  type: 'DOCUMENT_MISMATCH',initials: 'BL', timeAgo: '24 min ago', acknowledged: false },
+  { id: 'tpi-1', checkpoint: 'MCT T1 Gate G',   type: 'TPI_CO_TRAVELER', initials: 'TPI', timeAgo: '1 min ago',  acknowledged: false },
+  { id: 'tpi-2', checkpoint: 'MCT T1 Arrivals', type: 'TPI_TRAFFICKING', initials: 'TPI', timeAgo: '3 min ago',  acknowledged: false },
+  { id: '1',     checkpoint: 'Gate B1',          type: 'WATCHLIST_HIT',   initials: 'RK',  timeAgo: '2 min ago',  acknowledged: false },
+  { id: '2',     checkpoint: 'Gate A1',          type: 'DOCUMENT_MISMATCH',initials: 'MA', timeAgo: '5 min ago',  acknowledged: false },
+  { id: 'tpi-3', checkpoint: 'MCT T1 Gate G22', type: 'TPI_DOC_ANOMALY', initials: 'TPI', timeAgo: '7 min ago',  acknowledged: false },
+  { id: '3',     checkpoint: 'Gate B1',          type: 'BIOMETRIC_FAIL',  initials: 'SH',  timeAgo: '8 min ago',  acknowledged: false },
+  { id: '4',     checkpoint: 'Cargo',            type: 'WATCHLIST_HIT',   initials: 'TN',  timeAgo: '12 min ago', acknowledged: false },
+  { id: '5',     checkpoint: 'Gate C1',          type: 'OVERSTAY',        initials: 'WA',  timeAgo: '18 min ago', acknowledged: false },
+  { id: '6',     checkpoint: 'Gate A1',          type: 'DOCUMENT_MISMATCH',initials: 'BL', timeAgo: '24 min ago', acknowledged: false },
 ];
 
 // SVG bar chart for Processing Stats tab
@@ -149,6 +152,9 @@ const ALERT_ICON: Record<AlertType, string> = {
   DOCUMENT_MISMATCH:'ri-file-warning-line',
   BIOMETRIC_FAIL:   'ri-fingerprint-line',
   OVERSTAY:         'ri-time-line',
+  TPI_CO_TRAVELER:  'ri-node-tree',
+  TPI_TRAFFICKING:  'ri-team-line',
+  TPI_DOC_ANOMALY:  'ri-passport-line',
 };
 
 const ALERT_COLOR: Record<AlertType, string> = {
@@ -156,7 +162,20 @@ const ALERT_COLOR: Record<AlertType, string> = {
   DOCUMENT_MISMATCH:'#D4922A',
   BIOMETRIC_FAIL:   '#A78BFA',
   OVERSTAY:         '#60A5FA',
+  TPI_CO_TRAVELER:  '#C94A5E',
+  TPI_TRAFFICKING:  '#C94A5E',
+  TPI_DOC_ANOMALY:  '#D4922A',
 };
+
+const TPI_LABEL: Partial<Record<AlertType, string>> = {
+  TPI_CO_TRAVELER: 'CO-TRAVELER NETWORK',
+  TPI_TRAFFICKING: 'TRAFFICKING INDICATOR',
+  TPI_DOC_ANOMALY: 'DOCUMENT ANOMALY',
+};
+
+function isTpiAlert(type: AlertType): boolean {
+  return type === 'TPI_CO_TRAVELER' || type === 'TPI_TRAFFICKING' || type === 'TPI_DOC_ANOMALY';
+}
 
 function StatCard({ label, value, color, icon }: { label: string; value: string | number; color: string; icon?: string }) {
   return (
@@ -346,9 +365,14 @@ const BorderDashboardPage = () => {
                         <span style={{ color: ALERT_COLOR[alert.type], fontSize: 11, fontFamily: "'JetBrains Mono', monospace", fontWeight: 700 }}>{alert.initials}</span>
                       </div>
                       <div style={{ flex: 1, minWidth: 0 }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 3 }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 3, flexWrap: 'wrap' }}>
                           <i className={ALERT_ICON[alert.type]} style={{ color: ALERT_COLOR[alert.type], fontSize: 12 }} />
-                          <span style={{ color: ALERT_COLOR[alert.type], fontSize: 11, fontFamily: "'JetBrains Mono', monospace", fontWeight: 700 }}>{alert.type.replace(/_/g, ' ')}</span>
+                          <span style={{ color: ALERT_COLOR[alert.type], fontSize: 11, fontFamily: "'JetBrains Mono', monospace", fontWeight: 700 }}>
+                            {TPI_LABEL[alert.type] ?? alert.type.replace(/_/g, ' ')}
+                          </span>
+                          {isTpiAlert(alert.type) && (
+                            <span style={{ background: 'rgba(122,179,232,0.12)', color: '#7AB3E8', border: '1px solid rgba(122,179,232,0.25)', borderRadius: 8, padding: '1px 5px', fontSize: 9, fontFamily: "'JetBrains Mono', monospace", fontWeight: 700 }}>TPI</span>
+                          )}
                         </div>
                         <div style={{ color: '#9CA3AF', fontSize: 12, fontFamily: "'Inter', sans-serif", marginBottom: 2 }}>{alert.checkpoint}</div>
                         <div style={{ color: '#4B5563', fontSize: 10, fontFamily: "'JetBrains Mono', monospace" }}>{alert.timeAgo}</div>
@@ -379,27 +403,41 @@ const BorderDashboardPage = () => {
               <span style={{ color: '#E5E7EB', fontWeight: 700, fontFamily: "'Inter', sans-serif" }}>{isAr ? 'تغذية التنبيهات الكاملة' : 'Full Alert Feed'}</span>
             </div>
             {alerts.map(alert => (
-              <div key={alert.id} style={{ padding: '1rem 1.5rem', borderBottom: '1px solid rgba(255,255,255,0.03)', display: 'flex', alignItems: 'center', gap: 16, opacity: alert.acknowledged ? 0.5 : 1, transition: 'opacity 0.3s' }}>
+              <div key={alert.id} style={{ padding: '1rem 1.5rem', borderBottom: '1px solid rgba(255,255,255,0.03)', display: 'flex', alignItems: 'center', gap: 16, opacity: alert.acknowledged ? 0.5 : 1, transition: 'opacity 0.3s', background: isTpiAlert(alert.type) ? 'rgba(122,179,232,0.03)' : 'transparent' }}>
                 <div style={{ width: 44, height: 44, borderRadius: '50%', background: `${ALERT_COLOR[alert.type]}14`, border: `1px solid ${ALERT_COLOR[alert.type]}30`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                   <span style={{ color: ALERT_COLOR[alert.type], fontFamily: "'JetBrains Mono', monospace", fontWeight: 800, fontSize: 13 }}>{alert.initials}</span>
                 </div>
                 <div style={{ flex: 1 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4, flexWrap: 'wrap' }}>
                     <i className={ALERT_ICON[alert.type]} style={{ color: ALERT_COLOR[alert.type], fontSize: 14 }} />
-                    <span style={{ color: ALERT_COLOR[alert.type], fontFamily: "'JetBrains Mono', monospace", fontWeight: 700, fontSize: 12 }}>{alert.type.replace(/_/g, ' ')}</span>
+                    <span style={{ color: ALERT_COLOR[alert.type], fontFamily: "'JetBrains Mono', monospace", fontWeight: 700, fontSize: 12 }}>
+                      {TPI_LABEL[alert.type] ?? alert.type.replace(/_/g, ' ')}
+                    </span>
                     <span style={{ background: `${ALERT_COLOR[alert.type]}14`, color: ALERT_COLOR[alert.type], border: `1px solid ${ALERT_COLOR[alert.type]}30`, borderRadius: 10, padding: '1px 7px', fontSize: 10, fontFamily: "'JetBrains Mono', monospace" }}>ACTIVE</span>
+                    {isTpiAlert(alert.type) && (
+                      <span style={{ background: 'rgba(122,179,232,0.1)', color: '#7AB3E8', border: '1px solid rgba(122,179,232,0.25)', borderRadius: 10, padding: '1px 7px', fontSize: 10, fontFamily: "'JetBrains Mono', monospace", fontWeight: 700 }}>TPI</span>
+                    )}
                   </div>
                   <div style={{ color: '#9CA3AF', fontSize: 13, fontFamily: "'Inter', sans-serif" }}>{alert.checkpoint} · {alert.timeAgo}</div>
                 </div>
-                {!alert.acknowledged && (
-                  <button type="button"
-                    onClick={() => handleAcknowledge(alert.id)}
-                    style={{ background: 'rgba(184,138,60,0.1)', border: '1px solid rgba(184,138,60,0.25)', borderRadius: 8, color: C.gold, padding: '7px 16px', fontSize: 12, cursor: 'pointer', fontFamily: "'JetBrains Mono', monospace", fontWeight: 600 }}>
-                    Acknowledge
-                  </button>
-                )}
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
+                  {isTpiAlert(alert.type) && !alert.acknowledged && (
+                    <button type="button"
+                      onClick={() => navigate('/dashboard/travel-pattern-intelligence')}
+                      style={{ background: 'rgba(122,179,232,0.08)', border: '1px solid rgba(122,179,232,0.2)', borderRadius: 8, color: '#7AB3E8', padding: '7px 12px', fontSize: 11, cursor: 'pointer', fontFamily: "'JetBrains Mono', monospace", fontWeight: 600, whiteSpace: 'nowrap' }}>
+                      View TPI
+                    </button>
+                  )}
+                  {!alert.acknowledged && (
+                    <button type="button"
+                      onClick={() => handleAcknowledge(alert.id)}
+                      style={{ background: 'rgba(184,138,60,0.1)', border: '1px solid rgba(184,138,60,0.25)', borderRadius: 8, color: C.gold, padding: '7px 16px', fontSize: 12, cursor: 'pointer', fontFamily: "'JetBrains Mono', monospace", fontWeight: 600 }}>
+                      Acknowledge
+                    </button>
+                  )}
+                </div>
                 {alert.acknowledged && (
-                  <span style={{ color: C.low, fontFamily: "'JetBrains Mono', monospace", fontSize: 11 }}>✓ Acknowledged</span>
+                  <span style={{ color: C.low, fontFamily: "'JetBrains Mono', monospace", fontSize: 11, flexShrink: 0 }}>✓ Acknowledged</span>
                 )}
               </div>
             ))}
