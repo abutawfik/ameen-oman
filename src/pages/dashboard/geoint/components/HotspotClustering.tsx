@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { hotspots, type Hotspot } from "@/mocks/geointData";
 
+import { RISK_TOKEN } from "@/lib/riskColors";
+
 const intensityConfig = {
-  critical: { color: "#C94A5E", bg: "rgba(201,74,94,0.15)", border: "rgba(201,74,94,0.4)", label: "CRITICAL", pulse: true },
-  high:     { color: "#C98A1B", bg: "rgba(201,138,27,0.12)",  border: "rgba(201,138,27,0.35)",  label: "HIGH",     pulse: true },
-  medium:   { color: "#FACC15", bg: "rgba(250,204,21,0.10)",  border: "rgba(250,204,21,0.30)",  label: "MEDIUM",   pulse: false },
-  low:      { color: "#4ADE80", bg: "rgba(74,222,128,0.08)",  border: "rgba(74,222,128,0.25)",  label: "LOW",      pulse: false },
+  critical: { color: RISK_TOKEN.CRITICAL.color, bg: RISK_TOKEN.CRITICAL.bg, border: RISK_TOKEN.CRITICAL.border, label: "CRITICAL", pulse: true  },
+  high:     { color: RISK_TOKEN.HIGH.color,     bg: RISK_TOKEN.HIGH.bg,     border: RISK_TOKEN.HIGH.border,     label: "HIGH",     pulse: true  },
+  medium:   { color: RISK_TOKEN.MEDIUM.color,   bg: RISK_TOKEN.MEDIUM.bg,   border: RISK_TOKEN.MEDIUM.border,   label: "MEDIUM",   pulse: false },
+  low:      { color: RISK_TOKEN.LOW.color,      bg: RISK_TOKEN.LOW.bg,      border: RISK_TOKEN.LOW.border,      label: "LOW",      pulse: false },
 };
 
 const W = 900;

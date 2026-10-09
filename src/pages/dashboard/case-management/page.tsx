@@ -26,11 +26,13 @@ const STATUS_META: Record<CaseStatus, { labelEn: string; labelAr: string; color:
   CLOSED:          { labelEn: "Closed",          labelAr: "مغلقة",           color: "#4A8E3A" },
 };
 
+import { RISK_TOKEN } from '@/lib/riskColors';
+
 const SEVERITY_META: Record<Case["severity"], { color: string; labelEn: string; labelAr: string }> = {
-  CRITICAL: { color: "#8A1F3C", labelEn: "Critical", labelAr: "حرج" },
-  HIGH:     { color: "#C94A5E", labelEn: "High",     labelAr: "مرتفع" },
-  MEDIUM:   { color: "#C98A1B", labelEn: "Medium",   labelAr: "متوسط" },
-  LOW:      { color: "#4A8E3A", labelEn: "Low",      labelAr: "منخفض" },
+  CRITICAL: { color: RISK_TOKEN.CRITICAL.color, labelEn: "Critical", labelAr: "حرج"   },
+  HIGH:     { color: RISK_TOKEN.HIGH.color,     labelEn: "High",     labelAr: "مرتفع" },
+  MEDIUM:   { color: RISK_TOKEN.MEDIUM.color,   labelEn: "Medium",   labelAr: "متوسط" },
+  LOW:      { color: RISK_TOKEN.LOW.color,      labelEn: "Low",      labelAr: "منخفض" },
 };
 
 const DISPOSITION_META: Record<CaseDisposition, { labelEn: string; labelAr: string }> = {

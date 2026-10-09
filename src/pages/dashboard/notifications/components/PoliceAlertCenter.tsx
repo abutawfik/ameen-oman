@@ -5,11 +5,13 @@ interface Props {
   isAr: boolean;
 }
 
+import { RISK_TOKEN } from "@/lib/riskColors";
+
 const priorityConfig: Record<NotifPriority, { label: string; labelAr: string; color: string; bg: string; border: string; icon: string }> = {
-  critical: { label: "CRITICAL", labelAr: "حرج",    color: "#C94A5E", bg: "rgba(201,74,94,0.08)", border: "rgba(201,74,94,0.35)", icon: "ri-alarm-warning-fill" },
-  high:     { label: "HIGH",     labelAr: "عالٍ",   color: "#C98A1B", bg: "rgba(201,138,27,0.08)",  border: "rgba(201,138,27,0.35)",  icon: "ri-error-warning-fill" },
-  medium:   { label: "MEDIUM",   labelAr: "متوسط",  color: "#FACC15", bg: "rgba(250,204,21,0.08)",  border: "rgba(250,204,21,0.35)",  icon: "ri-information-fill" },
-  low:      { label: "LOW",      labelAr: "منخفض",  color: "#D6B47E", bg: "rgba(184,138,60,0.05)",  border: "rgba(184,138,60,0.2)",   icon: "ri-notification-3-fill" },
+  critical: { label: "CRITICAL", labelAr: "حرج",   color: RISK_TOKEN.CRITICAL.color, bg: RISK_TOKEN.CRITICAL.bg, border: RISK_TOKEN.CRITICAL.border, icon: "ri-alarm-warning-fill" },
+  high:     { label: "HIGH",     labelAr: "عالٍ",  color: RISK_TOKEN.HIGH.color,     bg: RISK_TOKEN.HIGH.bg,     border: RISK_TOKEN.HIGH.border,     icon: "ri-error-warning-fill" },
+  medium:   { label: "MEDIUM",   labelAr: "متوسط", color: RISK_TOKEN.MEDIUM.color,   bg: RISK_TOKEN.MEDIUM.bg,   border: RISK_TOKEN.MEDIUM.border,   icon: "ri-information-fill" },
+  low:      { label: "LOW",      labelAr: "منخفض", color: RISK_TOKEN.LOW.color,      bg: RISK_TOKEN.LOW.bg,      border: RISK_TOKEN.LOW.border,      icon: "ri-notification-3-fill" },
 };
 
 const PoliceAlertCenter = ({ isAr }: Props) => {

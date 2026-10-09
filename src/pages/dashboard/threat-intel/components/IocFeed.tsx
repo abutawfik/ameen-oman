@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { iocEntries, type IocEntry, type IocType, type SeverityLevel, type IocStatus } from "@/mocks/threatIntelData";
 
+import { RISK_TOKEN } from "@/lib/riskColors";
+
 const severityConfig: Record<SeverityLevel, { color: string; bg: string; label: string }> = {
-  critical: { color: "#C94A5E", bg: "rgba(201,74,94,0.1)", label: "CRITICAL" },
-  high:     { color: "#C98A1B", bg: "rgba(201,138,27,0.1)",  label: "HIGH" },
-  medium:   { color: "#FACC15", bg: "rgba(250,204,21,0.1)",  label: "MEDIUM" },
-  low:      { color: "#4ADE80", bg: "rgba(74,222,128,0.1)",  label: "LOW" },
+  critical: { color: RISK_TOKEN.CRITICAL.color, bg: RISK_TOKEN.CRITICAL.bg, label: "CRITICAL" },
+  high:     { color: RISK_TOKEN.HIGH.color,     bg: RISK_TOKEN.HIGH.bg,     label: "HIGH"     },
+  medium:   { color: RISK_TOKEN.MEDIUM.color,   bg: RISK_TOKEN.MEDIUM.bg,   label: "MEDIUM"   },
+  low:      { color: RISK_TOKEN.LOW.color,      bg: RISK_TOKEN.LOW.bg,      label: "LOW"      },
 };
 
 const statusConfig: Record<IocStatus, { color: string; label: string; icon: string }> = {

@@ -18,10 +18,10 @@ const severityMeta: Record<
   PersonalQueueItem["severity"],
   { color: string; bg: string; labelEn: string; labelAr: string }
 > = {
-  CRITICAL: { color: "#8A1F3C", bg: "rgba(138,31,60,0.15)",  labelEn: "CRITICAL", labelAr: "حرج" },
-  HIGH:     { color: "#C94A5E", bg: "rgba(201,74,94,0.15)", labelEn: "HIGH",     labelAr: "مرتفع" },
-  MEDIUM:   { color: "#C98A1B", bg: "rgba(201,138,27,0.15)", labelEn: "MEDIUM",   labelAr: "متوسط" },
-  LOW:      { color: "#FACC15", bg: "rgba(250,204,21,0.15)", labelEn: "LOW",       labelAr: "منخفض" },
+  CRITICAL: { color: "#C94A5E", bg: "rgba(201,74,94,0.15)",  labelEn: "CRITICAL", labelAr: "حرج"   },
+  HIGH:     { color: "#D4922A", bg: "rgba(212,146,42,0.15)", labelEn: "HIGH",     labelAr: "عالٍ"  },
+  MEDIUM:   { color: "#FACC15", bg: "rgba(250,204,21,0.15)", labelEn: "MEDIUM",   labelAr: "متوسط" },
+  LOW:      { color: "#4A8E5A", bg: "rgba(74,142,90,0.15)",  labelEn: "LOW",      labelAr: "منخفض" },
 };
 
 const typeIcon: Record<PersonalQueueItem["type"], string> = {

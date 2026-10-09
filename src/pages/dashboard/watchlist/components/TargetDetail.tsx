@@ -17,12 +17,7 @@ const typeConfig: Record<WatchlistType, { label: string; color: string }> = {
   custom:            { label: 'Custom', color: '#D6B47E' },
 };
 
-const riskColors: Record<string, string> = {
-  critical: '#C94A5E',
-  high: '#C98A1B',
-  medium: '#FACC15',
-  low: '#4ADE80',
-};
+import { RISK_COLOR as riskColors } from '@/lib/riskColors';
 
 const statusColors: Record<string, string> = {
   new: '#C94A5E',

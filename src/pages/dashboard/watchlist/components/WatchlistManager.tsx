@@ -17,12 +17,7 @@ const typeConfig: Record<WatchlistType, { label: string; labelAr: string; color:
   custom:            { label: 'Custom', labelAr: 'مخصص', color: '#D6B47E', icon: 'ri-settings-3-line' },
 };
 
-const riskColors: Record<string, string> = {
-  critical: '#C94A5E',
-  high: '#C98A1B',
-  medium: '#FACC15',
-  low: '#4ADE80',
-};
+import { RISK_COLOR as riskColors } from '@/lib/riskColors';
 
 const WatchlistManager = ({ isAr, selectedWatchlistId, onSelectTarget }: Props) => {
   const [activeWlId, setActiveWlId] = useState<string>(selectedWatchlistId || watchlists[0].id);

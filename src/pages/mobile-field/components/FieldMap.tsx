@@ -5,11 +5,13 @@ interface Props {
   isAr: boolean;
 }
 
+import { RISK_TOKEN } from "@/lib/riskColors";
+
 const priorityConfig = {
-  critical: { color: "#C94A5E", label: "CRITICAL", labelAr: "حرج" },
-  high:     { color: "#C98A1B", label: "HIGH",     labelAr: "عالٍ" },
-  medium:   { color: "#FACC15", label: "MEDIUM",   labelAr: "متوسط" },
-  low:      { color: "#D6B47E", label: "LOW",      labelAr: "منخفض" },
+  critical: { color: RISK_TOKEN.CRITICAL.color, label: "CRITICAL", labelAr: "حرج"   },
+  high:     { color: RISK_TOKEN.HIGH.color,     label: "HIGH",     labelAr: "عالٍ"  },
+  medium:   { color: RISK_TOKEN.MEDIUM.color,   label: "MEDIUM",   labelAr: "متوسط" },
+  low:      { color: RISK_TOKEN.LOW.color,      label: "LOW",      labelAr: "منخفض" },
 };
 
 const officerStatusColors: Record<string, string> = {

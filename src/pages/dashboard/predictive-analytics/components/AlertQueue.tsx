@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { alertQueue, streamLabels, type PatternAlert } from '@/mocks/predictiveAnalyticsData';
 
+import { RISK_TOKEN } from '@/lib/riskColors';
+
 const priorityConfig = {
-  critical: { color: '#C94A5E', border: '#C94A5E', label: 'CRITICAL', bg: 'rgba(201,74,94,0.12)' },
-  high:     { color: '#C98A1B', border: '#C98A1B', label: 'HIGH',     bg: 'rgba(201,138,27,0.12)' },
-  medium:   { color: '#FACC15', border: '#FACC15', label: 'MEDIUM',   bg: 'rgba(250,204,21,0.12)' },
-  low:      { color: '#D6B47E', border: '#D6B47E', label: 'LOW',      bg: 'rgba(184,138,60,0.12)' },
+  critical: { color: RISK_TOKEN.CRITICAL.color, border: RISK_TOKEN.CRITICAL.border, label: 'CRITICAL', bg: RISK_TOKEN.CRITICAL.bg },
+  high:     { color: RISK_TOKEN.HIGH.color,     border: RISK_TOKEN.HIGH.border,     label: 'HIGH',     bg: RISK_TOKEN.HIGH.bg     },
+  medium:   { color: RISK_TOKEN.MEDIUM.color,   border: RISK_TOKEN.MEDIUM.border,   label: 'MEDIUM',   bg: RISK_TOKEN.MEDIUM.bg   },
+  low:      { color: RISK_TOKEN.LOW.color,      border: RISK_TOKEN.LOW.border,      label: 'LOW',      bg: RISK_TOKEN.LOW.bg      },
 };
 
 const statusConfig = {
