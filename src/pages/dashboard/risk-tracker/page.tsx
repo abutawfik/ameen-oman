@@ -150,21 +150,21 @@ function FlightRow({ flight, isAr, isSelected, onClick }: { flight: TrackedFligh
       <div style={{ flex: 1, minWidth: 0 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <span style={{ fontSize: 12, color: '#D6B47E', fontFamily: "'JetBrains Mono', monospace", fontWeight: 600 }}>{flight.flightNo}</span>
-          <span style={{ fontSize: 10, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace" }}>
+          <span style={{ fontSize: 11, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace" }}>
             {flight.originCode} → {flight.destinationCode}
           </span>
         </div>
-        <div style={{ fontSize: 10, color: '#374B61', fontFamily: "'JetBrains Mono', monospace", marginTop: 1 }}>
+        <div style={{ fontSize: 11, color: '#374B61', fontFamily: "'JetBrains Mono', monospace", marginTop: 1 }}>
           {flight.airline} · {STATUS_LABELS[flight.status]?.[isAr ? 'ar' : 'en']}
         </div>
       </div>
       <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexShrink: 0 }}>
         {flight.hitCount > 0 && (
-          <span style={{ fontSize: 10, padding: '2px 5px', borderRadius: 3, background: 'rgba(201,74,94,0.12)', color: '#C94A5E', fontFamily: "'JetBrains Mono', monospace" }}>
+          <span style={{ fontSize: 11, padding: '2px 5px', borderRadius: 3, background: 'rgba(201,74,94,0.12)', color: '#C94A5E', fontFamily: "'JetBrains Mono', monospace" }}>
             ⚠ {flight.hitCount}
           </span>
         )}
-        <span style={{ fontSize: 10, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace" }}>
+        <span style={{ fontSize: 11, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace" }}>
           {flight.paxCount} <i className="ri-group-line" />
         </span>
       </div>
@@ -216,7 +216,7 @@ export default function RiskTrackerPage() {
             ].map(s => (
               <div key={s.label} style={{ textAlign: 'center' }}>
                 <div style={{ fontSize: 18, fontFamily: "'JetBrains Mono', monospace", color: s.color, fontWeight: 600, lineHeight: 1 }}>{s.val}</div>
-                <div style={{ fontSize: 9, color: '#374B61', fontFamily: "'JetBrains Mono', monospace', textTransform: 'uppercase", marginTop: 2 }}>{s.label}</div>
+                <div style={{ fontSize: 10, color: '#374B61', fontFamily: "'JetBrains Mono', monospace', textTransform: 'uppercase", marginTop: 2 }}>{s.label}</div>
               </div>
             ))}
           </div>
@@ -226,7 +226,7 @@ export default function RiskTrackerPage() {
         <div style={{ flex: 1, display: 'flex', overflow: 'hidden' }}>
           {/* Left sidebar: flight list */}
           <div style={{ width: 240, flexShrink: 0, overflowY: 'auto', borderRight: '1px solid rgba(184,138,60,0.1)', background: 'rgba(5,20,40,0.5)' }}>
-            <div style={{ padding: '8px 14px', fontSize: 10, color: '#374B61', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.06em', borderBottom: '1px solid rgba(184,138,60,0.08)' }}>
+            <div style={{ padding: '8px 14px', fontSize: 11, color: '#374B61', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.06em', borderBottom: '1px solid rgba(184,138,60,0.08)' }}>
               {isAr ? 'الرحلات المراقبة' : 'Monitored Flights'} ({TRACKED_FLIGHTS.length})
             </div>
             {TRACKED_FLIGHTS.map(f => (
@@ -248,7 +248,7 @@ export default function RiskTrackerPage() {
               {/* Legend */}
               <div style={{ position: 'absolute', bottom: 10, right: 12, display: 'flex', gap: 10, padding: '6px 10px', borderRadius: 6, background: 'rgba(5,20,40,0.85)', border: '1px solid rgba(184,138,60,0.1)' }}>
                 {(['critical', 'high', 'medium', 'low', 'clear'] as ThreatLevel[]).map(t => (
-                  <span key={t} style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 9, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace" }}>
+                  <span key={t} style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 10, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace" }}>
                     <span style={{ width: 6, height: 6, borderRadius: '50%', background: THREAT_COLORS[t], display: 'inline-block' }} />
                     {t}
                   </span>
@@ -256,7 +256,7 @@ export default function RiskTrackerPage() {
               </div>
 
               {/* Tick indicator */}
-              <div style={{ position: 'absolute', top: 14, right: 12, fontSize: 9, color: '#374B61', fontFamily: "'JetBrains Mono', monospace" }}>
+              <div style={{ position: 'absolute', top: 14, right: 12, fontSize: 10, color: '#374B61', fontFamily: "'JetBrains Mono', monospace" }}>
                 <i className="ri-refresh-line" style={{ marginRight: 4 }} />
                 {isAr ? 'تحديث #' : 'update #'}{tick}
               </div>
@@ -299,11 +299,11 @@ export default function RiskTrackerPage() {
                     <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 2 }}>
                       <i className={s.icon} style={{ color: s.color, fontSize: 12 }} />
                       <span style={{ fontSize: 20, fontFamily: "'JetBrains Mono', monospace", color: s.color, fontWeight: 700, lineHeight: 1 }}>{s.count}</span>
-                      <span style={{ fontSize: 10, color: s.deltaUp ? '#4A8E5A' : '#C94A5E', fontFamily: "'JetBrains Mono', monospace" }}>
+                      <span style={{ fontSize: 11, color: s.deltaUp ? '#4A8E5A' : '#C94A5E', fontFamily: "'JetBrains Mono', monospace" }}>
                         {s.deltaUp ? '↑' : '↓'}{s.delta}
                       </span>
                     </div>
-                    <div style={{ fontSize: 9, color: '#374B61', fontFamily: "'JetBrains Mono', monospace', textTransform: 'uppercase", letterSpacing: '0.04em', whiteSpace: 'nowrap' }}>
+                    <div style={{ fontSize: 10, color: '#374B61', fontFamily: "'JetBrains Mono', monospace', textTransform: 'uppercase", letterSpacing: '0.04em', whiteSpace: 'nowrap' }}>
                       {isAr ? s.sourceAr : s.source}
                     </div>
                   </div>

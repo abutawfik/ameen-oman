@@ -47,7 +47,7 @@ export default function TravelerCard({ result, isAr, onClick }: Props) {
           </div>
           {/* Match type */}
           <div style={{
-            padding: '2px 6px', borderRadius: 3, fontSize: 10, fontFamily: "'JetBrains Mono', monospace",
+            padding: '2px 6px', borderRadius: 3, fontSize: 11, fontFamily: "'JetBrains Mono', monospace",
             background: `${MATCH_COLORS[result.matchType] ?? '#5B7494'}18`,
             color: MATCH_COLORS[result.matchType] ?? '#5B7494',
           }}>
@@ -74,7 +74,7 @@ export default function TravelerCard({ result, isAr, onClick }: Props) {
                   {leg.toCode}
                 </span>
                 {leg.isCurrent && (
-                  <span style={{ marginLeft: 4, fontSize: 10, color: '#B8893C' }}>({leg.flightNo})</span>
+                  <span style={{ marginLeft: 4, fontSize: 11, color: '#B8893C' }}>({leg.flightNo})</span>
                 )}
               </div>
             ))}

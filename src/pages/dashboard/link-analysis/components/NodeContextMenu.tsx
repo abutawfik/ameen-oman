@@ -90,9 +90,9 @@ const NodeContextMenu = ({
         <div className="min-w-0">
           <p className="text-white text-xs font-semibold font-['Inter'] truncate">{node.label}</p>
           <div className="flex items-center gap-1.5 mt-0.5">
-            <span className="text-gray-500 text-[10px] font-['JetBrains_Mono'] uppercase">{node.type}</span>
+            <span className="text-gray-500 text-[11px] font-['JetBrains_Mono'] uppercase">{node.type}</span>
             <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: riskColors[node.risk] }} />
-            <span className="text-[10px] font-['JetBrains_Mono'] capitalize" style={{ color: riskColors[node.risk] }}>{node.risk}</span>
+            <span className="text-[11px] font-['JetBrains_Mono'] capitalize" style={{ color: riskColors[node.risk] }}>{node.risk}</span>
           </div>
         </div>
       </div>
@@ -101,7 +101,7 @@ const NodeContextMenu = ({
       {menuItems.map((group, gi) => (
         <div key={gi}>
           <div className="px-3 pt-2 pb-0.5">
-            <span className="text-[10px] font-bold tracking-widest font-['JetBrains_Mono'] uppercase" style={{ color: "#374151" }}>
+            <span className="text-[11px] font-bold tracking-widest font-['JetBrains_Mono'] uppercase" style={{ color: "#374151" }}>
               {group.group}
             </span>
           </div>

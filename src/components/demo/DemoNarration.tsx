@@ -303,11 +303,11 @@ const DemoNarration = () => {
         <div className="flex items-center justify-between gap-3 mb-2">
           <div className="flex items-center gap-2">
             <i className="ri-mic-line" style={{ color: "#D6B47E" }} />
-            <span className="text-[10px] font-bold tracking-widest uppercase" style={{ color: "#D6B47E", fontFamily: fonts.mono }}>
+            <span className="text-[11px] font-bold tracking-widest uppercase" style={{ color: "#D6B47E", fontFamily: fonts.mono }}>
               {fonts.isAr ? "شرح مباشر" : "DEMO NARRATION"}
             </span>
             {script && (
-              <span className="text-[10px] tracking-widest" style={{ color: "#6B7280", fontFamily: fonts.mono }}>
+              <span className="text-[11px] tracking-widest" style={{ color: "#6B7280", fontFamily: fonts.mono }}>
                 · {fonts.isAr ? script.titleAr : script.title}
               </span>
             )}
@@ -403,7 +403,7 @@ const DemoNarration = () => {
                   <i className="ri-arrow-right-s-line" />
                 </button>
               </div>
-              <span id="narration-keyboard-help" className="text-[10px]" style={{ color: "#6B7280", fontFamily: fonts.mono }}>
+              <span id="narration-keyboard-help" className="text-[11px]" style={{ color: "#6B7280", fontFamily: fonts.mono }}>
                 {fonts.isAr ? "اضغط N للإغلاق · → / ← للتنقّل" : "Press N to close · → / ← to navigate"}
               </span>
             </div>

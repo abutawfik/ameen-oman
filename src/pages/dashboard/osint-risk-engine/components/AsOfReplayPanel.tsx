@@ -51,14 +51,14 @@ const AsOfReplayPanel = ({ isAr, record }: { isAr: boolean; record: ScoredRecord
           <i className="ri-history-line text-base" style={{ color: "#D6B47E" }} />
           <h3 className="text-white text-sm font-bold">
             {isAr ? "إعادة تشغيل الدرجة · السفر الزمني" : "Score replay · as-of time travel"}
-            <span className="ml-2 text-[10px] tracking-widest font-['JetBrains_Mono'] px-2 py-0.5 rounded"
+            <span className="ml-2 text-[11px] tracking-widest font-['JetBrains_Mono'] px-2 py-0.5 rounded"
               style={{ background: "rgba(184,138,60,0.15)", color: "#D6B47E" }}>
               {isAr ? "تقني" : "SPEC §8.1"}
             </span>
           </h3>
         </div>
         <div className="flex items-center gap-3">
-          <span className="text-gray-600 text-[10px] font-['JetBrains_Mono']">
+          <span className="text-gray-600 text-[11px] font-['JetBrains_Mono']">
             {isAr ? "أعد حساب الدرجة بالوقت الماضي" : "Recompute score at a past time"}
           </span>
           <i className={open ? "ri-arrow-up-s-line text-xl text-gray-400" : "ri-arrow-down-s-line text-xl text-gray-400"} />
@@ -68,7 +68,7 @@ const AsOfReplayPanel = ({ isAr, record }: { isAr: boolean; record: ScoredRecord
       {open && (
         <div className="p-5 pt-3 border-t" style={{ borderColor: "rgba(184,138,60,0.08)" }}>
           <div className="flex items-center gap-2 flex-wrap mb-4">
-            <span className="text-[10px] tracking-widest text-gray-500 font-['JetBrains_Mono']">
+            <span className="text-[11px] tracking-widest text-gray-500 font-['JetBrains_Mono']">
               {isAr ? "وقت الاستعلام" : "AS-OF"}
             </span>
             {snaps.map((s, i) => (
@@ -83,7 +83,7 @@ const AsOfReplayPanel = ({ isAr, record }: { isAr: boolean; record: ScoredRecord
                 {bucketLabel(s.asOf)}
               </button>
             ))}
-            <span className="ml-auto text-[10px] font-bold tracking-widest px-2 py-0.5 rounded"
+            <span className="ml-auto text-[11px] font-bold tracking-widest px-2 py-0.5 rounded"
               style={{ background: "rgba(107,79,174,0.12)", color: "#6B4FAE", fontFamily: "JetBrains Mono" }}>
               {snap.featureSnapshotHash}
             </span>
@@ -93,14 +93,14 @@ const AsOfReplayPanel = ({ isAr, record }: { isAr: boolean; record: ScoredRecord
             {/* Current */}
             <div className="rounded-lg p-4"
               style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
-              <h4 className="text-[10px] tracking-widest text-gray-500 mb-2 font-['JetBrains_Mono']">
+              <h4 className="text-[11px] tracking-widest text-gray-500 mb-2 font-['JetBrains_Mono']">
                 {isAr ? "الآن" : "CURRENT"}
               </h4>
               <p className="font-black font-['JetBrains_Mono']"
                 style={{ color: scoreColor(record.band), fontSize: "2.5rem", lineHeight: 1 }}>
                 {record.unifiedScore}
               </p>
-              <span className="mt-1 inline-block px-2 py-0.5 rounded text-[10px] font-bold tracking-widest font-['JetBrains_Mono']"
+              <span className="mt-1 inline-block px-2 py-0.5 rounded text-[11px] font-bold tracking-widest font-['JetBrains_Mono']"
                 style={{ background: `${scoreColor(record.band)}22`, color: scoreColor(record.band), border: `1px solid ${scoreColor(record.band)}55` }}>
                 {SCORE_BAND_META[record.band].labelEn}
               </span>
@@ -108,14 +108,14 @@ const AsOfReplayPanel = ({ isAr, record }: { isAr: boolean; record: ScoredRecord
             {/* As-of */}
             <div className="rounded-lg p-4"
               style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
-              <h4 className="text-[10px] tracking-widest text-gray-500 mb-2 font-['JetBrains_Mono']">
+              <h4 className="text-[11px] tracking-widest text-gray-500 mb-2 font-['JetBrains_Mono']">
                 {isAr ? "بتاريخ" : `AS-OF ${bucketLabel(snap.asOf).toUpperCase()}`}
               </h4>
               <p className="font-black font-['JetBrains_Mono']"
                 style={{ color: "#9CA3AF", fontSize: "2.5rem", lineHeight: 1 }}>
                 {snap.unifiedScore}
               </p>
-              <p className="text-[10px] text-gray-500 mt-1 font-['JetBrains_Mono']">
+              <p className="text-[11px] text-gray-500 mt-1 font-['JetBrains_Mono']">
                 Δ {snap.unifiedScore - record.unifiedScore > 0 ? "+" : ""}{snap.unifiedScore - record.unifiedScore} pts vs current
               </p>
             </div>
@@ -137,8 +137,8 @@ const AsOfReplayPanel = ({ isAr, record }: { isAr: boolean; record: ScoredRecord
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={subChartData} layout="vertical" margin={{ left: 20, right: 20 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(184,138,60,0.08)" horizontal={false} />
-                  <XAxis type="number" domain={[0, 100]} stroke="#6B7280" tick={{ fontSize: 10, fontFamily: "JetBrains Mono" }} />
-                  <YAxis type="category" dataKey="label" stroke="#6B7280" tick={{ fontSize: 10, fontFamily: "Inter" }} width={130} />
+                  <XAxis type="number" domain={[0, 100]} stroke="#6B7280" tick={{ fontSize: 11, fontFamily: "JetBrains Mono" }} />
+                  <YAxis type="category" dataKey="label" stroke="#6B7280" tick={{ fontSize: 11, fontFamily: "Inter" }} width={130} />
                   <Tooltip contentStyle={{ background: "#0A2540", border: "1px solid rgba(184,138,60,0.3)", borderRadius: 8, fontSize: 12 }} />
                   <Bar dataKey="asOf" name={isAr ? "بتاريخ" : "As-of"} fill="#6B7280" radius={[0, 4, 4, 0]} />
                   <Bar dataKey="current" name={isAr ? "الآن" : "Current"} fill="#D6B47E" radius={[0, 4, 4, 0]} />
@@ -187,7 +187,7 @@ const AsOfReplayPanel = ({ isAr, record }: { isAr: boolean; record: ScoredRecord
                 </li>
               ))}
             </ul>
-            <p className="mt-3 text-[10px] text-gray-500 font-['JetBrains_Mono']">
+            <p className="mt-3 text-[11px] text-gray-500 font-['JetBrains_Mono']">
               {isAr ? "إعادة تشغيل حتمية — نفس المدخلات + نفس إصدار النموذج = نفس الدرجة ضمن 0.01" : "Deterministic replay — same input + same model version = same score within 0.01"}
             </p>
           </div>

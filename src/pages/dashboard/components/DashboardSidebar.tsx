@@ -152,7 +152,7 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
                     className="w-full flex items-center justify-between px-4 pt-4 pb-1 cursor-pointer group/hdr"
                     aria-expanded={!isSectionCollapsed}
                   >
-                    <span className="text-midnight-300 text-[10px] font-bold tracking-widest font-mono uppercase group-hover/hdr:text-gold-400 transition-colors">
+                    <span className="text-midnight-300 text-[11px] font-bold tracking-widest font-mono uppercase group-hover/hdr:text-gold-400 transition-colors">
                       {isAr ? groupLabels[group].ar : groupLabels[group].en}
                     </span>
                     <i
@@ -164,7 +164,7 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
                   </button>
                 ) : (
                   <div className="px-4 pt-4 pb-1">
-                    <span className="text-midnight-300 text-[10px] font-bold tracking-widest font-mono uppercase">
+                    <span className="text-midnight-300 text-[11px] font-bold tracking-widest font-mono uppercase">
                       {isAr ? groupLabels[group].ar : groupLabels[group].en}
                     </span>
                   </div>

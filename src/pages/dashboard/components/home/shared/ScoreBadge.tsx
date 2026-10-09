@@ -43,7 +43,7 @@ const ScoreBadge = ({ score, band, size = "md", showLabel = false, isAr = false 
       </div>
       {showLabel && (
         <span
-          className="px-2 py-0.5 rounded-md text-[10px] font-bold tracking-widest font-['JetBrains_Mono']"
+          className="px-2 py-0.5 rounded-md text-[11px] font-bold tracking-widest font-['JetBrains_Mono']"
           style={{ background: `${meta.color}20`, color: meta.color }}
         >
           {isAr ? meta.labelAr : meta.labelEn}

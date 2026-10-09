@@ -137,7 +137,7 @@ const ReportsPage = () => {
             <h1 className="text-white text-2xl font-bold" style={{ fontFamily: fonts.display }}>
               {isAr ? "التقارير" : "Reports"}
             </h1>
-            <span className="px-2 py-0.5 rounded-full text-[10px] font-bold tracking-widest"
+            <span className="px-2 py-0.5 rounded-full text-[11px] font-bold tracking-widest"
               style={{ background: "rgba(107,79,174,0.15)", color: "#6B4FAE", fontFamily: fonts.mono }}>
               {isAr ? "ويف 3" : "WAVE 3"}
             </span>
@@ -179,7 +179,7 @@ const ReportsPage = () => {
                 {m === "templates"
                   ? (isAr ? "القوالب" : "Templates")
                   : (isAr ? "مجدول" : "Scheduled")}
-                <span className="px-1.5 py-0.5 rounded text-[10px] font-['JetBrains_Mono']"
+                <span className="px-1.5 py-0.5 rounded text-[11px] font-['JetBrains_Mono']"
                   style={{ background: active ? "rgba(184,138,60,0.2)" : "rgba(255,255,255,0.05)", color: active ? "#D6B47E" : "#6B7280" }}>
                   {count}
                 </span>
@@ -290,12 +290,12 @@ const TemplatesGrid = ({
             </div>
             <div className="flex items-center gap-1.5">
               {isCustom && (
-                <span className="px-2 py-0.5 rounded-md text-[10px] font-bold tracking-widest"
+                <span className="px-2 py-0.5 rounded-md text-[11px] font-bold tracking-widest"
                   style={{ background: "rgba(214,180,126,0.18)", color: "#D6B47E", border: "1px solid #D6B47E66", fontFamily: fonts.mono }}>
                   {isAr ? "مخصَّص" : "CUSTOM"}
                 </span>
               )}
-              <span className="px-2 py-0.5 rounded-md text-[10px] font-bold tracking-widest"
+              <span className="px-2 py-0.5 rounded-md text-[11px] font-bold tracking-widest"
                 style={{ background: "rgba(184,138,60,0.1)", color: "#D6B47E", fontFamily: fonts.mono }}>
                 {t.estimatedPages} {isAr ? "صفحات" : "pages"}
               </span>
@@ -313,13 +313,13 @@ const TemplatesGrid = ({
 
           <div className="flex flex-wrap gap-1.5 mt-1">
             {t.sections.slice(0, 4).map((s) => (
-              <span key={s} className="px-2 py-0.5 rounded text-[10px]"
+              <span key={s} className="px-2 py-0.5 rounded text-[11px]"
                 style={{ background: "rgba(255,255,255,0.04)", color: "#9CA3AF", fontFamily: fonts.mono }}>
                 {s}
               </span>
             ))}
             {t.sections.length > 4 && (
-              <span className="px-2 py-0.5 rounded text-[10px]"
+              <span className="px-2 py-0.5 rounded text-[11px]"
                 style={{ background: "rgba(255,255,255,0.04)", color: "#6B7280", fontFamily: fonts.mono }}>
                 +{t.sections.length - 4}
               </span>
@@ -399,7 +399,7 @@ const ScheduledTable = ({
   return (
     <div className="rounded-xl border overflow-hidden"
       style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.12)" }}>
-      <div className="grid grid-cols-12 gap-2 px-4 py-2.5 border-b text-[10px] font-bold tracking-widest uppercase"
+      <div className="grid grid-cols-12 gap-2 px-4 py-2.5 border-b text-[11px] font-bold tracking-widest uppercase"
         style={{ borderColor: "rgba(184,138,60,0.08)", color: "#6B7280", fontFamily: fonts.mono }}>
         <div className="col-span-3">{isAr ? "القالب" : "Template"}</div>
         <div className="col-span-2">{isAr ? "الجدول" : "Cadence"}</div>
@@ -427,7 +427,7 @@ const ScheduledTable = ({
                 <p className="text-white text-xs font-bold truncate" style={{ fontFamily: fonts.sans }}>
                   {tmpl ? (isAr ? tmpl.nameAr : tmpl.name) : row.templateId}
                 </p>
-                <p className="text-gray-600 text-[10px] truncate" style={{ fontFamily: fonts.mono }}>
+                <p className="text-gray-600 text-[11px] truncate" style={{ fontFamily: fonts.mono }}>
                   {row.id} · {row.durationMs}ms
                 </p>
               </div>
@@ -453,24 +453,24 @@ const ScheduledTable = ({
             </div>
 
             {/* Next */}
-            <div className="col-span-1 text-gray-500 text-[10px]" style={{ fontFamily: fonts.mono }}>
+            <div className="col-span-1 text-gray-500 text-[11px]" style={{ fontFamily: fonts.mono }}>
               {formatDate(row.nextRunAt, isAr)}
             </div>
 
             {/* Actions */}
             <div className="col-span-2 flex justify-end gap-1">
               <button type="button" onClick={onEdit}
-                className="px-2 py-1 rounded text-[10px] font-bold cursor-pointer tracking-widest"
+                className="px-2 py-1 rounded text-[11px] font-bold cursor-pointer tracking-widest"
                 style={{ background: "transparent", color: "#9CA3AF", border: "1px solid rgba(255,255,255,0.1)", fontFamily: fonts.mono }}>
                 {isAr ? "تحرير" : "EDIT"}
               </button>
               <button type="button" onClick={() => onRunNow(row)}
-                className="px-2 py-1 rounded text-[10px] font-bold cursor-pointer tracking-widest"
+                className="px-2 py-1 rounded text-[11px] font-bold cursor-pointer tracking-widest"
                 style={{ background: "rgba(184,138,60,0.12)", color: "#D6B47E", border: "1px solid #D6B47E55", fontFamily: fonts.mono }}>
                 {isAr ? "تشغيل" : "RUN NOW"}
               </button>
               <button type="button" onClick={() => onToggle(row)}
-                className="px-2 py-1 rounded text-[10px] font-bold cursor-pointer tracking-widest"
+                className="px-2 py-1 rounded text-[11px] font-bold cursor-pointer tracking-widest"
                 style={{
                   background: row.enabled ? "rgba(201,74,94,0.12)" : "rgba(74,222,128,0.12)",
                   color: row.enabled ? "#C94A5E" : "#4ADE80",
@@ -545,7 +545,7 @@ const PreviewModal = ({
               <h2 id="preview-modal-title" className="text-white text-base font-bold" style={{ fontFamily: fonts.sans }}>
                 {isAr ? template.nameAr : template.name}
               </h2>
-              <p className="text-gray-500 text-[10px]" style={{ fontFamily: fonts.mono }}>
+              <p className="text-gray-500 text-[11px]" style={{ fontFamily: fonts.mono }}>
                 {template.estimatedPages} {isAr ? "صفحات" : "pages"} · {template.sections.length} {isAr ? "أقسام" : "sections"} · {isAr ? "معاينة" : "PREVIEW"}
               </p>
             </div>
@@ -573,7 +573,7 @@ const PreviewModal = ({
             style={{ background: "#F8F5F0", borderColor: "rgba(10,37,64,0.1)", minHeight: 320, color: "#0A2540" }}>
             <div className="flex items-center justify-between mb-8">
               <div>
-                <p className="text-[10px] font-bold tracking-widest" style={{ color: "#B88A3C", fontFamily: fonts.mono }}>
+                <p className="text-[11px] font-bold tracking-widest" style={{ color: "#B88A3C", fontFamily: fonts.mono }}>
                   AL-AMEEN · REPORT SUITE
                 </p>
                 <h1 className="text-3xl font-bold mt-1" style={{ fontFamily: fonts.display }}>
@@ -584,7 +584,7 @@ const PreviewModal = ({
             </div>
             <div className="grid grid-cols-2 gap-6 mt-12 pt-6 border-t" style={{ borderColor: "rgba(10,37,64,0.1)" }}>
               <div>
-                <p className="text-[10px] tracking-widest" style={{ color: "#6B7280", fontFamily: fonts.mono }}>
+                <p className="text-[11px] tracking-widest" style={{ color: "#6B7280", fontFamily: fonts.mono }}>
                   {isAr ? "الفترة" : "PERIOD"}
                 </p>
                 <p className="font-bold" style={{ fontFamily: fonts.mono }}>
@@ -592,19 +592,19 @@ const PreviewModal = ({
                 </p>
               </div>
               <div>
-                <p className="text-[10px] tracking-widest" style={{ color: "#6B7280", fontFamily: fonts.mono }}>
+                <p className="text-[11px] tracking-widest" style={{ color: "#6B7280", fontFamily: fonts.mono }}>
                   {isAr ? "الجمهور" : "AUDIENCE"}
                 </p>
                 <p className="font-bold" style={{ fontFamily: fonts.sans }}>{template.audience}</p>
               </div>
               <div>
-                <p className="text-[10px] tracking-widest" style={{ color: "#6B7280", fontFamily: fonts.mono }}>
+                <p className="text-[11px] tracking-widest" style={{ color: "#6B7280", fontFamily: fonts.mono }}>
                   {isAr ? "الإصدار" : "ISSUE NUMBER"}
                 </p>
                 <p className="font-bold" style={{ fontFamily: fonts.mono }}>2026/Q2-001</p>
               </div>
               <div>
-                <p className="text-[10px] tracking-widest" style={{ color: "#6B7280", fontFamily: fonts.mono }}>
+                <p className="text-[11px] tracking-widest" style={{ color: "#6B7280", fontFamily: fonts.mono }}>
                   {isAr ? "التصنيف" : "CLASSIFICATION"}
                 </p>
                 <p className="font-bold" style={{ color: "#B88A3C", fontFamily: fonts.mono }}>RESTRICTED</p>
@@ -627,7 +627,7 @@ const PreviewModal = ({
               ].map((k) => (
                 <div key={k.label} className="rounded-md p-3"
                   style={{ background: "rgba(10,37,64,0.04)", border: "1px solid rgba(10,37,64,0.08)" }}>
-                  <p className="text-[10px] tracking-widest" style={{ color: "#6B7280", fontFamily: fonts.mono }}>
+                  <p className="text-[11px] tracking-widest" style={{ color: "#6B7280", fontFamily: fonts.mono }}>
                     {k.label.toUpperCase()}
                   </p>
                   <p className="text-2xl font-black" style={{ color: k.color, fontFamily: fonts.mono }}>{k.value}</p>
@@ -636,7 +636,7 @@ const PreviewModal = ({
             </div>
             {/* Sparkline */}
             <div className="rounded-md p-4" style={{ background: "rgba(10,37,64,0.04)" }}>
-              <p className="text-[10px] tracking-widest mb-2" style={{ color: "#6B7280", fontFamily: fonts.mono }}>
+              <p className="text-[11px] tracking-widest mb-2" style={{ color: "#6B7280", fontFamily: fonts.mono }}>
                 {isAr ? "معدل التسجيل · 12 ساعة مضت" : "SCORE THROUGHPUT · LAST 12 HOURS"}
               </p>
               <div className="flex items-end gap-1" style={{ height: 80 }}>
@@ -689,7 +689,7 @@ const PreviewModal = ({
                 ? "كل قسم من أقسام التقرير يستند إلى تسلسل محاسبيّ قابل للاستعلام؛ يمكن التحقّق من أي رقم عبر سجل التدقيق."
                 : "Every section derives from an auditable lineage; any figure can be verified via the Audit Log."}
             </p>
-            <div className="mt-6 pt-4 border-t flex items-center justify-between text-[10px]"
+            <div className="mt-6 pt-4 border-t flex items-center justify-between text-[11px]"
               style={{ borderColor: "rgba(10,37,64,0.1)", color: "#6B7280", fontFamily: fonts.mono }}>
               <span>ALAMEEN-REPORT-{template.id.toUpperCase()}</span>
               <span>{isAr ? "صفحة 4 من" : "page 4 of"} {template.estimatedPages}</span>
@@ -831,7 +831,7 @@ const CustomTemplateBuilder = ({
               <h2 id="builder-modal-title" className="text-white text-base font-bold" style={{ fontFamily: fonts.sans }}>
                 {isAr ? "منشئ القوالب المخصَّصة" : "Custom template builder"}
               </h2>
-              <p className="text-gray-500 text-[10px]" style={{ fontFamily: fonts.mono }}>
+              <p className="text-gray-500 text-[11px]" style={{ fontFamily: fonts.mono }}>
                 {isAr ? "تصميم ثنائي اللغة · مقاطع · مستلمون · تكرار · تنسيق" : "Bilingual · sections · recipients · cadence · format"}
               </p>
             </div>
@@ -1030,14 +1030,14 @@ const Section = ({ idx, title, hint, children }: { idx: number; title: string; h
     <div className="rounded-lg border p-4" style={{ background: "rgba(255,255,255,0.02)", borderColor: "rgba(184,138,60,0.12)" }}>
       <div className="flex items-center justify-between mb-3">
         <h3 className="text-white text-sm font-bold flex items-center gap-2">
-          <span className="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-black"
+          <span className="w-5 h-5 rounded-full flex items-center justify-center text-[11px] font-black"
             style={{ background: "rgba(184,138,60,0.18)", color: "#D6B47E", fontFamily: fonts.mono }}>
             {idx}
           </span>
           {title}
         </h3>
         {hint && (
-          <span className="text-[10px] tracking-widest" style={{ color: "#6B7280", fontFamily: fonts.mono }}>{hint}</span>
+          <span className="text-[11px] tracking-widest" style={{ color: "#6B7280", fontFamily: fonts.mono }}>{hint}</span>
         )}
       </div>
       {children}
@@ -1055,7 +1055,7 @@ const LabelledInput = ({ label, value, onChange, placeholder, rtl }: {
   const fonts = useBrandFonts();
   return (
     <label className="flex flex-col gap-1">
-      <span className="text-[10px] tracking-widest uppercase" style={{ color: "#6B7280", fontFamily: fonts.mono }}>{label}</span>
+      <span className="text-[11px] tracking-widest uppercase" style={{ color: "#6B7280", fontFamily: fonts.mono }}>{label}</span>
       <input type="text" value={value} onChange={(e) => onChange(e.target.value)} placeholder={placeholder}
         dir={rtl ? "rtl" : undefined}
         className="px-3 py-2 rounded-md text-sm outline-none"
@@ -1074,7 +1074,7 @@ const LabelledTextarea = ({ label, value, onChange, placeholder, rtl }: {
   const fonts = useBrandFonts();
   return (
     <label className="flex flex-col gap-1">
-      <span className="text-[10px] tracking-widest uppercase" style={{ color: "#6B7280", fontFamily: fonts.mono }}>{label}</span>
+      <span className="text-[11px] tracking-widest uppercase" style={{ color: "#6B7280", fontFamily: fonts.mono }}>{label}</span>
       <textarea value={value} onChange={(e) => onChange(e.target.value)} placeholder={placeholder}
         dir={rtl ? "rtl" : undefined}
         rows={2}
@@ -1088,7 +1088,7 @@ const MiniStat = ({ label, value, accent }: { label: string; value: string; acce
   const fonts = useBrandFonts();
   return (
     <div className="rounded-md p-3" style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${accent}33` }}>
-      <p className="text-[10px] tracking-widest uppercase" style={{ color: accent, fontFamily: fonts.mono }}>{label}</p>
+      <p className="text-[11px] tracking-widest uppercase" style={{ color: accent, fontFamily: fonts.mono }}>{label}</p>
       <p className="text-white text-xl font-black" style={{ fontFamily: fonts.mono }}>{value}</p>
     </div>
   );

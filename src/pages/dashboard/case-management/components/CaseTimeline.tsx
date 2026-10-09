@@ -97,18 +97,18 @@ const CaseTimeline = ({ caseData, isAr }: Props) => {
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-0.5">
                       <div className="w-5 h-5 flex items-center justify-center rounded flex-shrink-0" style={{ background: `${color}15` }}>
-                        <i className={`${icon} text-[10px]`} style={{ color }} />
+                        <i className={`${icon} text-[11px]`} style={{ color }} />
                       </div>
                       <span className="text-white text-xs font-bold font-['Inter'] truncate">{event.title}</span>
                       {!event.verified && (
                         <span className="text-[9px] px-1.5 py-0.5 rounded font-['JetBrains_Mono'] flex-shrink-0" style={{ background: "rgba(250,204,21,0.1)", color: "#FACC15" }}>UNVERIFIED</span>
                       )}
                     </div>
-                    <p className="text-gray-500 text-[10px] font-['Inter'] truncate">{event.detail}</p>
+                    <p className="text-gray-500 text-[11px] font-['Inter'] truncate">{event.detail}</p>
                     <div className="flex items-center gap-3 mt-1">
-                      <span className="text-gray-700 text-[10px] font-['JetBrains_Mono']">{event.timestamp}</span>
-                      <span className="text-gray-700 text-[10px] font-['Inter']">{event.location}</span>
-                      <span className="text-[10px] font-['Inter']" style={{ color }}>{event.stream}</span>
+                      <span className="text-gray-700 text-[11px] font-['JetBrains_Mono']">{event.timestamp}</span>
+                      <span className="text-gray-700 text-[11px] font-['Inter']">{event.location}</span>
+                      <span className="text-[11px] font-['Inter']" style={{ color }}>{event.stream}</span>
                     </div>
                   </div>
                 </button>
@@ -123,7 +123,7 @@ const CaseTimeline = ({ caseData, isAr }: Props) => {
         <div className="w-72 flex-shrink-0 overflow-y-auto" style={{ scrollbarWidth: "thin" }}>
           <div className="p-4 rounded-xl space-y-3" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }}>
             <div className="flex items-center justify-between">
-              <p className="text-gray-500 text-[10px] font-['JetBrains_Mono'] uppercase">Event Detail</p>
+              <p className="text-gray-500 text-[11px] font-['JetBrains_Mono'] uppercase">Event Detail</p>
               <button onClick={() => setSelectedEvent(null)} className="text-gray-600 hover:text-gray-400 cursor-pointer">
                 <i className="ri-close-line text-sm" />
               </button>
@@ -140,27 +140,27 @@ const CaseTimeline = ({ caseData, isAr }: Props) => {
                 { label: "Verified", value: selectedEvent.verified ? "Yes" : "No" },
               ].map((row) => (
                 <div key={row.label} className="flex justify-between">
-                  <span className="text-gray-700 text-[10px] font-['JetBrains_Mono']">{row.label}</span>
-                  <span className="text-gray-400 text-[10px] font-['Inter']">{row.value}</span>
+                  <span className="text-gray-700 text-[11px] font-['JetBrains_Mono']">{row.label}</span>
+                  <span className="text-gray-400 text-[11px] font-['Inter']">{row.value}</span>
                 </div>
               ))}
             </div>
             {selectedEvent.linkedEvidence.length > 0 && (
               <div>
-                <p className="text-gray-600 text-[10px] font-['JetBrains_Mono'] mb-1">LINKED EVIDENCE</p>
+                <p className="text-gray-600 text-[11px] font-['JetBrains_Mono'] mb-1">LINKED EVIDENCE</p>
                 {selectedEvent.linkedEvidence.map((ev) => (
                   <div key={ev} className="flex items-center gap-2 px-2 py-1 rounded" style={{ background: "rgba(184,138,60,0.06)" }}>
                     <i className="ri-attachment-line text-gold-400 text-xs" />
-                    <span className="text-gold-400 text-[10px] font-['JetBrains_Mono']">{ev.toUpperCase()}</span>
+                    <span className="text-gold-400 text-[11px] font-['JetBrains_Mono']">{ev.toUpperCase()}</span>
                   </div>
                 ))}
               </div>
             )}
             <div className="flex gap-2">
-              <button className="flex-1 py-1.5 rounded-lg text-[10px] font-['Inter'] cursor-pointer whitespace-nowrap" style={{ background: "rgba(184,138,60,0.08)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}>
+              <button className="flex-1 py-1.5 rounded-lg text-[11px] font-['Inter'] cursor-pointer whitespace-nowrap" style={{ background: "rgba(184,138,60,0.08)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}>
                 Add Note
               </button>
-              <button className="flex-1 py-1.5 rounded-lg text-[10px] font-['Inter'] cursor-pointer whitespace-nowrap" style={{ background: "rgba(167,139,250,0.08)", color: "#A78BFA", border: "1px solid rgba(167,139,250,0.2)" }}>
+              <button className="flex-1 py-1.5 rounded-lg text-[11px] font-['Inter'] cursor-pointer whitespace-nowrap" style={{ background: "rgba(167,139,250,0.08)", color: "#A78BFA", border: "1px solid rgba(167,139,250,0.2)" }}>
                 Add Evidence
               </button>
             </div>

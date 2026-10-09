@@ -10,13 +10,13 @@ function ConfusionMatrix({ m, isAr }: { m: { tp: number; fp: number; fn: number;
   const cell = (val: number, bg: string, label: string) => (
     <div style={{ padding: '10px 8px', textAlign: 'center', background: bg, borderRadius: 4, flex: 1 }}>
       <div style={{ fontSize: 18, fontFamily: "'JetBrains Mono', monospace", color: '#CBD5E1', fontWeight: 700, lineHeight: 1 }}>{val}</div>
-      <div style={{ fontSize: 9, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", marginTop: 3, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{label}</div>
-      <div style={{ fontSize: 9, color: '#374B61', fontFamily: "'JetBrains Mono', monospace", marginTop: 1 }}>{(val / total * 100).toFixed(1)}%</div>
+      <div style={{ fontSize: 10, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", marginTop: 3, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{label}</div>
+      <div style={{ fontSize: 10, color: '#374B61', fontFamily: "'JetBrains Mono', monospace", marginTop: 1 }}>{(val / total * 100).toFixed(1)}%</div>
     </div>
   );
   return (
     <div>
-      <div style={{ fontSize: 10, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.07em', marginBottom: 8 }}>
+      <div style={{ fontSize: 11, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.07em', marginBottom: 8 }}>
         {isAr ? 'مصفوفة الارتباك' : 'Confusion Matrix'}
       </div>
       <div style={{ display: 'flex', gap: 6, marginBottom: 4 }}>
@@ -37,7 +37,7 @@ function MetricBar({ label, value, color = '#B8893C' }: { label: string; value: 
   return (
     <div style={{ marginBottom: 8 }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 3 }}>
-        <span style={{ fontSize: 10, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.06em' }}>{label}</span>
+        <span style={{ fontSize: 11, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.06em' }}>{label}</span>
         <span style={{ fontSize: 11, color, fontFamily: "'JetBrains Mono', monospace", fontWeight: 600 }}>{pct}%</span>
       </div>
       <div style={{ height: 5, borderRadius: 2.5, background: 'rgba(255,255,255,0.06)' }}>
@@ -58,12 +58,12 @@ function ExportRow({ exp, isAr }: { exp: TrainingDataExport; isAr: boolean }) {
       <div style={{ flex: 1, minWidth: 0 }}>
         <div style={{ fontSize: 11, color: '#CBD5E1', fontFamily: "'JetBrains Mono', monospace" }}>{exp.requestedBy} · {exp.requestedAt.slice(0, 10)}</div>
         {exp.recordCount && (
-          <div style={{ fontSize: 10, color: '#374B61', fontFamily: "'JetBrains Mono', monospace", marginTop: 1 }}>
+          <div style={{ fontSize: 11, color: '#374B61', fontFamily: "'JetBrains Mono', monospace", marginTop: 1 }}>
             {exp.recordCount.toLocaleString()} {isAr ? 'سجل' : 'records'} · {exp.fileSizeMb} MB
           </div>
         )}
       </div>
-      <span style={{ fontSize: 10, padding: '2px 6px', borderRadius: 3, background: `${col}18`, color: col, fontFamily: "'JetBrains Mono', monospace", border: `1px solid ${col}33`, textTransform: 'uppercase', flexShrink: 0 }}>{exp.status}</span>
+      <span style={{ fontSize: 11, padding: '2px 6px', borderRadius: 3, background: `${col}18`, color: col, fontFamily: "'JetBrains Mono', monospace", border: `1px solid ${col}33`, textTransform: 'uppercase', flexShrink: 0 }}>{exp.status}</span>
     </div>
   );
 }
@@ -87,14 +87,14 @@ function ModelDetail({ model, isAr, onClose }: { model: MLModel; isAr: boolean; 
             {isAr && model.nameAr ? model.nameAr : model.name}
           </div>
           <div style={{ display: 'flex', gap: 7, alignItems: 'center', flexWrap: 'wrap' }}>
-            <span style={{ fontSize: 10, padding: '2px 7px', borderRadius: 3, background: `${typeCfg.color}18`, color: typeCfg.color, fontFamily: "'JetBrains Mono', monospace", border: `1px solid ${typeCfg.color}33` }}>
+            <span style={{ fontSize: 11, padding: '2px 7px', borderRadius: 3, background: `${typeCfg.color}18`, color: typeCfg.color, fontFamily: "'JetBrains Mono', monospace", border: `1px solid ${typeCfg.color}33` }}>
               <i className={typeCfg.icon} style={{ marginRight: 4 }} />{typeCfg.labelEn}
             </span>
-            <span style={{ fontSize: 10, padding: '2px 6px', borderRadius: 3, background: `${statusCol}18`, color: statusCol, fontFamily: "'JetBrains Mono', monospace", border: `1px solid ${statusCol}33`, textTransform: 'uppercase' }}>
+            <span style={{ fontSize: 11, padding: '2px 6px', borderRadius: 3, background: `${statusCol}18`, color: statusCol, fontFamily: "'JetBrains Mono', monospace", border: `1px solid ${statusCol}33`, textTransform: 'uppercase' }}>
               {model.status}
             </span>
-            <span style={{ fontSize: 10, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace" }}>v{model.version}</span>
-            <span style={{ fontSize: 10, color: '#374B61', fontFamily: "'JetBrains Mono', monospace" }}>{model.framework}</span>
+            <span style={{ fontSize: 11, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace" }}>v{model.version}</span>
+            <span style={{ fontSize: 11, color: '#374B61', fontFamily: "'JetBrains Mono', monospace" }}>{model.framework}</span>
           </div>
         </div>
         <button onClick={onClose} style={{ padding: '5px 8px', borderRadius: 4, background: 'transparent', border: '1px solid rgba(184,138,60,0.15)', color: '#5B7494', cursor: 'pointer', fontSize: 14 }}>
@@ -108,15 +108,15 @@ function ModelDetail({ model, isAr, onClose }: { model: MLModel; isAr: boolean; 
 
         {/* Features */}
         <div>
-          <div style={{ fontSize: 10, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.07em', marginBottom: 7 }}>
+          <div style={{ fontSize: 11, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.07em', marginBottom: 7 }}>
             {isAr ? 'المدخلات' : 'Input Features'} ({model.inputFeatures.length})
           </div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 5 }}>
             {model.inputFeatures.map(f => (
-              <span key={f} style={{ padding: '2px 7px', borderRadius: 3, fontSize: 10, background: 'rgba(184,138,60,0.08)', color: '#D6B47E', fontFamily: "'JetBrains Mono', monospace", border: '1px solid rgba(184,138,60,0.15)' }}>{f}</span>
+              <span key={f} style={{ padding: '2px 7px', borderRadius: 3, fontSize: 11, background: 'rgba(184,138,60,0.08)', color: '#D6B47E', fontFamily: "'JetBrains Mono', monospace", border: '1px solid rgba(184,138,60,0.15)' }}>{f}</span>
             ))}
           </div>
-          <div style={{ marginTop: 6, fontSize: 10, color: '#374B61', fontFamily: "'JetBrains Mono', monospace" }}>
+          <div style={{ marginTop: 6, fontSize: 11, color: '#374B61', fontFamily: "'JetBrains Mono', monospace" }}>
             {isAr ? 'المتغير المستهدف: ' : 'Target: '}<span style={{ color: '#B8893C' }}>{model.targetVariable}</span>
           </div>
         </div>
@@ -124,7 +124,7 @@ function ModelDetail({ model, isAr, onClose }: { model: MLModel; isAr: boolean; 
         {/* Metrics */}
         {model.metrics ? (
           <div>
-            <div style={{ fontSize: 10, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.07em', marginBottom: 10 }}>
+            <div style={{ fontSize: 11, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.07em', marginBottom: 10 }}>
               {isAr ? 'مقاييس الأداء' : 'Performance Metrics'}
             </div>
             <MetricBar label="Accuracy"  value={model.metrics.accuracy}  color="#4A8E5A" />
@@ -133,7 +133,7 @@ function ModelDetail({ model, isAr, onClose }: { model: MLModel; isAr: boolean; 
             <MetricBar label="F1 Score"  value={model.metrics.f1}        color="#A78BFA" />
             <MetricBar label="AUC"       value={model.metrics.auc}       color="#B8893C" />
 
-            <div style={{ display: 'flex', gap: 12, margin: '8px 0', fontSize: 10, color: '#374B61', fontFamily: "'JetBrains Mono', monospace" }}>
+            <div style={{ display: 'flex', gap: 12, margin: '8px 0', fontSize: 11, color: '#374B61', fontFamily: "'JetBrains Mono', monospace" }}>
               <span>{isAr ? 'تدريب: ' : 'Train: '}{model.metrics.trainingSamples.toLocaleString()}</span>
               <span>{isAr ? 'اختبار: ' : 'Test: '}{model.metrics.testSamples.toLocaleString()}</span>
               <span>{isAr ? 'تقييم: ' : 'Evaluated: '}{model.metrics.evaluatedAt.slice(0, 10)}</span>
@@ -164,13 +164,13 @@ function ModelDetail({ model, isAr, onClose }: { model: MLModel; isAr: boolean; 
         {/* Training Data Exports */}
         <div>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-            <div style={{ fontSize: 10, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.07em' }}>
+            <div style={{ fontSize: 11, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.07em' }}>
               {isAr ? 'تصدير بيانات التدريب' : 'Training Data Exports'}
             </div>
             <button
               onClick={requestExport}
               disabled={exportLoading}
-              style={{ padding: '4px 10px', borderRadius: 3, background: 'rgba(74,122,168,0.1)', border: '1px solid rgba(74,122,168,0.25)', color: '#4A7AA8', fontFamily: "'JetBrains Mono', monospace", fontSize: 10, cursor: exportLoading ? 'default' : 'pointer', textTransform: 'uppercase', letterSpacing: '0.05em', display: 'flex', alignItems: 'center', gap: 5 }}
+              style={{ padding: '4px 10px', borderRadius: 3, background: 'rgba(74,122,168,0.1)', border: '1px solid rgba(74,122,168,0.25)', color: '#4A7AA8', fontFamily: "'JetBrains Mono', monospace", fontSize: 11, cursor: exportLoading ? 'default' : 'pointer', textTransform: 'uppercase', letterSpacing: '0.05em', display: 'flex', alignItems: 'center', gap: 5 }}
             >
               {exportLoading ? <><i className="ri-loader-4-line" style={{ animation: 'spin 1s linear infinite' }} />{isAr ? 'جاري…' : 'Requesting…'}</> : <><i className="ri-download-cloud-line" />{isAr ? 'طلب تصدير' : 'Request Export'}</>}
             </button>
@@ -212,7 +212,7 @@ export default function MLModelsPage() {
   });
 
   const chipStyle = (active: boolean, color = '#B8893C'): React.CSSProperties => ({
-    padding: '4px 10px', borderRadius: 4, fontSize: 10, cursor: 'pointer', background: 'transparent',
+    padding: '4px 10px', borderRadius: 4, fontSize: 11, cursor: 'pointer', background: 'transparent',
     fontFamily: "'JetBrains Mono', monospace", border: `1px solid ${active ? color : 'rgba(184,138,60,0.15)'}`,
     color: active ? color : '#5B7494', textTransform: 'uppercase',
   });
@@ -245,7 +245,7 @@ export default function MLModelsPage() {
                 <div key={s.label} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                   <i className={s.icon} style={{ color: s.color, fontSize: 13 }} />
                   <span style={{ fontSize: typeof s.val === 'string' ? 14 : 17, fontFamily: "'JetBrains Mono', monospace", color: s.color, fontWeight: 700, lineHeight: 1 }}>{s.val}</span>
-                  <span style={{ fontSize: 10, color: '#374B61', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase' }}>{s.label}</span>
+                  <span style={{ fontSize: 11, color: '#374B61', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase' }}>{s.label}</span>
                 </div>
               ))}
             </div>
@@ -282,14 +282,14 @@ export default function MLModelsPage() {
                         {isAr && m.nameAr ? m.nameAr : m.name}
                       </div>
                       <div style={{ display: 'flex', gap: 7, alignItems: 'center', flexWrap: 'wrap' }}>
-                        <span style={{ fontSize: 10, padding: '1px 6px', borderRadius: 3, background: `${typeCfg.color}18`, color: typeCfg.color, fontFamily: "'JetBrains Mono', monospace", border: `1px solid ${typeCfg.color}33` }}>
+                        <span style={{ fontSize: 11, padding: '1px 6px', borderRadius: 3, background: `${typeCfg.color}18`, color: typeCfg.color, fontFamily: "'JetBrains Mono', monospace", border: `1px solid ${typeCfg.color}33` }}>
                           <i className={typeCfg.icon} style={{ marginRight: 3 }} />{typeCfg.labelEn}
                         </span>
-                        <span style={{ fontSize: 10, color: '#374B61', fontFamily: "'JetBrains Mono', monospace" }}>v{m.version}</span>
-                        <span style={{ fontSize: 10, color: '#374B61', fontFamily: "'JetBrains Mono', monospace" }}>{m.framework}</span>
+                        <span style={{ fontSize: 11, color: '#374B61', fontFamily: "'JetBrains Mono', monospace" }}>v{m.version}</span>
+                        <span style={{ fontSize: 11, color: '#374B61', fontFamily: "'JetBrains Mono', monospace" }}>{m.framework}</span>
                       </div>
                     </div>
-                    <span style={{ fontSize: 10, padding: '2px 7px', borderRadius: 3, background: `${statusCol}18`, color: statusCol, fontFamily: "'JetBrains Mono', monospace", border: `1px solid ${statusCol}33`, textTransform: 'uppercase', alignSelf: 'flex-start', whiteSpace: 'nowrap' }}>
+                    <span style={{ fontSize: 11, padding: '2px 7px', borderRadius: 3, background: `${statusCol}18`, color: statusCol, fontFamily: "'JetBrains Mono', monospace", border: `1px solid ${statusCol}33`, textTransform: 'uppercase', alignSelf: 'flex-start', whiteSpace: 'nowrap' }}>
                       {m.status}
                     </span>
                   </div>
@@ -305,19 +305,19 @@ export default function MLModelsPage() {
                       ].map(s => (
                         <div key={s.label} style={{ textAlign: 'center' }}>
                           <div style={{ fontSize: 13, fontFamily: "'JetBrains Mono', monospace", color: '#B8893C', fontWeight: 700, lineHeight: 1 }}>{(s.val * 100).toFixed(0)}%</div>
-                          <div style={{ fontSize: 8, color: '#374B61', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', marginTop: 2 }}>{s.label}</div>
+                          <div style={{ fontSize: 10, color: '#374B61', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', marginTop: 2 }}>{s.label}</div>
                         </div>
                       ))}
                     </div>
                   )}
 
                   {m.status === 'TRAINING' && m.notes && (
-                    <div style={{ fontSize: 10, color: '#D4922A', fontFamily: "'JetBrains Mono', monospace", marginBottom: 6 }}>
+                    <div style={{ fontSize: 11, color: '#D4922A', fontFamily: "'JetBrains Mono', monospace", marginBottom: 6 }}>
                       <i className="ri-loader-4-line" style={{ marginRight: 5 }} />{m.notes}
                     </div>
                   )}
 
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 10, color: '#374B61', fontFamily: "'JetBrains Mono', monospace" }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 11, color: '#374B61', fontFamily: "'JetBrains Mono', monospace" }}>
                     <span><i className="ri-cpu-line" style={{ marginRight: 4 }} />{m.predictionCount.toLocaleString()} {isAr ? 'تنبؤ' : 'predictions'}</span>
                     {m.lastPrediction && <span>{isAr ? 'آخر: ' : 'last: '}{m.lastPrediction.slice(0, 10)}</span>}
                   </div>

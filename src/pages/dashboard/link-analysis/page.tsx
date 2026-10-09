@@ -272,7 +272,7 @@ const LinkAnalysisPage = () => {
             <h1 className="text-white text-sm font-bold font-['Inter']">
               {isAr ? "تحليل الروابط والشبكات" : "Link Analysis & Network Graph"}
             </h1>
-            <p className="text-gray-600 text-[10px] font-['JetBrains_Mono']">
+            <p className="text-gray-600 text-[11px] font-['JetBrains_Mono']">
               {isAr ? "أداة التحليل التفاعلي للعلاقات" : "Interactive Relationship Intelligence Tool"}
             </p>
           </div>
@@ -288,7 +288,7 @@ const LinkAnalysisPage = () => {
           ].map(r => (
             <div key={r.label} className="flex items-center gap-1">
               <div className="w-2 h-2 rounded-full" style={{ background: r.color }} />
-              <span className="text-[10px] font-['JetBrains_Mono']" style={{ color: r.color }}>{r.label}</span>
+              <span className="text-[11px] font-['JetBrains_Mono']" style={{ color: r.color }}>{r.label}</span>
             </div>
           ))}
         </div>
@@ -296,7 +296,7 @@ const LinkAnalysisPage = () => {
         <div className="ml-auto flex items-center gap-2">
           <div className="flex items-center gap-1.5 px-2 py-1 rounded" style={{ background: "rgba(184,138,60,0.06)", border: "1px solid rgba(184,138,60,0.15)" }}>
             <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-            <span className="text-green-400 text-[10px] font-['JetBrains_Mono']">
+            <span className="text-green-400 text-[11px] font-['JetBrains_Mono']">
               {isAr ? "متصل بقاعدة البيانات" : "DB Connected"}
             </span>
           </div>
@@ -426,7 +426,7 @@ const LinkAnalysisPage = () => {
               <div className="h-full overflow-y-auto" style={{ scrollbarWidth: "none" }}>
                 {/* Node type legend */}
                 <div className="p-3 border-b" style={{ borderColor: "rgba(184,138,60,0.08)" }}>
-                  <p className="text-gray-600 text-[10px] font-bold tracking-widest font-['JetBrains_Mono'] uppercase mb-2">
+                  <p className="text-gray-600 text-[11px] font-bold tracking-widest font-['JetBrains_Mono'] uppercase mb-2">
                     {isAr ? "أنواع العقد" : "NODE TYPES"}
                   </p>
                   <div className="space-y-1.5">
@@ -447,7 +447,7 @@ const LinkAnalysisPage = () => {
 
                 {/* Risk distribution */}
                 <div className="p-3">
-                  <p className="text-gray-600 text-[10px] font-bold tracking-widest font-['JetBrains_Mono'] uppercase mb-2">
+                  <p className="text-gray-600 text-[11px] font-bold tracking-widest font-['JetBrains_Mono'] uppercase mb-2">
                     {isAr ? "توزيع المخاطر" : "RISK DISTRIBUTION"}
                   </p>
                   {(["critical", "high", "medium", "low"] as const).map(risk => {

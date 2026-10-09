@@ -75,7 +75,7 @@ const FieldDashboard = ({ isAr, onAlertTap, onSearch }: Props) => {
               <p className="text-white text-xs font-bold font-['Inter']">
                 {isAr ? currentOfficer.nameAr : currentOfficer.name}
               </p>
-              <p className="text-gray-500 text-[10px] font-['JetBrains_Mono']">
+              <p className="text-gray-500 text-[11px] font-['JetBrains_Mono']">
                 {currentOfficer.badge} · {currentOfficer.rank} · Sector {currentOfficer.sector}
               </p>
             </div>
@@ -123,7 +123,7 @@ const FieldDashboard = ({ isAr, onAlertTap, onSearch }: Props) => {
               <div key={off.id} className="flex items-center gap-2">
                 <div className="w-1.5 h-1.5 rounded-full flex-shrink-0"
                   style={{ background: officerStatusColors[off.status] }} />
-                <span className="text-white text-[10px] font-['Inter'] flex-1 truncate">{off.name}</span>
+                <span className="text-white text-[11px] font-['Inter'] flex-1 truncate">{off.name}</span>
                 <span className="text-gray-500 text-[9px] font-['JetBrains_Mono']">{off.distance}</span>
                 <span className="text-[9px] font-['JetBrains_Mono'] capitalize"
                   style={{ color: officerStatusColors[off.status] }}>{off.status}</span>
@@ -151,7 +151,7 @@ const FieldDashboard = ({ isAr, onAlertTap, onSearch }: Props) => {
                   <div className="w-2 h-2 rounded-full bg-red-400 animate-pulse" />
                   <span className="text-red-400 text-xs font-bold font-['JetBrains_Mono']">{criticalCount} {isAr ? "حرج" : "CRITICAL"}</span>
                 </div>
-                <p className="text-red-300/60 text-[10px] font-['JetBrains_Mono']">{isAr ? "يتطلب استجابة فورية" : "Requires immediate response"}</p>
+                <p className="text-red-300/60 text-[11px] font-['JetBrains_Mono']">{isAr ? "يتطلب استجابة فورية" : "Requires immediate response"}</p>
               </div>
             </div>
           </div>
@@ -196,7 +196,7 @@ const FieldDashboard = ({ isAr, onAlertTap, onSearch }: Props) => {
       <div className="mx-3 mt-3 flex gap-1">
         {(["all","critical","high","medium"] as const).map(f => (
           <button key={f} onClick={() => setActiveFilter(f)}
-            className="flex-1 py-1.5 rounded-xl text-[10px] font-bold font-['JetBrains_Mono'] uppercase cursor-pointer transition-all"
+            className="flex-1 py-1.5 rounded-xl text-[11px] font-bold font-['JetBrains_Mono'] uppercase cursor-pointer transition-all"
             style={{
               background: activeFilter === f ? (f === "all" ? "rgba(184,138,60,0.15)" : priorityConfig[f as keyof typeof priorityConfig]?.bg || "rgba(184,138,60,0.15)") : "rgba(10,37,64,0.6)",
               color: activeFilter === f ? (f === "all" ? "#D6B47E" : priorityConfig[f as keyof typeof priorityConfig]?.color || "#D6B47E") : "#4B5563",
@@ -215,7 +215,7 @@ const FieldDashboard = ({ isAr, onAlertTap, onSearch }: Props) => {
             {isAr ? "المواقع القريبة" : "Nearby Flagged"}
           </p>
           <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse ml-1" />
-          <span className="text-green-400 text-[10px] font-['JetBrains_Mono']">GPS</span>
+          <span className="text-green-400 text-[11px] font-['JetBrains_Mono']">GPS</span>
         </div>
         <div className="flex gap-2 overflow-x-auto pb-1" style={{ scrollbarWidth: "none" }}>
           {nearbyLocations.map((loc) => {
@@ -225,7 +225,7 @@ const FieldDashboard = ({ isAr, onAlertTap, onSearch }: Props) => {
                 style={{ background: "rgba(10,37,64,0.8)", border: `1px solid ${cfg.border}`, minWidth: "130px" }}>
                 <div className="flex items-center gap-1.5 mb-1">
                   <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: cfg.color }} />
-                  <span className="text-white text-[10px] font-['Inter'] font-semibold truncate">{isAr ? loc.nameAr : loc.name}</span>
+                  <span className="text-white text-[11px] font-['Inter'] font-semibold truncate">{isAr ? loc.nameAr : loc.name}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-gray-500 text-[9px] font-['JetBrains_Mono']">{loc.activeAlerts} alerts</span>
@@ -268,12 +268,12 @@ const FieldDashboard = ({ isAr, onAlertTap, onSearch }: Props) => {
                   <p className="text-white text-xs font-['Inter'] font-semibold leading-snug truncate">
                     {isAr ? alert.ruleNameAr : alert.ruleName}
                   </p>
-                  <p className="text-gray-500 text-[10px] font-['Inter'] truncate">
+                  <p className="text-gray-500 text-[11px] font-['Inter'] truncate">
                     {alert.personName} · {isAr ? alert.locationAr : alert.location}
                   </p>
                   <div className="flex items-center gap-2 mt-1">
-                    <span className="text-gray-600 text-[10px] font-['JetBrains_Mono']">{alert.time}</span>
-                    <span className="text-gold-400 text-[10px] font-['JetBrains_Mono']">{alert.distance}</span>
+                    <span className="text-gray-600 text-[11px] font-['JetBrains_Mono']">{alert.time}</span>
+                    <span className="text-gold-400 text-[11px] font-['JetBrains_Mono']">{alert.distance}</span>
                     {alert.assignedOfficer !== "Unassigned" && (
                       <span className="text-green-400 text-[9px] font-['JetBrains_Mono'] truncate">
                         <i className="ri-user-line mr-0.5" />{alert.assignedOfficer}

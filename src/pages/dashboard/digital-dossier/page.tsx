@@ -150,7 +150,7 @@ const DigitalDossierPage = () => {
               </div>
               <div>
                 <p className="text-white text-lg font-bold font-['JetBrains_Mono']">{kpi.value}</p>
-                <p className="text-gray-600 text-[10px] font-['Inter']">{kpi.label}</p>
+                <p className="text-gray-600 text-[11px] font-['Inter']">{kpi.label}</p>
               </div>
             </div>
           ))}
@@ -213,12 +213,12 @@ const DigitalDossierPage = () => {
                         style={{ width: `${generationProgress}%`, background: "linear-gradient(90deg, #D6B47E, #4ADE80)" }}
                       />
                     </div>
-                    <p className="text-gray-500 text-[10px] font-['JetBrains_Mono']">{generationProgress}% — {generationSteps[Math.min(generationStep, generationSteps.length - 1)]}</p>
+                    <p className="text-gray-500 text-[11px] font-['JetBrains_Mono']">{generationProgress}% — {generationSteps[Math.min(generationStep, generationSteps.length - 1)]}</p>
                     <div className="space-y-1">
                       {generationSteps.slice(0, generationStep + 1).map((step, idx) => (
                         <div key={idx} className="flex items-center gap-1.5">
-                          <i className={`text-[10px] ${idx < generationStep ? "ri-check-line text-green-400" : "ri-loader-4-line text-gold-400 animate-spin"}`} />
-                          <span className="text-[10px] font-['JetBrains_Mono']" style={{ color: idx < generationStep ? "#4ADE80" : "#D6B47E" }}>{step}</span>
+                          <i className={`text-[11px] ${idx < generationStep ? "ri-check-line text-green-400" : "ri-loader-4-line text-gold-400 animate-spin"}`} />
+                          <span className="text-[11px] font-['JetBrains_Mono']" style={{ color: idx < generationStep ? "#4ADE80" : "#D6B47E" }}>{step}</span>
                         </div>
                       ))}
                     </div>
@@ -234,7 +234,7 @@ const DigitalDossierPage = () => {
                     </div>
                     <div className="p-3 rounded-xl" style={{ background: "rgba(74,222,128,0.05)", border: "1px solid rgba(74,222,128,0.15)" }}>
                       <p className="text-white text-xs font-bold font-['Inter'] mb-1">{generationConfig.subject.nameEn}</p>
-                      <div className="space-y-1 text-[10px] font-['JetBrains_Mono'] text-gray-500">
+                      <div className="space-y-1 text-[11px] font-['JetBrains_Mono'] text-gray-500">
                         <p>{generationConfig.sections.length} sections · ~{estimatedPages} pages</p>
                         <p style={{ color: classificationConfig[generationConfig.classification].color }}>{generationConfig.classification}</p>
                         <p>{generationConfig.format}</p>
@@ -270,7 +270,7 @@ const DigitalDossierPage = () => {
 
             {/* Stream coverage panel */}
             <div className="flex-1 overflow-y-auto p-4" style={{ scrollbarWidth: "thin", scrollbarColor: "rgba(184,138,60,0.2) transparent" }}>
-              <p className="text-gray-600 text-[10px] font-['JetBrains_Mono'] mb-3">STREAM COVERAGE</p>
+              <p className="text-gray-600 text-[11px] font-['JetBrains_Mono'] mb-3">STREAM COVERAGE</p>
               <div className="space-y-1.5">
                 {[
                   { stream: "Identity Fusion",   icon: "ri-fingerprint-line",      color: "#D6B47E", events: 12, status: "active" },
@@ -297,7 +297,7 @@ const DigitalDossierPage = () => {
                     <span className="text-xs font-['Inter'] flex-1 truncate" style={{ color: s.status === "no-data" ? "#4B5563" : "#9CA3AF" }}>
                       {s.stream}
                     </span>
-                    <span className="text-[10px] font-['JetBrains_Mono'] flex-shrink-0" style={{ color: s.events > 0 ? s.color : "#374151" }}>
+                    <span className="text-[11px] font-['JetBrains_Mono'] flex-shrink-0" style={{ color: s.events > 0 ? s.color : "#374151" }}>
                       {s.events > 0 ? `${s.events}` : "—"}
                     </span>
                   </div>
@@ -306,14 +306,14 @@ const DigitalDossierPage = () => {
 
               {/* Classification guide */}
               <div className="mt-5">
-                <p className="text-gray-600 text-[10px] font-['JetBrains_Mono'] mb-2">CLASSIFICATION GUIDE</p>
+                <p className="text-gray-600 text-[11px] font-['JetBrains_Mono'] mb-2">CLASSIFICATION GUIDE</p>
                 <div className="space-y-1.5">
                   {(["UNCLASSIFIED", "RESTRICTED", "CONFIDENTIAL", "SECRET", "TOP SECRET"] as const).map((lvl) => {
                     const cfg = classificationConfig[lvl];
                     return (
                       <div key={lvl} className="flex items-center gap-2">
                         <i className={`${cfg.icon} text-xs flex-shrink-0`} style={{ color: cfg.color }} />
-                        <span className="text-[10px] font-['JetBrains_Mono'] flex-shrink-0" style={{ color: cfg.color }}>{lvl}</span>
+                        <span className="text-[11px] font-['JetBrains_Mono'] flex-shrink-0" style={{ color: cfg.color }}>{lvl}</span>
                       </div>
                     );
                   })}

@@ -136,7 +136,7 @@ const TravelPattern = ({ stops, isAr, onGenerateDossier }: Props) => {
           {/* Map label */}
           <div className="absolute top-3 left-3">
             <span
-              className="px-2 py-1 rounded text-[10px] font-['JetBrains_Mono'] font-bold"
+              className="px-2 py-1 rounded text-[11px] font-['JetBrains_Mono'] font-bold"
               style={{ background: "rgba(5,20,40,0.85)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}
             >
               {isAr ? "عُمان" : "OMAN"}
@@ -151,7 +151,7 @@ const TravelPattern = ({ stops, isAr, onGenerateDossier }: Props) => {
             ].map(s => (
               <div
                 key={s.label}
-                className="px-2 py-1 rounded text-[10px] font-['JetBrains_Mono']"
+                className="px-2 py-1 rounded text-[11px] font-['JetBrains_Mono']"
                 style={{ background: "rgba(5,20,40,0.85)", color: s.color, border: `1px solid ${s.color}30` }}
               >
                 <span className="font-bold">{s.value}</span> {s.label}
@@ -192,7 +192,7 @@ const TravelPattern = ({ stops, isAr, onGenerateDossier }: Props) => {
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-white text-xs font-['Inter'] font-semibold leading-snug truncate">{stop.location}</p>
-                  <p className="text-gray-500 text-[10px] font-['JetBrains_Mono'] mt-0.5">{stop.datetime}</p>
+                  <p className="text-gray-500 text-[11px] font-['JetBrains_Mono'] mt-0.5">{stop.datetime}</p>
                   <div className="flex items-center gap-2 mt-1 flex-wrap">
                     <span
                       className="text-[9px] font-['JetBrains_Mono'] px-1.5 py-0.5 rounded"
@@ -202,13 +202,13 @@ const TravelPattern = ({ stops, isAr, onGenerateDossier }: Props) => {
                     </span>
                     {stop.distance && stop.distance !== "—" && (
                       <span className="text-gray-600 text-[9px] font-['JetBrains_Mono'] flex items-center gap-0.5">
-                        <i className="ri-route-line" style={{ fontSize: 9 }} />
+                        <i className="ri-route-line" style={{ fontSize: 10 }} />
                         {stop.distance}
                       </span>
                     )}
                     {stop.duration && stop.duration !== "—" && (
                       <span className="text-gray-600 text-[9px] font-['JetBrains_Mono'] flex items-center gap-0.5">
-                        <i className="ri-time-line" style={{ fontSize: 9 }} />
+                        <i className="ri-time-line" style={{ fontSize: 10 }} />
                         {stop.duration}
                       </span>
                     )}

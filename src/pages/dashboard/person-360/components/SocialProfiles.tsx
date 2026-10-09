@@ -89,7 +89,7 @@ const SocialProfiles = ({ profiles, isAr }: Props) => {
                   className="absolute top-2 right-2 px-1.5 py-0.5 rounded text-[9px] font-bold font-['JetBrains_Mono'] flex items-center gap-1"
                   style={{ background: "rgba(201,74,94,0.2)", color: "#C94A5E" }}
                 >
-                  <i className="ri-flag-fill" style={{ fontSize: 9 }} />
+                  <i className="ri-flag-fill" style={{ fontSize: 10 }} />
                   {isAr ? "مُبلَّغ" : "FLAGGED"}
                 </div>
               )}
@@ -106,7 +106,7 @@ const SocialProfiles = ({ profiles, isAr }: Props) => {
                   <p className="text-white text-xs font-bold font-['Inter']">{profile.platform}</p>
                   <div className="flex items-center gap-1">
                     <div className="w-1.5 h-1.5 rounded-full" style={{ background: status.color }} />
-                    <span className="text-[10px] font-['JetBrains_Mono']" style={{ color: status.color }}>
+                    <span className="text-[11px] font-['JetBrains_Mono']" style={{ color: status.color }}>
                       {isAr ? status.labelAr : status.label}
                     </span>
                   </div>
@@ -116,7 +116,7 @@ const SocialProfiles = ({ profiles, isAr }: Props) => {
               {/* Display name + handle */}
               <div>
                 <p className="text-white text-xs font-['Inter'] font-semibold">{profile.displayName}</p>
-                <p className="text-gray-500 text-[10px] font-['JetBrains_Mono'] mt-0.5">{profile.handle}</p>
+                <p className="text-gray-500 text-[11px] font-['JetBrains_Mono'] mt-0.5">{profile.handle}</p>
               </div>
 
               {/* Stats */}
@@ -129,7 +129,7 @@ const SocialProfiles = ({ profiles, isAr }: Props) => {
                 )}
                 <div>
                   <p className="text-gray-600 text-[9px] font-['JetBrains_Mono'] uppercase">{isAr ? "آخر نشاط" : "Last Active"}</p>
-                  <p className="text-gray-400 text-[10px] font-['JetBrains_Mono']">{profile.lastActivity}</p>
+                  <p className="text-gray-400 text-[11px] font-['JetBrains_Mono']">{profile.lastActivity}</p>
                 </div>
               </div>
 
@@ -139,16 +139,16 @@ const SocialProfiles = ({ profiles, isAr }: Props) => {
                   className="rounded-lg p-2.5 border border-red-500/20"
                   style={{ background: "rgba(201,74,94,0.06)" }}
                 >
-                  <p className="text-red-400 text-[10px] font-bold font-['JetBrains_Mono'] mb-1 uppercase tracking-wider">
+                  <p className="text-red-400 text-[11px] font-bold font-['JetBrains_Mono'] mb-1 uppercase tracking-wider">
                     {isAr ? "سبب التبليغ" : "Flag Reason"}
                   </p>
-                  <p className="text-gray-300 text-[10px] font-['Inter'] leading-relaxed">{profile.flagReason}</p>
+                  <p className="text-gray-300 text-[11px] font-['Inter'] leading-relaxed">{profile.flagReason}</p>
                   {profile.recentPost && (
                     <>
                       <p className="text-gray-500 text-[9px] font-['JetBrains_Mono'] uppercase mt-2 mb-1">
                         {isAr ? "ملاحظة الاستخبارات" : "Intelligence Note"}
                       </p>
-                      <p className="text-gray-400 text-[10px] font-['Inter'] leading-relaxed italic">{profile.recentPost}</p>
+                      <p className="text-gray-400 text-[11px] font-['Inter'] leading-relaxed italic">{profile.recentPost}</p>
                     </>
                   )}
                 </div>
@@ -157,7 +157,7 @@ const SocialProfiles = ({ profiles, isAr }: Props) => {
               {/* View button */}
               <a
                 href={profile.profileUrl}
-                className="flex items-center justify-center gap-1 py-1.5 rounded-lg text-[10px] font-['JetBrains_Mono'] cursor-pointer transition-colors"
+                className="flex items-center justify-center gap-1 py-1.5 rounded-lg text-[11px] font-['JetBrains_Mono'] cursor-pointer transition-colors"
                 style={{
                   background: "rgba(184,138,60,0.05)",
                   color: "#D6B47E",
@@ -166,7 +166,7 @@ const SocialProfiles = ({ profiles, isAr }: Props) => {
                 }}
                 onClick={e => e.stopPropagation()}
               >
-                <i className="ri-external-link-line text-[10px]" />
+                <i className="ri-external-link-line text-[11px]" />
                 {isAr ? "عرض الملف" : "View Profile"}
               </a>
             </div>

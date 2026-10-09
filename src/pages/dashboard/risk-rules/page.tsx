@@ -36,10 +36,10 @@ function RuleDetail({ rule, isAr, onClose }: { rule: RiskRule; isAr: boolean; on
             {isAr && rule.nameAr ? rule.nameAr : rule.name}
           </div>
           <div style={{ display: 'flex', gap: 7, alignItems: 'center', flexWrap: 'wrap' }}>
-            <span style={{ fontSize: 10, padding: '2px 7px', borderRadius: 3, background: `${cfg.color}18`, color: cfg.color, fontFamily: "'JetBrains Mono', monospace", border: `1px solid ${cfg.color}33` }}>
+            <span style={{ fontSize: 11, padding: '2px 7px', borderRadius: 3, background: `${cfg.color}18`, color: cfg.color, fontFamily: "'JetBrains Mono', monospace", border: `1px solid ${cfg.color}33` }}>
               <i className={cfg.icon} style={{ marginRight: 4 }} />{isAr ? '' : cfg.labelEn}
             </span>
-            <span style={{ fontSize: 10, padding: '2px 6px', borderRadius: 3, background: `${statusCol}18`, color: statusCol, fontFamily: "'JetBrains Mono', monospace", border: `1px solid ${statusCol}33`, textTransform: 'uppercase' }}>
+            <span style={{ fontSize: 11, padding: '2px 6px', borderRadius: 3, background: `${statusCol}18`, color: statusCol, fontFamily: "'JetBrains Mono', monospace", border: `1px solid ${statusCol}33`, textTransform: 'uppercase' }}>
               {rule.status}
             </span>
           </div>
@@ -54,11 +54,11 @@ function RuleDetail({ rule, isAr, onClose }: { rule: RiskRule; isAr: boolean; on
 
         {/* Score params */}
         <div style={{ padding: '10px 12px', borderRadius: 6, background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(184,138,60,0.08)' }}>
-          <div style={{ fontSize: 10, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.07em', marginBottom: 10 }}>
+          <div style={{ fontSize: 11, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.07em', marginBottom: 10 }}>
             {isAr ? 'معاملات التسجيل' : 'Scoring Parameters'}
           </div>
           <div style={{ marginBottom: 10 }}>
-            <div style={{ fontSize: 10, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", marginBottom: 5 }}>
+            <div style={{ fontSize: 11, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", marginBottom: 5 }}>
               {isAr ? 'الوزن' : 'Weight'}
             </div>
             <WeightBar weight={rule.weight} />
@@ -70,7 +70,7 @@ function RuleDetail({ rule, isAr, onClose }: { rule: RiskRule; isAr: boolean; on
               { label: isAr ? 'النطاق الجغرافي' : 'Location', val: rule.locationScope },
             ].map(r => (
               <div key={r.label}>
-                <div style={{ fontSize: 10, color: '#374B61', fontFamily: "'JetBrains Mono', monospace", marginBottom: 2 }}>{r.label}</div>
+                <div style={{ fontSize: 11, color: '#374B61', fontFamily: "'JetBrains Mono', monospace", marginBottom: 2 }}>{r.label}</div>
                 <div style={{ fontSize: 11, color: '#D6B47E', fontFamily: "'JetBrains Mono', monospace" }}>{r.val}</div>
               </div>
             ))}
@@ -116,7 +116,7 @@ function DecisionDetail({ rule, isAr, onClose }: { rule: MatchDecisionRule; isAr
           <div style={{ fontSize: 13, color: '#CBD5E1', fontFamily: "'Inter', sans-serif", fontWeight: 600, marginBottom: 4 }}>
             {isAr && rule.nameAr ? rule.nameAr : rule.name}
           </div>
-          <span style={{ fontSize: 10, padding: '2px 7px', borderRadius: 3, background: `${cfg.color}18`, color: cfg.color, fontFamily: "'JetBrains Mono', monospace", border: `1px solid ${cfg.color}33` }}>
+          <span style={{ fontSize: 11, padding: '2px 7px', borderRadius: 3, background: `${cfg.color}18`, color: cfg.color, fontFamily: "'JetBrains Mono', monospace", border: `1px solid ${cfg.color}33` }}>
             <i className={cfg.icon} style={{ marginRight: 4 }} />{isAr ? cfg.labelAr : cfg.labelEn}
           </span>
         </div>
@@ -129,12 +129,12 @@ function DecisionDetail({ rule, isAr, onClose }: { rule: MatchDecisionRule; isAr
 
         <div style={{ padding: '10px 12px', borderRadius: 6, background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(184,138,60,0.08)', display: 'flex', flexDirection: 'column', gap: 10 }}>
           <div>
-            <div style={{ fontSize: 10, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", marginBottom: 4 }}>{isAr ? 'الحد الأدنى للتفعيل' : 'Trigger Threshold'}</div>
+            <div style={{ fontSize: 11, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", marginBottom: 4 }}>{isAr ? 'الحد الأدنى للتفعيل' : 'Trigger Threshold'}</div>
             <div style={{ fontSize: 22, color: cfg.color, fontFamily: "'JetBrains Mono', monospace", fontWeight: 700 }}>≥ {rule.threshold}</div>
           </div>
           {rule.emailRecipients.length > 0 && (
             <div>
-              <div style={{ fontSize: 10, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", marginBottom: 5 }}>{isAr ? 'المستلمون' : 'Email Recipients'}</div>
+              <div style={{ fontSize: 11, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", marginBottom: 5 }}>{isAr ? 'المستلمون' : 'Email Recipients'}</div>
               {rule.emailRecipients.map(r => (
                 <div key={r} style={{ fontSize: 11, color: '#8FA8C0', fontFamily: "'JetBrains Mono', monospace", marginBottom: 2 }}>
                   <i className="ri-mail-line" style={{ marginRight: 6, color: '#5B7494' }} />{r}
@@ -144,7 +144,7 @@ function DecisionDetail({ rule, isAr, onClose }: { rule: MatchDecisionRule; isAr
           )}
           {rule.workflowId && (
             <div>
-              <div style={{ fontSize: 10, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", marginBottom: 4 }}>{isAr ? 'سير العمل' : 'Workflow'}</div>
+              <div style={{ fontSize: 11, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", marginBottom: 4 }}>{isAr ? 'سير العمل' : 'Workflow'}</div>
               <div style={{ fontSize: 11, color: '#D6B47E', fontFamily: "'JetBrains Mono', monospace" }}>{rule.workflowId}</div>
             </div>
           )}
@@ -199,7 +199,7 @@ export default function RiskRulesPage() {
   });
 
   const chipStyle = (active: boolean, color = '#B8893C'): React.CSSProperties => ({
-    padding: '4px 10px', borderRadius: 4, fontSize: 10, cursor: 'pointer', background: 'transparent',
+    padding: '4px 10px', borderRadius: 4, fontSize: 11, cursor: 'pointer', background: 'transparent',
     fontFamily: "'JetBrains Mono', monospace", border: `1px solid ${active ? color : 'rgba(184,138,60,0.15)'}`,
     color: active ? color : '#5B7494', textTransform: 'uppercase',
   });
@@ -258,7 +258,7 @@ export default function RiskRulesPage() {
                 <thead>
                   <tr style={{ borderBottom: '1px solid rgba(184,138,60,0.1)', background: 'rgba(5,20,40,0.7)' }}>
                     {[isAr ? 'الاسم' : 'Name', isAr ? 'النوع' : 'Type', isAr ? 'الوزن' : 'Weight', isAr ? 'الحالة' : 'Status', isAr ? 'التفعيلات' : 'Triggers'].map(h => (
-                      <th key={h} style={{ padding: '8px 14px', textAlign: 'left', fontSize: 10, color: '#374B61', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.07em', fontWeight: 600, whiteSpace: 'nowrap' }}>{h}</th>
+                      <th key={h} style={{ padding: '8px 14px', textAlign: 'left', fontSize: 11, color: '#374B61', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.07em', fontWeight: 600, whiteSpace: 'nowrap' }}>{h}</th>
                     ))}
                   </tr>
                 </thead>
@@ -270,10 +270,10 @@ export default function RiskRulesPage() {
                       <tr key={r.id} onClick={() => setSelRule(prev => prev?.id === r.id ? null : r)} style={{ borderBottom: '1px solid rgba(255,255,255,0.03)', cursor: 'pointer', background: selRule?.id === r.id ? 'rgba(184,138,60,0.06)' : 'transparent' }}>
                         <td style={{ padding: '10px 14px' }}>
                           <div style={{ fontSize: 12, color: '#CBD5E1', fontFamily: "'Inter', sans-serif", fontWeight: 500 }}>{isAr && r.nameAr ? r.nameAr : r.name}</div>
-                          <div style={{ fontSize: 10, color: '#374B61', fontFamily: "'JetBrains Mono', monospace", marginTop: 2 }}>{r.id}</div>
+                          <div style={{ fontSize: 11, color: '#374B61', fontFamily: "'JetBrains Mono', monospace", marginTop: 2 }}>{r.id}</div>
                         </td>
                         <td style={{ padding: '10px 14px' }}>
-                          <span style={{ fontSize: 10, padding: '2px 7px', borderRadius: 3, background: `${cfg.color}18`, color: cfg.color, fontFamily: "'JetBrains Mono', monospace", border: `1px solid ${cfg.color}33`, whiteSpace: 'nowrap' }}>
+                          <span style={{ fontSize: 11, padding: '2px 7px', borderRadius: 3, background: `${cfg.color}18`, color: cfg.color, fontFamily: "'JetBrains Mono', monospace", border: `1px solid ${cfg.color}33`, whiteSpace: 'nowrap' }}>
                             <i className={cfg.icon} style={{ marginRight: 4 }} />{cfg.labelEn}
                           </span>
                         </td>
@@ -281,7 +281,7 @@ export default function RiskRulesPage() {
                           <WeightBar weight={r.weight} />
                         </td>
                         <td style={{ padding: '10px 14px' }}>
-                          <span style={{ fontSize: 10, padding: '2px 6px', borderRadius: 3, background: `${statusCol}18`, color: statusCol, fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', border: `1px solid ${statusCol}33` }}>
+                          <span style={{ fontSize: 11, padding: '2px 6px', borderRadius: 3, background: `${statusCol}18`, color: statusCol, fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', border: `1px solid ${statusCol}33` }}>
                             {r.status}
                           </span>
                         </td>
@@ -300,7 +300,7 @@ export default function RiskRulesPage() {
                 <thead>
                   <tr style={{ borderBottom: '1px solid rgba(184,138,60,0.1)', background: 'rgba(5,20,40,0.7)' }}>
                     {[isAr ? 'الاسم' : 'Name', isAr ? 'الإجراء' : 'Action', isAr ? 'الحد' : 'Threshold', isAr ? 'التفعيلات' : 'Triggers', isAr ? 'آخر تفعيل' : 'Last Triggered'].map(h => (
-                      <th key={h} style={{ padding: '8px 14px', textAlign: 'left', fontSize: 10, color: '#374B61', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.07em', fontWeight: 600, whiteSpace: 'nowrap' }}>{h}</th>
+                      <th key={h} style={{ padding: '8px 14px', textAlign: 'left', fontSize: 11, color: '#374B61', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.07em', fontWeight: 600, whiteSpace: 'nowrap' }}>{h}</th>
                     ))}
                   </tr>
                 </thead>
@@ -311,10 +311,10 @@ export default function RiskRulesPage() {
                       <tr key={d.id} onClick={() => setSelDecision(prev => prev?.id === d.id ? null : d)} style={{ borderBottom: '1px solid rgba(255,255,255,0.03)', cursor: 'pointer', background: selDecision?.id === d.id ? 'rgba(184,138,60,0.06)' : 'transparent' }}>
                         <td style={{ padding: '10px 14px' }}>
                           <div style={{ fontSize: 12, color: '#CBD5E1', fontFamily: "'Inter', sans-serif", fontWeight: 500 }}>{isAr && d.nameAr ? d.nameAr : d.name}</div>
-                          <div style={{ fontSize: 10, color: '#374B61', fontFamily: "'JetBrains Mono', monospace", marginTop: 2 }}>{d.id}</div>
+                          <div style={{ fontSize: 11, color: '#374B61', fontFamily: "'JetBrains Mono', monospace", marginTop: 2 }}>{d.id}</div>
                         </td>
                         <td style={{ padding: '10px 14px' }}>
-                          <span style={{ fontSize: 10, padding: '2px 7px', borderRadius: 3, background: `${cfg.color}18`, color: cfg.color, fontFamily: "'JetBrains Mono', monospace", border: `1px solid ${cfg.color}33`, whiteSpace: 'nowrap' }}>
+                          <span style={{ fontSize: 11, padding: '2px 7px', borderRadius: 3, background: `${cfg.color}18`, color: cfg.color, fontFamily: "'JetBrains Mono', monospace", border: `1px solid ${cfg.color}33`, whiteSpace: 'nowrap' }}>
                             <i className={cfg.icon} style={{ marginRight: 4 }} />{isAr ? cfg.labelAr : cfg.labelEn}
                           </span>
                         </td>

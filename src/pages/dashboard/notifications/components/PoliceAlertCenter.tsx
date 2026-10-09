@@ -90,7 +90,7 @@ const PoliceAlertCenter = ({ isAr }: Props) => {
                 {p === "critical" && (
                   <div className="w-1.5 h-1.5 rounded-full" style={{ background: cfg.color, opacity: pulse ? 1 : 0.3, transition: "opacity 0.4s" }} />
                 )}
-                <span className="text-[10px] font-bold font-['JetBrains_Mono'] uppercase" style={{ color: cfg.color }}>
+                <span className="text-[11px] font-bold font-['JetBrains_Mono'] uppercase" style={{ color: cfg.color }}>
                   {count} {isAr ? cfg.labelAr : cfg.label}
                 </span>
               </div>
@@ -160,18 +160,18 @@ const PoliceAlertCenter = ({ isAr }: Props) => {
                   <div className="flex items-start justify-between gap-2 mb-1">
                     <div className="flex items-center gap-2 flex-wrap">
                       <span
-                        className="px-2 py-0.5 rounded-full text-[10px] font-bold font-['JetBrains_Mono'] uppercase tracking-wider"
+                        className="px-2 py-0.5 rounded-full text-[11px] font-bold font-['JetBrains_Mono'] uppercase tracking-wider"
                         style={{ background: `${cfg.color}18`, color: cfg.color, border: `1px solid ${cfg.color}33` }}
                       >
                         {isAr ? cfg.labelAr : cfg.label}
                       </span>
-                      <span className="text-gray-600 text-[10px] font-['JetBrains_Mono']">{alert.category}</span>
+                      <span className="text-gray-600 text-[11px] font-['JetBrains_Mono']">{alert.category}</span>
                     </div>
                     <div className="flex items-center gap-2 flex-shrink-0">
-                      <span className="text-gray-600 text-[10px] font-['JetBrains_Mono']">{alert.time}</span>
+                      <span className="text-gray-600 text-[11px] font-['JetBrains_Mono']">{alert.time}</span>
                       {alert.acknowledged && (
-                        <span className="text-green-400 text-[10px] font-['JetBrains_Mono'] flex items-center gap-0.5">
-                          <i className="ri-check-double-line text-[10px]" />
+                        <span className="text-green-400 text-[11px] font-['JetBrains_Mono'] flex items-center gap-0.5">
+                          <i className="ri-check-double-line text-[11px]" />
                           {isAr ? "مؤكد" : "Ack"}
                         </span>
                       )}
@@ -184,13 +184,13 @@ const PoliceAlertCenter = ({ isAr }: Props) => {
                     {isAr ? alert.descriptionAr : alert.description}
                   </p>
                   <div className="flex items-center gap-2 mt-1.5">
-                    <span className="text-gray-600 text-[10px] font-['JetBrains_Mono'] flex items-center gap-1">
-                      <i className="ri-database-line text-[10px]" />
+                    <span className="text-gray-600 text-[11px] font-['JetBrains_Mono'] flex items-center gap-1">
+                      <i className="ri-database-line text-[11px]" />
                       {alert.source}
                     </span>
                     {alert.assignedTo && (
-                      <span className="text-gold-400 text-[10px] font-['JetBrains_Mono'] flex items-center gap-1">
-                        <i className="ri-user-line text-[10px]" />
+                      <span className="text-gold-400 text-[11px] font-['JetBrains_Mono'] flex items-center gap-1">
+                        <i className="ri-user-line text-[11px]" />
                         {alert.assignedTo}
                       </span>
                     )}

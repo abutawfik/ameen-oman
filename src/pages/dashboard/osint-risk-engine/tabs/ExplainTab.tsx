@@ -101,11 +101,11 @@ const ExplainTab = ({
           <div>
             <div className="flex items-center gap-2 mb-1 flex-wrap">
               <h2 className="text-white text-xl font-bold">{record.travelerName}</h2>
-              <span className="px-2 py-0.5 rounded-md text-[10px] font-bold tracking-widest font-['JetBrains_Mono']"
+              <span className="px-2 py-0.5 rounded-md text-[11px] font-bold tracking-widest font-['JetBrains_Mono']"
                 style={{ background: `${scoreColor(record.band)}22`, color: scoreColor(record.band), border: `1px solid ${scoreColor(record.band)}55` }}>
                 {SCORE_BAND_META[record.band].labelEn}
               </span>
-              <span className="px-2 py-0.5 rounded-md text-[10px] font-bold font-['JetBrains_Mono']"
+              <span className="px-2 py-0.5 rounded-md text-[11px] font-bold font-['JetBrains_Mono']"
                 style={{
                   background: record.decisionPoint === "ETA" ? "rgba(184,138,60,0.1)" : "rgba(107,79,174,0.1)",
                   color: record.decisionPoint === "ETA" ? "#D6B47E" : "#6B4FAE",
@@ -124,7 +124,7 @@ const ExplainTab = ({
           </div>
         </div>
         <div className="flex flex-col items-end">
-          <span className="text-gray-500 text-[10px] font-bold tracking-widest font-['JetBrains_Mono']">UNIFIED SCORE</span>
+          <span className="text-gray-500 text-[11px] font-bold tracking-widest font-['JetBrains_Mono']">UNIFIED SCORE</span>
           <span className="font-black font-['JetBrains_Mono']"
             style={{
               color: scoreColor(record.band),
@@ -134,7 +134,7 @@ const ExplainTab = ({
             {record.unifiedScore}
           </span>
           {!presenterMode && (
-            <span className="text-gray-600 text-[10px] font-['JetBrains_Mono']">
+            <span className="text-gray-600 text-[11px] font-['JetBrains_Mono']">
               model {record.modelVersion}
             </span>
           )}
@@ -258,7 +258,7 @@ const ExplainTab = ({
                   {items.map((c, i) => (
                     <div key={`${c.ref}-${i}`} className="flex items-start gap-3 px-3 py-2 rounded-md"
                       style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
-                      <span className="px-2 py-0.5 rounded-md text-[10px] font-bold font-['JetBrains_Mono'] tracking-widest flex-shrink-0"
+                      <span className="px-2 py-0.5 rounded-md text-[11px] font-bold font-['JetBrains_Mono'] tracking-widest flex-shrink-0"
                         style={{
                           background: c.type === "rule" ? "rgba(184,138,60,0.12)" : "rgba(107,79,174,0.12)",
                           color: c.type === "rule" ? "#D6B47E" : "#6B4FAE",
@@ -268,9 +268,9 @@ const ExplainTab = ({
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-0.5">
                           <span className="text-gray-200 text-xs font-bold font-['JetBrains_Mono']">{c.ref}</span>
-                          <span className="text-gray-600 text-[10px]">·</span>
-                          <span className="text-gray-500 text-[10px] font-['JetBrains_Mono']">{c.source}</span>
-                          <span className="text-[10px] font-bold font-['JetBrains_Mono'] px-1.5 py-0.5 rounded"
+                          <span className="text-gray-600 text-[11px]">·</span>
+                          <span className="text-gray-500 text-[11px] font-['JetBrains_Mono']">{c.source}</span>
+                          <span className="text-[11px] font-bold font-['JetBrains_Mono'] px-1.5 py-0.5 rounded"
                             style={{ background: `${confidenceColor[c.confidence]}18`, color: confidenceColor[c.confidence] }}>
                             {c.confidence}
                           </span>
@@ -279,7 +279,7 @@ const ExplainTab = ({
                         <RedactableText fieldClass={record.classification} value={c.observed} className="text-gray-400 text-xs block" />
                       </div>
                       <div className="text-right flex-shrink-0">
-                        <div className="text-[10px] text-gray-600 font-['JetBrains_Mono']">+pts</div>
+                        <div className="text-[11px] text-gray-600 font-['JetBrains_Mono']">+pts</div>
                         <div className="text-sm font-bold font-['JetBrains_Mono']" style={{ color: meta.color }}>
                           {c.contribution.toFixed(0)}
                         </div>

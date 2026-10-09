@@ -305,7 +305,7 @@ const ScoreConfig = ({ weights, multipliers, isAr, onWeightChange, onMultiplierT
                     <span className="text-white text-xs font-semibold truncate">{ver.label}</span>
                     {isNewest && (
                       <span className="flex-shrink-0 px-1.5 py-0.5 rounded text-xs font-bold"
-                        style={{ background: 'rgba(74,222,128,0.1)', color: '#4ADE80', border: '1px solid rgba(74,222,128,0.2)', fontSize: '9px' }}>
+                        style={{ background: 'rgba(74,222,128,0.1)', color: '#4ADE80', border: '1px solid rgba(74,222,128,0.2)', fontSize: '10px' }}>
                         {isAr ? 'الأحدث' : 'LATEST'}
                       </span>
                     )}
@@ -318,7 +318,7 @@ const ScoreConfig = ({ weights, multipliers, isAr, onWeightChange, onMultiplierT
                   <div className="flex items-center gap-1.5">
                     <div className="w-5 h-5 flex items-center justify-center rounded-full flex-shrink-0"
                       style={{ background: 'rgba(167,139,250,0.12)', border: '1px solid rgba(167,139,250,0.2)' }}>
-                      <i className="ri-user-line" style={{ fontSize: '9px', color: '#A78BFA' }} />
+                      <i className="ri-user-line" style={{ fontSize: '10px', color: '#A78BFA' }} />
                     </div>
                     <span className="text-gray-400 text-xs font-['JetBrains_Mono']">{ver.savedBy}</span>
                   </div>

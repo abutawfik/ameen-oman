@@ -260,7 +260,7 @@ const DashboardTitleBar = ({ isAr, onToggleLang, onToggleAr }: Props) => {
             <i className="ri-notification-3-line text-lg" style={{ color: "#D6B47E" }} aria-hidden="true" />
             {totalBadge > 0 && (
               <span
-                className={`absolute -top-1 min-w-[18px] h-[18px] flex items-center justify-center rounded-full text-[10px] font-bold px-1 ${isAr ? "-left-1" : "-right-1"}`}
+                className={`absolute -top-1 min-w-[18px] h-[18px] flex items-center justify-center rounded-full text-[11px] font-bold px-1 ${isAr ? "-left-1" : "-right-1"}`}
                 style={{
                   background: criticalCount > 0 ? "#8A1F3C" : "#D6B47E",
                   color: "var(--alm-ocean-800)",
@@ -334,7 +334,7 @@ const DashboardTitleBar = ({ isAr, onToggleLang, onToggleAr }: Props) => {
                     >
                       {isAr ? n.titleAr : n.title}
                     </p>
-                    <p className="text-[10px] mt-0.5" style={{ color: "#6B7280", fontFamily: fonts.mono }}>
+                    <p className="text-[11px] mt-0.5" style={{ color: "#6B7280", fontFamily: fonts.mono }}>
                       {n.time}
                     </p>
                   </div>

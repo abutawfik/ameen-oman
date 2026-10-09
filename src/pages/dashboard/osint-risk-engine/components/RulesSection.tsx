@@ -52,17 +52,17 @@ const YamlDiffView = ({ isAr, original, current }: { isAr: boolean; original: st
           <span style={{ color: "#4ADE80" }}>+ {added} {isAr ? "سطراً مضافاً" : "lines added"}</span>
           <span style={{ color: "#C94A5E" }}>− {removed} {isAr ? "سطراً محذوفاً" : "lines removed"}</span>
         </div>
-        <span className="text-[10px] tracking-widest uppercase font-['JetBrains_Mono']" style={{ color: "#B8A0FF" }}>
+        <span className="text-[11px] tracking-widest uppercase font-['JetBrains_Mono']" style={{ color: "#B8A0FF" }}>
           {isAr ? "مقارنة ثنائية · الملف ↔ المسودّة" : "Side-by-side · file ↔ pending"}
         </span>
       </div>
 
       {/* Column headers */}
       <div className="grid grid-cols-2 gap-2">
-        <div className="text-[10px] tracking-widest uppercase font-['JetBrains_Mono'] px-3" style={{ color: "#C94A5E" }}>
+        <div className="text-[11px] tracking-widest uppercase font-['JetBrains_Mono'] px-3" style={{ color: "#C94A5E" }}>
           {isAr ? "الأصل (ملف)" : "Original · on disk"}
         </div>
-        <div className="text-[10px] tracking-widest uppercase font-['JetBrains_Mono'] px-3" style={{ color: "#4ADE80" }}>
+        <div className="text-[11px] tracking-widest uppercase font-['JetBrains_Mono'] px-3" style={{ color: "#4ADE80" }}>
           {isAr ? "الحالي (معلَّق)" : "Current · pending"}
         </div>
       </div>
@@ -345,14 +345,14 @@ const RulesSection = ({
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-0.5">
                     <span className="text-xs font-bold font-['JetBrains_Mono'] text-gray-200">{r.id}</span>
-                    <span className="text-[10px] font-bold font-['JetBrains_Mono'] px-1.5 py-0.5 rounded"
+                    <span className="text-[11px] font-bold font-['JetBrains_Mono'] px-1.5 py-0.5 rounded"
                       style={{ background: `${meta.color}18`, color: meta.color }}>
                       {meta.labelEn.toUpperCase()}
                     </span>
-                    <span className="text-[10px] text-gray-600 font-['JetBrains_Mono']">{r.version}</span>
+                    <span className="text-[11px] text-gray-600 font-['JetBrains_Mono']">{r.version}</span>
                   </div>
                   <div className="text-gray-300 text-xs">{r.description}</div>
-                  <div className="text-gray-600 text-[10px] font-['JetBrains_Mono'] mt-0.5">
+                  <div className="text-gray-600 text-[11px] font-['JetBrains_Mono'] mt-0.5">
                     {r.threshold} · {r.firesLast24h} fires · 24h
                   </div>
                 </div>
@@ -388,7 +388,7 @@ const RulesSection = ({
               <i className="ri-download-2-line" />
               {isAr ? "تنزيل .yaml" : "Download .yaml"}
             </button>
-            <span className="ml-auto text-[10px] font-['JetBrains_Mono'] text-gray-500">
+            <span className="ml-auto text-[11px] font-['JetBrains_Mono'] text-gray-500">
               {lineCount} {isAr ? "سطراً" : "lines"} · {yamlText.length.toLocaleString()} {isAr ? "رمزاً" : "chars"}
             </span>
           </div>

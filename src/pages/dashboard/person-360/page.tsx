@@ -61,7 +61,7 @@ const ClassificationPill = ({ classification, isAr }: { classification: Classifi
   return (
     <span
       className="rounded-md font-bold tracking-widest inline-flex items-center px-1.5 py-0.5"
-      style={{ background: meta.bg, color: meta.color, border: `1px solid ${meta.color}44`, fontSize: 10, fontFamily: "'JetBrains Mono', monospace" }}
+      style={{ background: meta.bg, color: meta.color, border: `1px solid ${meta.color}44`, fontSize: 11, fontFamily: "'JetBrains Mono', monospace" }}
     >
       {isAr ? meta.labelAr : meta.label}
     </span>
@@ -119,7 +119,7 @@ const SubjectHeader = ({
       }}
     >
       <div className="flex items-start gap-2 flex-wrap">
-        <span className="text-gray-500 text-[10px] font-bold tracking-widest" style={{ fontFamily: fonts.mono }}>
+        <span className="text-gray-500 text-[11px] font-bold tracking-widest" style={{ fontFamily: fonts.mono }}>
           {isAr ? "اختيار الشخص" : "SUBJECT"}
         </span>
         <div className="flex gap-2 flex-wrap ml-2">
@@ -194,14 +194,14 @@ const SubjectHeader = ({
 
         {/* Score badge */}
         <div className="flex flex-col items-center justify-center min-w-[120px]">
-          <span className="text-[10px] tracking-widest text-gray-500" style={{ fontFamily: fonts.mono }}>
+          <span className="text-[11px] tracking-widest text-gray-500" style={{ fontFamily: fonts.mono }}>
             {isAr ? "الدرجة الموحّدة" : "UNIFIED SCORE"}
           </span>
           <span className="font-black" style={{ color: bandMeta.color, fontSize: "3.5rem", lineHeight: 1, fontFamily: fonts.mono }}>
             {subject.unifiedScore}
           </span>
           <span
-            className="mt-1 px-2 py-0.5 rounded-md text-[10px] font-bold tracking-widest"
+            className="mt-1 px-2 py-0.5 rounded-md text-[11px] font-bold tracking-widest"
             style={{ background: `${bandMeta.color}22`, color: bandMeta.color, border: `1px solid ${bandMeta.color}55`, fontFamily: fonts.mono }}
           >
             {isAr ? bandMeta.labelAr : bandMeta.labelEn}
@@ -369,7 +369,7 @@ const IdentityTab = ({ subject, isAr }: { subject: ScoredRecord; isAr: boolean }
                   ? `تتطلب هذه البطاقة صلاحية ${needMeta.labelAr}`
                   : `This view requires ${needMeta.label} clearance`}
               </p>
-              <p className="text-gray-600 text-[10px]" style={{ fontFamily: fonts.mono }}>
+              <p className="text-gray-600 text-[11px]" style={{ fontFamily: fonts.mono }}>
                 {isAr ? "صلاحيتك الحالية" : "your clearance"}: {CLASSIFICATION_META[clearance].label}
               </p>
               <button type="button"
@@ -400,7 +400,7 @@ const IdentityTab = ({ subject, isAr }: { subject: ScoredRecord; isAr: boolean }
                   <span className="text-gray-500 flex items-center gap-1" style={{ fontFamily: fonts.sans }}>
                     {isAr ? row.labelAr : row.labelEn}
                     {row.redacted && row.needed && (
-                      <i className="ri-lock-line text-[10px]" style={{ color: CLASSIFICATION_META[row.needed].color }}
+                      <i className="ri-lock-line text-[11px]" style={{ color: CLASSIFICATION_META[row.needed].color }}
                         title={isAr ? `يتطلب ${CLASSIFICATION_META[row.needed].labelAr}` : `requires ${CLASSIFICATION_META[row.needed].label}`} />
                     )}
                   </span>
@@ -420,7 +420,7 @@ const IdentityTab = ({ subject, isAr }: { subject: ScoredRecord; isAr: boolean }
                 </div>
               ))}
             </div>
-            <div className="mt-3 pt-2 border-t flex items-center justify-between text-[10px]" style={{ borderColor: "rgba(255,255,255,0.06)", fontFamily: fonts.mono }}>
+            <div className="mt-3 pt-2 border-t flex items-center justify-between text-[11px]" style={{ borderColor: "rgba(255,255,255,0.06)", fontFamily: fonts.mono }}>
               <span className="text-gray-600">{isAr ? "المصدر" : "Source"}: {c.source}</span>
               <span className="text-gray-600">{formatTs(c.refreshedAt)}</span>
             </div>
@@ -482,7 +482,7 @@ const MovementsTab = ({ subject, isAr }: { subject: ScoredRecord; isAr: boolean 
               {isAr ? "فجوة 72 ساعة بين وصول APIS وأول تسجيل فندق — شذوذ" : "72h gap between APIS arrival and first hotel check-in — anomalous"}
             </p>
           </div>
-          <span className="px-3 py-1 rounded-md text-[10px] font-bold tracking-widest"
+          <span className="px-3 py-1 rounded-md text-[11px] font-bold tracking-widest"
             style={{ background: "#8A1F3C22", color: "#C94A5E", border: "1px solid #C94A5E55", fontFamily: fonts.mono }}>
             {isAr ? "شذوذ" : "ANOMALY"}
           </span>
@@ -497,11 +497,11 @@ const MovementsTab = ({ subject, isAr }: { subject: ScoredRecord; isAr: boolean 
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-white text-sm font-bold" style={{ fontFamily: fonts.sans }}>
             {isAr ? "الجدول الزمني للحركات" : "Movement Timeline"}
-            <span className="ml-2 text-[10px] text-gray-500 tracking-widest" style={{ fontFamily: fonts.mono }}>
+            <span className="ml-2 text-[11px] text-gray-500 tracking-widest" style={{ fontFamily: fonts.mono }}>
               {events.length} {isAr ? "حدثاً" : "events"}
             </span>
           </h3>
-          <span className="text-[10px] text-gray-500" style={{ fontFamily: fonts.mono }}>
+          <span className="text-[11px] text-gray-500" style={{ fontFamily: fonts.mono }}>
             {isAr ? "اضغط لتمييز الأحداث المرتبطة" : "Click to highlight related events"}
           </span>
         </div>
@@ -527,7 +527,7 @@ const MovementsTab = ({ subject, isAr }: { subject: ScoredRecord; isAr: boolean 
                 <div key={ev.id} className="absolute" style={{ left: `${idx * 220 + 30}px`, top: 0, width: 200 }}>
                   {/* Month separator */}
                   {idx > 0 && gapDays > 20 && (
-                    <div className="absolute top-[170px] -left-[30px] text-[10px] text-gray-600" style={{ fontFamily: fonts.mono }}>
+                    <div className="absolute top-[170px] -left-[30px] text-[11px] text-gray-600" style={{ fontFamily: fonts.mono }}>
                       {dashed && (
                         <div className="w-10 h-px" style={{ borderTop: "2px dashed #D6B47E55" }} />
                       )}
@@ -571,7 +571,7 @@ const MovementsTab = ({ subject, isAr }: { subject: ScoredRecord; isAr: boolean 
                   >
                     <div className="flex items-center gap-2 mb-1">
                       <i className={meta.icon} style={{ color: meta.color }} />
-                      <span className="text-[10px] tracking-widest font-bold px-1.5 py-0.5 rounded"
+                      <span className="text-[11px] tracking-widest font-bold px-1.5 py-0.5 rounded"
                         style={{ background: `${meta.color}22`, color: meta.color, fontFamily: fonts.mono }}>
                         {isAr ? meta.labelAr : meta.labelEn}
                       </span>
@@ -582,11 +582,11 @@ const MovementsTab = ({ subject, isAr }: { subject: ScoredRecord; isAr: boolean 
                     <div className="text-[11px] text-gray-300 mb-1">
                       {ev.location.iata ? `${ev.location.iata} · ` : ""}{ev.location.city}
                     </div>
-                    <div className="text-[10px] text-gray-500" style={{ fontFamily: fonts.mono }}>
+                    <div className="text-[11px] text-gray-500" style={{ fontFamily: fonts.mono }}>
                       {ev.source}
                     </div>
                     {anomaly && (
-                      <div className="mt-1 text-[10px] font-bold" style={{ color: "#C94A5E", fontFamily: fonts.mono }}>
+                      <div className="mt-1 text-[11px] font-bold" style={{ color: "#C94A5E", fontFamily: fonts.mono }}>
                         {isAr ? `فجوة ${ev.coherenceGapHours} ساعة` : `${ev.coherenceGapHours}h gap`}
                       </div>
                     )}
@@ -661,7 +661,7 @@ const RelationshipsTab = ({ subject, isAr }: { subject: ScoredRecord; isAr: bool
           <h3 className="text-white text-sm font-bold" style={{ fontFamily: fonts.sans }}>
             {isAr ? "شبكة العلاقات" : "Relationship Graph"}
           </h3>
-          <div className="flex gap-2 text-[10px]" style={{ fontFamily: fonts.mono }}>
+          <div className="flex gap-2 text-[11px]" style={{ fontFamily: fonts.mono }}>
             {Object.entries(NODE_META).map(([k, m]) => (
               <span key={k} className="flex items-center gap-1 text-gray-500">
                 <span className="w-2 h-2 rounded-full" style={{ background: m.color }} />
@@ -849,7 +849,7 @@ const ActivityTab = ({ subject, isAr }: { subject: ScoredRecord; isAr: boolean }
       style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.15)" }}>
       <h3 className="text-white text-sm font-bold mb-4" style={{ fontFamily: fonts.sans }}>
         {isAr ? "نشاط الشخص" : "Activity feed"}
-        <span className="ml-2 text-[10px] tracking-widest text-gray-500" style={{ fontFamily: fonts.mono }}>
+        <span className="ml-2 text-[11px] tracking-widest text-gray-500" style={{ fontFamily: fonts.mono }}>
           {merged.length} {isAr ? "حدثاً" : "events"}
         </span>
       </h3>
@@ -857,7 +857,7 @@ const ActivityTab = ({ subject, isAr }: { subject: ScoredRecord; isAr: boolean }
         {Object.entries(groups).map(([day, items]) => (
           <div key={day}>
             <div className="flex items-center gap-3 mb-2">
-              <span className="text-[10px] tracking-widest font-bold text-gray-400" style={{ fontFamily: fonts.mono }}>
+              <span className="text-[11px] tracking-widest font-bold text-gray-400" style={{ fontFamily: fonts.mono }}>
                 {day}
               </span>
               <div className="flex-1 h-px" style={{ background: "rgba(184,138,60,0.1)" }} />
@@ -929,7 +929,7 @@ const RiskTab = ({ subject, isAr }: { subject: ScoredRecord; isAr: boolean }) =>
         style={{ background: `linear-gradient(135deg, ${band.color}11, rgba(10,37,64,0.8))`, borderColor: `${band.color}44` }}>
         <div className="flex items-center justify-between mb-4">
           <div>
-            <span className="text-[10px] tracking-widest text-gray-400" style={{ fontFamily: fonts.mono }}>
+            <span className="text-[11px] tracking-widest text-gray-400" style={{ fontFamily: fonts.mono }}>
               {isAr ? "الدرجة الموحّدة الحالية" : "CURRENT UNIFIED SCORE"}
             </span>
             <div className="flex items-baseline gap-3 mt-1">
@@ -942,7 +942,7 @@ const RiskTab = ({ subject, isAr }: { subject: ScoredRecord; isAr: boolean }) =>
               </span>
             </div>
           </div>
-          <span className="text-[10px] tracking-widest text-gray-500" style={{ fontFamily: fonts.mono }}>
+          <span className="text-[11px] tracking-widest text-gray-500" style={{ fontFamily: fonts.mono }}>
             {isAr ? "آخر 7 أيام" : "7-DAY TREND"}
           </span>
         </div>
@@ -962,8 +962,8 @@ const RiskTab = ({ subject, isAr }: { subject: ScoredRecord; isAr: boolean }) =>
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(184,138,60,0.08)" />
-              <XAxis dataKey="day" stroke="#6B7280" tick={{ fontSize: 10, fontFamily: "JetBrains Mono" }} />
-              <YAxis domain={[0, 100]} stroke="#6B7280" tick={{ fontSize: 10, fontFamily: "JetBrains Mono" }} />
+              <XAxis dataKey="day" stroke="#6B7280" tick={{ fontSize: 11, fontFamily: "JetBrains Mono" }} />
+              <YAxis domain={[0, 100]} stroke="#6B7280" tick={{ fontSize: 11, fontFamily: "JetBrains Mono" }} />
               <Tooltip contentStyle={{ background: "#0A2540", border: "1px solid rgba(184,138,60,0.3)", borderRadius: 8, fontSize: 12 }} />
               <Area type="monotone" dataKey="score" stroke={band.color} strokeWidth={2} fill="url(#riskTrend)" />
             </AreaChart>
@@ -985,7 +985,7 @@ const RiskTab = ({ subject, isAr }: { subject: ScoredRecord; isAr: boolean }) =>
               <div key={sub}>
                 <div className="flex items-center gap-2 mb-1">
                   <i className={meta.icon} style={{ color: meta.color }} />
-                  <span className="text-[10px] tracking-widest font-bold" style={{ color: meta.color, fontFamily: fonts.mono }}>
+                  <span className="text-[11px] tracking-widest font-bold" style={{ color: meta.color, fontFamily: fonts.mono }}>
                     {isAr ? meta.labelAr : meta.labelEn}
                   </span>
                 </div>
@@ -1008,7 +1008,7 @@ const RiskTab = ({ subject, isAr }: { subject: ScoredRecord; isAr: boolean }) =>
         style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.15)" }}>
         <h3 className="text-white text-sm font-bold mb-3" style={{ fontFamily: fonts.sans }}>
           {isAr ? "قواعد ذات صلة بالمخاطر" : "Open rule fires"}
-          <span className="ml-2 text-[10px] tracking-widest text-gray-500" style={{ fontFamily: fonts.mono }}>
+          <span className="ml-2 text-[11px] tracking-widest text-gray-500" style={{ fontFamily: fonts.mono }}>
             {openRules.length}
           </span>
         </h3>
@@ -1016,7 +1016,7 @@ const RiskTab = ({ subject, isAr }: { subject: ScoredRecord; isAr: boolean }) =>
           {openRules.map((r) => (
             <div key={r.id} className="rounded-md px-3 py-2 flex items-start gap-2"
               style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
-              <span className="text-[10px] font-bold tracking-widest px-1.5 py-0.5 rounded"
+              <span className="text-[11px] font-bold tracking-widest px-1.5 py-0.5 rounded"
                 style={{ background: "rgba(184,138,60,0.15)", color: "#D6B47E", fontFamily: fonts.mono }}>
                 {r.id}
               </span>
@@ -1024,7 +1024,7 @@ const RiskTab = ({ subject, isAr }: { subject: ScoredRecord; isAr: boolean }) =>
                 <p className="text-xs text-gray-200 font-medium" style={{ fontFamily: fonts.sans }}>
                   {isAr ? r.descriptionAr : r.description}
                 </p>
-                <p className="text-[10px] text-gray-500" style={{ fontFamily: fonts.mono }}>
+                <p className="text-[11px] text-gray-500" style={{ fontFamily: fonts.mono }}>
                   {r.category} · contrib {Math.round(r.contribution * 100)}%
                 </p>
               </div>
@@ -1076,7 +1076,7 @@ const CasesTab = ({ subject, isAr }: { subject: ScoredRecord; isAr: boolean }) =
       <div className="px-5 py-3 border-b flex items-center justify-between" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
         <h3 className="text-white text-sm font-bold" style={{ fontFamily: fonts.sans }}>
           {isAr ? "القضايا المرتبطة" : "Linked cases"}
-          <span className="ml-2 text-[10px] tracking-widest text-gray-500" style={{ fontFamily: fonts.mono }}>
+          <span className="ml-2 text-[11px] tracking-widest text-gray-500" style={{ fontFamily: fonts.mono }}>
             {cases.length}
           </span>
         </h3>
@@ -1089,7 +1089,7 @@ const CasesTab = ({ subject, isAr }: { subject: ScoredRecord; isAr: boolean }) =
               className="w-full flex items-start gap-3 px-5 py-3 text-left border-b cursor-pointer hover:bg-white/5 transition-colors"
               style={{ borderColor: "rgba(255,255,255,0.04)" }}
             >
-              <span className="px-2 py-0.5 rounded text-[10px] font-bold tracking-widest"
+              <span className="px-2 py-0.5 rounded text-[11px] font-bold tracking-widest"
                 style={{ background: `${CASE_STATUS_COLOR[c.status]}22`, color: CASE_STATUS_COLOR[c.status], border: `1px solid ${CASE_STATUS_COLOR[c.status]}55`, fontFamily: fonts.mono }}>
                 {c.status}
               </span>

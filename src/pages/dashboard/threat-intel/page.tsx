@@ -76,7 +76,7 @@ const ThreatIntelPage = () => {
               </div>
               <div>
                 <p className="text-white text-lg font-bold font-['JetBrains_Mono']">{kpi.value}</p>
-                <p className="text-gray-600 text-[10px] font-['Inter']">{kpi.label}</p>
+                <p className="text-gray-600 text-[11px] font-['Inter']">{kpi.label}</p>
               </div>
             </div>
           ))}
@@ -98,7 +98,7 @@ const ThreatIntelPage = () => {
               <i className={`${tab.icon} text-sm`} />
               {tab.label}
               {tab.badge && (
-                <span className="text-[10px] px-1.5 py-0.5 rounded-full font-['JetBrains_Mono']" style={{ background: activeTab === tab.key ? "rgba(201,74,94,0.2)" : "rgba(255,255,255,0.08)", color: activeTab === tab.key ? "#C94A5E" : "#6B7280" }}>
+                <span className="text-[11px] px-1.5 py-0.5 rounded-full font-['JetBrains_Mono']" style={{ background: activeTab === tab.key ? "rgba(201,74,94,0.2)" : "rgba(255,255,255,0.08)", color: activeTab === tab.key ? "#C94A5E" : "#6B7280" }}>
                   {tab.badge}
                 </span>
               )}

@@ -61,7 +61,7 @@ const CaseList = ({ selectedCaseId, onSelectCase, isAr }: Props) => {
         <div className="flex gap-1 flex-wrap">
           {(["all", "active", "escalated", "pending", "closed"] as const).map((s) => (
             <button key={s} onClick={() => setFilterStatus(s)}
-              className="px-2 py-1 rounded text-[10px] font-['Inter'] cursor-pointer transition-all whitespace-nowrap"
+              className="px-2 py-1 rounded text-[11px] font-['Inter'] cursor-pointer transition-all whitespace-nowrap"
               style={{
                 background: filterStatus === s ? "rgba(184,138,60,0.1)" : "transparent",
                 color: filterStatus === s ? "#D6B47E" : "#6B7280",
@@ -96,7 +96,7 @@ const CaseList = ({ selectedCaseId, onSelectCase, isAr }: Props) => {
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-white text-xs font-bold font-['Inter'] truncate">{c.title}</p>
-                  <p className="text-gray-600 text-[10px] font-['JetBrains_Mono']">{c.caseNumber}</p>
+                  <p className="text-gray-600 text-[11px] font-['JetBrains_Mono']">{c.caseNumber}</p>
                 </div>
               </div>
               <div className="flex items-center justify-between">
@@ -105,20 +105,20 @@ const CaseList = ({ selectedCaseId, onSelectCase, isAr }: Props) => {
                     {c.priority.toUpperCase()}
                   </span>
                   <div className="flex items-center gap-1">
-                    <i className={`${stat.icon} text-[10px]`} style={{ color: stat.color }} />
-                    <span className="text-[10px] font-['Inter']" style={{ color: stat.color }}>{stat.label}</span>
+                    <i className={`${stat.icon} text-[11px]`} style={{ color: stat.color }} />
+                    <span className="text-[11px] font-['Inter']" style={{ color: stat.color }}>{stat.label}</span>
                   </div>
                 </div>
                 <div className="flex items-center gap-1">
-                  <i className="ri-user-line text-gray-700 text-[10px]" />
-                  <span className="text-gray-700 text-[10px] font-['JetBrains_Mono']">{c.subjects.length}</span>
+                  <i className="ri-user-line text-gray-700 text-[11px]" />
+                  <span className="text-gray-700 text-[11px] font-['JetBrains_Mono']">{c.subjects.length}</span>
                 </div>
               </div>
               {/* Progress bar */}
               <div className="mt-2 w-full h-1 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
                 <div className="h-full rounded-full transition-all" style={{ width: `${c.progressPct}%`, background: pri.color }} />
               </div>
-              <p className="text-gray-700 text-[10px] font-['JetBrains_Mono'] mt-0.5">{c.progressPct}% complete</p>
+              <p className="text-gray-700 text-[11px] font-['JetBrains_Mono'] mt-0.5">{c.progressPct}% complete</p>
             </button>
           );
         })}

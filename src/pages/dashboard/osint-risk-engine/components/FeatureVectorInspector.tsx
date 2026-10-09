@@ -57,14 +57,14 @@ const FeatureVectorInspector = ({ isAr, vector }: { isAr: boolean; vector: Featu
           <i className={`ri-code-s-slash-line text-base`} style={{ color: "#D6B47E" }} />
           <h3 className="text-white text-sm font-bold">
             {isAr ? "متجه الميزات" : "Feature Vector"}
-            <span className="ml-2 text-[10px] tracking-widest font-['JetBrains_Mono'] px-2 py-0.5 rounded"
+            <span className="ml-2 text-[11px] tracking-widest font-['JetBrains_Mono'] px-2 py-0.5 rounded"
               style={{ background: "rgba(107,79,174,0.15)", color: "#6B4FAE" }}>
               {isAr ? "وضع المطوّر" : "DEVELOPER MODE"}
             </span>
           </h3>
         </div>
         <div className="flex items-center gap-3">
-          <span className="text-gray-600 text-[10px] font-['JetBrains_Mono']">
+          <span className="text-gray-600 text-[11px] font-['JetBrains_Mono']">
             {isAr ? "مدخلات الـ ML بالضبط · مخطط v1.2.0" : "Exact inputs for ML scoring · schema v1.2.0"}
           </span>
           <i className={open ? "ri-arrow-up-s-line text-xl text-gray-400" : "ri-arrow-down-s-line text-xl text-gray-400"} />
@@ -137,7 +137,7 @@ const FeatureVectorInspector = ({ isAr, vector }: { isAr: boolean; vector: Featu
             })}
           </div>
 
-          <p className="text-gray-600 text-[10px] font-['JetBrains_Mono'] mt-3">
+          <p className="text-gray-600 text-[11px] font-['JetBrains_Mono'] mt-3">
             {isAr
               ? "هذا المتجه هو المدخل الدقيق لنموذج التسجيل — مُسجَّل في كل مرة يتم فيها الحساب."
               : "This vector is the exact input to the scoring model — logged on every computation."}

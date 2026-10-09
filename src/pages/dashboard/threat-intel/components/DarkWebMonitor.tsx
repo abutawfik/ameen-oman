@@ -34,23 +34,23 @@ const DarkWebMonitor = ({ isAr }: Props) => {
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-white text-xs font-['Inter'] font-medium truncate">{src.name}</p>
-                <p className="text-gray-600 text-[10px] font-['JetBrains_Mono'] capitalize">{src.type}</p>
+                <p className="text-gray-600 text-[11px] font-['JetBrains_Mono'] capitalize">{src.type}</p>
               </div>
               <div className="flex items-center gap-1 flex-shrink-0">
                 <div className={`w-1.5 h-1.5 rounded-full ${src.status === "online" ? "bg-green-400" : src.status === "degraded" ? "bg-yellow-400" : "bg-red-400"}`} />
-                <span className={`text-[10px] font-['JetBrains_Mono'] ${src.status === "online" ? "text-green-400" : src.status === "degraded" ? "text-yellow-400" : "text-red-400"}`}>
+                <span className={`text-[11px] font-['JetBrains_Mono'] ${src.status === "online" ? "text-green-400" : src.status === "degraded" ? "text-yellow-400" : "text-red-400"}`}>
                   {src.status}
                 </span>
               </div>
             </div>
-            <div className="flex justify-between text-[10px] font-['JetBrains_Mono']">
+            <div className="flex justify-between text-[11px] font-['JetBrains_Mono']">
               <span className="text-gray-600">{src.iocCount.toLocaleString()} IOCs</span>
               <span className="text-gray-600">{src.reliability}% reliable</span>
             </div>
             <div className="mt-1.5 w-full h-1 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
               <div className="h-full rounded-full" style={{ width: `${src.reliability}%`, background: src.color }} />
             </div>
-            <p className="text-gray-700 text-[10px] font-['JetBrains_Mono'] mt-1">Synced {src.lastSync}</p>
+            <p className="text-gray-700 text-[11px] font-['JetBrains_Mono'] mt-1">Synced {src.lastSync}</p>
           </div>
         ))}
       </div>
@@ -65,7 +65,7 @@ const DarkWebMonitor = ({ isAr }: Props) => {
           <div className="flex items-center gap-1">
             {["all", "critical", "high", "medium"].map((s) => (
               <button key={s} onClick={() => setFilterSeverity(s)}
-                className="px-2 py-1 rounded text-[10px] font-['Inter'] cursor-pointer transition-all whitespace-nowrap"
+                className="px-2 py-1 rounded text-[11px] font-['Inter'] cursor-pointer transition-all whitespace-nowrap"
                 style={{
                   background: filterSeverity === s ? "rgba(184,138,60,0.1)" : "transparent",
                   color: filterSeverity === s ? "#D6B47E" : "#6B7280",
@@ -91,8 +91,8 @@ const DarkWebMonitor = ({ isAr }: Props) => {
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-0.5">
-                  <span className="text-gray-400 text-[10px] font-['Inter'] truncate">{mention.platform}</span>
-                  {mention.verified && <i className="ri-verified-badge-line text-gold-400 text-[10px] flex-shrink-0" />}
+                  <span className="text-gray-400 text-[11px] font-['Inter'] truncate">{mention.platform}</span>
+                  {mention.verified && <i className="ri-verified-badge-line text-gold-400 text-[11px] flex-shrink-0" />}
                   {mention.translated && (
                     <span className="text-[9px] px-1 rounded font-['JetBrains_Mono'] flex-shrink-0" style={{ background: "rgba(167,139,250,0.15)", color: "#A78BFA" }}>
                       {mention.originalLang.toUpperCase()}→EN
@@ -104,11 +104,11 @@ const DarkWebMonitor = ({ isAr }: Props) => {
             </div>
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <span className="text-gray-700 text-[10px] font-['JetBrains_Mono']">@{mention.author}</span>
-                <span className="text-gray-700 text-[10px] font-['JetBrains_Mono']">{mention.timestamp}</span>
+                <span className="text-gray-700 text-[11px] font-['JetBrains_Mono']">@{mention.author}</span>
+                <span className="text-gray-700 text-[11px] font-['JetBrains_Mono']">{mention.timestamp}</span>
               </div>
               <div className="flex items-center gap-1 px-2 py-0.5 rounded" style={{ background: `${severityColors[mention.severity]}15` }}>
-                <span className="text-[10px] font-bold font-['JetBrains_Mono']" style={{ color: severityColors[mention.severity] }}>
+                <span className="text-[11px] font-bold font-['JetBrains_Mono']" style={{ color: severityColors[mention.severity] }}>
                   {mention.severity.toUpperCase()}
                 </span>
               </div>
@@ -143,11 +143,11 @@ const DarkWebMonitor = ({ isAr }: Props) => {
                 </div>
                 <div>
                   <p className="text-white text-xs font-bold font-['Inter']">{selectedMention.platform}</p>
-                  <p className="text-gray-600 text-[10px] font-['JetBrains_Mono']">{selectedMention.timestamp}</p>
+                  <p className="text-gray-600 text-[11px] font-['JetBrains_Mono']">{selectedMention.timestamp}</p>
                 </div>
               </div>
               <div>
-                <p className="text-gray-600 text-[10px] font-['JetBrains_Mono'] mb-1">CONTENT</p>
+                <p className="text-gray-600 text-[11px] font-['JetBrains_Mono'] mb-1">CONTENT</p>
                 <p className="text-gray-300 text-xs font-['Inter'] leading-relaxed">{selectedMention.content}</p>
               </div>
               <div className="grid grid-cols-2 gap-3">
@@ -160,19 +160,19 @@ const DarkWebMonitor = ({ isAr }: Props) => {
                   { label: "Translated", value: selectedMention.translated ? "Yes" : "No" },
                 ].map((row) => (
                   <div key={row.label}>
-                    <p className="text-gray-700 text-[10px] font-['JetBrains_Mono']">{row.label}</p>
+                    <p className="text-gray-700 text-[11px] font-['JetBrains_Mono']">{row.label}</p>
                     <p className="text-gray-400 text-xs font-['Inter']">{row.value}</p>
                   </div>
                 ))}
               </div>
               {selectedMention.linkedIocs.length > 0 && (
                 <div>
-                  <p className="text-gray-600 text-[10px] font-['JetBrains_Mono'] mb-1">LINKED IOCs</p>
+                  <p className="text-gray-600 text-[11px] font-['JetBrains_Mono'] mb-1">LINKED IOCs</p>
                   <div className="space-y-1">
                     {selectedMention.linkedIocs.map((iocId) => (
                       <div key={iocId} className="flex items-center gap-2 px-2 py-1 rounded" style={{ background: "rgba(184,138,60,0.06)" }}>
                         <i className="ri-link text-gold-400 text-xs" />
-                        <span className="text-gold-400 text-[10px] font-['JetBrains_Mono']">{iocId.toUpperCase()}</span>
+                        <span className="text-gold-400 text-[11px] font-['JetBrains_Mono']">{iocId.toUpperCase()}</span>
                       </div>
                     ))}
                   </div>
@@ -199,7 +199,7 @@ const DarkWebMonitor = ({ isAr }: Props) => {
 
         {/* Keyword cloud */}
         <div className="mt-4 p-3 rounded-xl" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
-          <p className="text-gray-600 text-[10px] font-['JetBrains_Mono'] mb-2">HOT KEYWORDS (24H)</p>
+          <p className="text-gray-600 text-[11px] font-['JetBrains_Mono'] mb-2">HOT KEYWORDS (24H)</p>
           <div className="flex flex-wrap gap-1.5">
             {[
               { word: "Muttrah Port", count: 8, color: "#C94A5E" },
@@ -213,7 +213,7 @@ const DarkWebMonitor = ({ isAr }: Props) => {
               { word: "money mule", count: 3, color: "#FACC15" },
               { word: "database", count: 5, color: "#A78BFA" },
             ].map((kw) => (
-              <span key={kw.word} className="text-[10px] px-2 py-0.5 rounded font-['JetBrains_Mono'] cursor-pointer" style={{ background: `${kw.color}12`, color: kw.color, border: `1px solid ${kw.color}25` }}>
+              <span key={kw.word} className="text-[11px] px-2 py-0.5 rounded font-['JetBrains_Mono'] cursor-pointer" style={{ background: `${kw.color}12`, color: kw.color, border: `1px solid ${kw.color}25` }}>
                 {kw.word} <span className="opacity-60">({kw.count})</span>
               </span>
             ))}

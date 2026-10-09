@@ -164,11 +164,11 @@ const MobileFieldPage = () => {
           className="absolute z-50 flex items-center justify-center gap-2"
           style={{ top: "44px", left: 0, right: 0, height: "22px", background: "rgba(138,31,60,0.95)", backdropFilter: "blur(4px)" }}
         >
-          <i className="ri-shield-fill text-white text-[10px]" />
+          <i className="ri-shield-fill text-white text-[11px]" />
           <span className="text-white text-[9px] font-black font-['JetBrains_Mono'] uppercase tracking-widest">
             {isAr ? "سري للغاية — Al-Ameen" : "TOP SECRET — Al-Ameen CLASSIFIED"}
           </span>
-          <i className="ri-shield-fill text-white text-[10px]" />
+          <i className="ri-shield-fill text-white text-[11px]" />
         </div>
 
         {/* Main content area */}
@@ -180,7 +180,7 @@ const MobileFieldPage = () => {
           {!isOnline && screen !== "lock" && (
             <div className="flex items-center gap-2 px-4 py-2 flex-shrink-0" style={{ background: "rgba(250,204,21,0.1)", borderBottom: "1px solid rgba(250,204,21,0.2)" }}>
               <i className="ri-wifi-off-line text-yellow-400 text-xs" />
-              <span className="text-yellow-400 text-[10px] font-['JetBrains_Mono']">
+              <span className="text-yellow-400 text-[11px] font-['JetBrains_Mono']">
                 {isAr ? `وضع عدم الاتصال — ${pendingSync} تقارير في قائمة الانتظار` : `Offline Mode — ${pendingSync} reports queued`}
               </span>
             </div>
@@ -203,7 +203,7 @@ const MobileFieldPage = () => {
                 </div>
                 <p className="text-gold-400 font-black text-xl font-['Inter'] tracking-widest">Al-Ameen</p>
                 <p className="text-gray-500 text-xs font-['JetBrains_Mono']">{isAr ? "تطبيق الضباط الميدانيين" : "Field Officer Application"}</p>
-                <p className="text-gray-600 text-[10px] font-['JetBrains_Mono']">{dateStr}</p>
+                <p className="text-gray-600 text-[11px] font-['JetBrains_Mono']">{dateStr}</p>
               </div>
 
               {/* Biometric */}
@@ -260,7 +260,7 @@ const MobileFieldPage = () => {
                     </button>
                   ))}
                 </div>
-                <p className="text-gray-700 text-[10px] font-['JetBrains_Mono'] text-center mt-2">{isAr ? "رمز التجربة: 1234" : "Demo PIN: 1234"}</p>
+                <p className="text-gray-700 text-[11px] font-['JetBrains_Mono'] text-center mt-2">{isAr ? "رمز التجربة: 1234" : "Demo PIN: 1234"}</p>
               </div>
             </div>
           )}

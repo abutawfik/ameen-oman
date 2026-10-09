@@ -79,7 +79,7 @@ const SourcesTab = ({ isAr, presenterMode }: { isAr: boolean; presenterMode: boo
                     <ClassificationPill classification={s.classification} isAr={isAr} compact />
                   </div>
                 </div>
-                <span className="px-2 py-0.5 rounded-md text-[10px] font-bold tracking-widest font-['JetBrains_Mono'] flex-shrink-0"
+                <span className="px-2 py-0.5 rounded-md text-[11px] font-bold tracking-widest font-['JetBrains_Mono'] flex-shrink-0"
                   style={{ background: st.bg, color: st.color, border: `1px solid ${st.color}55` }}>
                   {st.label}
                 </span>
@@ -87,15 +87,15 @@ const SourcesTab = ({ isAr, presenterMode }: { isAr: boolean; presenterMode: boo
 
               <div className="grid grid-cols-3 gap-2 text-center">
                 <div className="rounded-md py-1.5" style={{ background: "rgba(255,255,255,0.03)" }}>
-                  <div className="text-[10px] text-gray-600 uppercase tracking-widest font-['JetBrains_Mono']">{isAr ? "التحديث" : "Refresh"}</div>
+                  <div className="text-[11px] text-gray-600 uppercase tracking-widest font-['JetBrains_Mono']">{isAr ? "التحديث" : "Refresh"}</div>
                   <div className="text-[11px] font-bold font-['JetBrains_Mono']" style={{ color: s.color }}>{s.refresh}</div>
                 </div>
                 <div className="rounded-md py-1.5" style={{ background: "rgba(255,255,255,0.03)" }}>
-                  <div className="text-[10px] text-gray-600 uppercase tracking-widest font-['JetBrains_Mono']">{isAr ? "سجلات 24 ساعة" : "24h records"}</div>
+                  <div className="text-[11px] text-gray-600 uppercase tracking-widest font-['JetBrains_Mono']">{isAr ? "سجلات 24 ساعة" : "24h records"}</div>
                   <div className="text-[11px] font-bold text-white font-['JetBrains_Mono']">{s.records24h.toLocaleString()}</div>
                 </div>
                 <div className="rounded-md py-1.5" style={{ background: "rgba(255,255,255,0.03)" }}>
-                  <div className="text-[10px] text-gray-600 uppercase tracking-widest font-['JetBrains_Mono']">{isAr ? "الثقة" : "Confidence"}</div>
+                  <div className="text-[11px] text-gray-600 uppercase tracking-widest font-['JetBrains_Mono']">{isAr ? "الثقة" : "Confidence"}</div>
                   <div className="text-[11px] font-bold font-['JetBrains_Mono']" style={{ color: confidenceColor[s.confidence] }}>
                     {s.confidence}
                   </div>
@@ -105,7 +105,7 @@ const SourcesTab = ({ isAr, presenterMode }: { isAr: boolean; presenterMode: boo
               <p className="text-gray-400 text-xs leading-relaxed flex-1">{s.signalContribution}</p>
 
               {!presenterMode && (
-                <div className="flex items-center justify-between text-[10px] font-['JetBrains_Mono'] pt-2 border-t"
+                <div className="flex items-center justify-between text-[11px] font-['JetBrains_Mono'] pt-2 border-t"
                   style={{ borderColor: "rgba(184,138,60,0.08)" }}>
                   <span className="text-gray-600 truncate">{s.endpoint}</span>
                   <span className="flex items-center gap-1 flex-shrink-0" style={{ color: st.color }}>

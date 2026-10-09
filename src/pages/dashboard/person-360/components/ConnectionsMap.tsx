@@ -234,14 +234,14 @@ const ConnectionsMap = ({ nodes, edges, isAr }: Props) => {
             className="rounded-lg p-3"
             style={{ background: "rgba(5,20,40,0.6)", border: "1px solid rgba(255,255,255,0.05)" }}
           >
-            <p className="text-gray-500 text-[10px] uppercase tracking-widest font-['JetBrains_Mono'] mb-2">
+            <p className="text-gray-500 text-[11px] uppercase tracking-widest font-['JetBrains_Mono'] mb-2">
               {isAr ? "أنواع الاتصالات" : "Connection Types"}
             </p>
             <div className="space-y-1.5">
               {Object.entries(edgeTypeLabels).map(([type, labels]) => (
                 <div key={type} className="flex items-center gap-2">
                   <div className="w-6 h-0.5 rounded-full flex-shrink-0" style={{ background: edgeColors[type] }} />
-                  <span className="text-gray-400 text-[10px] font-['Inter']">{isAr ? labels.ar : labels.en}</span>
+                  <span className="text-gray-400 text-[11px] font-['Inter']">{isAr ? labels.ar : labels.en}</span>
                 </div>
               ))}
             </div>
@@ -252,7 +252,7 @@ const ConnectionsMap = ({ nodes, edges, isAr }: Props) => {
             className="rounded-lg p-3"
             style={{ background: "rgba(5,20,40,0.6)", border: "1px solid rgba(255,255,255,0.05)" }}
           >
-            <p className="text-gray-500 text-[10px] uppercase tracking-widest font-['JetBrains_Mono'] mb-2">
+            <p className="text-gray-500 text-[11px] uppercase tracking-widest font-['JetBrains_Mono'] mb-2">
               {isAr ? "مستوى المخاطرة" : "Risk Level"}
             </p>
             {[
@@ -263,7 +263,7 @@ const ConnectionsMap = ({ nodes, edges, isAr }: Props) => {
             ].map((r) => (
               <div key={r.level} className="flex items-center gap-2 mb-1.5">
                 <div className="w-3 h-3 rounded-full flex-shrink-0" style={{ background: riskColors[r.level] }} />
-                <span className="text-gray-400 text-[10px] font-['Inter']">{isAr ? r.labelAr : r.label}</span>
+                <span className="text-gray-400 text-[11px] font-['Inter']">{isAr ? r.labelAr : r.label}</span>
               </div>
             ))}
           </div>
@@ -277,7 +277,7 @@ const ConnectionsMap = ({ nodes, edges, isAr }: Props) => {
                 border: `1px solid ${riskColors[selectedNodeData.riskLevel]}33`,
               }}
             >
-              <p className="text-gray-500 text-[10px] uppercase tracking-widest font-['JetBrains_Mono'] mb-2">
+              <p className="text-gray-500 text-[11px] uppercase tracking-widest font-['JetBrains_Mono'] mb-2">
                 {isAr ? "تفاصيل الاتصال" : "Connection Detail"}
               </p>
               <div
@@ -295,9 +295,9 @@ const ConnectionsMap = ({ nodes, edges, isAr }: Props) => {
                   { k: "Risk Score",  v: String(selectedNodeData.riskScore) },
                 ].map((f) => (
                   <div key={f.k} className="flex justify-between">
-                    <span className="text-gray-600 text-[10px] font-['JetBrains_Mono']">{f.k}</span>
+                    <span className="text-gray-600 text-[11px] font-['JetBrains_Mono']">{f.k}</span>
                     <span
-                      className="text-[10px] font-['JetBrains_Mono']"
+                      className="text-[11px] font-['JetBrains_Mono']"
                       style={{ color: f.k === "Risk Score" ? riskColors[selectedNodeData.riskLevel] : "#D1D5DB" }}
                     >
                       {f.v}
@@ -318,7 +318,7 @@ const ConnectionsMap = ({ nodes, edges, isAr }: Props) => {
                 </div>
               )}
               <button
-                className="w-full py-1.5 rounded text-[10px] font-['JetBrains_Mono'] cursor-pointer transition-colors"
+                className="w-full py-1.5 rounded text-[11px] font-['JetBrains_Mono'] cursor-pointer transition-colors"
                 style={{ background: "rgba(184,138,60,0.1)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}
               >
                 <i className="ri-user-search-line mr-1" />

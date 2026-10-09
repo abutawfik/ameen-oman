@@ -83,7 +83,7 @@ const OriginLeagueTable = ({
               </span>
               <span className="col-span-2 flex justify-end">
                 <span
-                  className="px-1.5 py-0.5 rounded text-[10px] font-bold font-['JetBrains_Mono']"
+                  className="px-1.5 py-0.5 rounded text-[11px] font-bold font-['JetBrains_Mono']"
                   style={{ background: `${meta.color}18`, color: meta.color }}
                 >
                   {o.avgScore}

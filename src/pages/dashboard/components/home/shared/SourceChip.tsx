@@ -33,7 +33,7 @@ const SourceChip = ({ source, isAr = false, compact = false }: Props) => {
       <div className="flex-1 min-w-0">
         <div className="text-[11px] font-bold text-white truncate">{source.name}</div>
         {!compact && (
-          <div className="text-[10px] text-gray-500 font-['JetBrains_Mono'] truncate">
+          <div className="text-[11px] text-gray-500 font-['JetBrains_Mono'] truncate">
             {source.records24h.toLocaleString()} / 24h
           </div>
         )}

@@ -73,7 +73,7 @@ const FieldReportForm = ({ isAr, onBack }: Props) => {
 
       {/* Person */}
       <div>
-        <label className="text-gray-500 text-[10px] uppercase tracking-wider font-['JetBrains_Mono'] block mb-1.5">{isAr ? "الشخص" : "Person"}</label>
+        <label className="text-gray-500 text-[11px] uppercase tracking-wider font-['JetBrains_Mono'] block mb-1.5">{isAr ? "الشخص" : "Person"}</label>
         <div className="flex items-center gap-2 px-3 py-2.5 rounded-2xl" style={{ background: "rgba(10,37,64,0.9)", border: "1.5px solid rgba(184,138,60,0.25)" }}>
           <i className="ri-user-line text-gold-400 text-sm flex-shrink-0" />
           <span className="text-white text-xs font-['JetBrains_Mono'] flex-1 truncate">{personRef}</span>
@@ -83,7 +83,7 @@ const FieldReportForm = ({ isAr, onBack }: Props) => {
 
       {/* Location */}
       <div>
-        <label className="text-gray-500 text-[10px] uppercase tracking-wider font-['JetBrains_Mono'] block mb-1.5">{isAr ? "الموقع" : "Location"}</label>
+        <label className="text-gray-500 text-[11px] uppercase tracking-wider font-['JetBrains_Mono'] block mb-1.5">{isAr ? "الموقع" : "Location"}</label>
         <div className="flex items-center gap-2 px-3 py-2.5 rounded-2xl" style={{ background: "rgba(10,37,64,0.9)", border: "1.5px solid rgba(184,138,60,0.25)" }}>
           <i className="ri-map-pin-line text-gold-400 text-sm flex-shrink-0" />
           <input
@@ -98,7 +98,7 @@ const FieldReportForm = ({ isAr, onBack }: Props) => {
 
       {/* Encounter Type */}
       <div>
-        <label className="text-gray-500 text-[10px] uppercase tracking-wider font-['JetBrains_Mono'] block mb-1.5">{isAr ? "نوع المواجهة" : "Encounter Type"}</label>
+        <label className="text-gray-500 text-[11px] uppercase tracking-wider font-['JetBrains_Mono'] block mb-1.5">{isAr ? "نوع المواجهة" : "Encounter Type"}</label>
         <div className="grid grid-cols-2 gap-1.5">
           {encounterTypes.slice(0, 6).map((t) => (
             <button
@@ -119,7 +119,7 @@ const FieldReportForm = ({ isAr, onBack }: Props) => {
 
       {/* Outcome */}
       <div>
-        <label className="text-gray-500 text-[10px] uppercase tracking-wider font-['JetBrains_Mono'] block mb-1.5">{isAr ? "النتيجة" : "Outcome"}</label>
+        <label className="text-gray-500 text-[11px] uppercase tracking-wider font-['JetBrains_Mono'] block mb-1.5">{isAr ? "النتيجة" : "Outcome"}</label>
         <div className="grid grid-cols-2 gap-1.5">
           {outcomeTypes.slice(0, 6).map((o) => (
             <button
@@ -140,7 +140,7 @@ const FieldReportForm = ({ isAr, onBack }: Props) => {
 
       {/* Photo capture */}
       <div>
-        <label className="text-gray-500 text-[10px] uppercase tracking-wider font-['JetBrains_Mono'] block mb-1.5">{isAr ? "الصور" : "Photos"}</label>
+        <label className="text-gray-500 text-[11px] uppercase tracking-wider font-['JetBrains_Mono'] block mb-1.5">{isAr ? "الصور" : "Photos"}</label>
         <div className="flex items-center gap-2">
           <button
             onClick={() => setPhotoCount((c) => Math.min(c + 1, 5))}
@@ -161,7 +161,7 @@ const FieldReportForm = ({ isAr, onBack }: Props) => {
 
       {/* Voice note */}
       <div>
-        <label className="text-gray-500 text-[10px] uppercase tracking-wider font-['JetBrains_Mono'] block mb-1.5">{isAr ? "ملاحظة صوتية" : "Voice Note"}</label>
+        <label className="text-gray-500 text-[11px] uppercase tracking-wider font-['JetBrains_Mono'] block mb-1.5">{isAr ? "ملاحظة صوتية" : "Voice Note"}</label>
         <button
           onClick={handleRecord}
           className="w-full flex items-center justify-center gap-3 py-3 rounded-2xl text-sm font-bold font-['Inter'] cursor-pointer transition-all"
@@ -188,7 +188,7 @@ const FieldReportForm = ({ isAr, onBack }: Props) => {
 
       {/* Narrative */}
       <div>
-        <label className="text-gray-500 text-[10px] uppercase tracking-wider font-['JetBrains_Mono'] block mb-1.5">{isAr ? "السرد" : "Narrative"}</label>
+        <label className="text-gray-500 text-[11px] uppercase tracking-wider font-['JetBrains_Mono'] block mb-1.5">{isAr ? "السرد" : "Narrative"}</label>
         <textarea
           value={narrative}
           onChange={(e) => setNarrative(e.target.value.slice(0, 500))}
@@ -197,7 +197,7 @@ const FieldReportForm = ({ isAr, onBack }: Props) => {
           className="w-full px-3 py-2.5 rounded-2xl text-sm font-['Inter'] resize-none"
           style={{ background: "rgba(10,37,64,0.9)", border: "1.5px solid rgba(184,138,60,0.2)", color: "#D1D5DB", outline: "none" }}
         />
-        <p className="text-gray-700 text-[10px] font-['JetBrains_Mono'] text-right mt-1">{narrative.length}/500</p>
+        <p className="text-gray-700 text-[11px] font-['JetBrains_Mono'] text-right mt-1">{narrative.length}/500</p>
       </div>
 
       {/* Submit */}

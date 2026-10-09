@@ -103,7 +103,7 @@ const EntityNotifPanel = ({ isAr }: Props) => {
               {isAr ? tab.labelAr : tab.labelEn}
               {count > 0 && (
                 <span
-                  className="px-1.5 py-0.5 rounded-full text-[10px] font-bold font-['JetBrains_Mono']"
+                  className="px-1.5 py-0.5 rounded-full text-[11px] font-bold font-['JetBrains_Mono']"
                   style={{ background: "rgba(184,138,60,0.2)", color: "#D6B47E" }}
                 >
                   {count}
@@ -126,7 +126,7 @@ const EntityNotifPanel = ({ isAr }: Props) => {
             <div className="flex items-center justify-between mb-4 p-3 rounded-xl" style={{ background: "rgba(5,20,40,0.6)", border: "1px solid rgba(255,255,255,0.06)" }}>
               <div>
                 <p className="text-white text-xs font-['Inter'] font-semibold">{isAr ? "ساعات الهدوء" : "Quiet Hours"}</p>
-                <p className="text-gray-500 text-[10px] font-['JetBrains_Mono'] mt-0.5">{quietFrom} – {quietTo}</p>
+                <p className="text-gray-500 text-[11px] font-['JetBrains_Mono'] mt-0.5">{quietFrom} – {quietTo}</p>
               </div>
               <button
                 onClick={() => setQuietHours(!quietHours)}
@@ -145,11 +145,11 @@ const EntityNotifPanel = ({ isAr }: Props) => {
               <table className="w-full text-xs">
                 <thead>
                   <tr>
-                    <th className="text-left text-gray-600 font-['JetBrains_Mono'] pb-2 pr-4 font-normal uppercase tracking-wider text-[10px]">
+                    <th className="text-left text-gray-600 font-['JetBrains_Mono'] pb-2 pr-4 font-normal uppercase tracking-wider text-[11px]">
                       {isAr ? "النوع" : "Type"}
                     </th>
                     {["in-app", "email", "sms"].map((ch) => (
-                      <th key={ch} className="text-center text-gray-600 font-['JetBrains_Mono'] pb-2 px-2 font-normal uppercase tracking-wider text-[10px]">
+                      <th key={ch} className="text-center text-gray-600 font-['JetBrains_Mono'] pb-2 px-2 font-normal uppercase tracking-wider text-[11px]">
                         {ch === "in-app" ? (isAr ? "داخل التطبيق" : "In-App") : ch === "email" ? (isAr ? "بريد" : "Email") : "SMS"}
                       </th>
                     ))}
@@ -169,7 +169,7 @@ const EntityNotifPanel = ({ isAr }: Props) => {
                               border: channels[ch] ? "1px solid rgba(184,138,60,0.4)" : "1px solid rgba(255,255,255,0.08)",
                             }}
                           >
-                            {channels[ch] && <i className="ri-check-line text-gold-400 text-[10px]" />}
+                            {channels[ch] && <i className="ri-check-line text-gold-400 text-[11px]" />}
                           </button>
                         </td>
                       ))}
@@ -223,27 +223,27 @@ const EntityNotifPanel = ({ isAr }: Props) => {
                     <p className={`text-sm font-['Inter'] font-semibold leading-snug ${notif.read ? "text-gray-400" : "text-white"}`}>
                       {isAr ? notif.titleAr : notif.title}
                     </p>
-                    <span className="text-gray-600 text-[10px] font-['JetBrains_Mono'] flex-shrink-0 mt-0.5">{notif.time}</span>
+                    <span className="text-gray-600 text-[11px] font-['JetBrains_Mono'] flex-shrink-0 mt-0.5">{notif.time}</span>
                   </div>
                   <p className="text-gray-500 text-xs font-['Inter'] mt-0.5 leading-relaxed">
                     {isAr ? notif.detailAr : notif.detail}
                   </p>
                   <div className="flex items-center gap-2 mt-1.5">
                     {notif.ref && (
-                      <span className="text-[10px] font-['JetBrains_Mono'] px-1.5 py-0.5 rounded" style={{ background: "rgba(184,138,60,0.08)", color: "#D6B47E" }}>
+                      <span className="text-[11px] font-['JetBrains_Mono'] px-1.5 py-0.5 rounded" style={{ background: "rgba(184,138,60,0.08)", color: "#D6B47E" }}>
                         {notif.ref}
                       </span>
                     )}
                     {notif.actionable && (
                       <button
-                        className="text-[10px] font-['JetBrains_Mono'] px-2 py-0.5 rounded cursor-pointer transition-colors flex items-center gap-1"
+                        className="text-[11px] font-['JetBrains_Mono'] px-2 py-0.5 rounded cursor-pointer transition-colors flex items-center gap-1"
                         style={{ background: `${notif.color}15`, color: notif.color, border: `1px solid ${notif.color}33` }}
                       >
-                        <i className="ri-arrow-right-line text-[10px]" />
+                        <i className="ri-arrow-right-line text-[11px]" />
                         {isAr ? "اتخاذ إجراء" : "Take Action"}
                       </button>
                     )}
-                    <span className="text-gray-700 text-[10px] font-['Inter'] capitalize">
+                    <span className="text-gray-700 text-[11px] font-['Inter'] capitalize">
                       {isAr ? categoryConfig[notif.category].labelAr : categoryConfig[notif.category].labelEn}
                     </span>
                   </div>

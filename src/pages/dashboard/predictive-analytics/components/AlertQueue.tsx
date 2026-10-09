@@ -331,7 +331,7 @@ export default function AlertQueue({ filterPriority, filterStatus }: Props) {
                                 color: stream?.color || '#9CA3AF',
                               }}
                             >
-                              <i className={`${streamIcons[s] || 'ri-database-line'}`} style={{ fontSize: 9 }} />
+                              <i className={`${streamIcons[s] || 'ri-database-line'}`} style={{ fontSize: 10 }} />
                               {stream?.label || s}
                             </span>
                           );
@@ -415,7 +415,7 @@ export default function AlertQueue({ filterPriority, filterStatus }: Props) {
                             >
                               {t}
                             </div>
-                            <span className="text-gray-600 text-center" style={{ fontSize: 9 }}>
+                            <span className="text-gray-600 text-center" style={{ fontSize: 10 }}>
                               {t === 1 ? 'Queue' : t === 2 ? 'Mobile' : 'Command'}
                             </span>
                           </div>

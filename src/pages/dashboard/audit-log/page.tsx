@@ -49,7 +49,7 @@ const ClassificationPill = ({ classification, isAr }: { classification: Classifi
   const meta = CLASSIFICATION_META[classification];
   return (
     <span className="rounded-md font-bold tracking-widest font-['JetBrains_Mono'] inline-flex items-center px-1.5 py-0.5"
-      style={{ background: meta.bg, color: meta.color, border: `1px solid ${meta.color}44`, fontSize: 10 }}>
+      style={{ background: meta.bg, color: meta.color, border: `1px solid ${meta.color}44`, fontSize: 11 }}>
       {isAr ? meta.labelAr : meta.label}
     </span>
   );
@@ -170,7 +170,7 @@ const AuditLogPage = () => {
                 <h1 className="text-white font-black font-['Inter'] text-xl tracking-tight">
                   {isAr ? "سجل التدقيق" : "Audit Log"}
                 </h1>
-                <span className="px-2 py-0.5 rounded-md text-[10px] font-bold font-['JetBrains_Mono'] tracking-widest"
+                <span className="px-2 py-0.5 rounded-md text-[11px] font-bold font-['JetBrains_Mono'] tracking-widest"
                   style={{ background: "rgba(184,138,60,0.12)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.3)" }}>
                   {combined.length} {isAr ? "سجلات" : "ENTRIES"}
                 </span>
@@ -187,7 +187,7 @@ const AuditLogPage = () => {
           <div data-narrate-id="audit-filters" className="flex flex-wrap items-center gap-2">
             {/* Actor */}
             <div className="flex items-center gap-1.5">
-              <span className="text-[10px] font-bold tracking-widest uppercase font-['JetBrains_Mono'] text-gray-500">
+              <span className="text-[11px] font-bold tracking-widest uppercase font-['JetBrains_Mono'] text-gray-500">
                 {isAr ? "المنفّذ" : "Actor"}
               </span>
               <select value={actorFilter} onChange={(e) => { setActorFilter(e.target.value); setPage(0); }}
@@ -201,7 +201,7 @@ const AuditLogPage = () => {
             </div>
             {/* Event */}
             <div className="flex items-center gap-1.5">
-              <span className="text-[10px] font-bold tracking-widest uppercase font-['JetBrains_Mono'] text-gray-500">
+              <span className="text-[11px] font-bold tracking-widest uppercase font-['JetBrains_Mono'] text-gray-500">
                 {isAr ? "الحدث" : "Event"}
               </span>
               <select value={eventFilter} onChange={(e) => { setEventFilter(e.target.value as EventType | "all"); setPage(0); }}
@@ -215,7 +215,7 @@ const AuditLogPage = () => {
             </div>
             {/* Time range */}
             <div className="flex items-center gap-1">
-              <span className="text-[10px] font-bold tracking-widest uppercase font-['JetBrains_Mono'] text-gray-500 mr-1">
+              <span className="text-[11px] font-bold tracking-widest uppercase font-['JetBrains_Mono'] text-gray-500 mr-1">
                 {isAr ? "النطاق" : "Range"}
               </span>
               {(["24h", "7d", "30d", "custom"] as TimeRange[]).map((r) => {
@@ -235,7 +235,7 @@ const AuditLogPage = () => {
             </div>
             {/* Classification */}
             <div className="flex items-center gap-1">
-              <span className="text-[10px] font-bold tracking-widest uppercase font-['JetBrains_Mono'] text-gray-500 mr-1">
+              <span className="text-[11px] font-bold tracking-widest uppercase font-['JetBrains_Mono'] text-gray-500 mr-1">
                 {isAr ? "التصنيف" : "Class"}
               </span>
               {(["all", "public", "internal", "restricted", "classified"] as const).map((c) => {
@@ -303,7 +303,7 @@ const AuditLogPage = () => {
             style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.12)" }}
           >
             {/* Header row */}
-            <div className="grid grid-cols-12 gap-2 px-4 py-2.5 border-b text-[10px] font-bold tracking-widest uppercase font-['JetBrains_Mono']"
+            <div className="grid grid-cols-12 gap-2 px-4 py-2.5 border-b text-[11px] font-bold tracking-widest uppercase font-['JetBrains_Mono']"
               style={{ borderColor: "rgba(184,138,60,0.08)", color: "#6B7280" }}>
               <div className="col-span-2">{isAr ? "التوقيت" : "Timestamp"}</div>
               <div className="col-span-2">{isAr ? "المنفّذ" : "Actor"}</div>
@@ -345,7 +345,7 @@ const AuditLogPage = () => {
                   <div className="col-span-2 text-gray-400 text-[11px] font-['JetBrains_Mono'] truncate">{tsStr}</div>
                   <div className="col-span-2 flex flex-col min-w-0">
                     <span className="text-gray-300 text-xs truncate">{e.actor.name}</span>
-                    <span className="text-[10px] font-['JetBrains_Mono']" style={{ color: role.color }}>
+                    <span className="text-[11px] font-['JetBrains_Mono']" style={{ color: role.color }}>
                       {isAr ? role.labelAr : role.labelEn}
                     </span>
                   </div>
@@ -455,7 +455,7 @@ const AuditLogPage = () => {
                 <div className="rounded-md p-2" style={{ background: "rgba(255,255,255,0.03)" }}>
                   <div className="text-[9px] tracking-widest text-gray-600 font-['JetBrains_Mono']">{isAr ? "المنفّذ" : "ACTOR"}</div>
                   <div className="text-gray-200">{selected.actor.name}</div>
-                  <div className="text-[10px] font-['JetBrains_Mono']" style={{ color: ROLE_META[selected.actor.role].color }}>
+                  <div className="text-[11px] font-['JetBrains_Mono']" style={{ color: ROLE_META[selected.actor.role].color }}>
                     {selected.actor.id} · {isAr ? ROLE_META[selected.actor.role].labelAr : ROLE_META[selected.actor.role].labelEn}
                   </div>
                 </div>
@@ -474,7 +474,7 @@ const AuditLogPage = () => {
               </div>
 
               <div>
-                <div className="text-[10px] tracking-widest font-bold text-gray-500 font-['JetBrains_Mono'] mb-2">
+                <div className="text-[11px] tracking-widest font-bold text-gray-500 font-['JetBrains_Mono'] mb-2">
                   {isAr ? "الحمولة الكاملة" : "FULL JSON PAYLOAD"}
                 </div>
                 <pre className="rounded-md p-3 text-[11px] font-['JetBrains_Mono'] overflow-auto leading-relaxed"

@@ -94,7 +94,7 @@ const StreamSummaryRow = ({ streams, activeFilter, onFilterChange, isAr }: Props
                 <p className="font-bold font-['JetBrains_Mono'] leading-tight" style={{ color: isActive ? s.color : "#4B5563", fontSize: 11 }}>
                   {isActive ? s.count : "—"}
                 </p>
-                <p className="text-gray-600 font-['Inter'] leading-tight mt-0.5 truncate" style={{ fontSize: 8, maxWidth: 52 }}>
+                <p className="text-gray-600 font-['Inter'] leading-tight mt-0.5 truncate" style={{ fontSize: 10, maxWidth: 52 }}>
                   {isAr ? (label?.ar || s.stream) : (label?.en || s.stream)}
                 </p>
               </div>

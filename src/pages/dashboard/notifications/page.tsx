@@ -177,7 +177,7 @@ const NotificationsPage = () => {
                   { k: "esc",     labelEn: "Escalation after",   labelAr: "تصعيد بعد" },
                   { k: "act",     labelEn: "",                    labelAr: "" },
                 ].map((h) => (
-                  <th key={h.k} className="text-left px-4 py-3 text-[10px] tracking-widest font-bold text-gray-400"
+                  <th key={h.k} className="text-left px-4 py-3 text-[11px] tracking-widest font-bold text-gray-400"
                     style={{ fontFamily: fonts.mono }}>
                     {isAr ? h.labelAr : h.labelEn}
                   </th>
@@ -190,7 +190,7 @@ const NotificationsPage = () => {
                   data-narrate-id={idx === 0 ? "notifications-rules-row" : undefined}
                   style={{ borderColor: "rgba(255,255,255,0.04)" }}>
                   <td className="px-4 py-3">
-                    <span className="px-2 py-0.5 rounded text-[10px] tracking-widest font-bold"
+                    <span className="px-2 py-0.5 rounded text-[11px] tracking-widest font-bold"
                       style={{ background: `${SEVERITY_COLOR[r.severity]}22`, color: SEVERITY_COLOR[r.severity], border: `1px solid ${SEVERITY_COLOR[r.severity]}55`, fontFamily: fonts.mono }}>
                       {r.severity}
                     </span>
@@ -201,7 +201,7 @@ const NotificationsPage = () => {
                   <td className="px-4 py-3">
                     <div className="flex gap-1 flex-wrap">
                       {r.channels.map((ch) => (
-                        <span key={ch} className="flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px]"
+                        <span key={ch} className="flex items-center gap-1 px-1.5 py-0.5 rounded text-[11px]"
                           style={{ background: "rgba(255,255,255,0.04)", color: "#D1D5DB", border: "1px solid rgba(255,255,255,0.06)", fontFamily: fonts.mono }}>
                           <i className={CHANNEL_ICON[ch]} />
                           {isAr ? CHANNEL_LABEL[ch]?.ar : CHANNEL_LABEL[ch]?.en}
@@ -219,7 +219,7 @@ const NotificationsPage = () => {
                   </td>
                   <td className="px-4 py-3 text-right">
                     <button onClick={() => setEditingSev(r.severity)}
-                      className="px-3 py-1 rounded text-[10px] font-bold cursor-pointer"
+                      className="px-3 py-1 rounded text-[11px] font-bold cursor-pointer"
                       style={{ background: "rgba(184,138,60,0.1)", color: "#D6B47E", border: "1px solid #D6B47E44", fontFamily: fonts.mono }}>
                       {isAr ? "تعديل" : "Edit"}
                     </button>
@@ -244,7 +244,7 @@ const NotificationsPage = () => {
                   </div>
                   <div>
                     <h3 className="text-white text-sm font-bold" style={{ fontFamily: fonts.sans }}>{ch.name}</h3>
-                    <p className="text-[10px] text-gray-500" style={{ fontFamily: fonts.mono }}>{ch.provider}</p>
+                    <p className="text-[11px] text-gray-500" style={{ fontFamily: fonts.mono }}>{ch.provider}</p>
                   </div>
                 </div>
                 <button onClick={() => toggleChannel(ch.id)}
@@ -259,7 +259,7 @@ const NotificationsPage = () => {
               </div>
               <div className="flex items-center gap-2 mb-3">
                 <span className="w-2 h-2 rounded-full" style={{ background: HEALTH_COLOR[ch.health] }} />
-                <span className="text-[10px] tracking-widest font-bold" style={{ color: HEALTH_COLOR[ch.health], fontFamily: fonts.mono }}>
+                <span className="text-[11px] tracking-widest font-bold" style={{ color: HEALTH_COLOR[ch.health], fontFamily: fonts.mono }}>
                   {ch.health.toUpperCase()}
                 </span>
               </div>
@@ -271,12 +271,12 @@ const NotificationsPage = () => {
                   </div>
                 ))}
               </div>
-              <div className="pt-3 border-t flex items-center justify-between text-[10px]" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
+              <div className="pt-3 border-t flex items-center justify-between text-[11px]" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
                 <span className="text-gray-500" style={{ fontFamily: fonts.mono }}>
                   {isAr ? "آخر اختبار" : "Last test"}: {ch.lastTestAt.slice(0, 16).replace("T", " ")}
                 </span>
                 <button onClick={() => testChannel(ch.id)}
-                  className="px-2.5 py-1 rounded text-[10px] font-bold cursor-pointer"
+                  className="px-2.5 py-1 rounded text-[11px] font-bold cursor-pointer"
                   style={{ background: "rgba(184,138,60,0.1)", color: "#D6B47E", border: "1px solid #D6B47E55", fontFamily: fonts.mono }}>
                   <i className="ri-pulse-line mr-1" />
                   {isAr ? "اختبار" : "Test"}

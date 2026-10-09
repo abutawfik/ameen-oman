@@ -131,7 +131,7 @@ const IdentityCard = ({ person, isAr }: Props) => {
             { label: "Entry Date",   labelAr: "تاريخ الدخول",  value: person.entryDate, mono: true },
           ].map((field) => (
             <div key={field.label}>
-              <p className="text-gray-600 text-[10px] uppercase tracking-wider font-['JetBrains_Mono'] mb-0.5">
+              <p className="text-gray-600 text-[11px] uppercase tracking-wider font-['JetBrains_Mono'] mb-0.5">
                 {isAr ? field.labelAr : field.label}
               </p>
               <p className={`text-white text-sm ${field.mono ? "font-['JetBrains_Mono']" : "font-['Inter']"}`}>

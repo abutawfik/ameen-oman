@@ -40,7 +40,7 @@ const SequenceRow = ({ timeline, isAr }: { timeline: SequenceTimeline; isAr: boo
             <h4 className="text-white text-sm font-bold">{isAr ? timeline.travelerNameAr : timeline.travelerName}</h4>
             <span className="text-gray-500 text-[11px] font-['JetBrains_Mono']">{timeline.nationality}</span>
             <ClassificationPill classification={timeline.classification} isAr={isAr} compact />
-            <span className="px-2 py-0.5 rounded-md text-[10px] font-bold font-['JetBrains_Mono'] tracking-widest"
+            <span className="px-2 py-0.5 rounded-md text-[11px] font-bold font-['JetBrains_Mono'] tracking-widest"
               style={{ background: `${verdict.color}20`, color: verdict.color, border: `1px solid ${verdict.color}55` }}>
               {isAr ? verdict.labelAr : verdict.labelEn}
             </span>
@@ -89,8 +89,8 @@ const SequenceRow = ({ timeline, isAr }: { timeline: SequenceTimeline; isAr: boo
                     style={{ color: missing ? "#C98A1B" : tp.color, opacity: missing ? 0.4 : 1 }} />
                 </div>
                 <div className="text-center mt-1">
-                  <div className="text-[10px] font-bold text-gray-300">{isAr ? tp.labelAr : tp.labelEn}</div>
-                  <div className="text-[10px] font-['JetBrains_Mono']" style={{ color: missing ? "#C98A1B" : color }}>
+                  <div className="text-[11px] font-bold text-gray-300">{isAr ? tp.labelAr : tp.labelEn}</div>
+                  <div className="text-[11px] font-['JetBrains_Mono']" style={{ color: missing ? "#C98A1B" : color }}>
                     {tp.observedHrs === null
                       ? (tp.expectedWithinHrs === 0 ? "t₀" : (isAr ? "مفقود" : "missing"))
                       : `+${tp.observedHrs}h`}
@@ -132,7 +132,7 @@ const SequenceTab = ({ isAr }: { isAr: boolean }) => {
         <div className="flex items-center gap-2">
           <i className="ri-flow-chart text-[#F59E0B] text-lg" />
           <h3 className="text-white text-base font-bold">{isAr ? "النموذج الثالث — تماسك التسلسل" : "Model 3 — Sequence Coherence"}</h3>
-          <span className="px-2 py-0.5 rounded-md text-[10px] font-bold font-['JetBrains_Mono'] tracking-widest"
+          <span className="px-2 py-0.5 rounded-md text-[11px] font-bold font-['JetBrains_Mono'] tracking-widest"
             style={{ background: "rgba(245,158,11,0.12)", color: "#F59E0B", border: "1px solid rgba(245,158,11,0.3)" }}>
             PRESENCE
           </span>

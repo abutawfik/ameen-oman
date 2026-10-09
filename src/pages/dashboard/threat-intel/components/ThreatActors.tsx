@@ -18,7 +18,7 @@ const ThreatActors = ({ isAr }: Props) => {
     <div className="grid grid-cols-3 gap-4">
       {/* Actor list */}
       <div className="space-y-3">
-        <p className="text-gray-600 text-[10px] font-['JetBrains_Mono'] uppercase tracking-widest mb-3">Known Threat Actors</p>
+        <p className="text-gray-600 text-[11px] font-['JetBrains_Mono'] uppercase tracking-widest mb-3">Known Threat Actors</p>
         {threatActors.map((actor) => {
           const stat = statusConfig[actor.status];
           const isSelected = selected.id === actor.id;
@@ -41,11 +41,11 @@ const ThreatActors = ({ isAr }: Props) => {
                     <span className="text-white text-xs font-bold font-['JetBrains_Mono'] truncate">{actor.alias}</span>
                     <span className="text-[9px] px-1.5 py-0.5 rounded font-['JetBrains_Mono'] flex-shrink-0" style={{ background: stat.bg, color: stat.color }}>{stat.label}</span>
                   </div>
-                  <p className="text-gray-600 text-[10px] font-['Inter'] truncate">{actor.nationality}</p>
+                  <p className="text-gray-600 text-[11px] font-['Inter'] truncate">{actor.nationality}</p>
                 </div>
                 <div className="text-right flex-shrink-0">
                   <p className="font-bold font-['JetBrains_Mono'] text-sm" style={{ color: actor.riskScore >= 90 ? "#C94A5E" : actor.riskScore >= 75 ? "#C98A1B" : "#FACC15" }}>{actor.riskScore}</p>
-                  <p className="text-gray-700 text-[10px]">risk</p>
+                  <p className="text-gray-700 text-[11px]">risk</p>
                 </div>
               </div>
             </button>
@@ -77,7 +77,7 @@ const ThreatActors = ({ isAr }: Props) => {
               <div className="w-16 h-16 rounded-full flex items-center justify-center" style={{ background: `${selected.riskScore >= 90 ? "#C94A5E" : "#C98A1B"}15`, border: `2px solid ${selected.riskScore >= 90 ? "#C94A5E" : "#C98A1B"}40` }}>
                 <span className="text-2xl font-black font-['JetBrains_Mono']" style={{ color: selected.riskScore >= 90 ? "#C94A5E" : "#C98A1B" }}>{selected.riskScore}</span>
               </div>
-              <p className="text-gray-600 text-[10px] font-['JetBrains_Mono'] mt-1">RISK SCORE</p>
+              <p className="text-gray-600 text-[11px] font-['JetBrains_Mono'] mt-1">RISK SCORE</p>
             </div>
           </div>
 
@@ -90,13 +90,13 @@ const ThreatActors = ({ isAr }: Props) => {
               <div key={stat.label} className="p-3 rounded-xl text-center" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
                 <i className={`${stat.icon} text-lg mb-1`} style={{ color: stat.color }} />
                 <p className="text-white text-sm font-bold font-['JetBrains_Mono']">{stat.value}</p>
-                <p className="text-gray-600 text-[10px] font-['Inter']">{stat.label}</p>
+                <p className="text-gray-600 text-[11px] font-['Inter']">{stat.label}</p>
               </div>
             ))}
           </div>
 
           <div>
-            <p className="text-gray-600 text-[10px] font-['JetBrains_Mono'] mb-2">TACTICS, TECHNIQUES & PROCEDURES (TTPs)</p>
+            <p className="text-gray-600 text-[11px] font-['JetBrains_Mono'] mb-2">TACTICS, TECHNIQUES & PROCEDURES (TTPs)</p>
             <div className="flex flex-wrap gap-2">
               {selected.ttps.map((ttp) => (
                 <span key={ttp} className="text-xs px-3 py-1.5 rounded-lg font-['Inter']" style={{ background: "rgba(201,74,94,0.08)", color: "#C94A5E", border: "1px solid rgba(201,74,94,0.2)" }}>
@@ -117,7 +117,7 @@ const ThreatActors = ({ isAr }: Props) => {
           ].map((action) => (
             <button key={action.label} className="flex flex-col items-center gap-1.5 p-3 rounded-xl cursor-pointer transition-all hover:bg-white/5 whitespace-nowrap" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
               <i className={`${action.icon} text-lg`} style={{ color: action.color }} />
-              <span className="text-[10px] font-['Inter'] text-gray-500 text-center leading-tight">{action.label}</span>
+              <span className="text-[11px] font-['Inter'] text-gray-500 text-center leading-tight">{action.label}</span>
             </button>
           ))}
         </div>

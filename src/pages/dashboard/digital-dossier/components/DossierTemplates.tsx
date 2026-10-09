@@ -55,13 +55,13 @@ const DossierTemplates = ({ isAr, onUseTemplate }: Props) => {
 
               {/* Badges */}
               <div className="flex items-center gap-2 flex-wrap">
-                <span className="px-2 py-0.5 rounded text-[10px] font-bold font-['JetBrains_Mono']" style={{ background: cfg.bg, color: cfg.color, border: `1px solid ${cfg.border}` }}>
+                <span className="px-2 py-0.5 rounded text-[11px] font-bold font-['JetBrains_Mono']" style={{ background: cfg.bg, color: cfg.color, border: `1px solid ${cfg.border}` }}>
                   {template.classification}
                 </span>
-                <span className="px-2 py-0.5 rounded text-[10px] font-['JetBrains_Mono']" style={{ background: `${catCfg.color}15`, color: catCfg.color }}>
+                <span className="px-2 py-0.5 rounded text-[11px] font-['JetBrains_Mono']" style={{ background: `${catCfg.color}15`, color: catCfg.color }}>
                   <i className={`${catCfg.icon} mr-1`} />{catCfg.label}
                 </span>
-                <span className="px-2 py-0.5 rounded text-[10px] font-['JetBrains_Mono']" style={{ background: "rgba(255,255,255,0.04)", color: "#9CA3AF" }}>
+                <span className="px-2 py-0.5 rounded text-[11px] font-['JetBrains_Mono']" style={{ background: "rgba(255,255,255,0.04)", color: "#9CA3AF" }}>
                   {template.format}
                 </span>
               </div>
@@ -75,23 +75,23 @@ const DossierTemplates = ({ isAr, onUseTemplate }: Props) => {
                 ].map((stat) => (
                   <div key={stat.label} className="p-2 rounded-lg text-center" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.05)" }}>
                     <p className="text-white text-sm font-bold font-['JetBrains_Mono']">{stat.value}</p>
-                    <p className="text-gray-600 text-[10px] font-['Inter']">{stat.label}</p>
+                    <p className="text-gray-600 text-[11px] font-['Inter']">{stat.label}</p>
                   </div>
                 ))}
               </div>
 
               {/* Section preview */}
               <div>
-                <p className="text-gray-700 text-[10px] font-['JetBrains_Mono'] mb-2">INCLUDED SECTIONS</p>
+                <p className="text-gray-700 text-[11px] font-['JetBrains_Mono'] mb-2">INCLUDED SECTIONS</p>
                 <div className="flex flex-wrap gap-1">
                   {sectionData.slice(0, 6).map((s) => (
-                    <span key={s.key} className="flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-['Inter']" style={{ background: `${s.streamColor}10`, color: s.streamColor }}>
-                      <i className={`${s.streamIcon} text-[10px]`} />
+                    <span key={s.key} className="flex items-center gap-1 px-1.5 py-0.5 rounded text-[11px] font-['Inter']" style={{ background: `${s.streamColor}10`, color: s.streamColor }}>
+                      <i className={`${s.streamIcon} text-[11px]`} />
                       {s.stream}
                     </span>
                   ))}
                   {sectionData.length > 6 && (
-                    <span className="px-1.5 py-0.5 rounded text-[10px] font-['JetBrains_Mono'] text-gray-600" style={{ background: "rgba(255,255,255,0.03)" }}>
+                    <span className="px-1.5 py-0.5 rounded text-[11px] font-['JetBrains_Mono'] text-gray-600" style={{ background: "rgba(255,255,255,0.03)" }}>
                       +{sectionData.length - 6} more
                     </span>
                   )}
@@ -100,7 +100,7 @@ const DossierTemplates = ({ isAr, onUseTemplate }: Props) => {
 
               {/* Footer */}
               <div className="flex items-center justify-between pt-2 border-t" style={{ borderColor: "rgba(184,138,60,0.08)" }}>
-                <div className="text-[10px] font-['JetBrains_Mono'] text-gray-700">
+                <div className="text-[11px] font-['JetBrains_Mono'] text-gray-700">
                   <span>By {template.createdBy}</span>
                   <span className="mx-1">·</span>
                   <span>Last used {template.lastUsed}</span>

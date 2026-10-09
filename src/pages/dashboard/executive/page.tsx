@@ -61,12 +61,12 @@ const ExecutiveDashboardPage = () => {
                   <div className="w-7 h-7 flex items-center justify-center rounded-lg" style={{ background: `${kpi.color}15` }}>
                     <i className={`${kpi.icon} text-xs`} style={{ color: kpi.color }} />
                   </div>
-                  <span className="text-[10px] font-['JetBrains_Mono']" style={{ color: kpi.deltaUp ? "#4ADE80" : "#C94A5E" }}>
+                  <span className="text-[11px] font-['JetBrains_Mono']" style={{ color: kpi.deltaUp ? "#4ADE80" : "#C94A5E" }}>
                     {kpi.delta}
                   </span>
                 </div>
                 <p className="text-white text-lg font-black font-['JetBrains_Mono'] leading-none">{kpi.value}<span className="text-xs text-gray-600">{kpi.unit}</span></p>
-                <p className="text-gray-600 text-[10px] font-['Inter'] mt-1 leading-tight">{kpi.label}</p>
+                <p className="text-gray-600 text-[11px] font-['Inter'] mt-1 leading-tight">{kpi.label}</p>
                 <div className="mt-2">
                   <TrendSparkline data={kpi.trend} color={kpi.color} />
                 </div>
@@ -82,9 +82,9 @@ const ExecutiveDashboardPage = () => {
                 <div className="flex items-center gap-2">
                   <i className="ri-sun-line text-yellow-400 text-sm" />
                   <p className="text-white text-xs font-bold font-['Inter']">Morning Intelligence Briefing</p>
-                  <span className="text-[10px] px-2 py-0.5 rounded font-['JetBrains_Mono']" style={{ background: "rgba(250,204,21,0.1)", color: "#FACC15" }}>2025-04-06</span>
+                  <span className="text-[11px] px-2 py-0.5 rounded font-['JetBrains_Mono']" style={{ background: "rgba(250,204,21,0.1)", color: "#FACC15" }}>2025-04-06</span>
                 </div>
-                <span className="text-gray-600 text-[10px] font-['JetBrains_Mono']">{morningBriefing.length} items</span>
+                <span className="text-gray-600 text-[11px] font-['JetBrains_Mono']">{morningBriefing.length} items</span>
               </div>
               <div className="divide-y" style={{ borderColor: "rgba(255,255,255,0.04)" }}>
                 {morningBriefing.map((item) => {
@@ -96,7 +96,7 @@ const ExecutiveDashboardPage = () => {
                         <div className="w-1 self-stretch rounded-full flex-shrink-0 mt-1" style={{ background: priorityColors[item.priority as keyof typeof priorityColors] }} />
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2 mb-0.5">
-                            <span className="text-gray-600 text-[10px] font-['JetBrains_Mono']">{item.time}</span>
+                            <span className="text-gray-600 text-[11px] font-['JetBrains_Mono']">{item.time}</span>
                             <span className="text-[9px] px-1.5 py-0.5 rounded font-['JetBrains_Mono']" style={{ background: `${priorityColors[item.priority as keyof typeof priorityColors]}15`, color: priorityColors[item.priority as keyof typeof priorityColors] }}>
                               {item.priority.toUpperCase()}
                             </span>
@@ -110,7 +110,7 @@ const ExecutiveDashboardPage = () => {
                           </div>
                         </div>
                         {isExp && (
-                          <button className="flex-shrink-0 px-3 py-1.5 rounded-lg text-[10px] font-['Inter'] cursor-pointer whitespace-nowrap" style={{ background: "rgba(201,74,94,0.1)", color: "#C94A5E", border: "1px solid rgba(201,74,94,0.2)" }}>
+                          <button className="flex-shrink-0 px-3 py-1.5 rounded-lg text-[11px] font-['Inter'] cursor-pointer whitespace-nowrap" style={{ background: "rgba(201,74,94,0.1)", color: "#C94A5E", border: "1px solid rgba(201,74,94,0.2)" }}>
                             {item.action}
                           </button>
                         )}
@@ -139,7 +139,7 @@ const ExecutiveDashboardPage = () => {
                     <div className="flex-1 min-w-0">
                       <p className="text-white text-xs font-bold font-['Inter'] truncate">{s.name}</p>
                       <div className="flex items-center gap-2">
-                        <span className="text-gray-600 text-[10px] font-['Inter']">{s.nationality}</span>
+                        <span className="text-gray-600 text-[11px] font-['Inter']">{s.nationality}</span>
                         <span className="text-[9px] px-1 rounded font-['JetBrains_Mono']" style={{ background: s.status === "wanted" ? "rgba(201,74,94,0.15)" : "rgba(184,138,60,0.08)", color: s.status === "wanted" ? "#C94A5E" : "#D6B47E" }}>
                           {s.status}
                         </span>
@@ -147,7 +147,7 @@ const ExecutiveDashboardPage = () => {
                     </div>
                     <div className="text-right flex-shrink-0">
                       <p className="font-black font-['JetBrains_Mono'] text-sm" style={{ color: s.riskScore >= 90 ? "#C94A5E" : "#C98A1B" }}>{s.riskScore}</p>
-                      <p className="text-[10px] font-['JetBrains_Mono']" style={{ color: s.riskDelta > 0 ? "#C94A5E" : "#4ADE80" }}>
+                      <p className="text-[11px] font-['JetBrains_Mono']" style={{ color: s.riskDelta > 0 ? "#C94A5E" : "#4ADE80" }}>
                         {s.riskDelta > 0 ? "+" : ""}{s.riskDelta}
                       </p>
                     </div>
@@ -170,7 +170,7 @@ const ExecutiveDashboardPage = () => {
                   const total = pt.critical + pt.high + pt.medium + pt.low;
                   return (
                     <div key={pt.date} className="flex items-center gap-3">
-                      <span className="text-gray-600 text-[10px] font-['JetBrains_Mono'] w-12 flex-shrink-0">{pt.date}</span>
+                      <span className="text-gray-600 text-[11px] font-['JetBrains_Mono'] w-12 flex-shrink-0">{pt.date}</span>
                       <div className="flex-1 flex h-5 rounded overflow-hidden gap-px">
                         {[
                           { val: pt.critical, color: "#C94A5E" },
@@ -181,7 +181,7 @@ const ExecutiveDashboardPage = () => {
                           <div key={i} className="h-full transition-all" style={{ width: `${(seg.val / total) * 100}%`, background: seg.color, opacity: 0.8 }} />
                         ))}
                       </div>
-                      <span className="text-gray-600 text-[10px] font-['JetBrains_Mono'] w-6 text-right flex-shrink-0">{total}</span>
+                      <span className="text-gray-600 text-[11px] font-['JetBrains_Mono'] w-6 text-right flex-shrink-0">{total}</span>
                     </div>
                   );
                 })}
@@ -190,7 +190,7 @@ const ExecutiveDashboardPage = () => {
                 {[{ label: "Critical", color: "#C94A5E" }, { label: "High", color: "#C98A1B" }, { label: "Medium", color: "#FACC15" }, { label: "Low", color: "#4ADE80" }].map((l) => (
                   <div key={l.label} className="flex items-center gap-1">
                     <div className="w-2 h-2 rounded-sm" style={{ background: l.color }} />
-                    <span className="text-[10px] font-['Inter'] text-gray-600">{l.label}</span>
+                    <span className="text-[11px] font-['Inter'] text-gray-600">{l.label}</span>
                   </div>
                 ))}
               </div>
@@ -223,10 +223,10 @@ const ExecutiveDashboardPage = () => {
                   <div key={r.region} className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: threatLevelColors[r.threatLevel] }} />
-                      <span className="text-gray-400 text-[10px] font-['Inter']">{r.region}</span>
+                      <span className="text-gray-400 text-[11px] font-['Inter']">{r.region}</span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-gray-600 text-[10px] font-['JetBrains_Mono']">{r.activeIncidents} incidents</span>
+                      <span className="text-gray-600 text-[11px] font-['JetBrains_Mono']">{r.activeIncidents} incidents</span>
                       <span className="text-[9px] px-1.5 py-0.5 rounded font-['JetBrains_Mono']" style={{ background: `${threatLevelColors[r.threatLevel]}15`, color: threatLevelColors[r.threatLevel] }}>{r.threatLevel.toUpperCase()}</span>
                     </div>
                   </div>
@@ -246,7 +246,7 @@ const ExecutiveDashboardPage = () => {
                 {[{ label: "Nominal", color: "#4ADE80" }, { label: "Elevated", color: "#FACC15" }, { label: "Critical", color: "#C94A5E" }].map((l) => (
                   <div key={l.label} className="flex items-center gap-1">
                     <div className="w-2 h-2 rounded-full" style={{ background: l.color }} />
-                    <span className="text-[10px] font-['Inter'] text-gray-600">{l.label}</span>
+                    <span className="text-[11px] font-['Inter'] text-gray-600">{l.label}</span>
                   </div>
                 ))}
               </div>
@@ -258,7 +258,7 @@ const ExecutiveDashboardPage = () => {
                     <i className={`${s.icon} text-xs`} style={{ color: s.color }} />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-white text-[10px] font-['Inter'] font-medium truncate">{s.stream}</p>
+                    <p className="text-white text-[11px] font-['Inter'] font-medium truncate">{s.stream}</p>
                     <p className="text-gray-600 text-[9px] font-['JetBrains_Mono']">{s.eventsToday.toLocaleString()} events</p>
                   </div>
                   <div className="flex flex-col items-end gap-1 flex-shrink-0">

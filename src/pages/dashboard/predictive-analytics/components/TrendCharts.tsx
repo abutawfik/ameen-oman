@@ -103,7 +103,7 @@ export default function TrendCharts() {
               borderColor: activeCategories.has(cat.key) ? cat.color : 'rgba(156,163,175,0.2)',
               background: activeCategories.has(cat.key) ? `${cat.color}15` : 'transparent',
               color: activeCategories.has(cat.key) ? cat.color : '#6B7280',
-              fontSize: 10,
+              fontSize: 11,
             }}
           >
             <span className="w-1.5 h-1.5 rounded-full" style={{ background: activeCategories.has(cat.key) ? cat.color : '#4B5563' }} />
@@ -205,7 +205,7 @@ export default function TrendCharts() {
                   </div>
                 )}
 
-                <span className="text-gray-500 font-mono absolute bottom-0" style={{ fontSize: 9 }}>{day.label}</span>
+                <span className="text-gray-500 font-mono absolute bottom-0" style={{ fontSize: 10 }}>{day.label}</span>
               </div>
             );
           })}

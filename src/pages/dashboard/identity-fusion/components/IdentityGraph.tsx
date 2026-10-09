@@ -355,7 +355,7 @@ export default function IdentityGraph({ isAr }: Props) {
                 <div className="flex flex-wrap gap-1">
                   {selectedNode.streams.map(s => (
                     <span key={s} className="text-xs px-1.5 py-0.5 rounded font-['JetBrains_Mono']"
-                      style={{ background: 'rgba(184,138,60,0.08)', color: '#D6B47E', fontSize: 9 }}>
+                      style={{ background: 'rgba(184,138,60,0.08)', color: '#D6B47E', fontSize: 10 }}>
                       {s.toUpperCase()}
                     </span>
                   ))}

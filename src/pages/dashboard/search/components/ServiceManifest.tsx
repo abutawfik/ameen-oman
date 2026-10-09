@@ -19,7 +19,7 @@ const RISK_COLORS: Record<string, string> = {
 };
 
 const thStyle: React.CSSProperties = {
-  padding: '7px 10px', textAlign: 'left', fontSize: 10,
+  padding: '7px 10px', textAlign: 'left', fontSize: 11,
   fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.07em',
   color: '#5B7494', textTransform: 'uppercase',
   borderBottom: '1px solid rgba(184,138,60,0.12)', whiteSpace: 'nowrap',
@@ -83,13 +83,13 @@ export default function ServiceManifest({ flightNo, isAr }: Props) {
                 >
                   <td style={tdStyle}>
                     <div style={{ fontWeight: 500, fontSize: 12 }}>{p.name}</div>
-                    {p.hitCount > 0 && <span style={{ fontSize: 10, color: '#C94A5E', fontFamily: "'JetBrains Mono', monospace" }}>⚠ {p.hitCount} hit{p.hitCount > 1 ? 's' : ''}</span>}
+                    {p.hitCount > 0 && <span style={{ fontSize: 11, color: '#C94A5E', fontFamily: "'JetBrains Mono', monospace" }}>⚠ {p.hitCount} hit{p.hitCount > 1 ? 's' : ''}</span>}
                   </td>
                   <td style={{ ...tdStyle, fontFamily: "'JetBrains Mono', monospace" }}>{p.nationality}</td>
                   <td style={{ ...tdStyle, fontFamily: "'JetBrains Mono', monospace", color: '#D6B47E' }}>{p.docNumber}</td>
                   <td style={{ ...tdStyle, fontFamily: "'JetBrains Mono', monospace" }}>{p.seatNo}</td>
                   <td style={tdStyle}>
-                    <span style={{ padding: '2px 7px', borderRadius: 3, fontSize: 10, fontFamily: "'JetBrains Mono', monospace", background: `${riskColor}20`, color: riskColor, border: `1px solid ${riskColor}44` }}>
+                    <span style={{ padding: '2px 7px', borderRadius: 3, fontSize: 11, fontFamily: "'JetBrains Mono', monospace", background: `${riskColor}20`, color: riskColor, border: `1px solid ${riskColor}44` }}>
                       {p.riskScore}
                     </span>
                   </td>

@@ -212,7 +212,7 @@ const DossierBuilder = ({ isAr, onGenerate }: Props) => {
                       </span>
                       <span className="text-xs text-gray-600 font-['JetBrains_Mono']">{subject.streamCount} streams · {subject.eventCount} events</span>
                       {subject.alertCount > 0 && (
-                        <span className="px-1.5 py-0.5 rounded text-[10px] font-bold font-['JetBrains_Mono']" style={{ background: "rgba(201,74,94,0.15)", color: "#C94A5E" }}>
+                        <span className="px-1.5 py-0.5 rounded text-[11px] font-bold font-['JetBrains_Mono']" style={{ background: "rgba(201,74,94,0.15)", color: "#C94A5E" }}>
                           {subject.alertCount} alerts
                         </span>
                       )}
@@ -326,7 +326,7 @@ const DossierBuilder = ({ isAr, onGenerate }: Props) => {
                         border: isSelected ? `1px solid ${section.required ? "#4ADE80" : "#D6B47E"}` : "1px solid rgba(255,255,255,0.1)",
                       }}
                     >
-                      {isSelected && <i className={`text-[10px] ${section.required ? "ri-lock-line text-green-400" : "ri-check-line text-gold-400"}`} />}
+                      {isSelected && <i className={`text-[11px] ${section.required ? "ri-lock-line text-green-400" : "ri-check-line text-gold-400"}`} />}
                     </div>
                     <div className="w-6 h-6 flex items-center justify-center flex-shrink-0">
                       <i className={`${section.streamIcon} text-sm`} style={{ color: section.streamColor }} />
@@ -346,7 +346,7 @@ const DossierBuilder = ({ isAr, onGenerate }: Props) => {
                       <p className="text-[11px] font-['JetBrains_Mono']" style={{ color: section.dataPoints > 0 ? "#D6B47E" : "#4B5563" }}>
                         {section.dataPoints > 0 ? `${section.dataPoints} events` : "no data"}
                       </p>
-                      <p className="text-[10px] text-gray-700 font-['JetBrains_Mono']">~{section.estimatedPages}p</p>
+                      <p className="text-[11px] text-gray-700 font-['JetBrains_Mono']">~{section.estimatedPages}p</p>
                     </div>
                   </button>
                 );
@@ -401,7 +401,7 @@ const DossierBuilder = ({ isAr, onGenerate }: Props) => {
                 >
                   <i className={`${f.icon} text-2xl`} style={{ color: format === f.value ? "#D6B47E" : "#6B7280" }} />
                   <span className="text-xs font-bold font-['Inter']" style={{ color: format === f.value ? "#D6B47E" : "#9CA3AF" }}>{f.label}</span>
-                  <span className="text-[10px] text-gray-600 font-['Inter'] text-center">{f.desc}</span>
+                  <span className="text-[11px] text-gray-600 font-['Inter'] text-center">{f.desc}</span>
                 </button>
               ))}
             </div>

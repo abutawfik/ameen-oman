@@ -32,7 +32,7 @@ function exportCSV(results: SearchResult[]) {
 }
 
 const thStyle: React.CSSProperties = {
-  padding: '8px 12px', textAlign: 'left', fontSize: 10,
+  padding: '8px 12px', textAlign: 'left', fontSize: 11,
   fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.08em',
   color: '#5B7494', textTransform: 'uppercase', cursor: 'pointer',
   borderBottom: '1px solid rgba(184,138,60,0.15)',
@@ -134,14 +134,14 @@ export default function ResultTableView({ results, isAr }: Props) {
                 >
                   <td style={tdStyle}>
                     <div style={{ fontWeight: 500 }}>{isAr ? r.nameAr : r.name}</div>
-                    <div style={{ fontSize: 10, color: '#5B7494', marginTop: 1 }}>{r.dob}</div>
+                    <div style={{ fontSize: 11, color: '#5B7494', marginTop: 1 }}>{r.dob}</div>
                     {/* Contact icons */}
                     <div style={{ display: 'flex', gap: 4, marginTop: 2 }}>
                       {r.contact?.email && <i className="ri-mail-line" style={{ color: '#4A8E98', fontSize: 11 }} title={r.contact.email} />}
                       {r.contact?.phone && <i className="ri-phone-line" style={{ color: '#4A8E98', fontSize: 11 }} title={r.contact.phone} />}
                       {/* Bags */}
                       {r.bags && r.bags.count > 0 && (
-                        <span style={{ fontSize: 10, color: '#5B7494' }} title={`${r.bags.count} bags, ${r.bags.weightKg}kg`}>
+                        <span style={{ fontSize: 11, color: '#5B7494' }} title={`${r.bags.count} bags, ${r.bags.weightKg}kg`}>
                           <i className="ri-briefcase-2-line" /> {r.bags.count}
                         </span>
                       )}
@@ -159,7 +159,7 @@ export default function ResultTableView({ results, isAr }: Props) {
                       <div style={{ width: 28, height: 28, borderRadius: 4, display: 'flex', alignItems: 'center', justifyContent: 'center', background: `${riskColor}22`, border: `1px solid ${riskColor}44`, fontSize: 11, fontFamily: "'JetBrains Mono', monospace", color: riskColor, fontWeight: 600 }}>
                         {r.riskScore}
                       </div>
-                      <span style={{ fontSize: 10, color: riskColor, textTransform: 'uppercase', fontFamily: "'JetBrains Mono', monospace" }}>{r.riskLevel}</span>
+                      <span style={{ fontSize: 11, color: riskColor, textTransform: 'uppercase', fontFamily: "'JetBrains Mono', monospace" }}>{r.riskLevel}</span>
                     </div>
                   </td>
                   <td style={{ ...tdStyle, textAlign: 'center' }}>
@@ -169,7 +169,7 @@ export default function ResultTableView({ results, isAr }: Props) {
                     }
                   </td>
                   <td style={tdStyle}>
-                    <span style={{ fontSize: 10, padding: '2px 6px', borderRadius: 3, background: `${MATCH_COLORS[r.matchType] ?? '#5B7494'}18`, color: MATCH_COLORS[r.matchType] ?? '#5B7494', fontFamily: "'JetBrains Mono', monospace" }}>
+                    <span style={{ fontSize: 11, padding: '2px 6px', borderRadius: 3, background: `${MATCH_COLORS[r.matchType] ?? '#5B7494'}18`, color: MATCH_COLORS[r.matchType] ?? '#5B7494', fontFamily: "'JetBrains Mono', monospace" }}>
                       {r.matchType}
                     </span>
                   </td>
@@ -178,7 +178,7 @@ export default function ResultTableView({ results, isAr }: Props) {
                   </td>
                   <td style={{ ...tdStyle, fontFamily: "'JetBrains Mono', monospace", fontSize: 11 }}>
                     <div>{r.flight ?? '—'}</div>
-                    <div style={{ color: '#5B7494', fontSize: 10 }}>{r.route ?? ''}</div>
+                    <div style={{ color: '#5B7494', fontSize: 11 }}>{r.route ?? ''}</div>
                   </td>
                   <td style={{ ...tdStyle, fontFamily: "'JetBrains Mono', monospace", fontSize: 11 }}>
                     {r.eventDate}

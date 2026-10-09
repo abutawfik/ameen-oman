@@ -104,14 +104,14 @@ const DossierHistory = ({ isAr }: Props) => {
                       <span className="text-gray-600 text-xs font-['JetBrains_Mono']">{dossier.subjectDoc}</span>
                     </div>
                     <div className="flex items-center gap-2 flex-wrap">
-                      <span className="px-1.5 py-0.5 rounded text-[10px] font-bold font-['JetBrains_Mono']" style={{ background: cfg.bg, color: cfg.color, border: `1px solid ${cfg.border}` }}>
+                      <span className="px-1.5 py-0.5 rounded text-[11px] font-bold font-['JetBrains_Mono']" style={{ background: cfg.bg, color: cfg.color, border: `1px solid ${cfg.border}` }}>
                         {dossier.classification}
                       </span>
-                      <span className="px-1.5 py-0.5 rounded text-[10px] font-['JetBrains_Mono']" style={{ background: sCfg.bg, color: sCfg.color }}>
+                      <span className="px-1.5 py-0.5 rounded text-[11px] font-['JetBrains_Mono']" style={{ background: sCfg.bg, color: sCfg.color }}>
                         <i className={`${sCfg.icon} mr-1`} />{sCfg.label}
                       </span>
-                      <span className="text-gray-600 text-[10px] font-['JetBrains_Mono']">{dossier.format}</span>
-                      <span className="text-gray-600 text-[10px] font-['JetBrains_Mono']">{dossier.pageCount}p · {dossier.fileSize}</span>
+                      <span className="text-gray-600 text-[11px] font-['JetBrains_Mono']">{dossier.format}</span>
+                      <span className="text-gray-600 text-[11px] font-['JetBrains_Mono']">{dossier.pageCount}p · {dossier.fileSize}</span>
                     </div>
                     <div className="flex items-center gap-3 mt-1.5 text-[11px] font-['JetBrains_Mono'] text-gray-600">
                       <span>{dossier.ref}</span>
@@ -125,7 +125,7 @@ const DossierHistory = ({ isAr }: Props) => {
                     <div className="flex items-center gap-1.5">
                       <span className="text-xs font-['JetBrains_Mono'] text-gray-600">{dossier.streamCount} streams</span>
                       {dossier.alertCount > 0 && (
-                        <span className="px-1.5 py-0.5 rounded text-[10px] font-bold font-['JetBrains_Mono']" style={{ background: "rgba(201,74,94,0.15)", color: "#C94A5E" }}>
+                        <span className="px-1.5 py-0.5 rounded text-[11px] font-bold font-['JetBrains_Mono']" style={{ background: "rgba(201,74,94,0.15)", color: "#C94A5E" }}>
                           {dossier.alertCount} alerts
                         </span>
                       )}
@@ -146,12 +146,12 @@ const DossierHistory = ({ isAr }: Props) => {
                 {/* Expanded audit log */}
                 {isSelected && (
                   <div className="mt-4 pt-4 border-t" style={{ borderColor: "rgba(184,138,60,0.08)" }}>
-                    <p className="text-gray-600 text-[10px] font-['JetBrains_Mono'] mb-2">AUDIT TRAIL</p>
+                    <p className="text-gray-600 text-[11px] font-['JetBrains_Mono'] mb-2">AUDIT TRAIL</p>
                     <div className="space-y-1.5">
                       {dossier.auditLog.map((entry, idx) => (
                         <div key={idx} className="flex items-center gap-3 text-xs font-['JetBrains_Mono']">
                           <span className="text-gray-700 w-32 flex-shrink-0">{entry.timestamp}</span>
-                          <span className="px-1.5 py-0.5 rounded text-[10px]" style={{
+                          <span className="px-1.5 py-0.5 rounded text-[11px]" style={{
                             background: entry.action === "Generated" ? "rgba(184,138,60,0.1)" : entry.action === "Downloaded" ? "rgba(74,222,128,0.1)" : entry.action === "Expired" ? "rgba(201,138,27,0.1)" : "rgba(156,163,175,0.1)",
                             color: entry.action === "Generated" ? "#D6B47E" : entry.action === "Downloaded" ? "#4ADE80" : entry.action === "Expired" ? "#C98A1B" : "#9CA3AF",
                           }}>
@@ -163,8 +163,8 @@ const DossierHistory = ({ isAr }: Props) => {
                       ))}
                     </div>
                     <div className="flex items-center gap-2 mt-3">
-                      <span className="text-gray-700 text-[10px] font-['JetBrains_Mono']">Purpose: {dossier.purpose}</span>
-                      {dossier.caseRef && <span className="text-gray-700 text-[10px] font-['JetBrains_Mono']">· Case: {dossier.caseRef}</span>}
+                      <span className="text-gray-700 text-[11px] font-['JetBrains_Mono']">Purpose: {dossier.purpose}</span>
+                      {dossier.caseRef && <span className="text-gray-700 text-[11px] font-['JetBrains_Mono']">· Case: {dossier.caseRef}</span>}
                     </div>
                   </div>
                 )}

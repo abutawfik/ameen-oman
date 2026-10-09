@@ -276,7 +276,7 @@ const BorderDashboardPage = () => {
                         <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 10 }}>
                           <div>
                             <div style={{ color: '#E5E7EB', fontWeight: 700, fontSize: 15, fontFamily: "'Inter', sans-serif", marginBottom: 4 }}>{cp.name}</div>
-                            <span style={{ background: `${typeColor}14`, color: typeColor, border: `1px solid ${typeColor}30`, borderRadius: 5, padding: '2px 7px', fontSize: 10, fontFamily: "'JetBrains Mono', monospace", fontWeight: 700 }}>{cp.type}</span>
+                            <span style={{ background: `${typeColor}14`, color: typeColor, border: `1px solid ${typeColor}30`, borderRadius: 5, padding: '2px 7px', fontSize: 11, fontFamily: "'JetBrains Mono', monospace", fontWeight: 700 }}>{cp.type}</span>
                           </div>
                           <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                             {cp.alerts > 0 && (
@@ -286,18 +286,18 @@ const BorderDashboardPage = () => {
                             )}
                             <div style={{ display: 'flex', alignItems: 'center', gap: 5, background: `${statusColor}14`, border: `1px solid ${statusColor}30`, borderRadius: 6, padding: '3px 8px' }}>
                               <div style={{ width: 6, height: 6, borderRadius: '50%', background: statusColor, boxShadow: cp.status !== 'CLOSED' ? `0 0 6px ${statusColor}` : 'none' }} />
-                              <span style={{ color: statusColor, fontSize: 10, fontFamily: "'JetBrains Mono', monospace", fontWeight: 700 }}>{cp.status}</span>
+                              <span style={{ color: statusColor, fontSize: 11, fontFamily: "'JetBrains Mono', monospace", fontWeight: 700 }}>{cp.status}</span>
                             </div>
                           </div>
                         </div>
 
                         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8 }}>
                           <div>
-                            <div style={{ color: '#4B5563', fontSize: 10, fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.08em', marginBottom: 2 }}>QUEUE</div>
+                            <div style={{ color: '#4B5563', fontSize: 11, fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.08em', marginBottom: 2 }}>QUEUE</div>
                             <div style={{ color: cp.queue > 40 ? C.critical : cp.queue > 20 ? C.high : '#E5E7EB', fontSize: 26, fontWeight: 800, fontFamily: "'JetBrains Mono', monospace", lineHeight: 1 }}>{cp.queue}</div>
                           </div>
                           <div>
-                            <div style={{ color: '#4B5563', fontSize: 10, fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.08em', marginBottom: 2 }}>AVG WAIT</div>
+                            <div style={{ color: '#4B5563', fontSize: 11, fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.08em', marginBottom: 2 }}>AVG WAIT</div>
                             <div style={{ color: '#9CA3AF', fontSize: 14, fontFamily: "'JetBrains Mono', monospace", fontWeight: 600 }}>{cp.wait}</div>
                           </div>
                           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
@@ -309,7 +309,7 @@ const BorderDashboardPage = () => {
                       {/* Expanded crossings */}
                       {isExpanded && (
                         <div style={{ borderTop: '1px solid rgba(184,138,60,0.1)', padding: '0.75rem 1.25rem' }}>
-                          <div style={{ color: '#6B7280', fontSize: 10, fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 8 }}>
+                          <div style={{ color: '#6B7280', fontSize: 11, fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 8 }}>
                             Recent Crossings
                           </div>
                           <div style={{ overflowX: 'auto' }}>
@@ -317,7 +317,7 @@ const BorderDashboardPage = () => {
                               <thead>
                                 <tr style={{ borderBottom: '1px solid rgba(184,138,60,0.06)' }}>
                                   {['Name', 'Nat.', 'Doc#', 'Status', 'Time'].map(h => (
-                                    <th key={h} style={{ padding: '5px 8px', textAlign: 'left', color: '#374151', fontSize: 9, fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.08em', textTransform: 'uppercase' }}>{h}</th>
+                                    <th key={h} style={{ padding: '5px 8px', textAlign: 'left', color: '#374151', fontSize: 10, fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.08em', textTransform: 'uppercase' }}>{h}</th>
                                   ))}
                                 </tr>
                               </thead>
@@ -328,7 +328,7 @@ const BorderDashboardPage = () => {
                                     <td style={{ padding: '6px 8px', color: '#9CA3AF', fontFamily: "'JetBrains Mono', monospace" }}>{c.nationality}</td>
                                     <td style={{ padding: '6px 8px', color: '#6B7280', fontFamily: "'JetBrains Mono', monospace" }}>{c.doc}</td>
                                     <td style={{ padding: '6px 8px' }}>
-                                      <span style={{ background: `${CROSSING_COLOR[c.status]}14`, color: CROSSING_COLOR[c.status], border: `1px solid ${CROSSING_COLOR[c.status]}30`, borderRadius: 4, padding: '1px 6px', fontSize: 9, fontFamily: "'JetBrains Mono', monospace", fontWeight: 700 }}>{c.status}</span>
+                                      <span style={{ background: `${CROSSING_COLOR[c.status]}14`, color: CROSSING_COLOR[c.status], border: `1px solid ${CROSSING_COLOR[c.status]}30`, borderRadius: 4, padding: '1px 6px', fontSize: 10, fontFamily: "'JetBrains Mono', monospace", fontWeight: 700 }}>{c.status}</span>
                                     </td>
                                     <td style={{ padding: '6px 8px', color: '#6B7280', fontFamily: "'JetBrains Mono', monospace" }}>{c.time}</td>
                                   </tr>
@@ -371,21 +371,21 @@ const BorderDashboardPage = () => {
                             {TPI_LABEL[alert.type] ?? alert.type.replace(/_/g, ' ')}
                           </span>
                           {isTpiAlert(alert.type) && (
-                            <span style={{ background: 'rgba(122,179,232,0.12)', color: '#7AB3E8', border: '1px solid rgba(122,179,232,0.25)', borderRadius: 8, padding: '1px 5px', fontSize: 9, fontFamily: "'JetBrains Mono', monospace", fontWeight: 700 }}>TPI</span>
+                            <span style={{ background: 'rgba(122,179,232,0.12)', color: '#7AB3E8', border: '1px solid rgba(122,179,232,0.25)', borderRadius: 8, padding: '1px 5px', fontSize: 10, fontFamily: "'JetBrains Mono', monospace", fontWeight: 700 }}>TPI</span>
                           )}
                         </div>
                         <div style={{ color: '#9CA3AF', fontSize: 12, fontFamily: "'Inter', sans-serif", marginBottom: 2 }}>{alert.checkpoint}</div>
-                        <div style={{ color: '#4B5563', fontSize: 10, fontFamily: "'JetBrains Mono', monospace" }}>{alert.timeAgo}</div>
+                        <div style={{ color: '#4B5563', fontSize: 11, fontFamily: "'JetBrains Mono', monospace" }}>{alert.timeAgo}</div>
                       </div>
                       {!alert.acknowledged && (
                         <button type="button"
                           onClick={() => handleAcknowledge(alert.id)}
-                          style={{ background: 'rgba(184,138,60,0.08)', border: '1px solid rgba(184,138,60,0.18)', borderRadius: 6, color: C.gold, padding: '4px 8px', fontSize: 10, cursor: 'pointer', fontFamily: "'JetBrains Mono', monospace", whiteSpace: 'nowrap', flexShrink: 0 }}>
+                          style={{ background: 'rgba(184,138,60,0.08)', border: '1px solid rgba(184,138,60,0.18)', borderRadius: 6, color: C.gold, padding: '4px 8px', fontSize: 11, cursor: 'pointer', fontFamily: "'JetBrains Mono', monospace", whiteSpace: 'nowrap', flexShrink: 0 }}>
                           ACK
                         </button>
                       )}
                       {alert.acknowledged && (
-                        <span style={{ color: '#374151', fontSize: 10, fontFamily: "'JetBrains Mono', monospace", flexShrink: 0 }}>✓ ACK</span>
+                        <span style={{ color: '#374151', fontSize: 11, fontFamily: "'JetBrains Mono', monospace", flexShrink: 0 }}>✓ ACK</span>
                       )}
                     </div>
                   </div>
@@ -413,9 +413,9 @@ const BorderDashboardPage = () => {
                     <span style={{ color: ALERT_COLOR[alert.type], fontFamily: "'JetBrains Mono', monospace", fontWeight: 700, fontSize: 12 }}>
                       {TPI_LABEL[alert.type] ?? alert.type.replace(/_/g, ' ')}
                     </span>
-                    <span style={{ background: `${ALERT_COLOR[alert.type]}14`, color: ALERT_COLOR[alert.type], border: `1px solid ${ALERT_COLOR[alert.type]}30`, borderRadius: 10, padding: '1px 7px', fontSize: 10, fontFamily: "'JetBrains Mono', monospace" }}>ACTIVE</span>
+                    <span style={{ background: `${ALERT_COLOR[alert.type]}14`, color: ALERT_COLOR[alert.type], border: `1px solid ${ALERT_COLOR[alert.type]}30`, borderRadius: 10, padding: '1px 7px', fontSize: 11, fontFamily: "'JetBrains Mono', monospace" }}>ACTIVE</span>
                     {isTpiAlert(alert.type) && (
-                      <span style={{ background: 'rgba(122,179,232,0.1)', color: '#7AB3E8', border: '1px solid rgba(122,179,232,0.25)', borderRadius: 10, padding: '1px 7px', fontSize: 10, fontFamily: "'JetBrains Mono', monospace", fontWeight: 700 }}>TPI</span>
+                      <span style={{ background: 'rgba(122,179,232,0.1)', color: '#7AB3E8', border: '1px solid rgba(122,179,232,0.25)', borderRadius: 10, padding: '1px 7px', fontSize: 11, fontFamily: "'JetBrains Mono', monospace", fontWeight: 700 }}>TPI</span>
                     )}
                   </div>
                   <div style={{ color: '#9CA3AF', fontSize: 13, fontFamily: "'Inter', sans-serif" }}>{alert.checkpoint} · {alert.timeAgo}</div>
@@ -463,7 +463,7 @@ const BorderDashboardPage = () => {
                 { label: 'CLEARED Rate',  value: '94.2%',  color: C.low },
               ].map(s => (
                 <div key={s.label} style={{ background: 'rgba(10,37,64,0.8)', border: '1px solid rgba(184,138,60,0.1)', borderRadius: 12, backdropFilter: 'blur(12px)', padding: '1rem 1.25rem' }}>
-                  <div style={{ color: '#6B7280', fontSize: 10, fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 6 }}>{s.label}</div>
+                  <div style={{ color: '#6B7280', fontSize: 11, fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 6 }}>{s.label}</div>
                   <div style={{ color: s.color, fontSize: 24, fontWeight: 800, fontFamily: "'JetBrains Mono', monospace" }}>{s.value}</div>
                 </div>
               ))}
@@ -479,7 +479,7 @@ const BorderDashboardPage = () => {
                   <thead>
                     <tr style={{ background: 'rgba(184,138,60,0.04)', borderBottom: '1px solid rgba(184,138,60,0.08)' }}>
                       {['Checkpoint', 'Type', 'Processed', 'Cleared', 'Flagged', 'Avg Wait', 'Status'].map(h => (
-                        <th key={h} style={{ padding: '10px 14px', textAlign: 'left', color: '#4B5563', fontSize: 10, fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.1em', textTransform: 'uppercase' }}>{h}</th>
+                        <th key={h} style={{ padding: '10px 14px', textAlign: 'left', color: '#4B5563', fontSize: 11, fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.1em', textTransform: 'uppercase' }}>{h}</th>
                       ))}
                     </tr>
                   </thead>
@@ -492,7 +492,7 @@ const BorderDashboardPage = () => {
                         <tr key={cp.id} style={{ borderBottom: '1px solid rgba(255,255,255,0.03)', background: idx % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.01)' }}>
                           <td style={{ padding: '10px 14px', color: '#E5E7EB', fontWeight: 600, fontFamily: "'Inter', sans-serif" }}>{cp.name}</td>
                           <td style={{ padding: '10px 14px' }}>
-                            <span style={{ color: TYPE_COLOR[cp.type], background: `${TYPE_COLOR[cp.type]}12`, border: `1px solid ${TYPE_COLOR[cp.type]}25`, borderRadius: 5, padding: '2px 7px', fontSize: 10, fontFamily: "'JetBrains Mono', monospace", fontWeight: 700 }}>{cp.type}</span>
+                            <span style={{ color: TYPE_COLOR[cp.type], background: `${TYPE_COLOR[cp.type]}12`, border: `1px solid ${TYPE_COLOR[cp.type]}25`, borderRadius: 5, padding: '2px 7px', fontSize: 11, fontFamily: "'JetBrains Mono', monospace", fontWeight: 700 }}>{cp.type}</span>
                           </td>
                           <td style={{ padding: '10px 14px', color: '#E5E7EB', fontFamily: "'JetBrains Mono', monospace" }}>{processed}</td>
                           <td style={{ padding: '10px 14px', color: C.low, fontFamily: "'JetBrains Mono', monospace" }}>{cleared}</td>

@@ -139,12 +139,12 @@ const PersonLookup = ({ isAr, onBack }: Props) => {
                     style={{ background: "rgba(184,138,60,0.1)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}>
                     {person.docType}: {person.docNumber}
                   </span>
-                  <span className="text-[10px] font-['Inter']">{person.nationalityFlag} {person.nationality}</span>
+                  <span className="text-[11px] font-['Inter']">{person.nationalityFlag} {person.nationality}</span>
                 </div>
                 {/* Watchlist warning */}
                 <div className="flex items-center gap-1 mt-1.5 px-2 py-1 rounded-lg"
                   style={{ background: "rgba(201,74,94,0.12)", border: "1px solid rgba(201,74,94,0.3)" }}>
-                  <i className="ri-alarm-warning-fill text-red-400 text-[10px]" />
+                  <i className="ri-alarm-warning-fill text-red-400 text-[11px]" />
                   <span className="text-red-400 text-[9px] font-bold font-['JetBrains_Mono']">
                     {mockWatchlistHits.length} WATCHLIST HITS
                   </span>
@@ -163,7 +163,7 @@ const PersonLookup = ({ isAr, onBack }: Props) => {
               { key: "biometric", label: "Bio", labelAr: "بيومتري", icon: "ri-fingerprint-line" },
             ] as const).map(tab => (
               <button key={tab.key} onClick={() => setActiveTab(tab.key)}
-                className="flex-1 flex items-center justify-center gap-1 py-2 rounded-xl text-[10px] font-bold font-['JetBrains_Mono'] cursor-pointer transition-all"
+                className="flex-1 flex items-center justify-center gap-1 py-2 rounded-xl text-[11px] font-bold font-['JetBrains_Mono'] cursor-pointer transition-all"
                 style={{
                   background: activeTab === tab.key ? "#D6B47E" : "rgba(10,37,64,0.8)",
                   color: activeTab === tab.key ? "#051428" : "#6B7280",
@@ -235,10 +235,10 @@ const PersonLookup = ({ isAr, onBack }: Props) => {
               ))}
               <div className="px-3 py-2.5 rounded-xl"
                 style={{ background: "rgba(201,74,94,0.08)", border: "1px solid rgba(201,74,94,0.2)" }}>
-                <p className="text-red-400 text-[10px] font-bold font-['JetBrains_Mono'] mb-1">
+                <p className="text-red-400 text-[11px] font-bold font-['JetBrains_Mono'] mb-1">
                   <i className="ri-alert-fill mr-1" />FIELD OFFICER INSTRUCTIONS
                 </p>
-                <p className="text-gray-400 text-[10px] font-['Inter']">
+                <p className="text-gray-400 text-[11px] font-['Inter']">
                   {isAr ? "لا تقترب دون تصريح. اتصل بمركز القيادة فوراً." : "Do not approach without authorization. Contact Command Center immediately."}
                 </p>
               </div>
@@ -270,7 +270,7 @@ const PersonLookup = ({ isAr, onBack }: Props) => {
                           <span className="text-[9px] font-['JetBrains_Mono'] uppercase" style={{ color: ev.streamColor }}>{ev.stream}</span>
                         </div>
                         <p className="text-white text-xs font-['Inter'] leading-snug">{ev.description}</p>
-                        <p className="text-gray-600 text-[10px] font-['JetBrains_Mono'] mt-0.5">{ev.datetime} · {ev.location}</p>
+                        <p className="text-gray-600 text-[11px] font-['JetBrains_Mono'] mt-0.5">{ev.datetime} · {ev.location}</p>
                       </div>
                     </div>
                   ))}

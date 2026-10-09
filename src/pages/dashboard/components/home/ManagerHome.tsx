@@ -368,7 +368,7 @@ const ManagerHome = ({ isAr }: Props) => {
 
 const GovernanceRow = ({ label, value, color }: { label: string; value: string; color: string }) => (
   <div className="flex items-center justify-between gap-3 px-2 py-1.5 rounded-md" style={{ background: "rgba(255,255,255,0.02)" }}>
-    <span className="text-[10px] font-bold tracking-widest uppercase text-gray-500 font-['JetBrains_Mono']">
+    <span className="text-[11px] font-bold tracking-widest uppercase text-gray-500 font-['JetBrains_Mono']">
       {label}
     </span>
     <span className="text-xs font-bold font-['JetBrains_Mono']" style={{ color }}>

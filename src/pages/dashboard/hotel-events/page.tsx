@@ -52,7 +52,7 @@ const DeiyafaFeedRow = ({ ev, isAr }: { ev: AmeenEvent; isAr: boolean }) => {
           {ev.eventType.replace("HOTEL_", "")}
         </span>
       </div>
-      <div className="col-span-2 font-['JetBrains_Mono'] text-[10px] text-gray-600 truncate">{ev.ameenRef}</div>
+      <div className="col-span-2 font-['JetBrains_Mono'] text-[11px] text-gray-600 truncate">{ev.ameenRef}</div>
     </div>
   );
 };
@@ -204,7 +204,7 @@ const HotelEventsPage = () => {
           ) : (
             <>
               {/* Column headers */}
-              <div className="grid grid-cols-12 gap-2 px-4 py-2 text-[10px] font-bold tracking-widest uppercase font-['JetBrains_Mono'] text-gray-600"
+              <div className="grid grid-cols-12 gap-2 px-4 py-2 text-[11px] font-bold tracking-widest uppercase font-['JetBrains_Mono'] text-gray-600"
                 style={{ borderBottom: "1px solid rgba(184,138,60,0.08)" }}>
                 <div className="col-span-1" />
                 <div className="col-span-2">{isAr ? "الوقت" : "Time"}</div>

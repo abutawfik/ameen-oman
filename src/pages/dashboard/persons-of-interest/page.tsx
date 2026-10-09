@@ -22,7 +22,7 @@ function POIDetail({ poi, isAr, onClose }: { poi: PersonOfInterest; isAr: boolea
           </div>
         </div>
         <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
-          <span style={{ padding: '3px 8px', borderRadius: 4, fontSize: 10, fontFamily: "'JetBrains Mono', monospace", background: `${threatCol}22`, color: threatCol, border: `1px solid ${threatCol}44`, textTransform: 'uppercase' }}>
+          <span style={{ padding: '3px 8px', borderRadius: 4, fontSize: 11, fontFamily: "'JetBrains Mono', monospace", background: `${threatCol}22`, color: threatCol, border: `1px solid ${threatCol}44`, textTransform: 'uppercase' }}>
             {poi.threat}
           </span>
           <button onClick={onClose} style={{ padding: '4px 8px', borderRadius: 4, background: 'transparent', border: '1px solid rgba(184,138,60,0.2)', color: '#5B7494', cursor: 'pointer', fontSize: 14 }}>
@@ -46,7 +46,7 @@ function POIDetail({ poi, isAr, onClose }: { poi: PersonOfInterest; isAr: boolea
 
         {/* Description */}
         <div>
-          <div style={{ fontSize: 10, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 6 }}>
+          <div style={{ fontSize: 11, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 6 }}>
             {isAr ? 'الوصف' : 'Description'}
           </div>
           <div style={{ fontSize: 12, color: '#8FA8C0', fontFamily: "'Inter', sans-serif", lineHeight: 1.6 }}>{poi.description}</div>
@@ -55,7 +55,7 @@ function POIDetail({ poi, isAr, onClose }: { poi: PersonOfInterest; isAr: boolea
         {/* Aliases */}
         {poi.aliases.length > 0 && (
           <div>
-            <div style={{ fontSize: 10, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 6 }}>
+            <div style={{ fontSize: 11, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 6 }}>
               {isAr ? 'الأسماء المستعارة' : 'Aliases'}
             </div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 5 }}>
@@ -70,12 +70,12 @@ function POIDetail({ poi, isAr, onClose }: { poi: PersonOfInterest; isAr: boolea
 
         {/* Documents */}
         <div>
-          <div style={{ fontSize: 10, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 6 }}>
+          <div style={{ fontSize: 11, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 6 }}>
             {isAr ? 'وثائق الهوية' : 'Known Documents'}
           </div>
           {poi.identities.map((doc, i) => (
             <div key={i} style={{ display: 'flex', gap: 12, padding: '7px 0', borderBottom: i < poi.identities.length - 1 ? '1px solid rgba(255,255,255,0.04)' : 'none' }}>
-              <span style={{ fontSize: 10, padding: '2px 6px', borderRadius: 3, background: 'rgba(184,138,60,0.1)', color: '#B8893C', fontFamily: "'JetBrains Mono', monospace", whiteSpace: 'nowrap' }}>{doc.docType}</span>
+              <span style={{ fontSize: 11, padding: '2px 6px', borderRadius: 3, background: 'rgba(184,138,60,0.1)', color: '#B8893C', fontFamily: "'JetBrains Mono', monospace", whiteSpace: 'nowrap' }}>{doc.docType}</span>
               <span style={{ fontSize: 11, color: '#D6B47E', fontFamily: "'JetBrains Mono', monospace" }}>{doc.docNumber}</span>
               <span style={{ fontSize: 11, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace" }}>{doc.issuingCountry}</span>
               {doc.expiry && <span style={{ fontSize: 11, color: '#374B61', fontFamily: "'JetBrains Mono', monospace" }}>{doc.expiry}</span>}
@@ -86,7 +86,7 @@ function POIDetail({ poi, isAr, onClose }: { poi: PersonOfInterest; isAr: boolea
         {/* Sightings */}
         {poi.sightings.length > 0 && (
           <div>
-            <div style={{ fontSize: 10, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 8 }}>
+            <div style={{ fontSize: 11, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 8 }}>
               {isAr ? 'المشاهدات' : 'Sightings'} ({poi.sightings.length})
             </div>
             {poi.sightings.map(s => (
@@ -100,7 +100,7 @@ function POIDetail({ poi, isAr, onClose }: { poi: PersonOfInterest; isAr: boolea
                 </div>
                 <div style={{ fontSize: 11, color: '#8FA8C0', fontFamily: "'Inter', sans-serif" }}>{s.context}</div>
                 {!s.verified && (
-                  <div style={{ marginTop: 3, fontSize: 10, color: '#D4922A', fontFamily: "'JetBrains Mono', monospace" }}>
+                  <div style={{ marginTop: 3, fontSize: 11, color: '#D4922A', fontFamily: "'JetBrains Mono', monospace" }}>
                     <i className="ri-error-warning-line" style={{ marginRight: 4 }} />{isAr ? 'غير مؤكد' : 'Unverified'}
                   </div>
                 )}
@@ -113,7 +113,7 @@ function POIDetail({ poi, isAr, onClose }: { poi: PersonOfInterest; isAr: boolea
         {poi.tags.length > 0 && (
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 5 }}>
             {poi.tags.map(t => (
-              <span key={t} style={{ padding: '2px 7px', borderRadius: 3, fontSize: 10, background: 'rgba(184,138,60,0.08)', color: '#B8893C', fontFamily: "'JetBrains Mono', monospace", border: '1px solid rgba(184,138,60,0.15)' }}>
+              <span key={t} style={{ padding: '2px 7px', borderRadius: 3, fontSize: 11, background: 'rgba(184,138,60,0.08)', color: '#B8893C', fontFamily: "'JetBrains Mono', monospace", border: '1px solid rgba(184,138,60,0.15)' }}>
                 #{t}
               </span>
             ))}
@@ -169,7 +169,7 @@ function POIRow({ poi, isAr, isSelected, onClick }: { poi: PersonOfInterest; isA
         <div style={{ fontSize: 13, color: '#CBD5E1', fontFamily: "'Inter', sans-serif", fontWeight: 500, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
           {isAr && poi.nameAr ? poi.nameAr : poi.name}
         </div>
-        <div style={{ fontSize: 10, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", marginTop: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+        <div style={{ fontSize: 11, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", marginTop: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
           {poi.nationalityCode} · {poi.dob} · {poi.sourceRef}
         </div>
       </div>
@@ -181,10 +181,10 @@ function POIRow({ poi, isAr, isSelected, onClick }: { poi: PersonOfInterest; isA
             <i className="ri-alarm-warning-line" style={{ marginRight: 3 }} />{poi.alertCount}
           </span>
         )}
-        <span style={{ fontSize: 10, padding: '2px 6px', borderRadius: 3, background: `${threatCol}18`, color: threatCol, fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', border: `1px solid ${threatCol}33` }}>
+        <span style={{ fontSize: 11, padding: '2px 6px', borderRadius: 3, background: `${threatCol}18`, color: threatCol, fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', border: `1px solid ${threatCol}33` }}>
           {poi.threat}
         </span>
-        <span style={{ fontSize: 10, padding: '2px 6px', borderRadius: 3, background: poi.status === 'ACTIVE' ? 'rgba(74,142,90,0.12)' : 'rgba(91,116,148,0.12)', color: poi.status === 'ACTIVE' ? '#4A8E5A' : '#5B7494', fontFamily: "'JetBrains Mono', monospace" }}>
+        <span style={{ fontSize: 11, padding: '2px 6px', borderRadius: 3, background: poi.status === 'ACTIVE' ? 'rgba(74,142,90,0.12)' : 'rgba(91,116,148,0.12)', color: poi.status === 'ACTIVE' ? '#4A8E5A' : '#5B7494', fontFamily: "'JetBrains Mono', monospace" }}>
           {poi.status}
         </span>
       </div>
@@ -226,7 +226,7 @@ export default function PersonsOfInterestPage() {
     arr.includes(val) ? arr.filter(x => x !== val) : [...arr, val];
 
   const chipStyle = (active: boolean, color: string = '#B8893C') => ({
-    padding: '4px 10px', borderRadius: 4, fontSize: 10, cursor: 'pointer',
+    padding: '4px 10px', borderRadius: 4, fontSize: 11, cursor: 'pointer',
     fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.04em',
     background: active ? `${color}20` : 'transparent',
     border: `1px solid ${active ? color : 'rgba(184,138,60,0.15)'}`,
@@ -263,7 +263,7 @@ export default function PersonsOfInterestPage() {
               <div key={s.labelEn} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                 <i className={s.icon} style={{ color: s.color, fontSize: 14 }} />
                 <span style={{ fontSize: 18, fontFamily: "'JetBrains Mono', monospace", color: s.color, fontWeight: 600, lineHeight: 1 }}>{s.val}</span>
-                <span style={{ fontSize: 10, color: '#374B61', fontFamily: "'JetBrains Mono', monospace', textTransform: 'uppercase" }}>{isAr ? s.labelAr : s.labelEn}</span>
+                <span style={{ fontSize: 11, color: '#374B61', fontFamily: "'JetBrains Mono', monospace', textTransform: 'uppercase" }}>{isAr ? s.labelAr : s.labelEn}</span>
               </div>
             ))}
           </div>

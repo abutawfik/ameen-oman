@@ -161,7 +161,7 @@ const SupervisorHome = ({ isAr }: Props) => {
               </p>
             </div>
             <span
-              className="px-2 py-0.5 rounded-md text-[10px] font-bold font-['JetBrains_Mono'] tracking-widest"
+              className="px-2 py-0.5 rounded-md text-[11px] font-bold font-['JetBrains_Mono'] tracking-widest"
               style={{ background: "rgba(74,222,128,0.1)", color: "#4ADE80" }}
             >
               {teamOnShift}/{TEAM_ROSTER.length} ON
@@ -202,7 +202,7 @@ const SupervisorHome = ({ isAr }: Props) => {
                       </div>
                       <div className="flex items-center gap-1">
                         <span className="w-1.5 h-1.5 rounded-full" style={{ background: s.color }} />
-                        <span className="text-[10px] font-['JetBrains_Mono']" style={{ color: s.color }}>
+                        <span className="text-[11px] font-['JetBrains_Mono']" style={{ color: s.color }}>
                           {isAr ? s.labelAr : s.labelEn}
                         </span>
                       </div>
@@ -228,7 +228,7 @@ const SupervisorHome = ({ isAr }: Props) => {
                   <div className="col-span-1 text-right">
                     <button
                       type="button"
-                      className="opacity-0 group-hover:opacity-100 transition-opacity text-[10px] font-bold text-gold-400 font-['JetBrains_Mono']"
+                      className="opacity-0 group-hover:opacity-100 transition-opacity text-[11px] font-bold text-gold-400 font-['JetBrains_Mono']"
                     >
                       {isAr ? "إعادة →" : "reassign →"}
                     </button>
@@ -277,7 +277,7 @@ const SupervisorHome = ({ isAr }: Props) => {
                     <div className="h-full" style={{ width: `${metPct}%`, background: "#4ADE80", opacity: 0.85 }} />
                     <div className="h-full" style={{ width: `${100 - metPct}%`, background: col, opacity: 0.85 }} />
                   </div>
-                  <div className="flex items-center justify-between mt-1 text-[10px] text-gray-600 font-['JetBrains_Mono']">
+                  <div className="flex items-center justify-between mt-1 text-[11px] text-gray-600 font-['JetBrains_Mono']">
                     <span>{row.inFlight} {isAr ? "قيد التنفيذ" : "in flight"}</span>
                     <span>{total} {isAr ? "إجمالي" : "total"}</span>
                   </div>
@@ -324,14 +324,14 @@ const SupervisorHome = ({ isAr }: Props) => {
                     >
                       {e.status.toUpperCase()}
                     </span>
-                    <span className="text-[10px] text-gray-600 font-['JetBrains_Mono'] ml-auto">
+                    <span className="text-[11px] text-gray-600 font-['JetBrains_Mono'] ml-auto">
                       {mins < 60 ? `${mins}m` : `${Math.floor(mins / 60)}h`} {isAr ? "" : "ago"}
                     </span>
                   </div>
                   <div className="text-white text-xs font-semibold leading-snug">
                     {isAr ? e.reasonAr : e.reason}
                   </div>
-                  <div className="text-gray-500 text-[10px] font-['JetBrains_Mono'] mt-1">
+                  <div className="text-gray-500 text-[11px] font-['JetBrains_Mono'] mt-1">
                     {analyst?.avatarInitials ?? "??"} → {e.toRole} · {e.caseId}
                   </div>
                 </div>

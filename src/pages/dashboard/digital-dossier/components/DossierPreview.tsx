@@ -68,7 +68,7 @@ const DossierPreview = ({ subject, classification, format, sections, purpose, ca
                 { label: "Watermark", value: watermark ? "Enabled" : "Disabled" },
               ].map((item) => (
                 <div key={item.label} className="p-2 rounded-lg" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
-                  <p className="text-gray-600 text-[10px] mb-0.5">{item.label}</p>
+                  <p className="text-gray-600 text-[11px] mb-0.5">{item.label}</p>
                   <p className="text-gray-300">{item.value}</p>
                 </div>
               ))}
@@ -136,7 +136,7 @@ const DossierPreview = ({ subject, classification, format, sections, purpose, ca
                 { label: "Risk Score", value: `${subject.riskScore}/100 — ${subject.riskLevel.toUpperCase()}` },
               ].map((item) => (
                 <div key={item.label} className="p-2.5 rounded-lg" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
-                  <p className="text-gray-600 text-[10px] font-['JetBrains_Mono'] mb-0.5">{item.label}</p>
+                  <p className="text-gray-600 text-[11px] font-['JetBrains_Mono'] mb-0.5">{item.label}</p>
                   <p className="text-gray-200 text-xs font-['Inter']">{item.value}</p>
                 </div>
               ))}
@@ -155,7 +155,7 @@ const DossierPreview = ({ subject, classification, format, sections, purpose, ca
                 <div className="flex-1">
                   <p className="text-white text-xs font-bold font-['Inter']">{event.title}</p>
                   <p className="text-gray-500 text-xs font-['Inter']">{event.description}</p>
-                  <p className="text-gray-700 text-[10px] font-['JetBrains_Mono'] mt-1">{event.datetime} · {event.location}</p>
+                  <p className="text-gray-700 text-[11px] font-['JetBrains_Mono'] mt-1">{event.datetime} · {event.location}</p>
                 </div>
               </div>
             ))}
@@ -168,7 +168,7 @@ const DossierPreview = ({ subject, classification, format, sections, purpose, ca
             {mockTimeline.filter((e) => e.isAlert).map((event) => (
               <div key={event.id} className="p-3 rounded-lg" style={{ background: "rgba(201,74,94,0.05)", border: "1px solid rgba(201,74,94,0.15)" }}>
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="px-1.5 py-0.5 rounded text-[10px] font-bold font-['JetBrains_Mono']" style={{
+                  <span className="px-1.5 py-0.5 rounded text-[11px] font-bold font-['JetBrains_Mono']" style={{
                     background: event.alertSeverity === "critical" ? "rgba(201,74,94,0.2)" : event.alertSeverity === "high" ? "rgba(201,138,27,0.2)" : "rgba(250,204,21,0.2)",
                     color: event.alertSeverity === "critical" ? "#C94A5E" : event.alertSeverity === "high" ? "#C98A1B" : "#FACC15",
                   }}>
@@ -177,7 +177,7 @@ const DossierPreview = ({ subject, classification, format, sections, purpose, ca
                   <span className="text-white text-xs font-bold font-['Inter']">{event.alertType}</span>
                 </div>
                 <p className="text-gray-400 text-xs font-['Inter']">{event.description}</p>
-                <p className="text-gray-700 text-[10px] font-['JetBrains_Mono'] mt-1">{event.datetime} · {event.stream}</p>
+                <p className="text-gray-700 text-[11px] font-['JetBrains_Mono'] mt-1">{event.datetime} · {event.stream}</p>
               </div>
             ))}
           </div>
@@ -244,7 +244,7 @@ const DossierPreview = ({ subject, classification, format, sections, purpose, ca
               <i className="ri-file-pdf-line text-gold-400" />
               <span className="text-white text-sm font-bold font-['Inter']">Dossier Preview</span>
             </div>
-            <div className="px-2 py-1 rounded text-[10px] font-bold font-['JetBrains_Mono'] text-center" style={{ background: cfg.bg, color: cfg.color, border: `1px solid ${cfg.border}` }}>
+            <div className="px-2 py-1 rounded text-[11px] font-bold font-['JetBrains_Mono'] text-center" style={{ background: cfg.bg, color: cfg.color, border: `1px solid ${cfg.border}` }}>
               {classification}
             </div>
           </div>
@@ -259,7 +259,7 @@ const DossierPreview = ({ subject, classification, format, sections, purpose, ca
                   borderLeft: activeSection === section.key ? "2px solid #D6B47E" : "2px solid transparent",
                 }}
               >
-                <span className="text-gray-600 text-[10px] font-['JetBrains_Mono'] w-4 flex-shrink-0">{String(idx + 1).padStart(2, "0")}</span>
+                <span className="text-gray-600 text-[11px] font-['JetBrains_Mono'] w-4 flex-shrink-0">{String(idx + 1).padStart(2, "0")}</span>
                 <div className="w-4 h-4 flex items-center justify-center flex-shrink-0">
                   <i className={`${section.streamIcon} text-xs`} style={{ color: activeSection === section.key ? "#D6B47E" : section.streamColor }} />
                 </div>
@@ -270,8 +270,8 @@ const DossierPreview = ({ subject, classification, format, sections, purpose, ca
             ))}
           </div>
           <div className="p-4 border-t" style={{ borderColor: "rgba(184,138,60,0.1)" }}>
-            <p className="text-gray-600 text-[10px] font-['JetBrains_Mono']">{sections.length} sections · ~{estimatedPages} pages</p>
-            {watermark && <p className="text-gray-700 text-[10px] font-['JetBrains_Mono'] mt-0.5">Watermarked · {encrypted ? "Encrypted" : "Standard"}</p>}
+            <p className="text-gray-600 text-[11px] font-['JetBrains_Mono']">{sections.length} sections · ~{estimatedPages} pages</p>
+            {watermark && <p className="text-gray-700 text-[11px] font-['JetBrains_Mono'] mt-0.5">Watermarked · {encrypted ? "Encrypted" : "Standard"}</p>}
           </div>
         </div>
 
@@ -289,13 +289,13 @@ const DossierPreview = ({ subject, classification, format, sections, purpose, ca
             </div>
             <div className="flex items-center gap-3">
               {watermark && (
-                <div className="flex items-center gap-1.5 px-2 py-1 rounded text-[10px] font-['JetBrains_Mono']" style={{ background: "rgba(250,204,21,0.08)", color: "#FACC15", border: "1px solid rgba(250,204,21,0.2)" }}>
+                <div className="flex items-center gap-1.5 px-2 py-1 rounded text-[11px] font-['JetBrains_Mono']" style={{ background: "rgba(250,204,21,0.08)", color: "#FACC15", border: "1px solid rgba(250,204,21,0.2)" }}>
                   <i className="ri-mark-pen-line text-xs" />
                   WATERMARKED
                 </div>
               )}
               {encrypted && (
-                <div className="flex items-center gap-1.5 px-2 py-1 rounded text-[10px] font-['JetBrains_Mono']" style={{ background: "rgba(74,222,128,0.08)", color: "#4ADE80", border: "1px solid rgba(74,222,128,0.2)" }}>
+                <div className="flex items-center gap-1.5 px-2 py-1 rounded text-[11px] font-['JetBrains_Mono']" style={{ background: "rgba(74,222,128,0.08)", color: "#4ADE80", border: "1px solid rgba(74,222,128,0.2)" }}>
                   <i className="ri-lock-line text-xs" />
                   ENCRYPTED
                 </div>
@@ -309,7 +309,7 @@ const DossierPreview = ({ subject, classification, format, sections, purpose, ca
           {/* Content area */}
           <div className="flex-1 overflow-y-auto p-6" style={{ scrollbarWidth: "thin", scrollbarColor: "rgba(184,138,60,0.2) transparent" }}>
             {/* Classification banner */}
-            <div className="text-center py-1.5 rounded mb-4 text-[10px] font-bold font-['JetBrains_Mono'] tracking-widest" style={{ background: cfg.bg, color: cfg.color, border: `1px solid ${cfg.border}` }}>
+            <div className="text-center py-1.5 rounded mb-4 text-[11px] font-bold font-['JetBrains_Mono'] tracking-widest" style={{ background: cfg.bg, color: cfg.color, border: `1px solid ${cfg.border}` }}>
               {classification} — HANDLE ACCORDING TO CLASSIFICATION POLICY
             </div>
             {renderSectionContent(activeSection)}

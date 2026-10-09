@@ -43,25 +43,25 @@ export default function ServiceSearch({ isAr }: Props) {
       <div style={{ padding: 16, borderBottom: '1px solid rgba(184,138,60,0.08)', background: 'rgba(5,20,40,0.4)' }}>
         <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'flex-end' }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 4, minWidth: 120 }}>
-            <label style={{ fontSize: 10, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+            <label style={{ fontSize: 11, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.06em', textTransform: 'uppercase' }}>
               {isAr ? 'رقم الرحلة' : 'Flight No'}
             </label>
             <input value={flightQuery} onChange={e => setFlightQuery(e.target.value)} placeholder="EK865…" style={inputStyle} />
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 4, minWidth: 80 }}>
-            <label style={{ fontSize: 10, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+            <label style={{ fontSize: 11, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.06em', textTransform: 'uppercase' }}>
               {isAr ? 'المنشأ' : 'Origin'}
             </label>
             <input value={originQuery} onChange={e => setOriginQuery(e.target.value)} placeholder="DXB…" style={inputStyle} />
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 4, minWidth: 80 }}>
-            <label style={{ fontSize: 10, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+            <label style={{ fontSize: 11, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.06em', textTransform: 'uppercase' }}>
               {isAr ? 'الوجهة' : 'Destination'}
             </label>
             <input value={destQuery} onChange={e => setDestQuery(e.target.value)} placeholder="MCT…" style={inputStyle} />
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 4, minWidth: 120 }}>
-            <label style={{ fontSize: 10, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+            <label style={{ fontSize: 11, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.06em', textTransform: 'uppercase' }}>
               {isAr ? 'الحالة' : 'Status'}
             </label>
             <select value={statusFilter} onChange={e => setStatusFilter(e.target.value)} style={inputStyle}>
@@ -124,7 +124,7 @@ export default function ServiceSearch({ isAr }: Props) {
                     )}
                   </div>
                   {/* Status badge */}
-                  <span style={{ padding: '3px 8px', borderRadius: 4, fontSize: 10, fontFamily: "'JetBrains Mono', monospace", background: `${statusColor}20`, color: statusColor, border: `1px solid ${statusColor}44` }}>
+                  <span style={{ padding: '3px 8px', borderRadius: 4, fontSize: 11, fontFamily: "'JetBrains Mono', monospace", background: `${statusColor}20`, color: statusColor, border: `1px solid ${statusColor}44` }}>
                     {isAr ? STATUS_LABELS[svc.status].ar : STATUS_LABELS[svc.status].en}
                   </span>
                   {/* Expand icon */}

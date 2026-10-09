@@ -23,7 +23,7 @@ const NodeDetailPanel = ({ node, edges, nodes, isAr, onClose, onSelectNode }: Pr
     const colors: Record<string, string> = { low: "#4ADE80", medium: "#FACC15", high: "#C98A1B", critical: "#C94A5E" };
     return (
       <span
-        className="px-1.5 py-0.5 rounded text-[10px] font-['JetBrains_Mono'] font-bold uppercase"
+        className="px-1.5 py-0.5 rounded text-[11px] font-['JetBrains_Mono'] font-bold uppercase"
         style={{ background: `${colors[risk]}20`, color: colors[risk], border: `1px solid ${colors[risk]}40` }}
       >
         {risk}
@@ -54,7 +54,7 @@ const NodeDetailPanel = ({ node, edges, nodes, isAr, onClose, onSelectNode }: Pr
         <div className="flex-1 min-w-0">
           <p className="text-white text-sm font-bold font-['Inter'] truncate">{node.label}</p>
           <div className="flex items-center gap-2 mt-0.5">
-            <span className="text-gray-500 text-[10px] font-['JetBrains_Mono'] uppercase">{cfg.labelEn}</span>
+            <span className="text-gray-500 text-[11px] font-['JetBrains_Mono'] uppercase">{cfg.labelEn}</span>
             {riskBadge(node.risk)}
           </div>
         </div>
@@ -73,7 +73,7 @@ const NodeDetailPanel = ({ node, edges, nodes, isAr, onClose, onSelectNode }: Pr
           ].map((stat, i) => (
             <div key={i} className="p-2 rounded-lg text-center" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)" }}>
               <p className="text-lg font-black font-['JetBrains_Mono']" style={{ color: stat.color }}>{stat.value}</p>
-              <p className="text-gray-600 text-[10px] font-['Inter'] mt-0.5">{stat.label}</p>
+              <p className="text-gray-600 text-[11px] font-['Inter'] mt-0.5">{stat.label}</p>
             </div>
           ))}
         </div>
@@ -81,14 +81,14 @@ const NodeDetailPanel = ({ node, edges, nodes, isAr, onClose, onSelectNode }: Pr
         {/* Streams */}
         {node.streams && node.streams.length > 0 && (
           <div>
-            <p className="text-gray-600 text-[10px] font-bold tracking-widest font-['JetBrains_Mono'] uppercase mb-2">
+            <p className="text-gray-600 text-[11px] font-bold tracking-widest font-['JetBrains_Mono'] uppercase mb-2">
               {isAr ? "مصادر البيانات" : "DATA STREAMS"}
             </p>
             <div className="flex flex-wrap gap-1.5">
               {node.streams.map(s => (
                 <span
                   key={s}
-                  className="px-2 py-0.5 rounded text-[10px] font-['JetBrains_Mono']"
+                  className="px-2 py-0.5 rounded text-[11px] font-['JetBrains_Mono']"
                   style={{ background: "rgba(184,138,60,0.08)", border: "1px solid rgba(184,138,60,0.2)", color: "#D6B47E" }}
                 >
                   {s}
@@ -101,7 +101,7 @@ const NodeDetailPanel = ({ node, edges, nodes, isAr, onClose, onSelectNode }: Pr
         {/* Details */}
         {node.details && Object.keys(node.details).length > 0 && (
           <div>
-            <p className="text-gray-600 text-[10px] font-bold tracking-widest font-['JetBrains_Mono'] uppercase mb-2">
+            <p className="text-gray-600 text-[11px] font-bold tracking-widest font-['JetBrains_Mono'] uppercase mb-2">
               {isAr ? "التفاصيل" : "DETAILS"}
             </p>
             <div className="space-y-1.5">
@@ -117,7 +117,7 @@ const NodeDetailPanel = ({ node, edges, nodes, isAr, onClose, onSelectNode }: Pr
 
         {/* Connected nodes */}
         <div>
-          <p className="text-gray-600 text-[10px] font-bold tracking-widest font-['JetBrains_Mono'] uppercase mb-2">
+          <p className="text-gray-600 text-[11px] font-bold tracking-widest font-['JetBrains_Mono'] uppercase mb-2">
             {isAr ? "الاتصالات" : "CONNECTIONS"} ({connectedNodes.length})
           </p>
           <div className="space-y-1.5">
@@ -137,19 +137,19 @@ const NodeDetailPanel = ({ node, edges, nodes, isAr, onClose, onSelectNode }: Pr
                     className="w-7 h-7 flex items-center justify-center rounded-full flex-shrink-0"
                     style={{ background: `${otherCfg.color}15`, border: `1.5px solid ${otherCfg.color}40` }}
                   >
-                    <span className="text-[10px] font-bold" style={{ color: otherCfg.color }}>
+                    <span className="text-[11px] font-bold" style={{ color: otherCfg.color }}>
                       {(other.initials || other.label.substring(0, 2)).toUpperCase()}
                     </span>
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-gray-300 text-xs font-['Inter'] truncate">{other.label}</p>
                     <div className="flex items-center gap-1 mt-0.5">
-                      <i className={`${isOutgoing ? "ri-arrow-right-line" : "ri-arrow-left-line"} text-[10px]`} style={{ color: edgeCfg.color }} />
-                      <span className="text-[10px] font-['JetBrains_Mono']" style={{ color: edgeCfg.color }}>{edge.label}</span>
+                      <i className={`${isOutgoing ? "ri-arrow-right-line" : "ri-arrow-left-line"} text-[11px]`} style={{ color: edgeCfg.color }} />
+                      <span className="text-[11px] font-['JetBrains_Mono']" style={{ color: edgeCfg.color }}>{edge.label}</span>
                     </div>
                   </div>
                   <div className="flex flex-col items-end gap-0.5 flex-shrink-0">
-                    <span className="text-[10px] font-['JetBrains_Mono']" style={{ color: edge.confidence >= 90 ? "#4ADE80" : edge.confidence >= 70 ? "#FACC15" : "#C98A1B" }}>
+                    <span className="text-[11px] font-['JetBrains_Mono']" style={{ color: edge.confidence >= 90 ? "#4ADE80" : edge.confidence >= 70 ? "#FACC15" : "#C98A1B" }}>
                       {edge.confidence}%
                     </span>
                     <span className="w-1.5 h-1.5 rounded-full" style={{ background: riskColors[other.risk] }} />

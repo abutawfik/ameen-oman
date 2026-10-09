@@ -43,9 +43,9 @@ const CaseDetail = ({ caseData, isAr }: Props) => {
         <div className="flex items-start justify-between mb-3">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <span className="text-[10px] font-['JetBrains_Mono'] px-2 py-0.5 rounded" style={{ background: `${classColor}15`, color: classColor }}>{caseData.classification}</span>
-              <span className="text-[10px] font-['JetBrains_Mono'] px-2 py-0.5 rounded" style={{ background: pri.bg, color: pri.color }}>{caseData.priority.toUpperCase()}</span>
-              <span className="text-gray-600 text-[10px] font-['JetBrains_Mono']">{caseData.caseNumber}</span>
+              <span className="text-[11px] font-['JetBrains_Mono'] px-2 py-0.5 rounded" style={{ background: `${classColor}15`, color: classColor }}>{caseData.classification}</span>
+              <span className="text-[11px] font-['JetBrains_Mono'] px-2 py-0.5 rounded" style={{ background: pri.bg, color: pri.color }}>{caseData.priority.toUpperCase()}</span>
+              <span className="text-gray-600 text-[11px] font-['JetBrains_Mono']">{caseData.caseNumber}</span>
             </div>
             <h2 className="text-white text-base font-bold font-['Inter']">{caseData.title}</h2>
             <p className="text-gray-500 text-xs font-['Inter'] mt-0.5">Lead: {caseData.leadOfficer}</p>
@@ -54,7 +54,7 @@ const CaseDetail = ({ caseData, isAr }: Props) => {
             <div className="w-14 h-14 rounded-full flex items-center justify-center" style={{ background: `${pri.color}15`, border: `2px solid ${pri.color}40` }}>
               <span className="text-xl font-black font-['JetBrains_Mono']" style={{ color: pri.color }}>{caseData.progressPct}</span>
             </div>
-            <p className="text-gray-700 text-[10px] font-['JetBrains_Mono'] mt-0.5">% done</p>
+            <p className="text-gray-700 text-[11px] font-['JetBrains_Mono'] mt-0.5">% done</p>
           </div>
         </div>
         {/* Progress bar */}
@@ -84,16 +84,16 @@ const CaseDetail = ({ caseData, isAr }: Props) => {
         {subTab === "overview" && (
           <div className="space-y-4">
             <div className="p-3 rounded-xl" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
-              <p className="text-gray-600 text-[10px] font-['JetBrains_Mono'] mb-1">DESCRIPTION</p>
+              <p className="text-gray-600 text-[11px] font-['JetBrains_Mono'] mb-1">DESCRIPTION</p>
               <p className="text-gray-300 text-xs font-['Inter'] leading-relaxed">{caseData.description}</p>
             </div>
             <div className="p-3 rounded-xl" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
-              <p className="text-gray-600 text-[10px] font-['JetBrains_Mono'] mb-1">OBJECTIVE</p>
+              <p className="text-gray-600 text-[11px] font-['JetBrains_Mono'] mb-1">OBJECTIVE</p>
               <p className="text-gray-300 text-xs font-['Inter'] leading-relaxed">{caseData.objective}</p>
             </div>
             {/* Subjects */}
             <div>
-              <p className="text-gray-600 text-[10px] font-['JetBrains_Mono'] mb-2">SUBJECTS ({caseData.subjects.length})</p>
+              <p className="text-gray-600 text-[11px] font-['JetBrains_Mono'] mb-2">SUBJECTS ({caseData.subjects.length})</p>
               <div className="space-y-2">
                 {caseData.subjects.map((s) => (
                   <div key={s.id} className="flex items-center gap-3 p-2.5 rounded-xl" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
@@ -102,11 +102,11 @@ const CaseDetail = ({ caseData, isAr }: Props) => {
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="text-white text-xs font-bold font-['Inter'] truncate">{s.name}</p>
-                      <p className="text-gray-600 text-[10px] font-['Inter']">{s.nationality} · {s.role}</p>
+                      <p className="text-gray-600 text-[11px] font-['Inter']">{s.nationality} · {s.role}</p>
                     </div>
                     <div className="text-right flex-shrink-0">
                       <p className="font-bold font-['JetBrains_Mono'] text-sm" style={{ color: s.riskScore >= 90 ? "#C94A5E" : s.riskScore >= 75 ? "#C98A1B" : "#FACC15" }}>{s.riskScore}</p>
-                      <p className="text-gray-700 text-[10px]">{s.linkedStreams} streams</p>
+                      <p className="text-gray-700 text-[11px]">{s.linkedStreams} streams</p>
                     </div>
                   </div>
                 ))}
@@ -114,7 +114,7 @@ const CaseDetail = ({ caseData, isAr }: Props) => {
             </div>
             {/* Team */}
             <div>
-              <p className="text-gray-600 text-[10px] font-['JetBrains_Mono'] mb-2">INVESTIGATION TEAM</p>
+              <p className="text-gray-600 text-[11px] font-['JetBrains_Mono'] mb-2">INVESTIGATION TEAM</p>
               <div className="flex flex-wrap gap-2">
                 {[caseData.leadOfficer, ...caseData.team].map((member) => (
                   <span key={member} className="text-xs px-2.5 py-1 rounded-lg font-['Inter']" style={{ background: "rgba(184,138,60,0.06)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.15)" }}>
@@ -125,10 +125,10 @@ const CaseDetail = ({ caseData, isAr }: Props) => {
             </div>
             {/* Streams */}
             <div>
-              <p className="text-gray-600 text-[10px] font-['JetBrains_Mono'] mb-2">STREAMS COVERED</p>
+              <p className="text-gray-600 text-[11px] font-['JetBrains_Mono'] mb-2">STREAMS COVERED</p>
               <div className="flex flex-wrap gap-1.5">
                 {caseData.streamsCovered.map((s) => (
-                  <span key={s} className="text-[10px] px-2 py-1 rounded font-['Inter']" style={{ background: "rgba(255,255,255,0.05)", color: "#9CA3AF" }}>{s}</span>
+                  <span key={s} className="text-[11px] px-2 py-1 rounded font-['Inter']" style={{ background: "rgba(255,255,255,0.05)", color: "#9CA3AF" }}>{s}</span>
                 ))}
               </div>
             </div>
@@ -155,7 +155,7 @@ const CaseDetail = ({ caseData, isAr }: Props) => {
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-white text-xs font-bold font-['Inter'] truncate">{ev.title}</p>
-                  <p className="text-gray-600 text-[10px] font-['Inter']">{ev.source} · {ev.addedAt} · {ev.size}</p>
+                  <p className="text-gray-600 text-[11px] font-['Inter']">{ev.source} · {ev.addedAt} · {ev.size}</p>
                 </div>
                 <span className="text-[9px] px-1.5 py-0.5 rounded font-['JetBrains_Mono'] flex-shrink-0" style={{ background: "rgba(250,204,21,0.1)", color: "#FACC15" }}>{ev.classification}</span>
               </div>
@@ -174,9 +174,9 @@ const CaseDetail = ({ caseData, isAr }: Props) => {
                   <div className="flex items-center gap-2">
                     {note.pinned && <i className="ri-pushpin-line text-gold-400 text-xs" />}
                     <span className="text-white text-xs font-bold font-['Inter']">{note.author}</span>
-                    <span className="text-gray-600 text-[10px] font-['Inter']">{note.authorRole}</span>
+                    <span className="text-gray-600 text-[11px] font-['Inter']">{note.authorRole}</span>
                   </div>
-                  <span className="text-gray-700 text-[10px] font-['JetBrains_Mono']">{note.timestamp}</span>
+                  <span className="text-gray-700 text-[11px] font-['JetBrains_Mono']">{note.timestamp}</span>
                 </div>
                 <p className="text-gray-300 text-xs font-['Inter'] leading-relaxed">{note.content}</p>
               </div>

@@ -46,7 +46,7 @@ const ClassificationPill = ({ classification, isAr }: { classification: Classifi
   const meta = CLASSIFICATION_META[classification];
   return (
     <span className="rounded-md font-bold tracking-widest inline-flex items-center px-1.5 py-0.5"
-      style={{ background: meta.bg, color: meta.color, border: `1px solid ${meta.color}44`, fontSize: 10, fontFamily: "'JetBrains Mono', monospace" }}>
+      style={{ background: meta.bg, color: meta.color, border: `1px solid ${meta.color}44`, fontSize: 11, fontFamily: "'JetBrains Mono', monospace" }}>
       {isAr ? meta.labelAr : meta.label}
     </span>
   );
@@ -247,7 +247,7 @@ const CaseManagementPage = () => {
               const color = s === "ALL" ? "#D6B47E" : SEVERITY_META[s as Case["severity"]].color;
               return (
                 <button key={s} onClick={() => setSevFilter(s)}
-                  className="flex items-center gap-1 px-2 py-1 rounded-full text-[10px] font-bold cursor-pointer"
+                  className="flex items-center gap-1 px-2 py-1 rounded-full text-[11px] font-bold cursor-pointer"
                   style={{
                     background: active ? `${color}22` : "transparent",
                     color: active ? color : "#6B7280",
@@ -307,12 +307,12 @@ const CaseManagementPage = () => {
                       {c.status}
                     </span>
                   </div>
-                  <p className="text-[10px] text-gray-500" style={{ fontFamily: fonts.mono }}>
+                  <p className="text-[11px] text-gray-500" style={{ fontFamily: fonts.mono }}>
                     {c.id} · {c.subjectName} · {fmtAgo(c.openedAt, isAr)}
                   </p>
                   <div className="flex items-center gap-2">
-                    <span className="text-[10px] text-gray-400 flex items-center gap-1">
-                      <i className="ri-user-line text-[10px]" /> {c.ownerName}
+                    <span className="text-[11px] text-gray-400 flex items-center gap-1">
+                      <i className="ri-user-line text-[11px]" /> {c.ownerName}
                     </span>
                     <ClassificationPill classification={c.classification} isAr={isAr} />
                   </div>
@@ -335,11 +335,11 @@ const CaseManagementPage = () => {
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2 flex-wrap">
                 <h2 className="text-white text-lg font-bold" style={{ fontFamily: fonts.display }}>{active.title}</h2>
-                <span className="px-2 py-0.5 rounded text-[10px] tracking-widest font-bold"
+                <span className="px-2 py-0.5 rounded text-[11px] tracking-widest font-bold"
                   style={{ background: `${STATUS_META[active.status].color}22`, color: STATUS_META[active.status].color, border: `1px solid ${STATUS_META[active.status].color}55`, fontFamily: fonts.mono }}>
                   {isAr ? STATUS_META[active.status].labelAr : STATUS_META[active.status].labelEn}
                 </span>
-                <span className="px-2 py-0.5 rounded text-[10px] tracking-widest font-bold"
+                <span className="px-2 py-0.5 rounded text-[11px] tracking-widest font-bold"
                   style={{ background: `${SEVERITY_META[active.severity].color}22`, color: SEVERITY_META[active.severity].color, fontFamily: fonts.mono }}>
                   {active.severity}
                 </span>
@@ -404,12 +404,12 @@ const CaseManagementPage = () => {
                         {isAr ? s.titleAr : s.title}
                       </span>
                     </div>
-                    <span className="text-[10px] text-gray-500 font-bold" style={{ fontFamily: fonts.mono }}>
+                    <span className="text-[11px] text-gray-500 font-bold" style={{ fontFamily: fonts.mono }}>
                       {s.items.length}
                     </span>
                   </div>
                   {s.items.length === 0 ? (
-                    <p className="text-[10px] text-gray-600" style={{ fontFamily: fonts.sans }}>
+                    <p className="text-[11px] text-gray-600" style={{ fontFamily: fonts.sans }}>
                       {isAr ? "لا يوجد" : "None"}
                     </p>
                   ) : (
@@ -418,7 +418,7 @@ const CaseManagementPage = () => {
                         <li key={i} className="text-[11px] text-gray-300 truncate" style={{ fontFamily: fonts.mono }}>· {it}</li>
                       ))}
                       {s.items.length > 4 && (
-                        <li className="text-[10px]" style={{ color: s.color, fontFamily: fonts.mono }}>
+                        <li className="text-[11px]" style={{ color: s.color, fontFamily: fonts.mono }}>
                           {isAr ? `عرض الكل (+${s.items.length - 4})` : `view all (+${s.items.length - 4})`}
                         </li>
                       )}
@@ -433,7 +433,7 @@ const CaseManagementPage = () => {
           {closedReadonly && active.disposition && (
             <div className="mx-5 mb-5 rounded-lg p-4"
               style={{ background: "rgba(74,142,58,0.06)", border: "1px solid rgba(74,142,58,0.3)" }}>
-              <span className="text-[10px] tracking-widest font-bold" style={{ color: "#4A8E3A", fontFamily: fonts.mono }}>
+              <span className="text-[11px] tracking-widest font-bold" style={{ color: "#4A8E3A", fontFamily: fonts.mono }}>
                 {isAr ? "النتيجة" : "DISPOSITION"}
               </span>
               <h4 className="text-white text-sm font-bold mt-1" style={{ fontFamily: fonts.sans }}>
@@ -453,11 +453,11 @@ const CaseManagementPage = () => {
             <div className="px-4 py-2 border-b flex items-center justify-between" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
               <h4 className="text-white text-sm font-bold" style={{ fontFamily: fonts.sans }}>
                 {isAr ? "ملاحظات" : "Notes"}
-                <span className="ml-2 text-[10px] text-gray-500 tracking-widest" style={{ fontFamily: fonts.mono }}>
+                <span className="ml-2 text-[11px] text-gray-500 tracking-widest" style={{ fontFamily: fonts.mono }}>
                   {active.notes.length}
                 </span>
               </h4>
-              <span className="text-[10px] text-gray-500" style={{ fontFamily: fonts.mono }}>
+              <span className="text-[11px] text-gray-500" style={{ fontFamily: fonts.mono }}>
                 {isAr ? "الملاحظات ثابتة بعد الحفظ" : "Immutable after save"}
               </span>
             </div>
@@ -469,7 +469,7 @@ const CaseManagementPage = () => {
               )}
               {active.notes.map((n) => (
                 <li key={n.id} className="rounded-md p-2.5" style={{ background: "rgba(255,255,255,0.03)" }}>
-                  <div className="flex items-center gap-2 text-[10px] mb-1">
+                  <div className="flex items-center gap-2 text-[11px] mb-1">
                     <span className="font-bold text-white" style={{ fontFamily: fonts.sans }}>{n.authorName}</span>
                     <span className="text-gray-500" style={{ fontFamily: fonts.mono }}>{n.createdAt.slice(0, 16).replace("T", " ")}</span>
                   </div>
@@ -487,7 +487,7 @@ const CaseManagementPage = () => {
                   style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.08)", fontFamily: fonts.sans, minHeight: 60 }}
                 />
                 <div className="flex items-center justify-between mt-2">
-                  <span className="text-[10px] text-gray-500" style={{ fontFamily: fonts.mono }}>
+                  <span className="text-[11px] text-gray-500" style={{ fontFamily: fonts.mono }}>
                     {noteDraft.length} {isAr ? "حرف" : "chars"}
                   </span>
                   <button onClick={addNote} disabled={!noteDraft.trim()}
@@ -522,7 +522,7 @@ const CaseManagementPage = () => {
             </h3>
 
             <fieldset className="mb-4">
-              <legend className="block text-[10px] tracking-widest text-gray-400 mb-1" style={{ fontFamily: fonts.mono }}>
+              <legend className="block text-[11px] tracking-widest text-gray-400 mb-1" style={{ fontFamily: fonts.mono }}>
                 {isAr ? "تأكيد الخطورة" : "Confirm severity"}
               </legend>
               <div className="flex gap-2">
@@ -531,7 +531,7 @@ const CaseManagementPage = () => {
                     key={s}
                     onClick={() => setDispSeverity(s)}
                     aria-pressed={dispSeverity === s}
-                    className="px-3 py-1 rounded text-[10px] font-bold cursor-pointer"
+                    className="px-3 py-1 rounded text-[11px] font-bold cursor-pointer"
                     style={{
                       background: dispSeverity === s ? `${SEVERITY_META[s].color}22` : "transparent",
                       color: dispSeverity === s ? SEVERITY_META[s].color : "#9CA3AF",
@@ -546,7 +546,7 @@ const CaseManagementPage = () => {
             </fieldset>
 
             <fieldset className="mb-4">
-              <legend className="block text-[10px] tracking-widest text-gray-400 mb-2" style={{ fontFamily: fonts.mono }}>
+              <legend className="block text-[11px] tracking-widest text-gray-400 mb-2" style={{ fontFamily: fonts.mono }}>
                 {isAr ? "النتيجة" : "Disposition"}
               </legend>
               <div className="space-y-1.5">
@@ -559,7 +559,7 @@ const CaseManagementPage = () => {
               </div>
             </fieldset>
 
-            <label htmlFor="disp-reason" className="block text-[10px] tracking-widest text-gray-400 mb-1" style={{ fontFamily: fonts.mono }}>
+            <label htmlFor="disp-reason" className="block text-[11px] tracking-widest text-gray-400 mb-1" style={{ fontFamily: fonts.mono }}>
               {isAr ? "السبب (إلزامي)" : "Reason (required)"}
             </label>
             <textarea

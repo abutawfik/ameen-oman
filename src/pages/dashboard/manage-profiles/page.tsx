@@ -80,7 +80,7 @@ function TestProfilePanel({ profile, isAr, onClose }: { profile: RiskProfile; is
             {/* Sample matches */}
             {result.sampleMatches.length > 0 && (
               <div>
-                <div style={{ fontSize: 10, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 8 }}>
+                <div style={{ fontSize: 11, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 8 }}>
                   {isAr ? 'عينة من النتائج' : 'Sample Results'}
                 </div>
                 {result.sampleMatches.map(m => (
@@ -97,7 +97,7 @@ function TestProfilePanel({ profile, isAr, onClose }: { profile: RiskProfile; is
                         <span
                           key={c.id}
                           style={{
-                            padding: '2px 7px', borderRadius: 3, fontSize: 10,
+                            padding: '2px 7px', borderRadius: 3, fontSize: 11,
                             fontFamily: "'JetBrains Mono', monospace",
                             background: m.matchedFields.includes(c.field) ? `${FIELD_HIGHLIGHT}18` : 'rgba(91,116,148,0.06)',
                             color:      m.matchedFields.includes(c.field) ? FIELD_HIGHLIGHT      : '#374B61',
@@ -120,7 +120,7 @@ function TestProfilePanel({ profile, isAr, onClose }: { profile: RiskProfile; is
               </div>
             )}
 
-            <div style={{ fontSize: 10, color: '#374B61', fontFamily: "'JetBrains Mono', monospace" }}>
+            <div style={{ fontSize: 11, color: '#374B61', fontFamily: "'JetBrains Mono', monospace" }}>
               {isAr ? 'وقت الاختبار: ' : 'Tested: '}{result.testedAt}
             </div>
           </>
@@ -213,7 +213,7 @@ function EditModal({ profile, isAr, onClose }: { profile: RiskProfile | null; is
         <div style={{ flex: 1, overflowY: 'auto', padding: '16px 20px', display: 'flex', flexDirection: 'column', gap: 12 }}>
           {/* Name */}
           <div>
-            <label style={{ fontSize: 10, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.07em', display: 'block', marginBottom: 5 }}>
+            <label style={{ fontSize: 11, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.07em', display: 'block', marginBottom: 5 }}>
               {isAr ? 'الاسم' : 'Name'}
             </label>
             <input value={form.name ?? ''} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} style={{ width: '100%', padding: '7px 10px', borderRadius: 4, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(184,138,60,0.2)', color: '#CBD5E1', fontFamily: "'Inter', sans-serif", fontSize: 12, outline: 'none', boxSizing: 'border-box' }} />
@@ -223,7 +223,7 @@ function EditModal({ profile, isAr, onClose }: { profile: RiskProfile | null; is
           <div style={{ display: 'flex', gap: 10 }}>
             {(['domain', 'status'] as const).map(key => (
               <div key={key} style={{ flex: 1 }}>
-                <label style={{ fontSize: 10, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.07em', display: 'block', marginBottom: 5 }}>{key}</label>
+                <label style={{ fontSize: 11, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.07em', display: 'block', marginBottom: 5 }}>{key}</label>
                 <select value={(form[key] as string) ?? ''} onChange={e => setForm(f => ({ ...f, [key]: e.target.value }))} style={{ width: '100%', padding: '7px 10px', borderRadius: 4, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(184,138,60,0.2)', color: '#CBD5E1', fontFamily: "'JetBrains Mono', monospace", fontSize: 11, outline: 'none' }}>
                   {key === 'domain' && (['Events', 'Hits', 'Identities', 'Services'] as const).map(d => <option key={d} value={d}>{d}</option>)}
                   {key === 'status' && (['DRAFT', 'ACTIVE', 'SUSPENDED', 'EXPIRED'] as const).map(s => <option key={s} value={s}>{s}</option>)}
@@ -231,7 +231,7 @@ function EditModal({ profile, isAr, onClose }: { profile: RiskProfile | null; is
               </div>
             ))}
             <div style={{ flex: '0 0 100px' }}>
-              <label style={{ fontSize: 10, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.07em', display: 'block', marginBottom: 5 }}>
+              <label style={{ fontSize: 11, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.07em', display: 'block', marginBottom: 5 }}>
                 {isAr ? 'الوزن' : 'Weight'} (0–100)
               </label>
               <input type="number" min={0} max={100} value={form.riskWeight ?? 50} onChange={e => setForm(f => ({ ...f, riskWeight: Number(e.target.value) }))} style={{ width: '100%', padding: '7px 10px', borderRadius: 4, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(184,138,60,0.2)', color: '#D6B47E', fontFamily: "'JetBrains Mono', monospace", fontSize: 12, outline: 'none' }} />
@@ -240,7 +240,7 @@ function EditModal({ profile, isAr, onClose }: { profile: RiskProfile | null; is
 
           {/* Description */}
           <div>
-            <label style={{ fontSize: 10, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.07em', display: 'block', marginBottom: 5 }}>
+            <label style={{ fontSize: 11, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.07em', display: 'block', marginBottom: 5 }}>
               {isAr ? 'الوصف' : 'Description'}
             </label>
             <textarea rows={2} value={form.description ?? ''} onChange={e => setForm(f => ({ ...f, description: e.target.value }))} style={{ width: '100%', padding: '7px 10px', borderRadius: 4, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(184,138,60,0.2)', color: '#8FA8C0', fontFamily: "'Inter', sans-serif", fontSize: 12, outline: 'none', boxSizing: 'border-box', resize: 'vertical' }} />
@@ -248,7 +248,7 @@ function EditModal({ profile, isAr, onClose }: { profile: RiskProfile | null; is
 
           {/* Condition Builder */}
           <div>
-            <label style={{ fontSize: 10, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.07em', display: 'block', marginBottom: 8 }}>
+            <label style={{ fontSize: 11, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.07em', display: 'block', marginBottom: 8 }}>
               {isAr ? 'الشروط' : 'Conditions'}
             </label>
             <ConditionBuilder
@@ -283,20 +283,20 @@ function ProfileRow({ profile, isAr, isSelected, onClick }: { profile: RiskProfi
         <div style={{ fontSize: 12, color: '#CBD5E1', fontFamily: "'Inter', sans-serif", fontWeight: 500, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
           {isAr && profile.nameAr ? profile.nameAr : profile.name}
         </div>
-        <div style={{ fontSize: 10, color: '#374B61', fontFamily: "'JetBrains Mono', monospace", marginTop: 1 }}>
+        <div style={{ fontSize: 11, color: '#374B61', fontFamily: "'JetBrains Mono', monospace", marginTop: 1 }}>
           {profile.domain} · {profile.conditions.length} {isAr ? 'شرط' : 'conditions'}
         </div>
       </div>
       <div style={{ display: 'flex', gap: 5, flexShrink: 0, alignItems: 'center' }}>
         {profile.matchCount > 0 && (
-          <span style={{ fontSize: 10, padding: '2px 5px', borderRadius: 3, background: 'rgba(201,74,94,0.12)', color: '#C94A5E', fontFamily: "'JetBrains Mono', monospace" }}>
+          <span style={{ fontSize: 11, padding: '2px 5px', borderRadius: 3, background: 'rgba(201,74,94,0.12)', color: '#C94A5E', fontFamily: "'JetBrains Mono', monospace" }}>
             {profile.matchCount}
           </span>
         )}
-        <span style={{ fontSize: 10, padding: '2px 6px', borderRadius: 3, background: `${statusCol}18`, color: statusCol, fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', border: `1px solid ${statusCol}33` }}>
+        <span style={{ fontSize: 11, padding: '2px 6px', borderRadius: 3, background: `${statusCol}18`, color: statusCol, fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', border: `1px solid ${statusCol}33` }}>
           {STATUS_LABELS[profile.status]?.[isAr ? 'ar' : 'en']}
         </span>
-        <span style={{ fontSize: 10, color: '#374B61', fontFamily: "'JetBrains Mono', monospace" }}>
+        <span style={{ fontSize: 11, color: '#374B61', fontFamily: "'JetBrains Mono', monospace" }}>
           {profile.riskWeight}
         </span>
       </div>
@@ -316,10 +316,10 @@ function ProfileDetail({ profile, isAr, onEdit, onTest, onClose }: { profile: Ri
             {isAr && profile.nameAr ? profile.nameAr : profile.name}
           </div>
           <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-            <span style={{ fontSize: 10, padding: '2px 6px', borderRadius: 3, background: `${statusCol}18`, color: statusCol, fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', border: `1px solid ${statusCol}33` }}>
+            <span style={{ fontSize: 11, padding: '2px 6px', borderRadius: 3, background: `${statusCol}18`, color: statusCol, fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', border: `1px solid ${statusCol}33` }}>
               {STATUS_LABELS[profile.status]?.[isAr ? 'ar' : 'en']}
             </span>
-            <span style={{ fontSize: 10, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace" }}>{profile.domain} · weight: {profile.riskWeight}</span>
+            <span style={{ fontSize: 11, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace" }}>{profile.domain} · weight: {profile.riskWeight}</span>
           </div>
         </div>
         <div style={{ display: 'flex', gap: 5 }}>
@@ -341,14 +341,14 @@ function ProfileDetail({ profile, isAr, onEdit, onTest, onClose }: { profile: Ri
 
         {/* Conditions */}
         <div>
-          <div style={{ fontSize: 10, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 7 }}>
+          <div style={{ fontSize: 11, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 7 }}>
             {isAr ? 'الشروط' : 'Conditions'}
           </div>
           {profile.conditions.map(c => (
             <div key={c.id} style={{ display: 'flex', gap: 8, alignItems: 'center', marginBottom: 5 }}>
-              <span style={{ fontSize: 10, padding: '2px 6px', borderRadius: 3, background: 'rgba(91,116,148,0.12)', color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", width: 52, textAlign: 'center', flexShrink: 0 }}>{c.connector}</span>
+              <span style={{ fontSize: 11, padding: '2px 6px', borderRadius: 3, background: 'rgba(91,116,148,0.12)', color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", width: 52, textAlign: 'center', flexShrink: 0 }}>{c.connector}</span>
               <span style={{ fontSize: 11, color: '#D6B47E', fontFamily: "'JetBrains Mono', monospace", flex: '0 0 150px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{c.field}</span>
-              <span style={{ fontSize: 10, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", flex: '0 0 90px' }}>{c.operator}</span>
+              <span style={{ fontSize: 11, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", flex: '0 0 90px' }}>{c.operator}</span>
               <span style={{ fontSize: 11, color: '#CBD5E1', fontFamily: "'JetBrains Mono', monospace", flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{c.value}</span>
             </div>
           ))}
@@ -371,13 +371,13 @@ function ProfileDetail({ profile, isAr, onEdit, onTest, onClose }: { profile: Ri
 
         {/* Activity log */}
         <div>
-          <div style={{ fontSize: 10, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 7 }}>
+          <div style={{ fontSize: 11, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 7 }}>
             {isAr ? 'سجل النشاط' : 'Activity Log'}
           </div>
           {profile.activityLog.slice().reverse().map(l => (
             <div key={l.id} style={{ display: 'flex', gap: 10, padding: '6px 0', borderBottom: '1px solid rgba(255,255,255,0.03)' }}>
-              <span style={{ fontSize: 10, color: '#374B61', fontFamily: "'JetBrains Mono', monospace", flexShrink: 0, minWidth: 80 }}>{l.timestamp.slice(0, 10)}</span>
-              <span style={{ fontSize: 10, padding: '1px 5px', borderRadius: 3, background: 'rgba(184,138,60,0.08)', color: '#B8893C', fontFamily: "'JetBrains Mono', monospace", flexShrink: 0 }}>{l.action}</span>
+              <span style={{ fontSize: 11, color: '#374B61', fontFamily: "'JetBrains Mono', monospace", flexShrink: 0, minWidth: 80 }}>{l.timestamp.slice(0, 10)}</span>
+              <span style={{ fontSize: 11, padding: '1px 5px', borderRadius: 3, background: 'rgba(184,138,60,0.08)', color: '#B8893C', fontFamily: "'JetBrains Mono', monospace", flexShrink: 0 }}>{l.action}</span>
               <span style={{ fontSize: 11, color: '#5B7494', fontFamily: "'Inter', sans-serif" }}>{l.user}{l.detail ? ` — ${l.detail}` : ''}</span>
             </div>
           ))}
@@ -387,7 +387,7 @@ function ProfileDetail({ profile, isAr, onEdit, onTest, onClose }: { profile: Ri
         {profile.tags.length > 0 && (
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 5 }}>
             {profile.tags.map(t => (
-              <span key={t} style={{ padding: '2px 7px', borderRadius: 3, fontSize: 10, background: 'rgba(184,138,60,0.08)', color: '#B8893C', fontFamily: "'JetBrains Mono', monospace", border: '1px solid rgba(184,138,60,0.15)' }}>#{t}</span>
+              <span key={t} style={{ padding: '2px 7px', borderRadius: 3, fontSize: 11, background: 'rgba(184,138,60,0.08)', color: '#B8893C', fontFamily: "'JetBrains Mono', monospace", border: '1px solid rgba(184,138,60,0.15)' }}>#{t}</span>
             ))}
           </div>
         )}
@@ -419,7 +419,7 @@ export default function ManageProfilesPage() {
   });
 
   const chipStyle = (active: boolean, color = '#B8893C'): React.CSSProperties => ({
-    padding: '4px 10px', borderRadius: 4, fontSize: 10, cursor: 'pointer',
+    padding: '4px 10px', borderRadius: 4, fontSize: 11, cursor: 'pointer',
     fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.04em',
     background: active ? `${color}20` : 'transparent',
     border: `1px solid ${active ? color : 'rgba(184,138,60,0.15)'}`,
@@ -453,7 +453,7 @@ export default function ManageProfilesPage() {
                   <div key={s.label} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                     <i className={s.icon} style={{ color: s.color, fontSize: 13 }} />
                     <span style={{ fontSize: 17, fontFamily: "'JetBrains Mono', monospace", color: s.color, fontWeight: 700, lineHeight: 1 }}>{s.val}</span>
-                    <span style={{ fontSize: 10, color: '#374B61', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase' }}>{s.label}</span>
+                    <span style={{ fontSize: 11, color: '#374B61', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase' }}>{s.label}</span>
                   </div>
                 ))}
               </div>

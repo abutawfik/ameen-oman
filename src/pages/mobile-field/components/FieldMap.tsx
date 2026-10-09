@@ -53,7 +53,7 @@ const FieldMap = ({ isAr }: Props) => {
             { key: "sectors" as const, labelEn: "Sectors", labelAr: "القطاعات" },
           ]).map((l) => (
             <button key={l.key} onClick={() => setMapLayer(l.key)}
-              className="flex-1 py-1.5 rounded-lg text-[10px] font-['Inter'] font-medium cursor-pointer transition-all"
+              className="flex-1 py-1.5 rounded-lg text-[11px] font-['Inter'] font-medium cursor-pointer transition-all"
               style={{
                 background: mapLayer === l.key ? "rgba(184,138,60,0.12)" : "transparent",
                 color: mapLayer === l.key ? "#D6B47E" : "#6B7280",
@@ -211,9 +211,9 @@ const FieldMap = ({ isAr }: Props) => {
                 </div>
               </div>
               <div className="flex items-center gap-1.5 flex-shrink-0">
-                <button className="flex items-center gap-1 px-2 py-1 rounded-lg text-[10px] font-['JetBrains_Mono'] cursor-pointer"
+                <button className="flex items-center gap-1 px-2 py-1 rounded-lg text-[11px] font-['JetBrains_Mono'] cursor-pointer"
                   style={{ background: "rgba(184,138,60,0.1)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.25)" }}>
-                  <i className="ri-navigation-line text-[10px]" />
+                  <i className="ri-navigation-line text-[11px]" />
                   {isAr ? "توجيه" : "Navigate"}
                 </button>
                 <button onClick={() => setSelectedLoc(null)} className="text-gray-600 cursor-pointer">
@@ -229,7 +229,7 @@ const FieldMap = ({ isAr }: Props) => {
       <div className="flex-1 overflow-y-auto px-3 pt-3 pb-4" style={{ scrollbarWidth: "none" }}>
         {mapLayer === "officers" ? (
           <>
-            <p className="text-gray-500 text-[10px] uppercase tracking-wider font-['JetBrains_Mono'] mb-2">
+            <p className="text-gray-500 text-[11px] uppercase tracking-wider font-['JetBrains_Mono'] mb-2">
               {isAr ? "الضباط في الميدان" : "Field Officers"}
             </p>
             <div className="space-y-2">
@@ -255,7 +255,7 @@ const FieldMap = ({ isAr }: Props) => {
           </>
         ) : (
           <>
-            <p className="text-gray-500 text-[10px] uppercase tracking-wider font-['JetBrains_Mono'] mb-2">
+            <p className="text-gray-500 text-[11px] uppercase tracking-wider font-['JetBrains_Mono'] mb-2">
               {isAr ? "المواقع المُبلَّغة" : "Flagged Locations"}
             </p>
             <div className="space-y-2">

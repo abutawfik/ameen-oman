@@ -152,7 +152,7 @@ const EntityResolutionPage = () => {
                       style={{ background: `${STATUS_META[c.status].color}22`, color: STATUS_META[c.status].color, fontFamily: fonts.mono }}>
                       {c.status}
                     </span>
-                    <span className="text-[10px] text-gray-500 ml-auto" style={{ fontFamily: fonts.mono }}>{c.id}</span>
+                    <span className="text-[11px] text-gray-500 ml-auto" style={{ fontFamily: fonts.mono }}>{c.id}</span>
                   </div>
                   <p className="text-xs text-white mt-1.5 truncate">
                     {c.entityA.canonicalName}
@@ -160,7 +160,7 @@ const EntityResolutionPage = () => {
                   <p className="text-xs text-gray-400 truncate" style={{ fontFamily: fonts.sans }}>
                     <i className="ri-contrast-2-line mr-1" /> {c.entityB.canonicalName}
                   </p>
-                  <p className="text-[10px] text-gray-600 mt-1" style={{ fontFamily: fonts.mono }}>
+                  <p className="text-[11px] text-gray-600 mt-1" style={{ fontFamily: fonts.mono }}>
                     {c.entityA.type} · {c.createdAt.slice(0, 10)}
                   </p>
                 </button>
@@ -180,7 +180,7 @@ const EntityResolutionPage = () => {
                   {active.similarity.toFixed(2)}
                 </span>
                 <div>
-                  <span className="text-[10px] tracking-widest text-gray-500" style={{ fontFamily: fonts.mono }}>
+                  <span className="text-[11px] tracking-widest text-gray-500" style={{ fontFamily: fonts.mono }}>
                     {isAr ? "الدرجة الإجمالية" : "SIMILARITY"}
                   </span>
                   <p className="text-white text-xs font-bold" style={{ fontFamily: fonts.sans }}>
@@ -190,11 +190,11 @@ const EntityResolutionPage = () => {
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <span className="px-2 py-0.5 rounded text-[10px] tracking-widest font-bold"
+              <span className="px-2 py-0.5 rounded text-[11px] tracking-widest font-bold"
                 style={{ background: `${STATUS_META[active.status].color}22`, color: STATUS_META[active.status].color, border: `1px solid ${STATUS_META[active.status].color}55`, fontFamily: fonts.mono }}>
                 {isAr ? STATUS_META[active.status].labelAr : STATUS_META[active.status].labelEn}
               </span>
-              <span className="text-[10px] text-gray-500" style={{ fontFamily: fonts.mono }}>
+              <span className="text-[11px] text-gray-500" style={{ fontFamily: fonts.mono }}>
                 {active.id} · {active.entityA.type}
               </span>
             </div>
@@ -215,7 +215,7 @@ const EntityResolutionPage = () => {
                   </span>
                   <h3 className="text-white text-sm font-bold" style={{ fontFamily: fonts.sans }}>{ent.canonicalName}</h3>
                 </div>
-                <p className="text-[10px] tracking-widest text-gray-500 mb-1" style={{ fontFamily: fonts.mono }}>
+                <p className="text-[11px] tracking-widest text-gray-500 mb-1" style={{ fontFamily: fonts.mono }}>
                   {ent.id} · {ent.type.toUpperCase()}
                 </p>
                 <div className="space-y-1 mb-3">
@@ -227,12 +227,12 @@ const EntityResolutionPage = () => {
                   ))}
                 </div>
                 <div>
-                  <span className="text-[10px] tracking-widest text-gray-500" style={{ fontFamily: fonts.mono }}>
+                  <span className="text-[11px] tracking-widest text-gray-500" style={{ fontFamily: fonts.mono }}>
                     {isAr ? "أسماء بديلة" : "ALIASES"}
                   </span>
                   <div className="flex flex-wrap gap-1 mt-1">
                     {ent.aliases.map((a) => (
-                      <span key={a} className="px-1.5 py-0.5 rounded text-[10px]"
+                      <span key={a} className="px-1.5 py-0.5 rounded text-[11px]"
                         style={{ background: "rgba(255,255,255,0.04)", color: "#D1D5DB", border: "1px solid rgba(255,255,255,0.06)", fontFamily: fonts.mono }}>
                         {a}
                       </span>
@@ -240,14 +240,14 @@ const EntityResolutionPage = () => {
                   </div>
                 </div>
                 <div className="mt-3 pt-2 border-t" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
-                  <span className="text-[10px] tracking-widest text-gray-500" style={{ fontFamily: fonts.mono }}>
+                  <span className="text-[11px] tracking-widest text-gray-500" style={{ fontFamily: fonts.mono }}>
                     {isAr ? "المصادر" : "SOURCES"}
                   </span>
                   <div className="flex flex-wrap gap-1 mt-1">
                     {ent.sources.map((s) => {
                       const shared = sharedSources.includes(s);
                       return (
-                        <span key={s} className="px-1.5 py-0.5 rounded text-[10px]"
+                        <span key={s} className="px-1.5 py-0.5 rounded text-[11px]"
                           style={{
                             background: shared ? "#4A8E3A22" : "rgba(255,255,255,0.04)",
                             color: shared ? "#4A8E3A" : "#D1D5DB",
@@ -281,7 +281,7 @@ const EntityResolutionPage = () => {
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={factorData} layout="vertical" margin={{ left: 120, right: 30 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="rgba(184,138,60,0.08)" horizontal={false} />
-                    <XAxis type="number" domain={[0, 1]} stroke="#6B7280" tick={{ fontSize: 10, fontFamily: "JetBrains Mono" }} />
+                    <XAxis type="number" domain={[0, 1]} stroke="#6B7280" tick={{ fontSize: 11, fontFamily: "JetBrains Mono" }} />
                     <YAxis type="category" dataKey="name" stroke="#D1D5DB" tick={{ fontSize: 11, fontFamily: "Inter" }} width={120} />
                     <Tooltip contentStyle={{ background: "#0A2540", border: "1px solid rgba(184,138,60,0.3)", borderRadius: 8, fontSize: 12 }} />
                     <Bar dataKey="value" radius={[0, 4, 4, 0]}>
@@ -304,7 +304,7 @@ const EntityResolutionPage = () => {
               </h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
                 <div>
-                  <span className="text-[10px] tracking-widest text-gray-500" style={{ fontFamily: fonts.mono }}>
+                  <span className="text-[11px] tracking-widest text-gray-500" style={{ fontFamily: fonts.mono }}>
                     {isAr ? "المصادر المشتركة" : "SHARED SOURCES"}
                   </span>
                   {sharedSources.length === 0 ? (
@@ -318,7 +318,7 @@ const EntityResolutionPage = () => {
                   )}
                 </div>
                 <div>
-                  <span className="text-[10px] tracking-widest text-gray-500" style={{ fontFamily: fonts.mono }}>
+                  <span className="text-[11px] tracking-widest text-gray-500" style={{ fontFamily: fonts.mono }}>
                     {isAr ? "مقارنة الأسماء" : "ALIAS COMPARISON"}
                   </span>
                   <div className="grid grid-cols-2 gap-2 mt-1">
@@ -341,7 +341,7 @@ const EntityResolutionPage = () => {
           {/* Actions */}
           {active.status === "PENDING" && (
             <div className="px-5 pb-5">
-              <label className="block text-[10px] tracking-widest text-gray-400 mb-1" style={{ fontFamily: fonts.mono }}>
+              <label className="block text-[11px] tracking-widest text-gray-400 mb-1" style={{ fontFamily: fonts.mono }}>
                 {isAr ? "ملاحظة (إلزامي للدمج/التصعيد)" : "Note (required for Merge / Escalate)"}
               </label>
               <textarea value={note} onChange={(e) => setNote(e.target.value)}

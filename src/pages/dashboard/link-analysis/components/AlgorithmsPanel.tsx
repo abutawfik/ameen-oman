@@ -205,7 +205,7 @@ const AlgorithmsPanel = ({
               </div>
               <span className="text-xs font-semibold font-['Inter']" style={{ color: algo.color }}>{algo.label}</span>
               {algo.requiresSelection && selectedNodes.length < 2 && (
-                <span className="ml-auto text-[10px] text-gray-600 font-['JetBrains_Mono']">
+                <span className="ml-auto text-[11px] text-gray-600 font-['JetBrains_Mono']">
                   {isAr ? "يتطلب تحديداً" : "needs selection"}
                 </span>
               )}
@@ -237,7 +237,7 @@ const AlgorithmsPanel = ({
         )}
 
         <div className="border-t pt-3 mt-3" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
-          <p className="text-gray-600 text-[10px] font-bold tracking-widest font-['JetBrains_Mono'] uppercase mb-2">
+          <p className="text-gray-600 text-[11px] font-bold tracking-widest font-['JetBrains_Mono'] uppercase mb-2">
             {isAr ? "الفلاتر" : "FILTERS"}
           </p>
 
@@ -266,7 +266,7 @@ const AlgorithmsPanel = ({
                 <button
                   key={et.key}
                   onClick={() => onEdgeFilterChange(et.key)}
-                  className="px-2 py-0.5 rounded text-[10px] font-['Inter'] cursor-pointer transition-colors whitespace-nowrap"
+                  className="px-2 py-0.5 rounded text-[11px] font-['Inter'] cursor-pointer transition-colors whitespace-nowrap"
                   style={{
                     background: activeEdgeFilter === et.key ? "rgba(184,138,60,0.15)" : "rgba(255,255,255,0.04)",
                     color: activeEdgeFilter === et.key ? "#D6B47E" : "#6B7280",
@@ -282,7 +282,7 @@ const AlgorithmsPanel = ({
 
         {/* Temporal filter */}
         <div className="border-t pt-3" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
-          <p className="text-gray-600 text-[10px] font-bold tracking-widest font-['JetBrains_Mono'] uppercase mb-2">
+          <p className="text-gray-600 text-[11px] font-bold tracking-widest font-['JetBrains_Mono'] uppercase mb-2">
             {isAr ? "الفلتر الزمني" : "TEMPORAL FILTER"}
           </p>
           <div className="flex items-center justify-between mb-1.5">
@@ -310,8 +310,8 @@ const AlgorithmsPanel = ({
             />
           </div>
           <div className="flex justify-between mt-1">
-            <span className="text-gray-600 text-[10px] font-['JetBrains_Mono']">Jan 2024</span>
-            <span className="text-gray-600 text-[10px] font-['JetBrains_Mono']">Apr 2025</span>
+            <span className="text-gray-600 text-[11px] font-['JetBrains_Mono']">Jan 2024</span>
+            <span className="text-gray-600 text-[11px] font-['JetBrains_Mono']">Apr 2025</span>
           </div>
         </div>
       </div>

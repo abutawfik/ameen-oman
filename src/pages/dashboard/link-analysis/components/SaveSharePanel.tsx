@@ -82,15 +82,15 @@ const SaveSharePanel = ({
               <div className="flex gap-4">
                 <div>
                   <p className="text-white text-lg font-black font-['JetBrains_Mono']">{nodeCount}</p>
-                  <p className="text-gray-600 text-[10px] font-['Inter']">{isAr ? "عقدة" : "nodes"}</p>
+                  <p className="text-gray-600 text-[11px] font-['Inter']">{isAr ? "عقدة" : "nodes"}</p>
                 </div>
                 <div>
                   <p className="text-white text-lg font-black font-['JetBrains_Mono']">{edgeCount}</p>
-                  <p className="text-gray-600 text-[10px] font-['Inter']">{isAr ? "رابط" : "edges"}</p>
+                  <p className="text-gray-600 text-[11px] font-['Inter']">{isAr ? "رابط" : "edges"}</p>
                 </div>
                 <div>
                   <p className="text-white text-lg font-black font-['JetBrains_Mono']">{annotations.length}</p>
-                  <p className="text-gray-600 text-[10px] font-['Inter']">{isAr ? "ملاحظة" : "notes"}</p>
+                  <p className="text-gray-600 text-[11px] font-['Inter']">{isAr ? "ملاحظة" : "notes"}</p>
                 </div>
               </div>
               <div className="flex gap-2 mt-3">
@@ -113,7 +113,7 @@ const SaveSharePanel = ({
             </div>
 
             {/* Saved workspaces */}
-            <p className="text-gray-600 text-[10px] font-bold tracking-widest font-['JetBrains_Mono'] uppercase px-1">
+            <p className="text-gray-600 text-[11px] font-bold tracking-widest font-['JetBrains_Mono'] uppercase px-1">
               {isAr ? "المحفوظة" : "SAVED"}
             </p>
             {savedWorkspaces.map(ws => (
@@ -126,20 +126,20 @@ const SaveSharePanel = ({
                 <div className="flex items-start justify-between gap-2 mb-1.5">
                   <p className="text-gray-200 text-xs font-semibold font-['Inter'] leading-tight">{ws.name}</p>
                   {ws.shared && (
-                    <span className="text-[10px] font-['JetBrains_Mono'] flex-shrink-0" style={{ color: "#4ADE80" }}>
+                    <span className="text-[11px] font-['JetBrains_Mono'] flex-shrink-0" style={{ color: "#4ADE80" }}>
                       <i className="ri-share-line mr-0.5" />shared
                     </span>
                   )}
                 </div>
                 <div className="flex items-center gap-3 mb-2">
-                  <span className="text-gray-600 text-[10px] font-['JetBrains_Mono']">{ws.nodeCount}N · {ws.edgeCount}E</span>
-                  <span className="text-gray-700 text-[10px] font-['JetBrains_Mono']">{ws.updatedAt}</span>
+                  <span className="text-gray-600 text-[11px] font-['JetBrains_Mono']">{ws.nodeCount}N · {ws.edgeCount}E</span>
+                  <span className="text-gray-700 text-[11px] font-['JetBrains_Mono']">{ws.updatedAt}</span>
                 </div>
                 <div className="flex flex-wrap gap-1">
                   {ws.tags.map(tag => (
                     <span
                       key={tag}
-                      className="px-1.5 py-0.5 rounded text-[10px] font-['JetBrains_Mono']"
+                      className="px-1.5 py-0.5 rounded text-[11px] font-['JetBrains_Mono']"
                       style={{ background: `${tagColors[tag] || "#9CA3AF"}15`, color: tagColors[tag] || "#9CA3AF", border: `1px solid ${tagColors[tag] || "#9CA3AF"}30` }}
                     >
                       {tag}
@@ -184,8 +184,8 @@ const SaveSharePanel = ({
                   </button>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-gray-600 text-[10px] font-['Inter']">{ann.author}</span>
-                  <span className="text-gray-700 text-[10px] font-['JetBrains_Mono']">{ann.timestamp}</span>
+                  <span className="text-gray-600 text-[11px] font-['Inter']">{ann.author}</span>
+                  <span className="text-gray-700 text-[11px] font-['JetBrains_Mono']">{ann.timestamp}</span>
                 </div>
               </div>
             ))}
@@ -202,7 +202,7 @@ const SaveSharePanel = ({
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-gray-300 text-xs font-['Inter'] truncate">{item.action}</p>
-                  <p className="text-gray-600 text-[10px] font-['JetBrains_Mono']">{item.time}</p>
+                  <p className="text-gray-600 text-[11px] font-['JetBrains_Mono']">{item.time}</p>
                 </div>
               </div>
             ))}

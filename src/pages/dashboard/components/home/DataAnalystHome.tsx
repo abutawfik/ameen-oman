@@ -107,7 +107,7 @@ const DataAnalystHome = ({ isAr }: Props) => {
             <i className={`ri-timer-flash-line text-xl ${isCrit ? "text-red-400" : "text-gold-400"}`} />
           </div>
           <div>
-            <div className="text-[10px] font-bold tracking-widest font-['JetBrains_Mono'] text-gray-500">
+            <div className="text-[11px] font-bold tracking-widest font-['JetBrains_Mono'] text-gray-500">
               {isAr ? "مهلة الاستجابة" : "SLA WATCH"}
             </div>
             <div className="text-white font-bold text-sm">
@@ -129,7 +129,7 @@ const DataAnalystHome = ({ isAr }: Props) => {
         </div>
         <div className="md:ml-auto flex items-center gap-3">
           <div className="text-right">
-            <div className="text-[10px] font-bold tracking-widest font-['JetBrains_Mono'] text-gray-500">
+            <div className="text-[11px] font-bold tracking-widest font-['JetBrains_Mono'] text-gray-500">
               {isAr ? "أقرب مهلة تنتهي في" : "NEXT BREACH IN"}
             </div>
             <div
@@ -159,7 +159,7 @@ const DataAnalystHome = ({ isAr }: Props) => {
               </p>
             </div>
             <span
-              className="px-2 py-0.5 rounded-md text-[10px] font-bold font-['JetBrains_Mono'] tracking-widest"
+              className="px-2 py-0.5 rounded-md text-[11px] font-bold font-['JetBrains_Mono'] tracking-widest"
               style={{ background: "rgba(184,138,60,0.12)", color: "#D6B47E" }}
             >
               {sortedQueue.length}
@@ -197,14 +197,14 @@ const DataAnalystHome = ({ isAr }: Props) => {
                   <div className="flex items-center gap-1.5 mt-2.5 pl-[72px]">
                     <button
                       type="button"
-                      className="px-2.5 py-1 rounded-md text-[10px] font-bold cursor-pointer font-['JetBrains_Mono'] tracking-wider"
+                      className="px-2.5 py-1 rounded-md text-[11px] font-bold cursor-pointer font-['JetBrains_Mono'] tracking-wider"
                       style={{ background: "rgba(74,222,128,0.1)", color: "#4ADE80", border: "1px solid rgba(74,222,128,0.3)" }}
                     >
                       {isAr ? "إشعار" : "ACK"}
                     </button>
                     <button
                       type="button"
-                      className="px-2.5 py-1 rounded-md text-[10px] font-bold cursor-pointer font-['JetBrains_Mono'] tracking-wider"
+                      className="px-2.5 py-1 rounded-md text-[11px] font-bold cursor-pointer font-['JetBrains_Mono'] tracking-wider"
                       style={{ background: "rgba(107,79,174,0.1)", color: "#6B4FAE", border: "1px solid rgba(107,79,174,0.3)" }}
                     >
                       {isAr ? "تصعيد" : "ESCALATE"}
@@ -212,7 +212,7 @@ const DataAnalystHome = ({ isAr }: Props) => {
                     <button
                       type="button"
                       onClick={() => navigate("/dashboard/osint-risk-engine")}
-                      className="px-2.5 py-1 rounded-md text-[10px] font-bold cursor-pointer font-['JetBrains_Mono'] tracking-wider ml-auto"
+                      className="px-2.5 py-1 rounded-md text-[11px] font-bold cursor-pointer font-['JetBrains_Mono'] tracking-wider ml-auto"
                       style={{ background: "rgba(184,138,60,0.1)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.3)" }}
                     >
                       {isAr ? "فتح" : "OPEN"} →
@@ -270,7 +270,7 @@ const DataAnalystHome = ({ isAr }: Props) => {
                 </div>
                 <div className="col-span-4 min-w-0">
                   <div className="text-white text-xs font-semibold truncate">{r.travelerName}</div>
-                  <div className="text-gray-600 text-[10px] font-['JetBrains_Mono'] truncate">
+                  <div className="text-gray-600 text-[11px] font-['JetBrains_Mono'] truncate">
                     {r.passportNumber}
                   </div>
                 </div>
@@ -281,7 +281,7 @@ const DataAnalystHome = ({ isAr }: Props) => {
                   <div className="text-gray-300 text-[11px] font-['JetBrains_Mono']">
                     {r.carrierIata} {r.flightNumber}
                   </div>
-                  <div className="text-gray-600 text-[10px] font-['JetBrains_Mono'] truncate">
+                  <div className="text-gray-600 text-[11px] font-['JetBrains_Mono'] truncate">
                     {r.originIata} → {r.destIata}
                   </div>
                 </div>
@@ -329,9 +329,9 @@ const DataAnalystHome = ({ isAr }: Props) => {
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="text-white text-xs font-semibold truncate">{a.label}</div>
-                  <div className="text-gray-600 text-[10px] font-['JetBrains_Mono'] truncate">{a.meta}</div>
+                  <div className="text-gray-600 text-[11px] font-['JetBrains_Mono'] truncate">{a.meta}</div>
                 </div>
-                <span className="text-gray-500 text-[10px] font-['JetBrains_Mono'] flex-shrink-0">{a.ago}</span>
+                <span className="text-gray-500 text-[11px] font-['JetBrains_Mono'] flex-shrink-0">{a.ago}</span>
               </div>
             ))}
           </div>
@@ -374,7 +374,7 @@ const DataAnalystHome = ({ isAr }: Props) => {
           </div>
           {/* Bonus: live source summary strip */}
           <div className="px-4 pb-4 pt-2 border-t" style={{ borderColor: "rgba(184,138,60,0.06)" }}>
-            <div className="flex items-center gap-3 text-[10px] font-['JetBrains_Mono'] text-gray-500">
+            <div className="flex items-center gap-3 text-[11px] font-['JetBrains_Mono'] text-gray-500">
               <span>{isAr ? "المصادر حيّة:" : "sources live:"}</span>
               <span className="text-green-400 font-bold">
                 {OSINT_SOURCES.filter((s) => s.status === "healthy").length}/{OSINT_SOURCES.length}

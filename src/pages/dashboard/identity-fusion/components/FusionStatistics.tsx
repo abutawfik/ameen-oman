@@ -165,7 +165,7 @@ export default function FusionStatistics({ isAr }: Props) {
                 isAr ? 'المكررات' : 'Duplicates',
                 isAr ? 'معدل الدقة' : 'Resolution Rate',
               ].map(h => (
-                <th key={h} className="text-left text-gray-600 font-medium py-3 px-4 uppercase tracking-wider" style={{ fontSize: 10 }}>
+                <th key={h} className="text-left text-gray-600 font-medium py-3 px-4 uppercase tracking-wider" style={{ fontSize: 11 }}>
                   {h}
                 </th>
               ))}

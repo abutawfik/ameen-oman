@@ -39,7 +39,7 @@ const OverviewTab = ({ isAr, agg, presenterMode }: { isAr: boolean; agg: ReturnT
             style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.12)" }}>
             <div className="flex items-center gap-2 mb-2">
               <i className={`${k.icon} text-lg`} style={{ color: k.color }} />
-              <span className="text-gray-500 text-[10px] font-bold tracking-widest uppercase font-['JetBrains_Mono']">{k.label}</span>
+              <span className="text-gray-500 text-[11px] font-bold tracking-widest uppercase font-['JetBrains_Mono']">{k.label}</span>
             </div>
             <div className="text-white font-black font-['JetBrains_Mono']"
               style={{ color: k.color, fontSize: presenterMode ? "2rem" : "1.5rem" }}>

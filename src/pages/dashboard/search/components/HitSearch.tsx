@@ -35,7 +35,7 @@ export default function HitSearch({ isAr }: Props) {
   };
 
   const chipStyle = (active: boolean, color: string) => ({
-    padding: '4px 10px', borderRadius: 4, fontSize: 10, cursor: 'pointer',
+    padding: '4px 10px', borderRadius: 4, fontSize: 11, cursor: 'pointer',
     fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.05em',
     background: active ? `${color}20` : 'transparent',
     border: `1px solid ${active ? color : 'rgba(184,138,60,0.15)'}`,

@@ -69,7 +69,7 @@ const IocFeed = ({ isAr }: Props) => {
             </div>
             <div>
               <p className="text-white text-lg font-bold font-['JetBrains_Mono']">{stat.value}</p>
-              <p className="text-gray-600 text-[10px] font-['Inter']">{stat.label}</p>
+              <p className="text-gray-600 text-[11px] font-['Inter']">{stat.label}</p>
             </div>
           </div>
         ))}
@@ -141,26 +141,26 @@ const IocFeed = ({ isAr }: Props) => {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-0.5">
                     <span className="text-white text-xs font-bold font-['JetBrains_Mono'] truncate">{ioc.value}</span>
-                    <span className="text-[10px] font-['JetBrains_Mono'] px-1.5 py-0.5 rounded flex-shrink-0" style={{ background: tlp.bg, color: tlp.color }}>TLP:{ioc.tlp}</span>
+                    <span className="text-[11px] font-['JetBrains_Mono'] px-1.5 py-0.5 rounded flex-shrink-0" style={{ background: tlp.bg, color: tlp.color }}>TLP:{ioc.tlp}</span>
                   </div>
-                  <p className="text-gray-600 text-[10px] font-['Inter'] truncate">{ioc.description}</p>
+                  <p className="text-gray-600 text-[11px] font-['Inter'] truncate">{ioc.description}</p>
                 </div>
 
                 {/* Meta */}
                 <div className="flex items-center gap-3 flex-shrink-0">
                   <div className="text-right">
-                    <p className="text-gray-500 text-[10px] font-['JetBrains_Mono']">{ioc.hitCount} hits</p>
-                    <p className="text-gray-700 text-[10px] font-['JetBrains_Mono']">{ioc.lastSeen}</p>
+                    <p className="text-gray-500 text-[11px] font-['JetBrains_Mono']">{ioc.hitCount} hits</p>
+                    <p className="text-gray-700 text-[11px] font-['JetBrains_Mono']">{ioc.lastSeen}</p>
                   </div>
                   <div className="flex items-center gap-1 px-2 py-1 rounded-lg" style={{ background: sev.bg }}>
-                    <span className="text-[10px] font-bold font-['JetBrains_Mono']" style={{ color: sev.color }}>{sev.label}</span>
+                    <span className="text-[11px] font-bold font-['JetBrains_Mono']" style={{ color: sev.color }}>{sev.label}</span>
                   </div>
                   <div className="flex items-center gap-1">
                     <i className={`${stat.icon} text-xs`} style={{ color: stat.color }} />
-                    <span className="text-[10px] font-['Inter']" style={{ color: stat.color }}>{stat.label}</span>
+                    <span className="text-[11px] font-['Inter']" style={{ color: stat.color }}>{stat.label}</span>
                   </div>
                   <div className="flex items-center gap-1 px-2 py-1 rounded" style={{ background: "rgba(255,255,255,0.04)" }}>
-                    <span className="text-[10px] font-['JetBrains_Mono'] text-gray-500">{ioc.confidence}%</span>
+                    <span className="text-[11px] font-['JetBrains_Mono'] text-gray-500">{ioc.confidence}%</span>
                   </div>
                   <i className={isExpanded ? "ri-arrow-up-s-line text-gray-600 text-sm" : "ri-arrow-down-s-line text-gray-600 text-sm"} />
                 </div>
@@ -172,12 +172,12 @@ const IocFeed = ({ isAr }: Props) => {
                   <div className="grid grid-cols-3 gap-4">
                     <div className="col-span-2 space-y-3">
                       <div>
-                        <p className="text-gray-600 text-[10px] font-['JetBrains_Mono'] mb-1">DESCRIPTION</p>
+                        <p className="text-gray-600 text-[11px] font-['JetBrains_Mono'] mb-1">DESCRIPTION</p>
                         <p className="text-gray-400 text-xs font-['Inter']">{ioc.description}</p>
                       </div>
                       <div className="grid grid-cols-2 gap-3">
                         <div>
-                          <p className="text-gray-600 text-[10px] font-['JetBrains_Mono'] mb-1">LINKED SUBJECTS</p>
+                          <p className="text-gray-600 text-[11px] font-['JetBrains_Mono'] mb-1">LINKED SUBJECTS</p>
                           <div className="space-y-1">
                             {ioc.linkedSubjects.length > 0 ? ioc.linkedSubjects.map((s) => (
                               <div key={s} className="flex items-center gap-1.5">
@@ -188,19 +188,19 @@ const IocFeed = ({ isAr }: Props) => {
                           </div>
                         </div>
                         <div>
-                          <p className="text-gray-600 text-[10px] font-['JetBrains_Mono'] mb-1">LINKED STREAMS</p>
+                          <p className="text-gray-600 text-[11px] font-['JetBrains_Mono'] mb-1">LINKED STREAMS</p>
                           <div className="flex flex-wrap gap-1">
                             {ioc.linkedStreams.map((s) => (
-                              <span key={s} className="text-[10px] px-2 py-0.5 rounded font-['Inter']" style={{ background: "rgba(184,138,60,0.1)", color: "#D6B47E" }}>{s}</span>
+                              <span key={s} className="text-[11px] px-2 py-0.5 rounded font-['Inter']" style={{ background: "rgba(184,138,60,0.1)", color: "#D6B47E" }}>{s}</span>
                             ))}
                           </div>
                         </div>
                       </div>
                       <div>
-                        <p className="text-gray-600 text-[10px] font-['JetBrains_Mono'] mb-1">TAGS</p>
+                        <p className="text-gray-600 text-[11px] font-['JetBrains_Mono'] mb-1">TAGS</p>
                         <div className="flex flex-wrap gap-1">
                           {ioc.tags.map((tag) => (
-                            <span key={tag} className="text-[10px] px-2 py-0.5 rounded font-['JetBrains_Mono']" style={{ background: "rgba(255,255,255,0.06)", color: "#9CA3AF" }}>#{tag}</span>
+                            <span key={tag} className="text-[11px] px-2 py-0.5 rounded font-['JetBrains_Mono']" style={{ background: "rgba(255,255,255,0.06)", color: "#9CA3AF" }}>#{tag}</span>
                           ))}
                         </div>
                       </div>
@@ -216,16 +216,16 @@ const IocFeed = ({ isAr }: Props) => {
                           { label: "Confidence", value: `${ioc.confidence}%` },
                         ].map((row) => (
                           <div key={row.label} className="flex justify-between">
-                            <span className="text-gray-700 text-[10px] font-['JetBrains_Mono']">{row.label}</span>
-                            <span className="text-gray-400 text-[10px] font-['JetBrains_Mono']">{row.value}</span>
+                            <span className="text-gray-700 text-[11px] font-['JetBrains_Mono']">{row.label}</span>
+                            <span className="text-gray-400 text-[11px] font-['JetBrains_Mono']">{row.value}</span>
                           </div>
                         ))}
                       </div>
                       <div className="flex gap-2">
-                        <button className="flex-1 py-1.5 rounded-lg text-[10px] font-['Inter'] cursor-pointer transition-colors whitespace-nowrap" style={{ background: "rgba(184,138,60,0.08)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}>
+                        <button className="flex-1 py-1.5 rounded-lg text-[11px] font-['Inter'] cursor-pointer transition-colors whitespace-nowrap" style={{ background: "rgba(184,138,60,0.08)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}>
                           <i className="ri-search-eye-line mr-1" />Investigate
                         </button>
-                        <button className="flex-1 py-1.5 rounded-lg text-[10px] font-['Inter'] cursor-pointer transition-colors whitespace-nowrap" style={{ background: "rgba(201,74,94,0.08)", color: "#C94A5E", border: "1px solid rgba(201,74,94,0.2)" }}>
+                        <button className="flex-1 py-1.5 rounded-lg text-[11px] font-['Inter'] cursor-pointer transition-colors whitespace-nowrap" style={{ background: "rgba(201,74,94,0.08)", color: "#C94A5E", border: "1px solid rgba(201,74,94,0.2)" }}>
                           <i className="ri-flag-line mr-1" />Escalate
                         </button>
                       </div>

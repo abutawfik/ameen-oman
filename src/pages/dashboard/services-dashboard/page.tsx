@@ -236,9 +236,9 @@ const ServicesDashboardPage = () => {
                         <td style={{ padding: '10px 14px', color: '#D1D5DB' }}>{svc.airline}</td>
                         <td style={{ padding: '10px 14px' }}><StatusBadge status={svc.status} /></td>
                         <td style={{ padding: '10px 14px', color: '#9CA3AF', fontFamily: "'JetBrains Mono', monospace", fontSize: 12, whiteSpace: 'nowrap' }}>
-                          <span style={{ color: '#6B7280', fontSize: 10 }}>ETD</span> {svc.etd}
+                          <span style={{ color: '#6B7280', fontSize: 11 }}>ETD</span> {svc.etd}
                           <span style={{ color: '#374151', margin: '0 6px' }}>·</span>
-                          <span style={{ color: '#6B7280', fontSize: 10 }}>ETA</span> {svc.eta}
+                          <span style={{ color: '#6B7280', fontSize: 11 }}>ETA</span> {svc.eta}
                         </td>
                         <td style={{ padding: '10px 14px', color: '#E5E7EB', fontFamily: "'JetBrains Mono', monospace", fontSize: 13 }}>{svc.pax}</td>
                         <td style={{ padding: '10px 14px' }}>
@@ -299,7 +299,7 @@ const ServicesDashboardPage = () => {
                   { label: 'RISK', value: <RiskBadge level={selectedService.risk} /> },
                 ].map(item => (
                   <div key={item.label}>
-                    <div style={{ color: '#6B7280', fontSize: 10, fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.1em', marginBottom: 4 }}>{item.label}</div>
+                    <div style={{ color: '#6B7280', fontSize: 11, fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.1em', marginBottom: 4 }}>{item.label}</div>
                     <div style={{ color: '#E5E7EB', fontFamily: "'JetBrains Mono', monospace", fontSize: 14, fontWeight: 600 }}>{item.value}</div>
                   </div>
                 ))}
@@ -315,7 +315,7 @@ const ServicesDashboardPage = () => {
                     <thead>
                       <tr style={{ borderBottom: '1px solid rgba(184,138,60,0.08)' }}>
                         {['Name', 'Nat.', 'Seat', 'Risk', 'Hit'].map(h => (
-                          <th key={h} style={{ padding: '6px 8px', textAlign: 'left', color: '#4B5563', fontSize: 10, fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.08em', textTransform: 'uppercase' }}>{h}</th>
+                          <th key={h} style={{ padding: '6px 8px', textAlign: 'left', color: '#4B5563', fontSize: 11, fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.08em', textTransform: 'uppercase' }}>{h}</th>
                         ))}
                       </tr>
                     </thead>
@@ -328,8 +328,8 @@ const ServicesDashboardPage = () => {
                           <td style={{ padding: '7px 8px' }}><RiskBadge level={p.risk} /></td>
                           <td style={{ padding: '7px 8px' }}>
                             {p.hit
-                              ? <span style={{ color: C.critical, fontFamily: "'JetBrains Mono', monospace", fontSize: 10, fontWeight: 700 }}>● HIT</span>
-                              : <span style={{ color: '#374151', fontSize: 10 }}>—</span>
+                              ? <span style={{ color: C.critical, fontFamily: "'JetBrains Mono', monospace", fontSize: 11, fontWeight: 700 }}>● HIT</span>
+                              : <span style={{ color: '#374151', fontSize: 11 }}>—</span>
                             }
                           </td>
                         </tr>

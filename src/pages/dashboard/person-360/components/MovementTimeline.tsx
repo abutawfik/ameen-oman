@@ -122,7 +122,7 @@ const MovementTimeline = ({ events, streamFilter, isAr }: Props) => {
                       : `0 0 6px ${event.streamColor}44`,
                   }}
                 >
-                  <i className={`${event.streamIcon}`} style={{ color: event.streamColor, fontSize: 10 }} />
+                  <i className={`${event.streamIcon}`} style={{ color: event.streamColor, fontSize: 11 }} />
                 </div>
 
                 {/* Event card */}
@@ -143,16 +143,16 @@ const MovementTimeline = ({ events, streamFilter, isAr }: Props) => {
                         {/* Alert badge */}
                         {event.isAlert && alertColor && (
                           <span
-                            className="px-2 py-0.5 rounded-full text-[10px] font-bold font-['JetBrains_Mono'] uppercase tracking-wider flex items-center gap-1 flex-shrink-0"
+                            className="px-2 py-0.5 rounded-full text-[11px] font-bold font-['JetBrains_Mono'] uppercase tracking-wider flex items-center gap-1 flex-shrink-0"
                             style={{ background: `${alertColor}22`, color: alertColor, border: `1px solid ${alertColor}44` }}
                           >
-                            <i className="ri-alert-fill" style={{ fontSize: 9 }} />
+                            <i className="ri-alert-fill" style={{ fontSize: 10 }} />
                             {event.alertType}
                           </span>
                         )}
                         {/* Stream label */}
                         <span
-                          className="text-[10px] font-['JetBrains_Mono'] font-bold uppercase tracking-wider flex-shrink-0"
+                          className="text-[11px] font-['JetBrains_Mono'] font-bold uppercase tracking-wider flex-shrink-0"
                           style={{ color: event.streamColor }}
                         >
                           {event.stream}
@@ -161,13 +161,13 @@ const MovementTimeline = ({ events, streamFilter, isAr }: Props) => {
                       <p className="text-white text-sm font-['Inter'] font-semibold leading-snug">{event.title}</p>
                       <p className="text-gray-400 text-xs font-['Inter'] mt-0.5 leading-relaxed">{event.description}</p>
                       <div className="flex items-center gap-3 mt-1.5 flex-wrap">
-                        <span className="text-gray-600 text-[10px] font-['JetBrains_Mono'] flex items-center gap-1">
+                        <span className="text-gray-600 text-[11px] font-['JetBrains_Mono'] flex items-center gap-1">
                           <i className="ri-time-line" />{event.datetime}
                         </span>
-                        <span className="text-gray-600 text-[10px] font-['JetBrains_Mono'] flex items-center gap-1">
+                        <span className="text-gray-600 text-[11px] font-['JetBrains_Mono'] flex items-center gap-1">
                           <i className="ri-map-pin-line" />{event.location}
                         </span>
-                        <span className="text-gray-600 text-[10px] font-['JetBrains_Mono'] flex items-center gap-1">
+                        <span className="text-gray-600 text-[11px] font-['JetBrains_Mono'] flex items-center gap-1">
                           <i className="ri-building-line" />{event.entity}
                         </span>
                       </div>
@@ -185,7 +185,7 @@ const MovementTimeline = ({ events, streamFilter, isAr }: Props) => {
                     >
                       {Object.entries(event.details).map(([key, val]) => (
                         <div key={key}>
-                          <p className="text-gray-600 text-[10px] uppercase tracking-wider font-['JetBrains_Mono']">{key}</p>
+                          <p className="text-gray-600 text-[11px] uppercase tracking-wider font-['JetBrains_Mono']">{key}</p>
                           <p className="text-white text-xs font-['JetBrains_Mono'] mt-0.5">{val}</p>
                         </div>
                       ))}

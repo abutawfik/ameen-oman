@@ -50,21 +50,21 @@ export default function SavedQueriesPanel({ isAr, onRun }: Props) {
             </div>
 
             <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-              <span style={{ fontSize: 10, padding: '2px 6px', borderRadius: 3, background: 'rgba(91,116,148,0.15)', color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase' }}>
+              <span style={{ fontSize: 11, padding: '2px 6px', borderRadius: 3, background: 'rgba(91,116,148,0.15)', color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase' }}>
                 {q.domain}
               </span>
-              <span style={{ fontSize: 10, padding: '2px 6px', borderRadius: 3, background: 'rgba(91,116,148,0.15)', color: '#5B7494', fontFamily: "'JetBrains Mono', monospace" }}>
+              <span style={{ fontSize: 11, padding: '2px 6px', borderRadius: 3, background: 'rgba(91,116,148,0.15)', color: '#5B7494', fontFamily: "'JetBrains Mono', monospace" }}>
                 {q.mode}
               </span>
               {q.isShared && (
-                <span style={{ fontSize: 10, padding: '2px 6px', borderRadius: 3, background: 'rgba(74,158,90,0.1)', color: '#4A9E5A', fontFamily: "'JetBrains Mono', monospace" }}>
+                <span style={{ fontSize: 11, padding: '2px 6px', borderRadius: 3, background: 'rgba(74,158,90,0.1)', color: '#4A9E5A', fontFamily: "'JetBrains Mono', monospace" }}>
                   shared
                 </span>
               )}
             </div>
 
             {q.lastRun && (
-              <div style={{ marginTop: 6, fontSize: 10, color: '#374B61', fontFamily: "'JetBrains Mono', monospace" }}>
+              <div style={{ marginTop: 6, fontSize: 11, color: '#374B61', fontFamily: "'JetBrains Mono', monospace" }}>
                 {isAr ? 'آخر تشغيل:' : 'Last run:'} {q.lastRun}
               </div>
             )}

@@ -312,7 +312,7 @@ export default function EscalationTimeline() {
                       background: i === feedbackStats.weeklyDecisions.length - 1 ? '#D6B47E' : 'rgba(184,138,60,0.3)',
                     }}
                   />
-                  <span className="text-gray-600 font-mono" style={{ fontSize: 8 }}>
+                  <span className="text-gray-600 font-mono" style={{ fontSize: 10 }}>
                     {feedbackStats.weeklyLabels[i]}
                   </span>
                 </div>

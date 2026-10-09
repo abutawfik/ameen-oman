@@ -81,7 +81,7 @@ export default function PatternHeatmap() {
               borderColor: highlightStream === s.key ? s.color : 'rgba(156,163,175,0.2)',
               background: highlightStream === s.key ? `${s.color}20` : 'transparent',
               color: highlightStream === s.key ? s.color : '#6B7280',
-              fontSize: 10,
+              fontSize: 11,
             }}
           >
             {s.short}
@@ -91,7 +91,7 @@ export default function PatternHeatmap() {
           <button
             onClick={() => setHighlightStream(null)}
             className="px-2 py-0.5 rounded-full text-xs border border-gray-600 text-gray-400 cursor-pointer"
-            style={{ fontSize: 10 }}
+            style={{ fontSize: 11 }}
           >
             Clear
           </button>
@@ -108,7 +108,7 @@ export default function PatternHeatmap() {
                 className="text-center font-mono transition-colors"
                 style={{
                   width: 42,
-                  fontSize: 8,
+                  fontSize: 10,
                   flexShrink: 0,
                   color: highlightStream === s.key ? s.color : '#6B7280',
                   fontWeight: highlightStream === s.key ? 700 : 400,
@@ -126,7 +126,7 @@ export default function PatternHeatmap() {
                 className="font-mono text-right pr-2 shrink-0 transition-colors"
                 style={{
                   width: 48,
-                  fontSize: 8,
+                  fontSize: 10,
                   color: highlightStream === rowStream.key ? rowStream.color : '#6B7280',
                   fontWeight: highlightStream === rowStream.key ? 700 : 400,
                 }}

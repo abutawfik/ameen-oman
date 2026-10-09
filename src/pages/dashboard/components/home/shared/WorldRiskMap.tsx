@@ -49,7 +49,7 @@ const WorldRiskMap = ({ origins, onSelectCountry, isAr, selectedIso2 }: Props) =
               : "bubble size = arrivals 24h · colour = avg-score band"}
           </p>
         </div>
-        <div className="hidden md:flex items-center gap-3 text-[10px] font-['JetBrains_Mono']">
+        <div className="hidden md:flex items-center gap-3 text-[11px] font-['JetBrains_Mono']">
           {(["low", "borderline", "elevated", "high", "critical"] as const).map((b) => (
             <span key={b} className="flex items-center gap-1 text-gray-400">
               <span

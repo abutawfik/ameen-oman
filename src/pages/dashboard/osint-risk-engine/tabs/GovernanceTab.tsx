@@ -63,11 +63,11 @@ const GovernanceTab = ({ isAr }: { isAr: boolean }) => {
 
           <div className="rounded-lg p-3"
             style={{ background: "linear-gradient(135deg, rgba(107,79,174,0.1), rgba(10,37,64,0.75))", border: "1px solid rgba(107,79,174,0.3)" }}>
-            <div className="text-[10px] font-bold tracking-widest text-gray-500 font-['JetBrains_Mono']">
+            <div className="text-[11px] font-bold tracking-widest text-gray-500 font-['JetBrains_Mono']">
               {isAr ? "نشط" : "ACTIVE"}
             </div>
             <div className="text-white text-lg font-black font-['JetBrains_Mono']">{MODEL_GOVERNANCE.activeVersion}</div>
-            <div className="text-gray-500 text-[10px] font-['JetBrains_Mono'] mt-1">
+            <div className="text-gray-500 text-[11px] font-['JetBrains_Mono'] mt-1">
               v{"{SCHEMA}.{REGISTRY}.{PATCH}"}-if{"{IF}"}-prank{"{PR}"}-seq{"{SQ}"}
             </div>
           </div>
@@ -151,13 +151,13 @@ const GovernanceTab = ({ isAr }: { isAr: boolean }) => {
               </p>
             </div>
             <div className="flex items-center gap-3">
-              <span className="text-[10px] tracking-widest font-['JetBrains_Mono'] text-gray-500">
+              <span className="text-[11px] tracking-widest font-['JetBrains_Mono'] text-gray-500">
                 {isAr ? "z اليوم:" : "today z:"}
                 <span className="ml-1 font-bold" style={{ color: driftLabel.color }}>
                   {todayZ.toFixed(2)}σ
                 </span>
               </span>
-              <span className="px-2 py-0.5 rounded-md text-[10px] font-bold tracking-widest font-['JetBrains_Mono']"
+              <span className="px-2 py-0.5 rounded-md text-[11px] font-bold tracking-widest font-['JetBrains_Mono']"
                 style={{ background: `${driftLabel.color}22`, color: driftLabel.color, border: `1px solid ${driftLabel.color}55` }}>
                 {isAr ? driftLabel.ar : driftLabel.en}
               </span>
@@ -179,8 +179,8 @@ const GovernanceTab = ({ isAr }: { isAr: boolean }) => {
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(184,138,60,0.08)" />
-                <XAxis dataKey="date" stroke="#6B7280" tick={{ fontSize: 10, fontFamily: "JetBrains Mono" }} />
-                <YAxis stroke="#6B7280" tick={{ fontSize: 10, fontFamily: "JetBrains Mono" }} domain={["dataMin - 3", "dataMax + 3"]} />
+                <XAxis dataKey="date" stroke="#6B7280" tick={{ fontSize: 11, fontFamily: "JetBrains Mono" }} />
+                <YAxis stroke="#6B7280" tick={{ fontSize: 11, fontFamily: "JetBrains Mono" }} domain={["dataMin - 3", "dataMax + 3"]} />
                 <Tooltip contentStyle={{ background: "#0A2540", border: "1px solid rgba(184,138,60,0.3)", borderRadius: 8, fontSize: 12, fontFamily: "JetBrains Mono" }} />
                 <Area type="monotone" dataKey="upper" stroke="none" fill="url(#g-drift-band)" />
                 <Area type="monotone" dataKey="lower" stroke="none" fill="#0A2540" />
@@ -203,7 +203,7 @@ const GovernanceTab = ({ isAr }: { isAr: boolean }) => {
                 {isAr ? "متوقَّع مقابل مُلاحَظ" : "expected vs observed risk"}
               </p>
             </div>
-            <span className="text-[10px] tracking-widest font-['JetBrains_Mono']" style={{ color: "#4ADE80" }}>
+            <span className="text-[11px] tracking-widest font-['JetBrains_Mono']" style={{ color: "#4ADE80" }}>
               <i className="ri-checkbox-circle-fill mr-1" />
               {isAr ? "آخر تشغيل: 2026-04-17 02:15 UTC · سليم" : "Last run: 2026-04-17 02:15 UTC · OK"}
             </span>
@@ -219,18 +219,18 @@ const GovernanceTab = ({ isAr }: { isAr: boolean }) => {
               <ScatterChart margin={{ top: 8, right: 8, left: 0, bottom: 4 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(184,138,60,0.08)" />
                 <XAxis type="number" dataKey="expectedPct" domain={[0, 100]} stroke="#6B7280"
-                  tick={{ fontSize: 10, fontFamily: "JetBrains Mono" }}
-                  label={{ value: isAr ? "المتوقَّع %" : "expected %", fill: "#6B7280", fontSize: 10, position: "insideBottomRight", offset: -2 }} />
+                  tick={{ fontSize: 11, fontFamily: "JetBrains Mono" }}
+                  label={{ value: isAr ? "المتوقَّع %" : "expected %", fill: "#6B7280", fontSize: 11, position: "insideBottomRight", offset: -2 }} />
                 <YAxis type="number" dataKey="observedPct" domain={[0, 100]} stroke="#6B7280"
-                  tick={{ fontSize: 10, fontFamily: "JetBrains Mono" }}
-                  label={{ value: isAr ? "المُلاحَظ %" : "observed %", fill: "#6B7280", fontSize: 10, angle: -90, position: "insideLeft" }} />
+                  tick={{ fontSize: 11, fontFamily: "JetBrains Mono" }}
+                  label={{ value: isAr ? "المُلاحَظ %" : "observed %", fill: "#6B7280", fontSize: 11, angle: -90, position: "insideLeft" }} />
                 <Tooltip contentStyle={{ background: "#0A2540", border: "1px solid rgba(184,138,60,0.3)", borderRadius: 8, fontSize: 12, fontFamily: "JetBrains Mono" }} />
                 <ReferenceLine segment={[{ x: 0, y: 0 }, { x: 100, y: 100 }]} stroke="#D6B47E" strokeDasharray="4 4" />
                 <Scatter data={CALIBRATION_CURVE} fill="#4ADE80" />
               </ScatterChart>
             </ResponsiveContainer>
           </div>
-          <p className="text-gray-500 text-[10px] font-['JetBrains_Mono'] mt-2">
+          <p className="text-gray-500 text-[11px] font-['JetBrains_Mono'] mt-2">
             {isAr
               ? "النسب المحسوبة مُعايَرة ليلياً · المجموع المحدود المرئي = المخرَج المُعايَر"
               : "Percentile mapping re-calibrated nightly · bounded sum visible = calibrated output"}
@@ -250,7 +250,7 @@ const GovernanceTab = ({ isAr }: { isAr: boolean }) => {
                 {isAr ? "أعلى 10 معدل رفع + انحراف عن المتوسط العالمي" : "top 10 flag-rate + deviation vs global mean"}
               </p>
             </div>
-            <span className="px-2 py-0.5 rounded-md text-[10px] font-bold tracking-widest font-['JetBrains_Mono']"
+            <span className="px-2 py-0.5 rounded-md text-[11px] font-bold tracking-widest font-['JetBrains_Mono']"
               style={{ background: fairnessBreaches === 0 ? "rgba(74,222,128,0.15)" : "rgba(201,74,94,0.15)", color: fairnessBreaches === 0 ? "#4ADE80" : "#C94A5E" }}>
               {isAr
                 ? `${fairnessBreaches} جنسيات تتجاوز حد 2σ`
@@ -318,7 +318,7 @@ const GovernanceTab = ({ isAr }: { isAr: boolean }) => {
                     : { color: "#6B7280", label: isAr ? "متقاعد" : "RETIRED", icon: "ri-pause-circle-line" };
                 return (
                   <div key={m.version} className="flex flex-col items-center gap-2">
-                    <div className="text-[10px] text-gray-500 font-['JetBrains_Mono']">{m.deployedAt}</div>
+                    <div className="text-[11px] text-gray-500 font-['JetBrains_Mono']">{m.deployedAt}</div>
                     <div className="w-5 h-5 rounded-full relative z-10 flex items-center justify-center"
                       style={{ background: `${statusMeta.color}22`, border: `2px solid ${statusMeta.color}` }}>
                       {m.status !== "retired" && (
@@ -330,7 +330,7 @@ const GovernanceTab = ({ isAr }: { isAr: boolean }) => {
                       style={{ background: `${statusMeta.color}18`, color: statusMeta.color }}>
                       <i className={`${statusMeta.icon} mr-0.5`} />{statusMeta.label}
                     </span>
-                    <p className="text-[10px] text-gray-500 text-center max-w-[160px] leading-tight">
+                    <p className="text-[11px] text-gray-500 text-center max-w-[160px] leading-tight">
                       {isAr ? m.noteAr : m.noteEn}
                     </p>
                   </div>

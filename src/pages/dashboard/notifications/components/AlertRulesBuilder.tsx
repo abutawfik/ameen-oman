@@ -66,7 +66,7 @@ const AlertRulesBuilder = ({ isAr }: Props) => {
               style={{ background: "rgba(5,20,40,0.8)", border: "1px solid rgba(184,138,60,0.2)", color: "#D1D5DB", outline: "none" }}
             />
             <div className="p-3 rounded-xl" style={{ background: "rgba(5,20,40,0.6)", border: "1px solid rgba(184,138,60,0.1)" }}>
-              <p className="text-gray-500 text-[10px] uppercase tracking-wider font-['JetBrains_Mono'] mb-2">{isAr ? "الشرط" : "Condition"}</p>
+              <p className="text-gray-500 text-[11px] uppercase tracking-wider font-['JetBrains_Mono'] mb-2">{isAr ? "الشرط" : "Condition"}</p>
               <div className="flex items-center gap-2 flex-wrap">
                 <span className="text-gold-400 text-xs font-['JetBrains_Mono'] font-bold">IF</span>
                 <select className="px-2 py-1 rounded-lg text-xs font-['JetBrains_Mono'] cursor-pointer" style={{ background: "rgba(184,138,60,0.08)", border: "1px solid rgba(184,138,60,0.2)", color: "#D6B47E", outline: "none" }}>
@@ -86,7 +86,7 @@ const AlertRulesBuilder = ({ isAr }: Props) => {
               </div>
             </div>
             <div className="p-3 rounded-xl" style={{ background: "rgba(5,20,40,0.6)", border: "1px solid rgba(184,138,60,0.1)" }}>
-              <p className="text-gray-500 text-[10px] uppercase tracking-wider font-['JetBrains_Mono'] mb-2">{isAr ? "الإجراء" : "Action"}</p>
+              <p className="text-gray-500 text-[11px] uppercase tracking-wider font-['JetBrains_Mono'] mb-2">{isAr ? "الإجراء" : "Action"}</p>
               <div className="flex items-center gap-2 flex-wrap">
                 <span className="text-green-400 text-xs font-['JetBrains_Mono'] font-bold">THEN</span>
                 <select className="px-2 py-1 rounded-lg text-xs font-['JetBrains_Mono'] cursor-pointer" style={{ background: "rgba(74,222,128,0.08)", border: "1px solid rgba(74,222,128,0.2)", color: "#4ADE80", outline: "none" }}>
@@ -149,7 +149,7 @@ const AlertRulesBuilder = ({ isAr }: Props) => {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1 flex-wrap">
                     <span
-                      className="px-2 py-0.5 rounded-full text-[10px] font-bold font-['JetBrains_Mono'] uppercase"
+                      className="px-2 py-0.5 rounded-full text-[11px] font-bold font-['JetBrains_Mono'] uppercase"
                       style={{ background: cfg.bg, color: cfg.color, border: `1px solid ${cfg.border}` }}
                     >
                       {isAr ? cfg.labelAr : cfg.label}
@@ -157,12 +157,12 @@ const AlertRulesBuilder = ({ isAr }: Props) => {
                     <p className="text-white text-sm font-['Inter'] font-semibold">{isAr ? rule.nameAr : rule.name}</p>
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className="text-gray-600 text-[10px] font-['JetBrains_Mono'] flex items-center gap-1">
-                      <i className="ri-flashlight-line text-[10px]" />
+                    <span className="text-gray-600 text-[11px] font-['JetBrains_Mono'] flex items-center gap-1">
+                      <i className="ri-flashlight-line text-[11px]" />
                       {rule.triggerCount.toLocaleString()} {isAr ? "مرة" : "triggers"}
                     </span>
-                    <span className="text-gray-600 text-[10px] font-['JetBrains_Mono'] flex items-center gap-1">
-                      <i className="ri-time-line text-[10px]" />
+                    <span className="text-gray-600 text-[11px] font-['JetBrains_Mono'] flex items-center gap-1">
+                      <i className="ri-time-line text-[11px]" />
                       {rule.lastTriggered}
                     </span>
                   </div>
@@ -177,7 +177,7 @@ const AlertRulesBuilder = ({ isAr }: Props) => {
                       style={{ background: "rgba(184,138,60,0.08)", border: "1px solid rgba(184,138,60,0.15)" }}
                       title={action.channel}
                     >
-                      <i className={`${channelIcons[action.channel] || "ri-notification-line"} text-gold-400 text-[10px]`} />
+                      <i className={`${channelIcons[action.channel] || "ri-notification-line"} text-gold-400 text-[11px]`} />
                     </div>
                   ))}
                 </div>
@@ -190,20 +190,20 @@ const AlertRulesBuilder = ({ isAr }: Props) => {
                 <div className="px-4 pb-4 border-t space-y-3" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
                   {/* Conditions */}
                   <div className="pt-3">
-                    <p className="text-gray-600 text-[10px] uppercase tracking-wider font-['JetBrains_Mono'] mb-2">{isAr ? "الشروط" : "Conditions"}</p>
+                    <p className="text-gray-600 text-[11px] uppercase tracking-wider font-['JetBrains_Mono'] mb-2">{isAr ? "الشروط" : "Conditions"}</p>
                     <div className="space-y-1.5">
                       {rule.conditions.map((cond, i) => (
                         <div key={i} className="flex items-center gap-2 flex-wrap">
                           {i > 0 && cond.connector && (
-                            <span className="text-[10px] font-bold font-['JetBrains_Mono'] px-2 py-0.5 rounded" style={{ background: "rgba(184,138,60,0.1)", color: "#D6B47E" }}>
+                            <span className="text-[11px] font-bold font-['JetBrains_Mono'] px-2 py-0.5 rounded" style={{ background: "rgba(184,138,60,0.1)", color: "#D6B47E" }}>
                               {cond.connector}
                             </span>
                           )}
-                          <span className="text-[10px] font-['JetBrains_Mono'] px-2 py-1 rounded-lg" style={{ background: "rgba(184,138,60,0.08)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.15)" }}>
+                          <span className="text-[11px] font-['JetBrains_Mono'] px-2 py-1 rounded-lg" style={{ background: "rgba(184,138,60,0.08)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.15)" }}>
                             {cond.field}
                           </span>
-                          <span className="text-gray-500 text-[10px] font-['JetBrains_Mono']">{cond.operator}</span>
-                          <span className="text-[10px] font-bold font-['JetBrains_Mono'] px-2 py-1 rounded-lg" style={{ background: `${cfg.bg}`, color: cfg.color, border: `1px solid ${cfg.border}` }}>
+                          <span className="text-gray-500 text-[11px] font-['JetBrains_Mono']">{cond.operator}</span>
+                          <span className="text-[11px] font-bold font-['JetBrains_Mono'] px-2 py-1 rounded-lg" style={{ background: `${cfg.bg}`, color: cfg.color, border: `1px solid ${cfg.border}` }}>
                             {cond.value}
                           </span>
                         </div>
@@ -213,16 +213,16 @@ const AlertRulesBuilder = ({ isAr }: Props) => {
 
                   {/* Actions */}
                   <div>
-                    <p className="text-gray-600 text-[10px] uppercase tracking-wider font-['JetBrains_Mono'] mb-2">{isAr ? "الإجراءات" : "Actions"}</p>
+                    <p className="text-gray-600 text-[11px] uppercase tracking-wider font-['JetBrains_Mono'] mb-2">{isAr ? "الإجراءات" : "Actions"}</p>
                     <div className="space-y-1.5">
                       {rule.actions.map((action, i) => (
                         <div key={i} className="flex items-center gap-2 flex-wrap">
-                          <span className="text-green-400 text-[10px] font-bold font-['JetBrains_Mono']">→</span>
-                          <span className="text-[10px] font-['JetBrains_Mono'] px-2 py-1 rounded-lg" style={{ background: "rgba(74,222,128,0.08)", color: "#4ADE80", border: "1px solid rgba(74,222,128,0.2)" }}>
+                          <span className="text-green-400 text-[11px] font-bold font-['JetBrains_Mono']">→</span>
+                          <span className="text-[11px] font-['JetBrains_Mono'] px-2 py-1 rounded-lg" style={{ background: "rgba(74,222,128,0.08)", color: "#4ADE80", border: "1px solid rgba(74,222,128,0.2)" }}>
                             {action.type}
                           </span>
-                          <span className="text-gray-500 text-[10px] font-['JetBrains_Mono']">{isAr ? "إلى" : "to"}</span>
-                          <span className="text-gray-300 text-[10px] font-['JetBrains_Mono']">{action.target}</span>
+                          <span className="text-gray-500 text-[11px] font-['JetBrains_Mono']">{isAr ? "إلى" : "to"}</span>
+                          <span className="text-gray-300 text-[11px] font-['JetBrains_Mono']">{action.target}</span>
                           <div className="w-5 h-5 flex items-center justify-center rounded" style={{ background: "rgba(184,138,60,0.08)", border: "1px solid rgba(184,138,60,0.15)" }}>
                             <i className={`${channelIcons[action.channel] || "ri-notification-line"} text-gold-400 text-[9px]`} />
                           </div>
@@ -233,15 +233,15 @@ const AlertRulesBuilder = ({ isAr }: Props) => {
 
                   {/* Edit/Delete */}
                   <div className="flex gap-2 pt-1">
-                    <button className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-[10px] font-['JetBrains_Mono'] cursor-pointer" style={{ background: "rgba(184,138,60,0.05)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}>
+                    <button className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-[11px] font-['JetBrains_Mono'] cursor-pointer" style={{ background: "rgba(184,138,60,0.05)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}>
                       <i className="ri-edit-line" />
                       {isAr ? "تعديل" : "Edit"}
                     </button>
-                    <button className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-[10px] font-['JetBrains_Mono'] cursor-pointer" style={{ background: "rgba(201,74,94,0.05)", color: "#C94A5E", border: "1px solid rgba(201,74,94,0.2)" }}>
+                    <button className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-[11px] font-['JetBrains_Mono'] cursor-pointer" style={{ background: "rgba(201,74,94,0.05)", color: "#C94A5E", border: "1px solid rgba(201,74,94,0.2)" }}>
                       <i className="ri-delete-bin-line" />
                       {isAr ? "حذف" : "Delete"}
                     </button>
-                    <button className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-[10px] font-['JetBrains_Mono'] cursor-pointer" style={{ background: "rgba(255,255,255,0.03)", color: "#9CA3AF", border: "1px solid rgba(255,255,255,0.08)" }}>
+                    <button className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-[11px] font-['JetBrains_Mono'] cursor-pointer" style={{ background: "rgba(255,255,255,0.03)", color: "#9CA3AF", border: "1px solid rgba(255,255,255,0.08)" }}>
                       <i className="ri-test-tube-line" />
                       {isAr ? "اختبار" : "Test"}
                     </button>

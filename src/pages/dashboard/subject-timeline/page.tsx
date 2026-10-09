@@ -204,7 +204,7 @@ const TimelineRow = ({
           {/* Score + velocity */}
           <div className="flex items-center gap-2">
             {showVelocity && <VelocityBadge mult={velocityMult} />}
-            <span className="text-[10px] font-['JetBrains_Mono'] text-gray-600">
+            <span className="text-[11px] font-['JetBrains_Mono'] text-gray-600">
               {isAr ? "درجة" : "score"}
             </span>
             <span
@@ -261,7 +261,7 @@ const TimelineRow = ({
               {isAr ? ev.riskFlagAr : ev.riskFlag}
             </p>
           )}
-          <p className="text-gray-700 text-[10px] font-['JetBrains_Mono']">{ev.ameenRef}</p>
+          <p className="text-gray-700 text-[11px] font-['JetBrains_Mono']">{ev.ameenRef}</p>
         </div>
       </div>
     </div>
@@ -298,7 +298,7 @@ const FingerprintCard = ({ match, isAr }: { match: PatternMatch; isAr: boolean }
             {isAr ? "ثقة" : "conf"} {match.confidence}%
           </span>
           <span
-            className="px-1.5 py-0.5 rounded text-[10px] font-bold font-['JetBrains_Mono']"
+            className="px-1.5 py-0.5 rounded text-[11px] font-bold font-['JetBrains_Mono']"
             style={{ background: `${color}15`, color }}
           >
             +{match.scoreDelta}
@@ -327,18 +327,18 @@ const LinkedEntityCard = ({ alert, isAr }: { alert: LinkedEntityAlert; isAr: boo
         </span>
       </div>
       <div className="flex items-center gap-2 flex-shrink-0">
-        <span className="text-[10px] font-['JetBrains_Mono']" style={{ color: "#FACC15" }}>
+        <span className="text-[11px] font-['JetBrains_Mono']" style={{ color: "#FACC15" }}>
           {isAr ? "درجة الكيان" : "entity"} {alert.riskScore}
         </span>
         <span
-          className="px-1.5 py-0.5 rounded text-[10px] font-bold font-['JetBrains_Mono']"
+          className="px-1.5 py-0.5 rounded text-[11px] font-bold font-['JetBrains_Mono']"
           style={{ background: "rgba(250,204,21,0.12)", color: "#FACC15" }}
         >
           +{alert.scoreDelta}
         </span>
       </div>
     </div>
-    <p className="text-gray-600 text-[10px] font-['JetBrains_Mono'] truncate mb-1.5">
+    <p className="text-gray-600 text-[11px] font-['JetBrains_Mono'] truncate mb-1.5">
       {alert.entityName}
     </p>
     <p className="text-gray-400 text-xs leading-relaxed">
@@ -484,7 +484,7 @@ const SubjectTimelinePage = () => {
                   </span>
                   {hasCritical && (
                     <span
-                      className="flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold tracking-widest font-['JetBrains_Mono']"
+                      className="flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-bold tracking-widest font-['JetBrains_Mono']"
                       style={{ background: "rgba(201,74,94,0.15)", color: "#C94A5E", border: "1px solid rgba(201,74,94,0.4)" }}
                     >
                       <span className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse inline-block" />
@@ -493,7 +493,7 @@ const SubjectTimelinePage = () => {
                   )}
                   {hasVelocity && (
                     <span
-                      className="flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold tracking-widest font-['JetBrains_Mono']"
+                      className="flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-bold tracking-widest font-['JetBrains_Mono']"
                       style={{ background: "rgba(249,115,22,0.12)", color: "#F97316", border: "1px solid rgba(249,115,22,0.35)" }}
                     >
                       <i className="ri-flashlight-line" />
@@ -575,7 +575,7 @@ const SubjectTimelinePage = () => {
                     {patterns.map((p) => (
                       <span
                         key={p.id}
-                        className="px-2 py-0.5 rounded text-[10px] font-bold font-['JetBrains_Mono']"
+                        className="px-2 py-0.5 rounded text-[11px] font-bold font-['JetBrains_Mono']"
                         style={{ background: "rgba(201,74,94,0.12)", color: "#C94A5E", border: "1px solid rgba(201,74,94,0.3)" }}
                       >
                         {isAr ? p.nameAr : p.name}
@@ -612,7 +612,7 @@ const SubjectTimelinePage = () => {
                     <i className="ri-timeline-view" style={{ color: "#D6B47E" }} />
                     {isAr ? "الجدول الزمني للنشاط" : "Activity timeline"}
                     <span
-                      className="px-1.5 py-0.5 rounded-full text-[10px] font-['JetBrains_Mono']"
+                      className="px-1.5 py-0.5 rounded-full text-[11px] font-['JetBrains_Mono']"
                       style={{ background: "rgba(184,138,60,0.15)", color: "#D6B47E" }}
                     >
                       {sorted.length}
@@ -797,7 +797,7 @@ const SubjectTimelinePage = () => {
                     const showVel   = velocityMult > 1.0 && delta > 0;
                     return (
                       <div key={ev.id} className="flex items-center gap-2">
-                        <span className="text-gray-600 text-[10px] font-['JetBrains_Mono'] w-10 text-right flex-shrink-0">
+                        <span className="text-gray-600 text-[11px] font-['JetBrains_Mono'] w-10 text-right flex-shrink-0">
                           {i === 0 ? "12" : scored[i - 1].score}→
                         </span>
                         <div className="flex-1 h-1.5 rounded-full bg-white/5">
@@ -823,7 +823,7 @@ const SubjectTimelinePage = () => {
                         ) : (
                           <span className="w-10 flex-shrink-0" />
                         )}
-                        <span className="text-gray-600 text-[10px] truncate min-w-0">
+                        <span className="text-gray-600 text-[11px] truncate min-w-0">
                           {isAr ? typeLabel.ar : typeLabel.en}
                         </span>
                       </div>
@@ -836,7 +836,7 @@ const SubjectTimelinePage = () => {
                       className="flex items-center gap-2 border-t pt-2 mt-1"
                       style={{ borderColor: "rgba(201,74,94,0.2)" }}
                     >
-                      <span className="text-gray-600 text-[10px] font-['JetBrains_Mono'] w-10 text-right flex-shrink-0">
+                      <span className="text-gray-600 text-[11px] font-['JetBrains_Mono'] w-10 text-right flex-shrink-0">
                         {finalScore}→
                       </span>
                       <div className="flex-1 h-1.5 rounded-full bg-white/5">
@@ -849,7 +849,7 @@ const SubjectTimelinePage = () => {
                         {Math.min(100, finalScore + patternsDelta)}
                       </span>
                       <span className="text-[9px] font-['JetBrains_Mono'] w-10" style={{ color: "#C94A5E" }}>+{patternsDelta}</span>
-                      <span className="text-[10px] flex items-center gap-1" style={{ color: "#C94A5E" }}>
+                      <span className="text-[11px] flex items-center gap-1" style={{ color: "#C94A5E" }}>
                         <i className="ri-dna-line" />
                         {isAr ? "بصمات سلوكية" : "fingerprints"}
                       </span>
@@ -862,7 +862,7 @@ const SubjectTimelinePage = () => {
                       className="flex items-center gap-2 border-t pt-2 mt-1"
                       style={{ borderColor: "rgba(250,204,21,0.2)" }}
                     >
-                      <span className="text-gray-600 text-[10px] font-['JetBrains_Mono'] w-10 text-right flex-shrink-0">
+                      <span className="text-gray-600 text-[11px] font-['JetBrains_Mono'] w-10 text-right flex-shrink-0">
                         {Math.min(100, finalScore + patternsDelta)}→
                       </span>
                       <div className="flex-1 h-1.5 rounded-full bg-white/5">
@@ -878,7 +878,7 @@ const SubjectTimelinePage = () => {
                         {Math.min(100, finalScore + patternsDelta + linkedDelta)}
                       </span>
                       <span className="text-[9px] font-['JetBrains_Mono'] w-10" style={{ color: "#FACC15" }}>+{linkedDelta}</span>
-                      <span className="text-[10px] flex items-center gap-1" style={{ color: "#FACC15" }}>
+                      <span className="text-[11px] flex items-center gap-1" style={{ color: "#FACC15" }}>
                         <i className="ri-links-line" />
                         {isAr ? "كيانات مرتبطة" : "entity links"}
                       </span>
@@ -891,7 +891,7 @@ const SubjectTimelinePage = () => {
                       className="flex items-center gap-2 border-t pt-2 mt-1"
                       style={{ borderColor: "rgba(201,74,94,0.3)" }}
                     >
-                      <span className="text-gray-600 text-[10px] font-['JetBrains_Mono'] w-10 text-right flex-shrink-0">
+                      <span className="text-gray-600 text-[11px] font-['JetBrains_Mono'] w-10 text-right flex-shrink-0">
                         {Math.min(100, finalScore + patternsDelta + linkedDelta)}→
                       </span>
                       <div className="flex-1 h-1.5 rounded-full bg-white/5">
@@ -904,7 +904,7 @@ const SubjectTimelinePage = () => {
                       <span className="text-[9px] font-['JetBrains_Mono'] w-10" style={{ color: "#C94A5E" }}>
                         +{RASAD_INTEL.scoreDelta}
                       </span>
-                      <span className="text-[10px]" style={{ color: "#C94A5E" }}>
+                      <span className="text-[11px]" style={{ color: "#C94A5E" }}>
                         {isAr ? "رصد مُصنَّف" : "Rasad classified"}
                       </span>
                     </div>
@@ -995,7 +995,7 @@ const SubjectTimelinePage = () => {
                         >
                           {rec.classification}
                         </span>
-                        <span className="text-gray-500 text-[10px] font-['JetBrains_Mono']">{rec.source}</span>
+                        <span className="text-gray-500 text-[11px] font-['JetBrains_Mono']">{rec.source}</span>
                       </div>
                       <p className="text-gray-300 text-xs leading-relaxed">
                         {isAr ? rec.ar : rec.en}

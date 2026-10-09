@@ -129,7 +129,7 @@ export default function MobilePushPanel() {
                 >
                   <i
                     className={`${isAcked ? 'ri-check-line' : 'ri-alarm-warning-fill'} text-white`}
-                    style={{ fontSize: 10 }}
+                    style={{ fontSize: 11 }}
                   />
                 </div>
                 <span

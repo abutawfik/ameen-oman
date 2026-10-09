@@ -118,7 +118,7 @@ const ConfigTab = ({
                   </span>
                 )}
                 {p.isDefault && (
-                  <i className="ri-star-fill text-[10px]" style={{ color: "#D6B47E" }} />
+                  <i className="ri-star-fill text-[11px]" style={{ color: "#D6B47E" }} />
                 )}
               </button>
             );
@@ -133,7 +133,7 @@ const ConfigTab = ({
           </p>
           {isDirty && (
             <div className="flex items-center gap-2">
-              <span className="text-[10px] font-bold font-['JetBrains_Mono'] tracking-widest" style={{ color: "#C98A1B" }}>
+              <span className="text-[11px] font-bold font-['JetBrains_Mono'] tracking-widest" style={{ color: "#C98A1B" }}>
                 {isAr ? "تعديلات غير محفوظة" : "UNSAVED CHANGES"}
               </span>
               <button onClick={onProfileDiscard}
@@ -164,7 +164,7 @@ const ConfigTab = ({
             <div>
               <h3 className="text-white text-sm font-bold">
                 {isAr ? "أوزان الدرجات الفرعية" : "Sub-score weights"}
-                <span className="ml-2 text-[10px] font-['JetBrains_Mono'] text-gray-500">
+                <span className="ml-2 text-[11px] font-['JetBrains_Mono'] text-gray-500">
                   {isAr ? `الملف النشط: ${activeProfile.nameAr}` : `active: ${activeProfile.name}`}
                 </span>
               </h3>
@@ -199,7 +199,7 @@ const ConfigTab = ({
                     onChange={(e) => onWeightChange(w.key, parseInt(e.target.value))}
                     className="w-full accent-gold-400 cursor-pointer"
                   />
-                  <p className="text-gray-600 text-[10px] font-['JetBrains_Mono'] mt-0.5">
+                  <p className="text-gray-600 text-[11px] font-['JetBrains_Mono'] mt-0.5">
                     {w.primarySources.join(" · ")} — {w.method}
                   </p>
                 </div>
@@ -207,7 +207,7 @@ const ConfigTab = ({
                   <span className="text-lg font-black font-['JetBrains_Mono']" style={{ color: w.color }}>
                     {w.weight}%
                   </span>
-                  <p className="text-gray-600 text-[10px] font-['JetBrains_Mono']">default {w.defaultWeight}%</p>
+                  <p className="text-gray-600 text-[11px] font-['JetBrains_Mono']">default {w.defaultWeight}%</p>
                 </div>
               </div>
             ))}
@@ -233,7 +233,7 @@ const ConfigTab = ({
               return (
                 <div key={r.rank} className="flex items-center gap-2 px-2 py-1.5 rounded-md"
                   style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.04)" }}>
-                  <span className="text-gray-500 text-[10px] font-['JetBrains_Mono'] w-5">#{r.rank}</span>
+                  <span className="text-gray-500 text-[11px] font-['JetBrains_Mono'] w-5">#{r.rank}</span>
                   <span className="text-gray-300 text-xs flex-1 truncate">{r.name}</span>
                   <span className="text-gray-400 font-['JetBrains_Mono'] text-xs w-8 text-right">{r.before}</span>
                   <i className="ri-arrow-right-s-line text-gray-600" />
@@ -247,7 +247,7 @@ const ConfigTab = ({
               );
             })}
           </div>
-          <div className="mt-3 pt-3 border-t text-[10px] font-['JetBrains_Mono']"
+          <div className="mt-3 pt-3 border-t text-[11px] font-['JetBrains_Mono']"
             style={{ borderColor: "rgba(255,255,255,0.06)" }}>
             <span className="text-gray-500">
               {hasDeltas

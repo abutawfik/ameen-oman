@@ -72,7 +72,7 @@ export default function TopRulesTable() {
                 <th
                   key={h}
                   className="text-left text-gray-500 font-medium pb-2 pr-3 uppercase tracking-wider"
-                  style={{ fontSize: 10 }}
+                  style={{ fontSize: 11 }}
                 >
                   {h}
                 </th>
@@ -103,7 +103,7 @@ export default function TopRulesTable() {
                     style={{
                       background: `${categoryColors[rule.category] || '#9CA3AF'}20`,
                       color: categoryColors[rule.category] || '#9CA3AF',
-                      fontSize: 10,
+                      fontSize: 11,
                     }}
                   >
                     {rule.category}
@@ -118,11 +118,11 @@ export default function TopRulesTable() {
                         style={{ background: 'rgba(184,138,60,0.1)' }}
                         title={s}
                       >
-                        <i className={`${streamIcons[s] || 'ri-database-line'} text-gold-400`} style={{ fontSize: 8 }} />
+                        <i className={`${streamIcons[s] || 'ri-database-line'} text-gold-400`} style={{ fontSize: 10 }} />
                       </div>
                     ))}
                     {rule.streamsInvolved.length > 3 && (
-                      <span className="text-gray-600" style={{ fontSize: 10 }}>+{rule.streamsInvolved.length - 3}</span>
+                      <span className="text-gray-600" style={{ fontSize: 11 }}>+{rule.streamsInvolved.length - 3}</span>
                     )}
                   </div>
                 </td>
@@ -201,9 +201,9 @@ export default function TopRulesTable() {
                     <span
                       key={s}
                       className="flex items-center gap-1 px-2 py-0.5 rounded-full border border-gold-500/20 text-gold-400"
-                      style={{ background: 'rgba(184,138,60,0.08)', fontSize: 10 }}
+                      style={{ background: 'rgba(184,138,60,0.08)', fontSize: 11 }}
                     >
-                      <i className={`${streamIcons[s] || 'ri-database-line'}`} style={{ fontSize: 9 }} />
+                      <i className={`${streamIcons[s] || 'ri-database-line'}`} style={{ fontSize: 10 }} />
                       {s}
                     </span>
                   ))}
@@ -230,7 +230,7 @@ export default function TopRulesTable() {
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-white text-xs font-medium truncate">{c.personName}</p>
-                        <p className="text-gray-500 font-mono" style={{ fontSize: 10 }}>{c.personDoc}</p>
+                        <p className="text-gray-500 font-mono" style={{ fontSize: 11 }}>{c.personDoc}</p>
                       </div>
                       <span
                         className="font-mono font-bold text-sm shrink-0"
@@ -261,7 +261,7 @@ export default function TopRulesTable() {
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-white text-xs font-medium">{c.name}</p>
-                        <p className="text-gray-500 font-mono" style={{ fontSize: 10 }}>{c.doc}</p>
+                        <p className="text-gray-500 font-mono" style={{ fontSize: 11 }}>{c.doc}</p>
                       </div>
                       <span
                         className="font-mono font-bold text-sm shrink-0"

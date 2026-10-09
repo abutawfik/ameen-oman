@@ -87,7 +87,7 @@ const KpiTile = ({ label, value, icon, color, deltaPct, deltaDirHint = "up_is_go
       {/* Delta — absolute top-right, never displaces the label */}
       {typeof deltaPct === "number" && (
         <span
-          className="absolute top-3 right-3 flex items-center gap-0.5 text-[10px] font-bold font-['JetBrains_Mono'] whitespace-nowrap"
+          className="absolute top-3 right-3 flex items-center gap-0.5 text-[11px] font-bold font-['JetBrains_Mono'] whitespace-nowrap"
           style={{ color: deltaColor }}
         >
           <i className={deltaIcon} />
@@ -101,7 +101,7 @@ const KpiTile = ({ label, value, icon, color, deltaPct, deltaDirHint = "up_is_go
         <div className="flex items-center gap-1.5 min-w-0 pr-12">
           <i className={`${icon} text-sm flex-shrink-0`} style={{ color }} />
           <span
-            className="text-[10px] font-bold tracking-[0.1em] uppercase font-['JetBrains_Mono'] leading-tight"
+            className="text-[11px] font-bold tracking-[0.1em] uppercase font-['JetBrains_Mono'] leading-tight"
             style={{ color: "#9CA3AF" }}
           >
             {label}
@@ -119,7 +119,7 @@ const KpiTile = ({ label, value, icon, color, deltaPct, deltaDirHint = "up_is_go
         {/* Subtitle */}
         {subtitle && (
           <div
-            className="text-[10px] font-['JetBrains_Mono'] leading-tight"
+            className="text-[11px] font-['JetBrains_Mono'] leading-tight"
             style={{ color: "#6B7280" }}
           >
             {subtitle}

@@ -91,7 +91,7 @@ const AlertDetail = ({ alert, isAr, onBack }: Props) => {
               <p className="text-gray-400 text-xs font-['Inter'] mt-0.5">{alert.nationalityFlag} {alert.nationality} · {alert.docNumber}</p>
               <div className="flex items-center gap-2 mt-1.5">
                 <span className="text-xs font-black font-['JetBrains_Mono']" style={{ color: cfg.color }}>{alert.riskScore}</span>
-                <span className="text-gray-600 text-[10px] font-['JetBrains_Mono']">{isAr ? "درجة المخاطرة" : "Risk Score"}</span>
+                <span className="text-gray-600 text-[11px] font-['JetBrains_Mono']">{isAr ? "درجة المخاطرة" : "Risk Score"}</span>
               </div>
             </div>
           </div>
@@ -149,8 +149,8 @@ const AlertDetail = ({ alert, isAr, onBack }: Props) => {
             </div>
           </div>
           <div className="absolute bottom-2 right-2">
-            <button className="flex items-center gap-1 px-2 py-1 rounded-lg text-[10px] font-['JetBrains_Mono'] cursor-pointer" style={{ background: "rgba(5,20,40,0.9)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.3)" }}>
-              <i className="ri-fullscreen-line text-[10px]" />
+            <button className="flex items-center gap-1 px-2 py-1 rounded-lg text-[11px] font-['JetBrains_Mono'] cursor-pointer" style={{ background: "rgba(5,20,40,0.9)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.3)" }}>
+              <i className="ri-fullscreen-line text-[11px]" />
               {isAr ? "توسيع" : "Expand"}
             </button>
           </div>
@@ -159,7 +159,7 @@ const AlertDetail = ({ alert, isAr, onBack }: Props) => {
 
       {/* Status buttons */}
       <div className="mx-3 mt-3">
-        <p className="text-gray-500 text-[10px] uppercase tracking-wider font-['JetBrains_Mono'] mb-2">{isAr ? "تحديث الحالة" : "Update Status"}</p>
+        <p className="text-gray-500 text-[11px] uppercase tracking-wider font-['JetBrains_Mono'] mb-2">{isAr ? "تحديث الحالة" : "Update Status"}</p>
         <div className="grid grid-cols-2 gap-2">
           {statusButtons.map((btn) => (
             <button
@@ -199,12 +199,12 @@ const AlertDetail = ({ alert, isAr, onBack }: Props) => {
             return (
               <div key={s} className="flex items-center gap-3">
                 <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: isDone ? `${colors[s]}22` : "rgba(255,255,255,0.04)", border: `1.5px solid ${isDone ? colors[s] : "rgba(255,255,255,0.1)"}` }}>
-                  {isDone ? <i className="ri-check-line text-[10px]" style={{ color: colors[s] }} /> : <div className="w-1.5 h-1.5 rounded-full bg-gray-700" />}
+                  {isDone ? <i className="ri-check-line text-[11px]" style={{ color: colors[s] }} /> : <div className="w-1.5 h-1.5 rounded-full bg-gray-700" />}
                 </div>
                 <div className="flex-1">
                   <p className="text-xs font-['Inter']" style={{ color: isDone ? "#D1D5DB" : "#4B5563" }}>{isAr ? labels[s].ar : labels[s].en}</p>
                 </div>
-                <span className="text-[10px] font-['JetBrains_Mono']" style={{ color: isDone ? colors[s] : "#374151" }}>
+                <span className="text-[11px] font-['JetBrains_Mono']" style={{ color: isDone ? colors[s] : "#374151" }}>
                   {entry?.time || "—"}
                 </span>
               </div>

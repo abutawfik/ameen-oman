@@ -75,7 +75,7 @@ const RasadShadowScatterPanel = ({ isAr }: { isAr: boolean }) => {
               : "Shadow-mode — no Rasad data ingested. Color = classification, size = |Δ|."}
           </p>
         </div>
-        <div className="flex items-center gap-3 text-[10px] font-['JetBrains_Mono'] text-gray-500">
+        <div className="flex items-center gap-3 text-[11px] font-['JetBrains_Mono'] text-gray-500">
           {(["public", "internal", "restricted", "classified"] as Classification[]).map((c) => (
             <span key={c} className="flex items-center gap-1">
               <span className="inline-block w-2.5 h-2.5 rounded-full" style={{ background: CLASSIFICATION_META[c].color }} />
@@ -208,7 +208,7 @@ const RasadShadowScatterPanel = ({ isAr }: { isAr: boolean }) => {
               <p className="text-white text-sm font-black leading-tight" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
                 +{stats.largestDelta}
               </p>
-              <p className="text-gray-400 text-[10px] leading-tight">
+              <p className="text-gray-400 text-[11px] leading-tight">
                 {stats.largestName} · <span style={{ color: CLASSIFICATION_META[stats.largestClassification].color }}>{(isAr ? CLASSIFICATION_META[stats.largestClassification].labelAr : CLASSIFICATION_META[stats.largestClassification].label)}</span>
               </p>
             </div>
@@ -223,7 +223,7 @@ const RasadShadowScatterPanel = ({ isAr }: { isAr: boolean }) => {
               <i className="ri-sparkling-line text-[#D6B47E]" />
               {isAr ? "أبرز المُساهمين من رصد (محاكى)" : "Top contributor from Rasad (simulated)"}
             </h4>
-            <p className="text-gray-500 text-[10px] mb-3" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+            <p className="text-gray-500 text-[11px] mb-3" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
               {isAr ? "اضغط على أي نقطة لإبراز صفها" : "Click any point to highlight its row"}
             </p>
 
@@ -251,7 +251,7 @@ const RasadShadowScatterPanel = ({ isAr }: { isAr: boolean }) => {
                           {isAr ? CLASSIFICATION_META[r.classification].labelAr : CLASSIFICATION_META[r.classification].label}
                         </span>
                       </div>
-                      <div className="flex items-center gap-2 text-[10px] font-['JetBrains_Mono'] text-gray-400 mb-1.5">
+                      <div className="flex items-center gap-2 text-[11px] font-['JetBrains_Mono'] text-gray-400 mb-1.5">
                         <span>{r.osintScore}</span>
                         <i className="ri-arrow-right-s-line" />
                         <span style={{ color: "#D6B47E" }}>{r.rasadScore}</span>
@@ -409,11 +409,11 @@ const RasadTab = ({
         <div className="flex-1 min-w-[260px]">
           <div className="flex items-center gap-2 flex-wrap">
             <h2 className="text-white text-xl font-bold">{isAr ? "رصد · وضع الظل نشط" : "Rasad · Shadow-mode active"}</h2>
-            <span className="px-2 py-0.5 rounded-md text-[10px] font-bold tracking-widest font-['JetBrains_Mono']"
+            <span className="px-2 py-0.5 rounded-md text-[11px] font-bold tracking-widest font-['JetBrains_Mono']"
               style={{ background: CLASSIFICATION_META.classified.bg, color: CLASSIFICATION_META.classified.color, border: `1px solid ${CLASSIFICATION_META.classified.color}55` }}>
               {isAr ? CLASSIFICATION_META.classified.labelAr : CLASSIFICATION_META.classified.label}
             </span>
-            <span className="flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-bold tracking-widest font-['JetBrains_Mono']"
+            <span className="flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-bold tracking-widest font-['JetBrains_Mono']"
               style={{ background: "rgba(74,222,128,0.12)", color: "#4ADE80", border: "1px solid rgba(74,222,128,0.4)" }}>
               <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
               {isAr ? "وضع الظل نشط" : "SHADOW MODE ACTIVE"}
@@ -453,12 +453,12 @@ const RasadTab = ({
                   <span className="flex-1 text-gray-200 text-xs leading-snug">{isAr ? item.labelAr : item.labelEn}</span>
                   {item.onClick ? (
                     <button type="button" onClick={item.onClick}
-                      className="text-[10px] font-bold font-['JetBrains_Mono'] tracking-widest cursor-pointer flex items-center gap-0.5"
+                      className="text-[11px] font-bold font-['JetBrains_Mono'] tracking-widest cursor-pointer flex items-center gap-0.5"
                       style={{ color: "#D6B47E" }}>
                       {isAr ? item.linkLabelAr : item.linkLabel} <i className="ri-arrow-right-s-line" />
                     </button>
                   ) : (
-                    <span className="text-[10px] font-['JetBrains_Mono'] text-gray-500">{isAr ? item.linkLabelAr : item.linkLabel}</span>
+                    <span className="text-[11px] font-['JetBrains_Mono'] text-gray-500">{isAr ? item.linkLabelAr : item.linkLabel}</span>
                   )}
                 </li>
               );
@@ -537,13 +537,13 @@ const RasadTab = ({
                   style={{ background: "rgba(184,138,60,0.12)", border: "1px solid #D6B47E55" }}>
                   <i className={`${s.icon} text-lg`} style={{ color: "#D6B47E" }} />
                 </div>
-                <span className="text-[10px] font-bold font-['JetBrains_Mono'] text-gray-600">
+                <span className="text-[11px] font-bold font-['JetBrains_Mono'] text-gray-600">
                   {isAr ? "خطوة" : "STEP"} {i + 1}
                 </span>
               </div>
               <h4 className="text-white text-sm font-bold">{isAr ? s.titleAr : s.titleEn}</h4>
               <p className="text-gray-400 text-xs leading-snug flex-1">{isAr ? s.bodyAr : s.bodyEn}</p>
-              <span className="px-2 py-0.5 rounded-md text-[10px] font-bold font-['JetBrains_Mono'] self-start"
+              <span className="px-2 py-0.5 rounded-md text-[11px] font-bold font-['JetBrains_Mono'] self-start"
                 style={{ background: "rgba(107,79,174,0.12)", color: "#B8A0FF" }}>
                 ~{s.days} {isAr ? "يوم" : "days"}
               </span>

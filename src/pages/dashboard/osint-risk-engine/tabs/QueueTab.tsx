@@ -163,7 +163,7 @@ const QueueTab = ({
       {/* Table */}
       <div className="rounded-xl border overflow-hidden"
         style={{ background: "rgba(10,37,64,0.65)", borderColor: rasadActive ? "rgba(201,74,94,0.25)" : "rgba(184,138,60,0.12)" }}>
-        <div className="grid grid-cols-12 gap-2 px-4 py-2.5 border-b text-[10px] font-bold tracking-widest uppercase font-['JetBrains_Mono']"
+        <div className="grid grid-cols-12 gap-2 px-4 py-2.5 border-b text-[11px] font-bold tracking-widest uppercase font-['JetBrains_Mono']"
           style={{ borderColor: "rgba(184,138,60,0.08)", color: "#6B7280" }}>
           <div className="col-span-1">{isAr ? "الدرجة" : "Score"}</div>
           <div className="col-span-3">{isAr ? "المسافر" : "Traveler"}</div>
@@ -238,7 +238,7 @@ const QueueTab = ({
             </div>
             {/* Point */}
             <div className="col-span-1 flex items-center">
-              <span className="px-2 py-0.5 rounded-md text-[10px] font-bold tracking-wider font-['JetBrains_Mono']"
+              <span className="px-2 py-0.5 rounded-md text-[11px] font-bold tracking-wider font-['JetBrains_Mono']"
                 style={{
                   background: r.decisionPoint === "ETA" ? "rgba(184,138,60,0.1)" : "rgba(107,79,174,0.1)",
                   color: r.decisionPoint === "ETA" ? "#D6B47E" : "#6B4FAE",
@@ -248,7 +248,7 @@ const QueueTab = ({
             </div>
             {/* Band */}
             <div className="col-span-1 flex items-center">
-              <span className="px-2 py-0.5 rounded-md text-[10px] font-bold tracking-wider font-['JetBrains_Mono']"
+              <span className="px-2 py-0.5 rounded-md text-[11px] font-bold tracking-wider font-['JetBrains_Mono']"
                 style={{ background: `${scoreColor(r.band)}20`, color: scoreColor(r.band) }}>
                 {SCORE_BAND_META[r.band].labelEn}
               </span>
