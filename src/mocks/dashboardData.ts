@@ -240,30 +240,37 @@ export const branches: BranchOption[] = [
 ];
 
 export const navItems = [
-  { key: "home",            icon: "ri-home-5-line",          labelEn: "Home",               labelAr: "الرئيسية",          route: "/dashboard",                   group: "main"   },
-  { key: "search",          icon: "ri-search-2-line",        labelEn: "Search",             labelAr: "البحث",             route: "/dashboard/search",            group: "search" },
-  { key: "poi",             icon: "ri-user-forbid-line",     labelEn: "Persons of Interest",labelAr: "الأشخاص المثيرون",  route: "/dashboard/persons-of-interest", group: "modules" },
-  { key: "risk-tracker",   icon: "ri-map-2-line",           labelEn: "Risk Tracker",       labelAr: "تتبع المخاطر",      route: "/dashboard/risk-tracker",        group: "modules" },
-  { key: "manage-profiles",icon: "ri-file-settings-line",   labelEn: "Manage Profiles",    labelAr: "إدارة الأنماط",     route: "/dashboard/manage-profiles",     group: "modules" },
-  { key: "risk-rules",     icon: "ri-settings-3-line",      labelEn: "Risk Rules",         labelAr: "قواعد المخاطر",     route: "/dashboard/risk-rules",          group: "modules" },
-  { key: "ml-models",      icon: "ri-brain-line",           labelEn: "ML Models",          labelAr: "نماذج التعلم الآلي", route: "/dashboard/ml-models",          group: "modules" },
-  { key: "risk",            icon: "ri-shield-cross-line",    labelEn: "Risk Assessment",    labelAr: "تقييم المخاطر",     route: "/dashboard/risk-assessment",   group: "admin" },
-  { key: "osint-engine",    icon: "ri-radar-line",           labelEn: "OSINT Risk Engine",  labelAr: "محرّك المخاطر OSINT", route: "/dashboard/osint-risk-engine", group: "admin" },
-  { key: "target-match",    icon: "ri-crosshair-2-line",     labelEn: "Target Match",           labelAr: "مطابقة الأهداف",          route: "/dashboard/target-match",                  group: "admin" },
-  { key: "watchlist",       icon: "ri-eye-line",             labelEn: "Watchlist & Targets",    labelAr: "قوائم المراقبة",          route: "/dashboard/watchlist",                     group: "admin" },
-  { key: "travel-pattern",  icon: "ri-node-tree",            labelEn: "Travel Pattern Intel",   labelAr: "ذكاء أنماط السفر",        route: "/dashboard/travel-pattern-intelligence",   group: "admin" },
-  { key: "case-management", icon: "ri-folder-shield-2-line", labelEn: "Case Management",        labelAr: "إدارة القضايا",           route: "/dashboard/case-management",               group: "admin" },
-  { key: "person360",       icon: "ri-user-search-line",     labelEn: "Person 360°",        labelAr: "ملف الشخص 360°",    route: "/dashboard/person-360",        group: "admin" },
-  { key: "subject-timeline",icon: "ri-time-line",            labelEn: "Subject Timeline",   labelAr: "الجدول الزمني",     route: "/dashboard/subject-timeline",  group: "admin" },
-  { key: "notifications",   icon: "ri-notification-3-line",  labelEn: "Notifications",      labelAr: "الإشعارات",         route: "/dashboard/notifications",     group: "admin" },
-  { key: "services-dashboard", icon: "ri-flight-takeoff-line", labelEn: "Services Dashboard", labelAr: "لوحة الخدمات",      route: "/dashboard/services-dashboard", group: "admin" },
-  { key: "border-dashboard",   icon: "ri-passport-line",       labelEn: "Border Dashboard",   labelAr: "لوحة الحدود",       route: "/dashboard/border-dashboard",   group: "admin" },
-  { key: "reports",         icon: "ri-bar-chart-2-line",     labelEn: "Reports",            labelAr: "التقارير",          route: "/dashboard/reports",           group: "admin" },
-  { key: "viz-library",    icon: "ri-layout-chart-line",    labelEn: "Viz Library",        labelAr: "مكتبة الرسوم",      route: "/dashboard/viz-library",       group: "admin" },
-  { key: "users",           icon: "ri-team-line",            labelEn: "Manage Users",       labelAr: "إدارة المستخدمين", route: "/dashboard/manage-users",      group: "admin" },
-  { key: "audit-log",       icon: "ri-archive-line",         labelEn: "Audit Log",          labelAr: "سجل التدقيق",       route: "/dashboard/audit-log",         group: "admin" },
-  { key: "entity-resolution", icon: "ri-git-merge-line",      labelEn: "Entity Resolution",  labelAr: "دمج الكيانات",      route: "/dashboard/entity-resolution", group: "admin" },
-  { key: "identity-compare", icon: "ri-scales-3-line",       labelEn: "Identity Compare",   labelAr: "مقارنة الهويات",    route: "/dashboard/identity-compare",  group: "admin" },
-  { key: "system-admin",    icon: "ri-shield-keyhole-line",  labelEn: "System Admin",       labelAr: "إدارة النظام",      route: "/dashboard/system-admin",      group: "admin" },
-  { key: "help",            icon: "ri-question-line",        labelEn: "Help",               labelAr: "المساعدة",          route: "/dashboard/help",              group: "admin" },
+  // ── MAIN ──────────────────────────────────────────────────────────────────
+  { key: "home",               icon: "ri-home-5-line",           labelEn: "Home",                 labelAr: "الرئيسية",           route: "/dashboard",                           group: "main"          },
+  // ── OPERATIONS ────────────────────────────────────────────────────────────
+  { key: "border-dashboard",   icon: "ri-passport-line",         labelEn: "Border Dashboard",     labelAr: "لوحة الحدود",        route: "/dashboard/border-dashboard",          group: "operations"    },
+  { key: "services-dashboard", icon: "ri-flight-takeoff-line",   labelEn: "Services Dashboard",   labelAr: "لوحة الخدمات",       route: "/dashboard/services-dashboard",        group: "operations"    },
+  // ── INTELLIGENCE ──────────────────────────────────────────────────────────
+  { key: "osint-engine",       icon: "ri-radar-line",            labelEn: "OSINT Risk Engine",    labelAr: "محرّك المخاطر OSINT", route: "/dashboard/osint-risk-engine",         group: "intelligence"  },
+  { key: "travel-pattern",     icon: "ri-node-tree",             labelEn: "Travel Pattern Intel", labelAr: "ذكاء أنماط السفر",   route: "/dashboard/travel-pattern-intelligence", group: "intelligence" },
+  { key: "target-match",       icon: "ri-crosshair-2-line",      labelEn: "Target Match",         labelAr: "مطابقة الأهداف",     route: "/dashboard/target-match",              group: "intelligence"  },
+  { key: "watchlist",          icon: "ri-eye-line",              labelEn: "Watchlist & Targets",  labelAr: "قوائم المراقبة",     route: "/dashboard/watchlist",                 group: "intelligence"  },
+  // ── INVESTIGATION ─────────────────────────────────────────────────────────
+  { key: "case-management",    icon: "ri-folder-shield-2-line",  labelEn: "Case Management",      labelAr: "إدارة القضايا",      route: "/dashboard/case-management",           group: "investigation" },
+  { key: "person360",          icon: "ri-user-search-line",      labelEn: "Person 360°",          labelAr: "ملف الشخص 360°",     route: "/dashboard/person-360",                group: "investigation" },
+  { key: "poi",                icon: "ri-user-forbid-line",      labelEn: "Persons of Interest",  labelAr: "الأشخاص المثيرون",   route: "/dashboard/persons-of-interest",       group: "investigation" },
+  { key: "subject-timeline",   icon: "ri-time-line",             labelEn: "Subject Timeline",     labelAr: "الجدول الزمني",      route: "/dashboard/subject-timeline",          group: "investigation" },
+  // ── SEARCH ────────────────────────────────────────────────────────────────
+  { key: "search",             icon: "ri-search-2-line",         labelEn: "Search",               labelAr: "البحث",              route: "/dashboard/search",                    group: "search"        },
+  // ── ANALYTICS ─────────────────────────────────────────────────────────────
+  { key: "reports",            icon: "ri-bar-chart-2-line",      labelEn: "Reports",              labelAr: "التقارير",           route: "/dashboard/reports",                   group: "analytics"     },
+  // ── ADMIN (collapsed by default) ──────────────────────────────────────────
+  { key: "risk",               icon: "ri-shield-cross-line",     labelEn: "Risk Assessment",      labelAr: "تقييم المخاطر",      route: "/dashboard/risk-assessment",           group: "admin"         },
+  { key: "risk-tracker",       icon: "ri-map-2-line",            labelEn: "Risk Tracker",         labelAr: "تتبع المخاطر",       route: "/dashboard/risk-tracker",              group: "admin"         },
+  { key: "manage-profiles",    icon: "ri-file-settings-line",    labelEn: "Manage Profiles",      labelAr: "إدارة الأنماط",      route: "/dashboard/manage-profiles",           group: "admin"         },
+  { key: "risk-rules",         icon: "ri-settings-3-line",       labelEn: "Risk Rules",           labelAr: "قواعد المخاطر",      route: "/dashboard/risk-rules",                group: "admin"         },
+  { key: "ml-models",          icon: "ri-brain-line",            labelEn: "ML Models",            labelAr: "نماذج التعلم الآلي", route: "/dashboard/ml-models",                 group: "admin"         },
+  { key: "notifications",      icon: "ri-notification-3-line",   labelEn: "Notifications",        labelAr: "الإشعارات",          route: "/dashboard/notifications",             group: "admin"         },
+  { key: "users",              icon: "ri-team-line",             labelEn: "Manage Users",         labelAr: "إدارة المستخدمين",   route: "/dashboard/manage-users",              group: "admin"         },
+  { key: "audit-log",          icon: "ri-archive-line",          labelEn: "Audit Log",            labelAr: "سجل التدقيق",        route: "/dashboard/audit-log",                 group: "admin"         },
+  { key: "entity-resolution",  icon: "ri-git-merge-line",        labelEn: "Entity Resolution",    labelAr: "دمج الكيانات",       route: "/dashboard/entity-resolution",         group: "admin"         },
+  { key: "identity-compare",   icon: "ri-scales-3-line",         labelEn: "Identity Compare",     labelAr: "مقارنة الهويات",     route: "/dashboard/identity-compare",          group: "admin"         },
+  { key: "viz-library",        icon: "ri-layout-chart-line",     labelEn: "Viz Library",          labelAr: "مكتبة الرسوم",       route: "/dashboard/viz-library",               group: "admin"         },
+  { key: "system-admin",       icon: "ri-shield-keyhole-line",   labelEn: "System Admin",         labelAr: "إدارة النظام",       route: "/dashboard/system-admin",              group: "admin"         },
+  { key: "help",               icon: "ri-question-line",         labelEn: "Help",                 labelAr: "المساعدة",           route: "/dashboard/help",                      group: "admin"         },
 ];

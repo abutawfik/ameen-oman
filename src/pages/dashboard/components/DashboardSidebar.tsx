@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { navItems, entityMeta, type EntityType } from "@/mocks/dashboardData";
 import BrandLogo from "@/brand/BrandLogo";
@@ -13,16 +14,26 @@ interface Props {
 }
 
 const groupLabels: Record<string, { en: string; ar: string }> = {
-  main:    { en: "MAIN",    ar: "الرئيسية" },
-  search:  { en: "SEARCH",  ar: "البحث"    },
-  modules: { en: "MODULES", ar: "الوحدات" },
-  admin:   { en: "ADMIN",   ar: "الإدارة" },
+  main:          { en: "MAIN",          ar: "الرئيسية"   },
+  operations:    { en: "OPERATIONS",    ar: "العمليات"   },
+  intelligence:  { en: "INTELLIGENCE",  ar: "الاستخبارات" },
+  investigation: { en: "INVESTIGATION", ar: "التحقيقات"  },
+  search:        { en: "SEARCH",        ar: "البحث"      },
+  analytics:     { en: "ANALYTICS",     ar: "التحليلات"  },
+  admin:         { en: "ADMIN",         ar: "الإدارة"    },
 };
 
 const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed, onToggleCollapse }: Props) => {
   const navigate = useNavigate();
   const location = useLocation();
   const meta = entityMeta[entityType];
+
+  // Sections collapsed by default — admin starts closed
+  const [collapsedSections, setCollapsedSections] = useState<Record<string, boolean>>({ admin: true });
+
+  const toggleSection = (group: string) => {
+    setCollapsedSections((prev) => ({ ...prev, [group]: !prev[group] }));
+  };
 
   const handleNavClick = (item: typeof navItems[0]) => {
     onNavChange(item.key);
@@ -39,7 +50,7 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
   };
 
   // Group items — skip groups that have no items
-  const groups = ["main", "search", "modules", "admin"] as const;
+  const groups = ["main", "operations", "intelligence", "investigation", "search", "analytics", "admin"] as const;
   const grouped = groups
     .map((g) => ({
       group: g,
@@ -52,7 +63,7 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
       className="flex flex-col flex-shrink-0 border-r transition-all duration-300"
       aria-label={isAr ? "التنقّل الرئيسي" : "Primary navigation"}
       style={{
-        width: collapsed ? "64px" : "220px",
+        width: collapsed ? "64px" : "240px",
         // ocean-700 card surface — runtime palette toggle re-tints this.
         background: "var(--alm-ocean-700)",
         borderColor: "rgba(184,138,60,0.1)",
@@ -126,73 +137,98 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
 
       {/* Nav items grouped */}
       <nav className="flex-1 py-2 overflow-y-auto" style={{ scrollbarWidth: "none" }}>
-        {grouped.map(({ group, items }) => (
-          <div key={group}>
-            {/* Group label */}
-            {!collapsed && (
-              <div className="px-4 pt-4 pb-1">
-                <span className="text-midnight-300 text-[10px] font-bold tracking-widest font-mono uppercase">
-                  {isAr ? groupLabels[group].ar : groupLabels[group].en}
-                </span>
-              </div>
-            )}
-            {collapsed && group !== "main" && (
-              <div className="mx-3 my-2 border-t" style={{ borderColor: "rgba(184,138,60,0.08)" }} />
-            )}
+        {grouped.map(({ group, items }) => {
+          const isSectionCollapsed = !!collapsedSections[group];
+          const isCollapsible = group !== "main";
 
-            {items.map((item) => {
-              const isActive = isItemActive(item);
-              const label = isAr ? item.labelAr : item.labelEn;
-              return (
-                <button
-                  key={item.key}
-                  onClick={() => handleNavClick(item)}
-                  className="w-full flex items-center gap-3 px-4 py-2.5 transition-all duration-150 cursor-pointer relative group"
-                  style={{
-                    background: isActive ? "rgba(184,138,60,0.1)" : "transparent",
-                    color: isActive ? "#D6B47E" : "#7A9CBF",
-                  }}
-                  title={collapsed ? label : undefined}
-                  aria-label={collapsed ? label : undefined}
-                  aria-current={isActive ? "page" : undefined}
-                >
-                  {/* Active bar — gold, anchors to the edge of the sidebar closest to content */}
-                  {isActive && (
-                    <div
+          return (
+            <div key={group}>
+              {/* Group label / collapsible header */}
+              {!collapsed && (
+                isCollapsible ? (
+                  <button
+                    type="button"
+                    onClick={() => toggleSection(group)}
+                    className="w-full flex items-center justify-between px-4 pt-4 pb-1 cursor-pointer group/hdr"
+                    aria-expanded={!isSectionCollapsed}
+                  >
+                    <span className="text-midnight-300 text-[10px] font-bold tracking-widest font-mono uppercase group-hover/hdr:text-gold-400 transition-colors">
+                      {isAr ? groupLabels[group].ar : groupLabels[group].en}
+                    </span>
+                    <i
                       aria-hidden="true"
-                      className={`absolute top-0 bottom-0 w-0.5 bg-gold-400 ${
-                        isAr ? "right-0 rounded-l-full" : "left-0 rounded-r-full"
+                      className={`text-midnight-300 group-hover/hdr:text-gold-400 transition-all duration-200 text-[11px] ${
+                        isSectionCollapsed ? "ri-arrow-right-s-line" : "ri-arrow-down-s-line"
                       }`}
                     />
-                  )}
-                  <div className="w-5 h-5 flex items-center justify-center flex-shrink-0">
-                    <i className={`${item.icon} text-base`} aria-hidden="true" />
-                  </div>
-                  {!collapsed && (
-                    <span className="text-sm font-['Inter'] font-medium whitespace-nowrap">
-                      {isAr ? item.labelAr : item.labelEn}
+                  </button>
+                ) : (
+                  <div className="px-4 pt-4 pb-1">
+                    <span className="text-midnight-300 text-[10px] font-bold tracking-widest font-mono uppercase">
+                      {isAr ? groupLabels[group].ar : groupLabels[group].en}
                     </span>
-                  )}
-                  {/* Route indicator dot */}
-                  {!collapsed && item.route && !isActive && (
-                    <div className="ml-auto w-1 h-1 rounded-full bg-gold-400/30 flex-shrink-0" />
-                  )}
-                  {/* Hover tooltip when collapsed — anchors to the content side in both LTR and RTL */}
-                  {collapsed && (
-                    <div
-                      className={`absolute px-2 py-1 rounded-md text-xs text-ivory-100 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 font-['Inter'] ${
-                        isAr ? "right-full mr-2" : "left-full ml-2"
-                      }`}
-                      style={{ background: "rgba(20,29,46,0.95)", border: "1px solid rgba(184,138,60,0.25)" }}
-                    >
-                      {isAr ? item.labelAr : item.labelEn}
+                  </div>
+                )
+              )}
+              {collapsed && group !== "main" && (
+                <div className="mx-3 my-2 border-t" style={{ borderColor: "rgba(184,138,60,0.08)" }} />
+              )}
+
+              {/* Items — hidden when section is collapsed (except in icon-only mode) */}
+              {(!isSectionCollapsed || collapsed) && items.map((item) => {
+                const isActive = isItemActive(item);
+                const label = isAr ? item.labelAr : item.labelEn;
+                return (
+                  <button
+                    key={item.key}
+                    onClick={() => handleNavClick(item)}
+                    className="w-full flex items-center gap-3 px-4 py-2.5 transition-all duration-150 cursor-pointer relative group"
+                    style={{
+                      background: isActive ? "rgba(184,138,60,0.1)" : "transparent",
+                      color: isActive ? "#D6B47E" : "#7A9CBF",
+                    }}
+                    title={collapsed ? label : undefined}
+                    aria-label={collapsed ? label : undefined}
+                    aria-current={isActive ? "page" : undefined}
+                  >
+                    {/* Active bar — gold, anchors to the edge of the sidebar closest to content */}
+                    {isActive && (
+                      <div
+                        aria-hidden="true"
+                        className={`absolute top-0 bottom-0 w-0.5 bg-gold-400 ${
+                          isAr ? "right-0 rounded-l-full" : "left-0 rounded-r-full"
+                        }`}
+                      />
+                    )}
+                    <div className="w-5 h-5 flex items-center justify-center flex-shrink-0">
+                      <i className={`${item.icon} text-base`} aria-hidden="true" />
                     </div>
-                  )}
-                </button>
-              );
-            })}
-          </div>
-        ))}
+                    {!collapsed && (
+                      <span className="text-sm font-['Inter'] font-medium whitespace-nowrap">
+                        {isAr ? item.labelAr : item.labelEn}
+                      </span>
+                    )}
+                    {/* Route indicator dot */}
+                    {!collapsed && item.route && !isActive && (
+                      <div className="ml-auto w-1 h-1 rounded-full bg-gold-400/30 flex-shrink-0" />
+                    )}
+                    {/* Hover tooltip when collapsed */}
+                    {collapsed && (
+                      <div
+                        className={`absolute px-2 py-1 rounded-md text-xs text-ivory-100 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 font-['Inter'] ${
+                          isAr ? "right-full mr-2" : "left-full ml-2"
+                        }`}
+                        style={{ background: "rgba(20,29,46,0.95)", border: "1px solid rgba(184,138,60,0.25)" }}
+                      >
+                        {isAr ? item.labelAr : item.labelEn}
+                      </div>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          );
+        })}
       </nav>
 
       {/* Bottom: Network status + collapse toggle + sign out */}
