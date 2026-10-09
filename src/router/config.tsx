@@ -54,8 +54,9 @@ const ComplianceScorecardPage   = lazy(() => import("../pages/dashboard/complian
 const NationalSecurityPage      = lazy(() => import("../pages/dashboard/national-security/page"));
 const DigitalDossierPage        = lazy(() => import("../pages/dashboard/digital-dossier/page"));
 const GeointPage                = lazy(() => import("../pages/dashboard/geoint/page"));
-const ThreatIntelPage           = lazy(() => import("../pages/dashboard/threat-intel/page"));
-const CaseManagementPage        = lazy(() => import("../pages/dashboard/case-management/page"));
+const ThreatIntelPage               = lazy(() => import("../pages/dashboard/threat-intel/page"));
+const TravelPatternIntelligencePage = lazy(() => import("../pages/dashboard/travel-pattern-intelligence/page"));
+const CaseManagementPage            = lazy(() => import("../pages/dashboard/case-management/page"));
 const ExecutiveDashboardPage    = lazy(() => import("../pages/dashboard/executive/page"));
 const AuditLogPage              = lazy(() => import("../pages/dashboard/audit-log/page"));
 const EntityResolutionPage      = lazy(() => import("../pages/dashboard/entity-resolution/page"));
@@ -164,21 +165,22 @@ const routes: RouteObject[] = [
       { path: "audit-log",               element: L(AuditLogPage) },
       { path: "entity-resolution",       element: L(EntityResolutionPage) },
       { path: "pattern-engine",          element: L(PatternEnginePage) },
-      { path: "predictive-analytics",    element: L(PredictiveAnalyticsPage) },
-      { path: "person-360",              element: L(Person360Page) },
-      { path: "subject-timeline",        element: L(SubjectTimelinePage) },
-      { path: "search",                  element: L(SearchPage) },
-      { path: "persons-of-interest",     element: L(PersonsOfInterestPage) },
-      { path: "risk-tracker",            element: L(RiskTrackerPage) },
-      { path: "manage-profiles",         element: L(ManageProfilesPage) },
-      { path: "risk-rules",              element: L(RiskRulesPage) },
-      { path: "ml-models",              element: L(MLModelsPage) },
-      { path: "user-profile",            element: L(UserProfilePage) },
-      { path: "identity-compare",        element: L(IdentityComparePage) },
-      { path: "target-match",            element: L(TargetMatchPage) },
-      { path: "viz-library",             element: L(VizLibraryPage) },
-      { path: "services-dashboard",     element: L(ServicesDashboardPage) },
-      { path: "border-dashboard",       element: L(BorderDashboardPage) },
+      { path: "predictive-analytics",           element: L(PredictiveAnalyticsPage) },
+      { path: "travel-pattern-intelligence",    element: L(TravelPatternIntelligencePage) },
+      { path: "person-360",                     element: L(Person360Page) },
+      { path: "subject-timeline",               element: L(SubjectTimelinePage) },
+      { path: "search",                         element: L(SearchPage) },
+      { path: "persons-of-interest",            element: L(PersonsOfInterestPage) },
+      { path: "risk-tracker",                   element: L(RiskTrackerPage) },
+      { path: "manage-profiles",                element: L(ManageProfilesPage) },
+      { path: "risk-rules",                     element: L(RiskRulesPage) },
+      { path: "ml-models",                      element: L(MLModelsPage) },
+      { path: "user-profile",                   element: L(UserProfilePage) },
+      { path: "identity-compare",               element: L(IdentityComparePage) },
+      { path: "target-match",                   element: L(TargetMatchPage) },
+      { path: "viz-library",                    element: L(VizLibraryPage) },
+      { path: "services-dashboard",             element: L(ServicesDashboardPage) },
+      { path: "border-dashboard",               element: L(BorderDashboardPage) },
       { path: "notifications",           element: L(NotificationsPage) },
       { path: "system-admin",            element: L(SystemAdminPage) },
       { path: "api-portal",              element: L(ApiPortalPage) },
