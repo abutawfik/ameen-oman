@@ -274,52 +274,46 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
         {/* Divider between collapse toggle and sign-out */}
         <div className="my-3 border-t" style={{ borderColor: "rgba(184,138,60,0.08)" }} />
 
-        {/* Sign out button — brand oman-red gradient (kept prominent) */}
+        {/* Sign out — muted ghost; red tint appears only on hover */}
         {!collapsed ? (
           <button
             onClick={() => navigate("/login")}
-            className="w-full flex items-center justify-center gap-2 py-2.5 rounded-lg transition-all duration-200 cursor-pointer group"
+            className="w-full flex items-center justify-center gap-2 py-2 rounded-lg transition-all duration-200 cursor-pointer group/so"
             style={{
-              background: "linear-gradient(135deg, #E23D3D, #B91C1C)",
-              boxShadow: "0 2px 8px rgba(220,38,38,0.25)",
+              background: "transparent",
+              border: "1px solid rgba(184,138,60,0.12)",
+              color: "#7A9CBF",
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.boxShadow = "0 4px 16px rgba(220,38,38,0.55), 0 0 0 1px rgba(220,38,38,0.4)";
-              e.currentTarget.style.filter = "brightness(1.08)";
+              e.currentTarget.style.borderColor = "rgba(220,38,38,0.35)";
+              e.currentTarget.style.color = "#f87171";
+              e.currentTarget.style.background = "rgba(220,38,38,0.06)";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.boxShadow = "0 2px 8px rgba(220,38,38,0.25)";
-              e.currentTarget.style.filter = "brightness(1)";
+              e.currentTarget.style.borderColor = "rgba(184,138,60,0.12)";
+              e.currentTarget.style.color = "#7A9CBF";
+              e.currentTarget.style.background = "transparent";
             }}
             title={isAr ? "تسجيل الخروج" : "Sign Out"}
             aria-label={isAr ? "تسجيل الخروج" : "Sign out"}
           >
-            <i className="ri-logout-box-r-line text-white text-base" aria-hidden="true" />
-            <span className="text-white text-sm font-bold font-['Inter']">
-              {isAr ? "تسجيل الخروج" : "SIGN OUT"}
+            <i className="ri-logout-box-r-line text-sm" aria-hidden="true" />
+            <span className="text-xs font-['Inter'] font-medium">
+              {isAr ? "تسجيل الخروج" : "Sign Out"}
             </span>
           </button>
         ) : (
           <div className="flex justify-center">
             <button
               onClick={() => navigate("/login")}
-              className="w-9 h-9 flex items-center justify-center rounded-lg transition-all duration-200 cursor-pointer"
-              style={{
-                background: "linear-gradient(135deg, #E23D3D, #B91C1C)",
-                boxShadow: "0 2px 8px rgba(220,38,38,0.25)",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.boxShadow = "0 4px 16px rgba(220,38,38,0.55), 0 0 0 1px rgba(220,38,38,0.4)";
-                e.currentTarget.style.filter = "brightness(1.08)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.boxShadow = "0 2px 8px rgba(220,38,38,0.25)";
-                e.currentTarget.style.filter = "brightness(1)";
-              }}
+              className="w-8 h-8 flex items-center justify-center rounded-lg transition-all duration-200 cursor-pointer"
+              style={{ color: "#7A9CBF" }}
+              onMouseEnter={(e) => { e.currentTarget.style.color = "#f87171"; e.currentTarget.style.background = "rgba(220,38,38,0.08)"; }}
+              onMouseLeave={(e) => { e.currentTarget.style.color = "#7A9CBF"; e.currentTarget.style.background = "transparent"; }}
               title={isAr ? "تسجيل الخروج" : "Sign Out"}
               aria-label={isAr ? "تسجيل الخروج" : "Sign out"}
             >
-              <i className="ri-logout-box-r-line text-white text-base" aria-hidden="true" />
+              <i className="ri-logout-box-r-line text-base" aria-hidden="true" />
             </button>
           </div>
         )}
