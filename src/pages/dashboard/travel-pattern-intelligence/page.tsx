@@ -72,32 +72,265 @@ function SectionHeader({ icon, title, count, accentColor = '#D6B47E' }: { icon: 
     </div>
   );
 }
-function CreateCaseButton({ caseRef, onNavigate }: { caseRef: string; onNavigate: () => void }) {
-  const [state, setState] = useState<'idle' | 'created'>('idle');
+// ── Case creation modal ───────────────────────────────────────────────────────
+interface CaseDraft {
+  caseNumber: string;
+  title: string;
+  typeLabel: string;
+  priority: RiskLevel;
+  classification: string;
+  description: string;
+  subjects: { name: string; role: string; nationality: string; doc: string }[];
+  evidence: string[];
+  sourceRef: string;
+}
 
-  function handleClick() {
-    setState('created');
-    setTimeout(onNavigate, 1300);
+function draftId(id: string) {
+  const n = id.split('').reduce((a, c) => a + c.charCodeAt(0), 0);
+  return `INV-2026-0${70 + (n % 29)}`;
+}
+
+function draftFromCoTraveler(pair: CoTravelerPair): CaseDraft {
+  return {
+    caseNumber: draftId(pair.id),
+    title: `Co-Traveler Network: ${pair.person1.name} + ${pair.person2.name}`,
+    typeLabel: 'Organized Crime',
+    priority: pair.riskLevel,
+    classification: pair.riskLevel === 'critical' ? 'TOP SECRET' : 'SECRET',
+    description: `${pair.coOccurrences} co-occurrences on ${pair.sharedRoute} at ~${pair.intervalWeeks}-week intervals. ${pair.analystNote}`,
+    subjects: [
+      { name: pair.person1.name, role: 'Primary', nationality: pair.person1.nationality, doc: pair.person1.passportNo },
+      { name: pair.person2.name, role: 'Primary', nationality: pair.person2.nationality, doc: pair.person2.passportNo },
+    ],
+    evidence: [
+      `Co-travel pattern data (${pair.coOccurrences} occurrences, ${pair.firstSeen}–${pair.lastSeen})`,
+      `PNR booking records — ${pair.carrierCode}`,
+      'Transit zone overlap logs — MCT T1 Gate G',
+    ],
+    sourceRef: pair.id.toUpperCase(),
+  };
+}
+
+function draftFromTrafficking(tc: TraffickingCase): CaseDraft {
+  const subjects: CaseDraft['subjects'] = [
+    { name: tc.subject.name, role: 'Victim / Primary', nationality: tc.subject.nationality, doc: `Passport (issued ${tc.subject.passportAgeMonths}mo ago)` },
+  ];
+  if (tc.facilitator) {
+    subjects.push({ name: tc.facilitator.name, role: 'Facilitator', nationality: tc.facilitator.nationality, doc: tc.facilitator.bookingRelation });
   }
+  return {
+    caseNumber: draftId(tc.id),
+    title: `Human Trafficking Indicator: ${tc.subject.name} — ${tc.subject.route}`,
+    typeLabel: 'Human Trafficking / Smuggling',
+    priority: tc.riskLevel,
+    classification: 'TOP SECRET',
+    description: `UNODC 2025 composite score: ${tc.totalScore}/100. ${tc.notes}`,
+    subjects,
+    evidence: [
+      `UNODC indicator composite: ${tc.totalScore}/100`,
+      'Ticket-in-stages purchase record',
+      tc.facilitator ? `Facilitator PNR contact match — ${tc.facilitator.name}` : 'PNR booking record',
+      'Biometric entry record — MCT',
+    ],
+    sourceRef: tc.caseRef,
+  };
+}
 
-  if (state === 'created') {
-    return (
-      <div className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl border"
-        style={{ background: 'rgba(74,222,128,0.08)', borderColor: 'rgba(74,222,128,0.25)' }}>
-        <i className="ri-checkbox-circle-fill text-green-400 text-sm" />
-        <span className="text-green-400 text-xs font-bold">Case created · Opening Case Management…</span>
-      </div>
-    );
+function draftFromDocAnomaly(da: DocumentAnomaly): CaseDraft {
+  const subjects: CaseDraft['subjects'] = [
+    { name: da.entryName, role: 'Primary (Entry)', nationality: da.entryNationality, doc: da.entryDocument },
+  ];
+  if (da.exitName && da.exitDocument) {
+    subjects.push({ name: da.exitName, role: 'Primary (Exit)', nationality: da.exitNationality ?? '', doc: da.exitDocument });
+  }
+  return {
+    caseNumber: draftId(da.id),
+    title: `Document Fraud — ${da.typeLabel}: ${da.entryName}`,
+    typeLabel: 'Identity Fraud / Document Forgery',
+    priority: da.riskLevel,
+    classification: 'TOP SECRET',
+    description: `${da.details} Confidence: ${da.confidence}%. Action: ${da.actionTaken}`,
+    subjects,
+    evidence: [
+      da.biometricSimilarity !== undefined ? `Biometric facial comparison: ${da.biometricSimilarity}%` : 'Biometric capture record',
+      `Entry passport scan — ${da.entryDocument}`,
+      da.exitDocument ? `Exit passport scan — ${da.exitDocument}` : 'Transit CCTV timestamp reference',
+      `Flight manifest records — ${da.flightIn} / ${da.flightOut}`,
+    ],
+    sourceRef: da.id.toUpperCase(),
+  };
+}
+
+const P_COLOR: Record<RiskLevel, string> = { critical: '#C94A5E', high: '#C98A1B', medium: '#FACC15', low: '#4ADE80' };
+const P_BG:    Record<RiskLevel, string> = { critical: 'rgba(201,74,94,0.12)', high: 'rgba(201,138,27,0.12)', medium: 'rgba(250,204,21,0.08)', low: 'rgba(74,222,128,0.08)' };
+
+function CaseCreationModal({ draft, onClose, onConfirm }: { draft: CaseDraft; onClose: () => void; onConfirm: () => void }) {
+  const [confirmed, setConfirmed] = useState(false);
+
+  function handleConfirm() {
+    setConfirmed(true);
+    setTimeout(onConfirm, 1500);
   }
 
   return (
-    <button type="button" onClick={handleClick}
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      style={{ background: 'rgba(0,0,0,0.75)', backdropFilter: 'blur(6px)' }}>
+      <div className="w-full max-w-xl rounded-2xl border flex flex-col"
+        style={{ background: '#071830', borderColor: 'rgba(184,138,60,0.25)', maxHeight: '90vh' }}>
+
+        {/* Header */}
+        <div className="flex items-center justify-between px-5 py-4 border-b flex-shrink-0"
+          style={{ background: 'rgba(184,138,60,0.05)', borderColor: 'rgba(184,138,60,0.12)' }}>
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 flex items-center justify-center rounded-lg"
+              style={{ background: 'rgba(214,180,126,0.1)', border: '1px solid rgba(214,180,126,0.2)' }}>
+              <i className="ri-folder-add-line text-sm" style={{ color: '#D6B47E' }} />
+            </div>
+            <div>
+              <div className="text-white font-bold text-sm">Create Investigation Case</div>
+              <div className="text-gray-500 text-xs">Source: TPI — {draft.sourceRef}</div>
+            </div>
+          </div>
+          {!confirmed && (
+            <button type="button" onClick={onClose}
+              className="w-7 h-7 flex items-center justify-center rounded-lg text-gray-500 transition-colors"
+              style={{ background: 'rgba(255,255,255,0.04)' }}
+              onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.color = '#fff'; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.color = ''; }}>
+              <i className="ri-close-line text-sm" />
+            </button>
+          )}
+        </div>
+
+        {confirmed ? (
+          <div className="flex flex-col items-center justify-center py-16 gap-3">
+            <div className="w-14 h-14 rounded-full flex items-center justify-center"
+              style={{ background: 'rgba(74,222,128,0.1)', border: '1px solid rgba(74,222,128,0.25)' }}>
+              <i className="ri-checkbox-circle-fill text-green-400 text-2xl" />
+            </div>
+            <div className="text-white font-bold text-base">Case {draft.caseNumber} created</div>
+            <div className="text-gray-400 text-xs">Opening Case Management…</div>
+          </div>
+        ) : (
+          <div className="overflow-y-auto p-5 space-y-4 flex-1">
+            {/* Case number */}
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-gray-500">Case number:</span>
+              <span className="text-xs font-black font-['JetBrains_Mono']" style={{ color: '#D6B47E' }}>{draft.caseNumber}</span>
+              <span className="px-2 py-0.5 rounded text-xs font-semibold"
+                style={{ background: 'rgba(255,255,255,0.05)', color: '#9CA3AF' }}>DRAFT</span>
+            </div>
+
+            {/* Title */}
+            <div>
+              <div className="text-xs text-gray-500 mb-1 font-semibold uppercase tracking-wide">Case Title</div>
+              <div className="rounded-lg px-3 py-2 text-sm text-white font-semibold border"
+                style={{ background: 'rgba(255,255,255,0.03)', borderColor: 'rgba(255,255,255,0.08)' }}>
+                {draft.title}
+              </div>
+            </div>
+
+            {/* Type / Priority / Classification */}
+            <div className="grid grid-cols-3 gap-3">
+              {([
+                { label: 'Type',           value: draft.typeLabel,               color: '#9CA3AF',   bg: 'rgba(255,255,255,0.05)' },
+                { label: 'Priority',       value: draft.priority.toUpperCase(),  color: P_COLOR[draft.priority], bg: P_BG[draft.priority] },
+                { label: 'Classification', value: draft.classification,          color: '#C94A5E',   bg: 'rgba(201,74,94,0.1)' },
+              ] as const).map(f => (
+                <div key={f.label}>
+                  <div className="text-xs text-gray-500 mb-1 font-semibold uppercase tracking-wide">{f.label}</div>
+                  <div className="rounded-lg px-2 py-1.5 text-xs font-bold border text-center"
+                    style={{ background: f.bg, color: f.color, borderColor: `${f.color}30` }}>
+                    {f.value}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Description */}
+            <div>
+              <div className="text-xs text-gray-500 mb-1 font-semibold uppercase tracking-wide">Description</div>
+              <div className="rounded-lg px-3 py-2 text-xs text-gray-300 leading-relaxed border"
+                style={{ background: 'rgba(255,255,255,0.02)', borderColor: 'rgba(255,255,255,0.06)' }}>
+                {draft.description}
+              </div>
+            </div>
+
+            {/* Subjects */}
+            <div>
+              <div className="text-xs text-gray-500 mb-2 font-semibold uppercase tracking-wide">Subjects ({draft.subjects.length})</div>
+              <div className="space-y-1.5">
+                {draft.subjects.map((s, i) => (
+                  <div key={i} className="flex items-center justify-between rounded-lg px-3 py-2 border"
+                    style={{ background: 'rgba(255,255,255,0.02)', borderColor: 'rgba(255,255,255,0.06)' }}>
+                    <div>
+                      <div className="text-white text-xs font-semibold">{s.name}</div>
+                      <div className="text-gray-500 text-xs">{s.nationality} · {s.doc}</div>
+                    </div>
+                    <span className="text-xs px-2 py-0.5 rounded-full"
+                      style={{ background: 'rgba(255,255,255,0.06)', color: '#9CA3AF' }}>{s.role}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Evidence */}
+            <div>
+              <div className="text-xs text-gray-500 mb-2 font-semibold uppercase tracking-wide">Evidence Items ({draft.evidence.length})</div>
+              <div className="space-y-1.5">
+                {draft.evidence.map((e, i) => (
+                  <div key={i} className="flex items-center gap-2 text-xs text-gray-400">
+                    <i className="ri-attachment-2 text-gray-600 flex-shrink-0" />
+                    {e}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Lead officer */}
+            <div>
+              <div className="text-xs text-gray-500 mb-1 font-semibold uppercase tracking-wide">Lead Officer</div>
+              <div className="rounded-lg px-3 py-2 text-xs text-white border flex items-center justify-between"
+                style={{ background: 'rgba(255,255,255,0.03)', borderColor: 'rgba(255,255,255,0.08)' }}>
+                <span>OFC-2024-0042 — Ahmed Al-Amri (Current Session)</span>
+                <i className="ri-arrow-down-s-line text-gray-500" />
+              </div>
+            </div>
+          </div>
+        )}
+
+        {!confirmed && (
+          <div className="flex items-center gap-3 px-5 py-4 border-t flex-shrink-0"
+            style={{ borderColor: 'rgba(255,255,255,0.06)' }}>
+            <button type="button" onClick={onClose}
+              className="flex-1 py-2 rounded-xl text-sm font-semibold border transition-colors"
+              style={{ background: 'transparent', borderColor: 'rgba(255,255,255,0.1)', color: '#6B7280' }}>
+              Cancel
+            </button>
+            <button type="button" onClick={handleConfirm}
+              className="flex-1 py-2 rounded-xl text-sm font-bold transition-all flex items-center justify-center gap-2 border"
+              style={{ background: 'rgba(214,180,126,0.1)', borderColor: 'rgba(214,180,126,0.3)', color: '#D6B47E' }}
+              onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = 'rgba(214,180,126,0.2)'; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = 'rgba(214,180,126,0.1)'; }}>
+              <i className="ri-folder-add-line" />
+              Create Case {draft.caseNumber}
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function CreateCaseButton({ label, onClick }: { label: string; onClick: () => void }) {
+  return (
+    <button type="button" onClick={onClick}
       className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border font-bold text-sm transition-all"
       style={{ background: 'rgba(214,180,126,0.08)', borderColor: 'rgba(214,180,126,0.25)', color: '#D6B47E' }}
       onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = 'rgba(214,180,126,0.15)'; }}
       onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = 'rgba(214,180,126,0.08)'; }}>
       <i className="ri-folder-add-line" />
-      Create Case from {caseRef}
+      {label}
     </button>
   );
 }
@@ -191,6 +424,7 @@ function OverviewTab() {
 function CoTravelerTab() {
   const navigate = useNavigate();
   const [selected, setSelected] = useState<CoTravelerPair | null>(coTravelerPairs[0]);
+  const [modal, setModal] = useState<CaseDraft | null>(null);
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
@@ -300,12 +534,19 @@ function CoTravelerTab() {
             </div>
 
             <CreateCaseButton
-              caseRef={selected.id.toUpperCase()}
-              onNavigate={() => navigate('/dashboard/case-management')}
+              label={`Create Case from ${selected.id.toUpperCase()}`}
+              onClick={() => setModal(draftFromCoTraveler(selected))}
             />
           </div>
         )}
       </div>
+      {modal && (
+        <CaseCreationModal
+          draft={modal}
+          onClose={() => setModal(null)}
+          onConfirm={() => { setModal(null); navigate('/dashboard/case-management'); }}
+        />
+      )}
     </div>
   );
 }
@@ -516,6 +757,7 @@ function TransitOverlapTab() {
 function TraffickingTab() {
   const navigate = useNavigate();
   const [selected, setSelected] = useState<TraffickingCase | null>(traffickingCases[0]);
+  const [modal, setModal] = useState<CaseDraft | null>(null);
   const sourceColor: Record<string, string> = { UNODC: '#60A5FA', IATA: '#D6B47E', DHS: '#C94A5E', ICAO: '#A78BFA' };
 
   return (
@@ -609,12 +851,19 @@ function TraffickingTab() {
             </div>
 
             <CreateCaseButton
-              caseRef={selected.caseRef}
-              onNavigate={() => navigate('/dashboard/case-management')}
+              label={`Create Case from ${selected.caseRef}`}
+              onClick={() => setModal(draftFromTrafficking(selected))}
             />
           </div>
         )}
       </div>
+      {modal && (
+        <CaseCreationModal
+          draft={modal}
+          onClose={() => setModal(null)}
+          onConfirm={() => { setModal(null); navigate('/dashboard/case-management'); }}
+        />
+      )}
     </div>
   );
 }
@@ -623,6 +872,7 @@ function TraffickingTab() {
 function DocAnomalyTab() {
   const navigate = useNavigate();
   const [selected, setSelected] = useState<DocumentAnomaly | null>(documentAnomalies[0]);
+  const [modal, setModal] = useState<CaseDraft | null>(null);
   const typeColor: Record<string, string> = {
     passport_swap: '#C94A5E',
     number_reuse: '#EF4444',
@@ -727,12 +977,19 @@ function DocAnomalyTab() {
             </div>
 
             <CreateCaseButton
-              caseRef={selected.id.toUpperCase()}
-              onNavigate={() => navigate('/dashboard/case-management')}
+              label={`Create Case from ${selected.id.toUpperCase()}`}
+              onClick={() => setModal(draftFromDocAnomaly(selected))}
             />
           </div>
         )}
       </div>
+      {modal && (
+        <CaseCreationModal
+          draft={modal}
+          onClose={() => setModal(null)}
+          onConfirm={() => { setModal(null); navigate('/dashboard/case-management'); }}
+        />
+      )}
     </div>
   );
 }
