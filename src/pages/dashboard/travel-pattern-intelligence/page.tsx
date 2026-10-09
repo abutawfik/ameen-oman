@@ -322,6 +322,20 @@ function CaseCreationModal({ draft, onClose, onConfirm }: { draft: CaseDraft; on
   );
 }
 
+function SubjectLink({ name }: { name: string }) {
+  const navigate = useNavigate();
+  return (
+    <button type="button"
+      onClick={() => navigate('/dashboard/person-360', { state: { tpiQuery: name } })}
+      className="text-left transition-colors"
+      style={{ color: '#7AB3E8' }}
+      onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.color = '#93C5FD'; (e.currentTarget as HTMLButtonElement).style.textDecoration = 'underline'; }}
+      onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.color = '#7AB3E8'; (e.currentTarget as HTMLButtonElement).style.textDecoration = 'none'; }}>
+      {name}
+    </button>
+  );
+}
+
 function CreateCaseButton({ label, onClick }: { label: string; onClick: () => void }) {
   return (
     <button type="button" onClick={onClick}
@@ -480,7 +494,7 @@ function CoTravelerTab() {
                       <i className="ri-user-line text-xs text-gray-400" />
                       <span className="text-xs text-gray-400 font-semibold">Person {i + 1}</span>
                     </div>
-                    <div className="text-white text-sm font-bold">{p.name}</div>
+                    <div className="text-sm font-bold"><SubjectLink name={p.name} /></div>
                     <div className="text-gray-400 text-xs mt-0.5">{p.nationality} · {p.passportNo}</div>
                     <div className="text-gray-500 text-xs">Origin: {p.origin}</div>
                   </div>
@@ -798,7 +812,7 @@ function TraffickingTab() {
                     <RiskBadge level={selected.riskLevel} />
                     <StatusBadge status={selected.status} />
                   </div>
-                  <div className="text-white font-bold text-base">{selected.subject.name}</div>
+                  <div className="font-bold text-base"><SubjectLink name={selected.subject.name} /></div>
                 </div>
                 <div className="text-right">
                   <div className="text-3xl font-black" style={{ color: RISK_COLOR[selected.riskLevel] }}>{selected.totalScore}</div>
@@ -922,14 +936,14 @@ function DocAnomalyTab() {
               <div className="grid grid-cols-2 gap-3">
                 <div className="rounded-lg p-3 border" style={{ background: 'rgba(0,0,0,0.2)', borderColor: 'rgba(255,255,255,0.06)' }}>
                   <div className="text-xs text-gray-500 mb-1 font-semibold">Entry Document</div>
-                  <div className="text-white text-sm font-bold">{selected.entryName}</div>
+                  <div className="text-sm font-bold"><SubjectLink name={selected.entryName} /></div>
                   <div className="text-xs text-gray-400">{selected.entryDocument}</div>
                   <div className="text-xs text-gray-500">{selected.entryNationality} · Flight {selected.flightIn}</div>
                 </div>
                 {selected.exitDocument ? (
                   <div className="rounded-lg p-3 border" style={{ background: 'rgba(201,74,94,0.08)', borderColor: 'rgba(201,74,94,0.2)' }}>
                     <div className="text-xs text-red-400 mb-1 font-semibold">Exit Document</div>
-                    <div className="text-white text-sm font-bold">{selected.exitName}</div>
+                    <div className="text-sm font-bold">{selected.exitName && <SubjectLink name={selected.exitName} />}</div>
                     <div className="text-xs text-gray-400">{selected.exitDocument}</div>
                     <div className="text-xs text-gray-500">{selected.exitNationality} · Flight {selected.flightOut}</div>
                   </div>

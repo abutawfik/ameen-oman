@@ -3,7 +3,7 @@
 // Renders inside DashboardLayout's <Outlet /> — no sidebar/titlebar of its own.
 
 import { useMemo, useState } from "react";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useNavigate, useOutletContext, useLocation } from "react-router-dom";
 import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
 } from "recharts";
@@ -1114,6 +1114,9 @@ const CasesTab = ({ subject, isAr }: { subject: ScoredRecord; isAr: boolean }) =
 const Person360Page = () => {
   const { isAr } = useOutletContext<DashboardOutletContext>();
   const fonts = useBrandFonts();
+  const location = useLocation();
+  const tpiQuery = (location.state as { tpiQuery?: string } | null)?.tpiQuery ?? null;
+  const [tpiBannerDismissed, setTpiBannerDismissed] = useState(false);
   const subjects = SCORED_RECORDS.slice(0, 3);
   const [subjectId, setSubjectId] = useState<string>(subjects[0].id);
   const [tab, setTab] = useState<TabKey>("identity");
@@ -1130,6 +1133,22 @@ const Person360Page = () => {
 
   return (
     <div className="p-5 min-h-full" style={{ background: "var(--alm-ocean-800, #0A2540)" }}>
+      {tpiQuery && !tpiBannerDismissed && (
+        <div className="flex items-center justify-between mb-4 px-4 py-2.5 rounded-xl border"
+          style={{ background: 'rgba(201,74,94,0.06)', borderColor: 'rgba(201,74,94,0.2)' }}>
+          <div className="flex items-center gap-2">
+            <i className="ri-node-tree text-sm" style={{ color: '#C94A5E' }} />
+            <span className="text-xs text-gray-300">
+              Opened from <span className="font-bold text-white">Travel Pattern Intelligence</span>
+              {' · '}Showing nearest match for: <span className="font-bold" style={{ color: '#C94A5E' }}>{tpiQuery}</span>
+            </span>
+          </div>
+          <button type="button" onClick={() => setTpiBannerDismissed(true)}
+            className="text-gray-600 hover:text-gray-400 text-sm transition-colors ml-3">
+            <i className="ri-close-line" />
+          </button>
+        </div>
+      )}
       <SubjectHeader subject={subject} isAr={isAr} all={subjects} onSelect={setSubjectId} />
 
       {/* Tab bar */}
