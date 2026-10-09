@@ -72,6 +72,35 @@ function SectionHeader({ icon, title, count, accentColor = '#D6B47E' }: { icon: 
     </div>
   );
 }
+function CreateCaseButton({ caseRef, onNavigate }: { caseRef: string; onNavigate: () => void }) {
+  const [state, setState] = useState<'idle' | 'created'>('idle');
+
+  function handleClick() {
+    setState('created');
+    setTimeout(onNavigate, 1300);
+  }
+
+  if (state === 'created') {
+    return (
+      <div className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl border"
+        style={{ background: 'rgba(74,222,128,0.08)', borderColor: 'rgba(74,222,128,0.25)' }}>
+        <i className="ri-checkbox-circle-fill text-green-400 text-sm" />
+        <span className="text-green-400 text-xs font-bold">Case created · Opening Case Management…</span>
+      </div>
+    );
+  }
+
+  return (
+    <button type="button" onClick={handleClick}
+      className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border font-bold text-sm transition-all"
+      style={{ background: 'rgba(214,180,126,0.08)', borderColor: 'rgba(214,180,126,0.25)', color: '#D6B47E' }}
+      onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = 'rgba(214,180,126,0.15)'; }}
+      onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = 'rgba(214,180,126,0.08)'; }}>
+      <i className="ri-folder-add-line" />
+      Create Case from {caseRef}
+    </button>
+  );
+}
 
 // ── Tab: Overview ─────────────────────────────────────────────────────────────
 function OverviewTab() {
@@ -160,6 +189,7 @@ function OverviewTab() {
 
 // ── Tab: Co-Traveler Network ───────────────────────────────────────────────────
 function CoTravelerTab() {
+  const navigate = useNavigate();
   const [selected, setSelected] = useState<CoTravelerPair | null>(coTravelerPairs[0]);
 
   return (
@@ -268,6 +298,11 @@ function CoTravelerTab() {
               </div>
               <p className="text-gray-300 text-xs leading-relaxed">{selected.analystNote}</p>
             </div>
+
+            <CreateCaseButton
+              caseRef={selected.id.toUpperCase()}
+              onNavigate={() => navigate('/dashboard/case-management')}
+            />
           </div>
         )}
       </div>
@@ -479,6 +514,7 @@ function TransitOverlapTab() {
 
 // ── Tab: Trafficking Indicators ────────────────────────────────────────────────
 function TraffickingTab() {
+  const navigate = useNavigate();
   const [selected, setSelected] = useState<TraffickingCase | null>(traffickingCases[0]);
   const sourceColor: Record<string, string> = { UNODC: '#60A5FA', IATA: '#D6B47E', DHS: '#C94A5E', ICAO: '#A78BFA' };
 
@@ -571,6 +607,11 @@ function TraffickingTab() {
               </div>
               <p className="text-gray-300 text-xs leading-relaxed">{selected.notes}</p>
             </div>
+
+            <CreateCaseButton
+              caseRef={selected.caseRef}
+              onNavigate={() => navigate('/dashboard/case-management')}
+            />
           </div>
         )}
       </div>
@@ -580,6 +621,7 @@ function TraffickingTab() {
 
 // ── Tab: Document Anomaly ──────────────────────────────────────────────────────
 function DocAnomalyTab() {
+  const navigate = useNavigate();
   const [selected, setSelected] = useState<DocumentAnomaly | null>(documentAnomalies[0]);
   const typeColor: Record<string, string> = {
     passport_swap: '#C94A5E',
@@ -683,6 +725,11 @@ function DocAnomalyTab() {
               </div>
               <p className="text-gray-300 text-xs leading-relaxed">{selected.actionTaken}</p>
             </div>
+
+            <CreateCaseButton
+              caseRef={selected.id.toUpperCase()}
+              onNavigate={() => navigate('/dashboard/case-management')}
+            />
           </div>
         )}
       </div>

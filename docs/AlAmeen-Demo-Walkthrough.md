@@ -1,5 +1,5 @@
 # Al-Ameen — Demo Walkthrough Script
-Version 1.6 · ROP Operator Audience · 25-minute Technical
+Version 1.7 · ROP Operator Audience · 30-minute Technical
 
 ---
 
@@ -60,7 +60,7 @@ Three lines before you touch the keyboard.
 
 ---
 
-## 2 · Twenty-Five-Minute Technical Demo
+## 2 · Thirty-Minute Technical Demo
 
 Budget 60 seconds of slack per beat. Tight answers are in Section 3.
 
@@ -177,7 +177,30 @@ Budget 60 seconds of slack per beat. Tight answers are in Section 3.
 
 ---
 
-### Beat 8 · Questions buffer (3 min)
+### Beat 8 · Travel Pattern Intelligence — Five Years in Five Minutes (5 min)
+**Route:** `/dashboard/travel-pattern-intelligence`
+
+| What | How |
+|------|-----|
+| Navigate | Sidebar → Travel Pattern Intel. Land on Overview tab. |
+| Say | "This is the predictive layer. Instead of waiting for a traveller to trigger a rule, it mines five years of transit history — 14 million records — looking for relationships and patterns that no single officer could spot. Five detection engines, all running in parallel." |
+| Point to | The five engine cards on the Overview tab. |
+| Say | "Each engine is grounded in INTERPOL, UNODC, and ICAO methodology — not invented in-house. The intelligence is standard; what we've built is the system that applies it automatically to Oman's actual transit data." |
+| Click | Co-Traveler Networks tab. |
+| Say | "This is what the system is designed to catch. Two people — Alaa Hassan and Ahmad Khalil — both Bangladeshi, always on the same EK-549 flight into Muscat, always transiting to Dubai, every ten weeks for five years. Twenty-seven times. Separate bookings, no shared contact. A rule engine never flags either of them individually. The network engine flags the pair after the third occurrence." |
+| Click | CT-001 in the left list. |
+| Say | "27 co-occurrences. 3 to 5 hours of overlap in Terminal 1 Gate G each time. The system recommends secondary screening for the next transit. The case is already escalated — it's sitting in Case Management waiting for a supervisor action." |
+| Click | Trafficking Indicators tab. |
+| Say | "Here's the human trafficking engine. It scores against UNODC 2025 key indicators — same criteria your counter-trafficking unit uses, but automated. This is Fatima Muse Omar, 22, Ethiopian. New passport 2 months old. One-way ticket to Bangkok. Onward segment booked 2 hours and 41 minutes after she landed in Muscat — that's the 'ticket-in-stages' pattern UNODC documents for trafficking networks. The same phone number is in her facilitator's booking. Score: 92 out of 100." |
+| Click | TC-001 in the left list. |
+| Say | "Eight indicators checked. Six confirmed. The system also matched her facilitator — Yusuf, traveling 12 hours ahead on the same route. This is the eighth time they've transited together. The case is escalated directly to the Counter-Trafficking Unit and logged in Case Management with all the evidence attached." |
+| Click | Document Anomaly tab. |
+| Say | "Last one — document integrity. A passenger enters transit on an Omani passport. 35 minutes later a different passport — Lebanese — is scanned at the departure gate on the same flight. Biometric comparison says the two faces are 91 percent similar. That's a passport swap inside Muscat airside. The system halted boarding on that flight before we even had an officer at the gate." |
+| If interrupted | "The Co-Traveler engine uses the same statistical methodology published by the MIT Media Lab — likelihood ratio scoring, not just co-occurrence counting. A shared flight on a rare route carries 40 times the evidential weight of a shared flight on a high-frequency route." |
+
+---
+
+### Beat 9 · Questions buffer (3 min)
 
 See Section 3 for tight answers. Most-likely questions from ROP operators:
 
@@ -185,6 +208,7 @@ See Section 3 for tight answers. Most-likely questions from ROP operators:
 2. "Can we search in Arabic?" → Yes, full RTL, press the language toggle top-right
 3. "Who can add to a watchlist?" → Role-based — Supervisor and above; all changes are logged
 4. "How current is the data?" → Interpol syncs every 6h; NL Sanctions daily; APIS is real-time
+5. "How far back does the pattern data go?" → 5-year lookback on transit data; co-traveler engine flags from the 3rd occurrence
 
 ---
 
@@ -227,7 +251,9 @@ See Section 3 for tight answers. Most-likely questions from ROP operators:
 
 After questions:
 
-> "What you've seen is the complete operator workflow — from shift start on the Border Dashboard through search, watchlist matching, target resolution, and case closure. Every action is logged. Every score is explainable. Full Arabic support throughout.
+> "What you've seen is the complete operator workflow — from shift start on the Border Dashboard through search, watchlist matching, target resolution, case closure, and predictive pattern intelligence. Every action is logged. Every score is explainable. Full Arabic support throughout.
+>
+> The Travel Pattern Intelligence engine is what separates this from a rule-based system. It finds the threats no single officer and no single rule could catch — because they only become visible across five years of history and thousands of unconnected records.
 >
 > The portal is live at `alameen.tech` today. Next step is the integration workshop — wiring the live APIS and PNR feeds."
 
@@ -239,3 +265,4 @@ After questions:
 |------|---------|---------|
 | 2026-08-17 | 1.0 | Initial — OSINT Risk Engine focus, executive audience |
 | 2026-10-05 | 1.6 | Full rewrite for ROP operator audience. 25-min technical format. Covers all Phase 1–5 modules: Border Dashboard, Services Dashboard, Search, Watchlist (NL Sanctions + Interpol Red Notices), Target Match, OSINT explainability, Case Management. URL updated to alameen.tech. |
+| 2026-10-09 | 1.7 | Added Beat 8 — Travel Pattern Intelligence (5 min). Extended to 30-min format (9 beats). Covers 5 TPI engines: Co-Traveler Networks (Alaa+Ahmad 27×), Route Signatures (KRT→MCT→BKK cluster), Transit Overlap, Trafficking Indicators (UNODC 2025, TC-001), Document Anomaly (passport swap DA-001). Updated closing frame. Added Q5 to questions buffer. |
