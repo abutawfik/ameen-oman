@@ -173,11 +173,11 @@ const SupervisorHome = ({ isAr }: Props) => {
               style={{ borderColor: "rgba(184,138,60,0.05)", color: "#6B7280" }}
             >
               <div className="col-span-4">{isAr ? "المحلل" : "Analyst"}</div>
-              <div className="col-span-1 text-right">{isAr ? "م" : "Op"}</div>
-              <div className="col-span-1 text-right">{isAr ? "أ" : "Ak"}</div>
-              <div className="col-span-1 text-right">{isAr ? "غ" : "Cl"}</div>
+              <div className="col-span-1 text-right" title={isAr ? "تنبيهات مفتوحة" : "Open alerts"}>{isAr ? "م" : "Op"}</div>
+              <div className="col-span-1 text-right" title={isAr ? "تم الإشعار اليوم" : "Acked today"}>{isAr ? "أ" : "Ak"}</div>
+              <div className="col-span-1 text-right" title={isAr ? "تم الإغلاق اليوم" : "Closed today"}>{isAr ? "غ" : "Cl"}</div>
               <div className="col-span-2 text-right">{isAr ? "استجابة" : "Resp"}</div>
-              <div className="col-span-2 text-right">{isAr ? "SLA" : "SLA"}</div>
+              <div className="col-span-2 text-right" title={isAr ? "نسبة الالتزام بمهلة الاستجابة · ≥٩٥٪ ممتاز" : "SLA compliance · ≥95% on track"}>{isAr ? "SLA" : "SLA %"}</div>
               <div className="col-span-1" />
             </div>
             {rosterSorted.map((a) => {
@@ -240,54 +240,9 @@ const SupervisorHome = ({ isAr }: Props) => {
         </div>
       </div>
 
-      {/* 3. SLA Dashboard + Recent Escalations + Source Health */}
+      {/* 3. Recent Escalations (needs sign-off now) + SLA Dashboard + Source Health */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        {/* SLA Dashboard */}
-        <div
-          className="rounded-xl border"
-          style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.12)" }}
-        >
-          <div className="px-4 py-3 border-b" style={{ borderColor: "rgba(184,138,60,0.08)" }}>
-            <h3 className="text-white text-sm font-bold">{isAr ? "لوحة مهلات الاستجابة · 24 ساعة" : "SLA Dashboard · 24h"}</h3>
-            <p className="text-gray-500 text-[11px] font-['JetBrains_Mono']">
-              {isAr ? "مقابل وقت الاستجابة المستهدف" : "met vs. breached by severity"}
-            </p>
-          </div>
-          <div className="p-4 space-y-3">
-            {SLA_SUMMARY_24H.map((row) => {
-              const total = row.met + row.breached;
-              const metPct = total > 0 ? (row.met / total) * 100 : 0;
-              const col = severitySlaColor[row.severity];
-              return (
-                <div key={row.severity}>
-                  <div className="flex items-center justify-between mb-1 text-[11px] font-['JetBrains_Mono']">
-                    <span className="font-bold tracking-widest" style={{ color: col }}>
-                      {row.severity}
-                    </span>
-                    <span className="text-gray-500">
-                      <span className="text-white font-bold">{metPct.toFixed(0)}%</span>
-                      <span className="mx-1">·</span>
-                      {row.met} met · {row.breached} breached
-                    </span>
-                  </div>
-                  <div
-                    className="h-3 rounded-md overflow-hidden flex"
-                    style={{ background: "rgba(255,255,255,0.04)" }}
-                  >
-                    <div className="h-full" style={{ width: `${metPct}%`, background: "#4ADE80", opacity: 0.85 }} />
-                    <div className="h-full" style={{ width: `${100 - metPct}%`, background: col, opacity: 0.85 }} />
-                  </div>
-                  <div className="flex items-center justify-between mt-1 text-[11px] text-gray-600 font-['JetBrains_Mono']">
-                    <span>{row.inFlight} {isAr ? "قيد التنفيذ" : "in flight"}</span>
-                    <span>{total} {isAr ? "إجمالي" : "total"}</span>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Recent Escalations */}
+        {/* Recent Escalations — leftmost: most time-critical for the supervisor */}
         <div
           className="rounded-xl border"
           style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.12)" }}
@@ -307,10 +262,22 @@ const SupervisorHome = ({ isAr }: Props) => {
             {RECENT_ESCALATIONS.slice(0, 5).map((e) => {
               const sevCol = severitySlaColor[e.severity];
               const analyst = TEAM_ROSTER.find((a) => a.id === e.fromAnalystId);
-              const statusCol = e.status === "pending" ? "#C98A1B" : e.status === "reviewed" ? "#D6B47E" : "#4ADE80";
+              const isPending = e.status === "pending";
+              const statusStyle = isPending
+                ? { bg: "rgba(201,138,27,0.18)", color: "#C98A1B", border: "1px solid rgba(201,138,27,0.4)" }
+                : e.status === "reviewed"
+                ? { bg: "rgba(214,180,126,0.12)", color: "#D6B47E", border: "1px solid rgba(214,180,126,0.3)" }
+                : { bg: "rgba(74,222,128,0.1)", color: "#4ADE80", border: "none" };
               const mins = Math.max(1, Math.floor((Date.now() - new Date(e.escalatedAt).getTime()) / 60_000));
               return (
-                <div key={e.id} className="px-4 py-3" style={{ borderColor: "rgba(184,138,60,0.05)" }}>
+                <div
+                  key={e.id}
+                  className="px-4 py-3"
+                  style={{
+                    borderColor: "rgba(184,138,60,0.05)",
+                    ...(isPending && { borderLeft: "3px solid rgba(201,138,27,0.6)", background: "rgba(201,138,27,0.03)" }),
+                  }}
+                >
                   <div className="flex items-center gap-2 mb-1">
                     <span
                       className="px-1.5 py-0.5 rounded text-[9px] font-bold tracking-widest font-['JetBrains_Mono']"
@@ -320,7 +287,7 @@ const SupervisorHome = ({ isAr }: Props) => {
                     </span>
                     <span
                       className="px-1.5 py-0.5 rounded text-[9px] font-bold tracking-widest font-['JetBrains_Mono']"
-                      style={{ background: `${statusCol}18`, color: statusCol }}
+                      style={{ background: statusStyle.bg, color: statusStyle.color, border: statusStyle.border }}
                     >
                       {e.status.toUpperCase()}
                     </span>
@@ -332,7 +299,7 @@ const SupervisorHome = ({ isAr }: Props) => {
                     {isAr ? e.reasonAr : e.reason}
                   </div>
                   <div className="text-gray-500 text-[11px] font-['JetBrains_Mono'] mt-1">
-                    {analyst?.avatarInitials ?? "??"} → {e.toRole} · {e.caseId}
+                    {analyst?.name?.split(" ")[0] ?? analyst?.avatarInitials ?? "??"} → {e.toRole} · {e.caseId}
                   </div>
                 </div>
               );
@@ -340,7 +307,60 @@ const SupervisorHome = ({ isAr }: Props) => {
           </div>
         </div>
 
-        {/* Source Health Grid */}
+        {/* SLA Dashboard — center: governance health */}
+        <div
+          className="rounded-xl border"
+          style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.12)" }}
+        >
+          <div className="px-4 py-3 border-b" style={{ borderColor: "rgba(184,138,60,0.08)" }}>
+            <h3 className="text-white text-sm font-bold">{isAr ? "لوحة مهلات الاستجابة · 24 ساعة" : "SLA Dashboard · 24h"}</h3>
+            <p className="text-gray-500 text-[11px] font-['JetBrains_Mono']">
+              {isAr ? "مقابل وقت الاستجابة المستهدف" : "met · in-flight · breached"}
+            </p>
+          </div>
+          <div className="p-4 space-y-4">
+            {/* Legend */}
+            <div className="flex items-center gap-3 text-[10px] font-['JetBrains_Mono'] text-gray-500">
+              <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-sm inline-block" style={{ background: "#4ADE80" }} />{isAr ? "مُنجز" : "Met"}</span>
+              <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-sm inline-block" style={{ background: "#C98A1B" }} />{isAr ? "قيد التنفيذ" : "In flight"}</span>
+              <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-sm inline-block" style={{ background: "#C94A5E" }} />{isAr ? "متأخر" : "Breached"}</span>
+            </div>
+            {SLA_SUMMARY_24H.map((row) => {
+              const total = row.met + row.inFlight + row.breached;
+              const metPct     = total > 0 ? (row.met      / total) * 100 : 0;
+              const flightPct  = total > 0 ? (row.inFlight / total) * 100 : 0;
+              const breachPct  = total > 0 ? (row.breached / total) * 100 : 0;
+              const col = severitySlaColor[row.severity];
+              return (
+                <div key={row.severity}>
+                  <div className="flex items-center justify-between mb-1.5 text-[11px] font-['JetBrains_Mono']">
+                    <span className="font-bold tracking-widest" style={{ color: col }}>
+                      {row.severity}
+                    </span>
+                    <span className="text-gray-500 text-[10px]">
+                      <span className="text-white font-bold">{metPct.toFixed(0)}%</span>
+                      {" "}met · {row.inFlight} in-flight · <span style={{ color: row.breached > 0 ? "#C94A5E" : "#6B7280" }}>{row.breached} breached</span>
+                    </span>
+                  </div>
+                  {/* 3-segment bar: green (met) | amber (in-flight) | red (breached) | empty remainder */}
+                  <div
+                    className="h-3 rounded-md overflow-hidden flex"
+                    style={{ background: "rgba(255,255,255,0.04)" }}
+                  >
+                    {metPct > 0 && <div className="h-full transition-all" style={{ width: `${metPct}%`, background: "#4ADE80", opacity: 0.85 }} />}
+                    {flightPct > 0 && <div className="h-full transition-all" style={{ width: `${flightPct}%`, background: "#C98A1B", opacity: 0.75 }} />}
+                    {breachPct > 0 && <div className="h-full transition-all" style={{ width: `${breachPct}%`, background: "#C94A5E", opacity: 0.9 }} />}
+                  </div>
+                  <div className="text-right mt-1 text-[10px] text-gray-600 font-['JetBrains_Mono']">
+                    {total} {isAr ? "إجمالي" : "total"}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Source Health Grid — rightmost: least time-sensitive */}
         <div
           className="rounded-xl border"
           style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.12)" }}
@@ -353,7 +373,12 @@ const SupervisorHome = ({ isAr }: Props) => {
           </div>
           <div className="p-3 grid grid-cols-2 gap-2">
             {OSINT_SOURCES.slice(0, 8).map((s) => (
-              <SourceChip key={s.id} source={s} isAr={isAr} />
+              <SourceChip
+                key={s.id}
+                source={s}
+                isAr={isAr}
+                onAlert={(id) => console.log("Alert IT for source:", id)}
+              />
             ))}
           </div>
         </div>

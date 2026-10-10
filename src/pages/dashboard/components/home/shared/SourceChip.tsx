@@ -4,6 +4,7 @@ interface Props {
   source: OsintSource;
   isAr?: boolean;
   compact?: boolean;
+  onAlert?: (sourceId: string) => void;
 }
 
 const statusMeta: Record<string, { color: string; bg: string; label: string; labelAr: string }> = {
@@ -15,35 +16,50 @@ const statusMeta: Record<string, { color: string; bg: string; label: string; lab
 
 // Compact source-status chip. Used in Supervisor's source-health grid and
 // anywhere else we need a quick "is this source alive" signal.
-const SourceChip = ({ source, isAr = false, compact = false }: Props) => {
+const SourceChip = ({ source, isAr = false, compact = false, onAlert }: Props) => {
   const meta = statusMeta[source.status] ?? statusMeta.healthy;
+  const isActionable = source.status === "degraded" || source.status === "down";
 
   return (
     <div
-      className="flex items-center gap-2.5 px-3 py-2 rounded-lg border"
+      className="flex flex-col gap-1.5 px-3 py-2 rounded-lg border"
       style={{
-        background: "rgba(10,37,64,0.65)",
-        borderColor: "rgba(184,138,60,0.12)",
+        background: isActionable ? `${meta.color}08` : "rgba(10,37,64,0.65)",
+        borderColor: isActionable ? `${meta.color}35` : "rgba(184,138,60,0.12)",
       }}
     >
-      <div
-        className="w-2 h-2 rounded-full flex-shrink-0"
-        style={{ background: meta.color, boxShadow: `0 0 6px ${meta.color}` }}
-      />
-      <div className="flex-1 min-w-0">
-        <div className="text-[11px] font-bold text-white truncate">{source.name}</div>
-        {!compact && (
-          <div className="text-[11px] text-gray-500 font-['JetBrains_Mono'] truncate">
-            {source.records24h.toLocaleString()} / 24h
-          </div>
-        )}
+      <div className="flex items-center gap-2.5">
+        <div
+          className={`w-2 h-2 rounded-full flex-shrink-0 ${isActionable ? "animate-pulse" : ""}`}
+          style={{ background: meta.color, boxShadow: `0 0 6px ${meta.color}` }}
+        />
+        <div className="flex-1 min-w-0">
+          <div className="text-[11px] font-bold text-white truncate">{source.name}</div>
+          {!compact && (
+            <div className="text-[11px] text-gray-500 font-['JetBrains_Mono'] truncate">
+              {source.records24h.toLocaleString()} / 24h
+            </div>
+          )}
+        </div>
+        <span
+          className="px-1.5 py-0.5 rounded text-[9px] font-bold tracking-widest font-['JetBrains_Mono'] flex-shrink-0"
+          style={{ background: meta.bg, color: meta.color }}
+        >
+          {isAr ? meta.labelAr : meta.label}
+        </span>
       </div>
-      <span
-        className="px-1.5 py-0.5 rounded text-[9px] font-bold tracking-widest font-['JetBrains_Mono'] flex-shrink-0"
-        style={{ background: meta.bg, color: meta.color }}
-      >
-        {isAr ? meta.labelAr : meta.label}
-      </span>
+      {isActionable && (
+        <button
+          type="button"
+          onClick={() => onAlert?.(source.id)}
+          className="flex items-center gap-1 text-[10px] font-bold font-['JetBrains_Mono'] tracking-wider cursor-pointer transition-opacity hover:opacity-80"
+          style={{ color: meta.color }}
+        >
+          <i className="ri-notification-3-line text-[10px]" />
+          {isAr ? "تنبيه فريق التقنية" : "Alert IT"} ·{" "}
+          <span className="underline">{isAr ? "عرض التفاصيل" : "View details"}</span>
+        </button>
+      )}
     </div>
   );
 };
