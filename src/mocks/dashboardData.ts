@@ -243,11 +243,17 @@ export const navItems = [
   // ── MAIN ──────────────────────────────────────────────────────────────────
   { key: "home",               icon: "ri-home-5-line",           labelEn: "Home",                 labelAr: "الرئيسية",           route: "/dashboard",                           group: "main"          },
   // ── OPERATIONS ────────────────────────────────────────────────────────────
+  { key: "national-security",  icon: "ri-shield-star-line",      labelEn: "National Security",    labelAr: "الأمن الوطني",       route: "/dashboard/national-security",         group: "operations"    },
   { key: "border-dashboard",   icon: "ri-passport-line",         labelEn: "Border Dashboard",     labelAr: "لوحة الحدود",        route: "/dashboard/border-dashboard",          group: "operations"    },
+  { key: "border-intelligence",icon: "ri-dashboard-3-line",      labelEn: "Border Intelligence",  labelAr: "استخبارات الحدود",   route: "/dashboard/border-intelligence",       group: "operations"    },
   { key: "services-dashboard", icon: "ri-flight-takeoff-line",   labelEn: "Services Dashboard",   labelAr: "لوحة الخدمات",       route: "/dashboard/services-dashboard",        group: "operations"    },
   // ── INTELLIGENCE ──────────────────────────────────────────────────────────
+  { key: "threat-intel",       icon: "ri-database-line",         labelEn: "Threat Intel Feed",    labelAr: "بث الاستخبارات",     route: "/dashboard/threat-intel",              group: "intelligence"  },
   { key: "osint-engine",       icon: "ri-radar-line",            labelEn: "OSINT Risk Engine",    labelAr: "محرّك المخاطر OSINT", route: "/dashboard/osint-risk-engine",         group: "intelligence"  },
   { key: "travel-pattern",     icon: "ri-node-tree",             labelEn: "Travel Pattern Intel", labelAr: "ذكاء أنماط السفر",   route: "/dashboard/travel-pattern-intelligence", group: "intelligence" },
+  { key: "social-intelligence",icon: "ri-at-line",               labelEn: "Social Intelligence",  labelAr: "الاستخبارات الاجتماعية", route: "/dashboard/social-intelligence",   group: "intelligence"  },
+  { key: "geoint",             icon: "ri-route-line",            labelEn: "GEOINT",               labelAr: "الاستخبارات الجغرافية", route: "/dashboard/geoint",                group: "intelligence"  },
+  { key: "pattern-engine",     icon: "ri-list-check-2",          labelEn: "Pattern Engine",       labelAr: "محرّك الأنماط",      route: "/dashboard/pattern-engine",            group: "intelligence"  },
   { key: "target-match",       icon: "ri-crosshair-2-line",      labelEn: "Target Match",         labelAr: "مطابقة الأهداف",     route: "/dashboard/target-match",              group: "intelligence"  },
   { key: "watchlist",          icon: "ri-eye-line",              labelEn: "Watchlist & Targets",  labelAr: "قوائم المراقبة",     route: "/dashboard/watchlist",                 group: "intelligence"  },
   // ── INVESTIGATION ─────────────────────────────────────────────────────────
@@ -255,6 +261,7 @@ export const navItems = [
   { key: "person360",          icon: "ri-user-search-line",      labelEn: "Person 360°",          labelAr: "ملف الشخص 360°",     route: "/dashboard/person-360",                group: "investigation" },
   { key: "poi",                icon: "ri-user-forbid-line",      labelEn: "Persons of Interest",  labelAr: "الأشخاص المثيرون",   route: "/dashboard/persons-of-interest",       group: "investigation" },
   { key: "subject-timeline",   icon: "ri-time-line",             labelEn: "Subject Timeline",     labelAr: "الجدول الزمني",      route: "/dashboard/subject-timeline",          group: "investigation" },
+  { key: "link-analysis",      icon: "ri-share-line",            labelEn: "Link Analysis",        labelAr: "تحليل الروابط",      route: "/dashboard/link-analysis",             group: "investigation" },
   // ── SEARCH ────────────────────────────────────────────────────────────────
   { key: "search",             icon: "ri-search-2-line",         labelEn: "Search",               labelAr: "البحث",              route: "/dashboard/search",                    group: "search"        },
   // ── ANALYTICS ─────────────────────────────────────────────────────────────
