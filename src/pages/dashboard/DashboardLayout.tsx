@@ -24,7 +24,9 @@ const DashboardLayout = () => {
   const location = useLocation();
   const [lang, setLang] = useState(i18n.language || "en");
   const [selectedBranch, setSelectedBranch] = useState("main");
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(
+    () => typeof window !== "undefined" && window.innerWidth < 768
+  );
 
   const entityType = (searchParams.get("type") as EntityType) || "hotel";
   const isAr = lang === "ar";
@@ -37,6 +39,14 @@ const DashboardLayout = () => {
     document.documentElement.dir = isAr ? "rtl" : "ltr";
     document.documentElement.lang = lang;
   }, [lang, isAr]);
+
+  useEffect(() => {
+    const onResize = () => {
+      if (window.innerWidth < 768) setSidebarCollapsed(true);
+    };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
 
   const toggleLang = () => {
     const next = isAr ? "en" : "ar";
