@@ -19,7 +19,7 @@ const TransportLiveCounters = ({ isAr }: Props) => {
   }, []);
 
   const stats = [
-    { label: isAr ? "رحلات الحافلات اليوم" : "Bus Journeys Today", sub: isAr ? "شركة الحافلات الوطنية" : "National Bus Co.", value: busTrips, icon: "ri-bus-line", color: "#D6B47E", trend: "+6%" },
+    { label: isAr ? "رحلات الحافلات اليوم" : "Bus Journeys Today", sub: isAr ? "شركة الحافلات الوطنية" : "National Bus Co.", value: busTrips, icon: "ri-bus-line", color: "#C5A365", trend: "+6%" },
     { label: isAr ? "رحلات التاكسي" : "Taxi Trips Today", sub: isAr ? "شركات التاكسي المرخّصة" : "Licensed taxi operators", value: taxiTrips, icon: "ri-taxi-line", color: "#4ADE80", trend: "+3%" },
     { label: isAr ? "رحلات التوصيل" : "Ride-Hail Trips", sub: isAr ? "تطبيقات الشراكة" : "Partner ride-hail apps", value: rideHail, icon: "ri-car-line", color: "#A78BFA", trend: "+11%" },
     { label: isAr ? "أنماط مُبلَّغة" : "Flagged Patterns", sub: isAr ? "يتطلب مراجعة" : "Requires review", value: flagged, icon: "ri-alarm-warning-line", color: "#C94A5E", trend: "+2" },

@@ -17,7 +17,7 @@ const kpiStats = [
     value: '284,912',
     delta: '+1,247 today',
     deltaAr: '+1,247 اليوم',
-    color: '#D6B47E',
+    color: '#C5A365',
     icon: 'ri-user-follow-line',
   },
   {
@@ -75,7 +75,7 @@ export default function IdentityFusionPage() {
   return (
     <div
       className="min-h-screen flex flex-col"
-      style={{ background: '#051428', fontFamily: "'Inter', sans-serif" }}
+      style={{ background: '#071426', fontFamily: "'Manrope', sans-serif" }}
       dir={isAr ? 'rtl' : 'ltr'}
     >
       {/* Grid texture */}
@@ -102,7 +102,7 @@ export default function IdentityFusionPage() {
                 <i className="ri-fingerprint-line text-gold-400 text-xl" />
               </div>
               <div>
-                <h1 className="text-gold-400 font-black text-2xl tracking-wide font-['Inter']">
+                <h1 className="text-gold-400 font-black text-2xl tracking-wide font-['Manrope']">
                   {isAr ? 'مركز دمج الهويات' : 'Identity Fusion Center'}
                 </h1>
                 <p className="text-gray-500 text-xs font-['JetBrains_Mono'] mt-0.5">
@@ -156,7 +156,7 @@ export default function IdentityFusionPage() {
                 <p className="font-mono font-black text-xl leading-none" style={{ color: kpi.color }}>
                   {kpi.value}
                 </p>
-                <p className="text-gray-500 text-xs mt-0.5 font-['Inter'] truncate">
+                <p className="text-gray-500 text-xs mt-0.5 font-['Manrope'] truncate">
                   {isAr ? kpi.labelAr : kpi.labelEn}
                 </p>
                 <p className="text-gray-600 text-xs font-['JetBrains_Mono'] truncate">
@@ -177,8 +177,8 @@ export default function IdentityFusionPage() {
           <button
             key={tab.key}
             onClick={() => setActiveTab(tab.key)}
-            className="relative flex items-center gap-2 px-4 py-3.5 text-sm font-medium cursor-pointer transition-all whitespace-nowrap font-['Inter']"
-            style={{ color: activeTab === tab.key ? '#D6B47E' : '#6B7280' }}
+            className="relative flex items-center gap-2 px-4 py-3.5 text-sm font-medium cursor-pointer transition-all whitespace-nowrap font-['Manrope']"
+            style={{ color: activeTab === tab.key ? '#C5A365' : '#6B7280' }}
           >
             <i className={`${tab.icon} text-sm`} />
             {isAr ? tab.labelAr : tab.labelEn}

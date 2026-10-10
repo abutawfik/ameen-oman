@@ -66,7 +66,7 @@ const PERSONS: PersonProfile[] = [
 ];
 
 const typeIcon = (t: TripEvent["type"]) => t === "bus" ? "ri-bus-line" : t === "taxi" ? "ri-taxi-line" : "ri-car-line";
-const typeColor = (t: TripEvent["type"]) => t === "bus" ? "#D6B47E" : t === "taxi" ? "#4ADE80" : "#A78BFA";
+const typeColor = (t: TripEvent["type"]) => t === "bus" ? "#C5A365" : t === "taxi" ? "#4ADE80" : "#A78BFA";
 const typeLabel = (t: TripEvent["type"], isAr: boolean) => {
   if (t === "bus") return isAr ? "حافلة" : "Bus";
   if (t === "taxi") return isAr ? "تاكسي" : "Taxi";
@@ -113,7 +113,7 @@ const PersonMovementViewer = ({ isAr }: Props) => {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-8 pr-3 py-2 rounded-lg text-xs text-white placeholder-gray-600 outline-none"
                 style={{ background: "#0F1923", border: "1px solid rgba(255,255,255,0.08)" }}
-                onFocus={(e) => { e.target.style.borderColor = "#D6B47E"; }}
+                onFocus={(e) => { e.target.style.borderColor = "#C5A365"; }}
                 onBlur={(e) => { e.target.style.borderColor = "rgba(255,255,255,0.08)"; }}
               />
             </div>

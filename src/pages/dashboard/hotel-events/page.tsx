@@ -14,7 +14,7 @@ type FormType = "checkin" | "checkout" | "booking" | "changeroom";
 const FORM_TABS: { key: FormType; icon: string; labelEn: string; labelAr: string; color: string; eventCode: string }[] = [
   { key: "checkin",    icon: "ri-login-box-line",    labelEn: "Check-In",    labelAr: "تسجيل دخول",  color: "#4ADE80", eventCode: "HOTEL_CHECKIN" },
   { key: "checkout",   icon: "ri-logout-box-line",   labelEn: "Check-Out",   labelAr: "تسجيل خروج",  color: "#C98A1B", eventCode: "HOTEL_CHECKOUT" },
-  { key: "booking",    icon: "ri-calendar-line",     labelEn: "Booking",     labelAr: "حجز",          color: "#D6B47E", eventCode: "HOTEL_BOOKING" },
+  { key: "booking",    icon: "ri-calendar-line",     labelEn: "Booking",     labelAr: "حجز",          color: "#C5A365", eventCode: "HOTEL_BOOKING" },
   { key: "changeroom", icon: "ri-door-line",         labelEn: "Room Change", labelAr: "تغيير غرفة",  color: "#FACC15", eventCode: "HOTEL_ROOM_CHANGE" },
 ];
 
@@ -22,7 +22,7 @@ const FORM_TABS: { key: FormType; icon: string; labelEn: string; labelAr: string
 const EVENT_COLOR: Record<string, string> = {
   HOTEL_CHECKIN:     "#4ADE80",
   HOTEL_CHECKOUT:    "#C98A1B",
-  HOTEL_BOOKING:     "#D6B47E",
+  HOTEL_BOOKING:     "#C5A365",
   HOTEL_ROOM_CHANGE: "#FACC15",
 };
 const EVENT_ICON: Record<string, string> = {
@@ -33,7 +33,7 @@ const EVENT_ICON: Record<string, string> = {
 };
 
 const DeiyafaFeedRow = ({ ev, isAr }: { ev: AmeenEvent; isAr: boolean }) => {
-  const color = EVENT_COLOR[ev.eventType] ?? "#D6B47E";
+  const color = EVENT_COLOR[ev.eventType] ?? "#C5A365";
   const icon  = EVENT_ICON[ev.eventType]  ?? "ri-hotel-line";
   return (
     <div className="grid grid-cols-12 gap-2 px-4 py-2.5 border-b text-xs items-center"
@@ -75,7 +75,7 @@ const HotelEventsPage = () => {
   const activeTab = FORM_TABS.find((t) => t.key === activeForm)!;
 
   return (
-    <div className="min-h-screen" style={{ background: "#051428" }}>
+    <div className="min-h-screen" style={{ background: "#071426" }}>
       {/* Grid bg */}
       <div className="fixed inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: `linear-gradient(rgba(184,138,60,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.1) 1px, transparent 1px)`, backgroundSize: "60px 60px" }} />
 
@@ -86,13 +86,13 @@ const HotelEventsPage = () => {
           { label: isAr ? "لوحة التحكم" : "Dashboard", route: "/dashboard?type=hotel" },
         ]}
         icon="ri-hotel-line"
-        iconColor="#D6B47E"
+        iconColor="#C5A365"
         badge="Al-Ameen Portal"
         isAr={isAr}
         action={
           <div className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-lg border" style={{ background: "rgba(184,138,60,0.05)", borderColor: "rgba(184,138,60,0.15)" }}>
             <i className="ri-hotel-line text-gold-400 text-xs" />
-            <span className="text-gray-400 text-xs font-['Inter']">Grand Capital Hotel</span>
+            <span className="text-gray-400 text-xs font-['Manrope']">Grand Capital Hotel</span>
             <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
           </div>
         }
@@ -103,11 +103,11 @@ const HotelEventsPage = () => {
         <div className="mb-6">
           <div className="flex items-center gap-2 mb-1">
             <i className="ri-hotel-line text-gold-400 text-lg" />
-            <h1 className="text-white font-bold text-2xl font-['Inter']">
+            <h1 className="text-white font-bold text-2xl font-['Manrope']">
               {isAr ? "نماذج أحداث الفنادق" : "Hotel Event Forms"}
             </h1>
           </div>
-          <p className="text-gray-500 text-sm font-['Inter']">
+          <p className="text-gray-500 text-sm font-['Manrope']">
             {isAr
               ? "إرسال أحداث الفندق إلى منصة الأمين — للفنادق التي تمتلك نظام إدارة عقارات خاص بها"
               : "Submit hotel events to Al-Ameen Portal — for hotels with their own PMS"}
@@ -120,7 +120,7 @@ const HotelEventsPage = () => {
             <button
               key={tab.key}
               onClick={() => { setActiveForm(tab.key); setFormKey((k) => k + 1); }}
-              className="flex items-center gap-2 px-4 py-2.5 rounded-xl border text-sm font-semibold transition-all cursor-pointer whitespace-nowrap font-['Inter']"
+              className="flex items-center gap-2 px-4 py-2.5 rounded-xl border text-sm font-semibold transition-all cursor-pointer whitespace-nowrap font-['Manrope']"
               style={{
                 background: activeForm === tab.key ? tab.color + "15" : "rgba(10,37,64,0.7)",
                 borderColor: activeForm === tab.key ? tab.color + "60" : "rgba(255,255,255,0.08)",
@@ -143,7 +143,7 @@ const HotelEventsPage = () => {
           <span className="text-xs font-['JetBrains_Mono']" style={{ color: activeTab.color }}>
             {activeTab.eventCode}
           </span>
-          <span className="text-gray-600 text-xs font-['Inter']">
+          <span className="text-gray-600 text-xs font-['Manrope']">
             {isAr ? "— يُرسل إلى منصة الأمين عند الحفظ" : "— Submitted to Al-Ameen Portal on save"}
           </span>
         </div>
@@ -171,7 +171,7 @@ const HotelEventsPage = () => {
             style={{ borderColor: "rgba(184,138,60,0.12)" }}>
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full animate-pulse" style={{ background: "#4ADE80" }} />
-              <span className="text-white text-sm font-bold font-['Inter']">
+              <span className="text-white text-sm font-bold font-['Manrope']">
                 {isAr ? "التغذية المباشرة من ديافة → الأمين" : "Live feed — Deiyafa → Al-Ameen"}
               </span>
               <span className="px-2 py-0.5 rounded-md text-[9px] font-bold tracking-widest font-['JetBrains_Mono']"
@@ -187,7 +187,7 @@ const HotelEventsPage = () => {
           {deiyafaFeed.length === 0 ? (
             <div className="py-10 text-center">
               <i className="ri-upload-cloud-2-line text-3xl text-gray-700 mb-2 block" />
-              <p className="text-gray-600 text-sm font-['Inter']">
+              <p className="text-gray-600 text-sm font-['Manrope']">
                 {isAr
                   ? "لا أحداث مُرسلة بعد — احفظ نموذجاً أعلاه لتظهر هنا"
                   : "No events transmitted yet — save a form above to see it appear here"}

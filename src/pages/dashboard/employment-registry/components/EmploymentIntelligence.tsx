@@ -11,11 +11,11 @@ const ABSCONDING = [
 
 /* ── Sector Concentration ── */
 const SECTOR_DATA = [
-  { sector: "Construction", sectorAr: "البناء", total: 48200, nationalities: [{ name: "India", pct: 42, color: "#D6B47E" }, { name: "Pakistan", pct: 28, color: "#4ADE80" }, { name: "Bangladesh", pct: 18, color: "#FACC15" }, { name: "Other", pct: 12, color: "#9CA3AF" }], risk: "medium" as const },
-  { sector: "Hospitality", sectorAr: "الضيافة", total: 22100, nationalities: [{ name: "Philippines", pct: 38, color: "#D6B47E" }, { name: "India", pct: 31, color: "#4ADE80" }, { name: "Nepal", pct: 19, color: "#FACC15" }, { name: "Other", pct: 12, color: "#9CA3AF" }], risk: "low" as const },
-  { sector: "Oil & Gas", sectorAr: "النفط والغاز", total: 18400, nationalities: [{ name: "India", pct: 35, color: "#D6B47E" }, { name: "UK", pct: 22, color: "#4ADE80" }, { name: "USA", pct: 18, color: "#FACC15" }, { name: "Other", pct: 25, color: "#9CA3AF" }], risk: "low" as const },
-  { sector: "Retail", sectorAr: "التجزئة", total: 31700, nationalities: [{ name: "India", pct: 55, color: "#D6B47E" }, { name: "Bangladesh", pct: 22, color: "#4ADE80" }, { name: "Pakistan", pct: 14, color: "#FACC15" }, { name: "Other", pct: 9, color: "#9CA3AF" }], risk: "high" as const },
-  { sector: "Healthcare", sectorAr: "الرعاية الصحية", total: 12800, nationalities: [{ name: "India", pct: 48, color: "#D6B47E" }, { name: "Philippines", pct: 29, color: "#4ADE80" }, { name: "Jordan", pct: 13, color: "#FACC15" }, { name: "Other", pct: 10, color: "#9CA3AF" }], risk: "low" as const },
+  { sector: "Construction", sectorAr: "البناء", total: 48200, nationalities: [{ name: "India", pct: 42, color: "#C5A365" }, { name: "Pakistan", pct: 28, color: "#4ADE80" }, { name: "Bangladesh", pct: 18, color: "#FACC15" }, { name: "Other", pct: 12, color: "#9CA3AF" }], risk: "medium" as const },
+  { sector: "Hospitality", sectorAr: "الضيافة", total: 22100, nationalities: [{ name: "Philippines", pct: 38, color: "#C5A365" }, { name: "India", pct: 31, color: "#4ADE80" }, { name: "Nepal", pct: 19, color: "#FACC15" }, { name: "Other", pct: 12, color: "#9CA3AF" }], risk: "low" as const },
+  { sector: "Oil & Gas", sectorAr: "النفط والغاز", total: 18400, nationalities: [{ name: "India", pct: 35, color: "#C5A365" }, { name: "UK", pct: 22, color: "#4ADE80" }, { name: "USA", pct: 18, color: "#FACC15" }, { name: "Other", pct: 25, color: "#9CA3AF" }], risk: "low" as const },
+  { sector: "Retail", sectorAr: "التجزئة", total: 31700, nationalities: [{ name: "India", pct: 55, color: "#C5A365" }, { name: "Bangladesh", pct: 22, color: "#4ADE80" }, { name: "Pakistan", pct: 14, color: "#FACC15" }, { name: "Other", pct: 9, color: "#9CA3AF" }], risk: "high" as const },
+  { sector: "Healthcare", sectorAr: "الرعاية الصحية", total: 12800, nationalities: [{ name: "India", pct: 48, color: "#C5A365" }, { name: "Philippines", pct: 29, color: "#4ADE80" }, { name: "Jordan", pct: 13, color: "#FACC15" }, { name: "Other", pct: 10, color: "#9CA3AF" }], risk: "low" as const },
 ];
 
 /* ── Ghost Employees ── */
@@ -42,7 +42,7 @@ const riskColor = (r: "low" | "medium" | "high" | "critical") => {
 };
 
 const streamColor = (s: string) => {
-  const map: Record<string, string> = { TRANSPORT: "#D6B47E", BORDER: "#A78BFA", HOTEL: "#C98A1B", MUNICIPALITY: "#4ADE80", UTILITY: "#FACC15", MOBILE: "#C94A5E" };
+  const map: Record<string, string> = { TRANSPORT: "#C5A365", BORDER: "#A78BFA", HOTEL: "#C98A1B", MUNICIPALITY: "#4ADE80", UTILITY: "#FACC15", MOBILE: "#C94A5E" };
   return map[s] || "#9CA3AF";
 };
 
@@ -51,7 +51,7 @@ const EmploymentIntelligence = ({ isAr }: Props) => {
 
   const sections = [
     { id: "absconding" as const, icon: "ri-user-unfollow-line", label: isAr ? "مراقبة التغيب" : "Absconding Monitor", color: "#C94A5E", count: ABSCONDING.length },
-    { id: "sector" as const, icon: "ri-pie-chart-line", label: isAr ? "تركيز القطاعات" : "Sector Concentration", color: "#D6B47E" },
+    { id: "sector" as const, icon: "ri-pie-chart-line", label: isAr ? "تركيز القطاعات" : "Sector Concentration", color: "#C5A365" },
     { id: "ghost" as const, icon: "ri-ghost-line", label: isAr ? "الموظفون الوهميون" : "Ghost Employees", color: "#C98A1B", count: GHOST_EMPLOYEES.length },
     { id: "compliance" as const, icon: "ri-building-line", label: isAr ? "امتثال أصحاب العمل" : "Employer Compliance", color: "#FACC15" },
   ];
@@ -173,7 +173,7 @@ const EmploymentIntelligence = ({ isAr }: Props) => {
                         <div key={nat.name} className="h-full rounded-sm transition-all duration-700 relative group"
                           style={{ width: `${nat.pct}%`, background: nat.color, minWidth: "2px" }}>
                           <div className="absolute -top-7 left-1/2 -translate-x-1/2 px-1.5 py-0.5 rounded text-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity z-10"
-                            style={{ background: nat.color, color: "#051428", fontSize: "9px", fontWeight: "bold" }}>
+                            style={{ background: nat.color, color: "#071426", fontSize: "9px", fontWeight: "bold" }}>
                             {nat.name} {nat.pct}%
                           </div>
                         </div>

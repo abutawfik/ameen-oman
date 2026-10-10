@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { navItems, entityMeta, type EntityType } from "@/mocks/dashboardData";
-import BrandLogo from "@/brand/BrandLogo";
 import VersionBadge from "@/components/VersionBadge";
 
 interface Props {
@@ -89,41 +88,19 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
         minHeight: "100%",
       }}
     >
-      {/* Brand lockup */}
-      {!collapsed && (
-        <div className="px-4 py-4 border-b flex flex-col gap-2" style={{ borderColor: "rgba(184,138,60,0.08)" }}>
-          <BrandLogo variant="horizontal" tone="light" size="sm" showTagline isAr={isAr} />
-          {isAr && (
-            <div
-              lang="ar"
-              dir="rtl"
-              style={{
-                fontFamily: "'Cairo', 'Tajawal', 'IBM Plex Sans Arabic', sans-serif",
-                fontWeight: 500,
-                fontSize: "0.6875rem",
-                color: "#D6B47E",
-                paddingInlineStart: 36,
-              }}
-            >
-              الحارس الأمين للوطن
-            </div>
-          )}
-        </div>
-      )}
-
       {/* User info */}
       {!collapsed && (
         <div className="px-4 py-5 border-b" style={{ borderColor: "rgba(184,138,60,0.08)" }}>
           <div className="flex items-center gap-3 mb-3">
             <div className="w-10 h-10 flex items-center justify-center rounded-full flex-shrink-0"
               style={{ background: "rgba(184,138,60,0.15)", border: "2px solid rgba(184,138,60,0.4)" }}>
-              <span className="text-gold-400 text-sm font-black font-['Inter']">AA</span>
+              <span className="text-gold-400 text-sm font-black font-['Manrope']">AA</span>
             </div>
             <div className="min-w-0">
               <p className="text-gold-400 text-xs font-semibold font-mono uppercase tracking-widest">
                 {isAr ? "مرحباً" : "WELCOME"}
               </p>
-              <p className="text-ivory-100 text-sm font-bold font-['Inter'] truncate">Ahmed Al-Amri</p>
+              <p className="text-ivory-100 text-sm font-bold font-['Manrope'] truncate">Ahmed Al-Amri</p>
             </div>
           </div>
           <div className="space-y-1">
@@ -142,12 +119,6 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
               </div>
             </div>
           </div>
-        </div>
-      )}
-
-      {collapsed && (
-        <div className="flex justify-center py-4 border-b" style={{ borderColor: "rgba(184,138,60,0.08)" }}>
-          <BrandLogo variant="mark" tone="light" size="sm" isAr={isAr} />
         </div>
       )}
 
@@ -185,7 +156,7 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
               <button
                 onClick={() => handleNavClick(pin)}
                 className="flex-1 flex items-center gap-3 px-4 py-2 transition-all duration-150 cursor-pointer"
-                style={{ color: isActive ? "#D6B47E" : "#7A9CBF", background: isActive ? "rgba(184,138,60,0.1)" : "transparent" }}
+                style={{ color: isActive ? "#C5A365" : "#7A9CBF", background: isActive ? "rgba(184,138,60,0.1)" : "transparent" }}
                 title={collapsed ? label : undefined}
                 aria-label={collapsed ? label : undefined}
                 aria-current={isActive ? "page" : undefined}
@@ -194,12 +165,12 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
                   <i className={`${pin.icon} text-base`} aria-hidden="true" />
                 </div>
                 {!collapsed && (
-                  <span className="text-xs font-['Inter'] font-medium whitespace-nowrap">{label}</span>
+                  <span className="text-xs font-['Manrope'] font-medium whitespace-nowrap">{label}</span>
                 )}
                 {/* Tooltip when collapsed */}
                 {collapsed && (
                   <div
-                    className={`absolute px-2 py-1 rounded-md text-xs text-ivory-100 whitespace-nowrap opacity-0 group-hover/pin:opacity-100 transition-opacity pointer-events-none z-50 font-['Inter'] ${isAr ? "right-full mr-2" : "left-full ml-2"}`}
+                    className={`absolute px-2 py-1 rounded-md text-xs text-ivory-100 whitespace-nowrap opacity-0 group-hover/pin:opacity-100 transition-opacity pointer-events-none z-50 font-['Manrope'] ${isAr ? "right-full mr-2" : "left-full ml-2"}`}
                     style={{ background: "rgba(20,29,46,0.95)", border: "1px solid rgba(184,138,60,0.25)" }}
                   >
                     {label}
@@ -286,7 +257,7 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
                       className="flex-1 flex items-center gap-3 px-4 py-2.5 transition-all duration-150 cursor-pointer"
                       style={{
                         background: isActive ? "rgba(184,138,60,0.1)" : "transparent",
-                        color: isActive ? "#D6B47E" : "#7A9CBF",
+                        color: isActive ? "#C5A365" : "#7A9CBF",
                       }}
                       title={collapsed ? label : undefined}
                       aria-label={collapsed ? label : undefined}
@@ -296,7 +267,7 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
                         <i className={`${item.icon} text-base`} aria-hidden="true" />
                       </div>
                       {!collapsed && (
-                        <span className="text-sm font-['Inter'] font-medium whitespace-nowrap">
+                        <span className="text-sm font-['Manrope'] font-medium whitespace-nowrap">
                           {isAr ? item.labelAr : item.labelEn}
                         </span>
                       )}
@@ -307,7 +278,7 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
                       {/* Hover tooltip when collapsed */}
                       {collapsed && (
                         <div
-                          className={`absolute px-2 py-1 rounded-md text-xs text-ivory-100 whitespace-nowrap opacity-0 group-hover/nav:opacity-100 transition-opacity pointer-events-none z-50 font-['Inter'] ${
+                          className={`absolute px-2 py-1 rounded-md text-xs text-ivory-100 whitespace-nowrap opacity-0 group-hover/nav:opacity-100 transition-opacity pointer-events-none z-50 font-['Manrope'] ${
                             isAr ? "right-full mr-2" : "left-full ml-2"
                           }`}
                           style={{ background: "rgba(20,29,46,0.95)", border: "1px solid rgba(184,138,60,0.25)" }}
@@ -325,7 +296,7 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
                         title={isAr ? "تثبيت في الشريط الجانبي" : "Pin to sidebar"}
                         aria-label={isAr ? `تثبيت ${label}` : `Pin ${label}`}
                         style={{ color: "#4A6080" }}
-                        onMouseEnter={(e) => { e.currentTarget.style.color = "#D6B47E"; }}
+                        onMouseEnter={(e) => { e.currentTarget.style.color = "#C5A365"; }}
                         onMouseLeave={(e) => { e.currentTarget.style.color = "#4A6080"; }}
                       >
                         <i className="ri-pushpin-line text-xs" aria-hidden="true" />
@@ -369,7 +340,7 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
               ? (isAr ? "ri-arrow-left-s-line" : "ri-arrow-right-s-line")
               : (isAr ? "ri-arrow-right-s-line" : "ri-arrow-left-s-line")
           }`} />
-          {!collapsed && <span className="text-xs font-['Inter']">{isAr ? "طي" : "Collapse"}</span>}
+          {!collapsed && <span className="text-xs font-['Manrope']">{isAr ? "طي" : "Collapse"}</span>}
         </button>
 
         {!collapsed && (
@@ -403,7 +374,7 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
             aria-label={isAr ? "تسجيل الخروج" : "Sign out"}
           >
             <i className="ri-logout-box-r-line text-sm" aria-hidden="true" />
-            <span className="text-xs font-['Inter'] font-medium">
+            <span className="text-xs font-['Manrope'] font-medium">
               {isAr ? "تسجيل الخروج" : "Sign Out"}
             </span>
           </button>

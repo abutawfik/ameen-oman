@@ -147,7 +147,7 @@ const RoamingServiceForm = ({ isAr, onCancel }: Props) => {
 
             {/* Service toggles */}
             <div>
-              <p className="text-gray-400 text-xs mb-2 font-['Inter']">
+              <p className="text-gray-400 text-xs mb-2 font-['Manrope']">
                 {isAr ? "خدمات التجوال المفعّلة" : "Enabled Roaming Services"}
               </p>
               <div className="space-y-2">
@@ -159,8 +159,8 @@ const RoamingServiceForm = ({ isAr, onCancel }: Props) => {
                   <div key={svc.key} className="flex items-center justify-between p-2.5 rounded-lg border"
                     style={{ background: svc.value === "enabled" ? "rgba(184,138,60,0.05)" : "rgba(255,255,255,0.02)", borderColor: svc.value === "enabled" ? "rgba(184,138,60,0.2)" : "rgba(255,255,255,0.06)" }}>
                     <div className="flex items-center gap-2">
-                      <i className={`${svc.icon} text-sm`} style={{ color: svc.value === "enabled" ? "#D6B47E" : "#6B7280" }} />
-                      <span className="text-xs font-semibold font-['Inter']" style={{ color: svc.value === "enabled" ? "#D1D5DB" : "#6B7280" }}>
+                      <i className={`${svc.icon} text-sm`} style={{ color: svc.value === "enabled" ? "#C5A365" : "#6B7280" }} />
+                      <span className="text-xs font-semibold font-['Manrope']" style={{ color: svc.value === "enabled" ? "#D1D5DB" : "#6B7280" }}>
                         {isAr ? svc.labelAr : svc.label}
                       </span>
                     </div>
@@ -195,7 +195,7 @@ const RoamingServiceForm = ({ isAr, onCancel }: Props) => {
                 className="p-4 rounded-xl border"
                 style={{ background: "rgba(184,138,60,0.04)", borderColor: "rgba(184,138,60,0.15)" }}
               >
-                <p className="text-gray-400 text-xs mb-2 font-['Inter']">
+                <p className="text-gray-400 text-xs mb-2 font-['Manrope']">
                   {isAr ? "ملخص التغطية" : "Coverage Summary"}
                 </p>
                 <div className="flex items-center gap-3">
@@ -207,7 +207,7 @@ const RoamingServiceForm = ({ isAr, onCancel }: Props) => {
                     <p className="text-white font-bold text-lg font-['JetBrains_Mono']">
                       {selectedCountries.length}
                     </p>
-                    <p className="text-gray-500 text-xs font-['Inter']">
+                    <p className="text-gray-500 text-xs font-['Manrope']">
                       {isAr ? "دولة محددة للتجوال" : "countries selected for roaming"}
                     </p>
                   </div>
@@ -221,10 +221,10 @@ const RoamingServiceForm = ({ isAr, onCancel }: Props) => {
                 className="p-3 rounded-xl border"
                 style={{ background: "rgba(250,204,21,0.04)", borderColor: "rgba(250,204,21,0.15)" }}
               >
-                <p className="text-gray-500 text-xs mb-1 font-['Inter']">
+                <p className="text-gray-500 text-xs mb-1 font-['Manrope']">
                   {isAr ? "الباقة المختارة" : "Selected Package"}
                 </p>
-                <p className="text-yellow-400 font-bold text-sm font-['Inter']">
+                <p className="text-yellow-400 font-bold text-sm font-['Manrope']">
                   {ROAMING_PACKAGES.find((p) => p.value === roamingPackage)?.label}
                 </p>
               </div>

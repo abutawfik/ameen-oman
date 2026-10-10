@@ -87,8 +87,8 @@ const QueueTab = ({
                   className="mt-1 px-2 py-1 rounded-md text-[11px] font-bold cursor-pointer flex items-center justify-center gap-1 transition-all"
                   style={{
                     background: active ? `${s.color}22` : "rgba(184,138,60,0.1)",
-                    color: active ? s.color : "#D6B47E",
-                    border: `1px solid ${active ? s.color : "#D6B47E"}55`,
+                    color: active ? s.color : "#C5A365",
+                    border: `1px solid ${active ? s.color : "#C5A365"}55`,
                   }}>
                   {isAr ? "تشغيل السيناريو" : "Play scenario"}
                   <i className={isAr ? "ri-play-mini-line" : "ri-play-mini-line"} />
@@ -108,7 +108,7 @@ const QueueTab = ({
         <div className="flex gap-1">
           {BANDS.map((b) => {
             const active = filterBand === b;
-            const col = b === "all" ? "#D6B47E" : SCORE_BAND_META[b as RiskBand].color;
+            const col = b === "all" ? "#C5A365" : SCORE_BAND_META[b as RiskBand].color;
             return (
               <button key={b} onClick={() => setFilterBand(b)}
                 className="px-2.5 py-1 rounded-md text-[11px] font-bold font-['JetBrains_Mono'] tracking-widest uppercase cursor-pointer"
@@ -241,7 +241,7 @@ const QueueTab = ({
               <span className="px-2 py-0.5 rounded-md text-[11px] font-bold tracking-wider font-['JetBrains_Mono']"
                 style={{
                   background: r.decisionPoint === "ETA" ? "rgba(184,138,60,0.1)" : "rgba(107,79,174,0.1)",
-                  color: r.decisionPoint === "ETA" ? "#D6B47E" : "#6B4FAE",
+                  color: r.decisionPoint === "ETA" ? "#C5A365" : "#6B4FAE",
                 }}>
                 {r.decisionPoint}
               </span>

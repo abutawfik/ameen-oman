@@ -1,3 +1,4 @@
+import { fitGraph } from '@/workflows/graph';
 import { useRef, useEffect, useState, useCallback } from "react";
 import {
   GraphNode, GraphEdge, Annotation,
@@ -26,7 +27,7 @@ interface Props {
   sizeByDegree: boolean;
 }
 
-const COMMUNITY_PALETTE = ["#D6B47E", "#A78BFA", "#4ADE80", "#C98A1B", "#F472B6", "#FCD34D", "#38BDF8", "#2DD4BF"];
+const COMMUNITY_PALETTE = ["#C5A365", "#A78BFA", "#4ADE80", "#C98A1B", "#F472B6", "#FCD34D", "#38BDF8", "#2DD4BF"];
 
 const GraphCanvas = ({
   nodes, edges, annotations, selectedNodes, highlightedPath, highlightedNodes,
@@ -130,8 +131,10 @@ const GraphCanvas = ({
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const W = canvas.width;
-    const H = canvas.height;
+    const ratio = window.devicePixelRatio || 1;
+    ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+    const W = canvas.width / ratio;
+    const H = canvas.height / ratio;
     ctx.clearRect(0, 0, W, H);
 
     // Background grid
@@ -174,7 +177,7 @@ const GraphCanvas = ({
 
       ctx.save();
       ctx.globalAlpha = alpha;
-      ctx.strokeStyle = isHighlighted ? "#D6B47E" : cfg.color;
+      ctx.strokeStyle = isHighlighted ? "#C5A365" : cfg.color;
       ctx.lineWidth = Math.max(lineWidth, 1 / transform.scale);
 
       if (cfg.dash) {
@@ -212,7 +215,7 @@ const GraphCanvas = ({
       ctx.lineTo(ax - arrowSize * Math.cos(angle - 0.4), ay - arrowSize * Math.sin(angle - 0.4));
       ctx.lineTo(ax - arrowSize * Math.cos(angle + 0.4), ay - arrowSize * Math.sin(angle + 0.4));
       ctx.closePath();
-      ctx.fillStyle = isHighlighted ? "#D6B47E" : cfg.color;
+      ctx.fillStyle = isHighlighted ? "#C5A365" : cfg.color;
       ctx.fill();
 
       // Edge label
@@ -247,14 +250,14 @@ const GraphCanvas = ({
 
       // Glow for selected/highlighted
       if (isSelected || isHighlighted || isHovered) {
-        ctx.shadowColor = isSelected ? "#D6B47E" : (isHighlighted ? riskColors[node.risk] : cfg.color);
+        ctx.shadowColor = isSelected ? "#C5A365" : (isHighlighted ? riskColors[node.risk] : cfg.color);
         ctx.shadowBlur = isSelected ? 20 : 12;
       }
 
       // Node shape fill
       const fillColor = hasCommunity ? communityColors[node.id] : cfg.color;
       ctx.fillStyle = `${fillColor}22`;
-      ctx.strokeStyle = isSelected ? "#D6B47E" : (isHighlighted ? riskColors[node.risk] : fillColor);
+      ctx.strokeStyle = isSelected ? "#C5A365" : (isHighlighted ? riskColors[node.risk] : fillColor);
       ctx.lineWidth = isSelected ? 3 / transform.scale : 2 / transform.scale;
 
       if (node.type === "organization") {
@@ -291,7 +294,7 @@ const GraphCanvas = ({
       // Initials / icon text
       ctx.shadowBlur = 0;
       ctx.fillStyle = fillColor;
-      ctx.font = `bold ${Math.max(10, r * 0.55)}px Inter, sans-serif`;
+      ctx.font = `bold ${Math.max(10, r * 0.55)}px Manrope, sans-serif`;
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
       const label = node.initials || node.label.substring(0, 2).toUpperCase();
@@ -306,8 +309,8 @@ const GraphCanvas = ({
 
       // Node label below
       if (showLabels && transform.scale > 0.4) {
-        ctx.fillStyle = isSelected ? "#D6B47E" : "#D1D5DB";
-        ctx.font = `${11 / transform.scale}px Inter, sans-serif`;
+        ctx.fillStyle = isSelected ? "#C5A365" : "#D1D5DB";
+        ctx.font = `${11 / transform.scale}px Manrope, sans-serif`;
         ctx.textAlign = "center";
         ctx.textBaseline = "top";
         const maxLen = 18;
@@ -324,7 +327,7 @@ const GraphCanvas = ({
         ctx.beginPath();
         ctx.arc(bx, by, br, 0, Math.PI * 2);
         ctx.fill();
-        ctx.fillStyle = "#051428";
+        ctx.fillStyle = "#071426";
         ctx.font = `bold ${8 / transform.scale}px JetBrains Mono, monospace`;
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
@@ -354,7 +357,7 @@ const GraphCanvas = ({
       ctx.textBaseline = "top";
       ctx.fillText("NOTE", ann.x + pad, ann.y + pad);
       ctx.fillStyle = "#D1D5DB";
-      ctx.font = `${9 / transform.scale}px Inter, sans-serif`;
+      ctx.font = `${9 / transform.scale}px Manrope, sans-serif`;
       const words = ann.text.split(" ");
       let line = "";
       let lineY = ann.y + pad + 14 / transform.scale;
@@ -382,18 +385,28 @@ const GraphCanvas = ({
     return () => cancelAnimationFrame(animFrameRef.current);
   }, [draw]);
 
+  const latestDraw = useRef(draw);
+  const latestNodes = useRef(nodes);
+  useEffect(() => { latestDraw.current = draw; latestNodes.current = nodes; }, [draw, nodes]);
+
   useEffect(() => {
     const canvas = canvasRef.current;
     const container = containerRef.current;
     if (!canvas || !container) return;
     const resize = () => {
-      canvas.width = container.clientWidth;
-      canvas.height = container.clientHeight;
+      const width = container.clientWidth, height = container.clientHeight;
+      if (!width || !height) return;
+      const ratio = window.devicePixelRatio || 1;
+      canvas.width = Math.round(width * ratio);
+      canvas.height = Math.round(height * ratio);
+      setTransform(fitGraph(latestNodes.current, width, height));
+      cancelAnimationFrame(animFrameRef.current);
+      animFrameRef.current = requestAnimationFrame(() => latestDraw.current());
     };
     resize();
     const ro = new ResizeObserver(resize);
     ro.observe(container);
-    return () => ro.disconnect();
+    return () => { ro.disconnect(); cancelAnimationFrame(animFrameRef.current); };
   }, []);
 
   const handleWheel = useCallback((e: React.WheelEvent) => {
@@ -503,6 +516,8 @@ const GraphCanvas = ({
     >
       <canvas
         ref={canvasRef}
+        data-graph-canvas
+        aria-label="Relationship network graph"
         onWheel={handleWheel}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
@@ -530,14 +545,15 @@ const GraphCanvas = ({
         {[
           { icon: "ri-add-line", action: () => setTransform(p => ({ ...p, scale: Math.min(4, p.scale * 1.2) })) },
           { icon: "ri-subtract-line", action: () => setTransform(p => ({ ...p, scale: Math.max(0.15, p.scale * 0.8) })) },
-          { icon: "ri-fullscreen-line", action: () => setTransform({ x: 0, y: 0, scale: 1 }) },
+          { icon: "ri-fullscreen-line", action: () => setTransform(fitGraph(nodes, containerRef.current?.clientWidth ?? 0, containerRef.current?.clientHeight ?? 0)) },
         ].map((btn, i) => (
           <button
             key={i}
+            aria-label={["Zoom in", "Zoom out", "Fit graph"][i]}
             onClick={btn.action}
             className="w-8 h-8 flex items-center justify-center rounded cursor-pointer transition-colors"
             style={{ background: "rgba(10,37,64,0.9)", border: "1px solid rgba(184,138,60,0.2)", color: "#9CA3AF" }}
-            onMouseEnter={e => (e.currentTarget.style.color = "#D6B47E")}
+            onMouseEnter={e => (e.currentTarget.style.color = "#C5A365")}
             onMouseLeave={e => (e.currentTarget.style.color = "#9CA3AF")}
           >
             <i className={`${btn.icon} text-sm`} />
@@ -553,7 +569,7 @@ const GraphCanvas = ({
       </div>
       {addAnnotationMode && (
         <div
-          className="absolute top-4 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full text-xs font-['Inter'] font-semibold"
+          className="absolute top-4 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full text-xs font-['Manrope'] font-semibold"
           style={{ background: "rgba(250,204,21,0.15)", border: "1px solid rgba(250,204,21,0.4)", color: "#FACC15" }}
         >
           Click anywhere on canvas to place annotation

@@ -26,7 +26,7 @@ export default {
           500: "#1A4578",
           600: "#10325A", // raised
           700: "#0A2540", // card · PRIMARY action
-          800: "#051428", // shell
+          800: "#071426", // shell
           900: "#020A14",
         },
         // ── Alert ramp (was "oman red" — now Persian Rose, key name preserved) ──
@@ -48,8 +48,8 @@ export default {
           100: "#F4E5C4",
           200: "#E8CF9A",
           300: "#DDB96B",
-          400: "#D6B47E",
-          500: "#C99C48",
+          400: "#C5A365",
+          500: "#C5A365",
           600: "#B88A3C", // brass accent
           700: "#96732C",
           800: "#7A5C22",
@@ -95,8 +95,8 @@ export default {
         },
       },
       fontFamily: {
-        display: ["Cormorant Garamond", "Canela", "Playfair Display", "Georgia", "serif"],
-        sans:    ["Inter", "Geist", "ui-sans-serif", "system-ui", "sans-serif"],
+        display: ["Manrope", "ui-sans-serif", "system-ui", "sans-serif"],
+        sans:    ["Manrope", "Geist", "ui-sans-serif", "system-ui", "sans-serif"],
         arabic:  ["Cairo", "Tajawal", "IBM Plex Sans Arabic", "Noto Sans Arabic", "sans-serif"],
         mono:    ["JetBrains Mono", "IBM Plex Mono", "ui-monospace", "monospace"],
       },
@@ -135,9 +135,9 @@ export default {
         emph: "cubic-bezier(0.2, 0.8, 0.2, 1)",
       },
       backgroundImage: {
-        "gold-gradient":     "linear-gradient(180deg, #D6B47E 0%, #B88A3C 100%)",
+        "gold-gradient":     "linear-gradient(180deg, #C5A365 0%, #B88A3C 100%)",
         "oman-gradient":     "linear-gradient(180deg, #C94A5E 0%, #8A1F3C 100%)",
-        "midnight-gradient": "linear-gradient(180deg, #0A2540 0%, #051428 100%)",
+        "midnight-gradient": "linear-gradient(180deg, #0A2540 0%, #071426 100%)",
         "grid-line":         "linear-gradient(rgba(184,138,60,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.08) 1px, transparent 1px)",
       },
       backgroundSize: {

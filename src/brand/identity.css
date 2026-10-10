@@ -1,0 +1,24 @@
+@font-face { font-family: Manrope; src: url('/fonts/manrope-variable.ttf') format('truetype'); font-weight: 200 800; font-style: normal; font-display: swap; }
+@font-face { font-family: Cairo; src: url('/fonts/cairo-variable.ttf') format('truetype'); font-weight: 200 1000; font-style: normal; font-display: swap; }
+@font-face { font-family: 'JetBrains Mono'; src: url('/fonts/jetbrains-mono-variable.ttf') format('truetype'); font-weight: 100 800; font-style: normal; font-display: swap; }
+:root { --ameen-midnight:#071426; --ameen-gold:#C5A365; --ameen-ivory:#F8F5F0; --ameen-muted:#AAB8C7; --ameen-border:#294059; --ameen-focus:#9EC7ED; }
+.ameen-identity { display:inline-flex; flex-direction:column; align-items:center; flex-shrink:0; max-width:100%; width:210px; }
+.ameen-identity img { display:block; width:100%; height:auto; mix-blend-mode:lighten; }
+.ameen-identity--dark img { mix-blend-mode:multiply; }
+.ameen-identity--sm { width:150px; }
+.ameen-identity--md { width:180px; }
+.ameen-identity--lg { width:min(100%,400px); }
+.ameen-identity--mark { width:36px; }
+.ameen-identity--mark.ameen-identity--sm { width:28px; }
+.ameen-identity--mark.ameen-identity--lg { width:72px; }
+.ameen-identity__tagline { font-family:Manrope, sans-serif; font-size:9px; line-height:1.5; font-weight:600; color:#C5A365; text-align:center; white-space:nowrap; margin-top:-8px; }
+.ameen-identity--lg .ameen-identity__tagline { font-size:clamp(11px,1.4vw,15px); letter-spacing:.12em; text-transform:uppercase; margin-top:0; }
+.ameen-identity--dark .ameen-identity__tagline { color:#071426; }
+.ameen-hero__identity { width:clamp(280px,68vw,640px); }
+.ameen-hero__arabic-tagline { font-family:Cairo,sans-serif; color:#C5A365; font-size:18px; margin-top:16px; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline:2px solid #9EC7ED; outline-offset:3px; }
+@media (max-width:767px) { .ameen-identity--md { width:175px; } .ameen-hero__arabic-tagline { font-size:16px; } }
+@media (prefers-reduced-motion:reduce) { .animate-fade-in, .animate-bounce { animation:none !important; } }
+/* Trim only the export's empty canvas padding in compact top bars. */
+.ameen-identity--md:not(.ameen-identity--mark) { height:58px; justify-content:center; overflow:hidden; }
+.ameen-identity--md:not(.ameen-identity--mark) img { flex-shrink:0; }

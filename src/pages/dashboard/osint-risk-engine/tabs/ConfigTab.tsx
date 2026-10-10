@@ -72,7 +72,7 @@ const ConfigTab = ({
         <div className="flex items-start justify-between mb-3 gap-3 flex-wrap">
           <div>
             <h3 className="text-white text-sm font-bold flex items-center gap-2">
-              <i className="ri-stack-line text-[#D6B47E]" />
+              <i className="ri-stack-line text-[#C5A365]" />
               {isAr ? "ملفات الأوزان" : "Weight profiles"}
             </h3>
             <p className="text-gray-500 text-[11px] font-['JetBrains_Mono']">
@@ -83,7 +83,7 @@ const ConfigTab = ({
           </div>
           <button onClick={handleNewProfile}
             className="px-3 py-1.5 rounded-md text-xs font-semibold cursor-pointer flex items-center gap-1.5"
-            style={{ background: "transparent", border: "1px solid #D6B47E55", color: "#D6B47E" }}>
+            style={{ background: "transparent", border: "1px solid #C5A36555", color: "#C5A365" }}>
             <i className="ri-add-line" />
             {isAr ? "ملف جديد" : "New Profile"}
           </button>
@@ -92,8 +92,8 @@ const ConfigTab = ({
           {WEIGHT_PROFILES.map((p) => {
             const active = p.id === activeProfileId;
             const dpChip = p.decisionPoint === "both"
-              ? { label: "ETA + API/PNR", color: "#D6B47E" }
-              : { label: p.decisionPoint, color: p.decisionPoint === "ETA" ? "#D6B47E" : "#6B4FAE" };
+              ? { label: "ETA + API/PNR", color: "#C5A365" }
+              : { label: p.decisionPoint, color: p.decisionPoint === "ETA" ? "#C5A365" : "#6B4FAE" };
             const scChip = p.sourceClass === "all" ? null : CLASSIFICATION_META[p.sourceClass];
             return (
               <button key={p.id} onClick={() => onProfileSelect(p.id)}
@@ -102,8 +102,8 @@ const ConfigTab = ({
                   background: active
                     ? "linear-gradient(135deg, rgba(184,138,60,0.18), rgba(10,37,64,0.9))"
                     : "rgba(10,37,64,0.85)",
-                  color: active ? "#D6B47E" : "#9CA3AF",
-                  border: `1px solid ${active ? "#D6B47E" : "rgba(255,255,255,0.1)"}`,
+                  color: active ? "#C5A365" : "#9CA3AF",
+                  border: `1px solid ${active ? "#C5A365" : "rgba(255,255,255,0.1)"}`,
                   boxShadow: active ? "0 0 12px rgba(184,138,60,0.15)" : "none",
                 }}>
                 <span>{isAr ? p.nameAr : p.name}</span>
@@ -118,7 +118,7 @@ const ConfigTab = ({
                   </span>
                 )}
                 {p.isDefault && (
-                  <i className="ri-star-fill text-[11px]" style={{ color: "#D6B47E" }} />
+                  <i className="ri-star-fill text-[11px]" style={{ color: "#C5A365" }} />
                 )}
               </button>
             );
@@ -127,7 +127,7 @@ const ConfigTab = ({
         <div className="mt-3 pt-3 border-t flex items-center justify-between gap-3 flex-wrap"
           style={{ borderColor: "rgba(184,138,60,0.08)" }}>
           <p className="text-gray-400 text-xs">
-            <span className="text-[#D6B47E] font-semibold">{isAr ? activeProfile.nameAr : activeProfile.name}</span>
+            <span className="text-[#C5A365] font-semibold">{isAr ? activeProfile.nameAr : activeProfile.name}</span>
             <span className="text-gray-600"> · </span>
             <span className="text-gray-500">{isAr ? activeProfile.descriptionAr : activeProfile.description}</span>
           </p>
@@ -143,7 +143,7 @@ const ConfigTab = ({
               </button>
               <button onClick={handleSaveAttempt}
                 className="px-3 py-1 rounded-md text-[11px] font-bold cursor-pointer"
-                style={{ background: "rgba(184,138,60,0.15)", border: "1px solid #D6B47E", color: "#D6B47E" }}>
+                style={{ background: "rgba(184,138,60,0.15)", border: "1px solid #C5A365", color: "#C5A365" }}>
                 {isAr ? "حفظ" : "Save"}
               </button>
             </div>
@@ -219,7 +219,7 @@ const ConfigTab = ({
           style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.12)" }}>
           <div className="mb-3">
             <h3 className="text-white text-sm font-bold flex items-center gap-2">
-              <i className="ri-compasses-2-line text-[#D6B47E]" />
+              <i className="ri-compasses-2-line text-[#C5A365]" />
               {isAr ? "معاينة: قبل → بعد" : "Preview: before → after"}
             </h3>
             <p className="text-gray-500 text-[11px] font-['JetBrains_Mono']">

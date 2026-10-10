@@ -57,8 +57,8 @@ const GraphToolbar = ({
         <div className="relative">
           <button
             onClick={() => { setShowAddNode(!showAddNode); setShowLayout(false); setShowSearch(false); }}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-['Inter'] font-semibold transition-colors cursor-pointer whitespace-nowrap"
-            style={{ background: showAddNode ? "#D6B47E" : "rgba(184,138,60,0.1)", color: showAddNode ? "#051428" : "#D6B47E", border: "1px solid rgba(184,138,60,0.3)" }}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-['Manrope'] font-semibold transition-colors cursor-pointer whitespace-nowrap"
+            style={{ background: showAddNode ? "#C5A365" : "rgba(184,138,60,0.1)", color: showAddNode ? "#071426" : "#C5A365", border: "1px solid rgba(184,138,60,0.3)" }}
           >
             <i className="ri-add-circle-line" />
             {isAr ? "إضافة عقدة" : "Add Node"}
@@ -77,7 +77,7 @@ const GraphToolbar = ({
                   <div className="w-6 h-6 flex items-center justify-center flex-shrink-0">
                     <i className={`${cfg.icon} text-sm`} style={{ color: cfg.color }} />
                   </div>
-                  <span className="text-xs text-gray-300 font-['Inter']">{isAr ? cfg.labelAr : cfg.labelEn}</span>
+                  <span className="text-xs text-gray-300 font-['Manrope']">{isAr ? cfg.labelAr : cfg.labelEn}</span>
                 </button>
               ))}
             </div>
@@ -88,7 +88,7 @@ const GraphToolbar = ({
         <div className="relative">
           <button
             onClick={() => { setShowSearch(!showSearch); setShowAddNode(false); setShowLayout(false); }}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-['Inter'] transition-colors cursor-pointer whitespace-nowrap"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-['Manrope'] transition-colors cursor-pointer whitespace-nowrap"
             style={{ background: "rgba(255,255,255,0.04)", color: "#9CA3AF", border: "1px solid rgba(255,255,255,0.08)" }}
           >
             <i className="ri-search-line" />
@@ -105,13 +105,13 @@ const GraphToolbar = ({
                   value={searchVal}
                   onChange={e => setSearchVal(e.target.value)}
                   placeholder={isAr ? "ابحث عن شخص أو منظمة..." : "Search person, org, phone..."}
-                  className="flex-1 px-2 py-1.5 rounded text-xs text-white placeholder-gray-600 outline-none font-['Inter']"
+                  className="flex-1 px-2 py-1.5 rounded text-xs text-white placeholder-gray-600 outline-none font-['Manrope']"
                   style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(184,138,60,0.2)" }}
                 />
                 <button
                   type="submit"
                   className="px-2 py-1.5 rounded text-xs cursor-pointer"
-                  style={{ background: "#D6B47E", color: "#051428" }}
+                  style={{ background: "#C5A365", color: "#071426" }}
                 >
                   <i className="ri-search-line" />
                 </button>
@@ -124,7 +124,7 @@ const GraphToolbar = ({
         <div className="relative">
           <button
             onClick={() => { setShowLayout(!showLayout); setShowAddNode(false); setShowSearch(false); }}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-['Inter'] transition-colors cursor-pointer whitespace-nowrap"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-['Manrope'] transition-colors cursor-pointer whitespace-nowrap"
             style={{ background: "rgba(255,255,255,0.04)", color: "#9CA3AF", border: "1px solid rgba(255,255,255,0.08)" }}
           >
             <i className="ri-layout-grid-line" />
@@ -144,7 +144,7 @@ const GraphToolbar = ({
                   <div className="w-5 h-5 flex items-center justify-center">
                     <i className={`${l.icon} text-sm text-gold-400`} />
                   </div>
-                  <span className="text-xs text-gray-300 font-['Inter']">{isAr ? l.labelAr : l.label}</span>
+                  <span className="text-xs text-gray-300 font-['Manrope']">{isAr ? l.labelAr : l.label}</span>
                 </button>
               ))}
             </div>
@@ -167,7 +167,7 @@ const GraphToolbar = ({
             className="flex items-center gap-1 px-2 py-1.5 rounded text-xs transition-colors cursor-pointer whitespace-nowrap"
             style={{
               background: btn.active ? "rgba(184,138,60,0.15)" : "rgba(255,255,255,0.04)",
-              color: btn.active ? "#D6B47E" : "#6B7280",
+              color: btn.active ? "#C5A365" : "#6B7280",
               border: `1px solid ${btn.active ? "rgba(184,138,60,0.3)" : "rgba(255,255,255,0.06)"}`,
             }}
           >
@@ -181,6 +181,7 @@ const GraphToolbar = ({
         {/* Export / Screenshot */}
         <button
           onClick={onScreenshot}
+          aria-label={isAr ? "تنزيل صورة الرسم" : "Download graph PNG"}
           title={isAr ? "لقطة شاشة" : "Screenshot"}
           className="flex items-center gap-1 px-2 py-1.5 rounded text-xs transition-colors cursor-pointer"
           style={{ background: "rgba(255,255,255,0.04)", color: "#6B7280", border: "1px solid rgba(255,255,255,0.06)" }}
@@ -189,6 +190,7 @@ const GraphToolbar = ({
         </button>
         <button
           onClick={onExport}
+          aria-label={isAr ? "تصدير بيانات الرسم" : "Export graph JSON"}
           title={isAr ? "تصدير" : "Export"}
           className="flex items-center gap-1 px-2 py-1.5 rounded text-xs transition-colors cursor-pointer"
           style={{ background: "rgba(255,255,255,0.04)", color: "#6B7280", border: "1px solid rgba(255,255,255,0.06)" }}
@@ -201,7 +203,7 @@ const GraphToolbar = ({
       <div className="ml-auto flex items-center gap-3">
         {selectedCount > 0 && (
           <div className="flex items-center gap-2">
-            <span className="text-xs font-['JetBrains_Mono']" style={{ color: "#D6B47E" }}>
+            <span className="text-xs font-['JetBrains_Mono']" style={{ color: "#C5A365" }}>
               {selectedCount} {isAr ? "محدد" : "selected"}
             </span>
             <button
@@ -214,10 +216,10 @@ const GraphToolbar = ({
         )}
         <div className="flex items-center gap-3 text-xs font-['JetBrains_Mono']">
           <span style={{ color: "#9CA3AF" }}>
-            <span style={{ color: "#D6B47E" }}>{nodeCount}</span> {isAr ? "عقدة" : "nodes"}
+            <span style={{ color: "#C5A365" }}>{nodeCount}</span> {isAr ? "عقدة" : "nodes"}
           </span>
           <span style={{ color: "#9CA3AF" }}>
-            <span style={{ color: "#D6B47E" }}>{edgeCount}</span> {isAr ? "رابط" : "edges"}
+            <span style={{ color: "#C5A365" }}>{edgeCount}</span> {isAr ? "رابط" : "edges"}
           </span>
         </div>
       </div>

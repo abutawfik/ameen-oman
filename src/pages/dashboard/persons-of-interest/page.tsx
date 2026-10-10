@@ -15,7 +15,7 @@ function POIDetail({ poi, isAr, onClose }: { poi: PersonOfInterest; isAr: boolea
       {/* Header */}
       <div style={{ padding: '14px 18px', borderBottom: '1px solid rgba(184,138,60,0.1)', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
         <div>
-          <div style={{ fontSize: 15, color: '#CBD5E1', fontFamily: "'Inter', sans-serif", fontWeight: 600, marginBottom: 4 }}>
+          <div style={{ fontSize: 15, color: '#CBD5E1', fontFamily: "'Manrope', sans-serif", fontWeight: 600, marginBottom: 4 }}>
             {isAr && poi.nameAr ? poi.nameAr : poi.name}
           </div>
           <div style={{ fontSize: 11, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace" }}>
@@ -42,7 +42,7 @@ function POIDetail({ poi, isAr, onClose }: { poi: PersonOfInterest; isAr: boolea
             </span>
           </div>
           <div style={{ fontSize: 11, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", marginBottom: 3 }}>{poi.sourceRef}</div>
-          <div style={{ fontSize: 11, color: '#374B61', fontFamily: "'Inter', sans-serif" }}>{poi.sourceOrg}</div>
+          <div style={{ fontSize: 11, color: '#374B61', fontFamily: "'Manrope', sans-serif" }}>{poi.sourceOrg}</div>
         </div>
 
         {/* Description */}
@@ -50,7 +50,7 @@ function POIDetail({ poi, isAr, onClose }: { poi: PersonOfInterest; isAr: boolea
           <div style={{ fontSize: 11, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 6 }}>
             {isAr ? 'الوصف' : 'Description'}
           </div>
-          <div style={{ fontSize: 12, color: '#8FA8C0', fontFamily: "'Inter', sans-serif", lineHeight: 1.6 }}>{poi.description}</div>
+          <div style={{ fontSize: 12, color: '#8FA8C0', fontFamily: "'Manrope', sans-serif", lineHeight: 1.6 }}>{poi.description}</div>
         </div>
 
         {/* Aliases */}
@@ -61,7 +61,7 @@ function POIDetail({ poi, isAr, onClose }: { poi: PersonOfInterest; isAr: boolea
             </div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 5 }}>
               {poi.aliases.map((a, i) => (
-                <span key={i} style={{ padding: '3px 8px', borderRadius: 4, fontSize: 11, background: 'rgba(91,116,148,0.12)', color: '#8FA8C0', fontFamily: "'Inter', sans-serif", border: '1px solid rgba(91,116,148,0.2)' }}>
+                <span key={i} style={{ padding: '3px 8px', borderRadius: 4, fontSize: 11, background: 'rgba(91,116,148,0.12)', color: '#8FA8C0', fontFamily: "'Manrope', sans-serif", border: '1px solid rgba(91,116,148,0.2)' }}>
                   {a.name}
                 </span>
               ))}
@@ -77,7 +77,7 @@ function POIDetail({ poi, isAr, onClose }: { poi: PersonOfInterest; isAr: boolea
           {poi.identities.map((doc, i) => (
             <div key={i} style={{ display: 'flex', gap: 12, padding: '7px 0', borderBottom: i < poi.identities.length - 1 ? '1px solid rgba(255,255,255,0.04)' : 'none' }}>
               <span style={{ fontSize: 11, padding: '2px 6px', borderRadius: 3, background: 'rgba(184,138,60,0.1)', color: '#B8893C', fontFamily: "'JetBrains Mono', monospace", whiteSpace: 'nowrap' }}>{doc.docType}</span>
-              <span style={{ fontSize: 11, color: '#D6B47E', fontFamily: "'JetBrains Mono', monospace" }}>{doc.docNumber}</span>
+              <span style={{ fontSize: 11, color: '#C5A365', fontFamily: "'JetBrains Mono', monospace" }}>{doc.docNumber}</span>
               <span style={{ fontSize: 11, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace" }}>{doc.issuingCountry}</span>
               {doc.expiry && <span style={{ fontSize: 11, color: '#374B61', fontFamily: "'JetBrains Mono', monospace" }}>{doc.expiry}</span>}
             </div>
@@ -99,7 +99,7 @@ function POIDetail({ poi, isAr, onClose }: { poi: PersonOfInterest; isAr: boolea
                   </span>
                   <span style={{ fontSize: 11, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace" }}>{s.date}</span>
                 </div>
-                <div style={{ fontSize: 11, color: '#8FA8C0', fontFamily: "'Inter', sans-serif" }}>{s.context}</div>
+                <div style={{ fontSize: 11, color: '#8FA8C0', fontFamily: "'Manrope', sans-serif" }}>{s.context}</div>
                 {!s.verified && (
                   <div style={{ marginTop: 3, fontSize: 11, color: '#D4922A', fontFamily: "'JetBrains Mono', monospace" }}>
                     <i className="ri-error-warning-line" style={{ marginRight: 4 }} />{isAr ? 'غير مؤكد' : 'Unverified'}
@@ -167,7 +167,7 @@ function POIRow({ poi, isAr, isSelected, onClick }: { poi: PersonOfInterest; isA
 
       {/* Name + alias */}
       <div style={{ flex: 1, minWidth: 0 }}>
-        <div style={{ fontSize: 13, color: '#CBD5E1', fontFamily: "'Inter', sans-serif", fontWeight: 500, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+        <div style={{ fontSize: 13, color: '#CBD5E1', fontFamily: "'Manrope', sans-serif", fontWeight: 500, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
           {isAr && poi.nameAr ? poi.nameAr : poi.name}
         </div>
         <div style={{ fontSize: 11, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", marginTop: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
@@ -240,7 +240,7 @@ export default function PersonsOfInterestPage() {
   const alerts   = POI_LIST.reduce((s, p) => s + p.alertCount, 0);
 
   return (
-    <div style={{ height: '100%', display: 'flex', flexDirection: 'column', background: '#051428', overflow: 'hidden', position: 'relative' }}>
+    <div style={{ height: '100%', display: 'flex', flexDirection: 'column', background: '#071426', overflow: 'hidden', position: 'relative' }}>
       <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0, backgroundImage: 'linear-gradient(rgba(184,138,60,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.025) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
 
       <div style={{ position: 'relative', zIndex: 1, height: '100%', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
@@ -276,7 +276,7 @@ export default function PersonsOfInterestPage() {
               value={search}
               onChange={e => setSearch(e.target.value)}
               placeholder={isAr ? 'الاسم، الوثيقة، المرجع…' : 'Name, document, reference…'}
-              style={{ width: '100%', padding: '7px 10px 7px 30px', borderRadius: 4, fontSize: 12, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(184,138,60,0.2)', color: '#CBD5E1', fontFamily: "'Inter', sans-serif", outline: 'none', boxSizing: 'border-box' }}
+              style={{ width: '100%', padding: '7px 10px 7px 30px', borderRadius: 4, fontSize: 12, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(184,138,60,0.2)', color: '#CBD5E1', fontFamily: "'Manrope', sans-serif", outline: 'none', boxSizing: 'border-box' }}
             />
           </div>
 
@@ -325,7 +325,7 @@ export default function PersonsOfInterestPage() {
               />
             ))}
             {filtered.length === 0 && (
-              <div style={{ padding: 40, textAlign: 'center', color: '#374B61', fontFamily: "'Inter', sans-serif", fontSize: 13 }}>
+              <div style={{ padding: 40, textAlign: 'center', color: '#374B61', fontFamily: "'Manrope', sans-serif", fontSize: 13 }}>
                 {isAr ? 'لا توجد نتائج' : 'No persons match current filters'}
               </div>
             )}

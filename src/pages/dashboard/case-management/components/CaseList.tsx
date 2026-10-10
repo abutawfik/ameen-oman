@@ -9,7 +9,7 @@ const priorityConfig: Record<CasePriority, { color: string; bg: string }> = {
 };
 
 const statusConfig: Record<CaseStatus, { color: string; icon: string; label: string }> = {
-  active:    { color: "#D6B47E", icon: "ri-play-circle-line",   label: "Active" },
+  active:    { color: "#C5A365", icon: "ri-play-circle-line",   label: "Active" },
   pending:   { color: "#FACC15", icon: "ri-time-line",          label: "Pending" },
   escalated: { color: "#C94A5E", icon: "ri-arrow-up-circle-line",label: "Escalated" },
   closed:    { color: "#4ADE80", icon: "ri-checkbox-circle-line",  label: "Closed" },
@@ -55,16 +55,16 @@ const CaseList = ({ selectedCaseId, onSelectCase, isAr }: Props) => {
             placeholder="Search cases..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="bg-transparent text-white text-xs font-['Inter'] outline-none flex-1 placeholder-gray-700"
+            className="bg-transparent text-white text-xs font-['Manrope'] outline-none flex-1 placeholder-gray-700"
           />
         </div>
         <div className="flex gap-1 flex-wrap">
           {(["all", "active", "escalated", "pending", "closed"] as const).map((s) => (
             <button key={s} onClick={() => setFilterStatus(s)}
-              className="px-2 py-1 rounded text-[11px] font-['Inter'] cursor-pointer transition-all whitespace-nowrap"
+              className="px-2 py-1 rounded text-[11px] font-['Manrope'] cursor-pointer transition-all whitespace-nowrap"
               style={{
                 background: filterStatus === s ? "rgba(184,138,60,0.1)" : "transparent",
-                color: filterStatus === s ? "#D6B47E" : "#6B7280",
+                color: filterStatus === s ? "#C5A365" : "#6B7280",
               }}>
               {s === "all" ? "All" : statusConfig[s as CaseStatus]?.label}
             </button>
@@ -87,7 +87,7 @@ const CaseList = ({ selectedCaseId, onSelectCase, isAr }: Props) => {
               style={{
                 borderColor: "rgba(255,255,255,0.04)",
                 background: isSelected ? "rgba(184,138,60,0.06)" : "transparent",
-                borderLeft: isSelected ? "2px solid #D6B47E" : "2px solid transparent",
+                borderLeft: isSelected ? "2px solid #C5A365" : "2px solid transparent",
               }}
             >
               <div className="flex items-start gap-2 mb-1.5">
@@ -95,7 +95,7 @@ const CaseList = ({ selectedCaseId, onSelectCase, isAr }: Props) => {
                   <i className={`${typeIcons[c.type] || "ri-folder-line"} text-xs`} style={{ color: pri.color }} />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-white text-xs font-bold font-['Inter'] truncate">{c.title}</p>
+                  <p className="text-white text-xs font-bold font-['Manrope'] truncate">{c.title}</p>
                   <p className="text-gray-600 text-[11px] font-['JetBrains_Mono']">{c.caseNumber}</p>
                 </div>
               </div>
@@ -106,7 +106,7 @@ const CaseList = ({ selectedCaseId, onSelectCase, isAr }: Props) => {
                   </span>
                   <div className="flex items-center gap-1">
                     <i className={`${stat.icon} text-[11px]`} style={{ color: stat.color }} />
-                    <span className="text-[11px] font-['Inter']" style={{ color: stat.color }}>{stat.label}</span>
+                    <span className="text-[11px] font-['Manrope']" style={{ color: stat.color }}>{stat.label}</span>
                   </div>
                 </div>
                 <div className="flex items-center gap-1">
@@ -126,7 +126,7 @@ const CaseList = ({ selectedCaseId, onSelectCase, isAr }: Props) => {
 
       {/* New case button */}
       <div className="p-3 border-t" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
-        <button className="w-full flex items-center justify-center gap-2 py-2 rounded-lg text-xs font-['Inter'] cursor-pointer transition-all whitespace-nowrap" style={{ background: "rgba(184,138,60,0.08)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}>
+        <button className="w-full flex items-center justify-center gap-2 py-2 rounded-lg text-xs font-['Manrope'] cursor-pointer transition-all whitespace-nowrap" style={{ background: "rgba(184,138,60,0.08)", color: "#C5A365", border: "1px solid rgba(184,138,60,0.2)" }}>
           <i className="ri-add-line" />
           New Investigation
         </button>

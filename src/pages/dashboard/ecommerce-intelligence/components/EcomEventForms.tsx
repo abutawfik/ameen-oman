@@ -61,7 +61,7 @@ const EVENT_TYPES: {
   {
     id: "pattern",
     icon: "ri-exchange-line",
-    color: "#D6B47E",
+    color: "#C5A365",
     label: "Payment Pattern",
     labelAr: "نمط الدفع",
     desc: "Multiple cards, structuring, location mismatch, high velocity",
@@ -84,10 +84,10 @@ const EcomEventForms = ({ isAr }: Props) => {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h2 className="text-white text-xl font-bold mb-1 font-['Inter']">
+        <h2 className="text-white text-xl font-bold mb-1 font-['Manrope']">
           {isAr ? "إرسال حدث تجارة إلكترونية" : "Submit E-Commerce Event"}
         </h2>
-        <p className="text-gray-400 text-sm font-['Inter']">
+        <p className="text-gray-400 text-sm font-['Manrope']">
           {isAr
             ? "اختر نوع الحدث المُبلَّغ عنه — ليس كل عملية شراء، فقط المحفزات المحددة"
             : "Select the type of flagged event to report — not every purchase, only specific triggers"}
@@ -98,10 +98,10 @@ const EcomEventForms = ({ isAr }: Props) => {
       <div className="flex items-start gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(184,138,60,0.04)", borderColor: "rgba(184,138,60,0.15)" }}>
         <i className="ri-information-line text-gold-400 mt-0.5" />
         <div>
-          <p className="text-gold-400 text-sm font-semibold font-['Inter'] mb-0.5">
+          <p className="text-gold-400 text-sm font-semibold font-['Manrope'] mb-0.5">
             {isAr ? "مصادر البيانات" : "Data Sources"}
           </p>
-          <p className="text-gray-400 text-xs font-['Inter'] leading-relaxed">
+          <p className="text-gray-400 text-xs font-['Manrope'] leading-relaxed">
             {isAr
               ? "معالجو الدفع (تقارير البنك المركزي) · تجار التجزئة الكبار (API) · المنصات الإلكترونية (شراكات). هذه ليست مراقبة شاملة لكل المشتريات."
               : "Payment Processors (Central Bank mandated reporting) · Major Retailers (API) · Online Platforms (partnerships). This is NOT mass surveillance of all purchases."}
@@ -160,10 +160,10 @@ const EcomEventForms = ({ isAr }: Props) => {
                 </div>
               </div>
 
-              <h3 className="text-white font-bold text-base mb-1 font-['Inter']">
+              <h3 className="text-white font-bold text-base mb-1 font-['Manrope']">
                 {isAr ? evt.labelAr : evt.label}
               </h3>
-              <p className="text-gray-500 text-xs leading-relaxed font-['Inter']">
+              <p className="text-gray-500 text-xs leading-relaxed font-['Manrope']">
                 {isAr ? evt.descAr : evt.desc}
               </p>
 
@@ -184,13 +184,13 @@ const EcomEventForms = ({ isAr }: Props) => {
           <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.2)" }}>
             <i className="ri-qr-code-line text-gold-400 text-sm" />
           </div>
-          <h3 className="text-white font-bold text-sm font-['Inter']">
+          <h3 className="text-white font-bold text-sm font-['Manrope']">
             {isAr ? "رموز تأكيد Al-Ameen" : "Al-Ameen Confirmation Codes"}
           </h3>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {[
-            { code: "AMN-ECM-YYYYMMDD-XXXX", label: isAr ? "تنسيق الرمز القياسي" : "Standard code format", color: "#D6B47E" },
+            { code: "AMN-ECM-YYYYMMDD-XXXX", label: isAr ? "تنسيق الرمز القياسي" : "Standard code format", color: "#C5A365" },
             { code: "AMN-ECM-20260405-0247", label: isAr ? "مثال: شراء مقيّد" : "Example: Restricted purchase", color: "#C94A5E" },
             { code: "AMN-ECM-20260405-0246", label: isAr ? "مثال: شراء بالجملة" : "Example: Bulk purchase", color: "#FACC15" },
           ].map((ex) => (
@@ -198,7 +198,7 @@ const EcomEventForms = ({ isAr }: Props) => {
               <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: ex.color }} />
               <div>
                 <div className="text-xs font-bold font-['JetBrains_Mono']" style={{ color: ex.color }}>{ex.code}</div>
-                <div className="text-gray-500 text-xs font-['Inter']">{ex.label}</div>
+                <div className="text-gray-500 text-xs font-['Manrope']">{ex.label}</div>
               </div>
             </div>
           ))}

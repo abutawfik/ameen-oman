@@ -21,10 +21,10 @@ const FLAG_CATEGORY_ICONS: Record<string, string> = {
 };
 
 const FLOW_STEPS = [
-  { label: "Event",      labelAr: "حدث",          icon: "ri-pulse-line",        color: "#D6B47E", done: true  },
-  { label: "Al-Ameen DB",   labelAr: "قاعدة أمين",   icon: "ri-database-2-line",   color: "#D6B47E", done: true  },
-  { label: "Sec Dept 1", labelAr: "أمن 1",         icon: "ri-server-line",       color: "#D6B47E", done: true  },
-  { label: "Sec Dept 2", labelAr: "أمن 2",         icon: "ri-server-line",       color: "#D6B47E", done: true  },
+  { label: "Event",      labelAr: "حدث",          icon: "ri-pulse-line",        color: "#C5A365", done: true  },
+  { label: "Al-Ameen DB",   labelAr: "قاعدة أمين",   icon: "ri-database-2-line",   color: "#C5A365", done: true  },
+  { label: "Sec Dept 1", labelAr: "أمن 1",         icon: "ri-server-line",       color: "#C5A365", done: true  },
+  { label: "Sec Dept 2", labelAr: "أمن 2",         icon: "ri-server-line",       color: "#C5A365", done: true  },
   { label: "Assessment", labelAr: "تقييم",         icon: "ri-shield-line",       color: "#FACC15", done: true  },
   { label: "Police DB",  labelAr: "قاعدة الشرطة",  icon: "ri-database-line",     color: "#4ADE80", done: false },
 ];
@@ -118,7 +118,7 @@ const FlaggedEventDetail = ({ person, isAr, onClose, onConfirm, onDismiss, onEsc
               style={{
                 background: activeSection === s.id ? "rgba(184,138,60,0.08)" : "transparent",
                 border: `1px solid ${activeSection === s.id ? "rgba(184,138,60,0.2)" : "transparent"}`,
-                color: activeSection === s.id ? "#D6B47E" : "#6B7280",
+                color: activeSection === s.id ? "#C5A365" : "#6B7280",
               }}>
               <i className={`${s.icon} text-xs`} />{s.label}
             </button>
@@ -144,7 +144,7 @@ const FlaggedEventDetail = ({ person, isAr, onClose, onConfirm, onDismiss, onEsc
                         className="w-20 h-20 rounded-2xl object-cover object-top"
                         style={{ border: `2px solid ${scoreColor}35` }} />
                       <div className="absolute -bottom-1.5 -right-1.5 w-6 h-6 flex items-center justify-center rounded-full"
-                        style={{ background: scoreColor, border: "2px solid #051428" }}>
+                        style={{ background: scoreColor, border: "2px solid #071426" }}>
                         <i className="ri-shield-cross-line text-white" style={{ fontSize: "9px" }} />
                       </div>
                     </div>
@@ -287,7 +287,7 @@ const FlaggedEventDetail = ({ person, isAr, onClose, onConfirm, onDismiss, onEsc
                         label: isAr ? "قاعدة البيانات" : "Database",
                         value: isAr ? person.matchInfo.databaseAr : person.matchInfo.database,
                         icon: "ri-database-2-line",
-                        color: "#D6B47E",
+                        color: "#C5A365",
                       },
                       {
                         label: isAr ? "مستوى الثقة" : "Confidence",
@@ -330,14 +330,14 @@ const FlaggedEventDetail = ({ person, isAr, onClose, onConfirm, onDismiss, onEsc
                       background: "rgba(5,20,40,0.8)",
                       border: "1px solid rgba(184,138,60,0.12)",
                       color: "#D1D5DB",
-                      fontFamily: "Inter, sans-serif",
+                      fontFamily: "Manrope, sans-serif",
                     }}
                   />
                   <div className="flex justify-between items-center mt-2">
                     <span className="text-gray-700 text-xs font-['JetBrains_Mono']">{notesText.length}/500</span>
                     <button type="button"
                       className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap"
-                      style={{ background: "rgba(184,138,60,0.08)", border: "1px solid rgba(184,138,60,0.2)", color: "#D6B47E" }}>
+                      style={{ background: "rgba(184,138,60,0.08)", border: "1px solid rgba(184,138,60,0.2)", color: "#C5A365" }}>
                       <i className="ri-save-line text-xs" />
                       {isAr ? "حفظ" : "Save Note"}
                     </button>
@@ -361,7 +361,7 @@ const FlaggedEventDetail = ({ person, isAr, onClose, onConfirm, onDismiss, onEsc
                 </div>
                 <div className="flex items-center gap-2 ml-auto">
                   <span className="px-2 py-0.5 rounded-full text-xs font-bold"
-                    style={{ background: "rgba(184,138,60,0.08)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.18)" }}>
+                    style={{ background: "rgba(184,138,60,0.08)", color: "#C5A365", border: "1px solid rgba(184,138,60,0.18)" }}>
                     {person.timeline.length} {isAr ? "حدث" : "events"}
                   </span>
                   <span className="px-2 py-0.5 rounded-full text-xs font-bold"
@@ -479,7 +479,7 @@ const FlaggedEventDetail = ({ person, isAr, onClose, onConfirm, onDismiss, onEsc
           {/* Primary: Confirm */}
           <button type="button" onClick={() => onConfirm(person.id)}
             className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold cursor-pointer whitespace-nowrap transition-all hover:opacity-90"
-            style={{ background: "#D6B47E", color: "#051428" }}>
+            style={{ background: "#C5A365", color: "#071426" }}>
             <i className="ri-checkbox-circle-line text-xs" />
             {isAr ? "تأكيد التنبيه → Police DB" : "Confirm Flag → Police DB"}
           </button>

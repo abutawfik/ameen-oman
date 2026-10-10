@@ -41,7 +41,7 @@ const ManagerHome = ({ isAr }: Props) => {
         label: isAr ? "قضايا مُغلقة · 30ي" : "Cases closed · 30d",
         value: totalClosed.toLocaleString(),
         icon: "ri-inbox-archive-line",
-        color: "#D6B47E",
+        color: "#C5A365",
         spark: PROGRAM_KPIS_30D.map((d) => d.cases_closed),
         deltaPct: 6.4,
       },
@@ -150,7 +150,7 @@ const ManagerHome = ({ isAr }: Props) => {
             </div>
             <div className="flex items-center gap-3 text-[11px] font-['JetBrains_Mono']">
               <span className="flex items-center gap-1.5">
-                <span className="w-2.5 h-2.5 rounded-sm" style={{ background: "#D6B47E" }} />
+                <span className="w-2.5 h-2.5 rounded-sm" style={{ background: "#C5A365" }} />
                 <span className="text-gray-400">closed</span>
               </span>
               <span className="flex items-center gap-1.5">
@@ -174,8 +174,8 @@ const ManagerHome = ({ isAr }: Props) => {
               <AreaChart data={weeklyTrend} margin={{ top: 8, right: 16, left: 0, bottom: 0 }}>
                 <defs>
                   <linearGradient id="g-closed" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#D6B47E" stopOpacity={0.5} />
-                    <stop offset="95%" stopColor="#D6B47E" stopOpacity={0.05} />
+                    <stop offset="5%" stopColor="#C5A365" stopOpacity={0.5} />
+                    <stop offset="95%" stopColor="#C5A365" stopOpacity={0.05} />
                   </linearGradient>
                   <linearGradient id="g-threats" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="5%" stopColor="#C94A5E" stopOpacity={0.55} />
@@ -198,7 +198,7 @@ const ManagerHome = ({ isAr }: Props) => {
                     fontFamily: "JetBrains Mono",
                   }}
                 />
-                <Area type="monotone" dataKey="cases_closed"      stroke="#D6B47E" strokeWidth={2} fill="url(#g-closed)"  />
+                <Area type="monotone" dataKey="cases_closed"      stroke="#C5A365" strokeWidth={2} fill="url(#g-closed)"  />
                 <Area type="monotone" dataKey="confirmed_threats" stroke="#C94A5E" strokeWidth={2} fill="url(#g-threats)" />
                 <Area type="monotone" dataKey="false_positives"   stroke="#C98A1B" strokeWidth={2} fill="url(#g-fp)"      />
               </AreaChart>
@@ -241,7 +241,7 @@ const ManagerHome = ({ isAr }: Props) => {
                   }}
                 />
                 <Legend iconType="square" wrapperStyle={{ fontSize: 11, fontFamily: "JetBrains Mono", color: "#9CA3AF" }} />
-                <Bar dataKey="rules"     stackId="a" fill="#D6B47E" />
+                <Bar dataKey="rules"     stackId="a" fill="#C5A365" />
                 <Bar dataKey="ml"        stackId="a" fill="#6B4FAE" />
                 <Bar dataKey="watchlist" stackId="a" fill="#C98A1B" />
                 <Bar dataKey="manual"    stackId="a" fill="#4ADE80" />
@@ -275,7 +275,7 @@ const ManagerHome = ({ isAr }: Props) => {
             <GovernanceRow
               label={isAr ? "النسخة النشطة" : "Active version"}
               value={MODEL_GOVERNANCE.activeVersion}
-              color="#D6B47E"
+              color="#C5A365"
             />
             <GovernanceRow
               label={isAr ? "النسخة السابقة" : "Previous version"}
@@ -316,7 +316,7 @@ const ManagerHome = ({ isAr }: Props) => {
             <GovernanceRow
               label={isAr ? "المراجعة التالية" : "Next review"}
               value={MODEL_GOVERNANCE.nextScheduledReview}
-              color="#D6B47E"
+              color="#C5A365"
             />
           </div>
         </div>

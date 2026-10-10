@@ -83,7 +83,7 @@ function ModelDetail({ model, isAr, onClose }: { model: MLModel; isAr: boolean; 
     <div style={{ height: '100%', display: 'flex', flexDirection: 'column', borderLeft: '1px solid rgba(184,138,60,0.08)', background: 'rgba(5,20,40,0.6)' }}>
       <div style={{ padding: '12px 16px', borderBottom: '1px solid rgba(184,138,60,0.08)', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
         <div>
-          <div style={{ fontSize: 13, color: '#CBD5E1', fontFamily: "'Inter', sans-serif", fontWeight: 600, marginBottom: 4 }}>
+          <div style={{ fontSize: 13, color: '#CBD5E1', fontFamily: "'Manrope', sans-serif", fontWeight: 600, marginBottom: 4 }}>
             {isAr && model.nameAr ? model.nameAr : model.name}
           </div>
           <div style={{ display: 'flex', gap: 7, alignItems: 'center', flexWrap: 'wrap' }}>
@@ -104,7 +104,7 @@ function ModelDetail({ model, isAr, onClose }: { model: MLModel; isAr: boolean; 
 
       <div style={{ flex: 1, overflowY: 'auto', padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: 14 }}>
         {/* Description */}
-        <div style={{ fontSize: 12, color: '#8FA8C0', fontFamily: "'Inter', sans-serif", lineHeight: 1.6 }}>{model.description}</div>
+        <div style={{ fontSize: 12, color: '#8FA8C0', fontFamily: "'Manrope', sans-serif", lineHeight: 1.6 }}>{model.description}</div>
 
         {/* Features */}
         <div>
@@ -113,7 +113,7 @@ function ModelDetail({ model, isAr, onClose }: { model: MLModel; isAr: boolean; 
           </div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 5 }}>
             {model.inputFeatures.map(f => (
-              <span key={f} style={{ padding: '2px 7px', borderRadius: 3, fontSize: 11, background: 'rgba(184,138,60,0.08)', color: '#D6B47E', fontFamily: "'JetBrains Mono', monospace", border: '1px solid rgba(184,138,60,0.15)' }}>{f}</span>
+              <span key={f} style={{ padding: '2px 7px', borderRadius: 3, fontSize: 11, background: 'rgba(184,138,60,0.08)', color: '#C5A365', fontFamily: "'JetBrains Mono', monospace", border: '1px solid rgba(184,138,60,0.15)' }}>{f}</span>
             ))}
           </div>
           <div style={{ marginTop: 6, fontSize: 11, color: '#374B61', fontFamily: "'JetBrains Mono', monospace" }}>
@@ -142,7 +142,7 @@ function ModelDetail({ model, isAr, onClose }: { model: MLModel; isAr: boolean; 
             <ConfusionMatrix m={model.metrics.matrix} isAr={isAr} />
           </div>
         ) : (
-          <div style={{ padding: '14px', borderRadius: 6, background: 'rgba(212,146,42,0.06)', border: '1px solid rgba(212,146,42,0.15)', fontSize: 12, color: '#D4922A', fontFamily: "'Inter', sans-serif" }}>
+          <div style={{ padding: '14px', borderRadius: 6, background: 'rgba(212,146,42,0.06)', border: '1px solid rgba(212,146,42,0.15)', fontSize: 12, color: '#D4922A', fontFamily: "'Manrope', sans-serif" }}>
             <i className="ri-loader-4-line" style={{ marginRight: 8 }} />
             {isAr ? 'التدريب جارٍ — المقاييس ستتوفر بعد الانتهاء' : 'Model in training — metrics will be available after training completes'}
             {model.notes && <div style={{ marginTop: 6, color: '#5B7494', fontSize: 11 }}>{model.notes}</div>}
@@ -222,7 +222,7 @@ export default function MLModelsPage() {
   const totalPred = ML_MODELS.reduce((s, m) => s + m.predictionCount, 0);
 
   return (
-    <div style={{ height: '100%', display: 'flex', flexDirection: 'column', background: '#051428', overflow: 'hidden', position: 'relative' }}>
+    <div style={{ height: '100%', display: 'flex', flexDirection: 'column', background: '#071426', overflow: 'hidden', position: 'relative' }}>
       <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0, backgroundImage: 'linear-gradient(rgba(184,138,60,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.025) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
 
       <div style={{ position: 'relative', zIndex: 1, height: '100%', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
@@ -250,7 +250,7 @@ export default function MLModelsPage() {
               ))}
             </div>
           </div>
-          <button style={{ padding: '8px 14px', borderRadius: 4, background: 'rgba(184,138,60,0.12)', border: '1px solid rgba(184,138,60,0.3)', color: '#D6B47E', fontFamily: "'JetBrains Mono', monospace", fontSize: 11, cursor: 'pointer', textTransform: 'uppercase', letterSpacing: '0.06em', display: 'flex', alignItems: 'center', gap: 6 }}>
+          <button style={{ padding: '8px 14px', borderRadius: 4, background: 'rgba(184,138,60,0.12)', border: '1px solid rgba(184,138,60,0.3)', color: '#C5A365', fontFamily: "'JetBrains Mono', monospace", fontSize: 11, cursor: 'pointer', textTransform: 'uppercase', letterSpacing: '0.06em', display: 'flex', alignItems: 'center', gap: 6 }}>
             <i className="ri-add-line" />{isAr ? 'نموذج جديد' : 'Add Model'}
           </button>
         </div>
@@ -278,7 +278,7 @@ export default function MLModelsPage() {
                 <div key={m.id} onClick={() => setSelected(prev => prev?.id === m.id ? null : m)} style={{ padding: '14px', borderRadius: 6, background: isSel ? 'rgba(184,138,60,0.06)' : 'rgba(255,255,255,0.02)', border: `1px solid ${isSel ? 'rgba(184,138,60,0.3)' : 'rgba(184,138,60,0.08)'}`, cursor: 'pointer', transition: 'border-color 0.15s' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
                     <div>
-                      <div style={{ fontSize: 12, color: '#CBD5E1', fontFamily: "'Inter', sans-serif", fontWeight: 600, marginBottom: 3 }}>
+                      <div style={{ fontSize: 12, color: '#CBD5E1', fontFamily: "'Manrope', sans-serif", fontWeight: 600, marginBottom: 3 }}>
                         {isAr && m.nameAr ? m.nameAr : m.name}
                       </div>
                       <div style={{ display: 'flex', gap: 7, alignItems: 'center', flexWrap: 'wrap' }}>

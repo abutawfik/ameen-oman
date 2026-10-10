@@ -7,7 +7,7 @@ interface Props {
 }
 
 const STATUS_CONFIG = {
-  active:     { color: "#D6B47E", bg: "rgba(184,138,60,0.1)",  label: "Active",     labelAr: "نشط" },
+  active:     { color: "#C5A365", bg: "rgba(184,138,60,0.1)",  label: "Active",     labelAr: "نشط" },
   monitoring: { color: "#FACC15", bg: "rgba(250,204,21,0.1)",  label: "Monitoring", labelAr: "مراقبة" },
   escalated:  { color: "#C94A5E", bg: "rgba(201,74,94,0.1)", label: "Escalated",  labelAr: "مُصعَّد" },
   closed:     { color: "#4ADE80", bg: "rgba(74,222,128,0.1)",  label: "Closed",     labelAr: "مغلق" },
@@ -49,7 +49,7 @@ const ActiveInvestigations = ({ isAr }: Props) => {
               style={{
                 background: filter === f ? "rgba(184,138,60,0.12)" : "transparent",
                 border: `1px solid ${filter === f ? "rgba(184,138,60,0.25)" : "transparent"}`,
-                color: filter === f ? "#D6B47E" : "#6B7280",
+                color: filter === f ? "#C5A365" : "#6B7280",
               }}>
               {f === "all" ? (isAr ? "الكل" : "All") : f === "escalated" ? (isAr ? "مُصعَّد" : "Escalated") : f === "active" ? (isAr ? "نشط" : "Active") : (isAr ? "مراقبة" : "Monitoring")}
             </button>
@@ -60,7 +60,7 @@ const ActiveInvestigations = ({ isAr }: Props) => {
       {/* KPI row */}
       <div className="grid grid-cols-4 divide-x" style={{ borderBottom: "1px solid rgba(184,138,60,0.08)", borderColor: "rgba(184,138,60,0.08)" }}>
         {[
-          { label: isAr ? "إجمالي" : "Total",     value: activeInvestigations.length,                                          color: "#D6B47E" },
+          { label: isAr ? "إجمالي" : "Total",     value: activeInvestigations.length,                                          color: "#C5A365" },
           { label: isAr ? "مُصعَّد" : "Escalated", value: activeInvestigations.filter((i) => i.status === "escalated").length,  color: "#C94A5E" },
           { label: isAr ? "مواضيع" : "Subjects",  value: activeInvestigations.reduce((a, i) => a + i.subjects, 0),             color: "#C98A1B" },
           { label: isAr ? "مصادر" : "Streams",    value: [...new Set(activeInvestigations.flatMap((i) => i.streams))].length,  color: "#A78BFA" },
@@ -166,7 +166,7 @@ const ActiveInvestigations = ({ isAr }: Props) => {
                   <div className="flex items-center gap-2">
                     <button type="button" onClick={() => navigate("/dashboard/case-management")}
                       className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold cursor-pointer whitespace-nowrap"
-                      style={{ background: "#D6B47E", color: "#051428" }}>
+                      style={{ background: "#C5A365", color: "#071426" }}>
                       <i className="ri-eye-line text-xs" />
                       {isAr ? "فتح القضية" : "Open Case"}
                     </button>

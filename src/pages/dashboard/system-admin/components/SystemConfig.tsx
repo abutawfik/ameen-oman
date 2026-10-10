@@ -5,7 +5,7 @@ const CyanToggle = ({ value, onChange }: ToggleProps) => (
   <button
     onClick={() => onChange(!value)}
     className="relative inline-flex items-center w-11 h-6 rounded-full transition-colors cursor-pointer flex-shrink-0"
-    style={{ background: value ? "#D6B47E" : "rgba(255,255,255,0.1)" }}
+    style={{ background: value ? "#C5A365" : "rgba(255,255,255,0.1)" }}
   >
     <span className="inline-block w-4 h-4 rounded-full bg-white transition-transform" style={{ transform: value ? "translateX(24px)" : "translateX(4px)" }} />
   </button>
@@ -14,11 +14,11 @@ const CyanToggle = ({ value, onChange }: ToggleProps) => (
 interface InputProps { label: string; value: string; onChange: (v: string) => void; type?: string; mono?: boolean; placeholder?: string; readOnly?: boolean; }
 const DarkInput = ({ label, value, onChange, type = "text", mono, placeholder, readOnly }: InputProps) => (
   <div>
-    <label className="block text-xs text-gray-500 mb-1 font-['Inter'] uppercase tracking-wider">{label}</label>
+    <label className="block text-xs text-gray-500 mb-1 font-['Manrope'] uppercase tracking-wider">{label}</label>
     <input
       type={type} value={value} onChange={(e) => onChange(e.target.value)} placeholder={placeholder} readOnly={readOnly}
       className="w-full px-3 py-2 rounded-lg text-sm outline-none transition-colors"
-      style={{ background: readOnly ? "rgba(255,255,255,0.02)" : "rgba(255,255,255,0.04)", border: "1px solid rgba(184,138,60,0.2)", color: readOnly ? "#6B7280" : "#D1D5DB", fontFamily: mono ? "'JetBrains Mono', monospace" : "'Inter', sans-serif" }}
+      style={{ background: readOnly ? "rgba(255,255,255,0.02)" : "rgba(255,255,255,0.04)", border: "1px solid rgba(184,138,60,0.2)", color: readOnly ? "#6B7280" : "#D1D5DB", fontFamily: mono ? "'JetBrains Mono', monospace" : "'Manrope', sans-serif" }}
       onFocus={(e) => { if (!readOnly) e.target.style.borderColor = "rgba(184,138,60,0.6)"; }}
       onBlur={(e) => { e.target.style.borderColor = "rgba(184,138,60,0.2)"; }}
     />
@@ -28,9 +28,9 @@ const DarkInput = ({ label, value, onChange, type = "text", mono, placeholder, r
 interface SelectProps { label: string; value: string; onChange: (v: string) => void; options: { value: string; label: string }[]; }
 const DarkSelect = ({ label, value, onChange, options }: SelectProps) => (
   <div>
-    <label className="block text-xs text-gray-500 mb-1 font-['Inter'] uppercase tracking-wider">{label}</label>
+    <label className="block text-xs text-gray-500 mb-1 font-['Manrope'] uppercase tracking-wider">{label}</label>
     <select value={value} onChange={(e) => onChange(e.target.value)} className="w-full px-3 py-2 rounded-lg text-sm outline-none cursor-pointer"
-      style={{ background: "rgba(10,37,64,0.9)", border: "1px solid rgba(184,138,60,0.2)", color: "#D1D5DB", fontFamily: "'Inter', sans-serif" }}>
+      style={{ background: "rgba(10,37,64,0.9)", border: "1px solid rgba(184,138,60,0.2)", color: "#D1D5DB", fontFamily: "'Manrope', sans-serif" }}>
       {options.map((o) => <option key={o.value} value={o.value} style={{ background: "#0A2540" }}>{o.label}</option>)}
     </select>
   </div>
@@ -43,7 +43,7 @@ const ConfigSection = ({ title, icon, children, badge, badgeColor }: SectionProp
       <div className="w-7 h-7 flex items-center justify-center rounded-lg" style={{ background: "rgba(184,138,60,0.1)" }}>
         <i className={`${icon} text-gold-400 text-sm`} />
       </div>
-      <h3 className="text-white font-semibold text-sm font-['Inter']">{title}</h3>
+      <h3 className="text-white font-semibold text-sm font-['Manrope']">{title}</h3>
       {badge && (
         <span className="ml-auto px-2 py-0.5 rounded-full text-xs font-['JetBrains_Mono'] font-semibold" style={{ background: `${badgeColor}18`, color: badgeColor, border: `1px solid ${badgeColor}30` }}>{badge}</span>
       )}
@@ -155,8 +155,8 @@ const SystemConfig = () => {
           ].map((item) => (
             <div key={item.label} className="flex items-center justify-between p-3 rounded-lg" style={{ background: "rgba(255,255,255,0.03)", border: item.value && item.warn ? "1px solid rgba(250,204,21,0.2)" : "1px solid transparent" }}>
               <div>
-                <p className="text-white text-sm font-['Inter']">{item.label}</p>
-                <p className="text-gray-500 text-xs font-['Inter']">{item.desc}</p>
+                <p className="text-white text-sm font-['Manrope']">{item.label}</p>
+                <p className="text-gray-500 text-xs font-['Manrope']">{item.desc}</p>
               </div>
               <div className="flex items-center gap-3">
                 {item.value && item.warn && <span className="text-yellow-400 text-xs font-['JetBrains_Mono']">⚠ Active</span>}
@@ -192,8 +192,8 @@ const SystemConfig = () => {
           ].map((item) => (
             <div key={item.label} className="flex items-center justify-between p-3 rounded-lg" style={{ background: "rgba(255,255,255,0.03)" }}>
               <div>
-                <p className="text-white text-sm font-['Inter']">{item.label}</p>
-                <p className="text-gray-500 text-xs font-['Inter']">{item.desc}</p>
+                <p className="text-white text-sm font-['Manrope']">{item.label}</p>
+                <p className="text-gray-500 text-xs font-['Manrope']">{item.desc}</p>
               </div>
               <CyanToggle value={item.value} onChange={item.onChange} />
             </div>
@@ -205,11 +205,11 @@ const SystemConfig = () => {
       </ConfigSection>
 
       {/* Integration — Security Dept 1 */}
-      <ConfigSection title="Security Dept 1 Integration" icon="ri-shield-star-line" badge="Police" badgeColor="#D6B47E">
+      <ConfigSection title="Security Dept 1 Integration" icon="ri-shield-star-line" badge="Police" badgeColor="#C5A365">
         <div className="mb-3 flex items-center justify-between">
           <DarkInput label="Department Name" value={sd1Name} onChange={setSd1Name} />
           <div className="ml-4 flex items-center gap-2 flex-shrink-0 mt-5">
-            <span className="text-gray-500 text-xs font-['Inter']">Enabled</span>
+            <span className="text-gray-500 text-xs font-['Manrope']">Enabled</span>
             <CyanToggle value={sd1Enabled} onChange={setSd1Enabled} />
           </div>
         </div>
@@ -225,7 +225,7 @@ const SystemConfig = () => {
         <div className="flex items-center gap-3">
           <button onClick={() => testConnection("sd1")} disabled={testingConn === "sd1"}
             className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap transition-all"
-            style={{ background: "transparent", border: "1px solid rgba(184,138,60,0.4)", color: "#D6B47E" }}>
+            style={{ background: "transparent", border: "1px solid rgba(184,138,60,0.4)", color: "#C5A365" }}>
             {testingConn === "sd1" ? <><i className="ri-loader-4-line animate-spin" />Testing...</> : <><i className="ri-wifi-line" />Test Connection</>}
           </button>
           <ConnStatus connKey="sd1" />
@@ -241,7 +241,7 @@ const SystemConfig = () => {
         <div className="mb-3 flex items-center justify-between">
           <DarkInput label="Department Name" value={sd2Name} onChange={setSd2Name} />
           <div className="ml-4 flex items-center gap-2 flex-shrink-0 mt-5">
-            <span className="text-gray-500 text-xs font-['Inter']">Enabled</span>
+            <span className="text-gray-500 text-xs font-['Manrope']">Enabled</span>
             <CyanToggle value={sd2Enabled} onChange={setSd2Enabled} />
           </div>
         </div>
@@ -260,7 +260,7 @@ const SystemConfig = () => {
             { label: "Mutual TLS (mTLS) Authentication", value: mutualTls, onChange: setMutualTls },
           ].map((item) => (
             <div key={item.label} className="flex items-center justify-between p-3 rounded-lg" style={{ background: "rgba(255,255,255,0.03)" }}>
-              <p className="text-white text-xs font-['Inter']">{item.label}</p>
+              <p className="text-white text-xs font-['Manrope']">{item.label}</p>
               <CyanToggle value={item.value} onChange={item.onChange} />
             </div>
           ))}
@@ -299,8 +299,8 @@ const SystemConfig = () => {
           ].map((ch) => (
             <div key={ch.label} className="flex items-center justify-between p-3 rounded-lg" style={{ background: "rgba(255,255,255,0.03)" }}>
               <div>
-                <p className="text-white text-sm font-['Inter']">{ch.label}</p>
-                <p className="text-gray-500 text-xs font-['Inter']">{ch.desc}</p>
+                <p className="text-white text-sm font-['Manrope']">{ch.label}</p>
+                <p className="text-gray-500 text-xs font-['Manrope']">{ch.desc}</p>
               </div>
               <CyanToggle value={ch.value} onChange={ch.onChange} />
             </div>
@@ -309,12 +309,12 @@ const SystemConfig = () => {
         <div className="flex items-center gap-3">
           <button onClick={() => testConnection("smtp")} disabled={testingConn === "smtp"}
             className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap"
-            style={{ background: "transparent", border: "1px solid rgba(184,138,60,0.4)", color: "#D6B47E" }}>
+            style={{ background: "transparent", border: "1px solid rgba(184,138,60,0.4)", color: "#C5A365" }}>
             {testingConn === "smtp" ? <><i className="ri-loader-4-line animate-spin" />Testing...</> : <><i className="ri-mail-line" />Test SMTP</>}
           </button>
           <button onClick={() => testConnection("sms")} disabled={testingConn === "sms"}
             className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap"
-            style={{ background: "transparent", border: "1px solid rgba(184,138,60,0.4)", color: "#D6B47E" }}>
+            style={{ background: "transparent", border: "1px solid rgba(184,138,60,0.4)", color: "#C5A365" }}>
             {testingConn === "sms" ? <><i className="ri-loader-4-line animate-spin" />Testing...</> : <><i className="ri-message-line" />Test SMS</>}
           </button>
           <ConnStatus connKey="smtp" />
@@ -325,18 +325,18 @@ const SystemConfig = () => {
       {/* Save */}
       <div className="flex items-center gap-3 pt-2 pb-4">
         <button onClick={handleSave}
-          className="px-6 py-2.5 rounded-lg text-sm font-semibold font-['Inter'] whitespace-nowrap cursor-pointer transition-all"
-          style={{ background: "#D6B47E", color: "#051428" }}>
+          className="px-6 py-2.5 rounded-lg text-sm font-semibold font-['Manrope'] whitespace-nowrap cursor-pointer transition-all"
+          style={{ background: "#C5A365", color: "#071426" }}>
           <i className="ri-save-line mr-2" />Save Configuration
         </button>
-        <button className="px-6 py-2.5 rounded-lg text-sm font-semibold font-['Inter'] whitespace-nowrap cursor-pointer transition-all"
-          style={{ background: "transparent", border: "1px solid rgba(184,138,60,0.4)", color: "#D6B47E" }}>
+        <button className="px-6 py-2.5 rounded-lg text-sm font-semibold font-['Manrope'] whitespace-nowrap cursor-pointer transition-all"
+          style={{ background: "transparent", border: "1px solid rgba(184,138,60,0.4)", color: "#C5A365" }}>
           <i className="ri-refresh-line mr-2" />Reset to Defaults
         </button>
         {saved && (
           <div className="flex items-center gap-2 px-4 py-2 rounded-lg" style={{ background: "rgba(74,222,128,0.1)", border: "1px solid rgba(74,222,128,0.3)" }}>
             <i className="ri-check-line text-green-400 text-sm" />
-            <span className="text-green-400 text-sm font-['Inter']">Configuration saved successfully</span>
+            <span className="text-green-400 text-sm font-['Manrope']">Configuration saved successfully</span>
           </div>
         )}
       </div>

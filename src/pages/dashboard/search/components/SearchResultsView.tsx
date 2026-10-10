@@ -25,10 +25,10 @@ export default function SearchResultsView({ results, isAr, loading }: Props) {
     return (
       <div style={{ padding: 48, textAlign: 'center' }}>
         <i className="ri-search-line" style={{ fontSize: 36, color: '#374B61', display: 'block', marginBottom: 12 }} />
-        <div style={{ color: '#5B7494', fontFamily: "'Inter', sans-serif", fontSize: 14 }}>
+        <div style={{ color: '#5B7494', fontFamily: "'Manrope', sans-serif", fontSize: 14 }}>
           {isAr ? 'لا توجد نتائج' : 'No results'}
         </div>
-        <div style={{ color: '#374B61', fontFamily: "'Inter', sans-serif", fontSize: 12, marginTop: 6 }}>
+        <div style={{ color: '#374B61', fontFamily: "'Manrope', sans-serif", fontSize: 12, marginTop: 6 }}>
           {isAr ? 'حاول تعديل معايير البحث أو تفعيل التطابق الصوتي' : 'Try adjusting your query or enabling phonetic matching'}
         </div>
       </div>
@@ -50,7 +50,7 @@ export default function SearchResultsView({ results, isAr, loading }: Props) {
               padding: '4px 10px', borderRadius: 4, fontSize: 11, cursor: 'pointer',
               background: view === v ? 'rgba(184,138,60,0.15)' : 'transparent',
               border: `1px solid ${view === v ? 'rgba(184,138,60,0.4)' : 'rgba(184,138,60,0.15)'}`,
-              color: view === v ? '#D6B47E' : '#5B7494',
+              color: view === v ? '#C5A365' : '#5B7494',
               fontFamily: "'JetBrains Mono', monospace",
             }}
           >

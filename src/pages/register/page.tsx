@@ -61,7 +61,7 @@ const RegisterPage = () => {
   const progressPct = ((step + 1) / steps.length) * 100;
 
   return (
-    <div className="min-h-screen relative" style={{ background: "#051428" }}>
+    <div className="min-h-screen relative" style={{ background: "#071426" }}>
       {/* Grid background */}
       <div
         className="absolute inset-0 opacity-15 pointer-events-none"
@@ -91,13 +91,13 @@ const RegisterPage = () => {
                 clipPath: "polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%)",
               }}
             >
-              <span className="text-sm font-black" style={{ color: "#D6B47E", fontFamily: "Inter, sans-serif" }}>A</span>
+              <span className="text-sm font-black" style={{ color: "#C5A365", fontFamily: "Manrope, sans-serif" }}>A</span>
             </div>
             <div>
-              <span className="text-white font-bold text-sm font-['Inter'] tracking-widest">Al-Ameen</span>
+              <span className="text-white font-bold text-sm font-['Manrope'] tracking-widest">Al-Ameen</span>
               <span className="text-gold-400 text-xs font-['Cairo'] ml-2">الأمين</span>
             </div>
-            <span className="hidden md:block text-gray-600 text-xs font-['Inter'] ml-2">
+            <span className="hidden md:block text-gray-600 text-xs font-['Manrope'] ml-2">
               — {isAr ? "تسجيل جهة جديدة" : "Register New Entity"}
             </span>
           </div>
@@ -112,14 +112,14 @@ const RegisterPage = () => {
             </button>
             <button
               onClick={() => navigate("/login")}
-              className="flex items-center gap-1.5 px-3 py-1.5 border border-gold-500/40 text-gold-400 text-xs rounded-lg hover:bg-gold-500/10 transition-colors cursor-pointer font-['Inter'] whitespace-nowrap"
+              className="flex items-center gap-1.5 px-3 py-1.5 border border-gold-500/40 text-gold-400 text-xs rounded-lg hover:bg-gold-500/10 transition-colors cursor-pointer font-['Manrope'] whitespace-nowrap"
             >
               <i className="ri-login-box-line" />
               {isAr ? "تسجيل الدخول" : "Login"}
             </button>
             <a
               href="/"
-              className="hidden md:flex items-center gap-1.5 text-gray-500 hover:text-gold-400 transition-colors text-xs cursor-pointer font-['Inter']"
+              className="hidden md:flex items-center gap-1.5 text-gray-500 hover:text-gold-400 transition-colors text-xs cursor-pointer font-['Manrope']"
             >
               <i className="ri-home-line" />
               {isAr ? "الرئيسية" : "Home"}
@@ -137,7 +137,7 @@ const RegisterPage = () => {
               <p className="text-gray-500 text-xs font-['JetBrains_Mono']">
                 {isAr ? "الخطوة" : "Step"} {step + 1} {isAr ? "من" : "of"} {steps.length}
               </p>
-              <p className="text-gold-400 text-xs font-semibold font-['Inter']">{steps[step]}</p>
+              <p className="text-gold-400 text-xs font-semibold font-['Manrope']">{steps[step]}</p>
             </div>
 
             {/* Progress bar */}
@@ -146,7 +146,7 @@ const RegisterPage = () => {
                 className="h-1 rounded-full transition-all duration-500"
                 style={{
                   width: `${progressPct}%`,
-                  background: "linear-gradient(90deg, #D6B47E, #C99C48)",
+                  background: "linear-gradient(90deg, #C5A365, #C5A365)",
                   boxShadow: "0 0 8px rgba(184,138,60,0.4)",
                 }}
               />
@@ -159,9 +159,9 @@ const RegisterPage = () => {
                   <div
                     className="w-8 h-8 flex items-center justify-center rounded-full border-2 transition-all duration-300 text-xs font-bold font-['JetBrains_Mono'] cursor-pointer"
                     style={{
-                      borderColor: i <= step ? "#D6B47E" : "rgba(255,255,255,0.1)",
-                      background: i < step ? "#D6B47E" : i === step ? "rgba(184,138,60,0.12)" : "transparent",
-                      color: i < step ? "#051428" : i === step ? "#D6B47E" : "#374151",
+                      borderColor: i <= step ? "#C5A365" : "rgba(255,255,255,0.1)",
+                      background: i < step ? "#C5A365" : i === step ? "rgba(184,138,60,0.12)" : "transparent",
+                      color: i < step ? "#071426" : i === step ? "#C5A365" : "#374151",
                     }}
                     onClick={() => { if (i < step) setStep(i); }}
                   >
@@ -172,8 +172,8 @@ const RegisterPage = () => {
                     )}
                   </div>
                   <span
-                    className="hidden md:block text-xs font-['Inter'] text-center max-w-[90px] leading-tight"
-                    style={{ color: i === step ? "#D6B47E" : i < step ? "#6B7280" : "#374151" }}
+                    className="hidden md:block text-xs font-['Manrope'] text-center max-w-[90px] leading-tight"
+                    style={{ color: i === step ? "#C5A365" : i < step ? "#6B7280" : "#374151" }}
                   >
                     {s}
                   </span>
@@ -237,7 +237,7 @@ const RegisterPage = () => {
             <button
               onClick={handleBack}
               disabled={step === 0}
-              className="flex items-center gap-2 px-5 py-2.5 border border-white/10 text-gray-400 rounded-lg hover:border-gold-500/40 hover:text-gold-400 transition-colors cursor-pointer text-sm font-['Inter'] disabled:opacity-30 disabled:cursor-not-allowed whitespace-nowrap"
+              className="flex items-center gap-2 px-5 py-2.5 border border-white/10 text-gray-400 rounded-lg hover:border-gold-500/40 hover:text-gold-400 transition-colors cursor-pointer text-sm font-['Manrope'] disabled:opacity-30 disabled:cursor-not-allowed whitespace-nowrap"
             >
               <i className={isAr ? "ri-arrow-right-line" : "ri-arrow-left-line"} />
               {isAr ? "السابق" : "Back"}
@@ -255,7 +255,7 @@ const RegisterPage = () => {
                   style={{
                     width: i === step ? "20px" : "6px",
                     height: "6px",
-                    background: i < step ? "#D6B47E" : i === step ? "#D6B47E" : "rgba(255,255,255,0.15)",
+                    background: i < step ? "#C5A365" : i === step ? "#C5A365" : "rgba(255,255,255,0.15)",
                   }}
                 />
               ))}
@@ -265,8 +265,8 @@ const RegisterPage = () => {
               <button
                 onClick={handleNext}
                 disabled={!canNext()}
-                className="flex items-center gap-2 px-6 py-2.5 rounded-lg font-semibold cursor-pointer text-sm font-['Inter'] disabled:opacity-40 disabled:cursor-not-allowed whitespace-nowrap transition-all"
-                style={{ background: canNext() ? "#D6B47E" : "rgba(184,138,60,0.3)", color: "#051428" }}
+                className="flex items-center gap-2 px-6 py-2.5 rounded-lg font-semibold cursor-pointer text-sm font-['Manrope'] disabled:opacity-40 disabled:cursor-not-allowed whitespace-nowrap transition-all"
+                style={{ background: canNext() ? "#C5A365" : "rgba(184,138,60,0.3)", color: "#071426" }}
               >
                 {isAr ? "التالي" : "Next"}
                 <i className={isAr ? "ri-arrow-left-line" : "ri-arrow-right-line"} />

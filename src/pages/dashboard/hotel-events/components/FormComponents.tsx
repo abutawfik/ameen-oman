@@ -2,7 +2,7 @@ import { type InputHTMLAttributes, type SelectHTMLAttributes } from "react";
 
 // ─── Style constants ──────────────────────────────────────────────────────────
 export const inputBase =
-  "w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none transition-all duration-200 font-['Inter']";
+  "w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none transition-all duration-200 font-['Manrope']";
 
 export const inputStyle = {
   background: "#0F1923",
@@ -11,7 +11,7 @@ export const inputStyle = {
 
 export const focusHandlers = {
   onFocus: (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    e.target.style.borderColor = "#D6B47E";
+    e.target.style.borderColor = "#C5A365";
     e.target.style.boxShadow = "0 0 0 2px rgba(184,138,60,0.08)";
   },
   onBlur: (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -22,7 +22,7 @@ export const focusHandlers = {
 
 // ─── Label ────────────────────────────────────────────────────────────────────
 export const Label = ({ children, required }: { children: React.ReactNode; required?: boolean }) => (
-  <label className="block text-gray-400 text-xs mb-1.5 font-['Inter'] tracking-wide">
+  <label className="block text-gray-400 text-xs mb-1.5 font-['Manrope'] tracking-wide">
     {children}
     {required && <span className="text-gold-400 ml-0.5">*</span>}
   </label>
@@ -80,7 +80,7 @@ export const SelectInput = ({ options, placeholder, className = "", ...props }: 
 
 // ─── SectionCard ──────────────────────────────────────────────────────────────
 export const SectionCard = ({
-  title, icon, children, className = "", accentColor = "#D6B47E",
+  title, icon, children, className = "", accentColor = "#C5A365",
 }: {
   title: string; icon?: string; children: React.ReactNode; className?: string; accentColor?: string;
 }) => (
@@ -103,7 +103,7 @@ export const SectionCard = ({
             <i className={`${icon} text-sm`} style={{ color: accentColor }} />
           </div>
         )}
-        <h3 className="text-white font-bold text-sm font-['Inter'] tracking-wide">{title}</h3>
+        <h3 className="text-white font-bold text-sm font-['Manrope'] tracking-wide">{title}</h3>
       </div>
     )}
     {children}
@@ -114,7 +114,7 @@ export const SectionCard = ({
 export const TipBanner = ({ text, color = "amber" }: { text: string; color?: "amber" | "cyan" | "green" }) => {
   const colors = {
     amber: { bg: "rgba(201,138,27,0.06)", border: "rgba(201,138,27,0.22)", text: "#C98A1B", icon: "ri-information-line" },
-    cyan:  { bg: "rgba(184,138,60,0.06)",  border: "rgba(184,138,60,0.22)",  text: "#D6B47E", icon: "ri-lightbulb-flash-line" },
+    cyan:  { bg: "rgba(184,138,60,0.06)",  border: "rgba(184,138,60,0.22)",  text: "#C5A365", icon: "ri-lightbulb-flash-line" },
     green: { bg: "rgba(74,222,128,0.06)",  border: "rgba(74,222,128,0.22)",  text: "#4ADE80", icon: "ri-checkbox-circle-line" },
   };
   const c = colors[color];
@@ -124,7 +124,7 @@ export const TipBanner = ({ text, color = "amber" }: { text: string; color?: "am
       style={{ background: c.bg, borderColor: c.border }}
     >
       <i className={`${c.icon} text-sm mt-0.5 flex-shrink-0`} style={{ color: c.text }} />
-      <p className="text-sm font-['Inter'] leading-relaxed" style={{ color: c.text }}>{text}</p>
+      <p className="text-sm font-['Manrope'] leading-relaxed" style={{ color: c.text }}>{text}</p>
     </div>
   );
 };
@@ -144,16 +144,16 @@ export const RadioGroup = ({
         key={opt.value}
         type="button"
         onClick={() => onChange(opt.value)}
-        className="flex items-center gap-2 px-3 py-2 rounded-lg border text-xs font-semibold transition-all cursor-pointer font-['Inter'] whitespace-nowrap"
+        className="flex items-center gap-2 px-3 py-2 rounded-lg border text-xs font-semibold transition-all cursor-pointer font-['Manrope'] whitespace-nowrap"
         style={{
           background: value === opt.value ? "rgba(184,138,60,0.12)" : "#0F1923",
-          borderColor: value === opt.value ? "#D6B47E" : "rgba(255,255,255,0.08)",
-          color: value === opt.value ? "#D6B47E" : "#6B7280",
+          borderColor: value === opt.value ? "#C5A365" : "rgba(255,255,255,0.08)",
+          color: value === opt.value ? "#C5A365" : "#6B7280",
         }}
       >
         <div
           className="w-3.5 h-3.5 rounded-full border-2 flex items-center justify-center flex-shrink-0"
-          style={{ borderColor: value === opt.value ? "#D6B47E" : "#374151" }}
+          style={{ borderColor: value === opt.value ? "#C5A365" : "#374151" }}
         >
           {value === opt.value && <div className="w-1.5 h-1.5 rounded-full bg-gold-400" />}
         </div>
@@ -197,7 +197,7 @@ export const ExpiryDateInput = ({
         )}
       </div>
       {near && (
-        <p className="text-orange-400 text-xs mt-1 font-['Inter'] flex items-center gap-1">
+        <p className="text-orange-400 text-xs mt-1 font-['Manrope'] flex items-center gap-1">
           <i className="ri-error-warning-line" />
           {label.includes("انتهاء") ? "الوثيقة تنتهي خلال 30 يوماً" : "Document expires within 30 days"}
         </p>
@@ -241,7 +241,7 @@ export const ScannerWidget = ({
               : (isAr ? "Regula غير متصل" : "Regula Offline")}
           </span>
         </div>
-        <p className="text-gray-500 text-xs font-['Inter'] mt-0.5">
+        <p className="text-gray-500 text-xs font-['Manrope'] mt-0.5">
           {connected
             ? (isAr ? "ضع وثيقة السفر على الماسح الضوئي" : "Place Travel Document on scanner")
             : (isAr ? "الماسح غير متاح — أدخل البيانات يدوياً" : "Scanner unavailable — enter data manually")}
@@ -252,7 +252,7 @@ export const ScannerWidget = ({
       <button
         type="button"
         onClick={onScan}
-        className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer transition-colors whitespace-nowrap font-['Inter']"
+        className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer transition-colors whitespace-nowrap font-['Manrope']"
         style={{ background: "rgba(74,222,128,0.12)", border: "1px solid rgba(74,222,128,0.3)", color: "#4ADE80" }}
         onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(74,222,128,0.2)"; }}
         onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(74,222,128,0.12)"; }}
@@ -282,7 +282,7 @@ export const FormActions = ({
     <button
       type="button"
       onClick={onCancel}
-      className="flex items-center gap-2 px-5 py-2.5 rounded-lg border text-sm font-semibold transition-colors cursor-pointer whitespace-nowrap font-['Inter']"
+      className="flex items-center gap-2 px-5 py-2.5 rounded-lg border text-sm font-semibold transition-colors cursor-pointer whitespace-nowrap font-['Manrope']"
       style={{ background: "transparent", borderColor: "rgba(255,255,255,0.15)", color: "#9CA3AF" }}
       onMouseEnter={(e) => {
         (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.3)";
@@ -300,10 +300,10 @@ export const FormActions = ({
       type="button"
       onClick={onSave}
       disabled={saving || disabled}
-      className="flex items-center gap-2 px-6 py-2.5 rounded-lg text-sm font-bold transition-colors cursor-pointer whitespace-nowrap font-['Inter'] disabled:opacity-60"
-      style={{ background: "#D6B47E", color: "#051428" }}
-      onMouseEnter={(e) => { if (!saving) (e.currentTarget as HTMLButtonElement).style.background = "#C99C48"; }}
-      onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#D6B47E"; }}
+      className="flex items-center gap-2 px-6 py-2.5 rounded-lg text-sm font-bold transition-colors cursor-pointer whitespace-nowrap font-['Manrope'] disabled:opacity-60"
+      style={{ background: "#C5A365", color: "#071426" }}
+      onMouseEnter={(e) => { if (!saving) (e.currentTarget as HTMLButtonElement).style.background = "#C5A365"; }}
+      onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C5A365"; }}
     >
       {saving ? <i className="ri-loader-4-line animate-spin" /> : <i className="ri-save-line" />}
       {isAr ? "حفظ الحدث" : saveLabel}
@@ -324,7 +324,7 @@ export const SuccessScreen = ({
     >
       <i className={`${icon} text-4xl`} style={{ color }} />
     </div>
-    <p className="text-white font-bold text-xl font-['Inter'] mb-2">{isAr ? titleAr : titleEn}</p>
+    <p className="text-white font-bold text-xl font-['Manrope'] mb-2">{isAr ? titleAr : titleEn}</p>
     <div
       className="flex items-center gap-2 px-4 py-2 rounded-lg mt-1"
       style={{ background: "rgba(184,138,60,0.06)", border: "1px solid rgba(184,138,60,0.15)" }}
@@ -344,8 +344,8 @@ export const LookupButton = ({ onClick, isAr, loading = false }: { onClick: () =
     type="button"
     onClick={onClick}
     disabled={loading}
-    className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap font-['Inter'] transition-colors disabled:opacity-60"
-    style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.25)", color: "#D6B47E" }}
+    className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap font-['Manrope'] transition-colors disabled:opacity-60"
+    style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.25)", color: "#C5A365" }}
     onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(184,138,60,0.18)"; }}
     onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(184,138,60,0.1)"; }}
   >

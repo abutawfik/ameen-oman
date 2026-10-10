@@ -54,13 +54,13 @@ const KpiCards = ({ entityType, isAr }: Props) => {
           </div>
 
           {/* Label */}
-          <p className="text-gray-500 text-xs font-['Inter'] mb-4 flex-1">
+          <p className="text-gray-500 text-xs font-['Manrope'] mb-4 flex-1">
             {isAr ? card.labelAr : card.label}
           </p>
 
           {/* Bottom: See Details + Action */}
           <div className="flex items-center justify-between pt-3 border-t border-white/5">
-            <button className="text-gold-400 text-xs font-semibold hover:text-gold-300 transition-colors cursor-pointer font-['Inter'] whitespace-nowrap">
+            <button className="text-gold-400 text-xs font-semibold hover:text-gold-300 transition-colors cursor-pointer font-['Manrope'] whitespace-nowrap">
               {isAr ? "عرض التفاصيل ›" : "See Details ›"}
             </button>
             <button
@@ -75,7 +75,7 @@ const KpiCards = ({ entityType, isAr }: Props) => {
                 else if (entityType === "transport") navigate("/dashboard/transport-intelligence");
                 else if (entityType === "employment") navigate("/dashboard/employment-registry");
               }}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer whitespace-nowrap font-['Inter']"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer whitespace-nowrap font-['Manrope']"
               style={{
                 background: card.color + "15",
                 border: `1px solid ${card.color}30`,
@@ -83,7 +83,7 @@ const KpiCards = ({ entityType, isAr }: Props) => {
               }}
               onMouseEnter={(e) => {
                 (e.currentTarget as HTMLButtonElement).style.background = card.color;
-                (e.currentTarget as HTMLButtonElement).style.color = "#051428";
+                (e.currentTarget as HTMLButtonElement).style.color = "#071426";
               }}
               onMouseLeave={(e) => {
                 (e.currentTarget as HTMLButtonElement).style.background = card.color + "15";

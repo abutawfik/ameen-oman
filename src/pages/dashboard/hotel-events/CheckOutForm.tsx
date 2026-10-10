@@ -115,7 +115,7 @@ const CheckOutForm = ({ isAr, onCancel, onSaved }: Props) => {
           <i className="ri-logout-box-line text-orange-400 text-xl" />
         </div>
         <div>
-          <h2 className="text-white font-bold text-xl font-['Inter']">{t.title}</h2>
+          <h2 className="text-white font-bold text-xl font-['Manrope']">{t.title}</h2>
           <p className="text-gray-600 text-xs font-['JetBrains_Mono'] tracking-widest">HOTEL_CHECKOUT</p>
         </div>
       </div>
@@ -147,7 +147,7 @@ const CheckOutForm = ({ isAr, onCancel, onSaved }: Props) => {
                 <LookupButton onClick={lookupBooking} isAr={isAr} />
               </div>
               {lookupError && (
-                <p className="text-red-400 text-xs mt-1 font-['Inter'] flex items-center gap-1">
+                <p className="text-red-400 text-xs mt-1 font-['Manrope'] flex items-center gap-1">
                   <i className="ri-error-warning-line" />{t.notFound}
                 </p>
               )}
@@ -183,7 +183,7 @@ const CheckOutForm = ({ isAr, onCancel, onSaved }: Props) => {
                 />
                 <span
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold font-['JetBrains_Mono']"
-                  style={{ color: "#D6B47E" }}
+                  style={{ color: "#C5A365" }}
                 >
                   LCY
                 </span>

@@ -8,7 +8,7 @@ const P1   = 'var(--alm-ocean-700)';
 const P2   = 'var(--alm-ocean-600)';
 const P3   = 'var(--alm-ocean-500)';
 const P4   = 'var(--alm-ocean-400)';
-const GOLD = '#D6B47E';
+const GOLD = '#C5A365';
 const GOLD2 = '#B8893C';
 
 const STATUS_COLORS: Record<string, string> = {
@@ -607,7 +607,7 @@ function ComparePanel({ candidate, isAr, onMerge, onSplit, onAction }: ComparePa
   const simColor =
     candidate.similarity >= 0.85 ? '#C94A5E' :
     candidate.similarity >= 0.75 ? '#D4922A' :
-    '#D6B47E';
+    '#C5A365';
 
   function compareVal(a: unknown, b: unknown): 'match' | 'diff' | 'missing' {
     if (a === undefined || b === undefined) return 'missing';
@@ -691,7 +691,7 @@ function ComparePanel({ candidate, isAr, onMerge, onSplit, onAction }: ComparePa
               </div>
               <div style={{
                 padding: '0.55rem 0.8rem', borderLeft: `1px solid ${P2}`,
-                color: cmp === 'match' ? '#4A8E5A' : cmp === 'diff' ? '#D6B47E' : P4,
+                color: cmp === 'match' ? '#4A8E5A' : cmp === 'diff' ? '#C5A365' : P4,
                 fontSize: '0.82rem', fontFamily: "'JetBrains Mono', monospace",
               }}>
                 {aVal !== undefined ? String(aVal) : '—'}
@@ -853,7 +853,7 @@ export default function IdentityComparePage() {
           {filtered.map(c => {
             const isSelected = selected?.id === c.id;
             const sc = STATUS_COLORS[(c.status as string)] ?? '#5B7494';
-            const simColor = c.similarity >= 0.85 ? '#C94A5E' : c.similarity >= 0.75 ? '#D4922A' : '#D6B47E';
+            const simColor = c.similarity >= 0.85 ? '#C94A5E' : c.similarity >= 0.75 ? '#D4922A' : '#C5A365';
             return (
               <div
                 key={c.id}

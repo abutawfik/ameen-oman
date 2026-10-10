@@ -1,6 +1,7 @@
+import { downloadTextPdf } from '@/workflows/pdf';
 // Reports builder — Wave 3 · Deliverable 3 (+ Wave 4 · Deliverable 4)
 // Two modes: Templates (6 pre-built + N custom) and Scheduled (4 active runs).
-// Click Generate now → preview modal with mock rendered report + download PDF noop.
+// Generate now previews demo report data and downloads an unencrypted PDF.
 // Wave 4 · D4 — a seventh "+ Custom template" tile opens a bilingual builder
 // modal that appends to an in-memory CUSTOM_REPORT_TEMPLATES list.
 
@@ -129,7 +130,7 @@ const ReportsPage = () => {
       <PageHeader
         title={isAr ? "التقارير" : "Reports"}
         icon="ri-file-chart-line"
-        iconColor="#D6B47E"
+        iconColor="#C5A365"
         badge={isAr ? "ويف 3" : "WAVE 3"}
         badgeColor="#8B5CF6"
         action={
@@ -154,8 +155,8 @@ const ReportsPage = () => {
                   className="px-4 py-1.5 rounded-md text-sm font-semibold cursor-pointer transition-all flex items-center gap-2"
                   style={{
                     background: active ? "rgba(184,138,60,0.15)" : "transparent",
-                    color: active ? "#D6B47E" : "#9CA3AF",
-                    border: `1px solid ${active ? "#D6B47E" : "transparent"}`,
+                    color: active ? "#C5A365" : "#9CA3AF",
+                    border: `1px solid ${active ? "#C5A365" : "transparent"}`,
                     fontFamily: fonts.sans,
                   }}>
                   <i aria-hidden="true" className={m === "templates" ? "ri-layout-grid-line" : "ri-calendar-schedule-line"} />
@@ -163,7 +164,7 @@ const ReportsPage = () => {
                     ? (isAr ? "القوالب" : "Templates")
                     : (isAr ? "مجدول" : "Scheduled")}
                   <span className="px-1.5 py-0.5 rounded text-[11px] font-['JetBrains_Mono']"
-                    style={{ background: active ? "rgba(184,138,60,0.2)" : "rgba(255,255,255,0.05)", color: active ? "#D6B47E" : "#6B7280" }}>
+                    style={{ background: active ? "rgba(184,138,60,0.2)" : "rgba(255,255,255,0.05)", color: active ? "#C5A365" : "#6B7280" }}>
                     {count}
                   </span>
                 </button>
@@ -278,12 +279,12 @@ const TemplatesGrid = ({
             <div className="flex items-center gap-1.5">
               {isCustom && (
                 <span className="px-2 py-0.5 rounded-md text-[11px] font-bold tracking-widest"
-                  style={{ background: "rgba(214,180,126,0.18)", color: "#D6B47E", border: "1px solid #D6B47E66", fontFamily: fonts.mono }}>
+                  style={{ background: "rgba(214,180,126,0.18)", color: "#C5A365", border: "1px solid #C5A36566", fontFamily: fonts.mono }}>
                   {isAr ? "مخصَّص" : "CUSTOM"}
                 </span>
               )}
               <span className="px-2 py-0.5 rounded-md text-[11px] font-bold tracking-widest"
-                style={{ background: "rgba(184,138,60,0.1)", color: "#D6B47E", fontFamily: fonts.mono }}>
+                style={{ background: "rgba(184,138,60,0.1)", color: "#C5A365", fontFamily: fonts.mono }}>
                 {t.estimatedPages} {isAr ? "صفحات" : "pages"}
               </span>
             </div>
@@ -334,7 +335,7 @@ const TemplatesGrid = ({
             </button>
             <button type="button" onClick={onSchedule}
               className="px-3 py-2 rounded-md text-xs font-bold cursor-pointer flex items-center justify-center gap-1.5"
-              style={{ background: "transparent", color: "#D6B47E", border: "1px solid #D6B47E55", fontFamily: fonts.sans }}>
+              style={{ background: "transparent", color: "#C5A365", border: "1px solid #C5A36555", fontFamily: fonts.sans }}>
               <i className="ri-calendar-schedule-line" />
               {isAr ? "جدولة" : "Schedule"}
             </button>
@@ -350,13 +351,13 @@ const TemplatesGrid = ({
         className="rounded-xl p-5 flex flex-col items-center justify-center gap-2 cursor-pointer transition-all min-h-[240px]"
         style={{
           background: "rgba(184,138,60,0.04)",
-          border: "2px dashed #D6B47E88",
-          color: "#D6B47E",
+          border: "2px dashed #C5A36588",
+          color: "#C5A365",
           fontFamily: fonts.sans,
         }}>
         <div className="w-14 h-14 flex items-center justify-center rounded-2xl"
-          style={{ background: "rgba(184,138,60,0.12)", border: "1px solid #D6B47E66" }}>
-          <i className="ri-add-line text-3xl" style={{ color: "#D6B47E" }} />
+          style={{ background: "rgba(184,138,60,0.12)", border: "1px solid #C5A36566" }}>
+          <i className="ri-add-line text-3xl" style={{ color: "#C5A365" }} />
         </div>
         <p className="text-sm font-bold tracking-wide">
           {isAr ? "قالب مخصَّص +" : "+ Custom template"}
@@ -406,9 +407,9 @@ const ScheduledTable = ({
             {/* Template */}
             <div className="col-span-3 flex items-center gap-2 min-w-0">
               <div className="w-8 h-8 flex items-center justify-center rounded-lg flex-shrink-0"
-                style={{ background: `${tmpl?.color ?? "#D6B47E"}18`, border: `1px solid ${tmpl?.color ?? "#D6B47E"}44` }}>
+                style={{ background: `${tmpl?.color ?? "#C5A365"}18`, border: `1px solid ${tmpl?.color ?? "#C5A365"}44` }}>
                 <i className={`${tmpl?.icon ?? "ri-file-chart-line"} text-sm`}
-                  style={{ color: tmpl?.color ?? "#D6B47E" }} />
+                  style={{ color: tmpl?.color ?? "#C5A365" }} />
               </div>
               <div className="min-w-0">
                 <p className="text-white text-xs font-bold truncate" style={{ fontFamily: fonts.sans }}>
@@ -453,7 +454,7 @@ const ScheduledTable = ({
               </button>
               <button type="button" onClick={() => onRunNow(row)}
                 className="px-2 py-1 rounded text-[11px] font-bold cursor-pointer tracking-widest"
-                style={{ background: "rgba(184,138,60,0.12)", color: "#D6B47E", border: "1px solid #D6B47E55", fontFamily: fonts.mono }}>
+                style={{ background: "rgba(184,138,60,0.12)", color: "#C5A365", border: "1px solid #C5A36555", fontFamily: fonts.mono }}>
                 {isAr ? "تشغيل" : "RUN NOW"}
               </button>
               <button type="button" onClick={() => onToggle(row)}
@@ -496,9 +497,16 @@ const PreviewModal = ({
 
   const maxSpark = Math.max(...sparkline);
 
-  const handleDownload = () => {
-    // Mock PDF download — the brief says console.log is fine.
-    console.log("[report-preview] download requested:", template.id);
+  const [exportError, setExportError] = useState('');
+  const [exporting, setExporting] = useState(false);
+  const handleDownload = async () => {
+    if (exporting) return;
+    setExportError(''); setExporting(true);
+    try {
+      const content = modalRef.current?.querySelector('[data-report-content]') as HTMLElement;
+      await downloadTextPdf(isAr ? template.nameAr : template.name, content?.innerText ?? '', `al-ameen-${template.id}-${new Date().toISOString().slice(0,10)}.pdf`, isAr);
+    } catch { setExportError(isAr ? 'تعذر إنشاء الملف. أعد المحاولة.' : 'Could not create the PDF. Please try again.'); }
+    finally { setExporting(false); }
   };
 
   return (
@@ -538,7 +546,7 @@ const PreviewModal = ({
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <button type="button" onClick={handleDownload}
+            <button type="button" onClick={handleDownload} disabled={exporting}
               className="px-3 py-1.5 rounded-md text-xs font-bold cursor-pointer flex items-center gap-1.5"
               style={{ background: template.color, color: "var(--alm-ocean-900)", fontFamily: fonts.sans }}>
               <i className="ri-file-download-line" />
@@ -552,9 +560,10 @@ const PreviewModal = ({
             </button>
           </div>
         </header>
+        {exportError && <p role="alert" className="px-6 text-red-300">{exportError}</p>}
 
         {/* Scrollable pages */}
-        <div className="overflow-auto flex-1 p-5 space-y-4" style={{ background: "rgba(10,37,64,0.4)" }}>
+        <div data-report-content className="overflow-auto flex-1 p-5 space-y-4" style={{ background: "rgba(10,37,64,0.4)" }}>
           {/* Page 1 — cover */}
           <div className="rounded-lg border p-6"
             style={{ background: "#F8F5F0", borderColor: "rgba(10,37,64,0.1)", minHeight: 320, color: "#0A2540" }}>
@@ -588,7 +597,7 @@ const PreviewModal = ({
                 <p className="text-[11px] tracking-widest" style={{ color: "#6B7280", fontFamily: fonts.mono }}>
                   {isAr ? "الإصدار" : "ISSUE NUMBER"}
                 </p>
-                <p className="font-bold" style={{ fontFamily: fonts.mono }}>2026/Q2-001</p>
+                <p className="font-bold" style={{ fontFamily: fonts.mono }}>{`${new Date().getFullYear()}/Q${Math.floor(new Date().getMonth()/3)+1}-${template.id}`}</p>
               </div>
               <div>
                 <p className="text-[11px] tracking-widest" style={{ color: "#6B7280", fontFamily: fonts.mono }}>
@@ -668,18 +677,18 @@ const PreviewModal = ({
             </h2>
             <p className="text-sm leading-relaxed mb-3" style={{ fontFamily: fonts.sans }}>
               {isAr
-                ? "تم توليد هذا التقرير تلقائياً من مصادر Al-Ameen المدمجة. يعكس الأرقام الحالية في لحظة التوليد، ويشمل جميع الرحلات والإشارات الموثَّقة للفترة المحدَّدة."
-                : "This report was auto-generated from Al-Ameen's consolidated sources. Figures reflect state at generation time and cover every scored record and signal inside the specified period."}
+                ? "يلخص هذا التقرير بيانات العرض المحلية. الأرقام والرسوم توضيحية وليست بيانات تشغيلية مباشرة."
+                : "This report summarizes local demonstration fixtures. Counts and charts illustrate the interface and are not live operational intelligence."}
             </p>
             <p className="text-sm leading-relaxed" style={{ fontFamily: fonts.sans }}>
               {isAr
-                ? "كل قسم من أقسام التقرير يستند إلى تسلسل محاسبيّ قابل للاستعلام؛ يمكن التحقّق من أي رقم عبر سجل التدقيق."
+                ? "لا يتوفر التحقق من سجل التدقيق على الخادم في هذا العرض."
                 : "Every section derives from an auditable lineage; any figure can be verified via the Audit Log."}
             </p>
             <div className="mt-6 pt-4 border-t flex items-center justify-between text-[11px]"
               style={{ borderColor: "rgba(10,37,64,0.1)", color: "#6B7280", fontFamily: fonts.mono }}>
               <span>ALAMEEN-REPORT-{template.id.toUpperCase()}</span>
-              <span>{isAr ? "صفحة 4 من" : "page 4 of"} {template.estimatedPages}</span>
+              <span>{isAr ? "معاينة بيانات العرض" : "Demo content preview"}</span>
             </div>
           </div>
         </div>
@@ -778,7 +787,7 @@ const CustomTemplateBuilder = ({
       description: description.trim() || "Operator-configured custom report.",
       descriptionAr: descriptionAr.trim() || "تقرير مخصَّص من المشغّل.",
       icon: "ri-magic-line",
-      color: "#D6B47E",
+      color: "#C5A365",
       estimatedPages: pageEstimate,
       sections: selectedSections,
       suggestedCadence: cadenceDetail,
@@ -811,8 +820,8 @@ const CustomTemplateBuilder = ({
           style={{ borderColor: "rgba(184,138,60,0.15)", background: "rgba(10,37,64,0.9)" }}>
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 flex items-center justify-center rounded-lg"
-              style={{ background: "rgba(184,138,60,0.18)", border: "1px solid #D6B47E55" }}>
-              <i className="ri-magic-line text-lg" style={{ color: "#D6B47E" }} aria-hidden="true" />
+              style={{ background: "rgba(184,138,60,0.18)", border: "1px solid #C5A36555" }}>
+              <i className="ri-magic-line text-lg" style={{ color: "#C5A365" }} aria-hidden="true" />
             </div>
             <div>
               <h2 id="builder-modal-title" className="text-white text-base font-bold" style={{ fontFamily: fonts.sans }}>
@@ -853,10 +862,10 @@ const CustomTemplateBuilder = ({
                     className="flex items-center justify-between gap-2 px-3 py-2 rounded-md text-left cursor-pointer transition-all"
                     style={{
                       background: active ? "rgba(184,138,60,0.14)" : "rgba(255,255,255,0.02)",
-                      border: `1px solid ${active ? "#D6B47E88" : "rgba(255,255,255,0.08)"}`,
+                      border: `1px solid ${active ? "#C5A36588" : "rgba(255,255,255,0.08)"}`,
                     }}>
                     <div className="flex items-center gap-2 min-w-0">
-                      <i className={active ? "ri-checkbox-fill" : "ri-checkbox-blank-line"} style={{ color: active ? "#D6B47E" : "#6B7280" }} />
+                      <i className={active ? "ri-checkbox-fill" : "ri-checkbox-blank-line"} style={{ color: active ? "#C5A365" : "#6B7280" }} />
                       <span className="text-xs truncate" style={{ color: active ? "#F8F5F0" : "#9CA3AF", fontFamily: fonts.sans }}>
                         {isAr ? opt.labelAr : opt.labelEn}
                       </span>
@@ -874,7 +883,7 @@ const CustomTemplateBuilder = ({
               style={{ background: "rgba(10,37,64,0.85)", border: "1px solid rgba(184,138,60,0.2)" }}>
               {recipients.map((r) => (
                 <span key={r} className="flex items-center gap-1 px-2 py-1 rounded text-[11px]"
-                  style={{ background: "rgba(184,138,60,0.12)", color: "#D6B47E", border: "1px solid #D6B47E55", fontFamily: fonts.mono }}>
+                  style={{ background: "rgba(184,138,60,0.12)", color: "#C5A365", border: "1px solid #C5A36555", fontFamily: fonts.mono }}>
                   {r}
                   <button type="button" onClick={() => removeRecipient(r)} className="text-gray-400 cursor-pointer hover:text-white ml-0.5">
                     <i className="ri-close-line" />
@@ -907,8 +916,8 @@ const CustomTemplateBuilder = ({
                     className="px-3 py-1.5 rounded-md text-xs font-bold cursor-pointer"
                     style={{
                       background: active ? "rgba(184,138,60,0.15)" : "rgba(255,255,255,0.03)",
-                      color: active ? "#D6B47E" : "#9CA3AF",
-                      border: `1px solid ${active ? "#D6B47E" : "rgba(255,255,255,0.1)"}`,
+                      color: active ? "#C5A365" : "#9CA3AF",
+                      border: `1px solid ${active ? "#C5A365" : "rgba(255,255,255,0.1)"}`,
                       fontFamily: fonts.sans,
                     }}>
                     {isAr ? CADENCE_META[k].labelAr : CADENCE_META[k].labelEn}
@@ -954,8 +963,8 @@ const CustomTemplateBuilder = ({
                     className="px-4 py-1.5 rounded-md text-xs font-bold cursor-pointer"
                     style={{
                       background: active ? "rgba(184,138,60,0.15)" : "rgba(255,255,255,0.03)",
-                      color: active ? "#D6B47E" : "#9CA3AF",
-                      border: `1px solid ${active ? "#D6B47E" : "rgba(255,255,255,0.1)"}`,
+                      color: active ? "#C5A365" : "#9CA3AF",
+                      border: `1px solid ${active ? "#C5A365" : "rgba(255,255,255,0.1)"}`,
                       fontFamily: fonts.mono,
                     }}>
                     {f}
@@ -968,7 +977,7 @@ const CustomTemplateBuilder = ({
           {/* 6 · Preview */}
           <Section title={isAr ? "المعاينة" : "Preview"} idx={6}>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-              <MiniStat label={isAr ? "الصفحات" : "Pages"} value={`~${pageEstimate}`} accent="#D6B47E" />
+              <MiniStat label={isAr ? "الصفحات" : "Pages"} value={`~${pageEstimate}`} accent="#C5A365" />
               <MiniStat label={isAr ? "المستلمون" : "Recipients"} value={String(recipients.length)} accent="#4ADE80" />
               <MiniStat label={isAr ? "زمن التوليد" : "Gen time"} value={`~${generationMs}ms`} accent="#B8A0FF" />
             </div>
@@ -991,7 +1000,7 @@ const CustomTemplateBuilder = ({
             disabled={!canSave}
             onClick={() => onGenerateNow(buildTemplate())}
             className="px-3 py-1.5 rounded-md text-xs font-bold cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-1.5"
-            style={{ background: "transparent", color: "#D6B47E", border: "1px solid #D6B47E55", fontFamily: fonts.sans }}>
+            style={{ background: "transparent", color: "#C5A365", border: "1px solid #C5A36555", fontFamily: fonts.sans }}>
             <i className="ri-flashlight-line" />
             {isAr ? "توليد الآن" : "Generate now"}
           </button>
@@ -999,7 +1008,7 @@ const CustomTemplateBuilder = ({
             disabled={!canSave}
             onClick={() => onSave(buildTemplate())}
             className="px-4 py-1.5 rounded-md text-xs font-bold cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-1.5"
-            style={{ background: "#D6B47E", color: "var(--alm-ocean-900)", fontFamily: fonts.sans }}>
+            style={{ background: "#C5A365", color: "var(--alm-ocean-900)", fontFamily: fonts.sans }}>
             <i className="ri-save-line" />
             {isAr ? "حفظ القالب" : "Save template"}
           </button>
@@ -1018,7 +1027,7 @@ const Section = ({ idx, title, hint, children }: { idx: number; title: string; h
       <div className="flex items-center justify-between mb-3">
         <h3 className="text-white text-sm font-bold flex items-center gap-2">
           <span className="w-5 h-5 rounded-full flex items-center justify-center text-[11px] font-black"
-            style={{ background: "rgba(184,138,60,0.18)", color: "#D6B47E", fontFamily: fonts.mono }}>
+            style={{ background: "rgba(184,138,60,0.18)", color: "#C5A365", fontFamily: fonts.mono }}>
             {idx}
           </span>
           {title}

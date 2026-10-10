@@ -189,7 +189,7 @@ const CheckInForm = ({ isAr, onCancel, onSaved }: Props) => {
           <i className="ri-login-box-line text-green-400 text-xl" />
         </div>
         <div>
-          <h2 className="text-white font-bold text-xl font-['Inter']">{t.title}</h2>
+          <h2 className="text-white font-bold text-xl font-['Manrope']">{t.title}</h2>
           <p className="text-gray-600 text-xs font-['JetBrains_Mono'] tracking-widest">HOTEL_CHECKIN</p>
         </div>
       </div>
@@ -224,7 +224,7 @@ const CheckInForm = ({ isAr, onCancel, onSaved }: Props) => {
                 <LookupButton onClick={lookupBooking} isAr={isAr} />
               </div>
               {lookupError && (
-                <p className="text-red-400 text-xs mt-1 font-['Inter'] flex items-center gap-1">
+                <p className="text-red-400 text-xs mt-1 font-['Manrope'] flex items-center gap-1">
                   <i className="ri-error-warning-line" />{t.notFound}
                 </p>
               )}
@@ -310,14 +310,14 @@ const CheckInForm = ({ isAr, onCancel, onSaved }: Props) => {
             >
               <span className="text-gold-400 text-xs font-bold font-['JetBrains_Mono']">{idx + 2}</span>
             </div>
-            <span className="text-white font-semibold text-sm font-['Inter']">
+            <span className="text-white font-semibold text-sm font-['Manrope']">
               {t.guest} {idx + 2}
             </span>
             <div className="flex-1 h-px" style={{ background: "rgba(184,138,60,0.08)" }} />
             <button
               type="button"
               onClick={() => removeGuest(guest.id)}
-              className="flex items-center gap-1 text-red-400 text-xs hover:text-red-300 cursor-pointer font-['Inter'] transition-colors"
+              className="flex items-center gap-1 text-red-400 text-xs hover:text-red-300 cursor-pointer font-['Manrope'] transition-colors"
             >
               <i className="ri-delete-bin-line" />{t.remove}
             </button>
@@ -347,11 +347,11 @@ const CheckInForm = ({ isAr, onCancel, onSaved }: Props) => {
       <button
         type="button"
         onClick={addGuest}
-        className="flex items-center gap-2 px-5 py-3 rounded-xl border text-sm font-semibold cursor-pointer transition-colors font-['Inter'] whitespace-nowrap w-full justify-center"
+        className="flex items-center gap-2 px-5 py-3 rounded-xl border text-sm font-semibold cursor-pointer transition-colors font-['Manrope'] whitespace-nowrap w-full justify-center"
         style={{
           background: "rgba(184,138,60,0.04)",
           borderColor: "rgba(184,138,60,0.18)",
-          color: "#D6B47E",
+          color: "#C5A365",
           borderStyle: "dashed",
         }}
         onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(184,138,60,0.08)"; }}

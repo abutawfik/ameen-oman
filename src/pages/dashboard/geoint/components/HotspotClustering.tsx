@@ -45,7 +45,7 @@ const HotspotClustering = () => {
               <button
                 key={lvl}
                 onClick={() => setFilterIntensity(lvl)}
-                className={`px-3 py-1 rounded-full text-xs font-['Inter'] font-medium transition-all cursor-pointer whitespace-nowrap ${
+                className={`px-3 py-1 rounded-full text-xs font-['Manrope'] font-medium transition-all cursor-pointer whitespace-nowrap ${
                   filterIntensity === lvl ? "border" : "bg-white/5 text-gray-400 border border-white/10 hover:border-white/20"
                 }`}
                 style={filterIntensity === lvl && cfg ? {
@@ -54,7 +54,7 @@ const HotspotClustering = () => {
                   borderColor: cfg.border,
                 } : filterIntensity === lvl ? {
                   background: "rgba(184,138,60,0.15)",
-                  color: "#D6B47E",
+                  color: "#C5A365",
                   borderColor: "rgba(184,138,60,0.4)",
                 } : {}}
               >
@@ -166,7 +166,7 @@ const HotspotClustering = () => {
                     {intensityConfig[selectedHotspot.intensity].label}
                   </span>
                 </div>
-                <h3 className="text-white font-['Inter'] font-semibold text-sm">{selectedHotspot.location}</h3>
+                <h3 className="text-white font-['Manrope'] font-semibold text-sm">{selectedHotspot.location}</h3>
                 <p className="text-gray-500 text-xs font-['JetBrains_Mono']">{selectedHotspot.district}</p>
               </div>
               <button onClick={() => setSelectedHotspot(null)} className="text-gray-600 hover:text-gray-400 cursor-pointer">
@@ -186,7 +186,7 @@ const HotspotClustering = () => {
                     <i className={`${stat.icon} text-xs`} style={{ color: intensityConfig[selectedHotspot.intensity].color }} />
                     <span className="text-gray-500 text-xs font-['JetBrains_Mono']">{stat.label}</span>
                   </div>
-                  <p className="text-white text-sm font-['Inter'] font-semibold">{stat.value}</p>
+                  <p className="text-white text-sm font-['Manrope'] font-semibold">{stat.value}</p>
                 </div>
               ))}
             </div>
@@ -195,8 +195,8 @@ const HotspotClustering = () => {
               <p className="text-gray-500 text-xs font-['JetBrains_Mono'] uppercase tracking-wider mb-2">Active Streams</p>
               <div className="flex flex-wrap gap-1.5">
                 {selectedHotspot.streams.map((s) => (
-                  <span key={s} className="px-2 py-0.5 rounded-full text-xs font-['Inter']"
-                    style={{ background: "rgba(184,138,60,0.1)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}>
+                  <span key={s} className="px-2 py-0.5 rounded-full text-xs font-['Manrope']"
+                    style={{ background: "rgba(184,138,60,0.1)", color: "#C5A365", border: "1px solid rgba(184,138,60,0.2)" }}>
                     {s}
                   </span>
                 ))}
@@ -205,15 +205,15 @@ const HotspotClustering = () => {
 
             <div className="rounded-lg p-2.5" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
               <p className="text-gray-500 text-xs font-['JetBrains_Mono'] mb-1">Top Activity</p>
-              <p className="text-white text-xs font-['Inter']">{selectedHotspot.topActivity}</p>
+              <p className="text-white text-xs font-['Manrope']">{selectedHotspot.topActivity}</p>
             </div>
 
             <div className="flex gap-2 mt-3">
-              <button className="flex-1 py-2 rounded-lg text-xs font-['Inter'] font-medium cursor-pointer transition-all hover:opacity-80"
-                style={{ background: "rgba(184,138,60,0.15)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.3)" }}>
+              <button className="flex-1 py-2 rounded-lg text-xs font-['Manrope'] font-medium cursor-pointer transition-all hover:opacity-80"
+                style={{ background: "rgba(184,138,60,0.15)", color: "#C5A365", border: "1px solid rgba(184,138,60,0.3)" }}>
                 <i className="ri-focus-3-line mr-1" />Investigate
               </button>
-              <button className="flex-1 py-2 rounded-lg text-xs font-['Inter'] font-medium cursor-pointer transition-all hover:opacity-80"
+              <button className="flex-1 py-2 rounded-lg text-xs font-['Manrope'] font-medium cursor-pointer transition-all hover:opacity-80"
                 style={{ background: "rgba(201,74,94,0.1)", color: "#C94A5E", border: "1px solid rgba(201,74,94,0.25)" }}>
                 <i className="ri-alarm-warning-line mr-1" />Alert
               </button>
@@ -258,7 +258,7 @@ const HotspotClustering = () => {
                 }}
               >
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-white text-xs font-['Inter'] font-medium">{hs.district}</span>
+                  <span className="text-white text-xs font-['Manrope'] font-medium">{hs.district}</span>
                   <span className="text-xs font-['JetBrains_Mono'] font-bold" style={{ color: cfg.color }}>{cfg.label}</span>
                 </div>
                 <div className="flex items-center gap-3 text-xs font-['JetBrains_Mono'] text-gray-500">

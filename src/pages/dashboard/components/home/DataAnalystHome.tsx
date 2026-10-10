@@ -66,7 +66,7 @@ const DataAnalystHome = ({ isAr }: Props) => {
     { icon: "ri-user-shared-line",  label: isAr ? "تم تصعيد القضية إلى المشرف"       : "Escalated to supervisor",            meta: "demo-highrisk-sponsor · Petrov", ago: isAr ? "قبل 12د" : "12m ago",     color: "#D4922A" },
     { icon: "ri-check-line",        label: isAr ? "تم الإشعار بالتنبيه"                : "Acked alert",                         meta: "rec-000131 · Hasan Al-Bakri",     ago: isAr ? "قبل 18د" : "18m ago",     color: "#38BDF8" },
     { icon: "ri-close-circle-line", label: isAr ? "تمّ إغلاق التنبيه كـ 'إيجابي كاذب'"  : "Closed alert as false positive",       meta: "rec-000128 · Elena Marković",     ago: isAr ? "قبل 34د" : "34m ago",     color: "#6B7280" },
-    { icon: "ri-edit-line",         label: isAr ? "أُضيفت ملاحظة على السجل"           : "Added case note",                    meta: "demo-anomaly · Leila Benaissa",   ago: isAr ? "قبل 48د" : "48m ago",     color: "#D6B47E" },
+    { icon: "ri-edit-line",         label: isAr ? "أُضيفت ملاحظة على السجل"           : "Added case note",                    meta: "demo-anomaly · Leila Benaissa",   ago: isAr ? "قبل 48د" : "48m ago",     color: "#C5A365" },
     { icon: "ri-check-line",        label: isAr ? "تم الإشعار بالتنبيه"                : "Acked alert",                         meta: "rec-000137 · Noor Al-Hakim",      ago: isAr ? "قبل 58د" : "58m ago",     color: "#38BDF8" },
     { icon: "ri-check-double-line", label: isAr ? "أُغلقت القضية — مسار روتيني"        : "Closed case — routine routing",       meta: "rec-000132 · Priya Raman",        ago: isAr ? "قبل 1س 12د" : "1h 12m ago", color: "#4ADE80" },
     { icon: "ri-search-eye-line",   label: isAr ? "فُتح الشرح ومراجعته"                : "Opened explain + reviewed",           meta: "demo-borderline · Yasir Karim",   ago: isAr ? "قبل 1س 24د" : "1h 24m ago", color: "#38BDF8" },
@@ -76,7 +76,7 @@ const DataAnalystHome = ({ isAr }: Props) => {
   const hotSignals = [
     { label: isAr ? "العقوبات" : "sanctions",          delta: "+12%", color: "#C94A5E", source: "OpenSanctions" },
     { label: isAr ? "شذوذ المسار" : "routing anomaly", delta: "+30%", color: "#6B4FAE", source: "OpenSky" },
-    { label: isAr ? "تحذيرات السفر" : "advisories",    delta: "+8%",  color: "#D6B47E", source: "US/UK" },
+    { label: isAr ? "تحذيرات السفر" : "advisories",    delta: "+8%",  color: "#C5A365", source: "US/UK" },
     { label: isAr ? "كثافة النزاع" : "conflict GDELT", delta: "+18%", color: "#C98A1B", source: "GDELT" },
     { label: isAr ? "تفشٍ حيوي" : "biosec outbreak",   delta: "+3",   color: "#FACC15", source: "WHO" },
     { label: isAr ? "كيانات الكفيل" : "sponsor flags", delta: "+14%", color: "#4ADE80", source: "OpenCorporates" },
@@ -113,7 +113,7 @@ const DataAnalystHome = ({ isAr }: Props) => {
           }}
         >
           <i className="ri-arrow-up-circle-line text-amber-400 text-base" />
-          <span className="text-white text-xs font-semibold font-['Inter']">
+          <span className="text-white text-xs font-semibold font-['Manrope']">
             Escalated: <span className="text-amber-300">{undoToast.label.slice(0, 40)}</span>
           </span>
           <button
@@ -178,7 +178,7 @@ const DataAnalystHome = ({ isAr }: Props) => {
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-bold font-['JetBrains_Mono'] tracking-wider transition-all cursor-pointer"
               style={{
                 background: isCrit ? "rgba(201,74,94,0.15)" : "rgba(184,138,60,0.12)",
-                color: isCrit ? "#f87171" : "#D6B47E",
+                color: isCrit ? "#f87171" : "#C5A365",
                 border: isCrit ? "1px solid rgba(201,74,94,0.35)" : "1px solid rgba(184,138,60,0.3)",
               }}
             >
@@ -192,7 +192,7 @@ const DataAnalystHome = ({ isAr }: Props) => {
             </div>
             <div
               className={`text-3xl font-black font-['JetBrains_Mono'] ${isCrit ? "animate-pulse" : ""}`}
-              style={{ color: isCrit ? "#C94A5E" : "#D6B47E" }}
+              style={{ color: isCrit ? "#C94A5E" : "#C5A365" }}
             >
               {nextBreachMins}m {nextBreachSecs.toString().padStart(2, "0")}s
             </div>
@@ -222,7 +222,7 @@ const DataAnalystHome = ({ isAr }: Props) => {
             </div>
             <span
               className="px-2 py-0.5 rounded-md text-[11px] font-bold font-['JetBrains_Mono'] tracking-widest"
-              style={{ background: "rgba(184,138,60,0.12)", color: "#D6B47E" }}
+              style={{ background: "rgba(184,138,60,0.12)", color: "#C5A365" }}
             >
               {sortedQueue.length}
             </span>
@@ -287,7 +287,7 @@ const DataAnalystHome = ({ isAr }: Props) => {
                       type="button"
                       onClick={() => navigate("/dashboard/osint-risk-engine")}
                       className="ml-auto text-[11px] font-semibold font-['JetBrains_Mono'] cursor-pointer transition-colors hover:text-gold-300"
-                      style={{ color: "#D6B47E", background: "none", border: "none" }}
+                      style={{ color: "#C5A365", background: "none", border: "none" }}
                     >
                       {isAr ? "فتح" : "Open"} →
                     </button>
@@ -364,7 +364,7 @@ const DataAnalystHome = ({ isAr }: Props) => {
                     className="px-1.5 py-0.5 rounded text-[9px] font-bold tracking-wider font-['JetBrains_Mono']"
                     style={{
                       background: r.decisionPoint === "ETA" ? "rgba(184,138,60,0.1)" : "rgba(107,79,174,0.1)",
-                      color: r.decisionPoint === "ETA" ? "#D6B47E" : "#6B4FAE",
+                      color: r.decisionPoint === "ETA" ? "#C5A365" : "#6B4FAE",
                     }}
                   >
                     {r.decisionPoint}

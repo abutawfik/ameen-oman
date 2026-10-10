@@ -96,10 +96,10 @@ const RestrictedItemForm = ({ isAr, onCancel }: Props) => {
       <div className="flex items-center gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(201,74,94,0.06)", borderColor: "rgba(201,74,94,0.3)" }}>
         <i className="ri-alarm-warning-line text-red-400 text-lg" />
         <div>
-          <p className="text-red-400 text-sm font-bold font-['Inter']">
+          <p className="text-red-400 text-sm font-bold font-['Manrope']">
             {isAr ? "تنبيه فوري — عنصر مقيّد" : "Immediate Alert — Restricted Item"}
           </p>
-          <p className="text-red-400/70 text-xs font-['Inter']">
+          <p className="text-red-400/70 text-xs font-['Manrope']">
             {isAr ? "سيتم إرسال هذا الحدث فوراً إلى فريق الاستخبارات للمراجعة" : "This event will be immediately escalated to the intelligence team for review"}
           </p>
         </div>
@@ -208,7 +208,7 @@ const RestrictedItemForm = ({ isAr, onCancel }: Props) => {
           {hasLicense === "no" && (
             <div className="flex items-center gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(201,74,94,0.06)", borderColor: "rgba(201,74,94,0.25)" }}>
               <i className="ri-close-circle-line text-red-400" />
-              <p className="text-red-400 text-sm font-['Inter']">
+              <p className="text-red-400 text-sm font-['Manrope']">
                 {isAr ? "شراء بدون ترخيص — سيتم تصعيد هذا الحدث تلقائياً" : "Unlicensed purchase — this event will be automatically escalated"}
               </p>
             </div>
@@ -263,9 +263,9 @@ const RestrictedItemForm = ({ isAr, onCancel }: Props) => {
               rows={3}
               maxLength={500}
               placeholder={isAr ? "أي معلومات إضافية ذات صلة..." : "Any additional relevant information..."}
-              className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none transition-all resize-none font-['Inter']"
+              className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none transition-all resize-none font-['Manrope']"
               style={{ background: "#0F1923", border: "1px solid rgba(255,255,255,0.08)" }}
-              onFocus={(e) => { e.target.style.borderColor = "#D6B47E"; }}
+              onFocus={(e) => { e.target.style.borderColor = "#C5A365"; }}
               onBlur={(e) => { e.target.style.borderColor = "rgba(255,255,255,0.08)"; }}
             />
             <p className="text-gray-600 text-xs mt-1 text-right font-['JetBrains_Mono']">{additionalNotes.length}/500</p>

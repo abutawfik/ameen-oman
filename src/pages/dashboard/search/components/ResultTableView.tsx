@@ -10,7 +10,7 @@ type SortKey = 'name' | 'nationality' | 'riskScore' | 'relevanceScore' | 'eventD
 type SortDir = 'asc' | 'desc';
 
 const RISK_COLORS: Record<string, string> = {
-  critical: '#C94A5E', high: '#D4922A', medium: '#D6B47E', low: '#4A8E5A',
+  critical: '#C94A5E', high: '#D4922A', medium: '#C5A365', low: '#4A8E5A',
 };
 
 const MATCH_COLORS: Record<string, string> = {
@@ -41,7 +41,7 @@ const thStyle: React.CSSProperties = {
 
 const tdStyle: React.CSSProperties = {
   padding: '10px 12px', fontSize: 12,
-  fontFamily: "'Inter', sans-serif",
+  fontFamily: "'Manrope', sans-serif",
   borderBottom: '1px solid rgba(255,255,255,0.04)',
   color: '#CBD5E1', verticalAlign: 'middle',
 };
@@ -152,7 +152,7 @@ export default function ResultTableView({ results, isAr }: Props) {
                   </td>
                   <td style={{ ...tdStyle, fontFamily: "'JetBrains Mono', monospace", fontSize: 11 }}>
                     <div>{r.docType}</div>
-                    <div style={{ color: '#D6B47E' }}>{r.docNumber}</div>
+                    <div style={{ color: '#C5A365' }}>{r.docNumber}</div>
                   </td>
                   <td style={tdStyle}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
@@ -201,7 +201,7 @@ export default function ResultTableView({ results, isAr }: Props) {
                 width: 28, height: 28, borderRadius: 4, fontSize: 12, cursor: 'pointer',
                 background: page === i ? 'rgba(184,138,60,0.2)' : 'transparent',
                 border: `1px solid ${page === i ? 'rgba(184,138,60,0.4)' : 'rgba(184,138,60,0.15)'}`,
-                color: page === i ? '#D6B47E' : '#5B7494',
+                color: page === i ? '#C5A365' : '#5B7494',
                 fontFamily: "'JetBrains Mono', monospace",
               }}
             >

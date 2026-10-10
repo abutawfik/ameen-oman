@@ -17,7 +17,7 @@ const steps: Step[] = [
     title: "Register Your Entity",
     desc: "Complete the entity registration form with your organization details, license number, and contact information.",
     icon: "ri-building-line",
-    color: "#D6B47E",
+    color: "#C5A365",
     action: "Go to Registration",
     route: "/register",
   },
@@ -51,7 +51,7 @@ const steps: Step[] = [
 ];
 
 const quickLinks = [
-  { icon: "ri-book-open-line",       label: "API Reference",       sub: "Full endpoint documentation",    color: "#D6B47E", tab: "docs" },
+  { icon: "ri-book-open-line",       label: "API Reference",       sub: "Full endpoint documentation",    color: "#C5A365", tab: "docs" },
   { icon: "ri-key-2-line",           label: "API Keys",            sub: "Manage your API keys",           color: "#4ADE80", tab: "keys" },
   { icon: "ri-webhook-line",         label: "Webhooks",            sub: "Configure event callbacks",      color: "#A78BFA", tab: "webhooks" },
   { icon: "ri-test-tube-line",       label: "Sandbox",             sub: "Test your integration",          color: "#FACC15", tab: "sandbox" },
@@ -60,7 +60,7 @@ const quickLinks = [
 ];
 
 const stats = [
-  { label: "API Version",     value: "v2.1",    icon: "ri-code-s-slash-line",  color: "#D6B47E" },
+  { label: "API Version",     value: "v2.1",    icon: "ri-code-s-slash-line",  color: "#C5A365" },
   { label: "Uptime (30d)",    value: "99.95%",  icon: "ri-pulse-line",         color: "#4ADE80" },
   { label: "Avg Latency",     value: "42ms",    icon: "ri-speed-line",         color: "#FACC15" },
   { label: "Active Entities", value: "4,891",   icon: "ri-building-line",      color: "#C98A1B" },
@@ -75,7 +75,7 @@ const changelog = [
 ];
 
 const changeTypeConfig: Record<string, { color: string; bg: string }> = {
-  feature:  { color: "#D6B47E", bg: "rgba(184,138,60,0.1)" },
+  feature:  { color: "#C5A365", bg: "rgba(184,138,60,0.1)" },
   fix:      { color: "#4ADE80", bg: "rgba(74,222,128,0.1)" },
   security: { color: "#C94A5E", bg: "rgba(201,74,94,0.1)" },
   breaking: { color: "#C98A1B", bg: "rgba(201,138,27,0.1)" },
@@ -98,22 +98,22 @@ const PortalHome = ({ onTabChange }: Props) => {
         <div className="relative z-10 flex items-center justify-between">
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <span className="px-2.5 py-1 rounded-full text-xs font-semibold font-['JetBrains_Mono']" style={{ background: "rgba(184,138,60,0.1)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}>
+              <span className="px-2.5 py-1 rounded-full text-xs font-semibold font-['JetBrains_Mono']" style={{ background: "rgba(184,138,60,0.1)", color: "#C5A365", border: "1px solid rgba(184,138,60,0.2)" }}>
                 API v2.1
               </span>
               <span className="px-2.5 py-1 rounded-full text-xs font-semibold font-['JetBrains_Mono']" style={{ background: "rgba(74,222,128,0.1)", color: "#4ADE80", border: "1px solid rgba(74,222,128,0.2)" }}>
                 ● All Systems Operational
               </span>
             </div>
-            <h1 className="text-white text-3xl font-bold font-['Inter'] mb-2">Al-Ameen Developer Portal</h1>
-            <p className="text-gray-400 text-base font-['Inter'] max-w-xl">
+            <h1 className="text-white text-3xl font-bold font-['Manrope'] mb-2">Al-Ameen Developer Portal</h1>
+            <p className="text-gray-400 text-base font-['Manrope'] max-w-xl">
               Integrate your entity with the Al-Ameen Intelligence Platform. Submit events across 13 data streams, manage API keys, configure webhooks, and monitor your integration in real-time.
             </p>
             <div className="flex items-center gap-3 mt-5">
               <button
                 onClick={() => onTabChange("docs")}
                 className="px-5 py-2.5 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap transition-all"
-                style={{ background: "#D6B47E", color: "#051428" }}
+                style={{ background: "#C5A365", color: "#071426" }}
               >
                 <i className="ri-book-open-line mr-2" />
                 Explore API Docs
@@ -121,7 +121,7 @@ const PortalHome = ({ onTabChange }: Props) => {
               <button
                 onClick={() => onTabChange("sandbox")}
                 className="px-5 py-2.5 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap transition-all"
-                style={{ background: "transparent", border: "1px solid rgba(184,138,60,0.4)", color: "#D6B47E" }}
+                style={{ background: "transparent", border: "1px solid rgba(184,138,60,0.4)", color: "#C5A365" }}
               >
                 <i className="ri-test-tube-line mr-2" />
                 Try Sandbox
@@ -136,7 +136,7 @@ const PortalHome = ({ onTabChange }: Props) => {
                   <i className={`${s.icon} text-sm`} style={{ color: s.color }} />
                 </div>
                 <p className="text-white text-lg font-bold font-['JetBrains_Mono']">{s.value}</p>
-                <p className="text-gray-600 text-xs font-['Inter']">{s.label}</p>
+                <p className="text-gray-600 text-xs font-['Manrope']">{s.label}</p>
               </div>
             ))}
           </div>
@@ -145,7 +145,7 @@ const PortalHome = ({ onTabChange }: Props) => {
 
       {/* Getting Started Steps */}
       <div>
-        <h2 className="text-white font-semibold text-base font-['Inter'] mb-4">
+        <h2 className="text-white font-semibold text-base font-['Manrope'] mb-4">
           <i className="ri-map-pin-line mr-2 text-gold-400" />
           Getting Started
         </h2>
@@ -165,8 +165,8 @@ const PortalHome = ({ onTabChange }: Props) => {
                   <i className={`${step.icon} text-sm`} style={{ color: step.color }} />
                 </div>
               </div>
-              <h3 className="text-white text-sm font-semibold font-['Inter'] mb-2">{step.title}</h3>
-              <p className="text-gray-500 text-xs font-['Inter'] leading-relaxed mb-4">{step.desc}</p>
+              <h3 className="text-white text-sm font-semibold font-['Manrope'] mb-2">{step.title}</h3>
+              <p className="text-gray-500 text-xs font-['Manrope'] leading-relaxed mb-4">{step.desc}</p>
               <button className="flex items-center gap-1.5 text-xs font-semibold cursor-pointer whitespace-nowrap" style={{ color: step.color }}>
                 {step.action}
                 <i className="ri-arrow-right-line text-xs" />
@@ -179,7 +179,7 @@ const PortalHome = ({ onTabChange }: Props) => {
       <div className="grid grid-cols-3 gap-4">
         {/* Quick Links */}
         <div className="col-span-2">
-          <h2 className="text-white font-semibold text-base font-['Inter'] mb-4">
+          <h2 className="text-white font-semibold text-base font-['Manrope'] mb-4">
             <i className="ri-flashlight-line mr-2 text-gold-400" />
             Quick Access
           </h2>
@@ -194,8 +194,8 @@ const PortalHome = ({ onTabChange }: Props) => {
                 <div className="w-9 h-9 flex items-center justify-center rounded-lg mb-3" style={{ background: `${link.color}15` }}>
                   <i className={`${link.icon} text-base`} style={{ color: link.color }} />
                 </div>
-                <p className="text-white text-sm font-semibold font-['Inter'] group-hover:text-gold-400 transition-colors">{link.label}</p>
-                <p className="text-gray-600 text-xs font-['Inter'] mt-0.5">{link.sub}</p>
+                <p className="text-white text-sm font-semibold font-['Manrope'] group-hover:text-gold-400 transition-colors">{link.label}</p>
+                <p className="text-gray-600 text-xs font-['Manrope'] mt-0.5">{link.sub}</p>
               </button>
             ))}
           </div>
@@ -203,7 +203,7 @@ const PortalHome = ({ onTabChange }: Props) => {
 
         {/* Changelog */}
         <div>
-          <h2 className="text-white font-semibold text-base font-['Inter'] mb-4">
+          <h2 className="text-white font-semibold text-base font-['Manrope'] mb-4">
             <i className="ri-history-line mr-2 text-gold-400" />
             Changelog
           </h2>
@@ -217,7 +217,7 @@ const PortalHome = ({ onTabChange }: Props) => {
                     <span className="px-1.5 py-0.5 rounded text-xs font-['JetBrains_Mono'] capitalize" style={{ background: tc.bg, color: tc.color }}>{entry.type}</span>
                     <span className="text-gray-700 text-xs font-['JetBrains_Mono'] ml-auto">{entry.date}</span>
                   </div>
-                  <p className="text-gray-500 text-xs font-['Inter'] leading-relaxed">{entry.note}</p>
+                  <p className="text-gray-500 text-xs font-['Manrope'] leading-relaxed">{entry.note}</p>
                 </div>
               );
             })}
@@ -227,7 +227,7 @@ const PortalHome = ({ onTabChange }: Props) => {
 
       {/* Base URL + Auth info */}
       <div className="rounded-xl p-5" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.12)" }}>
-        <h2 className="text-white font-semibold text-sm font-['Inter'] mb-4">
+        <h2 className="text-white font-semibold text-sm font-['Manrope'] mb-4">
           <i className="ri-server-line mr-2 text-gold-400" />
           Base URLs &amp; Authentication
         </h2>
@@ -239,14 +239,14 @@ const PortalHome = ({ onTabChange }: Props) => {
             <div key={env.label} className="p-3 rounded-lg" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
               <div className="flex items-center gap-2 mb-2">
                 <div className="w-2 h-2 rounded-full" style={{ background: env.color }} />
-                <span className="text-xs font-semibold font-['Inter']" style={{ color: env.color }}>{env.label}</span>
+                <span className="text-xs font-semibold font-['Manrope']" style={{ color: env.color }}>{env.label}</span>
               </div>
               <code className="text-gold-300 text-xs font-['JetBrains_Mono']">{env.url}</code>
             </div>
           ))}
         </div>
         <div className="mt-4 p-3 rounded-lg" style={{ background: "rgba(184,138,60,0.04)", border: "1px solid rgba(184,138,60,0.1)" }}>
-          <p className="text-gray-400 text-xs font-['Inter'] mb-2">All requests require the <code className="text-gold-400 font-['JetBrains_Mono']">X-API-Key</code> header:</p>
+          <p className="text-gray-400 text-xs font-['Manrope'] mb-2">All requests require the <code className="text-gold-400 font-['JetBrains_Mono']">X-API-Key</code> header:</p>
           <code className="text-gold-300 text-xs font-['JetBrains_Mono'] block">
             X-API-Key: amn_live_HTL_a8f3c2d1e9b4f7a2c5d8e1f4a7b0c3d6
           </code>

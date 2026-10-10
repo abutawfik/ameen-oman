@@ -1,3 +1,5 @@
+import { useRef } from 'react';
+import { downloadFile } from '@/workflows/pdf';
 import { useState, useCallback } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
 import type { DashboardOutletContext } from "../DashboardLayout";
@@ -14,10 +16,11 @@ import AlgorithmsPanel from "./components/AlgorithmsPanel";
 import NodeDetailPanel from "./components/NodeDetailPanel";
 import SaveSharePanel from "./components/SaveSharePanel";
 
-const COMMUNITY_PALETTE = ["#D6B47E", "#A78BFA", "#4ADE80", "#C98A1B", "#F472B6", "#FCD34D"];
+const COMMUNITY_PALETTE = ["#C5A365", "#A78BFA", "#4ADE80", "#C98A1B", "#F472B6", "#FCD34D"];
 
 const LinkAnalysisPage = () => {
   const navigate = useNavigate();
+  const workspaceRef = useRef<HTMLDivElement>(null);
   const { isAr, toggleLang } = useOutletContext<DashboardOutletContext>();
 
   const [nodes, setNodes] = useState<GraphNode[]>(initialNodes);
@@ -250,13 +253,13 @@ const LinkAnalysisPage = () => {
   return (
     <div
       className="flex flex-col h-screen overflow-hidden"
-      style={{ background: "#051428", fontFamily: "Inter, Cairo, sans-serif" }}
+      style={{ background: "#071426", fontFamily: "Manrope, Cairo, sans-serif" }}
     >
       <PageHeader
         title={isAr ? "تحليل الروابط وشبكة العلاقات" : "Link Analysis & Network Graph"}
         subtitle={isAr ? "أداة التحليل التفاعلي للعلاقات" : "Interactive Relationship Intelligence Tool"}
         icon="ri-git-branch-line"
-        iconColor="#D6B47E"
+        iconColor="#C5A365"
         crumbs={[{ label: isAr ? "لوحة التحكم" : "Dashboard", route: "/dashboard" }]}
         isAr={isAr}
         action={
@@ -283,7 +286,7 @@ const LinkAnalysisPage = () => {
             <button
               onClick={toggleLang}
               className="w-8 h-8 flex items-center justify-center rounded-full border text-xs font-bold cursor-pointer transition-colors font-['JetBrains_Mono']"
-              style={{ borderColor: "rgba(184,138,60,0.3)", color: "#D6B47E" }}
+              style={{ borderColor: "rgba(184,138,60,0.3)", color: "#C5A365" }}
             >
               {isAr ? "EN" : "AR"}
             </button>
@@ -308,8 +311,18 @@ const LinkAnalysisPage = () => {
           const found = nodes.find(n => n.label.toLowerCase().includes(q.toLowerCase()));
           if (found) { setSelectedNodes([found.id]); setSelectedNodeDetail(found.id); }
         }}
-        onExport={() => showToast(isAr ? "جارٍ التصدير..." : "Exporting...")}
-        onScreenshot={() => showToast(isAr ? "تم حفظ لقطة الشاشة" : "Screenshot saved")}
+        onExport={() => {
+          const visibleEdges = edges.filter(e => e.confidence >= confidenceThreshold && (activeEdgeFilter === 'all' || e.type === activeEdgeFilter));
+          downloadFile(new Blob([JSON.stringify({ demo: true, exportedAt: new Date().toISOString(), nodes, edges: visibleEdges, annotations }, null, 2)], { type: 'application/json' }), 'al-ameen-network.json');
+        }}
+        onScreenshot={() => {
+          const canvas = workspaceRef.current?.querySelector('[data-graph-canvas]') as HTMLCanvasElement;
+          if (!canvas) { showToast(isAr ? 'الرسم غير جاهز' : 'Graph is not ready'); return; }
+          canvas.toBlob(blob => {
+            if (blob) downloadFile(blob, 'al-ameen-network.png');
+            else showToast(isAr ? 'تعذر إنشاء الصورة' : 'Could not create image');
+          }, 'image/png');
+        }}
         onClearSelection={() => { setSelectedNodes([]); setSelectedNodeDetail(null); }}
         selectedCount={selectedNodes.length}
         nodeCount={nodes.length}
@@ -317,7 +330,7 @@ const LinkAnalysisPage = () => {
       />
 
       {/* Main workspace */}
-      <div className="flex flex-1 overflow-hidden">
+      <div ref={workspaceRef} className="flex flex-1 overflow-hidden">
         {/* Left panel: Algorithms */}
         <div
           className="w-64 flex-shrink-0 border-r flex flex-col overflow-hidden"
@@ -380,10 +393,10 @@ const LinkAnalysisPage = () => {
                 <button
                   key={tab.key}
                   onClick={() => setRightPanelTab(tab.key)}
-                  className="flex-1 flex items-center justify-center gap-1.5 py-2.5 text-xs font-['Inter'] cursor-pointer transition-colors"
+                  className="flex-1 flex items-center justify-center gap-1.5 py-2.5 text-xs font-['Manrope'] cursor-pointer transition-colors"
                   style={{
-                    color: rightPanelTab === tab.key ? "#D6B47E" : "#6B7280",
-                    borderBottom: rightPanelTab === tab.key ? "2px solid #D6B47E" : "2px solid transparent",
+                    color: rightPanelTab === tab.key ? "#C5A365" : "#6B7280",
+                    borderBottom: rightPanelTab === tab.key ? "2px solid #C5A365" : "2px solid transparent",
                   }}
                 >
                   <i className={`${tab.icon} text-sm`} />
@@ -418,7 +431,7 @@ const LinkAnalysisPage = () => {
                           <div className="w-5 h-5 flex items-center justify-center flex-shrink-0">
                             <i className={`${cfg.icon} text-sm`} style={{ color: cfg.color }} />
                           </div>
-                          <span className="text-gray-400 text-xs font-['Inter'] flex-1">{isAr ? cfg.labelAr : cfg.labelEn}</span>
+                          <span className="text-gray-400 text-xs font-['Manrope'] flex-1">{isAr ? cfg.labelAr : cfg.labelEn}</span>
                           <span className="text-gray-600 text-xs font-['JetBrains_Mono']">{count}</span>
                         </div>
                       );
@@ -487,8 +500,8 @@ const LinkAnalysisPage = () => {
       {/* Toast */}
       {toast && (
         <div
-          className="fixed bottom-6 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full text-sm font-['Inter'] z-[400] transition-all"
-          style={{ background: "rgba(10,37,64,0.95)", border: "1px solid rgba(184,138,60,0.3)", color: "#D6B47E" }}
+          className="fixed bottom-6 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full text-sm font-['Manrope'] z-[400] transition-all"
+          style={{ background: "rgba(10,37,64,0.95)", border: "1px solid rgba(184,138,60,0.3)", color: "#C5A365" }}
         >
           <i className="ri-checkbox-circle-line mr-2" />
           {toast}

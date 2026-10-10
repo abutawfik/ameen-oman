@@ -15,7 +15,7 @@ const BOARDING_CONFIG: Record<BoardingStatus, { icon: string; color: string; lab
 };
 
 const RISK_COLORS: Record<string, string> = {
-  critical: '#C94A5E', high: '#D4922A', medium: '#D6B47E', low: '#4A8E5A',
+  critical: '#C94A5E', high: '#D4922A', medium: '#C5A365', low: '#4A8E5A',
 };
 
 const thStyle: React.CSSProperties = {
@@ -27,7 +27,7 @@ const thStyle: React.CSSProperties = {
 
 const tdStyle: React.CSSProperties = {
   padding: '9px 10px', fontSize: 11, color: '#CBD5E1',
-  fontFamily: "'Inter', sans-serif",
+  fontFamily: "'Manrope', sans-serif",
   borderBottom: '1px solid rgba(255,255,255,0.04)', verticalAlign: 'middle',
 };
 
@@ -86,7 +86,7 @@ export default function ServiceManifest({ flightNo, isAr }: Props) {
                     {p.hitCount > 0 && <span style={{ fontSize: 11, color: '#C94A5E', fontFamily: "'JetBrains Mono', monospace" }}>⚠ {p.hitCount} hit{p.hitCount > 1 ? 's' : ''}</span>}
                   </td>
                   <td style={{ ...tdStyle, fontFamily: "'JetBrains Mono', monospace" }}>{p.nationality}</td>
-                  <td style={{ ...tdStyle, fontFamily: "'JetBrains Mono', monospace", color: '#D6B47E' }}>{p.docNumber}</td>
+                  <td style={{ ...tdStyle, fontFamily: "'JetBrains Mono', monospace", color: '#C5A365' }}>{p.docNumber}</td>
                   <td style={{ ...tdStyle, fontFamily: "'JetBrains Mono', monospace" }}>{p.seatNo}</td>
                   <td style={tdStyle}>
                     <span style={{ padding: '2px 7px', borderRadius: 3, fontSize: 11, fontFamily: "'JetBrains Mono', monospace", background: `${riskColor}20`, color: riskColor, border: `1px solid ${riskColor}44` }}>

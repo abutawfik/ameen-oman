@@ -9,7 +9,7 @@ import AdventureActivityForm from "./AdventureActivityForm";
 type EventType = "attraction" | "tour" | "adventure";
 
 const EVENT_CARDS = [
-  { id: "attraction" as EventType, icon: "ri-ticket-2-line", label: "Attraction Entry", labelAr: "دخول معلم سياحي", desc: "Record visitor entry to tourist attractions, museums and cultural sites", descAr: "تسجيل دخول الزوار إلى المعالم السياحية والمتاحف والمواقع الثقافية", color: "#D6B47E", code: "TOR_ATTRACTION" },
+  { id: "attraction" as EventType, icon: "ri-ticket-2-line", label: "Attraction Entry", labelAr: "دخول معلم سياحي", desc: "Record visitor entry to tourist attractions, museums and cultural sites", descAr: "تسجيل دخول الزوار إلى المعالم السياحية والمتاحف والمواقع الثقافية", color: "#C5A365", code: "TOR_ATTRACTION" },
   { id: "tour" as EventType, icon: "ri-map-2-line", label: "Tour Booking", labelAr: "حجز جولة سياحية", desc: "Register tour bookings with operator license, guide details and group info", descAr: "تسجيل حجوزات الجولات مع رخصة المشغل وتفاصيل المرشد والمجموعة", color: "#4ADE80", code: "TOR_BOOKING" },
   { id: "adventure" as EventType, icon: "ri-run-line", label: "Adventure Activity", labelAr: "نشاط مغامرة", desc: "Register adventure activities with risk level, waiver and certification", descAr: "تسجيل أنشطة المغامرة مع مستوى المخاطر وإخلاء المسؤولية والشهادة", color: "#C98A1B", code: "TOR_ADVENTURE" },
 ];
@@ -22,7 +22,7 @@ const TourismEventsPage = () => {
   const handleSwitch = (id: EventType) => { setActiveEvent(id); setFormKey(k => k + 1); };
 
   return (
-    <div className="min-h-screen font-['Inter']" style={{ background: "#051428" }} dir={isAr ? "rtl" : "ltr"}>
+    <div className="min-h-screen font-['Manrope']" style={{ background: "#071426" }} dir={isAr ? "rtl" : "ltr"}>
       <div className="fixed inset-0 pointer-events-none" style={{ backgroundImage: `linear-gradient(rgba(184,138,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.03) 1px, transparent 1px)`, backgroundSize: "40px 40px" }} />
       <PageHeader
         title={isAr ? "أحداث السياحة" : "Tourism Events"}

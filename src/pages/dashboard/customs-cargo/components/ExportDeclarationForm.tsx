@@ -29,9 +29,9 @@ const ExportDeclarationForm = ({ isAr, onSubmit }: Props) => {
     }, 1200);
   };
 
-  const inputClass = "w-full bg-transparent border rounded-lg px-3 py-2.5 text-white text-sm font-['Inter'] focus:outline-none focus:border-gold-400 transition-colors placeholder-gray-600";
+  const inputClass = "w-full bg-transparent border rounded-lg px-3 py-2.5 text-white text-sm font-['Manrope'] focus:outline-none focus:border-gold-400 transition-colors placeholder-gray-600";
   const inputStyle = { borderColor: "rgba(184,138,60,0.2)", background: "rgba(255,255,255,0.03)" };
-  const labelClass = "block text-gray-400 text-xs font-['Inter'] mb-1.5";
+  const labelClass = "block text-gray-400 text-xs font-['Manrope'] mb-1.5";
   const sectionClass = "rounded-xl p-5 space-y-4";
   const sectionStyle = { background: "rgba(10,37,64,0.6)", border: "1px solid rgba(184,138,60,0.1)" };
 
@@ -39,7 +39,7 @@ const ExportDeclarationForm = ({ isAr, onSubmit }: Props) => {
     <form onSubmit={handleSubmit} className="space-y-5">
       {/* Declaration Header */}
       <div className={sectionClass} style={sectionStyle}>
-        <h3 className="text-gold-400 text-sm font-semibold font-['Inter'] flex items-center gap-2">
+        <h3 className="text-gold-400 text-sm font-semibold font-['Manrope'] flex items-center gap-2">
           <i className="ri-file-list-3-line" />
           {isAr ? "بيانات إقرار التصدير" : "Export Declaration Details"}
         </h3>
@@ -76,13 +76,13 @@ const ExportDeclarationForm = ({ isAr, onSubmit }: Props) => {
               onClick={() => setIsReExport(!isReExport)}
               className="w-5 h-5 rounded flex items-center justify-center transition-all cursor-pointer"
               style={{
-                background: isReExport ? "#D6B47E" : "transparent",
-                border: `2px solid ${isReExport ? "#D6B47E" : "rgba(184,138,60,0.3)"}`,
+                background: isReExport ? "#C5A365" : "transparent",
+                border: `2px solid ${isReExport ? "#C5A365" : "rgba(184,138,60,0.3)"}`,
               }}
             >
-              {isReExport && <i className="ri-check-line text-xs text-[#051428]" />}
+              {isReExport && <i className="ri-check-line text-xs text-[#071426]" />}
             </div>
-            <span className="text-gray-300 text-sm font-['Inter']">
+            <span className="text-gray-300 text-sm font-['Manrope']">
               {isAr ? "إعادة تصدير (بضائع مستوردة مسبقاً)" : "Re-Export (previously imported goods)"}
             </span>
           </label>
@@ -95,9 +95,9 @@ const ExportDeclarationForm = ({ isAr, onSubmit }: Props) => {
                 border: `2px solid ${isControlled ? "#FACC15" : "rgba(250,204,21,0.3)"}`,
               }}
             >
-              {isControlled && <i className="ri-check-line text-xs text-[#051428]" />}
+              {isControlled && <i className="ri-check-line text-xs text-[#071426]" />}
             </div>
-            <span className="text-gray-300 text-sm font-['Inter']">
+            <span className="text-gray-300 text-sm font-['Manrope']">
               {isAr ? "بضائع خاضعة للرقابة (تتطلب شهادة المستخدم النهائي)" : "Controlled Goods (requires End User Certificate)"}
             </span>
           </label>
@@ -113,7 +113,7 @@ const ExportDeclarationForm = ({ isAr, onSubmit }: Props) => {
 
       {/* Goods Information */}
       <div className={sectionClass} style={sectionStyle}>
-        <h3 className="text-gold-400 text-sm font-semibold font-['Inter'] flex items-center gap-2">
+        <h3 className="text-gold-400 text-sm font-semibold font-['Manrope'] flex items-center gap-2">
           <i className="ri-box-3-line" />
           {isAr ? "معلومات البضائع" : "Goods Information"}
         </h3>
@@ -137,13 +137,13 @@ const ExportDeclarationForm = ({ isAr, onSubmit }: Props) => {
                   style={{ borderColor: "rgba(184,138,60,0.06)" }}
                   onClick={() => { setSelectedHs(h); setHsSearch(h.code); setShowHsDropdown(false); }}>
                   <span className="text-gold-400 text-sm font-bold font-['JetBrains_Mono']">{h.code}</span>
-                  <span className="text-gray-300 text-sm font-['Inter'] ml-2">{h.descriptionEn}</span>
+                  <span className="text-gray-300 text-sm font-['Manrope'] ml-2">{h.descriptionEn}</span>
                 </button>
               ))}
             </div>
           )}
           {selectedHs && (
-            <div className="mt-2 px-3 py-2 rounded-lg text-xs font-['Inter']"
+            <div className="mt-2 px-3 py-2 rounded-lg text-xs font-['Manrope']"
               style={{ background: "rgba(184,138,60,0.08)", border: "1px solid rgba(184,138,60,0.2)" }}>
               <span className="text-gold-400 font-bold">{selectedHs.code}</span>
               <span className="text-gray-300 ml-2">{selectedHs.descriptionEn}</span>
@@ -193,18 +193,18 @@ const ExportDeclarationForm = ({ isAr, onSubmit }: Props) => {
 
       {/* Exporter Details */}
       <div className={sectionClass} style={sectionStyle}>
-        <h3 className="text-gold-400 text-sm font-semibold font-['Inter'] flex items-center gap-2">
+        <h3 className="text-gold-400 text-sm font-semibold font-['Manrope'] flex items-center gap-2">
           <i className="ri-building-line" />
           {isAr ? "بيانات المُصدِّر" : "Exporter Details"}
         </h3>
         <div className="flex gap-3 mb-4">
           {(["company", "individual"] as const).map((t) => (
             <button key={t} type="button" onClick={() => setExporterType(t)}
-              className="px-4 py-2 rounded-lg text-sm font-['Inter'] font-medium transition-all cursor-pointer whitespace-nowrap"
+              className="px-4 py-2 rounded-lg text-sm font-['Manrope'] font-medium transition-all cursor-pointer whitespace-nowrap"
               style={{
-                background: exporterType === t ? "#D6B47E" : "rgba(184,138,60,0.08)",
-                color: exporterType === t ? "#051428" : "#9CA3AF",
-                border: `1px solid ${exporterType === t ? "#D6B47E" : "rgba(184,138,60,0.15)"}`,
+                background: exporterType === t ? "#C5A365" : "rgba(184,138,60,0.08)",
+                color: exporterType === t ? "#071426" : "#9CA3AF",
+                border: `1px solid ${exporterType === t ? "#C5A365" : "rgba(184,138,60,0.15)"}`,
               }}>
               {t === "company" ? (isAr ? "شركة" : "Company") : (isAr ? "فرد" : "Individual")}
             </button>
@@ -247,7 +247,7 @@ const ExportDeclarationForm = ({ isAr, onSubmit }: Props) => {
 
       {/* Transport */}
       <div className={sectionClass} style={sectionStyle}>
-        <h3 className="text-gold-400 text-sm font-semibold font-['Inter'] flex items-center gap-2">
+        <h3 className="text-gold-400 text-sm font-semibold font-['Manrope'] flex items-center gap-2">
           <i className="ri-ship-line" />
           {isAr ? "تفاصيل النقل" : "Transport Details"}
         </h3>
@@ -279,13 +279,13 @@ const ExportDeclarationForm = ({ isAr, onSubmit }: Props) => {
       {/* Submit */}
       <div className="flex items-center justify-end gap-3 pt-2">
         <button type="button"
-          className="px-6 py-2.5 rounded-lg text-sm font-['Inter'] font-medium cursor-pointer whitespace-nowrap transition-all"
-          style={{ border: "1px solid rgba(184,138,60,0.3)", color: "#D6B47E", background: "transparent" }}>
+          className="px-6 py-2.5 rounded-lg text-sm font-['Manrope'] font-medium cursor-pointer whitespace-nowrap transition-all"
+          style={{ border: "1px solid rgba(184,138,60,0.3)", color: "#C5A365", background: "transparent" }}>
           {isAr ? "حفظ مسودة" : "Save Draft"}
         </button>
         <button type="submit" disabled={submitting}
-          className="px-8 py-2.5 rounded-lg text-sm font-['Inter'] font-bold cursor-pointer whitespace-nowrap transition-all flex items-center gap-2"
-          style={{ background: submitting ? "rgba(184,138,60,0.5)" : "#D6B47E", color: "#051428" }}>
+          className="px-8 py-2.5 rounded-lg text-sm font-['Manrope'] font-bold cursor-pointer whitespace-nowrap transition-all flex items-center gap-2"
+          style={{ background: submitting ? "rgba(184,138,60,0.5)" : "#C5A365", color: "#071426" }}>
           {submitting ? (
             <><i className="ri-loader-4-line animate-spin" />{isAr ? "جارٍ الإرسال..." : "Submitting..."}</>
           ) : (

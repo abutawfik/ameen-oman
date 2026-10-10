@@ -69,7 +69,7 @@ export default function BatchUpload({ lang }: Props) {
   const statusConfig = {
     success:    { color: '#4ADE80', label: 'Success',    labelAr: 'نجح' },
     error:      { color: '#C94A5E', label: 'Error',      labelAr: 'خطأ' },
-    processing: { color: '#D6B47E', label: 'Processing', labelAr: 'جارٍ' },
+    processing: { color: '#C5A365', label: 'Processing', labelAr: 'جارٍ' },
     pending:    { color: '#FACC15', label: 'Pending',    labelAr: 'معلق' },
   };
 
@@ -100,7 +100,7 @@ export default function BatchUpload({ lang }: Props) {
       <div
         className="rounded-xl border-2 border-dashed p-10 text-center mb-5 cursor-pointer transition-all"
         style={{
-          borderColor: dragging ? '#D6B47E' : 'rgba(184,138,60,0.2)',
+          borderColor: dragging ? '#C5A365' : 'rgba(184,138,60,0.2)',
           background: dragging ? 'rgba(184,138,60,0.06)' : 'rgba(10,37,64,0.5)',
         }}
         onDragOver={e => { e.preventDefault(); setDragging(true); }}
@@ -139,7 +139,7 @@ export default function BatchUpload({ lang }: Props) {
             <h3 className="text-white font-semibold mb-1">{isAr ? 'جارٍ المعالجة...' : 'Processing...'}</h3>
             <p className="text-gray-400 text-sm mb-4 truncate">{processedFile}</p>
             <div className="h-2 rounded-full overflow-hidden mb-2" style={{ background: 'rgba(184,138,60,0.1)' }}>
-              <div className="h-full rounded-full transition-all duration-150" style={{ width: `${progress}%`, background: '#D6B47E' }} />
+              <div className="h-full rounded-full transition-all duration-150" style={{ width: `${progress}%`, background: '#C5A365' }} />
             </div>
             <p className="text-gold-400 font-mono text-sm">{progress}%</p>
           </div>

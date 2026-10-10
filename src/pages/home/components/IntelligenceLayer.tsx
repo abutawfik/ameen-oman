@@ -11,11 +11,11 @@ import {
 
 // ─── Brand tokens (inline — same pattern used across the public landing) ─────
 const C = {
-  midnight800: "#051428",
+  midnight800: "#071426",
   midnight900: "#020A14",
   ivory100:    "#F8F5F0",
   ivory200:    "#EFE8D7",
-  gold400:     "#D6B47E",
+  gold400:     "#C5A365",
   omanRed:     "#8A1F3C",
 };
 

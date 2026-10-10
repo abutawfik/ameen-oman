@@ -108,7 +108,7 @@ const NewConnectionForm = ({ isAr, onCancel }: Props) => {
     setTimeout(() => { setSaving(false); setSubmitted(true); }, 1400);
   };
 
-  if (submitted) return <UtilConfirmation isAr={isAr} onReset={() => setSubmitted(false)} eventLabel="New Utility Connection" eventLabelAr="توصيل خدمة جديدة" eventColor="#D6B47E" />;
+  if (submitted) return <UtilConfirmation isAr={isAr} onReset={() => setSubmitted(false)} eventLabel="New Utility Connection" eventLabelAr="توصيل خدمة جديدة" eventColor="#C5A365" />;
 
   const t = {
     eventInfo: isAr ? "معلومات الحدث" : "Event Information",

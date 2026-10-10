@@ -27,7 +27,7 @@ const ReportKpiCards = ({ isAr, dateRange }: Props) => {
       trend: "+8.4%",
       trendUp: true,
       icon: "ri-calendar-check-line",
-      color: "#D6B47E",
+      color: "#C5A365",
       sub: isAr ? "جميع الوحدات" : "All modules",
     },
     {
@@ -101,7 +101,7 @@ const ReportKpiCards = ({ isAr, dateRange }: Props) => {
           <div className="relative w-24 h-24 flex-shrink-0">
             <svg viewBox="0 0 36 36" className="w-full h-full -rotate-90">
               <circle cx="18" cy="18" r="15.9" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="3" />
-              <circle cx="18" cy="18" r="15.9" fill="none" stroke="#D6B47E" strokeWidth="3"
+              <circle cx="18" cy="18" r="15.9" fill="none" stroke="#C5A365" strokeWidth="3"
                 strokeDasharray="62 38" strokeLinecap="round" />
               <circle cx="18" cy="18" r="15.9" fill="none" stroke="#4ADE80" strokeWidth="3"
                 strokeDasharray="38 62" strokeDashoffset="-62" strokeLinecap="round" />
@@ -113,7 +113,7 @@ const ReportKpiCards = ({ isAr, dateRange }: Props) => {
           </div>
           <div className="flex flex-wrap gap-6">
             {[
-              { label: isAr ? "رفع دُفعة" : "Batch Upload", pct: "62%", count: "29,940", color: "#D6B47E" },
+              { label: isAr ? "رفع دُفعة" : "Batch Upload", pct: "62%", count: "29,940", color: "#C5A365" },
               { label: isAr ? "إرسال فردي" : "Individual Submit", pct: "38%", count: "18,351", color: "#4ADE80" },
             ].map((item) => (
               <div key={item.label} className="flex items-center gap-3">

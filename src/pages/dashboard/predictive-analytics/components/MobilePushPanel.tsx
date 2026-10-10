@@ -51,7 +51,7 @@ export default function MobilePushPanel() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {[
             { label: 'Officers Online', value: `${onlineCount} / ${FIELD_OFFICERS.length}`, icon: 'ri-user-line', color: '#4ADE80' },
-            { label: 'Avg Response', value: '4.2 min', icon: 'ri-time-line', color: '#D6B47E' },
+            { label: 'Avg Response', value: '4.2 min', icon: 'ri-time-line', color: '#C5A365' },
             { label: 'Acknowledged', value: `${acknowledged.size} / ${criticalAlerts.length}`, icon: 'ri-check-double-line', color: '#4ADE80' },
             { label: 'Pending Action', value: `${criticalAlerts.length - acknowledged.size}`, icon: 'ri-alarm-warning-line', color: '#C98A1B' },
           ].map(stat => (
@@ -199,7 +199,7 @@ export default function MobilePushPanel() {
                     <button
                       onClick={() => handleAck(alert.id)}
                       className="flex-1 py-2 rounded-lg text-xs font-semibold cursor-pointer transition-all whitespace-nowrap"
-                      style={{ background: '#D6B47E', color: '#051428' }}
+                      style={{ background: '#C5A365', color: '#071426' }}
                     >
                       <i className="ri-check-line mr-1" />Acknowledge
                     </button>

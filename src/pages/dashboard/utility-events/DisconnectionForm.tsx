@@ -88,9 +88,9 @@ const DisconnectionForm = ({ isAr, onCancel }: Props) => {
               <TextInput placeholder="ACC-XXXX-XXXX" value={accountNumber} onChange={(e) => setAccountNumber(e.target.value)} className="font-['JetBrains_Mono'] flex-1" />
               <button type="button" onClick={handleLookup}
                 className="flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap"
-                style={{ background: "#D6B47E", color: "#051428" }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C99C48"; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#D6B47E"; }}>
+                style={{ background: "#C5A365", color: "#071426" }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C5A365"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C5A365"; }}>
                 {lookingUp ? <i className="ri-loader-4-line animate-spin" /> : <i className="ri-search-line" />}
                 {isAr ? "بحث" : "Lookup"}
               </button>
@@ -102,10 +102,10 @@ const DisconnectionForm = ({ isAr, onCancel }: Props) => {
               <div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
                 {[
                   { label: isAr ? "صاحب الحساب" : "Account Holder", value: accountInfo.holderName, color: "#FFFFFF" },
-                  { label: isAr ? "نوع الخدمة" : "Service Type", value: accountInfo.serviceType, color: "#D6B47E" },
+                  { label: isAr ? "نوع الخدمة" : "Service Type", value: accountInfo.serviceType, color: "#C5A365" },
                   { label: isAr ? "المزود" : "Provider", value: accountInfo.provider, color: "#D1D5DB" },
                   { label: isAr ? "العنوان" : "Address", value: accountInfo.address, color: "#D1D5DB" },
-                  { label: isAr ? "رقم العداد" : "Meter Number", value: accountInfo.meterNumber, color: "#D6B47E" },
+                  { label: isAr ? "رقم العداد" : "Meter Number", value: accountInfo.meterNumber, color: "#C5A365" },
                   { label: isAr ? "الرصيد المستحق" : "Outstanding Balance", value: `${accountInfo.outstandingBalance} LCY`, color: accountInfo.outstandingBalance > 0 ? "#C94A5E" : "#4ADE80" },
                 ].map((item) => (
                   <div key={item.label}>
@@ -155,9 +155,9 @@ const DisconnectionForm = ({ isAr, onCancel }: Props) => {
               placeholder={isAr ? "أي ملاحظات إضافية..." : "Any additional notes..."}
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
-              className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none resize-none font-['Inter']"
+              className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none resize-none font-['Manrope']"
               style={{ background: "#0F1923", border: "1px solid rgba(255,255,255,0.08)" }}
-              onFocus={(e) => { e.target.style.borderColor = "#D6B47E"; }}
+              onFocus={(e) => { e.target.style.borderColor = "#C5A365"; }}
               onBlur={(e) => { e.target.style.borderColor = "rgba(255,255,255,0.08)"; }}
             />
           </FormField>
@@ -182,7 +182,7 @@ const DisconnectionForm = ({ isAr, onCancel }: Props) => {
         </button>
         <button type="button" onClick={handleSubmit} disabled={!confirmed || saving}
           className="flex items-center gap-2 px-6 py-2.5 rounded-lg text-sm font-bold cursor-pointer whitespace-nowrap disabled:opacity-40"
-          style={{ background: "#C94A5E", color: "#051428" }}
+          style={{ background: "#C94A5E", color: "#071426" }}
           onMouseEnter={(e) => { if (confirmed) (e.currentTarget as HTMLButtonElement).style.background = "#EF4444"; }}
           onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C94A5E"; }}>
           {saving ? <i className="ri-loader-4-line animate-spin" /> : <i className="ri-shut-down-line" />}

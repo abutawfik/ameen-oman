@@ -38,10 +38,10 @@ const MunConfirmation = ({ refNumber, eventType, isAr, onReset, dashboardPath = 
         />
       </div>
 
-      <h2 className="text-white text-2xl font-bold mb-2 font-['Inter']">
+      <h2 className="text-white text-2xl font-bold mb-2 font-['Manrope']">
         {isAr ? "تم الإرسال بنجاح" : "Submitted Successfully"}
       </h2>
-      <p className="text-gray-400 text-sm mb-6 font-['Inter']">
+      <p className="text-gray-400 text-sm mb-6 font-['Manrope']">
         {isAr ? `تم إرسال حدث "${eventType}" إلى منصة Al-Ameen` : `"${eventType}" event submitted to Al-Ameen platform`}
       </p>
 
@@ -50,7 +50,7 @@ const MunConfirmation = ({ refNumber, eventType, isAr, onReset, dashboardPath = 
         className="px-6 py-4 rounded-xl border mb-6 w-full max-w-sm"
         style={{ background: "rgba(184,138,60,0.05)", borderColor: "rgba(184,138,60,0.2)" }}
       >
-        <p className="text-gray-500 text-xs mb-1 font-['Inter']">{isAr ? "رقم المرجع" : "Reference Number"}</p>
+        <p className="text-gray-500 text-xs mb-1 font-['Manrope']">{isAr ? "رقم المرجع" : "Reference Number"}</p>
         <p className="text-gold-400 text-xl font-bold font-['JetBrains_Mono'] tracking-wider">{refNumber}</p>
       </div>
 
@@ -64,12 +64,12 @@ const MunConfirmation = ({ refNumber, eventType, isAr, onReset, dashboardPath = 
                 style={{
                   background: i === 0 ? "rgba(184,138,60,0.2)" : "rgba(255,255,255,0.05)",
                   border: `1px solid ${i === 0 ? "rgba(184,138,60,0.5)" : "rgba(255,255,255,0.1)"}`,
-                  color: i === 0 ? "#D6B47E" : "#6B7280",
+                  color: i === 0 ? "#C5A365" : "#6B7280",
                 }}
               >
                 {i === 0 ? <i className="ri-check-line text-xs" /> : i + 1}
               </div>
-              <span className="text-xs whitespace-nowrap" style={{ color: i === 0 ? "#D6B47E" : "#6B7280" }}>{step}</span>
+              <span className="text-xs whitespace-nowrap" style={{ color: i === 0 ? "#C5A365" : "#6B7280" }}>{step}</span>
             </div>
             {i < steps.length - 1 && (
               <div className="w-8 h-px mb-4" style={{ background: i === 0 ? "rgba(184,138,60,0.3)" : "rgba(255,255,255,0.08)" }} />
@@ -82,8 +82,8 @@ const MunConfirmation = ({ refNumber, eventType, isAr, onReset, dashboardPath = 
         <button
           type="button"
           onClick={onReset}
-          className="flex items-center gap-2 px-5 py-2.5 rounded-lg border text-sm font-semibold cursor-pointer whitespace-nowrap font-['Inter'] transition-colors"
-          style={{ background: "transparent", borderColor: "rgba(184,138,60,0.3)", color: "#D6B47E" }}
+          className="flex items-center gap-2 px-5 py-2.5 rounded-lg border text-sm font-semibold cursor-pointer whitespace-nowrap font-['Manrope'] transition-colors"
+          style={{ background: "transparent", borderColor: "rgba(184,138,60,0.3)", color: "#C5A365" }}
           onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(184,138,60,0.08)"; }}
           onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "transparent"; }}
         >
@@ -92,10 +92,10 @@ const MunConfirmation = ({ refNumber, eventType, isAr, onReset, dashboardPath = 
         <button
           type="button"
           onClick={() => navigate(dashboardPath)}
-          className="flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-bold cursor-pointer whitespace-nowrap font-['Inter'] transition-colors"
-          style={{ background: "#D6B47E", color: "#051428" }}
-          onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C99C48"; }}
-          onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#D6B47E"; }}
+          className="flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-bold cursor-pointer whitespace-nowrap font-['Manrope'] transition-colors"
+          style={{ background: "#C5A365", color: "#071426" }}
+          onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C5A365"; }}
+          onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C5A365"; }}
         >
           <i className="ri-dashboard-line" />{isAr ? "لوحة التحكم" : "Dashboard"}
         </button>

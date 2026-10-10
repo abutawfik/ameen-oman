@@ -215,7 +215,7 @@ const VehicleBookForm = ({ isAr, onCancel }: Props) => {
         refNumber={refNumber}
         eventType={isAr ? "حجز مركبة" : "Vehicle Booking"}
         eventCode="CAR_BOOK"
-        color="#D6B47E"
+        color="#C5A365"
         isAr={isAr}
         onReset={() => { setConfirmed(false); setAutoFilled(false); setBookingRef(""); setPlate(""); setMake(""); setModel(""); }}
       />

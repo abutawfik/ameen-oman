@@ -32,11 +32,11 @@ export default function SavedQueriesPanel({ isAr, onRun }: Props) {
             }}
           >
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 8, marginBottom: 6 }}>
-              <span style={{ fontSize: 12, color: '#CBD5E1', fontFamily: "'Inter', sans-serif", lineHeight: 1.4 }}>{q.name}</span>
+              <span style={{ fontSize: 12, color: '#CBD5E1', fontFamily: "'Manrope', sans-serif", lineHeight: 1.4 }}>{q.name}</span>
               <div style={{ display: 'flex', gap: 4, flexShrink: 0 }}>
                 <button
                   onClick={() => onRun(q)}
-                  style={{ padding: '3px 8px', borderRadius: 4, fontSize: 11, cursor: 'pointer', background: 'rgba(184,138,60,0.15)', border: '1px solid rgba(184,138,60,0.3)', color: '#D6B47E', fontFamily: "'JetBrains Mono', monospace" }}
+                  style={{ padding: '3px 8px', borderRadius: 4, fontSize: 11, cursor: 'pointer', background: 'rgba(184,138,60,0.15)', border: '1px solid rgba(184,138,60,0.3)', color: '#C5A365', fontFamily: "'JetBrains Mono', monospace" }}
                 >
                   {isAr ? 'تشغيل' : 'Run'}
                 </button>
@@ -71,7 +71,7 @@ export default function SavedQueriesPanel({ isAr, onRun }: Props) {
           </div>
         ))}
         {queries.length === 0 && (
-          <div style={{ textAlign: 'center', color: '#374B61', fontSize: 12, marginTop: 24, fontFamily: "'Inter', sans-serif" }}>
+          <div style={{ textAlign: 'center', color: '#374B61', fontSize: 12, marginTop: 24, fontFamily: "'Manrope', sans-serif" }}>
             {isAr ? 'لا توجد استعلامات محفوظة' : 'No saved queries'}
           </div>
         )}

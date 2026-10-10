@@ -30,9 +30,9 @@ interface Props {
 }
 
 const C = {
-  brassLight: "#D6B47E",
+  brassLight: "#C5A365",
   brassMid:   "#B88A3C",
-  oceanDark:  "#051428",
+  oceanDark:  "#071426",
   oceanCard:  "#0A2540",
   ivory:      "#F8F5F0",
   muted:      "#7A9CBF",

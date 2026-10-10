@@ -9,7 +9,7 @@ interface Props {
 }
 
 const RISK_COLORS: Record<string, string> = {
-  critical: '#C94A5E', high: '#D4922A', medium: '#D6B47E', low: '#4A8E5A',
+  critical: '#C94A5E', high: '#D4922A', medium: '#C5A365', low: '#4A8E5A',
 };
 
 const STATUS_COLORS: Record<HitStatus, string> = {
@@ -58,7 +58,7 @@ export default function HitCard({ hit, isAr, onStatusChange }: Props) {
       {/* Header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 8, marginBottom: 8 }}>
         <div>
-          <div style={{ fontSize: 14, color: '#CBD5E1', fontFamily: "'Inter', sans-serif", fontWeight: 500 }}>
+          <div style={{ fontSize: 14, color: '#CBD5E1', fontFamily: "'Manrope', sans-serif", fontWeight: 500 }}>
             {isAr ? hit.travelerNameAr : hit.travelerName}
           </div>
           <div style={{ fontSize: 11, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", marginTop: 2 }}>
@@ -78,11 +78,11 @@ export default function HitCard({ hit, isAr, onStatusChange }: Props) {
       </div>
 
       {/* Watchlist + match reason */}
-      <div style={{ marginBottom: 8, fontSize: 12, color: '#8FA8C0', fontFamily: "'Inter', sans-serif" }}>
+      <div style={{ marginBottom: 8, fontSize: 12, color: '#8FA8C0', fontFamily: "'Manrope', sans-serif" }}>
         <i className="ri-shield-check-line" style={{ marginRight: 5, color: '#B8893C' }} />
         <strong style={{ color: '#B8893C' }}>{hit.watchlistName}</strong>
       </div>
-      <div style={{ fontSize: 11, color: '#5B7494', fontFamily: "'Inter', sans-serif", marginBottom: 10, lineHeight: 1.5 }}>
+      <div style={{ fontSize: 11, color: '#5B7494', fontFamily: "'Manrope', sans-serif", marginBottom: 10, lineHeight: 1.5 }}>
         {hit.matchReason}
       </div>
 
@@ -95,7 +95,7 @@ export default function HitCard({ hit, isAr, onStatusChange }: Props) {
 
       {/* Existing notes */}
       {hit.notes && (
-        <div style={{ fontSize: 11, color: '#5B7494', fontFamily: "'Inter', sans-serif", padding: '6px 10px', borderRadius: 4, background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(184,138,60,0.08)', marginBottom: 10 }}>
+        <div style={{ fontSize: 11, color: '#5B7494', fontFamily: "'Manrope', sans-serif", padding: '6px 10px', borderRadius: 4, background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(184,138,60,0.08)', marginBottom: 10 }}>
           {hit.notes}
         </div>
       )}
@@ -130,7 +130,7 @@ export default function HitCard({ hit, isAr, onStatusChange }: Props) {
             <select
               value={preset}
               onChange={e => setPreset(e.target.value)}
-              style={{ width: '100%', padding: '6px 10px', borderRadius: 4, fontSize: 12, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(184,138,60,0.2)', color: '#CBD5E1', fontFamily: "'Inter', sans-serif", outline: 'none' }}
+              style={{ width: '100%', padding: '6px 10px', borderRadius: 4, fontSize: 12, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(184,138,60,0.2)', color: '#CBD5E1', fontFamily: "'Manrope', sans-serif", outline: 'none' }}
             >
               <option value="">{isAr ? '— اختر سبباً —' : '— Select reason —'}</option>
               {HIT_COMMENT_PRESETS.map(p => (
@@ -145,7 +145,7 @@ export default function HitCard({ hit, isAr, onStatusChange }: Props) {
               onChange={e => setFreeText(e.target.value)}
               rows={2}
               placeholder={isAr ? 'تفاصيل إضافية…' : 'Additional details…'}
-              style={{ width: '100%', padding: '6px 10px', borderRadius: 4, fontSize: 12, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(184,138,60,0.2)', color: '#CBD5E1', fontFamily: "'Inter', sans-serif", outline: 'none', resize: 'vertical', boxSizing: 'border-box', marginBottom: 10 }}
+              style={{ width: '100%', padding: '6px 10px', borderRadius: 4, fontSize: 12, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(184,138,60,0.2)', color: '#CBD5E1', fontFamily: "'Manrope', sans-serif", outline: 'none', resize: 'vertical', boxSizing: 'border-box', marginBottom: 10 }}
             />
           )}
 

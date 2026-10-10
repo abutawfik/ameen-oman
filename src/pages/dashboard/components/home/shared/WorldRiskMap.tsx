@@ -91,12 +91,12 @@ const WorldRiskMap = ({ origins, onSelectCountry, isAr, selectedIso2 }: Props) =
           </g>
 
           {/* Oman anchor outline + marker */}
-          <path d={OMAN_PATH} fill="rgba(184,138,60,0.35)" stroke="#D6B47E" strokeWidth={0.6} />
+          <path d={OMAN_PATH} fill="rgba(184,138,60,0.35)" stroke="#C5A365" strokeWidth={0.6} />
           <circle
             cx={omanMarker.lon}
             cy={-omanMarker.lat}
             r={2.6}
-            fill="#D6B47E"
+            fill="#C5A365"
             opacity={0.9}
           />
           <circle
@@ -104,7 +104,7 @@ const WorldRiskMap = ({ origins, onSelectCountry, isAr, selectedIso2 }: Props) =
             cy={-omanMarker.lat}
             r={5.2}
             fill="none"
-            stroke="#D6B47E"
+            stroke="#C5A365"
             strokeWidth={0.5}
             opacity={0.5}
           >
@@ -164,7 +164,7 @@ const WorldRiskMap = ({ origins, onSelectCountry, isAr, selectedIso2 }: Props) =
           <text
             x={omanMarker.lon}
             y={-omanMarker.lat - 4}
-            fill="#D6B47E"
+            fill="#C5A365"
             fontFamily="JetBrains Mono, monospace"
             fontSize="2.2"
             fontWeight="bold"

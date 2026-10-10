@@ -53,10 +53,10 @@ const FieldMap = ({ isAr }: Props) => {
             { key: "sectors" as const, labelEn: "Sectors", labelAr: "القطاعات" },
           ]).map((l) => (
             <button key={l.key} onClick={() => setMapLayer(l.key)}
-              className="flex-1 py-1.5 rounded-lg text-[11px] font-['Inter'] font-medium cursor-pointer transition-all"
+              className="flex-1 py-1.5 rounded-lg text-[11px] font-['Manrope'] font-medium cursor-pointer transition-all"
               style={{
                 background: mapLayer === l.key ? "rgba(184,138,60,0.12)" : "transparent",
-                color: mapLayer === l.key ? "#D6B47E" : "#6B7280",
+                color: mapLayer === l.key ? "#C5A365" : "#6B7280",
                 border: mapLayer === l.key ? "1px solid rgba(184,138,60,0.25)" : "1px solid transparent",
               }}>
               {isAr ? l.labelAr : l.labelEn}
@@ -107,7 +107,7 @@ const FieldMap = ({ isAr }: Props) => {
 
         {/* Grid overlay */}
         <svg className="absolute inset-0 w-full h-full opacity-10">
-          <defs><pattern id="fm-grid" width="30" height="30" patternUnits="userSpaceOnUse"><path d="M 30 0 L 0 0 0 30" fill="none" stroke="#D6B47E" strokeWidth="0.4"/></pattern></defs>
+          <defs><pattern id="fm-grid" width="30" height="30" patternUnits="userSpaceOnUse"><path d="M 30 0 L 0 0 0 30" fill="none" stroke="#C5A365" strokeWidth="0.4"/></pattern></defs>
           <rect width="100%" height="100%" fill="url(#fm-grid)"/>
         </svg>
 
@@ -115,7 +115,7 @@ const FieldMap = ({ isAr }: Props) => {
         {mapLayer === "sectors" && (
           <>
             <div className="absolute rounded-xl opacity-20"
-              style={{ left: "15%", top: "20%", width: "35%", height: "40%", background: "#D6B47E", border: "1px solid #D6B47E" }} />
+              style={{ left: "15%", top: "20%", width: "35%", height: "40%", background: "#C5A365", border: "1px solid #C5A365" }} />
             <div className="absolute rounded-xl opacity-20"
               style={{ left: "52%", top: "25%", width: "35%", height: "40%", background: "#4ADE80", border: "1px solid #4ADE80" }} />
             <div className="absolute text-[9px] font-bold font-['JetBrains_Mono'] text-gold-400"
@@ -129,7 +129,7 @@ const FieldMap = ({ isAr }: Props) => {
         <div className="absolute" style={{ left: "48%", top: "52%" }}>
           <div className="relative">
             <div className="w-5 h-5 rounded-full bg-gold-400 flex items-center justify-center"
-              style={{ boxShadow: "0 0 16px #D6B47E, 0 0 32px rgba(184,138,60,0.4)" }}>
+              style={{ boxShadow: "0 0 16px #C5A365, 0 0 32px rgba(184,138,60,0.4)" }}>
               <i className="ri-user-fill text-[8px] text-black" />
             </div>
             <div className="absolute inset-0 rounded-full bg-gold-400 animate-ping opacity-30" />
@@ -199,7 +199,7 @@ const FieldMap = ({ isAr }: Props) => {
             style={{ background: "rgba(10,37,64,0.97)", border: `1px solid ${priorityConfig[selectedLoc.alertLevel].color}44` }}>
             <div className="flex items-start justify-between gap-2">
               <div className="flex-1 min-w-0">
-                <p className="text-white text-xs font-bold font-['Inter'] truncate">{isAr ? selectedLoc.nameAr : selectedLoc.name}</p>
+                <p className="text-white text-xs font-bold font-['Manrope'] truncate">{isAr ? selectedLoc.nameAr : selectedLoc.name}</p>
                 <div className="flex items-center gap-2 mt-1">
                   <span className="text-[9px] font-['JetBrains_Mono'] uppercase"
                     style={{ color: priorityConfig[selectedLoc.alertLevel].color }}>
@@ -212,7 +212,7 @@ const FieldMap = ({ isAr }: Props) => {
               </div>
               <div className="flex items-center gap-1.5 flex-shrink-0">
                 <button className="flex items-center gap-1 px-2 py-1 rounded-lg text-[11px] font-['JetBrains_Mono'] cursor-pointer"
-                  style={{ background: "rgba(184,138,60,0.1)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.25)" }}>
+                  style={{ background: "rgba(184,138,60,0.1)", color: "#C5A365", border: "1px solid rgba(184,138,60,0.25)" }}>
                   <i className="ri-navigation-line text-[11px]" />
                   {isAr ? "توجيه" : "Navigate"}
                 </button>
@@ -241,7 +241,7 @@ const FieldMap = ({ isAr }: Props) => {
                     <i className="ri-shield-fill text-sm" style={{ color: officerStatusColors[off.status] }} />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-white text-xs font-['Inter'] font-semibold truncate">{off.name}</p>
+                    <p className="text-white text-xs font-['Manrope'] font-semibold truncate">{off.name}</p>
                     <p className="text-gray-500 text-[9px] font-['JetBrains_Mono']">{off.badge} · Sector {off.sector}</p>
                   </div>
                   <div className="flex flex-col items-end flex-shrink-0">
@@ -271,7 +271,7 @@ const FieldMap = ({ isAr }: Props) => {
                       <i className="ri-map-pin-2-fill text-sm" style={{ color: cfg.color }} />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-white text-xs font-['Inter'] font-semibold truncate">{isAr ? loc.nameAr : loc.name}</p>
+                      <p className="text-white text-xs font-['Manrope'] font-semibold truncate">{isAr ? loc.nameAr : loc.name}</p>
                       <p className="text-gray-500 text-[9px] font-['JetBrains_Mono']">{loc.type} · {loc.activeAlerts} {isAr ? "تنبيه" : "alert(s)"}</p>
                     </div>
                     <div className="flex flex-col items-end flex-shrink-0">

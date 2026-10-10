@@ -116,7 +116,7 @@ const AlgorithmsPanel = ({
       icon: "ri-route-line",
       label: isAr ? "أقصر مسار" : "Shortest Path",
       desc: isAr ? "اختر عقدتين → إيجاد المسار" : "Select 2 nodes → find path",
-      color: "#D6B47E",
+      color: "#C5A365",
       action: findShortestPath,
       requiresSelection: true,
     },
@@ -179,10 +179,10 @@ const AlgorithmsPanel = ({
     >
       {/* Header */}
       <div className="px-4 py-3 border-b flex-shrink-0" style={{ borderColor: "rgba(184,138,60,0.1)" }}>
-        <h3 className="text-white text-sm font-bold font-['Inter']">
+        <h3 className="text-white text-sm font-bold font-['Manrope']">
           {isAr ? "خوارزميات الرسم البياني" : "Graph Algorithms"}
         </h3>
-        <p className="text-gray-600 text-xs font-['Inter'] mt-0.5">
+        <p className="text-gray-600 text-xs font-['Manrope'] mt-0.5">
           {isAr ? "تحليل الشبكة بنقرة واحدة" : "One-click network analysis"}
         </p>
       </div>
@@ -203,14 +203,14 @@ const AlgorithmsPanel = ({
               <div className="w-6 h-6 flex items-center justify-center flex-shrink-0">
                 <i className={`${algo.icon} text-sm`} style={{ color: algo.color }} />
               </div>
-              <span className="text-xs font-semibold font-['Inter']" style={{ color: algo.color }}>{algo.label}</span>
+              <span className="text-xs font-semibold font-['Manrope']" style={{ color: algo.color }}>{algo.label}</span>
               {algo.requiresSelection && selectedNodes.length < 2 && (
                 <span className="ml-auto text-[11px] text-gray-600 font-['JetBrains_Mono']">
                   {isAr ? "يتطلب تحديداً" : "needs selection"}
                 </span>
               )}
             </div>
-            <p className="text-gray-500 text-[11px] font-['Inter'] pl-8">{algo.desc}</p>
+            <p className="text-gray-500 text-[11px] font-['Manrope'] pl-8">{algo.desc}</p>
           </button>
         ))}
 
@@ -218,7 +218,7 @@ const AlgorithmsPanel = ({
         {pathResult && (
           <div
             className="p-2.5 rounded-lg text-xs font-['JetBrains_Mono']"
-            style={{ background: "rgba(184,138,60,0.06)", border: "1px solid rgba(184,138,60,0.2)", color: "#D6B47E" }}
+            style={{ background: "rgba(184,138,60,0.06)", border: "1px solid rgba(184,138,60,0.2)", color: "#C5A365" }}
           >
             {pathResult}
           </div>
@@ -228,7 +228,7 @@ const AlgorithmsPanel = ({
         {(activeAlgo || pathResult) && (
           <button
             onClick={() => { onClearHighlights(); setActiveAlgo(null); setPathResult(null); }}
-            className="w-full py-2 rounded-lg text-xs font-['Inter'] cursor-pointer transition-colors"
+            className="w-full py-2 rounded-lg text-xs font-['Manrope'] cursor-pointer transition-colors"
             style={{ background: "rgba(201,74,94,0.08)", border: "1px solid rgba(201,74,94,0.2)", color: "#C94A5E" }}
           >
             <i className="ri-close-circle-line mr-1.5" />
@@ -244,7 +244,7 @@ const AlgorithmsPanel = ({
           {/* Confidence threshold */}
           <div className="mb-3">
             <div className="flex items-center justify-between mb-1.5">
-              <span className="text-gray-400 text-xs font-['Inter']">{isAr ? "حد الثقة" : "Confidence Threshold"}</span>
+              <span className="text-gray-400 text-xs font-['Manrope']">{isAr ? "حد الثقة" : "Confidence Threshold"}</span>
               <span className="text-gold-400 text-xs font-['JetBrains_Mono']">{confidenceThreshold}%</span>
             </div>
             <input
@@ -254,22 +254,22 @@ const AlgorithmsPanel = ({
               value={confidenceThreshold}
               onChange={e => onConfidenceChange(Number(e.target.value))}
               className="w-full h-1.5 rounded-full cursor-pointer appearance-none"
-              style={{ accentColor: "#D6B47E", background: `linear-gradient(to right, #D6B47E ${confidenceThreshold}%, rgba(255,255,255,0.1) ${confidenceThreshold}%)` }}
+              style={{ accentColor: "#C5A365", background: `linear-gradient(to right, #C5A365 ${confidenceThreshold}%, rgba(255,255,255,0.1) ${confidenceThreshold}%)` }}
             />
           </div>
 
           {/* Edge type filter */}
           <div>
-            <span className="text-gray-400 text-xs font-['Inter'] block mb-1.5">{isAr ? "نوع الرابط" : "Edge Type"}</span>
+            <span className="text-gray-400 text-xs font-['Manrope'] block mb-1.5">{isAr ? "نوع الرابط" : "Edge Type"}</span>
             <div className="flex flex-wrap gap-1">
               {edgeTypes.map(et => (
                 <button
                   key={et.key}
                   onClick={() => onEdgeFilterChange(et.key)}
-                  className="px-2 py-0.5 rounded text-[11px] font-['Inter'] cursor-pointer transition-colors whitespace-nowrap"
+                  className="px-2 py-0.5 rounded text-[11px] font-['Manrope'] cursor-pointer transition-colors whitespace-nowrap"
                   style={{
                     background: activeEdgeFilter === et.key ? "rgba(184,138,60,0.15)" : "rgba(255,255,255,0.04)",
-                    color: activeEdgeFilter === et.key ? "#D6B47E" : "#6B7280",
+                    color: activeEdgeFilter === et.key ? "#C5A365" : "#6B7280",
                     border: `1px solid ${activeEdgeFilter === et.key ? "rgba(184,138,60,0.3)" : "rgba(255,255,255,0.06)"}`,
                   }}
                 >
@@ -286,7 +286,7 @@ const AlgorithmsPanel = ({
             {isAr ? "الفلتر الزمني" : "TEMPORAL FILTER"}
           </p>
           <div className="flex items-center justify-between mb-1.5">
-            <span className="text-gray-400 text-xs font-['Inter']">{isAr ? "نطاق التاريخ" : "Date Range"}</span>
+            <span className="text-gray-400 text-xs font-['Manrope']">{isAr ? "نطاق التاريخ" : "Date Range"}</span>
             <span className="text-gold-400 text-xs font-['JetBrains_Mono']">2024 — 2025</span>
           </div>
           <div className="space-y-1.5">
@@ -297,7 +297,7 @@ const AlgorithmsPanel = ({
               value={temporalRange[0]}
               onChange={e => setTemporalRange([Number(e.target.value), temporalRange[1]])}
               className="w-full h-1.5 rounded-full cursor-pointer appearance-none"
-              style={{ accentColor: "#D6B47E" }}
+              style={{ accentColor: "#C5A365" }}
             />
             <input
               type="range"
@@ -306,7 +306,7 @@ const AlgorithmsPanel = ({
               value={temporalRange[1]}
               onChange={e => setTemporalRange([temporalRange[0], Number(e.target.value)])}
               className="w-full h-1.5 rounded-full cursor-pointer appearance-none"
-              style={{ accentColor: "#D6B47E" }}
+              style={{ accentColor: "#C5A365" }}
             />
           </div>
           <div className="flex justify-between mt-1">

@@ -1,3 +1,4 @@
+import { readDemoRecords, writeDemoRecords } from '@/workflows/demoStore';
 // Case Management — Wave 2 · Deliverable 2
 // Full lifecycle: DRAFT → OPEN → INVESTIGATING → PENDING_REVIEW → CLOSED + disposition.
 // Query param: ?id=CASE-XYZ pre-selects.
@@ -22,7 +23,7 @@ import {
 const STATUS_META: Record<CaseStatus, { labelEn: string; labelAr: string; color: string }> = {
   DRAFT:           { labelEn: "Draft",           labelAr: "مسودة",            color: "#6B7280" },
   OPEN:            { labelEn: "Open",            labelAr: "مفتوحة",          color: "#4A7AA8" },
-  INVESTIGATING:   { labelEn: "Investigating",   labelAr: "قيد التحقيق",      color: "#D6B47E" },
+  INVESTIGATING:   { labelEn: "Investigating",   labelAr: "قيد التحقيق",      color: "#C5A365" },
   PENDING_REVIEW:  { labelEn: "Pending review",  labelAr: "قيد المراجعة",    color: "#C98A1B" },
   CLOSED:          { labelEn: "Closed",          labelAr: "مغلقة",           color: "#4A8E3A" },
 };
@@ -72,7 +73,24 @@ const CaseManagementPage = () => {
   const { isAr } = useOutletContext<DashboardOutletContext>();
   const fonts = useBrandFonts();
   const [searchParams, setSearchParams] = useSearchParams();
-  const [cases, setCases] = useState<Case[]>(CASES);
+  const [loaded] = useState(() => {
+    try {
+      const records = readDemoRecords(localStorage, 'ameen-demo-cases-v1', CASES);
+      if (!records.length || records.some(record => !STATUS_META[record.status] || !Array.isArray(record.notes) || typeof record.title !== 'string' || typeof record.subjectName !== 'string')) throw new Error('Invalid demo cases');
+      return { records, error: false };
+    }
+    catch { return { records: CASES, error: true }; }
+  });
+  const [cases, updateCases] = useState<Case[]>(loaded.records);
+  const [storeError, setStoreError] = useState(loaded.error);
+  const persistCases = (update: (previous: Case[]) => Case[]) => {
+    if (loaded.error) return false;
+    try {
+      const records = update(cases);
+      writeDemoRecords(localStorage, 'ameen-demo-cases-v1', records);
+      updateCases(records); setStoreError(false); return true;
+    } catch { setStoreError(true); return false; }
+  };
   const [statusTab, setStatusTab] = useState<StatusFilter>("ALL");
   const [sevFilter, setSevFilter] = useState<SeverityFilter>("ALL");
   const [search, setSearch] = useState("");
@@ -113,13 +131,13 @@ const CaseManagementPage = () => {
   }), [cases, statusTab, sevFilter, search]);
 
   const advance = (next: CaseStatus) => {
-    setCases((prev) => prev.map((c) => c.id === active.id ? { ...c, status: next, lastActivityAt: new Date().toISOString() } : c));
+    if (!persistCases((prev) => prev.map((c) => c.id === active.id ? { ...c, status: next, lastActivityAt: new Date().toISOString() } : c))) return;
     setToast(isAr ? `تم نقل القضية إلى ${STATUS_META[next].labelAr}` : `Case moved to ${STATUS_META[next].labelEn}`);
     setTimeout(() => setToast(null), 2200);
   };
 
   const reopen = () => {
-    setCases((prev) => prev.map((c) => c.id === active.id ? { ...c, status: "INVESTIGATING", disposition: undefined, dispositionReason: undefined, closedAt: undefined, lastActivityAt: new Date().toISOString() } : c));
+    if (!persistCases((prev) => prev.map((c) => c.id === active.id ? { ...c, status: "INVESTIGATING", disposition: undefined, dispositionReason: undefined, closedAt: undefined, lastActivityAt: new Date().toISOString() } : c))) return;
     setToast(isAr ? "أُعيد فتح القضية" : "Case reopened");
     setTimeout(() => setToast(null), 2200);
   };
@@ -127,7 +145,7 @@ const CaseManagementPage = () => {
   const closeWithDisposition = () => {
     if (!dispReason.trim()) return;
     const now = new Date().toISOString();
-    setCases((prev) => prev.map((c) => c.id === active.id ? {
+    if (!persistCases((prev) => prev.map((c) => c.id === active.id ? {
       ...c,
       status: "CLOSED",
       severity: dispSeverity,
@@ -135,10 +153,10 @@ const CaseManagementPage = () => {
       dispositionReason: dispReason.trim(),
       closedAt: now,
       lastActivityAt: now,
-    } : c));
+    } : c))) return;
     setShowDispositionModal(false);
     setDispReason("");
-    setToast(isAr ? "تم تسجيل النتيجة المُعنونة — تُغذّي تدريب v0.3.2" : "Labelled outcome recorded — feeds v0.3.2 retraining");
+    setToast(isAr ? "تم حفظ النتيجة محلياً — لا توجد خدمة تدريب متصلة" : "Demo outcome saved locally — no training service connected");
     setTimeout(() => setToast(null), 3400);
   };
 
@@ -151,7 +169,7 @@ const CaseManagementPage = () => {
       createdAt: new Date().toISOString(),
       body: noteDraft.trim(),
     };
-    setCases((prev) => prev.map((c) => c.id === active.id ? { ...c, notes: [...c.notes, n], lastActivityAt: n.createdAt } : c));
+    if (!persistCases((prev) => prev.map((c) => c.id === active.id ? { ...c, notes: [...c.notes, n], lastActivityAt: n.createdAt } : c))) return;
     setNoteDraft("");
   };
 
@@ -177,11 +195,12 @@ const CaseManagementPage = () => {
 
   return (
     <div className="flex flex-col min-h-full" style={{ background: "var(--alm-ocean-800, #0A2540)" }}>
+      {storeError && <p role="alert" className="p-4 text-red-300">{isAr ? 'تعذر قراءة أو حفظ سجل العرض. تحقق من تخزين المتصفح قبل المتابعة.' : 'Demo records could not be read or saved. Check browser storage before continuing.'}</p>}
       <PageHeader
         title={isAr ? "إدارة القضايا" : "Case Management"}
-        subtitle={isAr ? "دورة حياة كاملة · تصرّف ملزم · تغذية تدريب" : "Full lifecycle · Dispositions · Feeds labelled training"}
+        subtitle={isAr ? "دورة حياة كاملة · القرارات · حفظ محلي في الوضع التجريبي" : "Full lifecycle · Dispositions · Saved locally in demo mode"}
         icon="ri-folder-shield-2-line"
-        iconColor="#D6B47E"
+        iconColor="#C5A365"
         isAr={isAr}
         action={toast ? (
           <div
@@ -209,7 +228,7 @@ const CaseManagementPage = () => {
           >
             {statusFilters.map((s) => {
               const active = statusTab === s;
-              const color = s === "ALL" ? "#D6B47E" : STATUS_META[s as CaseStatus].color;
+              const color = s === "ALL" ? "#C5A365" : STATUS_META[s as CaseStatus].color;
               const label = s === "ALL"
                 ? (isAr ? "الكل" : "All")
                 : (isAr ? STATUS_META[s as CaseStatus].labelAr : STATUS_META[s as CaseStatus].labelEn);
@@ -242,7 +261,7 @@ const CaseManagementPage = () => {
           <div className="flex gap-2 flex-wrap">
             {(["ALL", "CRITICAL", "HIGH", "MEDIUM", "LOW"] as SeverityFilter[]).map((s) => {
               const active = sevFilter === s;
-              const color = s === "ALL" ? "#D6B47E" : SEVERITY_META[s as Case["severity"]].color;
+              const color = s === "ALL" ? "#C5A365" : SEVERITY_META[s as Case["severity"]].color;
               return (
                 <button key={s} onClick={() => setSevFilter(s)}
                   className="flex items-center gap-1 px-2 py-1 rounded-full text-[11px] font-bold cursor-pointer"
@@ -293,7 +312,7 @@ const CaseManagementPage = () => {
                     border: "1px solid",
                     borderColor: isActive ? "rgba(184,138,60,0.15)" : "rgba(184,138,60,0.1)",
                     borderLeftWidth: 4,
-                    borderLeftColor: isActive ? "#D6B47E" : "transparent",
+                    borderLeftColor: isActive ? "#C5A365" : "transparent",
                     fontFamily: fonts.sans,
                   }}
                 >
@@ -356,9 +375,9 @@ const CaseManagementPage = () => {
                   onClick={primaryAction.onClick}
                   className="px-4 py-2 rounded-lg text-xs font-bold cursor-pointer"
                   style={{
-                    background: active.status === "CLOSED" ? "transparent" : "#D6B47E",
-                    color: active.status === "CLOSED" ? "#D6B47E" : "#051428",
-                    border: active.status === "CLOSED" ? "1px solid #D6B47E66" : "none",
+                    background: active.status === "CLOSED" ? "transparent" : "#C5A365",
+                    color: active.status === "CLOSED" ? "#C5A365" : "#071426",
+                    border: active.status === "CLOSED" ? "1px solid #C5A36566" : "none",
                     fontFamily: fonts.sans,
                   }}
                 >
@@ -389,7 +408,7 @@ const CaseManagementPage = () => {
               const sections: { title: string; titleAr: string; icon: string; items: string[]; color: string }[] = [
                 { title: "Linked events",   titleAr: "الأحداث المرتبطة",  icon: "ri-calendar-event-line", items: active.linkedEvents,  color: "#4A7AA8" },
                 { title: "Linked entities", titleAr: "الكيانات المرتبطة", icon: "ri-user-3-line",          items: [active.subjectName],  color: "#4A8E3A" },
-                { title: "Linked signals",  titleAr: "الإشارات المرتبطة", icon: "ri-flashlight-line",      items: active.linkedSignals, color: "#D6B47E" },
+                { title: "Linked signals",  titleAr: "الإشارات المرتبطة", icon: "ri-flashlight-line",      items: active.linkedSignals, color: "#C5A365" },
                 { title: "Linked scores",   titleAr: "الدرجات المرتبطة",  icon: "ri-shield-cross-line",     items: active.linkedScores,  color: "#C98A1B" },
               ];
               return sections.map((s) => (
@@ -490,7 +509,7 @@ const CaseManagementPage = () => {
                   </span>
                   <button onClick={addNote} disabled={!noteDraft.trim()}
                     className="px-3 py-1.5 rounded-md text-[11px] font-bold cursor-pointer disabled:opacity-40"
-                    style={{ background: "#D6B47E", color: "#051428", fontFamily: fonts.sans }}>
+                    style={{ background: "#C5A365", color: "#071426", fontFamily: fonts.sans }}>
                     {isAr ? "حفظ الملاحظة" : "Save note"}
                   </button>
                 </div>
@@ -580,7 +599,7 @@ const CaseManagementPage = () => {
               </button>
               <button onClick={closeWithDisposition} disabled={!dispReason.trim()}
                 className="px-4 py-2 rounded-lg text-xs font-bold cursor-pointer disabled:opacity-40"
-                style={{ background: "#D6B47E", color: "#051428", fontFamily: fonts.sans }}>
+                style={{ background: "#C5A365", color: "#071426", fontFamily: fonts.sans }}>
                 {isAr ? "إغلاق القضية" : "Close case"}
               </button>
             </div>

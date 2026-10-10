@@ -1,3 +1,5 @@
+import { readCheckIns } from '@/workflows/checkIn';
+import type { Booking } from '@/mocks/hospitalityData';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import HospitalitySidebar from './components/HospitalitySidebar';
@@ -18,7 +20,7 @@ type ActiveView =
 const BRANCHES = ['Main Branch — Muscat', 'Salalah Branch', 'Sohar Branch'];
 
 const statusConfig = {
-  confirmed:   { color: '#D6B47E', bg: 'rgba(184,138,60,0.1)',  label: 'Confirmed',   labelAr: 'مؤكد' },
+  confirmed:   { color: '#C5A365', bg: 'rgba(184,138,60,0.1)',  label: 'Confirmed',   labelAr: 'مؤكد' },
   checked_in:  { color: '#4ADE80', bg: 'rgba(74,222,128,0.1)',  label: 'Checked In',  labelAr: 'مسجل دخول' },
   checked_out: { color: '#9CA3AF', bg: 'rgba(156,163,175,0.1)', label: 'Checked Out', labelAr: 'مسجل خروج' },
   cancelled:   { color: '#C94A5E', bg: 'rgba(201,74,94,0.1)', label: 'Cancelled',   labelAr: 'ملغي' },
@@ -33,7 +35,7 @@ const syncStatusConfig = {
 
 const roomStatusConfig = {
   available:   { color: '#4ADE80', bg: 'rgba(74,222,128,0.12)',  label: 'Available',   labelAr: 'متاحة' },
-  occupied:    { color: '#D6B47E', bg: 'rgba(184,138,60,0.12)',  label: 'Occupied',    labelAr: 'مشغولة' },
+  occupied:    { color: '#C5A365', bg: 'rgba(184,138,60,0.12)',  label: 'Occupied',    labelAr: 'مشغولة' },
   reserved:    { color: '#FACC15', bg: 'rgba(250,204,21,0.12)',  label: 'Reserved',    labelAr: 'محجوزة' },
   maintenance: { color: '#C94A5E', bg: 'rgba(201,74,94,0.12)', label: 'Maintenance', labelAr: 'صيانة' },
 };
@@ -44,7 +46,11 @@ export default function HospitalityAppPage() {
   const [lang, setLang] = useState<'en' | 'ar'>('en');
   const [collapsed, setCollapsed] = useState(false);
   const [isOffline, setIsOffline] = useState(false);
-  const [pendingSync] = useState(3);
+  const [localBookings, setLocalBookings] = useState<Booking[]>(() => { try { return readCheckIns(localStorage); } catch { return []; } });
+  const allBookings = [...localBookings, ...bookings];
+  const pendingSync = syncLogs.filter(l => l.status === 'pending').length + localBookings.length;
+  const allSyncLogs = [...localBookings.map(b => ({ id: b.id, timestamp: b.createdAt, eventType: 'CHECK_IN (demo/local)', guestName: b.guestName, status: 'pending' as const, ameenRef: undefined })), ...syncLogs];
+  const effectiveRooms = rooms.map(r => localBookings.some(b => b.roomNumber === r.number && b.status === 'checked_in') ? { ...r, status: 'occupied' as const } : r);
   const [branch, setBranch] = useState(BRANCHES[0]);
   const [branchOpen, setBranchOpen] = useState(false);
   const [eventFilter, setEventFilter] = useState('All');
@@ -84,8 +90,8 @@ export default function HospitalityAppPage() {
   };
 
   const filteredBookings = eventFilter === 'All'
-    ? bookings
-    : bookings.filter(b => {
+    ? allBookings
+    : allBookings.filter(b => {
         if (eventFilter === 'Check-In')   return b.status === 'checked_in';
         if (eventFilter === 'Check-Out')  return b.status === 'checked_out';
         if (eventFilter === 'Booking')    return b.status === 'confirmed';
@@ -95,7 +101,7 @@ export default function HospitalityAppPage() {
   return (
     <div
       className="flex flex-col h-screen overflow-hidden"
-      style={{ background: '#051428', fontFamily: "'Inter', sans-serif" }}
+      style={{ background: '#071426', fontFamily: "'Manrope', sans-serif" }}
       dir={isAr ? 'rtl' : 'ltr'}
     >
       {/* Grid texture */}
@@ -203,7 +209,7 @@ export default function HospitalityAppPage() {
                     key={b}
                     onClick={() => { setBranch(b); setBranchOpen(false); }}
                     className="w-full text-left px-3 py-2 text-xs hover:bg-gold-500/8 cursor-pointer transition-colors whitespace-nowrap flex items-center gap-2"
-                    style={{ color: b === branch ? '#D6B47E' : '#9CA3AF' }}
+                    style={{ color: b === branch ? '#C5A365' : '#9CA3AF' }}
                   >
                     {b === branch && <i className="ri-check-line text-gold-400" style={{ fontSize: 11 }} />}
                     {b !== branch && <span className="w-3" />}
@@ -227,7 +233,7 @@ export default function HospitalityAppPage() {
             style={{
               borderColor: 'rgba(184,138,60,0.2)',
               background: 'rgba(184,138,60,0.05)',
-              color: '#D6B47E',
+              color: '#C5A365',
             }}
           >
             <span className="w-1.5 h-1.5 rounded-full bg-gold-400 animate-pulse" />
@@ -260,7 +266,7 @@ export default function HospitalityAppPage() {
           <div className="flex items-center gap-2">
             <div
               className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold"
-              style={{ background: 'rgba(184,138,60,0.12)', color: '#D6B47E', border: '1px solid rgba(184,138,60,0.25)' }}
+              style={{ background: 'rgba(184,138,60,0.12)', color: '#C5A365', border: '1px solid rgba(184,138,60,0.25)' }}
             >
               {user.initials || 'U'}
             </div>
@@ -282,12 +288,12 @@ export default function HospitalityAppPage() {
 
         {/* Main content */}
         <div className="flex-1 overflow-y-auto">
-          {activeView === 'dashboard' && <HospitalityDashboard lang={lang} onNav={handleNav} />}
-          {activeView === 'checkin' && <CheckInForm lang={lang} onCancel={() => setActiveView('dashboard')} />}
+          {activeView === 'dashboard' && <HospitalityDashboard roomInventory={effectiveRooms} bookingRecords={allBookings} syncRecords={allSyncLogs} lang={lang} onNav={handleNav} />}
+          {activeView === 'checkin' && <CheckInForm roomInventory={effectiveRooms} lang={lang} onCancel={() => setActiveView('dashboard')} onSaved={booking => { setLocalBookings(prev => [booking, ...prev]); setActiveView('eventlist'); }} />}
           {activeView === 'checkout' && <CheckOutForm lang={lang} onCancel={() => setActiveView('dashboard')} />}
           {activeView === 'new-booking' && <BookingForm lang={lang} onCancel={() => setActiveView('dashboard')} />}
           {activeView === 'changeroom' && <ChangeRoomForm lang={lang} onCancel={() => setActiveView('dashboard')} />}
-          {activeView === 'calendar' && <HospitalityCalendar lang={lang} onNav={handleNav} />}
+          {activeView === 'calendar' && <HospitalityCalendar bookingRecords={allBookings} lang={lang} onNav={handleNav} />}
           {activeView === 'upload' && <BatchUpload lang={lang} />}
 
           {/* ROOM STATUS VIEW */}
@@ -306,7 +312,7 @@ export default function HospitalityAppPage() {
               </div>
 
               {[1, 2, 3].map(floor => {
-                const floorRooms = rooms.filter(r => r.floor === floor);
+                const floorRooms = effectiveRooms.filter(r => r.floor === floor);
                 return (
                   <div key={floor} className="mb-6">
                     <div className="flex items-center gap-3 mb-3">
@@ -357,7 +363,7 @@ export default function HospitalityAppPage() {
                       className="px-3 py-1.5 rounded-lg text-xs border cursor-pointer transition-all whitespace-nowrap"
                       style={{
                         borderColor: eventFilter === f ? 'rgba(184,138,60,0.5)' : 'rgba(184,138,60,0.15)',
-                        color: eventFilter === f ? '#D6B47E' : '#6B7280',
+                        color: eventFilter === f ? '#C5A365' : '#6B7280',
                         background: eventFilter === f ? 'rgba(184,138,60,0.08)' : 'transparent',
                       }}
                     >
@@ -420,7 +426,7 @@ export default function HospitalityAppPage() {
                 <div>
                   <h2 className="text-white font-bold text-lg">{isAr ? 'سجل مزامنة أمين' : 'Al-Ameen Sync Log'}</h2>
                   <p className="text-gray-500 text-xs mt-0.5">
-                    {isAr ? 'جميع الأحداث المرسلة إلى منصة أمين' : 'All events transmitted to Al-Ameen Platform'}
+                    {isAr ? 'جميع الأحداث المرسلة إلى منصة أمين' : 'Demo sync history · new local records await a connected service'}
                   </p>
                 </div>
                 <div
@@ -435,9 +441,9 @@ export default function HospitalityAppPage() {
               {/* Stats */}
               <div className="grid grid-cols-3 gap-3 mb-5">
                 {[
-                  { label: isAr ? 'تمت المزامنة' : 'Synced',  value: syncLogs.filter(l => l.status === 'success').length, color: '#4ADE80' },
-                  { label: isAr ? 'معلق' : 'Pending',          value: syncLogs.filter(l => l.status === 'pending').length, color: '#FACC15' },
-                  { label: isAr ? 'فشل' : 'Failed',            value: syncLogs.filter(l => l.status === 'failed').length,  color: '#C94A5E' },
+                  { label: isAr ? 'تمت المزامنة' : 'Synced',  value: allSyncLogs.filter(l => l.status === 'success').length, color: '#4ADE80' },
+                  { label: isAr ? 'معلق' : 'Pending',          value: allSyncLogs.filter(l => l.status === 'pending').length, color: '#FACC15' },
+                  { label: isAr ? 'فشل' : 'Failed',            value: allSyncLogs.filter(l => l.status === 'failed').length,  color: '#C94A5E' },
                 ].map(s => (
                   <div key={s.label} className="rounded-xl border border-gold-500/10 px-4 py-3 text-center" style={{ background: 'rgba(10,37,64,0.8)' }}>
                     <p className="font-mono font-bold text-2xl" style={{ color: s.color }}>{s.value}</p>
@@ -456,7 +462,7 @@ export default function HospitalityAppPage() {
                     </tr>
                   </thead>
                   <tbody>
-                    {syncLogs.map(log => {
+                    {allSyncLogs.map(log => {
                       const sc = syncStatusConfig[log.status];
                       return (
                         <tr key={log.id} className="border-b border-gold-500/5 hover:bg-gold-500/4 transition-colors">
@@ -486,7 +492,7 @@ export default function HospitalityAppPage() {
                 <h2 className="text-white font-bold text-lg">{isAr ? 'إدارة المستخدمين' : 'Manage Users'}</h2>
                 <button
                   className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium cursor-pointer whitespace-nowrap"
-                  style={{ background: '#D6B47E', color: '#051428' }}
+                  style={{ background: '#C5A365', color: '#071426' }}
                 >
                   <i className="ri-user-add-line" />
                   {isAr ? 'إضافة مستخدم' : 'Add User'}
@@ -494,7 +500,7 @@ export default function HospitalityAppPage() {
               </div>
               <div className="grid grid-cols-3 gap-4">
                 {[
-                  { name: 'Salim Al-Rashidi',  nameAr: 'سالم الراشدي',  role: 'Admin',     initials: 'SR', color: '#D6B47E', lastLogin: '14:32 Today',  status: 'active' },
+                  { name: 'Salim Al-Rashidi',  nameAr: 'سالم الراشدي',  role: 'Admin',     initials: 'SR', color: '#C5A365', lastLogin: '14:32 Today',  status: 'active' },
                   { name: 'Maryam Al-Balushi', nameAr: 'مريم البلوشي',  role: 'Reception', initials: 'MB', color: '#4ADE80', lastLogin: '13:15 Today',  status: 'active' },
                   { name: 'Tariq Al-Amri',     nameAr: 'طارق العامري',  role: 'Viewer',    initials: 'TA', color: '#9CA3AF', lastLogin: '09:00 Today',  status: 'active' },
                   { name: 'Huda Al-Farsi',     nameAr: 'هدى الفارسية',  role: 'Reception', initials: 'HF', color: '#4ADE80', lastLogin: '2 days ago',   status: 'inactive' },

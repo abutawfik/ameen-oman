@@ -240,7 +240,7 @@ const BulkPurchaseAlertForm = ({ isAr, onCancel }: Props) => {
         {quantity && parseInt(quantity) >= 5 && (
           <div className="mt-4 flex items-center gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(250,204,21,0.06)", borderColor: "rgba(250,204,21,0.25)" }}>
             <i className="ri-alarm-warning-line text-yellow-400" />
-            <p className="text-yellow-400 text-sm font-['Inter']">
+            <p className="text-yellow-400 text-sm font-['Manrope']">
               {isAr
                 ? `الكمية ${quantity} وحدة — تتجاوز حد الإبلاغ. سيتم تصنيف هذا الحدث تلقائياً.`
                 : `Quantity ${quantity} units — exceeds reporting threshold. This event will be auto-classified.`}
@@ -309,9 +309,9 @@ const BulkPurchaseAlertForm = ({ isAr, onCancel }: Props) => {
               rows={3}
               maxLength={500}
               placeholder={isAr ? "أي معلومات إضافية ذات صلة..." : "Any additional relevant information..."}
-              className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none transition-all resize-none font-['Inter']"
+              className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none transition-all resize-none font-['Manrope']"
               style={{ background: "#0F1923", border: "1px solid rgba(255,255,255,0.08)" }}
-              onFocus={(e) => { e.target.style.borderColor = "#D6B47E"; }}
+              onFocus={(e) => { e.target.style.borderColor = "#C5A365"; }}
               onBlur={(e) => { e.target.style.borderColor = "rgba(255,255,255,0.08)"; }}
             />
             <p className="text-gray-600 text-xs mt-1 text-right font-['JetBrains_Mono']">{additionalNotes.length}/500</p>

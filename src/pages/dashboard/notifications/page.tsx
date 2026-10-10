@@ -142,7 +142,7 @@ const NotificationsPage = () => {
               className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm cursor-pointer transition-all"
               style={{
                 background: isActive ? "rgba(184,138,60,0.12)" : "transparent",
-                color: isActive ? "#D6B47E" : "#9CA3AF",
+                color: isActive ? "#C5A365" : "#9CA3AF",
                 border: `1px solid ${isActive ? "rgba(184,138,60,0.25)" : "transparent"}`,
                 fontFamily: fonts.sans,
                 fontWeight: isActive ? 700 : 500,
@@ -220,7 +220,7 @@ const NotificationsPage = () => {
                   <td className="px-4 py-3 text-right">
                     <button onClick={() => setEditingSev(r.severity)}
                       className="px-3 py-1 rounded text-[11px] font-bold cursor-pointer"
-                      style={{ background: "rgba(184,138,60,0.1)", color: "#D6B47E", border: "1px solid #D6B47E44", fontFamily: fonts.mono }}>
+                      style={{ background: "rgba(184,138,60,0.1)", color: "#C5A365", border: "1px solid #C5A36544", fontFamily: fonts.mono }}>
                       {isAr ? "تعديل" : "Edit"}
                     </button>
                   </td>
@@ -239,8 +239,8 @@ const NotificationsPage = () => {
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-2">
                   <div className="w-9 h-9 rounded-lg flex items-center justify-center"
-                    style={{ background: "rgba(184,138,60,0.12)", border: "1px solid #D6B47E33" }}>
-                    <i className={ch.icon} style={{ color: "#D6B47E" }} />
+                    style={{ background: "rgba(184,138,60,0.12)", border: "1px solid #C5A36533" }}>
+                    <i className={ch.icon} style={{ color: "#C5A365" }} />
                   </div>
                   <div>
                     <h3 className="text-white text-sm font-bold" style={{ fontFamily: fonts.sans }}>{ch.name}</h3>
@@ -277,7 +277,7 @@ const NotificationsPage = () => {
                 </span>
                 <button onClick={() => testChannel(ch.id)}
                   className="px-2.5 py-1 rounded text-[11px] font-bold cursor-pointer"
-                  style={{ background: "rgba(184,138,60,0.1)", color: "#D6B47E", border: "1px solid #D6B47E55", fontFamily: fonts.mono }}>
+                  style={{ background: "rgba(184,138,60,0.1)", color: "#C5A365", border: "1px solid #C5A36555", fontFamily: fonts.mono }}>
                   <i className="ri-pulse-line mr-1" />
                   {isAr ? "اختبار" : "Test"}
                 </button>
@@ -305,7 +305,7 @@ const NotificationsPage = () => {
               </button>
               <button onClick={() => { setEditingSev(null); showToast(isAr ? "تم (إعادة التحميل مرحلة 2)" : "Saved (reload is Phase 2)"); }}
                 className="px-4 py-2 rounded-lg text-xs font-bold cursor-pointer"
-                style={{ background: "#D6B47E", color: "#051428", fontFamily: fonts.sans }}>
+                style={{ background: "#C5A365", color: "#071426", fontFamily: fonts.sans }}>
                 {isAr ? "حفظ" : "Save"}
               </button>
             </div>

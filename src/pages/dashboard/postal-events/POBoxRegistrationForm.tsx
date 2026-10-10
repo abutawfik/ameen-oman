@@ -52,14 +52,14 @@ const POBoxRegistrationForm = ({ isAr, onCancel }: Props) => {
   };
 
   if (confirmed) return (
-    <PstConfirmation refNumber={refCode} eventType={isAr ? "تسجيل صندوق بريد" : "PO Box Registration"} eventCode="AMN-PST-POBOX" color="#D6B47E" isAr={isAr} onReset={() => setConfirmed(false)} />
+    <PstConfirmation refNumber={refCode} eventType={isAr ? "تسجيل صندوق بريد" : "PO Box Registration"} eventCode="AMN-PST-POBOX" color="#C5A365" isAr={isAr} onReset={() => setConfirmed(false)} />
   );
 
   return (
     <div className="space-y-5">
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
         {/* Box Details */}
-        <SectionCard title={isAr ? "تفاصيل صندوق البريد" : "PO Box Details"} icon="ri-mail-line" accentColor="#D6B47E">
+        <SectionCard title={isAr ? "تفاصيل صندوق البريد" : "PO Box Details"} icon="ri-mail-line" accentColor="#C5A365">
           <div className="space-y-4">
             <FormField label={isAr ? "رقم الصندوق" : "Box Number"} required>
               <TextInput placeholder="PO-XXXXX" value={boxNumber} onChange={(e) => setBoxNumber(e.target.value)} className="font-['JetBrains_Mono']" />

@@ -118,7 +118,7 @@ export const DEFAULT_SUB_SCORE_WEIGHTS: SubScoreWeight[] = [
     labelAr: "الكفيل / الكيان",
     defaultWeight: 10,
     weight: 10,
-    color: "#D6B47E",
+    color: "#C5A365",
     icon: "ri-organization-chart",
     primarySources: ["OpenCorporates", "OpenSanctions"],
     method: "Personalized PageRank (decay 0.5)",
@@ -293,7 +293,7 @@ export const OSINT_SOURCES: OsintSource[] = [
     records24h: 84,
     signalContribution: "Origin-country advisory level alignment",
     endpoint: "travel.state.gov, gov.uk/foreign-travel-advice",
-    color: "#D6B47E",
+    color: "#C5A365",
     sourceType: "osint",
     classification: "public",
   },
@@ -311,7 +311,7 @@ export const OSINT_SOURCES: OsintSource[] = [
     records24h: 612,
     signalContribution: "Sponsor entity resolution, beneficial ownership",
     endpoint: "api.opencorporates.com/v0.4",
-    color: "#D6B47E",
+    color: "#C5A365",
     sourceType: "osint",
     classification: "public",
   },
@@ -355,7 +355,7 @@ export const INTERNAL_STREAMS: OsintSource[] = [
     records24h: 34820,
     signalContribution: "Arrival/departure stamps, dwell time, overstays",
     endpoint: "int.rop.om/borders/entry-exit",
-    color: "#D6B47E",
+    color: "#C5A365",
     sourceType: "internal",
     classification: "internal",
   },
@@ -499,7 +499,7 @@ export const INTERNAL_STREAMS: OsintSource[] = [
     records24h: 2180,
     signalContribution: "Declared employer validation, work permit status",
     endpoint: "int.rop.om/mol/employment",
-    color: "#D6B47E",
+    color: "#C5A365",
     sourceType: "internal",
     classification: "internal",
   },
@@ -1597,7 +1597,7 @@ const apis4 = "2026-04-17T01:30:00Z";
 const apis5 = "2026-04-16T18:40:00Z";
 const apis6 = "2026-04-17T09:15:00Z";
 
-const ICON_APIS   = { icon: "ri-flight-land-line",    color: "#D6B47E" };
+const ICON_APIS   = { icon: "ri-flight-land-line",    color: "#C5A365" };
 const ICON_HOTEL  = { icon: "ri-hotel-line",          color: "#F59E0B" };
 const ICON_SIM    = { icon: "ri-sim-card-2-line",     color: "#EC4899" };
 const ICON_RENTAL = { icon: "ri-car-line",            color: "#6B4FAE" };
@@ -2885,7 +2885,7 @@ export const REPORT_TEMPLATES: ReportTemplate[] = [
     description: "24-hour operations snapshot — scoring throughput, queue flow, team performance.",
     descriptionAr: "لقطة عمليات على مدار 24 ساعة — حجم التسجيل، تدفق القائمة، أداء الفريق.",
     icon: "ri-sun-line",
-    color: "#D6B47E",
+    color: "#C5A365",
     estimatedPages: 3,
     sections: ["scored_24h", "flagged_24h", "cases_opened_closed", "avg_response_time", "top_flags"],
     suggestedCadence: "Daily · 08:00",

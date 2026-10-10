@@ -14,7 +14,7 @@ interface KeywordGroup {
 }
 
 const INITIAL_GROUPS: KeywordGroup[] = [
-  { id: "location", name: "Location Keywords", nameAr: "كلمات الموقع", icon: "ri-map-pin-line", color: "#D6B47E", keywords: ["Muscat", "Salalah", "Nizwa", "Sohar", "Buraimi", "Muttrah", "Qurum", "Seeb", "Ruwi", "Ibri"], matchesToday: 1842, enabled: true },
+  { id: "location", name: "Location Keywords", nameAr: "كلمات الموقع", icon: "ri-map-pin-line", color: "#C5A365", keywords: ["Muscat", "Salalah", "Nizwa", "Sohar", "Buraimi", "Muttrah", "Qurum", "Seeb", "Ruwi", "Ibri"], matchesToday: 1842, enabled: true },
   { id: "threat", name: "Threat Keywords", nameAr: "كلمات التهديد", icon: "ri-alarm-warning-line", color: "#C94A5E", keywords: ["explosive", "weapon", "attack", "bomb", "threat", "danger", "كيميائي", "سلاح", "تفجير"], matchesToday: 23, enabled: true },
   { id: "event", name: "Event Keywords", nameAr: "كلمات الأحداث", icon: "ri-calendar-event-line", color: "#FACC15", keywords: ["National Day", "Royal Visit", "Sultan", "parade", "ceremony", "اليوم الوطني", "زيارة ملكية"], matchesToday: 341, enabled: true },
   { id: "entity", name: "Entity Keywords", nameAr: "كلمات الكيانات", icon: "ri-building-line", color: "#C98A1B", keywords: ["Police", "Government", "Palace", "Airport", "Port", "حكومة", "قصر", "مطار", "ميناء"], matchesToday: 567, enabled: true },
@@ -56,7 +56,7 @@ const KeywordMonitor = ({ isAr }: Props) => {
       {/* Stats row */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {[
-          { label: isAr ? "إجمالي التطابقات اليوم" : "Total Matches Today", value: totalMatches.toLocaleString(), color: "#D6B47E", icon: "ri-search-eye-line" },
+          { label: isAr ? "إجمالي التطابقات اليوم" : "Total Matches Today", value: totalMatches.toLocaleString(), color: "#C5A365", icon: "ri-search-eye-line" },
           { label: isAr ? "مجموعات الكلمات" : "Keyword Groups", value: groups.filter((g) => g.enabled).length, color: "#4ADE80", icon: "ri-price-tag-3-line" },
           { label: isAr ? "المنصات النشطة" : "Active Platforms", value: platforms.filter((p) => p.enabled).length, color: "#FACC15", icon: "ri-global-line" },
           { label: isAr ? "تنبيهات عالية الأولوية" : "High-Priority Alerts", value: 31, color: "#C94A5E", icon: "ri-alarm-warning-line" },
@@ -189,7 +189,7 @@ const KeywordMonitor = ({ isAr }: Props) => {
                   style={{
                     background: t === "15m" ? "rgba(184,138,60,0.15)" : "rgba(255,255,255,0.04)",
                     border: `1px solid ${t === "15m" ? "rgba(184,138,60,0.35)" : "rgba(255,255,255,0.08)"}`,
-                    color: t === "15m" ? "#D6B47E" : "#6B7280",
+                    color: t === "15m" ? "#C5A365" : "#6B7280",
                   }}>
                   {t}
                 </button>

@@ -5,7 +5,7 @@ interface Props { isAr: boolean; }
 
 const confidenceColor = (c: number) => {
   if (c >= 95) return '#4ADE80';
-  if (c >= 85) return '#D6B47E';
+  if (c >= 85) return '#C5A365';
   if (c >= 75) return '#FACC15';
   return '#C98A1B';
 };
@@ -26,12 +26,12 @@ function PersonCard({ person, isAr, highlight }: { person: MergeCandidate['perso
       <div className="flex items-center gap-3 mb-3">
         <div
           className="w-11 h-11 rounded-full flex items-center justify-center font-bold text-sm shrink-0"
-          style={{ background: 'rgba(184,138,60,0.12)', color: '#D6B47E', border: '2px solid rgba(184,138,60,0.3)' }}
+          style={{ background: 'rgba(184,138,60,0.12)', color: '#C5A365', border: '2px solid rgba(184,138,60,0.3)' }}
         >
           {person.initials}
         </div>
         <div>
-          <p className="text-white font-semibold text-sm font-['Inter']">{isAr ? person.nameAr : person.nameEn}</p>
+          <p className="text-white font-semibold text-sm font-['Manrope']">{isAr ? person.nameAr : person.nameEn}</p>
           <div className="flex items-center gap-1.5 mt-0.5">
             <span>{person.nationalityFlag}</span>
             <span className="text-gray-500 text-xs font-['JetBrains_Mono']">{person.nationality} · {person.dob}</span>
@@ -49,8 +49,8 @@ function PersonCard({ person, isAr, highlight }: { person: MergeCandidate['perso
               border: highlight?.includes(doc.number) ? '1px solid rgba(184,138,60,0.3)' : '1px solid transparent',
             }}
           >
-            <i className="ri-file-text-line text-xs" style={{ color: highlight?.includes(doc.number) ? '#D6B47E' : '#6B7280' }} />
-            <span className="text-xs font-['JetBrains_Mono']" style={{ color: highlight?.includes(doc.number) ? '#D6B47E' : '#9CA3AF' }}>
+            <i className="ri-file-text-line text-xs" style={{ color: highlight?.includes(doc.number) ? '#C5A365' : '#6B7280' }} />
+            <span className="text-xs font-['JetBrains_Mono']" style={{ color: highlight?.includes(doc.number) ? '#C5A365' : '#9CA3AF' }}>
               {doc.type}: {doc.number}
             </span>
             {highlight?.includes(doc.number) && (
@@ -67,8 +67,8 @@ function PersonCard({ person, isAr, highlight }: { person: MergeCandidate['perso
               border: highlight?.includes(ph) ? '1px solid rgba(184,138,60,0.3)' : '1px solid transparent',
             }}
           >
-            <i className="ri-phone-line text-xs" style={{ color: highlight?.includes(ph) ? '#D6B47E' : '#6B7280' }} />
-            <span className="text-xs font-['JetBrains_Mono']" style={{ color: highlight?.includes(ph) ? '#D6B47E' : '#9CA3AF' }}>
+            <i className="ri-phone-line text-xs" style={{ color: highlight?.includes(ph) ? '#C5A365' : '#6B7280' }} />
+            <span className="text-xs font-['JetBrains_Mono']" style={{ color: highlight?.includes(ph) ? '#C5A365' : '#9CA3AF' }}>
               {ph}
             </span>
             {highlight?.includes(ph) && (
@@ -81,7 +81,7 @@ function PersonCard({ person, isAr, highlight }: { person: MergeCandidate['perso
             <span
               key={s}
               className="text-xs px-1.5 py-0.5 rounded font-['JetBrains_Mono']"
-              style={{ background: 'rgba(184,138,60,0.08)', color: '#D6B47E', fontSize: 10 }}
+              style={{ background: 'rgba(184,138,60,0.08)', color: '#C5A365', fontSize: 10 }}
             >
               {s.toUpperCase()}
             </span>
@@ -109,7 +109,7 @@ function MergePreviewModal({ candidate, isAr, onClose, onConfirm }: {
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-gold-500/15">
           <div>
-            <h3 className="text-white font-bold text-base font-['Inter']">
+            <h3 className="text-white font-bold text-base font-['Manrope']">
               {isAr ? 'معاينة الدمج' : 'Merge Preview'}
             </h3>
             <p className="text-gray-500 text-xs mt-0.5 font-['JetBrains_Mono']">
@@ -126,13 +126,13 @@ function MergePreviewModal({ candidate, isAr, onClose, onConfirm }: {
           <div className="flex items-center gap-4 p-4 rounded-xl border border-gold-500/20" style={{ background: 'rgba(184,138,60,0.04)' }}>
             <div
               className="w-14 h-14 rounded-full flex items-center justify-center font-bold text-lg shrink-0"
-              style={{ background: 'rgba(184,138,60,0.15)', color: '#D6B47E', border: '2px solid rgba(184,138,60,0.4)' }}
+              style={{ background: 'rgba(184,138,60,0.15)', color: '#C5A365', border: '2px solid rgba(184,138,60,0.4)' }}
             >
               {merged.initials}
             </div>
             <div className="flex-1">
               <p className="text-gold-400 text-xs font-['JetBrains_Mono'] mb-0.5">CANONICAL RECORD</p>
-              <p className="text-white font-bold text-lg font-['Inter']">{isAr ? merged.nameAr : merged.nameEn}</p>
+              <p className="text-white font-bold text-lg font-['Manrope']">{isAr ? merged.nameAr : merged.nameEn}</p>
               <p className="text-gray-400 text-sm font-['JetBrains_Mono']">{merged.nationality} · DOB: {merged.dob}</p>
             </div>
             <div className="text-right">
@@ -179,7 +179,7 @@ function MergePreviewModal({ candidate, isAr, onClose, onConfirm }: {
                 <span
                   key={s}
                   className="text-xs px-2 py-0.5 rounded-full font-['JetBrains_Mono']"
-                  style={{ background: 'rgba(184,138,60,0.1)', color: '#D6B47E', border: '1px solid rgba(184,138,60,0.2)' }}
+                  style={{ background: 'rgba(184,138,60,0.1)', color: '#C5A365', border: '1px solid rgba(184,138,60,0.2)' }}
                 >
                   {s.toUpperCase()}
                 </span>
@@ -192,14 +192,14 @@ function MergePreviewModal({ candidate, isAr, onClose, onConfirm }: {
         <div className="flex items-center justify-end gap-3 px-6 py-4 border-t border-white/5">
           <button
             onClick={onClose}
-            className="px-4 py-2 rounded-lg text-sm border border-gold-500/25 text-gold-400 hover:bg-gold-500/8 cursor-pointer transition-colors whitespace-nowrap font-['Inter']"
+            className="px-4 py-2 rounded-lg text-sm border border-gold-500/25 text-gold-400 hover:bg-gold-500/8 cursor-pointer transition-colors whitespace-nowrap font-['Manrope']"
           >
             {isAr ? 'إلغاء' : 'Cancel'}
           </button>
           <button
             onClick={onConfirm}
-            className="px-5 py-2 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap font-['Inter']"
-            style={{ background: '#D6B47E', color: '#051428' }}
+            className="px-5 py-2 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap font-['Manrope']"
+            style={{ background: '#C5A365', color: '#071426' }}
           >
             <i className="ri-merge-cells-horizontal mr-1.5" />
             {isAr ? 'تأكيد الدمج' : 'Confirm Merge'}
@@ -238,10 +238,10 @@ export default function CandidateReviewQueue({ isAr }: Props) {
           <button
             key={f}
             onClick={() => setFilter(f)}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs border cursor-pointer transition-all whitespace-nowrap font-['Inter']"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs border cursor-pointer transition-all whitespace-nowrap font-['Manrope']"
             style={{
               borderColor: filter === f ? 'rgba(184,138,60,0.5)' : 'rgba(184,138,60,0.15)',
-              color: filter === f ? '#D6B47E' : '#6B7280',
+              color: filter === f ? '#C5A365' : '#6B7280',
               background: filter === f ? 'rgba(184,138,60,0.08)' : 'transparent',
             }}
           >
@@ -295,18 +295,18 @@ export default function CandidateReviewQueue({ isAr }: Props) {
                 {/* Person A → B */}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="text-white font-semibold text-sm font-['Inter'] truncate">
+                    <span className="text-white font-semibold text-sm font-['Manrope'] truncate">
                       {isAr ? candidate.personA.nameAr : candidate.personA.nameEn}
                     </span>
                     <i className="ri-arrow-right-line text-gold-400/60 text-xs shrink-0" />
-                    <span className="text-white font-semibold text-sm font-['Inter'] truncate">
+                    <span className="text-white font-semibold text-sm font-['Manrope'] truncate">
                       {isAr ? candidate.personB.nameAr : candidate.personB.nameEn}
                     </span>
                   </div>
                   <div className="flex items-center gap-2 flex-wrap">
                     <span
-                      className="text-xs px-2 py-0.5 rounded-full font-['Inter']"
-                      style={{ background: 'rgba(184,138,60,0.08)', color: '#D6B47E' }}
+                      className="text-xs px-2 py-0.5 rounded-full font-['Manrope']"
+                      style={{ background: 'rgba(184,138,60,0.08)', color: '#C5A365' }}
                     >
                       {isAr ? candidate.matchingRuleAr : candidate.matchingRule}
                     </span>
@@ -331,7 +331,7 @@ export default function CandidateReviewQueue({ isAr }: Props) {
 
                 {/* Status */}
                 <span
-                  className="text-xs px-2.5 py-1 rounded-full font-['Inter'] whitespace-nowrap shrink-0"
+                  className="text-xs px-2.5 py-1 rounded-full font-['Manrope'] whitespace-nowrap shrink-0"
                   style={{ background: sc.bg, color: sc.color }}
                 >
                   {isAr ? sc.labelAr : sc.label}
@@ -373,29 +373,29 @@ export default function CandidateReviewQueue({ isAr }: Props) {
                     <div className="flex items-center gap-3 mt-4 pt-3 border-t border-white/5">
                       <button
                         onClick={() => setPreviewCandidate(candidate)}
-                        className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap transition-all font-['Inter']"
-                        style={{ background: '#D6B47E', color: '#051428' }}
+                        className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap transition-all font-['Manrope']"
+                        style={{ background: '#C5A365', color: '#071426' }}
                       >
                         <i className="ri-eye-line" />
                         {isAr ? 'معاينة الدمج' : 'Preview Merge'}
                       </button>
                       <button
                         onClick={() => handleAction(candidate.id, 'merged')}
-                        className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap border border-green-500/30 text-green-400 hover:bg-green-500/8 transition-all font-['Inter']"
+                        className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap border border-green-500/30 text-green-400 hover:bg-green-500/8 transition-all font-['Manrope']"
                       >
                         <i className="ri-check-line" />
                         {isAr ? 'دمج' : 'Merge'}
                       </button>
                       <button
                         onClick={() => handleAction(candidate.id, 'rejected')}
-                        className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap border border-red-500/30 text-red-400 hover:bg-red-500/8 transition-all font-['Inter']"
+                        className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap border border-red-500/30 text-red-400 hover:bg-red-500/8 transition-all font-['Manrope']"
                       >
                         <i className="ri-close-line" />
                         {isAr ? 'رفض' : 'Reject'}
                       </button>
                       <button
                         onClick={() => handleAction(candidate.id, 'flagged')}
-                        className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap border border-orange-500/30 text-orange-400 hover:bg-orange-500/8 transition-all font-['Inter']"
+                        className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap border border-orange-500/30 text-orange-400 hover:bg-orange-500/8 transition-all font-['Manrope']"
                       >
                         <i className="ri-flag-line" />
                         {isAr ? 'تبليغ' : 'Flag'}
@@ -406,7 +406,7 @@ export default function CandidateReviewQueue({ isAr }: Props) {
                   {candidate.status !== 'pending' && (
                     <div className="flex items-center gap-2 mt-4 pt-3 border-t border-white/5">
                       <i className="ri-user-line text-gray-600 text-xs" />
-                      <span className="text-gray-500 text-xs font-['Inter']">
+                      <span className="text-gray-500 text-xs font-['Manrope']">
                         {isAr ? 'راجعه:' : 'Reviewed by:'} {candidate.reviewedBy}
                       </span>
                       <span className="text-gray-600 text-xs font-['JetBrains_Mono'] ml-auto">{candidate.createdAt}</span>

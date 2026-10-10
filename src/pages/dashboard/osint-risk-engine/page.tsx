@@ -152,7 +152,7 @@ const OsintRiskEnginePage = () => {
 
   return (
     <div
-      className="min-h-screen font-['Inter']"
+      className="min-h-screen font-['Manrope']"
       style={{
         // ocean-800 shell — flips with runtime palette toggle
         background: "var(--alm-ocean-800)",
@@ -262,7 +262,7 @@ const OsintRiskEnginePage = () => {
               className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold whitespace-nowrap cursor-pointer transition-all"
               style={{
                 background: isActive ? "rgba(184,138,60,0.1)" : "transparent",
-                color: isActive ? "#D6B47E" : "#6B7280",
+                color: isActive ? "#C5A365" : "#6B7280",
                 border: isActive ? "1px solid rgba(184,138,60,0.3)" : "1px solid transparent",
               }}
             >

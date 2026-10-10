@@ -26,9 +26,9 @@ const FreeZoneForm = ({ isAr, onSubmit }: Props) => {
     }, 1200);
   };
 
-  const inputClass = "w-full bg-transparent border rounded-lg px-3 py-2.5 text-white text-sm font-['Inter'] focus:outline-none focus:border-gold-400 transition-colors placeholder-gray-600";
+  const inputClass = "w-full bg-transparent border rounded-lg px-3 py-2.5 text-white text-sm font-['Manrope'] focus:outline-none focus:border-gold-400 transition-colors placeholder-gray-600";
   const inputStyle = { borderColor: "rgba(184,138,60,0.2)", background: "rgba(255,255,255,0.03)" };
-  const labelClass = "block text-gray-400 text-xs font-['Inter'] mb-1.5";
+  const labelClass = "block text-gray-400 text-xs font-['Manrope'] mb-1.5";
   const sectionClass = "rounded-xl p-5 space-y-4";
   const sectionStyle = { background: "rgba(10,37,64,0.6)", border: "1px solid rgba(184,138,60,0.1)" };
 
@@ -36,18 +36,18 @@ const FreeZoneForm = ({ isAr, onSubmit }: Props) => {
     <form onSubmit={handleSubmit} className="space-y-5">
       {/* Movement Type */}
       <div className={sectionClass} style={sectionStyle}>
-        <h3 className="text-gold-400 text-sm font-semibold font-['Inter'] flex items-center gap-2">
+        <h3 className="text-gold-400 text-sm font-semibold font-['Manrope'] flex items-center gap-2">
           <i className="ri-store-2-line" />
           {isAr ? "حركة المنطقة الحرة" : "Free Zone Movement"}
         </h3>
         <div className="flex gap-3">
           {(["in", "out"] as const).map((m) => (
             <button key={m} type="button" onClick={() => setMovement(m)}
-              className="flex-1 py-3 rounded-xl text-sm font-['Inter'] font-semibold transition-all cursor-pointer flex items-center justify-center gap-2"
+              className="flex-1 py-3 rounded-xl text-sm font-['Manrope'] font-semibold transition-all cursor-pointer flex items-center justify-center gap-2"
               style={{
                 background: movement === m ? (m === "in" ? "rgba(184,138,60,0.15)" : "rgba(74,222,128,0.15)") : "rgba(255,255,255,0.03)",
-                color: movement === m ? (m === "in" ? "#D6B47E" : "#4ADE80") : "#6B7280",
-                border: `1px solid ${movement === m ? (m === "in" ? "#D6B47E" : "#4ADE80") : "rgba(255,255,255,0.08)"}`,
+                color: movement === m ? (m === "in" ? "#C5A365" : "#4ADE80") : "#6B7280",
+                border: `1px solid ${movement === m ? (m === "in" ? "#C5A365" : "#4ADE80") : "rgba(255,255,255,0.08)"}`,
               }}>
               <i className={m === "in" ? "ri-login-box-line" : "ri-logout-box-line"} />
               {m === "in"
@@ -60,7 +60,7 @@ const FreeZoneForm = ({ isAr, onSubmit }: Props) => {
 
       {/* Zone & Company */}
       <div className={sectionClass} style={sectionStyle}>
-        <h3 className="text-gold-400 text-sm font-semibold font-['Inter'] flex items-center gap-2">
+        <h3 className="text-gold-400 text-sm font-semibold font-['Manrope'] flex items-center gap-2">
           <i className="ri-building-4-line" />
           {isAr ? "بيانات المنطقة والشركة" : "Zone & Company Details"}
         </h3>
@@ -108,7 +108,7 @@ const FreeZoneForm = ({ isAr, onSubmit }: Props) => {
 
       {/* Goods */}
       <div className={sectionClass} style={sectionStyle}>
-        <h3 className="text-gold-400 text-sm font-semibold font-['Inter'] flex items-center gap-2">
+        <h3 className="text-gold-400 text-sm font-semibold font-['Manrope'] flex items-center gap-2">
           <i className="ri-box-3-line" />
           {isAr ? "معلومات البضائع" : "Goods Information"}
         </h3>
@@ -128,7 +128,7 @@ const FreeZoneForm = ({ isAr, onSubmit }: Props) => {
                   style={{ borderColor: "rgba(184,138,60,0.06)" }}
                   onClick={() => { setHsSearch(h.code); setShowHsDropdown(false); }}>
                   <span className="text-gold-400 text-sm font-bold font-['JetBrains_Mono']">{h.code}</span>
-                  <span className="text-gray-300 text-sm font-['Inter'] ml-2">{h.descriptionEn}</span>
+                  <span className="text-gray-300 text-sm font-['Manrope'] ml-2">{h.descriptionEn}</span>
                 </button>
               ))}
             </div>
@@ -166,13 +166,13 @@ const FreeZoneForm = ({ isAr, onSubmit }: Props) => {
       {/* Submit */}
       <div className="flex items-center justify-end gap-3 pt-2">
         <button type="button"
-          className="px-6 py-2.5 rounded-lg text-sm font-['Inter'] font-medium cursor-pointer whitespace-nowrap transition-all"
-          style={{ border: "1px solid rgba(184,138,60,0.3)", color: "#D6B47E", background: "transparent" }}>
+          className="px-6 py-2.5 rounded-lg text-sm font-['Manrope'] font-medium cursor-pointer whitespace-nowrap transition-all"
+          style={{ border: "1px solid rgba(184,138,60,0.3)", color: "#C5A365", background: "transparent" }}>
           {isAr ? "حفظ مسودة" : "Save Draft"}
         </button>
         <button type="submit" disabled={submitting}
-          className="px-8 py-2.5 rounded-lg text-sm font-['Inter'] font-bold cursor-pointer whitespace-nowrap transition-all flex items-center gap-2"
-          style={{ background: submitting ? "rgba(184,138,60,0.5)" : "#D6B47E", color: "#051428" }}>
+          className="px-8 py-2.5 rounded-lg text-sm font-['Manrope'] font-bold cursor-pointer whitespace-nowrap transition-all flex items-center gap-2"
+          style={{ background: submitting ? "rgba(184,138,60,0.5)" : "#C5A365", color: "#071426" }}>
           {submitting ? (
             <><i className="ri-loader-4-line animate-spin" />{isAr ? "جارٍ الإرسال..." : "Submitting..."}</>
           ) : (

@@ -128,7 +128,7 @@ export const entityNotifications: EntityNotification[] = [
     title: "API Upgraded to v2.1", titleAr: "ترقية API إلى v2.1",
     detail: "Al-Ameen API updated to version 2.1. New endpoints available. Review changelog.",
     detailAr: "تم تحديث Al-Ameen API إلى الإصدار 2.1. نقاط نهاية جديدة متاحة. راجع سجل التغييرات.",
-    time: "4 hr ago", color: "#D6B47E", icon: "ri-code-s-slash-line", read: false, actionable: true,
+    time: "4 hr ago", color: "#C5A365", icon: "ri-code-s-slash-line", read: false, actionable: true,
   },
   {
     id: "n8", category: "system",
@@ -142,7 +142,7 @@ export const entityNotifications: EntityNotification[] = [
     title: "New User Added", titleAr: "تمت إضافة مستخدم جديد",
     detail: "User Mohammed Al-Balushi (Reception) added to your account by Admin.",
     detailAr: "تمت إضافة المستخدم محمد البلوشي (استقبال) إلى حسابك بواسطة المسؤول.",
-    time: "3 hr ago", color: "#D6B47E", icon: "ri-user-add-line", read: false, actionable: false,
+    time: "3 hr ago", color: "#C5A365", icon: "ri-user-add-line", read: false, actionable: false,
   },
   {
     id: "n10", category: "account",

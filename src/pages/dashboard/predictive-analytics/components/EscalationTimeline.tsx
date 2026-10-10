@@ -6,7 +6,7 @@ const TIERS = [
     tier: 1,
     label: 'Tier 1 — Dashboard Queue',
     icon: 'ri-dashboard-line',
-    color: '#D6B47E',
+    color: '#C5A365',
     bg: 'rgba(184,138,60,0.1)',
     description: 'All pattern-triggered alerts land here. Analysts review and action within 30 minutes.',
     threshold: null,
@@ -38,7 +38,7 @@ const ESCALATION_STEPS = [
   {
     time: '0 min',
     label: 'Alert Created',
-    color: '#D6B47E',
+    color: '#C5A365',
     icon: 'ri-alert-line',
     desc: 'Pattern rule triggered, alert enters Tier 1 queue. Analyst notified.',
     action: 'Analyst reviews',
@@ -196,7 +196,7 @@ export default function EscalationTimeline() {
           {/* Timeline line */}
           <div
             className="absolute left-6 top-6 bottom-6 w-0.5"
-            style={{ background: 'linear-gradient(to bottom, #D6B47E, #FACC15, #C98A1B, #C94A5E)' }}
+            style={{ background: 'linear-gradient(to bottom, #C5A365, #FACC15, #C98A1B, #C94A5E)' }}
           />
 
           <div className="space-y-5">
@@ -260,7 +260,7 @@ export default function EscalationTimeline() {
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
           {[
-            { label: 'Total Decisions', value: feedbackStats.totalDecisions.toLocaleString(), color: '#D6B47E', icon: 'ri-checkbox-multiple-line' },
+            { label: 'Total Decisions', value: feedbackStats.totalDecisions.toLocaleString(), color: '#C5A365', icon: 'ri-checkbox-multiple-line' },
             { label: 'Confirmed (TP)', value: `${feedbackStats.confirmed} (${feedbackStats.confirmedPct}%)`, color: '#4ADE80', icon: 'ri-check-double-line' },
             { label: 'Dismissed (FP)', value: `${feedbackStats.dismissed} (${feedbackStats.dismissedPct}%)`, color: '#9CA3AF', icon: 'ri-close-circle-line' },
             { label: 'Escalated', value: `${feedbackStats.escalated} (${feedbackStats.escalatedPct}%)`, color: '#C98A1B', icon: 'ri-arrow-up-circle-line' },
@@ -309,7 +309,7 @@ export default function EscalationTimeline() {
                     className="w-full rounded-t-sm"
                     style={{
                       height: `${(val / maxV) * 40}px`,
-                      background: i === feedbackStats.weeklyDecisions.length - 1 ? '#D6B47E' : 'rgba(184,138,60,0.3)',
+                      background: i === feedbackStats.weeklyDecisions.length - 1 ? '#C5A365' : 'rgba(184,138,60,0.3)',
                     }}
                   />
                   <span className="text-gray-600 font-mono" style={{ fontSize: 10 }}>

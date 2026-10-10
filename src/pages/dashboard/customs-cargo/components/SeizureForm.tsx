@@ -27,9 +27,9 @@ const SeizureForm = ({ isAr, onSubmit }: Props) => {
     }, 1200);
   };
 
-  const inputClass = "w-full bg-transparent border rounded-lg px-3 py-2.5 text-white text-sm font-['Inter'] focus:outline-none focus:border-gold-400 transition-colors placeholder-gray-600";
+  const inputClass = "w-full bg-transparent border rounded-lg px-3 py-2.5 text-white text-sm font-['Manrope'] focus:outline-none focus:border-gold-400 transition-colors placeholder-gray-600";
   const inputStyle = { borderColor: "rgba(184,138,60,0.2)", background: "rgba(255,255,255,0.03)" };
-  const labelClass = "block text-gray-400 text-xs font-['Inter'] mb-1.5";
+  const labelClass = "block text-gray-400 text-xs font-['Manrope'] mb-1.5";
   const sectionClass = "rounded-xl p-5 space-y-4";
   const sectionStyle = { background: "rgba(10,37,64,0.6)", border: "1px solid rgba(184,138,60,0.1)" };
 
@@ -40,10 +40,10 @@ const SeizureForm = ({ isAr, onSubmit }: Props) => {
         style={{ background: "rgba(201,74,94,0.08)", border: "1px solid rgba(201,74,94,0.3)" }}>
         <i className="ri-alarm-warning-line text-red-400 text-xl flex-shrink-0 mt-0.5" />
         <div>
-          <p className="text-red-400 text-sm font-semibold font-['Inter']">
+          <p className="text-red-400 text-sm font-semibold font-['Manrope']">
             {isAr ? "تسجيل ضبط جمركي" : "Customs Seizure Record"}
           </p>
-          <p className="text-red-300/70 text-xs font-['Inter'] mt-0.5">
+          <p className="text-red-300/70 text-xs font-['Manrope'] mt-0.5">
             {isAr
               ? "هذا السجل سيُرسَل فوراً إلى مركز القيادة وسيُنشئ قضية تلقائياً."
               : "This record will be immediately sent to Command Center and will auto-create a case."}
@@ -53,7 +53,7 @@ const SeizureForm = ({ isAr, onSubmit }: Props) => {
 
       {/* Seizure Details */}
       <div className={sectionClass} style={sectionStyle}>
-        <h3 className="text-red-400 text-sm font-semibold font-['Inter'] flex items-center gap-2">
+        <h3 className="text-red-400 text-sm font-semibold font-['Manrope'] flex items-center gap-2">
           <i className="ri-shield-cross-line" />
           {isAr ? "تفاصيل الضبط" : "Seizure Details"}
         </h3>
@@ -85,7 +85,7 @@ const SeizureForm = ({ isAr, onSubmit }: Props) => {
 
       {/* Seizure Reasons */}
       <div className={sectionClass} style={sectionStyle}>
-        <h3 className="text-red-400 text-sm font-semibold font-['Inter'] flex items-center gap-2">
+        <h3 className="text-red-400 text-sm font-semibold font-['Manrope'] flex items-center gap-2">
           <i className="ri-error-warning-line" />
           {isAr ? "أسباب الضبط" : "Seizure Reasons"} *
         </h3>
@@ -106,9 +106,9 @@ const SeizureForm = ({ isAr, onSubmit }: Props) => {
                   background: selectedReasons.includes(reason.id) ? "#C94A5E" : "transparent",
                   border: `2px solid ${selectedReasons.includes(reason.id) ? "#C94A5E" : "rgba(201,74,94,0.3)"}`,
                 }}>
-                {selectedReasons.includes(reason.id) && <i className="ri-check-line text-xs text-[#051428]" />}
+                {selectedReasons.includes(reason.id) && <i className="ri-check-line text-xs text-[#071426]" />}
               </div>
-              <span className="text-sm font-['Inter']"
+              <span className="text-sm font-['Manrope']"
                 style={{ color: selectedReasons.includes(reason.id) ? "#C94A5E" : "#9CA3AF" }}>
                 {isAr ? reason.labelAr : reason.labelEn}
               </span>
@@ -119,7 +119,7 @@ const SeizureForm = ({ isAr, onSubmit }: Props) => {
 
       {/* Seized Items */}
       <div className={sectionClass} style={sectionStyle}>
-        <h3 className="text-red-400 text-sm font-semibold font-['Inter'] flex items-center gap-2">
+        <h3 className="text-red-400 text-sm font-semibold font-['Manrope'] flex items-center gap-2">
           <i className="ri-box-3-line" />
           {isAr ? "البضائع المضبوطة" : "Seized Items"}
         </h3>
@@ -142,7 +142,7 @@ const SeizureForm = ({ isAr, onSubmit }: Props) => {
 
       {/* Person / Entity */}
       <div className={sectionClass} style={sectionStyle}>
-        <h3 className="text-red-400 text-sm font-semibold font-['Inter'] flex items-center gap-2">
+        <h3 className="text-red-400 text-sm font-semibold font-['Manrope'] flex items-center gap-2">
           <i className="ri-user-line" />
           {isAr ? "بيانات الشخص / الجهة" : "Person / Entity Details"}
         </h3>
@@ -168,7 +168,7 @@ const SeizureForm = ({ isAr, onSubmit }: Props) => {
 
       {/* Photos */}
       <div className={sectionClass} style={sectionStyle}>
-        <h3 className="text-red-400 text-sm font-semibold font-['Inter'] flex items-center gap-2">
+        <h3 className="text-red-400 text-sm font-semibold font-['Manrope'] flex items-center gap-2">
           <i className="ri-camera-line" />
           {isAr ? "صور الضبط" : "Seizure Photos"}
         </h3>
@@ -178,10 +178,10 @@ const SeizureForm = ({ isAr, onSubmit }: Props) => {
           onClick={() => setPhotoCount((c) => Math.min(c + 1, 10))}
         >
           <i className="ri-upload-cloud-2-line text-3xl text-red-400/50 mb-2" />
-          <p className="text-gray-400 text-sm font-['Inter']">
+          <p className="text-gray-400 text-sm font-['Manrope']">
             {isAr ? "انقر لإرفاق صور الضبط" : "Click to attach seizure photos"}
           </p>
-          <p className="text-gray-600 text-xs font-['Inter'] mt-1">
+          <p className="text-gray-600 text-xs font-['Manrope'] mt-1">
             {isAr ? "JPG, PNG — حتى 10 صور" : "JPG, PNG — up to 10 photos"}
           </p>
           {photoCount > 0 && (
@@ -195,7 +195,7 @@ const SeizureForm = ({ isAr, onSubmit }: Props) => {
 
       {/* Findings */}
       <div className={sectionClass} style={sectionStyle}>
-        <h3 className="text-red-400 text-sm font-semibold font-['Inter'] flex items-center gap-2">
+        <h3 className="text-red-400 text-sm font-semibold font-['Manrope'] flex items-center gap-2">
           <i className="ri-file-text-line" />
           {isAr ? "نتائج وملاحظات الضابط" : "Officer Findings & Notes"}
         </h3>
@@ -206,13 +206,13 @@ const SeizureForm = ({ isAr, onSubmit }: Props) => {
       {/* Submit */}
       <div className="flex items-center justify-end gap-3 pt-2">
         <button type="button"
-          className="px-6 py-2.5 rounded-lg text-sm font-['Inter'] font-medium cursor-pointer whitespace-nowrap transition-all"
+          className="px-6 py-2.5 rounded-lg text-sm font-['Manrope'] font-medium cursor-pointer whitespace-nowrap transition-all"
           style={{ border: "1px solid rgba(201,74,94,0.3)", color: "#C94A5E", background: "transparent" }}>
           {isAr ? "حفظ مسودة" : "Save Draft"}
         </button>
         <button type="submit" disabled={submitting}
-          className="px-8 py-2.5 rounded-lg text-sm font-['Inter'] font-bold cursor-pointer whitespace-nowrap transition-all flex items-center gap-2"
-          style={{ background: submitting ? "rgba(201,74,94,0.5)" : "#C94A5E", color: "#051428" }}>
+          className="px-8 py-2.5 rounded-lg text-sm font-['Manrope'] font-bold cursor-pointer whitespace-nowrap transition-all flex items-center gap-2"
+          style={{ background: submitting ? "rgba(201,74,94,0.5)" : "#C94A5E", color: "#071426" }}>
           {submitting ? (
             <><i className="ri-loader-4-line animate-spin" />{isAr ? "جارٍ الإرسال..." : "Submitting..."}</>
           ) : (

@@ -34,7 +34,7 @@ const typeIcon = (type: BorderPoint["type"]) => {
 };
 
 const typeColor = (type: BorderPoint["type"]) => {
-  if (type === "air") return "#D6B47E";
+  if (type === "air") return "#C5A365";
   if (type === "sea") return "#4ADE80";
   return "#C98A1B";
 };
@@ -62,7 +62,7 @@ const EntryPointsMap = ({ isAr }: Props) => {
         </div>
         <div className="flex items-center gap-3">
           {[
-            { type: "air", label: isAr ? "جوي" : "Air", color: "#D6B47E" },
+            { type: "air", label: isAr ? "جوي" : "Air", color: "#C5A365" },
             { type: "sea", label: isAr ? "بحري" : "Sea", color: "#4ADE80" },
             { type: "land", label: isAr ? "بري" : "Land", color: "#C98A1B" },
           ].map((leg) => (
@@ -94,11 +94,11 @@ const EntryPointsMap = ({ isAr }: Props) => {
           <svg className="absolute inset-0 w-full h-full opacity-[0.07]" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
             <polyline
               points="58,8 62,14 66,22 68,30 72,38 71,42 68,50 72,56 80,50 82,42 80,35 75,28 70,22 65,14 60,8"
-              fill="none" stroke="#D6B47E" strokeWidth="0.8"
+              fill="none" stroke="#C5A365" strokeWidth="0.8"
             />
             <polyline
               points="62,14 60,22 58,30 55,38 52,46 48,54 44,64 40,76 36,82 34,86"
-              fill="none" stroke="#D6B47E" strokeWidth="0.8"
+              fill="none" stroke="#C5A365" strokeWidth="0.8"
             />
           </svg>
           <div className="absolute top-3 left-3 text-gray-600 text-[10px] font-['JetBrains_Mono'] tracking-widest opacity-50">OM — BORDER NETWORK</div>
@@ -111,7 +111,7 @@ const EntryPointsMap = ({ isAr }: Props) => {
                   key={`${a.id}-${b.id}`}
                   x1={`${a.x}%`} y1={`${a.y}%`}
                   x2={`${b.x}%`} y2={`${b.y}%`}
-                  stroke="#D6B47E" strokeWidth="0.5" strokeDasharray="3 5" opacity="0.2"
+                  stroke="#C5A365" strokeWidth="0.5" strokeDasharray="3 5" opacity="0.2"
                 />
               ))
             )}
@@ -213,7 +213,7 @@ const EntryPointsMap = ({ isAr }: Props) => {
               <div className="space-y-2">
                 {[
                   { label: isAr ? "الوصول" : "Arrivals", value: selected.arrivals, color: "#4ADE80" },
-                  { label: isAr ? "المغادرة" : "Departures", value: selected.departures, color: "#D6B47E" },
+                  { label: isAr ? "المغادرة" : "Departures", value: selected.departures, color: "#C5A365" },
                   { label: isAr ? "الإجمالي" : "Total", value: selected.arrivals + selected.departures, color: "#FACC15" },
                 ].map((stat) => (
                   <div key={stat.label} className="flex items-center justify-between px-3 py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>

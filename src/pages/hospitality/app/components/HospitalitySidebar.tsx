@@ -11,7 +11,7 @@ interface Props {
 }
 
 const ROLE_COLORS: Record<string, string> = {
-  Admin: '#D6B47E', Reception: '#4ADE80', Viewer: '#9CA3AF',
+  Admin: '#C5A365', Reception: '#4ADE80', Viewer: '#9CA3AF',
 };
 
 export default function HospitalitySidebar({ activeKey, onNav, lang, collapsed, isOffline, pendingSync }: Props) {
@@ -42,16 +42,16 @@ export default function HospitalitySidebar({ activeKey, onNav, lang, collapsed, 
         className="w-full flex items-center gap-3 px-3 py-2.5 transition-all cursor-pointer relative group"
         style={{
           background: isActive ? 'rgba(184,138,60,0.1)' : 'transparent',
-          borderLeft: isAr ? 'none' : (isActive ? '2px solid #D6B47E' : '2px solid transparent'),
-          borderRight: isAr ? (isActive ? '2px solid #D6B47E' : '2px solid transparent') : 'none',
+          borderLeft: isAr ? 'none' : (isActive ? '2px solid #C5A365' : '2px solid transparent'),
+          borderRight: isAr ? (isActive ? '2px solid #C5A365' : '2px solid transparent') : 'none',
         }}
         title={collapsed ? (isAr ? item.labelAr : item.labelEn) : undefined}
       >
         <div className="w-5 h-5 flex items-center justify-center shrink-0">
-          <i className={`${item.icon} text-sm`} style={{ color: isActive ? '#D6B47E' : '#6B7280' }} />
+          <i className={`${item.icon} text-sm`} style={{ color: isActive ? '#C5A365' : '#6B7280' }} />
         </div>
         {!collapsed && (
-          <span className="text-xs font-medium truncate" style={{ color: isActive ? '#D6B47E' : '#9CA3AF' }}>
+          <span className="text-xs font-medium truncate" style={{ color: isActive ? '#C5A365' : '#9CA3AF' }}>
             {isAr ? item.labelAr : item.labelEn}
           </span>
         )}
@@ -133,7 +133,7 @@ export default function HospitalitySidebar({ activeKey, onNav, lang, collapsed, 
             {[
               { key: 'checkin',     icon: 'ri-login-box-line',     color: '#4ADE80', en: 'Check-In',  ar: 'دخول' },
               { key: 'checkout',    icon: 'ri-logout-box-line',    color: '#C98A1B', en: 'Check-Out', ar: 'خروج' },
-              { key: 'new-booking', icon: 'ri-calendar-check-line',color: '#D6B47E', en: 'Booking',   ar: 'حجز' },
+              { key: 'new-booking', icon: 'ri-calendar-check-line',color: '#C5A365', en: 'Booking',   ar: 'حجز' },
               { key: 'changeroom',  icon: 'ri-door-line',          color: '#FACC15', en: 'Change Rm', ar: 'تغيير' },
             ].map(a => (
               <button

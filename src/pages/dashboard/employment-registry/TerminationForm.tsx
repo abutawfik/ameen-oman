@@ -83,9 +83,9 @@ const TerminationForm = ({ isAr, onCancel }: Props) => {
               <TextInput placeholder="WP-XXXX-XXXXXXXX" value={permitNumber} onChange={(e) => setPermitNumber(e.target.value)} className="font-['JetBrains_Mono'] flex-1" />
               <button type="button" onClick={handleLookup}
                 className="flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap"
-                style={{ background: "#D6B47E", color: "#051428" }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C99C48"; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#D6B47E"; }}>
+                style={{ background: "#C5A365", color: "#071426" }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C5A365"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C5A365"; }}>
                 {lookingUp ? <i className="ri-loader-4-line animate-spin" /> : <i className="ri-search-line" />}
                 {isAr ? "بحث" : "Lookup"}
               </button>
@@ -176,7 +176,7 @@ const TerminationForm = ({ isAr, onCancel }: Props) => {
         </button>
         <button type="button" onClick={handleSubmit} disabled={!confirmed || saving}
           className="flex items-center gap-2 px-6 py-2.5 rounded-lg text-sm font-bold cursor-pointer whitespace-nowrap disabled:opacity-40"
-          style={{ background: "#C94A5E", color: "#051428" }}
+          style={{ background: "#C94A5E", color: "#071426" }}
           onMouseEnter={(e) => { if (confirmed) (e.currentTarget as HTMLButtonElement).style.background = "#EF4444"; }}
           onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C94A5E"; }}>
           {saving ? <i className="ri-loader-4-line animate-spin" /> : <i className="ri-user-unfollow-line" />}

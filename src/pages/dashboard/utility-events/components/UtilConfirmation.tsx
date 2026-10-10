@@ -83,7 +83,7 @@ const UtilConfirmation = ({ isAr, onReset, eventLabel, eventLabelAr, eventColor 
           <button type="button"
             onClick={() => window.history.back()}
             className="flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-bold cursor-pointer whitespace-nowrap"
-            style={{ background: eventColor, color: "#051428" }}>
+            style={{ background: eventColor, color: "#071426" }}>
             <i className="ri-dashboard-3-line" />
             {isAr ? "لوحة التحكم" : "Dashboard"}
           </button>

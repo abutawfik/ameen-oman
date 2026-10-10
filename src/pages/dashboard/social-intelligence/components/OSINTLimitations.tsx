@@ -7,7 +7,7 @@ const OSINTLimitations = ({ isAr }: Props) => {
     { icon: "ri-user-unfollow-line", color: "#C98A1B", title: isAr ? "معدل إصابة ~70%" : "~70% Phone Lookup Hit Rate", desc: isAr ? "لا يمكن ضمان تطابق الهوية. بعض الأرقام لا تُربط بحسابات اجتماعية. التحقق اليدوي مطلوب." : "Identity match cannot be guaranteed. Some numbers don't link to social accounts. Manual verification required." },
     { icon: "ri-eye-off-line", color: "#C94A5E", title: isAr ? "لا تعرف على الوجه" : "No Facial Recognition", desc: isAr ? "Tier 1+2 لا يتضمن تعرفاً على الوجه. صور الملف الشخصي لا تُحلَّل تلقائياً." : "Tier 1+2 does not include facial recognition. Profile photos are not automatically analyzed." },
     { icon: "ri-shield-check-line", color: "#4ADE80", title: isAr ? "البيانات العامة فقط" : "Public Data Only", desc: isAr ? "جميع البيانات المجمّعة من مصادر عامة أو مرتبطة بأرقام هواتف مُقدَّمة من تدفق SIM. لا اختراق للخصوصية." : "All data collected from public sources or linked to phone numbers provided by SIM stream. No privacy breach." },
-    { icon: "ri-database-2-line", color: "#D6B47E", title: isAr ? "تحليل استرجاعي" : "Retrospective Analysis", desc: isAr ? "التحليل يعمل على البيانات التاريخية. لا مراقبة في الوقت الفعلي لحسابات بعينها." : "Analysis operates on historical data. No real-time surveillance of specific accounts." },
+    { icon: "ri-database-2-line", color: "#C5A365", title: isAr ? "تحليل استرجاعي" : "Retrospective Analysis", desc: isAr ? "التحليل يعمل على البيانات التاريخية. لا مراقبة في الوقت الفعلي لحسابات بعينها." : "Analysis operates on historical data. No real-time surveillance of specific accounts." },
   ];
 
   const apiSources = [

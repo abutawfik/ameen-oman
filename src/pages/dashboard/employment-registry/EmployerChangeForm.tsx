@@ -77,9 +77,9 @@ const EmployerChangeForm = ({ isAr, onCancel }: Props) => {
               <TextInput placeholder="WP-XXXX-XXXXXXXX" value={oldPermit} onChange={(e) => setOldPermit(e.target.value)} className="font-['JetBrains_Mono'] flex-1" />
               <button type="button" onClick={handleLookup}
                 className="flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap"
-                style={{ background: "#D6B47E", color: "#051428" }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C99C48"; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#D6B47E"; }}>
+                style={{ background: "#C5A365", color: "#071426" }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C5A365"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C5A365"; }}>
                 {lookingUp ? <i className="ri-loader-4-line animate-spin" /> : <i className="ri-search-line" />}
                 {isAr ? "بحث" : "Lookup"}
               </button>
@@ -160,9 +160,9 @@ const EmployerChangeForm = ({ isAr, onCancel }: Props) => {
           )}
           <FormField label={isAr ? "ملاحظات" : "Notes"}>
             <textarea rows={3} placeholder={isAr ? "أي ملاحظات إضافية..." : "Any additional notes..."} value={notes} onChange={(e) => setNotes(e.target.value)}
-              className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none resize-none font-['Inter']"
+              className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none resize-none font-['Manrope']"
               style={{ background: "#0F1923", border: "1px solid rgba(255,255,255,0.08)" }}
-              onFocus={(e) => { e.target.style.borderColor = "#D6B47E"; }}
+              onFocus={(e) => { e.target.style.borderColor = "#C5A365"; }}
               onBlur={(e) => { e.target.style.borderColor = "rgba(255,255,255,0.08)"; }} />
           </FormField>
         </div>

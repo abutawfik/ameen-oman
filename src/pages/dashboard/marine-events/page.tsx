@@ -8,7 +8,7 @@ import DivingRegistrationForm from "./DivingRegistrationForm";
 
 type EventType = "boat" | "docking" | "diving";
 const EVENT_CARDS = [
-  { id: "boat" as EventType, icon: "ri-ship-line", label: "Boat Rental", labelAr: "تأجير قارب", desc: "Register boat rental with marine license, vessel details, passengers and GPS tracker", descAr: "تسجيل تأجير قارب مع رخصة الملاحة وبيانات السفينة والركاب وتتبع GPS", color: "#D6B47E", code: "MAR_BOAT" },
+  { id: "boat" as EventType, icon: "ri-ship-line", label: "Boat Rental", labelAr: "تأجير قارب", desc: "Register boat rental with marine license, vessel details, passengers and GPS tracker", descAr: "تسجيل تأجير قارب مع رخصة الملاحة وبيانات السفينة والركاب وتتبع GPS", color: "#C5A365", code: "MAR_BOAT" },
   { id: "docking" as EventType, icon: "ri-anchor-line", label: "Marina Docking", labelAr: "رسو في الميناء", desc: "Record vessel arrival, departure, last/next port and full crew manifest", descAr: "تسجيل وصول السفينة والمغادرة وآخر/التالي ميناء وقائمة الطاقم الكاملة", color: "#4ADE80", code: "MAR_DOCKING" },
   { id: "diving" as EventType, icon: "ri-water-flash-line", label: "Diving Registration", labelAr: "تسجيل غوص", desc: "Register dive with certification level, site GPS, max depth and buddy details", descAr: "تسجيل الغوص مع مستوى الشهادة وإحداثيات الموقع وأقصى عمق وبيانات الرفيق", color: "#C98A1B", code: "MAR_DIVING" },
 ];
@@ -21,7 +21,7 @@ const MarineEventsPage = () => {
   const handleSwitch = (id: EventType) => { setActiveEvent(id); setFormKey(k => k + 1); };
 
   return (
-    <div className="min-h-screen font-['Inter']" style={{ background: "#051428" }} dir={isAr ? "rtl" : "ltr"}>
+    <div className="min-h-screen font-['Manrope']" style={{ background: "#071426" }} dir={isAr ? "rtl" : "ltr"}>
       <div className="fixed inset-0 pointer-events-none" style={{ backgroundImage: `linear-gradient(rgba(184,138,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.03) 1px, transparent 1px)`, backgroundSize: "40px 40px" }} />
       <PageHeader
         title={isAr ? "أحداث البحرية" : "Marine Events"}

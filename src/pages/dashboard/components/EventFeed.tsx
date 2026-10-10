@@ -35,7 +35,7 @@ const EventFeed = ({ entityType, isAr }: Props) => {
       <div className="flex items-center justify-between px-5 py-4 border-b flex-shrink-0"
         style={{ borderColor: "rgba(255,255,255,0.06)" }}>
         <div>
-          <h3 className="text-white font-bold text-sm font-['Inter']">
+          <h3 className="text-white font-bold text-sm font-['Manrope']">
             {isAr ? "آخر الأحداث" : "Recent Event Activities"}
           </h3>
           <p className="text-gray-600 text-xs font-['JetBrains_Mono'] mt-0.5">
@@ -62,7 +62,7 @@ const EventFeed = ({ entityType, isAr }: Props) => {
               <div className="flex items-center justify-between mb-2 flex-wrap gap-2">
                 <div className="flex items-center gap-2">
                   <span
-                    className="text-xs font-semibold px-2 py-0.5 rounded-full font-['Inter'] whitespace-nowrap"
+                    className="text-xs font-semibold px-2 py-0.5 rounded-full font-['Manrope'] whitespace-nowrap"
                     style={{ background: ev.color + "18", color: ev.color, border: `1px solid ${ev.color}33` }}
                   >
                     {isAr ? ev.typeAr : ev.type}
@@ -83,7 +83,7 @@ const EventFeed = ({ entityType, isAr }: Props) => {
               </div>
 
               {/* Detail */}
-              <p className="text-gray-400 text-xs leading-relaxed font-['Inter']">
+              <p className="text-gray-400 text-xs leading-relaxed font-['Manrope']">
                 {isAr ? ev.detailAr : ev.detail}
               </p>
             </div>
@@ -93,7 +93,7 @@ const EventFeed = ({ entityType, isAr }: Props) => {
 
       {/* Footer */}
       <div className="px-5 py-3 border-t flex-shrink-0" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
-        <button className="w-full text-center text-gold-400 text-xs font-semibold hover:text-gold-300 transition-colors cursor-pointer font-['Inter']">
+        <button className="w-full text-center text-gold-400 text-xs font-semibold hover:text-gold-300 transition-colors cursor-pointer font-['Manrope']">
           {isAr ? "عرض جميع الأحداث ›" : "View All Events ›"}
         </button>
       </div>

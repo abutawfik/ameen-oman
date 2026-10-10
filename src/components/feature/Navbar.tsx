@@ -12,7 +12,7 @@ import { useBrandFonts } from "@/brand/typography";
 const C = {
   ivory100: "#F8F5F0",
   ivory200: "#EFE8D7",
-  gold400:  "#D6B47E",
+  gold400:  "#C5A365",
   omanRed600: "#8A1F3C",
   omanRed500: "#A52844",
   bgPanel:  "rgba(var(--alm-ocean-800-rgb), 0.9)",
@@ -60,7 +60,7 @@ const Navbar = () => {
     <nav
       className="fixed top-0 left-0 right-0 z-50 transition-colors duration-300"
       style={{
-        background: C.bgPanel,
+        background: "#071426",
         backdropFilter: "blur(16px)",
         WebkitBackdropFilter: "blur(16px)",
         borderBottom: `1px solid ${scrolled ? "rgba(184,138,60,0.25)" : "rgba(184,138,60,0.15)"}`,
@@ -79,7 +79,7 @@ const Navbar = () => {
               variant="horizontal"
               tone="light"
               size="md"
-              showTagline
+              showTagline={false}
             />
           </a>
 

@@ -3,14 +3,14 @@ import { useState } from "react";
 interface Props { isAr: boolean; }
 
 const PROVIDERS = [
-  { id: "nat-bus", name: "National Bus Co.", nameAr: "شركة الحافلات الوطنية", type: "Government Bus", typeAr: "حافلة حكومية", icon: "ri-bus-line", color: "#D6B47E", status: "online" as const, tripsToday: 14821, matchRate: 94, lastSync: "14:32:07" },
+  { id: "nat-bus", name: "National Bus Co.", nameAr: "شركة الحافلات الوطنية", type: "Government Bus", typeAr: "حافلة حكومية", icon: "ri-bus-line", color: "#C5A365", status: "online" as const, tripsToday: 14821, matchRate: 94, lastSync: "14:32:07" },
   { id: "taxi-a", name: "Taxi Co. A", nameAr: "شركة التاكسي أ", type: "Licensed Taxi", typeAr: "تاكسي مرخّص", icon: "ri-taxi-line", color: "#4ADE80", status: "online" as const, tripsToday: 3247, matchRate: 87, lastSync: "14:31:55" },
   { id: "ridehail-a", name: "Ride-Hail App A", nameAr: "تطبيق التوصيل أ", type: "Ride-Hailing App", typeAr: "تطبيق توصيل", icon: "ri-car-line", color: "#A78BFA", status: "online" as const, tripsToday: 5412, matchRate: 78, lastSync: "14:32:01" },
   { id: "ridehail-b", name: "Ride-Hail App B", nameAr: "تطبيق التوصيل ب", type: "Ride-Hailing App", typeAr: "تطبيق توصيل", icon: "ri-car-line", color: "#C98A1B", status: "online" as const, tripsToday: 3522, matchRate: 72, lastSync: "14:30:44" },
 ];
 
 const MATCH_METHODS = [
-  { id: "transit-card", icon: "ri-bank-card-line", label: "Transit Card → Document", labelAr: "بطاقة عبور → وثيقة", enabled: true, color: "#D6B47E", matched: 8241 },
+  { id: "transit-card", icon: "ri-bank-card-line", label: "Transit Card → Document", labelAr: "بطاقة عبور → وثيقة", enabled: true, color: "#C5A365", matched: 8241 },
   { id: "phone", icon: "ri-smartphone-line", label: "Phone Number → SIM Stream", labelAr: "رقم الهاتف → تدفق SIM", enabled: true, color: "#4ADE80", matched: 6134 },
   { id: "payment-card", icon: "ri-secure-payment-line", label: "Payment Card → Financial Stream", labelAr: "بطاقة دفع → التدفق المالي", enabled: true, color: "#A78BFA", matched: 3892 },
   { id: "anonymous", icon: "ri-user-unfollow-line", label: "Anonymous (no match)", labelAr: "مجهول (لا تطابق)", enabled: false, color: "#9CA3AF", matched: 1546 },
@@ -28,7 +28,7 @@ const TransportFeedConfig = ({ isAr }: Props) => {
       {/* Stats */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {[
-          { label: isAr ? "إجمالي الرحلات اليوم" : "Total Trips Today", value: "27,002", color: "#D6B47E", icon: "ri-route-line" },
+          { label: isAr ? "إجمالي الرحلات اليوم" : "Total Trips Today", value: "27,002", color: "#C5A365", icon: "ri-route-line" },
           { label: isAr ? "المزودون النشطون" : "Active Providers", value: `${PROVIDERS.filter(p => p.status === "online").length}/${PROVIDERS.length}`, color: "#4ADE80", icon: "ri-server-line" },
           { label: isAr ? "معدل التطابق" : "Overall Match Rate", value: "83%", color: "#A78BFA", icon: "ri-fingerprint-line" },
           { label: isAr ? "رحلات مجهولة" : "Anonymous Trips", value: "1,546", color: "#9CA3AF", icon: "ri-user-unfollow-line" },
@@ -110,7 +110,7 @@ const TransportFeedConfig = ({ isAr }: Props) => {
               </div>
               <button type="button" onClick={() => toggleMethod(m.id)}
                 className="relative w-10 h-5 rounded-full transition-all duration-300 flex-shrink-0 cursor-pointer"
-                style={{ background: m.enabled ? "#D6B47E" : "rgba(255,255,255,0.1)" }}>
+                style={{ background: m.enabled ? "#C5A365" : "rgba(255,255,255,0.1)" }}>
                 <div className="absolute top-0.5 w-4 h-4 rounded-full bg-white transition-all duration-300 shadow-sm"
                   style={{ left: m.enabled ? "calc(100% - 18px)" : "2px" }} />
               </button>

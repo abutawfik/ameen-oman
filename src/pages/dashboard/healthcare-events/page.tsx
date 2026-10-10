@@ -23,7 +23,7 @@ const HealthcareEventsPage = () => {
   const handleSwitch = (id: EventType) => { setActiveEvent(id); setFormKey(k => k + 1); };
 
   return (
-    <div className="min-h-screen font-['Inter']" style={{ background: "#051428" }} dir={isAr ? "rtl" : "ltr"}>
+    <div className="min-h-screen font-['Manrope']" style={{ background: "#071426" }} dir={isAr ? "rtl" : "ltr"}>
       <div className="fixed inset-0 pointer-events-none" style={{ backgroundImage: `linear-gradient(rgba(184,138,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.03) 1px, transparent 1px)`, backgroundSize: "40px 40px" }} />
 
       <PageHeader

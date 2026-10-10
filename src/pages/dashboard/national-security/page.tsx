@@ -45,13 +45,13 @@ const NationalSecurityDashboard = () => {
 
   const TABS: { id: Tab; icon: string; label: string; labelAr: string; badge?: number; badgeColor?: string }[] = [
     { id: "overview",       icon: "ri-shield-star-line",   label: "Threat Overview",       labelAr: "نظرة عامة على التهديد" },
-    { id: "investigations", icon: "ri-search-eye-line",    label: "Investigations",         labelAr: "التحقيقات",            badge: openInvestigations, badgeColor: "#D6B47E" },
+    { id: "investigations", icon: "ri-search-eye-line",    label: "Investigations",         labelAr: "التحقيقات",            badge: openInvestigations, badgeColor: "#C5A365" },
     { id: "watchlist",      icon: "ri-eye-line",           label: "Watchlist Hits",         labelAr: "إصابات قائمة المراقبة", badge: confirmedHits,      badgeColor: "#C94A5E" },
     { id: "correlations",   icon: "ri-git-merge-line",     label: "Cross-Stream Alerts",    labelAr: "تنبيهات متقاطعة",      badge: newCorrelations,    badgeColor: "#A78BFA" },
   ];
 
   return (
-    <div className="min-h-screen font-['Inter']" style={{ background: "#051428" }} dir={isAr ? "rtl" : "ltr"}>
+    <div className="min-h-screen font-['Manrope']" style={{ background: "#071426" }} dir={isAr ? "rtl" : "ltr"}>
       {/* Grid texture */}
       <div className="fixed inset-0 pointer-events-none" style={{
         backgroundImage: `linear-gradient(rgba(184,138,60,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.02) 1px, transparent 1px)`,
@@ -114,7 +114,7 @@ const NationalSecurityDashboard = () => {
             style={{
               background: activeTab === tab.id ? "rgba(184,138,60,0.12)" : "transparent",
               border: `1px solid ${activeTab === tab.id ? "rgba(184,138,60,0.25)" : "transparent"}`,
-              color: activeTab === tab.id ? "#D6B47E" : "#6B7280",
+              color: activeTab === tab.id ? "#C5A365" : "#6B7280",
             }}>
             <i className={`${tab.icon} text-xs`} />
             {isAr ? tab.labelAr : tab.label}
@@ -140,7 +140,7 @@ const NationalSecurityDashboard = () => {
               {[
                 { label: isAr ? "مستوى التهديد" : "Threat Level",       value: isAr ? cfg.labelAr : currentThreatLevel, color: cfg.color,   icon: "ri-shield-star-line",    mono: false },
                 { label: isAr ? "مؤشر التهديد" : "Threat Index",        value: `${threatScore}/100`,                    color: cfg.color,   icon: "ri-pulse-line",          mono: true  },
-                { label: isAr ? "تحقيقات نشطة" : "Active Investigations",value: openInvestigations,                     color: "#D6B47E",   icon: "ri-search-eye-line",     mono: false },
+                { label: isAr ? "تحقيقات نشطة" : "Active Investigations",value: openInvestigations,                     color: "#C5A365",   icon: "ri-search-eye-line",     mono: false },
                 { label: isAr ? "إصابات مؤكدة" : "Confirmed Hits",      value: confirmedHits,                           color: "#C94A5E",   icon: "ri-eye-line",            mono: false },
                 { label: isAr ? "ارتباطات جديدة" : "New Correlations",  value: newCorrelations,                         color: "#A78BFA",   icon: "ri-git-merge-line",      mono: false },
                 { label: isAr ? "أحداث اليوم" : "Events Today",         value: liveEvents.toLocaleString(),             color: "#4ADE80",   icon: "ri-database-line",       mono: true  },

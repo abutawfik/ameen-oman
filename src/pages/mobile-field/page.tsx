@@ -82,7 +82,7 @@ const MobileFieldPage = () => {
     >
       {/* Background grid */}
       <div className="fixed inset-0 pointer-events-none opacity-[0.04]">
-        <svg width="100%" height="100%"><defs><pattern id="mf-bg" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="#D6B47E" strokeWidth="0.5"/></pattern></defs><rect width="100%" height="100%" fill="url(#mf-bg)"/></svg>
+        <svg width="100%" height="100%"><defs><pattern id="mf-bg" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="#C5A365" strokeWidth="0.5"/></pattern></defs><rect width="100%" height="100%" fill="url(#mf-bg)"/></svg>
       </div>
 
       {/* Desktop context label */}
@@ -92,9 +92,9 @@ const MobileFieldPage = () => {
             <div className="w-8 h-8 flex items-center justify-center rounded-xl" style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.3)" }}>
               <i className="ri-smartphone-line text-gold-400 text-base" />
             </div>
-            <span className="text-gold-400 font-black text-lg font-['Inter'] tracking-widest">Al-Ameen Mobile</span>
+            <span className="text-gold-400 font-black text-lg font-['Manrope'] tracking-widest">Al-Ameen Mobile</span>
           </div>
-          <p className="text-gray-400 text-sm font-['Inter'] leading-relaxed">
+          <p className="text-gray-400 text-sm font-['Manrope'] leading-relaxed">
             Field Officer Application for National Police. Secure, offline-capable intelligence tool for field operations.
           </p>
         </div>
@@ -109,7 +109,7 @@ const MobileFieldPage = () => {
           ].map((f) => (
             <div key={f.text} className="flex items-center gap-2.5 px-3 py-2 rounded-xl" style={{ background: "rgba(10,37,64,0.6)", border: "1px solid rgba(184,138,60,0.08)" }}>
               <i className={`${f.icon} text-gold-400 text-sm flex-shrink-0`} />
-              <span className="text-gray-400 text-xs font-['Inter']">{f.text}</span>
+              <span className="text-gray-400 text-xs font-['Manrope']">{f.text}</span>
             </div>
           ))}
         </div>
@@ -125,7 +125,7 @@ const MobileFieldPage = () => {
           <button
             onClick={() => setIsAr(!isAr)}
             className="px-3 py-2 rounded-xl text-xs font-bold font-['JetBrains_Mono'] cursor-pointer"
-            style={{ background: "rgba(184,138,60,0.08)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}
+            style={{ background: "rgba(184,138,60,0.08)", color: "#C5A365", border: "1px solid rgba(184,138,60,0.2)" }}
           >
             {isAr ? "EN" : "AR"}
           </button>
@@ -174,7 +174,7 @@ const MobileFieldPage = () => {
         {/* Main content area */}
         <div
           className="absolute flex flex-col"
-          style={{ top: "66px", left: 0, right: 0, bottom: screen !== "lock" ? "80px" : 0, background: "#051428" }}
+          style={{ top: "66px", left: 0, right: 0, bottom: screen !== "lock" ? "80px" : 0, background: "#071426" }}
         >
           {/* Offline banner */}
           {!isOnline && screen !== "lock" && (
@@ -195,13 +195,13 @@ const MobileFieldPage = () => {
 
           {/* LOCK SCREEN */}
           {screen === "lock" && (
-            <div className="flex flex-col items-center justify-center h-full px-8 gap-6" style={{ background: "#051428" }}>
+            <div className="flex flex-col items-center justify-center h-full px-8 gap-6" style={{ background: "#071426" }}>
               {/* Police emblem */}
               <div className="flex flex-col items-center gap-2">
                 <div className="w-16 h-16 rounded-full flex items-center justify-center" style={{ background: "rgba(184,138,60,0.1)", border: "2px solid rgba(184,138,60,0.4)", boxShadow: "0 0 24px rgba(184,138,60,0.15)" }}>
                   <i className="ri-shield-star-fill text-gold-400 text-3xl" />
                 </div>
-                <p className="text-gold-400 font-black text-xl font-['Inter'] tracking-widest">Al-Ameen</p>
+                <p className="text-gold-400 font-black text-xl font-['Manrope'] tracking-widest">Al-Ameen</p>
                 <p className="text-gray-500 text-xs font-['JetBrains_Mono']">{isAr ? "تطبيق الضباط الميدانيين" : "Field Officer Application"}</p>
                 <p className="text-gray-600 text-[11px] font-['JetBrains_Mono']">{dateStr}</p>
               </div>
@@ -221,7 +221,7 @@ const MobileFieldPage = () => {
                 >
                   <i className={`text-3xl ${biometricDone ? "ri-checkbox-circle-fill text-green-400" : "ri-fingerprint-line text-gold-400"}`} />
                 </div>
-                <span className="text-gray-500 text-xs font-['Inter']">
+                <span className="text-gray-500 text-xs font-['Manrope']">
                   {biometricDone ? (isAr ? "تم التحقق..." : "Verified...") : (isAr ? "المس للمصادقة البيومترية" : "Touch to authenticate")}
                 </span>
               </button>
@@ -236,8 +236,8 @@ const MobileFieldPage = () => {
                       key={i}
                       className="w-3 h-3 rounded-full transition-all"
                       style={{
-                        background: i < pin.length ? (pinError ? "#C94A5E" : "#D6B47E") : "rgba(255,255,255,0.1)",
-                        boxShadow: i < pin.length && !pinError ? "0 0 8px #D6B47E" : "none",
+                        background: i < pin.length ? (pinError ? "#C94A5E" : "#C5A365") : "rgba(255,255,255,0.1)",
+                        boxShadow: i < pin.length && !pinError ? "0 0 8px #C5A365" : "none",
                       }}
                     />
                   ))}
@@ -312,7 +312,7 @@ const MobileFieldPage = () => {
                   key={item.key}
                   onClick={() => { setScreen(item.key); setSelectedAlert(null); resetLockTimer(); }}
                   className="flex flex-col items-center gap-1 px-3 py-1 rounded-2xl cursor-pointer transition-all relative"
-                  style={{ color: isActive ? "#D6B47E" : "#4B5563" }}
+                  style={{ color: isActive ? "#C5A365" : "#4B5563" }}
                 >
                   {/* Alert badge on home */}
                   {item.key === "dashboard" && criticalCount > 0 && (
@@ -329,7 +329,7 @@ const MobileFieldPage = () => {
                   >
                     <i className={`${item.icon} text-xl`} />
                   </div>
-                  <span className="text-[9px] font-['Inter'] font-medium whitespace-nowrap">
+                  <span className="text-[9px] font-['Manrope'] font-medium whitespace-nowrap">
                     {isAr ? item.labelAr : item.labelEn}
                   </span>
                 </button>
@@ -343,17 +343,17 @@ const MobileFieldPage = () => {
           <button
             onClick={() => { setScreen("dashboard"); setSelectedAlert(null); resetLockTimer(); }}
             className="absolute z-50 flex items-center gap-1.5 cursor-pointer"
-            style={{ top: "72px", left: "16px", color: "#D6B47E" }}
+            style={{ top: "72px", left: "16px", color: "#C5A365" }}
           >
             <i className="ri-arrow-left-line text-base" />
-            <span className="text-xs font-['Inter'] font-semibold">{isAr ? "رجوع" : "Back"}</span>
+            <span className="text-xs font-['Manrope'] font-semibold">{isAr ? "رجوع" : "Back"}</span>
           </button>
         )}
 
         {/* Screen title */}
         {screen !== "lock" && (
           <div className="absolute z-40 flex items-center justify-center" style={{ top: "72px", left: 0, right: 0, height: "28px" }}>
-            <span className="text-white text-sm font-black font-['Inter'] tracking-wide">
+            <span className="text-white text-sm font-black font-['Manrope'] tracking-wide">
               {screen === "dashboard" && !selectedAlert && (isAr ? "لوحة التحكم" : "Field Dashboard")}
               {screen === "dashboard" && selectedAlert && (isAr ? "تفاصيل التنبيه" : "Alert Detail")}
               {screen === "lookup" && (isAr ? "البحث عن شخص" : "Person Lookup")}
@@ -371,7 +371,7 @@ const MobileFieldPage = () => {
       <div className="hidden xl:flex flex-col gap-4 ml-12 max-w-xs">
         <div className="rounded-2xl p-4" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.15)" }}>
           <p className="text-gold-400 text-xs font-bold font-['JetBrains_Mono'] uppercase tracking-wider mb-3">Navigation</p>
-          <div className="space-y-2 text-xs font-['Inter'] text-gray-400">
+          <div className="space-y-2 text-xs font-['Manrope'] text-gray-400">
             <p>🔐 <strong className="text-white">Lock Screen</strong> — PIN: 1234 or tap fingerprint</p>
             <p>🏠 <strong className="text-white">Dashboard</strong> — Active alerts + nearby locations</p>
             <p>🔍 <strong className="text-white">Lookup</strong> — Search or scan MRZ</p>

@@ -14,7 +14,7 @@ const typeConfig: Record<WatchlistType, { label: string; labelAr: string; border
   employment:        { label: 'Employment Violation', labelAr: 'مخالفات التوظيف', border: '#C98A1B', bg: 'rgba(201,138,27,0.06)', icon: 'ri-briefcase-line' },
   interpol:          { label: 'Interpol / International', labelAr: 'الإنتربول / الدولي', border: '#A78BFA', bg: 'rgba(167,139,250,0.08)', icon: 'ri-global-line' },
   sanctions:         { label: 'Sanctions List', labelAr: 'قائمة العقوبات', border: '#F97316', bg: 'rgba(249,115,22,0.08)', icon: 'ri-flag-line' },
-  custom:            { label: 'Custom', labelAr: 'مخصص', border: '#D6B47E', bg: 'rgba(184,138,60,0.08)', icon: 'ri-settings-3-line' },
+  custom:            { label: 'Custom', labelAr: 'مخصص', border: '#C5A365', bg: 'rgba(184,138,60,0.08)', icon: 'ri-settings-3-line' },
 };
 
 const priorityColors: Record<string, string> = {
@@ -37,7 +37,7 @@ const WatchlistDashboard = ({ isAr, onSelectWatchlist, onCreateNew }: Props) => 
   const recentAlerts = watchlistAlerts.slice(0, 5);
 
   const stats = [
-    { label: 'Total Watchlists', labelAr: 'إجمالي القوائم', value: watchlistStats.totalWatchlists, icon: 'ri-list-check-2', color: '#D6B47E' },
+    { label: 'Total Watchlists', labelAr: 'إجمالي القوائم', value: watchlistStats.totalWatchlists, icon: 'ri-list-check-2', color: '#C5A365' },
     { label: 'Active Targets', labelAr: 'الأهداف النشطة', value: watchlistStats.activeTargets.toLocaleString(), icon: 'ri-user-search-line', color: '#C94A5E' },
     { label: 'Alerts Today', labelAr: 'تنبيهات اليوم', value: watchlistStats.alertsToday, icon: 'ri-alarm-warning-line', color: '#C98A1B' },
     { label: 'Hit Rate', labelAr: 'معدل التطابق', value: `${watchlistStats.hitRate}%`, icon: 'ri-percent-line', color: '#4ADE80' },
@@ -57,11 +57,11 @@ const WatchlistDashboard = ({ isAr, onSelectWatchlist, onCreateNew }: Props) => 
                 <i className={`${s.icon} text-lg`} style={{ color: s.color }} />
               </div>
               <span className="text-xs font-['JetBrains_Mono'] px-2 py-0.5 rounded-full"
-                style={{ background: 'rgba(184,138,60,0.08)', color: '#D6B47E' }}>LIVE</span>
+                style={{ background: 'rgba(184,138,60,0.08)', color: '#C5A365' }}>LIVE</span>
             </div>
             <div>
               <p className="text-2xl font-black font-['JetBrains_Mono'] text-white">{s.value}</p>
-              <p className="text-xs text-gray-400 font-['Inter'] mt-0.5">{isAr ? s.labelAr : s.label}</p>
+              <p className="text-xs text-gray-400 font-['Manrope'] mt-0.5">{isAr ? s.labelAr : s.label}</p>
             </div>
           </div>
         ))}
@@ -70,7 +70,7 @@ const WatchlistDashboard = ({ isAr, onSelectWatchlist, onCreateNew }: Props) => 
       {/* Sub-stats */}
       <div className="grid grid-cols-3 gap-4">
         {[
-          { label: 'Auto-Alerts Today', labelAr: 'تنبيهات تلقائية', value: watchlistStats.autoAlertsToday, color: '#D6B47E' },
+          { label: 'Auto-Alerts Today', labelAr: 'تنبيهات تلقائية', value: watchlistStats.autoAlertsToday, color: '#C5A365' },
           { label: 'Manual Review', labelAr: 'مراجعة يدوية', value: watchlistStats.manualReviewToday, color: '#FACC15' },
           { label: 'Near-Matches', labelAr: 'تطابقات قريبة', value: watchlistStats.nearMatchesToday, color: '#C98A1B' },
         ].map(s => (
@@ -80,7 +80,7 @@ const WatchlistDashboard = ({ isAr, onSelectWatchlist, onCreateNew }: Props) => 
               style={{ background: `${s.color}18`, border: `1px solid ${s.color}40` }}>
               <span className="text-lg font-black font-['JetBrains_Mono']" style={{ color: s.color }}>{s.value}</span>
             </div>
-            <p className="text-sm text-gray-300 font-['Inter']">{isAr ? s.labelAr : s.label}</p>
+            <p className="text-sm text-gray-300 font-['Manrope']">{isAr ? s.labelAr : s.label}</p>
           </div>
         ))}
       </div>
@@ -89,14 +89,14 @@ const WatchlistDashboard = ({ isAr, onSelectWatchlist, onCreateNew }: Props) => 
         {/* Watchlist Grid */}
         <div className="col-span-2 space-y-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-white font-bold font-['Inter'] text-base">
+            <h2 className="text-white font-bold font-['Manrope'] text-base">
               {isAr ? 'قوائم المراقبة' : 'Watchlists'}
             </h2>
             <div className="flex items-center gap-2">
               <select
                 value={filter}
                 onChange={e => setFilter(e.target.value as WatchlistType | 'all')}
-                className="text-xs px-3 py-1.5 rounded-lg font-['Inter'] cursor-pointer"
+                className="text-xs px-3 py-1.5 rounded-lg font-['Manrope'] cursor-pointer"
                 style={{ background: 'rgba(10,37,64,0.9)', border: '1px solid rgba(184,138,60,0.2)', color: '#D1D5DB' }}
               >
                 <option value="all">{isAr ? 'الكل' : 'All Types'}</option>
@@ -105,8 +105,8 @@ const WatchlistDashboard = ({ isAr, onSelectWatchlist, onCreateNew }: Props) => 
                 ))}
               </select>
               <button onClick={onCreateNew}
-                className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold font-['Inter'] whitespace-nowrap cursor-pointer transition-all"
-                style={{ background: '#D6B47E', color: '#051428' }}>
+                className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold font-['Manrope'] whitespace-nowrap cursor-pointer transition-all"
+                style={{ background: '#C5A365', color: '#071426' }}>
                 <i className="ri-add-line" />
                 {isAr ? 'قائمة جديدة' : 'New Watchlist'}
               </button>
@@ -128,7 +128,7 @@ const WatchlistDashboard = ({ isAr, onSelectWatchlist, onCreateNew }: Props) => 
                         <i className={`${cfg.icon} text-sm`} style={{ color: cfg.border }} />
                       </div>
                       <div>
-                        <p className="text-white text-sm font-semibold font-['Inter'] leading-tight">
+                        <p className="text-white text-sm font-semibold font-['Manrope'] leading-tight">
                           {isAr ? wl.nameAr : wl.name}
                         </p>
                         <span className="text-xs font-['JetBrains_Mono'] px-1.5 py-0.5 rounded"
@@ -153,16 +153,16 @@ const WatchlistDashboard = ({ isAr, onSelectWatchlist, onCreateNew }: Props) => 
                     ].map(s => (
                       <div key={s.label} className="text-center">
                         <p className="text-white font-black font-['JetBrains_Mono'] text-sm">{s.value}</p>
-                        <p className="text-gray-500 text-xs font-['Inter']">{s.label}</p>
+                        <p className="text-gray-500 text-xs font-['Manrope']">{s.label}</p>
                       </div>
                     ))}
                   </div>
 
                   <div className="flex items-center justify-between text-xs">
-                    <span className="text-gray-500 font-['Inter']">
+                    <span className="text-gray-500 font-['Manrope']">
                       {isAr ? 'آخر تطابق:' : 'Last hit:'} <span className="text-gray-300">{wl.lastHit}</span>
                     </span>
-                    <span className="text-gold-400 font-['Inter'] flex items-center gap-1">
+                    <span className="text-gold-400 font-['Manrope'] flex items-center gap-1">
                       {isAr ? 'عرض' : 'View'} <i className="ri-arrow-right-s-line" />
                     </span>
                   </div>
@@ -175,7 +175,7 @@ const WatchlistDashboard = ({ isAr, onSelectWatchlist, onCreateNew }: Props) => 
         {/* Recent Alerts */}
         <div className="space-y-3">
           <div className="flex items-center justify-between">
-            <h2 className="text-white font-bold font-['Inter'] text-base">
+            <h2 className="text-white font-bold font-['Manrope'] text-base">
               {isAr ? 'آخر التنبيهات' : 'Recent Alerts'}
             </h2>
             <span className="text-xs font-['JetBrains_Mono'] px-2 py-0.5 rounded-full"
@@ -195,7 +195,7 @@ const WatchlistDashboard = ({ isAr, onSelectWatchlist, onCreateNew }: Props) => 
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-1 flex-wrap">
-                      <p className="text-white text-xs font-semibold font-['Inter'] truncate">{alert.targetName}</p>
+                      <p className="text-white text-xs font-semibold font-['Manrope'] truncate">{alert.targetName}</p>
                       {alert.isNearMatch && (
                         <span className="text-xs px-1.5 py-0.5 rounded font-['JetBrains_Mono'] flex-shrink-0"
                           style={{ background: 'rgba(201,138,27,0.2)', color: '#C98A1B' }}>
@@ -203,7 +203,7 @@ const WatchlistDashboard = ({ isAr, onSelectWatchlist, onCreateNew }: Props) => 
                         </span>
                       )}
                     </div>
-                    <p className="text-gray-400 text-xs font-['Inter']">{alert.eventType}</p>
+                    <p className="text-gray-400 text-xs font-['Manrope']">{alert.eventType}</p>
                   </div>
                   <span className="text-xs px-1.5 py-0.5 rounded font-['JetBrains_Mono'] flex-shrink-0"
                     style={{ background: `${statusColors[alert.status]}18`, color: statusColors[alert.status] }}>
@@ -212,7 +212,7 @@ const WatchlistDashboard = ({ isAr, onSelectWatchlist, onCreateNew }: Props) => 
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-gray-500 text-xs font-['JetBrains_Mono']">{alert.timestamp}</span>
-                  <span className="text-gray-400 text-xs font-['Inter'] truncate max-w-[120px]">{alert.location}</span>
+                  <span className="text-gray-400 text-xs font-['Manrope'] truncate max-w-[120px]">{alert.location}</span>
                 </div>
               </div>
             ))}

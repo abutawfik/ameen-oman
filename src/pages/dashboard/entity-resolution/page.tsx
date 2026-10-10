@@ -24,7 +24,7 @@ const STATUS_META: Record<Status, { labelEn: string; labelAr: string; color: str
   SPLIT:          { labelEn: "Split",          labelAr: "مفصول",         color: "#5B7494" },
 };
 
-const simColor = (s: number) => (s >= 0.80 ? "#D6B47E" : "#C98A1B"); // brass / amber
+const simColor = (s: number) => (s >= 0.80 ? "#C5A365" : "#C98A1B"); // brass / amber
 const factorLabels: Record<string, { en: string; ar: string }> = {
   name_token_set_ratio:         { en: "Name tokens",            ar: "رموز الاسم" },
   alias_overlap_jaccard:        { en: "Alias overlap",          ar: "تداخل الأسماء البديلة" },
@@ -112,7 +112,7 @@ const EntityResolutionPage = () => {
             style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.15)" }}>
             {(["PENDING", "ALL", "MERGED", "KEPT_SEPARATE", "ESCALATED"] as (Status | "ALL")[]).map((s) => {
               const isActive = statusFilter === s;
-              const color = s === "ALL" ? "#D6B47E" : STATUS_META[s].color;
+              const color = s === "ALL" ? "#C5A365" : STATUS_META[s].color;
               return (
                 <button key={s} onClick={() => setStatusFilter(s)}
                   className="flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] cursor-pointer"
@@ -206,11 +206,11 @@ const EntityResolutionPage = () => {
               <div key={ent.id} className="rounded-lg p-4"
                 style={{
                   background: "rgba(255,255,255,0.02)",
-                  border: `1px solid ${i === 0 ? "#4A7AA855" : "#D6B47E55"}`,
+                  border: `1px solid ${i === 0 ? "#4A7AA855" : "#C5A36555"}`,
                 }}>
                 <div className="flex items-center gap-2 mb-2">
                   <span className="w-7 h-7 flex items-center justify-center rounded-lg font-bold"
-                    style={{ background: i === 0 ? "#4A7AA822" : "#D6B47E22", color: i === 0 ? "#4A7AA8" : "#D6B47E", fontFamily: fonts.mono }}>
+                    style={{ background: i === 0 ? "#4A7AA822" : "#C5A36522", color: i === 0 ? "#4A7AA8" : "#C5A365", fontFamily: fonts.mono }}>
                     {i === 0 ? "A" : "B"}
                   </span>
                   <h3 className="text-white text-sm font-bold" style={{ fontFamily: fonts.sans }}>{ent.canonicalName}</h3>
@@ -286,7 +286,7 @@ const EntityResolutionPage = () => {
                     <Tooltip contentStyle={{ background: "#0A2540", border: "1px solid rgba(184,138,60,0.3)", borderRadius: 8, fontSize: 12 }} />
                     <Bar dataKey="value" radius={[0, 4, 4, 0]}>
                       {factorData.map((d) => (
-                        <Cell key={d.key} fill={d.value >= 0.85 ? "#4A8E3A" : d.value >= 0.65 ? "#D6B47E" : "#C94A5E"} />
+                        <Cell key={d.key} fill={d.value >= 0.85 ? "#4A8E3A" : d.value >= 0.65 ? "#C5A365" : "#C94A5E"} />
                       ))}
                     </Bar>
                   </BarChart>
@@ -351,7 +351,7 @@ const EntityResolutionPage = () => {
               <div className="flex gap-2 flex-wrap">
                 <button onClick={() => action("MERGED", true)}
                   className="px-4 py-2 rounded-lg text-xs font-bold cursor-pointer"
-                  style={{ background: "#D6B47E", color: "#051428", fontFamily: fonts.sans }}>
+                  style={{ background: "#C5A365", color: "#071426", fontFamily: fonts.sans }}>
                   <i className="ri-git-merge-line mr-1" /> {isAr ? "دمج" : "Merge"}
                 </button>
                 <button onClick={() => action("KEPT_SEPARATE", false)}

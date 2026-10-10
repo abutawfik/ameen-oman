@@ -13,7 +13,7 @@ const STATUS_COLORS: Record<RuleStatus, string> = {
 
 // ── Weight Bar ────────────────────────────────────────────────
 function WeightBar({ weight }: { weight: number }) {
-  const color = weight >= 80 ? '#C94A5E' : weight >= 60 ? '#D4922A' : '#D6B47E';
+  const color = weight >= 80 ? '#C94A5E' : weight >= 60 ? '#D4922A' : '#C5A365';
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
       <div style={{ flex: 1, height: 4, borderRadius: 2, background: 'rgba(255,255,255,0.06)', overflow: 'hidden' }}>
@@ -33,7 +33,7 @@ function RuleDetail({ rule, isAr, onClose }: { rule: RiskRule; isAr: boolean; on
     <div style={{ height: '100%', display: 'flex', flexDirection: 'column', borderLeft: '1px solid rgba(184,138,60,0.08)', background: 'rgba(5,20,40,0.6)' }}>
       <div style={{ padding: '12px 16px', borderBottom: '1px solid rgba(184,138,60,0.08)', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
         <div>
-          <div style={{ fontSize: 13, color: '#CBD5E1', fontFamily: "'Inter', sans-serif", fontWeight: 600, marginBottom: 4 }}>
+          <div style={{ fontSize: 13, color: '#CBD5E1', fontFamily: "'Manrope', sans-serif", fontWeight: 600, marginBottom: 4 }}>
             {isAr && rule.nameAr ? rule.nameAr : rule.name}
           </div>
           <div style={{ display: 'flex', gap: 7, alignItems: 'center', flexWrap: 'wrap' }}>
@@ -51,7 +51,7 @@ function RuleDetail({ rule, isAr, onClose }: { rule: RiskRule; isAr: boolean; on
       </div>
 
       <div style={{ flex: 1, overflowY: 'auto', padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: 12 }}>
-        <div style={{ fontSize: 12, color: '#8FA8C0', fontFamily: "'Inter', sans-serif", lineHeight: 1.6 }}>{rule.description}</div>
+        <div style={{ fontSize: 12, color: '#8FA8C0', fontFamily: "'Manrope', sans-serif", lineHeight: 1.6 }}>{rule.description}</div>
 
         {/* Score params */}
         <div style={{ padding: '10px 12px', borderRadius: 6, background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(184,138,60,0.08)' }}>
@@ -72,7 +72,7 @@ function RuleDetail({ rule, isAr, onClose }: { rule: RiskRule; isAr: boolean; on
             ].map(r => (
               <div key={r.label}>
                 <div style={{ fontSize: 11, color: '#374B61', fontFamily: "'JetBrains Mono', monospace", marginBottom: 2 }}>{r.label}</div>
-                <div style={{ fontSize: 11, color: '#D6B47E', fontFamily: "'JetBrains Mono', monospace" }}>{r.val}</div>
+                <div style={{ fontSize: 11, color: '#C5A365', fontFamily: "'JetBrains Mono', monospace" }}>{r.val}</div>
               </div>
             ))}
           </div>
@@ -114,7 +114,7 @@ function DecisionDetail({ rule, isAr, onClose }: { rule: MatchDecisionRule; isAr
     <div style={{ height: '100%', display: 'flex', flexDirection: 'column', borderLeft: '1px solid rgba(184,138,60,0.08)', background: 'rgba(5,20,40,0.6)' }}>
       <div style={{ padding: '12px 16px', borderBottom: '1px solid rgba(184,138,60,0.08)', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
         <div>
-          <div style={{ fontSize: 13, color: '#CBD5E1', fontFamily: "'Inter', sans-serif", fontWeight: 600, marginBottom: 4 }}>
+          <div style={{ fontSize: 13, color: '#CBD5E1', fontFamily: "'Manrope', sans-serif", fontWeight: 600, marginBottom: 4 }}>
             {isAr && rule.nameAr ? rule.nameAr : rule.name}
           </div>
           <span style={{ fontSize: 11, padding: '2px 7px', borderRadius: 3, background: `${cfg.color}18`, color: cfg.color, fontFamily: "'JetBrains Mono', monospace", border: `1px solid ${cfg.color}33` }}>
@@ -126,7 +126,7 @@ function DecisionDetail({ rule, isAr, onClose }: { rule: MatchDecisionRule; isAr
         </button>
       </div>
       <div style={{ flex: 1, overflowY: 'auto', padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: 12 }}>
-        <div style={{ fontSize: 12, color: '#8FA8C0', fontFamily: "'Inter', sans-serif", lineHeight: 1.6 }}>{rule.description}</div>
+        <div style={{ fontSize: 12, color: '#8FA8C0', fontFamily: "'Manrope', sans-serif", lineHeight: 1.6 }}>{rule.description}</div>
 
         <div style={{ padding: '10px 12px', borderRadius: 6, background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(184,138,60,0.08)', display: 'flex', flexDirection: 'column', gap: 10 }}>
           <div>
@@ -146,7 +146,7 @@ function DecisionDetail({ rule, isAr, onClose }: { rule: MatchDecisionRule; isAr
           {rule.workflowId && (
             <div>
               <div style={{ fontSize: 11, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", marginBottom: 4 }}>{isAr ? 'سير العمل' : 'Workflow'}</div>
-              <div style={{ fontSize: 11, color: '#D6B47E', fontFamily: "'JetBrains Mono', monospace" }}>{rule.workflowId}</div>
+              <div style={{ fontSize: 11, color: '#C5A365', fontFamily: "'JetBrains Mono', monospace" }}>{rule.workflowId}</div>
             </div>
           )}
         </div>
@@ -194,7 +194,7 @@ export default function RiskRulesPage() {
   const tabBtnStyle = (active: boolean): React.CSSProperties => ({
     padding: '10px 18px', background: 'none', borderTop: 'none', borderLeft: 'none', borderRight: 'none',
     borderBottom: `2px solid ${active ? '#B8893C' : 'transparent'}`,
-    color: active ? '#D6B47E' : '#5B7494', cursor: 'pointer',
+    color: active ? '#C5A365' : '#5B7494', cursor: 'pointer',
     fontFamily: "'JetBrains Mono', monospace", fontSize: 11, letterSpacing: '0.08em', textTransform: 'uppercase',
     transition: 'color 0.15s',
   });
@@ -206,7 +206,7 @@ export default function RiskRulesPage() {
   });
 
   return (
-    <div style={{ height: '100%', display: 'flex', flexDirection: 'column', background: '#051428', overflow: 'hidden', position: 'relative' }}>
+    <div style={{ height: '100%', display: 'flex', flexDirection: 'column', background: '#071426', overflow: 'hidden', position: 'relative' }}>
       <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0, backgroundImage: 'linear-gradient(rgba(184,138,60,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.025) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
 
       <div style={{ position: 'relative', zIndex: 1, height: '100%', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
@@ -214,10 +214,10 @@ export default function RiskRulesPage() {
           title={isAr ? 'إدارة قواعد المخاطر' : 'Risk Rules Management'}
           subtitle={isAr ? 'قواعد تسجيل المخاطر وإجراءات التطابق' : 'Define scoring weights and automated actions for risk match decisions'}
           icon="ri-settings-3-line"
-          iconColor="#D6B47E"
+          iconColor="#C5A365"
           isAr={isAr}
           action={
-            <button style={{ padding: '8px 14px', borderRadius: 4, background: 'rgba(184,138,60,0.12)', border: '1px solid rgba(184,138,60,0.3)', color: '#D6B47E', fontFamily: "'JetBrains Mono', monospace", fontSize: 11, cursor: 'pointer', textTransform: 'uppercase', letterSpacing: '0.06em', display: 'flex', alignItems: 'center', gap: 6 }}>
+            <button style={{ padding: '8px 14px', borderRadius: 4, background: 'rgba(184,138,60,0.12)', border: '1px solid rgba(184,138,60,0.3)', color: '#C5A365', fontFamily: "'JetBrains Mono', monospace", fontSize: 11, cursor: 'pointer', textTransform: 'uppercase', letterSpacing: '0.06em', display: 'flex', alignItems: 'center', gap: 6 }}>
               <i className="ri-add-line" />{isAr ? 'قاعدة جديدة' : 'New Rule'}
             </button>
           }
@@ -237,7 +237,7 @@ export default function RiskRulesPage() {
         <div style={{ padding: '8px 24px', borderBottom: '1px solid rgba(184,138,60,0.06)', flexShrink: 0, display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center', background: 'rgba(5,20,40,0.3)' }}>
           <div style={{ position: 'relative', flex: '0 0 220px' }}>
             <i className="ri-search-line" style={{ position: 'absolute', left: 9, top: '50%', transform: 'translateY(-50%)', color: '#5B7494', fontSize: 12, pointerEvents: 'none' }} />
-            <input value={search} onChange={e => setSearch(e.target.value)} placeholder={isAr ? 'بحث…' : 'Filter…'} style={{ width: '100%', padding: '5px 10px 5px 28px', borderRadius: 4, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(184,138,60,0.15)', color: '#CBD5E1', fontFamily: "'Inter', sans-serif", fontSize: 12, outline: 'none', boxSizing: 'border-box' }} />
+            <input value={search} onChange={e => setSearch(e.target.value)} placeholder={isAr ? 'بحث…' : 'Filter…'} style={{ width: '100%', padding: '5px 10px 5px 28px', borderRadius: 4, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(184,138,60,0.15)', color: '#CBD5E1', fontFamily: "'Manrope', sans-serif", fontSize: 12, outline: 'none', boxSizing: 'border-box' }} />
           </div>
           {tab === 'rules' && (['WATCHLIST_MATCH', 'PROFILE_MATCH', 'DOCUMENT_VALIDATION', 'EXTERNAL_SOURCE'] as RuleType[]).map(t => {
             const cfg = RULE_TYPE_CONFIG[t];
@@ -265,7 +265,7 @@ export default function RiskRulesPage() {
                     return (
                       <tr key={r.id} onClick={() => setSelRule(prev => prev?.id === r.id ? null : r)} style={{ borderBottom: '1px solid rgba(255,255,255,0.03)', cursor: 'pointer', background: selRule?.id === r.id ? 'rgba(184,138,60,0.06)' : 'transparent' }}>
                         <td style={{ padding: '10px 14px' }}>
-                          <div style={{ fontSize: 12, color: '#CBD5E1', fontFamily: "'Inter', sans-serif", fontWeight: 500 }}>{isAr && r.nameAr ? r.nameAr : r.name}</div>
+                          <div style={{ fontSize: 12, color: '#CBD5E1', fontFamily: "'Manrope', sans-serif", fontWeight: 500 }}>{isAr && r.nameAr ? r.nameAr : r.name}</div>
                           <div style={{ fontSize: 11, color: '#374B61', fontFamily: "'JetBrains Mono', monospace", marginTop: 2 }}>{r.id}</div>
                         </td>
                         <td style={{ padding: '10px 14px' }}>
@@ -306,7 +306,7 @@ export default function RiskRulesPage() {
                     return (
                       <tr key={d.id} onClick={() => setSelDecision(prev => prev?.id === d.id ? null : d)} style={{ borderBottom: '1px solid rgba(255,255,255,0.03)', cursor: 'pointer', background: selDecision?.id === d.id ? 'rgba(184,138,60,0.06)' : 'transparent' }}>
                         <td style={{ padding: '10px 14px' }}>
-                          <div style={{ fontSize: 12, color: '#CBD5E1', fontFamily: "'Inter', sans-serif", fontWeight: 500 }}>{isAr && d.nameAr ? d.nameAr : d.name}</div>
+                          <div style={{ fontSize: 12, color: '#CBD5E1', fontFamily: "'Manrope', sans-serif", fontWeight: 500 }}>{isAr && d.nameAr ? d.nameAr : d.name}</div>
                           <div style={{ fontSize: 11, color: '#374B61', fontFamily: "'JetBrains Mono', monospace", marginTop: 2 }}>{d.id}</div>
                         </td>
                         <td style={{ padding: '10px 14px' }}>

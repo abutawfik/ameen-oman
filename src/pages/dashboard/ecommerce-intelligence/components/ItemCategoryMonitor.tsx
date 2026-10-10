@@ -8,7 +8,7 @@ const CATEGORIES = [
     icon: "ri-cpu-line",
     label: "Electronics",
     labelAr: "الإلكترونيات",
-    color: "#D6B47E",
+    color: "#C5A365",
     count: 89,
     trend: "+12%",
     trendUp: false,

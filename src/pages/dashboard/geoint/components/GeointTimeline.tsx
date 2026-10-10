@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { movementPoints, geoSubjects, type MovementPoint } from "@/mocks/geointData";
 
-const subjectColors = ["#D6B47E", "#C94A5E", "#A78BFA", "#4ADE80", "#C98A1B"];
+const subjectColors = ["#C5A365", "#C94A5E", "#A78BFA", "#4ADE80", "#C98A1B"];
 
 const GeointTimeline = () => {
   const [selectedSubjectId, setSelectedSubjectId] = useState<string | null>(null);
@@ -43,7 +43,7 @@ const GeointTimeline = () => {
         {/* KPI mini cards */}
         <div className="grid grid-cols-2 gap-2">
           {[
-            { label: "Events", value: filteredPoints.length, color: "#D6B47E", icon: "ri-pulse-line" },
+            { label: "Events", value: filteredPoints.length, color: "#C5A365", icon: "ri-pulse-line" },
             { label: "Risk Flags", value: riskFlagged, color: "#C94A5E", icon: "ri-flag-line" },
             { label: "Streams", value: uniqueStreams.length, color: "#A78BFA", icon: "ri-git-branch-line" },
             { label: "Locations", value: uniqueLocations.length, color: "#4ADE80", icon: "ri-map-pin-line" },
@@ -64,7 +64,7 @@ const GeointTimeline = () => {
           <div className="space-y-1">
             <button
               onClick={() => setSelectedSubjectId(null)}
-              className={`w-full text-left px-2 py-1.5 rounded-lg text-xs font-['Inter'] transition-all cursor-pointer ${
+              className={`w-full text-left px-2 py-1.5 rounded-lg text-xs font-['Manrope'] transition-all cursor-pointer ${
                 !selectedSubjectId ? "bg-gold-400/10 text-gold-400" : "text-gray-400 hover:bg-white/5"
               }`}
             >
@@ -74,7 +74,7 @@ const GeointTimeline = () => {
               <button
                 key={s.id}
                 onClick={() => setSelectedSubjectId(selectedSubjectId === s.id ? null : s.id)}
-                className="w-full text-left px-2 py-1.5 rounded-lg text-xs font-['Inter'] transition-all cursor-pointer flex items-center gap-2"
+                className="w-full text-left px-2 py-1.5 rounded-lg text-xs font-['Manrope'] transition-all cursor-pointer flex items-center gap-2"
                 style={selectedSubjectId === s.id ? {
                   background: `${subjectColors[i % subjectColors.length]}15`,
                   color: subjectColors[i % subjectColors.length],
@@ -95,11 +95,11 @@ const GeointTimeline = () => {
             {uniqueStreams.map((stream) => {
               const count = filteredPoints.filter((p) => p.stream === stream).length;
               const pct = Math.round((count / filteredPoints.length) * 100);
-              const color = filteredPoints.find((p) => p.stream === stream)?.streamColor ?? "#D6B47E";
+              const color = filteredPoints.find((p) => p.stream === stream)?.streamColor ?? "#C5A365";
               return (
                 <div key={stream}>
                   <div className="flex items-center justify-between mb-0.5">
-                    <span className="text-xs font-['Inter'] text-gray-400">{stream}</span>
+                    <span className="text-xs font-['Manrope'] text-gray-400">{stream}</span>
                     <span className="text-xs font-['JetBrains_Mono']" style={{ color }}>{count}</span>
                   </div>
                   <div className="h-1 rounded-full bg-white/5">
@@ -158,8 +158,8 @@ const GeointTimeline = () => {
                         <div className="flex items-start justify-between">
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-2 mb-0.5 flex-wrap">
-                              <span className="text-xs font-['Inter'] font-semibold" style={{ color: point.streamColor }}>{point.stream}</span>
-                              <span className="text-white text-xs font-['Inter']">{point.eventType}</span>
+                              <span className="text-xs font-['Manrope'] font-semibold" style={{ color: point.streamColor }}>{point.stream}</span>
+                              <span className="text-white text-xs font-['Manrope']">{point.eventType}</span>
                               {point.riskFlag && (
                                 <span className="px-1.5 py-0.5 rounded-full text-xs font-['JetBrains_Mono'] font-bold"
                                   style={{ background: "rgba(201,74,94,0.15)", color: "#C94A5E" }}>
@@ -167,13 +167,13 @@ const GeointTimeline = () => {
                                 </span>
                               )}
                             </div>
-                            <p className="text-gray-400 text-xs font-['Inter']">{point.location}</p>
+                            <p className="text-gray-400 text-xs font-['Manrope']">{point.location}</p>
                           </div>
                           <div className="text-right ml-3 flex-shrink-0">
                             <p className="text-gray-500 text-xs font-['JetBrains_Mono']">{point.timestamp.split(" ")[1]}</p>
                             <div className="flex items-center gap-1 mt-0.5 justify-end">
                               <span className="w-2 h-2 rounded-full" style={{ background: color }} />
-                              <span className="text-xs font-['Inter'] text-gray-600">{getSubjectName(point.subjectId).split(" ")[0]}</span>
+                              <span className="text-xs font-['Manrope'] text-gray-600">{getSubjectName(point.subjectId).split(" ")[0]}</span>
                             </div>
                           </div>
                         </div>
@@ -183,23 +183,23 @@ const GeointTimeline = () => {
                             <div className="grid grid-cols-2 gap-3">
                               <div>
                                 <p className="text-gray-600 text-xs font-['JetBrains_Mono'] mb-0.5">Subject</p>
-                                <p className="text-white text-xs font-['Inter']">{getSubjectName(point.subjectId)}</p>
+                                <p className="text-white text-xs font-['Manrope']">{getSubjectName(point.subjectId)}</p>
                               </div>
                               <div>
                                 <p className="text-gray-600 text-xs font-['JetBrains_Mono'] mb-0.5">District</p>
-                                <p className="text-white text-xs font-['Inter']">{point.district}</p>
+                                <p className="text-white text-xs font-['Manrope']">{point.district}</p>
                               </div>
                               <div className="col-span-2">
                                 <p className="text-gray-600 text-xs font-['JetBrains_Mono'] mb-0.5">Event Detail</p>
-                                <p className="text-gray-300 text-xs font-['Inter']">{point.detail}</p>
+                                <p className="text-gray-300 text-xs font-['Manrope']">{point.detail}</p>
                               </div>
                             </div>
                             <div className="flex gap-2 mt-3">
-                              <button className="px-3 py-1.5 rounded-lg text-xs font-['Inter'] cursor-pointer transition-all hover:opacity-80"
-                                style={{ background: "rgba(184,138,60,0.12)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.25)" }}>
+                              <button className="px-3 py-1.5 rounded-lg text-xs font-['Manrope'] cursor-pointer transition-all hover:opacity-80"
+                                style={{ background: "rgba(184,138,60,0.12)", color: "#C5A365", border: "1px solid rgba(184,138,60,0.25)" }}>
                                 <i className="ri-map-pin-line mr-1" />View on Map
                               </button>
-                              <button className="px-3 py-1.5 rounded-lg text-xs font-['Inter'] cursor-pointer transition-all hover:opacity-80"
+                              <button className="px-3 py-1.5 rounded-lg text-xs font-['Manrope'] cursor-pointer transition-all hover:opacity-80"
                                 style={{ background: "rgba(255,255,255,0.05)", color: "#9CA3AF", border: "1px solid rgba(255,255,255,0.1)" }}>
                                 <i className="ri-external-link-line mr-1" />Open Stream
                               </button>

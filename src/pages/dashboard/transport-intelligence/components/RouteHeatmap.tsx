@@ -45,7 +45,7 @@ const LINKS: RouteLink[] = [
 ];
 
 const densityColor = (d: RoutePoint["density"]) => {
-  if (d === "normal") return "#D6B47E";
+  if (d === "normal") return "#C5A365";
   if (d === "frequent") return "#FACC15";
   return "#C94A5E";
 };
@@ -85,7 +85,7 @@ const RouteHeatmap = ({ isAr }: Props) => {
               style={{
                 background: filter === f ? "rgba(184,138,60,0.15)" : "rgba(255,255,255,0.04)",
                 border: `1px solid ${filter === f ? "rgba(184,138,60,0.4)" : "rgba(255,255,255,0.08)"}`,
-                color: filter === f ? "#D6B47E" : "#6B7280",
+                color: filter === f ? "#C5A365" : "#6B7280",
               }}>
               {f === "all" ? (isAr ? "الكل" : "All") : f === "bus" ? (isAr ? "حافلة" : "Bus") : f === "taxi" ? (isAr ? "تاكسي" : "Taxi") : (isAr ? "شذوذ" : "Anomaly")}
             </button>

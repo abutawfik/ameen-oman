@@ -52,10 +52,10 @@ const PhotoUploadZones = ({ isAr }: Props) => {
           style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.2)" }}>
           <i className="ri-camera-line text-gold-400 text-sm" />
         </div>
-        <h3 className="text-white font-bold text-sm font-['Inter']">
+        <h3 className="text-white font-bold text-sm font-['Manrope']">
           {isAr ? "صور حالة المركبة" : "Vehicle Condition Photos"}
         </h3>
-        <span className="text-gray-500 text-xs font-['Inter'] ml-1">
+        <span className="text-gray-500 text-xs font-['Manrope'] ml-1">
           {isAr ? "(JPG/PNG، 5MB كحد أقصى)" : "(JPG/PNG, max 5MB each)"}
         </span>
       </div>
@@ -70,7 +70,7 @@ const PhotoUploadZones = ({ isAr }: Props) => {
               key={zone.id}
               className="relative rounded-xl border-2 border-dashed transition-all duration-200 cursor-pointer overflow-hidden"
               style={{
-                borderColor: isDraggingThis ? "#D6B47E" : hasPhoto ? "rgba(184,138,60,0.4)" : "rgba(184,138,60,0.2)",
+                borderColor: isDraggingThis ? "#C5A365" : hasPhoto ? "rgba(184,138,60,0.4)" : "rgba(184,138,60,0.2)",
                 background: isDraggingThis ? "rgba(184,138,60,0.06)" : hasPhoto ? "transparent" : "rgba(10,37,64,0.6)",
                 minHeight: "120px",
               }}
@@ -113,7 +113,7 @@ const PhotoUploadZones = ({ isAr }: Props) => {
                   </div>
                   <div className="absolute bottom-0 left-0 right-0 px-2 py-1"
                     style={{ background: "rgba(0,0,0,0.6)" }}>
-                    <p className="text-xs text-white font-['Inter'] truncate">
+                    <p className="text-xs text-white font-['Manrope'] truncate">
                       {isAr ? zone.labelAr : zone.label}
                     </p>
                   </div>
@@ -124,10 +124,10 @@ const PhotoUploadZones = ({ isAr }: Props) => {
                     style={{ background: "rgba(184,138,60,0.08)", border: "1px solid rgba(184,138,60,0.15)" }}>
                     <i className="ri-image-add-line text-gold-400 text-lg" />
                   </div>
-                  <p className="text-gold-400 text-xs font-semibold font-['Inter'] text-center">
+                  <p className="text-gold-400 text-xs font-semibold font-['Manrope'] text-center">
                     {isAr ? zone.labelAr : zone.label}
                   </p>
-                  <p className="text-gray-600 text-xs font-['Inter'] text-center">
+                  <p className="text-gray-600 text-xs font-['Manrope'] text-center">
                     {isAr ? "اسحب أو انقر" : "Drag or click"}
                   </p>
                 </div>

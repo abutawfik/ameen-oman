@@ -23,7 +23,7 @@ const TravelPattern = ({ stops, isAr, onGenerateDossier }: Props) => {
     >
       <div className="flex items-center justify-between mb-5 flex-wrap gap-3">
         <div>
-          <h3 className="text-white font-bold font-['Inter'] text-sm uppercase tracking-wider">
+          <h3 className="text-white font-bold font-['Manrope'] text-sm uppercase tracking-wider">
             {isAr ? "نمط التنقل — خريطة عُمان" : "Travel Pattern — Oman Map"}
           </h3>
           <div className="flex items-center gap-4 mt-1">
@@ -40,8 +40,8 @@ const TravelPattern = ({ stops, isAr, onGenerateDossier }: Props) => {
         </div>
         <button
           onClick={onGenerateDossier}
-          className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold font-['Inter'] cursor-pointer transition-all whitespace-nowrap"
-          style={{ background: "#D6B47E", color: "#051428", boxShadow: "0 0 20px rgba(184,138,60,0.3)" }}
+          className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold font-['Manrope'] cursor-pointer transition-all whitespace-nowrap"
+          style={{ background: "#C5A365", color: "#071426", boxShadow: "0 0 20px rgba(184,138,60,0.3)" }}
         >
           <i className="ri-file-pdf-line" />
           {isAr ? "إنشاء ملف شامل" : "Generate Dossier"}
@@ -66,7 +66,7 @@ const TravelPattern = ({ stops, isAr, onGenerateDossier }: Props) => {
           <svg className="absolute inset-0 w-full h-full opacity-10" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <pattern id="travel-grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#D6B47E" strokeWidth="0.4" />
+                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#C5A365" strokeWidth="0.4" />
               </pattern>
             </defs>
             <rect width="100%" height="100%" fill="url(#travel-grid)" />
@@ -76,8 +76,8 @@ const TravelPattern = ({ stops, isAr, onGenerateDossier }: Props) => {
           <svg className="absolute inset-0 w-full h-full" viewBox="0 0 600 340" preserveAspectRatio="none">
             <defs>
               <linearGradient id="pathGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#D6B47E" stopOpacity="0.9" />
-                <stop offset="100%" stopColor="#D6B47E" stopOpacity="0.3" />
+                <stop offset="0%" stopColor="#C5A365" stopOpacity="0.9" />
+                <stop offset="100%" stopColor="#C5A365" stopOpacity="0.3" />
               </linearGradient>
               <filter id="glow">
                 <feGaussianBlur stdDeviation="2" result="coloredBlur" />
@@ -98,13 +98,13 @@ const TravelPattern = ({ stops, isAr, onGenerateDossier }: Props) => {
             {/* Stop markers */}
             {[
               { x: 380, y: 120, seq: 1, color: "#60A5FA" },
-              { x: 370, y: 130, seq: 2, color: "#D6B47E" },
-              { x: 360, y: 140, seq: 3, color: "#D6B47E" },
+              { x: 370, y: 130, seq: 2, color: "#C5A365" },
+              { x: 360, y: 140, seq: 3, color: "#C5A365" },
               { x: 380, y: 120, seq: 4, color: "#C98A1B" },
               { x: 340, y: 80,  seq: 5, color: "#FACC15" },
               { x: 355, y: 125, seq: 6, color: "#DDB96B" },
               { x: 355, y: 128, seq: 7, color: "#FCD34D" },
-              { x: 375, y: 138, seq: 8, color: "#D6B47E" },
+              { x: 375, y: 138, seq: 8, color: "#C5A365" },
               { x: 355, y: 125, seq: 9, color: "#FACC15" },
             ].map((pt) => {
               const isHov = hoveredStop === pt.seq - 1 || selectedStop === pt.seq - 1;
@@ -137,7 +137,7 @@ const TravelPattern = ({ stops, isAr, onGenerateDossier }: Props) => {
           <div className="absolute top-3 left-3">
             <span
               className="px-2 py-1 rounded text-[11px] font-['JetBrains_Mono'] font-bold"
-              style={{ background: "rgba(5,20,40,0.85)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}
+              style={{ background: "rgba(5,20,40,0.85)", color: "#C5A365", border: "1px solid rgba(184,138,60,0.2)" }}
             >
               {isAr ? "عُمان" : "OMAN"}
             </span>
@@ -146,7 +146,7 @@ const TravelPattern = ({ stops, isAr, onGenerateDossier }: Props) => {
           {/* Stats overlay */}
           <div className="absolute bottom-3 left-3 flex gap-2">
             {[
-              { label: isAr ? "محطات" : "Stops", value: stops.length, color: "#D6B47E" },
+              { label: isAr ? "محطات" : "Stops", value: stops.length, color: "#C5A365" },
               { label: isAr ? "كم" : "km", value: `~${totalDistance}`, color: "#FACC15" },
             ].map(s => (
               <div
@@ -191,7 +191,7 @@ const TravelPattern = ({ stops, isAr, onGenerateDossier }: Props) => {
                   {stop.seq}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-white text-xs font-['Inter'] font-semibold leading-snug truncate">{stop.location}</p>
+                  <p className="text-white text-xs font-['Manrope'] font-semibold leading-snug truncate">{stop.location}</p>
                   <p className="text-gray-500 text-[11px] font-['JetBrains_Mono'] mt-0.5">{stop.datetime}</p>
                   <div className="flex items-center gap-2 mt-1 flex-wrap">
                     <span

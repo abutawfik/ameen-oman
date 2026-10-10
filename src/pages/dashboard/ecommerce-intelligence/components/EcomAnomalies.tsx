@@ -125,7 +125,7 @@ const riskColor = (r: Severity) => {
 };
 
 const streamColor = (s: string) => {
-  const map: Record<string, string> = { FINANCIAL: "#4ADE80", MOBILE: "#D6B47E", BORDER: "#A78BFA", EMPLOYMENT: "#F9A8D4", TRANSPORT: "#C98A1B", UTILITY: "#FACC15" };
+  const map: Record<string, string> = { FINANCIAL: "#4ADE80", MOBILE: "#C5A365", BORDER: "#A78BFA", EMPLOYMENT: "#F9A8D4", TRANSPORT: "#C98A1B", UTILITY: "#FACC15" };
   return map[s] || "#9CA3AF";
 };
 
@@ -153,7 +153,7 @@ const EcomAnomalies = ({ isAr }: Props) => {
       {/* Stats row */}
       <div className="grid grid-cols-4 gap-4">
         {[
-          { label: isAr ? "إجمالي" : "Total", value: counts.total, color: "#D6B47E" },
+          { label: isAr ? "إجمالي" : "Total", value: counts.total, color: "#C5A365" },
           { label: isAr ? "مفتوح" : "Open", value: counts.open, color: "#C94A5E" },
           { label: isAr ? "قيد التحقيق" : "Investigating", value: counts.investigating, color: "#FACC15" },
           { label: isAr ? "حرج" : "Critical", value: counts.critical, color: "#C94A5E" },

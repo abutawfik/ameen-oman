@@ -23,7 +23,7 @@ const ThreatIntelPage = () => {
   const onlineSources = feedSources.filter(s => s.status === "online").length;
 
   return (
-    <div className="flex flex-col h-full" style={{ background: "#051428" }}>
+    <div className="flex flex-col h-full" style={{ background: "#071426" }}>
       {/* Background grid */}
       <div className="fixed inset-0 pointer-events-none z-0 opacity-[0.025]">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
@@ -62,7 +62,7 @@ const ThreatIntelPage = () => {
         {/* KPI bar */}
         <div className="grid grid-cols-5 gap-0 border-b flex-shrink-0" style={{ borderColor: "rgba(201,74,94,0.08)" }}>
           {[
-            { label: "Total IOCs",        value: iocEntries.length.toString(),                                                icon: "ri-database-line",       color: "#D6B47E" },
+            { label: "Total IOCs",        value: iocEntries.length.toString(),                                                icon: "ri-database-line",       color: "#C5A365" },
             { label: "Critical Active",   value: criticalCount.toString(),                                                    icon: "ri-alarm-warning-line",  color: "#C94A5E" },
             { label: "Dark Web Mentions", value: "6",                                                                         icon: "ri-ghost-line",          color: "#A78BFA" },
             { label: "Threat Actors",     value: "4",                                                                         icon: "ri-spy-line",            color: "#C98A1B" },
@@ -74,7 +74,7 @@ const ThreatIntelPage = () => {
               </div>
               <div>
                 <p className="text-white text-lg font-bold font-['JetBrains_Mono']">{kpi.value}</p>
-                <p className="text-gray-600 text-[11px] font-['Inter']">{kpi.label}</p>
+                <p className="text-gray-600 text-[11px] font-['Manrope']">{kpi.label}</p>
               </div>
             </div>
           ))}
@@ -86,7 +86,7 @@ const ThreatIntelPage = () => {
             <button
               key={tab.key}
               onClick={() => setActiveTab(tab.key)}
-              className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-['Inter'] cursor-pointer transition-all whitespace-nowrap"
+              className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-['Manrope'] cursor-pointer transition-all whitespace-nowrap"
               style={{
                 background: activeTab === tab.key ? "rgba(201,74,94,0.1)" : "transparent",
                 color: activeTab === tab.key ? "#C94A5E" : "#6B7280",

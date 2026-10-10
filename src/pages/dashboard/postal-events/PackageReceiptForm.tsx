@@ -136,7 +136,7 @@ const PackageReceiptForm = ({ isAr, onCancel }: Props) => {
                   onChange={(e) => setNotes(e.target.value)}
                   className="w-full px-3 py-2 rounded-lg text-sm text-white placeholder-gray-600 outline-none resize-none"
                   style={{ background: "#0F1923", border: "1px solid rgba(255,255,255,0.08)", fontFamily: "Inter" }}
-                  onFocus={(e) => { e.target.style.borderColor = "#D6B47E"; }}
+                  onFocus={(e) => { e.target.style.borderColor = "#C5A365"; }}
                   onBlur={(e) => { e.target.style.borderColor = "rgba(255,255,255,0.08)"; }}
                 />
                 <p className="text-gray-600 text-xs mt-1 text-right">{notes.length}/500</p>

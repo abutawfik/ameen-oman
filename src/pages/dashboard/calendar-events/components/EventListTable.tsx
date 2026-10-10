@@ -27,12 +27,12 @@ interface EventRow {
 
 const ALL_EVENTS: EventRow[] = [
   { id: "r1",  type: "Check-In",             typeAr: "تسجيل دخول",         typeColor: "#4ADE80", ref: "HTL-2025-04891", status: "accepted", person: "Ahmed Al-Rashidi",    docMasked: "***4521", date: "2026-04-05", time: "09:14", amount: "OMR 245.000",    branch: "Al Bustan Palace",    branchAr: "البستان بالاس",    detail: "Room 204, 3 nights",              detailAr: "غرفة 204، 3 ليالٍ",              nationality: "OM", phone: "+968 9234 5678", module: "hotel" },
-  { id: "r2",  type: "Booking Created",       typeAr: "إنشاء حجز",          typeColor: "#D6B47E", ref: "HTL-2025-04890", status: "accepted", person: "Sarah Johnson",       docMasked: "***8823", date: "2026-04-05", time: "10:30", amount: "OMR 890.000",    branch: "Al Bustan Palace",    branchAr: "البستان بالاس",    detail: "Suite 512, 3 nights",             detailAr: "جناح 512، 3 ليالٍ",             nationality: "GB", phone: "+44 7700 900123", module: "hotel" },
+  { id: "r2",  type: "Booking Created",       typeAr: "إنشاء حجز",          typeColor: "#C5A365", ref: "HTL-2025-04890", status: "accepted", person: "Sarah Johnson",       docMasked: "***8823", date: "2026-04-05", time: "10:30", amount: "OMR 890.000",    branch: "Al Bustan Palace",    branchAr: "البستان بالاس",    detail: "Suite 512, 3 nights",             detailAr: "جناح 512، 3 ليالٍ",             nationality: "GB", phone: "+44 7700 900123", module: "hotel" },
   { id: "r3",  type: "Room Change",           typeAr: "تغيير غرفة",         typeColor: "#FACC15", ref: "HTL-2025-04889", status: "accepted", person: "Mohammed Al-Balushi", docMasked: "***3312", date: "2026-04-05", time: "14:22", amount: "",               branch: "Al Bustan Palace",    branchAr: "البستان بالاس",    detail: "Room 118 → 220",                  detailAr: "غرفة 118 → 220",                nationality: "OM", phone: "+968 9876 5432", module: "hotel" },
   { id: "r4",  type: "Check-Out",             typeAr: "تسجيل خروج",         typeColor: "#C94A5E", ref: "HTL-2025-04888", status: "accepted", person: "Fatima Al-Zadjali",  docMasked: "***7891", date: "2026-04-04", time: "11:00", amount: "OMR 1,200.000",  branch: "Al Bustan Palace",    branchAr: "البستان بالاس",    detail: "Room 301, Early Departure",       detailAr: "غرفة 301، مغادرة مبكرة",        nationality: "OM", phone: "+968 9123 4567", module: "hotel" },
   { id: "r5",  type: "Booking Modified",      typeAr: "تعديل حجز",          typeColor: "#A78BFA", ref: "HTL-2025-04887", status: "pending",  person: "Khalid Al-Amri",     docMasked: "***2234", date: "2026-04-04", time: "16:45", amount: "OMR 340.000",    branch: "Al Bustan Palace",    branchAr: "البستان بالاس",    detail: "Extended stay +2 nights",        detailAr: "تمديد الإقامة +2 ليلتين",       nationality: "OM", phone: "+968 9345 6789", module: "hotel" },
   { id: "r6",  type: "Vehicle Pickup",        typeAr: "استلام مركبة",        typeColor: "#4ADE80", ref: "CAR-2025-07234", status: "accepted", person: "Ahmed Al-Rashidi",    docMasked: "***4521", date: "2026-04-05", time: "08:00", amount: "OMR 45.000",     branch: "Muscat Airport",      branchAr: "مطار مسقط",        detail: "Toyota Camry, 3 days",            detailAr: "تويوتا كامري، 3 أيام",           nationality: "OM", phone: "+968 9234 5678", module: "car-rental" },
-  { id: "r7",  type: "Rental Booking",        typeAr: "حجز تأجير",          typeColor: "#D6B47E", ref: "CAR-2025-07233", status: "accepted", person: "James Wilson",        docMasked: "***5512", date: "2026-04-05", time: "09:30", amount: "OMR 210.000",    branch: "Muscat Airport",      branchAr: "مطار مسقط",        detail: "Nissan Patrol, 7 days",           detailAr: "نيسان باترول، 7 أيام",           nationality: "GB", phone: "+44 7700 900456", module: "car-rental" },
+  { id: "r7",  type: "Rental Booking",        typeAr: "حجز تأجير",          typeColor: "#C5A365", ref: "CAR-2025-07233", status: "accepted", person: "James Wilson",        docMasked: "***5512", date: "2026-04-05", time: "09:30", amount: "OMR 210.000",    branch: "Muscat Airport",      branchAr: "مطار مسقط",        detail: "Nissan Patrol, 7 days",           detailAr: "نيسان باترول، 7 أيام",           nationality: "GB", phone: "+44 7700 900456", module: "car-rental" },
   { id: "r8",  type: "Rental Extension",      typeAr: "تمديد تأجير",        typeColor: "#FACC15", ref: "CAR-2025-07232", status: "accepted", person: "Priya Nair",          docMasked: "***9901", date: "2026-04-04", time: "15:00", amount: "OMR 60.000",     branch: "Ruwi Branch",         branchAr: "فرع الروي",        detail: "Contract extended +2 days",       detailAr: "تمديد العقد +يومين",             nationality: "IN", phone: "+91 98765 43210", module: "car-rental" },
   { id: "r9",  type: "Vehicle Drop-off",      typeAr: "إعادة مركبة",        typeColor: "#C98A1B", ref: "CAR-2025-07231", status: "pending",  person: "Reza Tehrani",        docMasked: "***1122", date: "2026-04-04", time: "17:30", amount: "OMR 180.000",    branch: "Muscat Airport",      branchAr: "مطار مسقط",        detail: "Honda Accord, Damage Report",     detailAr: "هوندا أكورد، تقرير أضرار",       nationality: "IR", phone: "+98 912 345 6789", module: "car-rental", riskLevel: "medium" },
   { id: "r10", type: "SIM Activation",        typeAr: "تفعيل شريحة",        typeColor: "#4ADE80", ref: "MOB-2025-19234", status: "accepted", person: "Omar Al-Farsi",       docMasked: "***6634", date: "2026-04-05", time: "10:15", amount: "OMR 5.000",      branch: "Muscat Main",         branchAr: "مسقط الرئيسي",     detail: "Prepaid SIM, Muscat Branch",      detailAr: "شريحة مدفوعة مسبقاً، مسقط",     nationality: "OM", phone: "+968 9456 7890", module: "mobile", operator: "Omantel" },
@@ -49,7 +49,7 @@ const ALL_EVENTS: EventRow[] = [
   { id: "r21", type: "Trip Recorded",         typeAr: "رحلة مسجلة",         typeColor: "#4ADE80", ref: "TRP-2025-55123", status: "accepted", person: "Tariq Al-Amri",       docMasked: "***6612", date: "2026-04-05", time: "07:45", amount: "OMR 2.500",      branch: "Muscat Bus Network",  branchAr: "شبكة حافلات مسقط", detail: "Route 12, Ruwi → Airport",        detailAr: "خط 12، الروي → المطار",          nationality: "OM", phone: "+968 9890 1234", module: "transport" },
   { id: "r22", type: "Bulk Purchase Alert",   typeAr: "تنبيه شراء بالجملة", typeColor: "#FACC15", ref: "ECM-2025-77234", status: "pending",  person: "Unknown Buyer",       docMasked: "***3301", date: "2026-04-04", time: "15:20", amount: "OMR 4,500.000",  branch: "Lulu Hypermarket",    branchAr: "لولو هايبرماركت",  detail: "48 prepaid SIM cards purchased",  detailAr: "شراء 48 شريحة مدفوعة مسبقاً",   nationality: "BD", phone: "N/A", module: "ecommerce", riskLevel: "high" },
   { id: "r23", type: "Termination",           typeAr: "إنهاء عقد",          typeColor: "#C94A5E", ref: "EMP-2025-33230", status: "accepted", person: "Rajesh Kumar",        docMasked: "***7712", date: "2026-04-04", time: "12:00", amount: "",               branch: "Ministry of Labour",  branchAr: "وزارة العمل",      detail: "Absconding — border check active",detailAr: "تغيب — فحص حدودي نشط",          nationality: "IN", phone: "N/A", module: "employment", riskLevel: "high" },
-  { id: "r24", type: "Patient Registration",  typeAr: "تسجيل مريض",         typeColor: "#D6B47E", ref: "HLT-2025-22134", status: "accepted", person: "Aisha Al-Balushi",    docMasked: "***9923", date: "2026-04-05", time: "08:30", amount: "OMR 15.000",     branch: "Royal Hospital",      branchAr: "المستشفى الملكي",  detail: "General checkup, OPD",            detailAr: "فحص عام، العيادات الخارجية",     nationality: "OM", phone: "+968 9901 2345", module: "healthcare" },
+  { id: "r24", type: "Patient Registration",  typeAr: "تسجيل مريض",         typeColor: "#C5A365", ref: "HLT-2025-22134", status: "accepted", person: "Aisha Al-Balushi",    docMasked: "***9923", date: "2026-04-05", time: "08:30", amount: "OMR 15.000",     branch: "Royal Hospital",      branchAr: "المستشفى الملكي",  detail: "General checkup, OPD",            detailAr: "فحص عام، العيادات الخارجية",     nationality: "OM", phone: "+968 9901 2345", module: "healthcare" },
   { id: "r25", type: "Tour Booking",          typeAr: "حجز جولة",           typeColor: "#34D399", ref: "TOR-2025-44512", status: "accepted", person: "Elena Petrov",        docMasked: "***2201", date: "2026-04-05", time: "10:00", amount: "OMR 85.000",     branch: "Muscat Tourism",      branchAr: "سياحة مسقط",       detail: "Wahiba Sands, 2-day tour",        detailAr: "رمال وهيبة، جولة يومين",         nationality: "RU", phone: "+7 912 345 6789", module: "tourism" },
 ];
 
@@ -205,7 +205,7 @@ const EventListTable = ({ isAr, entityType }: Props) => {
               </div>
               <button type="button"
                 className="px-5 py-2 rounded-lg text-sm font-bold cursor-pointer whitespace-nowrap transition-opacity hover:opacity-90"
-                style={{ background: "#D6B47E", color: "#051428" }}>
+                style={{ background: "#C5A365", color: "#071426" }}>
                 {isAr ? "بحث" : "Go"}
               </button>
             </div>
@@ -214,7 +214,7 @@ const EventListTable = ({ isAr, entityType }: Props) => {
           {/* Export */}
           <button type="button"
             className="flex items-center gap-2 px-4 py-2 rounded-lg border text-sm font-semibold cursor-pointer whitespace-nowrap transition-colors"
-            style={{ background: "transparent", borderColor: "rgba(184,138,60,0.3)", color: "#D6B47E" }}>
+            style={{ background: "transparent", borderColor: "rgba(184,138,60,0.3)", color: "#C5A365" }}>
             <i className="ri-download-2-line text-sm" />
             {isAr ? "تصدير" : "Export"}
           </button>
@@ -291,7 +291,7 @@ const EventListTable = ({ isAr, entityType }: Props) => {
                   <th key={col.key}
                     onClick={() => handleSort(col.key)}
                     className="px-4 py-3 text-left text-xs font-bold font-['JetBrains_Mono'] uppercase tracking-wider cursor-pointer select-none whitespace-nowrap"
-                    style={{ color: sortCol === col.key ? "#D6B47E" : "#6B7280" }}>
+                    style={{ color: sortCol === col.key ? "#C5A365" : "#6B7280" }}>
                     {col.label}<SortIcon col={col.key} />
                   </th>
                 ))}
@@ -307,7 +307,7 @@ const EventListTable = ({ isAr, entityType }: Props) => {
                       ? "rgba(184,138,60,0.07)"
                       : idx % 2 === 0 ? "rgba(10,37,64,0.6)" : "rgba(5,20,40,0.4)",
                     borderColor: "rgba(184,138,60,0.05)",
-                    borderLeft: selectedRow?.id === row.id ? "2px solid #D6B47E" : "2px solid transparent",
+                    borderLeft: selectedRow?.id === row.id ? "2px solid #C5A365" : "2px solid transparent",
                   }}
                   onMouseEnter={(e) => { if (selectedRow?.id !== row.id) (e.currentTarget as HTMLElement).style.background = "rgba(184,138,60,0.04)"; }}
                   onMouseLeave={(e) => { if (selectedRow?.id !== row.id) (e.currentTarget as HTMLElement).style.background = idx % 2 === 0 ? "rgba(10,37,64,0.6)" : "rgba(5,20,40,0.4)"; }}>
@@ -373,12 +373,12 @@ const EventListTable = ({ isAr, entityType }: Props) => {
           <div className="flex items-center gap-1">
             <button type="button" onClick={() => setPage(1)} disabled={page === 1}
               className="w-8 h-8 flex items-center justify-center rounded-lg border text-xs cursor-pointer disabled:opacity-30 transition-colors"
-              style={{ background: "transparent", borderColor: "rgba(184,138,60,0.2)", color: "#D6B47E" }}>
+              style={{ background: "transparent", borderColor: "rgba(184,138,60,0.2)", color: "#C5A365" }}>
               <i className="ri-skip-back-line text-xs" />
             </button>
             <button type="button" onClick={() => setPage((p) => Math.max(1, p - 1))} disabled={page === 1}
               className="w-8 h-8 flex items-center justify-center rounded-lg border text-xs cursor-pointer disabled:opacity-30 transition-colors"
-              style={{ background: "transparent", borderColor: "rgba(184,138,60,0.2)", color: "#D6B47E" }}>
+              style={{ background: "transparent", borderColor: "rgba(184,138,60,0.2)", color: "#C5A365" }}>
               <i className="ri-arrow-left-s-line text-xs" />
             </button>
             {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
@@ -387,9 +387,9 @@ const EventListTable = ({ isAr, entityType }: Props) => {
                 <button key={p} type="button" onClick={() => setPage(p)}
                   className="w-8 h-8 flex items-center justify-center rounded-lg border text-xs font-bold cursor-pointer transition-colors font-['JetBrains_Mono']"
                   style={{
-                    background: page === p ? "#D6B47E" : "transparent",
-                    borderColor: page === p ? "#D6B47E" : "rgba(184,138,60,0.2)",
-                    color: page === p ? "#051428" : "#D6B47E",
+                    background: page === p ? "#C5A365" : "transparent",
+                    borderColor: page === p ? "#C5A365" : "rgba(184,138,60,0.2)",
+                    color: page === p ? "#071426" : "#C5A365",
                   }}>
                   {p}
                 </button>
@@ -397,12 +397,12 @@ const EventListTable = ({ isAr, entityType }: Props) => {
             })}
             <button type="button" onClick={() => setPage((p) => Math.min(totalPages, p + 1))} disabled={page === totalPages}
               className="w-8 h-8 flex items-center justify-center rounded-lg border text-xs cursor-pointer disabled:opacity-30 transition-colors"
-              style={{ background: "transparent", borderColor: "rgba(184,138,60,0.2)", color: "#D6B47E" }}>
+              style={{ background: "transparent", borderColor: "rgba(184,138,60,0.2)", color: "#C5A365" }}>
               <i className="ri-arrow-right-s-line text-xs" />
             </button>
             <button type="button" onClick={() => setPage(totalPages)} disabled={page === totalPages}
               className="w-8 h-8 flex items-center justify-center rounded-lg border text-xs cursor-pointer disabled:opacity-30 transition-colors"
-              style={{ background: "transparent", borderColor: "rgba(184,138,60,0.2)", color: "#D6B47E" }}>
+              style={{ background: "transparent", borderColor: "rgba(184,138,60,0.2)", color: "#C5A365" }}>
               <i className="ri-skip-forward-line text-xs" />
             </button>
           </div>
@@ -445,11 +445,11 @@ const EventListTable = ({ isAr, entityType }: Props) => {
           <div className="p-6">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-6">
               {[
-                { icon: "ri-user-line",        color: "#D6B47E", label: isAr ? "الشخص" : "Person",       value: selectedRow.person },
+                { icon: "ri-user-line",        color: "#C5A365", label: isAr ? "الشخص" : "Person",       value: selectedRow.person },
                 { icon: "ri-file-text-line",   color: "#9CA3AF", label: isAr ? "الوثيقة" : "Document",   value: selectedRow.docMasked },
                 { icon: "ri-flag-line",        color: "#9CA3AF", label: isAr ? "الجنسية" : "Nationality", value: selectedRow.nationality || "—" },
                 { icon: "ri-phone-line",       color: "#4ADE80", label: isAr ? "الهاتف" : "Phone",        value: selectedRow.phone || "—" },
-                { icon: "ri-calendar-line",    color: "#D6B47E", label: isAr ? "التاريخ والوقت" : "Date & Time", value: `${selectedRow.date} — ${selectedRow.time}` },
+                { icon: "ri-calendar-line",    color: "#C5A365", label: isAr ? "التاريخ والوقت" : "Date & Time", value: `${selectedRow.date} — ${selectedRow.time}` },
                 { icon: "ri-building-line",    color: "#9CA3AF", label: isAr ? "الفرع" : "Branch",        value: isAr ? selectedRow.branchAr : selectedRow.branch },
                 { icon: "ri-money-dollar-circle-line", color: "#4ADE80", label: isAr ? "المبلغ" : "Amount", value: selectedRow.amount || "—" },
                 { icon: "ri-information-line", color: "#9CA3AF", label: isAr ? "التفاصيل" : "Details",    value: isAr ? selectedRow.detailAr : selectedRow.detail },
@@ -480,14 +480,14 @@ const EventListTable = ({ isAr, entityType }: Props) => {
               {selectedRow.status === "rejected" && (
                 <button type="button" onClick={() => handleResubmit(selectedRow.ref)}
                   className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold cursor-pointer whitespace-nowrap transition-opacity hover:opacity-90"
-                  style={{ background: "#D6B47E", color: "#051428" }}>
+                  style={{ background: "#C5A365", color: "#071426" }}>
                   <i className="ri-refresh-line text-sm" />
                   {isAr ? "إعادة الإرسال" : "Re-submit"}
                 </button>
               )}
               <button type="button"
                 className="flex items-center gap-2 px-4 py-2 rounded-lg border text-sm font-semibold cursor-pointer whitespace-nowrap transition-colors"
-                style={{ background: "transparent", borderColor: "rgba(184,138,60,0.3)", color: "#D6B47E" }}>
+                style={{ background: "transparent", borderColor: "rgba(184,138,60,0.3)", color: "#C5A365" }}>
                 <i className="ri-download-2-line text-sm" />
                 {isAr ? "تصدير" : "Export"}
               </button>

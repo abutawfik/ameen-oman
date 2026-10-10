@@ -58,7 +58,7 @@ function ScoreBar({ score, level }: { score: number; level: RiskLevel }) {
     </div>
   );
 }
-function SectionHeader({ icon, title, count, accentColor = '#D6B47E' }: { icon: string; title: string; count?: number; accentColor?: string }) {
+function SectionHeader({ icon, title, count, accentColor = '#C5A365' }: { icon: string; title: string; count?: number; accentColor?: string }) {
   return (
     <div className="flex items-center justify-between mb-4">
       <div className="flex items-center gap-2">
@@ -185,7 +185,7 @@ function CaseCreationModal({ draft, onClose, onConfirm }: { draft: CaseDraft; on
           <div className="flex items-center gap-2.5">
             <div className="w-8 h-8 flex items-center justify-center rounded-lg"
               style={{ background: 'rgba(214,180,126,0.1)', border: '1px solid rgba(214,180,126,0.2)' }}>
-              <i className="ri-folder-add-line text-sm" style={{ color: '#D6B47E' }} />
+              <i className="ri-folder-add-line text-sm" style={{ color: '#C5A365' }} />
             </div>
             <div>
               <div className="text-white font-bold text-sm">Create Investigation Case</div>
@@ -217,7 +217,7 @@ function CaseCreationModal({ draft, onClose, onConfirm }: { draft: CaseDraft; on
             {/* Case number */}
             <div className="flex items-center gap-2">
               <span className="text-xs text-gray-500">Case number:</span>
-              <span className="text-xs font-black font-['JetBrains_Mono']" style={{ color: '#D6B47E' }}>{draft.caseNumber}</span>
+              <span className="text-xs font-black font-['JetBrains_Mono']" style={{ color: '#C5A365' }}>{draft.caseNumber}</span>
               <span className="px-2 py-0.5 rounded text-xs font-semibold"
                 style={{ background: 'rgba(255,255,255,0.05)', color: '#9CA3AF' }}>DRAFT</span>
             </div>
@@ -310,7 +310,7 @@ function CaseCreationModal({ draft, onClose, onConfirm }: { draft: CaseDraft; on
             </button>
             <button type="button" onClick={handleConfirm}
               className="flex-1 py-2 rounded-xl text-sm font-bold transition-all flex items-center justify-center gap-2 border"
-              style={{ background: 'rgba(214,180,126,0.1)', borderColor: 'rgba(214,180,126,0.3)', color: '#D6B47E' }}
+              style={{ background: 'rgba(214,180,126,0.1)', borderColor: 'rgba(214,180,126,0.3)', color: '#C5A365' }}
               onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = 'rgba(214,180,126,0.2)'; }}
               onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = 'rgba(214,180,126,0.1)'; }}>
               <i className="ri-folder-add-line" />
@@ -341,7 +341,7 @@ function CreateCaseButton({ label, onClick }: { label: string; onClick: () => vo
   return (
     <button type="button" onClick={onClick}
       className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border font-bold text-sm transition-all"
-      style={{ background: 'rgba(214,180,126,0.08)', borderColor: 'rgba(214,180,126,0.25)', color: '#D6B47E' }}
+      style={{ background: 'rgba(214,180,126,0.08)', borderColor: 'rgba(214,180,126,0.25)', color: '#C5A365' }}
       onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = 'rgba(214,180,126,0.15)'; }}
       onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = 'rgba(214,180,126,0.08)'; }}>
       <i className="ri-folder-add-line" />
@@ -509,7 +509,7 @@ function CoTravelerTab() {
               <div className="grid grid-cols-3 gap-3 mb-4">
                 {[
                   { label: 'Co-occurrences', value: String(selected.coOccurrences), icon: 'ri-repeat-line', color: '#60A5FA' },
-                  { label: 'Avg interval', value: `~${selected.intervalWeeks}w`, icon: 'ri-calendar-line', color: '#D6B47E' },
+                  { label: 'Avg interval', value: `~${selected.intervalWeeks}w`, icon: 'ri-calendar-line', color: '#C5A365' },
                   { label: 'PNR contact match', value: selected.pnrContactMatch ? 'YES' : 'NO', icon: 'ri-phone-line', color: selected.pnrContactMatch ? '#C94A5E' : '#4ADE80' },
                 ].map(m => (
                   <div key={m.label} className="rounded-lg p-3 text-center border" style={{ background: 'rgba(255,255,255,0.02)', borderColor: 'rgba(255,255,255,0.06)' }}>
@@ -773,7 +773,7 @@ function TraffickingTab() {
   const navigate = useNavigate();
   const [selected, setSelected] = useState<TraffickingCase | null>(traffickingCases[0]);
   const [modal, setModal] = useState<CaseDraft | null>(null);
-  const sourceColor: Record<string, string> = { UNODC: '#60A5FA', IATA: '#D6B47E', DHS: '#C94A5E', ICAO: '#A78BFA' };
+  const sourceColor: Record<string, string> = { UNODC: '#60A5FA', IATA: '#C5A365', DHS: '#C94A5E', ICAO: '#A78BFA' };
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
@@ -1025,7 +1025,7 @@ export default function TravelPatternIntelligencePage() {
   ];
 
   return (
-    <div className="min-h-screen font-['Inter']" style={{ background: '#051428' }} dir={isAr ? 'rtl' : 'ltr'}>
+    <div className="min-h-screen font-['Manrope']" style={{ background: '#071426' }} dir={isAr ? 'rtl' : 'ltr'}>
       {/* Grid texture */}
       <div className="fixed inset-0 pointer-events-none" style={{ backgroundImage: `linear-gradient(rgba(184,138,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.03) 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
 

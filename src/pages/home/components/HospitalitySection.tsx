@@ -7,7 +7,7 @@ const HospitalitySection = () => {
   const features = t("hospitality.features", { returnObjects: true }) as string[];
 
   return (
-    <section className="py-20 md:py-28 relative" style={{ background: "linear-gradient(135deg, #051428 0%, #071A0F 50%, #051428 100%)" }}>
+    <section className="py-20 md:py-28 relative" style={{ background: "linear-gradient(135deg, #071426 0%, #071A0F 50%, #071426 100%)" }}>
       <div className="absolute inset-0 opacity-10" style={{ backgroundImage: `linear-gradient(rgba(74,222,128,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(74,222,128,0.1) 1px, transparent 1px)`, backgroundSize: "80px 80px" }} />
       <div className="relative z-10 max-w-[1400px] mx-auto px-4 md:px-8">
         <div className="flex flex-col lg:flex-row items-center gap-12">
@@ -24,7 +24,7 @@ const HospitalitySection = () => {
                 <div className="p-5">
                   <div className="flex items-center justify-between mb-4">
                     <div>
-                      <p className="text-white font-bold text-sm font-['Inter']">Dashboard</p>
+                      <p className="text-white font-bold text-sm font-['Manrope']">Dashboard</p>
                       <p className="text-gray-500 text-xs">Al Bustan Hotel — Muscat</p>
                     </div>
                     <div className="flex items-center gap-1.5 px-2 py-1 rounded-full bg-green-400/10 border border-green-400/30">
@@ -33,7 +33,7 @@ const HospitalitySection = () => {
                     </div>
                   </div>
                   <div className="grid grid-cols-3 gap-3 mb-4">
-                    {[{ label: "Occupied", value: "42", color: "#D6B47E" }, { label: "Available", value: "18", color: "#4ADE80" }, { label: "Check-outs", value: "7", color: "#FACC15" }].map((s) => (
+                    {[{ label: "Occupied", value: "42", color: "#C5A365" }, { label: "Available", value: "18", color: "#4ADE80" }, { label: "Check-outs", value: "7", color: "#FACC15" }].map((s) => (
                       <div key={s.label} className="p-3 rounded-lg text-center" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)" }}>
                         <p className="font-bold text-xl font-['JetBrains_Mono']" style={{ color: s.color }}>{s.value}</p>
                         <p className="text-gray-500 text-xs mt-1">{s.label}</p>
@@ -41,7 +41,7 @@ const HospitalitySection = () => {
                     ))}
                   </div>
                   <div className="space-y-2">
-                    {[{ name: "Ahmed Al-Rashidi", room: "204", status: "Check-in", color: "#4ADE80" }, { name: "Sarah Johnson", room: "118", status: "Staying", color: "#D6B47E" }, { name: "Mohammed Al-Balushi", room: "312", status: "Check-out", color: "#FACC15" }].map((g) => (
+                    {[{ name: "Ahmed Al-Rashidi", room: "204", status: "Check-in", color: "#4ADE80" }, { name: "Sarah Johnson", room: "118", status: "Staying", color: "#C5A365" }, { name: "Mohammed Al-Balushi", room: "312", status: "Check-out", color: "#FACC15" }].map((g) => (
                       <div key={g.name} className="flex items-center justify-between p-2.5 rounded-lg" style={{ background: "rgba(255,255,255,0.03)" }}>
                         <div className="flex items-center gap-2">
                           <div className="w-7 h-7 flex items-center justify-center rounded-full bg-gold-400/10">
@@ -63,29 +63,29 @@ const HospitalitySection = () => {
 
           {/* Right: content */}
           <div className="w-full lg:w-1/2">
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-green-500/40 bg-green-500/8 text-green-400 text-xs font-semibold font-['Inter'] mb-5">
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-green-500/40 bg-green-500/8 text-green-400 text-xs font-semibold font-['Manrope'] mb-5">
               <i className="ri-gift-line" />
               {t("hospitality.badge")}
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-white font-['Inter'] mb-1">{t("hospitality.title")}</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-white font-['Manrope'] mb-1">{t("hospitality.title")}</h2>
             <p className="text-green-400 text-lg font-['Cairo'] mb-5">{t("hospitality.arabicTitle")}</p>
-            <p className="text-gray-400 text-sm leading-relaxed mb-6 font-['Inter']">{t("hospitality.description")}</p>
+            <p className="text-gray-400 text-sm leading-relaxed mb-6 font-['Manrope']">{t("hospitality.description")}</p>
             <div className="space-y-2.5 mb-8">
               {Array.isArray(features) && features.map((f, i) => (
                 <div key={i} className="flex items-center gap-3">
                   <div className="w-5 h-5 flex items-center justify-center flex-shrink-0">
                     <i className="ri-checkbox-circle-line text-green-400" />
                   </div>
-                  <span className="text-gray-300 text-sm font-['Inter']">{f}</span>
+                  <span className="text-gray-300 text-sm font-['Manrope']">{f}</span>
                 </div>
               ))}
             </div>
             <div className="flex flex-col sm:flex-row items-start gap-4">
-              <button className="flex items-center gap-2 px-6 py-3 bg-green-400 text-[#051428] font-semibold rounded-md hover:bg-green-300 transition-colors duration-200 whitespace-nowrap cursor-pointer text-sm">
+              <button className="flex items-center gap-2 px-6 py-3 bg-green-400 text-[#071426] font-semibold rounded-md hover:bg-green-300 transition-colors duration-200 whitespace-nowrap cursor-pointer text-sm">
                 <i className="ri-download-line" />
                 {t("hospitality.download")}
               </button>
-              <p className="text-gray-600 text-xs font-['Inter'] mt-3 sm:mt-3.5">
+              <p className="text-gray-600 text-xs font-['Manrope'] mt-3 sm:mt-3.5">
                 <i className="ri-information-line mr-1" />
                 {t("hospitality.note")}
               </p>

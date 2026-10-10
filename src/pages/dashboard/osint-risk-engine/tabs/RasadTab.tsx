@@ -66,7 +66,7 @@ const RasadShadowScatterPanel = ({ isAr }: { isAr: boolean }) => {
       <div className="flex items-start justify-between mb-4 flex-wrap gap-2">
         <div>
           <h3 className="text-white text-sm font-bold flex items-center gap-2">
-            <i className="ri-shadow-line text-[#D6B47E]" />
+            <i className="ri-shadow-line text-[#C5A365]" />
             {isAr ? "معاينة وضع الظل" : "Shadow-mode preview"}
           </h3>
           <p className="text-gray-500 text-[11px] font-['JetBrains_Mono']">
@@ -110,34 +110,34 @@ const RasadShadowScatterPanel = ({ isAr }: { isAr: boolean }) => {
                 {/* y = x identity line. ReferenceLine with segment for dashed look */}
                 <ReferenceLine
                   segment={[{ x: 0, y: 0 }, { x: 100, y: 100 }]}
-                  stroke="#D6B47E"
+                  stroke="#C5A365"
                   strokeDasharray="5 5"
                   strokeWidth={1.25}
                   ifOverflow="extendDomain"
                 />
                 <Tooltip
-                  cursor={{ stroke: "#D6B47E", strokeWidth: 1, strokeDasharray: "3 3" }}
+                  cursor={{ stroke: "#C5A365", strokeWidth: 1, strokeDasharray: "3 3" }}
                   contentStyle={{
-                    background: "#051428",
+                    background: "#071426",
                     border: "1px solid rgba(184,138,60,0.3)",
                     borderRadius: 8,
                     fontSize: 12,
                     fontFamily: "'JetBrains Mono', monospace",
                   }}
-                  labelStyle={{ color: "#D6B47E" }}
+                  labelStyle={{ color: "#C5A365" }}
                   itemStyle={{ color: "#D6D6D6" }}
                   formatter={() => [""]}
                   content={({ active, payload }) => {
                     if (!active || !payload || !payload.length) return null;
                     const p = payload[0].payload as (RasadShadowScore & { nationality?: string });
                     return (
-                      <div style={{ background: "#051428", border: "1px solid rgba(184,138,60,0.3)", padding: 8, borderRadius: 8, fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: "#D6D6D6", minWidth: 220 }}>
-                        <div style={{ color: "#D6B47E", fontWeight: 700, marginBottom: 4 }}>{p.travelerName}</div>
+                      <div style={{ background: "#071426", border: "1px solid rgba(184,138,60,0.3)", padding: 8, borderRadius: 8, fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: "#D6D6D6", minWidth: 220 }}>
+                        <div style={{ color: "#C5A365", fontWeight: 700, marginBottom: 4 }}>{p.travelerName}</div>
                         <div style={{ color: "#9CA3AF" }}>{isAr ? "التصنيف" : "class"}: <span style={{ color: CLASSIFICATION_META[p.classification].color }}>{isAr ? CLASSIFICATION_META[p.classification].labelAr : CLASSIFICATION_META[p.classification].label}</span></div>
                         <div>OSINT: {p.osintScore}</div>
                         <div>+ Rasad: {p.rasadScore}</div>
                         <div style={{ color: p.delta > 0 ? "#4ADE80" : "#6B7280" }}>Δ: {p.delta >= 0 ? "+" : ""}{p.delta}</div>
-                        <div style={{ color: "#D6B47E", marginTop: 4, whiteSpace: "normal" }}>
+                        <div style={{ color: "#C5A365", marginTop: 4, whiteSpace: "normal" }}>
                           {isAr ? p.topClassifiedContributorAr : p.topClassifiedContributor}
                         </div>
                       </div>
@@ -164,7 +164,7 @@ const RasadShadowScatterPanel = ({ isAr }: { isAr: boolean }) => {
                         return (
                           <g>
                             {selected && (
-                              <circle cx={cx} cy={cy} r={r + 6} fill="none" stroke="#D6B47E" strokeWidth={2} opacity={0.9} />
+                              <circle cx={cx} cy={cy} r={r + 6} fill="none" stroke="#C5A365" strokeWidth={2} opacity={0.9} />
                             )}
                             <circle cx={cx} cy={cy} r={r} fill={fill} stroke={selected ? "#FFFFFF" : fill} strokeWidth={selected ? 2 : 1} />
                           </g>
@@ -194,7 +194,7 @@ const RasadShadowScatterPanel = ({ isAr }: { isAr: boolean }) => {
               </p>
             </div>
             <div className="rounded-md p-3" style={{ background: "rgba(184,138,60,0.08)", border: "1px solid rgba(184,138,60,0.25)" }}>
-              <p className="text-[9px] tracking-widest uppercase" style={{ color: "#D6B47E", fontFamily: "'JetBrains Mono', monospace" }}>
+              <p className="text-[9px] tracking-widest uppercase" style={{ color: "#C5A365", fontFamily: "'JetBrains Mono', monospace" }}>
                 {isAr ? "متوسط Δ" : "Average Δ"}
               </p>
               <p className="text-white text-lg font-black" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
@@ -220,7 +220,7 @@ const RasadShadowScatterPanel = ({ isAr }: { isAr: boolean }) => {
           <div className="rounded-lg h-full p-4 flex flex-col"
             style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(184,138,60,0.12)" }}>
             <h4 className="text-white text-sm font-bold flex items-center gap-2 mb-2">
-              <i className="ri-sparkling-line text-[#D6B47E]" />
+              <i className="ri-sparkling-line text-[#C5A365]" />
               {isAr ? "أبرز المُساهمين من رصد (محاكى)" : "Top contributor from Rasad (simulated)"}
             </h4>
             <p className="text-gray-500 text-[11px] mb-3" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
@@ -242,7 +242,7 @@ const RasadShadowScatterPanel = ({ isAr }: { isAr: boolean }) => {
                       className="w-full text-left rounded-md p-2.5 cursor-pointer transition-all"
                       style={{
                         background: isSelected ? "rgba(184,138,60,0.18)" : "rgba(255,255,255,0.03)",
-                        border: `1px solid ${isSelected ? "#D6B47E" : "rgba(184,138,60,0.15)"}`,
+                        border: `1px solid ${isSelected ? "#C5A365" : "rgba(184,138,60,0.15)"}`,
                       }}>
                       <div className="flex items-center justify-between gap-2 mb-1">
                         <span className="text-white text-xs font-bold truncate">{r.travelerName}</span>
@@ -254,7 +254,7 @@ const RasadShadowScatterPanel = ({ isAr }: { isAr: boolean }) => {
                       <div className="flex items-center gap-2 text-[11px] font-['JetBrains_Mono'] text-gray-400 mb-1.5">
                         <span>{r.osintScore}</span>
                         <i className="ri-arrow-right-s-line" />
-                        <span style={{ color: "#D6B47E" }}>{r.rasadScore}</span>
+                        <span style={{ color: "#C5A365" }}>{r.rasadScore}</span>
                         <span style={{ color: r.delta > 0 ? "#4ADE80" : "#6B7280" }}>
                           ({r.delta >= 0 ? "+" : ""}{r.delta})
                         </span>
@@ -433,7 +433,7 @@ const RasadTab = ({
         <div className="col-span-12 lg:col-span-6 rounded-xl border p-5"
           style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.12)" }}>
           <h3 className="text-white text-sm font-bold mb-3 flex items-center gap-2">
-            <i className="ri-checkbox-multiple-line text-[#D6B47E]" />
+            <i className="ri-checkbox-multiple-line text-[#C5A365]" />
             {isAr ? "قائمة الجاهزية" : "Readiness checklist"}
           </h3>
           <ul className="space-y-2">
@@ -454,7 +454,7 @@ const RasadTab = ({
                   {item.onClick ? (
                     <button type="button" onClick={item.onClick}
                       className="text-[11px] font-bold font-['JetBrains_Mono'] tracking-widest cursor-pointer flex items-center gap-0.5"
-                      style={{ color: "#D6B47E" }}>
+                      style={{ color: "#C5A365" }}>
                       {isAr ? item.linkLabelAr : item.linkLabel} <i className="ri-arrow-right-s-line" />
                     </button>
                   ) : (
@@ -470,7 +470,7 @@ const RasadTab = ({
         <div className="col-span-12 lg:col-span-6 rounded-xl border p-5"
           style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.12)" }}>
           <h3 className="text-white text-sm font-bold mb-3 flex items-center gap-2">
-            <i className="ri-code-box-line text-[#D6B47E]" />
+            <i className="ri-code-box-line text-[#C5A365]" />
             {isAr ? "شكل المهايئ المُصنَّف" : "Classified adapter shape"}
           </h3>
           <pre className="rounded-lg p-3 text-[11px] overflow-auto"
@@ -478,7 +478,7 @@ const RasadTab = ({
               background: "var(--alm-ocean-900, #061B30)",
               border: "1px solid rgba(184,138,60,0.18)",
               fontFamily: "'JetBrains Mono', monospace",
-              color: "#D6B47E",
+              color: "#C5A365",
               lineHeight: 1.55,
               maxHeight: 340,
             }}>
@@ -516,7 +516,7 @@ const RasadTab = ({
         <div className="flex items-start justify-between mb-4 flex-wrap gap-2">
           <div>
             <h3 className="text-white text-sm font-bold flex items-center gap-2">
-              <i className="ri-route-line text-[#D6B47E]" />
+              <i className="ri-route-line text-[#C5A365]" />
               {isAr ? "خطة الانتقال" : "Transition plan"}
             </h3>
             <p className="text-gray-500 text-[11px] font-['JetBrains_Mono']">
@@ -524,7 +524,7 @@ const RasadTab = ({
             </p>
           </div>
           <span className="px-3 py-1 rounded-md text-xs font-bold font-['JetBrains_Mono'] tracking-widest"
-            style={{ background: "rgba(184,138,60,0.15)", color: "#D6B47E", border: "1px solid #D6B47E55" }}>
+            style={{ background: "rgba(184,138,60,0.15)", color: "#C5A365", border: "1px solid #C5A36555" }}>
             {isAr ? "الإجمالي" : "TOTAL"} {totalDays} {isAr ? "يوم عمل" : "working days"}
           </span>
         </div>
@@ -534,8 +534,8 @@ const RasadTab = ({
               style={{ background: "rgba(255,255,255,0.02)", borderColor: "rgba(184,138,60,0.18)" }}>
               <div className="flex items-start justify-between">
                 <div className="w-10 h-10 flex items-center justify-center rounded-lg"
-                  style={{ background: "rgba(184,138,60,0.12)", border: "1px solid #D6B47E55" }}>
-                  <i className={`${s.icon} text-lg`} style={{ color: "#D6B47E" }} />
+                  style={{ background: "rgba(184,138,60,0.12)", border: "1px solid #C5A36555" }}>
+                  <i className={`${s.icon} text-lg`} style={{ color: "#C5A365" }} />
                 </div>
                 <span className="text-[11px] font-bold font-['JetBrains_Mono'] text-gray-600">
                   {isAr ? "خطوة" : "STEP"} {i + 1}
@@ -550,7 +550,7 @@ const RasadTab = ({
               {/* Arrow to next step */}
               {i < TRANSITION_STEPS.length - 1 && (
                 <i className="hidden md:block ri-arrow-right-s-line absolute -right-5 top-1/2 -translate-y-1/2 text-2xl"
-                  style={{ color: "#D6B47E55" }} />
+                  style={{ color: "#C5A36555" }} />
               )}
             </div>
           ))}

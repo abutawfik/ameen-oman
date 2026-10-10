@@ -35,7 +35,7 @@ const SEVERITY_META: Record<EventSeverity, { color: string; bg: string; label: s
 
 const CATEGORY_META: Record<EventCategory, { label: string; labelAr: string; color: string; icon: string }> = {
   rop_internal:    { label: "ROP Internal",    labelAr: "داخلي — ROP",   color: "#60A5FA", icon: "ri-shield-star-line" },
-  border:          { label: "Border / AMR",    labelAr: "حدود / AMR",    color: "#D6B47E", icon: "ri-passport-line" },
+  border:          { label: "Border / AMR",    labelAr: "حدود / AMR",    color: "#C5A365", icon: "ri-passport-line" },
   hotel:           { label: "Hotel",           labelAr: "فندق",          color: "#4A7AA8", icon: "ri-hotel-bed-line" },
   car_rental:      { label: "Car Rental",      labelAr: "تأجير سيارة",   color: "#4ADE80", icon: "ri-car-line" },
   mobile:          { label: "Mobile / SIM",    labelAr: "جوال / SIM",    color: "#A78BFA", icon: "ri-sim-card-line" },
@@ -410,14 +410,14 @@ const SubjectTimelinePage = () => {
       : "OSINT";
 
   return (
-    <div className="flex flex-col min-h-screen" style={{ background: "#051428" }}>
+    <div className="flex flex-col min-h-screen" style={{ background: "#071426" }}>
       <PageHeader
         title={isAr ? "جدول أنشطة الموضوع" : "Subject Activity Timeline"}
         subtitle={isAr
           ? "عرض موحَّد لجميع الأحداث المرتبطة بشخص عبر جميع مصادر البيانات"
           : "Unified cross-source view · velocity scoring · behavioral fingerprints"}
         icon="ri-user-follow-line"
-        iconColor="#D6B47E"
+        iconColor="#C5A365"
         isAr={isAr}
         action={
           <div className="flex gap-2">
@@ -437,7 +437,7 @@ const SubjectTimelinePage = () => {
               style={{
                 background: "rgba(184,138,60,0.12)",
                 border: "1px solid rgba(184,138,60,0.4)",
-                color: "#D6B47E",
+                color: "#C5A365",
               }}
             >
               {running
@@ -466,7 +466,7 @@ const SubjectTimelinePage = () => {
                 className="w-14 h-14 flex items-center justify-center rounded-full flex-shrink-0"
                 style={{ background: "rgba(184,138,60,0.10)", border: "2px solid rgba(184,138,60,0.3)" }}
               >
-                <i className="ri-user-3-line text-2xl" style={{ color: "#D6B47E" }} />
+                <i className="ri-user-3-line text-2xl" style={{ color: "#C5A365" }} />
               </div>
               <div className="flex-1 min-w-[200px]">
                 <div className="flex items-center gap-2 flex-wrap">
@@ -604,11 +604,11 @@ const SubjectTimelinePage = () => {
               >
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-white text-sm font-bold flex items-center gap-2">
-                    <i className="ri-timeline-view" style={{ color: "#D6B47E" }} />
+                    <i className="ri-timeline-view" style={{ color: "#C5A365" }} />
                     {isAr ? "الجدول الزمني للنشاط" : "Activity timeline"}
                     <span
                       className="px-1.5 py-0.5 rounded-full text-[11px] font-['JetBrains_Mono']"
-                      style={{ background: "rgba(184,138,60,0.15)", color: "#D6B47E" }}
+                      style={{ background: "rgba(184,138,60,0.15)", color: "#C5A365" }}
                     >
                       {sorted.length}
                     </span>
@@ -646,7 +646,7 @@ const SubjectTimelinePage = () => {
               style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.12)" }}
             >
               <h3 className="text-white text-sm font-bold mb-4 flex items-center gap-2">
-                <i className="ri-bar-chart-horizontal-line" style={{ color: "#D6B47E" }} />
+                <i className="ri-bar-chart-horizontal-line" style={{ color: "#C5A365" }} />
                 {isAr ? "ملخص الأحداث" : "Event summary"}
               </h3>
               {events.length === 0 ? (
@@ -701,7 +701,7 @@ const SubjectTimelinePage = () => {
                       border: `1px solid ${hasPatterns ? "rgba(201,74,94,0.4)" : "rgba(184,138,60,0.2)"}`,
                     }}
                   >
-                    <i className="ri-dna-line text-sm" style={{ color: hasPatterns ? "#C94A5E" : "#D6B47E" }} />
+                    <i className="ri-dna-line text-sm" style={{ color: hasPatterns ? "#C94A5E" : "#C5A365" }} />
                   </div>
                   <h3 className="text-white text-sm font-bold flex-1">
                     {isAr ? "البصمات السلوكية" : "Behavioral Fingerprints"}
@@ -782,7 +782,7 @@ const SubjectTimelinePage = () => {
                 style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.12)" }}
               >
                 <h3 className="text-white text-sm font-bold mb-4 flex items-center gap-2">
-                  <i className="ri-pulse-line" style={{ color: "#D6B47E" }} />
+                  <i className="ri-pulse-line" style={{ color: "#C5A365" }} />
                   {isAr ? "تطور درجة المخاطر" : "Risk score progression"}
                 </h3>
                 <div className="space-y-1.5">

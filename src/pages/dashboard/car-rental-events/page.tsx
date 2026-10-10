@@ -28,7 +28,7 @@ const EVENT_CARDS: EventCard[] = [
     labelAr: "حجز مركبة",
     desc: "Register a new vehicle booking with full renter and document details",
     descAr: "تسجيل حجز مركبة جديد مع تفاصيل المستأجر والوثائق",
-    color: "#D6B47E",
+    color: "#C5A365",
     code: "CAR_BOOK",
   },
   {
@@ -78,8 +78,8 @@ const CarRentalEventsPage = () => {
 
   return (
     <div
-      className="min-h-screen font-['Inter']"
-      style={{ background: "#051428" }}
+      className="min-h-screen font-['Manrope']"
+      style={{ background: "#071426" }}
       dir={isAr ? "rtl" : "ltr"}
     >
       {/* Background grid */}
@@ -139,7 +139,7 @@ const CarRentalEventsPage = () => {
               <div className="flex items-center gap-2 mb-2">
                 <div
                   className="w-1 h-6 rounded-full"
-                  style={{ background: "linear-gradient(to bottom, #D6B47E, transparent)" }}
+                  style={{ background: "linear-gradient(to bottom, #C5A365, transparent)" }}
                 />
                 <h1 className="text-white text-2xl font-bold">
                   {isAr ? "اختر نوع الحدث" : "Select Event Type"}

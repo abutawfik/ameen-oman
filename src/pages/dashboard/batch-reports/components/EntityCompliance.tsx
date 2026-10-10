@@ -3,7 +3,7 @@ import { useState } from "react";
 interface Props { isAr: boolean; }
 
 const ENTITIES = [
-  { name: "Al Bustan Palace Hotel",    nameAr: "فندق البستان بالاس",       icon: "ri-hotel-line",         color: "#D6B47E", rating: "gold",   score: 98, events: 1284, rejected: 12, trend: [88,90,91,93,94,95,96,97,97,98,98,98] },
+  { name: "Al Bustan Palace Hotel",    nameAr: "فندق البستان بالاس",       icon: "ri-hotel-line",         color: "#C5A365", rating: "gold",   score: 98, events: 1284, rejected: 12, trend: [88,90,91,93,94,95,96,97,97,98,98,98] },
   { name: "Oman Car Rental Co.",       nameAr: "شركة عُمان لتأجير السيارات",icon: "ri-car-line",           color: "#4ADE80", rating: "gold",   score: 96, events: 2103, rejected: 34, trend: [82,84,86,88,90,91,92,93,94,95,96,96] },
   { name: "Omantel",                   nameAr: "عُمانتل",                   icon: "ri-sim-card-line",      color: "#A78BFA", rating: "gold",   score: 97, events: 8412, rejected: 89, trend: [90,91,92,93,94,95,95,96,96,97,97,97] },
   { name: "Muscat Municipality",       nameAr: "بلدية مسقط",               icon: "ri-government-line",    color: "#FACC15", rating: "silver", score: 89, events: 891,  rejected: 67, trend: [78,80,81,82,83,84,85,86,87,88,89,89] },
@@ -18,7 +18,7 @@ const ENTITIES = [
 const MONTHS_SHORT = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 
 const RATING_CONFIG = {
-  gold:   { label: "Gold",   labelAr: "ذهبي",   color: "#D6B47E", icon: "ri-medal-line",   bg: "rgba(184,138,60,0.1)",  border: "rgba(184,138,60,0.25)" },
+  gold:   { label: "Gold",   labelAr: "ذهبي",   color: "#C5A365", icon: "ri-medal-line",   bg: "rgba(184,138,60,0.1)",  border: "rgba(184,138,60,0.25)" },
   silver: { label: "Silver", labelAr: "فضي",    color: "#FACC15", icon: "ri-medal-2-line", bg: "rgba(250,204,21,0.1)",  border: "rgba(250,204,21,0.25)" },
   bronze: { label: "Bronze", labelAr: "برونزي", color: "#9CA3AF", icon: "ri-award-line",   bg: "rgba(156,163,175,0.1)", border: "rgba(156,163,175,0.25)" },
 };

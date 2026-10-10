@@ -47,8 +47,8 @@ const CaseDetail = ({ caseData, isAr }: Props) => {
               <span className="text-[11px] font-['JetBrains_Mono'] px-2 py-0.5 rounded" style={{ background: pri.bg, color: pri.color }}>{caseData.priority.toUpperCase()}</span>
               <span className="text-gray-600 text-[11px] font-['JetBrains_Mono']">{caseData.caseNumber}</span>
             </div>
-            <h2 className="text-white text-base font-bold font-['Inter']">{caseData.title}</h2>
-            <p className="text-gray-500 text-xs font-['Inter'] mt-0.5">Lead: {caseData.leadOfficer}</p>
+            <h2 className="text-white text-base font-bold font-['Manrope']">{caseData.title}</h2>
+            <p className="text-gray-500 text-xs font-['Manrope'] mt-0.5">Lead: {caseData.leadOfficer}</p>
           </div>
           <div className="text-right flex-shrink-0">
             <div className="w-14 h-14 rounded-full flex items-center justify-center" style={{ background: `${pri.color}15`, border: `2px solid ${pri.color}40` }}>
@@ -67,10 +67,10 @@ const CaseDetail = ({ caseData, isAr }: Props) => {
       <div className="flex items-center gap-1 px-4 py-2 border-b flex-shrink-0" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
         {subTabs.map((t) => (
           <button key={t.key} onClick={() => setSubTab(t.key)}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-['Inter'] cursor-pointer transition-all whitespace-nowrap"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-['Manrope'] cursor-pointer transition-all whitespace-nowrap"
             style={{
               background: subTab === t.key ? "rgba(184,138,60,0.1)" : "transparent",
-              color: subTab === t.key ? "#D6B47E" : "#6B7280",
+              color: subTab === t.key ? "#C5A365" : "#6B7280",
               border: subTab === t.key ? "1px solid rgba(184,138,60,0.25)" : "1px solid transparent",
             }}>
             <i className={`${t.icon} text-xs`} />
@@ -85,11 +85,11 @@ const CaseDetail = ({ caseData, isAr }: Props) => {
           <div className="space-y-4">
             <div className="p-3 rounded-xl" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
               <p className="text-gray-600 text-[11px] font-['JetBrains_Mono'] mb-1">DESCRIPTION</p>
-              <p className="text-gray-300 text-xs font-['Inter'] leading-relaxed">{caseData.description}</p>
+              <p className="text-gray-300 text-xs font-['Manrope'] leading-relaxed">{caseData.description}</p>
             </div>
             <div className="p-3 rounded-xl" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
               <p className="text-gray-600 text-[11px] font-['JetBrains_Mono'] mb-1">OBJECTIVE</p>
-              <p className="text-gray-300 text-xs font-['Inter'] leading-relaxed">{caseData.objective}</p>
+              <p className="text-gray-300 text-xs font-['Manrope'] leading-relaxed">{caseData.objective}</p>
             </div>
             {/* Subjects */}
             <div>
@@ -101,8 +101,8 @@ const CaseDetail = ({ caseData, isAr }: Props) => {
                       <img src={s.photo} alt={s.name} className="w-full h-full object-cover object-top" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-white text-xs font-bold font-['Inter'] truncate">{s.name}</p>
-                      <p className="text-gray-600 text-[11px] font-['Inter']">{s.nationality} · {s.role}</p>
+                      <p className="text-white text-xs font-bold font-['Manrope'] truncate">{s.name}</p>
+                      <p className="text-gray-600 text-[11px] font-['Manrope']">{s.nationality} · {s.role}</p>
                     </div>
                     <div className="text-right flex-shrink-0">
                       <p className="font-bold font-['JetBrains_Mono'] text-sm" style={{ color: s.riskScore >= 90 ? "#C94A5E" : s.riskScore >= 75 ? "#C98A1B" : "#FACC15" }}>{s.riskScore}</p>
@@ -117,7 +117,7 @@ const CaseDetail = ({ caseData, isAr }: Props) => {
               <p className="text-gray-600 text-[11px] font-['JetBrains_Mono'] mb-2">INVESTIGATION TEAM</p>
               <div className="flex flex-wrap gap-2">
                 {[caseData.leadOfficer, ...caseData.team].map((member) => (
-                  <span key={member} className="text-xs px-2.5 py-1 rounded-lg font-['Inter']" style={{ background: "rgba(184,138,60,0.06)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.15)" }}>
+                  <span key={member} className="text-xs px-2.5 py-1 rounded-lg font-['Manrope']" style={{ background: "rgba(184,138,60,0.06)", color: "#C5A365", border: "1px solid rgba(184,138,60,0.15)" }}>
                     {member}
                   </span>
                 ))}
@@ -128,7 +128,7 @@ const CaseDetail = ({ caseData, isAr }: Props) => {
               <p className="text-gray-600 text-[11px] font-['JetBrains_Mono'] mb-2">STREAMS COVERED</p>
               <div className="flex flex-wrap gap-1.5">
                 {caseData.streamsCovered.map((s) => (
-                  <span key={s} className="text-[11px] px-2 py-1 rounded font-['Inter']" style={{ background: "rgba(255,255,255,0.05)", color: "#9CA3AF" }}>{s}</span>
+                  <span key={s} className="text-[11px] px-2 py-1 rounded font-['Manrope']" style={{ background: "rgba(255,255,255,0.05)", color: "#9CA3AF" }}>{s}</span>
                 ))}
               </div>
             </div>
@@ -146,7 +146,7 @@ const CaseDetail = ({ caseData, isAr }: Props) => {
             {caseData.evidence.length === 0 ? (
               <div className="flex flex-col items-center justify-center py-12 text-center">
                 <i className="ri-attachment-line text-gray-700 text-3xl mb-2" />
-                <p className="text-gray-600 text-sm font-['Inter']">No evidence items yet</p>
+                <p className="text-gray-600 text-sm font-['Manrope']">No evidence items yet</p>
               </div>
             ) : caseData.evidence.map((ev) => (
               <div key={ev.id} className="flex items-center gap-3 p-3 rounded-xl" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
@@ -154,13 +154,13 @@ const CaseDetail = ({ caseData, isAr }: Props) => {
                   <i className="ri-file-text-line text-purple-400 text-sm" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-white text-xs font-bold font-['Inter'] truncate">{ev.title}</p>
-                  <p className="text-gray-600 text-[11px] font-['Inter']">{ev.source} · {ev.addedAt} · {ev.size}</p>
+                  <p className="text-white text-xs font-bold font-['Manrope'] truncate">{ev.title}</p>
+                  <p className="text-gray-600 text-[11px] font-['Manrope']">{ev.source} · {ev.addedAt} · {ev.size}</p>
                 </div>
                 <span className="text-[9px] px-1.5 py-0.5 rounded font-['JetBrains_Mono'] flex-shrink-0" style={{ background: "rgba(250,204,21,0.1)", color: "#FACC15" }}>{ev.classification}</span>
               </div>
             ))}
-            <button className="w-full flex items-center justify-center gap-2 py-2 rounded-lg text-xs font-['Inter'] cursor-pointer mt-2 whitespace-nowrap" style={{ background: "rgba(167,139,250,0.08)", color: "#A78BFA", border: "1px solid rgba(167,139,250,0.2)" }}>
+            <button className="w-full flex items-center justify-center gap-2 py-2 rounded-lg text-xs font-['Manrope'] cursor-pointer mt-2 whitespace-nowrap" style={{ background: "rgba(167,139,250,0.08)", color: "#A78BFA", border: "1px solid rgba(167,139,250,0.2)" }}>
               <i className="ri-upload-line" />Upload Evidence
             </button>
           </div>
@@ -173,22 +173,22 @@ const CaseDetail = ({ caseData, isAr }: Props) => {
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-2">
                     {note.pinned && <i className="ri-pushpin-line text-gold-400 text-xs" />}
-                    <span className="text-white text-xs font-bold font-['Inter']">{note.author}</span>
-                    <span className="text-gray-600 text-[11px] font-['Inter']">{note.authorRole}</span>
+                    <span className="text-white text-xs font-bold font-['Manrope']">{note.author}</span>
+                    <span className="text-gray-600 text-[11px] font-['Manrope']">{note.authorRole}</span>
                   </div>
                   <span className="text-gray-700 text-[11px] font-['JetBrains_Mono']">{note.timestamp}</span>
                 </div>
-                <p className="text-gray-300 text-xs font-['Inter'] leading-relaxed">{note.content}</p>
+                <p className="text-gray-300 text-xs font-['Manrope'] leading-relaxed">{note.content}</p>
               </div>
             ))}
             <div className="p-3 rounded-xl" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
               <textarea
                 placeholder="Add a note..."
                 rows={3}
-                className="w-full bg-transparent text-white text-xs font-['Inter'] outline-none resize-none placeholder-gray-700"
+                className="w-full bg-transparent text-white text-xs font-['Manrope'] outline-none resize-none placeholder-gray-700"
               />
               <div className="flex justify-end mt-2">
-                <button className="px-4 py-1.5 rounded-lg text-xs font-['Inter'] cursor-pointer whitespace-nowrap" style={{ background: "rgba(184,138,60,0.1)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}>
+                <button className="px-4 py-1.5 rounded-lg text-xs font-['Manrope'] cursor-pointer whitespace-nowrap" style={{ background: "rgba(184,138,60,0.1)", color: "#C5A365", border: "1px solid rgba(184,138,60,0.2)" }}>
                   Add Note
                 </button>
               </div>

@@ -27,7 +27,7 @@ const importSources = [
 const exportFormats = [
   { id: 'pdf', label: 'Redacted PDF (Field Ops)', labelAr: 'PDF مُعدَّل (عمليات الميدان)', icon: 'ri-file-pdf-line', color: '#C94A5E' },
   { id: 'csv', label: 'CSV Export (Document Numbers)', labelAr: 'تصدير CSV (أرقام الوثائق)', icon: 'ri-file-excel-line', color: '#4ADE80' },
-  { id: 'json', label: 'JSON (API Integration)', labelAr: 'JSON (تكامل API)', icon: 'ri-code-s-slash-line', color: '#D6B47E' },
+  { id: 'json', label: 'JSON (API Integration)', labelAr: 'JSON (تكامل API)', icon: 'ri-code-s-slash-line', color: '#C5A365' },
   { id: 'encrypted', label: 'Encrypted Package (Secure Share)', labelAr: 'حزمة مشفرة (مشاركة آمنة)', icon: 'ri-lock-line', color: '#A78BFA' },
 ];
 
@@ -50,7 +50,7 @@ const initialAttachments: Attachment[] = [
 const typeBadgeColors: Record<Attachment['type'], string> = {
   WARRANT:     '#A78BFA',
   PHOTO:       '#60A5FA',
-  REPORT:      '#D6B47E',
+  REPORT:      '#C5A365',
   COURT_ORDER: '#2DD4BF',
 };
 
@@ -160,10 +160,10 @@ const ImportExport = ({ isAr }: Props) => {
         style={{ background: 'rgba(10,37,64,0.8)', border: '1px solid rgba(184,138,60,0.1)' }}>
         {tabs.map(tab => (
           <button key={tab.key} onClick={() => setActiveTab(tab.key as typeof activeTab)}
-            className="px-4 py-2 rounded-lg text-sm font-semibold font-['Inter'] whitespace-nowrap cursor-pointer transition-all"
+            className="px-4 py-2 rounded-lg text-sm font-semibold font-['Manrope'] whitespace-nowrap cursor-pointer transition-all"
             style={{
-              background: activeTab === tab.key ? '#D6B47E' : 'transparent',
-              color: activeTab === tab.key ? '#051428' : '#9CA3AF',
+              background: activeTab === tab.key ? '#C5A365' : 'transparent',
+              color: activeTab === tab.key ? '#071426' : '#9CA3AF',
             }}>
             {isAr ? tab.labelAr : tab.label}
           </button>
@@ -178,33 +178,33 @@ const ImportExport = ({ isAr }: Props) => {
               className="rounded-2xl p-8 flex flex-col items-center justify-center text-center cursor-pointer transition-all"
               style={{
                 background: dragOver ? 'rgba(184,138,60,0.08)' : 'rgba(10,37,64,0.6)',
-                border: `2px dashed ${dragOver ? '#D6B47E' : 'rgba(184,138,60,0.2)'}`,
+                border: `2px dashed ${dragOver ? '#C5A365' : 'rgba(184,138,60,0.2)'}`,
               }}
               onDragOver={e => { e.preventDefault(); setDragOver(true); }}
               onDragLeave={() => setDragOver(false)}
               onDrop={e => { e.preventDefault(); setDragOver(false); const f = e.dataTransfer.files[0]; if (f) simulateUpload(f.name); }}>
               <div className="w-14 h-14 flex items-center justify-center rounded-2xl mb-4"
                 style={{ background: 'rgba(184,138,60,0.1)' }}>
-                <i className="ri-upload-cloud-2-line text-2xl" style={{ color: '#D6B47E' }} />
+                <i className="ri-upload-cloud-2-line text-2xl" style={{ color: '#C5A365' }} />
               </div>
-              <p className="text-white font-semibold font-['Inter'] text-base mb-1">
+              <p className="text-white font-semibold font-['Manrope'] text-base mb-1">
                 {isAr ? 'رفع قائمة الأهداف' : 'Upload Target List'}
               </p>
-              <p className="text-gray-400 text-sm font-['Inter'] mb-1">
+              <p className="text-gray-400 text-sm font-['Manrope'] mb-1">
                 {isAr ? 'اسحب وأفلت ملف قائمة العقوبات أو نشرات الإنتربول (CSV / XML / JSON)' : 'Drag & drop a sanctions list or Interpol Red Notices file (CSV / XML / JSON)'}
               </p>
               <p className="text-gray-600 text-xs font-['JetBrains_Mono'] mb-4">
                 Netherlands Sanctions List · Interpol Red Notices · UN Consolidated List · Custom CSV
               </p>
               <div className="flex items-center gap-3">
-                <label className="px-4 py-2 rounded-xl text-sm font-semibold font-['Inter'] whitespace-nowrap cursor-pointer"
-                  style={{ background: '#D6B47E', color: '#051428' }}>
+                <label className="px-4 py-2 rounded-xl text-sm font-semibold font-['Manrope'] whitespace-nowrap cursor-pointer"
+                  style={{ background: '#C5A365', color: '#071426' }}>
                   <i className="ri-folder-open-line mr-2" />{isAr ? 'اختر ملفاً' : 'Browse File'}
                   <input ref={fileInputRef} type="file" accept=".csv,.xml,.json" className="hidden"
                     onChange={e => { const f = e.target.files?.[0]; if (f) simulateUpload(f.name); e.target.value = ''; }} />
                 </label>
-                <button className="px-4 py-2 rounded-xl text-sm font-semibold font-['Inter'] whitespace-nowrap cursor-pointer"
-                  style={{ border: '1px solid rgba(184,138,60,0.3)', color: '#D6B47E' }}>
+                <button className="px-4 py-2 rounded-xl text-sm font-semibold font-['Manrope'] whitespace-nowrap cursor-pointer"
+                  style={{ border: '1px solid rgba(184,138,60,0.3)', color: '#C5A365' }}>
                   <i className="ri-download-line mr-2" />{isAr ? 'تحميل القالب' : 'Download Template'}
                 </button>
               </div>
@@ -219,19 +219,19 @@ const ImportExport = ({ isAr }: Props) => {
               style={{ background: 'rgba(10,37,64,0.6)', border: '2px dashed rgba(184,138,60,0.3)' }}>
               <div className="w-14 h-14 flex items-center justify-center rounded-2xl mb-4"
                 style={{ background: 'rgba(184,138,60,0.1)' }}>
-                <i className="ri-loader-4-line text-2xl animate-spin" style={{ color: '#D6B47E' }} />
+                <i className="ri-loader-4-line text-2xl animate-spin" style={{ color: '#C5A365' }} />
               </div>
-              <p className="text-white font-semibold font-['Inter'] text-base mb-1">
+              <p className="text-white font-semibold font-['Manrope'] text-base mb-1">
                 {isAr ? 'جارٍ المعالجة…' : 'Processing list…'}
               </p>
-              <p className="text-gray-400 text-sm font-['Inter'] mb-4">
+              <p className="text-gray-400 text-sm font-['Manrope'] mb-4">
                 {isAr ? 'التحقق من السجلات وتطبيق قواعد التحقق' : 'Validating records and applying validation rules'}
               </p>
               <div className="w-64 h-2 rounded-full overflow-hidden" style={{ background: 'rgba(255,255,255,0.06)' }}>
                 <div className="h-full rounded-full transition-all duration-200"
-                  style={{ width: `${uploadProgress}%`, background: 'linear-gradient(to right, rgba(214,180,126,0.6), #D6B47E)' }} />
+                  style={{ width: `${uploadProgress}%`, background: 'linear-gradient(to right, rgba(214,180,126,0.6), #C5A365)' }} />
               </div>
-              <p className="text-xs font-['JetBrains_Mono'] mt-2" style={{ color: '#D6B47E' }}>{uploadProgress}%</p>
+              <p className="text-xs font-['JetBrains_Mono'] mt-2" style={{ color: '#C5A365' }}>{uploadProgress}%</p>
             </div>
           )}
 
@@ -244,33 +244,33 @@ const ImportExport = ({ isAr }: Props) => {
                   <i className="ri-check-double-line text-xl text-green-400" />
                 </div>
                 <div>
-                  <p className="text-white font-semibold font-['Inter'] text-sm">
+                  <p className="text-white font-semibold font-['Manrope'] text-sm">
                     {isAr ? 'اكتمل الاستيراد' : 'Import Complete'}
                   </p>
                   <p className="text-gray-400 text-xs font-['JetBrains_Mono']">{uploadResult.fileName}</p>
                 </div>
                 <button onClick={() => { setUploadState('idle'); setUploadResult(null); setUploadProgress(0); }}
-                  className="ml-auto px-3 py-1.5 rounded-lg text-xs font-semibold font-['Inter'] cursor-pointer"
-                  style={{ border: '1px solid rgba(184,138,60,0.3)', color: '#D6B47E' }}>
+                  className="ml-auto px-3 py-1.5 rounded-lg text-xs font-semibold font-['Manrope'] cursor-pointer"
+                  style={{ border: '1px solid rgba(184,138,60,0.3)', color: '#C5A365' }}>
                   {isAr ? 'رفع جديد' : 'Upload Another'}
                 </button>
               </div>
               <div className="rounded-xl p-4 grid grid-cols-4 gap-4" style={{ background: 'rgba(5,20,40,0.6)' }}>
                 {[
-                  { label: isAr ? 'إجمالي السجلات' : 'Total Records', value: uploadResult.total.toLocaleString(), color: '#D6B47E' },
+                  { label: isAr ? 'إجمالي السجلات' : 'Total Records', value: uploadResult.total.toLocaleString(), color: '#C5A365' },
                   { label: isAr ? 'أهداف جديدة' : 'New Targets', value: `+${uploadResult.added}`, color: '#4ADE80' },
                   { label: isAr ? 'محدَّث' : 'Updated', value: `~${uploadResult.updated.toLocaleString()}`, color: '#60A5FA' },
                   { label: isAr ? 'أخطاء' : 'Errors', value: String(uploadResult.errors), color: uploadResult.errors > 0 ? '#C94A5E' : '#6B7280' },
                 ].map(stat => (
                   <div key={stat.label} className="text-center">
                     <p className="text-lg font-black font-['JetBrains_Mono']" style={{ color: stat.color }}>{stat.value}</p>
-                    <p className="text-gray-500 text-xs font-['Inter'] mt-0.5">{stat.label}</p>
+                    <p className="text-gray-500 text-xs font-['Manrope'] mt-0.5">{stat.label}</p>
                   </div>
                 ))}
               </div>
               <div className="flex items-center gap-2 p-3 rounded-xl" style={{ background: 'rgba(74,222,128,0.05)', border: '1px solid rgba(74,222,128,0.15)' }}>
                 <i className="ri-shield-check-line text-green-400 text-sm" />
-                <p className="text-green-400 text-xs font-['Inter']">
+                <p className="text-green-400 text-xs font-['Manrope']">
                   {isAr
                     ? `تمت إضافة ${uploadResult.added} هدفاً جديداً إلى ${uploadResult.source} بنجاح`
                     : `${uploadResult.added} new targets added to ${uploadResult.source} successfully`}
@@ -280,7 +280,7 @@ const ImportExport = ({ isAr }: Props) => {
           )}
 
           {/* External Sources */}
-          <h3 className="text-white font-semibold font-['Inter'] text-sm">
+          <h3 className="text-white font-semibold font-['Manrope'] text-sm">
             {isAr ? 'المصادر الخارجية' : 'External Import Sources'}
           </h3>
           <div className="grid grid-cols-1 gap-3">
@@ -293,7 +293,7 @@ const ImportExport = ({ isAr }: Props) => {
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">
-                    <p className="text-white text-sm font-semibold font-['Inter']">
+                    <p className="text-white text-sm font-semibold font-['Manrope']">
                       {isAr ? src.nameAr : src.name}
                     </p>
                     <span className="text-xs px-2 py-0.5 rounded-full font-['JetBrains_Mono']"
@@ -310,11 +310,11 @@ const ImportExport = ({ isAr }: Props) => {
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <button className="px-3 py-1.5 rounded-lg text-xs font-semibold font-['Inter'] whitespace-nowrap cursor-pointer"
-                    style={{ background: 'rgba(184,138,60,0.1)', color: '#D6B47E', border: '1px solid rgba(184,138,60,0.2)' }}>
+                  <button className="px-3 py-1.5 rounded-lg text-xs font-semibold font-['Manrope'] whitespace-nowrap cursor-pointer"
+                    style={{ background: 'rgba(184,138,60,0.1)', color: '#C5A365', border: '1px solid rgba(184,138,60,0.2)' }}>
                     <i className="ri-refresh-line mr-1" />{isAr ? 'مزامنة' : 'Sync Now'}
                   </button>
-                  <button className="px-3 py-1.5 rounded-lg text-xs font-semibold font-['Inter'] whitespace-nowrap cursor-pointer"
+                  <button className="px-3 py-1.5 rounded-lg text-xs font-semibold font-['Manrope'] whitespace-nowrap cursor-pointer"
                     style={{ border: '1px solid rgba(184,138,60,0.15)', color: '#9CA3AF' }}>
                     <i className="ri-settings-line mr-1" />{isAr ? 'إعداد' : 'Config'}
                   </button>
@@ -330,7 +330,7 @@ const ImportExport = ({ isAr }: Props) => {
           <div className="space-y-4">
             <div className="rounded-xl p-4"
               style={{ background: 'rgba(10,37,64,0.8)', border: '1px solid rgba(184,138,60,0.12)' }}>
-              <h3 className="text-white font-semibold font-['Inter'] text-sm mb-3">
+              <h3 className="text-white font-semibold font-['Manrope'] text-sm mb-3">
                 {isAr ? 'تنسيق التصدير' : 'Export Format'}
               </h3>
               <div className="space-y-2">
@@ -342,7 +342,7 @@ const ImportExport = ({ isAr }: Props) => {
                       border: `1px solid ${selectedFormat === fmt.id ? `${fmt.color}40` : 'rgba(255,255,255,0.05)'}`,
                     }}>
                     <i className={`${fmt.icon} text-lg`} style={{ color: fmt.color }} />
-                    <span className="text-sm font-['Inter']"
+                    <span className="text-sm font-['Manrope']"
                       style={{ color: selectedFormat === fmt.id ? '#FFFFFF' : '#9CA3AF' }}>
                       {isAr ? fmt.labelAr : fmt.label}
                     </span>
@@ -358,16 +358,16 @@ const ImportExport = ({ isAr }: Props) => {
           <div className="space-y-4">
             <div className="rounded-xl p-4"
               style={{ background: 'rgba(10,37,64,0.8)', border: '1px solid rgba(184,138,60,0.12)' }}>
-              <h3 className="text-white font-semibold font-['Inter'] text-sm mb-3">
+              <h3 className="text-white font-semibold font-['Manrope'] text-sm mb-3">
                 {isAr ? 'خيارات التصدير' : 'Export Options'}
               </h3>
               <div className="space-y-3">
                 <div>
-                  <label className="text-gray-400 text-xs font-['Inter'] block mb-1">
+                  <label className="text-gray-400 text-xs font-['Manrope'] block mb-1">
                     {isAr ? 'القائمة' : 'Watchlist'}
                   </label>
                   <select value={exportWatchlist} onChange={e => setExportWatchlist(e.target.value)}
-                    className="w-full px-3 py-2 rounded-lg text-sm font-['Inter'] cursor-pointer"
+                    className="w-full px-3 py-2 rounded-lg text-sm font-['Manrope'] cursor-pointer"
                     style={{ background: 'rgba(5,20,40,0.8)', border: '1px solid rgba(184,138,60,0.15)', color: '#D1D5DB' }}>
                     <option value="all">All Watchlists</option>
                     <option value="wl-001">National Security</option>
@@ -383,11 +383,11 @@ const ImportExport = ({ isAr }: Props) => {
                 {selectedFormat === 'pdf' && (
                   <div className="p-3 rounded-xl"
                     style={{ background: 'rgba(201,74,94,0.05)', border: '1px solid rgba(201,74,94,0.15)' }}>
-                    <p className="text-red-400 text-xs font-semibold font-['Inter'] mb-1">
+                    <p className="text-red-400 text-xs font-semibold font-['Manrope'] mb-1">
                       <i className="ri-lock-line mr-1" />
                       {isAr ? 'تصدير مُعدَّل للميدان' : 'Redacted Field Export'}
                     </p>
-                    <p className="text-gray-400 text-xs font-['Inter']">
+                    <p className="text-gray-400 text-xs font-['Manrope']">
                       {isAr ? 'سيتم إخفاء المعلومات الحساسة. مناسب لضباط الميدان.' : 'Sensitive information will be redacted. Suitable for field officers.'}
                     </p>
                   </div>
@@ -401,9 +401,9 @@ const ImportExport = ({ isAr }: Props) => {
                     { label: 'Encrypt Output', labelAr: 'تشفير الملف', default: selectedFormat === 'encrypted' },
                   ].map(opt => (
                     <div key={opt.label} className="flex items-center justify-between">
-                      <span className="text-gray-400 text-xs font-['Inter']">{isAr ? opt.labelAr : opt.label}</span>
+                      <span className="text-gray-400 text-xs font-['Manrope']">{isAr ? opt.labelAr : opt.label}</span>
                       <div className="w-8 h-4 rounded-full cursor-pointer relative"
-                        style={{ background: opt.default ? '#D6B47E' : 'rgba(255,255,255,0.1)' }}>
+                        style={{ background: opt.default ? '#C5A365' : 'rgba(255,255,255,0.1)' }}>
                         <div className="absolute top-0.5 w-3 h-3 rounded-full bg-white transition-all"
                           style={{ left: opt.default ? '18px' : '2px' }} />
                       </div>
@@ -411,8 +411,8 @@ const ImportExport = ({ isAr }: Props) => {
                   ))}
                 </div>
 
-                <button className="w-full py-3 rounded-xl text-sm font-bold font-['Inter'] cursor-pointer whitespace-nowrap transition-all"
-                  style={{ background: '#D6B47E', color: '#051428' }}>
+                <button className="w-full py-3 rounded-xl text-sm font-bold font-['Manrope'] cursor-pointer whitespace-nowrap transition-all"
+                  style={{ background: '#C5A365', color: '#071426' }}>
                   <i className="ri-download-2-line mr-2" />
                   {isAr ? 'تصدير الآن' : 'Export Now'}
                 </button>
@@ -427,11 +427,11 @@ const ImportExport = ({ isAr }: Props) => {
           style={{ background: 'rgba(10,37,64,0.8)', border: '1px solid rgba(184,138,60,0.12)' }}>
           <div className="px-4 py-3 border-b flex items-center justify-between"
             style={{ borderColor: 'rgba(184,138,60,0.08)' }}>
-            <h3 className="text-white font-semibold font-['Inter'] text-sm">
+            <h3 className="text-white font-semibold font-['Manrope'] text-sm">
               {isAr ? 'سجل المزامنة' : 'Sync History'}
             </h3>
-            <button className="px-3 py-1.5 rounded-lg text-xs font-semibold font-['Inter'] whitespace-nowrap cursor-pointer"
-              style={{ background: 'rgba(184,138,60,0.1)', color: '#D6B47E', border: '1px solid rgba(184,138,60,0.2)' }}>
+            <button className="px-3 py-1.5 rounded-lg text-xs font-semibold font-['Manrope'] whitespace-nowrap cursor-pointer"
+              style={{ background: 'rgba(184,138,60,0.1)', color: '#C5A365', border: '1px solid rgba(184,138,60,0.2)' }}>
               <i className="ri-refresh-line mr-1" />{isAr ? 'مزامنة الكل' : 'Sync All'}
             </button>
           </div>
@@ -443,7 +443,7 @@ const ImportExport = ({ isAr }: Props) => {
                   <i className={`text-sm ${s.status === 'success' ? 'ri-check-line text-green-400' : 'ri-close-line text-red-400'}`} />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-white text-sm font-semibold font-['Inter']">{s.source}</p>
+                  <p className="text-white text-sm font-semibold font-['Manrope']">{s.source}</p>
                   <p className="text-gray-500 text-xs font-['JetBrains_Mono']">{s.time}</p>
                 </div>
                 <div className="flex items-center gap-4 text-xs font-['JetBrains_Mono']">
@@ -471,19 +471,19 @@ const ImportExport = ({ isAr }: Props) => {
             className="rounded-2xl p-8 flex flex-col items-center justify-center text-center cursor-pointer transition-all"
             style={{
               background: attachDragOver ? 'rgba(184,138,60,0.08)' : 'rgba(10,37,64,0.6)',
-              border: `2px dashed ${attachDragOver ? '#D6B47E' : 'rgba(184,138,60,0.2)'}`,
+              border: `2px dashed ${attachDragOver ? '#C5A365' : 'rgba(184,138,60,0.2)'}`,
             }}
             onDragOver={e => { e.preventDefault(); setAttachDragOver(true); }}
             onDragLeave={() => setAttachDragOver(false)}
             onDrop={handleAttachDrop}>
             <div className="w-14 h-14 flex items-center justify-center rounded-2xl mb-4"
               style={{ background: 'rgba(184,138,60,0.1)' }}>
-              <i className="ri-attachment-2 text-2xl" style={{ color: '#D6B47E' }} />
+              <i className="ri-attachment-2 text-2xl" style={{ color: '#C5A365' }} />
             </div>
-            <p className="text-white font-semibold font-['Inter'] text-base mb-1">
+            <p className="text-white font-semibold font-['Manrope'] text-base mb-1">
               {isAr ? 'رفع المرفقات' : 'Upload Supporting Documents'}
             </p>
-            <p className="text-gray-400 text-sm font-['Inter'] mb-1">
+            <p className="text-gray-400 text-sm font-['Manrope'] mb-1">
               {isAr
                 ? 'اسحب وأفلت المستندات الداعمة (أوامر اعتقال، صور، قرارات قضائية، تقارير استخباراتية)'
                 : 'Drag & drop supporting evidence — warrants, photos, court orders, intelligence reports'}
@@ -491,8 +491,8 @@ const ImportExport = ({ isAr }: Props) => {
             <p className="text-gray-600 text-xs font-['JetBrains_Mono'] mb-4">
               {isAr ? 'الصيغ المقبولة: PDF, JPG, PNG, DOCX — الحجم الأقصى: 25 ميغابايت' : 'Accepted: PDF, JPG, PNG, DOCX — Max 25 MB per file'}
             </p>
-            <label className="px-4 py-2 rounded-xl text-sm font-semibold font-['Inter'] whitespace-nowrap cursor-pointer"
-              style={{ background: '#D6B47E', color: '#051428' }}>
+            <label className="px-4 py-2 rounded-xl text-sm font-semibold font-['Manrope'] whitespace-nowrap cursor-pointer"
+              style={{ background: '#C5A365', color: '#071426' }}>
               <i className="ri-folder-open-line mr-2" />{isAr ? 'اختر ملفاً' : 'Browse Files'}
               <input
                 type="file"
@@ -512,17 +512,17 @@ const ImportExport = ({ isAr }: Props) => {
             style={{ background: 'rgba(10,37,64,0.8)', border: '1px solid rgba(184,138,60,0.12)' }}>
             <div className="px-4 py-3 border-b flex items-center justify-between"
               style={{ borderColor: 'rgba(184,138,60,0.08)' }}>
-              <h3 className="text-white font-semibold font-['Inter'] text-sm">
+              <h3 className="text-white font-semibold font-['Manrope'] text-sm">
                 {isAr ? 'المرفقات المرفوعة' : 'Uploaded Attachments'}
                 <span className="ml-2 px-2 py-0.5 rounded-full text-xs font-['JetBrains_Mono']"
-                  style={{ background: 'rgba(184,138,60,0.12)', color: '#D6B47E' }}>
+                  style={{ background: 'rgba(184,138,60,0.12)', color: '#C5A365' }}>
                   {attachments.length}
                 </span>
               </h3>
             </div>
 
             {/* Table header */}
-            <div className="px-4 py-2 grid text-xs font-semibold font-['Inter'] text-gray-500"
+            <div className="px-4 py-2 grid text-xs font-semibold font-['Manrope'] text-gray-500"
               style={{
                 gridTemplateColumns: '2fr 100px 100px 130px 70px 90px 80px',
                 borderBottom: '1px solid rgba(184,138,60,0.05)',
@@ -538,7 +538,7 @@ const ImportExport = ({ isAr }: Props) => {
 
             <div className="divide-y" style={{ borderColor: 'rgba(184,138,60,0.05)' }}>
               {attachments.length === 0 && (
-                <div className="px-4 py-8 text-center text-gray-600 text-sm font-['Inter']">
+                <div className="px-4 py-8 text-center text-gray-600 text-sm font-['Manrope']">
                   {isAr ? 'لا توجد مرفقات بعد' : 'No attachments yet'}
                 </div>
               )}
@@ -568,7 +568,7 @@ const ImportExport = ({ isAr }: Props) => {
                   </span>
 
                   {/* Target ID */}
-                  <span className="text-xs font-['JetBrains_Mono'] font-bold" style={{ color: '#D6B47E' }}>
+                  <span className="text-xs font-['JetBrains_Mono'] font-bold" style={{ color: '#C5A365' }}>
                     {att.targetId}
                   </span>
 
@@ -613,10 +613,10 @@ const ImportExport = ({ isAr }: Props) => {
           <div className="rounded-xl overflow-hidden"
             style={{ background: 'rgba(10,37,64,0.8)', border: '1px solid rgba(184,138,60,0.12)' }}>
             <div className="px-4 py-3 border-b" style={{ borderColor: 'rgba(184,138,60,0.08)' }}>
-              <h3 className="text-white font-semibold font-['Inter'] text-sm">
+              <h3 className="text-white font-semibold font-['Manrope'] text-sm">
                 {isAr ? 'قواعد التحقق من الاستيراد' : 'Import Validation Rules'}
               </h3>
-              <p className="text-gray-500 text-xs mt-0.5 font-['Inter']">
+              <p className="text-gray-500 text-xs mt-0.5 font-['Manrope']">
                 {isAr ? 'تُطبَّق على جميع الاستيرادات الدفعية' : 'Applied to all bulk imports'}
               </p>
             </div>
@@ -625,10 +625,10 @@ const ImportExport = ({ isAr }: Props) => {
               {/* Rule 1: Document Number Format Check */}
               <div className="flex items-center justify-between gap-4">
                 <div className="flex-1">
-                  <p className="text-white text-sm font-semibold font-['Inter']">
+                  <p className="text-white text-sm font-semibold font-['Manrope']">
                     {isAr ? 'التحقق من تنسيق رقم الوثيقة' : 'Document Number Format Check'}
                   </p>
-                  <p className="text-gray-500 text-xs font-['Inter'] mt-0.5">
+                  <p className="text-gray-500 text-xs font-['Manrope'] mt-0.5">
                     {isAr ? 'يتحقق من أن رقم الوثيقة يطابق أنماط الهوية الوطنية المعروفة' : 'Validates doc number matches known national ID patterns'}
                   </p>
                 </div>
@@ -645,7 +645,7 @@ const ImportExport = ({ isAr }: Props) => {
                     style={{
                       width: '18px', height: '18px',
                       left: validationRules.docNumberFormat ? '18px' : '2px',
-                      background: validationRules.docNumberFormat ? '#D6B47E' : '#374151',
+                      background: validationRules.docNumberFormat ? '#C5A365' : '#374151',
                     }} />
                 </button>
               </div>
@@ -655,10 +655,10 @@ const ImportExport = ({ isAr }: Props) => {
               {/* Rule 2: Duplicate Detection */}
               <div className="flex items-center justify-between gap-4">
                 <div className="flex-1">
-                  <p className="text-white text-sm font-semibold font-['Inter']">
+                  <p className="text-white text-sm font-semibold font-['Manrope']">
                     {isAr ? 'كشف التكرار' : 'Duplicate Detection'}
                   </p>
-                  <p className="text-gray-500 text-xs font-['Inter'] mt-0.5">
+                  <p className="text-gray-500 text-xs font-['Manrope'] mt-0.5">
                     {isAr ? 'يُبلِّغ عن الإدخالات الموجودة بالفعل في قائمة المراقبة' : 'Flags entries already present in the watchlist'}
                   </p>
                 </div>
@@ -675,7 +675,7 @@ const ImportExport = ({ isAr }: Props) => {
                     style={{
                       width: '18px', height: '18px',
                       left: validationRules.duplicateDetection ? '18px' : '2px',
-                      background: validationRules.duplicateDetection ? '#D6B47E' : '#374151',
+                      background: validationRules.duplicateDetection ? '#C5A365' : '#374151',
                     }} />
                 </button>
               </div>
@@ -686,14 +686,14 @@ const ImportExport = ({ isAr }: Props) => {
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-white text-sm font-semibold font-['Inter']">
+                    <p className="text-white text-sm font-semibold font-['Manrope']">
                       {isAr ? 'حد التشابه في الأسماء' : 'Name Fuzzy Match Threshold'}
                     </p>
-                    <p className="text-gray-500 text-xs font-['Inter'] mt-0.5">
+                    <p className="text-gray-500 text-xs font-['Manrope'] mt-0.5">
                       {isAr ? 'النسبة الدنيا للتشابه اللازمة للإبلاغ عن تطابق محتمل' : 'Minimum similarity percentage to flag a potential name match'}
                     </p>
                   </div>
-                  <span className="text-sm font-black font-['JetBrains_Mono']" style={{ color: '#D6B47E' }}>
+                  <span className="text-sm font-black font-['JetBrains_Mono']" style={{ color: '#C5A365' }}>
                     {validationRules.fuzzyMatchThreshold}%
                   </span>
                 </div>
@@ -701,7 +701,7 @@ const ImportExport = ({ isAr }: Props) => {
                   <div className="absolute top-0 left-0 h-full rounded-full"
                     style={{
                       width: `${((validationRules.fuzzyMatchThreshold - 70) / 30) * 100}%`,
-                      background: 'linear-gradient(to right, rgba(214,180,126,0.5), #D6B47E)',
+                      background: 'linear-gradient(to right, rgba(214,180,126,0.5), #C5A365)',
                     }} />
                   <input
                     type="range" min={70} max={100} value={validationRules.fuzzyMatchThreshold}
@@ -712,8 +712,8 @@ const ImportExport = ({ isAr }: Props) => {
                   <div className="absolute top-1/2 -translate-y-1/2 w-4 h-4 rounded-full border-2 pointer-events-none"
                     style={{
                       left: `calc(${((validationRules.fuzzyMatchThreshold - 70) / 30) * 100}% - 8px)`,
-                      background: '#051428',
-                      borderColor: '#D6B47E',
+                      background: '#071426',
+                      borderColor: '#C5A365',
                       boxShadow: '0 0 8px rgba(214,180,126,0.6)',
                     }} />
                 </div>
@@ -729,10 +729,10 @@ const ImportExport = ({ isAr }: Props) => {
               {/* Rule 4: Mandatory Fields Check */}
               <div className="flex items-center justify-between gap-4">
                 <div className="flex-1">
-                  <p className="text-white text-sm font-semibold font-['Inter']">
+                  <p className="text-white text-sm font-semibold font-['Manrope']">
                     {isAr ? 'التحقق من الحقول الإلزامية' : 'Mandatory Fields Check'}
                   </p>
-                  <p className="text-gray-500 text-xs font-['Inter'] mt-0.5">
+                  <p className="text-gray-500 text-xs font-['Manrope'] mt-0.5">
                     {isAr ? 'يشترط توافر الاسم والجنسية وتاريخ الميلاد' : 'Requires name, nationality, and date of birth to be present'}
                   </p>
                 </div>
@@ -749,7 +749,7 @@ const ImportExport = ({ isAr }: Props) => {
                     style={{
                       width: '18px', height: '18px',
                       left: validationRules.mandatoryFields ? '18px' : '2px',
-                      background: validationRules.mandatoryFields ? '#D6B47E' : '#374151',
+                      background: validationRules.mandatoryFields ? '#C5A365' : '#374151',
                     }} />
                 </button>
               </div>

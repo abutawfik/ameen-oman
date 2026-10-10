@@ -69,7 +69,7 @@ const PharmacyPrescriptionForm = ({ isAr, onCancel }: Props) => {
       {isControlled && (
         <div className="flex items-start gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(201,74,94,0.06)", borderColor: "rgba(201,74,94,0.25)" }}>
           <i className="ri-alert-line text-red-400 text-sm mt-0.5 flex-shrink-0" />
-          <p className="text-red-400 text-sm font-['Inter']">
+          <p className="text-red-400 text-sm font-['Manrope']">
             {isAr ? "تنبيه: الأدوية المضبوطة والمخدرة تُبلَّغ تلقائياً إلى Al-Ameen وتتطلب موافقة إضافية." : "Alert: Controlled and narcotic medications are auto-reported to Al-Ameen and require additional approval."}
           </p>
         </div>
@@ -120,7 +120,7 @@ const PharmacyPrescriptionForm = ({ isAr, onCancel }: Props) => {
                     key={cat.value}
                     type="button"
                     onClick={() => setMedCategory(cat.value)}
-                    className="flex-1 py-2.5 rounded-lg border text-xs font-bold cursor-pointer transition-all font-['Inter']"
+                    className="flex-1 py-2.5 rounded-lg border text-xs font-bold cursor-pointer transition-all font-['Manrope']"
                     style={{
                       background: medCategory === cat.value ? `${cat.color}15` : "rgba(255,255,255,0.03)",
                       borderColor: medCategory === cat.value ? cat.color : "rgba(255,255,255,0.08)",
@@ -158,9 +158,9 @@ const PharmacyPrescriptionForm = ({ isAr, onCancel }: Props) => {
                 value={dispensingNotes}
                 onChange={(e) => setDispensingNotes(e.target.value)}
                 maxLength={500}
-                className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none transition-all duration-200 resize-none font-['Inter']"
+                className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none transition-all duration-200 resize-none font-['Manrope']"
                 style={{ background: "#0F1923", border: "1px solid rgba(255,255,255,0.08)" }}
-                onFocus={(e) => { e.target.style.borderColor = "#D6B47E"; e.target.style.boxShadow = "0 0 0 2px rgba(184,138,60,0.08)"; }}
+                onFocus={(e) => { e.target.style.borderColor = "#C5A365"; e.target.style.boxShadow = "0 0 0 2px rgba(184,138,60,0.08)"; }}
                 onBlur={(e) => { e.target.style.borderColor = "rgba(255,255,255,0.08)"; e.target.style.boxShadow = "none"; }}
               />
             </FormField>

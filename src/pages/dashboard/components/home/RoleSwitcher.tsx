@@ -9,7 +9,7 @@ interface Props {
 const ROLES: { id: Role; icon: string; labelEn: string; labelAr: string; color: string }[] = [
   // Active-pill hues: gold (primary role highlight), frankincense, olive —
   // all from the Al-Ameen brand palette.
-  { id: "analyst",    icon: "ri-user-search-line",  labelEn: "Data Analyst", labelAr: "محلل بيانات", color: "#D6B47E" }, // gold-400
+  { id: "analyst",    icon: "ri-user-search-line",  labelEn: "Data Analyst", labelAr: "محلل بيانات", color: "#C5A365" }, // gold-400
   { id: "supervisor", icon: "ri-user-star-line",    labelEn: "Supervisor",    labelAr: "مشرف",        color: "#B88A3C" }, // gold-600 (frankincense)
   { id: "manager",    icon: "ri-dashboard-3-line",  labelEn: "Manager",       labelAr: "مدير",         color: "#4A8E3A" }, // olive
 ];
@@ -47,7 +47,7 @@ const RoleSwitcher = ({ value, onChange, isAr }: Props) => {
             tabIndex={active ? 0 : -1}
             type="button"
             onClick={() => onChange(r.id)}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap cursor-pointer transition-all font-['Inter']"
+            className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap cursor-pointer transition-all font-['Manrope']"
             style={{
               background: active ? `${r.color}18` : "transparent",
               color: active ? r.color : "#9CA3AF",

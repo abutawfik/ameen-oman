@@ -1,7 +1,9 @@
+import { saveCheckIn, validateCheckIn, readCheckIns } from '@/workflows/checkIn';
+import type { Booking, Room } from '@/mocks/hospitalityData';
 import { useState } from 'react';
 import { rooms } from '@/mocks/hospitalityData';
 
-interface Props { lang: 'en' | 'ar'; onCancel: () => void; }
+interface Props { lang: 'en' | 'ar'; onCancel: () => void; onSaved: (booking: Booking) => void; roomInventory: Room[]; }
 
 const COUNTRIES = ['Oman', 'Saudi Arabia', 'UAE', 'India', 'Pakistan', 'UK', 'USA', 'Germany', 'France', 'China', 'Egypt', 'Jordan'];
 const DOC_TYPES = ['Passport', 'National ID', 'Residence Card', 'Diplomatic Passport'];
@@ -23,11 +25,14 @@ const SCANNER_DATA = {
   birthPlace: 'Muscat',
 };
 
-export default function CheckInForm({ lang, onCancel }: Props) {
+export default function CheckInForm({ lang, onCancel, onSaved, roomInventory }: Props) {
   const isAr = lang === 'ar';
   const [scanning, setScanning] = useState(false);
   const [scanned, setScanned] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [saveError, setSaveError] = useState('');
+  const availableRooms = roomInventory.filter(r => r.status === 'available');
 
   // Event Info
   const [branch] = useState('Main Branch — Muscat');
@@ -35,9 +40,9 @@ export default function CheckInForm({ lang, onCancel }: Props) {
   const [room, setRoom] = useState('');
   const [payment, setPayment] = useState('Cash');
   const [cardType, setCardType] = useState('Visa');
-  const [arrivalDate, setArrivalDate] = useState('2025-04-05');
+  const [arrivalDate, setArrivalDate] = useState(new Date().toISOString().slice(0, 10));
   const [arrivalTime, setArrivalTime] = useState('14:00');
-  const [departureDate, setDepartureDate] = useState('2025-04-08');
+  const [departureDate, setDepartureDate] = useState(new Date(Date.now() + 3 * 86400000).toISOString().slice(0, 10));
   const [departureTime, setDepartureTime] = useState('12:00');
 
   // Travel Doc
@@ -84,8 +89,32 @@ export default function CheckInForm({ lang, onCancel }: Props) {
   };
 
   const handleSave = () => {
-    setSaved(true);
-    setTimeout(() => { setSaved(false); onCancel(); }, 1500);
+    const input = { firstName, lastName, docNumber, nationality, room, arrivalDate, arrivalTime, departureDate, departureTime, branch, bookingRef, payment, cardType, holderStatus, docType, issuingCountry, issuingPlace, issuingAuthority, issueDate, expiryDate, gender, dob, birthPlace, residence, email, phone };
+    setSaveError('');
+    try {
+      const stored = readCheckIns(localStorage);
+      const effectiveRooms = rooms.map(r => stored.some(b => b.roomNumber === r.number && b.status === 'checked_in') ? { ...r, status: 'occupied' as const } : r);
+      const nextErrors = validateCheckIn(input, effectiveRooms);
+      setErrors(nextErrors);
+      if (Object.keys(nextErrors).length) return;
+      const booking = saveCheckIn(input, rooms, localStorage);
+      setSaved(true);
+      onSaved(booking);
+    } catch {
+      setSaveError(isAr ? 'تعذر الحفظ محلياً. تحقق من تخزين المتصفح وأعد المحاولة.' : 'Could not save locally. Check browser storage and try again.');
+    }
+  };
+
+  const fieldLabels: Record<string, string> = {
+    firstName: isAr ? 'الاسم الأول' : 'First Name',
+    lastName: isAr ? 'اسم العائلة' : 'Last Name',
+    docNumber: isAr ? 'رقم الوثيقة' : 'Document Number',
+    nationality: isAr ? 'الجنسية' : 'Nationality',
+    room: isAr ? 'الغرفة' : 'Room',
+    arrivalDate: isAr ? 'تاريخ الوصول' : 'Arrival Date',
+    arrivalTime: isAr ? 'وقت الوصول' : 'Arrival Time',
+    departureDate: isAr ? 'تاريخ المغادرة' : 'Departure Date',
+    departureTime: isAr ? 'وقت المغادرة' : 'Departure Time',
   };
 
   const inputCls = (filled?: boolean) =>
@@ -124,8 +153,8 @@ export default function CheckInForm({ lang, onCancel }: Props) {
         <i className="ri-information-line text-sm shrink-0 mt-0.5" />
         <span>
           {isAr
-            ? 'جميع بيانات تسجيل الوصول تُرسل تلقائياً إلى منصة أمين في الخلفية. لا يحتاج الموظف للتفاعل مع أمين مباشرة.'
-            : 'All check-in data is automatically queued and sent to Al-Ameen Platform in the background. Staff do not interact with Al-Ameen directly.'}
+            ? 'وضع العرض: تُحفظ السجلات في هذا المتصفح. تتطلب المزامنة مع الأمين خدمة متصلة.'
+            : 'Demo mode: check-ins are saved in this browser. A connected service is required to synchronize with Al-Ameen.'}
         </span>
       </div>
 
@@ -161,9 +190,9 @@ export default function CheckInForm({ lang, onCancel }: Props) {
             </div>
             <div>
               <label className={labelCls}>{isAr ? 'الغرفة' : 'Room'}</label>
-              <select value={room} onChange={e => setRoom(e.target.value)} className={inputCls()} style={{ background: 'rgba(10,37,64,0.9)' }}>
+              <select aria-label={fieldLabels.room} aria-invalid={!!errors.room} value={room} onChange={e => setRoom(e.target.value)} className={inputCls()} style={{ background: 'rgba(10,37,64,0.9)' }}>
                 <option value="" style={{ background: '#0A2540' }}>{isAr ? 'اختر غرفة' : 'Select room'}</option>
-                {rooms.filter(r => r.status === 'available' || r.status === 'reserved').map(r => (
+                {availableRooms.map(r => (
                   <option key={r.id} value={r.number} style={{ background: '#0A2540' }}>
                     {r.number} — {r.type} ({r.rateOMR} OMR)
                   </option>
@@ -192,22 +221,22 @@ export default function CheckInForm({ lang, onCancel }: Props) {
           <div className="grid grid-cols-2 gap-3">
             <div>
               <label className={labelCls}>{isAr ? 'تاريخ الوصول' : 'Arrival Date'}</label>
-              <input type="date" value={arrivalDate} onChange={e => setArrivalDate(e.target.value)} className={inputCls()} />
+              <input type="date" aria-label={fieldLabels.arrivalDate} aria-invalid={!!errors.arrivalDate} value={arrivalDate} onChange={e => setArrivalDate(e.target.value)} className={inputCls()} />
             </div>
             <div>
               <label className={labelCls}>{isAr ? 'وقت الوصول' : 'Arrival Time'}</label>
-              <input type="time" value={arrivalTime} onChange={e => setArrivalTime(e.target.value)} className={inputCls()} />
+              <input type="time" aria-label={fieldLabels.arrivalTime} aria-invalid={!!errors.arrivalTime} value={arrivalTime} onChange={e => setArrivalTime(e.target.value)} className={inputCls()} />
             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-3">
             <div>
               <label className={labelCls}>{isAr ? 'تاريخ المغادرة' : 'Departure Date'}</label>
-              <input type="date" value={departureDate} onChange={e => setDepartureDate(e.target.value)} className={inputCls()} />
+              <input type="date" aria-label={fieldLabels.departureDate} aria-invalid={!!errors.departureDate} value={departureDate} onChange={e => setDepartureDate(e.target.value)} className={inputCls()} />
             </div>
             <div>
               <label className={labelCls}>{isAr ? 'وقت المغادرة' : 'Departure Time'}</label>
-              <input type="time" value={departureTime} onChange={e => setDepartureTime(e.target.value)} className={inputCls()} />
+              <input type="time" aria-label={fieldLabels.departureTime} aria-invalid={!!errors.departureTime} value={departureTime} onChange={e => setDepartureTime(e.target.value)} className={inputCls()} />
             </div>
           </div>
         </div>
@@ -238,7 +267,7 @@ export default function CheckInForm({ lang, onCancel }: Props) {
 
           <div>
             <label className={labelCls}>{isAr ? 'رقم الوثيقة' : 'Document Number'}</label>
-            <input type="text" value={docNumber} onChange={e => setDocNumber(e.target.value)} placeholder="OM-4412891" className={inputCls(!!docNumber)} />
+            <input type="text" aria-label={fieldLabels.docNumber} aria-invalid={!!errors.docNumber} value={docNumber} onChange={e => setDocNumber(e.target.value)} placeholder="OM-4412891" className={inputCls(!!docNumber)} />
           </div>
 
           <div className="grid grid-cols-2 gap-3">
@@ -285,11 +314,11 @@ export default function CheckInForm({ lang, onCancel }: Props) {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           <div>
             <label className={labelCls}>{isAr ? 'الاسم الأول' : 'First Name'}</label>
-            <input type="text" value={firstName} onChange={e => setFirstName(e.target.value)} placeholder="Ahmed" className={inputCls(!!firstName)} />
+            <input type="text" aria-label={fieldLabels.firstName} aria-invalid={!!errors.firstName} value={firstName} onChange={e => setFirstName(e.target.value)} placeholder="Ahmed" className={inputCls(!!firstName)} />
           </div>
           <div>
             <label className={labelCls}>{isAr ? 'اسم العائلة' : 'Last Name'}</label>
-            <input type="text" value={lastName} onChange={e => setLastName(e.target.value)} placeholder="Al-Rashidi" className={inputCls(!!lastName)} />
+            <input type="text" aria-label={fieldLabels.lastName} aria-invalid={!!errors.lastName} value={lastName} onChange={e => setLastName(e.target.value)} placeholder="Al-Rashidi" className={inputCls(!!lastName)} />
           </div>
           <div>
             <label className={labelCls}>{isAr ? 'الجنس' : 'Gender'}</label>
@@ -306,7 +335,7 @@ export default function CheckInForm({ lang, onCancel }: Props) {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           <div>
             <label className={labelCls}>{isAr ? 'الجنسية' : 'Nationality'}</label>
-            <select value={nationality} onChange={e => setNationality(e.target.value)} className={inputCls(!!nationality)} style={{ background: 'rgba(10,37,64,0.9)' }}>
+            <select aria-label={fieldLabels.nationality} aria-invalid={!!errors.nationality} value={nationality} onChange={e => setNationality(e.target.value)} className={inputCls(!!nationality)} style={{ background: 'rgba(10,37,64,0.9)' }}>
               <option value="" style={{ background: '#0A2540' }}>—</option>
               {COUNTRIES.map(c => <option key={c} value={c} style={{ background: '#0A2540' }}>{c}</option>)}
             </select>
@@ -333,6 +362,10 @@ export default function CheckInForm({ lang, onCancel }: Props) {
         </div>
       </div>
 
+      {(Object.keys(errors).length > 0 || saveError) && <div role="alert" className="mt-4 rounded-lg border border-red-400 p-4 text-red-200">
+        <p>{saveError || (isAr ? 'أكمل الحقول المطلوبة وصحح بيانات الإقامة:' : 'Complete the required fields and correct the stay details:')}</p>
+        <ul>{Object.entries(errors).map(([field, message]) => <li key={field}>{fieldLabels[field] ?? field}: {isAr ? 'قيمة مطلوبة أو غير صالحة' : message}</li>)}</ul>
+      </div>}
       {/* Actions */}
       <div className="flex items-center justify-between mt-5 pt-4 border-t border-gold-500/10">
         <div
@@ -340,7 +373,7 @@ export default function CheckInForm({ lang, onCancel }: Props) {
           style={{ color: '#4ADE80' }}
         >
           <i className="ri-cloud-line" />
-          {isAr ? 'سيتم إرسال البيانات تلقائياً إلى أمين عند الحفظ' : 'Data will auto-sync to Al-Ameen on save'}
+          {isAr ? 'حفظ محلي · خدمة المزامنة غير متصلة' : 'Saved locally · Sync service not connected'}
         </div>
         <div className="flex items-center gap-3">
           <button
@@ -352,12 +385,12 @@ export default function CheckInForm({ lang, onCancel }: Props) {
           <button
             onClick={handleSave}
             className="px-6 py-2.5 rounded-lg text-sm font-semibold cursor-pointer transition-all whitespace-nowrap"
-            style={{ background: saved ? '#4ADE80' : '#D6B47E', color: '#051428' }}
+            style={{ background: saved ? '#4ADE80' : '#C5A365', color: '#071426' }}
           >
             {saved ? (
               <span className="flex items-center gap-2"><i className="ri-checkbox-circle-line" />{isAr ? 'تم الحفظ!' : 'Saved!'}</span>
             ) : (
-              <span><i className="ri-save-line mr-1" />{isAr ? 'حفظ + مزامنة أمين' : 'Save + Sync to Al-Ameen'}</span>
+              <span><i className="ri-save-line mr-1" />{isAr ? 'حفظ تسجيل الوصول' : 'Save Check-In'}</span>
             )}
           </button>
         </div>

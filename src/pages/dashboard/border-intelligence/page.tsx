@@ -26,21 +26,21 @@ const BorderIntelligencePage = () => {
   const dateStr = currentTime.toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" });
 
   return (
-    <div className="min-h-screen font-['Inter']" style={{ background: "#051428" }} dir={isAr ? "rtl" : "ltr"}>
+    <div className="min-h-screen font-['Manrope']" style={{ background: "#071426" }} dir={isAr ? "rtl" : "ltr"}>
       {/* Grid texture */}
       <div className="fixed inset-0 pointer-events-none" style={{ backgroundImage: `linear-gradient(rgba(184,138,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.03) 1px, transparent 1px)`, backgroundSize: "40px 40px" }} />
 
       <PageHeader
         title={isAr ? "ذكاء الحدود والهجرة" : "Borders & Immigration Intelligence"}
         icon="ri-passport-line"
-        iconColor="#D6B47E"
+        iconColor="#C5A365"
         crumbs={[{ label: isAr ? "لوحة التحكم" : "Dashboard", route: "/dashboard" }]}
         badge="Al-Ameen"
         action={
           <div className="flex items-center gap-2">
             <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-lg border" style={{ background: "rgba(184,138,60,0.04)", borderColor: "rgba(184,138,60,0.12)" }}>
-              <i className="ri-time-line text-xs" style={{ color: "#D6B47E" }} />
-              <span className="text-xs font-bold font-['JetBrains_Mono']" style={{ color: "#D6B47E" }}>{timeStr}</span>
+              <i className="ri-time-line text-xs" style={{ color: "#C5A365" }} />
+              <span className="text-xs font-bold font-['JetBrains_Mono']" style={{ color: "#C5A365" }}>{timeStr}</span>
               <span className="text-gray-600 text-xs font-['JetBrains_Mono']">{dateStr}</span>
             </div>
             <div className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full border" style={{ background: "rgba(167,139,250,0.06)", borderColor: "rgba(167,139,250,0.2)" }}>
@@ -67,7 +67,7 @@ const BorderIntelligencePage = () => {
             style={{
               background: activeTab === tab.id ? "rgba(184,138,60,0.12)" : "transparent",
               border: `1px solid ${activeTab === tab.id ? "rgba(184,138,60,0.25)" : "transparent"}`,
-              color: activeTab === tab.id ? "#D6B47E" : "#6B7280",
+              color: activeTab === tab.id ? "#C5A365" : "#6B7280",
             }}>
             <i className={`${tab.icon} text-xs`} />
             {tab.label}
@@ -77,7 +77,7 @@ const BorderIntelligencePage = () => {
         {/* System status pills */}
         <div className="ml-auto flex items-center gap-2">
           {[
-            { label: "iBorders Air", color: "#D6B47E" },
+            { label: "iBorders Air", color: "#C5A365" },
             { label: "iBorders Land", color: "#4ADE80" },
             { label: "iBorders Sea", color: "#4ADE80" },
             { label: "eVisa Portal", color: "#A78BFA" },

@@ -400,7 +400,7 @@ const StartRentalForm = ({ isAr, onCancel }: Props) => {
           type="button"
           onClick={addCoTenant}
           className="w-full flex items-center justify-center gap-2 py-3 rounded-xl border-2 border-dashed text-sm font-semibold cursor-pointer transition-all"
-          style={{ borderColor: "rgba(184,138,60,0.25)", color: "#D6B47E", background: "rgba(184,138,60,0.03)" }}
+          style={{ borderColor: "rgba(184,138,60,0.25)", color: "#C5A365", background: "rgba(184,138,60,0.03)" }}
           onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(184,138,60,0.5)"; (e.currentTarget as HTMLButtonElement).style.background = "rgba(184,138,60,0.06)"; }}
           onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(184,138,60,0.25)"; (e.currentTarget as HTMLButtonElement).style.background = "rgba(184,138,60,0.03)"; }}
         >

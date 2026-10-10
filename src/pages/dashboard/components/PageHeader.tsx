@@ -36,7 +36,7 @@ const PageHeader = ({
   badgeColor = "#C98A1B",
   action,
   icon,
-  iconColor = "#D6B47E",
+  iconColor = "#C5A365",
   isAr = false,
 }: Props) => {
   const navigate = useNavigate();
@@ -83,7 +83,7 @@ const PageHeader = ({
         ))}
         <h1
           className="text-white font-bold truncate"
-          style={{ fontSize: "14px", fontFamily: "'Inter', sans-serif" }}
+          style={{ fontSize: "14px", fontFamily: "'Manrope', sans-serif" }}
         >
           {title}
         </h1>

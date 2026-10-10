@@ -207,10 +207,10 @@ const EsimActivatedForm = ({ isAr, onCancel }: Props) => {
                 <i className="ri-phone-line text-gold-400 text-lg" />
               </div>
               <div>
-                <p className="text-gold-400 font-bold text-sm font-['Inter']">
+                <p className="text-gold-400 font-bold text-sm font-['Manrope']">
                   {isAr ? "eSIM جاهزة للتفعيل" : "eSIM Ready for Activation"}
                 </p>
-                <p className="text-gray-500 text-xs font-['Inter']">
+                <p className="text-gray-500 text-xs font-['Manrope']">
                   {isAr ? "سيتم إرسال ملف eSIM إلى الجهاز" : "eSIM profile will be pushed to device"}
                 </p>
               </div>

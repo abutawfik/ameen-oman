@@ -16,8 +16,8 @@ interface RowProps { label: string; value: string; mono?: boolean; }
 const Row = ({ label, value, mono }: RowProps) =>
   value ? (
     <div className="flex items-start justify-between py-2 border-b border-white/5 last:border-0">
-      <span className="text-gray-500 text-xs font-['Inter'] flex-shrink-0 mr-4 min-w-[120px]">{label}</span>
-      <span className={`text-gray-200 text-xs text-right ${mono ? "font-['JetBrains_Mono']" : "font-['Inter']"}`}>{value}</span>
+      <span className="text-gray-500 text-xs font-['Manrope'] flex-shrink-0 mr-4 min-w-[120px]">{label}</span>
+      <span className={`text-gray-200 text-xs text-right ${mono ? "font-['JetBrains_Mono']" : "font-['Manrope']"}`}>{value}</span>
     </div>
   ) : null;
 
@@ -93,24 +93,24 @@ const StepReview = ({ entityType, details, method, apiData, filesCount, isAr, on
           />
         </div>
 
-        <h3 className="text-white font-bold text-2xl font-['Inter'] mb-2">{t.successTitle}</h3>
-        <p className="text-gray-400 text-sm font-['Inter'] mb-8 max-w-md leading-relaxed">{t.successDesc}</p>
+        <h3 className="text-white font-bold text-2xl font-['Manrope'] mb-2">{t.successTitle}</h3>
+        <p className="text-gray-400 text-sm font-['Manrope'] mb-8 max-w-md leading-relaxed">{t.successDesc}</p>
 
         {/* Reference number */}
         <div
           className="px-8 py-5 rounded-2xl border mb-6"
           style={{ background: "rgba(10,37,64,0.8)", borderColor: "rgba(184,138,60,0.3)" }}
         >
-          <p className="text-gray-500 text-xs font-['Inter'] mb-2">{t.refLabel}</p>
+          <p className="text-gray-500 text-xs font-['Manrope'] mb-2">{t.refLabel}</p>
           <p
             className="font-black text-3xl font-['JetBrains_Mono'] tracking-widest"
-            style={{ color: "#D6B47E", textShadow: "0 0 20px rgba(184,138,60,0.4)" }}
+            style={{ color: "#C5A365", textShadow: "0 0 20px rgba(184,138,60,0.4)" }}
           >
             {refNumber}
           </p>
         </div>
 
-        <p className="text-gray-600 text-xs font-['Inter'] mb-8">{t.keepRef}</p>
+        <p className="text-gray-600 text-xs font-['Manrope'] mb-8">{t.keepRef}</p>
 
         {/* Next steps */}
         <div
@@ -123,11 +123,11 @@ const StepReview = ({ entityType, details, method, apiData, filesCount, isAr, on
               <div key={i} className="flex items-start gap-3">
                 <div
                   className="w-6 h-6 flex items-center justify-center rounded-full flex-shrink-0 text-xs font-bold font-['JetBrains_Mono']"
-                  style={{ background: "rgba(184,138,60,0.12)", border: "1px solid rgba(184,138,60,0.3)", color: "#D6B47E" }}
+                  style={{ background: "rgba(184,138,60,0.12)", border: "1px solid rgba(184,138,60,0.3)", color: "#C5A365" }}
                 >
                   {i + 1}
                 </div>
-                <p className="text-gray-400 text-xs font-['Inter'] leading-relaxed">{step}</p>
+                <p className="text-gray-400 text-xs font-['Manrope'] leading-relaxed">{step}</p>
               </div>
             ))}
           </div>
@@ -135,8 +135,8 @@ const StepReview = ({ entityType, details, method, apiData, filesCount, isAr, on
 
         <a
           href="/login"
-          className="flex items-center gap-2 px-8 py-3 rounded-xl font-semibold text-sm font-['Inter'] cursor-pointer hover:opacity-90 transition-all"
-          style={{ background: "#D6B47E", color: "#051428" }}
+          className="flex items-center gap-2 px-8 py-3 rounded-xl font-semibold text-sm font-['Manrope'] cursor-pointer hover:opacity-90 transition-all"
+          style={{ background: "#C5A365", color: "#071426" }}
         >
           <i className="ri-login-box-line" />
           {t.goLogin}
@@ -147,8 +147,8 @@ const StepReview = ({ entityType, details, method, apiData, filesCount, isAr, on
 
   return (
     <div>
-      <h3 className="text-white font-bold text-xl font-['Inter'] mb-1">{t.title}</h3>
-      <p className="text-gray-500 text-sm font-['Inter'] mb-6">{t.subtitle}</p>
+      <h3 className="text-white font-bold text-xl font-['Manrope'] mb-1">{t.title}</h3>
+      <p className="text-gray-500 text-sm font-['Manrope'] mb-6">{t.subtitle}</p>
 
       <div className="space-y-4 mb-6">
         {/* Entity Type */}
@@ -170,14 +170,14 @@ const StepReview = ({ entityType, details, method, apiData, filesCount, isAr, on
                     {et.streamNum}
                   </span>
                   <span
-                    className="text-xs px-2 py-0.5 rounded-full font-['Inter']"
+                    className="text-xs px-2 py-0.5 rounded-full font-['Manrope']"
                     style={{ background: et.badgeColor + "18", color: et.badgeColor }}
                   >
                     {et.badge === "core" ? (isAr ? "أساسي" : "Core") : (isAr ? "موسع" : "Extended")}
                   </span>
                 </div>
-                <p className="text-white font-bold text-sm font-['Inter']">{isAr ? et.titleAr : et.title}</p>
-                <p className="text-gray-500 text-xs font-['Inter']">{isAr ? et.categoryAr : et.category}</p>
+                <p className="text-white font-bold text-sm font-['Manrope']">{isAr ? et.titleAr : et.title}</p>
+                <p className="text-gray-500 text-xs font-['Manrope']">{isAr ? et.categoryAr : et.category}</p>
               </div>
             </div>
           )}
@@ -206,9 +206,9 @@ const StepReview = ({ entityType, details, method, apiData, filesCount, isAr, on
               <i className={method === "api" ? "ri-code-s-slash-line text-gold-400" : "ri-window-line text-gold-400"} />
             </div>
             <div>
-              <p className="text-white text-sm font-['Inter'] font-semibold">{method === "api" ? t.api : t.portal}</p>
+              <p className="text-white text-sm font-['Manrope'] font-semibold">{method === "api" ? t.api : t.portal}</p>
               {method === "api" && apiData.rateTier && (
-                <p className="text-gray-500 text-xs font-['Inter']">{t.rateTier}: {apiData.rateTier}</p>
+                <p className="text-gray-500 text-xs font-['Manrope']">{t.rateTier}: {apiData.rateTier}</p>
               )}
             </div>
           </div>
@@ -223,7 +223,7 @@ const StepReview = ({ entityType, details, method, apiData, filesCount, isAr, on
             >
               <i className={`${filesCount > 0 ? "ri-file-check-line text-green-400" : "ri-file-warning-line text-red-400"}`} />
             </div>
-            <p className="text-white text-sm font-['Inter']">
+            <p className="text-white text-sm font-['Manrope']">
               {filesCount > 0 ? `${filesCount} ${t.filesUploaded}` : t.noFiles}
             </p>
           </div>
@@ -237,7 +237,7 @@ const StepReview = ({ entityType, details, method, apiData, filesCount, isAr, on
       >
         <div className="flex items-start gap-3">
           <i className="ri-shield-check-line text-orange-400 text-sm mt-0.5 flex-shrink-0" />
-          <p className="text-gray-400 text-xs leading-relaxed font-['Inter']">{t.disclaimer}</p>
+          <p className="text-gray-400 text-xs leading-relaxed font-['Manrope']">{t.disclaimer}</p>
         </div>
       </div>
 
@@ -245,8 +245,8 @@ const StepReview = ({ entityType, details, method, apiData, filesCount, isAr, on
       <button
         onClick={onSubmit}
         disabled={submitting}
-        className="w-full flex items-center justify-center gap-2 py-4 rounded-xl font-bold hover:opacity-90 transition-all duration-200 cursor-pointer text-sm font-['Inter'] disabled:opacity-60"
-        style={{ background: "#D6B47E", color: "#051428" }}
+        className="w-full flex items-center justify-center gap-2 py-4 rounded-xl font-bold hover:opacity-90 transition-all duration-200 cursor-pointer text-sm font-['Manrope'] disabled:opacity-60"
+        style={{ background: "#C5A365", color: "#071426" }}
       >
         {submitting ? (
           <>

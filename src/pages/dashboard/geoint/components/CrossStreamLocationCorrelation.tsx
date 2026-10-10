@@ -40,10 +40,10 @@ const CrossStreamLocationCorrelation = () => {
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className="flex-1 py-1.5 rounded-md text-xs font-['Inter'] font-medium transition-all cursor-pointer whitespace-nowrap"
+              className="flex-1 py-1.5 rounded-md text-xs font-['Manrope'] font-medium transition-all cursor-pointer whitespace-nowrap"
               style={activeTab === tab ? {
                 background: "rgba(184,138,60,0.15)",
-                color: "#D6B47E",
+                color: "#C5A365",
                 border: "1px solid rgba(184,138,60,0.3)",
               } : { color: "#6B7280" }}
             >
@@ -73,7 +73,7 @@ const CrossStreamLocationCorrelation = () => {
                 >
                   <div className="flex items-start justify-between mb-2">
                     <div>
-                      <p className="text-white text-xs font-['Inter'] font-semibold">{corr.subjectName}</p>
+                      <p className="text-white text-xs font-['Manrope'] font-semibold">{corr.subjectName}</p>
                       <p className="text-gray-500 text-xs font-['JetBrains_Mono']">{corr.location}</p>
                     </div>
                     <div className="flex flex-col items-end gap-1">
@@ -86,7 +86,7 @@ const CrossStreamLocationCorrelation = () => {
                       </span>
                     </div>
                   </div>
-                  <p className="text-xs font-['Inter'] mb-2" style={{ color: "#D6B47E" }}>{corr.correlationType}</p>
+                  <p className="text-xs font-['Manrope'] mb-2" style={{ color: "#C5A365" }}>{corr.correlationType}</p>
                   <div className="flex flex-wrap gap-1">
                     {corr.streams.map((s) => (
                       <span key={s.name} className="w-5 h-5 flex items-center justify-center rounded-full text-xs"
@@ -107,7 +107,7 @@ const CrossStreamLocationCorrelation = () => {
                 <button
                   key={f}
                   onClick={() => setAlertFilter(f)}
-                  className={`px-2 py-0.5 rounded-full text-xs font-['Inter'] cursor-pointer transition-all whitespace-nowrap ${
+                  className={`px-2 py-0.5 rounded-full text-xs font-['Manrope'] cursor-pointer transition-all whitespace-nowrap ${
                     alertFilter === f ? "bg-gold-400/20 text-gold-400 border border-gold-400/30" : "text-gray-500 border border-white/10 hover:border-white/20"
                   }`}
                 >
@@ -128,17 +128,17 @@ const CrossStreamLocationCorrelation = () => {
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center justify-between">
-                          <span className="text-xs font-['Inter'] font-medium" style={{ color: typeCfg.color }}>{typeCfg.label}</span>
+                          <span className="text-xs font-['Manrope'] font-medium" style={{ color: typeCfg.color }}>{typeCfg.label}</span>
                           <span className="text-xs font-['JetBrains_Mono'] font-bold px-1.5 py-0.5 rounded-full"
                             style={{ background: sevCfg.bg, color: sevCfg.color }}>
                             {alert.severity.toUpperCase()}
                           </span>
                         </div>
-                        <p className="text-white text-xs font-['Inter'] mt-0.5">{alert.subject}</p>
+                        <p className="text-white text-xs font-['Manrope'] mt-0.5">{alert.subject}</p>
                         <p className="text-gray-500 text-xs font-['JetBrains_Mono']">{alert.location}</p>
                       </div>
                     </div>
-                    <p className="text-gray-400 text-xs font-['Inter'] mb-2">{alert.detail}</p>
+                    <p className="text-gray-400 text-xs font-['Manrope'] mb-2">{alert.detail}</p>
                     <div className="flex items-center justify-between">
                       <span className="text-gray-600 text-xs font-['JetBrains_Mono']">{alert.timestamp}</span>
                       <span className="text-xs font-['JetBrains_Mono'] px-2 py-0.5 rounded-full"
@@ -169,8 +169,8 @@ const CrossStreamLocationCorrelation = () => {
                     <i className="ri-git-branch-line text-gold-400" />
                     <span className="text-gold-400 text-xs font-['JetBrains_Mono'] uppercase tracking-wider">Cross-Stream Correlation</span>
                   </div>
-                  <h3 className="text-white font-['Inter'] font-bold text-base">{selectedCorrelation.subjectName}</h3>
-                  <p className="text-gray-400 text-sm font-['Inter']">{selectedCorrelation.correlationType}</p>
+                  <h3 className="text-white font-['Manrope'] font-bold text-base">{selectedCorrelation.subjectName}</h3>
+                  <p className="text-gray-400 text-sm font-['Manrope']">{selectedCorrelation.correlationType}</p>
                 </div>
                 <div className="text-right">
                   <div className="text-2xl font-['JetBrains_Mono'] font-bold mb-1"
@@ -207,10 +207,10 @@ const CrossStreamLocationCorrelation = () => {
                       {/* Content */}
                       <div className="flex-1 rounded-lg p-3" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
                         <div className="flex items-center justify-between mb-1">
-                          <span className="text-xs font-['Inter'] font-semibold" style={{ color: stream.color }}>{stream.name} Stream</span>
+                          <span className="text-xs font-['Manrope'] font-semibold" style={{ color: stream.color }}>{stream.name} Stream</span>
                           <span className="text-xs font-['JetBrains_Mono'] text-gray-500">{stream.time}</span>
                         </div>
-                        <p className="text-white text-xs font-['Inter']">{stream.event}</p>
+                        <p className="text-white text-xs font-['Manrope']">{stream.event}</p>
                       </div>
                     </div>
                   ))}
@@ -220,15 +220,15 @@ const CrossStreamLocationCorrelation = () => {
 
             {/* Actions */}
             <div className="flex gap-2">
-              <button className="flex-1 py-2.5 rounded-lg text-xs font-['Inter'] font-semibold cursor-pointer transition-all hover:opacity-80"
-                style={{ background: "rgba(184,138,60,0.15)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.3)" }}>
+              <button className="flex-1 py-2.5 rounded-lg text-xs font-['Manrope'] font-semibold cursor-pointer transition-all hover:opacity-80"
+                style={{ background: "rgba(184,138,60,0.15)", color: "#C5A365", border: "1px solid rgba(184,138,60,0.3)" }}>
                 <i className="ri-user-search-line mr-1.5" />Open Person 360°
               </button>
-              <button className="flex-1 py-2.5 rounded-lg text-xs font-['Inter'] font-semibold cursor-pointer transition-all hover:opacity-80"
+              <button className="flex-1 py-2.5 rounded-lg text-xs font-['Manrope'] font-semibold cursor-pointer transition-all hover:opacity-80"
                 style={{ background: "rgba(201,74,94,0.12)", color: "#C94A5E", border: "1px solid rgba(201,74,94,0.25)" }}>
                 <i className="ri-alarm-warning-line mr-1.5" />Escalate
               </button>
-              <button className="flex-1 py-2.5 rounded-lg text-xs font-['Inter'] font-semibold cursor-pointer transition-all hover:opacity-80"
+              <button className="flex-1 py-2.5 rounded-lg text-xs font-['Manrope'] font-semibold cursor-pointer transition-all hover:opacity-80"
                 style={{ background: "rgba(255,255,255,0.05)", color: "#9CA3AF", border: "1px solid rgba(255,255,255,0.1)" }}>
                 <i className="ri-file-shield-2-line mr-1.5" />Generate Dossier
               </button>
@@ -238,7 +238,7 @@ const CrossStreamLocationCorrelation = () => {
           <div className="h-full flex items-center justify-center rounded-xl" style={{ background: "#0D1B2E", border: "1px solid rgba(184,138,60,0.08)" }}>
             <div className="text-center">
               <i className="ri-git-branch-line text-4xl text-gray-700 mb-3 block" />
-              <p className="text-gray-500 text-sm font-['Inter']">Select a correlation to view details</p>
+              <p className="text-gray-500 text-sm font-['Manrope']">Select a correlation to view details</p>
             </div>
           </div>
         )}

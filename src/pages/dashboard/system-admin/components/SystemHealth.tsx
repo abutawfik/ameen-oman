@@ -5,7 +5,7 @@ const severityConfig: Record<string, { color: string; bg: string }> = {
   critical: { color: "#C94A5E", bg: "rgba(201,74,94,0.12)" },
   high:     { color: "#C98A1B", bg: "rgba(201,138,27,0.12)" },
   medium:   { color: "#FACC15", bg: "rgba(250,204,21,0.12)" },
-  low:      { color: "#D6B47E", bg: "rgba(184,138,60,0.12)" },
+  low:      { color: "#C5A365", bg: "rgba(184,138,60,0.12)" },
 };
 
 const statusConfig: Record<string, { color: string; label: string }> = {
@@ -89,7 +89,7 @@ const GaugeRing = ({ value, max, label, unit }: { value: number; max: number; la
           <p className="text-gray-500 text-xs font-['JetBrains_Mono']">{unit}</p>
         </div>
       </div>
-      <p className="text-gray-400 text-xs font-['Inter'] mt-1">{label}</p>
+      <p className="text-gray-400 text-xs font-['Manrope'] mt-1">{label}</p>
       <div className="flex items-center gap-1 mt-0.5">
         <div className="w-1.5 h-1.5 rounded-full" style={{ background: isOk ? "#4ADE80" : "#FACC15" }} />
         <span className="text-xs font-['JetBrains_Mono']" style={{ color: isOk ? "#4ADE80" : "#FACC15" }}>{isOk ? "Normal" : "Elevated"}</span>
@@ -102,8 +102,8 @@ const ResourceBar = ({ label, value, color, sublabel }: { label: string; value: 
   <div>
     <div className="flex justify-between text-xs mb-1">
       <div>
-        <span className="text-gray-400 font-['Inter']">{label}</span>
-        {sublabel && <span className="text-gray-600 font-['Inter'] ml-2">{sublabel}</span>}
+        <span className="text-gray-400 font-['Manrope']">{label}</span>
+        {sublabel && <span className="text-gray-600 font-['Manrope'] ml-2">{sublabel}</span>}
       </div>
       <span className="font-['JetBrains_Mono'] font-bold" style={{ color }}>{value}%</span>
     </div>
@@ -140,7 +140,7 @@ const SystemHealth = () => {
       {/* SLA Banner */}
       <div className="rounded-xl p-5 flex items-center justify-between" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.2)" }}>
         <div>
-          <p className="text-gray-500 text-xs font-['Inter'] uppercase tracking-wider mb-1">System Uptime SLA</p>
+          <p className="text-gray-500 text-xs font-['Manrope'] uppercase tracking-wider mb-1">System Uptime SLA</p>
           <p className="text-gold-400 text-5xl font-bold font-['JetBrains_Mono']" style={{ textShadow: "0 0 30px rgba(184,138,60,0.5)" }}>99.95%</p>
           <p className="text-gray-500 text-xs font-['JetBrains_Mono'] mt-1">Last 30 days — Target: 99.9% ✓ Exceeding SLA</p>
         </div>
@@ -148,12 +148,12 @@ const SystemHealth = () => {
           {[
             { label: "Uptime", value: "43d 14h", color: "#4ADE80" },
             { label: "Incidents", value: String(incidents.length), color: "#FACC15" },
-            { label: "MTTR", value: "18 min", color: "#D6B47E" },
+            { label: "MTTR", value: "18 min", color: "#C5A365" },
             { label: "Open", value: String(incidents.filter((i) => i.status !== "resolved").length), color: "#C98A1B" },
           ].map((s) => (
             <div key={s.label}>
               <p className="text-2xl font-bold font-['JetBrains_Mono']" style={{ color: s.color }}>{s.value}</p>
-              <p className="text-gray-600 text-xs font-['Inter']">{s.label}</p>
+              <p className="text-gray-600 text-xs font-['Manrope']">{s.label}</p>
             </div>
           ))}
         </div>
@@ -163,7 +163,7 @@ const SystemHealth = () => {
         {/* API Response Times */}
         <div className="col-span-2 rounded-xl p-5" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.12)" }}>
           <div className="flex items-center justify-between mb-3">
-            <h3 className="text-white font-semibold text-sm font-['Inter']">
+            <h3 className="text-white font-semibold text-sm font-['Manrope']">
               <i className="ri-speed-line mr-2 text-gold-400" />API Response Times (24h)
             </h3>
             <div className="flex items-center gap-4 text-xs font-['JetBrains_Mono']">
@@ -175,17 +175,17 @@ const SystemHealth = () => {
           <LineChart datasets={[
             { data: apiData.p99, color: "#C94A5E", label: "p99" },
             { data: apiData.p95, color: "#FACC15", label: "p95" },
-            { data: apiData.p50, color: "#D6B47E", label: "p50" },
+            { data: apiData.p50, color: "#C5A365", label: "p50" },
           ]} height={110} />
           <div className="grid grid-cols-3 gap-3 mt-3">
             {[
-              { label: "p50 (median)", value: "42ms", sub: "↓ 3ms vs yesterday", color: "#D6B47E" },
+              { label: "p50 (median)", value: "42ms", sub: "↓ 3ms vs yesterday", color: "#C5A365" },
               { label: "p95", value: "118ms", sub: "→ Stable", color: "#FACC15" },
               { label: "p99", value: "287ms", sub: "↑ 12ms vs yesterday", color: "#C94A5E" },
             ].map((m) => (
               <div key={m.label} className="text-center p-2.5 rounded-lg" style={{ background: "rgba(255,255,255,0.03)" }}>
                 <p className="text-xl font-bold font-['JetBrains_Mono']" style={{ color: m.color }}>{m.value}</p>
-                <p className="text-gray-600 text-xs font-['Inter']">{m.label}</p>
+                <p className="text-gray-600 text-xs font-['Manrope']">{m.label}</p>
                 <p className="text-gray-700 text-xs font-['JetBrains_Mono'] mt-0.5">{m.sub}</p>
               </div>
             ))}
@@ -194,12 +194,12 @@ const SystemHealth = () => {
 
         {/* Resources */}
         <div className="rounded-xl p-5" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.12)" }}>
-          <h3 className="text-white font-semibold text-sm font-['Inter'] mb-4">
+          <h3 className="text-white font-semibold text-sm font-['Manrope'] mb-4">
             <i className="ri-cpu-line mr-2 text-gold-400" />Resource Utilization
           </h3>
           <div className="space-y-4 mb-4">
             <ResourceBar label="CPU" value={Math.round(cpu)} sublabel="4 cores" color={cpu > 80 ? "#C94A5E" : cpu > 60 ? "#FACC15" : "#4ADE80"} />
-            <ResourceBar label="Memory" value={memory} sublabel="32 GB" color="#D6B47E" />
+            <ResourceBar label="Memory" value={memory} sublabel="32 GB" color="#C5A365" />
             <ResourceBar label="Disk I/O" value={disk} sublabel="NVMe" color="#A78BFA" />
             <ResourceBar label="Network" value={network} sublabel="10 Gbps" color="#34D399" />
           </div>
@@ -211,7 +211,7 @@ const SystemHealth = () => {
               { label: "Cache Nodes", value: "2/2", color: "#4ADE80" },
             ].map((s) => (
               <div key={s.label} className="flex items-center justify-between">
-                <span className="text-gray-500 text-xs font-['Inter']">{s.label}</span>
+                <span className="text-gray-500 text-xs font-['Manrope']">{s.label}</span>
                 <div className="flex items-center gap-1.5">
                   <div className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: s.color }} />
                   <span className="text-xs font-['JetBrains_Mono']" style={{ color: s.color }}>{s.value}</span>
@@ -225,7 +225,7 @@ const SystemHealth = () => {
       <div className="grid grid-cols-3 gap-4">
         {/* Queue Depth */}
         <div className="rounded-xl p-5" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.12)" }}>
-          <h3 className="text-white font-semibold text-sm font-['Inter'] mb-3">
+          <h3 className="text-white font-semibold text-sm font-['Manrope'] mb-3">
             <i className="ri-stack-line mr-2 text-gold-400" />Queue Depth (12h)
           </h3>
           <BarChart data={queueData.map((v) => Math.max(10, v))} color="#FACC15" height={64} />
@@ -237,12 +237,12 @@ const SystemHealth = () => {
             {[
               { label: "Current", value: "342", color: "#FACC15" },
               { label: "Peak (24h)", value: "1,247", color: "#C98A1B" },
-              { label: "Avg (24h)", value: "489", color: "#D6B47E" },
+              { label: "Avg (24h)", value: "489", color: "#C5A365" },
               { label: "Threshold", value: "2,000", color: "#9CA3AF" },
             ].map((s) => (
               <div key={s.label} className="text-center p-2 rounded-lg" style={{ background: "rgba(255,255,255,0.02)" }}>
                 <p className="text-sm font-bold font-['JetBrains_Mono']" style={{ color: s.color }}>{s.value}</p>
-                <p className="text-gray-600 text-xs font-['Inter']">{s.label}</p>
+                <p className="text-gray-600 text-xs font-['Manrope']">{s.label}</p>
               </div>
             ))}
           </div>
@@ -250,7 +250,7 @@ const SystemHealth = () => {
 
         {/* VIS Replication */}
         <div className="rounded-xl p-5" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.12)" }}>
-          <h3 className="text-white font-semibold text-sm font-['Inter'] mb-4">
+          <h3 className="text-white font-semibold text-sm font-['Manrope'] mb-4">
             <i className="ri-refresh-line mr-2 text-gold-400" />Replication Lag
           </h3>
           <div className="flex justify-around mb-4">
@@ -261,11 +261,11 @@ const SystemHealth = () => {
             {[
               { label: "SD1 Last Sync", value: "2 min ago", color: "#4ADE80" },
               { label: "SD2 Last Sync", value: "3 min ago", color: "#4ADE80" },
-              { label: "Sync Interval", value: "30 sec", color: "#D6B47E" },
+              { label: "Sync Interval", value: "30 sec", color: "#C5A365" },
               { label: "Timeout Threshold", value: "300 sec", color: "#9CA3AF" },
             ].map((s) => (
               <div key={s.label} className="flex items-center justify-between">
-                <span className="text-gray-500 text-xs font-['Inter']">{s.label}</span>
+                <span className="text-gray-500 text-xs font-['Manrope']">{s.label}</span>
                 <span className="text-xs font-['JetBrains_Mono']" style={{ color: s.color }}>{s.value}</span>
               </div>
             ))}
@@ -275,7 +275,7 @@ const SystemHealth = () => {
         {/* Incident Log */}
         <div className="rounded-xl p-5" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.12)" }}>
           <div className="flex items-center justify-between mb-3">
-            <h3 className="text-white font-semibold text-sm font-['Inter']">
+            <h3 className="text-white font-semibold text-sm font-['Manrope']">
               <i className="ri-alarm-warning-line mr-2 text-gold-400" />Incident Log
             </h3>
             <span className="text-gray-500 text-xs font-['JetBrains_Mono']">{incidents.length} total</span>
@@ -291,7 +291,7 @@ const SystemHealth = () => {
                   onClick={() => setSelectedIncident(isSelected ? null : inc.id)}>
                   <div className="p-2.5">
                     <div className="flex items-start justify-between gap-2">
-                      <p className="text-white text-xs font-['Inter'] leading-tight">{inc.title}</p>
+                      <p className="text-white text-xs font-['Manrope'] leading-tight">{inc.title}</p>
                       <span className="text-xs font-['JetBrains_Mono'] flex-shrink-0" style={{ color: stc.color }}>{stc.label}</span>
                     </div>
                     <div className="flex items-center gap-2 mt-1">
@@ -303,7 +303,7 @@ const SystemHealth = () => {
                   {isSelected && (
                     <div className="px-2.5 pb-2.5">
                       <div className="flex gap-2">
-                        <button className="px-2 py-1 rounded text-xs cursor-pointer whitespace-nowrap" style={{ background: "#D6B47E", color: "#051428" }}>Acknowledge</button>
+                        <button className="px-2 py-1 rounded text-xs cursor-pointer whitespace-nowrap" style={{ background: "#C5A365", color: "#071426" }}>Acknowledge</button>
                         <button className="px-2 py-1 rounded text-xs cursor-pointer whitespace-nowrap" style={{ background: "rgba(255,255,255,0.05)", color: "#9CA3AF" }}>View Details</button>
                       </div>
                     </div>

@@ -48,11 +48,11 @@ const AsOfReplayPanel = ({ isAr, record }: { isAr: boolean; record: ScoredRecord
         style={{ background: open ? "rgba(184,138,60,0.06)" : "transparent" }}
       >
         <div className="flex items-center gap-2">
-          <i className="ri-history-line text-base" style={{ color: "#D6B47E" }} />
+          <i className="ri-history-line text-base" style={{ color: "#C5A365" }} />
           <h3 className="text-white text-sm font-bold">
             {isAr ? "إعادة تشغيل الدرجة · السفر الزمني" : "Score replay · as-of time travel"}
             <span className="ml-2 text-[11px] tracking-widest font-['JetBrains_Mono'] px-2 py-0.5 rounded"
-              style={{ background: "rgba(184,138,60,0.15)", color: "#D6B47E" }}>
+              style={{ background: "rgba(184,138,60,0.15)", color: "#C5A365" }}>
               {isAr ? "تقني" : "SPEC §8.1"}
             </span>
           </h3>
@@ -76,8 +76,8 @@ const AsOfReplayPanel = ({ isAr, record }: { isAr: boolean; record: ScoredRecord
                 className="px-3 py-1 rounded-md text-xs cursor-pointer"
                 style={{
                   background: i === pickIdx ? "rgba(184,138,60,0.15)" : "rgba(255,255,255,0.04)",
-                  color: i === pickIdx ? "#D6B47E" : "#9CA3AF",
-                  border: `1px solid ${i === pickIdx ? "#D6B47E66" : "rgba(255,255,255,0.08)"}`,
+                  color: i === pickIdx ? "#C5A365" : "#9CA3AF",
+                  border: `1px solid ${i === pickIdx ? "#C5A36566" : "rgba(255,255,255,0.08)"}`,
                   fontFamily: "JetBrains Mono",
                 }}>
                 {bucketLabel(s.asOf)}
@@ -141,7 +141,7 @@ const AsOfReplayPanel = ({ isAr, record }: { isAr: boolean; record: ScoredRecord
                   <YAxis type="category" dataKey="label" stroke="#6B7280" tick={{ fontSize: 11, fontFamily: "Inter" }} width={130} />
                   <Tooltip contentStyle={{ background: "#0A2540", border: "1px solid rgba(184,138,60,0.3)", borderRadius: 8, fontSize: 12 }} />
                   <Bar dataKey="asOf" name={isAr ? "بتاريخ" : "As-of"} fill="#6B7280" radius={[0, 4, 4, 0]} />
-                  <Bar dataKey="current" name={isAr ? "الآن" : "Current"} fill="#D6B47E" radius={[0, 4, 4, 0]} />
+                  <Bar dataKey="current" name={isAr ? "الآن" : "Current"} fill="#C5A365" radius={[0, 4, 4, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -157,7 +157,7 @@ const AsOfReplayPanel = ({ isAr, record }: { isAr: boolean; record: ScoredRecord
                     style={{ background: "rgba(255,255,255,0.03)" }}>
                     <i className={worse ? "ri-arrow-up-line" : "ri-arrow-down-line"}
                       style={{ color: worse ? "#C98A1B" : "#4A8E3A" }} />
-                    <span className="text-gray-300 flex-1 truncate font-['Inter']">{d.label}</span>
+                    <span className="text-gray-300 flex-1 truncate font-['Manrope']">{d.label}</span>
                     <span className="font-bold font-['JetBrains_Mono']"
                       style={{ color: worse ? "#C98A1B" : "#4A8E3A" }}>
                       {delta > 0 ? "+" : ""}{delta}
@@ -177,8 +177,8 @@ const AsOfReplayPanel = ({ isAr, record }: { isAr: boolean; record: ScoredRecord
             <ul className="space-y-1.5">
               {snap.differences.map((d, i) => (
                 <li key={i} className="flex items-start gap-2 text-xs">
-                  <i className="ri-arrow-right-line mt-0.5" style={{ color: "#D6B47E" }} />
-                  <span className="flex-1 text-gray-300 font-['Inter']">
+                  <i className="ri-arrow-right-line mt-0.5" style={{ color: "#C5A365" }} />
+                  <span className="flex-1 text-gray-300 font-['Manrope']">
                     <span className="text-gray-500">{d.source}: </span>
                     <span className="text-gray-400">{d.thenValue}</span>
                     <span className="mx-1 text-gray-600">→</span>

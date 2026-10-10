@@ -80,14 +80,14 @@ const StepDocuments = ({ files, onFilesChange, isAr }: Props) => {
 
   const getIconColor = (type: string) => {
     if (type === "application/pdf") return "#C94A5E";
-    if (type.startsWith("image/")) return "#D6B47E";
+    if (type.startsWith("image/")) return "#C5A365";
     return "#9CA3AF";
   };
 
   return (
     <div>
-      <h3 className="text-white font-bold text-xl font-['Inter'] mb-1">{t.title}</h3>
-      <p className="text-gray-500 text-sm font-['Inter'] mb-6">{t.subtitle}</p>
+      <h3 className="text-white font-bold text-xl font-['Manrope'] mb-1">{t.title}</h3>
+      <p className="text-gray-500 text-sm font-['Manrope'] mb-6">{t.subtitle}</p>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Required docs checklist */}
@@ -105,9 +105,9 @@ const StepDocuments = ({ files, onFilesChange, isAr }: Props) => {
                 <div className="w-6 h-6 flex items-center justify-center flex-shrink-0">
                   <i className="ri-file-text-line text-gold-400 text-sm" />
                 </div>
-                <span className="text-gray-300 text-xs font-['Inter'] flex-1">{doc.label}</span>
+                <span className="text-gray-300 text-xs font-['Manrope'] flex-1">{doc.label}</span>
                 <span
-                  className="text-xs px-1.5 py-0.5 rounded font-['Inter'] flex-shrink-0"
+                  className="text-xs px-1.5 py-0.5 rounded font-['Manrope'] flex-shrink-0"
                   style={{
                     background: doc.required ? "rgba(201,74,94,0.1)" : "rgba(156,163,175,0.1)",
                     color: doc.required ? "#C94A5E" : "#6B7280",
@@ -152,11 +152,11 @@ const StepDocuments = ({ files, onFilesChange, isAr }: Props) => {
             >
               <i className="ri-upload-cloud-2-line text-gold-400 text-3xl" />
             </div>
-            <p className="text-white font-semibold text-sm font-['Inter'] mb-1">{t.dropTitle}</p>
-            <p className="text-gray-500 text-xs mb-3 font-['Inter']">{t.dropOr}</p>
+            <p className="text-white font-semibold text-sm font-['Manrope'] mb-1">{t.dropTitle}</p>
+            <p className="text-gray-500 text-xs mb-3 font-['Manrope']">{t.dropOr}</p>
             <span
-              className="px-5 py-2 rounded-lg text-xs font-semibold font-['Inter'] cursor-pointer transition-colors"
-              style={{ background: "rgba(184,138,60,0.12)", border: "1px solid rgba(184,138,60,0.3)", color: "#D6B47E" }}
+              className="px-5 py-2 rounded-lg text-xs font-semibold font-['Manrope'] cursor-pointer transition-colors"
+              style={{ background: "rgba(184,138,60,0.12)", border: "1px solid rgba(184,138,60,0.3)", color: "#C5A365" }}
             >
               {t.browse}
             </span>
@@ -178,7 +178,7 @@ const StepDocuments = ({ files, onFilesChange, isAr }: Props) => {
               style={{ borderColor: "rgba(201,74,94,0.3)", background: "rgba(201,74,94,0.05)" }}
             >
               <i className="ri-error-warning-line text-red-400 text-sm" />
-              <p className="text-red-400 text-xs font-['Inter']">{error}</p>
+              <p className="text-red-400 text-xs font-['Manrope']">{error}</p>
             </div>
           )}
 
@@ -202,7 +202,7 @@ const StepDocuments = ({ files, onFilesChange, isAr }: Props) => {
                       <i className={`${getIcon(f.type)} text-sm`} style={{ color: getIconColor(f.type) }} />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-white text-xs font-semibold font-['Inter'] truncate">{f.name}</p>
+                      <p className="text-white text-xs font-semibold font-['Manrope'] truncate">{f.name}</p>
                       <p className="text-gray-600 text-xs font-['JetBrains_Mono']">{formatSize(f.size)}</p>
                     </div>
                     <div className="flex items-center gap-1.5">

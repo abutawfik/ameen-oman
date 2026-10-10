@@ -14,7 +14,7 @@ const typeConfig: Record<WatchlistType, { label: string; labelAr: string; color:
   employment:        { label: 'Employment Violation', labelAr: 'مخالفات التوظيف', color: '#C98A1B', icon: 'ri-briefcase-line' },
   interpol:          { label: 'Interpol / International', labelAr: 'الإنتربول / الدولي', color: '#A78BFA', icon: 'ri-global-line' },
   sanctions:         { label: 'Sanctions List', labelAr: 'قائمة العقوبات', color: '#F97316', icon: 'ri-flag-line' },
-  custom:            { label: 'Custom', labelAr: 'مخصص', color: '#D6B47E', icon: 'ri-settings-3-line' },
+  custom:            { label: 'Custom', labelAr: 'مخصص', color: '#C5A365', icon: 'ri-settings-3-line' },
 };
 
 import { RISK_COLOR as riskColors } from '@/lib/riskColors';
@@ -44,12 +44,12 @@ const WatchlistManager = ({ isAr, selectedWatchlistId, onSelectTarget }: Props) 
       {/* Left: Watchlist selector */}
       <div className="w-64 flex-shrink-0 space-y-2">
         <div className="flex items-center justify-between mb-3">
-          <h3 className="text-white font-semibold font-['Inter'] text-sm">
+          <h3 className="text-white font-semibold font-['Manrope'] text-sm">
             {isAr ? 'القوائم' : 'Watchlists'}
           </h3>
           <button onClick={() => setShowCreateForm(true)}
             className="w-7 h-7 flex items-center justify-center rounded-lg cursor-pointer transition-all"
-            style={{ background: 'rgba(184,138,60,0.15)', color: '#D6B47E' }}>
+            style={{ background: 'rgba(184,138,60,0.15)', color: '#C5A365' }}>
             <i className="ri-add-line text-sm" />
           </button>
         </div>
@@ -67,7 +67,7 @@ const WatchlistManager = ({ isAr, selectedWatchlistId, onSelectTarget }: Props) 
               }}>
               <div className="flex items-center gap-2 mb-1">
                 <i className={`${cfg.icon} text-sm`} style={{ color: cfg.color }} />
-                <span className="text-white text-xs font-semibold font-['Inter'] truncate flex-1">
+                <span className="text-white text-xs font-semibold font-['Manrope'] truncate flex-1">
                   {isAr ? wl.nameAr : wl.name}
                 </span>
               </div>
@@ -98,7 +98,7 @@ const WatchlistManager = ({ isAr, selectedWatchlistId, onSelectTarget }: Props) 
                   style={{ color: typeConfig[activeWl.type].color }} />
               </div>
               <div>
-                <h2 className="text-white font-bold font-['Inter'] text-base">
+                <h2 className="text-white font-bold font-['Manrope'] text-base">
                   {isAr ? activeWl.nameAr : activeWl.name}
                 </h2>
                 <div className="flex items-center gap-2 mt-0.5">
@@ -106,36 +106,36 @@ const WatchlistManager = ({ isAr, selectedWatchlistId, onSelectTarget }: Props) 
                     style={{ background: 'rgba(0,0,0,0.4)', color: '#9CA3AF' }}>
                     {activeWl.classification}
                   </span>
-                  <span className="text-xs text-gray-400 font-['Inter']">{activeWl.owner}</span>
+                  <span className="text-xs text-gray-400 font-['Manrope']">{activeWl.owner}</span>
                 </div>
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <button className="px-3 py-1.5 rounded-lg text-xs font-semibold font-['Inter'] whitespace-nowrap cursor-pointer transition-all"
-                style={{ border: '1px solid rgba(184,138,60,0.4)', color: '#D6B47E' }}>
+              <button className="px-3 py-1.5 rounded-lg text-xs font-semibold font-['Manrope'] whitespace-nowrap cursor-pointer transition-all"
+                style={{ border: '1px solid rgba(184,138,60,0.4)', color: '#C5A365' }}>
                 <i className="ri-edit-line mr-1" />{isAr ? 'تعديل' : 'Edit'}
               </button>
               <button onClick={() => setShowAddTarget(true)}
-                className="px-3 py-1.5 rounded-lg text-xs font-semibold font-['Inter'] whitespace-nowrap cursor-pointer transition-all"
-                style={{ background: '#D6B47E', color: '#051428' }}>
+                className="px-3 py-1.5 rounded-lg text-xs font-semibold font-['Manrope'] whitespace-nowrap cursor-pointer transition-all"
+                style={{ background: '#C5A365', color: '#071426' }}>
                 <i className="ri-user-add-line mr-1" />{isAr ? 'إضافة هدف' : 'Add Target'}
               </button>
             </div>
           </div>
 
-          <p className="text-gray-400 text-sm font-['Inter'] mt-3">
+          <p className="text-gray-400 text-sm font-['Manrope'] mt-3">
             {isAr ? activeWl.descriptionAr : activeWl.description}
           </p>
 
           <div className="grid grid-cols-4 gap-4 mt-4 pt-4 border-t" style={{ borderColor: 'rgba(184,138,60,0.08)' }}>
             {[
               { label: 'Priority', labelAr: 'الأولوية', value: activeWl.priority.toUpperCase(), color: activeWl.priority === 'critical' ? '#C94A5E' : activeWl.priority === 'high' ? '#C98A1B' : '#FACC15' },
-              { label: 'Auto-Expire', labelAr: 'انتهاء تلقائي', value: activeWl.autoExpireDays ? `${activeWl.autoExpireDays}d` : 'Permanent', color: '#D6B47E' },
+              { label: 'Auto-Expire', labelAr: 'انتهاء تلقائي', value: activeWl.autoExpireDays ? `${activeWl.autoExpireDays}d` : 'Permanent', color: '#C5A365' },
               { label: 'Alert Routing', labelAr: 'توجيه التنبيهات', value: `${activeWl.alertRouting.length} teams`, color: '#4ADE80' },
               { label: 'Last Hit', labelAr: 'آخر تطابق', value: activeWl.lastHit.split(' ')[1], color: '#FACC15' },
             ].map(s => (
               <div key={s.label}>
-                <p className="text-gray-500 text-xs font-['Inter']">{isAr ? s.labelAr : s.label}</p>
+                <p className="text-gray-500 text-xs font-['Manrope']">{isAr ? s.labelAr : s.label}</p>
                 <p className="font-bold font-['JetBrains_Mono'] text-sm mt-0.5" style={{ color: s.color }}>{s.value}</p>
               </div>
             ))}
@@ -147,7 +147,7 @@ const WatchlistManager = ({ isAr, selectedWatchlistId, onSelectTarget }: Props) 
           style={{ background: 'rgba(10,37,64,0.8)', border: '1px solid rgba(184,138,60,0.12)' }}>
           <div className="flex items-center justify-between px-4 py-3 border-b"
             style={{ borderColor: 'rgba(184,138,60,0.08)' }}>
-            <h3 className="text-white font-semibold font-['Inter'] text-sm">
+            <h3 className="text-white font-semibold font-['Manrope'] text-sm">
               {isAr ? 'الأهداف' : 'Targets'} ({filteredTargets.length})
             </h3>
             <div className="flex items-center gap-2">
@@ -157,13 +157,13 @@ const WatchlistManager = ({ isAr, selectedWatchlistId, onSelectTarget }: Props) 
                   value={searchQuery}
                   onChange={e => setSearchQuery(e.target.value)}
                   placeholder={isAr ? 'بحث...' : 'Search targets...'}
-                  className="pl-7 pr-3 py-1.5 rounded-lg text-xs font-['Inter'] w-48"
+                  className="pl-7 pr-3 py-1.5 rounded-lg text-xs font-['Manrope'] w-48"
                   style={{ background: 'rgba(5,20,40,0.8)', border: '1px solid rgba(184,138,60,0.15)', color: '#D1D5DB' }}
                 />
               </div>
               <button onClick={() => setShowBulkImport(true)}
-                className="px-3 py-1.5 rounded-lg text-xs font-semibold font-['Inter'] whitespace-nowrap cursor-pointer"
-                style={{ border: '1px solid rgba(184,138,60,0.3)', color: '#D6B47E' }}>
+                className="px-3 py-1.5 rounded-lg text-xs font-semibold font-['Manrope'] whitespace-nowrap cursor-pointer"
+                style={{ border: '1px solid rgba(184,138,60,0.3)', color: '#C5A365' }}>
                 <i className="ri-upload-2-line mr-1" />{isAr ? 'استيراد CSV' : 'Bulk Import'}
               </button>
             </div>
@@ -174,7 +174,7 @@ const WatchlistManager = ({ isAr, selectedWatchlistId, onSelectTarget }: Props) 
               <thead>
                 <tr style={{ borderBottom: '1px solid rgba(184,138,60,0.08)' }}>
                   {['Target', 'Document', 'Nationality', 'Risk', 'Last Event', 'Alerts', 'Status', ''].map(h => (
-                    <th key={h} className="px-4 py-2.5 text-left text-xs font-semibold font-['Inter'] text-gray-500">{h}</th>
+                    <th key={h} className="px-4 py-2.5 text-left text-xs font-semibold font-['Manrope'] text-gray-500">{h}</th>
                   ))}
                 </tr>
               </thead>
@@ -190,17 +190,17 @@ const WatchlistManager = ({ isAr, selectedWatchlistId, onSelectTarget }: Props) 
                           className="w-8 h-8 rounded-full object-cover object-top flex-shrink-0"
                           style={{ border: `1px solid ${riskColors[t.riskLevel]}40` }} />
                         <div>
-                          <p className="text-white text-xs font-semibold font-['Inter']">{t.name}</p>
+                          <p className="text-white text-xs font-semibold font-['Manrope']">{t.name}</p>
                           <p className="text-gray-500 text-xs font-['JetBrains_Mono']">{t.id}</p>
                         </div>
                       </div>
                     </td>
                     <td className="px-4 py-3">
                       <p className="text-gold-400 text-xs font-['JetBrains_Mono']">{t.docNumber}</p>
-                      <p className="text-gray-500 text-xs font-['Inter']">{t.docType}</p>
+                      <p className="text-gray-500 text-xs font-['Manrope']">{t.docType}</p>
                     </td>
                     <td className="px-4 py-3">
-                      <p className="text-gray-300 text-xs font-['Inter']">{t.nationality}</p>
+                      <p className="text-gray-300 text-xs font-['Manrope']">{t.nationality}</p>
                     </td>
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-1.5">
@@ -213,7 +213,7 @@ const WatchlistManager = ({ isAr, selectedWatchlistId, onSelectTarget }: Props) 
                       </div>
                     </td>
                     <td className="px-4 py-3">
-                      <p className="text-gray-300 text-xs font-['Inter'] truncate max-w-[140px]">{t.lastEvent}</p>
+                      <p className="text-gray-300 text-xs font-['Manrope'] truncate max-w-[140px]">{t.lastEvent}</p>
                       <p className="text-gray-500 text-xs font-['JetBrains_Mono']">{t.lastEventTime}</p>
                     </td>
                     <td className="px-4 py-3">
@@ -223,7 +223,7 @@ const WatchlistManager = ({ isAr, selectedWatchlistId, onSelectTarget }: Props) 
                       </span>
                     </td>
                     <td className="px-4 py-3">
-                      <span className="text-xs px-2 py-0.5 rounded-full font-['Inter']"
+                      <span className="text-xs px-2 py-0.5 rounded-full font-['Manrope']"
                         style={{
                           background: t.status === 'active' ? 'rgba(74,222,128,0.15)' : 'rgba(156,163,175,0.15)',
                           color: t.status === 'active' ? '#4ADE80' : '#9CA3AF',
@@ -233,7 +233,7 @@ const WatchlistManager = ({ isAr, selectedWatchlistId, onSelectTarget }: Props) 
                     </td>
                     <td className="px-4 py-3">
                       <button className="w-7 h-7 flex items-center justify-center rounded-lg cursor-pointer transition-all hover:bg-white/10"
-                        style={{ color: '#D6B47E' }}>
+                        style={{ color: '#C5A365' }}>
                         <i className="ri-arrow-right-s-line text-sm" />
                       </button>
                     </td>
@@ -252,7 +252,7 @@ const WatchlistManager = ({ isAr, selectedWatchlistId, onSelectTarget }: Props) 
           <div className="w-full max-w-lg rounded-2xl p-6"
             style={{ background: 'rgba(10,37,64,0.98)', border: '1px solid rgba(184,138,60,0.25)' }}>
             <div className="flex items-center justify-between mb-5">
-              <h3 className="text-white font-bold font-['Inter'] text-base">
+              <h3 className="text-white font-bold font-['Manrope'] text-base">
                 {isAr ? 'إنشاء قائمة مراقبة' : 'Create Watchlist'}
               </h3>
               <button onClick={() => setShowCreateForm(false)}
@@ -268,11 +268,11 @@ const WatchlistManager = ({ isAr, selectedWatchlistId, onSelectTarget }: Props) 
                 { label: 'Description', field: 'description', type: 'text' },
               ].map(f => (
                 <div key={f.field}>
-                  <label className="text-gray-400 text-xs font-['Inter'] block mb-1">{f.label}</label>
+                  <label className="text-gray-400 text-xs font-['Manrope'] block mb-1">{f.label}</label>
                   <input
                     value={(formData as Record<string, string>)[f.field]}
                     onChange={e => setFormData(prev => ({ ...prev, [f.field]: e.target.value }))}
-                    className="w-full px-3 py-2 rounded-lg text-sm font-['Inter']"
+                    className="w-full px-3 py-2 rounded-lg text-sm font-['Manrope']"
                     style={{ background: 'rgba(5,20,40,0.8)', border: '1px solid rgba(184,138,60,0.15)', color: '#D1D5DB' }}
                   />
                 </div>
@@ -280,9 +280,9 @@ const WatchlistManager = ({ isAr, selectedWatchlistId, onSelectTarget }: Props) 
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="text-gray-400 text-xs font-['Inter'] block mb-1">Type</label>
+                  <label className="text-gray-400 text-xs font-['Manrope'] block mb-1">Type</label>
                   <select value={formData.type} onChange={e => setFormData(prev => ({ ...prev, type: e.target.value as WatchlistType }))}
-                    className="w-full px-3 py-2 rounded-lg text-sm font-['Inter'] cursor-pointer"
+                    className="w-full px-3 py-2 rounded-lg text-sm font-['Manrope'] cursor-pointer"
                     style={{ background: 'rgba(5,20,40,0.8)', border: '1px solid rgba(184,138,60,0.15)', color: '#D1D5DB' }}>
                     {Object.entries(typeConfig).map(([k, v]) => (
                       <option key={k} value={k}>{v.label}</option>
@@ -290,9 +290,9 @@ const WatchlistManager = ({ isAr, selectedWatchlistId, onSelectTarget }: Props) 
                   </select>
                 </div>
                 <div>
-                  <label className="text-gray-400 text-xs font-['Inter'] block mb-1">Priority</label>
+                  <label className="text-gray-400 text-xs font-['Manrope'] block mb-1">Priority</label>
                   <select value={formData.priority} onChange={e => setFormData(prev => ({ ...prev, priority: e.target.value as AlertPriority }))}
-                    className="w-full px-3 py-2 rounded-lg text-sm font-['Inter'] cursor-pointer"
+                    className="w-full px-3 py-2 rounded-lg text-sm font-['Manrope'] cursor-pointer"
                     style={{ background: 'rgba(5,20,40,0.8)', border: '1px solid rgba(184,138,60,0.15)', color: '#D1D5DB' }}>
                     <option value="critical">Critical</option>
                     <option value="high">High</option>
@@ -303,9 +303,9 @@ const WatchlistManager = ({ isAr, selectedWatchlistId, onSelectTarget }: Props) 
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="text-gray-400 text-xs font-['Inter'] block mb-1">Classification</label>
+                  <label className="text-gray-400 text-xs font-['Manrope'] block mb-1">Classification</label>
                   <select value={formData.classification} onChange={e => setFormData(prev => ({ ...prev, classification: e.target.value }))}
-                    className="w-full px-3 py-2 rounded-lg text-sm font-['Inter'] cursor-pointer"
+                    className="w-full px-3 py-2 rounded-lg text-sm font-['Manrope'] cursor-pointer"
                     style={{ background: 'rgba(5,20,40,0.8)', border: '1px solid rgba(184,138,60,0.15)', color: '#D1D5DB' }}>
                     {['TOP SECRET', 'SECRET', 'CONFIDENTIAL', 'RESTRICTED'].map(c => (
                       <option key={c} value={c}>{c}</option>
@@ -313,32 +313,32 @@ const WatchlistManager = ({ isAr, selectedWatchlistId, onSelectTarget }: Props) 
                   </select>
                 </div>
                 <div>
-                  <label className="text-gray-400 text-xs font-['Inter'] block mb-1">Auto-Expire (days)</label>
+                  <label className="text-gray-400 text-xs font-['Manrope'] block mb-1">Auto-Expire (days)</label>
                   <input value={formData.autoExpireDays} onChange={e => setFormData(prev => ({ ...prev, autoExpireDays: e.target.value }))}
                     placeholder="Leave blank = permanent"
-                    className="w-full px-3 py-2 rounded-lg text-sm font-['Inter']"
+                    className="w-full px-3 py-2 rounded-lg text-sm font-['Manrope']"
                     style={{ background: 'rgba(5,20,40,0.8)', border: '1px solid rgba(184,138,60,0.15)', color: '#D1D5DB' }} />
                 </div>
               </div>
 
               <div>
-                <label className="text-gray-400 text-xs font-['Inter'] block mb-1">Alert Routing (teams, comma-separated)</label>
+                <label className="text-gray-400 text-xs font-['Manrope'] block mb-1">Alert Routing (teams, comma-separated)</label>
                 <input value={formData.alertRouting} onChange={e => setFormData(prev => ({ ...prev, alertRouting: e.target.value }))}
                   placeholder="e.g. Command Center, Field Officers"
-                  className="w-full px-3 py-2 rounded-lg text-sm font-['Inter']"
+                  className="w-full px-3 py-2 rounded-lg text-sm font-['Manrope']"
                   style={{ background: 'rgba(5,20,40,0.8)', border: '1px solid rgba(184,138,60,0.15)', color: '#D1D5DB' }} />
               </div>
             </div>
 
             <div className="flex gap-3 mt-5">
               <button onClick={() => setShowCreateForm(false)}
-                className="flex-1 py-2.5 rounded-xl text-sm font-semibold font-['Inter'] cursor-pointer"
-                style={{ border: '1px solid rgba(184,138,60,0.3)', color: '#D6B47E' }}>
+                className="flex-1 py-2.5 rounded-xl text-sm font-semibold font-['Manrope'] cursor-pointer"
+                style={{ border: '1px solid rgba(184,138,60,0.3)', color: '#C5A365' }}>
                 {isAr ? 'إلغاء' : 'Cancel'}
               </button>
               <button onClick={() => setShowCreateForm(false)}
-                className="flex-1 py-2.5 rounded-xl text-sm font-semibold font-['Inter'] cursor-pointer"
-                style={{ background: '#D6B47E', color: '#051428' }}>
+                className="flex-1 py-2.5 rounded-xl text-sm font-semibold font-['Manrope'] cursor-pointer"
+                style={{ background: '#C5A365', color: '#071426' }}>
                 {isAr ? 'إنشاء' : 'Create Watchlist'}
               </button>
             </div>
@@ -353,7 +353,7 @@ const WatchlistManager = ({ isAr, selectedWatchlistId, onSelectTarget }: Props) 
           <div className="w-full max-w-md rounded-2xl p-6"
             style={{ background: 'rgba(10,37,64,0.98)', border: '1px solid rgba(184,138,60,0.25)' }}>
             <div className="flex items-center justify-between mb-5">
-              <h3 className="text-white font-bold font-['Inter'] text-base">
+              <h3 className="text-white font-bold font-['Manrope'] text-base">
                 {isAr ? 'إضافة هدف' : 'Add Target'}
               </h3>
               <button onClick={() => setShowAddTarget(false)}
@@ -366,7 +366,7 @@ const WatchlistManager = ({ isAr, selectedWatchlistId, onSelectTarget }: Props) 
               <div className="relative">
                 <i className="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm" />
                 <input placeholder={isAr ? 'بحث بالوثيقة أو الاسم أو الهاتف...' : 'Search by document, name, or phone...'}
-                  className="w-full pl-9 pr-3 py-2.5 rounded-xl text-sm font-['Inter']"
+                  className="w-full pl-9 pr-3 py-2.5 rounded-xl text-sm font-['Manrope']"
                   style={{ background: 'rgba(5,20,40,0.8)', border: '1px solid rgba(184,138,60,0.2)', color: '#D1D5DB' }} />
               </div>
 
@@ -376,11 +376,11 @@ const WatchlistManager = ({ isAr, selectedWatchlistId, onSelectTarget }: Props) 
                     style={{ borderBottom: i < 2 ? '1px solid rgba(184,138,60,0.05)' : 'none' }}>
                     <img src={t.photo} alt={t.name} className="w-8 h-8 rounded-full object-cover object-top flex-shrink-0" />
                     <div className="flex-1 min-w-0">
-                      <p className="text-white text-xs font-semibold font-['Inter']">{t.name}</p>
+                      <p className="text-white text-xs font-semibold font-['Manrope']">{t.name}</p>
                       <p className="text-gray-500 text-xs font-['JetBrains_Mono']">{t.docNumber} · {t.nationality}</p>
                     </div>
                     <button className="w-6 h-6 flex items-center justify-center rounded-full cursor-pointer"
-                      style={{ background: 'rgba(184,138,60,0.15)', color: '#D6B47E' }}>
+                      style={{ background: 'rgba(184,138,60,0.15)', color: '#C5A365' }}>
                       <i className="ri-add-line text-xs" />
                     </button>
                   </div>
@@ -388,9 +388,9 @@ const WatchlistManager = ({ isAr, selectedWatchlistId, onSelectTarget }: Props) 
               </div>
 
               <div>
-                <label className="text-gray-400 text-xs font-['Inter'] block mb-1">Reason for Adding</label>
+                <label className="text-gray-400 text-xs font-['Manrope'] block mb-1">Reason for Adding</label>
                 <textarea rows={2} placeholder="Reason for adding to this watchlist..."
-                  className="w-full px-3 py-2 rounded-lg text-sm font-['Inter'] resize-none"
+                  className="w-full px-3 py-2 rounded-lg text-sm font-['Manrope'] resize-none"
                   style={{ background: 'rgba(5,20,40,0.8)', border: '1px solid rgba(184,138,60,0.15)', color: '#D1D5DB' }} />
               </div>
 
@@ -398,11 +398,11 @@ const WatchlistManager = ({ isAr, selectedWatchlistId, onSelectTarget }: Props) 
                 style={{ background: 'rgba(184,138,60,0.05)', border: '1px solid rgba(184,138,60,0.1)' }}>
                 <i className="ri-upload-2-line text-gold-400 text-sm" />
                 <div className="flex-1">
-                  <p className="text-white text-xs font-semibold font-['Inter']">Bulk Import via CSV</p>
-                  <p className="text-gray-500 text-xs font-['Inter']">Upload document numbers list</p>
+                  <p className="text-white text-xs font-semibold font-['Manrope']">Bulk Import via CSV</p>
+                  <p className="text-gray-500 text-xs font-['Manrope']">Upload document numbers list</p>
                 </div>
-                <button className="px-2 py-1 rounded-lg text-xs font-['Inter'] cursor-pointer"
-                  style={{ border: '1px solid rgba(184,138,60,0.3)', color: '#D6B47E' }}>
+                <button className="px-2 py-1 rounded-lg text-xs font-['Manrope'] cursor-pointer"
+                  style={{ border: '1px solid rgba(184,138,60,0.3)', color: '#C5A365' }}>
                   Upload
                 </button>
               </div>
@@ -410,13 +410,13 @@ const WatchlistManager = ({ isAr, selectedWatchlistId, onSelectTarget }: Props) 
 
             <div className="flex gap-3 mt-5">
               <button onClick={() => setShowAddTarget(false)}
-                className="flex-1 py-2.5 rounded-xl text-sm font-semibold font-['Inter'] cursor-pointer"
-                style={{ border: '1px solid rgba(184,138,60,0.3)', color: '#D6B47E' }}>
+                className="flex-1 py-2.5 rounded-xl text-sm font-semibold font-['Manrope'] cursor-pointer"
+                style={{ border: '1px solid rgba(184,138,60,0.3)', color: '#C5A365' }}>
                 {isAr ? 'إلغاء' : 'Cancel'}
               </button>
               <button onClick={() => setShowAddTarget(false)}
-                className="flex-1 py-2.5 rounded-xl text-sm font-semibold font-['Inter'] cursor-pointer"
-                style={{ background: '#D6B47E', color: '#051428' }}>
+                className="flex-1 py-2.5 rounded-xl text-sm font-semibold font-['Manrope'] cursor-pointer"
+                style={{ background: '#C5A365', color: '#071426' }}>
                 {isAr ? 'إضافة' : 'Add to Watchlist'}
               </button>
             </div>

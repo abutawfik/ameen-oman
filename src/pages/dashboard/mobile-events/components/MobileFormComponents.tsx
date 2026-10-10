@@ -35,7 +35,7 @@ export const ValidatedInput = ({ value, onChange, validate, placeholder, label, 
 
   return (
     <div>
-      <label className="block text-gray-400 text-xs mb-1.5 font-['Inter']">
+      <label className="block text-gray-400 text-xs mb-1.5 font-['Manrope']">
         {label}{required && <span className="text-gold-400 ml-0.5">*</span>}
       </label>
       <div className="relative">
@@ -44,7 +44,7 @@ export const ValidatedInput = ({ value, onChange, validate, placeholder, label, 
           onChange={(e) => onChange(e.target.value)}
           onBlur={() => setTouched(true)}
           placeholder={placeholder}
-          className={`w-full px-3 py-2.5 pr-9 rounded-lg text-sm text-white placeholder-gray-600 outline-none transition-all duration-200 ${monospace ? "font-['JetBrains_Mono']" : "font-['Inter']"}`}
+          className={`w-full px-3 py-2.5 pr-9 rounded-lg text-sm text-white placeholder-gray-600 outline-none transition-all duration-200 ${monospace ? "font-['JetBrains_Mono']" : "font-['Manrope']"}`}
           style={{
             background: "#0F1923",
             border: `1px solid ${isError ? "rgba(201,74,94,0.5)" : isValid ? "rgba(74,222,128,0.4)" : "rgba(255,255,255,0.08)"}`,
@@ -52,7 +52,7 @@ export const ValidatedInput = ({ value, onChange, validate, placeholder, label, 
           }}
           onFocus={(e) => {
             if (!isError && !isValid) {
-              e.target.style.borderColor = "#D6B47E";
+              e.target.style.borderColor = "#C5A365";
               e.target.style.boxShadow = "0 0 0 2px rgba(184,138,60,0.08)";
             }
           }}
@@ -74,12 +74,12 @@ export const ValidatedInput = ({ value, onChange, validate, placeholder, label, 
         )}
       </div>
       {isError && (
-        <p className="text-red-400 text-xs mt-1 font-['Inter']">
+        <p className="text-red-400 text-xs mt-1 font-['Manrope']">
           {hint || "Invalid format"}
         </p>
       )}
       {isValid && (
-        <p className="text-green-400 text-xs mt-1 font-['Inter']">
+        <p className="text-green-400 text-xs mt-1 font-['Manrope']">
           <i className="ri-check-line mr-1" />Valid
         </p>
       )}
@@ -114,14 +114,14 @@ export const ServiceToggle = ({ label, labelAr, icon, value, onChange, isAr }: S
         border: `1px solid ${value ? "rgba(184,138,60,0.3)" : "rgba(255,255,255,0.08)"}`,
       }}
     >
-      <i className={`${icon} text-sm`} style={{ color: value ? "#D6B47E" : "#6B7280" }} />
+      <i className={`${icon} text-sm`} style={{ color: value ? "#C5A365" : "#6B7280" }} />
     </div>
-    <span className="text-sm font-semibold font-['Inter'] flex-1" style={{ color: value ? "#D6B47E" : "#9CA3AF" }}>
+    <span className="text-sm font-semibold font-['Manrope'] flex-1" style={{ color: value ? "#C5A365" : "#9CA3AF" }}>
       {isAr ? labelAr : label}
     </span>
     <div
       className="w-10 h-5 rounded-full transition-all relative flex-shrink-0"
-      style={{ background: value ? "#D6B47E" : "rgba(255,255,255,0.1)" }}
+      style={{ background: value ? "#C5A365" : "rgba(255,255,255,0.1)" }}
     >
       <div
         className="absolute top-0.5 w-4 h-4 rounded-full bg-white transition-all"
@@ -162,7 +162,7 @@ export const CountryChipSelector = ({ selected, onChange, isAr }: CountryChipPro
 
   return (
     <div>
-      <label className="block text-gray-400 text-xs mb-1.5 font-['Inter']">
+      <label className="block text-gray-400 text-xs mb-1.5 font-['Manrope']">
         {isAr ? "الدول المقصودة" : "Destination Countries"}
         <span className="text-gold-400 ml-0.5">*</span>
       </label>
@@ -174,9 +174,9 @@ export const CountryChipSelector = ({ selected, onChange, isAr }: CountryChipPro
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder={isAr ? "ابحث عن دولة..." : "Search country..."}
-          className="w-full pl-8 pr-3 py-2 rounded-lg text-xs text-white placeholder-gray-600 outline-none font-['Inter']"
+          className="w-full pl-8 pr-3 py-2 rounded-lg text-xs text-white placeholder-gray-600 outline-none font-['Manrope']"
           style={{ background: "#0F1923", border: "1px solid rgba(255,255,255,0.08)" }}
-          onFocus={(e) => { e.target.style.borderColor = "#D6B47E"; }}
+          onFocus={(e) => { e.target.style.borderColor = "#C5A365"; }}
           onBlur={(e) => { e.target.style.borderColor = "rgba(255,255,255,0.08)"; }}
         />
       </div>
@@ -187,8 +187,8 @@ export const CountryChipSelector = ({ selected, onChange, isAr }: CountryChipPro
           {selected.map((c) => (
             <span
               key={c}
-              className="flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold font-['Inter']"
-              style={{ background: "rgba(184,138,60,0.15)", border: "1px solid rgba(184,138,60,0.3)", color: "#D6B47E" }}
+              className="flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold font-['Manrope']"
+              style={{ background: "rgba(184,138,60,0.15)", border: "1px solid rgba(184,138,60,0.3)", color: "#C5A365" }}
             >
               {c}
               <button
@@ -215,11 +215,11 @@ export const CountryChipSelector = ({ selected, onChange, isAr }: CountryChipPro
               key={country}
               type="button"
               onClick={() => toggle(country)}
-              className="px-2.5 py-1 rounded-full text-xs font-semibold cursor-pointer transition-all whitespace-nowrap font-['Inter']"
+              className="px-2.5 py-1 rounded-full text-xs font-semibold cursor-pointer transition-all whitespace-nowrap font-['Manrope']"
               style={{
                 background: isSelected ? "rgba(184,138,60,0.15)" : "rgba(255,255,255,0.04)",
                 border: `1px solid ${isSelected ? "rgba(184,138,60,0.35)" : "rgba(255,255,255,0.08)"}`,
-                color: isSelected ? "#D6B47E" : "#6B7280",
+                color: isSelected ? "#C5A365" : "#6B7280",
               }}
             >
               {isSelected && <i className="ri-check-line mr-1 text-xs" />}
@@ -230,7 +230,7 @@ export const CountryChipSelector = ({ selected, onChange, isAr }: CountryChipPro
       </div>
 
       {selected.length > 0 && (
-        <p className="text-gold-400 text-xs mt-1.5 font-['Inter']">
+        <p className="text-gold-400 text-xs mt-1.5 font-['Manrope']">
           {selected.length} {isAr ? "دولة محددة" : "countries selected"}
         </p>
       )}
@@ -258,25 +258,25 @@ export const MobileConfirmationPanel = ({ refNumber, eventType, isAr, onReset, o
     >
       <i className="ri-checkbox-circle-line text-4xl text-gold-400" />
     </div>
-    <h2 className="text-white text-2xl font-bold mb-2 font-['Inter']">
+    <h2 className="text-white text-2xl font-bold mb-2 font-['Manrope']">
       {isAr ? "تم الإرسال بنجاح" : "Event Submitted Successfully"}
     </h2>
-    <p className="text-gray-400 text-sm mb-6 font-['Inter']">
+    <p className="text-gray-400 text-sm mb-6 font-['Manrope']">
       {isAr ? `تم إرسال حدث ${eventType} إلى منصة Al-Ameen` : `${eventType} event submitted to Al-Ameen platform`}
     </p>
     <div
       className="px-6 py-4 rounded-xl border mb-8 w-full max-w-sm"
       style={{ background: "rgba(184,138,60,0.05)", borderColor: "rgba(184,138,60,0.2)" }}
     >
-      <p className="text-gray-500 text-xs mb-1 font-['Inter']">{isAr ? "رقم المرجع" : "Reference Number"}</p>
+      <p className="text-gray-500 text-xs mb-1 font-['Manrope']">{isAr ? "رقم المرجع" : "Reference Number"}</p>
       <p className="text-gold-400 text-xl font-bold font-['JetBrains_Mono'] tracking-wider">{refNumber}</p>
     </div>
     <div className="flex gap-3">
       <button
         type="button"
         onClick={onReset}
-        className="flex items-center gap-2 px-5 py-2.5 rounded-lg border text-sm font-semibold cursor-pointer whitespace-nowrap font-['Inter'] transition-colors"
-        style={{ background: "transparent", borderColor: "rgba(184,138,60,0.3)", color: "#D6B47E" }}
+        className="flex items-center gap-2 px-5 py-2.5 rounded-lg border text-sm font-semibold cursor-pointer whitespace-nowrap font-['Manrope'] transition-colors"
+        style={{ background: "transparent", borderColor: "rgba(184,138,60,0.3)", color: "#C5A365" }}
         onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(184,138,60,0.08)"; }}
         onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "transparent"; }}
       >
@@ -286,10 +286,10 @@ export const MobileConfirmationPanel = ({ refNumber, eventType, isAr, onReset, o
       <button
         type="button"
         onClick={onDashboard}
-        className="flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-bold cursor-pointer whitespace-nowrap font-['Inter'] transition-colors"
-        style={{ background: "#D6B47E", color: "#051428" }}
-        onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C99C48"; }}
-        onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#D6B47E"; }}
+        className="flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-bold cursor-pointer whitespace-nowrap font-['Manrope'] transition-colors"
+        style={{ background: "#C5A365", color: "#071426" }}
+        onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C5A365"; }}
+        onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C5A365"; }}
       >
         <i className="ri-dashboard-line" />
         {isAr ? "لوحة التحكم" : "Dashboard"}
@@ -319,11 +319,11 @@ export const LookupBar = ({ label, labelAr, placeholder, value, onChange, onLook
       <div className="w-7 h-7 flex items-center justify-center rounded-lg" style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.2)" }}>
         <i className="ri-search-line text-gold-400 text-sm" />
       </div>
-      <h3 className="text-white font-bold text-sm font-['Inter']">{isAr ? "بحث" : "Lookup"}</h3>
+      <h3 className="text-white font-bold text-sm font-['Manrope']">{isAr ? "بحث" : "Lookup"}</h3>
     </div>
     <div className="flex gap-3 items-end flex-wrap">
       <div className="flex-1 min-w-48">
-        <label className="block text-gray-400 text-xs mb-1.5 font-['Inter']">
+        <label className="block text-gray-400 text-xs mb-1.5 font-['Manrope']">
           {isAr ? labelAr : label}<span className="text-gold-400 ml-0.5">*</span>
         </label>
         <div className="flex gap-2">
@@ -333,14 +333,14 @@ export const LookupBar = ({ label, labelAr, placeholder, value, onChange, onLook
             placeholder={placeholder}
             className="flex-1 px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none transition-all duration-200 font-['JetBrains_Mono']"
             style={{ background: "#0F1923", border: "1px solid rgba(255,255,255,0.08)" }}
-            onFocus={(e) => { e.target.style.borderColor = "#D6B47E"; e.target.style.boxShadow = "0 0 0 2px rgba(184,138,60,0.08)"; }}
+            onFocus={(e) => { e.target.style.borderColor = "#C5A365"; e.target.style.boxShadow = "0 0 0 2px rgba(184,138,60,0.08)"; }}
             onBlur={(e) => { e.target.style.borderColor = "rgba(255,255,255,0.08)"; e.target.style.boxShadow = "none"; }}
           />
           <button
             type="button"
             onClick={onLookup}
             className="flex items-center gap-1.5 px-4 py-2.5 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap transition-colors"
-            style={{ background: "rgba(184,138,60,0.12)", border: "1px solid rgba(184,138,60,0.3)", color: "#D6B47E" }}
+            style={{ background: "rgba(184,138,60,0.12)", border: "1px solid rgba(184,138,60,0.3)", color: "#C5A365" }}
             onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(184,138,60,0.2)"; }}
             onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(184,138,60,0.12)"; }}
           >

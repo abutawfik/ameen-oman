@@ -47,7 +47,7 @@ const WatchlistHitRate = ({ isAr }: Props) => {
       {/* KPI row */}
       <div className="grid grid-cols-4 divide-x" style={{ borderBottom: "1px solid rgba(184,138,60,0.08)", borderColor: "rgba(184,138,60,0.08)" }}>
         {[
-          { label: isAr ? "إجمالي الإصابات" : "Total Hits",    value: watchlistHits.length, color: "#D6B47E" },
+          { label: isAr ? "إجمالي الإصابات" : "Total Hits",    value: watchlistHits.length, color: "#C5A365" },
           { label: isAr ? "مؤكد" : "Confirmed",                value: confirmed,             color: "#C94A5E" },
           { label: isAr ? "معلق" : "Pending",                  value: pending,               color: "#FACC15" },
           { label: isAr ? "إيجابي كاذب" : "False Positive",   value: fp,                    color: "#4ADE80" },
@@ -65,7 +65,7 @@ const WatchlistHitRate = ({ isAr }: Props) => {
         <div className="space-y-2">
           {Object.entries(listTypeCounts).map(([type, count]) => {
             const hit = watchlistHits.find((h) => h.listType === type);
-            const color = hit?.listColor || "#D6B47E";
+            const color = hit?.listColor || "#C5A365";
             return (
               <div key={type} className="flex items-center gap-3">
                 <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: color }} />
@@ -88,7 +88,7 @@ const WatchlistHitRate = ({ isAr }: Props) => {
             style={{
               background: activeFilter === f ? "rgba(184,138,60,0.12)" : "transparent",
               border: `1px solid ${activeFilter === f ? "rgba(184,138,60,0.25)" : "transparent"}`,
-              color: activeFilter === f ? "#D6B47E" : "#6B7280",
+              color: activeFilter === f ? "#C5A365" : "#6B7280",
             }}>
             {f === "all" ? (isAr ? "الكل" : "All") : f === "confirmed" ? (isAr ? "مؤكد" : "Confirmed") : f === "pending" ? (isAr ? "معلق" : "Pending") : (isAr ? "إيجابي كاذب" : "False Positive")}
           </button>
@@ -150,7 +150,7 @@ const WatchlistHitRate = ({ isAr }: Props) => {
         </span>
         <button type="button"
           className="flex items-center gap-1.5 text-xs font-semibold cursor-pointer whitespace-nowrap"
-          style={{ color: "#D6B47E" }}>
+          style={{ color: "#C5A365" }}>
           <i className="ri-external-link-line text-xs" />
           {isAr ? "إدارة القوائم" : "Manage Lists"}
         </button>

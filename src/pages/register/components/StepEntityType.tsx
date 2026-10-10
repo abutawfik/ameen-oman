@@ -20,7 +20,7 @@ export const entityTypes: EntityTypeItem[] = [
     title: "Hotel Intelligence", titleAr: "الاستخبارات الفندقية",
     description: "Hotels, resorts, serviced apartments submitting guest booking and movement data.",
     descriptionAr: "الفنادق والمنتجعات والشقق المفروشة التي تقدم بيانات الحجز وتنقل النزلاء.",
-    badge: "core", badgeColor: "#D6B47E", categoryColor: "#D6B47E",
+    badge: "core", badgeColor: "#C5A365", categoryColor: "#C5A365",
   },
   {
     id: "car-rental", icon: "ri-car-line", streamNum: "02",
@@ -28,7 +28,7 @@ export const entityTypes: EntityTypeItem[] = [
     title: "Car Rental Monitoring", titleAr: "مراقبة تأجير السيارات",
     description: "Licensed vehicle rental operators submitting rental lifecycle events.",
     descriptionAr: "شركات تأجير السيارات المرخصة التي تقدم أحداث دورة حياة التأجير.",
-    badge: "core", badgeColor: "#D6B47E", categoryColor: "#D6B47E",
+    badge: "core", badgeColor: "#C5A365", categoryColor: "#C5A365",
   },
   {
     id: "mobile", icon: "ri-sim-card-line", streamNum: "03",
@@ -36,7 +36,7 @@ export const entityTypes: EntityTypeItem[] = [
     title: "Mobile Operators", titleAr: "مشغلو الاتصالات",
     description: "Telecom operators submitting SIM, IMEI, eSIM and roaming events.",
     descriptionAr: "مشغلو الاتصالات الذين يقدمون أحداث الشريحة وIMEI وeSIM والتجوال.",
-    badge: "core", badgeColor: "#D6B47E", categoryColor: "#D6B47E",
+    badge: "core", badgeColor: "#C5A365", categoryColor: "#C5A365",
   },
   {
     id: "municipality", icon: "ri-government-line", streamNum: "04",
@@ -44,7 +44,7 @@ export const entityTypes: EntityTypeItem[] = [
     title: "Municipality Registry", titleAr: "سجل البلديات",
     description: "Municipal authorities submitting property lease lifecycle events.",
     descriptionAr: "السلطات البلدية التي تقدم أحداث دورة حياة عقود الإيجار.",
-    badge: "core", badgeColor: "#D6B47E", categoryColor: "#D6B47E",
+    badge: "core", badgeColor: "#C5A365", categoryColor: "#C5A365",
   },
   {
     id: "payment", icon: "ri-bank-card-line", streamNum: "05",
@@ -173,7 +173,7 @@ const StepEntityType = ({ selected, onSelect, isAr }: Props) => {
               {et.streamNum}
             </span>
             <span
-              className="text-xs font-semibold px-2 py-0.5 rounded-full font-['Inter']"
+              className="text-xs font-semibold px-2 py-0.5 rounded-full font-['Manrope']"
               style={{
                 background: et.badgeColor + "18",
                 color: et.badgeColor,
@@ -192,17 +192,17 @@ const StepEntityType = ({ selected, onSelect, isAr }: Props) => {
         </div>
 
         {/* Category */}
-        <span className="text-xs font-semibold mb-1 font-['Inter']" style={{ color: et.categoryColor }}>
+        <span className="text-xs font-semibold mb-1 font-['Manrope']" style={{ color: et.categoryColor }}>
           {isAr ? et.categoryAr : et.category}
         </span>
 
         {/* Title */}
-        <p className="text-white font-bold text-sm font-['Inter'] mb-1.5 leading-snug">
+        <p className="text-white font-bold text-sm font-['Manrope'] mb-1.5 leading-snug">
           {isAr ? et.titleAr : et.title}
         </p>
 
         {/* Description */}
-        <p className="text-gray-500 text-xs leading-relaxed font-['Inter'] flex-1">
+        <p className="text-gray-500 text-xs leading-relaxed font-['Manrope'] flex-1">
           {isAr ? et.descriptionAr : et.description}
         </p>
 
@@ -210,7 +210,7 @@ const StepEntityType = ({ selected, onSelect, isAr }: Props) => {
         {isSelected && (
           <div className="mt-3 flex items-center gap-1.5">
             <i className="ri-checkbox-circle-fill text-sm" style={{ color: et.badgeColor }} />
-            <span className="text-xs font-['Inter']" style={{ color: et.badgeColor }}>
+            <span className="text-xs font-['Manrope']" style={{ color: et.badgeColor }}>
               {isAr ? "محدد" : "Selected"}
             </span>
           </div>
@@ -221,10 +221,10 @@ const StepEntityType = ({ selected, onSelect, isAr }: Props) => {
 
   return (
     <div>
-      <h3 className="text-white font-bold text-xl font-['Inter'] mb-1">
+      <h3 className="text-white font-bold text-xl font-['Manrope'] mb-1">
         {isAr ? "اختر نوع الجهة" : "Select Entity Type"}
       </h3>
-      <p className="text-gray-500 text-sm font-['Inter'] mb-6">
+      <p className="text-gray-500 text-sm font-['Manrope'] mb-6">
         {isAr
           ? "اختر الفئة التي تصف نشاط جهتك بشكل أفضل — 14 مصدر بيانات متاح"
           : "Choose the category that best describes your entity's activity — 14 data streams available"}
@@ -236,7 +236,7 @@ const StepEntityType = ({ selected, onSelect, isAr }: Props) => {
           <div className="h-px flex-1" style={{ background: "rgba(184,138,60,0.15)" }} />
           <span
             className="text-xs font-['JetBrains_Mono'] tracking-widest px-3 py-1 rounded-full"
-            style={{ color: "#D6B47E", background: "rgba(184,138,60,0.08)", border: "1px solid rgba(184,138,60,0.2)" }}
+            style={{ color: "#C5A365", background: "rgba(184,138,60,0.08)", border: "1px solid rgba(184,138,60,0.2)" }}
           >
             {isAr ? "4 مصادر أساسية" : "4 CORE STREAMS"}
           </span>

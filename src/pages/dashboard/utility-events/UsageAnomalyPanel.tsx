@@ -100,7 +100,7 @@ const statusLabel = (s: AnomalyRecord["status"], isAr: boolean) => {
 };
 
 const streamColor = (s: string) => {
-  if (s === "UTILITY") return "#D6B47E";
+  if (s === "UTILITY") return "#C5A365";
   if (s === "MUNICIPALITY") return "#4ADE80";
   if (s === "BORDER") return "#A78BFA";
   if (s === "HOTEL") return "#C98A1B";
@@ -137,7 +137,7 @@ const UsageAnomalyPanel = ({ isAr, onCancel }: Props) => {
       {/* Stats row */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {[
-          { label: isAr ? "إجمالي التنبيهات" : "Total Alerts", value: ANOMALIES.length, color: "#D6B47E", icon: "ri-alert-line" },
+          { label: isAr ? "إجمالي التنبيهات" : "Total Alerts", value: ANOMALIES.length, color: "#C5A365", icon: "ri-alert-line" },
           { label: isAr ? "مفتوح" : "Open", value: ANOMALIES.filter(a => a.status === "open").length, color: "#C94A5E", icon: "ri-error-warning-line" },
           { label: isAr ? "قيد التحقيق" : "Investigating", value: ANOMALIES.filter(a => a.status === "investigating").length, color: "#FACC15", icon: "ri-search-eye-line" },
           { label: isAr ? "حرج" : "Critical", value: ANOMALIES.filter(a => a.severity === "critical").length, color: "#C94A5E", icon: "ri-alarm-warning-line" },
@@ -295,7 +295,7 @@ const UsageAnomalyPanel = ({ isAr, onCancel }: Props) => {
             { icon: "ri-user-shared-line", label: isAr ? "حسابات متعددة لنفس الشخص في عناوين مختلفة" : "Multiple accounts same person, different addresses", color: "#FACC15" },
             { icon: "ri-ghost-line", label: isAr ? "توصيل في عنوان بدون ساكن مسجّل" : "Connection at address with no registered occupant", color: "#C94A5E" },
             { icon: "ri-store-line", label: isAr ? "نمط استهلاك تجاري على تعرفة سكنية" : "Commercial usage pattern on residential tariff", color: "#C98A1B" },
-            { icon: "ri-links-line", label: isAr ? "اتصال إنترنت = مرساة البصمة الرقمية" : "Internet connection = digital footprint anchor", color: "#D6B47E" },
+            { icon: "ri-links-line", label: isAr ? "اتصال إنترنت = مرساة البصمة الرقمية" : "Internet connection = digital footprint anchor", color: "#C5A365" },
           ].map((rule) => (
             <div key={rule.label} className="flex items-start gap-2.5 px-3 py-2.5 rounded-lg" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
               <div className="w-6 h-6 flex items-center justify-center rounded flex-shrink-0 mt-0.5" style={{ background: `${rule.color}12` }}>

@@ -57,7 +57,7 @@ export default function HitSearch({ isAr }: Props) {
             value={nameQuery}
             onChange={e => setNameQuery(e.target.value)}
             placeholder={isAr ? 'تصفية بالاسم…' : 'Filter by name…'}
-            style={{ width: '100%', padding: '8px 10px 8px 32px', borderRadius: 4, fontSize: 12, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(184,138,60,0.2)', color: '#CBD5E1', fontFamily: "'Inter', sans-serif", outline: 'none', boxSizing: 'border-box' }}
+            style={{ width: '100%', padding: '8px 10px 8px 32px', borderRadius: 4, fontSize: 12, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(184,138,60,0.2)', color: '#CBD5E1', fontFamily: "'Manrope', sans-serif", outline: 'none', boxSizing: 'border-box' }}
           />
         </div>
 
@@ -79,7 +79,7 @@ export default function HitSearch({ isAr }: Props) {
             {isAr ? 'المخاطر:' : 'Risk:'}
           </span>
           {(['critical', 'high', 'medium', 'low'] as RiskLevel[]).map(r => {
-            const colors: Record<string, string> = { critical: '#C94A5E', high: '#D4922A', medium: '#D6B47E', low: '#4A8E5A' };
+            const colors: Record<string, string> = { critical: '#C94A5E', high: '#D4922A', medium: '#C5A365', low: '#4A8E5A' };
             return <button key={r} onClick={() => setFilterRisk(prev => prev === r ? '' : r)} style={chipStyle(filterRisk === r, colors[r])}>{r}</button>;
           })}
         </div>
@@ -92,7 +92,7 @@ export default function HitSearch({ isAr }: Props) {
       {/* Hit cards */}
       <div style={{ flex: 1, overflowY: 'auto', padding: 16, display: 'flex', flexDirection: 'column', gap: 10 }}>
         {filtered.length === 0 ? (
-          <div style={{ padding: 40, textAlign: 'center', color: '#374B61', fontFamily: "'Inter', sans-serif", fontSize: 13 }}>
+          <div style={{ padding: 40, textAlign: 'center', color: '#374B61', fontFamily: "'Manrope', sans-serif", fontSize: 13 }}>
             {isAr ? 'لا توجد تطابقات بهذه المعايير' : 'No hits match the current filters'}
           </div>
         ) : (

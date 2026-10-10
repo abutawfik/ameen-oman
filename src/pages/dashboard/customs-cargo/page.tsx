@@ -25,7 +25,7 @@ const eventTypes: {
   descEn: string;
   descAr: string;
 }[] = [
-  { id: "import", labelEn: "Import Declaration", labelAr: "إقرار الاستيراد", icon: "ri-download-2-line", color: "#D6B47E", descEn: "Goods entering the country via any port", descAr: "بضائع تدخل البلاد عبر أي منفذ" },
+  { id: "import", labelEn: "Import Declaration", labelAr: "إقرار الاستيراد", icon: "ri-download-2-line", color: "#C5A365", descEn: "Goods entering the country via any port", descAr: "بضائع تدخل البلاد عبر أي منفذ" },
   { id: "export", labelEn: "Export Declaration", labelAr: "إقرار التصدير", icon: "ri-upload-2-line", color: "#4ADE80", descEn: "Goods leaving the country, including re-exports", descAr: "بضائع تغادر البلاد، بما فيها إعادة التصدير" },
   { id: "transit", labelEn: "Transit / Transshipment", labelAr: "عبور / إعادة شحن", icon: "ri-arrow-left-right-line", color: "#FACC15", descEn: "Goods passing through the country to another destination", descAr: "بضائع تعبر البلاد إلى وجهة أخرى" },
   { id: "freezone", labelEn: "Free Zone Entry / Exit", labelAr: "دخول / خروج المنطقة الحرة", icon: "ri-store-2-line", color: "#38BDF8", descEn: "Goods movement in/out of free trade zones", descAr: "حركة البضائع داخل وخارج مناطق التجارة الحرة" },
@@ -34,7 +34,7 @@ const eventTypes: {
 ];
 
 const mainTabs: { id: MainTab; labelEn: string; labelAr: string; icon: string; color: string }[] = [
-  { id: "declarations", labelEn: "Declarations", labelAr: "الإقرارات", icon: "ri-file-list-3-line", color: "#D6B47E" },
+  { id: "declarations", labelEn: "Declarations", labelAr: "الإقرارات", icon: "ri-file-list-3-line", color: "#C5A365" },
   { id: "cargo-intel", labelEn: "Cargo Intelligence", labelAr: "استخبارات الشحن", icon: "ri-bar-chart-2-line", color: "#FACC15" },
   { id: "brokers", labelEn: "Broker Registry", labelAr: "سجل الوسطاء", icon: "ri-user-star-line", color: "#4ADE80" },
   { id: "cross-stream", labelEn: "Cross-Stream Intel", labelAr: "استخبارات متعددة المصادر", icon: "ri-git-branch-line", color: "#C98A1B" },
@@ -71,7 +71,7 @@ const CustomsCargoPage = () => {
   const activeEventMeta = eventTypes.find((e) => e.id === activeEvent);
 
   return (
-    <div className="flex flex-col h-full" style={{ background: "#051428", direction: isAr ? "rtl" : "ltr" }}>
+    <div className="flex flex-col h-full" style={{ background: "#071426", direction: isAr ? "rtl" : "ltr" }}>
       <div className="fixed inset-0 pointer-events-none"
         style={{ backgroundImage: "linear-gradient(rgba(184,138,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.03) 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
 
@@ -84,7 +84,7 @@ const CustomsCargoPage = () => {
                 <i className="ri-ship-line text-gold-400 text-lg" />
               </div>
               <div>
-                <h1 className="text-white text-xl font-bold font-['Inter']">{isAr ? "الجمارك والشحن" : "Customs & Cargo"}</h1>
+                <h1 className="text-white text-xl font-bold font-['Manrope']">{isAr ? "الجمارك والشحن" : "Customs & Cargo"}</h1>
                 <p className="text-gray-500 text-xs font-['JetBrains_Mono']">
                   {isAr ? "الدفق الرابع عشر — هيئة الجمارك الوطنية · سلطات الموانئ · المناطق الحرة" : "Stream 14 — National Customs Authority · Port Authorities · Free Trade Zones"}
                 </p>
@@ -92,13 +92,13 @@ const CustomsCargoPage = () => {
             </div>
             <div className="flex flex-wrap gap-2 mt-3">
               {[
-                { icon: "ri-government-line", label: isAr ? "هيئة الجمارك الوطنية" : "National Customs Authority", color: "#D6B47E" },
+                { icon: "ri-government-line", label: isAr ? "هيئة الجمارك الوطنية" : "National Customs Authority", color: "#C5A365" },
                 { icon: "ri-anchor-line", label: isAr ? "سلطات الموانئ" : "Port Authorities", color: "#4ADE80" },
                 { icon: "ri-store-2-line", label: isAr ? "مناطق التجارة الحرة" : "Free Trade Zones", color: "#38BDF8" },
                 { icon: "ri-mail-send-line", label: isAr ? "جمارك البريد" : "Postal Customs", color: "#A78BFA" },
                 { icon: "ri-shield-star-line", label: isAr ? "شرطة الجمارك" : "Police Customs HQ", color: "#FACC15" },
               ].map((src) => (
-                <div key={src.label} className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-['Inter']"
+                <div key={src.label} className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-['Manrope']"
                   style={{ background: `${src.color}10`, border: `1px solid ${src.color}25`, color: src.color }}>
                   <i className={`${src.icon} text-xs`} />{src.label}
                 </div>
@@ -110,7 +110,7 @@ const CustomsCargoPage = () => {
           <div className="flex gap-1 p-1 rounded-xl mb-5" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.1)" }}>
             {mainTabs.map((tab) => (
               <button key={tab.id} onClick={() => setMainTab(tab.id)}
-                className="flex-1 flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg text-xs font-semibold transition-all cursor-pointer whitespace-nowrap font-['Inter']"
+                className="flex-1 flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg text-xs font-semibold transition-all cursor-pointer whitespace-nowrap font-['Manrope']"
                 style={{
                   background: mainTab === tab.id ? `${tab.color}12` : "transparent",
                   color: mainTab === tab.id ? tab.color : "#6B7280",
@@ -140,8 +140,8 @@ const CustomsCargoPage = () => {
                             <i className={`${evt.icon} text-base`} style={{ color: evt.color }} />
                           </div>
                           <div className="min-w-0">
-                            <p className="text-white text-sm font-semibold font-['Inter'] leading-tight">{isAr ? evt.labelAr : evt.labelEn}</p>
-                            <p className="text-gray-500 text-xs font-['Inter'] mt-0.5 leading-tight">{isAr ? evt.descAr : evt.descEn}</p>
+                            <p className="text-white text-sm font-semibold font-['Manrope'] leading-tight">{isAr ? evt.labelAr : evt.labelEn}</p>
+                            <p className="text-gray-500 text-xs font-['Manrope'] mt-0.5 leading-tight">{isAr ? evt.descAr : evt.descEn}</p>
                           </div>
                         </div>
                       </button>
@@ -157,7 +157,7 @@ const CustomsCargoPage = () => {
                             <i className={`${activeEventMeta.icon} text-sm`} style={{ color: activeEventMeta.color }} />
                           </div>
                           <div>
-                            <h2 className="text-white text-sm font-bold font-['Inter']">{isAr ? activeEventMeta.labelAr : activeEventMeta.labelEn}</h2>
+                            <h2 className="text-white text-sm font-bold font-['Manrope']">{isAr ? activeEventMeta.labelAr : activeEventMeta.labelEn}</h2>
                             <p className="text-gray-500 text-xs font-['JetBrains_Mono']">{isAr ? "إقرار جمركي جديد" : "New customs declaration"}</p>
                           </div>
                         </div>
@@ -176,8 +176,8 @@ const CustomsCargoPage = () => {
                     <div className="w-16 h-16 flex items-center justify-center rounded-2xl mx-auto mb-4" style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.2)" }}>
                       <i className="ri-ship-line text-3xl text-gold-400" />
                     </div>
-                    <h3 className="text-white text-lg font-bold font-['Inter'] mb-2">{isAr ? "اختر نوع الإقرار الجمركي" : "Select Declaration Type"}</h3>
-                    <p className="text-gray-500 text-sm font-['Inter']">{isAr ? "اختر أحد أنواع الإقرارات الجمركية الستة أعلاه لبدء التسجيل" : "Choose one of the six customs declaration types above to begin registration"}</p>
+                    <h3 className="text-white text-lg font-bold font-['Manrope'] mb-2">{isAr ? "اختر نوع الإقرار الجمركي" : "Select Declaration Type"}</h3>
+                    <p className="text-gray-500 text-sm font-['Manrope']">{isAr ? "اختر أحد أنواع الإقرارات الجمركية الستة أعلاه لبدء التسجيل" : "Choose one of the six customs declaration types above to begin registration"}</p>
                   </div>
                 )}
               </div>

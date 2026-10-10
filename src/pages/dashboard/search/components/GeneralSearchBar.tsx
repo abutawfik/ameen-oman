@@ -20,7 +20,7 @@ const chip = (active: boolean) => ({
   fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.05em',
   border: `1px solid ${active ? '#B8893C' : 'rgba(184,138,60,0.2)'}`,
   background: active ? 'rgba(184,138,60,0.15)' : 'transparent',
-  color: active ? '#D6B47E' : '#5B7494', transition: 'all 0.15s',
+  color: active ? '#C5A365' : '#5B7494', transition: 'all 0.15s',
 });
 
 export default function GeneralSearchBar({ domain, onDomainChange, onSearch, isAr }: Props) {
@@ -51,6 +51,7 @@ export default function GeneralSearchBar({ domain, onDomainChange, onSearch, isA
             color: '#5B7494', fontSize: 15, pointerEvents: 'none',
           }} />
           <input
+          aria-label={isAr ? "بحث في السجلات" : "Search records"}
             value={query}
             onChange={e => setQuery(e.target.value)}
             onKeyDown={e => e.key === 'Enter' && handleSearch()}
@@ -71,7 +72,7 @@ export default function GeneralSearchBar({ domain, onDomainChange, onSearch, isA
             padding: '10px 20px', borderRadius: 6, cursor: 'pointer',
             background: 'rgba(184,138,60,0.2)',
             border: '1px solid rgba(184,138,60,0.4)',
-            color: '#D6B47E',
+            color: '#C5A365',
             fontFamily: "'JetBrains Mono', monospace", fontSize: 12,
             letterSpacing: '0.05em', whiteSpace: 'nowrap',
           }}

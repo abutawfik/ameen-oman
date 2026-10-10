@@ -24,12 +24,12 @@ const SocialProfiles = ({ profiles, isAr }: Props) => {
     >
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
-          <h3 className="text-white font-bold font-['Inter'] text-sm uppercase tracking-wider">
+          <h3 className="text-white font-bold font-['Manrope'] text-sm uppercase tracking-wider">
             {isAr ? "الملفات الاجتماعية (OSINT)" : "Social Profiles (OSINT)"}
           </h3>
           <span
             className="px-2 py-0.5 rounded-full text-xs font-['JetBrains_Mono']"
-            style={{ background: "rgba(184,138,60,0.1)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}
+            style={{ background: "rgba(184,138,60,0.1)", color: "#C5A365", border: "1px solid rgba(184,138,60,0.2)" }}
           >
             {profiles.length} {isAr ? "منصة" : "platforms"}
           </span>
@@ -57,7 +57,7 @@ const SocialProfiles = ({ profiles, isAr }: Props) => {
         style={{ background: "rgba(250,204,21,0.05)", border: "1px solid rgba(250,204,21,0.15)" }}
       >
         <i className="ri-information-line text-yellow-400 text-sm mt-0.5 flex-shrink-0" />
-        <p className="text-yellow-400/80 text-xs font-['Inter'] leading-relaxed">
+        <p className="text-yellow-400/80 text-xs font-['Manrope'] leading-relaxed">
           {isAr
             ? "البيانات مستخرجة من المصادر المفتوحة (OSINT). المحتوى الخاص أو المشفر غير متاح. يُستخدم للأغراض الاستخباراتية فقط."
             : "Data sourced from open-source intelligence (OSINT). Private or encrypted content is not accessible. For intelligence purposes only."}
@@ -103,7 +103,7 @@ const SocialProfiles = ({ profiles, isAr }: Props) => {
                   <i className={`${profile.icon} text-base`} style={{ color: profile.color }} />
                 </div>
                 <div>
-                  <p className="text-white text-xs font-bold font-['Inter']">{profile.platform}</p>
+                  <p className="text-white text-xs font-bold font-['Manrope']">{profile.platform}</p>
                   <div className="flex items-center gap-1">
                     <div className="w-1.5 h-1.5 rounded-full" style={{ background: status.color }} />
                     <span className="text-[11px] font-['JetBrains_Mono']" style={{ color: status.color }}>
@@ -115,7 +115,7 @@ const SocialProfiles = ({ profiles, isAr }: Props) => {
 
               {/* Display name + handle */}
               <div>
-                <p className="text-white text-xs font-['Inter'] font-semibold">{profile.displayName}</p>
+                <p className="text-white text-xs font-['Manrope'] font-semibold">{profile.displayName}</p>
                 <p className="text-gray-500 text-[11px] font-['JetBrains_Mono'] mt-0.5">{profile.handle}</p>
               </div>
 
@@ -142,13 +142,13 @@ const SocialProfiles = ({ profiles, isAr }: Props) => {
                   <p className="text-red-400 text-[11px] font-bold font-['JetBrains_Mono'] mb-1 uppercase tracking-wider">
                     {isAr ? "سبب التبليغ" : "Flag Reason"}
                   </p>
-                  <p className="text-gray-300 text-[11px] font-['Inter'] leading-relaxed">{profile.flagReason}</p>
+                  <p className="text-gray-300 text-[11px] font-['Manrope'] leading-relaxed">{profile.flagReason}</p>
                   {profile.recentPost && (
                     <>
                       <p className="text-gray-500 text-[9px] font-['JetBrains_Mono'] uppercase mt-2 mb-1">
                         {isAr ? "ملاحظة الاستخبارات" : "Intelligence Note"}
                       </p>
-                      <p className="text-gray-400 text-[11px] font-['Inter'] leading-relaxed italic">{profile.recentPost}</p>
+                      <p className="text-gray-400 text-[11px] font-['Manrope'] leading-relaxed italic">{profile.recentPost}</p>
                     </>
                   )}
                 </div>
@@ -160,7 +160,7 @@ const SocialProfiles = ({ profiles, isAr }: Props) => {
                 className="flex items-center justify-center gap-1 py-1.5 rounded-lg text-[11px] font-['JetBrains_Mono'] cursor-pointer transition-colors"
                 style={{
                   background: "rgba(184,138,60,0.05)",
-                  color: "#D6B47E",
+                  color: "#C5A365",
                   border: "1px solid rgba(184,138,60,0.2)",
                   textDecoration: "none",
                 }}

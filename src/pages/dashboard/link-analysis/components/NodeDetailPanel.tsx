@@ -46,13 +46,13 @@ const NodeDetailPanel = ({ node, edges, nodes, isAr, onClose, onSelectNode }: Pr
           style={{ background: `${cfg.color}20`, border: `2px solid ${cfg.color}60` }}
         >
           {node.initials ? (
-            <span className="text-sm font-bold font-['Inter']" style={{ color: cfg.color }}>{node.initials}</span>
+            <span className="text-sm font-bold font-['Manrope']" style={{ color: cfg.color }}>{node.initials}</span>
           ) : (
             <i className={`${cfg.icon} text-base`} style={{ color: cfg.color }} />
           )}
         </div>
         <div className="flex-1 min-w-0">
-          <p className="text-white text-sm font-bold font-['Inter'] truncate">{node.label}</p>
+          <p className="text-white text-sm font-bold font-['Manrope'] truncate">{node.label}</p>
           <div className="flex items-center gap-2 mt-0.5">
             <span className="text-gray-500 text-[11px] font-['JetBrains_Mono'] uppercase">{cfg.labelEn}</span>
             {riskBadge(node.risk)}
@@ -67,13 +67,13 @@ const NodeDetailPanel = ({ node, edges, nodes, isAr, onClose, onSelectNode }: Pr
         {/* Stats row */}
         <div className="grid grid-cols-3 gap-2">
           {[
-            { label: isAr ? "الدرجة" : "Degree", value: node.degree || 0, color: "#D6B47E" },
+            { label: isAr ? "الدرجة" : "Degree", value: node.degree || 0, color: "#C5A365" },
             { label: isAr ? "الوساطة" : "Betweenness", value: `${Math.round((node.betweenness || 0) * 100)}%`, color: "#A78BFA" },
             { label: isAr ? "المجتمع" : "Community", value: node.community || 1, color: "#4ADE80" },
           ].map((stat, i) => (
             <div key={i} className="p-2 rounded-lg text-center" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)" }}>
               <p className="text-lg font-black font-['JetBrains_Mono']" style={{ color: stat.color }}>{stat.value}</p>
-              <p className="text-gray-600 text-[11px] font-['Inter'] mt-0.5">{stat.label}</p>
+              <p className="text-gray-600 text-[11px] font-['Manrope'] mt-0.5">{stat.label}</p>
             </div>
           ))}
         </div>
@@ -89,7 +89,7 @@ const NodeDetailPanel = ({ node, edges, nodes, isAr, onClose, onSelectNode }: Pr
                 <span
                   key={s}
                   className="px-2 py-0.5 rounded text-[11px] font-['JetBrains_Mono']"
-                  style={{ background: "rgba(184,138,60,0.08)", border: "1px solid rgba(184,138,60,0.2)", color: "#D6B47E" }}
+                  style={{ background: "rgba(184,138,60,0.08)", border: "1px solid rgba(184,138,60,0.2)", color: "#C5A365" }}
                 >
                   {s}
                 </span>
@@ -108,7 +108,7 @@ const NodeDetailPanel = ({ node, edges, nodes, isAr, onClose, onSelectNode }: Pr
               {Object.entries(node.details).map(([key, val]) => (
                 <div key={key} className="flex items-start justify-between gap-2">
                   <span className="text-gray-600 text-xs font-['JetBrains_Mono'] capitalize flex-shrink-0">{key}:</span>
-                  <span className="text-gray-300 text-xs font-['Inter'] text-right">{val}</span>
+                  <span className="text-gray-300 text-xs font-['Manrope'] text-right">{val}</span>
                 </div>
               ))}
             </div>
@@ -142,7 +142,7 @@ const NodeDetailPanel = ({ node, edges, nodes, isAr, onClose, onSelectNode }: Pr
                     </span>
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-gray-300 text-xs font-['Inter'] truncate">{other.label}</p>
+                    <p className="text-gray-300 text-xs font-['Manrope'] truncate">{other.label}</p>
                     <div className="flex items-center gap-1 mt-0.5">
                       <i className={`${isOutgoing ? "ri-arrow-right-line" : "ri-arrow-left-line"} text-[11px]`} style={{ color: edgeCfg.color }} />
                       <span className="text-[11px] font-['JetBrains_Mono']" style={{ color: edgeCfg.color }}>{edge.label}</span>
@@ -164,14 +164,14 @@ const NodeDetailPanel = ({ node, edges, nodes, isAr, onClose, onSelectNode }: Pr
       {/* Actions */}
       <div className="p-3 border-t flex gap-2 flex-shrink-0" style={{ borderColor: "rgba(184,138,60,0.1)" }}>
         <button
-          className="flex-1 py-2 rounded-lg text-xs font-['Inter'] font-semibold cursor-pointer transition-colors"
-          style={{ background: "#D6B47E", color: "#051428" }}
+          className="flex-1 py-2 rounded-lg text-xs font-['Manrope'] font-semibold cursor-pointer transition-colors"
+          style={{ background: "#C5A365", color: "#071426" }}
         >
           <i className="ri-user-search-line mr-1" />
           {isAr ? "ملف 360°" : "360° Profile"}
         </button>
         <button
-          className="flex-1 py-2 rounded-lg text-xs font-['Inter'] cursor-pointer transition-colors"
+          className="flex-1 py-2 rounded-lg text-xs font-['Manrope'] cursor-pointer transition-colors"
           style={{ background: "rgba(201,74,94,0.1)", border: "1px solid rgba(201,74,94,0.2)", color: "#C94A5E" }}
         >
           <i className="ri-eye-line mr-1" />

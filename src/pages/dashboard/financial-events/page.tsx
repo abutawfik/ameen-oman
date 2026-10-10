@@ -31,7 +31,7 @@ const EVENT_CARDS: EventCard[] = [
     labelAr: "صرف عملة",
     desc: "Record foreign currency exchange with full customer identity and transaction details",
     descAr: "تسجيل معاملة صرف عملة أجنبية مع هوية العميل وتفاصيل المعاملة",
-    color: "#D6B47E",
+    color: "#C5A365",
     bgColor: "rgba(184,138,60,0.08)",
     borderColor: "rgba(184,138,60,0.25)",
     code: "FIN_EXCHANGE",
@@ -82,7 +82,7 @@ const FinancialEventsPage = () => {
   const activeCard = EVENT_CARDS.find((c) => c.id === activeEvent);
 
   return (
-    <div className="min-h-screen font-['Inter']" style={{ background: "#051428" }} dir={isAr ? "rtl" : "ltr"}>
+    <div className="min-h-screen font-['Manrope']" style={{ background: "#071426" }} dir={isAr ? "rtl" : "ltr"}>
       <div
         className="fixed inset-0 pointer-events-none"
         style={{
@@ -99,7 +99,7 @@ const FinancialEventsPage = () => {
           ...(activeEvent ? [{ label: isAr ? "الأحداث" : "Events", onClick: () => setActiveEvent(null) }] : []),
         ]}
         icon="ri-bank-line"
-        iconColor="#D6B47E"
+        iconColor="#C5A365"
         badge="Al-Ameen Portal"
         isAr={isAr}
         action={
@@ -192,7 +192,7 @@ const FinancialEventsPage = () => {
 
             <div className="flex items-start gap-3 px-5 py-4 rounded-xl border" style={{ background: "rgba(201,74,94,0.04)", borderColor: "rgba(201,74,94,0.15)" }}>
               <i className="ri-shield-check-line text-red-400 text-sm mt-0.5 flex-shrink-0" />
-              <p className="text-gray-400 text-sm font-['Inter']">
+              <p className="text-gray-400 text-sm font-['Manrope']">
                 {isAr
                   ? "جميع المعاملات المالية تخضع لمتطلبات AML/KYC. التحويلات فوق 1000 LCY والمعاملات النقدية فوق 5000 LCY تُبلَّغ تلقائياً إلى Al-Ameen."
                   : "All financial transactions are subject to AML/KYC requirements. Transfers above 1000 LCY and cash transactions above 5000 LCY are auto-reported to Al-Ameen."}

@@ -34,7 +34,7 @@ const EVENT_CARDS: EventCard[] = [
     labelAr: "شراء شريحة SIM",
     desc: "Register new SIM sale with full subscriber, document and device details",
     descAr: "تسجيل بيع شريحة جديدة مع بيانات المشترك والوثائق والجهاز",
-    color: "#D6B47E",
+    color: "#C5A365",
     bgColor: "rgba(184,138,60,0.08)",
     borderColor: "rgba(184,138,60,0.25)",
     code: "MOB_SIM_PURCHASE",
@@ -113,8 +113,8 @@ const MobileEventsPage = () => {
 
   return (
     <div
-      className="min-h-screen font-['Inter']"
-      style={{ background: "#051428" }}
+      className="min-h-screen font-['Manrope']"
+      style={{ background: "#071426" }}
       dir={isAr ? "rtl" : "ltr"}
     >
       {/* Background grid */}
@@ -258,7 +258,7 @@ const MobileEventsPage = () => {
               style={{ background: "rgba(250,204,21,0.04)", borderColor: "rgba(250,204,21,0.15)" }}
             >
               <i className="ri-git-merge-line text-yellow-400 text-sm mt-0.5 flex-shrink-0" />
-              <p className="text-gray-400 text-sm font-['Inter']">
+              <p className="text-gray-400 text-sm font-['Manrope']">
                 {isAr
                   ? "ملاحظة: مشغّلو الاتصالات الذين لديهم أنظمة CRM متعددة (مثل عُمانتل، أوريدو) يرسلون البيانات عبر API. تقوم منصة Al-Ameen بإزالة التكرار تلقائياً لكل مشغّل."
                   : "Note: Mobile operators with multiple CRMs (e.g., Omantel, Ooredoo) each push via API. Al-Ameen automatically deduplicates per operator."}

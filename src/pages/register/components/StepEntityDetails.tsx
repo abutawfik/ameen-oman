@@ -18,7 +18,7 @@ interface Props {
   isAr: boolean;
 }
 
-const inputBase = "w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none transition-all font-['Inter']";
+const inputBase = "w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none transition-all font-['Manrope']";
 const inputStyle = { background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" };
 const selectStyle = { background: "rgba(10,37,64,0.95)", border: "1px solid rgba(255,255,255,0.08)" };
 
@@ -32,7 +32,7 @@ const onBlurDefault = (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement 
 interface FieldProps { label: string; required?: boolean; children: React.ReactNode; }
 const Field = ({ label, required, children }: FieldProps) => (
   <div>
-    <label className="block text-gray-400 text-xs mb-1.5 font-['Inter']">
+    <label className="block text-gray-400 text-xs mb-1.5 font-['Manrope']">
       {label}
       {required && <span className="text-red-400 ml-1">*</span>}
     </label>
@@ -120,8 +120,8 @@ const StepEntityDetails = ({ entityType, data, onChange, isAr }: Props) => {
 
   return (
     <div>
-      <h3 className="text-white font-bold text-xl font-['Inter'] mb-1">{t.title}</h3>
-      <p className="text-gray-500 text-sm font-['Inter'] mb-6">{t.subtitle}</p>
+      <h3 className="text-white font-bold text-xl font-['Manrope'] mb-1">{t.title}</h3>
+      <p className="text-gray-500 text-sm font-['Manrope'] mb-6">{t.subtitle}</p>
 
       <div className="space-y-6">
         {/* Entity Names */}
@@ -150,7 +150,7 @@ const StepEntityDetails = ({ entityType, data, onChange, isAr }: Props) => {
             <select
               value={data.governorate || ""}
               onChange={(e) => onChange("governorate", e.target.value)}
-              className="w-full px-3 py-2.5 rounded-lg text-sm text-white outline-none cursor-pointer font-['Inter']"
+              className="w-full px-3 py-2.5 rounded-lg text-sm text-white outline-none cursor-pointer font-['Manrope']"
               style={selectStyle}
               onFocus={onFocusCyan}
               onBlur={onBlurDefault}
@@ -204,7 +204,7 @@ const StepEntityDetails = ({ entityType, data, onChange, isAr }: Props) => {
                 <select
                   value={data.stars || ""}
                   onChange={(e) => onChange("stars", e.target.value)}
-                  className="w-full px-3 py-2.5 rounded-lg text-sm text-white outline-none cursor-pointer font-['Inter']"
+                  className="w-full px-3 py-2.5 rounded-lg text-sm text-white outline-none cursor-pointer font-['Manrope']"
                   style={selectStyle}
                 >
                   <option value="">{isAr ? "اختر" : "Select"}</option>
@@ -226,7 +226,7 @@ const StepEntityDetails = ({ entityType, data, onChange, isAr }: Props) => {
               >
                 <div className="flex items-center gap-2 mb-3">
                   <i className="ri-building-4-line text-gold-400 text-sm" />
-                  <span className="text-gold-400 text-xs font-semibold font-['Inter']">
+                  <span className="text-gold-400 text-xs font-semibold font-['Manrope']">
                     {isAr ? "إعداد متعدد الفروع" : "Multi-Property Setup"}
                   </span>
                 </div>
@@ -250,7 +250,7 @@ const StepEntityDetails = ({ entityType, data, onChange, isAr }: Props) => {
                       </button>
                     </div>
                   </Field>
-                  <p className="text-gray-500 text-xs font-['Inter'] mt-4">{t.branchNote}</p>
+                  <p className="text-gray-500 text-xs font-['Manrope'] mt-4">{t.branchNote}</p>
                 </div>
               </div>
             )}
@@ -277,7 +277,7 @@ const StepEntityDetails = ({ entityType, data, onChange, isAr }: Props) => {
               <select
                 value={data.instType || ""}
                 onChange={(e) => onChange("instType", e.target.value)}
-                className="w-full px-3 py-2.5 rounded-lg text-sm text-white outline-none cursor-pointer font-['Inter']"
+                className="w-full px-3 py-2.5 rounded-lg text-sm text-white outline-none cursor-pointer font-['Manrope']"
                 style={selectStyle}
               >
                 <option value="">{isAr ? "اختر" : "Select"}</option>
@@ -297,7 +297,7 @@ const StepEntityDetails = ({ entityType, data, onChange, isAr }: Props) => {
               <select
                 value={data.svcType || ""}
                 onChange={(e) => onChange("svcType", e.target.value)}
-                className="w-full px-3 py-2.5 rounded-lg text-sm text-white outline-none cursor-pointer font-['Inter']"
+                className="w-full px-3 py-2.5 rounded-lg text-sm text-white outline-none cursor-pointer font-['Manrope']"
                 style={selectStyle}
               >
                 <option value="">{isAr ? "اختر" : "Select"}</option>
@@ -318,7 +318,7 @@ const StepEntityDetails = ({ entityType, data, onChange, isAr }: Props) => {
                 <select
                   value={data.transportType || ""}
                   onChange={(e) => onChange("transportType", e.target.value)}
-                  className="w-full px-3 py-2.5 rounded-lg text-sm text-white outline-none cursor-pointer font-['Inter']"
+                  className="w-full px-3 py-2.5 rounded-lg text-sm text-white outline-none cursor-pointer font-['Manrope']"
                   style={selectStyle}
                 >
                   <option value="">{isAr ? "اختر" : "Select"}</option>
@@ -343,7 +343,7 @@ const StepEntityDetails = ({ entityType, data, onChange, isAr }: Props) => {
                 <select
                   value={data.eduType || ""}
                   onChange={(e) => onChange("eduType", e.target.value)}
-                  className="w-full px-3 py-2.5 rounded-lg text-sm text-white outline-none cursor-pointer font-['Inter']"
+                  className="w-full px-3 py-2.5 rounded-lg text-sm text-white outline-none cursor-pointer font-['Manrope']"
                   style={selectStyle}
                 >
                   <option value="">{isAr ? "اختر" : "Select"}</option>
@@ -368,7 +368,7 @@ const StepEntityDetails = ({ entityType, data, onChange, isAr }: Props) => {
                 <select
                   value={data.portType || ""}
                   onChange={(e) => onChange("portType", e.target.value)}
-                  className="w-full px-3 py-2.5 rounded-lg text-sm text-white outline-none cursor-pointer font-['Inter']"
+                  className="w-full px-3 py-2.5 rounded-lg text-sm text-white outline-none cursor-pointer font-['Manrope']"
                   style={selectStyle}
                 >
                   <option value="">{isAr ? "اختر" : "Select"}</option>

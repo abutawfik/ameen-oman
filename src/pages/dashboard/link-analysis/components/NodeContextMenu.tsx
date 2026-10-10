@@ -41,9 +41,9 @@ const NodeContextMenu = ({
     {
       group: isAr ? "توسيع" : "Expand",
       items: [
-        { icon: "ri-node-tree", label: isAr ? "توسيع 1 خطوة" : "Expand 1-hop", action: () => { onExpand(node.id, 1); onClose(); }, color: "#D6B47E" },
-        { icon: "ri-git-branch-line", label: isAr ? "توسيع 2 خطوة" : "Expand 2-hops", action: () => { onExpand(node.id, 2); onClose(); }, color: "#D6B47E" },
-        { icon: "ri-share-line", label: isAr ? "توسيع 3 خطوات" : "Expand 3-hops", action: () => { onExpand(node.id, 3); onClose(); }, color: "#D6B47E" },
+        { icon: "ri-node-tree", label: isAr ? "توسيع 1 خطوة" : "Expand 1-hop", action: () => { onExpand(node.id, 1); onClose(); }, color: "#C5A365" },
+        { icon: "ri-git-branch-line", label: isAr ? "توسيع 2 خطوة" : "Expand 2-hops", action: () => { onExpand(node.id, 2); onClose(); }, color: "#C5A365" },
+        { icon: "ri-share-line", label: isAr ? "توسيع 3 خطوات" : "Expand 3-hops", action: () => { onExpand(node.id, 3); onClose(); }, color: "#C5A365" },
       ],
     },
     {
@@ -88,7 +88,7 @@ const NodeContextMenu = ({
           <i className={`${cfg.icon} text-sm`} style={{ color: cfg.color }} />
         </div>
         <div className="min-w-0">
-          <p className="text-white text-xs font-semibold font-['Inter'] truncate">{node.label}</p>
+          <p className="text-white text-xs font-semibold font-['Manrope'] truncate">{node.label}</p>
           <div className="flex items-center gap-1.5 mt-0.5">
             <span className="text-gray-500 text-[11px] font-['JetBrains_Mono'] uppercase">{node.type}</span>
             <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: riskColors[node.risk] }} />
@@ -114,7 +114,7 @@ const NodeContextMenu = ({
               <div className="w-5 h-5 flex items-center justify-center flex-shrink-0">
                 <i className={`${item.icon} text-sm`} style={{ color: item.color }} />
               </div>
-              <span className="text-xs text-gray-300 font-['Inter']">{item.label}</span>
+              <span className="text-xs text-gray-300 font-['Manrope']">{item.label}</span>
             </button>
           ))}
           {gi < menuItems.length - 1 && (

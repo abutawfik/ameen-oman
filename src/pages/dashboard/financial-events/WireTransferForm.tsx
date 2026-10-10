@@ -116,7 +116,7 @@ const WireTransferForm = ({ isAr, onCancel }: Props) => {
       {/* Amber auto-flag note */}
       <div className="flex items-start gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(201,138,27,0.06)", borderColor: "rgba(201,138,27,0.25)" }}>
         <i className="ri-alarm-warning-line text-orange-400 text-sm mt-0.5 flex-shrink-0" />
-        <p className="text-orange-400 text-sm font-['Inter']">
+        <p className="text-orange-400 text-sm font-['Manrope']">
           {isAr
             ? "تنبيه: التحويلات فوق 1000 LCY أو إلى دول عالية المخاطر تُبلَّغ تلقائياً إلى Al-Ameen."
             : "Transfers >1000 LCY or to high-risk jurisdictions are auto-flagged and reported to Al-Ameen."}
@@ -127,7 +127,7 @@ const WireTransferForm = ({ isAr, onCancel }: Props) => {
       {isFlagged && (
         <div className="flex items-center gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(201,74,94,0.08)", borderColor: "rgba(201,74,94,0.3)" }}>
           <div className="w-2.5 h-2.5 rounded-full bg-red-400 animate-pulse flex-shrink-0" />
-          <p className="text-red-400 text-sm font-bold font-['Inter']">
+          <p className="text-red-400 text-sm font-bold font-['Manrope']">
             {isAr ? "هذه المعاملة مُبلَّغ عنها تلقائياً" : "This transaction is auto-flagged"}
             {isHighAmount && ` — ${isAr ? "مبلغ مرتفع" : "High Amount"}`}
             {isHighRisk && ` — ${isAr ? "دولة عالية المخاطر" : "High-Risk Jurisdiction"}`}

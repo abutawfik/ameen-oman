@@ -29,7 +29,7 @@ const INITIAL_TRIPS: TripRecord[] = [
 ];
 
 const typeIcon = (t: TripRecord["type"]) => t === "bus" ? "ri-bus-line" : t === "taxi" ? "ri-taxi-line" : "ri-car-line";
-const typeColor = (t: TripRecord["type"]) => t === "bus" ? "#D6B47E" : t === "taxi" ? "#4ADE80" : "#A78BFA";
+const typeColor = (t: TripRecord["type"]) => t === "bus" ? "#C5A365" : t === "taxi" ? "#4ADE80" : "#A78BFA";
 const matchIcon = (m: TripRecord["matchMethod"]) => {
   if (m === "transit-card") return "ri-bank-card-line";
   if (m === "phone") return "ri-smartphone-line";
@@ -92,7 +92,7 @@ const RecentTripsFeed = ({ isAr }: Props) => {
               style={{
                 background: filter === f ? (f === "flagged" ? "rgba(201,74,94,0.15)" : "rgba(184,138,60,0.15)") : "rgba(255,255,255,0.04)",
                 border: `1px solid ${filter === f ? (f === "flagged" ? "rgba(201,74,94,0.4)" : "rgba(184,138,60,0.4)") : "rgba(255,255,255,0.08)"}`,
-                color: filter === f ? (f === "flagged" ? "#C94A5E" : "#D6B47E") : "#6B7280",
+                color: filter === f ? (f === "flagged" ? "#C94A5E" : "#C5A365") : "#6B7280",
               }}>
               {f === "all" ? (isAr ? "الكل" : "All") : f === "bus" ? (isAr ? "حافلة" : "Bus") : f === "taxi" ? (isAr ? "تاكسي" : "Taxi") : f === "ride-hail" ? (isAr ? "توصيل" : "Ride-Hail") : (isAr ? "مُبلَّغ" : "Flagged")}
             </button>

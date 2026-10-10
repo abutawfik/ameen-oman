@@ -54,7 +54,7 @@ const FeatureVectorInspector = ({ isAr, vector }: { isAr: boolean; vector: Featu
         style={{ background: open ? "rgba(184,138,60,0.06)" : "transparent" }}
       >
         <div className="flex items-center gap-2">
-          <i className={`ri-code-s-slash-line text-base`} style={{ color: "#D6B47E" }} />
+          <i className={`ri-code-s-slash-line text-base`} style={{ color: "#C5A365" }} />
           <h3 className="text-white text-sm font-bold">
             {isAr ? "متجه الميزات" : "Feature Vector"}
             <span className="ml-2 text-[11px] tracking-widest font-['JetBrains_Mono'] px-2 py-0.5 rounded"
@@ -83,7 +83,7 @@ const FeatureVectorInspector = ({ isAr, vector }: { isAr: boolean; vector: Featu
             </p>
             <button onClick={copyJson}
               className="px-3 py-1 rounded-md text-[11px] font-bold font-['JetBrains_Mono'] tracking-widest cursor-pointer flex items-center gap-1.5"
-              style={{ background: "rgba(184,138,60,0.06)", border: "1px solid #D6B47E55", color: "#D6B47E" }}>
+              style={{ background: "rgba(184,138,60,0.06)", border: "1px solid #C5A36555", color: "#C5A365" }}>
               <i className={copied ? "ri-check-line" : "ri-file-copy-line"} />
               {copied ? (isAr ? "تم النسخ" : "COPIED") : (isAr ? "نسخ JSON" : "COPY JSON")}
             </button>
@@ -99,7 +99,7 @@ const FeatureVectorInspector = ({ isAr, vector }: { isAr: boolean; vector: Featu
                     onClick={() => setOpenGroups((prev) => ({ ...prev, [g.key]: !groupOpen }))}
                     className="w-full flex items-center justify-between px-3 py-1.5 cursor-pointer text-left">
                     <span className="text-[11px] font-bold tracking-widest uppercase font-['JetBrains_Mono']"
-                      style={{ color: "#D6B47E" }}>
+                      style={{ color: "#C5A365" }}>
                       {isAr ? g.labelAr : g.labelEn} · <span className="text-gray-500">{g.fields.length}</span>
                     </span>
                     <i className={groupOpen ? "ri-arrow-up-s-line text-gray-500" : "ri-arrow-down-s-line text-gray-500"} />
@@ -119,7 +119,7 @@ const FeatureVectorInspector = ({ isAr, vector }: { isAr: boolean; vector: Featu
                             <span className="text-[11px] font-['JetBrains_Mono'] text-gray-400 w-56 truncate">{String(f)}</span>
                             <span className="text-gray-600 text-[11px]">:</span>
                             <span className="text-[11px] font-['JetBrains_Mono'] font-bold"
-                              style={{ color: missing ? "#C98A1B" : "#D6B47E" }}>
+                              style={{ color: missing ? "#C98A1B" : "#C5A365" }}>
                               {renderFeatureValue(val)}
                             </span>
                             {missing && (

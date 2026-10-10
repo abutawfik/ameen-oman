@@ -55,9 +55,9 @@ const ConfirmBanner = ({ refCode, label, color, onReset, isAr }: { refCode: stri
     <p className="text-gray-400 text-sm mb-6">{label}</p>
     <div className="px-8 py-4 rounded-2xl border mb-8 w-full max-w-md" style={{ background: "rgba(184,138,60,0.04)", borderColor: "rgba(184,138,60,0.15)" }}>
       <p className="text-gray-500 text-xs mb-1 uppercase tracking-widest">{isAr ? "رمز المرجع" : "Reference Code"}</p>
-      <p className="text-xl font-bold font-['JetBrains_Mono'] tracking-wider" style={{ color: "#D6B47E" }}>{refCode}</p>
+      <p className="text-xl font-bold font-['JetBrains_Mono'] tracking-wider" style={{ color: "#C5A365" }}>{refCode}</p>
     </div>
-    <button type="button" onClick={onReset} className="flex items-center gap-2 px-6 py-2.5 rounded-lg text-sm font-bold cursor-pointer whitespace-nowrap" style={{ background: "#D6B47E", color: "#051428" }}>
+    <button type="button" onClick={onReset} className="flex items-center gap-2 px-6 py-2.5 rounded-lg text-sm font-bold cursor-pointer whitespace-nowrap" style={{ background: "#C5A365", color: "#071426" }}>
       <i className="ri-add-line" />{isAr ? "تسجيل رحلة أخرى" : "Record Another Trip"}
     </button>
   </div>
@@ -69,13 +69,13 @@ const BusJourneyForm = ({ isAr, onCancel }: { isAr: boolean; onCancel: () => voi
   const [saving, setSaving] = useState(false); const [confirmed, setConfirmed] = useState(false); const [refCode, setRefCode] = useState("");
 
   const handleSave = () => { setSaving(true); setTimeout(() => { setSaving(false); setRefCode(genRef("BUS")); setConfirmed(true); }, 1400); };
-  if (confirmed) return <ConfirmBanner refCode={refCode} label={isAr ? "رحلة حافلة — شركة الحافلات الوطنية" : "Bus Journey — National Bus Co."} color="#D6B47E" onReset={() => setConfirmed(false)} isAr={isAr} />;
+  if (confirmed) return <ConfirmBanner refCode={refCode} label={isAr ? "رحلة حافلة — شركة الحافلات الوطنية" : "Bus Journey — National Bus Co."} color="#C5A365" onReset={() => setConfirmed(false)} isAr={isAr} />;
 
   return (
     <div className="space-y-5">
       <TipBanner text={isAr ? "بيانات الحافلة تُرسَل تلقائياً عبر API من شركة الحافلات الوطنية. هذا النموذج للإدخال اليدوي فقط." : "Bus data is auto-submitted via API from National Bus Co. This form is for manual entry only."} color="cyan" />
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
-        <SectionCard title={isAr ? "تفاصيل الرحلة" : "Journey Details"} icon="ri-bus-line" accentColor="#D6B47E">
+        <SectionCard title={isAr ? "تفاصيل الرحلة" : "Journey Details"} icon="ri-bus-line" accentColor="#C5A365">
           <div className="space-y-4">
             <FormField label={isAr ? "معرّف البطاقة" : "Card ID"} required>
               <TextInput placeholder="CARD-XXXXXXXXXXXX" value={cardId} onChange={(e) => setCardId(e.target.value)} className="font-['JetBrains_Mono']" />
@@ -195,7 +195,7 @@ const TaxiTripForm = ({ isAr, onCancel }: { isAr: boolean; onCancel: () => void 
               <p className="text-gray-400 text-xs">{isAr ? "Al-Ameen يطابق الراكب باستخدام: وثيقة السفر المسجّلة، رقم الهاتف (تدفق SIM)، أو بطاقة الدفع." : "Al-Ameen matches passenger using: registered travel document, phone number (SIM stream), or payment card."}</p>
             </div>
             {[
-              { icon: "ri-bank-card-line", color: "#D6B47E", label: isAr ? "بطاقة عبور → وثيقة" : "Transit Card → Document" },
+              { icon: "ri-bank-card-line", color: "#C5A365", label: isAr ? "بطاقة عبور → وثيقة" : "Transit Card → Document" },
               { icon: "ri-smartphone-line", color: "#4ADE80", label: isAr ? "رقم الهاتف → تدفق SIM" : "Phone Number → SIM Stream" },
               { icon: "ri-secure-payment-line", color: "#A78BFA", label: isAr ? "بطاقة دفع → التدفق المالي" : "Payment Card → Financial Stream" },
             ].map((m) => (
@@ -292,7 +292,7 @@ const RideHailTripForm = ({ isAr, onCancel }: { isAr: boolean; onCancel: () => v
 };
 
 const FORM_CARDS = [
-  { id: "bus" as FormType, icon: "ri-bus-line", label: "Bus Journey", labelAr: "رحلة حافلة", desc: "Record bus journey with card ID, route, boarding/alighting stop and fare", descAr: "تسجيل رحلة حافلة مع معرّف البطاقة والخط ومحطات الصعود والنزول والأجرة", color: "#D6B47E", code: "AMN-TRN-BUS" },
+  { id: "bus" as FormType, icon: "ri-bus-line", label: "Bus Journey", labelAr: "رحلة حافلة", desc: "Record bus journey with card ID, route, boarding/alighting stop and fare", descAr: "تسجيل رحلة حافلة مع معرّف البطاقة والخط ومحطات الصعود والنزول والأجرة", color: "#C5A365", code: "AMN-TRN-BUS" },
   { id: "taxi" as FormType, icon: "ri-taxi-line", label: "Taxi Trip", labelAr: "رحلة تاكسي", desc: "Record taxi trip with booking ref, pickup/dropoff, distance, fare and payment", descAr: "تسجيل رحلة تاكسي مع مرجع الحجز والاستلام والإنزال والمسافة والأجرة", color: "#4ADE80", code: "AMN-TRN-TAXI" },
   { id: "ridehail" as FormType, icon: "ri-car-line", label: "Ride-Hail Trip", labelAr: "رحلة توصيل", desc: "Record ride-hail trip with GPS coordinates, driver ID, vehicle plate and passenger phone", descAr: "تسجيل رحلة توصيل مع إحداثيات GPS ومعرّف السائق ولوحة المركبة وهاتف الراكب", color: "#A78BFA", code: "AMN-TRN-RH" },
 ];

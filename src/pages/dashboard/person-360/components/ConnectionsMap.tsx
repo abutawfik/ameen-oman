@@ -15,7 +15,7 @@ const riskColors: Record<string, string> = {
 };
 
 const edgeColors: Record<string, string> = {
-  "co-guest":       "#D6B47E",
+  "co-guest":       "#C5A365",
   "shared-imei":    "#C94A5E",
   "co-tenant":      "#4ADE80",
   "co-driver":      "#C98A1B",
@@ -66,12 +66,12 @@ const ConnectionsMap = ({ nodes, edges, isAr }: Props) => {
     >
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
-          <h3 className="text-white font-bold font-['Inter'] text-sm uppercase tracking-wider">
+          <h3 className="text-white font-bold font-['Manrope'] text-sm uppercase tracking-wider">
             {isAr ? "خريطة الاتصالات" : "Connections Map"}
           </h3>
           <span
             className="px-2 py-0.5 rounded-full text-xs font-['JetBrains_Mono']"
-            style={{ background: "rgba(184,138,60,0.1)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}
+            style={{ background: "rgba(184,138,60,0.1)", color: "#C5A365", border: "1px solid rgba(184,138,60,0.2)" }}
           >
             {nodes.length - 1} {isAr ? "اتصال" : "connections"}
           </span>
@@ -104,7 +104,7 @@ const ConnectionsMap = ({ nodes, edges, isAr }: Props) => {
           <svg className="absolute inset-0 w-full h-full opacity-10" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <pattern id="conn-grid" width="30" height="30" patternUnits="userSpaceOnUse">
-                <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#D6B47E" strokeWidth="0.3" />
+                <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#C5A365" strokeWidth="0.3" />
               </pattern>
             </defs>
             <rect width="100%" height="100%" fill="url(#conn-grid)" />
@@ -118,7 +118,7 @@ const ConnectionsMap = ({ nodes, edges, isAr }: Props) => {
               if (!fromNode || !toNode) return null;
               const from = getNodePos(fromNode);
               const to = getNodePos(toNode);
-              const color = edgeColors[edge.type] || "#D6B47E";
+              const color = edgeColors[edge.type] || "#C5A365";
               const isHighlighted = selectedNode
                 ? (edge.from === selectedNode || edge.to === selectedNode)
                 : true;
@@ -196,7 +196,7 @@ const ConnectionsMap = ({ nodes, edges, isAr }: Props) => {
                     fill={color}
                     fontSize={isMain ? "11" : "9"}
                     fontWeight="bold"
-                    fontFamily="Inter, sans-serif"
+                    fontFamily="Manrope, sans-serif"
                   >
                     {node.initials}
                   </text>
@@ -206,7 +206,7 @@ const ConnectionsMap = ({ nodes, edges, isAr }: Props) => {
                     textAnchor="middle"
                     fill="#D1D5DB"
                     fontSize="8.5"
-                    fontFamily="Inter, sans-serif"
+                    fontFamily="Manrope, sans-serif"
                   >
                     {node.name.split(" ").slice(0, 2).join(" ")}
                   </text>
@@ -241,7 +241,7 @@ const ConnectionsMap = ({ nodes, edges, isAr }: Props) => {
               {Object.entries(edgeTypeLabels).map(([type, labels]) => (
                 <div key={type} className="flex items-center gap-2">
                   <div className="w-6 h-0.5 rounded-full flex-shrink-0" style={{ background: edgeColors[type] }} />
-                  <span className="text-gray-400 text-[11px] font-['Inter']">{isAr ? labels.ar : labels.en}</span>
+                  <span className="text-gray-400 text-[11px] font-['Manrope']">{isAr ? labels.ar : labels.en}</span>
                 </div>
               ))}
             </div>
@@ -263,7 +263,7 @@ const ConnectionsMap = ({ nodes, edges, isAr }: Props) => {
             ].map((r) => (
               <div key={r.level} className="flex items-center gap-2 mb-1.5">
                 <div className="w-3 h-3 rounded-full flex-shrink-0" style={{ background: riskColors[r.level] }} />
-                <span className="text-gray-400 text-[11px] font-['Inter']">{isAr ? r.labelAr : r.label}</span>
+                <span className="text-gray-400 text-[11px] font-['Manrope']">{isAr ? r.labelAr : r.label}</span>
               </div>
             ))}
           </div>
@@ -281,12 +281,12 @@ const ConnectionsMap = ({ nodes, edges, isAr }: Props) => {
                 {isAr ? "تفاصيل الاتصال" : "Connection Detail"}
               </p>
               <div
-                className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold font-['Inter'] mb-2"
+                className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold font-['Manrope'] mb-2"
                 style={{ background: `${riskColors[selectedNodeData.riskLevel]}22`, color: riskColors[selectedNodeData.riskLevel], border: `2px solid ${riskColors[selectedNodeData.riskLevel]}` }}
               >
                 {selectedNodeData.initials}
               </div>
-              <p className="text-white text-xs font-bold font-['Inter'] mb-2">{selectedNodeData.name}</p>
+              <p className="text-white text-xs font-bold font-['Manrope'] mb-2">{selectedNodeData.name}</p>
               <div className="space-y-1 mb-3">
                 {[
                   { k: "Doc",         v: selectedNodeData.docNumber },
@@ -319,7 +319,7 @@ const ConnectionsMap = ({ nodes, edges, isAr }: Props) => {
               )}
               <button
                 className="w-full py-1.5 rounded text-[11px] font-['JetBrains_Mono'] cursor-pointer transition-colors"
-                style={{ background: "rgba(184,138,60,0.1)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}
+                style={{ background: "rgba(184,138,60,0.1)", color: "#C5A365", border: "1px solid rgba(184,138,60,0.2)" }}
               >
                 <i className="ri-user-search-line mr-1" />
                 {isAr ? "عرض الملف الشخصي" : "View Profile"}

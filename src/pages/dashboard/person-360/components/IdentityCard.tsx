@@ -89,7 +89,7 @@ const IdentityCard = ({ person, isAr }: Props) => {
           {/* Status dot */}
           <div
             className="absolute -bottom-2 -right-2 w-7 h-7 rounded-full flex items-center justify-center border-2"
-            style={{ background: status.color, borderColor: "#051428", boxShadow: `0 0 10px ${status.color}` }}
+            style={{ background: status.color, borderColor: "#071426", boxShadow: `0 0 10px ${status.color}` }}
           >
             <i className={`${status.icon} text-xs text-black`} />
           </div>
@@ -101,7 +101,7 @@ const IdentityCard = ({ person, isAr }: Props) => {
         </div>
         <div
           className="px-3 py-1 rounded-full text-xs font-['JetBrains_Mono'] font-bold"
-          style={{ background: "rgba(184,138,60,0.1)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.3)" }}
+          style={{ background: "rgba(184,138,60,0.1)", color: "#C5A365", border: "1px solid rgba(184,138,60,0.3)" }}
         >
           {person.id}
         </div>
@@ -117,7 +117,7 @@ const IdentityCard = ({ person, isAr }: Props) => {
       {/* Identity Details */}
       <div className="flex-1 min-w-0">
         <div className="mb-3">
-          <h2 className="text-2xl font-black text-white font-['Inter'] leading-tight">{person.nameEn}</h2>
+          <h2 className="text-2xl font-black text-white font-['Manrope'] leading-tight">{person.nameEn}</h2>
           <p className="text-gray-400 text-lg font-['Noto_Naskh_Arabic'] mt-0.5">{person.nameAr}</p>
         </div>
 
@@ -134,7 +134,7 @@ const IdentityCard = ({ person, isAr }: Props) => {
               <p className="text-gray-600 text-[11px] uppercase tracking-wider font-['JetBrains_Mono'] mb-0.5">
                 {isAr ? field.labelAr : field.label}
               </p>
-              <p className={`text-white text-sm ${field.mono ? "font-['JetBrains_Mono']" : "font-['Inter']"}`}>
+              <p className={`text-white text-sm ${field.mono ? "font-['JetBrains_Mono']" : "font-['Manrope']"}`}>
                 {field.value}
               </p>
             </div>
@@ -151,7 +151,7 @@ const IdentityCard = ({ person, isAr }: Props) => {
         >
           <i className={`ri-visa-line text-sm ${visaExpirySoon ? "text-red-400" : "text-gold-400"}`} />
           <div className="flex-1">
-            <span className="text-white text-xs font-['Inter'] font-medium">{person.visaType} Visa</span>
+            <span className="text-white text-xs font-['Manrope'] font-medium">{person.visaType} Visa</span>
             <span className="text-gray-500 text-xs font-['JetBrains_Mono'] ml-2">Expires: {person.visaExpiry}</span>
           </div>
           {visaExpirySoon ? (
@@ -181,11 +181,11 @@ const IdentityCard = ({ person, isAr }: Props) => {
             <span className="text-gray-600 text-xs font-['JetBrains_Mono'] ml-auto">{person.lastSeen}</span>
           </div>
           <div className="flex items-center justify-between">
-            <span className="text-white text-sm font-['Inter']">{person.lastLocation}</span>
+            <span className="text-white text-sm font-['Manrope']">{person.lastLocation}</span>
             <button
               onClick={() => setMapExpanded(!mapExpanded)}
               className="text-xs px-2.5 py-1 rounded cursor-pointer transition-colors font-['JetBrains_Mono'] flex items-center gap-1"
-              style={{ color: "#D6B47E", border: "1px solid rgba(184,138,60,0.3)", background: "rgba(184,138,60,0.05)" }}
+              style={{ color: "#C5A365", border: "1px solid rgba(184,138,60,0.3)", background: "rgba(184,138,60,0.05)" }}
             >
               <i className={`${mapExpanded ? "ri-map-pin-2-line" : "ri-map-2-line"} text-xs`} />
               {mapExpanded ? (isAr ? "إخفاء" : "Hide Map") : (isAr ? "عرض الخريطة" : "View Map")}
@@ -219,7 +219,7 @@ const IdentityCard = ({ person, isAr }: Props) => {
         <div className="w-full space-y-2 mt-1">
           {[
             { label: "Pattern Alerts",   labelAr: "تنبيهات الأنماط",  value: "8",           color: "#C94A5E" },
-            { label: "Active Streams",   labelAr: "التدفقات النشطة",  value: "12/15",       color: "#D6B47E" },
+            { label: "Active Streams",   labelAr: "التدفقات النشطة",  value: "12/15",       color: "#C5A365" },
             { label: "Days In-Country",  labelAr: "أيام داخل البلاد", value: `${daysInCountry}`, color: "#FACC15" },
             { label: "Connections",      labelAr: "الاتصالات",        value: "7",           color: "#A78BFA" },
           ].map((stat) => (
@@ -241,7 +241,7 @@ const IdentityCard = ({ person, isAr }: Props) => {
           </button>
           <button
             className="w-full flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-['JetBrains_Mono'] cursor-pointer transition-all whitespace-nowrap"
-            style={{ background: "rgba(184,138,60,0.08)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}
+            style={{ background: "rgba(184,138,60,0.08)", color: "#C5A365", border: "1px solid rgba(184,138,60,0.2)" }}
           >
             <i className="ri-team-line text-xs" />
             {isAr ? "نشر فريق ميداني" : "Deploy Field Team"}

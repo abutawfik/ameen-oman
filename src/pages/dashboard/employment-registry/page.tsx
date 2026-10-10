@@ -34,7 +34,7 @@ const EVENT_CARDS: EventCard[] = [
     labelAr: "تصريح عمل صادر",
     desc: "Register a new work permit from Ministry of Labour feed or employer submission",
     descAr: "تسجيل تصريح عمل جديد من تغذية وزارة العمل أو إدخال صاحب العمل",
-    color: "#D6B47E", bgColor: "rgba(184,138,60,0.08)", borderColor: "rgba(184,138,60,0.25)",
+    color: "#C5A365", bgColor: "rgba(184,138,60,0.08)", borderColor: "rgba(184,138,60,0.25)",
     code: "EMP_PERMIT_ISSUED",
   },
   {
@@ -86,7 +86,7 @@ const EmploymentRegistryPage = () => {
   const activeCard = EVENT_CARDS.find((c) => c.id === activeEvent);
 
   return (
-    <div className="min-h-screen font-['Inter']" style={{ background: "#051428" }} dir={isAr ? "rtl" : "ltr"}>
+    <div className="min-h-screen font-['Manrope']" style={{ background: "#071426" }} dir={isAr ? "rtl" : "ltr"}>
       <div className="fixed inset-0 pointer-events-none" style={{ backgroundImage: `linear-gradient(rgba(184,138,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.03) 1px, transparent 1px)`, backgroundSize: "40px 40px" }} />
 
       <PageHeader
@@ -134,7 +134,7 @@ const EmploymentRegistryPage = () => {
             style={{
               background: activeTab === tab.id ? "rgba(184,138,60,0.12)" : "transparent",
               border: `1px solid ${activeTab === tab.id ? "rgba(184,138,60,0.25)" : "transparent"}`,
-              color: activeTab === tab.id ? "#D6B47E" : "#6B7280",
+              color: activeTab === tab.id ? "#C5A365" : "#6B7280",
             }}>
             <i className={`${tab.icon} text-xs`} />
             {tab.label}
@@ -199,7 +199,7 @@ const EmploymentRegistryPage = () => {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {[
-                  { icon: "ri-government-line", color: "#D6B47E", title: isAr ? "وزارة العمل" : "Ministry of Labour", desc: isAr ? "تغذية API لإصدار/تجديد/إلغاء تصاريح العمل" : "API feed for work permit issuance/renewal/cancellation" },
+                  { icon: "ri-government-line", color: "#C5A365", title: isAr ? "وزارة العمل" : "Ministry of Labour", desc: isAr ? "تغذية API لإصدار/تجديد/إلغاء تصاريح العمل" : "API feed for work permit issuance/renewal/cancellation" },
                   { icon: "ri-building-line", color: "#4ADE80", title: isAr ? "أصحاب العمل المسجّلون" : "Registered Employers", desc: isAr ? "أحداث تأهيل/إنهاء الموظفين عبر بوابة Al-Ameen أو API" : "Employee onboarding/termination events via Al-Ameen Portal or API" },
                 ].map((src) => (
                   <div key={src.title} className="flex items-start gap-3 px-4 py-3 rounded-xl" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>

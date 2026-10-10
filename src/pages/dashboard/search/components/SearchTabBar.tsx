@@ -28,7 +28,7 @@ export default function SearchTabBar({ active, onChange, isAr }: Props) {
               padding: '12px 20px',
               borderTop: 'none', borderLeft: 'none', borderRight: 'none',
               borderBottom: `2px solid ${isActive ? '#B8893C' : 'transparent'}`,
-              color: isActive ? '#D6B47E' : '#5B7494',
+              color: isActive ? '#C5A365' : '#5B7494',
               background: 'none',
               cursor: 'pointer',
               fontFamily: "'JetBrains Mono', monospace",

@@ -68,8 +68,8 @@ const StepIntegration = ({ method, onSelect, apiData, onApiChange, isAr, entityT
 
   return (
     <div>
-      <h3 className="text-white font-bold text-xl font-['Inter'] mb-1">{t.title}</h3>
-      <p className="text-gray-500 text-sm font-['Inter'] mb-6">{t.subtitle}</p>
+      <h3 className="text-white font-bold text-xl font-['Manrope'] mb-1">{t.title}</h3>
+      <p className="text-gray-500 text-sm font-['Manrope'] mb-6">{t.subtitle}</p>
 
       {/* Hotel hospitality note */}
       {entityType === "hotel" && (
@@ -78,7 +78,7 @@ const StepIntegration = ({ method, onSelect, apiData, onApiChange, isAr, entityT
           style={{ borderColor: "rgba(250,204,21,0.3)", background: "rgba(250,204,21,0.04)" }}
         >
           <i className="ri-information-line text-yellow-400 text-sm mt-0.5 flex-shrink-0" />
-          <p className="text-yellow-400/90 text-xs font-['Inter'] leading-relaxed">{t.hotelNote}</p>
+          <p className="text-yellow-400/90 text-xs font-['Manrope'] leading-relaxed">{t.hotelNote}</p>
         </div>
       )}
 
@@ -105,13 +105,13 @@ const StepIntegration = ({ method, onSelect, apiData, onApiChange, isAr, entityT
               <i className="ri-checkbox-circle-fill text-gold-400 text-xl" />
             )}
           </div>
-          <p className="text-white font-bold text-base font-['Inter'] mb-2">{t.portalTitle}</p>
-          <p className="text-gray-500 text-xs leading-relaxed font-['Inter'] mb-4">{t.portalDesc}</p>
+          <p className="text-white font-bold text-base font-['Manrope'] mb-2">{t.portalTitle}</p>
+          <p className="text-gray-500 text-xs leading-relaxed font-['Manrope'] mb-4">{t.portalDesc}</p>
           <div className="space-y-2 w-full">
             {t.portalFeatures.map((f, i) => (
               <div key={i} className="flex items-center gap-2">
                 <i className="ri-check-line text-gold-400 text-xs flex-shrink-0" />
-                <span className="text-gray-400 text-xs font-['Inter']">{f}</span>
+                <span className="text-gray-400 text-xs font-['Manrope']">{f}</span>
               </div>
             ))}
           </div>
@@ -129,7 +129,7 @@ const StepIntegration = ({ method, onSelect, apiData, onApiChange, isAr, entityT
         >
           {isCore && (
             <div
-              className="absolute top-3 right-3 px-2 py-0.5 rounded-full text-xs font-semibold font-['Inter']"
+              className="absolute top-3 right-3 px-2 py-0.5 rounded-full text-xs font-semibold font-['Manrope']"
               style={{ background: "rgba(74,222,128,0.15)", color: "#4ADE80", border: "1px solid rgba(74,222,128,0.3)" }}
             >
               {t.recommended}
@@ -146,13 +146,13 @@ const StepIntegration = ({ method, onSelect, apiData, onApiChange, isAr, entityT
               <i className="ri-checkbox-circle-fill text-gold-400 text-xl" />
             )}
           </div>
-          <p className="text-white font-bold text-base font-['Inter'] mb-2">{t.apiTitle}</p>
-          <p className="text-gray-500 text-xs leading-relaxed font-['Inter'] mb-4">{t.apiDesc}</p>
+          <p className="text-white font-bold text-base font-['Manrope'] mb-2">{t.apiTitle}</p>
+          <p className="text-gray-500 text-xs leading-relaxed font-['Manrope'] mb-4">{t.apiDesc}</p>
           <div className="space-y-2 w-full">
             {t.apiFeatures.map((f, i) => (
               <div key={i} className="flex items-center gap-2">
                 <i className="ri-check-line text-gold-400 text-xs flex-shrink-0" />
-                <span className="text-gray-400 text-xs font-['Inter']">{f}</span>
+                <span className="text-gray-400 text-xs font-['Manrope']">{f}</span>
               </div>
             ))}
           </div>
@@ -172,7 +172,7 @@ const StepIntegration = ({ method, onSelect, apiData, onApiChange, isAr, entityT
 
           {/* API Key */}
           <div>
-            <label className="block text-gray-400 text-xs mb-1.5 font-['Inter']">{t.apiKey}</label>
+            <label className="block text-gray-400 text-xs mb-1.5 font-['Manrope']">{t.apiKey}</label>
             <div className="flex gap-2">
               <div
                 className="flex-1 flex items-center px-3 py-2.5 rounded-lg font-['JetBrains_Mono'] text-xs overflow-hidden"
@@ -192,14 +192,14 @@ const StepIntegration = ({ method, onSelect, apiData, onApiChange, isAr, entityT
               </button>
               <button
                 onClick={generateKey}
-                className="px-4 py-2 rounded-lg text-xs font-semibold cursor-pointer transition-colors font-['Inter'] whitespace-nowrap"
-                style={{ background: "rgba(184,138,60,0.12)", border: "1px solid rgba(184,138,60,0.3)", color: "#D6B47E" }}
+                className="px-4 py-2 rounded-lg text-xs font-semibold cursor-pointer transition-colors font-['Manrope'] whitespace-nowrap"
+                style={{ background: "rgba(184,138,60,0.12)", border: "1px solid rgba(184,138,60,0.3)", color: "#C5A365" }}
               >
                 {keyGenerated ? t.regenerate : t.generate}
               </button>
             </div>
             {keyGenerated && (
-              <p className="text-yellow-400/70 text-xs mt-1.5 font-['Inter'] flex items-center gap-1">
+              <p className="text-yellow-400/70 text-xs mt-1.5 font-['Manrope'] flex items-center gap-1">
                 <i className="ri-alert-line text-xs" />
                 {t.keyNote}
               </p>
@@ -209,7 +209,7 @@ const StepIntegration = ({ method, onSelect, apiData, onApiChange, isAr, entityT
           {/* Endpoints info */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div>
-              <label className="block text-gray-400 text-xs mb-1.5 font-['Inter']">{t.sandboxUrl}</label>
+              <label className="block text-gray-400 text-xs mb-1.5 font-['Manrope']">{t.sandboxUrl}</label>
               <div
                 className="px-3 py-2.5 rounded-lg font-['JetBrains_Mono'] text-xs text-gray-500"
                 style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}
@@ -218,7 +218,7 @@ const StepIntegration = ({ method, onSelect, apiData, onApiChange, isAr, entityT
               </div>
             </div>
             <div>
-              <label className="block text-gray-400 text-xs mb-1.5 font-['Inter']">{t.prodUrl}</label>
+              <label className="block text-gray-400 text-xs mb-1.5 font-['Manrope']">{t.prodUrl}</label>
               <div
                 className="px-3 py-2.5 rounded-lg font-['JetBrains_Mono'] text-xs text-gray-500"
                 style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}
@@ -230,12 +230,12 @@ const StepIntegration = ({ method, onSelect, apiData, onApiChange, isAr, entityT
 
           {/* Webhook */}
           <div>
-            <label className="block text-gray-400 text-xs mb-1.5 font-['Inter']">{t.webhook}</label>
+            <label className="block text-gray-400 text-xs mb-1.5 font-['Manrope']">{t.webhook}</label>
             <input
               value={apiData.webhook || ""}
               onChange={(e) => onApiChange("webhook", e.target.value)}
               placeholder={t.webhookPh}
-              className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none font-['Inter']"
+              className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none font-['Manrope']"
               style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}
               onFocus={(e) => (e.target.style.borderColor = "rgba(184,138,60,0.5)")}
               onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.08)")}
@@ -244,12 +244,12 @@ const StepIntegration = ({ method, onSelect, apiData, onApiChange, isAr, entityT
 
           {/* IP Whitelist */}
           <div>
-            <label className="block text-gray-400 text-xs mb-1.5 font-['Inter']">{t.ipWhitelist}</label>
+            <label className="block text-gray-400 text-xs mb-1.5 font-['Manrope']">{t.ipWhitelist}</label>
             <input
               value={apiData.ipWhitelist || ""}
               onChange={(e) => onApiChange("ipWhitelist", e.target.value)}
               placeholder={t.ipPh}
-              className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none font-['Inter']"
+              className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none font-['Manrope']"
               style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}
               onFocus={(e) => (e.target.style.borderColor = "rgba(184,138,60,0.5)")}
               onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.08)")}
@@ -258,12 +258,12 @@ const StepIntegration = ({ method, onSelect, apiData, onApiChange, isAr, entityT
 
           {/* Rate Limit Tier */}
           <div>
-            <label className="block text-gray-400 text-xs mb-2 font-['Inter']">{t.rateLimit}</label>
+            <label className="block text-gray-400 text-xs mb-2 font-['Manrope']">{t.rateLimit}</label>
             <div className="grid grid-cols-3 gap-2">
               {[
                 { tier: "Standard", desc: "1,000 req/hr", color: "#4ADE80", note: isAr ? "للجهات الصغيرة" : "Small entities" },
                 { tier: "Enhanced", desc: "10,000 req/hr", color: "#FACC15", note: isAr ? "للجهات المتوسطة" : "Medium entities" },
-                { tier: "Enterprise", desc: isAr ? "غير محدود" : "Unlimited", color: "#D6B47E", note: isAr ? "للجهات الكبيرة" : "Large entities" },
+                { tier: "Enterprise", desc: isAr ? "غير محدود" : "Unlimited", color: "#C5A365", note: isAr ? "للجهات الكبيرة" : "Large entities" },
               ].map((r) => (
                 <button
                   key={r.tier}
@@ -274,9 +274,9 @@ const StepIntegration = ({ method, onSelect, apiData, onApiChange, isAr, entityT
                     borderColor: apiData.rateTier === r.tier ? r.color + "60" : "rgba(255,255,255,0.08)",
                   }}
                 >
-                  <span className="text-xs font-bold font-['Inter'] mb-0.5" style={{ color: r.color }}>{r.tier}</span>
+                  <span className="text-xs font-bold font-['Manrope'] mb-0.5" style={{ color: r.color }}>{r.tier}</span>
                   <span className="text-gray-500 text-xs font-['JetBrains_Mono']">{r.desc}</span>
-                  <span className="text-gray-600 text-xs font-['Inter'] mt-0.5">{r.note}</span>
+                  <span className="text-gray-600 text-xs font-['Manrope'] mt-0.5">{r.note}</span>
                 </button>
               ))}
             </div>
@@ -305,7 +305,7 @@ const StepIntegration = ({ method, onSelect, apiData, onApiChange, isAr, entityT
                 <div className="w-5 h-5 flex items-center justify-center flex-shrink-0">
                   <i className={`${item.icon} text-gold-400 text-xs`} />
                 </div>
-                <span className="text-gray-500 text-xs font-['Inter'] w-32 flex-shrink-0">{item.label}</span>
+                <span className="text-gray-500 text-xs font-['Manrope'] w-32 flex-shrink-0">{item.label}</span>
                 <span className="text-gray-300 text-xs font-['JetBrains_Mono']">{item.value}</span>
               </div>
             ))}

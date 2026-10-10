@@ -150,7 +150,7 @@ const AccountOpenedForm = ({ isAr, onCancel }: Props) => {
               <div className="flex items-center justify-between p-3 rounded-xl border" style={{ background: "rgba(255,255,255,0.02)", borderColor: "rgba(255,255,255,0.08)" }}>
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: intlTransfer ? "rgba(184,138,60,0.12)" : "rgba(255,255,255,0.04)", border: `1px solid ${intlTransfer ? "rgba(184,138,60,0.3)" : "rgba(255,255,255,0.08)"}` }}>
-                    <i className="ri-send-plane-line text-sm" style={{ color: intlTransfer ? "#D6B47E" : "#6B7280" }} />
+                    <i className="ri-send-plane-line text-sm" style={{ color: intlTransfer ? "#C5A365" : "#6B7280" }} />
                   </div>
                   <div>
                     <p className="text-white text-sm font-semibold">{isAr ? "التحويل الدولي" : "International Transfer"}</p>
@@ -161,7 +161,7 @@ const AccountOpenedForm = ({ isAr, onCancel }: Props) => {
                   type="button"
                   onClick={() => setIntlTransfer((v) => !v)}
                   className="relative w-11 h-6 rounded-full transition-all duration-300 cursor-pointer flex-shrink-0"
-                  style={{ background: intlTransfer ? "#D6B47E" : "rgba(255,255,255,0.1)" }}
+                  style={{ background: intlTransfer ? "#C5A365" : "rgba(255,255,255,0.1)" }}
                 >
                   <div
                     className="absolute top-0.5 w-5 h-5 rounded-full transition-all duration-300"

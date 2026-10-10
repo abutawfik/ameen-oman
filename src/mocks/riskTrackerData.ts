@@ -121,7 +121,7 @@ export const RISK_SOURCE_STATS: RiskSourceStat[] = [
   { source: 'National Security WL', sourceAr: 'قائمة الأمن الوطني',      icon: 'ri-shield-line',          color: '#4A7AA8', count: 31, delta: 4,  deltaUp: true  },
   { source: 'OFAC / UN Sanctions',  sourceAr: 'قائمة العقوبات',           icon: 'ri-bank-line',            color: '#D4922A', count: 8,  delta: 1,  deltaUp: false },
   { source: 'Customs Alerts',       sourceAr: 'تنبيهات الجمارك',          icon: 'ri-archive-line',         color: '#A78BFA', count: 19, delta: 3,  deltaUp: true  },
-  { source: 'Overstay / Visa',      sourceAr: 'تجاوز مدة الإقامة',        icon: 'ri-passport-line',        color: '#D6B47E', count: 47, delta: 12, deltaUp: false },
+  { source: 'Overstay / Visa',      sourceAr: 'تجاوز مدة الإقامة',        icon: 'ri-passport-line',        color: '#C5A365', count: 47, delta: 12, deltaUp: false },
   { source: 'Financial Crime',      sourceAr: 'الجرائم المالية',           icon: 'ri-money-dollar-circle-line',color:'#4A8E5A', count: 6, delta: 1,  deltaUp: true  },
 ];
 

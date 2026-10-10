@@ -8,19 +8,19 @@ const resultConfig: Record<string, { color: string; bg: string; icon: string }> 
 };
 
 const actionColors: Record<string, string> = {
-  CONFIG_UPDATE:      "#D6B47E",
+  CONFIG_UPDATE:      "#C5A365",
   RULE_ENABLED:       "#4ADE80",
   RULE_MODIFIED:      "#FACC15",
   STREAM_DISABLED:    "#C98A1B",
   DATA_EXPORT:        "#A78BFA",
-  USER_CREATED:       "#D6B47E",
+  USER_CREATED:       "#C5A365",
   LOGIN_FAILED:       "#C94A5E",
   PURGE_APPROVED:     "#C94A5E",
   API_KEY_ROTATED:    "#FACC15",
   PERSON_LOOKUP:      "#38BDF8",
-  RETENTION_UPDATED:  "#D6B47E",
+  RETENTION_UPDATED:  "#C5A365",
   BACKUP_COMPLETED:   "#4ADE80",
-  ALERT_ACKNOWLEDGED: "#D6B47E",
+  ALERT_ACKNOWLEDGED: "#C5A365",
   REPLICATION_ALERT:  "#FACC15",
 };
 
@@ -71,7 +71,7 @@ const AuditTrail = () => {
         </div>
         <button onClick={() => setShowExportModal(true)}
           className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap transition-all"
-          style={{ background: "transparent", border: "1px solid rgba(184,138,60,0.4)", color: "#D6B47E" }}>
+          style={{ background: "transparent", border: "1px solid rgba(184,138,60,0.4)", color: "#C5A365" }}>
           <i className="ri-file-pdf-line" />Export PDF + Digital Signature
         </button>
       </div>
@@ -83,8 +83,8 @@ const AuditTrail = () => {
             <button key={r} onClick={() => setFilterResult(r)}
               className="px-3 py-1.5 rounded-full text-xs font-semibold cursor-pointer whitespace-nowrap capitalize"
               style={{
-                background: filterResult === r ? (r === "all" ? "#D6B47E" : resultConfig[r]?.bg || "rgba(184,138,60,0.1)") : "rgba(255,255,255,0.04)",
-                color: filterResult === r ? (r === "all" ? "#051428" : resultConfig[r]?.color || "#D6B47E") : "#9CA3AF",
+                background: filterResult === r ? (r === "all" ? "#C5A365" : resultConfig[r]?.bg || "rgba(184,138,60,0.1)") : "rgba(255,255,255,0.04)",
+                color: filterResult === r ? (r === "all" ? "#071426" : resultConfig[r]?.color || "#C5A365") : "#9CA3AF",
                 border: filterResult === r ? "none" : "1px solid rgba(255,255,255,0.06)",
               }}>
               {r === "all" ? "All" : r.charAt(0).toUpperCase() + r.slice(1)}
@@ -107,7 +107,7 @@ const AuditTrail = () => {
 
       {/* Table */}
       <div className="rounded-xl overflow-hidden" style={{ border: "1px solid rgba(184,138,60,0.12)" }}>
-        <div className="grid px-4 py-3 text-xs font-semibold uppercase tracking-wider font-['Inter'] text-gray-600"
+        <div className="grid px-4 py-3 text-xs font-semibold uppercase tracking-wider font-['Manrope'] text-gray-600"
           style={{ background: "rgba(184,138,60,0.04)", gridTemplateColumns: "1.6fr 1fr 1.2fr 1.5fr 1fr 1fr" }}>
           <span>Timestamp</span><span>User</span><span>Action</span><span>Target</span><span>IP Address</span><span>Result</span>
         </div>
@@ -130,18 +130,18 @@ const AuditTrail = () => {
                   </div>
                   <div>
                     <p className="text-white text-xs font-['JetBrains_Mono']">{entry.user}</p>
-                    <p className="text-gray-600 text-xs font-['Inter']">{entry.role}</p>
+                    <p className="text-gray-600 text-xs font-['Manrope']">{entry.role}</p>
                   </div>
                   <span className="px-2 py-0.5 rounded text-xs font-['JetBrains_Mono'] font-semibold w-fit" style={{ background: `${ac}18`, color: ac }}>
                     {entry.action}
                   </span>
-                  <span className="text-gray-300 text-xs font-['Inter'] truncate pr-2">{entry.target}</span>
+                  <span className="text-gray-300 text-xs font-['Manrope'] truncate pr-2">{entry.target}</span>
                   <span className="text-gray-500 text-xs font-['JetBrains_Mono']">{entry.ip}</span>
                   <div className="flex items-center gap-1.5">
                     <div className="w-5 h-5 flex items-center justify-center rounded flex-shrink-0" style={{ background: rc.bg }}>
                       <i className={`${rc.icon} text-xs`} style={{ color: rc.color }} />
                     </div>
-                    <span className="text-xs font-['Inter'] capitalize" style={{ color: rc.color }}>{entry.result}</span>
+                    <span className="text-xs font-['Manrope'] capitalize" style={{ color: rc.color }}>{entry.result}</span>
                   </div>
                 </div>
                 {/* Expanded details */}
@@ -149,15 +149,15 @@ const AuditTrail = () => {
                   <div className="px-10 pb-3 pt-1" style={{ background: "rgba(184,138,60,0.02)", borderTop: "1px solid rgba(184,138,60,0.06)" }}>
                     <div className="grid grid-cols-3 gap-4">
                       <div>
-                        <p className="text-gray-600 text-xs uppercase tracking-wider font-['Inter'] mb-1">Details</p>
-                        <p className="text-gray-300 text-xs font-['Inter']">{entry.details}</p>
+                        <p className="text-gray-600 text-xs uppercase tracking-wider font-['Manrope'] mb-1">Details</p>
+                        <p className="text-gray-300 text-xs font-['Manrope']">{entry.details}</p>
                       </div>
                       <div>
-                        <p className="text-gray-600 text-xs uppercase tracking-wider font-['Inter'] mb-1">Full Timestamp</p>
+                        <p className="text-gray-600 text-xs uppercase tracking-wider font-['Manrope'] mb-1">Full Timestamp</p>
                         <p className="text-gold-400 text-xs font-['JetBrains_Mono']">{entry.timestamp}</p>
                       </div>
                       <div>
-                        <p className="text-gray-600 text-xs uppercase tracking-wider font-['Inter'] mb-1">Source IP</p>
+                        <p className="text-gray-600 text-xs uppercase tracking-wider font-['Manrope'] mb-1">Source IP</p>
                         <p className="text-gray-300 text-xs font-['JetBrains_Mono']">{entry.ip}</p>
                         {entry.ip.startsWith("185.") && (
                           <p className="text-red-400 text-xs font-['JetBrains_Mono'] mt-0.5">⚠ External IP — Flagged</p>
@@ -187,8 +187,8 @@ const AuditTrail = () => {
                 <i className="ri-file-pdf-line text-gold-400 text-lg" />
               </div>
               <div>
-                <h3 className="text-white font-semibold font-['Inter']">Export Audit Trail</h3>
-                <p className="text-gray-500 text-xs font-['Inter']">PDF with digital signature</p>
+                <h3 className="text-white font-semibold font-['Manrope']">Export Audit Trail</h3>
+                <p className="text-gray-500 text-xs font-['Manrope']">PDF with digital signature</p>
               </div>
             </div>
             <div className="space-y-3 mb-5">
@@ -200,13 +200,13 @@ const AuditTrail = () => {
                 { label: "Timestamp", value: new Date().toISOString().slice(0, 19).replace("T", " ") },
               ].map((item) => (
                 <div key={item.label} className="flex items-center justify-between">
-                  <span className="text-gray-500 text-xs font-['Inter']">{item.label}</span>
+                  <span className="text-gray-500 text-xs font-['Manrope']">{item.label}</span>
                   <span className="text-white text-xs font-['JetBrains_Mono']">{item.value}</span>
                 </div>
               ))}
             </div>
             <div className="p-3 rounded-lg mb-4" style={{ background: "rgba(184,138,60,0.05)", border: "1px solid rgba(184,138,60,0.1)" }}>
-              <p className="text-gold-400 text-xs font-['Inter']">
+              <p className="text-gold-400 text-xs font-['Manrope']">
                 <i className="ri-information-line mr-1" />
                 This export will be cryptographically signed and logged in the audit trail. The PDF cannot be modified without invalidating the signature.
               </p>
@@ -214,7 +214,7 @@ const AuditTrail = () => {
             <div className="flex gap-3">
               <button onClick={handleExport} disabled={exporting}
                 className="flex-1 py-2.5 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap"
-                style={{ background: exporting ? "rgba(184,138,60,0.4)" : "#D6B47E", color: "#051428" }}>
+                style={{ background: exporting ? "rgba(184,138,60,0.4)" : "#C5A365", color: "#071426" }}>
                 {exporting ? <><i className="ri-loader-4-line animate-spin mr-2" />Generating...</> : exportDone ? <><i className="ri-check-line mr-2" />Done!</> : <><i className="ri-download-line mr-2" />Generate & Download</>}
               </button>
               <button onClick={() => setShowExportModal(false)}

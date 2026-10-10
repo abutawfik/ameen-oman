@@ -33,7 +33,7 @@ const EVENT_CARDS: EventCard[] = [
     labelAr: "توصيل جديد",
     desc: "Register a new utility connection — electricity, water, internet, or bundled service",
     descAr: "تسجيل توصيل خدمة جديدة — كهرباء، مياه، إنترنت، أو مجمّع",
-    color: "#D6B47E",
+    color: "#C5A365",
     bgColor: "rgba(184,138,60,0.08)",
     borderColor: "rgba(184,138,60,0.25)",
     code: "UTL_NEW_CONN",
@@ -87,7 +87,7 @@ const UtilityEventsPage = () => {
   const activeCard = EVENT_CARDS.find((c) => c.id === activeEvent);
 
   return (
-    <div className="min-h-screen font-['Inter']" style={{ background: "#051428" }} dir={isAr ? "rtl" : "ltr"}>
+    <div className="min-h-screen font-['Manrope']" style={{ background: "#071426" }} dir={isAr ? "rtl" : "ltr"}>
       {/* Grid texture */}
       <div className="fixed inset-0 pointer-events-none" style={{ backgroundImage: `linear-gradient(rgba(184,138,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.03) 1px, transparent 1px)`, backgroundSize: "40px 40px" }} />
 
@@ -105,7 +105,7 @@ const UtilityEventsPage = () => {
           <div className="flex items-center gap-3">
             <div className="hidden xl:flex items-center gap-2">
               {[
-                { label: "Nat.Electric", color: "#D6B47E" },
+                { label: "Nat.Electric", color: "#C5A365" },
                 { label: "Nat.Water", color: "#4ADE80" },
                 { label: "Telco A", color: "#A78BFA" },
                 { label: "Telco B", color: "#C98A1B" },
@@ -194,7 +194,7 @@ const UtilityEventsPage = () => {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {[
-                  { icon: "ri-map-pin-line", color: "#D6B47E", title: isAr ? "الموقع الفعلي" : "Actual Location", desc: isAr ? "توصيلات المرافق تكشف أين يعيش الشخص فعلياً — غالباً مختلف عن العنوان المسجّل" : "Utility connections reveal WHERE a person actually lives — often different from registered address" },
+                  { icon: "ri-map-pin-line", color: "#C5A365", title: isAr ? "الموقع الفعلي" : "Actual Location", desc: isAr ? "توصيلات المرافق تكشف أين يعيش الشخص فعلياً — غالباً مختلف عن العنوان المسجّل" : "Utility connections reveal WHERE a person actually lives — often different from registered address" },
                   { icon: "ri-links-line", color: "#4ADE80", title: isAr ? "التحقق المتقاطع" : "Cross-Verification", desc: isAr ? "مقارنة مع بيانات إيجار البلدية وتسجيلات الفنادق للتحقق من ادعاءات الإقامة" : "Cross-reference with Municipality rental data and hotel check-ins to verify residency claims" },
                   { icon: "ri-wifi-line", color: "#A78BFA", title: isAr ? "البصمة الرقمية" : "Digital Footprint", desc: isAr ? "اتصال الإنترنت = مرساة البصمة الرقمية. يربط الشخص بعنوان رقمي ثابت" : "Internet connection = digital footprint anchor. Links person to a fixed digital address" },
                 ].map((item) => (

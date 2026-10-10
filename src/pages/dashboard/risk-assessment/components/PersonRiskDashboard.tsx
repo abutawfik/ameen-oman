@@ -159,7 +159,7 @@ const PersonRiskDashboard = ({ persons, isAr }: PersonRiskDashboardProps) => {
             <h4 className="text-white font-bold text-xs mb-3">{isAr ? "ملخص الأحداث" : "Event Summary"}</h4>
             <div className="space-y-2">
               {[
-                { label: isAr ? "إجمالي الأحداث" : "Total Events",       value: person.timeline.length,                                    color: "#D6B47E", icon: "ri-pulse-line" },
+                { label: isAr ? "إجمالي الأحداث" : "Total Events",       value: person.timeline.length,                                    color: "#C5A365", icon: "ri-pulse-line" },
                 { label: isAr ? "مُبلَّغة" : "Flagged",                   value: person.timeline.filter((t) => t.risk === "flagged").length, color: "#C94A5E", icon: "ri-shield-cross-line" },
                 { label: isAr ? "للمراجعة" : "Under Review",              value: person.timeline.filter((t) => t.risk === "review").length,  color: "#FACC15", icon: "ri-eye-line" },
                 { label: isAr ? "سليمة" : "Clear",                        value: person.timeline.filter((t) => t.risk === "clear").length,   color: "#4ADE80", icon: "ri-shield-check-line" },
@@ -240,7 +240,7 @@ const PersonRiskDashboard = ({ persons, isAr }: PersonRiskDashboardProps) => {
             <i className="ri-time-line text-gold-400 text-sm" />
             <h4 className="text-white font-bold text-sm">{isAr ? "الأحداث المساهمة" : "Contributing Events"}</h4>
             <span className="px-2 py-0.5 rounded-full text-xs font-bold ml-auto"
-              style={{ background: "rgba(184,138,60,0.08)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.15)" }}>
+              style={{ background: "rgba(184,138,60,0.08)", color: "#C5A365", border: "1px solid rgba(184,138,60,0.15)" }}>
               {person.timeline.length}
             </span>
           </div>

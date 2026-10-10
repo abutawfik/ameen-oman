@@ -24,7 +24,7 @@ const CalendarLiveCounters = ({ isAr }: Props) => {
       sub: isAr ? "جميع الوحدات" : "All modules",
       value: totalToday,
       icon: "ri-calendar-check-line",
-      color: "#D6B47E",
+      color: "#C5A365",
       trend: "+8%",
       trendUp: true,
     },

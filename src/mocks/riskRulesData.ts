@@ -247,7 +247,7 @@ export const RULE_TYPE_CONFIG: Record<RuleType, { icon: string; color: string; l
 };
 
 export const ACTION_TYPE_CONFIG: Record<ActionType, { icon: string; color: string; labelEn: string; labelAr: string }> = {
-  ALERT:               { icon: 'ri-alarm-warning-line',  color: '#D6B47E', labelEn: 'Alert (In-System)',     labelAr: 'تنبيه داخلي'    },
+  ALERT:               { icon: 'ri-alarm-warning-line',  color: '#C5A365', labelEn: 'Alert (In-System)',     labelAr: 'تنبيه داخلي'    },
   SECONDARY_SCREENING: { icon: 'ri-shield-cross-line',   color: '#C94A5E', labelEn: 'Secondary Screening',   labelAr: 'فحص ثانوي'     },
   EMAIL_NOTIFICATION:  { icon: 'ri-mail-send-line',      color: '#4A8E5A', labelEn: 'Email Notification',    labelAr: 'بريد إلكتروني'  },
   WORKFLOW_TRIGGER:    { icon: 'ri-git-branch-line',     color: '#D4922A', labelEn: 'Workflow Trigger',      labelAr: 'تشغيل سير عمل' },

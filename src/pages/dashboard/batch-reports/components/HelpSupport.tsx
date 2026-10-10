@@ -44,12 +44,12 @@ const FAQS = [
 const GUIDES = [
   { icon: "ri-file-pdf-line",    color: "#C94A5E", title: "Al-Ameen User Manual v3.2",       titleAr: "دليل مستخدم Al-Ameen v3.2",       size: "4.2 MB", type: "PDF" },
   { icon: "ri-file-excel-2-line",color: "#4ADE80", title: "Batch Upload Template Guide",  titleAr: "دليل قالب رفع الدُفعة",        size: "1.1 MB", type: "XLSX" },
-  { icon: "ri-file-text-line",   color: "#D6B47E", title: "API Integration Specification",titleAr: "مواصفات تكامل API",             size: "2.8 MB", type: "PDF" },
+  { icon: "ri-file-text-line",   color: "#C5A365", title: "API Integration Specification",titleAr: "مواصفات تكامل API",             size: "2.8 MB", type: "PDF" },
   { icon: "ri-file-text-line",   color: "#FACC15", title: "Data Dictionary v2.1",         titleAr: "قاموس البيانات v2.1",           size: "0.9 MB", type: "PDF" },
 ];
 
 const VIDEOS = [
-  { icon: "ri-play-circle-line", color: "#D6B47E", title: "Getting Started with Al-Ameen",   titleAr: "البدء مع Al-Ameen",               duration: "8:24" },
+  { icon: "ri-play-circle-line", color: "#C5A365", title: "Getting Started with Al-Ameen",   titleAr: "البدء مع Al-Ameen",               duration: "8:24" },
   { icon: "ri-play-circle-line", color: "#4ADE80", title: "Batch Upload Walkthrough",     titleAr: "شرح رفع الدُفعة",              duration: "12:15" },
   { icon: "ri-play-circle-line", color: "#FACC15", title: "Reports & Analytics Deep Dive",titleAr: "تعمق في التقارير والتحليلات",  duration: "18:42" },
   { icon: "ri-play-circle-line", color: "#A78BFA", title: "Person 360 Profile Tutorial",  titleAr: "شرح ملف الشخص 360",            duration: "10:08" },
@@ -151,7 +151,7 @@ const HelpSupport = ({ isAr }: Props) => {
                 </div>
                 <button type="button"
                   className="flex items-center gap-1 px-2.5 py-1 rounded-lg border text-xs cursor-pointer whitespace-nowrap"
-                  style={{ background: "transparent", borderColor: "rgba(184,138,60,0.2)", color: "#D6B47E" }}>
+                  style={{ background: "transparent", borderColor: "rgba(184,138,60,0.2)", color: "#C5A365" }}>
                   <i className="ri-download-2-line text-xs" />
                   {isAr ? "تنزيل" : "Download"}
                 </button>
@@ -185,7 +185,7 @@ const HelpSupport = ({ isAr }: Props) => {
                 </div>
                 <button type="button"
                   className="flex items-center gap-1 px-2.5 py-1 rounded-lg border text-xs cursor-pointer whitespace-nowrap"
-                  style={{ background: "transparent", borderColor: "rgba(184,138,60,0.2)", color: "#D6B47E" }}>
+                  style={{ background: "transparent", borderColor: "rgba(184,138,60,0.2)", color: "#C5A365" }}>
                   <i className="ri-play-line text-xs" />
                   {isAr ? "مشاهدة" : "Watch"}
                 </button>
@@ -247,7 +247,7 @@ const HelpSupport = ({ isAr }: Props) => {
             </div>
             <button type="submit"
               className="flex items-center gap-2 px-6 py-2.5 rounded-lg text-sm font-bold cursor-pointer whitespace-nowrap"
-              style={{ background: "#D6B47E", color: "#051428" }}>
+              style={{ background: "#C5A365", color: "#071426" }}>
               <i className="ri-send-plane-line text-sm" />
               {isAr ? "إرسال التذكرة" : "Submit Ticket"}
             </button>

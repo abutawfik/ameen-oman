@@ -25,7 +25,7 @@ const EVENT_CARDS: EventCard[] = [
     id: "pobox", icon: "ri-mail-line", label: "PO Box Registration", labelAr: "تسجيل صندوق بريد",
     desc: "Register a new PO Box — box number, size, duration, account holder travel document and personal details",
     descAr: "تسجيل صندوق بريد جديد — رقم الصندوق، الحجم، المدة، وثيقة السفر والبيانات الشخصية",
-    color: "#D6B47E", code: "AMN-PST-POBOX", stats: "1,284 active boxes", statsAr: "1,284 صندوق نشط",
+    color: "#C5A365", code: "AMN-PST-POBOX", stats: "1,284 active boxes", statsAr: "1,284 صندوق نشط",
   },
   {
     id: "package", icon: "ri-box-3-line", label: "Package Receipt", labelAr: "استلام طرد",
@@ -52,7 +52,7 @@ const PostalEventsPage = () => {
   const handleSelect = (id: "pobox" | "package") => { setActiveEvent(id); setFormKey(k => k + 1); };
 
   return (
-    <div className="min-h-screen font-['Inter']" style={{ background: "#051428" }}>
+    <div className="min-h-screen font-['Manrope']" style={{ background: "#071426" }}>
       <div className="fixed inset-0 pointer-events-none" style={{ backgroundImage: `linear-gradient(rgba(184,138,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.03) 1px, transparent 1px)`, backgroundSize: "40px 40px" }} />
 
       <PageHeader
@@ -61,7 +61,7 @@ const PostalEventsPage = () => {
           { label: isAr ? "لوحة التحكم" : "Dashboard", route: "/dashboard" },
         ]}
         icon="ri-mail-line"
-        iconColor="#D6B47E"
+        iconColor="#C5A365"
         badge="Al-Ameen Portal"
         isAr={isAr}
         action={
@@ -88,7 +88,7 @@ const PostalEventsPage = () => {
           {activeEvent && (
             <button type="button" onClick={() => setActiveEvent(null)}
               className="flex items-center gap-2 px-4 py-2 rounded-lg border text-sm font-semibold cursor-pointer whitespace-nowrap transition-colors"
-              style={{ background: "transparent", borderColor: "rgba(184,138,60,0.2)", color: "#D6B47E" }}
+              style={{ background: "transparent", borderColor: "rgba(184,138,60,0.2)", color: "#C5A365" }}
               onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(184,138,60,0.06)"; }}
               onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "transparent"; }}>
               <i className="ri-arrow-left-line" />{isAr ? "العودة" : "Back"}
@@ -102,7 +102,7 @@ const PostalEventsPage = () => {
             {/* Stats bar */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
               {[
-                { label: isAr ? "صناديق نشطة" : "Active PO Boxes", value: "1,284", icon: "ri-mail-line", color: "#D6B47E" },
+                { label: isAr ? "صناديق نشطة" : "Active PO Boxes", value: "1,284", icon: "ri-mail-line", color: "#C5A365" },
                 { label: isAr ? "طرود اليوم" : "Packages Today", value: "342", icon: "ri-box-3-line", color: "#4ADE80" },
                 { label: isAr ? "قيد الجمارك" : "Customs Pending", value: "18", icon: "ri-shield-check-line", color: "#FACC15" },
                 { label: isAr ? "قيمة عالية" : "High-Value Pkgs", value: "7", icon: "ri-money-dollar-circle-line", color: "#C94A5E" },
@@ -159,10 +159,10 @@ const PostalEventsPage = () => {
               </div>
               <div className="divide-y" style={{ borderColor: "rgba(184,138,60,0.06)" }}>
                 {[
-                  { ref: "AMN-PST-4821", type: isAr ? "تسجيل صندوق بريد" : "PO Box Registration", detail: isAr ? "صندوق PO-88234 — حجم M — فرع مركزي" : "Box PO-88234 — Size M — Central Branch", time: "3 min ago", color: "#D6B47E", icon: "ri-mail-line" },
+                  { ref: "AMN-PST-4821", type: isAr ? "تسجيل صندوق بريد" : "PO Box Registration", detail: isAr ? "صندوق PO-88234 — حجم M — فرع مركزي" : "Box PO-88234 — Size M — Central Branch", time: "3 min ago", color: "#C5A365", icon: "ri-mail-line" },
                   { ref: "AMN-PST-4820", type: isAr ? "استلام طرد" : "Package Receipt", detail: isAr ? "طرد من الإمارات — 2.3 كجم — 145.000 LCY" : "Package from UAE — 2.3 kg — 145.000 LCY", time: "11 min ago", color: "#4ADE80", icon: "ri-box-3-line" },
                   { ref: "AMN-PST-4819", type: isAr ? "استلام طرد" : "Package Receipt", detail: isAr ? "طرد من الصين — إلكترونيات — قيد الجمارك" : "Package from China — Electronics — Customs Pending", time: "28 min ago", color: "#FACC15", icon: "ri-box-3-line" },
-                  { ref: "AMN-PST-4818", type: isAr ? "تسجيل صندوق بريد" : "PO Box Registration", detail: isAr ? "صندوق PO-77891 — حجم L — فرع شمالي" : "Box PO-77891 — Size L — Northern Branch", time: "45 min ago", color: "#D6B47E", icon: "ri-mail-line" },
+                  { ref: "AMN-PST-4818", type: isAr ? "تسجيل صندوق بريد" : "PO Box Registration", detail: isAr ? "صندوق PO-77891 — حجم L — فرع شمالي" : "Box PO-77891 — Size L — Northern Branch", time: "45 min ago", color: "#C5A365", icon: "ri-mail-line" },
                   { ref: "AMN-PST-4817", type: isAr ? "استلام طرد" : "Package Receipt", detail: isAr ? "طرد من المملكة المتحدة — 8,500 LCY — مراجعة مطلوبة" : "Package from UK — 8,500 LCY — Review Required", time: "1 hr ago", color: "#C94A5E", icon: "ri-box-3-line" },
                 ].map((ev) => (
                   <div key={ev.ref} className="flex items-center gap-4 px-6 py-3 hover:bg-white/[0.02] transition-colors">

@@ -7,7 +7,7 @@ interface Props {
 
 const statusConfig: Record<DossierStatus, { color: string; bg: string; label: string; icon: string }> = {
   draft:      { color: "#9CA3AF", bg: "rgba(156,163,175,0.1)", label: "Draft",      icon: "ri-draft-line" },
-  generating: { color: "#D6B47E", bg: "rgba(184,138,60,0.1)",  label: "Generating", icon: "ri-loader-4-line" },
+  generating: { color: "#C5A365", bg: "rgba(184,138,60,0.1)",  label: "Generating", icon: "ri-loader-4-line" },
   ready:      { color: "#4ADE80", bg: "rgba(74,222,128,0.1)",  label: "Ready",      icon: "ri-checkbox-circle-line" },
   expired:    { color: "#C98A1B", bg: "rgba(201,138,27,0.1)",  label: "Expired",    icon: "ri-time-line" },
   archived:   { color: "#6B7280", bg: "rgba(107,114,128,0.1)", label: "Archived",   icon: "ri-archive-line" },
@@ -41,7 +41,7 @@ const DossierHistory = ({ isAr }: Props) => {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search by subject or reference..."
-              className="w-full pl-9 pr-4 py-2 rounded-lg text-sm font-['Inter'] outline-none"
+              className="w-full pl-9 pr-4 py-2 rounded-lg text-sm font-['Manrope'] outline-none"
               style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(184,138,60,0.15)", color: "#E5E7EB" }}
             />
           </div>
@@ -50,10 +50,10 @@ const DossierHistory = ({ isAr }: Props) => {
               <button
                 key={s}
                 onClick={() => setStatusFilter(s)}
-                className="px-3 py-2 rounded-lg text-xs font-['Inter'] cursor-pointer transition-all whitespace-nowrap capitalize"
+                className="px-3 py-2 rounded-lg text-xs font-['Manrope'] cursor-pointer transition-all whitespace-nowrap capitalize"
                 style={{
                   background: statusFilter === s ? "rgba(184,138,60,0.1)" : "rgba(255,255,255,0.03)",
-                  color: statusFilter === s ? "#D6B47E" : "#6B7280",
+                  color: statusFilter === s ? "#C5A365" : "#6B7280",
                   border: statusFilter === s ? "1px solid rgba(184,138,60,0.25)" : "1px solid rgba(255,255,255,0.06)",
                 }}
               >
@@ -66,14 +66,14 @@ const DossierHistory = ({ isAr }: Props) => {
         {/* Stats row */}
         <div className="grid grid-cols-4 gap-3">
           {[
-            { label: "Total Generated", value: generatedDossiers.length, color: "#D6B47E" },
+            { label: "Total Generated", value: generatedDossiers.length, color: "#C5A365" },
             { label: "Ready", value: generatedDossiers.filter((d) => d.status === "ready").length, color: "#4ADE80" },
             { label: "Expired", value: generatedDossiers.filter((d) => d.status === "expired").length, color: "#C98A1B" },
             { label: "Total Downloads", value: generatedDossiers.reduce((s, d) => s + d.downloadCount, 0), color: "#A78BFA" },
           ].map((stat) => (
             <div key={stat.label} className="p-3 rounded-xl" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.1)" }}>
               <p className="text-2xl font-bold font-['JetBrains_Mono']" style={{ color: stat.color }}>{stat.value}</p>
-              <p className="text-gray-600 text-xs font-['Inter'] mt-0.5">{stat.label}</p>
+              <p className="text-gray-600 text-xs font-['Manrope'] mt-0.5">{stat.label}</p>
             </div>
           ))}
         </div>
@@ -100,7 +100,7 @@ const DossierHistory = ({ isAr }: Props) => {
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1">
-                      <span className="text-white text-sm font-bold font-['Inter']">{dossier.subjectName}</span>
+                      <span className="text-white text-sm font-bold font-['Manrope']">{dossier.subjectName}</span>
                       <span className="text-gray-600 text-xs font-['JetBrains_Mono']">{dossier.subjectDoc}</span>
                     </div>
                     <div className="flex items-center gap-2 flex-wrap">
@@ -132,10 +132,10 @@ const DossierHistory = ({ isAr }: Props) => {
                     </div>
                     {dossier.status === "ready" && (
                       <div className="flex gap-1.5">
-                        <button className="px-2.5 py-1 rounded text-[11px] font-['Inter'] cursor-pointer transition-colors whitespace-nowrap" style={{ background: "rgba(184,138,60,0.08)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}>
+                        <button className="px-2.5 py-1 rounded text-[11px] font-['Manrope'] cursor-pointer transition-colors whitespace-nowrap" style={{ background: "rgba(184,138,60,0.08)", color: "#C5A365", border: "1px solid rgba(184,138,60,0.2)" }}>
                           <i className="ri-eye-line mr-1" />View
                         </button>
-                        <button className="px-2.5 py-1 rounded text-[11px] font-['Inter'] cursor-pointer transition-colors whitespace-nowrap" style={{ background: "rgba(74,222,128,0.08)", color: "#4ADE80", border: "1px solid rgba(74,222,128,0.2)" }}>
+                        <button className="px-2.5 py-1 rounded text-[11px] font-['Manrope'] cursor-pointer transition-colors whitespace-nowrap" style={{ background: "rgba(74,222,128,0.08)", color: "#4ADE80", border: "1px solid rgba(74,222,128,0.2)" }}>
                           <i className="ri-download-line mr-1" />Download
                         </button>
                       </div>
@@ -153,7 +153,7 @@ const DossierHistory = ({ isAr }: Props) => {
                           <span className="text-gray-700 w-32 flex-shrink-0">{entry.timestamp}</span>
                           <span className="px-1.5 py-0.5 rounded text-[11px]" style={{
                             background: entry.action === "Generated" ? "rgba(184,138,60,0.1)" : entry.action === "Downloaded" ? "rgba(74,222,128,0.1)" : entry.action === "Expired" ? "rgba(201,138,27,0.1)" : "rgba(156,163,175,0.1)",
-                            color: entry.action === "Generated" ? "#D6B47E" : entry.action === "Downloaded" ? "#4ADE80" : entry.action === "Expired" ? "#C98A1B" : "#9CA3AF",
+                            color: entry.action === "Generated" ? "#C5A365" : entry.action === "Downloaded" ? "#4ADE80" : entry.action === "Expired" ? "#C98A1B" : "#9CA3AF",
                           }}>
                             {entry.action}
                           </span>

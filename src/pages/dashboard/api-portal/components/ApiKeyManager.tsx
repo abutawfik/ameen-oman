@@ -77,14 +77,14 @@ const ApiKeyManager = () => {
       {/* Stats */}
       <div className="grid grid-cols-4 gap-3">
         {[
-          { label: "Total Keys",      value: String(keys.length),                                    color: "#D6B47E" },
+          { label: "Total Keys",      value: String(keys.length),                                    color: "#C5A365" },
           { label: "Active",          value: String(keys.filter((k) => k.status === "active").length), color: "#4ADE80" },
           { label: "Requests Today",  value: keys.reduce((a, k) => a + k.requestsToday, 0).toLocaleString(), color: "#FACC15" },
           { label: "Total Requests",  value: keys.reduce((a, k) => a + k.requestsTotal, 0).toLocaleString(), color: "#C98A1B" },
         ].map((s) => (
           <div key={s.label} className="rounded-xl p-4 text-center" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.12)" }}>
             <p className="text-2xl font-bold font-['JetBrains_Mono']" style={{ color: s.color }}>{s.value}</p>
-            <p className="text-gray-500 text-xs font-['Inter'] mt-1">{s.label}</p>
+            <p className="text-gray-500 text-xs font-['Manrope'] mt-1">{s.label}</p>
           </div>
         ))}
       </div>
@@ -95,11 +95,11 @@ const ApiKeyManager = () => {
           <div className="flex items-start gap-3">
             <i className="ri-check-double-line text-green-400 text-lg flex-shrink-0 mt-0.5" />
             <div className="flex-1 min-w-0">
-              <p className="text-green-400 text-sm font-semibold font-['Inter'] mb-1">API Key Created — Save it now!</p>
-              <p className="text-gray-400 text-xs font-['Inter'] mb-2">This key will only be shown once. Copy and store it securely.</p>
+              <p className="text-green-400 text-sm font-semibold font-['Manrope'] mb-1">API Key Created — Save it now!</p>
+              <p className="text-gray-400 text-xs font-['Manrope'] mb-2">This key will only be shown once. Copy and store it securely.</p>
               <div className="flex items-center gap-2 p-2 rounded-lg" style={{ background: "rgba(0,0,0,0.3)" }}>
                 <code className="text-green-300 text-xs font-['JetBrains_Mono'] flex-1 break-all">{createdKey}</code>
-                <button onClick={() => handleCopy(createdKey, "new")} className="flex-shrink-0 px-3 py-1 rounded text-xs cursor-pointer whitespace-nowrap" style={{ background: "#D6B47E", color: "#051428" }}>
+                <button onClick={() => handleCopy(createdKey, "new")} className="flex-shrink-0 px-3 py-1 rounded text-xs cursor-pointer whitespace-nowrap" style={{ background: "#C5A365", color: "#071426" }}>
                   {copiedKey === "new" ? "Copied!" : "Copy"}
                 </button>
               </div>
@@ -117,7 +117,7 @@ const ApiKeyManager = () => {
           {(["all", "production", "sandbox"] as const).map((e) => (
             <button key={e} onClick={() => setFilterEnv(e)}
               className="px-3 py-1.5 rounded-full text-xs font-semibold cursor-pointer whitespace-nowrap capitalize"
-              style={{ background: filterEnv === e ? "#D6B47E" : "rgba(255,255,255,0.04)", color: filterEnv === e ? "#051428" : "#9CA3AF", border: filterEnv === e ? "none" : "1px solid rgba(255,255,255,0.06)" }}>
+              style={{ background: filterEnv === e ? "#C5A365" : "rgba(255,255,255,0.04)", color: filterEnv === e ? "#071426" : "#9CA3AF", border: filterEnv === e ? "none" : "1px solid rgba(255,255,255,0.06)" }}>
               {e === "all" ? "All Environments" : e.charAt(0).toUpperCase() + e.slice(1)}
             </button>
           ))}
@@ -126,12 +126,12 @@ const ApiKeyManager = () => {
           {(["all", "active", "revoked", "expired"] as const).map((s) => (
             <button key={s} onClick={() => setFilterStatus(s)}
               className="px-3 py-1.5 rounded-full text-xs font-semibold cursor-pointer whitespace-nowrap capitalize"
-              style={{ background: filterStatus === s ? (s === "all" ? "#D6B47E" : statusConfig[s]?.bg || "rgba(184,138,60,0.1)") : "rgba(255,255,255,0.04)", color: filterStatus === s ? (s === "all" ? "#051428" : statusConfig[s]?.color || "#D6B47E") : "#9CA3AF", border: filterStatus === s ? "none" : "1px solid rgba(255,255,255,0.06)" }}>
+              style={{ background: filterStatus === s ? (s === "all" ? "#C5A365" : statusConfig[s]?.bg || "rgba(184,138,60,0.1)") : "rgba(255,255,255,0.04)", color: filterStatus === s ? (s === "all" ? "#071426" : statusConfig[s]?.color || "#C5A365") : "#9CA3AF", border: filterStatus === s ? "none" : "1px solid rgba(255,255,255,0.06)" }}>
               {s === "all" ? "All Status" : s.charAt(0).toUpperCase() + s.slice(1)}
             </button>
           ))}
         </div>
-        <button onClick={() => setShowCreate(true)} className="ml-auto px-4 py-2 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap" style={{ background: "#D6B47E", color: "#051428" }}>
+        <button onClick={() => setShowCreate(true)} className="ml-auto px-4 py-2 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap" style={{ background: "#C5A365", color: "#071426" }}>
           <i className="ri-add-line mr-1" />
           Create API Key
         </button>
@@ -141,7 +141,7 @@ const ApiKeyManager = () => {
       {showCreate && (
         <div className="rounded-xl p-5" style={{ background: "rgba(184,138,60,0.04)", border: "1px solid rgba(184,138,60,0.25)" }}>
           <div className="flex items-center justify-between mb-4">
-            <p className="text-white font-semibold text-sm font-['Inter']">
+            <p className="text-white font-semibold text-sm font-['Manrope']">
               <i className="ri-key-2-line mr-2 text-gold-400" />
               Create New API Key
             </p>
@@ -151,13 +151,13 @@ const ApiKeyManager = () => {
           </div>
           <div className="grid grid-cols-2 gap-4 mb-4">
             <div>
-              <label className="block text-xs text-gray-500 mb-1 font-['Inter'] uppercase tracking-wider">Key Name</label>
+              <label className="block text-xs text-gray-500 mb-1 font-['Manrope'] uppercase tracking-wider">Key Name</label>
               <input value={newKeyName} onChange={(e) => setNewKeyName(e.target.value)} placeholder="e.g. Production Key — Main Branch"
                 className="w-full px-3 py-2 rounded-lg text-sm outline-none"
-                style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(184,138,60,0.2)", color: "#D1D5DB", fontFamily: "'Inter', sans-serif" }} />
+                style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(184,138,60,0.2)", color: "#D1D5DB", fontFamily: "'Manrope', sans-serif" }} />
             </div>
             <div>
-              <label className="block text-xs text-gray-500 mb-1 font-['Inter'] uppercase tracking-wider">Environment</label>
+              <label className="block text-xs text-gray-500 mb-1 font-['Manrope'] uppercase tracking-wider">Environment</label>
               <div className="flex gap-2">
                 {(["sandbox", "production"] as const).map((e) => (
                   <button key={e} onClick={() => setNewKeyEnv(e)}
@@ -170,12 +170,12 @@ const ApiKeyManager = () => {
             </div>
           </div>
           <div className="mb-4">
-            <label className="block text-xs text-gray-500 mb-2 font-['Inter'] uppercase tracking-wider">Permissions</label>
+            <label className="block text-xs text-gray-500 mb-2 font-['Manrope'] uppercase tracking-wider">Permissions</label>
             <div className="flex flex-wrap gap-2">
               {allPerms.map((perm) => (
                 <button key={perm} onClick={() => togglePerm(perm)}
                   className="px-2.5 py-1 rounded text-xs font-['JetBrains_Mono'] cursor-pointer transition-all"
-                  style={{ background: newKeyPerms.includes(perm) ? "rgba(184,138,60,0.15)" : "rgba(255,255,255,0.04)", color: newKeyPerms.includes(perm) ? "#D6B47E" : "#6B7280", border: `1px solid ${newKeyPerms.includes(perm) ? "rgba(184,138,60,0.3)" : "rgba(255,255,255,0.06)"}` }}>
+                  style={{ background: newKeyPerms.includes(perm) ? "rgba(184,138,60,0.15)" : "rgba(255,255,255,0.04)", color: newKeyPerms.includes(perm) ? "#C5A365" : "#6B7280", border: `1px solid ${newKeyPerms.includes(perm) ? "rgba(184,138,60,0.3)" : "rgba(255,255,255,0.06)"}` }}>
                   {newKeyPerms.includes(perm) && <i className="ri-check-line mr-1 text-xs" />}
                   {perm}
                 </button>
@@ -183,7 +183,7 @@ const ApiKeyManager = () => {
             </div>
           </div>
           <div className="flex gap-2">
-            <button onClick={handleCreate} className="px-5 py-2 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap" style={{ background: "#D6B47E", color: "#051428" }}>
+            <button onClick={handleCreate} className="px-5 py-2 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap" style={{ background: "#C5A365", color: "#071426" }}>
               Generate Key
             </button>
             <button onClick={() => setShowCreate(false)} className="px-5 py-2 rounded-lg text-sm cursor-pointer whitespace-nowrap" style={{ background: "rgba(255,255,255,0.05)", color: "#9CA3AF" }}>
@@ -206,8 +206,8 @@ const ApiKeyManager = () => {
                 <div className="flex-1 min-w-0">
                   {/* Header row */}
                   <div className="flex items-center gap-2 mb-2 flex-wrap">
-                    <p className="text-white font-semibold text-sm font-['Inter']">{key.name}</p>
-                    <span className="px-2 py-0.5 rounded-full text-xs font-semibold font-['Inter']" style={{ background: sc.bg, color: sc.color }}>
+                    <p className="text-white font-semibold text-sm font-['Manrope']">{key.name}</p>
+                    <span className="px-2 py-0.5 rounded-full text-xs font-semibold font-['Manrope']" style={{ background: sc.bg, color: sc.color }}>
                       <span className="inline-block w-1.5 h-1.5 rounded-full mr-1" style={{ background: sc.dot }} />
                       {key.status.charAt(0).toUpperCase() + key.status.slice(1)}
                     </span>
@@ -228,7 +228,7 @@ const ApiKeyManager = () => {
                     </button>
                     <button onClick={() => handleCopy(key.key, key.id)}
                       className="flex-shrink-0 px-2.5 py-1 rounded text-xs cursor-pointer whitespace-nowrap transition-all"
-                      style={{ background: copiedKey === key.id ? "rgba(74,222,128,0.2)" : "rgba(184,138,60,0.1)", color: copiedKey === key.id ? "#4ADE80" : "#D6B47E" }}>
+                      style={{ background: copiedKey === key.id ? "rgba(74,222,128,0.2)" : "rgba(184,138,60,0.1)", color: copiedKey === key.id ? "#4ADE80" : "#C5A365" }}>
                       {copiedKey === key.id ? <><i className="ri-check-line mr-1" />Copied</> : <><i className="ri-file-copy-line mr-1" />Copy</>}
                     </button>
                   </div>
@@ -242,7 +242,7 @@ const ApiKeyManager = () => {
                       { label: "Expires", value: key.expiresAt },
                     ].map((m) => (
                       <div key={m.label}>
-                        <p className="text-gray-600 text-xs font-['Inter']">{m.label}</p>
+                        <p className="text-gray-600 text-xs font-['Manrope']">{m.label}</p>
                         <p className="text-gray-300 text-xs font-['JetBrains_Mono']">{m.value}</p>
                       </div>
                     ))}
@@ -251,7 +251,7 @@ const ApiKeyManager = () => {
                   {/* Permissions */}
                   <div className="flex items-center gap-1.5 flex-wrap mb-3">
                     {key.permissions.map((p) => (
-                      <span key={p} className="px-2 py-0.5 rounded text-xs font-['JetBrains_Mono']" style={{ background: "rgba(184,138,60,0.08)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.15)" }}>
+                      <span key={p} className="px-2 py-0.5 rounded text-xs font-['JetBrains_Mono']" style={{ background: "rgba(184,138,60,0.08)", color: "#C5A365", border: "1px solid rgba(184,138,60,0.15)" }}>
                         {p}
                       </span>
                     ))}
@@ -260,13 +260,13 @@ const ApiKeyManager = () => {
                   {/* Usage bar */}
                   <div>
                     <div className="flex justify-between text-xs mb-1">
-                      <span className="text-gray-600 font-['Inter']">Today&apos;s Usage</span>
+                      <span className="text-gray-600 font-['Manrope']">Today&apos;s Usage</span>
                       <span className="font-['JetBrains_Mono']" style={{ color: usagePct > 80 ? "#C94A5E" : usagePct > 60 ? "#FACC15" : "#4ADE80" }}>
                         {key.requestsToday.toLocaleString()} / {key.rateLimit.toLocaleString()} req/min
                       </span>
                     </div>
                     <div className="h-1.5 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
-                      <div className="h-full rounded-full transition-all" style={{ width: `${usagePct}%`, background: usagePct > 80 ? "#C94A5E" : usagePct > 60 ? "#FACC15" : "#D6B47E" }} />
+                      <div className="h-full rounded-full transition-all" style={{ width: `${usagePct}%`, background: usagePct > 80 ? "#C94A5E" : usagePct > 60 ? "#FACC15" : "#C5A365" }} />
                     </div>
                   </div>
                 </div>

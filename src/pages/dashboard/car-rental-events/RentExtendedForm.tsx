@@ -182,7 +182,7 @@ const RentExtendedForm = ({ isAr, onCancel }: Props) => {
               >
                 <i className="ri-calendar-check-line text-yellow-400" />
                 <div>
-                  <p className="text-gray-500 text-xs font-['Inter']">{t.extDuration}</p>
+                  <p className="text-gray-500 text-xs font-['Manrope']">{t.extDuration}</p>
                   <p className="text-yellow-400 font-bold font-['JetBrains_Mono']">
                     {extensionDays} {isAr ? "يوم" : extensionDays === 1 ? "day" : "days"}
                   </p>
@@ -224,13 +224,13 @@ const RentExtendedForm = ({ isAr, onCancel }: Props) => {
                   <i className={`ri-shield-line text-base ${additionalInsurance ? "text-gold-400" : "text-gray-600"}`} />
                 </div>
                 <div>
-                  <p className="text-white text-sm font-semibold font-['Inter']">{t.addInsurance}</p>
-                  <p className="text-gray-500 text-xs font-['Inter']">{t.addInsuranceDesc}</p>
+                  <p className="text-white text-sm font-semibold font-['Manrope']">{t.addInsurance}</p>
+                  <p className="text-gray-500 text-xs font-['Manrope']">{t.addInsuranceDesc}</p>
                 </div>
               </div>
               <div
                 className="w-11 h-6 rounded-full transition-all relative flex-shrink-0"
-                style={{ background: additionalInsurance ? "#D6B47E" : "rgba(255,255,255,0.08)" }}
+                style={{ background: additionalInsurance ? "#C5A365" : "rgba(255,255,255,0.08)" }}
               >
                 <div
                   className="absolute top-0.5 w-5 h-5 rounded-full bg-white transition-all duration-200"
@@ -261,7 +261,7 @@ const RentExtendedForm = ({ isAr, onCancel }: Props) => {
                     autoFilled={autoFilled && !!dailyRate}
                     className="font-['JetBrains_Mono'] pr-12"
                   />
-                  <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold font-['JetBrains_Mono']" style={{ color: "#D6B47E" }}>LCY</span>
+                  <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold font-['JetBrains_Mono']" style={{ color: "#C5A365" }}>LCY</span>
                 </div>
               </FormField>
               <FormField label={t.revisedTotal}>
@@ -272,9 +272,9 @@ const RentExtendedForm = ({ isAr, onCancel }: Props) => {
                     value={revisedTotal}
                     onChange={(e) => setRevisedTotal(e.target.value)}
                     className="font-['JetBrains_Mono'] pr-12"
-                    style={{ color: "#D6B47E" }}
+                    style={{ color: "#C5A365" }}
                   />
-                  <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold font-['JetBrains_Mono']" style={{ color: "#D6B47E" }}>LCY</span>
+                  <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold font-['JetBrains_Mono']" style={{ color: "#C5A365" }}>LCY</span>
                 </div>
               </FormField>
             </div>
@@ -285,7 +285,7 @@ const RentExtendedForm = ({ isAr, onCancel }: Props) => {
                 className="rounded-xl p-4 border"
                 style={{ background: "rgba(184,138,60,0.03)", borderColor: "rgba(184,138,60,0.12)" }}
               >
-                <p className="text-gray-500 text-xs mb-3 font-['Inter'] uppercase tracking-wide">{t.extSummary}</p>
+                <p className="text-gray-500 text-xs mb-3 font-['Manrope'] uppercase tracking-wide">{t.extSummary}</p>
                 {[
                   { label: t.extDays, value: `${extensionDays} ${isAr ? "يوم" : "days"}` },
                   { label: t.dailyRate, value: `LCY ${dailyRate}` },
@@ -296,10 +296,10 @@ const RentExtendedForm = ({ isAr, onCancel }: Props) => {
                     className="flex justify-between items-center py-2 border-b last:border-0"
                     style={{ borderColor: "rgba(255,255,255,0.04)" }}
                   >
-                    <span className="text-gray-500 text-xs font-['Inter']">{row.label}</span>
+                    <span className="text-gray-500 text-xs font-['Manrope']">{row.label}</span>
                     <span
                       className="text-sm font-bold font-['JetBrains_Mono']"
-                      style={{ color: row.highlight ? "#D6B47E" : "#D1D5DB" }}
+                      style={{ color: row.highlight ? "#C5A365" : "#D1D5DB" }}
                     >
                       {row.value}
                     </span>

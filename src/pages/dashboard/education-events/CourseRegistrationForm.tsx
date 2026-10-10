@@ -60,13 +60,13 @@ const CourseRegistrationForm = ({ isAr, onCancel }: Props) => {
 
   const handleSave = () => { setSaving(true); setTimeout(() => { setSaving(false); setRefCode(genRef()); setConfirmed(true); }, 1500); };
 
-  if (confirmed) return <EduConfirmation refNumber={refCode} eventType={isAr ? "تسجيل مقررات" : "Course Registration"} eventCode="AMN-EDU-CRS" color="#D6B47E" isAr={isAr} onReset={() => setConfirmed(false)} />;
+  if (confirmed) return <EduConfirmation refNumber={refCode} eventType={isAr ? "تسجيل مقررات" : "Course Registration"} eventCode="AMN-EDU-CRS" color="#C5A365" isAr={isAr} onReset={() => setConfirmed(false)} />;
 
   return (
     <div className="space-y-5">
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
         {/* Student Lookup */}
-        <SectionCard title={isAr ? "بحث عن الطالب" : "Student Lookup"} icon="ri-user-search-line" accentColor="#D6B47E">
+        <SectionCard title={isAr ? "بحث عن الطالب" : "Student Lookup"} icon="ri-user-search-line" accentColor="#C5A365">
           <div className="space-y-4">
             <FormField label={isAr ? "رقم الطالب" : "Student ID"} required>
               <div className="flex gap-2">
@@ -119,10 +119,10 @@ const CourseRegistrationForm = ({ isAr, onCancel }: Props) => {
                 <button key={course.value} type="button" onClick={() => toggleCourse(course.value)}
                   className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left cursor-pointer transition-all"
                   style={{ background: isSelected ? "rgba(184,138,60,0.08)" : "rgba(255,255,255,0.03)", border: `1px solid ${isSelected ? "rgba(184,138,60,0.3)" : "rgba(255,255,255,0.06)"}` }}>
-                  <div className="w-5 h-5 flex items-center justify-center rounded flex-shrink-0" style={{ background: isSelected ? "#D6B47E" : "rgba(255,255,255,0.06)", border: `1px solid ${isSelected ? "#D6B47E" : "rgba(255,255,255,0.1)"}` }}>
+                  <div className="w-5 h-5 flex items-center justify-center rounded flex-shrink-0" style={{ background: isSelected ? "#C5A365" : "rgba(255,255,255,0.06)", border: `1px solid ${isSelected ? "#C5A365" : "rgba(255,255,255,0.1)"}` }}>
                     {isSelected && <i className="ri-check-line text-xs text-gray-900" />}
                   </div>
-                  <span className="text-xs font-['JetBrains_Mono']" style={{ color: isSelected ? "#D6B47E" : "#9CA3AF" }}>{course.label}</span>
+                  <span className="text-xs font-['JetBrains_Mono']" style={{ color: isSelected ? "#C5A365" : "#9CA3AF" }}>{course.label}</span>
                 </button>
               );
             })}

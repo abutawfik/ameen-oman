@@ -17,7 +17,7 @@ const PRIORITY_FILTERS = [
   { key: 'critical', label: 'Critical', color: '#C94A5E' },
   { key: 'high',     label: 'High',     color: '#C98A1B' },
   { key: 'medium',   label: 'Medium',   color: '#FACC15' },
-  { key: 'low',      label: 'Low',      color: '#D6B47E' },
+  { key: 'low',      label: 'Low',      color: '#C5A365' },
 ];
 
 const STATUS_FILTERS = [
@@ -57,7 +57,7 @@ export default function PredictiveAnalyticsPage() {
   return (
     <div
       className="min-h-screen relative"
-      style={{ background: '#051428', fontFamily: "'Inter', sans-serif" }}
+      style={{ background: '#071426', fontFamily: "'Manrope', sans-serif" }}
       dir={lang === 'ar' ? 'rtl' : 'ltr'}
     >
       {/* Grid texture */}
@@ -108,8 +108,8 @@ export default function PredictiveAnalyticsPage() {
                   onClick={() => setDateRange(r)}
                   className="px-3 py-1.5 rounded-md text-xs transition-all cursor-pointer whitespace-nowrap"
                   style={{
-                    background: dateRange === r ? '#D6B47E' : 'transparent',
-                    color: dateRange === r ? '#051428' : '#9CA3AF',
+                    background: dateRange === r ? '#C5A365' : 'transparent',
+                    color: dateRange === r ? '#071426' : '#9CA3AF',
                     fontWeight: dateRange === r ? 600 : 400,
                   }}
                 >
@@ -149,7 +149,7 @@ export default function PredictiveAnalyticsPage() {
               value: `${stats.activeRules} / ${stats.totalRules}`,
               sub: `${stats.totalRules - stats.activeRules} disabled`,
               icon: 'ri-git-branch-line',
-              color: '#D6B47E',
+              color: '#C5A365',
             },
             {
               label: lang === 'en' ? 'Triggered Today' : 'مُفعَّلة اليوم',
@@ -219,7 +219,7 @@ export default function PredictiveAnalyticsPage() {
             <span className="text-gray-400 text-xs font-medium uppercase tracking-wider">Alert Workflow Status</span>
           </div>
           {[
-            { tier: 1, label: 'Tier 1 — Queue', count: openAlerts, color: '#D6B47E', icon: 'ri-list-check-2' },
+            { tier: 1, label: 'Tier 1 — Queue', count: openAlerts, color: '#C5A365', icon: 'ri-list-check-2' },
             { tier: 2, label: 'Tier 2 — Mobile Push', count: tier2Alerts, color: '#C98A1B', icon: 'ri-smartphone-line' },
             { tier: 3, label: 'Tier 3 — Escalated', count: tier3Alerts, color: '#C94A5E', icon: 'ri-alarm-warning-line' },
           ].map((t, i) => (
@@ -260,8 +260,8 @@ export default function PredictiveAnalyticsPage() {
               onClick={() => setTab(t.key as Tab)}
               className="flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium transition-all cursor-pointer whitespace-nowrap"
               style={{
-                background: tab === t.key ? '#D6B47E' : 'transparent',
-                color: tab === t.key ? '#051428' : '#9CA3AF',
+                background: tab === t.key ? '#C5A365' : 'transparent',
+                color: tab === t.key ? '#071426' : '#9CA3AF',
               }}
             >
               <i className={`${t.icon} text-sm`} />
@@ -270,8 +270,8 @@ export default function PredictiveAnalyticsPage() {
                 <span
                   className="w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold"
                   style={{
-                    background: tab === t.key ? '#051428' : '#C94A5E',
-                    color: tab === t.key ? '#D6B47E' : '#fff',
+                    background: tab === t.key ? '#071426' : '#C94A5E',
+                    color: tab === t.key ? '#C5A365' : '#fff',
                   }}
                 >
                   {t.badge}
@@ -307,8 +307,8 @@ export default function PredictiveAnalyticsPage() {
                   onClick={() => setWorkflowTab(t.key as WorkflowTab)}
                   className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-medium transition-all cursor-pointer whitespace-nowrap"
                   style={{
-                    background: workflowTab === t.key ? '#D6B47E' : 'transparent',
-                    color: workflowTab === t.key ? '#051428' : '#9CA3AF',
+                    background: workflowTab === t.key ? '#C5A365' : 'transparent',
+                    color: workflowTab === t.key ? '#071426' : '#9CA3AF',
                   }}
                 >
                   <i className={`${t.icon} text-sm`} />
@@ -317,8 +317,8 @@ export default function PredictiveAnalyticsPage() {
                     <span
                       className="w-4 h-4 rounded-full flex items-center justify-center text-xs font-bold"
                       style={{
-                        background: workflowTab === t.key ? '#051428' : (t.key === 'escalation' ? '#C94A5E' : '#C98A1B'),
-                        color: workflowTab === t.key ? '#D6B47E' : '#fff',
+                        background: workflowTab === t.key ? '#071426' : (t.key === 'escalation' ? '#C94A5E' : '#C98A1B'),
+                        color: workflowTab === t.key ? '#C5A365' : '#fff',
                       }}
                     >
                       {t.badge}
@@ -354,9 +354,9 @@ export default function PredictiveAnalyticsPage() {
                       onClick={() => setStatusFilter(f.key)}
                       className="px-2.5 py-1.5 rounded-md text-xs border transition-all cursor-pointer whitespace-nowrap"
                       style={{
-                        borderColor: statusFilter === f.key ? '#D6B47E' : 'rgba(184,138,60,0.15)',
+                        borderColor: statusFilter === f.key ? '#C5A365' : 'rgba(184,138,60,0.15)',
                         background: statusFilter === f.key ? 'rgba(184,138,60,0.1)' : 'transparent',
-                        color: statusFilter === f.key ? '#D6B47E' : '#9CA3AF',
+                        color: statusFilter === f.key ? '#C5A365' : '#9CA3AF',
                       }}
                     >
                       {f.label}

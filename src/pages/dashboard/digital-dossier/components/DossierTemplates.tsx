@@ -19,10 +19,10 @@ const DossierTemplates = ({ isAr, onUseTemplate }: Props) => {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="text-white text-sm font-bold font-['Inter']">Report Templates</h3>
-          <p className="text-gray-600 text-xs font-['Inter'] mt-0.5">Pre-configured templates for common intelligence scenarios</p>
+          <h3 className="text-white text-sm font-bold font-['Manrope']">Report Templates</h3>
+          <p className="text-gray-600 text-xs font-['Manrope'] mt-0.5">Pre-configured demo structures. Local export supports unencrypted PDF only.</p>
         </div>
-        <button className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-['Inter'] cursor-pointer transition-colors whitespace-nowrap" style={{ background: "rgba(184,138,60,0.08)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}>
+        <button className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-['Manrope'] cursor-pointer transition-colors whitespace-nowrap" style={{ background: "rgba(184,138,60,0.08)", color: "#C5A365", border: "1px solid rgba(184,138,60,0.2)" }}>
           <i className="ri-add-line" />
           New Template
         </button>
@@ -48,8 +48,8 @@ const DossierTemplates = ({ isAr, onUseTemplate }: Props) => {
                   <i className={`${template.icon} text-xl`} style={{ color: template.color }} />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h4 className="text-white text-sm font-bold font-['Inter'] mb-1">{template.name}</h4>
-                  <p className="text-gray-500 text-xs font-['Inter'] leading-relaxed">{template.description}</p>
+                  <h4 className="text-white text-sm font-bold font-['Manrope'] mb-1">{template.name}</h4>
+                  <p className="text-gray-500 text-xs font-['Manrope'] leading-relaxed">{template.description}</p>
                 </div>
               </div>
 
@@ -62,7 +62,7 @@ const DossierTemplates = ({ isAr, onUseTemplate }: Props) => {
                   <i className={`${catCfg.icon} mr-1`} />{catCfg.label}
                 </span>
                 <span className="px-2 py-0.5 rounded text-[11px] font-['JetBrains_Mono']" style={{ background: "rgba(255,255,255,0.04)", color: "#9CA3AF" }}>
-                  {template.format}
+                  {"PDF · Demo"}
                 </span>
               </div>
 
@@ -75,7 +75,7 @@ const DossierTemplates = ({ isAr, onUseTemplate }: Props) => {
                 ].map((stat) => (
                   <div key={stat.label} className="p-2 rounded-lg text-center" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.05)" }}>
                     <p className="text-white text-sm font-bold font-['JetBrains_Mono']">{stat.value}</p>
-                    <p className="text-gray-600 text-[11px] font-['Inter']">{stat.label}</p>
+                    <p className="text-gray-600 text-[11px] font-['Manrope']">{stat.label}</p>
                   </div>
                 ))}
               </div>
@@ -85,7 +85,7 @@ const DossierTemplates = ({ isAr, onUseTemplate }: Props) => {
                 <p className="text-gray-700 text-[11px] font-['JetBrains_Mono'] mb-2">INCLUDED SECTIONS</p>
                 <div className="flex flex-wrap gap-1">
                   {sectionData.slice(0, 6).map((s) => (
-                    <span key={s.key} className="flex items-center gap-1 px-1.5 py-0.5 rounded text-[11px] font-['Inter']" style={{ background: `${s.streamColor}10`, color: s.streamColor }}>
+                    <span key={s.key} className="flex items-center gap-1 px-1.5 py-0.5 rounded text-[11px] font-['Manrope']" style={{ background: `${s.streamColor}10`, color: s.streamColor }}>
                       <i className={`${s.streamIcon} text-[11px]`} />
                       {s.stream}
                     </span>
@@ -107,8 +107,8 @@ const DossierTemplates = ({ isAr, onUseTemplate }: Props) => {
                 </div>
                 <button
                   onClick={() => onUseTemplate(template)}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold font-['Inter'] cursor-pointer transition-all whitespace-nowrap"
-                  style={{ background: "#D6B47E", color: "#051428", boxShadow: "0 0 12px rgba(184,138,60,0.2)" }}
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold font-['Manrope'] cursor-pointer transition-all whitespace-nowrap"
+                  style={{ background: "#C5A365", color: "#071426", boxShadow: "0 0 12px rgba(184,138,60,0.2)" }}
                 >
                   <i className="ri-file-add-line" />
                   Use Template
@@ -121,14 +121,14 @@ const DossierTemplates = ({ isAr, onUseTemplate }: Props) => {
 
       {/* Usage stats */}
       <div className="rounded-xl p-5" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.12)" }}>
-        <h4 className="text-white text-sm font-bold font-['Inter'] mb-4">Template Usage Statistics</h4>
+        <h4 className="text-white text-sm font-bold font-['Manrope'] mb-4">Template Usage Statistics</h4>
         <div className="space-y-3">
           {dossierTemplates.sort((a, b) => b.usageCount - a.usageCount).map((t) => (
             <div key={t.id} className="flex items-center gap-3">
               <div className="w-6 h-6 flex items-center justify-center flex-shrink-0">
                 <i className={`${t.icon} text-sm`} style={{ color: t.color }} />
               </div>
-              <span className="text-gray-400 text-xs font-['Inter'] w-48 flex-shrink-0 truncate">{t.name}</span>
+              <span className="text-gray-400 text-xs font-['Manrope'] w-48 flex-shrink-0 truncate">{t.name}</span>
               <div className="flex-1 h-1.5 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.05)" }}>
                 <div
                   className="h-full rounded-full transition-all"

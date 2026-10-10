@@ -1,3 +1,4 @@
+@import "./brand/identity.css";
 /* Al-Ameen brand tokens v1.0 — Oman sovereign palette (red / gold / navy / ivory) */
 @import "../al-ameen-brand/tokens/tokens.css";
 
@@ -16,9 +17,9 @@
 :root {
   /* Arabic stack locked to Cairo per brand decision 17-Apr-2026
      (al-ameen-brand/arabic-font-options.html · Option C). */
-  --alm-font-display-en: 'Cormorant Garamond', Georgia, serif;
+  --alm-font-display-en: 'Manrope', ui-sans-serif, system-ui, sans-serif;
   --alm-font-display-ar: 'Cairo', 'Tajawal', 'IBM Plex Sans Arabic', sans-serif;
-  --alm-font-sans-en:    'Inter', ui-sans-serif, system-ui, sans-serif;
+  --alm-font-sans-en:    'Manrope', ui-sans-serif, system-ui, sans-serif;
   --alm-font-sans-ar:    'Cairo', 'Tajawal', 'IBM Plex Sans Arabic', sans-serif;
   --alm-font-mono:       'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
 }
@@ -44,7 +45,7 @@
 :root,
 html[data-palette="v1"] {
   --alm-ocean-900: #020A14;
-  --alm-ocean-800: #051428;
+  --alm-ocean-800: #071426;
   --alm-ocean-700: #0A2540;
   --alm-ocean-600: #10325A;
   --alm-ocean-500: #1A4578;
@@ -54,7 +55,7 @@ html[data-palette="v1"] {
   --alm-ocean-100: #B0C5DB;
 
   --alm-ocean-900-rgb:   2,  10,  20;
-  --alm-ocean-800-rgb:   5,  20,  40;
+  --alm-ocean-800-rgb:   7,  20,  38;
   --alm-ocean-700-rgb:  10,  37,  64;
   --alm-ocean-600-rgb:  16,  50,  90;
   --alm-ocean-500-rgb:  26,  69, 120;
@@ -101,8 +102,8 @@ body {
 /* ================================================================ *
  * Arabic font enforcement — universal Cairo fallback in AR mode
  * ----------------------------------------------------------------
- * Inter and Cormorant Garamond have zero Arabic glyphs. When a
- * component hardcodes `font-['Inter']` or inline `'Inter'`, the
+ * Manrope does not supply Arabic glyphs. When a
+ * component hardcodes `font-['Manrope']` or inline `'Manrope'`, the
  * browser renders Arabic characters with its default Arabic font
  * (usually Arial / system) — NOT Cairo. That's the bug users see.
  *
@@ -117,10 +118,10 @@ body {
  *   · <i> tag broadly treated as an icon host
  *
  * The `!important` flag beats component-level inline styles and
- * Tailwind arbitrary classes like `font-['Inter']`.
+ * Tailwind arbitrary classes like `font-['Manrope']`.
  *
- * In EN mode this rule doesn't fire, so Cormorant / Inter keep their
- * ceremonial roles on Latin-script surfaces.
+ * In EN mode this rule doesn't fire, so Manrope keeps its
+ * English roles on Latin-script surfaces.
  * ================================================================ */
 html[lang="ar"] *:not(.font-mono):not([class*="JetBrains"]):not([class*="ri-"]):not([class*="fa-"]):not(.fas):not(.far):not(.fab):not(.fal):not(i):not(pre):not(code):not(kbd):not(samp),
 html[dir="rtl"] *:not(.font-mono):not([class*="JetBrains"]):not([class*="ri-"]):not([class*="fa-"]):not(.fas):not(.far):not(.fab):not(.fal):not(i):not(pre):not(code):not(kbd):not(samp) {

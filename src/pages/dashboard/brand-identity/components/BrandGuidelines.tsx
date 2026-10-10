@@ -1,6 +1,6 @@
 const colorPalette = [
-  { name: "Cyan — Primary",    hex: "#D6B47E", role: "Interactive elements, highlights, active states, logo mark",  group: "brand" },
-  { name: "Navy Black",        hex: "#051428", role: "Primary background, authority, command",                       group: "brand" },
+  { name: "Cyan — Primary",    hex: "#C5A365", role: "Interactive elements, highlights, active states, logo mark",  group: "brand" },
+  { name: "Navy Black",        hex: "#071426", role: "Primary background, authority, command",                       group: "brand" },
   { name: "Hover Cyan",        hex: "#0EA5E9", role: "Hover states, secondary interactive",                          group: "brand" },
   { name: "Glass Panel",       hex: "rgba(10,37,64,0.8)", role: "Card/panel backgrounds with glassmorphism",         group: "brand" },
   { name: "White",             hex: "#FFFFFF", role: "Primary headings, high-emphasis text",                         group: "text" },
@@ -24,7 +24,7 @@ const typeScale = [
 ];
 
 const dosDonts = [
-  { type: "do",   text: "Use cyan (#D6B47E) as the sole accent color on dark backgrounds" },
+  { type: "do",   text: "Use cyan (#C5A365) as the sole accent color on dark backgrounds" },
   { type: "do",   text: "Maintain minimum 4.5:1 contrast ratio for all body text" },
   { type: "do",   text: "Use Noto Kufi Arabic for all Arabic text — never substitute" },
   { type: "do",   text: "Present bilingual content with English left, Arabic right (RTL)" },
@@ -53,15 +53,15 @@ const BrandGuidelines = () => (
       <div className="relative z-10 grid grid-cols-2 gap-8">
         <div>
           <p className="text-xs text-gold-400 uppercase tracking-widest font-['JetBrains_Mono'] mb-3">Brand Philosophy</p>
-          <h2 className="text-white text-2xl font-bold font-['Inter'] mb-4">أمين = The Trustworthy</h2>
-          <p className="text-gray-400 text-sm font-['Inter'] leading-relaxed mb-4">
+          <h2 className="text-white text-2xl font-bold font-['Manrope'] mb-4">أمين = The Trustworthy</h2>
+          <p className="text-gray-400 text-sm font-['Manrope'] leading-relaxed mb-4">
             Al-Ameen is the trusted custodian safeguarding the nation. The name itself — أمين — means trustworthy, faithful, and guardian in Arabic. Every design decision reinforces this: sovereign protection, intelligent insight, and national pride.
           </p>
           <div className="space-y-2">
             {["Sovereign Protection", "Intelligent Insight", "National Pride", "Operational Precision"].map((v) => (
               <div key={v} className="flex items-center gap-2">
                 <div className="w-1.5 h-1.5 rounded-full bg-gold-400 flex-shrink-0" />
-                <span className="text-gray-300 text-sm font-['Inter']">{v}</span>
+                <span className="text-gray-300 text-sm font-['Manrope']">{v}</span>
               </div>
             ))}
           </div>
@@ -76,8 +76,8 @@ const BrandGuidelines = () => (
               { role: "System Integrators",      desc: "Technical teams building API integrations" },
             ].map((a) => (
               <div key={a.role} className="p-3 rounded-lg" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(184,138,60,0.08)" }}>
-                <p className="text-white text-xs font-semibold font-['Inter']">{a.role}</p>
-                <p className="text-gray-500 text-xs font-['Inter'] mt-0.5">{a.desc}</p>
+                <p className="text-white text-xs font-semibold font-['Manrope']">{a.role}</p>
+                <p className="text-gray-500 text-xs font-['Manrope'] mt-0.5">{a.desc}</p>
               </div>
             ))}
           </div>
@@ -87,7 +87,7 @@ const BrandGuidelines = () => (
 
     {/* Color Palette */}
     <div>
-      <h2 className="text-white font-bold text-lg font-['Inter'] mb-4">
+      <h2 className="text-white font-bold text-lg font-['Manrope'] mb-4">
         <i className="ri-palette-line mr-2 text-gold-400" />Color System
       </h2>
       {(["brand", "text", "semantic"] as const).map((group) => (
@@ -111,9 +111,9 @@ const BrandGuidelines = () => (
                     )}
                   </div>
                   <div className="p-3" style={{ background: "rgba(10,37,64,0.8)" }}>
-                    <p className="text-white text-xs font-semibold font-['Inter'] mb-0.5">{color.name}</p>
+                    <p className="text-white text-xs font-semibold font-['Manrope'] mb-0.5">{color.name}</p>
                     <p className="text-gold-400 text-xs font-['JetBrains_Mono'] mb-1">{color.hex}</p>
-                    <p className="text-gray-600 text-xs font-['Inter'] leading-tight">{color.role}</p>
+                    <p className="text-gray-600 text-xs font-['Manrope'] leading-tight">{color.role}</p>
                   </div>
                 </div>
               );
@@ -125,7 +125,7 @@ const BrandGuidelines = () => (
 
     {/* Typography */}
     <div>
-      <h2 className="text-white font-bold text-lg font-['Inter'] mb-4">
+      <h2 className="text-white font-bold text-lg font-['Manrope'] mb-4">
         <i className="ri-text mr-2 text-gold-400" />Typography System
       </h2>
       <div className="grid grid-cols-2 gap-3 mb-4">
@@ -137,17 +137,17 @@ const BrandGuidelines = () => (
           <div key={font.name} className="p-4 rounded-xl" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.1)" }}>
             <div className="flex items-center justify-between mb-2">
               <p className="text-gold-400 text-xs font-semibold font-['JetBrains_Mono']">{font.name}</p>
-              <span className="text-gray-600 text-xs font-['Inter']">{font.weight}</span>
+              <span className="text-gray-600 text-xs font-['Manrope']">{font.weight}</span>
             </div>
-            <p className="text-gray-500 text-xs font-['Inter'] mb-3">{font.role}</p>
-            <p className="text-white text-base" style={{ fontFamily: font.name === "JetBrains Mono" ? "'JetBrains Mono', monospace" : font.name === "Noto Kufi Arabic" ? "'Noto Kufi Arabic', 'Arial', sans-serif" : "'Inter', sans-serif" }}>
+            <p className="text-gray-500 text-xs font-['Manrope'] mb-3">{font.role}</p>
+            <p className="text-white text-base" style={{ fontFamily: font.name === "JetBrains Mono" ? "'JetBrains Mono', monospace" : font.name === "Noto Kufi Arabic" ? "'Noto Kufi Arabic', 'Arial', sans-serif" : "'Manrope', sans-serif" }}>
               {font.sample}
             </p>
           </div>
         ))}
       </div>
       <div className="rounded-xl overflow-hidden" style={{ border: "1px solid rgba(184,138,60,0.1)" }}>
-        <div className="grid px-4 py-2 text-xs font-semibold uppercase tracking-wider text-gray-600 font-['Inter']"
+        <div className="grid px-4 py-2 text-xs font-semibold uppercase tracking-wider text-gray-600 font-['Manrope']"
           style={{ background: "rgba(184,138,60,0.04)", gridTemplateColumns: "1fr 1.2fr 1.2fr 1.5fr 2fr" }}>
           <span>Scale</span><span>Size</span><span>Weight</span><span>Usage</span><span>Sample</span>
         </div>
@@ -156,9 +156,9 @@ const BrandGuidelines = () => (
             style={{ gridTemplateColumns: "1fr 1.2fr 1.2fr 1.5fr 2fr", borderTop: i > 0 ? "1px solid rgba(255,255,255,0.04)" : "none" }}>
             <span className="text-gold-400 text-xs font-semibold font-['JetBrains_Mono']">{t.name}</span>
             <span className="text-gray-400 text-xs font-['JetBrains_Mono']">{t.size}</span>
-            <span className="text-gray-400 text-xs font-['Inter']">{t.weight}</span>
-            <span className="text-gray-500 text-xs font-['Inter']">{t.usage}</span>
-            <span className="text-white text-sm truncate" style={{ fontFamily: t.mono ? "'JetBrains Mono', monospace" : "'Inter', sans-serif" }}>{t.sample}</span>
+            <span className="text-gray-400 text-xs font-['Manrope']">{t.weight}</span>
+            <span className="text-gray-500 text-xs font-['Manrope']">{t.usage}</span>
+            <span className="text-white text-sm truncate" style={{ fontFamily: t.mono ? "'JetBrains Mono', monospace" : "'Manrope', sans-serif" }}>{t.sample}</span>
           </div>
         ))}
       </div>
@@ -166,7 +166,7 @@ const BrandGuidelines = () => (
 
     {/* Voice & Tone */}
     <div>
-      <h2 className="text-white font-bold text-lg font-['Inter'] mb-4">
+      <h2 className="text-white font-bold text-lg font-['Manrope'] mb-4">
         <i className="ri-megaphone-line mr-2 text-gold-400" />Voice &amp; Tone
       </h2>
       <div className="space-y-3">
@@ -177,16 +177,16 @@ const BrandGuidelines = () => (
               <div className="p-3 rounded-lg" style={{ background: "rgba(74,222,128,0.06)", border: "1px solid rgba(74,222,128,0.2)" }}>
                 <div className="flex items-center gap-1.5 mb-2">
                   <i className="ri-check-line text-green-400 text-xs" />
-                  <span className="text-green-400 text-xs font-semibold font-['Inter']">Do</span>
+                  <span className="text-green-400 text-xs font-semibold font-['Manrope']">Do</span>
                 </div>
-                <p className="text-gray-300 text-sm font-['Inter']">{ex.good}</p>
+                <p className="text-gray-300 text-sm font-['Manrope']">{ex.good}</p>
               </div>
               <div className="p-3 rounded-lg" style={{ background: "rgba(201,74,94,0.06)", border: "1px solid rgba(201,74,94,0.2)" }}>
                 <div className="flex items-center gap-1.5 mb-2">
                   <i className="ri-close-line text-red-400 text-xs" />
-                  <span className="text-red-400 text-xs font-semibold font-['Inter']">Don&apos;t</span>
+                  <span className="text-red-400 text-xs font-semibold font-['Manrope']">Don&apos;t</span>
                 </div>
-                <p className="text-gray-500 text-sm font-['Inter'] line-through">{ex.bad}</p>
+                <p className="text-gray-500 text-sm font-['Manrope'] line-through">{ex.bad}</p>
               </div>
             </div>
           </div>
@@ -196,32 +196,32 @@ const BrandGuidelines = () => (
 
     {/* Do's & Don'ts */}
     <div>
-      <h2 className="text-white font-bold text-lg font-['Inter'] mb-4">
+      <h2 className="text-white font-bold text-lg font-['Manrope'] mb-4">
         <i className="ri-shield-check-line mr-2 text-gold-400" />Logo Usage Rules
       </h2>
       <div className="grid grid-cols-2 gap-4">
         <div className="rounded-xl p-5" style={{ background: "rgba(74,222,128,0.04)", border: "1px solid rgba(74,222,128,0.15)" }}>
-          <p className="text-green-400 text-sm font-semibold font-['Inter'] mb-3">
+          <p className="text-green-400 text-sm font-semibold font-['Manrope'] mb-3">
             <i className="ri-check-double-line mr-2" />Do
           </p>
           <div className="space-y-2">
             {dosDonts.filter((d) => d.type === "do").map((d, i) => (
               <div key={i} className="flex items-start gap-2">
                 <i className="ri-check-line text-green-400 text-xs mt-0.5 flex-shrink-0" />
-                <p className="text-gray-300 text-xs font-['Inter']">{d.text}</p>
+                <p className="text-gray-300 text-xs font-['Manrope']">{d.text}</p>
               </div>
             ))}
           </div>
         </div>
         <div className="rounded-xl p-5" style={{ background: "rgba(201,74,94,0.04)", border: "1px solid rgba(201,74,94,0.15)" }}>
-          <p className="text-red-400 text-sm font-semibold font-['Inter'] mb-3">
+          <p className="text-red-400 text-sm font-semibold font-['Manrope'] mb-3">
             <i className="ri-close-circle-line mr-2" />Don&apos;t
           </p>
           <div className="space-y-2">
             {dosDonts.filter((d) => d.type === "dont").map((d, i) => (
               <div key={i} className="flex items-start gap-2">
                 <i className="ri-close-line text-red-400 text-xs mt-0.5 flex-shrink-0" />
-                <p className="text-gray-300 text-xs font-['Inter']">{d.text}</p>
+                <p className="text-gray-300 text-xs font-['Manrope']">{d.text}</p>
               </div>
             ))}
           </div>

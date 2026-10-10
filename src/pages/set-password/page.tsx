@@ -8,7 +8,7 @@ const C = {
   ocean700: "var(--alm-ocean-700)",
   ocean600: "var(--alm-ocean-600)",
   ocean400: "var(--alm-ocean-400)",
-  gold400:  "#D6B47E",
+  gold400:  "#C5A365",
   gold600:  "#B88A3C",
   ivory000: "#FFFFFF",
   ivory100: "#F8F5F0",
@@ -41,7 +41,7 @@ export default function SetPasswordPage() {
     strength === 0 ? "#374B61" :
     strength === 1 ? "#C94A5E" :
     strength === 2 ? "#D4922A" :
-    strength === 3 ? "#D6B47E" : "#4A8E5A";
+    strength === 3 ? "#C5A365" : "#4A8E5A";
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();

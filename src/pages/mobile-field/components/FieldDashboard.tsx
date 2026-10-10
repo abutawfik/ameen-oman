@@ -72,7 +72,7 @@ const FieldDashboard = ({ isAr, onAlertTap, onSearch }: Props) => {
               <i className="ri-shield-star-fill text-gold-400 text-sm" />
             </div>
             <div>
-              <p className="text-white text-xs font-bold font-['Inter']">
+              <p className="text-white text-xs font-bold font-['Manrope']">
                 {isAr ? currentOfficer.nameAr : currentOfficer.name}
               </p>
               <p className="text-gray-500 text-[11px] font-['JetBrains_Mono']">
@@ -97,7 +97,7 @@ const FieldDashboard = ({ isAr, onAlertTap, onSearch }: Props) => {
         <div className="flex items-center gap-2">
           <span className="text-gray-600 text-[9px] font-['JetBrains_Mono']">{currentOfficer.shiftStart}</span>
           <div className="flex-1 h-1 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
-            <div className="h-full rounded-full" style={{ width: `${shiftProgress()}%`, background: "linear-gradient(90deg, #D6B47E, #4ADE80)" }} />
+            <div className="h-full rounded-full" style={{ width: `${shiftProgress()}%`, background: "linear-gradient(90deg, #C5A365, #4ADE80)" }} />
           </div>
           <span className="text-gray-600 text-[9px] font-['JetBrains_Mono']">{currentOfficer.shiftEnd}</span>
         </div>
@@ -123,7 +123,7 @@ const FieldDashboard = ({ isAr, onAlertTap, onSearch }: Props) => {
               <div key={off.id} className="flex items-center gap-2">
                 <div className="w-1.5 h-1.5 rounded-full flex-shrink-0"
                   style={{ background: officerStatusColors[off.status] }} />
-                <span className="text-white text-[11px] font-['Inter'] flex-1 truncate">{off.name}</span>
+                <span className="text-white text-[11px] font-['Manrope'] flex-1 truncate">{off.name}</span>
                 <span className="text-gray-500 text-[9px] font-['JetBrains_Mono']">{off.distance}</span>
                 <span className="text-[9px] font-['JetBrains_Mono'] capitalize"
                   style={{ color: officerStatusColors[off.status] }}>{off.status}</span>
@@ -180,7 +180,7 @@ const FieldDashboard = ({ isAr, onAlertTap, onSearch }: Props) => {
           style={{ background: "rgba(10,37,64,0.9)", border: "1.5px solid rgba(184,138,60,0.35)" }}
           onClick={onSearch}>
           <i className="ri-search-line text-gold-400 text-lg flex-shrink-0" />
-          <span className="text-gray-500 text-sm font-['Inter']">
+          <span className="text-gray-500 text-sm font-['Manrope']">
             {isAr ? "بحث: مستند، اسم، هاتف..." : "Search: document, name, phone..."}
           </span>
           <div className="ml-auto flex items-center gap-1.5 flex-shrink-0">
@@ -199,7 +199,7 @@ const FieldDashboard = ({ isAr, onAlertTap, onSearch }: Props) => {
             className="flex-1 py-1.5 rounded-xl text-[11px] font-bold font-['JetBrains_Mono'] uppercase cursor-pointer transition-all"
             style={{
               background: activeFilter === f ? (f === "all" ? "rgba(184,138,60,0.15)" : priorityConfig[f as keyof typeof priorityConfig]?.bg || "rgba(184,138,60,0.15)") : "rgba(10,37,64,0.6)",
-              color: activeFilter === f ? (f === "all" ? "#D6B47E" : priorityConfig[f as keyof typeof priorityConfig]?.color || "#D6B47E") : "#4B5563",
+              color: activeFilter === f ? (f === "all" ? "#C5A365" : priorityConfig[f as keyof typeof priorityConfig]?.color || "#C5A365") : "#4B5563",
               border: `1px solid ${activeFilter === f ? (f === "all" ? "rgba(184,138,60,0.3)" : priorityConfig[f as keyof typeof priorityConfig]?.border || "rgba(184,138,60,0.3)") : "rgba(255,255,255,0.05)"}`,
             }}>
             {f === "all" ? (isAr ? "الكل" : "All") : f.slice(0,3)}
@@ -211,7 +211,7 @@ const FieldDashboard = ({ isAr, onAlertTap, onSearch }: Props) => {
       <div className="mx-3 mt-3">
         <div className="flex items-center gap-2 mb-2">
           <i className="ri-map-pin-2-fill text-gold-400 text-sm" />
-          <p className="text-white text-xs font-bold font-['Inter'] uppercase tracking-wider">
+          <p className="text-white text-xs font-bold font-['Manrope'] uppercase tracking-wider">
             {isAr ? "المواقع القريبة" : "Nearby Flagged"}
           </p>
           <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse ml-1" />
@@ -225,7 +225,7 @@ const FieldDashboard = ({ isAr, onAlertTap, onSearch }: Props) => {
                 style={{ background: "rgba(10,37,64,0.8)", border: `1px solid ${cfg.border}`, minWidth: "130px" }}>
                 <div className="flex items-center gap-1.5 mb-1">
                   <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: cfg.color }} />
-                  <span className="text-white text-[11px] font-['Inter'] font-semibold truncate">{isAr ? loc.nameAr : loc.name}</span>
+                  <span className="text-white text-[11px] font-['Manrope'] font-semibold truncate">{isAr ? loc.nameAr : loc.name}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-gray-500 text-[9px] font-['JetBrains_Mono']">{loc.activeAlerts} alerts</span>
@@ -239,7 +239,7 @@ const FieldDashboard = ({ isAr, onAlertTap, onSearch }: Props) => {
 
       {/* Recent Alerts Feed */}
       <div className="mx-3 mt-3 mb-4">
-        <p className="text-white text-xs font-bold font-['Inter'] uppercase tracking-wider mb-2">
+        <p className="text-white text-xs font-bold font-['Manrope'] uppercase tracking-wider mb-2">
           {isAr ? "آخر التنبيهات" : "Recent Alerts"}
         </p>
         <div className="space-y-2">
@@ -265,10 +265,10 @@ const FieldDashboard = ({ isAr, onAlertTap, onSearch }: Props) => {
                       {isAr ? sCfg.labelAr : sCfg.label}
                     </span>
                   </div>
-                  <p className="text-white text-xs font-['Inter'] font-semibold leading-snug truncate">
+                  <p className="text-white text-xs font-['Manrope'] font-semibold leading-snug truncate">
                     {isAr ? alert.ruleNameAr : alert.ruleName}
                   </p>
-                  <p className="text-gray-500 text-[11px] font-['Inter'] truncate">
+                  <p className="text-gray-500 text-[11px] font-['Manrope'] truncate">
                     {alert.personName} · {isAr ? alert.locationAr : alert.location}
                   </p>
                   <div className="flex items-center gap-2 mt-1">
@@ -300,8 +300,8 @@ const FieldDashboard = ({ isAr, onAlertTap, onSearch }: Props) => {
                   style={{ background: "rgba(201,74,94,0.2)", border: "2px solid #C94A5E" }}>
                   <i className="ri-check-line text-red-400 text-3xl" />
                 </div>
-                <p className="text-red-400 font-black font-['Inter'] text-lg">SOS SENT</p>
-                <p className="text-gray-400 text-sm font-['Inter']">Command Center notified. Backup dispatched.</p>
+                <p className="text-red-400 font-black font-['Manrope'] text-lg">SOS SENT</p>
+                <p className="text-gray-400 text-sm font-['Manrope']">Command Center notified. Backup dispatched.</p>
                 <p className="text-gray-500 text-xs font-['JetBrains_Mono']">GPS: 23.5957, 58.3932</p>
               </div>
             ) : (
@@ -310,21 +310,21 @@ const FieldDashboard = ({ isAr, onAlertTap, onSearch }: Props) => {
                   style={{ background: "rgba(201,74,94,0.2)", border: "2px solid #C94A5E" }}>
                   <i className="ri-alarm-warning-fill text-red-400 text-3xl" />
                 </div>
-                <p className="text-white font-black font-['Inter'] text-lg mb-1">
+                <p className="text-white font-black font-['Manrope'] text-lg mb-1">
                   {isAr ? "إرسال نداء استغاثة؟" : "Send SOS Alert?"}
                 </p>
-                <p className="text-gray-400 text-sm font-['Inter'] mb-5">
+                <p className="text-gray-400 text-sm font-['Manrope'] mb-5">
                   {isAr ? "سيتم إخطار مركز القيادة وإرسال دعم فوري" : "Command Center will be notified and backup dispatched immediately"}
                 </p>
                 <div className="flex gap-3">
                   <button onClick={() => setShowSOS(false)}
-                    className="flex-1 py-3 rounded-2xl text-sm font-bold font-['Inter'] cursor-pointer"
+                    className="flex-1 py-3 rounded-2xl text-sm font-bold font-['Manrope'] cursor-pointer"
                     style={{ border: "1px solid rgba(255,255,255,0.1)", color: "#6B7280" }}>
                     {isAr ? "إلغاء" : "Cancel"}
                   </button>
                   <button onClick={handleSOS}
-                    className="flex-1 py-3 rounded-2xl text-sm font-black font-['Inter'] cursor-pointer"
-                    style={{ background: "#C94A5E", color: "#051428" }}>
+                    className="flex-1 py-3 rounded-2xl text-sm font-black font-['Manrope'] cursor-pointer"
+                    style={{ background: "#C94A5E", color: "#071426" }}>
                     {isAr ? "إرسال SOS" : "SEND SOS"}
                   </button>
                 </div>

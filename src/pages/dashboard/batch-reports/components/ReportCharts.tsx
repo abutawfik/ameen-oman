@@ -17,7 +17,7 @@ const TIME_SERIES = [
 ];
 
 const DONUT_DATA = [
-  { label: "Hotel Events",       labelAr: "أحداث الفنادق",    pct: 22, color: "#D6B47E" },
+  { label: "Hotel Events",       labelAr: "أحداث الفنادق",    pct: 22, color: "#C5A365" },
   { label: "Mobile Operators",   labelAr: "مشغلو الاتصالات",  pct: 19, color: "#4ADE80" },
   { label: "Financial Services", labelAr: "الخدمات المالية",  pct: 16, color: "#FACC15" },
   { label: "Border Intelligence",labelAr: "استخبارات الحدود", pct: 11, color: "#60A5FA" },
@@ -27,7 +27,7 @@ const DONUT_DATA = [
 ];
 
 const NATIONALITIES = [
-  { nat: "Omani",      natAr: "عُماني",    count: 18420, pct: 38, color: "#D6B47E" },
+  { nat: "Omani",      natAr: "عُماني",    count: 18420, pct: 38, color: "#C5A365" },
   { nat: "Indian",     natAr: "هندي",      count: 9840,  pct: 20, color: "#4ADE80" },
   { nat: "Pakistani",  natAr: "باكستاني",  count: 5820,  pct: 12, color: "#FACC15" },
   { nat: "Bangladeshi",natAr: "بنغلاديشي", count: 3890,  pct: 8,  color: "#C98A1B" },
@@ -72,7 +72,7 @@ const ReportCharts = ({ isAr }: Props) => {
           <h3 className="text-white font-bold text-sm">{isAr ? "الأحداث عبر الزمن" : "Events Over Time"}</h3>
           <div className="ml-auto flex flex-wrap gap-3">
             {[
-              { label: "Hotel", labelAr: "فنادق", color: "#D6B47E" },
+              { label: "Hotel", labelAr: "فنادق", color: "#C5A365" },
               { label: "Mobile", labelAr: "اتصالات", color: "#4ADE80" },
               { label: "Financial", labelAr: "مالية", color: "#FACC15" },
               { label: "Border", labelAr: "حدود", color: "#60A5FA" },
@@ -93,7 +93,7 @@ const ReportCharts = ({ isAr }: Props) => {
               <div key={d.day} className="flex-1 flex flex-col items-center gap-1">
                 <div className="w-full flex flex-col-reverse rounded-t-sm overflow-hidden" style={{ height: `${scale(total)}%` }}>
                   {[
-                    { val: d.hotel, color: "#D6B47E" },
+                    { val: d.hotel, color: "#C5A365" },
                     { val: d.mobile, color: "#4ADE80" },
                     { val: d.financial, color: "#FACC15" },
                     { val: d.border, color: "#60A5FA" },
@@ -224,10 +224,10 @@ const ReportCharts = ({ isAr }: Props) => {
                     onMouseEnter={() => setHoveredCell({ d, h })}
                     onMouseLeave={() => setHoveredCell(null)}
                     className="flex-1 h-5 rounded-sm cursor-pointer transition-all relative"
-                    style={{ background: heatColor(val), border: hoveredCell?.d === d && hoveredCell?.h === h ? "1px solid #D6B47E" : "1px solid transparent" }}>
+                    style={{ background: heatColor(val), border: hoveredCell?.d === d && hoveredCell?.h === h ? "1px solid #C5A365" : "1px solid transparent" }}>
                     {hoveredCell?.d === d && hoveredCell?.h === h && (
                       <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 px-2 py-1 rounded text-xs whitespace-nowrap z-10 pointer-events-none"
-                        style={{ background: "rgba(5,20,40,0.95)", border: "1px solid rgba(184,138,60,0.3)", color: "#D6B47E", fontSize: "9px" }}>
+                        style={{ background: "rgba(5,20,40,0.95)", border: "1px solid rgba(184,138,60,0.3)", color: "#C5A365", fontSize: "9px" }}>
                         {DAYS[d]} {HOURS[h]}: {val}%
                       </div>
                     )}

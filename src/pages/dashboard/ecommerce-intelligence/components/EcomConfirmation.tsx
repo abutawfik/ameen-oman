@@ -31,10 +31,10 @@ const EcomConfirmation = ({ isAr, eventType, eventTypeAr, color, icon, onReset }
         <i className={`${icon} text-5xl`} style={{ color }} />
       </div>
 
-      <h2 className="text-white text-2xl font-bold mb-2 font-['Inter']">
+      <h2 className="text-white text-2xl font-bold mb-2 font-['Manrope']">
         {isAr ? "تم الإرسال بنجاح" : "Event Submitted Successfully"}
       </h2>
-      <p className="text-gray-400 text-sm mb-6 font-['Inter']">
+      <p className="text-gray-400 text-sm mb-6 font-['Manrope']">
         {isAr ? `تم تسجيل حدث "${eventTypeAr}" في نظام Al-Ameen` : `"${eventType}" event recorded in Al-Ameen system`}
       </p>
 
@@ -45,7 +45,7 @@ const EcomConfirmation = ({ isAr, eventType, eventTypeAr, color, icon, onReset }
       >
         <i className="ri-qr-code-line text-gold-400 text-xl" />
         <div className="text-left">
-          <p className="text-gray-500 text-xs mb-0.5 font-['Inter']">
+          <p className="text-gray-500 text-xs mb-0.5 font-['Manrope']">
             {isAr ? "رمز التأكيد" : "Confirmation Code"}
           </p>
           <p className="text-gold-400 text-lg font-black font-['JetBrains_Mono'] tracking-widest">{code}</p>
@@ -69,10 +69,10 @@ const EcomConfirmation = ({ isAr, eventType, eventTypeAr, color, icon, onReset }
         <button
           type="button"
           onClick={onReset}
-          className="flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold cursor-pointer transition-colors whitespace-nowrap font-['Inter']"
-          style={{ background: "#D6B47E", color: "#051428" }}
-          onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C99C48"; }}
-          onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#D6B47E"; }}
+          className="flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold cursor-pointer transition-colors whitespace-nowrap font-['Manrope']"
+          style={{ background: "#C5A365", color: "#071426" }}
+          onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C5A365"; }}
+          onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C5A365"; }}
         >
           <i className="ri-add-line" />
           {isAr ? "إرسال حدث جديد" : "Submit Another Event"}

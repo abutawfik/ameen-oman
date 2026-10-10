@@ -74,7 +74,7 @@ const BookingForm = ({ isAr, onCancel, onSaved }: Props) => {
     return (
       <SuccessScreen
         icon="ri-calendar-check-line"
-        color="#D6B47E"
+        color="#C5A365"
         titleEn="Booking Event Saved!"
         titleAr="تم حفظ الحجز!"
         isAr={isAr}
@@ -94,7 +94,7 @@ const BookingForm = ({ isAr, onCancel, onSaved }: Props) => {
           <i className="ri-calendar-line text-gold-400 text-xl" />
         </div>
         <div>
-          <h2 className="text-white font-bold text-xl font-['Inter']">{t.title}</h2>
+          <h2 className="text-white font-bold text-xl font-['Manrope']">{t.title}</h2>
           <p className="text-gray-600 text-xs font-['JetBrains_Mono'] tracking-widest">HOTEL_BOOKING</p>
         </div>
       </div>
@@ -106,18 +106,18 @@ const BookingForm = ({ isAr, onCancel, onSaved }: Props) => {
             <button
               type="button"
               onClick={() => { if (p < part || p === 1) setPart(p); }}
-              className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold transition-all cursor-pointer whitespace-nowrap font-['Inter'] border"
+              className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold transition-all cursor-pointer whitespace-nowrap font-['Manrope'] border"
               style={{
                 background: part === p ? "rgba(184,138,60,0.12)" : part > p ? "rgba(74,222,128,0.08)" : "rgba(10,37,64,0.6)",
                 borderColor: part === p ? "rgba(184,138,60,0.35)" : part > p ? "rgba(74,222,128,0.25)" : "rgba(255,255,255,0.06)",
-                color: part === p ? "#D6B47E" : part > p ? "#4ADE80" : "#4B5563",
+                color: part === p ? "#C5A365" : part > p ? "#4ADE80" : "#4B5563",
               }}
             >
               <div
                 className="w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold"
                 style={{
-                  background: part === p ? "#D6B47E" : part > p ? "#4ADE80" : "rgba(255,255,255,0.08)",
-                  color: part === p || part > p ? "#051428" : "#6B7280",
+                  background: part === p ? "#C5A365" : part > p ? "#4ADE80" : "rgba(255,255,255,0.08)",
+                  color: part === p || part > p ? "#071426" : "#6B7280",
                 }}
               >
                 {part > p ? <i className="ri-check-line text-xs" /> : p}
@@ -190,10 +190,10 @@ const BookingForm = ({ isAr, onCancel, onSaved }: Props) => {
             <button
               type="button"
               onClick={() => setPart(2)}
-              className="flex items-center gap-2 px-6 py-2.5 rounded-lg text-sm font-bold cursor-pointer whitespace-nowrap font-['Inter'] transition-colors"
-              style={{ background: "#D6B47E", color: "#051428" }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C99C48"; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#D6B47E"; }}
+              className="flex items-center gap-2 px-6 py-2.5 rounded-lg text-sm font-bold cursor-pointer whitespace-nowrap font-['Manrope'] transition-colors"
+              style={{ background: "#C5A365", color: "#071426" }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C5A365"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C5A365"; }}
             >
               {t.next}
               <i className="ri-arrow-right-line" />
@@ -279,7 +279,7 @@ const BookingForm = ({ isAr, onCancel, onSaved }: Props) => {
             <button
               type="button"
               onClick={() => setPart(1)}
-              className="flex items-center gap-2 px-5 py-2.5 rounded-lg border text-sm font-semibold cursor-pointer whitespace-nowrap font-['Inter'] transition-colors"
+              className="flex items-center gap-2 px-5 py-2.5 rounded-lg border text-sm font-semibold cursor-pointer whitespace-nowrap font-['Manrope'] transition-colors"
               style={{ background: "transparent", borderColor: "rgba(255,255,255,0.15)", color: "#9CA3AF" }}
               onMouseEnter={(e) => {
                 (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.3)";

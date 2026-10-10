@@ -11,7 +11,7 @@
 //                Arabic families via isAr.
 //   · mono     — metadata, IDs, timestamps, classification labels, eyebrows
 //
-// Anywhere you'd otherwise inline `'Cormorant Garamond', Georgia, serif`
+// Anywhere you'd otherwise inline `'Manrope', ui-sans-serif, system-ui, sans-serif`
 // you should call `useBrandFonts()` (inside a component) or `getBrandFont()`
 // (outside React) and read the role you need.
 // ============================================================================
@@ -22,17 +22,17 @@ import i18n from "@/i18n";
 // ── Raw family stacks ────────────────────────────────────────────────────────
 // Arabic family locked to Cairo per brand decision 17-Apr-2026
 // (`al-ameen-brand/arabic-font-options.html` Option C).
-// Cairo reads clean, modern, and pairs well with Cormorant Garamond's
+// Cairo reads clean, modern, and pairs well with Manrope's
 // ceremonial English serif.
 export const BRAND_FONTS = {
   // Display — ceremonial headlines
   display: {
-    en: "'Cormorant Garamond', Georgia, serif",
+    en: "'Manrope', ui-sans-serif, system-ui, sans-serif",
     ar: "'Cairo', 'Tajawal', 'IBM Plex Sans Arabic', sans-serif",
   },
   // Body / UI
   sans: {
-    en: "'Inter', ui-sans-serif, system-ui, sans-serif",
+    en: "'Manrope', ui-sans-serif, system-ui, sans-serif",
     ar: "'Cairo', 'Tajawal', 'IBM Plex Sans Arabic', sans-serif",
   },
   // Always-Arabic counterpart (when rendered alongside an EN primary —

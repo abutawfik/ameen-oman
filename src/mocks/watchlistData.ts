@@ -825,7 +825,7 @@ export const geoHitsData = [
 
 export const streamHitsData = [
   { stream: 'Border Intelligence', icon: 'ri-passport-line', hits: 234, color: '#60A5FA' },
-  { stream: 'Hotel Intelligence', icon: 'ri-hotel-line', hits: 189, color: '#D6B47E' },
+  { stream: 'Hotel Intelligence', icon: 'ri-hotel-line', hits: 189, color: '#C5A365' },
   { stream: 'Mobile Operators', icon: 'ri-sim-card-line', hits: 156, color: '#A78BFA' },
   { stream: 'Financial Services', icon: 'ri-bank-card-line', hits: 134, color: '#4ADE80' },
   { stream: 'Employment Registry', icon: 'ri-briefcase-line', hits: 112, color: '#F9A8D4' },

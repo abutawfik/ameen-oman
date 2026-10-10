@@ -9,7 +9,7 @@ const C = {
   ocean700: "var(--alm-ocean-700)",
   ocean600: "var(--alm-ocean-600)",
   ocean400: "var(--alm-ocean-400)",
-  gold400:  "#D6B47E",
+  gold400:  "#C5A365",
   gold600:  "#B88A3C",
   ivory000: "#FFFFFF",
   ivory100: "#F8F5F0",

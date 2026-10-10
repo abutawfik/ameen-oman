@@ -19,7 +19,7 @@ const LEVELS: { value: FuelLevel; label: string; labelAr: string; pct: number }[
 
 const getFuelColor = (pct: number) => {
   if (pct >= 75) return "#4ADE80";
-  if (pct >= 50) return "#D6B47E";
+  if (pct >= 50) return "#C5A365";
   if (pct >= 25) return "#FACC15";
   return "#C94A5E";
 };
@@ -37,7 +37,7 @@ const FuelGauge = ({ value, onChange, isAr }: Props) => {
         <div className="w-6 h-6 flex items-center justify-center">
           <i className="ri-gas-station-line text-gold-400 text-sm" />
         </div>
-        <span className="text-gray-400 text-xs font-['Inter']">
+        <span className="text-gray-400 text-xs font-['Manrope']">
           {isAr ? "مستوى الوقود" : "Fuel Level"}
         </span>
         <span

@@ -50,7 +50,7 @@ export default function CheckOutForm({ lang, onCancel }: Props) {
             placeholder="BK-2025-001 / Room No. / Doc No."
             className={`${inputCls} flex-1`}
           />
-          <button onClick={lookup} className="px-5 py-2.5 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap" style={{ background: '#D6B47E', color: '#051428' }}>
+          <button onClick={lookup} className="px-5 py-2.5 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap" style={{ background: '#C5A365', color: '#071426' }}>
             {isAr ? 'بحث' : 'Lookup'}
           </button>
         </div>
@@ -118,7 +118,7 @@ export default function CheckOutForm({ lang, onCancel }: Props) {
           <button onClick={onCancel} className="px-5 py-2.5 rounded-lg text-sm border border-gray-600 text-gray-300 hover:border-gray-400 cursor-pointer transition-all whitespace-nowrap">
             {isAr ? 'إلغاء' : 'Cancel'}
           </button>
-          <button onClick={handleSave} className="px-6 py-2.5 rounded-lg text-sm font-semibold cursor-pointer transition-all whitespace-nowrap" style={{ background: saved ? '#4ADE80' : '#D6B47E', color: '#051428' }}>
+          <button onClick={handleSave} className="px-6 py-2.5 rounded-lg text-sm font-semibold cursor-pointer transition-all whitespace-nowrap" style={{ background: saved ? '#4ADE80' : '#C5A365', color: '#071426' }}>
             {saved ? <span className="flex items-center gap-2"><i className="ri-checkbox-circle-line" />{isAr ? 'تم!' : 'Done!'}</span> : <span><i className="ri-save-line mr-1" />{isAr ? 'حفظ + مزامنة أمين' : 'Save + Sync to Al-Ameen'}</span>}
           </button>
         </div>

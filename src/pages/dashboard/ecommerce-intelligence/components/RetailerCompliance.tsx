@@ -40,7 +40,7 @@ const RetailerCompliance = ({ isAr }: Props) => {
           { label: isAr ? "متصل" : "Online", value: RETAILERS.filter((r) => r.status === "active").length, color: "#4ADE80", icon: "ri-wifi-line" },
           { label: isAr ? "تحذير" : "Warning", value: RETAILERS.filter((r) => r.status === "warning").length, color: "#FACC15", icon: "ri-alert-line" },
           { label: isAr ? "غير متصل" : "Offline", value: RETAILERS.filter((r) => r.status === "offline").length, color: "#C94A5E", icon: "ri-wifi-off-line" },
-          { label: isAr ? "متوسط الجودة" : "Avg Quality", value: `${Math.round(RETAILERS.filter((r) => r.status === "active").reduce((a, r) => a + r.dataQuality, 0) / RETAILERS.filter((r) => r.status === "active").length)}%`, color: "#D6B47E", icon: "ri-bar-chart-line" },
+          { label: isAr ? "متوسط الجودة" : "Avg Quality", value: `${Math.round(RETAILERS.filter((r) => r.status === "active").reduce((a, r) => a + r.dataQuality, 0) / RETAILERS.filter((r) => r.status === "active").length)}%`, color: "#C5A365", icon: "ri-bar-chart-line" },
         ].map((s) => (
           <div key={s.label} className="rounded-xl border p-4 text-center" style={{ background: "rgba(10,37,64,0.8)", borderColor: `${s.color}20`, backdropFilter: "blur(12px)" }}>
             <div className="w-8 h-8 flex items-center justify-center rounded-lg mx-auto mb-2" style={{ background: `${s.color}12` }}>
@@ -104,7 +104,7 @@ const RetailerCompliance = ({ isAr }: Props) => {
                       <div className="flex gap-1 flex-wrap">
                         {r.categories.map((cat) => (
                           <span key={cat} className="px-1.5 py-0.5 rounded text-xs font-['JetBrains_Mono']"
-                            style={{ background: "rgba(184,138,60,0.08)", color: "#D6B47E", fontSize: "9px" }}>{cat}</span>
+                            style={{ background: "rgba(184,138,60,0.08)", color: "#C5A365", fontSize: "9px" }}>{cat}</span>
                         ))}
                       </div>
                     </td>
@@ -141,7 +141,7 @@ const RetailerCompliance = ({ isAr }: Props) => {
                   <span className="text-xs font-semibold" style={{ color: sc }}>{p.status.toUpperCase()}</span>
                 </div>
                 <div className="text-white text-sm font-bold mb-1 leading-tight">{p.name}</div>
-                <div className="text-2xl font-black font-['JetBrains_Mono'] mb-1" style={{ color: "#D6B47E" }}>{p.eventsToday}</div>
+                <div className="text-2xl font-black font-['JetBrains_Mono'] mb-1" style={{ color: "#C5A365" }}>{p.eventsToday}</div>
                 <div className="text-gray-500 text-xs mb-2">{isAr ? "أحداث اليوم" : "events today"}</div>
                 <div className="flex items-center gap-2">
                   <div className="flex-1 h-1 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>

@@ -34,7 +34,7 @@ type TabKey = "identity" | "movements" | "relationships" | "activity" | "risk" |
 // ── Shared helpers ─────────────────────────────────────────────────────────
 
 const EVENT_META: Record<MovementEventType, { labelEn: string; labelAr: string; icon: string; color: string; group: "border" | "hotel" | "sim" | "vehicle" | "mol" | "municipality" }> = {
-  BORDER_ENTRY:          { labelEn: "Border entry",       labelAr: "دخول حدودي",      icon: "ri-flight-land-line",   color: "#D6B47E", group: "border" },
+  BORDER_ENTRY:          { labelEn: "Border entry",       labelAr: "دخول حدودي",      icon: "ri-flight-land-line",   color: "#C5A365", group: "border" },
   BORDER_EXIT:           { labelEn: "Border exit",        labelAr: "خروج حدودي",      icon: "ri-flight-takeoff-line", color: "#B88A3C", group: "border" },
   HOTEL_CHECKIN:         { labelEn: "Hotel check-in",     labelAr: "تسجيل فندق",       icon: "ri-hotel-bed-line",     color: "#4A7AA8", group: "hotel" },
   HOTEL_CHECKOUT:        { labelEn: "Hotel check-out",    labelAr: "مغادرة فندق",      icon: "ri-hotel-line",          color: "#4A7AA8", group: "hotel" },
@@ -48,7 +48,7 @@ const EVENT_META: Record<MovementEventType, { labelEn: string; labelAr: string; 
 
 const NODE_META: Record<GraphNode["type"], { color: string; icon: string }> = {
   person:       { color: "#4A7AA8", icon: "ri-user-line" },
-  sponsor:      { color: "#D6B47E", icon: "ri-shield-user-line" },
+  sponsor:      { color: "#C5A365", icon: "ri-shield-user-line" },
   employer:     { color: "#4A8E3A", icon: "ri-briefcase-line" },
   address:      { color: "#7AB3E8", icon: "ri-map-pin-line" },
   vehicle:      { color: "#C94A5E", icon: "ri-car-line" },
@@ -213,7 +213,7 @@ const SubjectHeader = ({
       <div className="flex gap-2 flex-wrap">
         <button
           className="px-4 py-2 rounded-lg text-xs font-bold cursor-pointer flex items-center gap-1.5"
-          style={{ background: "transparent", color: "#D6B47E", border: "1px solid #D6B47E55", fontFamily: fonts.sans }}
+          style={{ background: "transparent", color: "#C5A365", border: "1px solid #C5A36555", fontFamily: fonts.sans }}
         >
           <i className="ri-eye-line" />
           {isAr ? "إضافة إلى قائمة المراقبة" : "Add to Watchlist"}
@@ -386,7 +386,7 @@ const IdentityTab = ({ subject, isAr }: { subject: ScoredRecord; isAr: boolean }
           <div key={c.titleEn} className="rounded-xl border p-4 flex flex-col"
             style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.15)" }}>
             <div className="flex items-center gap-2 mb-3">
-              <i className={c.icon} style={{ color: "#D6B47E" }} />
+              <i className={c.icon} style={{ color: "#C5A365" }} />
               <h3 className="text-white text-sm font-bold" style={{ fontFamily: fonts.sans }}>
                 {isAr ? c.titleAr : c.titleEn}
               </h3>
@@ -510,7 +510,7 @@ const MovementsTab = ({ subject, isAr }: { subject: ScoredRecord; isAr: boolean 
         <div className="overflow-x-auto pb-2" style={{ scrollbarWidth: "thin" }}>
           <div className="relative" style={{ minWidth: `${events.length * 220}px`, height: 380 }}>
             {/* Axis line in brass */}
-            <div className="absolute left-0 right-0 top-[180px] h-px" style={{ background: "linear-gradient(90deg, transparent, #D6B47E55, #D6B47E55, transparent)" }} />
+            <div className="absolute left-0 right-0 top-[180px] h-px" style={{ background: "linear-gradient(90deg, transparent, #C5A36555, #C5A36555, transparent)" }} />
 
             {events.map((ev, idx) => {
               const meta = EVENT_META[ev.type];
@@ -529,7 +529,7 @@ const MovementsTab = ({ subject, isAr }: { subject: ScoredRecord; isAr: boolean 
                   {idx > 0 && gapDays > 20 && (
                     <div className="absolute top-[170px] -left-[30px] text-[11px] text-gray-600" style={{ fontFamily: fonts.mono }}>
                       {dashed && (
-                        <div className="w-10 h-px" style={{ borderTop: "2px dashed #D6B47E55" }} />
+                        <div className="w-10 h-px" style={{ borderTop: "2px dashed #C5A36555" }} />
                       )}
                       <span className="mt-1 block">{new Date(ev.occurredAt).toISOString().slice(0, 7)}</span>
                     </div>
@@ -651,7 +651,7 @@ const RelationshipsTab = ({ subject, isAr }: { subject: ScoredRecord; isAr: bool
   layoutRing(ring2, 235);
 
   const selectedNode = selectedNodeId ? graph.nodes.find((n) => n.id === selectedNodeId) : null;
-  const edgeColor = (e: GraphEdge): string => (e.type === "sanctioned_by" ? "#C94A5E" : e.type === "related_to" ? "#C98A1B" : "#D6B47E55");
+  const edgeColor = (e: GraphEdge): string => (e.type === "sanctioned_by" ? "#C94A5E" : e.type === "related_to" ? "#C98A1B" : "#C5A36555");
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
@@ -672,8 +672,8 @@ const RelationshipsTab = ({ subject, isAr }: { subject: ScoredRecord; isAr: bool
         </div>
         <svg viewBox={`0 0 ${WIDTH} ${HEIGHT}`} className="w-full" style={{ maxHeight: 520 }}>
           {/* Concentric rings */}
-          <circle cx={CX} cy={CY} r={170} fill="none" stroke="#D6B47E22" strokeDasharray="3 4" />
-          <circle cx={CX} cy={CY} r={235} fill="none" stroke="#D6B47E14" strokeDasharray="3 4" />
+          <circle cx={CX} cy={CY} r={170} fill="none" stroke="#C5A36522" strokeDasharray="3 4" />
+          <circle cx={CX} cy={CY} r={235} fill="none" stroke="#C5A36514" strokeDasharray="3 4" />
 
           {/* Edges */}
           {graph.edges.map((e, i) => {
@@ -828,7 +828,7 @@ const ActivityTab = ({ subject, isAr }: { subject: ScoredRecord; isAr: boolean }
     id: `sig-${i}`,
     at: subject.computedAt,
     icon: c.type === "rule" ? "ri-flashlight-line" : "ri-cpu-line",
-    color: c.type === "rule" ? "#D6B47E" : "#6B4FAE",
+    color: c.type === "rule" ? "#C5A365" : "#6B4FAE",
     typeEn: c.type === "rule" ? "Rule fired" : "ML feature",
     typeAr: c.type === "rule" ? "إطلاق قاعدة" : "ميزة ML",
     descEn: `${c.ref} · ${c.observed}`,
@@ -1017,7 +1017,7 @@ const RiskTab = ({ subject, isAr }: { subject: ScoredRecord; isAr: boolean }) =>
             <div key={r.id} className="rounded-md px-3 py-2 flex items-start gap-2"
               style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
               <span className="text-[11px] font-bold tracking-widest px-1.5 py-0.5 rounded"
-                style={{ background: "rgba(184,138,60,0.15)", color: "#D6B47E", fontFamily: fonts.mono }}>
+                style={{ background: "rgba(184,138,60,0.15)", color: "#C5A365", fontFamily: fonts.mono }}>
                 {r.id}
               </span>
               <div className="flex-1 min-w-0">
@@ -1041,7 +1041,7 @@ const RiskTab = ({ subject, isAr }: { subject: ScoredRecord; isAr: boolean }) =>
 const CASE_STATUS_COLOR: Record<Case["status"], string> = {
   DRAFT: "#6B7280",
   OPEN: "#4A7AA8",
-  INVESTIGATING: "#D6B47E",
+  INVESTIGATING: "#C5A365",
   PENDING_REVIEW: "#C98A1B",
   CLOSED: "#4A8E3A",
 };
@@ -1062,7 +1062,7 @@ const CasesTab = ({ subject, isAr }: { subject: ScoredRecord; isAr: boolean }) =
         <button
           onClick={() => navigate("/dashboard/case-management")}
           className="mt-4 px-4 py-2 rounded-lg text-xs cursor-pointer"
-          style={{ background: "#D6B47E", color: "#051428", fontFamily: fonts.sans }}
+          style={{ background: "#C5A365", color: "#071426", fontFamily: fonts.sans }}
         >
           {isAr ? "فتح إدارة القضايا" : "Open Case Management"}
         </button>
@@ -1233,7 +1233,7 @@ const Person360Page = () => {
               className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm cursor-pointer transition-all"
               style={{
                 background: isActive ? "rgba(184,138,60,0.12)" : "transparent",
-                color: isActive ? "#D6B47E" : "#9CA3AF",
+                color: isActive ? "#C5A365" : "#9CA3AF",
                 border: `1px solid ${isActive ? "rgba(184,138,60,0.25)" : "transparent"}`,
                 fontFamily: fonts.sans,
                 fontWeight: isActive ? 700 : 500,

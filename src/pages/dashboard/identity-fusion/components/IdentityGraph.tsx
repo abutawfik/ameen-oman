@@ -8,7 +8,7 @@ const riskColors: Record<string, string> = {
 };
 
 const edgeColors: Record<string, string> = {
-  document: '#D6B47E', phone: '#4ADE80', address: '#A78BFA',
+  document: '#C5A365', phone: '#4ADE80', address: '#A78BFA',
   imei: '#C98A1B', employer: '#FACC15', biometric: '#C94A5E', email: '#38BDF8',
 };
 
@@ -53,7 +53,7 @@ export default function IdentityGraph({ isAr }: Props) {
 
       const alpha = edge.confidence / 100;
       const thickness = Math.max(1, (edge.confidence / 100) * 3);
-      const color = edgeColors[edge.type] || '#D6B47E';
+      const color = edgeColors[edge.type] || '#C5A365';
 
       ctx.beginPath();
       ctx.moveTo(src.x, src.y);
@@ -106,14 +106,14 @@ export default function IdentityGraph({ isAr }: Props) {
       ctx.stroke();
 
       // Initials
-      ctx.font = `bold ${12 / zoom}px Inter, sans-serif`;
+      ctx.font = `bold ${12 / zoom}px Manrope, sans-serif`;
       ctx.fillStyle = color;
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.fillText(node.initials, node.x, node.y);
 
       // Name label below
-      ctx.font = `${9 / zoom}px Inter, sans-serif`;
+      ctx.font = `${9 / zoom}px Manrope, sans-serif`;
       ctx.fillStyle = isSelected ? '#FFFFFF' : '#9CA3AF';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'top';
@@ -124,10 +124,10 @@ export default function IdentityGraph({ isAr }: Props) {
       if (node.mergedCount > 1) {
         ctx.beginPath();
         ctx.arc(node.x + r * 0.7, node.y - r * 0.7, 8 / zoom, 0, Math.PI * 2);
-        ctx.fillStyle = '#D6B47E';
+        ctx.fillStyle = '#C5A365';
         ctx.fill();
         ctx.font = `bold ${8 / zoom}px JetBrains Mono, monospace`;
-        ctx.fillStyle = '#051428';
+        ctx.fillStyle = '#071426';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         ctx.fillText(String(node.mergedCount), node.x + r * 0.7, node.y - r * 0.7);
@@ -224,7 +224,7 @@ export default function IdentityGraph({ isAr }: Props) {
           </div>
           <button
             onClick={() => { setZoom(1); setPan({ x: 0, y: 0 }); }}
-            className="w-full py-1.5 rounded-lg text-xs border border-gold-500/20 text-gold-400 hover:bg-gold-500/8 cursor-pointer transition-colors font-['Inter'] whitespace-nowrap"
+            className="w-full py-1.5 rounded-lg text-xs border border-gold-500/20 text-gold-400 hover:bg-gold-500/8 cursor-pointer transition-colors font-['Manrope'] whitespace-nowrap"
           >
             {isAr ? 'إعادة ضبط' : 'Reset View'}
           </button>
@@ -269,8 +269,8 @@ export default function IdentityGraph({ isAr }: Props) {
                 )}
                 {t === 'all' && <i className="ri-links-line text-gold-400 text-xs" />}
                 <span
-                  className="text-xs font-['Inter'] capitalize"
-                  style={{ color: edgeTypeFilter === t ? '#D6B47E' : '#9CA3AF' }}
+                  className="text-xs font-['Manrope'] capitalize"
+                  style={{ color: edgeTypeFilter === t ? '#C5A365' : '#9CA3AF' }}
                 >
                   {t === 'all' ? (isAr ? 'الكل' : 'All Types') : t}
                 </span>
@@ -290,7 +290,7 @@ export default function IdentityGraph({ isAr }: Props) {
           {Object.entries(riskColors).map(([level, color]) => (
             <div key={level} className="flex items-center gap-2 mb-1.5">
               <div className="w-3 h-3 rounded-full shrink-0" style={{ background: color }} />
-              <span className="text-gray-400 text-xs font-['Inter'] capitalize">{level}</span>
+              <span className="text-gray-400 text-xs font-['Manrope'] capitalize">{level}</span>
             </div>
           ))}
         </div>
@@ -344,18 +344,18 @@ export default function IdentityGraph({ isAr }: Props) {
                 {selectedNode.initials}
               </div>
               <div className="flex-1">
-                <p className="text-white font-semibold text-sm font-['Inter']">{selectedNode.label}</p>
+                <p className="text-white font-semibold text-sm font-['Manrope']">{selectedNode.label}</p>
                 <p className="text-gray-500 text-xs font-['JetBrains_Mono']">{selectedNode.id}</p>
               </div>
               <div className="flex items-center gap-3">
                 <div className="text-center">
                   <p className="text-white font-mono font-bold text-lg">{selectedNode.mergedCount}</p>
-                  <p className="text-gray-600 text-xs font-['Inter']">{isAr ? 'مدمج' : 'Merged'}</p>
+                  <p className="text-gray-600 text-xs font-['Manrope']">{isAr ? 'مدمج' : 'Merged'}</p>
                 </div>
                 <div className="flex flex-wrap gap-1">
                   {selectedNode.streams.map(s => (
                     <span key={s} className="text-xs px-1.5 py-0.5 rounded font-['JetBrains_Mono']"
-                      style={{ background: 'rgba(184,138,60,0.08)', color: '#D6B47E', fontSize: 10 }}>
+                      style={{ background: 'rgba(184,138,60,0.08)', color: '#C5A365', fontSize: 10 }}>
                       {s.toUpperCase()}
                     </span>
                   ))}

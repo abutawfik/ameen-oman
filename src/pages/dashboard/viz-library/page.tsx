@@ -7,7 +7,7 @@ const P1   = 'var(--alm-ocean-700)';
 const P2   = 'var(--alm-ocean-600)';
 const P3   = 'var(--alm-ocean-500)';
 const P4   = 'var(--alm-ocean-400)';
-const GOLD = '#D6B47E';
+const GOLD = '#C5A365';
 const GOLD2 = '#B8893C';
 
 // ── Inline SVG chart components ───────────────────────────────────────────────
@@ -59,7 +59,7 @@ function DonutSVG() {
   const slices = [
     { v: 38, color: '#C94A5E', label: 'High' },
     { v: 25, color: '#D4922A', label: 'Med' },
-    { v: 22, color: '#D6B47E', label: 'Low' },
+    { v: 22, color: '#C5A365', label: 'Low' },
     { v: 15, color: '#4A8E5A', label: 'Clear' },
   ];
   const total = slices.reduce((a, s) => a + s.v, 0);
@@ -105,7 +105,7 @@ function HeatMapSVG() {
   function heatColor(v: number) {
     if (v >= 0.8) return '#C94A5E';
     if (v >= 0.6) return '#D4922A';
-    if (v >= 0.4) return '#D6B47E';
+    if (v >= 0.4) return '#C5A365';
     return '#4A8E5A';
   }
   return (
@@ -160,7 +160,7 @@ function TimelineSVG() {
     { label: 'Entry', x: 20, color: '#4A8E5A' },
     { label: 'Hit', x: 55, color: '#C94A5E' },
     { label: 'Alert', x: 90, color: '#D4922A' },
-    { label: 'Review', x: 130, color: '#D6B47E' },
+    { label: 'Review', x: 130, color: '#C5A365' },
     { label: 'Clear', x: 170, color: '#4A8E5A' },
   ];
   return (
@@ -180,7 +180,7 @@ function TimelineSVG() {
 function FunnelSVG() {
   const stages = [
     { label: 'Screened', v: 9200, color: '#5B7494' },
-    { label: 'Flagged',  v: 3400, color: '#D6B47E' },
+    { label: 'Flagged',  v: 3400, color: '#C5A365' },
     { label: 'Reviewed', v: 820,  color: '#D4922A' },
     { label: 'Actioned', v: 142,  color: '#C94A5E' },
   ];
@@ -237,8 +237,8 @@ function GaugeSVG() {
 function ScatterSVG() {
   const points: [number, number, string][] = [
     [30, 70, '#C94A5E'], [50, 40, '#D4922A'], [80, 85, '#C94A5E'],
-    [60, 55, '#D6B47E'], [25, 30, '#4A8E5A'], [90, 20, '#4A8E5A'],
-    [45, 75, '#D4922A'], [70, 45, '#D6B47E'], [15, 60, '#4A8E5A'],
+    [60, 55, '#C5A365'], [25, 30, '#4A8E5A'], [90, 20, '#4A8E5A'],
+    [45, 75, '#D4922A'], [70, 45, '#C5A365'], [15, 60, '#4A8E5A'],
     [85, 65, '#C94A5E'],
   ];
   const W = 200, H = 100, pad = 15;
@@ -262,7 +262,7 @@ function DataTableSVG() {
     ['MHD-4921', 'Volkov', 'CRITICAL', '#C94A5E'],
     ['MHD-3310', 'Al-Rashidi', 'HIGH', '#D4922A'],
     ['MHD-2288', 'Ahmadi', 'HIGH', '#D4922A'],
-    ['MHD-1177', 'Mwangi', 'MED', '#D6B47E'],
+    ['MHD-1177', 'Mwangi', 'MED', '#C5A365'],
   ];
   return (
     <svg viewBox="0 0 200 100" style={{ width: '100%' }}>

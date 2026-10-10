@@ -5,7 +5,7 @@ const ApiSection = () => {
   const { t } = useTranslation();
 
   const features = [
-    { key: "auth", icon: "ri-key-line", color: "#D6B47E" },
+    { key: "auth", icon: "ri-key-line", color: "#C5A365" },
     { key: "tls", icon: "ri-lock-line", color: "#4ADE80" },
     { key: "rate", icon: "ri-speed-line", color: "#FACC15" },
     { key: "webhook", icon: "ri-webhook-line", color: "#C98A1B" },
@@ -14,7 +14,7 @@ const ApiSection = () => {
   ];
 
   return (
-    <section id="api-integration" className="py-20 md:py-28 relative" style={{ background: "#051428" }}>
+    <section id="api-integration" className="py-20 md:py-28 relative" style={{ background: "#071426" }}>
       <div className="absolute inset-0 opacity-10" style={{ backgroundImage: `linear-gradient(rgba(184,138,60,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.1) 1px, transparent 1px)`, backgroundSize: "80px 80px" }} />
       <div className="relative z-10 max-w-[1400px] mx-auto px-4 md:px-8">
         {/* Header */}
@@ -22,9 +22,9 @@ const ApiSection = () => {
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gold-500/30 bg-gold-500/5 mb-4">
             <span className="text-gold-400 text-xs font-['JetBrains_Mono'] tracking-widest uppercase">B2B INTEGRATION</span>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-white font-['Inter'] mb-2">{t("api.title")}</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-white font-['Manrope'] mb-2">{t("api.title")}</h2>
           <div className="w-16 h-0.5 bg-gold-400 mx-auto mt-4 mb-4" />
-          <p className="text-gray-400 text-sm max-w-xl mx-auto font-['Inter']">{t("api.subtitle")}</p>
+          <p className="text-gray-400 text-sm max-w-xl mx-auto font-['Manrope']">{t("api.subtitle")}</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
@@ -34,16 +34,16 @@ const ApiSection = () => {
               <div className="w-10 h-10 flex items-center justify-center rounded-lg" style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.3)" }}>
                 <i className="ri-code-s-slash-line text-gold-400 text-lg" />
               </div>
-              <h3 className="text-white font-bold text-lg font-['Inter']">{t("api.b2bTitle")}</h3>
+              <h3 className="text-white font-bold text-lg font-['Manrope']">{t("api.b2bTitle")}</h3>
             </div>
-            <p className="text-gray-400 text-sm mb-6 font-['Inter']">{t("api.b2bDesc")}</p>
+            <p className="text-gray-400 text-sm mb-6 font-['Manrope']">{t("api.b2bDesc")}</p>
             <div className="space-y-2">
               <p className="text-gray-500 text-xs font-['JetBrains_Mono'] uppercase tracking-widest mb-3">{t("api.endpoints")}</p>
               {apiEndpoints.map((ep, i) => (
                 <div key={i} className="flex items-center gap-3 p-2.5 rounded-lg" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.05)" }}>
                   <span className={`text-xs font-bold font-['JetBrains_Mono'] px-2 py-0.5 rounded ${ep.method === "GET" ? "text-green-400 bg-green-400/10" : "text-gold-400 bg-gold-400/10"}`}>{ep.method}</span>
                   <span className="text-gray-300 text-xs font-['JetBrains_Mono'] flex-1 truncate">{ep.path}</span>
-                  <span className="text-gray-600 text-xs font-['Inter'] hidden md:block truncate max-w-[160px]">{ep.desc}</span>
+                  <span className="text-gray-600 text-xs font-['Manrope'] hidden md:block truncate max-w-[160px]">{ep.desc}</span>
                 </div>
               ))}
             </div>
@@ -56,9 +56,9 @@ const ApiSection = () => {
                 <div className="w-10 h-10 flex items-center justify-center rounded-lg" style={{ background: "rgba(74,222,128,0.1)", border: "1px solid rgba(74,222,128,0.3)" }}>
                   <i className="ri-window-line text-green-400 text-lg" />
                 </div>
-                <h3 className="text-white font-bold text-lg font-['Inter']">{t("api.portalTitle")}</h3>
+                <h3 className="text-white font-bold text-lg font-['Manrope']">{t("api.portalTitle")}</h3>
               </div>
-              <p className="text-gray-400 text-sm font-['Inter']">{t("api.portalDesc")}</p>
+              <p className="text-gray-400 text-sm font-['Manrope']">{t("api.portalDesc")}</p>
             </div>
 
             {/* Integration Steps */}
@@ -71,8 +71,8 @@ const ApiSection = () => {
                       <span className="text-gold-400 text-xs font-bold font-['JetBrains_Mono']">{s.step}</span>
                     </div>
                     <div>
-                      <p className="text-white text-sm font-semibold font-['Inter']">{s.title}</p>
-                      <p className="text-gray-500 text-xs font-['Inter']">{s.desc}</p>
+                      <p className="text-white text-sm font-semibold font-['Manrope']">{s.title}</p>
+                      <p className="text-gray-500 text-xs font-['Manrope']">{s.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -88,15 +88,15 @@ const ApiSection = () => {
               <div className="w-10 h-10 flex items-center justify-center mb-3">
                 <i className={`${f.icon} text-xl`} style={{ color: f.color }} />
               </div>
-              <p className="text-white text-xs font-semibold font-['Inter'] mb-1">{t(`api.features.${f.key}`)}</p>
-              <p className="text-gray-600 text-xs font-['Inter']">{t(`api.features.${f.key}Desc`)}</p>
+              <p className="text-white text-xs font-semibold font-['Manrope'] mb-1">{t(`api.features.${f.key}`)}</p>
+              <p className="text-gray-600 text-xs font-['Manrope']">{t(`api.features.${f.key}Desc`)}</p>
             </div>
           ))}
         </div>
 
         {/* CTA */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <button className="flex items-center gap-2 px-6 py-3 bg-gold-400 text-[#051428] font-semibold rounded-md hover:bg-gold-300 transition-colors duration-200 whitespace-nowrap cursor-pointer text-sm">
+          <button className="flex items-center gap-2 px-6 py-3 bg-gold-400 text-[#071426] font-semibold rounded-md hover:bg-gold-300 transition-colors duration-200 whitespace-nowrap cursor-pointer text-sm">
             <i className="ri-send-plane-line" />
             {t("api.requestAccess")}
           </button>

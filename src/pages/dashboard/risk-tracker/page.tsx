@@ -5,7 +5,7 @@ import type { TrackedFlight, ThreatLevel } from '@/mocks/riskTrackerData';
 import { TRACKED_FLIGHTS, RISK_HOTSPOTS, RISK_SOURCE_STATS, TRACKER_SUMMARY } from '@/mocks/riskTrackerData';
 
 const THREAT_COLORS: Record<ThreatLevel, string> = {
-  critical: '#C94A5E', high: '#D4922A', medium: '#D6B47E', low: '#4A8E5A', clear: '#374B61',
+  critical: '#C94A5E', high: '#D4922A', medium: '#C5A365', low: '#4A8E5A', clear: '#374B61',
 };
 const STATUS_LABELS: Record<string, { en: string; ar: string }> = {
   en_route:  { en: 'En Route',  ar: 'في الجو'  },
@@ -149,7 +149,7 @@ function FlightRow({ flight, isAr, isSelected, onClick }: { flight: TrackedFligh
       <div style={{ width: 6, height: 6, borderRadius: '50%', background: col, flexShrink: 0, boxShadow: flight.threatLevel === 'critical' ? `0 0 5px ${col}` : 'none' }} />
       <div style={{ flex: 1, minWidth: 0 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-          <span style={{ fontSize: 12, color: '#D6B47E', fontFamily: "'JetBrains Mono', monospace", fontWeight: 600 }}>{flight.flightNo}</span>
+          <span style={{ fontSize: 12, color: '#C5A365', fontFamily: "'JetBrains Mono', monospace", fontWeight: 600 }}>{flight.flightNo}</span>
           <span style={{ fontSize: 11, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace" }}>
             {flight.originCode} → {flight.destinationCode}
           </span>
@@ -187,7 +187,7 @@ export default function RiskTrackerPage() {
   const selFlight = TRACKED_FLIGHTS.find(f => f.id === selected) ?? null;
 
   return (
-    <div style={{ height: '100%', display: 'flex', flexDirection: 'column', background: '#051428', overflow: 'hidden', position: 'relative' }}>
+    <div style={{ height: '100%', display: 'flex', flexDirection: 'column', background: '#071426', overflow: 'hidden', position: 'relative' }}>
       <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0, backgroundImage: 'linear-gradient(rgba(184,138,60,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.025) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
 
       <div style={{ position: 'relative', zIndex: 1, height: '100%', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
@@ -201,7 +201,7 @@ export default function RiskTrackerPage() {
               </span>
               <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#4A8E5A', display: 'inline-block', animation: 'pulse 2s infinite', boxShadow: '0 0 4px #4A8E5A' }} />
             </div>
-            <p style={{ margin: 0, fontSize: 11, color: '#374B61', fontFamily: "'Inter', sans-serif" }}>
+            <p style={{ margin: 0, fontSize: 11, color: '#374B61', fontFamily: "'Manrope', sans-serif" }}>
               {isAr ? 'رحلات المراقبة النشطة وتوزيع المخاطر' : 'Active monitored flights and risk distribution — updated every 4s'}
             </p>
           </div>
@@ -267,7 +267,7 @@ export default function RiskTrackerPage() {
               <div style={{ height: 110, flexShrink: 0, borderTop: '1px solid rgba(184,138,60,0.1)', padding: '10px 16px', background: 'rgba(5,20,40,0.7)', overflow: 'auto' }}>
                 <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap' }}>
                   <div>
-                    <div style={{ fontSize: 14, color: '#D6B47E', fontFamily: "'JetBrains Mono', monospace", fontWeight: 700 }}>
+                    <div style={{ fontSize: 14, color: '#C5A365', fontFamily: "'JetBrains Mono', monospace", fontWeight: 700 }}>
                       {selFlight.flightNo}
                       <span style={{ marginLeft: 10, fontSize: 11, color: '#5B7494', fontWeight: 400 }}>{selFlight.airline}</span>
                     </div>
@@ -283,7 +283,7 @@ export default function RiskTrackerPage() {
                     {selFlight.hitCount > 0 && <div style={{ fontSize: 11, color: '#C94A5E', fontFamily: "'JetBrains Mono', monospace" }}><i className="ri-alarm-warning-fill" style={{ marginRight: 4 }} />{selFlight.hitCount} hits</div>}
                   </div>
                   {selFlight.notes && (
-                    <div style={{ fontSize: 11, color: '#8FA8C0', fontFamily: "'Inter', sans-serif", flex: 1, minWidth: 200 }}>
+                    <div style={{ fontSize: 11, color: '#8FA8C0', fontFamily: "'Manrope', sans-serif", flex: 1, minWidth: 200 }}>
                       <i className="ri-information-line" style={{ marginRight: 5, color: '#B8893C' }} />{selFlight.notes}
                     </div>
                   )}

@@ -6,7 +6,7 @@ interface Props {
 }
 
 const msgTypeConfig: Record<MessageType, { label: string; labelAr: string; color: string; bg: string; border: string; icon: string }> = {
-  announcement: { label: "Announcement",   labelAr: "إعلان",          color: "#D6B47E", bg: "rgba(184,138,60,0.08)",  border: "rgba(184,138,60,0.3)",  icon: "ri-megaphone-line" },
+  announcement: { label: "Announcement",   labelAr: "إعلان",          color: "#C5A365", bg: "rgba(184,138,60,0.08)",  border: "rgba(184,138,60,0.3)",  icon: "ri-megaphone-line" },
   policy:       { label: "Policy Update",  labelAr: "تحديث سياسة",    color: "#FACC15", bg: "rgba(250,204,21,0.08)",  border: "rgba(250,204,21,0.3)",  icon: "ri-file-text-line" },
   compliance:   { label: "Compliance",     labelAr: "امتثال",          color: "#C98A1B", bg: "rgba(201,138,27,0.08)",  border: "rgba(201,138,27,0.3)",  icon: "ri-shield-check-line" },
   urgent:       { label: "Urgent Alert",   labelAr: "تنبيه عاجل",     color: "#C94A5E", bg: "rgba(201,74,94,0.08)", border: "rgba(201,74,94,0.3)", icon: "ri-alarm-warning-line" },
@@ -66,7 +66,7 @@ const CommunicationHub = ({ isAr }: Props) => {
             <i className="ri-chat-3-line text-gold-400 text-sm" />
           </div>
           <div>
-            <h2 className="text-white text-sm font-bold font-['Inter']">{isAr ? "مركز الاتصالات" : "Communication Hub"}</h2>
+            <h2 className="text-white text-sm font-bold font-['Manrope']">{isAr ? "مركز الاتصالات" : "Communication Hub"}</h2>
             <p className="text-gray-500 text-xs font-['JetBrains_Mono']">{isAr ? "إدارة الشرطة" : "Police Admin"}</p>
           </div>
         </div>
@@ -78,10 +78,10 @@ const CommunicationHub = ({ isAr }: Props) => {
           <button
             key={v.key}
             onClick={() => setActiveView(v.key)}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-['Inter'] font-medium cursor-pointer transition-all whitespace-nowrap"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-['Manrope'] font-medium cursor-pointer transition-all whitespace-nowrap"
             style={{
               background: activeView === v.key ? "rgba(184,138,60,0.1)" : "transparent",
-              color: activeView === v.key ? "#D6B47E" : "#6B7280",
+              color: activeView === v.key ? "#C5A365" : "#6B7280",
               border: activeView === v.key ? "1px solid rgba(184,138,60,0.2)" : "1px solid transparent",
             }}
           >
@@ -99,7 +99,7 @@ const CommunicationHub = ({ isAr }: Props) => {
             {sendSuccess && (
               <div className="flex items-center gap-2 p-3 rounded-xl" style={{ background: "rgba(74,222,128,0.1)", border: "1px solid rgba(74,222,128,0.3)" }}>
                 <i className="ri-checkbox-circle-line text-green-400" />
-                <span className="text-green-400 text-sm font-['Inter']">{isAr ? "تم الإرسال بنجاح!" : "Message sent successfully!"}</span>
+                <span className="text-green-400 text-sm font-['Manrope']">{isAr ? "تم الإرسال بنجاح!" : "Message sent successfully!"}</span>
               </div>
             )}
 
@@ -122,7 +122,7 @@ const CommunicationHub = ({ isAr }: Props) => {
                     <div className="w-7 h-7 flex items-center justify-center rounded-lg flex-shrink-0" style={{ background: `${cfg.color}18`, border: `1px solid ${cfg.color}33` }}>
                       <i className={`${cfg.icon} text-sm`} style={{ color: cfg.color }} />
                     </div>
-                    <span className="text-xs font-['Inter'] font-semibold" style={{ color: msgType === type ? cfg.color : "#6B7280" }}>
+                    <span className="text-xs font-['Manrope'] font-semibold" style={{ color: msgType === type ? cfg.color : "#6B7280" }}>
                       {isAr ? cfg.labelAr : cfg.label}
                     </span>
                   </button>
@@ -138,7 +138,7 @@ const CommunicationHub = ({ isAr }: Props) => {
               <select
                 value={recipient}
                 onChange={(e) => setRecipient(e.target.value)}
-                className="w-full px-3 py-2.5 rounded-xl text-sm font-['Inter'] cursor-pointer"
+                className="w-full px-3 py-2.5 rounded-xl text-sm font-['Manrope'] cursor-pointer"
                 style={{ background: "rgba(5,20,40,0.8)", border: "1px solid rgba(184,138,60,0.2)", color: "#D1D5DB", outline: "none" }}
               >
                 {recipientOptions.map((opt) => (
@@ -159,7 +159,7 @@ const CommunicationHub = ({ isAr }: Props) => {
                 value={subject}
                 onChange={(e) => setSubject(e.target.value)}
                 placeholder={isAr ? "موضوع الرسالة..." : "Message subject..."}
-                className="w-full px-3 py-2.5 rounded-xl text-sm font-['Inter']"
+                className="w-full px-3 py-2.5 rounded-xl text-sm font-['Manrope']"
                 style={{ background: "rgba(5,20,40,0.8)", border: "1px solid rgba(184,138,60,0.15)", color: "#D1D5DB", outline: "none" }}
               />
             </div>
@@ -174,7 +174,7 @@ const CommunicationHub = ({ isAr }: Props) => {
                 onChange={(e) => setBody(e.target.value.slice(0, 500))}
                 placeholder={isAr ? "اكتب رسالتك هنا..." : "Write your message here..."}
                 rows={5}
-                className="w-full px-3 py-2.5 rounded-xl text-sm font-['Inter'] resize-none"
+                className="w-full px-3 py-2.5 rounded-xl text-sm font-['Manrope'] resize-none"
                 style={{ background: "rgba(5,20,40,0.8)", border: "1px solid rgba(184,138,60,0.15)", color: "#D1D5DB", outline: "none" }}
               />
               <p className="text-gray-600 text-[11px] font-['JetBrains_Mono'] text-right mt-1">{body.length}/500</p>
@@ -183,13 +183,13 @@ const CommunicationHub = ({ isAr }: Props) => {
             {/* Schedule */}
             <div className="p-3 rounded-xl" style={{ background: "rgba(5,20,40,0.6)", border: "1px solid rgba(255,255,255,0.06)" }}>
               <div className="flex items-center justify-between mb-2">
-                <span className="text-gray-400 text-xs font-['Inter'] font-semibold">{isAr ? "جدولة الإرسال" : "Schedule Delivery"}</span>
+                <span className="text-gray-400 text-xs font-['Manrope'] font-semibold">{isAr ? "جدولة الإرسال" : "Schedule Delivery"}</span>
                 <button
                   onClick={() => setScheduleEnabled(!scheduleEnabled)}
                   className="relative w-10 h-5 rounded-full transition-colors cursor-pointer flex-shrink-0"
-                  style={{ background: scheduleEnabled ? "#D6B47E" : "rgba(255,255,255,0.1)" }}
+                  style={{ background: scheduleEnabled ? "#C5A365" : "rgba(255,255,255,0.1)" }}
                 >
-                  <div className="absolute top-0.5 w-4 h-4 rounded-full transition-all" style={{ background: "#051428", left: scheduleEnabled ? "calc(100% - 18px)" : "2px" }} />
+                  <div className="absolute top-0.5 w-4 h-4 rounded-full transition-all" style={{ background: "#071426", left: scheduleEnabled ? "calc(100% - 18px)" : "2px" }} />
                 </button>
               </div>
               {scheduleEnabled && (
@@ -215,15 +215,15 @@ const CommunicationHub = ({ isAr }: Props) => {
             {/* Send button */}
             <div className="flex gap-2">
               <button
-                className="flex-1 py-2.5 rounded-xl text-sm font-['Inter'] cursor-pointer transition-colors"
+                className="flex-1 py-2.5 rounded-xl text-sm font-['Manrope'] cursor-pointer transition-colors"
                 style={{ background: "rgba(255,255,255,0.04)", color: "#9CA3AF", border: "1px solid rgba(255,255,255,0.08)" }}
               >
                 {isAr ? "حفظ كمسودة" : "Save Draft"}
               </button>
               <button
                 onClick={handleSend}
-                className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-bold font-['Inter'] cursor-pointer transition-all whitespace-nowrap"
-                style={{ background: "#D6B47E", color: "#051428", boxShadow: "0 0 16px rgba(184,138,60,0.2)" }}
+                className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-bold font-['Manrope'] cursor-pointer transition-all whitespace-nowrap"
+                style={{ background: "#C5A365", color: "#071426", boxShadow: "0 0 16px rgba(184,138,60,0.2)" }}
               >
                 <i className="ri-send-plane-fill" />
                 {scheduleEnabled ? (isAr ? "جدولة" : "Schedule") : (isAr ? "إرسال الآن" : "Send Now")}
@@ -249,20 +249,20 @@ const CommunicationHub = ({ isAr }: Props) => {
                         <i className={`${cfg.icon} text-sm`} style={{ color: cfg.color }} />
                       </div>
                       <div>
-                        <p className="text-white text-xs font-bold font-['Inter']">{isAr ? tpl.nameAr : tpl.name}</p>
+                        <p className="text-white text-xs font-bold font-['Manrope']">{isAr ? tpl.nameAr : tpl.name}</p>
                         <span className="text-[11px] font-['JetBrains_Mono'] uppercase" style={{ color: cfg.color }}>{isAr ? cfg.labelAr : cfg.label}</span>
                       </div>
                     </div>
                     <button
                       onClick={() => applyTemplate(tpl.id)}
                       className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-[11px] font-['JetBrains_Mono'] cursor-pointer transition-colors whitespace-nowrap flex-shrink-0"
-                      style={{ background: "rgba(184,138,60,0.08)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}
+                      style={{ background: "rgba(184,138,60,0.08)", color: "#C5A365", border: "1px solid rgba(184,138,60,0.2)" }}
                     >
                       <i className="ri-file-copy-line text-[11px]" />
                       {isAr ? "استخدام" : "Use"}
                     </button>
                   </div>
-                  <p className="text-gray-500 text-xs font-['Inter'] leading-relaxed line-clamp-2">{tpl.subject}</p>
+                  <p className="text-gray-500 text-xs font-['Manrope'] leading-relaxed line-clamp-2">{tpl.subject}</p>
                   <div className="flex items-center gap-3 mt-2">
                     <span className="text-gray-600 text-[11px] font-['JetBrains_Mono']">
                       {isAr ? "استُخدم" : "Used"} {tpl.usageCount}×
@@ -294,7 +294,7 @@ const CommunicationHub = ({ isAr }: Props) => {
                     </div>
                     <span className="text-gray-600 text-[11px] font-['JetBrains_Mono'] flex-shrink-0">{msg.sentAt}</span>
                   </div>
-                  <p className="text-white text-xs font-['Inter'] font-semibold mb-1">{msg.subject}</p>
+                  <p className="text-white text-xs font-['Manrope'] font-semibold mb-1">{msg.subject}</p>
                   <p className="text-gray-500 text-[11px] font-['JetBrains_Mono'] mb-3 flex items-center gap-1">
                     <i className="ri-group-line" />
                     {msg.recipients}
@@ -302,7 +302,7 @@ const CommunicationHub = ({ isAr }: Props) => {
                   {/* Delivery tracking */}
                   <div className="space-y-2">
                     {[
-                      { label: "Sent",      labelAr: "مُرسَل",    value: msg.sent,      total: msg.total, color: "#D6B47E" },
+                      { label: "Sent",      labelAr: "مُرسَل",    value: msg.sent,      total: msg.total, color: "#C5A365" },
                       { label: "Delivered", labelAr: "مُسلَّم",   value: msg.delivered, total: msg.total, color: "#4ADE80" },
                       { label: "Read",      labelAr: "مقروء",     value: msg.read,      total: msg.total, color: "#A78BFA" },
                     ].map((stat) => {

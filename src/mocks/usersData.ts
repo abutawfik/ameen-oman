@@ -34,7 +34,7 @@ export const ROLE_CONFIG: Record<UserRole, { labelEn: string; labelAr: string; c
   ADMIN:       { labelEn: 'Administrator',         labelAr: 'مشرف النظام',        color: '#D4922A' },
   ANALYST:     { labelEn: 'Intelligence Analyst',  labelAr: 'محلل استخباراتي',    color: '#5B7494' },
   OPERATOR:    { labelEn: 'Border Operator',       labelAr: 'مشغّل حدودي',        color: '#4A8E5A' },
-  AUDITOR:     { labelEn: 'Auditor',               labelAr: 'مدقق',               color: '#D6B47E' },
+  AUDITOR:     { labelEn: 'Auditor',               labelAr: 'مدقق',               color: '#C5A365' },
   VIEWER:      { labelEn: 'Read-Only Viewer',      labelAr: 'مشاهد فقط',          color: '#374B61' },
 };
 

@@ -1,10 +1,10 @@
 import AmeenLogo, { AmeenShield } from "./AmeenLogo";
 
-const cyan = "#D6B47E";
+const cyan = "#C5A365";
 
 // ── Login Screen Mockup ──────────────────────────────────────────────────────
 const LoginMockup = () => (
-  <div className="rounded-xl overflow-hidden" style={{ background: "#051428", border: "1px solid rgba(184,138,60,0.2)", aspectRatio: "16/10" }}>
+  <div className="rounded-xl overflow-hidden" style={{ background: "#071426", border: "1px solid rgba(184,138,60,0.2)", aspectRatio: "16/10" }}>
     <div className="h-full flex flex-col items-center justify-center p-6 relative">
       <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: "linear-gradient(rgba(184,138,60,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.025) 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
       <div className="relative z-10 flex flex-col items-center gap-4 w-full max-w-xs">
@@ -25,7 +25,7 @@ const LetterheadMockup = () => (
   <div className="rounded-xl overflow-hidden" style={{ background: "#F8FAFC", border: "1px solid rgba(0,0,0,0.08)", aspectRatio: "16/10" }}>
     <div className="h-full flex flex-col">
       {/* Header bar */}
-      <div className="flex items-center justify-between px-6 py-3" style={{ background: "#051428", borderBottom: `3px solid ${cyan}` }}>
+      <div className="flex items-center justify-between px-6 py-3" style={{ background: "#071426", borderBottom: `3px solid ${cyan}` }}>
         <AmeenLogo variant="compact" size={40} />
         <div className="text-right">
           <p style={{ color: "#9CA3AF", fontSize: "9px", fontFamily: "'JetBrains_Mono', monospace" }}>ROYAL OMAN POLICE</p>
@@ -44,7 +44,7 @@ const LetterheadMockup = () => (
       </div>
       {/* Footer */}
       <div className="px-6 py-2 flex items-center justify-between" style={{ borderTop: "1px solid #E5E7EB" }}>
-        <p style={{ color: "#9CA3AF", fontSize: "8px", fontFamily: "'Inter', sans-serif" }}>CONFIDENTIAL — FOR OFFICIAL USE ONLY</p>
+        <p style={{ color: "#9CA3AF", fontSize: "8px", fontFamily: "'Manrope', sans-serif" }}>CONFIDENTIAL — FOR OFFICIAL USE ONLY</p>
         <p style={{ color: "#9CA3AF", fontSize: "8px", fontFamily: "'JetBrains_Mono', monospace" }}>ameen.ameen.gov</p>
       </div>
     </div>
@@ -58,9 +58,9 @@ const EmailSignatureMockup = () => (
       <div className="flex items-center gap-4 pb-3 mb-3" style={{ borderBottom: `2px solid ${cyan}` }}>
         <AmeenShield size={40} light />
         <div>
-          <p style={{ color: "#051428", fontSize: "13px", fontWeight: 700, fontFamily: "'Inter', sans-serif" }}>Ahmed Al-Amri</p>
-          <p style={{ color: "#374151", fontSize: "10px", fontFamily: "'Inter', sans-serif" }}>Senior Intelligence Analyst</p>
-          <p style={{ color: "#6B7280", fontSize: "10px", fontFamily: "'Inter', sans-serif" }}>National Police — Al-Ameen Platform</p>
+          <p style={{ color: "#071426", fontSize: "13px", fontWeight: 700, fontFamily: "'Manrope', sans-serif" }}>Ahmed Al-Amri</p>
+          <p style={{ color: "#374151", fontSize: "10px", fontFamily: "'Manrope', sans-serif" }}>Senior Intelligence Analyst</p>
+          <p style={{ color: "#6B7280", fontSize: "10px", fontFamily: "'Manrope', sans-serif" }}>National Police — Al-Ameen Platform</p>
         </div>
       </div>
       <div className="grid grid-cols-2 gap-2">
@@ -72,11 +72,11 @@ const EmailSignatureMockup = () => (
         ].map((c) => (
           <div key={c.val} className="flex items-center gap-1.5">
             <i className={`${c.icon} text-xs`} style={{ color: cyan }} />
-            <span style={{ color: "#6B7280", fontSize: "9px", fontFamily: "'Inter', sans-serif" }}>{c.val}</span>
+            <span style={{ color: "#6B7280", fontSize: "9px", fontFamily: "'Manrope', sans-serif" }}>{c.val}</span>
           </div>
         ))}
       </div>
-      <p style={{ color: "#9CA3AF", fontSize: "8px", fontFamily: "'Inter', sans-serif", marginTop: "8px" }}>
+      <p style={{ color: "#9CA3AF", fontSize: "8px", fontFamily: "'Manrope', sans-serif", marginTop: "8px" }}>
         CONFIDENTIAL: This email and any attachments are for the exclusive use of the intended recipient.
       </p>
     </div>
@@ -85,14 +85,14 @@ const EmailSignatureMockup = () => (
 
 // ── App Splash Screen ────────────────────────────────────────────────────────
 const SplashMockup = () => (
-  <div className="rounded-xl overflow-hidden" style={{ background: "#051428", border: "1px solid rgba(184,138,60,0.2)", aspectRatio: "9/16", maxHeight: "280px" }}>
+  <div className="rounded-xl overflow-hidden" style={{ background: "#071426", border: "1px solid rgba(184,138,60,0.2)", aspectRatio: "9/16", maxHeight: "280px" }}>
     <div className="h-full flex flex-col items-center justify-center gap-4 relative">
       <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: "radial-gradient(ellipse at 50% 40%, rgba(184,138,60,0.08) 0%, transparent 60%)" }} />
       <div className="relative z-10 flex flex-col items-center gap-3">
         <AmeenShield size={64} />
         <div className="text-center">
-          <p className="font-black tracking-widest uppercase" style={{ color: cyan, fontSize: "18px", fontFamily: "'Inter', sans-serif", letterSpacing: "0.2em" }}>Al-Ameen</p>
-          <p style={{ color: "#9CA3AF", fontSize: "9px", fontFamily: "'Inter', sans-serif", letterSpacing: "0.1em", marginTop: "2px" }}>FIELD OFFICER</p>
+          <p className="font-black tracking-widest uppercase" style={{ color: cyan, fontSize: "18px", fontFamily: "'Manrope', sans-serif", letterSpacing: "0.2em" }}>Al-Ameen</p>
+          <p style={{ color: "#9CA3AF", fontSize: "9px", fontFamily: "'Manrope', sans-serif", letterSpacing: "0.1em", marginTop: "2px" }}>FIELD OFFICER</p>
         </div>
         <div className="w-16 h-0.5 rounded-full" style={{ background: `linear-gradient(90deg, transparent, ${cyan}, transparent)` }} />
         <p style={{ color: "#6B7280", fontSize: "8px", fontFamily: "'JetBrains_Mono', monospace" }}>v4.2.1 — CLASSIFIED</p>
@@ -103,7 +103,7 @@ const SplashMockup = () => (
 
 // ── ID Badge Mockup ──────────────────────────────────────────────────────────
 const IDBadgeMockup = () => (
-  <div className="rounded-xl overflow-hidden" style={{ background: "#051428", border: "1px solid rgba(184,138,60,0.25)", aspectRatio: "5/8", maxHeight: "280px" }}>
+  <div className="rounded-xl overflow-hidden" style={{ background: "#071426", border: "1px solid rgba(184,138,60,0.25)", aspectRatio: "5/8", maxHeight: "280px" }}>
     <div className="h-full flex flex-col">
       {/* Top bar */}
       <div className="px-3 py-2 flex items-center justify-between" style={{ background: "rgba(184,138,60,0.08)", borderBottom: `1px solid rgba(184,138,60,0.2)` }}>
@@ -114,8 +114,8 @@ const IDBadgeMockup = () => (
       <div className="flex-1 flex flex-col items-center justify-center gap-2 px-3 py-2">
         <div className="rounded-lg" style={{ width: 48, height: 56, background: "rgba(184,138,60,0.08)", border: "1px solid rgba(184,138,60,0.2)" }} />
         <div className="text-center">
-          <p style={{ color: "#FFFFFF", fontSize: "9px", fontWeight: 700, fontFamily: "'Inter', sans-serif" }}>Ahmed Al-Amri</p>
-          <p style={{ color: cyan, fontSize: "7px", fontFamily: "'Inter', sans-serif" }}>Senior Analyst</p>
+          <p style={{ color: "#FFFFFF", fontSize: "9px", fontWeight: 700, fontFamily: "'Manrope', sans-serif" }}>Ahmed Al-Amri</p>
+          <p style={{ color: cyan, fontSize: "7px", fontFamily: "'Manrope', sans-serif" }}>Senior Analyst</p>
           <p style={{ color: "#6B7280", fontSize: "7px", fontFamily: "'JetBrains_Mono', monospace", marginTop: "2px" }}>ID: AMN-2025-0441</p>
         </div>
         {/* Barcode placeholder */}
@@ -135,12 +135,12 @@ const IDBadgeMockup = () => (
 
 // ── Vehicle Decal Mockup ─────────────────────────────────────────────────────
 const VehicleDecalMockup = () => (
-  <div className="rounded-xl overflow-hidden flex items-center justify-center" style={{ background: "#051428", border: "1px solid rgba(184,138,60,0.2)", aspectRatio: "16/6" }}>
+  <div className="rounded-xl overflow-hidden flex items-center justify-center" style={{ background: "#071426", border: "1px solid rgba(184,138,60,0.2)", aspectRatio: "16/6" }}>
     <div className="flex items-center gap-6 px-8">
       <AmeenShield size={52} />
       <div>
-        <p className="font-black tracking-widest uppercase" style={{ color: cyan, fontSize: "22px", fontFamily: "'Inter', sans-serif", letterSpacing: "0.25em" }}>Al-Ameen</p>
-        <p style={{ color: "#9CA3AF", fontSize: "9px", fontFamily: "'Inter', sans-serif", letterSpacing: "0.15em" }}>ROYAL OMAN POLICE — INTELLIGENCE UNIT</p>
+        <p className="font-black tracking-widest uppercase" style={{ color: cyan, fontSize: "22px", fontFamily: "'Manrope', sans-serif", letterSpacing: "0.25em" }}>Al-Ameen</p>
+        <p style={{ color: "#9CA3AF", fontSize: "9px", fontFamily: "'Manrope', sans-serif", letterSpacing: "0.15em" }}>ROYAL OMAN POLICE — INTELLIGENCE UNIT</p>
       </div>
       <div style={{ width: 1, height: 40, background: "rgba(184,138,60,0.2)" }} />
       <p style={{ color: "#6B7280", fontSize: "11px", fontFamily: "'Noto Kufi Arabic', 'Arial', sans-serif" }}>الحارس الأمين للوطن</p>
@@ -150,7 +150,7 @@ const VehicleDecalMockup = () => (
 
 // ── Presentation Slide ───────────────────────────────────────────────────────
 const PresentationSlideMockup = () => (
-  <div className="rounded-xl overflow-hidden" style={{ background: "#051428", border: "1px solid rgba(184,138,60,0.2)", aspectRatio: "16/9" }}>
+  <div className="rounded-xl overflow-hidden" style={{ background: "#071426", border: "1px solid rgba(184,138,60,0.2)", aspectRatio: "16/9" }}>
     <div className="h-full flex flex-col relative">
       <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: "linear-gradient(rgba(184,138,60,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.02) 1px, transparent 1px)", backgroundSize: "20px 20px" }} />
       {/* Top bar */}
@@ -162,8 +162,8 @@ const PresentationSlideMockup = () => (
       <div className="flex-1 flex items-center px-8 relative z-10">
         <div>
           <p style={{ color: cyan, fontSize: "10px", fontFamily: "'JetBrains_Mono', monospace", letterSpacing: "0.15em", marginBottom: "6px" }}>Al-Ameen INTELLIGENCE PLATFORM</p>
-          <p style={{ color: "#FFFFFF", fontSize: "20px", fontWeight: 700, fontFamily: "'Inter', sans-serif", lineHeight: 1.2 }}>National Activity Monitoring<br />for Events &amp; Entities</p>
-          <p style={{ color: "#9CA3AF", fontSize: "10px", fontFamily: "'Inter', sans-serif", marginTop: "8px" }}>Oman — National Police</p>
+          <p style={{ color: "#FFFFFF", fontSize: "20px", fontWeight: 700, fontFamily: "'Manrope', sans-serif", lineHeight: 1.2 }}>National Activity Monitoring<br />for Events &amp; Entities</p>
+          <p style={{ color: "#9CA3AF", fontSize: "10px", fontFamily: "'Manrope', sans-serif", marginTop: "8px" }}>Oman — National Police</p>
         </div>
       </div>
       {/* Bottom bar */}
@@ -174,7 +174,7 @@ const PresentationSlideMockup = () => (
 
 // ── Brand Guidelines Cover ───────────────────────────────────────────────────
 const GuidelinesCoverMockup = () => (
-  <div className="rounded-xl overflow-hidden" style={{ background: "#051428", border: "1px solid rgba(184,138,60,0.2)", aspectRatio: "3/4", maxHeight: "280px" }}>
+  <div className="rounded-xl overflow-hidden" style={{ background: "#071426", border: "1px solid rgba(184,138,60,0.2)", aspectRatio: "3/4", maxHeight: "280px" }}>
     <div className="h-full flex flex-col items-center justify-between p-5 relative">
       <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: "radial-gradient(ellipse at 50% 60%, rgba(184,138,60,0.06) 0%, transparent 65%)" }} />
       <div className="relative z-10 w-full flex justify-end">
@@ -183,13 +183,13 @@ const GuidelinesCoverMockup = () => (
       <div className="relative z-10 flex flex-col items-center gap-3">
         <AmeenShield size={60} />
         <div className="text-center">
-          <p className="font-black tracking-widest uppercase" style={{ color: cyan, fontSize: "16px", fontFamily: "'Inter', sans-serif", letterSpacing: "0.2em" }}>Al-Ameen</p>
-          <p style={{ color: "#9CA3AF", fontSize: "8px", fontFamily: "'Inter', sans-serif", letterSpacing: "0.12em", marginTop: "2px" }}>BRAND IDENTITY GUIDELINES</p>
+          <p className="font-black tracking-widest uppercase" style={{ color: cyan, fontSize: "16px", fontFamily: "'Manrope', sans-serif", letterSpacing: "0.2em" }}>Al-Ameen</p>
+          <p style={{ color: "#9CA3AF", fontSize: "8px", fontFamily: "'Manrope', sans-serif", letterSpacing: "0.12em", marginTop: "2px" }}>BRAND IDENTITY GUIDELINES</p>
         </div>
       </div>
       <div className="relative z-10 text-center">
         <div className="w-12 h-0.5 mx-auto mb-2 rounded-full" style={{ background: `linear-gradient(90deg, transparent, ${cyan}, transparent)` }} />
-        <p style={{ color: "#6B7280", fontSize: "7px", fontFamily: "'Inter', sans-serif" }}>ROYAL OMAN POLICE — CLASSIFIED</p>
+        <p style={{ color: "#6B7280", fontSize: "7px", fontFamily: "'Manrope', sans-serif" }}>ROYAL OMAN POLICE — CLASSIFIED</p>
       </div>
     </div>
   </div>
@@ -209,10 +209,10 @@ const applications = [
 const BrandApplications = () => (
   <div className="space-y-6">
     <div>
-      <h2 className="text-white font-bold text-lg font-['Inter'] mb-2">
+      <h2 className="text-white font-bold text-lg font-['Manrope'] mb-2">
         <i className="ri-layout-grid-line mr-2 text-gold-400" />Brand Applications
       </h2>
-      <p className="text-gray-500 text-sm font-['Inter'] mb-5">How the Al-Ameen brand appears across all touchpoints — digital, print, and physical.</p>
+      <p className="text-gray-500 text-sm font-['Manrope'] mb-5">How the Al-Ameen brand appears across all touchpoints — digital, print, and physical.</p>
       <div className="grid grid-cols-2 gap-5">
         {applications.map((app) => (
           <div key={app.label}>

@@ -95,7 +95,7 @@ const ScoreConfig = ({ weights, multipliers, isAr, onWeightChange, onMultiplierT
       {/* Config summary cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
-          { label: isAr ? "إجمالي التدفقات" : "Total Streams",       value: weights.length,       color: "#D6B47E", icon: "ri-stack-line" },
+          { label: isAr ? "إجمالي التدفقات" : "Total Streams",       value: weights.length,       color: "#C5A365", icon: "ri-stack-line" },
           { label: isAr ? "أوزان معدَّلة" : "Modified Weights",      value: modifiedCount,        color: "#FACC15", icon: "ri-edit-line" },
           { label: isAr ? "مضاعفات نشطة" : "Active Multipliers",     value: activeMultipliers,    color: "#4ADE80", icon: "ri-flashlight-line" },
           { label: isAr ? "مضاعفات مُفعَّلة" : "Triggered Now",      value: triggeredMultipliers, color: "#C94A5E", icon: "ri-alarm-warning-line" },
@@ -126,7 +126,7 @@ const ScoreConfig = ({ weights, multipliers, isAr, onWeightChange, onMultiplierT
             style={{
               background: activeConfigTab === t.id ? "rgba(184,138,60,0.1)" : "transparent",
               border: `1px solid ${activeConfigTab === t.id ? "rgba(184,138,60,0.2)" : "transparent"}`,
-              color: activeConfigTab === t.id ? "#D6B47E" : "#6B7280",
+              color: activeConfigTab === t.id ? "#C5A365" : "#6B7280",
             }}>
             <i className={`${t.icon} text-xs`} />{t.label}
           </button>
@@ -185,7 +185,7 @@ const ScoreConfig = ({ weights, multipliers, isAr, onWeightChange, onMultiplierT
                   />
                   {/* Thumb */}
                   <div className="absolute top-1/2 -translate-y-1/2 w-4 h-4 rounded-full border-2 pointer-events-none transition-all"
-                    style={{ left: `calc(${(w.weight / 10) * 100}% - 8px)`, background: "#051428", borderColor: w.color, boxShadow: `0 0 8px ${w.color}70` }} />
+                    style={{ left: `calc(${(w.weight / 10) * 100}% - 8px)`, background: "#071426", borderColor: w.color, boxShadow: `0 0 8px ${w.color}70` }} />
                 </div>
                 <div className="flex justify-between">
                   {[1,2,3,4,5,6,7,8,9,10].map((n) => (
@@ -221,7 +221,7 @@ const ScoreConfig = ({ weights, multipliers, isAr, onWeightChange, onMultiplierT
                   <div className="absolute inset-0 rounded-full transition-colors"
                     style={{ background: rule.active ? "rgba(184,138,60,0.2)" : "rgba(255,255,255,0.06)", border: `1px solid ${rule.active ? "rgba(184,138,60,0.4)" : "rgba(255,255,255,0.08)"}` }} />
                   <div className="absolute top-0.5 rounded-full transition-all"
-                    style={{ width: "18px", height: "18px", left: rule.active ? "18px" : "2px", background: rule.active ? "#D6B47E" : "#374151" }} />
+                    style={{ width: "18px", height: "18px", left: rule.active ? "18px" : "2px", background: rule.active ? "#C5A365" : "#374151" }} />
                 </button>
 
                 <div className="flex-1 min-w-0">
@@ -299,7 +299,7 @@ const ScoreConfig = ({ weights, multipliers, isAr, onWeightChange, onMultiplierT
                   }}>
                   {/* Version label */}
                   <div className="flex items-center gap-2 min-w-0">
-                    <span className="text-xs font-['JetBrains_Mono'] font-bold" style={{ color: '#D6B47E' }}>
+                    <span className="text-xs font-['JetBrains_Mono'] font-bold" style={{ color: '#C5A365' }}>
                       {ver.id.toUpperCase()}
                     </span>
                     <span className="text-white text-xs font-semibold truncate">{ver.label}</span>
@@ -324,7 +324,7 @@ const ScoreConfig = ({ weights, multipliers, isAr, onWeightChange, onMultiplierT
                   </div>
 
                   {/* Note */}
-                  <span className="text-gray-500 text-xs font-['Inter'] truncate" title={ver.note}>
+                  <span className="text-gray-500 text-xs font-['Manrope'] truncate" title={ver.note}>
                     {ver.note || '—'}
                   </span>
 
@@ -343,7 +343,7 @@ const ScoreConfig = ({ weights, multipliers, isAr, onWeightChange, onMultiplierT
                         type="button"
                         onClick={() => handleRevert(ver)}
                         className="flex items-center gap-1 px-2 py-1 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap transition-all"
-                        style={{ background: 'rgba(184,138,60,0.08)', color: '#D6B47E', border: '1px solid rgba(184,138,60,0.2)' }}>
+                        style={{ background: 'rgba(184,138,60,0.08)', color: '#C5A365', border: '1px solid rgba(184,138,60,0.2)' }}>
                         <i className="ri-arrow-go-back-line text-xs" />
                         {isAr ? 'استعادة' : 'Revert'}
                       </button>
@@ -364,7 +364,7 @@ const ScoreConfig = ({ weights, multipliers, isAr, onWeightChange, onMultiplierT
           </p>
           <button type="button" onClick={() => setShowSaveForm(prev => !prev)}
             className="flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold cursor-pointer whitespace-nowrap transition-all"
-            style={{ background: saved ? "#4ADE80" : "#D6B47E", color: "#051428" }}>
+            style={{ background: saved ? "#4ADE80" : "#C5A365", color: "#071426" }}>
             <i className={`${saved ? "ri-checkbox-circle-line" : "ri-save-3-line"} text-sm`} />
             {saved
               ? (isAr ? "تم الحفظ!" : "Configuration Saved!")
@@ -376,12 +376,12 @@ const ScoreConfig = ({ weights, multipliers, isAr, onWeightChange, onMultiplierT
         {showSaveForm && !saved && (
           <div className="rounded-xl p-4 space-y-3"
             style={{ background: "rgba(10,37,64,0.9)", border: "1px solid rgba(184,138,60,0.25)" }}>
-            <h4 className="text-white text-sm font-bold font-['Inter']">
+            <h4 className="text-white text-sm font-bold font-['Manrope']">
               {isAr ? 'تفاصيل الإصدار الجديد' : 'New Version Details'}
             </h4>
             <div className="space-y-2">
               <div>
-                <label className="text-gray-400 text-xs font-['Inter'] block mb-1">
+                <label className="text-gray-400 text-xs font-['Manrope'] block mb-1">
                   {isAr ? 'اسم الإصدار *' : 'Version Label *'}
                 </label>
                 <input
@@ -389,7 +389,7 @@ const ScoreConfig = ({ weights, multipliers, isAr, onWeightChange, onMultiplierT
                   value={newVersionLabel}
                   onChange={e => setNewVersionLabel(e.target.value)}
                   placeholder={isAr ? 'مثال: تعديل ما بعد المراجعة' : 'e.g. Post-Review Adjustment'}
-                  className="w-full px-3 py-2 rounded-lg text-sm font-['Inter'] outline-none"
+                  className="w-full px-3 py-2 rounded-lg text-sm font-['Manrope'] outline-none"
                   style={{
                     background: 'rgba(5,20,40,0.8)',
                     border: '1px solid rgba(184,138,60,0.2)',
@@ -398,7 +398,7 @@ const ScoreConfig = ({ weights, multipliers, isAr, onWeightChange, onMultiplierT
                 />
               </div>
               <div>
-                <label className="text-gray-400 text-xs font-['Inter'] block mb-1">
+                <label className="text-gray-400 text-xs font-['Manrope'] block mb-1">
                   {isAr ? 'ملاحظة (اختياري)' : 'Note (optional)'}
                 </label>
                 <input
@@ -406,7 +406,7 @@ const ScoreConfig = ({ weights, multipliers, isAr, onWeightChange, onMultiplierT
                   value={newVersionNote}
                   onChange={e => setNewVersionNote(e.target.value)}
                   placeholder={isAr ? 'وصف موجز للتغييرات' : 'Brief description of changes'}
-                  className="w-full px-3 py-2 rounded-lg text-sm font-['Inter'] outline-none"
+                  className="w-full px-3 py-2 rounded-lg text-sm font-['Manrope'] outline-none"
                   style={{
                     background: 'rgba(5,20,40,0.8)',
                     border: '1px solid rgba(184,138,60,0.2)',
@@ -422,8 +422,8 @@ const ScoreConfig = ({ weights, multipliers, isAr, onWeightChange, onMultiplierT
                 disabled={!newVersionLabel.trim()}
                 className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold cursor-pointer whitespace-nowrap transition-all"
                 style={{
-                  background: newVersionLabel.trim() ? '#D6B47E' : 'rgba(214,180,126,0.3)',
-                  color: '#051428',
+                  background: newVersionLabel.trim() ? '#C5A365' : 'rgba(214,180,126,0.3)',
+                  color: '#071426',
                   cursor: newVersionLabel.trim() ? 'pointer' : 'not-allowed',
                 }}>
                 <i className="ri-save-line text-sm" />

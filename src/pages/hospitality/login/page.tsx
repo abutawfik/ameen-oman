@@ -8,7 +8,7 @@ const USERS = [
 ];
 
 const ROLE_COLORS: Record<string, string> = {
-  Admin: '#D6B47E', Reception: '#4ADE80', Viewer: '#9CA3AF',
+  Admin: '#C5A365', Reception: '#4ADE80', Viewer: '#9CA3AF',
 };
 
 export default function HospitalityLoginPage() {
@@ -40,7 +40,7 @@ export default function HospitalityLoginPage() {
   return (
     <div
       className="min-h-screen flex overflow-hidden"
-      style={{ background: '#051428', fontFamily: "'Inter', sans-serif" }}
+      style={{ background: '#071426', fontFamily: "'Manrope', sans-serif" }}
       dir={isAr ? 'rtl' : 'ltr'}
     >
       {/* Grid texture */}
@@ -63,7 +63,7 @@ export default function HospitalityLoginPage() {
         {/* Top glow */}
         <div
           className="absolute top-0 left-0 right-0 h-1 pointer-events-none"
-          style={{ background: 'linear-gradient(90deg, transparent, #D6B47E, transparent)' }}
+          style={{ background: 'linear-gradient(90deg, transparent, #C5A365, transparent)' }}
         />
 
         <div>
@@ -172,7 +172,7 @@ export default function HospitalityLoginPage() {
             {/* Top accent line */}
             <div
               className="absolute top-0 left-8 right-8 h-0.5 rounded-full"
-              style={{ background: 'linear-gradient(90deg, transparent, #D6B47E, transparent)' }}
+              style={{ background: 'linear-gradient(90deg, transparent, #C5A365, transparent)' }}
             />
 
             <div className="mb-6">
@@ -255,8 +255,8 @@ export default function HospitalityLoginPage() {
                 disabled={loading}
                 className="w-full py-3 rounded-xl font-semibold text-sm transition-all cursor-pointer whitespace-nowrap mt-1"
                 style={{
-                  background: loading ? 'rgba(184,138,60,0.5)' : '#D6B47E',
-                  color: '#051428',
+                  background: loading ? 'rgba(184,138,60,0.5)' : '#C5A365',
+                  color: '#071426',
                 }}
               >
                 {loading ? (

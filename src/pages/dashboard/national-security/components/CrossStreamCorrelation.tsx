@@ -159,7 +159,7 @@ const CrossStreamCorrelation = ({ isAr }: Props) => {
                   <div className="flex items-center gap-2 flex-wrap">
                     <button type="button" onClick={() => navigate("/dashboard/case-management")}
                       className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold cursor-pointer whitespace-nowrap"
-                      style={{ background: "#D6B47E", color: "#051428" }}>
+                      style={{ background: "#C5A365", color: "#071426" }}>
                       <i className="ri-search-eye-line text-xs" />
                       {isAr ? "فتح تحقيق" : "Open Investigation"}
                     </button>
@@ -171,7 +171,7 @@ const CrossStreamCorrelation = ({ isAr }: Props) => {
                     </button>
                     <button type="button" onClick={() => navigate("/dashboard/link-analysis")}
                       className="flex items-center gap-2 px-4 py-2 rounded-lg border text-xs font-bold cursor-pointer whitespace-nowrap"
-                      style={{ background: "transparent", borderColor: "rgba(184,138,60,0.2)", color: "#D6B47E" }}>
+                      style={{ background: "transparent", borderColor: "rgba(184,138,60,0.2)", color: "#C5A365" }}>
                       <i className="ri-git-branch-line text-xs" />
                       {isAr ? "تحليل الروابط" : "Link Analysis"}
                     </button>

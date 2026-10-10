@@ -1,3 +1,5 @@
+import { downloadTextPdf } from '@/workflows/pdf';
+import { buildDossierText } from '@/workflows/dossier';
 import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import type { DashboardOutletContext } from "../DashboardLayout";
@@ -40,44 +42,23 @@ const DigitalDossierPage = () => {
   const [generationStep, setGenerationStep] = useState(0);
   const [showPreview, setShowPreview] = useState(false);
 
-  const generationSteps = [
-    "Authenticating officer credentials...",
-    "Pulling identity & document records...",
-    "Fetching border movement history...",
-    "Aggregating financial transactions...",
-    "Compiling mobile & telecom data...",
-    "Loading social intelligence feeds...",
-    "Running pattern analysis engine...",
-    "Calculating risk composite score...",
-    "Building connections network graph...",
-    "Applying classification watermarks...",
-    "Encrypting document payload...",
-    "Finalizing PDF/DOCX output...",
-  ];
-
+  const [template, setTemplate] = useState<DossierTemplate | null>(null);
+  const [exportError, setExportError] = useState('');
+  const generationSteps = ['Preparing selected demo records...', 'Preparing report sections...', 'Ready for local PDF export'];
   const handleGenerate = (config: GenerationConfig) => {
-    setGenerationConfig(config);
-    setGenerationState("generating");
-    setGenerationProgress(0);
-    setGenerationStep(0);
-
-    const totalSteps = generationSteps.length;
-    let step = 0;
-    const interval = setInterval(() => {
-      step++;
-      setGenerationStep(step);
-      setGenerationProgress(Math.round((step / totalSteps) * 100));
-      if (step >= totalSteps) {
-        clearInterval(interval);
-        setTimeout(() => {
-          setGenerationState("ready");
-        }, 400);
-      }
-    }, 280);
+    setGenerationConfig({ ...config, format: 'PDF', encrypted: false });
+    setGenerationProgress(100);
+    setGenerationStep(generationSteps.length);
+    setGenerationState('ready');
+    setExportError('');
   };
-
-  const handleUseTemplate = (template: DossierTemplate) => {
-    setActiveTab("builder");
+  const handleUseTemplate = (selected: DossierTemplate) => { setTemplate(selected); setActiveTab('builder'); };
+  const handleDownload = async () => {
+    if (!generationConfig) return;
+    try {
+      setExportError('');
+      await downloadTextPdf(`Dossier · ${generationConfig.subject.nameEn}`, buildDossierText(generationConfig), `al-ameen-dossier-${generationConfig.subject.id}.pdf`, isAr, generationConfig.watermark ? `${generationConfig.classification} · DEMO` : '');
+    } catch { setExportError(isAr ? 'تعذر إنشاء الملف. أعد المحاولة.' : 'Could not create the PDF. Please try again.'); }
   };
 
   const tabs: { key: Tab; label: string; icon: string }[] = [
@@ -91,13 +72,14 @@ const DigitalDossierPage = () => {
     : 0;
 
   return (
-    <div className="flex flex-col h-full" style={{ background: "#051428" }}>
+    <div className="flex flex-col h-full" style={{ background: "#071426" }}>
+      {exportError && <p role="alert" className="p-4 text-red-300">{exportError}</p>}
       {/* Background grid */}
       <div className="fixed inset-0 pointer-events-none z-0 opacity-[0.03]">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="dos-grid" width="40" height="40" patternUnits="userSpaceOnUse">
-              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#D6B47E" strokeWidth="0.5" />
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#C5A365" strokeWidth="0.5" />
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#dos-grid)" />
@@ -115,18 +97,18 @@ const DigitalDossierPage = () => {
               <i className="ri-file-shield-2-line text-gold-400 text-sm" />
             </div>
             <div>
-              <h1 className="text-white text-sm font-bold font-['Inter']">Digital Dossier & Report Generation</h1>
-              <p className="text-gray-500 text-xs font-['JetBrains_Mono']">Auto-generate classified intelligence reports from all 16 data streams — PDF / DOCX / Encrypted</p>
+              <h1 className="text-white text-sm font-bold font-['Manrope']">Digital Dossier & Report Generation</h1>
+              <p className="text-gray-500 text-xs font-['JetBrains_Mono']">Build a subject-specific demonstration dossier and download an unencrypted PDF</p>
             </div>
           </div>
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg" style={{ background: "rgba(184,138,60,0.06)", border: "1px solid rgba(184,138,60,0.15)" }}>
               <div className="w-1.5 h-1.5 rounded-full bg-gold-400 animate-pulse" />
-              <span className="text-gold-400 text-xs font-['JetBrains_Mono']">16 Streams Active</span>
+              <span className="text-gold-400 text-xs font-['JetBrains_Mono']">Demo data</span>
             </div>
             <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg" style={{ background: "rgba(74,222,128,0.06)", border: "1px solid rgba(74,222,128,0.15)" }}>
               <i className="ri-shield-check-line text-green-400 text-xs" />
-              <span className="text-green-400 text-xs font-['JetBrains_Mono']">AES-256 Encryption</span>
+              <span className="text-green-400 text-xs font-['JetBrains_Mono']">DEMO PDF Local Export</span>
             </div>
           </div>
         </div>
@@ -134,11 +116,11 @@ const DigitalDossierPage = () => {
         {/* KPI bar */}
         <div className="grid grid-cols-5 gap-0 border-b flex-shrink-0" style={{ borderColor: "rgba(184,138,60,0.08)" }}>
           {[
-            { label: "Reports Generated", value: "1,247", icon: "ri-file-text-line", color: "#D6B47E" },
+            { label: "Sample Report Count", value: "1,247", icon: "ri-file-text-line", color: "#C5A365" },
             { label: "Active Dossiers", value: "3", icon: "ri-folder-open-line", color: "#4ADE80" },
             { label: "Templates Available", value: dossierTemplates.length.toString(), icon: "ri-layout-grid-line", color: "#A78BFA" },
             { label: "Streams Covered", value: "16", icon: "ri-database-line", color: "#FACC15" },
-            { label: "Avg. Generation Time", value: "3.4s", icon: "ri-timer-line", color: "#C98A1B" },
+            { label: "Sample Generation Time", value: "3.4s", icon: "ri-timer-line", color: "#C98A1B" },
           ].map((kpi, i) => (
             <div
               key={kpi.label}
@@ -150,7 +132,7 @@ const DigitalDossierPage = () => {
               </div>
               <div>
                 <p className="text-white text-lg font-bold font-['JetBrains_Mono']">{kpi.value}</p>
-                <p className="text-gray-600 text-[11px] font-['Inter']">{kpi.label}</p>
+                <p className="text-gray-600 text-[11px] font-['Manrope']">{kpi.label}</p>
               </div>
             </div>
           ))}
@@ -166,10 +148,10 @@ const DigitalDossierPage = () => {
                 <button
                   key={tab.key}
                   onClick={() => setActiveTab(tab.key)}
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-['Inter'] cursor-pointer transition-all whitespace-nowrap"
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-['Manrope'] cursor-pointer transition-all whitespace-nowrap"
                   style={{
                     background: activeTab === tab.key ? "rgba(184,138,60,0.1)" : "transparent",
-                    color: activeTab === tab.key ? "#D6B47E" : "#6B7280",
+                    color: activeTab === tab.key ? "#C5A365" : "#6B7280",
                     border: activeTab === tab.key ? "1px solid rgba(184,138,60,0.25)" : "1px solid transparent",
                   }}
                 >
@@ -182,7 +164,7 @@ const DigitalDossierPage = () => {
             {/* Tab content */}
             <div className="flex-1 overflow-y-auto px-6 py-5" style={{ scrollbarWidth: "thin", scrollbarColor: "rgba(184,138,60,0.2) transparent" }}>
               {activeTab === "builder" && (
-                <DossierBuilder isAr={isAr} onGenerate={handleGenerate} />
+                <DossierBuilder template={template} isAr={isAr} onGenerate={handleGenerate} />
               )}
               {activeTab === "templates" && (
                 <DossierTemplates isAr={isAr} onUseTemplate={handleUseTemplate} />
@@ -210,7 +192,7 @@ const DigitalDossierPage = () => {
                     <div className="w-full h-1.5 rounded-full overflow-hidden" style={{ background: "rgba(184,138,60,0.1)" }}>
                       <div
                         className="h-full rounded-full transition-all duration-300"
-                        style={{ width: `${generationProgress}%`, background: "linear-gradient(90deg, #D6B47E, #4ADE80)" }}
+                        style={{ width: `${generationProgress}%`, background: "linear-gradient(90deg, #C5A365, #4ADE80)" }}
                       />
                     </div>
                     <p className="text-gray-500 text-[11px] font-['JetBrains_Mono']">{generationProgress}% — {generationSteps[Math.min(generationStep, generationSteps.length - 1)]}</p>
@@ -218,7 +200,7 @@ const DigitalDossierPage = () => {
                       {generationSteps.slice(0, generationStep + 1).map((step, idx) => (
                         <div key={idx} className="flex items-center gap-1.5">
                           <i className={`text-[11px] ${idx < generationStep ? "ri-check-line text-green-400" : "ri-loader-4-line text-gold-400 animate-spin"}`} />
-                          <span className="text-[11px] font-['JetBrains_Mono']" style={{ color: idx < generationStep ? "#4ADE80" : "#D6B47E" }}>{step}</span>
+                          <span className="text-[11px] font-['JetBrains_Mono']" style={{ color: idx < generationStep ? "#4ADE80" : "#C5A365" }}>{step}</span>
                         </div>
                       ))}
                     </div>
@@ -233,7 +215,7 @@ const DigitalDossierPage = () => {
                       <span className="text-green-400 text-xs font-bold font-['JetBrains_Mono']">DOSSIER READY</span>
                     </div>
                     <div className="p-3 rounded-xl" style={{ background: "rgba(74,222,128,0.05)", border: "1px solid rgba(74,222,128,0.15)" }}>
-                      <p className="text-white text-xs font-bold font-['Inter'] mb-1">{generationConfig.subject.nameEn}</p>
+                      <p className="text-white text-xs font-bold font-['Manrope'] mb-1">{generationConfig.subject.nameEn}</p>
                       <div className="space-y-1 text-[11px] font-['JetBrains_Mono'] text-gray-500">
                         <p>{generationConfig.sections.length} sections · ~{estimatedPages} pages</p>
                         <p style={{ color: classificationConfig[generationConfig.classification].color }}>{generationConfig.classification}</p>
@@ -243,15 +225,16 @@ const DigitalDossierPage = () => {
                     <div className="flex gap-2">
                       <button
                         onClick={() => setShowPreview(true)}
-                        className="flex-1 flex items-center justify-center gap-1 py-2 rounded-lg text-xs font-['Inter'] cursor-pointer transition-colors whitespace-nowrap"
-                        style={{ background: "rgba(184,138,60,0.08)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}
+                        className="flex-1 flex items-center justify-center gap-1 py-2 rounded-lg text-xs font-['Manrope'] cursor-pointer transition-colors whitespace-nowrap"
+                        style={{ background: "rgba(184,138,60,0.08)", color: "#C5A365", border: "1px solid rgba(184,138,60,0.2)" }}
                       >
                         <i className="ri-eye-line" />
                         Preview
                       </button>
                       <button
-                        className="flex-1 flex items-center justify-center gap-1 py-2 rounded-lg text-xs font-bold font-['Inter'] cursor-pointer transition-all whitespace-nowrap"
-                        style={{ background: "#D6B47E", color: "#051428" }}
+                        onClick={handleDownload}
+                        className="flex-1 flex items-center justify-center gap-1 py-2 rounded-lg text-xs font-bold font-['Manrope'] cursor-pointer transition-all whitespace-nowrap"
+                        style={{ background: "#C5A365", color: "#071426" }}
                       >
                         <i className="ri-download-line" />
                         Download
@@ -259,7 +242,7 @@ const DigitalDossierPage = () => {
                     </div>
                     <button
                       onClick={() => setGenerationState("idle")}
-                      className="w-full py-1.5 rounded-lg text-xs font-['Inter'] cursor-pointer transition-colors text-gray-600 hover:text-gray-400"
+                      className="w-full py-1.5 rounded-lg text-xs font-['Manrope'] cursor-pointer transition-colors text-gray-600 hover:text-gray-400"
                     >
                       Generate Another
                     </button>
@@ -270,12 +253,12 @@ const DigitalDossierPage = () => {
 
             {/* Stream coverage panel */}
             <div className="flex-1 overflow-y-auto p-4" style={{ scrollbarWidth: "thin", scrollbarColor: "rgba(184,138,60,0.2) transparent" }}>
-              <p className="text-gray-600 text-[11px] font-['JetBrains_Mono'] mb-3">STREAM COVERAGE</p>
+              <p className="text-gray-600 text-[11px] font-['JetBrains_Mono'] mb-3">EXAMPLE STREAM COVERAGE</p>
               <div className="space-y-1.5">
                 {[
-                  { stream: "Identity Fusion",   icon: "ri-fingerprint-line",      color: "#D6B47E", events: 12, status: "active" },
+                  { stream: "Identity Fusion",   icon: "ri-fingerprint-line",      color: "#C5A365", events: 12, status: "active" },
                   { stream: "Border Control",    icon: "ri-passport-line",          color: "#60A5FA", events: 3,  status: "active" },
-                  { stream: "Hotel & Hospitality",icon: "ri-hotel-line",            color: "#D6B47E", events: 3,  status: "active" },
+                  { stream: "Hotel & Hospitality",icon: "ri-hotel-line",            color: "#C5A365", events: 3,  status: "active" },
                   { stream: "Mobile Operators",  icon: "ri-sim-card-line",          color: "#A78BFA", events: 2,  status: "active" },
                   { stream: "Car Rental",        icon: "ri-car-line",               color: "#C98A1B", events: 1,  status: "active" },
                   { stream: "Financial Services",icon: "ri-bank-card-line",         color: "#4ADE80", events: 4,  status: "active" },
@@ -294,7 +277,7 @@ const DigitalDossierPage = () => {
                     <div className="w-5 h-5 flex items-center justify-center flex-shrink-0">
                       <i className={`${s.icon} text-xs`} style={{ color: s.status === "no-data" ? "#374151" : s.color }} />
                     </div>
-                    <span className="text-xs font-['Inter'] flex-1 truncate" style={{ color: s.status === "no-data" ? "#4B5563" : "#9CA3AF" }}>
+                    <span className="text-xs font-['Manrope'] flex-1 truncate" style={{ color: s.status === "no-data" ? "#4B5563" : "#9CA3AF" }}>
                       {s.stream}
                     </span>
                     <span className="text-[11px] font-['JetBrains_Mono'] flex-shrink-0" style={{ color: s.events > 0 ? s.color : "#374151" }}>
@@ -337,7 +320,7 @@ const DigitalDossierPage = () => {
           encrypted={generationConfig.encrypted}
           isAr={isAr}
           onClose={() => setShowPreview(false)}
-          onDownload={() => setShowPreview(false)}
+          onDownload={handleDownload}
         />
       )}
     </div>

@@ -73,14 +73,14 @@ const ValidationRulesEngine = () => {
       {/* Stats row */}
       <div className="grid grid-cols-4 gap-3">
         {[
-          { label: "Total Rules", value: String(rules.length), color: "#D6B47E" },
+          { label: "Total Rules", value: String(rules.length), color: "#C5A365" },
           { label: "Active Rules", value: String(rules.filter((r) => r.enabled).length), color: "#4ADE80" },
           { label: "Triggered Today", value: String(rules.reduce((a, r) => a + r.triggeredToday, 0)), color: "#FACC15" },
           { label: "Reject Rules", value: String(rules.filter((r) => r.action === "reject").length), color: "#C94A5E" },
         ].map((s) => (
           <div key={s.label} className="rounded-xl p-4 text-center" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.12)" }}>
             <p className="text-2xl font-bold font-['JetBrains_Mono']" style={{ color: s.color }}>{s.value}</p>
-            <p className="text-gray-500 text-xs font-['Inter'] mt-1">{s.label}</p>
+            <p className="text-gray-500 text-xs font-['Manrope'] mt-1">{s.label}</p>
           </div>
         ))}
       </div>
@@ -97,18 +97,18 @@ const ValidationRulesEngine = () => {
             </select>
             <select value={filterAction} onChange={(e) => setFilterAction(e.target.value)}
               className="px-3 py-1.5 rounded-lg text-xs outline-none cursor-pointer"
-              style={{ background: "rgba(10,37,64,0.9)", border: "1px solid rgba(184,138,60,0.2)", color: "#D1D5DB", fontFamily: "'Inter', sans-serif" }}>
+              style={{ background: "rgba(10,37,64,0.9)", border: "1px solid rgba(184,138,60,0.2)", color: "#D1D5DB", fontFamily: "'Manrope', sans-serif" }}>
               {actions.map((a) => <option key={a} value={a} style={{ background: "#0A2540" }}>{a === "all" ? "All Actions" : actionConfig[a]?.label || a}</option>)}
             </select>
             <div className="ml-auto flex items-center gap-2">
               <button onClick={() => setShowLibrary(!showLibrary)}
                 className="px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap"
-                style={{ background: "transparent", border: "1px solid rgba(184,138,60,0.3)", color: "#D6B47E" }}>
+                style={{ background: "transparent", border: "1px solid rgba(184,138,60,0.3)", color: "#C5A365" }}>
                 <i className="ri-book-2-line mr-1" />Pre-built Library
               </button>
               <button onClick={() => setShowBuilder(!showBuilder)}
                 className="px-4 py-1.5 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap"
-                style={{ background: "#D6B47E", color: "#051428" }}>
+                style={{ background: "#C5A365", color: "#071426" }}>
                 <i className="ri-add-line mr-1" />New Rule
               </button>
             </div>
@@ -117,7 +117,7 @@ const ValidationRulesEngine = () => {
           {/* Pre-built Library */}
           {showLibrary && (
             <div className="rounded-xl p-4" style={{ background: "rgba(184,138,60,0.03)", border: "1px solid rgba(184,138,60,0.15)" }}>
-              <p className="text-gold-400 text-sm font-semibold font-['Inter'] mb-3">
+              <p className="text-gold-400 text-sm font-semibold font-['Manrope'] mb-3">
                 <i className="ri-book-2-line mr-2" />Pre-built Rule Library
               </p>
               <div className="grid grid-cols-2 gap-2">
@@ -127,15 +127,15 @@ const ValidationRulesEngine = () => {
                     <div key={lib.name} className="flex items-center justify-between p-3 rounded-lg cursor-pointer hover:bg-white/5 transition-colors"
                       style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
                       <div className="flex-1 min-w-0">
-                        <p className="text-white text-xs font-['Inter'] font-medium truncate">{lib.name}</p>
+                        <p className="text-white text-xs font-['Manrope'] font-medium truncate">{lib.name}</p>
                         <div className="flex items-center gap-1.5 mt-0.5">
-                          <span className="text-xs font-['JetBrains_Mono']" style={{ color: "#D6B47E" }}>{lib.stream}</span>
+                          <span className="text-xs font-['JetBrains_Mono']" style={{ color: "#C5A365" }}>{lib.stream}</span>
                           <span className="text-gray-600 text-xs">·</span>
                           <span className="text-xs font-['JetBrains_Mono']" style={{ color: ac.color }}>{ac.label}</span>
                         </div>
                       </div>
                       <button className="ml-2 px-2 py-1 rounded text-xs cursor-pointer whitespace-nowrap flex-shrink-0"
-                        style={{ background: "rgba(184,138,60,0.1)", color: "#D6B47E" }}>
+                        style={{ background: "rgba(184,138,60,0.1)", color: "#C5A365" }}>
                         <i className="ri-add-line" />
                       </button>
                     </div>
@@ -148,12 +148,12 @@ const ValidationRulesEngine = () => {
           {/* New Rule Builder */}
           {showBuilder && (
             <div className="rounded-xl p-4" style={{ background: "rgba(184,138,60,0.04)", border: "1px solid rgba(184,138,60,0.2)" }}>
-              <p className="text-gold-400 text-sm font-semibold font-['Inter'] mb-3">
+              <p className="text-gold-400 text-sm font-semibold font-['Manrope'] mb-3">
                 <i className="ri-add-circle-line mr-2" />Visual Rule Builder
               </p>
               {/* IF/THEN visual builder */}
               <div className="flex items-center gap-2 mb-4 p-3 rounded-lg flex-wrap" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(184,138,60,0.1)" }}>
-                <span className="px-2 py-1 rounded text-xs font-['JetBrains_Mono'] font-bold" style={{ background: "rgba(184,138,60,0.15)", color: "#D6B47E" }}>IF</span>
+                <span className="px-2 py-1 rounded text-xs font-['JetBrains_Mono'] font-bold" style={{ background: "rgba(184,138,60,0.15)", color: "#C5A365" }}>IF</span>
                 <input value={newRule.field} onChange={(e) => setNewRule((p) => ({ ...p, field: e.target.value }))}
                   placeholder="field name" className="px-2 py-1 rounded text-xs outline-none w-28"
                   style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(184,138,60,0.2)", color: "#D1D5DB", fontFamily: "'JetBrains Mono', monospace" }} />
@@ -164,7 +164,7 @@ const ValidationRulesEngine = () => {
                 </select>
                 <input value={newRule.value} onChange={(e) => setNewRule((p) => ({ ...p, value: e.target.value }))}
                   placeholder="value / pattern" className="px-2 py-1 rounded text-xs outline-none flex-1 min-w-24"
-                  style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(184,138,60,0.2)", color: "#D6B47E", fontFamily: "'JetBrains Mono', monospace" }} />
+                  style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(184,138,60,0.2)", color: "#C5A365", fontFamily: "'JetBrains Mono', monospace" }} />
                 <span className="px-2 py-1 rounded text-xs font-['JetBrains_Mono'] font-bold" style={{ background: "rgba(201,138,27,0.15)", color: "#C98A1B" }}>THEN</span>
                 <select value={newRule.action} onChange={(e) => setNewRule((p) => ({ ...p, action: e.target.value as keyof typeof actionConfig }))}
                   className="px-2 py-1 rounded text-xs outline-none cursor-pointer"
@@ -174,14 +174,14 @@ const ValidationRulesEngine = () => {
               </div>
               <div className="grid grid-cols-2 gap-3 mb-3">
                 <div>
-                  <label className="block text-xs text-gray-500 mb-1 font-['Inter']">Rule Name</label>
+                  <label className="block text-xs text-gray-500 mb-1 font-['Manrope']">Rule Name</label>
                   <input value={newRule.name} onChange={(e) => setNewRule((p) => ({ ...p, name: e.target.value }))}
                     placeholder="e.g. Passport Expiry Check"
                     className="w-full px-3 py-2 rounded-lg text-xs outline-none"
-                    style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(184,138,60,0.2)", color: "#D1D5DB", fontFamily: "'Inter', sans-serif" }} />
+                    style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(184,138,60,0.2)", color: "#D1D5DB", fontFamily: "'Manrope', sans-serif" }} />
                 </div>
                 <div>
-                  <label className="block text-xs text-gray-500 mb-1 font-['Inter']">Stream</label>
+                  <label className="block text-xs text-gray-500 mb-1 font-['Manrope']">Stream</label>
                   <select value={newRule.stream} onChange={(e) => setNewRule((p) => ({ ...p, stream: e.target.value }))}
                     className="w-full px-3 py-2 rounded-lg text-xs outline-none cursor-pointer"
                     style={{ background: "rgba(10,37,64,0.9)", border: "1px solid rgba(184,138,60,0.2)", color: "#D1D5DB" }}>
@@ -190,7 +190,7 @@ const ValidationRulesEngine = () => {
                 </div>
               </div>
               <div className="flex gap-2">
-                <button className="px-4 py-2 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap" style={{ background: "#D6B47E", color: "#051428" }}>
+                <button className="px-4 py-2 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap" style={{ background: "#C5A365", color: "#071426" }}>
                   <i className="ri-save-line mr-1" />Save Rule
                 </button>
                 <button onClick={() => setShowBuilder(false)} className="px-4 py-2 rounded-lg text-xs cursor-pointer" style={{ background: "rgba(255,255,255,0.05)", color: "#9CA3AF" }}>
@@ -209,13 +209,13 @@ const ValidationRulesEngine = () => {
                   <div className="flex items-start gap-3">
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-2 flex-wrap">
-                        <span className="text-white text-sm font-semibold font-['Inter']">{rule.name}</span>
-                        <span className="px-2 py-0.5 rounded text-xs font-['JetBrains_Mono']" style={{ background: "rgba(184,138,60,0.1)", color: "#D6B47E" }}>{rule.stream}</span>
-                        <span className="px-2 py-0.5 rounded-full text-xs font-semibold font-['Inter']" style={{ background: ac.bg, color: ac.color }}>{ac.label}</span>
+                        <span className="text-white text-sm font-semibold font-['Manrope']">{rule.name}</span>
+                        <span className="px-2 py-0.5 rounded text-xs font-['JetBrains_Mono']" style={{ background: "rgba(184,138,60,0.1)", color: "#C5A365" }}>{rule.stream}</span>
+                        <span className="px-2 py-0.5 rounded-full text-xs font-semibold font-['Manrope']" style={{ background: ac.bg, color: ac.color }}>{ac.label}</span>
                       </div>
                       {/* IF/THEN visual */}
                       <div className="flex items-center gap-2 flex-wrap p-2 rounded-lg mb-2" style={{ background: "rgba(255,255,255,0.02)" }}>
-                        <span className="px-1.5 py-0.5 rounded text-xs font-['JetBrains_Mono'] font-bold" style={{ background: "rgba(184,138,60,0.12)", color: "#D6B47E" }}>IF</span>
+                        <span className="px-1.5 py-0.5 rounded text-xs font-['JetBrains_Mono'] font-bold" style={{ background: "rgba(184,138,60,0.12)", color: "#C5A365" }}>IF</span>
                         <span className="text-gold-300 text-xs font-['JetBrains_Mono']">{rule.field}</span>
                         <span className="text-gray-500 text-xs font-['JetBrains_Mono']">{operatorLabels[rule.operator]}</span>
                         <span className="text-white text-xs font-['JetBrains_Mono'] truncate max-w-[180px]">{rule.value}</span>
@@ -229,7 +229,7 @@ const ValidationRulesEngine = () => {
                     <div className="flex items-center gap-2 flex-shrink-0">
                       <button onClick={() => toggleRule(rule.id)}
                         className="relative inline-flex items-center w-9 h-5 rounded-full transition-colors cursor-pointer"
-                        style={{ background: rule.enabled ? "#D6B47E" : "rgba(255,255,255,0.1)" }}>
+                        style={{ background: rule.enabled ? "#C5A365" : "rgba(255,255,255,0.1)" }}>
                         <span className="inline-block w-3 h-3 rounded-full bg-white transition-transform" style={{ transform: rule.enabled ? "translateX(20px)" : "translateX(3px)" }} />
                       </button>
                       <button className="w-7 h-7 flex items-center justify-center rounded-lg cursor-pointer hover:bg-white/5 transition-colors" style={{ color: "#9CA3AF" }}>
@@ -249,16 +249,16 @@ const ValidationRulesEngine = () => {
         {/* Test Panel */}
         <div className="space-y-3">
           <div className="rounded-xl p-4" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.12)" }}>
-            <p className="text-white text-sm font-semibold font-['Inter'] mb-1">
+            <p className="text-white text-sm font-semibold font-['Manrope'] mb-1">
               <i className="ri-test-tube-line mr-2 text-gold-400" />Test Rule Engine
             </p>
-            <p className="text-gray-500 text-xs font-['Inter'] mb-3">Paste event JSON to test against all active rules:</p>
+            <p className="text-gray-500 text-xs font-['Manrope'] mb-3">Paste event JSON to test against all active rules:</p>
             <textarea value={testJson} onChange={(e) => setTestJson(e.target.value)} rows={9}
               className="w-full px-3 py-2 rounded-lg text-xs outline-none resize-none"
-              style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(184,138,60,0.15)", color: "#D6B47E", fontFamily: "'JetBrains Mono', monospace" }} />
+              style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(184,138,60,0.15)", color: "#C5A365", fontFamily: "'JetBrains Mono', monospace" }} />
             <button onClick={runTest} disabled={running}
               className="w-full mt-3 py-2 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap transition-all"
-              style={{ background: running ? "rgba(184,138,60,0.4)" : "#D6B47E", color: "#051428" }}>
+              style={{ background: running ? "rgba(184,138,60,0.4)" : "#C5A365", color: "#071426" }}>
               {running ? <><i className="ri-loader-4-line animate-spin mr-2" />Running...</> : <><i className="ri-play-line mr-2" />Run Test</>}
             </button>
           </div>
@@ -268,11 +268,11 @@ const ValidationRulesEngine = () => {
               <div className="flex items-center gap-3 mb-3">
                 <div className="flex-1 text-center p-2 rounded-lg" style={{ background: "rgba(74,222,128,0.1)" }}>
                   <p className="text-green-400 text-xl font-bold font-['JetBrains_Mono']">{testResult.passed}</p>
-                  <p className="text-green-400 text-xs font-['Inter']">PASS</p>
+                  <p className="text-green-400 text-xs font-['Manrope']">PASS</p>
                 </div>
                 <div className="flex-1 text-center p-2 rounded-lg" style={{ background: "rgba(201,74,94,0.1)" }}>
                   <p className="text-red-400 text-xl font-bold font-['JetBrains_Mono']">{testResult.failed}</p>
-                  <p className="text-red-400 text-xs font-['Inter']">FAIL</p>
+                  <p className="text-red-400 text-xs font-['Manrope']">FAIL</p>
                 </div>
               </div>
               <div className="space-y-1.5 max-h-64 overflow-y-auto" style={{ scrollbarWidth: "none" }}>
@@ -283,7 +283,7 @@ const ValidationRulesEngine = () => {
                       <i className={`text-xs mt-0.5 flex-shrink-0 ${d.result === "pass" ? "ri-check-line text-green-400" : "ri-close-line text-red-400"}`} />
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-1.5">
-                          <p className="text-white text-xs font-['Inter'] truncate">{d.rule}</p>
+                          <p className="text-white text-xs font-['Manrope'] truncate">{d.rule}</p>
                           {d.result === "fail" && ac && (
                             <span className="text-xs font-['JetBrains_Mono'] flex-shrink-0" style={{ color: ac.color }}>{ac.label}</span>
                           )}

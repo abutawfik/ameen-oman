@@ -28,7 +28,7 @@ const TRIAGE_LEVELS = [
   { value: "2", label: "2 — Emergent",       color: "#C98A1B" },
   { value: "3", label: "3 — Urgent",         color: "#FACC15" },
   { value: "4", label: "4 — Less Urgent",    color: "#4ADE80" },
-  { value: "5", label: "5 — Non-Urgent",     color: "#D6B47E" },
+  { value: "5", label: "5 — Non-Urgent",     color: "#C5A365" },
 ];
 
 const emptyPersonal = (): PersonalData => ({
@@ -127,7 +127,7 @@ const EmergencyVisitForm = ({ isAr, onCancel }: Props) => {
               {selectedTriage && (
                 <div className="flex items-center gap-2 mt-2 px-3 py-2 rounded-lg border" style={{ background: `${selectedTriage.color}08`, borderColor: `${selectedTriage.color}25` }}>
                   <div className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ background: selectedTriage.color }} />
-                  <span className="text-xs font-semibold font-['Inter']" style={{ color: selectedTriage.color }}>{selectedTriage.label}</span>
+                  <span className="text-xs font-semibold font-['Manrope']" style={{ color: selectedTriage.color }}>{selectedTriage.label}</span>
                 </div>
               )}
             </FormField>
@@ -139,9 +139,9 @@ const EmergencyVisitForm = ({ isAr, onCancel }: Props) => {
                 value={chiefComplaint}
                 onChange={(e) => setChiefComplaint(e.target.value)}
                 maxLength={500}
-                className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none transition-all duration-200 resize-none font-['Inter']"
+                className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none transition-all duration-200 resize-none font-['Manrope']"
                 style={{ background: "#0F1923", border: "1px solid rgba(255,255,255,0.08)" }}
-                onFocus={(e) => { e.target.style.borderColor = "#D6B47E"; e.target.style.boxShadow = "0 0 0 2px rgba(184,138,60,0.08)"; }}
+                onFocus={(e) => { e.target.style.borderColor = "#C5A365"; e.target.style.boxShadow = "0 0 0 2px rgba(184,138,60,0.08)"; }}
                 onBlur={(e) => { e.target.style.borderColor = "rgba(255,255,255,0.08)"; e.target.style.boxShadow = "none"; }}
               />
             </FormField>
@@ -202,7 +202,7 @@ const EmergencyVisitForm = ({ isAr, onCancel }: Props) => {
         type="button"
         onClick={addPerson}
         className="w-full flex items-center justify-center gap-2 py-3 rounded-xl border-2 border-dashed text-sm font-semibold cursor-pointer transition-all"
-        style={{ borderColor: "rgba(184,138,60,0.2)", color: "#D6B47E", background: "rgba(184,138,60,0.03)" }}
+        style={{ borderColor: "rgba(184,138,60,0.2)", color: "#C5A365", background: "rgba(184,138,60,0.03)" }}
         onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(184,138,60,0.4)"; (e.currentTarget as HTMLButtonElement).style.background = "rgba(184,138,60,0.06)"; }}
         onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(184,138,60,0.2)"; (e.currentTarget as HTMLButtonElement).style.background = "rgba(184,138,60,0.03)"; }}
       >

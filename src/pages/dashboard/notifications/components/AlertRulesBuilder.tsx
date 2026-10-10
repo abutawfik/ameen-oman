@@ -9,7 +9,7 @@ const priorityConfig: Record<NotifPriority, { label: string; labelAr: string; co
   critical: { label: "Critical", labelAr: "حرج",    color: "#C94A5E", bg: "rgba(201,74,94,0.1)", border: "rgba(201,74,94,0.3)" },
   high:     { label: "High",     labelAr: "عالٍ",   color: "#C98A1B", bg: "rgba(201,138,27,0.1)",  border: "rgba(201,138,27,0.3)" },
   medium:   { label: "Medium",   labelAr: "متوسط",  color: "#FACC15", bg: "rgba(250,204,21,0.1)",  border: "rgba(250,204,21,0.3)" },
-  low:      { label: "Low",      labelAr: "منخفض",  color: "#D6B47E", bg: "rgba(184,138,60,0.08)", border: "rgba(184,138,60,0.2)" },
+  low:      { label: "Low",      labelAr: "منخفض",  color: "#C5A365", bg: "rgba(184,138,60,0.08)", border: "rgba(184,138,60,0.2)" },
 };
 
 const channelIcons: Record<string, string> = {
@@ -36,7 +36,7 @@ const AlertRulesBuilder = ({ isAr }: Props) => {
             <i className="ri-git-branch-line text-gold-400 text-sm" />
           </div>
           <div>
-            <h2 className="text-white text-sm font-bold font-['Inter']">{isAr ? "منشئ قواعد التنبيه" : "Alert Rules Builder"}</h2>
+            <h2 className="text-white text-sm font-bold font-['Manrope']">{isAr ? "منشئ قواعد التنبيه" : "Alert Rules Builder"}</h2>
             <p className="text-gray-500 text-xs font-['JetBrains_Mono']">
               {rules.filter((r) => r.enabled).length} {isAr ? "قاعدة نشطة" : "active rules"}
             </p>
@@ -44,8 +44,8 @@ const AlertRulesBuilder = ({ isAr }: Props) => {
         </div>
         <button
           onClick={() => setShowNewRule(!showNewRule)}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold font-['Inter'] cursor-pointer transition-all whitespace-nowrap"
-          style={{ background: "#D6B47E", color: "#051428" }}
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold font-['Manrope'] cursor-pointer transition-all whitespace-nowrap"
+          style={{ background: "#C5A365", color: "#071426" }}
         >
           <i className="ri-add-line" />
           {isAr ? "قاعدة جديدة" : "New Rule"}
@@ -55,28 +55,28 @@ const AlertRulesBuilder = ({ isAr }: Props) => {
       {/* New rule form */}
       {showNewRule && (
         <div className="px-5 py-4 border-b flex-shrink-0" style={{ borderColor: "rgba(184,138,60,0.08)", background: "rgba(184,138,60,0.02)" }}>
-          <p className="text-gold-400 text-xs font-bold font-['Inter'] uppercase tracking-wider mb-3">
+          <p className="text-gold-400 text-xs font-bold font-['Manrope'] uppercase tracking-wider mb-3">
             {isAr ? "إنشاء قاعدة جديدة" : "Create New Rule"}
           </p>
           <div className="space-y-3">
             <input
               type="text"
               placeholder={isAr ? "اسم القاعدة..." : "Rule name..."}
-              className="w-full px-3 py-2 rounded-xl text-sm font-['Inter']"
+              className="w-full px-3 py-2 rounded-xl text-sm font-['Manrope']"
               style={{ background: "rgba(5,20,40,0.8)", border: "1px solid rgba(184,138,60,0.2)", color: "#D1D5DB", outline: "none" }}
             />
             <div className="p-3 rounded-xl" style={{ background: "rgba(5,20,40,0.6)", border: "1px solid rgba(184,138,60,0.1)" }}>
               <p className="text-gray-500 text-[11px] uppercase tracking-wider font-['JetBrains_Mono'] mb-2">{isAr ? "الشرط" : "Condition"}</p>
               <div className="flex items-center gap-2 flex-wrap">
                 <span className="text-gold-400 text-xs font-['JetBrains_Mono'] font-bold">IF</span>
-                <select className="px-2 py-1 rounded-lg text-xs font-['JetBrains_Mono'] cursor-pointer" style={{ background: "rgba(184,138,60,0.08)", border: "1px solid rgba(184,138,60,0.2)", color: "#D6B47E", outline: "none" }}>
+                <select className="px-2 py-1 rounded-lg text-xs font-['JetBrains_Mono'] cursor-pointer" style={{ background: "rgba(184,138,60,0.08)", border: "1px solid rgba(184,138,60,0.2)", color: "#C5A365", outline: "none" }}>
                   <option style={{ background: "#0A2540" }}>person.riskScore</option>
                   <option style={{ background: "#0A2540" }}>entity.rejectionRate</option>
                   <option style={{ background: "#0A2540" }}>vis.replicationLag</option>
                   <option style={{ background: "#0A2540" }}>patternRule.triggered</option>
                   <option style={{ background: "#0A2540" }}>apiKey.daysToExpiry</option>
                 </select>
-                <select className="px-2 py-1 rounded-lg text-xs font-['JetBrains_Mono'] cursor-pointer" style={{ background: "rgba(184,138,60,0.08)", border: "1px solid rgba(184,138,60,0.2)", color: "#D6B47E", outline: "none" }}>
+                <select className="px-2 py-1 rounded-lg text-xs font-['JetBrains_Mono'] cursor-pointer" style={{ background: "rgba(184,138,60,0.08)", border: "1px solid rgba(184,138,60,0.2)", color: "#C5A365", outline: "none" }}>
                   <option style={{ background: "#0A2540" }}>&gt;</option>
                   <option style={{ background: "#0A2540" }}>&lt;</option>
                   <option style={{ background: "#0A2540" }}>=</option>
@@ -105,10 +105,10 @@ const AlertRulesBuilder = ({ isAr }: Props) => {
               </div>
             </div>
             <div className="flex gap-2">
-              <button onClick={() => setShowNewRule(false)} className="flex-1 py-2 rounded-xl text-xs font-['Inter'] cursor-pointer" style={{ background: "rgba(255,255,255,0.04)", color: "#9CA3AF", border: "1px solid rgba(255,255,255,0.08)" }}>
+              <button onClick={() => setShowNewRule(false)} className="flex-1 py-2 rounded-xl text-xs font-['Manrope'] cursor-pointer" style={{ background: "rgba(255,255,255,0.04)", color: "#9CA3AF", border: "1px solid rgba(255,255,255,0.08)" }}>
                 {isAr ? "إلغاء" : "Cancel"}
               </button>
-              <button onClick={() => setShowNewRule(false)} className="flex-1 py-2 rounded-xl text-xs font-bold font-['Inter'] cursor-pointer" style={{ background: "#D6B47E", color: "#051428" }}>
+              <button onClick={() => setShowNewRule(false)} className="flex-1 py-2 rounded-xl text-xs font-bold font-['Manrope'] cursor-pointer" style={{ background: "#C5A365", color: "#071426" }}>
                 {isAr ? "حفظ القاعدة" : "Save Rule"}
               </button>
             </div>
@@ -141,9 +141,9 @@ const AlertRulesBuilder = ({ isAr }: Props) => {
                 <button
                   onClick={(e) => { e.stopPropagation(); toggleRule(rule.id); }}
                   className="relative w-10 h-5 rounded-full transition-colors cursor-pointer flex-shrink-0"
-                  style={{ background: rule.enabled ? "#D6B47E" : "rgba(255,255,255,0.1)" }}
+                  style={{ background: rule.enabled ? "#C5A365" : "rgba(255,255,255,0.1)" }}
                 >
-                  <div className="absolute top-0.5 w-4 h-4 rounded-full transition-all" style={{ background: "#051428", left: rule.enabled ? "calc(100% - 18px)" : "2px" }} />
+                  <div className="absolute top-0.5 w-4 h-4 rounded-full transition-all" style={{ background: "#071426", left: rule.enabled ? "calc(100% - 18px)" : "2px" }} />
                 </button>
 
                 <div className="flex-1 min-w-0">
@@ -154,7 +154,7 @@ const AlertRulesBuilder = ({ isAr }: Props) => {
                     >
                       {isAr ? cfg.labelAr : cfg.label}
                     </span>
-                    <p className="text-white text-sm font-['Inter'] font-semibold">{isAr ? rule.nameAr : rule.name}</p>
+                    <p className="text-white text-sm font-['Manrope'] font-semibold">{isAr ? rule.nameAr : rule.name}</p>
                   </div>
                   <div className="flex items-center gap-3">
                     <span className="text-gray-600 text-[11px] font-['JetBrains_Mono'] flex items-center gap-1">
@@ -195,11 +195,11 @@ const AlertRulesBuilder = ({ isAr }: Props) => {
                       {rule.conditions.map((cond, i) => (
                         <div key={i} className="flex items-center gap-2 flex-wrap">
                           {i > 0 && cond.connector && (
-                            <span className="text-[11px] font-bold font-['JetBrains_Mono'] px-2 py-0.5 rounded" style={{ background: "rgba(184,138,60,0.1)", color: "#D6B47E" }}>
+                            <span className="text-[11px] font-bold font-['JetBrains_Mono'] px-2 py-0.5 rounded" style={{ background: "rgba(184,138,60,0.1)", color: "#C5A365" }}>
                               {cond.connector}
                             </span>
                           )}
-                          <span className="text-[11px] font-['JetBrains_Mono'] px-2 py-1 rounded-lg" style={{ background: "rgba(184,138,60,0.08)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.15)" }}>
+                          <span className="text-[11px] font-['JetBrains_Mono'] px-2 py-1 rounded-lg" style={{ background: "rgba(184,138,60,0.08)", color: "#C5A365", border: "1px solid rgba(184,138,60,0.15)" }}>
                             {cond.field}
                           </span>
                           <span className="text-gray-500 text-[11px] font-['JetBrains_Mono']">{cond.operator}</span>
@@ -233,7 +233,7 @@ const AlertRulesBuilder = ({ isAr }: Props) => {
 
                   {/* Edit/Delete */}
                   <div className="flex gap-2 pt-1">
-                    <button className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-[11px] font-['JetBrains_Mono'] cursor-pointer" style={{ background: "rgba(184,138,60,0.05)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}>
+                    <button className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-[11px] font-['JetBrains_Mono'] cursor-pointer" style={{ background: "rgba(184,138,60,0.05)", color: "#C5A365", border: "1px solid rgba(184,138,60,0.2)" }}>
                       <i className="ri-edit-line" />
                       {isAr ? "تعديل" : "Edit"}
                     </button>

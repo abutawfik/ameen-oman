@@ -28,7 +28,7 @@ interface EventTypeRow {
 }
 
 const SOURCE_SYSTEMS: SourceSystem[] = [
-  { id: "iborders-air", name: "iBorders — Air", nameAr: "iBorders — جوي", type: "Land/Sea/Air Border Control", typeAr: "مراقبة الحدود البرية/البحرية/الجوية", icon: "ri-flight-takeoff-line", status: "online", lastSync: "2026-04-05 14:32:07", eventsToday: 4821, color: "#D6B47E" },
+  { id: "iborders-air", name: "iBorders — Air", nameAr: "iBorders — جوي", type: "Land/Sea/Air Border Control", typeAr: "مراقبة الحدود البرية/البحرية/الجوية", icon: "ri-flight-takeoff-line", status: "online", lastSync: "2026-04-05 14:32:07", eventsToday: 4821, color: "#C5A365" },
   { id: "iborders-land", name: "iBorders — Land", nameAr: "iBorders — بري", type: "Land Border Crossings", typeAr: "المنافذ البرية", icon: "ri-road-map-line", status: "online", lastSync: "2026-04-05 14:31:55", eventsToday: 1247, color: "#4ADE80" },
   { id: "iborders-sea", name: "iBorders — Sea", nameAr: "iBorders — بحري", type: "Sea Ports & Vessels", typeAr: "الموانئ البحرية والسفن", icon: "ri-ship-line", status: "online", lastSync: "2026-04-05 14:30:12", eventsToday: 389, color: "#C98A1B" },
   { id: "evisa", name: "eVisa Portal", nameAr: "بوابة التأشيرة الإلكترونية", type: "Visa Issuance & Management", typeAr: "إصدار وإدارة التأشيرات", icon: "ri-passport-line", status: "online", lastSync: "2026-04-05 14:32:01", eventsToday: 2156, color: "#A78BFA" },
@@ -36,14 +36,14 @@ const SOURCE_SYSTEMS: SourceSystem[] = [
 
 const EVENT_TYPES: EventTypeRow[] = [
   { code: "ENTRY", label: "Entry (Arrival)", labelAr: "دخول (وصول)", count: 3241, color: "#4ADE80", icon: "ri-login-box-line", enabled: true },
-  { code: "EXIT", label: "Exit (Departure)", labelAr: "خروج (مغادرة)", count: 2987, color: "#D6B47E", icon: "ri-logout-box-line", enabled: true },
+  { code: "EXIT", label: "Exit (Departure)", labelAr: "خروج (مغادرة)", count: 2987, color: "#C5A365", icon: "ri-logout-box-line", enabled: true },
   { code: "VISA_ISSUED", label: "Visa Issued", labelAr: "تأشيرة صادرة", count: 1432, color: "#A78BFA", icon: "ri-file-check-line", enabled: true },
   { code: "VISA_EXTENDED", label: "Visa Extended", labelAr: "تأشيرة ممتدة", count: 287, color: "#FACC15", icon: "ri-time-line", enabled: true },
   { code: "VISA_EXPIRED", label: "Visa Expired", labelAr: "تأشيرة منتهية", count: 94, color: "#C98A1B", icon: "ri-calendar-close-line", enabled: true },
   { code: "OVERSTAY", label: "Overstay Detected", labelAr: "تجاوز مدة الإقامة", count: 31, color: "#C94A5E", icon: "ri-alarm-warning-line", enabled: true },
   { code: "DEPORTATION", label: "Deportation", labelAr: "ترحيل", count: 7, color: "#C94A5E", icon: "ri-user-unfollow-line", enabled: true },
   { code: "TRANSIT", label: "Transit", labelAr: "عبور", count: 512, color: "#9CA3AF", icon: "ri-route-line", enabled: true },
-  { code: "REENTRY", label: "Re-Entry", labelAr: "إعادة دخول", count: 198, color: "#D6B47E", icon: "ri-refresh-line", enabled: true },
+  { code: "REENTRY", label: "Re-Entry", labelAr: "إعادة دخول", count: 198, color: "#C5A365", icon: "ri-refresh-line", enabled: true },
 ];
 
 const FeedConfigPanel = ({ isAr }: Props) => {
@@ -69,7 +69,7 @@ const FeedConfigPanel = ({ isAr }: Props) => {
       {/* Header stats */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {[
-          { label: isAr ? "إجمالي الأحداث اليوم" : "Total Events Today", value: totalToday.toLocaleString(), icon: "ri-pulse-line", color: "#D6B47E" },
+          { label: isAr ? "إجمالي الأحداث اليوم" : "Total Events Today", value: totalToday.toLocaleString(), icon: "ri-pulse-line", color: "#C5A365" },
           { label: isAr ? "المصادر النشطة" : "Active Sources", value: `${SOURCE_SYSTEMS.filter(s => s.status === "online").length}/${SOURCE_SYSTEMS.length}`, icon: "ri-server-line", color: "#4ADE80" },
           { label: isAr ? "أنواع الأحداث المفعّلة" : "Event Types Enabled", value: `${eventTypes.filter(e => e.enabled).length}/${eventTypes.length}`, icon: "ri-toggle-line", color: "#A78BFA" },
           { label: isAr ? "آخر مزامنة" : "Last Sync", value: "14:32:07", icon: "ri-refresh-line", color: "#FACC15" },
@@ -167,7 +167,7 @@ const FeedConfigPanel = ({ isAr }: Props) => {
               {/* Toggle */}
               <button type="button" onClick={() => toggleEvent(evt.code)}
                 className="relative w-10 h-5 rounded-full transition-all duration-300 flex-shrink-0 cursor-pointer"
-                style={{ background: evt.enabled ? "#D6B47E" : "rgba(255,255,255,0.1)" }}>
+                style={{ background: evt.enabled ? "#C5A365" : "rgba(255,255,255,0.1)" }}>
                 <div className="absolute top-0.5 w-4 h-4 rounded-full bg-white transition-all duration-300 shadow-sm"
                   style={{ left: evt.enabled ? "calc(100% - 18px)" : "2px" }} />
               </button>
@@ -186,12 +186,12 @@ const FeedConfigPanel = ({ isAr }: Props) => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
           {[
-            { icon: "ri-id-card-line", label: isAr ? "وثيقة الشخص + النوع + الجنسية" : "Person Document + Type + Nationality", color: "#D6B47E" },
+            { icon: "ri-id-card-line", label: isAr ? "وثيقة الشخص + النوع + الجنسية" : "Person Document + Type + Nationality", color: "#C5A365" },
             { icon: "ri-map-pin-line", label: isAr ? "نقطة الدخول/الخروج (مطار/ميناء/معبر)" : "Entry/Exit Point (airport/port/land crossing)", color: "#4ADE80" },
             { icon: "ri-calendar-event-line", label: isAr ? "التاريخ والوقت" : "Date / Time", color: "#FACC15" },
             { icon: "ri-file-text-line", label: isAr ? "نوع التأشيرة + الرقم + الصلاحية" : "Visa Type + Number + Validity", color: "#A78BFA" },
             { icon: "ri-flight-takeoff-line", label: isAr ? "الناقل (شركة طيران/سفينة)" : "Carrier (airline/vessel)", color: "#C98A1B" },
-            { icon: "ri-ticket-line", label: isAr ? "مرجع الحجز + المقعد/الكابينة" : "Booking Reference + Seat/Cabin", color: "#D6B47E" },
+            { icon: "ri-ticket-line", label: isAr ? "مرجع الحجز + المقعد/الكابينة" : "Booking Reference + Seat/Cabin", color: "#C5A365" },
             { icon: "ri-history-line", label: isAr ? "سجل السفر (آخر 3 دول)" : "Travel History (previous 3 countries)", color: "#4ADE80" },
             { icon: "ri-group-line", label: isAr ? "المسافرون المرافقون (نفس مرجع الحجز)" : "Companion Travelers (same booking ref)", color: "#FACC15" },
           ].map((field) => (

@@ -91,7 +91,7 @@ const WorkPermitForm = ({ isAr, onCancel }: Props) => {
     setTimeout(() => { setSaving(false); setSubmitted(true); }, 1400);
   };
 
-  if (submitted) return <EmpConfirmation isAr={isAr} onReset={() => setSubmitted(false)} eventLabel="Work Permit Issued" eventLabelAr="تصريح عمل صادر" eventColor="#D6B47E" eventIcon="ri-briefcase-line" />;
+  if (submitted) return <EmpConfirmation isAr={isAr} onReset={() => setSubmitted(false)} eventLabel="Work Permit Issued" eventLabelAr="تصريح عمل صادر" eventColor="#C5A365" eventIcon="ri-briefcase-line" />;
 
   const docTypeOpts = DOC_TYPES.map((d) => ({ value: d.value, label: isAr ? (d.value === "passport" ? "جواز سفر" : d.value === "national_id" ? "بطاقة هوية" : d.value === "resident_card" ? "بطاقة إقامة" : "هوية خليجية") : d.label }));
   const genderOpts = GENDERS.map((g) => ({ value: g.value, label: isAr ? (g.value === "male" ? "ذكر" : "أنثى") : g.label }));

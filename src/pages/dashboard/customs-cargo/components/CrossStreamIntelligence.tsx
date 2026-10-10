@@ -25,8 +25,8 @@ const linkedProfiles = [
     crossStreamHits: [
       { stream: "Financial Events", streamAr: "الأحداث المالية", icon: "ri-bank-card-line", color: "#4ADE80", event: "Wire transfer OMR 2.1M to UAE account", date: "2026-04-04", alert: true },
       { stream: "Border Intelligence", streamAr: "استخبارات الحدود", icon: "ri-passport-line", color: "#60A5FA", event: "Entry from Dubai — 3 trips in 30 days", date: "2026-04-01", alert: true },
-      { stream: "Hotel Intelligence", streamAr: "الاستخبارات الفندقية", icon: "ri-hotel-line", color: "#D6B47E", event: "Check-in: Grand Hyatt Muscat, 5 nights", date: "2026-03-28", alert: false },
-      { stream: "Mobile Operators", streamAr: "مشغلو الاتصالات", icon: "ri-sim-card-line", color: "#D6B47E", event: "New SIM registered — secondary number", date: "2026-03-15", alert: false },
+      { stream: "Hotel Intelligence", streamAr: "الاستخبارات الفندقية", icon: "ri-hotel-line", color: "#C5A365", event: "Check-in: Grand Hyatt Muscat, 5 nights", date: "2026-03-28", alert: false },
+      { stream: "Mobile Operators", streamAr: "مشغلو الاتصالات", icon: "ri-sim-card-line", color: "#C5A365", event: "New SIM registered — secondary number", date: "2026-03-15", alert: false },
     ],
     matchConfidence: 98,
     matchType: "Exact",
@@ -104,7 +104,7 @@ const linkedProfiles = [
     crossStreamHits: [
       { stream: "E-Commerce & Retail", streamAr: "التجارة الإلكترونية", icon: "ri-shopping-cart-line", color: "#34D399", event: "Bulk purchase pattern — 3 platforms", date: "2026-03-30", alert: true },
       { stream: "Transport Intelligence", streamAr: "استخبارات النقل", icon: "ri-bus-line", color: "#C98A1B", event: "Frequent trips: Muscat ↔ Sohar (12 in 30 days)", date: "2026-03-28", alert: false },
-      { stream: "Mobile Operators", streamAr: "مشغلو الاتصالات", icon: "ri-sim-card-line", color: "#D6B47E", event: "Roaming activated — UAE, Kuwait", date: "2026-03-20", alert: false },
+      { stream: "Mobile Operators", streamAr: "مشغلو الاتصالات", icon: "ri-sim-card-line", color: "#C5A365", event: "Roaming activated — UAE, Kuwait", date: "2026-03-20", alert: false },
     ],
     matchConfidence: 96,
     matchType: "Exact",
@@ -136,7 +136,7 @@ const CrossStreamIntelligence = ({ isAr }: CrossStreamIntelligenceProps) => {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-white text-lg font-bold font-['Inter']">
+          <h2 className="text-white text-lg font-bold font-['Manrope']">
             {isAr ? "لوحة الاستخبارات متعددة المصادر" : "Cross-Stream Intelligence Panel"}
           </h2>
           <p className="text-gray-500 text-xs font-['JetBrains_Mono'] mt-0.5">
@@ -152,7 +152,7 @@ const CrossStreamIntelligence = ({ isAr }: CrossStreamIntelligenceProps) => {
       <div className="flex gap-5">
         {/* Left: Profile list */}
         <div className="w-72 flex-shrink-0 space-y-2">
-          <p className="text-gray-500 text-xs font-['Inter'] px-1">
+          <p className="text-gray-500 text-xs font-['Manrope'] px-1">
             {isAr ? "الأشخاص المرتبطون بالإقرارات الجمركية" : "Persons linked to customs declarations"}
           </p>
           {linkedProfiles.map((profile) => (
@@ -172,14 +172,14 @@ const CrossStreamIntelligence = ({ isAr }: CrossStreamIntelligenceProps) => {
                   )}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-white text-xs font-semibold font-['Inter'] truncate">{isAr ? profile.person.nameAr : profile.person.name}</p>
+                  <p className="text-white text-xs font-semibold font-['Manrope'] truncate">{isAr ? profile.person.nameAr : profile.person.name}</p>
                   <p className="text-gray-500 text-xs font-['JetBrains_Mono']">{profile.person.doc}</p>
                   <div className="flex items-center gap-2 mt-1">
-                    <span className="text-xs font-['Inter']" style={{ color: riskColors[profile.person.riskLevel] }}>
+                    <span className="text-xs font-['Manrope']" style={{ color: riskColors[profile.person.riskLevel] }}>
                       Risk: {profile.person.riskScore}
                     </span>
                     <span className="text-gray-600 text-xs">·</span>
-                    <span className="text-xs font-['Inter']" style={{ color: profile.matchType === "Exact" ? "#4ADE80" : "#FACC15" }}>
+                    <span className="text-xs font-['Manrope']" style={{ color: profile.matchType === "Exact" ? "#4ADE80" : "#FACC15" }}>
                       {profile.matchConfidence}%
                     </span>
                   </div>
@@ -200,19 +200,19 @@ const CrossStreamIntelligence = ({ isAr }: CrossStreamIntelligenceProps) => {
                   <div className="absolute -top-1.5 -right-1.5 px-1.5 py-0.5 rounded-full flex items-center gap-1"
                     style={{ background: "#C94A5E", fontSize: "9px" }}>
                     <i className="ri-eye-line text-white" style={{ fontSize: "8px" }} />
-                    <span className="text-white font-bold font-['Inter']">WATCHLIST</span>
+                    <span className="text-white font-bold font-['Manrope']">WATCHLIST</span>
                   </div>
                 )}
               </div>
               <div className="flex-1">
                 <div className="flex items-start justify-between">
                   <div>
-                    <h3 className="text-white text-base font-bold font-['Inter']">{isAr ? selectedProfile.person.nameAr : selectedProfile.person.name}</h3>
+                    <h3 className="text-white text-base font-bold font-['Manrope']">{isAr ? selectedProfile.person.nameAr : selectedProfile.person.name}</h3>
                     <div className="flex items-center gap-3 mt-1">
                       <span className="text-gold-400 text-xs font-['JetBrains_Mono']">{selectedProfile.person.doc}</span>
-                      <span className="text-gray-500 text-xs font-['Inter']">{selectedProfile.person.nationality}</span>
-                      <span className="px-2 py-0.5 rounded-full text-xs font-semibold font-['Inter']"
-                        style={{ background: "rgba(184,138,60,0.1)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}>
+                      <span className="text-gray-500 text-xs font-['Manrope']">{selectedProfile.person.nationality}</span>
+                      <span className="px-2 py-0.5 rounded-full text-xs font-semibold font-['Manrope']"
+                        style={{ background: "rgba(184,138,60,0.1)", color: "#C5A365", border: "1px solid rgba(184,138,60,0.2)" }}>
                         {selectedProfile.role}
                       </span>
                     </div>
@@ -221,7 +221,7 @@ const CrossStreamIntelligence = ({ isAr }: CrossStreamIntelligenceProps) => {
                     <div className="text-2xl font-bold font-['JetBrains_Mono']" style={{ color: riskColors[selectedProfile.person.riskLevel] }}>
                       {selectedProfile.person.riskScore}
                     </div>
-                    <div className="text-xs text-gray-500 font-['Inter']">Risk Score</div>
+                    <div className="text-xs text-gray-500 font-['Manrope']">Risk Score</div>
                   </div>
                 </div>
 
@@ -230,7 +230,7 @@ const CrossStreamIntelligence = ({ isAr }: CrossStreamIntelligenceProps) => {
                   <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full"
                     style={{ background: selectedProfile.matchType === "Exact" ? "rgba(74,222,128,0.1)" : "rgba(250,204,21,0.1)", border: `1px solid ${selectedProfile.matchType === "Exact" ? "rgba(74,222,128,0.25)" : "rgba(250,204,21,0.25)"}` }}>
                     <i className={`${selectedProfile.matchType === "Exact" ? "ri-checkbox-circle-line text-green-400" : "ri-question-line text-yellow-400"} text-xs`} />
-                    <span className="text-xs font-semibold font-['Inter']" style={{ color: selectedProfile.matchType === "Exact" ? "#4ADE80" : "#FACC15" }}>
+                    <span className="text-xs font-semibold font-['Manrope']" style={{ color: selectedProfile.matchType === "Exact" ? "#4ADE80" : "#FACC15" }}>
                       {selectedProfile.matchType} Match — {selectedProfile.matchConfidence}% confidence
                     </span>
                   </div>
@@ -238,7 +238,7 @@ const CrossStreamIntelligence = ({ isAr }: CrossStreamIntelligenceProps) => {
                     <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full"
                       style={{ background: "rgba(201,74,94,0.1)", border: "1px solid rgba(201,74,94,0.25)" }}>
                       <i className="ri-eye-line text-red-400 text-xs" />
-                      <span className="text-red-400 text-xs font-semibold font-['Inter']">{selectedProfile.watchlistName}</span>
+                      <span className="text-red-400 text-xs font-semibold font-['Manrope']">{selectedProfile.watchlistName}</span>
                     </div>
                   )}
                 </div>
@@ -246,9 +246,9 @@ const CrossStreamIntelligence = ({ isAr }: CrossStreamIntelligenceProps) => {
                 {/* Linked entities */}
                 {selectedProfile.linkedEntities.length > 0 && (
                   <div className="flex items-center gap-2 mt-2">
-                    <span className="text-gray-500 text-xs font-['Inter']">{isAr ? "الكيانات المرتبطة:" : "Linked entities:"}</span>
+                    <span className="text-gray-500 text-xs font-['Manrope']">{isAr ? "الكيانات المرتبطة:" : "Linked entities:"}</span>
                     {selectedProfile.linkedEntities.map((e) => (
-                      <span key={e} className="px-2 py-0.5 rounded-full text-xs font-['Inter']"
+                      <span key={e} className="px-2 py-0.5 rounded-full text-xs font-['Manrope']"
                         style={{ background: "rgba(167,139,250,0.1)", color: "#A78BFA", border: "1px solid rgba(167,139,250,0.2)" }}>
                         {e}
                       </span>
@@ -267,10 +267,10 @@ const CrossStreamIntelligence = ({ isAr }: CrossStreamIntelligenceProps) => {
               { id: "network", label: "Network View", labelAr: "عرض الشبكة", icon: "ri-share-line" },
             ].map((tab) => (
               <button key={tab.id} onClick={() => setActiveSection(tab.id as typeof activeSection)}
-                className="flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-lg text-xs font-semibold transition-all cursor-pointer whitespace-nowrap font-['Inter']"
+                className="flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-lg text-xs font-semibold transition-all cursor-pointer whitespace-nowrap font-['Manrope']"
                 style={{
                   background: activeSection === tab.id ? "rgba(184,138,60,0.12)" : "transparent",
-                  color: activeSection === tab.id ? "#D6B47E" : "#6B7280",
+                  color: activeSection === tab.id ? "#C5A365" : "#6B7280",
                   border: activeSection === tab.id ? "1px solid rgba(184,138,60,0.25)" : "1px solid transparent",
                 }}>
                 <i className={`${tab.icon} text-sm`} />
@@ -297,16 +297,16 @@ const CrossStreamIntelligence = ({ isAr }: CrossStreamIntelligenceProps) => {
                       <div>
                         <div className="flex items-center gap-2">
                           <span className="text-gold-400 text-xs font-['JetBrains_Mono'] font-bold">{d.ref}</span>
-                          {d.flagged && <span className="px-1.5 py-0.5 rounded text-xs font-['Inter']" style={{ background: "rgba(201,74,94,0.15)", color: "#C94A5E" }}>FLAGGED</span>}
+                          {d.flagged && <span className="px-1.5 py-0.5 rounded text-xs font-['Manrope']" style={{ background: "rgba(201,74,94,0.15)", color: "#C94A5E" }}>FLAGGED</span>}
                         </div>
-                        <p className="text-gray-400 text-xs font-['Inter'] mt-0.5">{d.goods} · {d.date}</p>
+                        <p className="text-gray-400 text-xs font-['Manrope'] mt-0.5">{d.goods} · {d.date}</p>
                       </div>
                     </div>
                     <div className="text-right">
                       <div className="text-white text-sm font-bold font-['JetBrains_Mono']">{d.value}</div>
                       <div className="flex items-center justify-end gap-1 mt-0.5">
                         <div className="w-1.5 h-1.5 rounded-full" style={{ background: channelColors[d.channel] }} />
-                        <span className="text-xs font-['Inter']" style={{ color: channelColors[d.channel] }}>{d.channel}</span>
+                        <span className="text-xs font-['Manrope']" style={{ color: channelColors[d.channel] }}>{d.channel}</span>
                       </div>
                     </div>
                   </div>
@@ -318,7 +318,7 @@ const CrossStreamIntelligence = ({ isAr }: CrossStreamIntelligenceProps) => {
           {/* Cross-stream hits */}
           {activeSection === "crossstream" && (
             <div className="space-y-3">
-              <p className="text-gray-500 text-xs font-['Inter']">
+              <p className="text-gray-500 text-xs font-['Manrope']">
                 {isAr ? "أحداث مرتبطة بهذا الشخص عبر مصادر البيانات الأخرى" : "Events linked to this person across other data streams"}
               </p>
               {selectedProfile.crossStreamHits.map((hit, i) => (
@@ -334,18 +334,18 @@ const CrossStreamIntelligence = ({ isAr }: CrossStreamIntelligenceProps) => {
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center justify-between mb-1">
-                        <span className="text-xs font-semibold font-['Inter']" style={{ color: hit.color }}>
+                        <span className="text-xs font-semibold font-['Manrope']" style={{ color: hit.color }}>
                           {isAr ? hit.streamAr : hit.stream}
                         </span>
                         <div className="flex items-center gap-2">
                           {hit.alert && (
-                            <span className="px-1.5 py-0.5 rounded text-xs font-['Inter']"
+                            <span className="px-1.5 py-0.5 rounded text-xs font-['Manrope']"
                               style={{ background: "rgba(201,74,94,0.15)", color: "#C94A5E" }}>ALERT</span>
                           )}
                           <span className="text-gray-600 text-xs font-['JetBrains_Mono']">{hit.date}</span>
                         </div>
                       </div>
-                      <p className="text-gray-300 text-xs font-['Inter']">{hit.event}</p>
+                      <p className="text-gray-300 text-xs font-['Manrope']">{hit.event}</p>
                     </div>
                   </div>
                 </div>
@@ -356,7 +356,7 @@ const CrossStreamIntelligence = ({ isAr }: CrossStreamIntelligenceProps) => {
           {/* Network view */}
           {activeSection === "network" && (
             <div className="p-5 rounded-xl" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.1)" }}>
-              <h4 className="text-white text-sm font-bold font-['Inter'] mb-4">
+              <h4 className="text-white text-sm font-bold font-['Manrope'] mb-4">
                 {isAr ? "شبكة الروابط" : "Entity Network"}
               </h4>
               {/* Visual network */}
@@ -374,7 +374,7 @@ const CrossStreamIntelligence = ({ isAr }: CrossStreamIntelligenceProps) => {
                     <div className="w-14 h-14 rounded-full overflow-hidden relative z-10" style={{ border: `2px solid ${riskColors[selectedProfile.person.riskLevel]}` }}>
                       <img src={selectedProfile.person.photo} alt="" className="w-full h-full object-cover object-top" />
                     </div>
-                    <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 whitespace-nowrap text-white text-xs font-bold font-['Inter']" style={{ fontSize: "9px" }}>
+                    <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 whitespace-nowrap text-white text-xs font-bold font-['Manrope']" style={{ fontSize: "9px" }}>
                       {selectedProfile.person.name.split(" ")[0]}
                     </div>
                   </div>
@@ -385,7 +385,7 @@ const CrossStreamIntelligence = ({ isAr }: CrossStreamIntelligenceProps) => {
                   { label: "Customs", icon: "ri-ship-line", color: "#FCD34D", pos: { top: "15%", left: "20%" } },
                   { label: "Financial", icon: "ri-bank-card-line", color: "#4ADE80", pos: { top: "15%", left: "70%" } },
                   { label: "Border", icon: "ri-passport-line", color: "#60A5FA", pos: { top: "70%", left: "15%" } },
-                  { label: "Hotel", icon: "ri-hotel-line", color: "#D6B47E", pos: { top: "70%", left: "75%" } },
+                  { label: "Hotel", icon: "ri-hotel-line", color: "#C5A365", pos: { top: "70%", left: "75%" } },
                   ...(selectedProfile.linkedEntities.length > 0 ? [{ label: selectedProfile.linkedEntities[0].split(" ")[0], icon: "ri-building-line", color: "#A78BFA", pos: { top: "40%", left: "82%" } }] : []),
                 ].map((node, i) => (
                   <div key={i} className="absolute flex flex-col items-center gap-1" style={{ ...node.pos, transform: "translate(-50%,-50%)" }}>
@@ -402,7 +402,7 @@ const CrossStreamIntelligence = ({ isAr }: CrossStreamIntelligenceProps) => {
                       style={{ background: `${node.color}15`, border: `1px solid ${node.color}40` }}>
                       <i className={`${node.icon} text-sm`} style={{ color: node.color }} />
                     </div>
-                    <span className="text-gray-500 font-['Inter'] whitespace-nowrap" style={{ fontSize: "9px" }}>{node.label}</span>
+                    <span className="text-gray-500 font-['Manrope'] whitespace-nowrap" style={{ fontSize: "9px" }}>{node.label}</span>
                   </div>
                 ))}
               </div>
@@ -410,14 +410,14 @@ const CrossStreamIntelligence = ({ isAr }: CrossStreamIntelligenceProps) => {
               {/* Stream summary */}
               <div className="grid grid-cols-4 gap-2 mt-4">
                 {[
-                  { label: "Streams Hit", value: selectedProfile.crossStreamHits.length, color: "#D6B47E" },
+                  { label: "Streams Hit", value: selectedProfile.crossStreamHits.length, color: "#C5A365" },
                   { label: "Declarations", value: selectedProfile.declarations.length, color: "#FCD34D" },
                   { label: "Alerts", value: selectedProfile.crossStreamHits.filter((h) => h.alert).length, color: "#C94A5E" },
                   { label: "Entities", value: selectedProfile.linkedEntities.length || "—", color: "#A78BFA" },
                 ].map((s) => (
                   <div key={s.label} className="p-2 rounded-lg text-center" style={{ background: `${s.color}08`, border: `1px solid ${s.color}20` }}>
                     <div className="text-base font-bold font-['JetBrains_Mono']" style={{ color: s.color }}>{s.value}</div>
-                    <div className="text-xs text-gray-500 font-['Inter']">{s.label}</div>
+                    <div className="text-xs text-gray-500 font-['Manrope']">{s.label}</div>
                   </div>
                 ))}
               </div>

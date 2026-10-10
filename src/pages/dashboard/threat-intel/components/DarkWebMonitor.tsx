@@ -33,7 +33,7 @@ const DarkWebMonitor = ({ isAr }: Props) => {
                 <i className={`${src.icon} text-xs`} style={{ color: src.color }} />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-white text-xs font-['Inter'] font-medium truncate">{src.name}</p>
+                <p className="text-white text-xs font-['Manrope'] font-medium truncate">{src.name}</p>
                 <p className="text-gray-600 text-[11px] font-['JetBrains_Mono'] capitalize">{src.type}</p>
               </div>
               <div className="flex items-center gap-1 flex-shrink-0">
@@ -65,10 +65,10 @@ const DarkWebMonitor = ({ isAr }: Props) => {
           <div className="flex items-center gap-1">
             {["all", "critical", "high", "medium"].map((s) => (
               <button key={s} onClick={() => setFilterSeverity(s)}
-                className="px-2 py-1 rounded text-[11px] font-['Inter'] cursor-pointer transition-all whitespace-nowrap"
+                className="px-2 py-1 rounded text-[11px] font-['Manrope'] cursor-pointer transition-all whitespace-nowrap"
                 style={{
                   background: filterSeverity === s ? "rgba(184,138,60,0.1)" : "transparent",
-                  color: filterSeverity === s ? "#D6B47E" : "#6B7280",
+                  color: filterSeverity === s ? "#C5A365" : "#6B7280",
                 }}>
                 {s === "all" ? "All" : s.charAt(0).toUpperCase() + s.slice(1)}
               </button>
@@ -91,7 +91,7 @@ const DarkWebMonitor = ({ isAr }: Props) => {
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-0.5">
-                  <span className="text-gray-400 text-[11px] font-['Inter'] truncate">{mention.platform}</span>
+                  <span className="text-gray-400 text-[11px] font-['Manrope'] truncate">{mention.platform}</span>
                   {mention.verified && <i className="ri-verified-badge-line text-gold-400 text-[11px] flex-shrink-0" />}
                   {mention.translated && (
                     <span className="text-[9px] px-1 rounded font-['JetBrains_Mono'] flex-shrink-0" style={{ background: "rgba(167,139,250,0.15)", color: "#A78BFA" }}>
@@ -99,7 +99,7 @@ const DarkWebMonitor = ({ isAr }: Props) => {
                     </span>
                   )}
                 </div>
-                <p className="text-white text-xs font-['Inter'] line-clamp-2">{mention.content}</p>
+                <p className="text-white text-xs font-['Manrope'] line-clamp-2">{mention.content}</p>
               </div>
             </div>
             <div className="flex items-center justify-between">
@@ -142,13 +142,13 @@ const DarkWebMonitor = ({ isAr }: Props) => {
                   <i className={`${selectedMention.platformIcon} text-sm`} style={{ color: selectedMention.platformColor }} />
                 </div>
                 <div>
-                  <p className="text-white text-xs font-bold font-['Inter']">{selectedMention.platform}</p>
+                  <p className="text-white text-xs font-bold font-['Manrope']">{selectedMention.platform}</p>
                   <p className="text-gray-600 text-[11px] font-['JetBrains_Mono']">{selectedMention.timestamp}</p>
                 </div>
               </div>
               <div>
                 <p className="text-gray-600 text-[11px] font-['JetBrains_Mono'] mb-1">CONTENT</p>
-                <p className="text-gray-300 text-xs font-['Inter'] leading-relaxed">{selectedMention.content}</p>
+                <p className="text-gray-300 text-xs font-['Manrope'] leading-relaxed">{selectedMention.content}</p>
               </div>
               <div className="grid grid-cols-2 gap-3">
                 {[
@@ -161,7 +161,7 @@ const DarkWebMonitor = ({ isAr }: Props) => {
                 ].map((row) => (
                   <div key={row.label}>
                     <p className="text-gray-700 text-[11px] font-['JetBrains_Mono']">{row.label}</p>
-                    <p className="text-gray-400 text-xs font-['Inter']">{row.value}</p>
+                    <p className="text-gray-400 text-xs font-['Manrope']">{row.value}</p>
                   </div>
                 ))}
               </div>
@@ -179,10 +179,10 @@ const DarkWebMonitor = ({ isAr }: Props) => {
                 </div>
               )}
               <div className="flex gap-2">
-                <button className="flex-1 py-2 rounded-lg text-xs font-['Inter'] cursor-pointer whitespace-nowrap" style={{ background: "rgba(201,74,94,0.1)", color: "#C94A5E", border: "1px solid rgba(201,74,94,0.2)" }}>
+                <button className="flex-1 py-2 rounded-lg text-xs font-['Manrope'] cursor-pointer whitespace-nowrap" style={{ background: "rgba(201,74,94,0.1)", color: "#C94A5E", border: "1px solid rgba(201,74,94,0.2)" }}>
                   <i className="ri-alarm-warning-line mr-1" />Escalate
                 </button>
-                <button className="flex-1 py-2 rounded-lg text-xs font-['Inter'] cursor-pointer whitespace-nowrap" style={{ background: "rgba(184,138,60,0.08)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}>
+                <button className="flex-1 py-2 rounded-lg text-xs font-['Manrope'] cursor-pointer whitespace-nowrap" style={{ background: "rgba(184,138,60,0.08)", color: "#C5A365", border: "1px solid rgba(184,138,60,0.2)" }}>
                   <i className="ri-file-add-line mr-1" />Add to Case
                 </button>
               </div>
@@ -193,7 +193,7 @@ const DarkWebMonitor = ({ isAr }: Props) => {
             <div className="w-12 h-12 flex items-center justify-center rounded-full mb-3" style={{ background: "rgba(201,74,94,0.1)" }}>
               <i className="ri-ghost-line text-red-400 text-xl" />
             </div>
-            <p className="text-gray-600 text-sm font-['Inter']">Select a mention to view details</p>
+            <p className="text-gray-600 text-sm font-['Manrope']">Select a mention to view details</p>
           </div>
         )}
 

@@ -43,7 +43,7 @@ const StudentVisaExtensionForm = ({ isAr, onCancel }: Props) => {
     }, 1100);
   };
 
-  const standingColor = (s: string) => s === "Excellent" ? "#4ADE80" : s === "Good" ? "#D6B47E" : "#C98A1B";
+  const standingColor = (s: string) => s === "Excellent" ? "#4ADE80" : s === "Good" ? "#C5A365" : "#C98A1B";
   const attendanceColor = (a: number) => a >= 80 ? "#4ADE80" : a >= 70 ? "#FACC15" : "#C94A5E";
   const isEligible = studentData && studentData.attendance >= 70 && studentData.standing !== "Suspended";
 

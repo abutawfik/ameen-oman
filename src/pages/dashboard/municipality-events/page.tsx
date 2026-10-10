@@ -29,7 +29,7 @@ const EVENT_CARDS: EventCard[] = [
     labelAr: "بدء إيجار",
     desc: "Register a new rental agreement with full property, owner and tenant details",
     descAr: "تسجيل عقد إيجار جديد مع تفاصيل العقار والمالك والمستأجر",
-    color: "#D6B47E",
+    color: "#C5A365",
     bgColor: "rgba(184,138,60,0.08)",
     borderColor: "rgba(184,138,60,0.25)",
     code: "MUN_START_RENTAL",
@@ -66,7 +66,7 @@ const MunicipalityEventsPage = () => {
   const activeCard = EVENT_CARDS.find((c) => c.id === activeEvent);
 
   return (
-    <div className="min-h-screen font-['Inter']" style={{ background: "#051428" }} dir={isAr ? "rtl" : "ltr"}>
+    <div className="min-h-screen font-['Manrope']" style={{ background: "#071426" }} dir={isAr ? "rtl" : "ltr"}>
       <div
         className="fixed inset-0 pointer-events-none"
         style={{
@@ -82,7 +82,7 @@ const MunicipalityEventsPage = () => {
           ...(activeEvent ? [{ label: isAr ? "الأحداث" : "Events", onClick: () => setActiveEvent(null) }] : []),
         ]}
         icon="ri-government-line"
-        iconColor="#D6B47E"
+        iconColor="#C5A365"
         badge="Al-Ameen Portal"
         isAr={isAr}
         action={
@@ -164,7 +164,7 @@ const MunicipalityEventsPage = () => {
             {/* Info banner */}
             <div className="flex items-start gap-3 px-5 py-4 rounded-xl border" style={{ background: "rgba(184,138,60,0.04)", borderColor: "rgba(184,138,60,0.15)" }}>
               <i className="ri-information-line text-gold-400 text-sm mt-0.5 flex-shrink-0" />
-              <p className="text-gray-400 text-sm font-['Inter']">
+              <p className="text-gray-400 text-sm font-['Manrope']">
                 {isAr
                   ? "جميع عقود الإيجار المسجلة عبر هذه المنصة تُرسَل فوراً إلى قاعدة بيانات Al-Ameen. تأكد من صحة بيانات المستأجر والمالك قبل الحفظ."
                   : "All rental agreements registered through this portal are submitted instantly to the Al-Ameen database. Verify tenant and owner details before saving."}

@@ -160,7 +160,7 @@ export default function AlertQueue({ filterPriority, filterStatus }: Props) {
             className="rounded-xl border transition-all duration-200"
             style={{
               background: isSelected ? 'rgba(184,138,60,0.05)' : 'rgba(10,37,64,0.8)',
-              borderColor: isSelected ? '#D6B47E' : `${pc.border}35`,
+              borderColor: isSelected ? '#C5A365' : `${pc.border}35`,
               borderLeftWidth: 3,
               borderLeftColor: pc.border,
             }}
@@ -308,7 +308,7 @@ export default function AlertQueue({ filterPriority, filterStatus }: Props) {
                         <p className="text-gray-500 text-xs uppercase tracking-wider mb-1">Rule Category</p>
                         <span
                           className="text-xs px-2 py-0.5 rounded-full"
-                          style={{ background: 'rgba(184,138,60,0.1)', color: '#D6B47E' }}
+                          style={{ background: 'rgba(184,138,60,0.1)', color: '#C5A365' }}
                         >
                           {alert.ruleCategory}
                         </span>
@@ -365,7 +365,7 @@ export default function AlertQueue({ filterPriority, filterStatus }: Props) {
                         <button
                           onClick={() => doAction(alert.id, 'confirmed', 'Alert confirmed — case created')}
                           className="flex items-center justify-center gap-1.5 py-2.5 rounded-lg text-xs font-semibold cursor-pointer transition-all whitespace-nowrap"
-                          style={{ background: '#D6B47E', color: '#051428' }}
+                          style={{ background: '#C5A365', color: '#071426' }}
                         >
                           <i className="ri-check-double-line" />Confirm (TP)
                         </button>
@@ -408,9 +408,9 @@ export default function AlertQueue({ filterPriority, filterStatus }: Props) {
                             <div
                               className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold border-2"
                               style={{
-                                borderColor: alert.tier >= t ? (t === 3 ? '#C94A5E' : t === 2 ? '#C98A1B' : '#D6B47E') : 'rgba(75,85,99,0.5)',
+                                borderColor: alert.tier >= t ? (t === 3 ? '#C94A5E' : t === 2 ? '#C98A1B' : '#C5A365') : 'rgba(75,85,99,0.5)',
                                 background: alert.tier >= t ? (t === 3 ? 'rgba(201,74,94,0.15)' : t === 2 ? 'rgba(201,138,27,0.15)' : 'rgba(184,138,60,0.15)') : 'transparent',
-                                color: alert.tier >= t ? (t === 3 ? '#C94A5E' : t === 2 ? '#C98A1B' : '#D6B47E') : '#4B5563',
+                                color: alert.tier >= t ? (t === 3 ? '#C94A5E' : t === 2 ? '#C98A1B' : '#C5A365') : '#4B5563',
                               }}
                             >
                               {t}

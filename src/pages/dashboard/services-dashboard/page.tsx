@@ -8,11 +8,11 @@ const C = {
   p2: 'var(--alm-ocean-600)',
   p3: 'var(--alm-ocean-500)',
   p4: 'var(--alm-ocean-400)',
-  gold: '#D6B47E',
+  gold: '#C5A365',
   gold2: '#B8893C',
   critical: '#C94A5E',
   high: '#D4922A',
-  medium: '#D6B47E',
+  medium: '#C5A365',
   low: '#4A8E5A',
 } as const;
 
@@ -145,10 +145,10 @@ const ServicesDashboardPage = () => {
           </div>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <span style={{ color: '#fff', fontWeight: 800, fontSize: 18, fontFamily: "'Inter', sans-serif" }}>{isAr ? 'لوحة الخدمات' : 'Services Dashboard'}</span>
+              <span style={{ color: '#fff', fontWeight: 800, fontSize: 18, fontFamily: "'Manrope', sans-serif" }}>{isAr ? 'لوحة الخدمات' : 'Services Dashboard'}</span>
               <span style={{ background: 'rgba(184,138,60,0.12)', color: C.gold, border: '1px solid rgba(184,138,60,0.2)', borderRadius: 20, padding: '2px 10px', fontSize: 11, fontWeight: 700, fontFamily: "'JetBrains Mono', monospace" }}>Ch 6.2</span>
             </div>
-            <p style={{ color: '#6B7280', fontSize: 12, fontFamily: "'Inter', sans-serif", margin: 0 }}>{isAr ? 'مراقبة الرحلات والركاب في الوقت الفعلي' : 'Real-time flight & passenger monitoring'}</p>
+            <p style={{ color: '#6B7280', fontSize: 12, fontFamily: "'Manrope', sans-serif", margin: 0 }}>{isAr ? 'مراقبة الرحلات والركاب في الوقت الفعلي' : 'Real-time flight & passenger monitoring'}</p>
           </div>
         </div>
 
@@ -169,7 +169,7 @@ const ServicesDashboardPage = () => {
               value={search}
               onChange={e => setSearch(e.target.value)}
               placeholder={isAr ? 'بحث عن رحلة، خط جوي...' : 'Search flight, airline, route…'}
-              style={{ width: '100%', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 8, color: '#E5E7EB', fontSize: 13, padding: '7px 10px 7px 32px', outline: 'none', fontFamily: "'Inter', sans-serif", boxSizing: 'border-box' }}
+              style={{ width: '100%', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 8, color: '#E5E7EB', fontSize: 13, padding: '7px 10px 7px 32px', outline: 'none', fontFamily: "'Manrope', sans-serif", boxSizing: 'border-box' }}
             />
           </div>
 
@@ -209,7 +209,7 @@ const ServicesDashboardPage = () => {
           {/* Table */}
           <div style={{ flex: 1, background: 'rgba(10,37,64,0.8)', border: '1px solid rgba(184,138,60,0.1)', borderRadius: 16, backdropFilter: 'blur(12px)', overflow: 'hidden' }}>
             <div style={{ overflowX: 'auto' }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: "'Inter', sans-serif", fontSize: 13 }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: "'Manrope', sans-serif", fontSize: 13 }}>
                 <thead>
                   <tr style={{ background: 'rgba(184,138,60,0.06)', borderBottom: '1px solid rgba(184,138,60,0.1)' }}>
                     {['Flight', 'Route', 'Airline', 'Status', 'ETD / ETA', 'Pax', 'Hits', 'Risk', 'Actions'].map(h => (
@@ -280,7 +280,7 @@ const ServicesDashboardPage = () => {
                     <span style={{ color: C.gold, fontFamily: "'JetBrains Mono', monospace", fontWeight: 800, fontSize: 18 }}>{selectedService.flight}</span>
                     <StatusBadge status={selectedService.status} />
                   </div>
-                  <div style={{ color: '#9CA3AF', fontSize: 12, fontFamily: "'Inter', sans-serif" }}>
+                  <div style={{ color: '#9CA3AF', fontSize: 12, fontFamily: "'Manrope', sans-serif" }}>
                     {selectedService.airline} · {selectedService.from} → {selectedService.to}
                   </div>
                 </div>
@@ -322,7 +322,7 @@ const ServicesDashboardPage = () => {
                     <tbody>
                       {MANIFEST_SAMPLE.map((p, i) => (
                         <tr key={i} style={{ borderBottom: '1px solid rgba(255,255,255,0.03)' }}>
-                          <td style={{ padding: '7px 8px', color: '#D1D5DB', fontFamily: "'Inter', sans-serif" }}>{p.name}</td>
+                          <td style={{ padding: '7px 8px', color: '#D1D5DB', fontFamily: "'Manrope', sans-serif" }}>{p.name}</td>
                           <td style={{ padding: '7px 8px', color: '#9CA3AF', fontFamily: "'JetBrains Mono', monospace", fontSize: 11 }}>{p.nationality}</td>
                           <td style={{ padding: '7px 8px', color: '#6B7280', fontFamily: "'JetBrains Mono', monospace", fontSize: 11 }}>{p.seat}</td>
                           <td style={{ padding: '7px 8px' }}><RiskBadge level={p.risk} /></td>

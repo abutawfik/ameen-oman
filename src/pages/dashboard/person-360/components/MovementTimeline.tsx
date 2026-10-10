@@ -55,12 +55,12 @@ const MovementTimeline = ({ events, streamFilter, isAr }: Props) => {
       {/* Header */}
       <div className="flex items-center justify-between mb-5 flex-wrap gap-3">
         <div className="flex items-center gap-3 flex-wrap">
-          <h3 className="text-white font-bold font-['Inter'] text-sm uppercase tracking-wider">
+          <h3 className="text-white font-bold font-['Manrope'] text-sm uppercase tracking-wider">
             {isAr ? "الجدول الزمني للحركة" : "Movement Timeline"}
           </h3>
           <span
             className="px-2 py-0.5 rounded-full text-xs font-['JetBrains_Mono'] font-bold"
-            style={{ background: "rgba(184,138,60,0.1)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}
+            style={{ background: "rgba(184,138,60,0.1)", color: "#C5A365", border: "1px solid rgba(184,138,60,0.2)" }}
           >
             {filtered.length} {isAr ? "حدث" : "events"}
           </span>
@@ -158,8 +158,8 @@ const MovementTimeline = ({ events, streamFilter, isAr }: Props) => {
                           {event.stream}
                         </span>
                       </div>
-                      <p className="text-white text-sm font-['Inter'] font-semibold leading-snug">{event.title}</p>
-                      <p className="text-gray-400 text-xs font-['Inter'] mt-0.5 leading-relaxed">{event.description}</p>
+                      <p className="text-white text-sm font-['Manrope'] font-semibold leading-snug">{event.title}</p>
+                      <p className="text-gray-400 text-xs font-['Manrope'] mt-0.5 leading-relaxed">{event.description}</p>
                       <div className="flex items-center gap-3 mt-1.5 flex-wrap">
                         <span className="text-gray-600 text-[11px] font-['JetBrains_Mono'] flex items-center gap-1">
                           <i className="ri-time-line" />{event.datetime}
@@ -194,7 +194,7 @@ const MovementTimeline = ({ events, streamFilter, isAr }: Props) => {
                         <div className="col-span-full flex gap-2 mt-2 pt-2 border-t" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
                           <button
                             className="px-3 py-1.5 rounded-lg text-xs font-['JetBrains_Mono'] cursor-pointer whitespace-nowrap"
-                            style={{ background: "#D6B47E", color: "#051428" }}
+                            style={{ background: "#C5A365", color: "#071426" }}
                           >
                             <i className="ri-check-line mr-1" />Confirm Alert
                           </button>
@@ -221,7 +221,7 @@ const MovementTimeline = ({ events, streamFilter, isAr }: Props) => {
         {filtered.length === 0 && (
           <div className="pl-14 py-10 text-center">
             <i className="ri-inbox-line text-gray-700 text-3xl" />
-            <p className="text-gray-600 text-sm font-['Inter'] mt-2">
+            <p className="text-gray-600 text-sm font-['Manrope'] mt-2">
               {isAr ? "لا توجد أحداث لهذا الفلتر" : "No events match this filter"}
             </p>
           </div>

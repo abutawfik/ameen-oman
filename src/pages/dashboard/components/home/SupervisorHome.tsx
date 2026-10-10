@@ -54,7 +54,7 @@ const SupervisorHome = ({ isAr }: Props) => {
       label: isAr ? "قضايا مفتوحة" : "Open cases",
       value: openCases.toString(),
       icon: "ri-folder-warning-line",
-      color: "#D6B47E",
+      color: "#C5A365",
       spark: [32, 38, 41, 36, 42, 44, openCases],
     },
     {
@@ -192,7 +192,7 @@ const SupervisorHome = ({ isAr }: Props) => {
                   <div className="col-span-4 flex items-center gap-2 min-w-0">
                     <div
                       className="w-8 h-8 flex items-center justify-center rounded-lg text-[11px] font-black font-['JetBrains_Mono'] flex-shrink-0"
-                      style={{ background: "rgba(184,138,60,0.08)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}
+                      style={{ background: "rgba(184,138,60,0.08)", color: "#C5A365", border: "1px solid rgba(184,138,60,0.2)" }}
                     >
                       {a.avatarInitials}
                     </div>
@@ -266,7 +266,7 @@ const SupervisorHome = ({ isAr }: Props) => {
               const statusStyle = isPending
                 ? { bg: "rgba(201,138,27,0.18)", color: "#C98A1B", border: "1px solid rgba(201,138,27,0.4)" }
                 : e.status === "reviewed"
-                ? { bg: "rgba(214,180,126,0.12)", color: "#D6B47E", border: "1px solid rgba(214,180,126,0.3)" }
+                ? { bg: "rgba(214,180,126,0.12)", color: "#C5A365", border: "1px solid rgba(214,180,126,0.3)" }
                 : { bg: "rgba(74,222,128,0.1)", color: "#4ADE80", border: "none" };
               const mins = Math.max(1, Math.floor((Date.now() - new Date(e.escalatedAt).getTime()) / 60_000));
               return (

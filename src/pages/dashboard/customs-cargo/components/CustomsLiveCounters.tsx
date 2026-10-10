@@ -13,7 +13,7 @@ const channelColors: Record<string, string> = {
 };
 
 const typeLabels: Record<string, { en: string; ar: string; icon: string; color: string }> = {
-  import:   { en: "Import",        ar: "استيراد",    icon: "ri-download-2-line",       color: "#D6B47E" },
+  import:   { en: "Import",        ar: "استيراد",    icon: "ri-download-2-line",       color: "#C5A365" },
   export:   { en: "Export",        ar: "تصدير",      icon: "ri-upload-2-line",         color: "#4ADE80" },
   transit:  { en: "Transit",       ar: "عبور",       icon: "ri-arrow-left-right-line", color: "#FACC15" },
   freezone: { en: "Free Zone",     ar: "منطقة حرة",  icon: "ri-store-2-line",          color: "#38BDF8" },
@@ -59,7 +59,7 @@ const CustomsLiveCounters = ({ isAr }: Props) => {
             </div>
             <div>
               <p className="text-white text-xl font-bold font-['JetBrains_Mono']">{kpi.value}</p>
-              <p className="text-gray-400 text-xs font-['Inter'] mt-0.5">
+              <p className="text-gray-400 text-xs font-['Manrope'] mt-0.5">
                 {isAr ? kpi.labelAr : kpi.label}
               </p>
             </div>
@@ -72,7 +72,7 @@ const CustomsLiveCounters = ({ isAr }: Props) => {
         className="rounded-xl p-5"
         style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.12)" }}
       >
-        <h3 className="text-white text-sm font-semibold font-['Inter'] mb-4">
+        <h3 className="text-white text-sm font-semibold font-['Manrope'] mb-4">
           {isAr ? "توزيع قنوات الفحص" : "Inspection Channel Distribution"}
         </h3>
         <div className="grid grid-cols-3 gap-4">
@@ -97,10 +97,10 @@ const CustomsLiveCounters = ({ isAr }: Props) => {
                 </div>
               </div>
               <p className="text-white text-lg font-bold font-['JetBrains_Mono']">{ch.value.toLocaleString()}</p>
-              <p className="font-semibold text-xs font-['Inter']" style={{ color: ch.color }}>
+              <p className="font-semibold text-xs font-['Manrope']" style={{ color: ch.color }}>
                 {isAr ? ch.labelAr : ch.label}
               </p>
-              <p className="text-gray-500 text-xs font-['Inter']">{isAr ? ch.descAr : ch.desc}</p>
+              <p className="text-gray-500 text-xs font-['Manrope']">{isAr ? ch.descAr : ch.desc}</p>
             </div>
           ))}
         </div>
@@ -112,7 +112,7 @@ const CustomsLiveCounters = ({ isAr }: Props) => {
         style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.12)" }}
       >
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-white text-sm font-semibold font-['Inter']">
+          <h3 className="text-white text-sm font-semibold font-['Manrope']">
             {isAr ? "آخر الإقرارات الجمركية" : "Recent Customs Declarations"}
           </h3>
           <div className="flex items-center gap-1.5">
@@ -136,13 +136,13 @@ const CustomsLiveCounters = ({ isAr }: Props) => {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
                     <span className="text-white text-xs font-semibold font-['JetBrains_Mono']">{decl.ref}</span>
-                    <span className="text-xs px-1.5 py-0.5 rounded font-['Inter']"
+                    <span className="text-xs px-1.5 py-0.5 rounded font-['Manrope']"
                       style={{ color: typeInfo.color, background: `${typeInfo.color}15` }}>
                       {isAr ? typeInfo.ar : typeInfo.en}
                     </span>
                   </div>
-                  <p className="text-gray-400 text-xs font-['Inter'] truncate mt-0.5">{decl.declarant} — {decl.goods}</p>
-                  <p className="text-gray-600 text-xs font-['Inter']">{decl.port}</p>
+                  <p className="text-gray-400 text-xs font-['Manrope'] truncate mt-0.5">{decl.declarant} — {decl.goods}</p>
+                  <p className="text-gray-600 text-xs font-['Manrope']">{decl.port}</p>
                 </div>
                 <div className="text-right flex-shrink-0">
                   <p className="text-white text-xs font-bold font-['JetBrains_Mono']">{decl.value}</p>
@@ -165,12 +165,12 @@ const CustomsLiveCounters = ({ isAr }: Props) => {
         className="rounded-xl p-5"
         style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.12)" }}
       >
-        <h3 className="text-white text-sm font-semibold font-['Inter'] mb-4">
+        <h3 className="text-white text-sm font-semibold font-['Manrope'] mb-4">
           {isAr ? "نشاط المنافذ" : "Port Activity"}
         </h3>
         <div className="space-y-3">
           {[
-            { name: "Capital International Airport", nameAr: "مطار العاصمة الدولي",    count: 612, pct: 33, color: "#D6B47E" },
+            { name: "Capital International Airport", nameAr: "مطار العاصمة الدولي",    count: 612, pct: 33, color: "#C5A365" },
             { name: "Capital Seaport",               nameAr: "الميناء البحري للعاصمة", count: 489, pct: 26, color: "#4ADE80" },
             { name: "Northern Port",                 nameAr: "الميناء الشمالي",         count: 334, pct: 18, color: "#A78BFA" },
             { name: "Eastern Land Crossing",         nameAr: "المنفذ البري الشرقي",     count: 223, pct: 12, color: "#FACC15" },
@@ -178,7 +178,7 @@ const CustomsLiveCounters = ({ isAr }: Props) => {
           ].map((port) => (
             <div key={port.name}>
               <div className="flex items-center justify-between mb-1">
-                <span className="text-gray-300 text-xs font-['Inter']">{isAr ? port.nameAr : port.name}</span>
+                <span className="text-gray-300 text-xs font-['Manrope']">{isAr ? port.nameAr : port.name}</span>
                 <span className="text-white text-xs font-bold font-['JetBrains_Mono']">{port.count}</span>
               </div>
               <div className="h-1.5 rounded-full" style={{ background: "rgba(255,255,255,0.05)" }}>

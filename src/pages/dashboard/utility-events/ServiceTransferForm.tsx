@@ -77,7 +77,7 @@ const ServiceTransferForm = ({ isAr, onCancel }: Props) => {
     setTimeout(() => { setSaving(false); setSubmitted(true); }, 1400);
   };
 
-  if (submitted) return <UtilConfirmation isAr={isAr} onReset={() => setSubmitted(false)} eventLabel="Service Transfer" eventLabelAr="نقل الخدمة" eventColor="#D6B47E" />;
+  if (submitted) return <UtilConfirmation isAr={isAr} onReset={() => setSubmitted(false)} eventLabel="Service Transfer" eventLabelAr="نقل الخدمة" eventColor="#C5A365" />;
 
   const docTypeOpts = DOC_TYPES.map((d) => ({ value: d.value, label: isAr ? (d.value === "passport" ? "جواز سفر" : d.value === "national_id" ? "بطاقة هوية" : d.value === "resident_card" ? "بطاقة إقامة" : "هوية خليجية") : d.label }));
 
@@ -91,9 +91,9 @@ const ServiceTransferForm = ({ isAr, onCancel }: Props) => {
               <TextInput placeholder="ACC-XXXX-XXXX" value={oldAccount} onChange={(e) => setOldAccount(e.target.value)} className="font-['JetBrains_Mono'] flex-1" />
               <button type="button" onClick={handleLookup}
                 className="flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap transition-colors"
-                style={{ background: "#D6B47E", color: "#051428" }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C99C48"; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#D6B47E"; }}>
+                style={{ background: "#C5A365", color: "#071426" }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C5A365"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C5A365"; }}>
                 {lookingUp ? <i className="ri-loader-4-line animate-spin" /> : <i className="ri-search-line" />}
                 {isAr ? "بحث" : "Lookup"}
               </button>

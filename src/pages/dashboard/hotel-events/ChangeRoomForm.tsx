@@ -86,7 +86,7 @@ const ChangeRoomForm = ({ isAr, onCancel, onSaved }: Props) => {
           <i className="ri-door-line text-yellow-400 text-xl" />
         </div>
         <div>
-          <h2 className="text-white font-bold text-xl font-['Inter']">{t.title}</h2>
+          <h2 className="text-white font-bold text-xl font-['Manrope']">{t.title}</h2>
           <p className="text-gray-600 text-xs font-['JetBrains_Mono'] tracking-widest">HOTEL_ROOM_CHANGE</p>
         </div>
       </div>
@@ -115,7 +115,7 @@ const ChangeRoomForm = ({ isAr, onCancel, onSaved }: Props) => {
               <LookupButton onClick={lookupBooking} isAr={isAr} />
             </div>
             {lookupError && (
-              <p className="text-red-400 text-xs mt-1 font-['Inter'] flex items-center gap-1">
+              <p className="text-red-400 text-xs mt-1 font-['Manrope'] flex items-center gap-1">
                 <i className="ri-error-warning-line" />{t.notFound}
               </p>
             )}
@@ -181,12 +181,12 @@ const ChangeRoomForm = ({ isAr, onCancel, onSaved }: Props) => {
               >
                 <span className="text-red-400 font-black text-xl font-['JetBrains_Mono']">{currentRoom}</span>
               </div>
-              <span className="text-gray-600 text-xs font-['Inter']">{isAr ? "الحالية" : "Current"}</span>
+              <span className="text-gray-600 text-xs font-['Manrope']">{isAr ? "الحالية" : "Current"}</span>
             </div>
 
             <div className="flex flex-col items-center gap-1">
               <i className="ri-arrow-right-line text-gold-400 text-2xl" />
-              <span className="text-gray-700 text-xs font-['Inter']">{isAr ? "تغيير" : "Change"}</span>
+              <span className="text-gray-700 text-xs font-['Manrope']">{isAr ? "تغيير" : "Change"}</span>
             </div>
 
             <div className="flex flex-col items-center gap-2">
@@ -196,7 +196,7 @@ const ChangeRoomForm = ({ isAr, onCancel, onSaved }: Props) => {
               >
                 <span className="text-green-400 font-black text-xl font-['JetBrains_Mono']">{newRoom}</span>
               </div>
-              <span className="text-gray-600 text-xs font-['Inter']">{isAr ? "الجديدة" : "New"}</span>
+              <span className="text-gray-600 text-xs font-['Manrope']">{isAr ? "الجديدة" : "New"}</span>
             </div>
           </div>
         )}

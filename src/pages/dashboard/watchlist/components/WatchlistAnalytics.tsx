@@ -6,7 +6,7 @@ interface Props {
 }
 
 const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-const listColors = ['#C94A5E', '#C98A1B', '#FACC15', '#C98A1B', '#A78BFA', '#D6B47E'];
+const listColors = ['#C94A5E', '#C98A1B', '#FACC15', '#C98A1B', '#A78BFA', '#C5A365'];
 
 const WatchlistAnalytics = ({ isAr }: Props) => {
   const [hoveredBar, setHoveredBar] = useState<string | null>(null);
@@ -17,7 +17,7 @@ const WatchlistAnalytics = ({ isAr }: Props) => {
   const maxResponseTime = Math.max(...responseTimeData.map(d => d.time));
 
   const kpis = [
-    { label: 'Total Hits This Week', labelAr: 'إجمالي التطابقات هذا الأسبوع', value: '646', delta: '+12%', up: true, color: '#D6B47E', icon: 'ri-alarm-warning-line' },
+    { label: 'Total Hits This Week', labelAr: 'إجمالي التطابقات هذا الأسبوع', value: '646', delta: '+12%', up: true, color: '#C5A365', icon: 'ri-alarm-warning-line' },
     { label: 'Hit Rate', labelAr: 'معدل التطابق', value: `${watchlistStats.hitRate}%`, delta: '+2.1%', up: true, color: '#4ADE80', icon: 'ri-percent-line' },
     { label: 'Avg Response Time', labelAr: 'متوسط وقت الاستجابة', value: watchlistStats.avgResponseTime, delta: '-0.8m', up: true, color: '#FACC15', icon: 'ri-timer-line' },
     { label: 'Near-Match Rate', labelAr: 'معدل التطابق القريب', value: '13.6%', delta: '+1.2%', up: false, color: '#C98A1B', icon: 'ri-focus-3-line' },
@@ -41,7 +41,7 @@ const WatchlistAnalytics = ({ isAr }: Props) => {
               </span>
             </div>
             <p className="text-2xl font-black font-['JetBrains_Mono'] text-white">{k.value}</p>
-            <p className="text-gray-400 text-xs font-['Inter'] mt-0.5">{isAr ? k.labelAr : k.label}</p>
+            <p className="text-gray-400 text-xs font-['Manrope'] mt-0.5">{isAr ? k.labelAr : k.label}</p>
           </div>
         ))}
       </div>
@@ -50,14 +50,14 @@ const WatchlistAnalytics = ({ isAr }: Props) => {
         {/* Hit Frequency by List */}
         <div className="rounded-xl p-4"
           style={{ background: 'rgba(10,37,64,0.8)', border: '1px solid rgba(184,138,60,0.12)' }}>
-          <h3 className="text-white font-semibold font-['Inter'] text-sm mb-4">
+          <h3 className="text-white font-semibold font-['Manrope'] text-sm mb-4">
             {isAr ? 'تكرار التطابقات حسب القائمة (7 أيام)' : 'Hit Frequency by Watchlist (7 Days)'}
           </h3>
           <div className="space-y-3">
             {hitFrequencyData.map((d, li) => (
               <div key={d.list}>
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-gray-400 text-xs font-['Inter']">{d.list}</span>
+                  <span className="text-gray-400 text-xs font-['Manrope']">{d.list}</span>
                   <span className="text-xs font-['JetBrains_Mono']" style={{ color: listColors[li] }}>
                     {d.hits.reduce((a, b) => a + b, 0)} total
                   </span>
@@ -90,7 +90,7 @@ const WatchlistAnalytics = ({ isAr }: Props) => {
         {/* Stream Hits */}
         <div className="rounded-xl p-4"
           style={{ background: 'rgba(10,37,64,0.8)', border: '1px solid rgba(184,138,60,0.12)' }}>
-          <h3 className="text-white font-semibold font-['Inter'] text-sm mb-4">
+          <h3 className="text-white font-semibold font-['Manrope'] text-sm mb-4">
             {isAr ? 'التطابقات حسب التدفق' : 'Hits by Data Stream'}
           </h3>
           <div className="space-y-2.5">
@@ -102,7 +102,7 @@ const WatchlistAnalytics = ({ isAr }: Props) => {
                 <div className="flex items-center justify-between mb-1">
                   <div className="flex items-center gap-2">
                     <i className={`${s.icon} text-xs`} style={{ color: s.color }} />
-                    <span className="text-gray-400 text-xs font-['Inter']">{s.stream}</span>
+                    <span className="text-gray-400 text-xs font-['Manrope']">{s.stream}</span>
                   </div>
                   <span className="text-xs font-['JetBrains_Mono']" style={{ color: s.color }}>{s.hits}</span>
                 </div>
@@ -124,7 +124,7 @@ const WatchlistAnalytics = ({ isAr }: Props) => {
         {/* Response Time Chart */}
         <div className="rounded-xl p-4"
           style={{ background: 'rgba(10,37,64,0.8)', border: '1px solid rgba(184,138,60,0.12)' }}>
-          <h3 className="text-white font-semibold font-['Inter'] text-sm mb-4">
+          <h3 className="text-white font-semibold font-['Manrope'] text-sm mb-4">
             {isAr ? 'متوسط وقت الاستجابة (دقائق)' : 'Avg Response Time (minutes)'}
           </h3>
           <div className="flex items-end gap-3 h-32">
@@ -150,7 +150,7 @@ const WatchlistAnalytics = ({ isAr }: Props) => {
             ].map(l => (
               <div key={l.label} className="flex items-center gap-1.5">
                 <div className="w-2 h-2 rounded-full" style={{ background: l.color }} />
-                <span className="text-gray-500 text-xs font-['Inter']">{l.label}</span>
+                <span className="text-gray-500 text-xs font-['Manrope']">{l.label}</span>
               </div>
             ))}
           </div>
@@ -159,14 +159,14 @@ const WatchlistAnalytics = ({ isAr }: Props) => {
         {/* Geographic Distribution */}
         <div className="rounded-xl p-4"
           style={{ background: 'rgba(10,37,64,0.8)', border: '1px solid rgba(184,138,60,0.12)' }}>
-          <h3 className="text-white font-semibold font-['Inter'] text-sm mb-4">
+          <h3 className="text-white font-semibold font-['Manrope'] text-sm mb-4">
             {isAr ? 'التوزيع الجغرافي للتطابقات' : 'Geographic Distribution of Hits'}
           </h3>
           <div className="space-y-3">
             {geoHitsData.map((g, i) => (
               <div key={g.region}>
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-gray-300 text-xs font-['Inter']">{g.region}</span>
+                  <span className="text-gray-300 text-xs font-['Manrope']">{g.region}</span>
                   <div className="flex items-center gap-2">
                     <span className="text-gray-500 text-xs font-['JetBrains_Mono']">{g.hits}</span>
                     <span className="text-gold-400 text-xs font-['JetBrains_Mono'] w-8 text-right">{g.pct}%</span>
@@ -191,8 +191,8 @@ const WatchlistAnalytics = ({ isAr }: Props) => {
             ].map(s => (
               <div key={s.label} className="p-3 rounded-xl"
                 style={{ background: `${s.color}08`, border: `1px solid ${s.color}20` }}>
-                <p className="text-gray-500 text-xs font-['Inter']">{isAr ? s.labelAr : s.label}</p>
-                <p className="text-sm font-semibold font-['Inter'] mt-0.5" style={{ color: s.color }}>{s.value}</p>
+                <p className="text-gray-500 text-xs font-['Manrope']">{isAr ? s.labelAr : s.label}</p>
+                <p className="text-sm font-semibold font-['Manrope'] mt-0.5" style={{ color: s.color }}>{s.value}</p>
               </div>
             ))}
           </div>

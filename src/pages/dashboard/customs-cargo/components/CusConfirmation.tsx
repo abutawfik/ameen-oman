@@ -23,7 +23,7 @@ const CusConfirmation = ({ refNumber, eventType, isAr, onReset }: Props) => {
   });
 
   const typeColors: Record<string, string> = {
-    import:   "#D6B47E",
+    import:   "#C5A365",
     export:   "#4ADE80",
     transit:  "#FACC15",
     freezone: "#38BDF8",
@@ -31,7 +31,7 @@ const CusConfirmation = ({ refNumber, eventType, isAr, onReset }: Props) => {
     personal: "#A78BFA",
   };
 
-  const accentColor = typeColors[eventType] || "#D6B47E";
+  const accentColor = typeColors[eventType] || "#C5A365";
 
   return (
     <div className="flex flex-col items-center justify-center py-12 px-6 text-center">
@@ -49,10 +49,10 @@ const CusConfirmation = ({ refNumber, eventType, isAr, onReset }: Props) => {
           style={{ background: accentColor }} />
       </div>
 
-      <h2 className="text-white text-2xl font-bold font-['Inter'] mb-2">
+      <h2 className="text-white text-2xl font-bold font-['Manrope'] mb-2">
         {isAr ? "تم الإرسال بنجاح" : "Successfully Submitted"}
       </h2>
-      <p className="text-gray-400 text-sm font-['Inter'] mb-8 max-w-md">
+      <p className="text-gray-400 text-sm font-['Manrope'] mb-8 max-w-md">
         {isAr
           ? "تم تسجيل الإقرار الجمركي في نظام أمين وسيتم معالجته من قِبل الجهة المختصة."
           : "The customs declaration has been recorded in the Al-Ameen system and will be processed by the relevant authority."}
@@ -79,7 +79,7 @@ const CusConfirmation = ({ refNumber, eventType, isAr, onReset }: Props) => {
           <div className="grid grid-cols-2 gap-3 text-left">
             <div>
               <p className="text-gray-600 text-xs font-['JetBrains_Mono']">{isAr ? "التاريخ والوقت" : "Date & Time"}</p>
-              <p className="text-gray-300 text-xs font-['Inter'] mt-0.5">{timestamp}</p>
+              <p className="text-gray-300 text-xs font-['Manrope'] mt-0.5">{timestamp}</p>
             </div>
             <div>
               <p className="text-gray-600 text-xs font-['JetBrains_Mono']">{isAr ? "الحالة" : "Status"}</p>
@@ -92,7 +92,7 @@ const CusConfirmation = ({ refNumber, eventType, isAr, onReset }: Props) => {
             </div>
             <div>
               <p className="text-gray-600 text-xs font-['JetBrains_Mono']">{isAr ? "المصدر" : "Source"}</p>
-              <p className="text-gray-300 text-xs font-['Inter'] mt-0.5">Al-Ameen Customs Stream</p>
+              <p className="text-gray-300 text-xs font-['Manrope'] mt-0.5">Al-Ameen Customs Stream</p>
             </div>
             <div>
               <p className="text-gray-600 text-xs font-['JetBrains_Mono']">{isAr ? "الدفق" : "Stream"}</p>
@@ -107,7 +107,7 @@ const CusConfirmation = ({ refNumber, eventType, isAr, onReset }: Props) => {
       {/* Next Steps */}
       <div className="w-full max-w-md rounded-xl p-4 mb-8 text-left"
         style={{ background: "rgba(184,138,60,0.05)", border: "1px solid rgba(184,138,60,0.1)" }}>
-        <p className="text-gold-400 text-xs font-semibold font-['Inter'] mb-3">
+        <p className="text-gold-400 text-xs font-semibold font-['Manrope'] mb-3">
           {isAr ? "الخطوات التالية" : "Next Steps"}
         </p>
         <div className="space-y-2">
@@ -121,7 +121,7 @@ const CusConfirmation = ({ refNumber, eventType, isAr, onReset }: Props) => {
                 style={{ background: "rgba(184,138,60,0.1)" }}>
                 <i className={`${step.icon} text-xs text-gold-400`} />
               </div>
-              <span className="text-gray-400 text-xs font-['Inter']">{step.text}</span>
+              <span className="text-gray-400 text-xs font-['Manrope']">{step.text}</span>
             </div>
           ))}
         </div>
@@ -131,13 +131,13 @@ const CusConfirmation = ({ refNumber, eventType, isAr, onReset }: Props) => {
       <div className="flex gap-3 flex-wrap justify-center">
         <button
           onClick={onReset}
-          className="px-6 py-2.5 rounded-lg text-sm font-['Inter'] font-medium cursor-pointer whitespace-nowrap transition-all"
-          style={{ border: "1px solid rgba(184,138,60,0.3)", color: "#D6B47E", background: "transparent" }}>
+          className="px-6 py-2.5 rounded-lg text-sm font-['Manrope'] font-medium cursor-pointer whitespace-nowrap transition-all"
+          style={{ border: "1px solid rgba(184,138,60,0.3)", color: "#C5A365", background: "transparent" }}>
           {isAr ? "إقرار جديد" : "New Declaration"}
         </button>
         <button
-          className="px-6 py-2.5 rounded-lg text-sm font-['Inter'] font-bold cursor-pointer whitespace-nowrap transition-all flex items-center gap-2"
-          style={{ background: "#D6B47E", color: "#051428" }}>
+          className="px-6 py-2.5 rounded-lg text-sm font-['Manrope'] font-bold cursor-pointer whitespace-nowrap transition-all flex items-center gap-2"
+          style={{ background: "#C5A365", color: "#071426" }}>
           <i className="ri-printer-line" />
           {isAr ? "طباعة الإيصال" : "Print Receipt"}
         </button>

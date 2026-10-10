@@ -179,7 +179,7 @@ const HighValueTransactionForm = ({ isAr, onCancel }: Props) => {
         {isHighValue && (
           <div className="mt-4 flex items-center gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(201,138,27,0.06)", borderColor: "rgba(201,138,27,0.25)" }}>
             <i className="ri-alarm-warning-line text-orange-400" />
-            <p className="text-orange-400 text-sm font-['Inter']">
+            <p className="text-orange-400 text-sm font-['Manrope']">
               {isAr
                 ? `المبلغ ${transactionAmount} LCY — يتجاوز حد الإبلاغ. سيتم تصنيف هذا الحدث تلقائياً كمعاملة عالية القيمة.`
                 : `Amount ${transactionAmount} LCY — exceeds reporting threshold. This will be auto-classified as a high-value transaction.`}
@@ -236,9 +236,9 @@ const HighValueTransactionForm = ({ isAr, onCancel }: Props) => {
               rows={3}
               maxLength={500}
               placeholder={isAr ? "أي معلومات إضافية ذات صلة..." : "Any additional relevant information..."}
-              className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none transition-all resize-none font-['Inter']"
+              className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none transition-all resize-none font-['Manrope']"
               style={{ background: "#0F1923", border: "1px solid rgba(255,255,255,0.08)" }}
-              onFocus={(e) => { e.target.style.borderColor = "#D6B47E"; }}
+              onFocus={(e) => { e.target.style.borderColor = "#C5A365"; }}
               onBlur={(e) => { e.target.style.borderColor = "rgba(255,255,255,0.08)"; }}
             />
             <p className="text-gray-600 text-xs mt-1 text-right font-['JetBrains_Mono']">{additionalNotes.length}/500</p>

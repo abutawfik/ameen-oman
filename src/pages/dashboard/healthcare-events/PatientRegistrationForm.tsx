@@ -137,7 +137,7 @@ const PatientRegistrationForm = ({ isAr, onCancel }: Props) => {
               </FormField>
             )}
             <div className="border-t pt-4" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
-              <p className="text-gray-400 text-xs mb-3 uppercase tracking-wide font-['Inter']">{isAr ? "جهة الاتصال في حالات الطوارئ" : "Emergency Contact"}</p>
+              <p className="text-gray-400 text-xs mb-3 uppercase tracking-wide font-['Manrope']">{isAr ? "جهة الاتصال في حالات الطوارئ" : "Emergency Contact"}</p>
               <div className="space-y-3">
                 <FormField label={isAr ? "الاسم الكامل" : "Full Name"} required>
                   <TextInput placeholder={isAr ? "الاسم" : "Name"} value={emergencyContactName} onChange={(e) => setEmergencyContactName(e.target.value)} />

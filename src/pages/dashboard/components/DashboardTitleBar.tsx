@@ -124,7 +124,7 @@ const DashboardTitleBar = ({ isAr, onToggleLang, onToggleAr }: Props) => {
               fontFamily: fonts.mono,
               fontSize: "0.75rem",
               letterSpacing: "0.08em",
-              color: "#D6B47E",
+              color: "#C5A365",
               textTransform: "uppercase",
               opacity: 0.9,
             }}
@@ -149,7 +149,7 @@ const DashboardTitleBar = ({ isAr, onToggleLang, onToggleAr }: Props) => {
               fontFamily: fonts.mono,
               fontSize: "0.75rem",
               fontWeight: 700,
-              color: "#D6B47E",
+              color: "#C5A365",
               lineHeight: 1.1,
               letterSpacing: "0.04em",
             }}
@@ -178,7 +178,7 @@ const DashboardTitleBar = ({ isAr, onToggleLang, onToggleAr }: Props) => {
           style={{
             background: "transparent",
             border: "1px solid rgba(184,138,60,0.35)",
-            color: "#D6B47E",
+            color: "#C5A365",
             fontFamily: fonts.mono,
             fontSize: "0.6875rem",
             fontWeight: 700,
@@ -257,12 +257,12 @@ const DashboardTitleBar = ({ isAr, onToggleLang, onToggleAr }: Props) => {
             aria-haspopup="menu"
             aria-expanded={notifOpen}
           >
-            <i className="ri-notification-3-line text-lg" style={{ color: "#D6B47E" }} aria-hidden="true" />
+            <i className="ri-notification-3-line text-lg" style={{ color: "#C5A365" }} aria-hidden="true" />
             {totalBadge > 0 && (
               <span
                 className={`absolute -top-1 min-w-[18px] h-[18px] flex items-center justify-center rounded-full text-[11px] font-bold px-1 ${isAr ? "-left-1" : "-right-1"}`}
                 style={{
-                  background: criticalCount > 0 ? "#8A1F3C" : "#D6B47E",
+                  background: criticalCount > 0 ? "#8A1F3C" : "#C5A365",
                   color: "var(--alm-ocean-800)",
                   fontFamily: fonts.mono,
                 }}
@@ -291,7 +291,7 @@ const DashboardTitleBar = ({ isAr, onToggleLang, onToggleAr }: Props) => {
                   type="button"
                   onClick={() => { setNotifOpen(false); navigate("/dashboard/notifications"); }}
                   className="text-xs cursor-pointer hover:underline"
-                  style={{ color: "#D6B47E", fontFamily: fonts.mono }}
+                  style={{ color: "#C5A365", fontFamily: fonts.mono }}
                 >
                   {isAr ? "عرض الكل" : "View All"}
                 </button>
@@ -350,7 +350,7 @@ const DashboardTitleBar = ({ isAr, onToggleLang, onToggleAr }: Props) => {
                   className="w-full py-2 rounded-lg text-xs font-semibold cursor-pointer transition-colors"
                   style={{
                     background: "rgba(184,138,60,0.1)",
-                    color: "#D6B47E",
+                    color: "#C5A365",
                     border: "1px solid rgba(184,138,60,0.25)",
                     fontFamily: fonts.sans,
                   }}
@@ -378,7 +378,7 @@ const DashboardTitleBar = ({ isAr, onToggleLang, onToggleAr }: Props) => {
               className="w-8 h-8 flex items-center justify-center rounded-full"
               style={{ background: "rgba(184,138,60,0.15)", border: "1px solid rgba(184,138,60,0.35)" }}
             >
-              <span className="text-xs font-bold" style={{ color: "#D6B47E", fontFamily: fonts.sans }}>
+              <span className="text-xs font-bold" style={{ color: "#C5A365", fontFamily: fonts.sans }}>
                 AA
               </span>
             </div>

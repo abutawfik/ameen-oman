@@ -10,7 +10,7 @@
 :root {
   /* ---------- OCEAN · Dark canvas family ---------- */
   --alm-ocean-900: #020A14;   /* deepest — modals, veils */
-  --alm-ocean-800: #051428;   /* shell background (dark) */
+  --alm-ocean-800: #071426;   /* shell background (dark) */
   --alm-ocean-700: #0A2540;   /* card (dark) · PRIMARY action */
   --alm-ocean-600: #10325A;   /* raised surface (dark) */
   --alm-ocean-500: #1A4578;   /* hover (dark) */
@@ -36,8 +36,8 @@
   --alm-brass-800: #7A5C22;
   --alm-brass-700: #96732C;
   --alm-brass-600: #B88A3C;   /* ACCENT · executive, explainability */
-  --alm-brass-500: #C99C48;
-  --alm-brass-400: #D6B47E;
+  --alm-brass-500: #C5A365;
+  --alm-brass-400: #C5A365;
   --alm-brass-300: #DDB96B;
   --alm-brass-200: #E8CF9A;
   --alm-brass-100: #F4E5C4;

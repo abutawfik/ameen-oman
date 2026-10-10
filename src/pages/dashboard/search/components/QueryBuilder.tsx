@@ -114,7 +114,7 @@ export default function QueryBuilder({ domain, onSearch, isAr }: Props) {
           onClick={() => onSearch(conditions)}
           style={{
             padding: '6px 20px', borderRadius: 4, cursor: 'pointer', fontSize: 12,
-            background: 'rgba(184,138,60,0.2)', border: '1px solid rgba(184,138,60,0.4)', color: '#D6B47E',
+            background: 'rgba(184,138,60,0.2)', border: '1px solid rgba(184,138,60,0.4)', color: '#C5A365',
             fontFamily: "'JetBrains Mono', monospace",
           }}
         >

@@ -78,7 +78,7 @@ const PaymentPatternForm = ({ isAr, onCancel }: Props) => {
         isAr={isAr}
         eventType="Payment Pattern Alert"
         eventTypeAr="تنبيه نمط الدفع"
-        color="#D6B47E"
+        color="#C5A365"
         icon="ri-exchange-line"
         onReset={() => setSubmitted(false)}
       />
@@ -127,7 +127,7 @@ const PaymentPatternForm = ({ isAr, onCancel }: Props) => {
       </SectionCard>
 
       {/* Pattern Type */}
-      <SectionCard title={isAr ? "نوع النمط المشبوه" : "Suspicious Pattern Type"} icon="ri-exchange-line" accentColor="#D6B47E">
+      <SectionCard title={isAr ? "نوع النمط المشبوه" : "Suspicious Pattern Type"} icon="ri-exchange-line" accentColor="#C5A365">
         <FormField label={isAr ? "نوع النمط" : "Pattern Type"} required>
           <SelectInput
             value={patternType}
@@ -195,8 +195,8 @@ const PaymentPatternForm = ({ isAr, onCancel }: Props) => {
           <button
             type="button"
             onClick={addCard}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold cursor-pointer transition-colors whitespace-nowrap font-['Inter']"
-            style={{ background: "rgba(184,138,60,0.08)", border: "1px solid rgba(184,138,60,0.2)", color: "#D6B47E" }}
+            className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold cursor-pointer transition-colors whitespace-nowrap font-['Manrope']"
+            style={{ background: "rgba(184,138,60,0.08)", border: "1px solid rgba(184,138,60,0.2)", color: "#C5A365" }}
             onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(184,138,60,0.15)"; }}
             onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(184,138,60,0.08)"; }}
           >
@@ -207,7 +207,7 @@ const PaymentPatternForm = ({ isAr, onCancel }: Props) => {
           {cards.length >= 3 && (
             <div className="flex items-center gap-3 px-4 py-3 rounded-xl border" style={{ background: "rgba(250,204,21,0.06)", borderColor: "rgba(250,204,21,0.25)" }}>
               <i className="ri-alarm-warning-line text-yellow-400" />
-              <p className="text-yellow-400 text-sm font-['Inter']">
+              <p className="text-yellow-400 text-sm font-['Manrope']">
                 {isAr
                   ? `${cards.length} بطاقات لنفس الشخص — نمط مشبوه يستحق التحقيق`
                   : `${cards.length} cards for same person — suspicious pattern warranting investigation`}
@@ -280,9 +280,9 @@ const PaymentPatternForm = ({ isAr, onCancel }: Props) => {
               rows={3}
               maxLength={500}
               placeholder={isAr ? "أي معلومات إضافية ذات صلة..." : "Any additional relevant information..."}
-              className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none transition-all resize-none font-['Inter']"
+              className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none transition-all resize-none font-['Manrope']"
               style={{ background: "#0F1923", border: "1px solid rgba(255,255,255,0.08)" }}
-              onFocus={(e) => { e.target.style.borderColor = "#D6B47E"; }}
+              onFocus={(e) => { e.target.style.borderColor = "#C5A365"; }}
               onBlur={(e) => { e.target.style.borderColor = "rgba(255,255,255,0.08)"; }}
             />
             <p className="text-gray-600 text-xs mt-1 text-right font-['JetBrains_Mono']">{additionalNotes.length}/500</p>

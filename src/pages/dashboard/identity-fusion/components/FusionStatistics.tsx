@@ -16,7 +16,7 @@ export default function FusionStatistics({ isAr }: Props) {
       {/* Summary KPIs */}
       <div className="grid grid-cols-4 gap-3">
         {[
-          { label: isAr ? 'إجمالي المحلولة' : 'Total Resolved', value: totalResolved.toLocaleString(), color: '#D6B47E', icon: 'ri-user-follow-line' },
+          { label: isAr ? 'إجمالي المحلولة' : 'Total Resolved', value: totalResolved.toLocaleString(), color: '#C5A365', icon: 'ri-user-follow-line' },
           { label: isAr ? 'مكررات مكتشفة' : 'Duplicates Found', value: totalDuplicates.toLocaleString(), color: '#FACC15', icon: 'ri-user-2-line' },
           { label: isAr ? 'متوسط معدل الدقة' : 'Avg Resolution Rate', value: `${avgRate}%`, color: '#4ADE80', icon: 'ri-percent-line' },
           { label: isAr ? 'قواعد نشطة' : 'Active Rules', value: matchingRules.filter(r => r.enabled).length.toString(), color: '#A78BFA', icon: 'ri-git-branch-line' },
@@ -32,7 +32,7 @@ export default function FusionStatistics({ isAr }: Props) {
               </div>
             </div>
             <p className="font-mono font-black text-2xl" style={{ color: kpi.color }}>{kpi.value}</p>
-            <p className="text-gray-500 text-xs mt-0.5 font-['Inter']">{kpi.label}</p>
+            <p className="text-gray-500 text-xs mt-0.5 font-['Manrope']">{kpi.label}</p>
           </div>
         ))}
       </div>
@@ -44,7 +44,7 @@ export default function FusionStatistics({ isAr }: Props) {
       >
         <div className="flex items-center justify-between mb-5">
           <div>
-            <h3 className="text-white font-bold text-sm font-['Inter']">
+            <h3 className="text-white font-bold text-sm font-['Manrope']">
               {isAr ? 'اكتشاف المكررات عبر الزمن' : 'Duplicate Detection Over Time'}
             </h3>
             <p className="text-gray-500 text-xs mt-0.5 font-['JetBrains_Mono']">
@@ -53,13 +53,13 @@ export default function FusionStatistics({ isAr }: Props) {
           </div>
           <div className="flex items-center gap-4">
             {[
-              { label: isAr ? 'مكتشف' : 'Detected', color: '#D6B47E' },
+              { label: isAr ? 'مكتشف' : 'Detected', color: '#C5A365' },
               { label: isAr ? 'محلول' : 'Resolved', color: '#4ADE80' },
               { label: isAr ? 'دمج تلقائي' : 'Auto-Merged', color: '#A78BFA' },
             ].map(l => (
               <div key={l.label} className="flex items-center gap-1.5">
                 <div className="w-2 h-2 rounded-full" style={{ background: l.color }} />
-                <span className="text-gray-500 text-xs font-['Inter']">{l.label}</span>
+                <span className="text-gray-500 text-xs font-['Manrope']">{l.label}</span>
               </div>
             ))}
           </div>
@@ -107,7 +107,7 @@ export default function FusionStatistics({ isAr }: Props) {
         className="rounded-xl border border-gold-500/15 p-5"
         style={{ background: 'rgba(10,37,64,0.8)' }}
       >
-        <h3 className="text-white font-bold text-sm font-['Inter'] mb-4">
+        <h3 className="text-white font-bold text-sm font-['Manrope'] mb-4">
           {isAr ? 'فعالية قواعد المطابقة' : 'Matching Rule Effectiveness'}
         </h3>
         <div className="space-y-3">
@@ -123,7 +123,7 @@ export default function FusionStatistics({ isAr }: Props) {
                 <i className={`${rule.icon} text-xs`} style={{ color: rule.color }} />
               </div>
               <div className="w-44 shrink-0">
-                <p className="text-gray-300 text-xs font-['Inter'] truncate">{isAr ? rule.nameAr : rule.name}</p>
+                <p className="text-gray-300 text-xs font-['Manrope'] truncate">{isAr ? rule.nameAr : rule.name}</p>
                 <p className="text-gray-600 text-xs font-['JetBrains_Mono']">{rule.confidence}% confidence</p>
               </div>
               <div className="flex-1 h-2 rounded-full bg-white/5 overflow-hidden">
@@ -134,11 +134,11 @@ export default function FusionStatistics({ isAr }: Props) {
               </div>
               <div className="w-20 text-right shrink-0">
                 <span className="text-white font-mono text-xs">{rule.totalMerges.toLocaleString()}</span>
-                <span className="text-gray-600 text-xs ml-1 font-['Inter']">{isAr ? 'دمج' : 'merges'}</span>
+                <span className="text-gray-600 text-xs ml-1 font-['Manrope']">{isAr ? 'دمج' : 'merges'}</span>
               </div>
               <div className="w-16 text-right shrink-0">
                 <span className="text-gold-400 font-mono text-xs">{rule.triggeredToday}</span>
-                <span className="text-gray-600 text-xs ml-1 font-['Inter']">{isAr ? 'اليوم' : 'today'}</span>
+                <span className="text-gray-600 text-xs ml-1 font-['Manrope']">{isAr ? 'اليوم' : 'today'}</span>
               </div>
             </div>
           ))}
@@ -151,7 +151,7 @@ export default function FusionStatistics({ isAr }: Props) {
         style={{ background: 'rgba(10,37,64,0.8)' }}
       >
         <div className="px-5 py-4 border-b border-gold-500/10">
-          <h3 className="text-white font-bold text-sm font-['Inter']">
+          <h3 className="text-white font-bold text-sm font-['Manrope']">
             {isAr ? 'إحصائيات الدقة لكل تيار' : 'Resolution Statistics by Stream'}
           </h3>
         </div>
@@ -174,7 +174,7 @@ export default function FusionStatistics({ isAr }: Props) {
           <tbody>
             {streamResolutionStats.map(s => (
               <tr key={s.code} className="border-b border-gold-500/5 hover:bg-gold-500/3 transition-colors">
-                <td className="py-3 px-4 text-white font-medium font-['Inter']">{isAr ? s.streamAr : s.stream}</td>
+                <td className="py-3 px-4 text-white font-medium font-['Manrope']">{isAr ? s.streamAr : s.stream}</td>
                 <td className="py-3 px-4 font-mono text-gold-400/70">{s.code}</td>
                 <td className="py-3 px-4 font-mono text-white">{s.resolved.toLocaleString()}</td>
                 <td className="py-3 px-4 font-mono text-red-400/70">{s.duplicates}</td>
@@ -185,13 +185,13 @@ export default function FusionStatistics({ isAr }: Props) {
                         className="h-full rounded-full"
                         style={{
                           width: `${s.rate}%`,
-                          background: s.rate >= 97 ? '#4ADE80' : s.rate >= 95 ? '#D6B47E' : '#FACC15',
+                          background: s.rate >= 97 ? '#4ADE80' : s.rate >= 95 ? '#C5A365' : '#FACC15',
                         }}
                       />
                     </div>
                     <span
                       className="font-mono font-bold"
-                      style={{ color: s.rate >= 97 ? '#4ADE80' : s.rate >= 95 ? '#D6B47E' : '#FACC15' }}
+                      style={{ color: s.rate >= 97 ? '#4ADE80' : s.rate >= 95 ? '#C5A365' : '#FACC15' }}
                     >
                       {s.rate}%
                     </span>

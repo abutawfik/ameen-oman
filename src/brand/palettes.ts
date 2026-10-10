@@ -39,7 +39,7 @@ export const PALETTES: Record<PaletteId, PaletteDef> = {
     description: "Deep navy \u2014 sovereign, restrained",
     ocean: {
       900: "#020A14",
-      800: "#051428",
+      800: "#071426",
       700: "#0A2540",
       600: "#10325A",
       500: "#1A4578",

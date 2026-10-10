@@ -18,7 +18,7 @@ const getColor = (value: number): string => {
 };
 
 const getTextColor = (value: number): string => {
-  if (value >= 75) return '#051428';
+  if (value >= 75) return '#071426';
   if (value >= 50) return '#D1D5DB';
   return '#6B7280';
 };
@@ -149,7 +149,7 @@ export default function PatternHeatmap() {
                       height: 26,
                       flexShrink: 0,
                       background: isDiag ? 'rgba(184,138,60,0.15)' : getColor(val),
-                      border: isHovered ? '1px solid #D6B47E' : '1px solid transparent',
+                      border: isHovered ? '1px solid #C5A365' : '1px solid transparent',
                       transform: isHovered ? 'scale(1.15)' : 'scale(1)',
                       zIndex: isHovered ? 10 : 1,
                       position: 'relative',
@@ -161,7 +161,7 @@ export default function PatternHeatmap() {
                   >
                     <span
                       className="font-mono font-bold"
-                      style={{ fontSize: 7, color: isDiag ? '#D6B47E' : getTextColor(val) }}
+                      style={{ fontSize: 7, color: isDiag ? '#C5A365' : getTextColor(val) }}
                     >
                       {isDiag ? '—' : val}
                     </span>
@@ -226,7 +226,7 @@ export default function PatternHeatmap() {
             <div className="flex items-center gap-4 mb-5 p-3 rounded-lg border border-gold-500/15" style={{ background: 'rgba(184,138,60,0.04)' }}>
               <div
                 className="w-16 h-16 rounded-xl flex items-center justify-center font-mono font-bold text-2xl shrink-0"
-                style={{ background: getColor(modal.value), color: modal.value >= 75 ? '#051428' : '#D6B47E', border: '1px solid rgba(184,138,60,0.3)' }}
+                style={{ background: getColor(modal.value), color: modal.value >= 75 ? '#071426' : '#C5A365', border: '1px solid rgba(184,138,60,0.3)' }}
               >
                 {modal.value}
               </div>

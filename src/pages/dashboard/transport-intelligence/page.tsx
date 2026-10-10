@@ -34,7 +34,7 @@ const TransportIntelligencePage = () => {
   ];
 
   return (
-    <div className="min-h-screen font-['Inter']" style={{ background: "#051428" }} dir={isAr ? "rtl" : "ltr"}>
+    <div className="min-h-screen font-['Manrope']" style={{ background: "#071426" }} dir={isAr ? "rtl" : "ltr"}>
       {/* Grid texture */}
       <div className="fixed inset-0 pointer-events-none" style={{ backgroundImage: `linear-gradient(rgba(184,138,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.03) 1px, transparent 1px)`, backgroundSize: "40px 40px" }} />
 
@@ -56,7 +56,7 @@ const TransportIntelligencePage = () => {
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-white font-bold text-sm">{isAr ? "ذكاء النقل العام" : "Public Transport Intelligence"}</span>
-                <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(184,138,60,0.12)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}>Al-Ameen</span>
+                <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(184,138,60,0.12)", color: "#C5A365", border: "1px solid rgba(184,138,60,0.2)" }}>Al-Ameen</span>
               </div>
               <p className="text-gray-500 text-xs">{isAr ? "الحافلات الوطنية · شركات التاكسي · تطبيقات التوصيل" : "National Bus Co. · Licensed Taxis · Ride-Hail Apps"}</p>
             </div>
@@ -72,7 +72,7 @@ const TransportIntelligencePage = () => {
           {/* Provider pills */}
           <div className="hidden xl:flex items-center gap-2">
             {[
-              { label: "Nat.Bus", color: "#D6B47E" },
+              { label: "Nat.Bus", color: "#C5A365" },
               { label: "Ride-Hail A", color: "#A78BFA" },
               { label: "Ride-Hail B", color: "#C98A1B" },
             ].map((p) => (
@@ -104,7 +104,7 @@ const TransportIntelligencePage = () => {
             style={{
               background: activeTab === tab.id ? "rgba(184,138,60,0.12)" : "transparent",
               border: `1px solid ${activeTab === tab.id ? "rgba(184,138,60,0.25)" : "transparent"}`,
-              color: activeTab === tab.id ? "#D6B47E" : "#6B7280",
+              color: activeTab === tab.id ? "#C5A365" : "#6B7280",
             }}>
             <i className={`${tab.icon} text-xs`} />
             {isAr ? tab.labelAr : tab.label}
@@ -151,7 +151,7 @@ const TransportIntelligencePage = () => {
                 {[
                   { icon: "ri-store-line", color: "#C94A5E", title: isAr ? "سائح في منطقة صناعية" : "Tourist → Industrial Zone", desc: isAr ? "سائح بتأشيرة يأخذ الحافلة يومياً إلى المنطقة الصناعية — ليست منطقة سياحية → تنبيه" : "Tourist visa → daily bus to industrial area (not tourist area) → flag" },
                   { icon: "ri-ghost-line", color: "#C98A1B", title: isAr ? "لا عنوان + تاكسي مكثف" : "No Address + Heavy Taxi", desc: isAr ? "شخص بدون عنوان مسجّل + استخدام مكثف للتاكسي → أين ينام؟" : "Person with no registered address → heavy taxi usage → where are they sleeping?" },
-                  { icon: "ri-wifi-line", color: "#D6B47E", title: isAr ? "ربط الهاتف بالرحلة" : "Phone → Trip Linkage", desc: isAr ? "رقم الهاتف في تدفق SIM يطابق بيانات تطبيق التوصيل → هوية مؤكدة" : "Phone number in SIM stream matches ride-hail app data → confirmed identity" },
+                  { icon: "ri-wifi-line", color: "#C5A365", title: isAr ? "ربط الهاتف بالرحلة" : "Phone → Trip Linkage", desc: isAr ? "رقم الهاتف في تدفق SIM يطابق بيانات تطبيق التوصيل → هوية مؤكدة" : "Phone number in SIM stream matches ride-hail app data → confirmed identity" },
                 ].map((item) => (
                   <div key={item.title} className="flex items-start gap-3 px-4 py-3 rounded-xl" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
                     <div className="w-8 h-8 flex items-center justify-center rounded-lg flex-shrink-0" style={{ background: `${item.color}12`, border: `1px solid ${item.color}20` }}>
@@ -176,7 +176,7 @@ const TransportIntelligencePage = () => {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 {[
-                  { code: "AMN-TRN-20260405-4821", label: isAr ? "رحلة حافلة" : "Bus Journey", color: "#D6B47E" },
+                  { code: "AMN-TRN-20260405-4821", label: isAr ? "رحلة حافلة" : "Bus Journey", color: "#C5A365" },
                   { code: "AMN-TRN-20260405-3247", label: isAr ? "رحلة تاكسي" : "Taxi Trip", color: "#4ADE80" },
                   { code: "AMN-TRN-20260405-8934", label: isAr ? "رحلة توصيل" : "Ride-Hail Trip", color: "#A78BFA" },
                 ].map((ex) => (

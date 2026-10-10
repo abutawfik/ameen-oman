@@ -159,7 +159,7 @@ const CurrencyExchangeForm = ({ isAr, onCancel }: Props) => {
                       value={toAmount}
                       onChange={(e) => setToAmount(e.target.value)}
                       className="font-['JetBrains_Mono']"
-                      style={{ color: "#D6B47E" }}
+                      style={{ color: "#C5A365" }}
                     />
                   </div>
                 </div>

@@ -20,7 +20,7 @@ const OverviewTab = ({ isAr, agg, presenterMode }: { isAr: boolean; agg: ReturnT
   }, []);
 
   const kpis = [
-    { label: isAr ? "مسجّل خلال 24 ساعة"  : "Scored · 24h",      value: agg.total24h.toLocaleString(),  color: "#D6B47E", icon: "ri-pulse-line" },
+    { label: isAr ? "مسجّل خلال 24 ساعة"  : "Scored · 24h",      value: agg.total24h.toLocaleString(),  color: "#C5A365", icon: "ri-pulse-line" },
     { label: isAr ? "مُرفَع للمراجعة" : "Flagged · 24h",           value: agg.flagged24h.toString(),      color: "#C94A5E", icon: "ri-alarm-warning-line" },
     { label: isAr ? "معدل الرفع"       : "Flag rate",              value: `${agg.flagRate}%`,             color: "#C98A1B", icon: "ri-percent-line" },
     { label: isAr ? "متوسط الدرجة"    : "Avg unified score",       value: agg.avgScore.toString(),        color: "#6B4FAE", icon: "ri-scales-3-line" },
@@ -58,7 +58,7 @@ const OverviewTab = ({ isAr, agg, presenterMode }: { isAr: boolean; agg: ReturnT
             <p className="text-gray-500 text-xs font-['JetBrains_Mono']">scored vs flagged · hourly</p>
           </div>
           <div className="flex items-center gap-3 text-xs font-['JetBrains_Mono']">
-            <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm" style={{ background: "#D6B47E" }} /> <span className="text-gray-400">scored</span></span>
+            <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm" style={{ background: "#C5A365" }} /> <span className="text-gray-400">scored</span></span>
             <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm" style={{ background: "#C94A5E" }} /> <span className="text-gray-400">flagged</span></span>
           </div>
         </div>
@@ -73,8 +73,8 @@ const OverviewTab = ({ isAr, agg, presenterMode }: { isAr: boolean; agg: ReturnT
             <AreaChart data={THROUGHPUT_24H}>
               <defs>
                 <linearGradient id="g-scored" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#D6B47E" stopOpacity={0.5} />
-                  <stop offset="95%" stopColor="#D6B47E" stopOpacity={0.05} />
+                  <stop offset="5%" stopColor="#C5A365" stopOpacity={0.5} />
+                  <stop offset="95%" stopColor="#C5A365" stopOpacity={0.05} />
                 </linearGradient>
                 <linearGradient id="g-flagged" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="5%" stopColor="#C94A5E" stopOpacity={0.7} />
@@ -85,7 +85,7 @@ const OverviewTab = ({ isAr, agg, presenterMode }: { isAr: boolean; agg: ReturnT
               <XAxis dataKey="hour" stroke="#6B7280" tick={{ fontSize: 11, fontFamily: "JetBrains Mono" }} />
               <YAxis stroke="#6B7280" tick={{ fontSize: 11, fontFamily: "JetBrains Mono" }} />
               <Tooltip contentStyle={{ background: "#0A2540", border: "1px solid rgba(184,138,60,0.3)", borderRadius: 8, fontSize: 12, fontFamily: "JetBrains Mono" }} />
-              <Area type="monotone" dataKey="scored"  stroke="#D6B47E" strokeWidth={2} fill="url(#g-scored)"  />
+              <Area type="monotone" dataKey="scored"  stroke="#C5A365" strokeWidth={2} fill="url(#g-scored)"  />
               <Area type="monotone" dataKey="flagged" stroke="#C94A5E" strokeWidth={2} fill="url(#g-flagged)" />
             </AreaChart>
           </ResponsiveContainer>

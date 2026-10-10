@@ -4,7 +4,7 @@ interface Props {
 
 const SEGMENTS = [
   { label: "Valid", labelAr: "سارية", value: 68, color: "#4ADE80", count: 14821 },
-  { label: "Extended", labelAr: "ممتدة", value: 18, color: "#D6B47E", count: 3912 },
+  { label: "Extended", labelAr: "ممتدة", value: 18, color: "#C5A365", count: 3912 },
   { label: "Expired", labelAr: "منتهية", value: 10, color: "#C98A1B", count: 2174 },
   { label: "Overstay", labelAr: "تجاوز", value: 4, color: "#C94A5E", count: 870 },
 ];

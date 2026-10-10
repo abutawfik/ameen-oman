@@ -50,7 +50,7 @@ const WatchlistPage = () => {
   };
 
   return (
-    <div className="flex flex-col h-full" style={{ background: '#051428' }}>
+    <div className="flex flex-col h-full" style={{ background: '#071426' }}>
       {/* Grid texture */}
       <div className="fixed inset-0 pointer-events-none z-0"
         style={{
@@ -72,7 +72,7 @@ const WatchlistPage = () => {
                 {liveAlerts} {isAr ? 'تنبيهات جديدة' : 'NEW ALERTS'}
               </span>
               <button onClick={() => { setActiveTab('alerts'); setLiveAlerts(0); }}
-                className="text-xs font-['Inter'] cursor-pointer underline text-red-300">
+                className="text-xs font-['Manrope'] cursor-pointer underline text-red-300">
                 {isAr ? 'عرض' : 'View'}
               </button>
             </div>
@@ -91,10 +91,10 @@ const WatchlistPage = () => {
                     ? 'watchlist-import-export'
                     : undefined
                 }
-                className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold font-['Inter'] whitespace-nowrap cursor-pointer transition-all"
+                className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold font-['Manrope'] whitespace-nowrap cursor-pointer transition-all"
                 style={{
-                  background: activeTab === tab.key ? '#D6B47E' : 'rgba(10,37,64,0.6)',
-                  color: activeTab === tab.key ? '#051428' : '#9CA3AF',
+                  background: activeTab === tab.key ? '#C5A365' : 'rgba(10,37,64,0.6)',
+                  color: activeTab === tab.key ? '#071426' : '#9CA3AF',
                   border: activeTab === tab.key ? 'none' : '1px solid rgba(184,138,60,0.08)',
                 }}>
                 <i className={`${tab.icon} text-sm`} />
@@ -103,8 +103,8 @@ const WatchlistPage = () => {
             ))}
             {activeTab === 'target' && (
               <button
-                className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold font-['Inter'] whitespace-nowrap cursor-pointer"
-                style={{ background: '#D6B47E', color: '#051428' }}>
+                className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold font-['Manrope'] whitespace-nowrap cursor-pointer"
+                style={{ background: '#C5A365', color: '#071426' }}>
                 <i className="ri-user-search-line text-sm" />
                 {isAr ? 'تفاصيل الهدف' : 'Target Detail'}
               </button>

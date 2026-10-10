@@ -77,7 +77,7 @@ const CargoIntelligence = ({ isAr }: CargoIntelligenceProps) => {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-white text-lg font-bold font-['Inter']">
+          <h2 className="text-white text-lg font-bold font-['Manrope']">
             {isAr ? "تحليلات استخبارات الشحن" : "Cargo Intelligence Analytics"}
           </h2>
           <p className="text-gray-500 text-xs font-['JetBrains_Mono'] mt-0.5">
@@ -93,7 +93,7 @@ const CargoIntelligence = ({ isAr }: CargoIntelligenceProps) => {
             <div key={stat.label} className="px-3 py-1.5 rounded-lg text-center"
               style={{ background: `${stat.color}12`, border: `1px solid ${stat.color}25` }}>
               <div className="text-sm font-bold font-['JetBrains_Mono']" style={{ color: stat.color }}>{stat.count}</div>
-              <div className="text-xs text-gray-500 font-['Inter']">{stat.label}</div>
+              <div className="text-xs text-gray-500 font-['Manrope']">{stat.label}</div>
             </div>
           ))}
         </div>
@@ -105,10 +105,10 @@ const CargoIntelligence = ({ isAr }: CargoIntelligenceProps) => {
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id as typeof activeTab)}
-            className="flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-lg text-xs font-semibold transition-all cursor-pointer whitespace-nowrap font-['Inter']"
+            className="flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-lg text-xs font-semibold transition-all cursor-pointer whitespace-nowrap font-['Manrope']"
             style={{
               background: activeTab === tab.id ? "rgba(184,138,60,0.12)" : "transparent",
-              color: activeTab === tab.id ? "#D6B47E" : "#6B7280",
+              color: activeTab === tab.id ? "#C5A365" : "#6B7280",
               border: activeTab === tab.id ? "1px solid rgba(184,138,60,0.25)" : "1px solid transparent",
             }}
           >
@@ -123,15 +123,15 @@ const CargoIntelligence = ({ isAr }: CargoIntelligenceProps) => {
         <div className="space-y-4">
           {/* Risk filter */}
           <div className="flex items-center gap-2">
-            <span className="text-gray-500 text-xs font-['Inter']">{isAr ? "تصفية:" : "Filter:"}</span>
+            <span className="text-gray-500 text-xs font-['Manrope']">{isAr ? "تصفية:" : "Filter:"}</span>
             {["all", "critical", "high", "medium", "low"].map((f) => (
               <button
                 key={f}
                 onClick={() => setRiskFilter(f)}
-                className="px-3 py-1 rounded-full text-xs font-semibold transition-all cursor-pointer whitespace-nowrap font-['Inter']"
+                className="px-3 py-1 rounded-full text-xs font-semibold transition-all cursor-pointer whitespace-nowrap font-['Manrope']"
                 style={{
                   background: riskFilter === f ? (f === "all" ? "rgba(184,138,60,0.15)" : `${riskColors[f]}15`) : "rgba(10,37,64,0.6)",
-                  color: riskFilter === f ? (f === "all" ? "#D6B47E" : riskColors[f]) : "#6B7280",
+                  color: riskFilter === f ? (f === "all" ? "#C5A365" : riskColors[f]) : "#6B7280",
                   border: `1px solid ${riskFilter === f ? (f === "all" ? "rgba(184,138,60,0.3)" : `${riskColors[f]}40`) : "rgba(255,255,255,0.06)"}`,
                 }}
               >
@@ -145,7 +145,7 @@ const CargoIntelligence = ({ isAr }: CargoIntelligenceProps) => {
               <thead>
                 <tr style={{ borderBottom: "1px solid rgba(184,138,60,0.08)" }}>
                   {["HS Code", "Description", "Category", "Risk Level", "Risk Score", "Declarations", "Seizures", "Trend"].map((h) => (
-                    <th key={h} className="px-4 py-3 text-left text-xs font-semibold text-gray-500 font-['Inter'] whitespace-nowrap">{h}</th>
+                    <th key={h} className="px-4 py-3 text-left text-xs font-semibold text-gray-500 font-['Manrope'] whitespace-nowrap">{h}</th>
                   ))}
                 </tr>
               </thead>
@@ -161,13 +161,13 @@ const CargoIntelligence = ({ isAr }: CargoIntelligenceProps) => {
                       <span className="text-gold-400 font-['JetBrains_Mono'] text-sm font-bold">{row.code}</span>
                     </td>
                     <td className="px-4 py-3">
-                      <p className="text-white text-xs font-['Inter']">{isAr ? row.descAr : row.desc}</p>
+                      <p className="text-white text-xs font-['Manrope']">{isAr ? row.descAr : row.desc}</p>
                     </td>
                     <td className="px-4 py-3">
-                      <span className="text-gray-400 text-xs font-['Inter']">{row.category}</span>
+                      <span className="text-gray-400 text-xs font-['Manrope']">{row.category}</span>
                     </td>
                     <td className="px-4 py-3">
-                      <span className="px-2 py-0.5 rounded-full text-xs font-semibold font-['Inter'] capitalize"
+                      <span className="px-2 py-0.5 rounded-full text-xs font-semibold font-['Manrope'] capitalize"
                         style={{ background: `${riskColors[row.risk]}15`, color: riskColors[row.risk], border: `1px solid ${riskColors[row.risk]}30` }}>
                         {row.risk}
                       </span>
@@ -205,7 +205,7 @@ const CargoIntelligence = ({ isAr }: CargoIntelligenceProps) => {
           {/* KPI row */}
           <div className="grid grid-cols-4 gap-3">
             {[
-              { label: "Total Declarations", labelAr: "إجمالي الإقرارات", value: "6,241", delta: "+12%", color: "#D6B47E", icon: "ri-file-list-3-line" },
+              { label: "Total Declarations", labelAr: "إجمالي الإقرارات", value: "6,241", delta: "+12%", color: "#C5A365", icon: "ri-file-list-3-line" },
               { label: "High-Value Shipments", labelAr: "شحنات عالية القيمة", value: "162", delta: "+10%", color: "#FACC15", icon: "ri-money-dollar-circle-line" },
               { label: "Seizures This Month", labelAr: "ضبط هذا الشهر", value: "23", delta: "+21%", color: "#C94A5E", icon: "ri-shield-cross-line" },
               { label: "Duty Collected", labelAr: "رسوم جمركية محصلة", value: "OMR 4.2M", delta: "+8%", color: "#4ADE80", icon: "ri-bank-line" },
@@ -218,7 +218,7 @@ const CargoIntelligence = ({ isAr }: CargoIntelligenceProps) => {
                   <span className="text-xs font-['JetBrains_Mono']" style={{ color: kpi.color }}>{kpi.delta}</span>
                 </div>
                 <div className="text-xl font-bold font-['JetBrains_Mono'] text-white">{kpi.value}</div>
-                <div className="text-xs text-gray-500 font-['Inter'] mt-0.5">{isAr ? kpi.labelAr : kpi.label}</div>
+                <div className="text-xs text-gray-500 font-['Manrope'] mt-0.5">{isAr ? kpi.labelAr : kpi.label}</div>
               </div>
             ))}
           </div>
@@ -226,11 +226,11 @@ const CargoIntelligence = ({ isAr }: CargoIntelligenceProps) => {
           {/* Bar chart */}
           <div className="p-5 rounded-xl" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.1)" }}>
             <div className="flex items-center justify-between mb-5">
-              <h3 className="text-white text-sm font-bold font-['Inter']">
+              <h3 className="text-white text-sm font-bold font-['Manrope']">
                 {isAr ? "حجم الشحنات الشهري (7 أشهر)" : "Monthly Shipment Volume (7 Months)"}
               </h3>
-              <div className="flex items-center gap-4 text-xs font-['Inter']">
-                <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded-sm" style={{ background: "#D6B47E" }} /><span className="text-gray-400">Imports</span></div>
+              <div className="flex items-center gap-4 text-xs font-['Manrope']">
+                <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded-sm" style={{ background: "#C5A365" }} /><span className="text-gray-400">Imports</span></div>
                 <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded-sm" style={{ background: "#4ADE80" }} /><span className="text-gray-400">Exports</span></div>
                 <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded-sm" style={{ background: "#C94A5E" }} /><span className="text-gray-400">Seizures ×10</span></div>
               </div>
@@ -251,7 +251,7 @@ const CargoIntelligence = ({ isAr }: CargoIntelligenceProps) => {
 
           {/* High-value trend */}
           <div className="p-5 rounded-xl" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.1)" }}>
-            <h3 className="text-white text-sm font-bold font-['Inter'] mb-4">
+            <h3 className="text-white text-sm font-bold font-['Manrope'] mb-4">
               {isAr ? "اتجاه الشحنات عالية القيمة" : "High-Value Shipment Trend"}
             </h3>
             <div className="flex items-end gap-3 h-24">
@@ -272,15 +272,15 @@ const CargoIntelligence = ({ isAr }: CargoIntelligenceProps) => {
           <div className="grid grid-cols-2 gap-4">
             {/* Port list */}
             <div className="space-y-3">
-              <h3 className="text-white text-sm font-bold font-['Inter']">
+              <h3 className="text-white text-sm font-bold font-['Manrope']">
                 {isAr ? "الضبط حسب المنفذ" : "Seizures by Port of Entry"}
               </h3>
               {seizureHeatmap.map((port) => (
                 <div key={port.port} className="p-4 rounded-xl" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.08)" }}>
                   <div className="flex items-start justify-between mb-2">
                     <div>
-                      <p className="text-white text-sm font-semibold font-['Inter']">{isAr ? port.portAr : port.port}</p>
-                      <p className="text-gray-500 text-xs font-['Inter'] mt-0.5">{isAr ? "الفئة الأعلى:" : "Top category:"} <span className="text-gold-400">{port.topCategory}</span></p>
+                      <p className="text-white text-sm font-semibold font-['Manrope']">{isAr ? port.portAr : port.port}</p>
+                      <p className="text-gray-500 text-xs font-['Manrope'] mt-0.5">{isAr ? "الفئة الأعلى:" : "Top category:"} <span className="text-gold-400">{port.topCategory}</span></p>
                     </div>
                     <div className="text-right">
                       <div className="text-lg font-bold font-['JetBrains_Mono']" style={{ color: port.intensity > 80 ? "#C94A5E" : port.intensity > 50 ? "#C98A1B" : port.intensity > 30 ? "#FACC15" : "#4ADE80" }}>
@@ -302,7 +302,7 @@ const CargoIntelligence = ({ isAr }: CargoIntelligenceProps) => {
 
             {/* Visual heatmap grid */}
             <div className="p-5 rounded-xl" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.1)" }}>
-              <h3 className="text-white text-sm font-bold font-['Inter'] mb-4">
+              <h3 className="text-white text-sm font-bold font-['Manrope'] mb-4">
                 {isAr ? "خريطة الكثافة" : "Intensity Map"}
               </h3>
               {/* Simplified visual map */}
@@ -334,7 +334,7 @@ const CargoIntelligence = ({ isAr }: CargoIntelligenceProps) => {
                         style={{ width: size, height: size, background: `${color}25`, border: `2px solid ${color}60` }}>
                         <span className="text-white font-bold font-['JetBrains_Mono']" style={{ fontSize: Math.max(8, size / 4) }}>{port.seizures}</span>
                       </div>
-                      <div className="absolute top-full mt-1 whitespace-nowrap text-xs font-['Inter'] text-gray-400" style={{ fontSize: "9px" }}>
+                      <div className="absolute top-full mt-1 whitespace-nowrap text-xs font-['Manrope'] text-gray-400" style={{ fontSize: "9px" }}>
                         {port.port.split(" ")[0]}
                       </div>
                     </div>
@@ -345,7 +345,7 @@ const CargoIntelligence = ({ isAr }: CargoIntelligenceProps) => {
                   {[{ label: "Critical", color: "#C94A5E" }, { label: "High", color: "#C98A1B" }, { label: "Medium", color: "#FACC15" }, { label: "Low", color: "#4ADE80" }].map((l) => (
                     <div key={l.label} className="flex items-center gap-1">
                       <div className="w-2 h-2 rounded-full" style={{ background: l.color }} />
-                      <span className="text-gray-500 font-['Inter']" style={{ fontSize: "9px" }}>{l.label}</span>
+                      <span className="text-gray-500 font-['Manrope']" style={{ fontSize: "9px" }}>{l.label}</span>
                     </div>
                   ))}
                 </div>
@@ -356,11 +356,11 @@ const CargoIntelligence = ({ isAr }: CargoIntelligenceProps) => {
                 {[
                   { label: "Total Seizures", value: "265", color: "#C94A5E" },
                   { label: "Total Value", value: "OMR 13.8M", color: "#FACC15" },
-                  { label: "Active Ports", value: "6", color: "#D6B47E" },
+                  { label: "Active Ports", value: "6", color: "#C5A365" },
                 ].map((s) => (
                   <div key={s.label} className="p-2 rounded-lg text-center" style={{ background: `${s.color}08`, border: `1px solid ${s.color}20` }}>
                     <div className="text-sm font-bold font-['JetBrains_Mono']" style={{ color: s.color }}>{s.value}</div>
-                    <div className="text-xs text-gray-500 font-['Inter']">{s.label}</div>
+                    <div className="text-xs text-gray-500 font-['Manrope']">{s.label}</div>
                   </div>
                 ))}
               </div>
@@ -373,7 +373,7 @@ const CargoIntelligence = ({ isAr }: CargoIntelligenceProps) => {
       {activeTab === "highvalue" && (
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <p className="text-gray-400 text-sm font-['Inter']">
+            <p className="text-gray-400 text-sm font-['Manrope']">
               {isAr ? "شحنات بقيمة تتجاوز OMR 500,000" : "Shipments exceeding OMR 500,000 in declared value"}
             </p>
             <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg" style={{ background: "rgba(201,74,94,0.1)", border: "1px solid rgba(201,74,94,0.25)" }}>
@@ -399,14 +399,14 @@ const CargoIntelligence = ({ isAr }: CargoIntelligenceProps) => {
                       <div className="flex items-center gap-2 mb-1">
                         <span className="text-gold-400 text-xs font-['JetBrains_Mono'] font-bold">{s.ref}</span>
                         {s.flag && (
-                          <span className="px-2 py-0.5 rounded-full text-xs font-semibold font-['Inter']"
+                          <span className="px-2 py-0.5 rounded-full text-xs font-semibold font-['Manrope']"
                             style={{ background: "rgba(201,74,94,0.15)", color: "#C94A5E", border: "1px solid rgba(201,74,94,0.3)" }}>
                             FLAGGED
                           </span>
                         )}
                       </div>
-                      <p className="text-white text-sm font-semibold font-['Inter']">{s.importer}</p>
-                      <p className="text-gray-500 text-xs font-['Inter'] mt-0.5">
+                      <p className="text-white text-sm font-semibold font-['Manrope']">{s.importer}</p>
+                      <p className="text-gray-500 text-xs font-['Manrope'] mt-0.5">
                         HS {s.hs} · {s.goods} · {s.date}
                       </p>
                     </div>
@@ -415,7 +415,7 @@ const CargoIntelligence = ({ isAr }: CargoIntelligenceProps) => {
                     <div className="text-lg font-bold font-['JetBrains_Mono'] text-white">{s.value}</div>
                     <div className="flex items-center justify-end gap-1.5 mt-1">
                       <div className="w-2 h-2 rounded-full" style={{ background: channelColors[s.channel] }} />
-                      <span className="text-xs font-['Inter']" style={{ color: channelColors[s.channel] }}>{s.channel} Channel</span>
+                      <span className="text-xs font-['Manrope']" style={{ color: channelColors[s.channel] }}>{s.channel} Channel</span>
                     </div>
                   </div>
                 </div>

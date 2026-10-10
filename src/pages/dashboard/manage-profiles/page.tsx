@@ -27,7 +27,7 @@ function TestProfilePanel({ profile, isAr, onClose }: { profile: RiskProfile; is
     }, 900);
   };
 
-  const FIELD_HIGHLIGHT = '#D6B47E';
+  const FIELD_HIGHLIGHT = '#C5A365';
 
   return (
     <div style={{ height: '100%', display: 'flex', flexDirection: 'column', background: 'rgba(5,20,40,0.9)', borderLeft: '1px solid rgba(184,138,60,0.15)' }}>
@@ -42,7 +42,7 @@ function TestProfilePanel({ profile, isAr, onClose }: { profile: RiskProfile; is
       </div>
 
       <div style={{ flex: 1, overflowY: 'auto', padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 12 }}>
-        <div style={{ fontSize: 12, color: '#5B7494', fontFamily: "'Inter', sans-serif", lineHeight: 1.5 }}>
+        <div style={{ fontSize: 12, color: '#5B7494', fontFamily: "'Manrope', sans-serif", lineHeight: 1.5 }}>
           {isAr
             ? `سيتحقق هذا النمط مقابل جميع سجلات "${profile.domain}" النشطة. سيتم إظهار السجلات المطابقة مع تمييز الحقول التي أدت إلى التطابق.`
             : `This profile will be checked against all active "${profile.domain}" records. Matching records are shown with matched attributes highlighted.`}
@@ -51,7 +51,7 @@ function TestProfilePanel({ profile, isAr, onClose }: { profile: RiskProfile; is
         <button
           onClick={runTest}
           disabled={loading}
-          style={{ padding: '9px 14px', borderRadius: 4, background: 'rgba(184,138,60,0.12)', border: '1px solid rgba(184,138,60,0.3)', color: '#D6B47E', fontFamily: "'JetBrains Mono', monospace", fontSize: 11, cursor: loading ? 'default' : 'pointer', display: 'flex', alignItems: 'center', gap: 8, letterSpacing: '0.06em', textTransform: 'uppercase', justifyContent: 'center' }}
+          style={{ padding: '9px 14px', borderRadius: 4, background: 'rgba(184,138,60,0.12)', border: '1px solid rgba(184,138,60,0.3)', color: '#C5A365', fontFamily: "'JetBrains Mono', monospace", fontSize: 11, cursor: loading ? 'default' : 'pointer', display: 'flex', alignItems: 'center', gap: 8, letterSpacing: '0.06em', textTransform: 'uppercase', justifyContent: 'center' }}
         >
           {loading ? <><i className="ri-loader-4-line" style={{ animation: 'spin 1s linear infinite' }} />{isAr ? 'جاري الاختبار…' : 'Running…'}</> : <><i className="ri-play-circle-line" />{isAr ? 'تشغيل الاختبار' : 'Run Test'}</>}
         </button>
@@ -70,7 +70,7 @@ function TestProfilePanel({ profile, isAr, onClose }: { profile: RiskProfile; is
 
             {/* Warning for unusable fields */}
             {result.unusableFields.length > 0 && (
-              <div style={{ padding: '8px 12px', borderRadius: 5, background: 'rgba(212,146,42,0.08)', border: '1px solid rgba(212,146,42,0.2)', fontSize: 11, color: '#D4922A', fontFamily: "'Inter', sans-serif" }}>
+              <div style={{ padding: '8px 12px', borderRadius: 5, background: 'rgba(212,146,42,0.08)', border: '1px solid rgba(212,146,42,0.2)', fontSize: 11, color: '#D4922A', fontFamily: "'Manrope', sans-serif" }}>
                 <i className="ri-error-warning-line" style={{ marginRight: 6 }} />
                 {isAr ? 'حقول غير متوفرة في البحث: ' : 'Fields not available in Ad Hoc Search: '}
                 {result.unusableFields.join(', ')}
@@ -86,7 +86,7 @@ function TestProfilePanel({ profile, isAr, onClose }: { profile: RiskProfile; is
                 {result.sampleMatches.map(m => (
                   <div key={m.id} style={{ padding: '10px 12px', borderRadius: 6, background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(184,138,60,0.08)', marginBottom: 6 }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
-                      <span style={{ fontSize: 12, color: '#CBD5E1', fontFamily: "'Inter', sans-serif", fontWeight: 500 }}>{m.name}</span>
+                      <span style={{ fontSize: 12, color: '#CBD5E1', fontFamily: "'Manrope', sans-serif", fontWeight: 500 }}>{m.name}</span>
                       <span style={{ fontSize: 11, padding: '2px 6px', borderRadius: 3, background: 'rgba(201,74,94,0.12)', color: '#C94A5E', fontFamily: "'JetBrains Mono', monospace" }}>
                         {m.riskScore}
                       </span>
@@ -216,7 +216,7 @@ function EditModal({ profile, isAr, onClose }: { profile: RiskProfile | null; is
             <label style={{ fontSize: 11, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.07em', display: 'block', marginBottom: 5 }}>
               {isAr ? 'الاسم' : 'Name'}
             </label>
-            <input value={form.name ?? ''} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} style={{ width: '100%', padding: '7px 10px', borderRadius: 4, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(184,138,60,0.2)', color: '#CBD5E1', fontFamily: "'Inter', sans-serif", fontSize: 12, outline: 'none', boxSizing: 'border-box' }} />
+            <input value={form.name ?? ''} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} style={{ width: '100%', padding: '7px 10px', borderRadius: 4, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(184,138,60,0.2)', color: '#CBD5E1', fontFamily: "'Manrope', sans-serif", fontSize: 12, outline: 'none', boxSizing: 'border-box' }} />
           </div>
 
           {/* Domain + Status + Weight row */}
@@ -234,7 +234,7 @@ function EditModal({ profile, isAr, onClose }: { profile: RiskProfile | null; is
               <label style={{ fontSize: 11, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.07em', display: 'block', marginBottom: 5 }}>
                 {isAr ? 'الوزن' : 'Weight'} (0–100)
               </label>
-              <input type="number" min={0} max={100} value={form.riskWeight ?? 50} onChange={e => setForm(f => ({ ...f, riskWeight: Number(e.target.value) }))} style={{ width: '100%', padding: '7px 10px', borderRadius: 4, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(184,138,60,0.2)', color: '#D6B47E', fontFamily: "'JetBrains Mono', monospace", fontSize: 12, outline: 'none' }} />
+              <input type="number" min={0} max={100} value={form.riskWeight ?? 50} onChange={e => setForm(f => ({ ...f, riskWeight: Number(e.target.value) }))} style={{ width: '100%', padding: '7px 10px', borderRadius: 4, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(184,138,60,0.2)', color: '#C5A365', fontFamily: "'JetBrains Mono', monospace", fontSize: 12, outline: 'none' }} />
             </div>
           </div>
 
@@ -243,7 +243,7 @@ function EditModal({ profile, isAr, onClose }: { profile: RiskProfile | null; is
             <label style={{ fontSize: 11, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.07em', display: 'block', marginBottom: 5 }}>
               {isAr ? 'الوصف' : 'Description'}
             </label>
-            <textarea rows={2} value={form.description ?? ''} onChange={e => setForm(f => ({ ...f, description: e.target.value }))} style={{ width: '100%', padding: '7px 10px', borderRadius: 4, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(184,138,60,0.2)', color: '#8FA8C0', fontFamily: "'Inter', sans-serif", fontSize: 12, outline: 'none', boxSizing: 'border-box', resize: 'vertical' }} />
+            <textarea rows={2} value={form.description ?? ''} onChange={e => setForm(f => ({ ...f, description: e.target.value }))} style={{ width: '100%', padding: '7px 10px', borderRadius: 4, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(184,138,60,0.2)', color: '#8FA8C0', fontFamily: "'Manrope', sans-serif", fontSize: 12, outline: 'none', boxSizing: 'border-box', resize: 'vertical' }} />
           </div>
 
           {/* Condition Builder */}
@@ -264,7 +264,7 @@ function EditModal({ profile, isAr, onClose }: { profile: RiskProfile | null; is
           <button onClick={onClose} style={{ padding: '8px 16px', borderRadius: 4, background: 'transparent', border: '1px solid rgba(184,138,60,0.2)', color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", fontSize: 11, cursor: 'pointer', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
             {isAr ? 'إلغاء' : 'Cancel'}
           </button>
-          <button onClick={onClose} style={{ padding: '8px 16px', borderRadius: 4, background: 'rgba(184,138,60,0.12)', border: '1px solid rgba(184,138,60,0.3)', color: '#D6B47E', fontFamily: "'JetBrains Mono', monospace", fontSize: 11, cursor: 'pointer', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+          <button onClick={onClose} style={{ padding: '8px 16px', borderRadius: 4, background: 'rgba(184,138,60,0.12)', border: '1px solid rgba(184,138,60,0.3)', color: '#C5A365', fontFamily: "'JetBrains Mono', monospace", fontSize: 11, cursor: 'pointer', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
             <i className="ri-save-line" style={{ marginRight: 6 }} />{isAr ? 'حفظ' : 'Save Profile'}
           </button>
         </div>
@@ -280,7 +280,7 @@ function ProfileRow({ profile, isAr, isSelected, onClick }: { profile: RiskProfi
     <div onClick={onClick} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '11px 16px', borderBottom: '1px solid rgba(255,255,255,0.03)', cursor: 'pointer', background: isSelected ? 'rgba(184,138,60,0.06)' : 'transparent', borderLeft: `2px solid ${isSelected ? '#B8893C' : 'transparent'}`, transition: 'background 0.1s' }}>
       <div style={{ width: 6, height: 6, borderRadius: '50%', background: statusCol, flexShrink: 0 }} />
       <div style={{ flex: 1, minWidth: 0 }}>
-        <div style={{ fontSize: 12, color: '#CBD5E1', fontFamily: "'Inter', sans-serif", fontWeight: 500, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+        <div style={{ fontSize: 12, color: '#CBD5E1', fontFamily: "'Manrope', sans-serif", fontWeight: 500, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
           {isAr && profile.nameAr ? profile.nameAr : profile.name}
         </div>
         <div style={{ fontSize: 11, color: '#374B61', fontFamily: "'JetBrains Mono', monospace", marginTop: 1 }}>
@@ -312,7 +312,7 @@ function ProfileDetail({ profile, isAr, onEdit, onTest, onClose }: { profile: Ri
     <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
       <div style={{ padding: '12px 16px', borderBottom: '1px solid rgba(184,138,60,0.08)', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
         <div>
-          <div style={{ fontSize: 13, color: '#CBD5E1', fontFamily: "'Inter', sans-serif", fontWeight: 600, marginBottom: 3 }}>
+          <div style={{ fontSize: 13, color: '#CBD5E1', fontFamily: "'Manrope', sans-serif", fontWeight: 600, marginBottom: 3 }}>
             {isAr && profile.nameAr ? profile.nameAr : profile.name}
           </div>
           <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
@@ -337,7 +337,7 @@ function ProfileDetail({ profile, isAr, onEdit, onTest, onClose }: { profile: Ri
 
       <div style={{ flex: 1, overflowY: 'auto', padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: 12 }}>
         {/* Description */}
-        <div style={{ fontSize: 12, color: '#8FA8C0', fontFamily: "'Inter', sans-serif", lineHeight: 1.6 }}>{profile.description}</div>
+        <div style={{ fontSize: 12, color: '#8FA8C0', fontFamily: "'Manrope', sans-serif", lineHeight: 1.6 }}>{profile.description}</div>
 
         {/* Conditions */}
         <div>
@@ -347,7 +347,7 @@ function ProfileDetail({ profile, isAr, onEdit, onTest, onClose }: { profile: Ri
           {profile.conditions.map(c => (
             <div key={c.id} style={{ display: 'flex', gap: 8, alignItems: 'center', marginBottom: 5 }}>
               <span style={{ fontSize: 11, padding: '2px 6px', borderRadius: 3, background: 'rgba(91,116,148,0.12)', color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", width: 52, textAlign: 'center', flexShrink: 0 }}>{c.connector}</span>
-              <span style={{ fontSize: 11, color: '#D6B47E', fontFamily: "'JetBrains Mono', monospace", flex: '0 0 150px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{c.field}</span>
+              <span style={{ fontSize: 11, color: '#C5A365', fontFamily: "'JetBrains Mono', monospace", flex: '0 0 150px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{c.field}</span>
               <span style={{ fontSize: 11, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", flex: '0 0 90px' }}>{c.operator}</span>
               <span style={{ fontSize: 11, color: '#CBD5E1', fontFamily: "'JetBrains Mono', monospace", flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{c.value}</span>
             </div>
@@ -378,7 +378,7 @@ function ProfileDetail({ profile, isAr, onEdit, onTest, onClose }: { profile: Ri
             <div key={l.id} style={{ display: 'flex', gap: 10, padding: '6px 0', borderBottom: '1px solid rgba(255,255,255,0.03)' }}>
               <span style={{ fontSize: 11, color: '#374B61', fontFamily: "'JetBrains Mono', monospace", flexShrink: 0, minWidth: 80 }}>{l.timestamp.slice(0, 10)}</span>
               <span style={{ fontSize: 11, padding: '1px 5px', borderRadius: 3, background: 'rgba(184,138,60,0.08)', color: '#B8893C', fontFamily: "'JetBrains Mono', monospace", flexShrink: 0 }}>{l.action}</span>
-              <span style={{ fontSize: 11, color: '#5B7494', fontFamily: "'Inter', sans-serif" }}>{l.user}{l.detail ? ` — ${l.detail}` : ''}</span>
+              <span style={{ fontSize: 11, color: '#5B7494', fontFamily: "'Manrope', sans-serif" }}>{l.user}{l.detail ? ` — ${l.detail}` : ''}</span>
             </div>
           ))}
         </div>
@@ -430,7 +430,7 @@ export default function ManageProfilesPage() {
   const totalHits = profiles.reduce((s, p) => s + p.matchCount, 0);
 
   return (
-    <div style={{ height: '100%', display: 'flex', flexDirection: 'column', background: '#051428', overflow: 'hidden', position: 'relative' }}>
+    <div style={{ height: '100%', display: 'flex', flexDirection: 'column', background: '#071426', overflow: 'hidden', position: 'relative' }}>
       <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0, backgroundImage: 'linear-gradient(rgba(184,138,60,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.025) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
 
       <div style={{ position: 'relative', zIndex: 1, height: '100%', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
@@ -458,7 +458,7 @@ export default function ManageProfilesPage() {
                 ))}
               </div>
             </div>
-            <button onClick={() => setEditing('new')} style={{ padding: '8px 14px', borderRadius: 4, background: 'rgba(184,138,60,0.12)', border: '1px solid rgba(184,138,60,0.3)', color: '#D6B47E', fontFamily: "'JetBrains Mono', monospace", fontSize: 11, cursor: 'pointer', textTransform: 'uppercase', letterSpacing: '0.06em', display: 'flex', alignItems: 'center', gap: 6 }}>
+            <button onClick={() => setEditing('new')} style={{ padding: '8px 14px', borderRadius: 4, background: 'rgba(184,138,60,0.12)', border: '1px solid rgba(184,138,60,0.3)', color: '#C5A365', fontFamily: "'JetBrains Mono', monospace", fontSize: 11, cursor: 'pointer', textTransform: 'uppercase', letterSpacing: '0.06em', display: 'flex', alignItems: 'center', gap: 6 }}>
               <i className="ri-add-line" />{isAr ? 'نمط جديد' : 'New Profile'}
             </button>
           </div>
@@ -468,7 +468,7 @@ export default function ManageProfilesPage() {
         <div style={{ padding: '8px 24px', borderBottom: '1px solid rgba(184,138,60,0.08)', flexShrink: 0, display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center' }}>
           <div style={{ position: 'relative', flex: '0 0 240px' }}>
             <i className="ri-search-line" style={{ position: 'absolute', left: 9, top: '50%', transform: 'translateY(-50%)', color: '#5B7494', fontSize: 12, pointerEvents: 'none' }} />
-            <input value={search} onChange={e => setSearch(e.target.value)} placeholder={isAr ? 'بحث…' : 'Search profiles…'} style={{ width: '100%', padding: '6px 10px 6px 28px', borderRadius: 4, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(184,138,60,0.2)', color: '#CBD5E1', fontFamily: "'Inter', sans-serif", fontSize: 12, outline: 'none', boxSizing: 'border-box' }} />
+            <input value={search} onChange={e => setSearch(e.target.value)} placeholder={isAr ? 'بحث…' : 'Search profiles…'} style={{ width: '100%', padding: '6px 10px 6px 28px', borderRadius: 4, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(184,138,60,0.2)', color: '#CBD5E1', fontFamily: "'Manrope', sans-serif", fontSize: 12, outline: 'none', boxSizing: 'border-box' }} />
           </div>
           {(['ACTIVE', 'DRAFT', 'EXPIRED', 'SUSPENDED'] as ProfileStatus[]).map(s => (
             <button key={s} onClick={() => setStatusF(prev => prev === s ? '' : s)} style={chipStyle(statusF === s, STATUS_COLORS[s])}>{s}</button>
@@ -489,7 +489,7 @@ export default function ManageProfilesPage() {
               <ProfileRow key={p.id} profile={p} isAr={isAr} isSelected={selected?.id === p.id} onClick={() => { setSelected(prev => prev?.id === p.id ? null : p); setTesting(false); }} />
             ))}
             {filtered.length === 0 && (
-              <div style={{ padding: 40, textAlign: 'center', color: '#374B61', fontFamily: "'Inter', sans-serif", fontSize: 13 }}>
+              <div style={{ padding: 40, textAlign: 'center', color: '#374B61', fontFamily: "'Manrope', sans-serif", fontSize: 13 }}>
                 {isAr ? 'لا توجد نتائج' : 'No profiles match filters'}
               </div>
             )}

@@ -32,12 +32,12 @@ const StreamSummaryRow = ({ streams, activeFilter, onFilterChange, isAr }: Props
     <div>
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-3">
-          <h3 className="text-white text-sm font-bold font-['Inter'] uppercase tracking-wider">
+          <h3 className="text-white text-sm font-bold font-['Manrope'] uppercase tracking-wider">
             {isAr ? "ملخص النشاط — 15 تدفقاً" : "15-Stream Activity Summary"}
           </h3>
           <span
             className="px-2 py-0.5 rounded-full text-xs font-['JetBrains_Mono']"
-            style={{ background: "rgba(184,138,60,0.1)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}
+            style={{ background: "rgba(184,138,60,0.1)", color: "#C5A365", border: "1px solid rgba(184,138,60,0.2)" }}
           >
             {activeCount} {isAr ? "نشط" : "active"}
           </span>
@@ -46,7 +46,7 @@ const StreamSummaryRow = ({ streams, activeFilter, onFilterChange, isAr }: Props
           <button
             onClick={() => onFilterChange(null)}
             className="text-xs px-2.5 py-1 rounded cursor-pointer font-['JetBrains_Mono'] flex items-center gap-1"
-            style={{ color: "#D6B47E", border: "1px solid rgba(184,138,60,0.3)", background: "rgba(184,138,60,0.05)" }}
+            style={{ color: "#C5A365", border: "1px solid rgba(184,138,60,0.3)", background: "rgba(184,138,60,0.05)" }}
           >
             <i className="ri-close-line" />
             {isAr ? "إلغاء الفلتر" : "Clear Filter"}
@@ -94,7 +94,7 @@ const StreamSummaryRow = ({ streams, activeFilter, onFilterChange, isAr }: Props
                 <p className="font-bold font-['JetBrains_Mono'] leading-tight" style={{ color: isActive ? s.color : "#4B5563", fontSize: 11 }}>
                   {isActive ? s.count : "—"}
                 </p>
-                <p className="text-gray-600 font-['Inter'] leading-tight mt-0.5 truncate" style={{ fontSize: 10, maxWidth: 52 }}>
+                <p className="text-gray-600 font-['Manrope'] leading-tight mt-0.5 truncate" style={{ fontSize: 10, maxWidth: 52 }}>
                   {isAr ? (label?.ar || s.stream) : (label?.en || s.stream)}
                 </p>
               </div>

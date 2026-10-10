@@ -172,15 +172,15 @@ const CustomsBrokerRegistry = ({ isAr }: CustomsBrokerRegistryProps) => {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-white text-lg font-bold font-['Inter']">
+          <h2 className="text-white text-lg font-bold font-['Manrope']">
             {isAr ? "سجل وسطاء الجمارك" : "Customs Broker Registry"}
           </h2>
           <p className="text-gray-500 text-xs font-['JetBrains_Mono'] mt-0.5">
             {isAr ? "الوسطاء المرخصون · سجل الإقرارات · درجات الامتثال · الإيقاف" : "Licensed Brokers · Declaration History · Compliance Scores · Suspension Flags"}
           </p>
         </div>
-        <button className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold font-['Inter'] cursor-pointer whitespace-nowrap transition-all"
-          style={{ background: "rgba(184,138,60,0.12)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.25)" }}>
+        <button className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold font-['Manrope'] cursor-pointer whitespace-nowrap transition-all"
+          style={{ background: "rgba(184,138,60,0.12)", color: "#C5A365", border: "1px solid rgba(184,138,60,0.25)" }}>
           <i className="ri-add-line" />
           {isAr ? "تسجيل وسيط" : "Register Broker"}
         </button>
@@ -189,7 +189,7 @@ const CustomsBrokerRegistry = ({ isAr }: CustomsBrokerRegistryProps) => {
       {/* Stats row */}
       <div className="grid grid-cols-5 gap-3">
         {[
-          { label: "Total Brokers", labelAr: "إجمالي الوسطاء", value: stats.total, color: "#D6B47E" },
+          { label: "Total Brokers", labelAr: "إجمالي الوسطاء", value: stats.total, color: "#C5A365" },
           { label: "Active", labelAr: "نشط", value: stats.active, color: "#4ADE80" },
           { label: "Warning", labelAr: "تحذير", value: stats.warning, color: "#FACC15" },
           { label: "Suspended", labelAr: "موقوف", value: stats.suspended, color: "#C94A5E" },
@@ -197,7 +197,7 @@ const CustomsBrokerRegistry = ({ isAr }: CustomsBrokerRegistryProps) => {
         ].map((s) => (
           <div key={s.label} className="p-3 rounded-xl text-center" style={{ background: "rgba(10,37,64,0.8)", border: `1px solid ${s.color}20` }}>
             <div className="text-xl font-bold font-['JetBrains_Mono']" style={{ color: s.color }}>{s.value}</div>
-            <div className="text-xs text-gray-500 font-['Inter'] mt-0.5">{isAr ? s.labelAr : s.label}</div>
+            <div className="text-xs text-gray-500 font-['Manrope'] mt-0.5">{isAr ? s.labelAr : s.label}</div>
           </div>
         ))}
       </div>
@@ -214,18 +214,18 @@ const CustomsBrokerRegistry = ({ isAr }: CustomsBrokerRegistryProps) => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder={isAr ? "بحث..." : "Search brokers..."}
-                className="flex-1 bg-transparent text-white text-xs outline-none placeholder-gray-600 font-['Inter']"
+                className="flex-1 bg-transparent text-white text-xs outline-none placeholder-gray-600 font-['Manrope']"
               />
             </div>
           </div>
           <div className="flex gap-1">
             {["all", "active", "warning", "suspended"].map((f) => (
               <button key={f} onClick={() => setStatusFilter(f)}
-                className="flex-1 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer whitespace-nowrap font-['Inter'] capitalize"
+                className="flex-1 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer whitespace-nowrap font-['Manrope'] capitalize"
                 style={{
                   background: statusFilter === f ? (f === "all" ? "rgba(184,138,60,0.15)" : `${statusColors[f] || "rgba(184,138,60,0.15)"}15`) : "rgba(10,37,64,0.6)",
-                  color: statusFilter === f ? (f === "all" ? "#D6B47E" : statusColors[f] || "#D6B47E") : "#6B7280",
-                  border: `1px solid ${statusFilter === f ? (f === "all" ? "rgba(184,138,60,0.3)" : `${statusColors[f] || "#D6B47E"}40`) : "rgba(255,255,255,0.06)"}`,
+                  color: statusFilter === f ? (f === "all" ? "#C5A365" : statusColors[f] || "#C5A365") : "#6B7280",
+                  border: `1px solid ${statusFilter === f ? (f === "all" ? "rgba(184,138,60,0.3)" : `${statusColors[f] || "#C5A365"}40`) : "rgba(255,255,255,0.06)"}`,
                 }}>
                 {f}
               </button>
@@ -244,7 +244,7 @@ const CustomsBrokerRegistry = ({ isAr }: CustomsBrokerRegistryProps) => {
                 <div className="flex items-start justify-between mb-1.5">
                   <div className="flex items-center gap-2">
                     <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: statusColors[broker.status] }} />
-                    <span className="text-white text-xs font-semibold font-['Inter'] leading-tight">{isAr ? broker.nameAr : broker.name}</span>
+                    <span className="text-white text-xs font-semibold font-['Manrope'] leading-tight">{isAr ? broker.nameAr : broker.name}</span>
                   </div>
                   {broker.suspended && <i className="ri-lock-line text-red-400 text-xs flex-shrink-0" />}
                 </div>
@@ -271,10 +271,10 @@ const CustomsBrokerRegistry = ({ isAr }: CustomsBrokerRegistryProps) => {
                 <i className="ri-lock-line text-red-400" />
               </div>
               <div>
-                <p className="text-red-400 font-bold text-sm font-['Inter']">{isAr ? "الوسيط موقوف" : "BROKER SUSPENDED"}</p>
-                <p className="text-gray-400 text-xs font-['Inter'] mt-0.5">{selectedBroker.suspensionReason}</p>
+                <p className="text-red-400 font-bold text-sm font-['Manrope']">{isAr ? "الوسيط موقوف" : "BROKER SUSPENDED"}</p>
+                <p className="text-gray-400 text-xs font-['Manrope'] mt-0.5">{selectedBroker.suspensionReason}</p>
               </div>
-              <button className="ml-auto px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap font-['Inter'] transition-all"
+              <button className="ml-auto px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap font-['Manrope'] transition-all"
                 style={{ background: "rgba(74,222,128,0.12)", color: "#4ADE80", border: "1px solid rgba(74,222,128,0.25)" }}>
                 {isAr ? "رفع الإيقاف" : "Lift Suspension"}
               </button>
@@ -287,12 +287,12 @@ const CustomsBrokerRegistry = ({ isAr }: CustomsBrokerRegistryProps) => {
               <div>
                 <div className="flex items-center gap-2 mb-1">
                   <div className="w-2.5 h-2.5 rounded-full" style={{ background: statusColors[selectedBroker.status] }} />
-                  <span className="text-xs font-semibold font-['Inter'] capitalize" style={{ color: statusColors[selectedBroker.status] }}>{selectedBroker.status}</span>
+                  <span className="text-xs font-semibold font-['Manrope'] capitalize" style={{ color: statusColors[selectedBroker.status] }}>{selectedBroker.status}</span>
                   <span className="text-gray-600 text-xs font-['JetBrains_Mono']">·</span>
                   <span className="text-gray-500 text-xs font-['JetBrains_Mono']">{selectedBroker.id}</span>
                 </div>
-                <h3 className="text-white text-base font-bold font-['Inter']">{isAr ? selectedBroker.nameAr : selectedBroker.name}</h3>
-                <p className="text-gray-500 text-xs font-['Inter'] mt-0.5">
+                <h3 className="text-white text-base font-bold font-['Manrope']">{isAr ? selectedBroker.nameAr : selectedBroker.name}</h3>
+                <p className="text-gray-500 text-xs font-['Manrope'] mt-0.5">
                   {isAr ? "رخصة:" : "License:"} <span className="text-gold-400 font-['JetBrains_Mono']">{selectedBroker.license}</span>
                   <span className="mx-2 text-gray-700">·</span>
                   {isAr ? "تنتهي:" : "Expires:"} <span className="text-gray-400">{selectedBroker.licenseExpiry}</span>
@@ -301,14 +301,14 @@ const CustomsBrokerRegistry = ({ isAr }: CustomsBrokerRegistryProps) => {
               <div className="flex gap-2">
                 {!selectedBroker.suspended && (
                   <button onClick={() => setShowSuspendModal(true)}
-                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap font-['Inter'] transition-all"
+                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap font-['Manrope'] transition-all"
                     style={{ background: "rgba(201,74,94,0.1)", color: "#C94A5E", border: "1px solid rgba(201,74,94,0.25)" }}>
                     <i className="ri-lock-line" />
                     {isAr ? "إيقاف" : "Suspend"}
                   </button>
                 )}
-                <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap font-['Inter'] transition-all"
-                  style={{ background: "rgba(184,138,60,0.1)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.25)" }}>
+                <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap font-['Manrope'] transition-all"
+                  style={{ background: "rgba(184,138,60,0.1)", color: "#C5A365", border: "1px solid rgba(184,138,60,0.25)" }}>
                   <i className="ri-edit-line" />
                   {isAr ? "تعديل" : "Edit"}
                 </button>
@@ -318,14 +318,14 @@ const CustomsBrokerRegistry = ({ isAr }: CustomsBrokerRegistryProps) => {
             {/* Stats grid */}
             <div className="grid grid-cols-4 gap-3">
               {[
-                { label: "Total Declarations", labelAr: "إجمالي الإقرارات", value: selectedBroker.declarations.toLocaleString(), color: "#D6B47E" },
+                { label: "Total Declarations", labelAr: "إجمالي الإقرارات", value: selectedBroker.declarations.toLocaleString(), color: "#C5A365" },
                 { label: "This Month", labelAr: "هذا الشهر", value: selectedBroker.declarationsThisMonth, color: "#4ADE80" },
                 { label: "Violations", labelAr: "المخالفات", value: selectedBroker.violations, color: selectedBroker.violations > 10 ? "#C94A5E" : selectedBroker.violations > 3 ? "#FACC15" : "#4ADE80" },
                 { label: "Compliance", labelAr: "الامتثال", value: `${selectedBroker.complianceScore}%`, color: riskColors[selectedBroker.riskLevel] },
               ].map((s) => (
                 <div key={s.label} className="p-3 rounded-lg text-center" style={{ background: "rgba(5,20,40,0.6)", border: `1px solid ${s.color}15` }}>
                   <div className="text-lg font-bold font-['JetBrains_Mono']" style={{ color: s.color }}>{s.value}</div>
-                  <div className="text-xs text-gray-500 font-['Inter']">{isAr ? s.labelAr : s.label}</div>
+                  <div className="text-xs text-gray-500 font-['Manrope']">{isAr ? s.labelAr : s.label}</div>
                 </div>
               ))}
             </div>
@@ -333,7 +333,7 @@ const CustomsBrokerRegistry = ({ isAr }: CustomsBrokerRegistryProps) => {
 
           {/* Compliance trend */}
           <div className="p-5 rounded-xl" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.1)" }}>
-            <h4 className="text-white text-sm font-bold font-['Inter'] mb-4">
+            <h4 className="text-white text-sm font-bold font-['Manrope'] mb-4">
               {isAr ? "اتجاه الامتثال (6 أشهر)" : "Compliance Trend (6 Months)"}
             </h4>
             <div className="flex items-end gap-2 h-20">
@@ -353,23 +353,23 @@ const CustomsBrokerRegistry = ({ isAr }: CustomsBrokerRegistryProps) => {
           {/* Details */}
           <div className="grid grid-cols-2 gap-4">
             <div className="p-4 rounded-xl" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.08)" }}>
-              <h4 className="text-gray-400 text-xs font-semibold font-['Inter'] mb-3 uppercase tracking-wider">
+              <h4 className="text-gray-400 text-xs font-semibold font-['Manrope'] mb-3 uppercase tracking-wider">
                 {isAr ? "التخصصات" : "Specializations"}
               </h4>
               <div className="flex flex-wrap gap-2">
                 {selectedBroker.specializations.map((s) => (
-                  <span key={s} className="px-2 py-1 rounded-full text-xs font-['Inter']"
-                    style={{ background: "rgba(184,138,60,0.1)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}>
+                  <span key={s} className="px-2 py-1 rounded-full text-xs font-['Manrope']"
+                    style={{ background: "rgba(184,138,60,0.1)", color: "#C5A365", border: "1px solid rgba(184,138,60,0.2)" }}>
                     {s}
                   </span>
                 ))}
               </div>
-              <h4 className="text-gray-400 text-xs font-semibold font-['Inter'] mb-3 mt-4 uppercase tracking-wider">
+              <h4 className="text-gray-400 text-xs font-semibold font-['Manrope'] mb-3 mt-4 uppercase tracking-wider">
                 {isAr ? "الموانئ المعتمدة" : "Authorized Ports"}
               </h4>
               <div className="flex flex-wrap gap-2">
                 {selectedBroker.ports.map((p) => (
-                  <span key={p} className="px-2 py-1 rounded-full text-xs font-['Inter']"
+                  <span key={p} className="px-2 py-1 rounded-full text-xs font-['Manrope']"
                     style={{ background: "rgba(74,222,128,0.08)", color: "#4ADE80", border: "1px solid rgba(74,222,128,0.2)" }}>
                     {p}
                   </span>
@@ -377,7 +377,7 @@ const CustomsBrokerRegistry = ({ isAr }: CustomsBrokerRegistryProps) => {
               </div>
             </div>
             <div className="p-4 rounded-xl" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.08)" }}>
-              <h4 className="text-gray-400 text-xs font-semibold font-['Inter'] mb-3 uppercase tracking-wider">
+              <h4 className="text-gray-400 text-xs font-semibold font-['Manrope'] mb-3 uppercase tracking-wider">
                 {isAr ? "معلومات الاتصال" : "Contact Information"}
               </h4>
               <div className="space-y-2">
@@ -396,8 +396,8 @@ const CustomsBrokerRegistry = ({ isAr }: CustomsBrokerRegistryProps) => {
               </div>
               <div className="mt-4 pt-3" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
                 <div className="flex items-center justify-between">
-                  <span className="text-gray-500 text-xs font-['Inter']">{isAr ? "مستوى المخاطر:" : "Risk Level:"}</span>
-                  <span className="px-2 py-0.5 rounded-full text-xs font-semibold font-['Inter'] capitalize"
+                  <span className="text-gray-500 text-xs font-['Manrope']">{isAr ? "مستوى المخاطر:" : "Risk Level:"}</span>
+                  <span className="px-2 py-0.5 rounded-full text-xs font-semibold font-['Manrope'] capitalize"
                     style={{ background: `${riskColors[selectedBroker.riskLevel]}15`, color: riskColors[selectedBroker.riskLevel], border: `1px solid ${riskColors[selectedBroker.riskLevel]}30` }}>
                     {selectedBroker.riskLevel}
                   </span>
@@ -417,12 +417,12 @@ const CustomsBrokerRegistry = ({ isAr }: CustomsBrokerRegistryProps) => {
                 <i className="ri-lock-line text-red-400 text-lg" />
               </div>
               <div>
-                <h3 className="text-white font-bold font-['Inter']">{isAr ? "إيقاف الوسيط" : "Suspend Broker"}</h3>
-                <p className="text-gray-500 text-xs font-['Inter']">{isAr ? selectedBroker.nameAr : selectedBroker.name}</p>
+                <h3 className="text-white font-bold font-['Manrope']">{isAr ? "إيقاف الوسيط" : "Suspend Broker"}</h3>
+                <p className="text-gray-500 text-xs font-['Manrope']">{isAr ? selectedBroker.nameAr : selectedBroker.name}</p>
               </div>
             </div>
             <div className="mb-4">
-              <label className="text-gray-400 text-xs font-semibold font-['Inter'] block mb-2">
+              <label className="text-gray-400 text-xs font-semibold font-['Manrope'] block mb-2">
                 {isAr ? "سبب الإيقاف *" : "Suspension Reason *"}
               </label>
               <textarea
@@ -431,18 +431,18 @@ const CustomsBrokerRegistry = ({ isAr }: CustomsBrokerRegistryProps) => {
                 rows={3}
                 maxLength={500}
                 placeholder={isAr ? "أدخل سبب الإيقاف..." : "Enter reason for suspension..."}
-                className="w-full px-3 py-2 rounded-lg text-white text-sm font-['Inter'] outline-none resize-none"
+                className="w-full px-3 py-2 rounded-lg text-white text-sm font-['Manrope'] outline-none resize-none"
                 style={{ background: "rgba(5,20,40,0.8)", border: "1px solid rgba(201,74,94,0.2)" }}
               />
             </div>
             <div className="flex gap-3">
               <button onClick={() => setShowSuspendModal(false)}
-                className="flex-1 py-2 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap font-['Inter'] transition-all"
+                className="flex-1 py-2 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap font-['Manrope'] transition-all"
                 style={{ background: "rgba(255,255,255,0.05)", color: "#9CA3AF", border: "1px solid rgba(255,255,255,0.08)" }}>
                 {isAr ? "إلغاء" : "Cancel"}
               </button>
               <button onClick={() => setShowSuspendModal(false)}
-                className="flex-1 py-2 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap font-['Inter'] transition-all"
+                className="flex-1 py-2 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap font-['Manrope'] transition-all"
                 style={{ background: "rgba(201,74,94,0.15)", color: "#C94A5E", border: "1px solid rgba(201,74,94,0.3)" }}>
                 {isAr ? "تأكيد الإيقاف" : "Confirm Suspension"}
               </button>

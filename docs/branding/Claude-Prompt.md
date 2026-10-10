@@ -1,0 +1,17 @@
+# Claude handoff prompt
+
+You are working on Al-Ameen. Apply or review the approved Arabic-led brand system in the attached Al-Ameen-Branding package. Read Brand-Guidelines.md and brand-tokens.json first. Treat approved-brand-board.png as the visual source of truth. The approved identity combines option 3’s Arabic-first composition and protective bracket/A emblem with option 1’s custom English AL-AMEEN lettering and gold triangle in the first A.
+
+Find the running localhost:3004 checkout rather than assuming a path. The observed checkout was /Users/alaafada/Claude Workspace/Code/ameen-oman; preferred future workspace is /Users/alaafada/Codex Workspace/Code/ameen-oman. Do not migrate or copy the repository merely to rebrand it. Inspect local instructions and git status, and preserve other changes. Some rebranding may already have been applied by Codex: inspect first, complete missing work, and do not duplicate or overwrite correct changes.
+
+Use the supplied logo PNG assets as artwork, not as font approximations. Keep Arabic dominant in both EN/AR UI. Never mirror the logo. PNG backgrounds must match the navy/ivory surfaces; do not claim they are transparent or vector. Proper transparent/vector production masters remain a follow-up. Do not handcraft a near-match SVG or substitute the old shield. Use the emblem for collapsed navigation and favicon.
+
+Use self-hosted Manrope for English display/body/UI, Cairo for Arabic, JetBrains Mono for metadata. Bundle OFL licenses. Remove old Cormorant Garamond from current brand typography and upright English taglines; preserve icon fonts. Logo lettering itself is custom artwork, not a font family. Wire all typography through src/brand/typography.ts and CSS tokens where possible.
+
+Audit src/brand/BrandLogo.tsx; Navbar.tsx; home/HeroSection.tsx; Footer.tsx; login/forgot/reset/set-password pages; DashboardSidebar.tsx; DashboardTitleBar.tsx; index.html favicon and font loading; src/index.css; tailwind config and hardcoded font/color stacks. Shared BrandLogo should own reusable horizontal/hero/mark variants, accessible names and responsive dimensions. Prevent duplicates: no old shield above the new combined logo. Hero should match approved proportions; remove competing gradients behind the opaque logo region. Surrounding UI uses brand colors and typography while existing routes, menus, language switch, authentication, data, chart semantics and risk colors remain functional.
+
+Use logical spacing for RTL. Keep minimum 44px interactive targets, visible keyboard focus, 4.5:1 normal text contrast, no 390px horizontal overflow. Do not redesign workflows or add features. Keep full MAJOR.MINOR.PATCH.BUILD version badge and build-time injection. Bump MINOR using the existing tool only if this rebrand has not already been bumped; leave BUILD increments to CI. Add bump:major/minor/patch aliases if needed by user-wide instructions.
+
+Run the existing type check and build; distinguish pre-existing failures from regressions. Use the browser to inspect desktop and 390px mobile in EN and AR. Check header, hero, footer, login, collapsed sidebar and language/menu controls. Compare logo regions with approved master and save design-qa.md with evidence, findings and final result. Report exact files changed and any limitations. Do not deploy, push, migrate or commit unless explicitly requested.
+
+Preserve the corrected dashboard placement: one top-bar logo, no sidebar logo. Keep the compact 58px container and clip only empty PNG canvas padding so no navy rectangle extends below the header.

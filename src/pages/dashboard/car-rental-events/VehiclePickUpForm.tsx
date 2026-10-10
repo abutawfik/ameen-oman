@@ -186,9 +186,9 @@ const VehiclePickUpForm = ({ isAr, onCancel }: Props) => {
                 placeholder={t.conditionPlaceholder}
                 value={conditionNotes}
                 onChange={(e) => setConditionNotes(e.target.value)}
-                className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none transition-all duration-200 font-['Inter'] resize-none"
+                className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none transition-all duration-200 font-['Manrope'] resize-none"
                 style={{ background: "#0F1923", border: "1px solid rgba(255,255,255,0.08)" }}
-                onFocus={(e) => { e.target.style.borderColor = "#D6B47E"; e.target.style.boxShadow = "0 0 0 2px rgba(184,138,60,0.08)"; }}
+                onFocus={(e) => { e.target.style.borderColor = "#C5A365"; e.target.style.boxShadow = "0 0 0 2px rgba(184,138,60,0.08)"; }}
                 onBlur={(e) => { e.target.style.borderColor = "rgba(255,255,255,0.08)"; e.target.style.boxShadow = "none"; }}
               />
             </FormField>
@@ -208,7 +208,7 @@ const VehiclePickUpForm = ({ isAr, onCancel }: Props) => {
               </p>
               <div
                 className="flex items-center gap-1 px-5 py-3 rounded-xl"
-                style={{ background: "#051428", border: "1px solid rgba(184,138,60,0.18)" }}
+                style={{ background: "#071426", border: "1px solid rgba(184,138,60,0.18)" }}
               >
                 {(odometer || "000000").padStart(6, "0").split("").map((digit, i) => (
                   <div
@@ -217,7 +217,7 @@ const VehiclePickUpForm = ({ isAr, onCancel }: Props) => {
                     style={{
                       background: "rgba(184,138,60,0.04)",
                       border: "1px solid rgba(184,138,60,0.12)",
-                      color: digit !== "0" || odometer ? "#D6B47E" : "#1E3A4A",
+                      color: digit !== "0" || odometer ? "#C5A365" : "#1E3A4A",
                     }}
                   >
                     {digit}
@@ -239,14 +239,14 @@ const VehiclePickUpForm = ({ isAr, onCancel }: Props) => {
                 <i className="ri-gas-station-fill text-gold-400 text-lg" />
               </div>
               <div>
-                <p className="text-gray-500 text-xs font-['Inter']">{t.fuelAtPickup}</p>
+                <p className="text-gray-500 text-xs font-['Manrope']">{t.fuelAtPickup}</p>
                 <p className="text-white font-bold text-lg font-['JetBrains_Mono']">{fuelLabel}</p>
               </div>
             </div>
 
             {/* Checklist */}
             <div>
-              <p className="text-gray-500 text-xs mb-2 font-['Inter'] uppercase tracking-wide">{t.checklist}</p>
+              <p className="text-gray-500 text-xs mb-2 font-['Manrope'] uppercase tracking-wide">{t.checklist}</p>
               {[
                 { label: isAr ? "تم التحقق من الوثائق" : "Documents verified", done: true },
                 { label: isAr ? "تم فحص المركبة" : "Vehicle inspected", done: true },
@@ -268,7 +268,7 @@ const VehiclePickUpForm = ({ isAr, onCancel }: Props) => {
                   >
                     {item.done && <i className="ri-check-line text-green-400 text-xs" />}
                   </div>
-                  <span className="text-xs font-['Inter']" style={{ color: item.done ? "#D1D5DB" : "#4B5563" }}>
+                  <span className="text-xs font-['Manrope']" style={{ color: item.done ? "#D1D5DB" : "#4B5563" }}>
                     {item.label}
                   </span>
                 </div>

@@ -27,19 +27,19 @@ type TimeRange = "24h" | "7d" | "30d" | "custom";
 
 const EVENT_META: Record<EventType, { labelEn: string; labelAr: string; color: string; icon: string }> = {
   score_computed:      { labelEn: "Score computed",      labelAr: "حساب الدرجة",        color: "#6B4FAE", icon: "ri-calculator-line" },
-  rule_fired:          { labelEn: "Rule fired",          labelAr: "إطلاق قاعدة",        color: "#D6B47E", icon: "ri-flashlight-line" },
+  rule_fired:          { labelEn: "Rule fired",          labelAr: "إطلاق قاعدة",        color: "#C5A365", icon: "ri-flashlight-line" },
   source_ingested:     { labelEn: "Source ingested",     labelAr: "استيعاب مصدر",       color: "#4ADE80", icon: "ri-download-2-line" },
   source_failed:       { labelEn: "Source failed",       labelAr: "فشل المصدر",          color: "#C94A5E", icon: "ri-error-warning-line" },
   classified_accessed: { labelEn: "Classified accessed", labelAr: "وصول مصنّف",          color: "#8A1F3C", icon: "ri-shield-keyhole-line" },
   weight_changed:      { labelEn: "Weight changed",      labelAr: "تغيير الوزن",         color: "#C98A1B", icon: "ri-equalizer-line" },
   rule_toggled:        { labelEn: "Rule toggled",        labelAr: "تبديل قاعدة",         color: "#F59E0B", icon: "ri-toggle-line" },
   rollback_triggered:  { labelEn: "Rollback triggered",  labelAr: "تشغيل تراجع",         color: "#C94A5E", icon: "ri-arrow-go-back-line" },
-  clearance_changed:   { labelEn: "Clearance changed",   labelAr: "تغيير التصريح",       color: "#D6B47E", icon: "ri-shield-user-line" },
+  clearance_changed:   { labelEn: "Clearance changed",   labelAr: "تغيير التصريح",       color: "#C5A365", icon: "ri-shield-user-line" },
 };
 
 const ROLE_META: Record<Role, { labelEn: string; labelAr: string; color: string }> = {
   analyst:    { labelEn: "Analyst",    labelAr: "محلّل",   color: "#4ADE80" },
-  supervisor: { labelEn: "Supervisor", labelAr: "مشرف",    color: "#D6B47E" },
+  supervisor: { labelEn: "Supervisor", labelAr: "مشرف",    color: "#C5A365" },
   manager:    { labelEn: "Manager",    labelAr: "مدير",    color: "#6B4FAE" },
   admin:      { labelEn: "Admin",      labelAr: "مسؤول",   color: "#C98A1B" },
   system:     { labelEn: "System",     labelAr: "النظام",  color: "#6B7280" },
@@ -135,7 +135,7 @@ const AuditLogPage = () => {
   };
 
   return (
-    <div className="flex flex-col h-full" style={{ background: "#051428" }}>
+    <div className="flex flex-col h-full" style={{ background: "#071426" }}>
       {/* Grid texture */}
       <div className="fixed inset-0 pointer-events-none z-0"
         style={{
@@ -161,9 +161,9 @@ const AuditLogPage = () => {
         <PageHeader
           title={isAr ? "سجل التدقيق" : "Audit Log"}
           icon="ri-archive-line"
-          iconColor="#D6B47E"
+          iconColor="#C5A365"
           badge={`${combined.length} ${isAr ? "سجلات" : "ENTRIES"}`}
-          badgeColor="#D6B47E"
+          badgeColor="#C5A365"
           isAr={isAr}
         />
         <div className="flex-shrink-0 px-6 pt-4 pb-4 border-b"
@@ -176,7 +176,7 @@ const AuditLogPage = () => {
                 {isAr ? "المنفّذ" : "Actor"}
               </span>
               <select value={actorFilter} onChange={(e) => { setActorFilter(e.target.value); setPage(0); }}
-                className="px-2 py-1 rounded-md text-xs font-['Inter'] cursor-pointer"
+                className="px-2 py-1 rounded-md text-xs font-['Manrope'] cursor-pointer"
                 style={{ background: "rgba(10,37,64,0.85)", border: "1px solid rgba(255,255,255,0.1)", color: "#9CA3AF" }}>
                 <option value="all">{isAr ? "الكل" : "All"}</option>
                 {actors.map((a) => (
@@ -190,7 +190,7 @@ const AuditLogPage = () => {
                 {isAr ? "الحدث" : "Event"}
               </span>
               <select value={eventFilter} onChange={(e) => { setEventFilter(e.target.value as EventType | "all"); setPage(0); }}
-                className="px-2 py-1 rounded-md text-xs font-['Inter'] cursor-pointer"
+                className="px-2 py-1 rounded-md text-xs font-['Manrope'] cursor-pointer"
                 style={{ background: "rgba(10,37,64,0.85)", border: "1px solid rgba(255,255,255,0.1)", color: "#9CA3AF" }}>
                 <option value="all">{isAr ? "الكل" : "All"}</option>
                 {(Object.keys(EVENT_META) as EventType[]).map((k) => (
@@ -210,8 +210,8 @@ const AuditLogPage = () => {
                     className="px-2 py-1 rounded-md text-[11px] font-bold font-['JetBrains_Mono'] tracking-widest cursor-pointer"
                     style={{
                       background: active ? "rgba(184,138,60,0.18)" : "transparent",
-                      color: active ? "#D6B47E" : "#6B7280",
-                      border: active ? "1px solid #D6B47E55" : "1px solid rgba(255,255,255,0.1)",
+                      color: active ? "#C5A365" : "#6B7280",
+                      border: active ? "1px solid #C5A36555" : "1px solid rgba(255,255,255,0.1)",
                     }}>
                     {r.toUpperCase()}
                   </button>
@@ -225,7 +225,7 @@ const AuditLogPage = () => {
               </span>
               {(["all", "public", "internal", "restricted", "classified"] as const).map((c) => {
                 const active = classFilter === c;
-                const color = c === "all" ? "#D6B47E" : CLASSIFICATION_META[c].color;
+                const color = c === "all" ? "#C5A365" : CLASSIFICATION_META[c].color;
                 const label = c === "all" ? (isAr ? "الكل" : "All") : (isAr ? CLASSIFICATION_META[c].labelAr : CLASSIFICATION_META[c].label);
                 return (
                   <button key={c} onClick={() => { setClassFilter(c); setPage(0); }}
@@ -268,7 +268,7 @@ const AuditLogPage = () => {
                 } catch { /* noop */ }
               }}
               className="px-2.5 py-1 rounded-md text-[11px] font-bold cursor-pointer"
-              style={{ background: "rgba(184,138,60,0.12)", color: "#D6B47E", border: "1px solid #D6B47E55", fontFamily: "'JetBrains Mono', monospace" }}>
+              style={{ background: "rgba(184,138,60,0.12)", color: "#C5A365", border: "1px solid #C5A36555", fontFamily: "'JetBrains Mono', monospace" }}>
               <i className="ri-file-download-line mr-1" />
               {isAr ? "تصدير CSV" : "EXPORT CSV"}
             </button>
@@ -310,7 +310,7 @@ const AuditLogPage = () => {
               const leftBorder = critical
                 ? "3px solid #C94A5E"
                 : clearanceEvent
-                  ? "3px solid #D6B47E"
+                  ? "3px solid #C5A365"
                   : "3px solid transparent";
               const rowBg = critical
                 ? "rgba(201,74,94,0.04)"
@@ -463,7 +463,7 @@ const AuditLogPage = () => {
                   {isAr ? "الحمولة الكاملة" : "FULL JSON PAYLOAD"}
                 </div>
                 <pre className="rounded-md p-3 text-[11px] font-['JetBrains_Mono'] overflow-auto leading-relaxed"
-                  style={{ background: "#051428", border: "1px solid rgba(184,138,60,0.15)", color: "#D6B47E" }}>
+                  style={{ background: "#071426", border: "1px solid rgba(184,138,60,0.15)", color: "#C5A365" }}>
 {JSON.stringify(selected, null, 2)}
                 </pre>
               </div>

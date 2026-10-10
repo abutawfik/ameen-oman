@@ -55,10 +55,10 @@ const PoliceAlertCenter = ({ isAr }: Props) => {
               className="w-8 h-8 flex items-center justify-center rounded-lg flex-shrink-0"
               style={{ background: criticalCount > 0 ? "rgba(201,74,94,0.15)" : "rgba(184,138,60,0.1)", border: `1px solid ${criticalCount > 0 ? "rgba(201,74,94,0.4)" : "rgba(184,138,60,0.3)"}` }}
             >
-              <i className="ri-alarm-warning-line text-sm" style={{ color: criticalCount > 0 ? "#C94A5E" : "#D6B47E" }} />
+              <i className="ri-alarm-warning-line text-sm" style={{ color: criticalCount > 0 ? "#C94A5E" : "#C5A365" }} />
             </div>
             <div>
-              <h2 className="text-white text-sm font-bold font-['Inter']">{isAr ? "مركز تنبيهات الشرطة" : "Police Alert Center"}</h2>
+              <h2 className="text-white text-sm font-bold font-['Manrope']">{isAr ? "مركز تنبيهات الشرطة" : "Police Alert Center"}</h2>
               <p className="text-gray-500 text-xs font-['JetBrains_Mono']">
                 {unacknowledgedCount} {isAr ? "غير مؤكد" : "unacknowledged"}
               </p>
@@ -68,7 +68,7 @@ const PoliceAlertCenter = ({ isAr }: Props) => {
             <button
               onClick={acknowledgeAll}
               className="text-xs px-3 py-1.5 rounded-lg cursor-pointer font-['JetBrains_Mono'] whitespace-nowrap"
-              style={{ color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)", background: "rgba(184,138,60,0.05)" }}
+              style={{ color: "#C5A365", border: "1px solid rgba(184,138,60,0.2)", background: "rgba(184,138,60,0.05)" }}
             >
               {isAr ? "تأكيد الكل" : "Ack All"}
             </button>
@@ -111,7 +111,7 @@ const PoliceAlertCenter = ({ isAr }: Props) => {
                 ? f.key === "all" ? "rgba(184,138,60,0.1)" : `${priorityConfig[f.key as NotifPriority]?.bg}`
                 : "transparent",
               color: filterPriority === f.key
-                ? f.key === "all" ? "#D6B47E" : priorityConfig[f.key as NotifPriority]?.color
+                ? f.key === "all" ? "#C5A365" : priorityConfig[f.key as NotifPriority]?.color
                 : "#6B7280",
               border: filterPriority === f.key
                 ? f.key === "all" ? "1px solid rgba(184,138,60,0.2)" : `1px solid ${priorityConfig[f.key as NotifPriority]?.border}`
@@ -177,10 +177,10 @@ const PoliceAlertCenter = ({ isAr }: Props) => {
                       )}
                     </div>
                   </div>
-                  <p className={`text-sm font-['Inter'] font-semibold leading-snug ${alert.acknowledged ? "text-gray-400" : "text-white"}`}>
+                  <p className={`text-sm font-['Manrope'] font-semibold leading-snug ${alert.acknowledged ? "text-gray-400" : "text-white"}`}>
                     {isAr ? alert.titleAr : alert.title}
                   </p>
-                  <p className="text-gray-500 text-xs font-['Inter'] mt-0.5 leading-relaxed">
+                  <p className="text-gray-500 text-xs font-['Manrope'] mt-0.5 leading-relaxed">
                     {isAr ? alert.descriptionAr : alert.description}
                   </p>
                   <div className="flex items-center gap-2 mt-1.5">
@@ -216,7 +216,7 @@ const PoliceAlertCenter = ({ isAr }: Props) => {
                   )}
                   <button
                     className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-['JetBrains_Mono'] cursor-pointer transition-colors whitespace-nowrap"
-                    style={{ background: "rgba(184,138,60,0.05)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}
+                    style={{ background: "rgba(184,138,60,0.05)", color: "#C5A365", border: "1px solid rgba(184,138,60,0.2)" }}
                   >
                     <i className="ri-user-add-line" />
                     {isAr ? "تعيين" : "Assign"}

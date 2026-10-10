@@ -21,8 +21,8 @@ const SourcesTab = ({ isAr, presenterMode }: { isAr: boolean; presenterMode: boo
   const internalCount = INTERNAL_STREAMS.length;
 
   const FILTER_TABS: { id: SourceFilter; labelEn: string; labelAr: string; count: number; color: string }[] = [
-    { id: "all",      labelEn: "All",              labelAr: "الكل",           count: osintCount + internalCount, color: "#D6B47E" },
-    { id: "osint",    labelEn: "OSINT",            labelAr: "مصادر مفتوحة",   count: osintCount,                 color: "#D6B47E" },
+    { id: "all",      labelEn: "All",              labelAr: "الكل",           count: osintCount + internalCount, color: "#C5A365" },
+    { id: "osint",    labelEn: "OSINT",            labelAr: "مصادر مفتوحة",   count: osintCount,                 color: "#C5A365" },
     { id: "internal", labelEn: "Internal Streams", labelAr: "تدفقات داخلية",  count: internalCount,              color: "#4ADE80" },
   ];
 

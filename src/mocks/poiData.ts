@@ -192,5 +192,5 @@ export const CATEGORY_CONFIG: Record<POICategory, { labelEn: string; labelAr: st
 };
 
 export const THREAT_COLORS: Record<POIThreat, string> = {
-  critical: '#C94A5E', high: '#D4922A', medium: '#D6B47E', low: '#4A8E5A',
+  critical: '#C94A5E', high: '#D4922A', medium: '#C5A365', low: '#4A8E5A',
 };

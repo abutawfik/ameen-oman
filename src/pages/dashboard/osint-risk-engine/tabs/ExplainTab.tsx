@@ -35,7 +35,7 @@ const ExplainTab = ({
         <p className="text-gray-400 mb-4">{isAr ? "اختر سجلاً من قائمة المشغّل لعرض الشرح" : "Select a record from the Operator Queue to see its explainability breakdown"}</p>
         <button onClick={onBack}
           className="px-4 py-2 rounded-lg text-sm font-semibold cursor-pointer"
-          style={{ background: "rgba(184,138,60,0.1)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.3)" }}>
+          style={{ background: "rgba(184,138,60,0.1)", color: "#C5A365", border: "1px solid rgba(184,138,60,0.3)" }}>
           {isAr ? "فتح قائمة المشغّل" : "Open Operator Queue"}
         </button>
       </div>
@@ -75,7 +75,7 @@ const ExplainTab = ({
             borderColor: "rgba(184,138,60,0.4)",
           }}>
           <div className="flex items-center gap-3">
-            <i className="ri-sparkling-2-line text-[#D6B47E] text-lg" />
+            <i className="ri-sparkling-2-line text-[#C5A365] text-lg" />
             <span className="text-white text-sm font-semibold">{scenarioToast}</span>
           </div>
           <button onClick={onDismissToast}
@@ -108,7 +108,7 @@ const ExplainTab = ({
               <span className="px-2 py-0.5 rounded-md text-[11px] font-bold font-['JetBrains_Mono']"
                 style={{
                   background: record.decisionPoint === "ETA" ? "rgba(184,138,60,0.1)" : "rgba(107,79,174,0.1)",
-                  color: record.decisionPoint === "ETA" ? "#D6B47E" : "#6B4FAE",
+                  color: record.decisionPoint === "ETA" ? "#C5A365" : "#6B4FAE",
                 }}>
                 {record.decisionPoint}
               </span>
@@ -151,7 +151,7 @@ const ExplainTab = ({
         }}>
         <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs font-['JetBrains_Mono']">
           <span className="flex items-center gap-2 text-gray-300">
-            <i className="ri-radar-line text-[#D6B47E]" />
+            <i className="ri-radar-line text-[#C5A365]" />
             {isAr
               ? `يستند إلى ${record.sourcesAvailable.length}/${expectedSources} مصادر OSINT · ${activeRules}/${totalRules} قواعد نشطة`
               : `Based on ${record.sourcesAvailable.length}/${expectedSources} OSINT sources · ${activeRules}/${totalRules} rules fired`}
@@ -261,7 +261,7 @@ const ExplainTab = ({
                       <span className="px-2 py-0.5 rounded-md text-[11px] font-bold font-['JetBrains_Mono'] tracking-widest flex-shrink-0"
                         style={{
                           background: c.type === "rule" ? "rgba(184,138,60,0.12)" : "rgba(107,79,174,0.12)",
-                          color: c.type === "rule" ? "#D6B47E" : "#6B4FAE",
+                          color: c.type === "rule" ? "#C5A365" : "#6B4FAE",
                         }}>
                         {c.type === "rule" ? "RULE" : "ML"}
                       </span>

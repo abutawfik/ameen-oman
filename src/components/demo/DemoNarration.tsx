@@ -264,7 +264,7 @@ const DemoNarration = () => {
               left: highlight.left - 6,
               width: highlight.width + 12,
               height: highlight.height + 12,
-              border: "2px solid #D6B47E",
+              border: "2px solid #C5A365",
               borderRadius: 12,
               boxShadow: "0 0 0 6px rgba(184,138,60,0.2), 0 0 28px rgba(184,138,60,0.4)",
               zIndex: 91,
@@ -302,8 +302,8 @@ const DemoNarration = () => {
       >
         <div className="flex items-center justify-between gap-3 mb-2">
           <div className="flex items-center gap-2">
-            <i className="ri-mic-line" style={{ color: "#D6B47E" }} />
-            <span className="text-[11px] font-bold tracking-widest uppercase" style={{ color: "#D6B47E", fontFamily: fonts.mono }}>
+            <i className="ri-mic-line" style={{ color: "#C5A365" }} />
+            <span className="text-[11px] font-bold tracking-widest uppercase" style={{ color: "#C5A365", fontFamily: fonts.mono }}>
               {fonts.isAr ? "شرح مباشر" : "DEMO NARRATION"}
             </span>
             {script && (
@@ -314,7 +314,7 @@ const DemoNarration = () => {
           </div>
           <div className="flex items-center gap-2">
             {script && (
-              <span className="text-[11px] font-bold" style={{ color: "#D6B47E", fontFamily: fonts.mono }}>
+              <span className="text-[11px] font-bold" style={{ color: "#C5A365", fontFamily: fonts.mono }}>
                 {stepIdx + 1} / {script.steps.length}
               </span>
             )}
@@ -322,7 +322,7 @@ const DemoNarration = () => {
             {script && step && (
               <button type="button" onClick={handleCopyDeepLink}
                 className="w-7 h-7 rounded-md flex items-center justify-center cursor-pointer"
-                style={{ background: "rgba(184,138,60,0.12)", color: "#D6B47E", border: "1px solid #D6B47E55" }}
+                style={{ background: "rgba(184,138,60,0.12)", color: "#C5A365", border: "1px solid #C5A36555" }}
                 title={fonts.isAr ? "نسخ رابط هذه الخطوة" : "Copy deep link to this step"}
                 aria-label={fonts.isAr ? "نسخ رابط هذه الخطوة" : "Copy deep link to this step"}>
                 <i className="ri-link" aria-hidden="true" />
@@ -391,14 +391,14 @@ const DemoNarration = () => {
                 <button type="button" onClick={() => setStepIdx((i) => Math.max(i - 1, 0))}
                   disabled={stepIdx === 0}
                   className="px-3 py-1 rounded-md text-xs font-bold cursor-pointer disabled:opacity-40 flex items-center gap-1"
-                  style={{ background: "rgba(255,255,255,0.04)", color: "#D6B47E", border: "1px solid #D6B47E55" }}>
+                  style={{ background: "rgba(255,255,255,0.04)", color: "#C5A365", border: "1px solid #C5A36555" }}>
                   <i className="ri-arrow-left-s-line" />
                   {fonts.isAr ? "السابق" : "Prev"}
                 </button>
                 <button type="button" onClick={() => setStepIdx((i) => Math.min(i + 1, script.steps.length - 1))}
                   disabled={stepIdx === script.steps.length - 1}
                   className="px-3 py-1 rounded-md text-xs font-bold cursor-pointer disabled:opacity-40 flex items-center gap-1"
-                  style={{ background: "#D6B47E", color: "var(--alm-ocean-900)", border: "1px solid #D6B47E" }}>
+                  style={{ background: "#C5A365", color: "var(--alm-ocean-900)", border: "1px solid #C5A365" }}>
                   {fonts.isAr ? "التالي" : "Next"}
                   <i className="ri-arrow-right-s-line" />
                 </button>
@@ -415,7 +415,7 @@ const DemoNarration = () => {
                   key={`${location.pathname}-${stepIdx}`}
                   style={{
                     height: "100%",
-                    background: "#D6B47E",
+                    background: "#C5A365",
                     width: "100%",
                     animation: `narrationTick ${(step.durationMs ?? STEP_DURATION_MS) / 1000}s linear forwards`,
                   }} />

@@ -99,7 +99,7 @@ const YamlDiffView = ({ isAr, original, current }: { isAr: boolean; original: st
           {rows.map((r) => {
             const isAdd = r.kind === "add";
             const bg = isAdd ? "rgba(74,222,128,0.16)" : "transparent";
-            const color = isAdd ? "#C7F3CF" : r.rightText ? "#D6B47E" : "transparent";
+            const color = isAdd ? "#C7F3CF" : r.rightText ? "#C5A365" : "transparent";
             return (
               <div key={`r-${r.key}`}
                 className="flex items-start gap-2 px-2 py-[1px]"
@@ -250,8 +250,8 @@ const RulesSection = ({
                   className="px-3 py-1 rounded-md text-xs font-semibold cursor-pointer flex items-center gap-1.5"
                   style={{
                     background: active ? "rgba(184,138,60,0.15)" : "transparent",
-                    color: active ? "#D6B47E" : "#9CA3AF",
-                    border: `1px solid ${active ? "#D6B47E" : "transparent"}`,
+                    color: active ? "#C5A365" : "#9CA3AF",
+                    border: `1px solid ${active ? "#C5A365" : "transparent"}`,
                   }}>
                   <i className={v.iconCls} />
                   {isAr ? v.labelAr : v.labelEn}
@@ -316,7 +316,7 @@ const RulesSection = ({
               : toast.kind === "reload"
                 ? "rgba(107,79,174,0.35)"
                 : "rgba(184,138,60,0.35)",
-            color: toast.kind === "ok" ? "#4ADE80" : toast.kind === "reload" ? "#B8A0FF" : "#D6B47E",
+            color: toast.kind === "ok" ? "#4ADE80" : toast.kind === "reload" ? "#B8A0FF" : "#C5A365",
             fontFamily: "'JetBrains Mono', monospace",
           }}>
           {toast.msg}
@@ -338,7 +338,7 @@ const RulesSection = ({
                   opacity: r.enabled ? 1 : 0.55,
                 }}>
                 <div className="w-9 h-5 rounded-full relative flex-shrink-0 mt-0.5 transition-colors"
-                  style={{ background: r.enabled ? "#D6B47E" : "rgba(255,255,255,0.08)" }}>
+                  style={{ background: r.enabled ? "#C5A365" : "rgba(255,255,255,0.08)" }}>
                   <div className="absolute top-0.5 w-4 h-4 rounded-full bg-white transition-all"
                     style={{ left: r.enabled ? "calc(100% - 18px)" : "2px" }} />
                 </div>
@@ -366,7 +366,7 @@ const RulesSection = ({
           <div className="flex flex-wrap items-center gap-2">
             <button type="button" onClick={handleValidate}
               className="px-3 py-1.5 rounded-md text-xs font-bold cursor-pointer flex items-center gap-1.5"
-              style={{ background: "transparent", color: "#D6B47E", border: "1px solid #D6B47E55", fontFamily: "'JetBrains Mono', monospace" }}>
+              style={{ background: "transparent", color: "#C5A365", border: "1px solid #C5A36555", fontFamily: "'JetBrains Mono', monospace" }}>
               <i className="ri-check-line" />
               {isAr ? "تحقّق" : "Validate"}
             </button>
@@ -428,13 +428,13 @@ const RulesSection = ({
                 className="flex-1 p-3 min-h-[360px] outline-none resize-vertical"
                 style={{
                   background: "transparent",
-                  color: "#D6B47E",
+                  color: "#C5A365",
                   fontFamily: "'JetBrains Mono', monospace",
                   fontSize: 12,
                   lineHeight: 1.55,
                   whiteSpace: "pre",
                   overflowX: "auto",
-                  caretColor: "#D6B47E",
+                  caretColor: "#C5A365",
                 }}
               />
             </div>
@@ -446,7 +446,7 @@ const RulesSection = ({
             className="w-full flex items-center justify-between px-3 py-2 rounded-md cursor-pointer"
             style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }}>
             <span className="text-xs font-bold flex items-center gap-2"
-              style={{ color: "#D6B47E", fontFamily: "'JetBrains Mono', monospace" }}>
+              style={{ color: "#C5A365", fontFamily: "'JetBrains Mono', monospace" }}>
               <i className="ri-book-2-line" />
               {isAr ? "مرجع لغة المسندات" : "Predicate DSL reference"}
             </span>

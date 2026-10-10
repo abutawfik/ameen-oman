@@ -119,7 +119,7 @@ const PhoneLookupEngine = ({ isAr }: Props) => {
               style={{
                 background: lookupType === t ? "rgba(184,138,60,0.15)" : "rgba(255,255,255,0.04)",
                 border: `1px solid ${lookupType === t ? "rgba(184,138,60,0.35)" : "rgba(255,255,255,0.08)"}`,
-                color: lookupType === t ? "#D6B47E" : "#6B7280",
+                color: lookupType === t ? "#C5A365" : "#6B7280",
               }}>
               <i className={`${t === "phone" ? "ri-phone-line" : "ri-mail-line"} mr-1.5`} />
               {t === "phone" ? (isAr ? "رقم الهاتف" : "Phone Number") : (isAr ? "البريد الإلكتروني" : "Email Address")}
@@ -142,7 +142,7 @@ const PhoneLookupEngine = ({ isAr }: Props) => {
           </div>
           <button type="button" onClick={handleLookup} disabled={loading}
             className="flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-bold cursor-pointer whitespace-nowrap transition-all"
-            style={{ background: loading ? "rgba(184,138,60,0.3)" : "#D6B47E", color: "#051428" }}>
+            style={{ background: loading ? "rgba(184,138,60,0.3)" : "#C5A365", color: "#071426" }}>
             {loading ? <><i className="ri-loader-4-line animate-spin" />{isAr ? "جارٍ البحث..." : "Searching..."}</> : <><i className="ri-search-line" />{isAr ? "بحث" : "Lookup"}</>}
           </button>
         </div>
@@ -166,7 +166,7 @@ const PhoneLookupEngine = ({ isAr }: Props) => {
           </div>
           <div className="flex gap-2">
             {["WhatsApp", "Telegram", "Instagram", "X"].map((p, i) => (
-              <div key={p} className="px-2 py-1 rounded-lg text-xs font-['JetBrains_Mono'] animate-pulse" style={{ background: "rgba(184,138,60,0.08)", color: "#D6B47E", animationDelay: `${i * 0.2}s` }}>{p}</div>
+              <div key={p} className="px-2 py-1 rounded-lg text-xs font-['JetBrains_Mono'] animate-pulse" style={{ background: "rgba(184,138,60,0.08)", color: "#C5A365", animationDelay: `${i * 0.2}s` }}>{p}</div>
             ))}
           </div>
         </div>
@@ -183,7 +183,7 @@ const PhoneLookupEngine = ({ isAr }: Props) => {
                 <div>
                   <div className="flex items-center gap-2 flex-wrap mb-1">
                     <span className="text-white text-lg font-bold">{isAr ? result.personNameAr : result.personName}</span>
-                    <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(184,138,60,0.12)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.25)" }}>
+                    <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(184,138,60,0.12)", color: "#C5A365", border: "1px solid rgba(184,138,60,0.25)" }}>
                       {result.profiles.length} {isAr ? "حساب مكتشف" : "profiles found"}
                     </span>
                   </div>
@@ -288,7 +288,7 @@ const PhoneLookupEngine = ({ isAr }: Props) => {
                 </div>
               </div>
               <div className="flex items-center gap-4">
-                <span className="text-xs font-bold" style={{ color: r.profiles > 0 ? "#D6B47E" : "#6B7280" }}>
+                <span className="text-xs font-bold" style={{ color: r.profiles > 0 ? "#C5A365" : "#6B7280" }}>
                   {r.profiles} {isAr ? "حساب" : "profiles"}
                 </span>
                 <span className="text-gray-600 text-xs font-['JetBrains_Mono']">{r.time}</span>

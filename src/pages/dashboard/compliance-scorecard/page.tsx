@@ -5,8 +5,8 @@ import type { DashboardOutletContext } from "../DashboardLayout";
 type MainTab = "overview" | "streams" | "violations" | "trends";
 
 const STREAMS = [
-  { id: "hotel",       num: "01", name: "Hotel Intelligence",       nameAr: "الاستخبارات الفندقية",       icon: "ri-hotel-line",           color: "#D6B47E", score: 96, violations: 2,  entities: 47,  eventsToday: 1284, trend: [88,90,92,93,94,95,96], status: "compliant" },
-  { id: "car-rental",  num: "02", name: "Car Rental Monitoring",    nameAr: "مراقبة تأجير السيارات",      icon: "ri-car-line",             color: "#D6B47E", score: 94, violations: 3,  entities: 23,  eventsToday: 2103, trend: [89,90,91,92,93,93,94], status: "compliant" },
+  { id: "hotel",       num: "01", name: "Hotel Intelligence",       nameAr: "الاستخبارات الفندقية",       icon: "ri-hotel-line",           color: "#C5A365", score: 96, violations: 2,  entities: 47,  eventsToday: 1284, trend: [88,90,92,93,94,95,96], status: "compliant" },
+  { id: "car-rental",  num: "02", name: "Car Rental Monitoring",    nameAr: "مراقبة تأجير السيارات",      icon: "ri-car-line",             color: "#C5A365", score: 94, violations: 3,  entities: 23,  eventsToday: 2103, trend: [89,90,91,92,93,93,94], status: "compliant" },
   { id: "mobile",      num: "03", name: "Mobile Operators",         nameAr: "مشغلو الاتصالات",            icon: "ri-sim-card-line",        color: "#A78BFA", score: 91, violations: 5,  entities: 4,   eventsToday: 8412, trend: [85,86,88,89,90,91,91], status: "compliant" },
   { id: "municipality",num: "04", name: "Municipality Registry",    nameAr: "سجل البلديات",               icon: "ri-government-line",      color: "#FACC15", score: 88, violations: 8,  entities: 11,  eventsToday: 891,  trend: [82,83,84,85,86,87,88], status: "compliant" },
   { id: "financial",   num: "05", name: "Payment Intelligence",     nameAr: "الاستخبارات المالية",        icon: "ri-bank-card-line",       color: "#4ADE80", score: 97, violations: 1,  entities: 18,  eventsToday: 24891,trend: [93,94,95,96,96,97,97], status: "compliant" },
@@ -19,17 +19,17 @@ const STREAMS = [
   { id: "ecommerce",   num: "12", name: "E-Commerce & Retail",      nameAr: "التجارة الإلكترونية",        icon: "ri-shopping-cart-line",   color: "#34D399", score: 78, violations: 19, entities: 312, eventsToday: 18234,trend: [72,73,74,75,76,77,78], status: "warning" },
   { id: "social",      num: "13", name: "Social Media Intelligence",nameAr: "استخبارات وسائل التواصل",   icon: "ri-global-line",          color: "#38BDF8", score: 95, violations: 2,  entities: 1,   eventsToday: 8412, trend: [91,92,93,93,94,95,95], status: "compliant" },
   { id: "customs",     num: "14", name: "Customs & Cargo",          nameAr: "الجمارك والشحن",             icon: "ri-ship-line",            color: "#FCD34D", score: 84, violations: 12, entities: 6,   eventsToday: 6241, trend: [78,79,80,81,82,83,84], status: "warning" },
-  { id: "marine",      num: "15", name: "Marine & Maritime",        nameAr: "البحرية والملاحة",           icon: "ri-anchor-line",          color: "#D6B47E", score: 71, violations: 28, entities: 14,  eventsToday: 892,  trend: [60,62,64,66,68,70,71], status: "critical" },
+  { id: "marine",      num: "15", name: "Marine & Maritime",        nameAr: "البحرية والملاحة",           icon: "ri-anchor-line",          color: "#C5A365", score: 71, violations: 28, entities: 14,  eventsToday: 892,  trend: [60,62,64,66,68,70,71], status: "critical" },
   { id: "postal",      num: "16", name: "Postal Services",          nameAr: "الخدمات البريدية",           icon: "ri-mail-send-line",       color: "#A78BFA", score: 63, violations: 41, entities: 3,   eventsToday: 1203, trend: [55,56,58,59,60,62,63], status: "critical" },
 ];
 
 const VIOLATIONS = [
   { id: "VIO-2026-0441", stream: "Postal Services", streamIcon: "ri-mail-send-line", streamColor: "#A78BFA", entity: "National Post Authority", type: "Late Submission", severity: "high", date: "2026-04-06", detail: "Event batch submitted 72 hours late — 234 events affected", status: "open" },
-  { id: "VIO-2026-0440", stream: "Marine & Maritime", streamIcon: "ri-anchor-line", streamColor: "#D6B47E", entity: "Muscat Marina Authority", type: "Missing Fields", severity: "critical", date: "2026-04-06", detail: "Vessel registration events missing IMO number and flag state — 89 records", status: "open" },
+  { id: "VIO-2026-0440", stream: "Marine & Maritime", streamIcon: "ri-anchor-line", streamColor: "#C5A365", entity: "Muscat Marina Authority", type: "Missing Fields", severity: "critical", date: "2026-04-06", detail: "Vessel registration events missing IMO number and flag state — 89 records", status: "open" },
   { id: "VIO-2026-0438", stream: "E-Commerce & Retail", streamIcon: "ri-shopping-cart-line", streamColor: "#34D399", entity: "TechOman Marketplace", type: "Schema Violation", severity: "medium", date: "2026-04-05", detail: "Transaction amount field format mismatch — expected decimal, received string", status: "investigating" },
   { id: "VIO-2026-0435", stream: "Customs & Cargo", streamIcon: "ri-ship-line", streamColor: "#FCD34D", entity: "Gulf Trade Brokers Co.", type: "Duplicate Submission", severity: "medium", date: "2026-04-05", detail: "Declaration AMN-CUS-2026-08734 submitted twice — duplicate reference detected", status: "resolved" },
   { id: "VIO-2026-0431", stream: "Utility Activation", streamIcon: "ri-flashlight-line", streamColor: "#FACC15", entity: "Salalah Electricity Co.", type: "Authentication Failure", severity: "high", date: "2026-04-04", detail: "API key expired — 14 hours of events not received. Backup portal submission pending", status: "investigating" },
-  { id: "VIO-2026-0428", stream: "Marine & Maritime", streamIcon: "ri-anchor-line", streamColor: "#D6B47E", entity: "Khasab Port Authority", type: "Late Submission", severity: "high", date: "2026-04-04", detail: "Docking events delayed 48 hours — 156 vessel movements not reported in time", status: "open" },
+  { id: "VIO-2026-0428", stream: "Marine & Maritime", streamIcon: "ri-anchor-line", streamColor: "#C5A365", entity: "Khasab Port Authority", type: "Late Submission", severity: "high", date: "2026-04-04", detail: "Docking events delayed 48 hours — 156 vessel movements not reported in time", status: "open" },
   { id: "VIO-2026-0425", stream: "Education", streamIcon: "ri-graduation-cap-line", streamColor: "#A78BFA", entity: "Gulf College", type: "Missing Fields", severity: "medium", date: "2026-04-03", detail: "Student enrollment records missing passport number — 67 records incomplete", status: "resolved" },
   { id: "VIO-2026-0419", stream: "Postal Services", streamIcon: "ri-mail-send-line", streamColor: "#A78BFA", entity: "National Post Authority", type: "Volume Anomaly", severity: "critical", date: "2026-04-03", detail: "Reported parcel volume 40% below expected baseline — possible under-reporting", status: "escalated" },
 ];
@@ -76,7 +76,7 @@ const ComplianceScorecardPage = () => {
   ];
 
   return (
-    <div className="flex flex-col h-full" style={{ background: "#051428", direction: isAr ? "rtl" : "ltr" }}>
+    <div className="flex flex-col h-full" style={{ background: "#071426", direction: isAr ? "rtl" : "ltr" }}>
       <div className="fixed inset-0 pointer-events-none"
         style={{ backgroundImage: "linear-gradient(rgba(184,138,60,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.025) 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
 
@@ -89,14 +89,14 @@ const ComplianceScorecardPage = () => {
                 <i className="ri-shield-check-line text-gold-400 text-lg" />
               </div>
               <div>
-                <h1 className="text-white text-xl font-bold font-['Inter']">{isAr ? "بطاقة الامتثال" : "Compliance Scorecard"}</h1>
+                <h1 className="text-white text-xl font-bold font-['Manrope']">{isAr ? "بطاقة الامتثال" : "Compliance Scorecard"}</h1>
                 <p className="text-gray-500 text-xs font-['JetBrains_Mono']">
                   {isAr ? "16 مصدر بيانات · درجات الامتثال · سجل المخالفات · اتجاهات الأداء" : "16 Data Streams · Compliance Scores · Violation History · Performance Trends"}
                 </p>
               </div>
             </div>
             <button onClick={() => navigate("/dashboard/command-center")}
-              className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap font-['Inter'] transition-all"
+              className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap font-['Manrope'] transition-all"
               style={{ background: "rgba(255,255,255,0.04)", color: "#9CA3AF", border: "1px solid rgba(255,255,255,0.08)" }}>
               <i className="ri-radar-line" />
               {isAr ? "مركز القيادة" : "Command Center"}
@@ -120,8 +120,8 @@ const ComplianceScorecardPage = () => {
                     </div>
                   </div>
                   <div className="text-2xl font-black font-['JetBrains_Mono']" style={{ color: kpi.color }}>{kpi.value}</div>
-                  <div className="text-white text-xs font-semibold font-['Inter'] mt-0.5">{isAr ? kpi.labelAr : kpi.label}</div>
-                  <div className="text-gray-600 text-xs font-['Inter'] mt-0.5">{kpi.sub}</div>
+                  <div className="text-white text-xs font-semibold font-['Manrope'] mt-0.5">{isAr ? kpi.labelAr : kpi.label}</div>
+                  <div className="text-gray-600 text-xs font-['Manrope'] mt-0.5">{kpi.sub}</div>
                 </div>
               </div>
             ))}
@@ -131,10 +131,10 @@ const ComplianceScorecardPage = () => {
           <div className="flex gap-1 p-1 rounded-xl" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.1)" }}>
             {tabs.map((tab) => (
               <button key={tab.id} onClick={() => setMainTab(tab.id)}
-                className="flex-1 flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg text-xs font-semibold transition-all cursor-pointer whitespace-nowrap font-['Inter']"
+                className="flex-1 flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg text-xs font-semibold transition-all cursor-pointer whitespace-nowrap font-['Manrope']"
                 style={{
                   background: mainTab === tab.id ? "rgba(184,138,60,0.12)" : "transparent",
-                  color: mainTab === tab.id ? "#D6B47E" : "#6B7280",
+                  color: mainTab === tab.id ? "#C5A365" : "#6B7280",
                   border: mainTab === tab.id ? "1px solid rgba(184,138,60,0.25)" : "1px solid transparent",
                 }}>
                 <i className={`${tab.icon} text-sm`} />
@@ -156,7 +156,7 @@ const ComplianceScorecardPage = () => {
                 ].map((s) => (
                   <div key={s.label} className="p-4 rounded-xl" style={{ background: "rgba(10,37,64,0.8)", border: `1px solid ${s.color}20` }}>
                     <div className="text-3xl font-black font-['JetBrains_Mono'] mb-1" style={{ color: s.color }}>{s.count}</div>
-                    <div className="text-white text-xs font-semibold font-['Inter']">{isAr ? s.labelAr : s.label}</div>
+                    <div className="text-white text-xs font-semibold font-['Manrope']">{isAr ? s.labelAr : s.label}</div>
                     {s.pct > 0 && (
                       <div className="mt-2 h-1.5 rounded-full" style={{ background: "rgba(255,255,255,0.06)" }}>
                         <div className="h-full rounded-full" style={{ width: `${s.pct}%`, background: s.color }} />
@@ -169,14 +169,14 @@ const ComplianceScorecardPage = () => {
               {/* All streams compact grid */}
               <div className="rounded-xl overflow-hidden" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.1)" }}>
                 <div className="px-5 py-3 border-b flex items-center justify-between" style={{ borderColor: "rgba(184,138,60,0.08)" }}>
-                  <h3 className="text-white text-sm font-bold font-['Inter']">{isAr ? "جميع المصادر — نظرة سريعة" : "All 16 Streams — Quick View"}</h3>
+                  <h3 className="text-white text-sm font-bold font-['Manrope']">{isAr ? "جميع المصادر — نظرة سريعة" : "All 16 Streams — Quick View"}</h3>
                   <div className="flex gap-1">
                     {["all", "compliant", "warning", "critical"].map((f) => (
                       <button key={f} onClick={() => setStatusFilter(f)}
-                        className="px-2.5 py-1 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap font-['Inter'] capitalize transition-all"
+                        className="px-2.5 py-1 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap font-['Manrope'] capitalize transition-all"
                         style={{
                           background: statusFilter === f ? "rgba(184,138,60,0.12)" : "transparent",
-                          color: statusFilter === f ? "#D6B47E" : "#6B7280",
+                          color: statusFilter === f ? "#C5A365" : "#6B7280",
                           border: `1px solid ${statusFilter === f ? "rgba(184,138,60,0.25)" : "transparent"}`,
                         }}>
                         {f}
@@ -198,7 +198,7 @@ const ComplianceScorecardPage = () => {
                           <i className={`${stream.icon} text-xs`} style={{ color: stream.color }} />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <p className="text-white text-xs font-semibold font-['Inter'] truncate">{isAr ? stream.nameAr : stream.name}</p>
+                          <p className="text-white text-xs font-semibold font-['Manrope'] truncate">{isAr ? stream.nameAr : stream.name}</p>
                           <div className="flex items-center gap-2 mt-0.5">
                             <div className="flex-1 h-1 rounded-full" style={{ background: "rgba(255,255,255,0.06)" }}>
                               <div className="h-full rounded-full" style={{ width: `${stream.score}%`, background: cfg.color }} />
@@ -207,7 +207,7 @@ const ComplianceScorecardPage = () => {
                         </div>
                         <div className="text-right flex-shrink-0">
                           <div className="text-sm font-bold font-['JetBrains_Mono']" style={{ color: cfg.color }}>{stream.score}%</div>
-                          <span className="text-xs px-1.5 py-0.5 rounded-full font-['Inter']" style={{ background: cfg.bg, color: cfg.color, fontSize: "9px" }}>
+                          <span className="text-xs px-1.5 py-0.5 rounded-full font-['Manrope']" style={{ background: cfg.bg, color: cfg.color, fontSize: "9px" }}>
                             {cfg.label}
                           </span>
                         </div>
@@ -233,10 +233,10 @@ const ComplianceScorecardPage = () => {
                 <div className="flex gap-1 mb-2">
                   {(["score", "violations", "events"] as const).map((s) => (
                     <button key={s} onClick={() => setSortBy(s)}
-                      className="flex-1 py-1 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap font-['Inter'] capitalize transition-all"
+                      className="flex-1 py-1 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap font-['Manrope'] capitalize transition-all"
                       style={{
                         background: sortBy === s ? "rgba(184,138,60,0.12)" : "rgba(10,37,64,0.6)",
-                        color: sortBy === s ? "#D6B47E" : "#6B7280",
+                        color: sortBy === s ? "#C5A365" : "#6B7280",
                         border: `1px solid ${sortBy === s ? "rgba(184,138,60,0.25)" : "rgba(255,255,255,0.05)"}`,
                       }}>
                       {s}
@@ -256,7 +256,7 @@ const ComplianceScorecardPage = () => {
                         <div className="w-6 h-6 flex items-center justify-center rounded-md flex-shrink-0" style={{ background: `${stream.color}12` }}>
                           <i className={`${stream.icon} text-xs`} style={{ color: stream.color }} />
                         </div>
-                        <span className="text-white text-xs font-semibold font-['Inter'] truncate flex-1">{isAr ? stream.nameAr : stream.name}</span>
+                        <span className="text-white text-xs font-semibold font-['Manrope'] truncate flex-1">{isAr ? stream.nameAr : stream.name}</span>
                         <span className="text-xs font-bold font-['JetBrains_Mono']" style={{ color: cfg.color }}>{stream.score}%</span>
                       </div>
                       <div className="h-1 rounded-full" style={{ background: "rgba(255,255,255,0.06)" }}>
@@ -285,17 +285,17 @@ const ComplianceScorecardPage = () => {
                             <div>
                               <div className="flex items-center gap-2 mb-0.5">
                                 <span className="text-gray-500 text-xs font-['JetBrains_Mono']">Stream {s.num}</span>
-                                <span className="px-2 py-0.5 rounded-full text-xs font-semibold font-['Inter']"
+                                <span className="px-2 py-0.5 rounded-full text-xs font-semibold font-['Manrope']"
                                   style={{ background: cfg.bg, color: cfg.color, border: `1px solid ${cfg.color}30` }}>
                                   {cfg.label}
                                 </span>
                               </div>
-                              <h3 className="text-white text-base font-bold font-['Inter']">{isAr ? s.nameAr : s.name}</h3>
+                              <h3 className="text-white text-base font-bold font-['Manrope']">{isAr ? s.nameAr : s.name}</h3>
                             </div>
                           </div>
                           <div className="text-right">
                             <div className="text-4xl font-black font-['JetBrains_Mono']" style={{ color: cfg.color }}>{s.score}%</div>
-                            <div className="text-gray-500 text-xs font-['Inter']">Compliance Score</div>
+                            <div className="text-gray-500 text-xs font-['Manrope']">Compliance Score</div>
                           </div>
                         </div>
                         <div className="h-2 rounded-full mb-4" style={{ background: "rgba(255,255,255,0.06)" }}>
@@ -303,14 +303,14 @@ const ComplianceScorecardPage = () => {
                         </div>
                         <div className="grid grid-cols-4 gap-3">
                           {[
-                            { label: "Entities", value: s.entities, color: "#D6B47E" },
+                            { label: "Entities", value: s.entities, color: "#C5A365" },
                             { label: "Events Today", value: s.eventsToday.toLocaleString(), color: s.color },
                             { label: "Violations", value: s.violations, color: s.violations > 10 ? "#C94A5E" : s.violations > 3 ? "#FACC15" : "#4ADE80" },
                             { label: "7-Day Trend", value: s.trend[6] > s.trend[0] ? "↑ Improving" : "↓ Declining", color: s.trend[6] > s.trend[0] ? "#4ADE80" : "#C94A5E" },
                           ].map((stat) => (
                             <div key={stat.label} className="p-3 rounded-lg text-center" style={{ background: "rgba(5,20,40,0.6)", border: `1px solid ${stat.color}15` }}>
                               <div className="text-base font-bold font-['JetBrains_Mono']" style={{ color: stat.color }}>{stat.value}</div>
-                              <div className="text-gray-500 text-xs font-['Inter']">{stat.label}</div>
+                              <div className="text-gray-500 text-xs font-['Manrope']">{stat.label}</div>
                             </div>
                           ))}
                         </div>
@@ -318,7 +318,7 @@ const ComplianceScorecardPage = () => {
 
                       {/* 7-day trend chart */}
                       <div className="p-5 rounded-xl" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.1)" }}>
-                        <h4 className="text-white text-sm font-bold font-['Inter'] mb-4">
+                        <h4 className="text-white text-sm font-bold font-['Manrope'] mb-4">
                           {isAr ? "اتجاه الامتثال (7 أيام)" : "Compliance Trend (7 Days)"}
                         </h4>
                         <div className="flex items-end gap-2 h-28">
@@ -339,13 +339,13 @@ const ComplianceScorecardPage = () => {
 
                       {/* Violations for this stream */}
                       <div className="p-5 rounded-xl" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.1)" }}>
-                        <h4 className="text-white text-sm font-bold font-['Inter'] mb-3">
+                        <h4 className="text-white text-sm font-bold font-['Manrope'] mb-3">
                           {isAr ? "المخالفات الأخيرة" : "Recent Violations"}
                         </h4>
                         {VIOLATIONS.filter((v) => v.stream === s.name || v.stream.includes(s.name.split(" ")[0])).length === 0 ? (
                           <div className="flex items-center gap-2 py-4 text-center justify-center">
                             <i className="ri-checkbox-circle-line text-green-400" />
-                            <span className="text-green-400 text-sm font-['Inter']">No violations recorded</span>
+                            <span className="text-green-400 text-sm font-['Manrope']">No violations recorded</span>
                           </div>
                         ) : (
                           <div className="space-y-2">
@@ -357,8 +357,8 @@ const ComplianceScorecardPage = () => {
                                     <span className="text-xs font-bold font-['JetBrains_Mono']" style={{ color: sev.color }}>{v.id}</span>
                                     <span className="text-gray-500 text-xs font-['JetBrains_Mono']">{v.date}</span>
                                   </div>
-                                  <p className="text-white text-xs font-semibold font-['Inter']">{v.type}</p>
-                                  <p className="text-gray-400 text-xs font-['Inter'] mt-0.5">{v.detail}</p>
+                                  <p className="text-white text-xs font-semibold font-['Manrope']">{v.type}</p>
+                                  <p className="text-gray-400 text-xs font-['Manrope'] mt-0.5">{v.detail}</p>
                                 </div>
                               );
                             })}
@@ -376,7 +376,7 @@ const ComplianceScorecardPage = () => {
           {mainTab === "violations" && (
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <p className="text-gray-400 text-sm font-['Inter']">
+                <p className="text-gray-400 text-sm font-['Manrope']">
                   {isAr ? "سجل كامل بجميع مخالفات الامتثال عبر المصادر" : "Complete record of all compliance violations across all streams"}
                 </p>
                 <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg" style={{ background: "rgba(201,74,94,0.08)", border: "1px solid rgba(201,74,94,0.2)" }}>
@@ -399,18 +399,18 @@ const ComplianceScorecardPage = () => {
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-2 mb-1 flex-wrap">
                               <span className="text-gold-400 text-xs font-['JetBrains_Mono'] font-bold">{v.id}</span>
-                              <span className="px-2 py-0.5 rounded-full text-xs font-semibold font-['Inter'] capitalize"
+                              <span className="px-2 py-0.5 rounded-full text-xs font-semibold font-['Manrope'] capitalize"
                                 style={{ background: sev.bg, color: sev.color }}>{v.severity}</span>
-                              <span className="text-xs font-semibold font-['Inter']" style={{ color: v.streamColor }}>{v.stream}</span>
+                              <span className="text-xs font-semibold font-['Manrope']" style={{ color: v.streamColor }}>{v.stream}</span>
                             </div>
-                            <p className="text-white text-sm font-semibold font-['Inter']">{v.type}</p>
-                            <p className="text-gray-400 text-xs font-['Inter'] mt-0.5">{v.entity}</p>
-                            <p className="text-gray-500 text-xs font-['Inter'] mt-1">{v.detail}</p>
+                            <p className="text-white text-sm font-semibold font-['Manrope']">{v.type}</p>
+                            <p className="text-gray-400 text-xs font-['Manrope'] mt-0.5">{v.entity}</p>
+                            <p className="text-gray-500 text-xs font-['Manrope'] mt-1">{v.detail}</p>
                           </div>
                         </div>
                         <div className="text-right flex-shrink-0">
                           <div className="text-gray-500 text-xs font-['JetBrains_Mono'] mb-1">{v.date}</div>
-                          <span className="px-2 py-0.5 rounded-full text-xs font-semibold font-['Inter'] capitalize"
+                          <span className="px-2 py-0.5 rounded-full text-xs font-semibold font-['Manrope'] capitalize"
                             style={{ background: `${statusColor}15`, color: statusColor, border: `1px solid ${statusColor}30` }}>
                             {v.status}
                           </span>
@@ -428,7 +428,7 @@ const ComplianceScorecardPage = () => {
             <div className="space-y-5">
               {/* Overall trend */}
               <div className="p-5 rounded-xl" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.1)" }}>
-                <h3 className="text-white text-sm font-bold font-['Inter'] mb-4">
+                <h3 className="text-white text-sm font-bold font-['Manrope'] mb-4">
                   {isAr ? "متوسط الامتثال الإجمالي (7 أشهر)" : "Overall Average Compliance Score (7 Months)"}
                 </h3>
                 <div className="flex items-end gap-3 h-36">
@@ -453,7 +453,7 @@ const ComplianceScorecardPage = () => {
               {/* Per-stream trend table */}
               <div className="rounded-xl overflow-hidden" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.1)" }}>
                 <div className="px-5 py-3 border-b" style={{ borderColor: "rgba(184,138,60,0.08)" }}>
-                  <h3 className="text-white text-sm font-bold font-['Inter']">
+                  <h3 className="text-white text-sm font-bold font-['Manrope']">
                     {isAr ? "اتجاه الامتثال لكل مصدر" : "Per-Stream Compliance Trend"}
                   </h3>
                 </div>
@@ -461,12 +461,12 @@ const ComplianceScorecardPage = () => {
                   <table className="w-full">
                     <thead>
                       <tr style={{ borderBottom: "1px solid rgba(184,138,60,0.06)" }}>
-                        <th className="px-4 py-2 text-left text-xs font-semibold text-gray-500 font-['Inter']">Stream</th>
+                        <th className="px-4 py-2 text-left text-xs font-semibold text-gray-500 font-['Manrope']">Stream</th>
                         {MONTHS.map((m) => (
                           <th key={m} className="px-3 py-2 text-center text-xs font-semibold text-gray-500 font-['JetBrains_Mono']">{m}</th>
                         ))}
-                        <th className="px-4 py-2 text-center text-xs font-semibold text-gray-500 font-['Inter']">Change</th>
-                        <th className="px-4 py-2 text-center text-xs font-semibold text-gray-500 font-['Inter']">Status</th>
+                        <th className="px-4 py-2 text-center text-xs font-semibold text-gray-500 font-['Manrope']">Change</th>
+                        <th className="px-4 py-2 text-center text-xs font-semibold text-gray-500 font-['Manrope']">Status</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -480,7 +480,7 @@ const ComplianceScorecardPage = () => {
                             <td className="px-4 py-2">
                               <div className="flex items-center gap-2">
                                 <i className={`${stream.icon} text-xs`} style={{ color: stream.color }} />
-                                <span className="text-white text-xs font-['Inter'] whitespace-nowrap">{isAr ? stream.nameAr : stream.name}</span>
+                                <span className="text-white text-xs font-['Manrope'] whitespace-nowrap">{isAr ? stream.nameAr : stream.name}</span>
                               </div>
                             </td>
                             {stream.trend.map((val, ti) => (
@@ -497,7 +497,7 @@ const ComplianceScorecardPage = () => {
                               </span>
                             </td>
                             <td className="px-4 py-2 text-center">
-                              <span className="px-2 py-0.5 rounded-full text-xs font-['Inter']"
+                              <span className="px-2 py-0.5 rounded-full text-xs font-['Manrope']"
                                 style={{ background: cfg.bg, color: cfg.color, fontSize: "10px" }}>
                                 {cfg.label}
                               </span>

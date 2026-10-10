@@ -38,8 +38,8 @@ const C = {
   ivory700: "#8A8374",
   ivory800: "#6B6457",
 
-  gold400: "#D6B47E",
-  gold500: "#C99C48",
+  gold400: "#C5A365",
+  gold500: "#C5A365",
   gold600: "#B88A3C",
   gold700: "#96732C",
 
@@ -253,7 +253,7 @@ const LoginPage = () => {
               dir={isAr ? "rtl" : "ltr"}
               style={{
                 fontFamily: isAr ? "'Cairo', 'Tajawal', 'IBM Plex Sans Arabic', sans-serif" : fonts.display,
-                fontStyle: isAr ? "normal" : "italic",
+                fontStyle: "normal",
                 fontWeight: isAr ? 500 : 400,
                 color: C.ivory100,
                 fontSize: "1.375rem",
@@ -269,7 +269,7 @@ const LoginPage = () => {
               dir={isAr ? "ltr" : "rtl"}
               style={{
                 fontFamily: isAr ? fonts.display : "'Cairo', 'Tajawal', 'IBM Plex Sans Arabic', sans-serif",
-                fontStyle: isAr ? "italic" : "normal",
+                fontStyle: "normal",
                 color: C.midnight200,
                 fontSize: "0.9375rem",
                 opacity: 0.9,

@@ -18,7 +18,7 @@ const tabs: { key: Tab; label: string; icon: string; desc: string }[] = [
 ];
 
 const kpiCards = [
-  { label: "Active Subjects", value: geointKpis.activeSubjects, icon: "ri-user-location-line", color: "#D6B47E", delta: "+3 today" },
+  { label: "Active Subjects", value: geointKpis.activeSubjects, icon: "ri-user-location-line", color: "#C5A365", delta: "+3 today" },
   { label: "Hotspot Clusters", value: geointKpis.hotspotCount, icon: "ri-focus-3-line", color: "#C98A1B", delta: "2 critical" },
   { label: "Cross-Stream Alerts", value: geointKpis.crossStreamAlerts, icon: "ri-git-branch-line", color: "#C94A5E", delta: "+5 new" },
   { label: "Geofence Breaches", value: geointKpis.geofenceBreaches, icon: "ri-map-pin-range-line", color: "#FACC15", delta: "Active" },
@@ -42,13 +42,13 @@ const GeointPage = () => {
   const newAlerts = geoAlerts.filter((a) => a.status === "new").length;
 
   return (
-    <div className="flex flex-col h-full" style={{ background: "#060E1A", fontFamily: "Inter, sans-serif" }}>
+    <div className="flex flex-col h-full" style={{ background: "#060E1A", fontFamily: "Manrope, sans-serif" }}>
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Page header */}
         <PageHeader
           title={isAr ? "الاستخبارات الجغرافية" : "Geospatial Intelligence"}
           icon="ri-earth-line"
-          iconColor="#D6B47E"
+          iconColor="#C5A365"
           action={
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg" style={{ background: "rgba(184,138,60,0.06)", border: "1px solid rgba(184,138,60,0.15)" }}>
@@ -67,7 +67,7 @@ const GeointPage = () => {
               )}
               <button
                 onClick={() => setShowSubjectPanel((v) => !v)}
-                className="px-3 py-1.5 rounded-lg text-xs font-['Inter'] cursor-pointer transition-all hover:opacity-80"
+                className="px-3 py-1.5 rounded-lg text-xs font-['Manrope'] cursor-pointer transition-all hover:opacity-80"
                 style={{ background: "rgba(255,255,255,0.05)", color: "#9CA3AF", border: "1px solid rgba(255,255,255,0.1)" }}>
                 <i className={`${showSubjectPanel ? "ri-layout-right-2-line" : "ri-layout-right-line"} mr-1.5`} />
                 {showSubjectPanel ? "Hide" : "Show"} Subjects
@@ -100,10 +100,10 @@ const GeointPage = () => {
               <button
                 key={tab.key}
                 onClick={() => setActiveTab(tab.key)}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-['Inter'] font-medium transition-all cursor-pointer whitespace-nowrap"
+                className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-['Manrope'] font-medium transition-all cursor-pointer whitespace-nowrap"
                 style={activeTab === tab.key ? {
                   background: "rgba(184,138,60,0.12)",
-                  color: "#D6B47E",
+                  color: "#C5A365",
                   border: "1px solid rgba(184,138,60,0.3)",
                 } : {
                   background: "rgba(255,255,255,0.03)",
@@ -142,7 +142,7 @@ const GeointPage = () => {
               </div>
               <div className="space-y-2">
                 {geoSubjects.map((subject, i) => {
-                  const subjectColors = ["#D6B47E", "#C94A5E", "#A78BFA", "#4ADE80", "#C98A1B"];
+                  const subjectColors = ["#C5A365", "#C94A5E", "#A78BFA", "#4ADE80", "#C98A1B"];
                   const color = subjectColors[i % subjectColors.length];
                   const isSelected = selectedSubjectId === subject.id;
                   return (
@@ -163,7 +163,7 @@ const GeointPage = () => {
                           <img src={subject.photo} alt={subject.name} className="w-full h-full object-cover object-top" />
                         </div>
                         <div className="min-w-0">
-                          <p className="text-white text-xs font-['Inter'] font-semibold truncate">{subject.name}</p>
+                          <p className="text-white text-xs font-['Manrope'] font-semibold truncate">{subject.name}</p>
                           <p className="text-gray-500 text-xs font-['JetBrains_Mono']">{subject.nationality}</p>
                         </div>
                       </div>
@@ -203,7 +203,7 @@ const GeointPage = () => {
                 <p className="text-gray-600 text-xs font-['JetBrains_Mono'] uppercase tracking-wider mb-2">Quick Actions</p>
                 <div className="space-y-1.5">
                   {[
-                    { label: "Add Subject", icon: "ri-user-add-line", color: "#D6B47E" },
+                    { label: "Add Subject", icon: "ri-user-add-line", color: "#C5A365" },
                     { label: "Set Geofence", icon: "ri-map-pin-range-line", color: "#4ADE80" },
                     { label: "Export Report", icon: "ri-download-line", color: "#A78BFA" },
                     { label: "Person 360°", icon: "ri-user-search-line", color: "#C98A1B", action: () => navigate("/dashboard/person-360") },
@@ -211,7 +211,7 @@ const GeointPage = () => {
                     <button
                       key={action.label}
                       onClick={action.action}
-                      className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-['Inter'] cursor-pointer transition-all hover:opacity-80"
+                      className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-['Manrope'] cursor-pointer transition-all hover:opacity-80"
                       style={{ background: `${action.color}10`, color: action.color, border: `1px solid ${action.color}20` }}>
                       <i className={`${action.icon} text-sm`} />
                       {action.label}

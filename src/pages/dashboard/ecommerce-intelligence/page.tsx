@@ -32,11 +32,11 @@ const EcommerceIntelligencePage = () => {
     { id: "anomalies",  icon: "ri-alarm-warning-line",        label: "Anomalies",         labelAr: "الشذوذات",        badge: "5",  badgeColor: "#C94A5E" },
     { id: "feed",       icon: "ri-pulse-line",                label: "Live Feed",         labelAr: "التغذية المباشرة" },
     { id: "retailers",  icon: "ri-store-line",                label: "Retailer Compliance",labelAr: "امتثال التجار" },
-    { id: "submit",     icon: "ri-add-circle-line",           label: "Record Event",       labelAr: "تسجيل حدث",       badge: "5",  badgeColor: "#D6B47E" },
+    { id: "submit",     icon: "ri-add-circle-line",           label: "Record Event",       labelAr: "تسجيل حدث",       badge: "5",  badgeColor: "#C5A365" },
   ];
 
   return (
-    <div className="min-h-screen font-['Inter']" style={{ background: "#051428" }} dir={isAr ? "rtl" : "ltr"}>
+    <div className="min-h-screen font-['Manrope']" style={{ background: "#071426" }} dir={isAr ? "rtl" : "ltr"}>
       {/* Grid texture */}
       <div className="fixed inset-0 pointer-events-none" style={{
         backgroundImage: `linear-gradient(rgba(184,138,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.03) 1px, transparent 1px)`,
@@ -62,7 +62,7 @@ const EcommerceIntelligencePage = () => {
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-white font-bold text-sm">{isAr ? "استخبارات التجارة الإلكترونية والتجزئة" : "E-Commerce & Retail Intelligence"}</span>
-                <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(184,138,60,0.12)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}>Al-Ameen</span>
+                <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(184,138,60,0.12)", color: "#C5A365", border: "1px solid rgba(184,138,60,0.2)" }}>Al-Ameen</span>
               </div>
               <p className="text-gray-500 text-xs">{isAr ? "معالجو الدفع · تجار التجزئة · المنصات الإلكترونية" : "Payment Processors · Major Retailers · Online Platforms"}</p>
             </div>
@@ -79,7 +79,7 @@ const EcommerceIntelligencePage = () => {
           {/* Source pills */}
           <div className="hidden xl:flex items-center gap-2">
             {[
-              { label: "CBO Feed", color: "#D6B47E" },
+              { label: "CBO Feed", color: "#C5A365" },
               { label: "Retailers", color: "#34D399" },
               { label: "Platforms", color: "#A78BFA" },
             ].map((p) => (
@@ -121,7 +121,7 @@ const EcommerceIntelligencePage = () => {
             style={{
               background: activeTab === tab.id ? "rgba(184,138,60,0.12)" : "transparent",
               border: `1px solid ${activeTab === tab.id ? "rgba(184,138,60,0.25)" : "transparent"}`,
-              color: activeTab === tab.id ? "#D6B47E" : "#6B7280",
+              color: activeTab === tab.id ? "#C5A365" : "#6B7280",
             }}>
             <i className={`${tab.icon} text-xs`} />
             {isAr ? tab.labelAr : tab.label}
@@ -167,7 +167,7 @@ const EcommerceIntelligencePage = () => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {[
                   { icon: "ri-money-dollar-circle-line", color: "#4ADE80", title: isAr ? "الثروة غير المفسّرة" : "Unexplained Wealth", desc: isAr ? "مقارنة الإنفاق بالراتب المُعلن — الفجوة تُشير إلى مصادر دخل مخفية" : "Compare spending vs declared salary — gap indicates hidden income sources" },
-                  { icon: "ri-map-pin-line", color: "#D6B47E", title: isAr ? "تحديد الموقع الفعلي" : "Actual Location Reveal", desc: isAr ? "الشراء من متجر في نزوى يُثبت الوجود الجسدي — يتعارض مع العنوان المُسجَّل" : "Purchase at Nizwa store proves physical presence — contradicts registered address" },
+                  { icon: "ri-map-pin-line", color: "#C5A365", title: isAr ? "تحديد الموقع الفعلي" : "Actual Location Reveal", desc: isAr ? "الشراء من متجر في نزوى يُثبت الوجود الجسدي — يتعارض مع العنوان المُسجَّل" : "Purchase at Nizwa store proves physical presence — contradicts registered address" },
                   { icon: "ri-spy-line", color: "#C94A5E", title: isAr ? "كشف النوايا" : "Intent Detection", desc: isAr ? "شراء مشوش إشارة + شرائح SIM بالجملة + مواد كيميائية = نمط يستحق التحقيق" : "Signal jammer + bulk SIMs + chemicals = pattern warranting investigation" },
                 ].map((item) => (
                   <div key={item.title} className="flex items-start gap-3 px-4 py-3 rounded-xl" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
@@ -200,7 +200,7 @@ const EcommerceIntelligencePage = () => {
                   { icon: "ri-money-dollar-circle-line", color: "#C98A1B", label: isAr ? "معاملة عالية القيمة" : "High-Value Transaction", desc: isAr ? "شراء واحد فوق الحد المُهيَّأ حسب الفئة" : "Single purchase above configurable threshold by category" },
                   { icon: "ri-forbid-line", color: "#C94A5E", label: isAr ? "عنصر مقيّد" : "Restricted Item", desc: isAr ? "معدات مراقبة، مواد كيميائية، طائرات مسيّرة، أجهزة تشويش" : "Surveillance equipment, chemicals, drones, jammers" },
                   { icon: "ri-ship-line", color: "#A78BFA", label: isAr ? "تنبيه شحن" : "Shipping Alert", desc: isAr ? "شحنات دولية من مصادر عالية المخاطر" : "International shipments from high-risk origins" },
-                  { icon: "ri-exchange-line", color: "#D6B47E", label: isAr ? "نمط الدفع" : "Payment Pattern", desc: isAr ? "بطاقات متعددة، معاملات صغيرة متكررة، تجزئة" : "Multiple cards, frequent small transactions, structuring" },
+                  { icon: "ri-exchange-line", color: "#C5A365", label: isAr ? "نمط الدفع" : "Payment Pattern", desc: isAr ? "بطاقات متعددة، معاملات صغيرة متكررة، تجزئة" : "Multiple cards, frequent small transactions, structuring" },
                   { icon: "ri-bank-card-line", color: "#34D399", label: isAr ? "بطاقات مدفوعة مسبقاً" : "Prepaid Cards", desc: isAr ? "10+ بطاقات في معاملة واحدة — مؤشر غسيل أموال" : "10+ cards in single transaction — money laundering indicator" },
                 ].map((t) => (
                   <div key={t.label} className="flex items-start gap-3 px-4 py-3 rounded-xl" style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${t.color}15` }}>
@@ -229,7 +229,7 @@ const EcommerceIntelligencePage = () => {
                   </div>
                 </div>
                 <div className="flex items-center gap-3 flex-wrap">
-                  {[{ label: "Bulk", color: "#FACC15" }, { label: "Restricted", color: "#C94A5E" }, { label: "High-Value", color: "#C98A1B" }, { label: "Pattern", color: "#D6B47E" }].map((l) => (
+                  {[{ label: "Bulk", color: "#FACC15" }, { label: "Restricted", color: "#C94A5E" }, { label: "High-Value", color: "#C98A1B" }, { label: "Pattern", color: "#C5A365" }].map((l) => (
                     <div key={l.label} className="flex items-center gap-1.5">
                       <div className="w-2 h-2 rounded-full" style={{ background: l.color }} />
                       <span className="text-gray-400 text-xs">{l.label}</span>
@@ -258,7 +258,7 @@ const EcommerceIntelligencePage = () => {
                           { val: d.bulk, color: "#FACC15" },
                           { val: d.restricted, color: "#C94A5E" },
                           { val: d.highvalue, color: "#C98A1B" },
-                          { val: d.pattern, color: "#D6B47E" },
+                          { val: d.pattern, color: "#C5A365" },
                         ].map((seg, i) => (
                           <div key={i} className="w-full rounded-sm" style={{ height: scale(seg.val), background: seg.color, opacity: 0.8, minHeight: "2px" }} />
                         ))}

@@ -57,7 +57,7 @@ const GovernanceTab = ({ isAr }: { isAr: boolean }) => {
         <div className="col-span-12 lg:col-span-4 rounded-xl border p-5 flex flex-col gap-3"
           style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.12)" }}>
           <div className="flex items-center gap-2">
-            <i className="ri-git-commit-line text-[#D6B47E] text-base" />
+            <i className="ri-git-commit-line text-[#C5A365] text-base" />
             <h3 className="text-white text-sm font-bold">{isAr ? "مكدّس الإصدار" : "Version stack"}</h3>
           </div>
 
@@ -184,7 +184,7 @@ const GovernanceTab = ({ isAr }: { isAr: boolean }) => {
                 <Tooltip contentStyle={{ background: "#0A2540", border: "1px solid rgba(184,138,60,0.3)", borderRadius: 8, fontSize: 12, fontFamily: "JetBrains Mono" }} />
                 <Area type="monotone" dataKey="upper" stroke="none" fill="url(#g-drift-band)" />
                 <Area type="monotone" dataKey="lower" stroke="none" fill="#0A2540" />
-                <Line type="monotone" dataKey="mean" stroke="#D6B47E" strokeWidth={2} dot={false} />
+                <Line type="monotone" dataKey="mean" stroke="#C5A365" strokeWidth={2} dot={false} />
               </AreaChart>
             </ResponsiveContainer>
           </div>
@@ -225,7 +225,7 @@ const GovernanceTab = ({ isAr }: { isAr: boolean }) => {
                   tick={{ fontSize: 11, fontFamily: "JetBrains Mono" }}
                   label={{ value: isAr ? "المُلاحَظ %" : "observed %", fill: "#6B7280", fontSize: 11, angle: -90, position: "insideLeft" }} />
                 <Tooltip contentStyle={{ background: "#0A2540", border: "1px solid rgba(184,138,60,0.3)", borderRadius: 8, fontSize: 12, fontFamily: "JetBrains Mono" }} />
-                <ReferenceLine segment={[{ x: 0, y: 0 }, { x: 100, y: 100 }]} stroke="#D6B47E" strokeDasharray="4 4" />
+                <ReferenceLine segment={[{ x: 0, y: 0 }, { x: 100, y: 100 }]} stroke="#C5A365" strokeDasharray="4 4" />
                 <Scatter data={CALIBRATION_CURVE} fill="#4ADE80" />
               </ScatterChart>
             </ResponsiveContainer>
@@ -243,7 +243,7 @@ const GovernanceTab = ({ isAr }: { isAr: boolean }) => {
           <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
             <div>
               <h3 className="text-white text-sm font-bold flex items-center gap-2">
-                <i className="ri-scales-3-line text-[#D6B47E]" />
+                <i className="ri-scales-3-line text-[#C5A365]" />
                 {isAr ? "العدالة عبر الجنسيات" : "Per-nationality fairness"}
               </h3>
               <p className="text-gray-500 text-[11px] font-['JetBrains_Mono']">
@@ -292,7 +292,7 @@ const GovernanceTab = ({ isAr }: { isAr: boolean }) => {
           <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
             <div>
               <h3 className="text-white text-sm font-bold flex items-center gap-2">
-                <i className="ri-timeline-view text-[#D6B47E]" />
+                <i className="ri-timeline-view text-[#C5A365]" />
                 {isAr ? "الخط الزمني للسجل" : "Model registry timeline"}
               </h3>
               <p className="text-gray-500 text-[11px] font-['JetBrains_Mono']">

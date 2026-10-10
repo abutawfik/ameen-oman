@@ -1,10 +1,11 @@
+import type { Booking } from '@/mocks/hospitalityData';
 import { useState } from 'react';
 import { bookings } from '@/mocks/hospitalityData';
 
-interface Props { lang: 'en' | 'ar'; onNav: (key: string) => void; }
+interface Props { bookingRecords?: Booking[]; lang: 'en' | 'ar'; onNav: (key: string) => void; }
 
 const EVENT_COLORS: Record<string, string> = {
-  confirmed: '#D6B47E',
+  confirmed: '#C5A365',
   checked_in: '#4ADE80',
   checked_out: '#C98A1B',
 };
@@ -12,10 +13,10 @@ const EVENT_COLORS: Record<string, string> = {
 const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 const DAYS_SHORT = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 
-export default function HospitalityCalendar({ lang, onNav }: Props) {
+export default function HospitalityCalendar({ lang, onNav, bookingRecords = bookings }: Props) {
   const isAr = lang === 'ar';
-  const [year, setYear] = useState(2025);
-  const [month, setMonth] = useState(3); // April = 3
+  const [year, setYear] = useState(new Date().getFullYear());
+  const [month, setMonth] = useState(new Date().getMonth());
   const [selectedDay, setSelectedDay] = useState<number | null>(null);
   const [popup, setPopup] = useState(false);
 
@@ -33,7 +34,7 @@ export default function HospitalityCalendar({ lang, onNav }: Props) {
 
   const getEventsForDay = (day: number) => {
     const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-    return bookings.filter(b => b.checkIn === dateStr || b.checkOut === dateStr);
+    return bookingRecords.filter(b => b.checkIn === dateStr || b.checkOut === dateStr);
   };
 
   const selectedEvents = selectedDay ? getEventsForDay(selectedDay) : [];
@@ -45,7 +46,7 @@ export default function HospitalityCalendar({ lang, onNav }: Props) {
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-2 text-xs">
             {[
-              { color: '#D6B47E', label: isAr ? 'مؤكد' : 'Confirmed' },
+              { color: '#C5A365', label: isAr ? 'مؤكد' : 'Confirmed' },
               { color: '#4ADE80', label: isAr ? 'دخول' : 'Check-In' },
               { color: '#C98A1B', label: isAr ? 'خروج' : 'Check-Out' },
             ].map(l => (
@@ -99,8 +100,8 @@ export default function HospitalityCalendar({ lang, onNav }: Props) {
                   <span
                     className="text-xs font-mono font-medium w-6 h-6 flex items-center justify-center rounded-full"
                     style={{
-                      background: isToday ? '#D6B47E' : 'transparent',
-                      color: isToday ? '#051428' : '#9CA3AF',
+                      background: isToday ? '#C5A365' : 'transparent',
+                      color: isToday ? '#071426' : '#9CA3AF',
                     }}
                   >
                     {day}

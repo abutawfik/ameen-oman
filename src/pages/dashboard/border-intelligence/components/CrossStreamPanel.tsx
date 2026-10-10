@@ -39,7 +39,7 @@ const statusLabel = (s: CrossStreamEvent["status"], isAr: boolean) => {
 };
 
 const eventBadgeColor = (e: string) => {
-  if (e === "ENTRY") return "#D6B47E";
+  if (e === "ENTRY") return "#C5A365";
   if (e === "HOTEL_CHECKIN") return "#4ADE80";
   if (e === "CAR_RENTAL") return "#C98A1B";
   if (e === "SIM_PURCHASE") return "#A78BFA";

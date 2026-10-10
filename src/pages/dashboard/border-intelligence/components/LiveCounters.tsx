@@ -24,7 +24,7 @@ const LiveCounters = ({ isAr }: Props) => {
 
   const counters = [
     { label: isAr ? "الوصول اليوم" : "Arrivals Today", labelSub: isAr ? "دخول مسجّل" : "Registered entries", value: arrivals, icon: "ri-login-box-line", color: "#4ADE80", trend: "+12%", up: true },
-    { label: isAr ? "المغادرة اليوم" : "Departures Today", labelSub: isAr ? "خروج مسجّل" : "Registered exits", value: departures, icon: "ri-logout-box-line", color: "#D6B47E", trend: "+8%", up: true },
+    { label: isAr ? "المغادرة اليوم" : "Departures Today", labelSub: isAr ? "خروج مسجّل" : "Registered exits", value: departures, icon: "ri-logout-box-line", color: "#C5A365", trend: "+8%", up: true },
     { label: isAr ? "تأشيرات صادرة" : "Visas Issued", labelSub: isAr ? "عبر بوابة eVisa" : "Via eVisa portal", value: visaIssued, icon: "ri-file-check-line", color: "#A78BFA", trend: "+5%", up: true },
     { label: isAr ? "تجاوز الإقامة" : "Overstay Detected", labelSub: isAr ? "يتطلب إجراء" : "Requires action", value: overstay, icon: "ri-alarm-warning-line", color: "#C94A5E", trend: "+3", up: false },
   ];

@@ -4,7 +4,7 @@ import { topRules, alertQueue, type TopRule } from '@/mocks/predictiveAnalyticsD
 type SortKey = 'count7d' | 'count30d' | 'truePositiveRate';
 
 const categoryColors: Record<string, string> = {
-  Arrival:       '#D6B47E',
+  Arrival:       '#C5A365',
   Financial:     '#4ADE80',
   Identity:      '#C94A5E',
   Accommodation: '#FACC15',
@@ -53,9 +53,9 @@ export default function TopRulesTable() {
               onClick={() => setSortKey(key)}
               className="px-2.5 py-1 rounded-md border transition-all cursor-pointer whitespace-nowrap"
               style={{
-                borderColor: sortKey === key ? '#D6B47E' : 'rgba(184,138,60,0.2)',
+                borderColor: sortKey === key ? '#C5A365' : 'rgba(184,138,60,0.2)',
                 background: sortKey === key ? 'rgba(184,138,60,0.15)' : 'transparent',
-                color: sortKey === key ? '#D6B47E' : '#9CA3AF',
+                color: sortKey === key ? '#C5A365' : '#9CA3AF',
               }}
             >
               {key === 'count7d' ? '7d Triggers' : key === 'count30d' ? '30d Triggers' : 'TP Rate'}
@@ -180,7 +180,7 @@ export default function TopRulesTable() {
               <p className="text-gray-500 text-xs uppercase tracking-wider">Rule Performance</p>
               <div className="grid grid-cols-3 gap-2">
                 {[
-                  { label: '7d Triggers', value: selectedRule.count7d, color: '#D6B47E' },
+                  { label: '7d Triggers', value: selectedRule.count7d, color: '#C5A365' },
                   { label: '30d Triggers', value: selectedRule.count30d, color: '#9CA3AF' },
                   { label: 'True Positive', value: `${selectedRule.truePositiveRate}%`, color: tpColor(selectedRule.truePositiveRate) },
                 ].map(s => (
@@ -244,7 +244,7 @@ export default function TopRulesTable() {
               ) : (
                 <div className="space-y-2">
                   {[
-                    { name: 'Tariq Al-Mansouri', doc: 'PK-8823401', score: 87, initials: 'TM', color: '#D6B47E' },
+                    { name: 'Tariq Al-Mansouri', doc: 'PK-8823401', score: 87, initials: 'TM', color: '#C5A365' },
                     { name: 'Ravi Krishnamurthy', doc: 'IN-7823401', score: 93, initials: 'RK', color: '#4ADE80' },
                     { name: 'Chen Wei', doc: 'CN-3345891', score: 74, initials: 'CW', color: '#C98A1B' },
                   ].map(c => (

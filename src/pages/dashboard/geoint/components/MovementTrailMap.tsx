@@ -19,7 +19,7 @@ const riskColors: Record<string, string> = {
   low: "#4ADE80",
 };
 
-const subjectTrailColors = ["#D6B47E", "#C94A5E", "#A78BFA", "#4ADE80", "#C98A1B"];
+const subjectTrailColors = ["#C5A365", "#C94A5E", "#A78BFA", "#4ADE80", "#C98A1B"];
 
 interface Props {
   selectedSubjectId: string | null;
@@ -74,7 +74,7 @@ const MovementTrailMap = ({ selectedSubjectId, onSelectSubject }: Props) => {
         <span className="text-xs font-['JetBrains_Mono'] text-gray-400 uppercase tracking-wider">Filter Subject:</span>
         <button
           onClick={() => onSelectSubject(null)}
-          className={`px-3 py-1 rounded-full text-xs font-['Inter'] font-medium transition-all cursor-pointer whitespace-nowrap ${
+          className={`px-3 py-1 rounded-full text-xs font-['Manrope'] font-medium transition-all cursor-pointer whitespace-nowrap ${
             !selectedSubjectId ? "bg-gold-400/20 text-gold-400 border border-gold-400/40" : "bg-white/5 text-gray-400 border border-white/10 hover:border-white/20"
           }`}
         >
@@ -84,7 +84,7 @@ const MovementTrailMap = ({ selectedSubjectId, onSelectSubject }: Props) => {
           <button
             key={s.id}
             onClick={() => onSelectSubject(selectedSubjectId === s.id ? null : s.id)}
-            className={`px-3 py-1 rounded-full text-xs font-['Inter'] font-medium transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
+            className={`px-3 py-1 rounded-full text-xs font-['Manrope'] font-medium transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
               selectedSubjectId === s.id ? "border" : "bg-white/5 text-gray-400 border border-white/10 hover:border-white/20"
             }`}
             style={selectedSubjectId === s.id ? {
@@ -206,7 +206,7 @@ const MovementTrailMap = ({ selectedSubjectId, onSelectSubject }: Props) => {
             return (
               <g>
                 <rect x={tipX} y={tipY} width="200" height="90" rx="6" fill="#0A2540" stroke="rgba(184,138,60,0.3)" strokeWidth="1" />
-                <text x={tipX + 10} y={tipY + 18} fill="#D6B47E" fontSize="9" fontWeight="bold">{hoveredPoint.eventType}</text>
+                <text x={tipX + 10} y={tipY + 18} fill="#C5A365" fontSize="9" fontWeight="bold">{hoveredPoint.eventType}</text>
                 <text x={tipX + 10} y={tipY + 32} fill="rgba(255,255,255,0.7)" fontSize="8">{hoveredPoint.location}</text>
                 <text x={tipX + 10} y={tipY + 46} fill="rgba(255,255,255,0.5)" fontSize="8">{hoveredPoint.stream} Stream</text>
                 <text x={tipX + 10} y={tipY + 60} fill="rgba(255,255,255,0.5)" fontSize="8">{hoveredPoint.detail}</text>

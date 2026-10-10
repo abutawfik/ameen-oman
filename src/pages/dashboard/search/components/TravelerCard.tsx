@@ -7,7 +7,7 @@ interface Props {
 }
 
 const RISK_COLORS: Record<string, string> = {
-  critical: '#C94A5E', high: '#D4922A', medium: '#D6B47E', low: '#4A8E5A',
+  critical: '#C94A5E', high: '#D4922A', medium: '#C5A365', low: '#4A8E5A',
 };
 
 const MATCH_COLORS: Record<string, string> = {
@@ -30,7 +30,7 @@ export default function TravelerCard({ result, isAr, onClick }: Props) {
       {/* Header row */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 8, marginBottom: 10 }}>
         <div>
-          <div style={{ fontSize: 14, color: '#CBD5E1', fontFamily: "'Inter', sans-serif", fontWeight: 500 }}>
+          <div style={{ fontSize: 14, color: '#CBD5E1', fontFamily: "'Manrope', sans-serif", fontWeight: 500 }}>
             {isAr ? result.nameAr : result.name}
           </div>
           <div style={{ fontSize: 11, color: '#5B7494', fontFamily: "'JetBrains Mono', monospace", marginTop: 2 }}>
@@ -68,7 +68,7 @@ export default function TravelerCard({ result, isAr, onClick }: Props) {
                 <span style={{ margin: '0 4px', color: leg.isCurrent ? '#B8893C' : '#374B61', fontSize: 11 }}>→</span>
                 <span style={{
                   fontSize: 11, fontFamily: "'JetBrains Mono', monospace",
-                  color: leg.isCurrent ? '#D6B47E' : '#5B7494',
+                  color: leg.isCurrent ? '#C5A365' : '#5B7494',
                   fontWeight: leg.isCurrent ? 600 : 400,
                 }}>
                   {leg.toCode}

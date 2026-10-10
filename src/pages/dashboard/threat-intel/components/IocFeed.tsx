@@ -18,7 +18,7 @@ const statusConfig: Record<IocStatus, { color: string; label: string; icon: stri
 };
 
 const typeConfig: Record<IocType, { icon: string; color: string; label: string }> = {
-  ip:     { icon: "ri-server-line",       color: "#D6B47E", label: "IP Address" },
+  ip:     { icon: "ri-server-line",       color: "#C5A365", label: "IP Address" },
   domain: { icon: "ri-global-line",       color: "#A78BFA", label: "Domain" },
   hash:   { icon: "ri-fingerprint-line",  color: "#C94A5E", label: "File Hash" },
   email:  { icon: "ri-mail-line",         color: "#FACC15", label: "Email" },
@@ -58,7 +58,7 @@ const IocFeed = ({ isAr }: Props) => {
       {/* Stats bar */}
       <div className="grid grid-cols-4 gap-3">
         {[
-          { label: "Total IOCs", value: iocEntries.length.toString(), icon: "ri-database-line", color: "#D6B47E" },
+          { label: "Total IOCs", value: iocEntries.length.toString(), icon: "ri-database-line", color: "#C5A365" },
           { label: "Critical Active", value: iocEntries.filter(i => i.severity === "critical" && i.status === "active").length.toString(), icon: "ri-alarm-warning-line", color: "#C94A5E" },
           { label: "Investigating", value: iocEntries.filter(i => i.status === "investigating").length.toString(), icon: "ri-search-eye-line", color: "#FACC15" },
           { label: "Mitigated", value: iocEntries.filter(i => i.status === "mitigated").length.toString(), icon: "ri-shield-check-line", color: "#4ADE80" },
@@ -69,7 +69,7 @@ const IocFeed = ({ isAr }: Props) => {
             </div>
             <div>
               <p className="text-white text-lg font-bold font-['JetBrains_Mono']">{stat.value}</p>
-              <p className="text-gray-600 text-[11px] font-['Inter']">{stat.label}</p>
+              <p className="text-gray-600 text-[11px] font-['Manrope']">{stat.label}</p>
             </div>
           </div>
         ))}
@@ -84,16 +84,16 @@ const IocFeed = ({ isAr }: Props) => {
             placeholder="Search IOC value or description..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="bg-transparent text-white text-xs font-['Inter'] outline-none flex-1 placeholder-gray-700"
+            className="bg-transparent text-white text-xs font-['Manrope'] outline-none flex-1 placeholder-gray-700"
           />
         </div>
         <div className="flex items-center gap-1">
           {(["all", "critical", "high", "medium", "low"] as const).map((s) => (
             <button key={s} onClick={() => setSelectedSeverity(s)}
-              className="px-3 py-1.5 rounded-lg text-xs font-['Inter'] cursor-pointer transition-all whitespace-nowrap"
+              className="px-3 py-1.5 rounded-lg text-xs font-['Manrope'] cursor-pointer transition-all whitespace-nowrap"
               style={{
                 background: selectedSeverity === s ? (s === "all" ? "rgba(184,138,60,0.15)" : severityConfig[s as SeverityLevel]?.bg) : "rgba(255,255,255,0.04)",
-                color: selectedSeverity === s ? (s === "all" ? "#D6B47E" : severityConfig[s as SeverityLevel]?.color) : "#6B7280",
+                color: selectedSeverity === s ? (s === "all" ? "#C5A365" : severityConfig[s as SeverityLevel]?.color) : "#6B7280",
                 border: `1px solid ${selectedSeverity === s ? (s === "all" ? "rgba(184,138,60,0.3)" : severityConfig[s as SeverityLevel]?.color + "40") : "rgba(255,255,255,0.06)"}`,
               }}>
               {s === "all" ? "All" : s.charAt(0).toUpperCase() + s.slice(1)}
@@ -103,7 +103,7 @@ const IocFeed = ({ isAr }: Props) => {
         <select
           value={selectedStatus}
           onChange={(e) => setSelectedStatus(e.target.value as IocStatus | "all")}
-          className="px-3 py-1.5 rounded-lg text-xs font-['Inter'] cursor-pointer outline-none"
+          className="px-3 py-1.5 rounded-lg text-xs font-['Manrope'] cursor-pointer outline-none"
           style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", color: "#9CA3AF" }}
         >
           <option value="all">All Status</option>
@@ -143,7 +143,7 @@ const IocFeed = ({ isAr }: Props) => {
                     <span className="text-white text-xs font-bold font-['JetBrains_Mono'] truncate">{ioc.value}</span>
                     <span className="text-[11px] font-['JetBrains_Mono'] px-1.5 py-0.5 rounded flex-shrink-0" style={{ background: tlp.bg, color: tlp.color }}>TLP:{ioc.tlp}</span>
                   </div>
-                  <p className="text-gray-600 text-[11px] font-['Inter'] truncate">{ioc.description}</p>
+                  <p className="text-gray-600 text-[11px] font-['Manrope'] truncate">{ioc.description}</p>
                 </div>
 
                 {/* Meta */}
@@ -157,7 +157,7 @@ const IocFeed = ({ isAr }: Props) => {
                   </div>
                   <div className="flex items-center gap-1">
                     <i className={`${stat.icon} text-xs`} style={{ color: stat.color }} />
-                    <span className="text-[11px] font-['Inter']" style={{ color: stat.color }}>{stat.label}</span>
+                    <span className="text-[11px] font-['Manrope']" style={{ color: stat.color }}>{stat.label}</span>
                   </div>
                   <div className="flex items-center gap-1 px-2 py-1 rounded" style={{ background: "rgba(255,255,255,0.04)" }}>
                     <span className="text-[11px] font-['JetBrains_Mono'] text-gray-500">{ioc.confidence}%</span>
@@ -173,7 +173,7 @@ const IocFeed = ({ isAr }: Props) => {
                     <div className="col-span-2 space-y-3">
                       <div>
                         <p className="text-gray-600 text-[11px] font-['JetBrains_Mono'] mb-1">DESCRIPTION</p>
-                        <p className="text-gray-400 text-xs font-['Inter']">{ioc.description}</p>
+                        <p className="text-gray-400 text-xs font-['Manrope']">{ioc.description}</p>
                       </div>
                       <div className="grid grid-cols-2 gap-3">
                         <div>
@@ -182,7 +182,7 @@ const IocFeed = ({ isAr }: Props) => {
                             {ioc.linkedSubjects.length > 0 ? ioc.linkedSubjects.map((s) => (
                               <div key={s} className="flex items-center gap-1.5">
                                 <i className="ri-user-line text-gold-400 text-xs" />
-                                <span className="text-gold-400 text-xs font-['Inter']">{s}</span>
+                                <span className="text-gold-400 text-xs font-['Manrope']">{s}</span>
                               </div>
                             )) : <span className="text-gray-700 text-xs">None identified</span>}
                           </div>
@@ -191,7 +191,7 @@ const IocFeed = ({ isAr }: Props) => {
                           <p className="text-gray-600 text-[11px] font-['JetBrains_Mono'] mb-1">LINKED STREAMS</p>
                           <div className="flex flex-wrap gap-1">
                             {ioc.linkedStreams.map((s) => (
-                              <span key={s} className="text-[11px] px-2 py-0.5 rounded font-['Inter']" style={{ background: "rgba(184,138,60,0.1)", color: "#D6B47E" }}>{s}</span>
+                              <span key={s} className="text-[11px] px-2 py-0.5 rounded font-['Manrope']" style={{ background: "rgba(184,138,60,0.1)", color: "#C5A365" }}>{s}</span>
                             ))}
                           </div>
                         </div>
@@ -222,10 +222,10 @@ const IocFeed = ({ isAr }: Props) => {
                         ))}
                       </div>
                       <div className="flex gap-2">
-                        <button className="flex-1 py-1.5 rounded-lg text-[11px] font-['Inter'] cursor-pointer transition-colors whitespace-nowrap" style={{ background: "rgba(184,138,60,0.08)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}>
+                        <button className="flex-1 py-1.5 rounded-lg text-[11px] font-['Manrope'] cursor-pointer transition-colors whitespace-nowrap" style={{ background: "rgba(184,138,60,0.08)", color: "#C5A365", border: "1px solid rgba(184,138,60,0.2)" }}>
                           <i className="ri-search-eye-line mr-1" />Investigate
                         </button>
-                        <button className="flex-1 py-1.5 rounded-lg text-[11px] font-['Inter'] cursor-pointer transition-colors whitespace-nowrap" style={{ background: "rgba(201,74,94,0.08)", color: "#C94A5E", border: "1px solid rgba(201,74,94,0.2)" }}>
+                        <button className="flex-1 py-1.5 rounded-lg text-[11px] font-['Manrope'] cursor-pointer transition-colors whitespace-nowrap" style={{ background: "rgba(201,74,94,0.08)", color: "#C94A5E", border: "1px solid rgba(201,74,94,0.2)" }}>
                           <i className="ri-flag-line mr-1" />Escalate
                         </button>
                       </div>

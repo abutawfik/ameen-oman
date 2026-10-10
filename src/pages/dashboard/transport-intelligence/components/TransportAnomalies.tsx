@@ -88,7 +88,7 @@ const typeLabel = (t: Anomaly["type"], isAr: boolean) => {
 };
 
 const streamColor = (s: string) => {
-  const map: Record<string, string> = { TRANSPORT: "#D6B47E", BORDER: "#A78BFA", HOTEL: "#C98A1B", MUNICIPALITY: "#4ADE80", UTILITY: "#FACC15", MOBILE: "#C94A5E", FINANCIAL: "#4ADE80" };
+  const map: Record<string, string> = { TRANSPORT: "#C5A365", BORDER: "#A78BFA", HOTEL: "#C98A1B", MUNICIPALITY: "#4ADE80", UTILITY: "#FACC15", MOBILE: "#C94A5E", FINANCIAL: "#4ADE80" };
   return map[s] || "#9CA3AF";
 };
 

@@ -95,7 +95,7 @@ const AdventureActivityForm = ({ isAr, onCancel }: Props) => {
               <div className="flex gap-2">
                 {RISK_LEVELS.map(r => (
                   <button key={r.value} type="button" onClick={() => setRiskLevel(r.value)}
-                    className="flex-1 py-2.5 rounded-lg border text-xs font-bold cursor-pointer transition-all font-['Inter']"
+                    className="flex-1 py-2.5 rounded-lg border text-xs font-bold cursor-pointer transition-all font-['Manrope']"
                     style={{ background: riskLevel === r.value ? `${r.color}15` : "rgba(255,255,255,0.03)", borderColor: riskLevel === r.value ? r.color : "rgba(255,255,255,0.08)", color: riskLevel === r.value ? r.color : "#4B5563" }}
                   >{isAr ? (r.value === "low" ? "منخفض" : r.value === "medium" ? "متوسط" : "مرتفع") : r.label}</button>
                 ))}

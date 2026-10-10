@@ -8,11 +8,11 @@ const C = {
   p2: 'var(--alm-ocean-600)',
   p3: 'var(--alm-ocean-500)',
   p4: 'var(--alm-ocean-400)',
-  gold: '#D6B47E',
+  gold: '#C5A365',
   gold2: '#B8893C',
   critical: '#C94A5E',
   high: '#D4922A',
-  medium: '#D6B47E',
+  medium: '#C5A365',
   low: '#4A8E5A',
 } as const;
 
@@ -137,7 +137,7 @@ const STATUS_COLOR: Record<CheckpointStatus, string> = {
 
 const TYPE_COLOR: Record<CheckpointType, string> = {
   ARRIVAL:   '#60A5FA',
-  DEPARTURE: '#D6B47E',
+  DEPARTURE: '#C5A365',
   TRANSIT:   '#A78BFA',
 };
 
@@ -227,10 +227,10 @@ const BorderDashboardPage = () => {
           </div>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <span style={{ color: '#fff', fontWeight: 800, fontSize: 18, fontFamily: "'Inter', sans-serif" }}>{isAr ? 'لوحة ضبط الحدود' : 'Border Control Operations'}</span>
+              <span style={{ color: '#fff', fontWeight: 800, fontSize: 18, fontFamily: "'Manrope', sans-serif" }}>{isAr ? 'لوحة ضبط الحدود' : 'Border Control Operations'}</span>
               <span style={{ background: 'rgba(184,138,60,0.12)', color: C.gold, border: '1px solid rgba(184,138,60,0.2)', borderRadius: 20, padding: '2px 10px', fontSize: 11, fontWeight: 700, fontFamily: "'JetBrains Mono', monospace" }}>Ch 6.4</span>
             </div>
-            <p style={{ color: '#6B7280', fontSize: 12, fontFamily: "'Inter', sans-serif", margin: 0 }}>{isAr ? 'العمليات الحدودية في الوقت الفعلي عبر جميع نقاط التفتيش' : 'Real-time border crossing activity across all checkpoints'}</p>
+            <p style={{ color: '#6B7280', fontSize: 12, fontFamily: "'Manrope', sans-serif", margin: 0 }}>{isAr ? 'العمليات الحدودية في الوقت الفعلي عبر جميع نقاط التفتيش' : 'Real-time border crossing activity across all checkpoints'}</p>
           </div>
         </div>
 
@@ -248,7 +248,7 @@ const BorderDashboardPage = () => {
             const active = activeTab === tab.id;
             return (
               <button key={tab.id} type="button" onClick={() => setActiveTab(tab.id)}
-                style={{ background: active ? 'rgba(184,138,60,0.12)' : 'transparent', border: active ? '1px solid rgba(184,138,60,0.2)' : '1px solid transparent', borderRadius: 7, color: active ? C.gold : '#6B7280', padding: '7px 14px', fontSize: 12, cursor: 'pointer', fontFamily: "'Inter', sans-serif", fontWeight: active ? 600 : 400, display: 'flex', alignItems: 'center', gap: 6, transition: 'all 0.15s', whiteSpace: 'nowrap' }}>
+                style={{ background: active ? 'rgba(184,138,60,0.12)' : 'transparent', border: active ? '1px solid rgba(184,138,60,0.2)' : '1px solid transparent', borderRadius: 7, color: active ? C.gold : '#6B7280', padding: '7px 14px', fontSize: 12, cursor: 'pointer', fontFamily: "'Manrope', sans-serif", fontWeight: active ? 600 : 400, display: 'flex', alignItems: 'center', gap: 6, transition: 'all 0.15s', whiteSpace: 'nowrap' }}>
                 <i className={tab.icon} style={{ fontSize: 13 }} />
                 {isAr ? tab.labelAr : tab.label}
               </button>
@@ -275,7 +275,7 @@ const BorderDashboardPage = () => {
                       >
                         <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 10 }}>
                           <div>
-                            <div style={{ color: '#E5E7EB', fontWeight: 700, fontSize: 15, fontFamily: "'Inter', sans-serif", marginBottom: 4 }}>{cp.name}</div>
+                            <div style={{ color: '#E5E7EB', fontWeight: 700, fontSize: 15, fontFamily: "'Manrope', sans-serif", marginBottom: 4 }}>{cp.name}</div>
                             <span style={{ background: `${typeColor}14`, color: typeColor, border: `1px solid ${typeColor}30`, borderRadius: 5, padding: '2px 7px', fontSize: 11, fontFamily: "'JetBrains Mono', monospace", fontWeight: 700 }}>{cp.type}</span>
                           </div>
                           <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
@@ -324,7 +324,7 @@ const BorderDashboardPage = () => {
                               <tbody>
                                 {SAMPLE_CROSSINGS.map((c, i) => (
                                   <tr key={i} style={{ borderBottom: '1px solid rgba(255,255,255,0.02)' }}>
-                                    <td style={{ padding: '6px 8px', color: '#D1D5DB', fontFamily: "'Inter', sans-serif" }}>{c.name}</td>
+                                    <td style={{ padding: '6px 8px', color: '#D1D5DB', fontFamily: "'Manrope', sans-serif" }}>{c.name}</td>
                                     <td style={{ padding: '6px 8px', color: '#9CA3AF', fontFamily: "'JetBrains Mono', monospace" }}>{c.nationality}</td>
                                     <td style={{ padding: '6px 8px', color: '#6B7280', fontFamily: "'JetBrains Mono', monospace" }}>{c.doc}</td>
                                     <td style={{ padding: '6px 8px' }}>
@@ -349,7 +349,7 @@ const BorderDashboardPage = () => {
               <div style={{ padding: '1rem 1.25rem', borderBottom: '1px solid rgba(184,138,60,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                   <i className="ri-alarm-warning-line" style={{ color: C.critical, fontSize: 15 }} />
-                  <span style={{ color: '#E5E7EB', fontWeight: 700, fontSize: 14, fontFamily: "'Inter', sans-serif" }}>Live Alerts</span>
+                  <span style={{ color: '#E5E7EB', fontWeight: 700, fontSize: 14, fontFamily: "'Manrope', sans-serif" }}>Live Alerts</span>
                 </div>
                 <span style={{ background: `${C.critical}18`, color: C.critical, border: `1px solid ${C.critical}30`, borderRadius: 12, padding: '2px 8px', fontSize: 11, fontFamily: "'JetBrains Mono', monospace", fontWeight: 700 }}>
                   {alerts.filter(a => !a.acknowledged).length} open
@@ -374,7 +374,7 @@ const BorderDashboardPage = () => {
                             <span style={{ background: 'rgba(122,179,232,0.12)', color: '#7AB3E8', border: '1px solid rgba(122,179,232,0.25)', borderRadius: 8, padding: '1px 5px', fontSize: 10, fontFamily: "'JetBrains Mono', monospace", fontWeight: 700 }}>TPI</span>
                           )}
                         </div>
-                        <div style={{ color: '#9CA3AF', fontSize: 12, fontFamily: "'Inter', sans-serif", marginBottom: 2 }}>{alert.checkpoint}</div>
+                        <div style={{ color: '#9CA3AF', fontSize: 12, fontFamily: "'Manrope', sans-serif", marginBottom: 2 }}>{alert.checkpoint}</div>
                         <div style={{ color: '#4B5563', fontSize: 11, fontFamily: "'JetBrains Mono', monospace" }}>{alert.timeAgo}</div>
                       </div>
                       {!alert.acknowledged && (
@@ -400,7 +400,7 @@ const BorderDashboardPage = () => {
           <div style={{ background: 'rgba(10,37,64,0.8)', border: '1px solid rgba(184,138,60,0.1)', borderRadius: 16, backdropFilter: 'blur(12px)', overflow: 'hidden' }}>
             <div style={{ padding: '1rem 1.5rem', borderBottom: '1px solid rgba(184,138,60,0.08)', display: 'flex', alignItems: 'center', gap: 8 }}>
               <i className="ri-alarm-warning-line" style={{ color: C.critical }} />
-              <span style={{ color: '#E5E7EB', fontWeight: 700, fontFamily: "'Inter', sans-serif" }}>{isAr ? 'تغذية التنبيهات الكاملة' : 'Full Alert Feed'}</span>
+              <span style={{ color: '#E5E7EB', fontWeight: 700, fontFamily: "'Manrope', sans-serif" }}>{isAr ? 'تغذية التنبيهات الكاملة' : 'Full Alert Feed'}</span>
             </div>
             {alerts.map(alert => (
               <div key={alert.id} style={{ padding: '1rem 1.5rem', borderBottom: '1px solid rgba(255,255,255,0.03)', display: 'flex', alignItems: 'center', gap: 16, opacity: alert.acknowledged ? 0.5 : 1, transition: 'opacity 0.3s', background: isTpiAlert(alert.type) ? 'rgba(122,179,232,0.03)' : 'transparent' }}>
@@ -418,7 +418,7 @@ const BorderDashboardPage = () => {
                       <span style={{ background: 'rgba(122,179,232,0.1)', color: '#7AB3E8', border: '1px solid rgba(122,179,232,0.25)', borderRadius: 10, padding: '1px 7px', fontSize: 11, fontFamily: "'JetBrains Mono', monospace", fontWeight: 700 }}>TPI</span>
                     )}
                   </div>
-                  <div style={{ color: '#9CA3AF', fontSize: 13, fontFamily: "'Inter', sans-serif" }}>{alert.checkpoint} · {alert.timeAgo}</div>
+                  <div style={{ color: '#9CA3AF', fontSize: 13, fontFamily: "'Manrope', sans-serif" }}>{alert.checkpoint} · {alert.timeAgo}</div>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
                   {isTpiAlert(alert.type) && !alert.acknowledged && (
@@ -490,7 +490,7 @@ const BorderDashboardPage = () => {
                       const cleared   = Math.max(0, processed - flagged);
                       return (
                         <tr key={cp.id} style={{ borderBottom: '1px solid rgba(255,255,255,0.03)', background: idx % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.01)' }}>
-                          <td style={{ padding: '10px 14px', color: '#E5E7EB', fontWeight: 600, fontFamily: "'Inter', sans-serif" }}>{cp.name}</td>
+                          <td style={{ padding: '10px 14px', color: '#E5E7EB', fontWeight: 600, fontFamily: "'Manrope', sans-serif" }}>{cp.name}</td>
                           <td style={{ padding: '10px 14px' }}>
                             <span style={{ color: TYPE_COLOR[cp.type], background: `${TYPE_COLOR[cp.type]}12`, border: `1px solid ${TYPE_COLOR[cp.type]}25`, borderRadius: 5, padding: '2px 7px', fontSize: 11, fontFamily: "'JetBrains Mono', monospace", fontWeight: 700 }}>{cp.type}</span>
                           </td>

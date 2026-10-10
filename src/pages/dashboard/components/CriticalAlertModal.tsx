@@ -1,3 +1,4 @@
+import { HITS } from '@/mocks/targetMatchData';
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -13,16 +14,17 @@ interface CriticalAlert {
   route: string;
 }
 
+const criticalHit = HITS[0];
 const MOCK_ALERT: CriticalAlert = {
   id: "alert-critical-001",
   type: "target_match",
   severity: "CRITICAL",
   title: "Target Match — Interpol Red Notice",
   titleAr: "مطابقة هدف — نشرة إنتربول الحمراء",
-  detail: "Mohamed K. Al-Rashidi · PPT: A1234567 · Confidence 97% · Capital Int'l Airport",
-  detailAr: "محمد خالد الراشدي · جواز: A1234567 · ثقة 97% · مطار العاصمة الدولي",
-  caseId: "TM-2025-4891",
-  route: "/dashboard/target-match",
+  detail: `${criticalHit.travelerName} · PPT: ${criticalHit.travelerDoc} · Confidence ${Math.round(criticalHit.confidence * 100)}% · ${criticalHit.toCode}`,
+  detailAr: `${criticalHit.travelerName} · جواز: ${criticalHit.travelerDoc} · ثقة ${Math.round(criticalHit.confidence * 100)}% · ${criticalHit.toCode}`,
+  caseId: criticalHit.id,
+  route: `/dashboard/target-match?hit=${encodeURIComponent(criticalHit.id)}`,
 };
 
 const DISMISS_KEY = "ameen_critical_alert_dismissed_v1";
@@ -62,7 +64,6 @@ const CriticalAlertModal = ({ isAr }: Props) => {
       });
     }, 1000);
     return () => { if (timerRef.current) clearInterval(timerRef.current); };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [visible]);
 
   const dismiss = () => {

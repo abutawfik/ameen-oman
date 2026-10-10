@@ -1,7 +1,8 @@
+import type { Booking, Room, SyncLog } from '@/mocks/hospitalityData';
 import { useState } from 'react';
 import { recentActivities, bookings, rooms, syncLogs } from '@/mocks/hospitalityData';
 
-interface Props {
+interface Props { roomInventory?: Room[]; bookingRecords?: Booking[]; syncRecords?: SyncLog[];
   lang: 'en' | 'ar';
   onNav: (key: string) => void;
 }
@@ -19,29 +20,29 @@ const syncStatusConfig = {
   failed:  { color: '#C94A5E', bg: 'rgba(201,74,94,0.1)', icon: 'ri-cloud-off-line',     label: 'Failed',  labelAr: 'فشل' },
 };
 
-export default function HospitalityDashboard({ lang, onNav }: Props) {
+export default function HospitalityDashboard({ lang, onNav, roomInventory = rooms, bookingRecords = bookings, syncRecords = syncLogs }: Props) {
   const isAr = lang === 'ar';
   const [activeTab, setActiveTab] = useState<'activity' | 'sync'>('activity');
 
-  const inHouse = bookings.filter(b => b.status === 'checked_in').length;
-  const arrivals = bookings.filter(b => b.status === 'confirmed').length;
-  const departures = bookings.filter(b => b.status === 'checked_in' && b.checkOut === '2025-04-06').length;
-  const available = rooms.filter(r => r.status === 'available').length;
-  const occupied = rooms.filter(r => r.status === 'occupied').length;
-  const maintenance = rooms.filter(r => r.status === 'maintenance').length;
-  const reserved = rooms.filter(r => r.status === 'reserved').length;
-  const occupancyPct = Math.round((occupied / rooms.length) * 100);
+  const inHouse = bookingRecords.filter(b => b.status === 'checked_in').length;
+  const arrivals = bookingRecords.filter(b => b.status === 'confirmed').length;
+  const departures = bookingRecords.filter(b => b.status === 'checked_in' && b.checkOut === new Date().toISOString().slice(0,10)).length;
+  const available = roomInventory.filter(r => r.status === 'available').length;
+  const occupied = roomInventory.filter(r => r.status === 'occupied').length;
+  const maintenance = roomInventory.filter(r => r.status === 'maintenance').length;
+  const reserved = roomInventory.filter(r => r.status === 'reserved').length;
+  const occupancyPct = Math.round((occupied / roomInventory.length) * 100);
 
   const KPI_DATA = [
     { key: 'checkin',     labelEn: 'New Check-In',      labelAr: 'تسجيل وصول جديد',  value: inHouse,    icon: 'ri-login-box-line',     color: '#4ADE80', navKey: 'checkin',     actionEn: 'Check-In',  actionAr: 'تسجيل دخول' },
     { key: 'checkout',    labelEn: 'Check-Out',          labelAr: 'تسجيل مغادرة',     value: departures, icon: 'ri-logout-box-line',    color: '#C98A1B', navKey: 'checkout',    actionEn: 'Check-Out', actionAr: 'تسجيل خروج' },
-    { key: 'booking',     labelEn: 'New Booking',        labelAr: 'حجز جديد',          value: arrivals,   icon: 'ri-calendar-check-line',color: '#D6B47E', navKey: 'new-booking', actionEn: 'New Booking',actionAr: 'حجز جديد' },
+    { key: 'booking',     labelEn: 'New Booking',        labelAr: 'حجز جديد',          value: arrivals,   icon: 'ri-calendar-check-line',color: '#C5A365', navKey: 'new-booking', actionEn: 'New Booking',actionAr: 'حجز جديد' },
     { key: 'changeroom',  labelEn: 'Change Room',        labelAr: 'تغيير الغرفة',      value: 2,          icon: 'ri-door-line',          color: '#FACC15', navKey: 'changeroom',  actionEn: 'Change Room',actionAr: 'تغيير غرفة' },
   ];
 
   const roomStatusConfig = {
     available:   { color: '#4ADE80', bg: 'rgba(74,222,128,0.15)',  label: 'Available',    labelAr: 'متاحة' },
-    occupied:    { color: '#D6B47E', bg: 'rgba(184,138,60,0.15)',  label: 'Occupied',     labelAr: 'مشغولة' },
+    occupied:    { color: '#C5A365', bg: 'rgba(184,138,60,0.15)',  label: 'Occupied',     labelAr: 'مشغولة' },
     reserved:    { color: '#FACC15', bg: 'rgba(250,204,21,0.15)',  label: 'Reserved',     labelAr: 'محجوزة' },
     maintenance: { color: '#C94A5E', bg: 'rgba(201,74,94,0.15)', label: 'Maintenance',  labelAr: 'صيانة' },
   };
@@ -73,7 +74,7 @@ export default function HospitalityDashboard({ lang, onNav }: Props) {
             <button
               onClick={() => onNav(kpi.navKey)}
               className="w-full py-1.5 rounded-lg text-xs font-semibold cursor-pointer transition-all whitespace-nowrap"
-              style={{ background: '#D6B47E', color: '#051428' }}
+              style={{ background: '#C5A365', color: '#071426' }}
             >
               {isAr ? kpi.actionAr : kpi.actionEn}
             </button>
@@ -99,7 +100,7 @@ export default function HospitalityDashboard({ lang, onNav }: Props) {
                 <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(184,138,60,0.1)" strokeWidth="8" />
                 <circle
                   cx="50" cy="50" r="40" fill="none"
-                  stroke="#D6B47E" strokeWidth="8"
+                  stroke="#C5A365" strokeWidth="8"
                   strokeLinecap="round"
                   strokeDasharray={`${occupancyPct * 2.51} 251`}
                   style={{ transition: 'stroke-dasharray 1s ease' }}
@@ -115,7 +116,7 @@ export default function HospitalityDashboard({ lang, onNav }: Props) {
           <div className="space-y-2">
             {[
               { label: isAr ? 'متاحة' : 'Available',   value: available,    color: '#4ADE80' },
-              { label: isAr ? 'مشغولة' : 'Occupied',   value: occupied,     color: '#D6B47E' },
+              { label: isAr ? 'مشغولة' : 'Occupied',   value: occupied,     color: '#C5A365' },
               { label: isAr ? 'محجوزة' : 'Reserved',   value: reserved,     color: '#FACC15' },
               { label: isAr ? 'صيانة' : 'Maintenance', value: maintenance,  color: '#C94A5E' },
             ].map(s => (
@@ -152,7 +153,7 @@ export default function HospitalityDashboard({ lang, onNav }: Props) {
           {/* Floor groups */}
           <div className="space-y-3">
             {[1, 2, 3].map(floor => {
-              const floorRooms = rooms.filter(r => r.floor === floor);
+              const floorRooms = roomInventory.filter(r => r.floor === floor);
               return (
                 <div key={floor}>
                   <p className="text-gray-600 text-xs mb-1.5">
@@ -204,8 +205,8 @@ export default function HospitalityDashboard({ lang, onNav }: Props) {
                 onClick={() => setActiveTab(tab.key as 'activity' | 'sync')}
                 className="px-4 py-2 text-xs font-medium cursor-pointer transition-all whitespace-nowrap border-b-2"
                 style={{
-                  color: activeTab === tab.key ? '#D6B47E' : '#6B7280',
-                  borderBottomColor: activeTab === tab.key ? '#D6B47E' : 'transparent',
+                  color: activeTab === tab.key ? '#C5A365' : '#6B7280',
+                  borderBottomColor: activeTab === tab.key ? '#C5A365' : 'transparent',
                 }}
               >
                 {isAr ? tab.ar : tab.en}
@@ -257,7 +258,7 @@ export default function HospitalityDashboard({ lang, onNav }: Props) {
 
           {activeTab === 'sync' && (
             <div className="space-y-2">
-              {syncLogs.map(log => {
+              {syncRecords.map(log => {
                 const sc = syncStatusConfig[log.status];
                 return (
                   <div

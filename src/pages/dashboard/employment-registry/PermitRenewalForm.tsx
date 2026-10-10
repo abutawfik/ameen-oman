@@ -78,9 +78,9 @@ const PermitRenewalForm = ({ isAr, onCancel }: Props) => {
               <TextInput placeholder="WP-XXXX-XXXXXXXX" value={permitNumber} onChange={(e) => setPermitNumber(e.target.value)} className="font-['JetBrains_Mono'] flex-1" />
               <button type="button" onClick={handleLookup}
                 className="flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap"
-                style={{ background: "#D6B47E", color: "#051428" }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C99C48"; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#D6B47E"; }}>
+                style={{ background: "#C5A365", color: "#071426" }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C5A365"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C5A365"; }}>
                 {lookingUp ? <i className="ri-loader-4-line animate-spin" /> : <i className="ri-search-line" />}
                 {isAr ? "بحث" : "Lookup"}
               </button>
@@ -127,7 +127,7 @@ const PermitRenewalForm = ({ isAr, onCancel }: Props) => {
             <button type="button" onClick={() => setSalaryChanged((v) => !v)}
               className="flex items-center gap-3 cursor-pointer mb-3">
               <div className="relative w-10 h-5 rounded-full transition-all duration-300"
-                style={{ background: salaryChanged ? "#D6B47E" : "rgba(255,255,255,0.1)" }}>
+                style={{ background: salaryChanged ? "#C5A365" : "rgba(255,255,255,0.1)" }}>
                 <div className="absolute top-0.5 w-4 h-4 rounded-full bg-white transition-all duration-300 shadow-sm"
                   style={{ left: salaryChanged ? "calc(100% - 18px)" : "2px" }} />
               </div>
@@ -145,7 +145,7 @@ const PermitRenewalForm = ({ isAr, onCancel }: Props) => {
             <button type="button" onClick={() => setTitleChanged((v) => !v)}
               className="flex items-center gap-3 cursor-pointer mb-3">
               <div className="relative w-10 h-5 rounded-full transition-all duration-300"
-                style={{ background: titleChanged ? "#D6B47E" : "rgba(255,255,255,0.1)" }}>
+                style={{ background: titleChanged ? "#C5A365" : "rgba(255,255,255,0.1)" }}>
                 <div className="absolute top-0.5 w-4 h-4 rounded-full bg-white transition-all duration-300 shadow-sm"
                   style={{ left: titleChanged ? "calc(100% - 18px)" : "2px" }} />
               </div>

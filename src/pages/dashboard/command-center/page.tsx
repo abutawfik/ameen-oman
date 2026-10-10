@@ -8,7 +8,7 @@ type Tab = "live" | "entities" | "alerts" | "replication" | "audit";
 // ── MOCK DATA ──────────────────────────────────────────────────────────────────
 
 const LIVE_FEED_SEED = [
-  { id: "f1",  time: "14:32:07", entity: "Hotel",       entityIcon: "ri-hotel-line",         entityColor: "#D6B47E", name: "Ahmed Al-Rashidi",    nat: "OM", event: "Check-In",          risk: "clear",    ref: "HTL-2026-04891", detail: "Room 204, Al Bustan Palace, 3 nights" },
+  { id: "f1",  time: "14:32:07", entity: "Hotel",       entityIcon: "ri-hotel-line",         entityColor: "#C5A365", name: "Ahmed Al-Rashidi",    nat: "OM", event: "Check-In",          risk: "clear",    ref: "HTL-2026-04891", detail: "Room 204, Al Bustan Palace, 3 nights" },
   { id: "f2",  time: "14:31:55", entity: "Border",      entityIcon: "ri-passport-line",      entityColor: "#60A5FA", name: "Reza Tehrani",        nat: "IR", event: "Entry Recorded",    risk: "flagged",  ref: "BRD-2026-44891", detail: "Muscat Airport T1 — Watchlist match" },
   { id: "f3",  time: "14:31:44", entity: "Financial",   entityIcon: "ri-bank-card-line",     entityColor: "#4ADE80", name: "Al-Rashidi Trading",  nat: "OM", event: "Wire Transfer",     risk: "review",   ref: "PAY-2026-88234", detail: "OMR 45,000 → HSBC London" },
   { id: "f4",  time: "14:31:30", entity: "Mobile",      entityIcon: "ri-sim-card-line",      entityColor: "#A78BFA", name: "Unknown Subject",     nat: "PK", event: "SIM Activation",    risk: "review",   ref: "MOB-2026-19234", detail: "3rd SIM this month — same IMEI" },
@@ -18,12 +18,12 @@ const LIVE_FEED_SEED = [
   { id: "f8",  time: "14:30:40", entity: "Transport",   entityIcon: "ri-bus-line",           entityColor: "#C98A1B", name: "Carlos Mendez",       nat: "ES", event: "Route Flagged",     risk: "review",   ref: "TRN-2026-55232", detail: "Repeated stops near restricted zone" },
   { id: "f9",  time: "14:30:28", entity: "Social",      entityIcon: "ri-global-line",        entityColor: "#38BDF8", name: "Anonymous",           nat: "??", event: "Keyword Alert",     risk: "flagged",  ref: "SOC-2026-99233", detail: "High-priority keyword — public post" },
   { id: "f10", time: "14:30:15", entity: "Utility",     entityIcon: "ri-flashlight-line",    entityColor: "#FACC15", name: "Hamad Al-Zadjali",    nat: "OM", event: "New Connection",    risk: "clear",    ref: "UTL-2026-11234", detail: "Villa 45, Al Azaiba, 3-phase" },
-  { id: "f11", time: "14:30:02", entity: "Municipality",entityIcon: "ri-government-line",    entityColor: "#D6B47E", name: "Layla Al-Hinai",      nat: "OM", event: "Lease Start",       risk: "clear",    ref: "MUN-2026-03421", detail: "Villa 12, Al Khuwair, 12 months" },
+  { id: "f11", time: "14:30:02", entity: "Municipality",entityIcon: "ri-government-line",    entityColor: "#C5A365", name: "Layla Al-Hinai",      nat: "OM", event: "Lease Start",       risk: "clear",    ref: "MUN-2026-03421", detail: "Villa 12, Al Khuwair, 12 months" },
   { id: "f12", time: "14:29:50", entity: "Border",      entityIcon: "ri-passport-line",      entityColor: "#60A5FA", name: "Unknown Subject",     nat: "PK", event: "Overstay Alert",    risk: "flagged",  ref: "BRD-2026-44888", detail: "Visa expired 3 days ago" },
 ];
 
 const ENTITIES_DATA = [
-  { id: "ENT-001", name: "Al Bustan Palace Hotel",    nameAr: "فندق البستان بالاس",       type: "Hotel",        typeIcon: "ri-hotel-line",         color: "#D6B47E", status: "active",    integration: "API",    events: 1284, lastActivity: "14:32:07" },
+  { id: "ENT-001", name: "Al Bustan Palace Hotel",    nameAr: "فندق البستان بالاس",       type: "Hotel",        typeIcon: "ri-hotel-line",         color: "#C5A365", status: "active",    integration: "API",    events: 1284, lastActivity: "14:32:07" },
   { id: "ENT-002", name: "Oman Car Rental Co.",       nameAr: "شركة عُمان لتأجير السيارات",type: "Car Rental",   typeIcon: "ri-car-line",           color: "#4ADE80", status: "active",    integration: "API",    events: 2103, lastActivity: "14:31:44" },
   { id: "ENT-003", name: "Omantel",                   nameAr: "عُمانتل",                  type: "Mobile",       typeIcon: "ri-sim-card-line",      color: "#A78BFA", status: "active",    integration: "API",    events: 8412, lastActivity: "14:32:01" },
   { id: "ENT-004", name: "Muscat Municipality",       nameAr: "بلدية مسقط",              type: "Municipality", typeIcon: "ri-government-line",    color: "#FACC15", status: "active",    integration: "Portal", events: 891,  lastActivity: "14:29:50" },
@@ -88,11 +88,11 @@ const PRIORITY_CONFIG = {
   critical: { color: "#C94A5E", bg: "rgba(201,74,94,0.08)", border: "rgba(201,74,94,0.3)", label: "Critical", labelAr: "حرج" },
   high:     { color: "#C98A1B", bg: "rgba(201,138,27,0.08)",  border: "rgba(201,138,27,0.3)",  label: "High",     labelAr: "عالٍ" },
   medium:   { color: "#FACC15", bg: "rgba(250,204,21,0.08)",  border: "rgba(250,204,21,0.3)",  label: "Medium",   labelAr: "متوسط" },
-  low:      { color: "#D6B47E", bg: "rgba(184,138,60,0.08)",  border: "rgba(184,138,60,0.3)",  label: "Low",      labelAr: "منخفض" },
+  low:      { color: "#C5A365", bg: "rgba(184,138,60,0.08)",  border: "rgba(184,138,60,0.3)",  label: "Low",      labelAr: "منخفض" },
 };
 
 const ACTION_COLORS: Record<string, string> = {
-  VIEW: "#D6B47E", ASSIGN: "#4ADE80", ESCALATE: "#C94A5E", EXPORT: "#A78BFA",
+  VIEW: "#C5A365", ASSIGN: "#4ADE80", ESCALATE: "#C94A5E", EXPORT: "#A78BFA",
   RESOLVE: "#4ADE80", LOGIN: "#9CA3AF", SEARCH: "#FACC15", CONFIG: "#C98A1B",
 };
 
@@ -171,7 +171,7 @@ const CommandCenterPage = () => {
   ];
 
   return (
-    <div className="min-h-screen font-['Inter']" style={{ background: "#051428" }} dir={isAr ? "rtl" : "ltr"}>
+    <div className="min-h-screen font-['Manrope']" style={{ background: "#071426" }} dir={isAr ? "rtl" : "ltr"}>
       {/* Grid texture */}
       <div className="fixed inset-0 pointer-events-none" style={{
         backgroundImage: `linear-gradient(rgba(184,138,60,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.025) 1px, transparent 1px)`,
@@ -196,7 +196,7 @@ const CommandCenterPage = () => {
       <PageHeader
         title={isAr ? "مركز القيادة" : "Command Center"}
         icon="ri-radar-line"
-        iconColor="#D6B47E"
+        iconColor="#C5A365"
         badge={isAr ? "سري" : "SECRET"}
         badgeColor="#7F1D1D"
         crumbs={[{ label: isAr ? "لوحة التحكم" : "Dashboard", route: "/dashboard" }]}
@@ -229,7 +229,7 @@ const CommandCenterPage = () => {
             style={{
               background: activeTab === tab.id ? "rgba(184,138,60,0.12)" : "transparent",
               border: `1px solid ${activeTab === tab.id ? "rgba(184,138,60,0.25)" : "transparent"}`,
-              color: activeTab === tab.id ? "#D6B47E" : "#6B7280",
+              color: activeTab === tab.id ? "#C5A365" : "#6B7280",
             }}>
             <i className={`${tab.icon} text-xs`} />
             {isAr ? tab.labelAr : tab.label}
@@ -253,7 +253,7 @@ const CommandCenterPage = () => {
             {/* ROW 1 — Counters */}
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-3">
               {[
-                { label: isAr ? "أحداث اليوم" : "Live Events Today",    value: liveEvents,        color: "#D6B47E", icon: "ri-pulse-line",          mono: true,  large: true },
+                { label: isAr ? "أحداث اليوم" : "Live Events Today",    value: liveEvents,        color: "#C5A365", icon: "ri-pulse-line",          mono: true,  large: true },
                 { label: isAr ? "حدث/ساعة" : "Events / Hour",           value: eventsPerHour,     color: "#4ADE80", icon: "ri-speed-line",          mono: true,  large: false },
                 { label: isAr ? "كيانات نشطة" : "Active Entities",      value: 11,                color: "#A78BFA", icon: "ri-building-line",       mono: false, large: false },
                 { label: isAr ? "تنبيهات المخاطر" : "Risk Alerts",      value: openAlerts,        color: "#C94A5E", icon: "ri-alarm-warning-line",  mono: false, large: false },
@@ -300,7 +300,7 @@ const CommandCenterPage = () => {
                 {/* Filter toggles */}
                 <div className="flex items-center gap-1">
                   {[
-                    { id: "all",     label: isAr ? "الكل" : "All",      color: "#D6B47E" },
+                    { id: "all",     label: isAr ? "الكل" : "All",      color: "#C5A365" },
                     { id: "flagged", label: isAr ? "مُبلَّغ" : "Flagged", color: "#C94A5E" },
                     { id: "review",  label: isAr ? "مراجعة" : "Review",  color: "#FACC15" },
                     { id: "clear",   label: isAr ? "سليم" : "Clear",     color: "#4ADE80" },
@@ -378,7 +378,7 @@ const CommandCenterPage = () => {
                     <span className="text-gray-500 text-xs">{isAr ? "متوسط" : "Medium"}</span>
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <div className="w-3 h-3 rounded-sm" style={{ background: "#D6B47E" }} />
+                    <div className="w-3 h-3 rounded-sm" style={{ background: "#C5A365" }} />
                     <span className="text-gray-500 text-xs">{isAr ? "مرتفع" : "High"}</span>
                   </div>
                   <div className="flex items-center gap-1.5">
@@ -541,16 +541,16 @@ const CommandCenterPage = () => {
                         <div className="w-6 h-6 flex items-center justify-center rounded-md" style={{ background: `${s.color}15` }}>
                           <i className={`${s.icon} text-xs`} style={{ color: s.color }} />
                         </div>
-                        <span className="text-gray-500 text-xs font-['Inter']">{s.label}</span>
+                        <span className="text-gray-500 text-xs font-['Manrope']">{s.label}</span>
                       </div>
                       <div className="text-xl font-black font-['JetBrains_Mono']" style={{ color: s.color }}>{s.value}</div>
-                      <div className="text-gray-600 text-xs font-['Inter'] mt-0.5">{s.sub}</div>
+                      <div className="text-gray-600 text-xs font-['Manrope'] mt-0.5">{s.sub}</div>
                     </div>
                   ))}
                 </div>
                 <div>
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-gray-400 text-xs font-semibold font-['Inter'] uppercase tracking-wider">
+                    <span className="text-gray-400 text-xs font-semibold font-['Manrope'] uppercase tracking-wider">
                       {isAr ? "رموز HS عالية المخاطر" : "High-Risk HS Codes"}
                     </span>
                     <span className="text-gray-600 text-xs font-['JetBrains_Mono']">{isAr ? "اليوم" : "Today"}</span>
@@ -566,7 +566,7 @@ const CommandCenterPage = () => {
                       <div key={hs.code} className="flex items-center gap-3 px-3 py-2 rounded-lg"
                         style={{ background: "rgba(5,20,40,0.5)", border: `1px solid ${hs.color}15` }}>
                         <span className="text-xs font-bold font-['JetBrains_Mono'] w-10 flex-shrink-0" style={{ color: hs.color }}>{hs.code}</span>
-                        <span className="text-gray-300 text-xs font-['Inter'] flex-1 truncate">{hs.desc}</span>
+                        <span className="text-gray-300 text-xs font-['Manrope'] flex-1 truncate">{hs.desc}</span>
                         <div className="flex items-center gap-2 flex-shrink-0">
                           <div className="w-16 h-1.5 rounded-full" style={{ background: "rgba(255,255,255,0.06)" }}>
                             <div className="h-full rounded-full" style={{ width: `${hs.score}%`, background: hs.color }} />
@@ -632,7 +632,7 @@ const CommandCenterPage = () => {
                   {/* Stats row */}
                   <div className="grid grid-cols-3 gap-3">
                     {[
-                      { label: isAr ? "تقييمات" : "Assessments", value: alerts.length, color: "#D6B47E" },
+                      { label: isAr ? "تقييمات" : "Assessments", value: alerts.length, color: "#C5A365" },
                       { label: isAr ? "مُبلَّغ" : "Flagged", value: alerts.filter((a) => a.priority === "critical" || a.priority === "high").length, color: "#C94A5E" },
                       { label: isAr ? "مراجعة معلقة" : "Pending Review", value: alerts.filter((a) => a.status === "open").length, color: "#FACC15" },
                     ].map((s) => (
@@ -737,7 +737,7 @@ const CommandCenterPage = () => {
                           </td>
                           <td className="px-4 py-3">
                             <span className="px-2 py-0.5 rounded-full text-xs font-bold"
-                              style={{ background: e.integration === "API" ? "rgba(184,138,60,0.1)" : "rgba(167,139,250,0.1)", color: e.integration === "API" ? "#D6B47E" : "#A78BFA", border: `1px solid ${e.integration === "API" ? "rgba(184,138,60,0.2)" : "rgba(167,139,250,0.2)"}` }}>
+                              style={{ background: e.integration === "API" ? "rgba(184,138,60,0.1)" : "rgba(167,139,250,0.1)", color: e.integration === "API" ? "#C5A365" : "#A78BFA", border: `1px solid ${e.integration === "API" ? "rgba(184,138,60,0.2)" : "rgba(167,139,250,0.2)"}` }}>
                               {e.integration}
                             </span>
                           </td>
@@ -826,7 +826,7 @@ const CommandCenterPage = () => {
                             <>
                               <button type="button" onClick={() => resolveAlert(alert.id)}
                                 className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold cursor-pointer whitespace-nowrap"
-                                style={{ background: "#D6B47E", color: "#051428" }}>
+                                style={{ background: "#C5A365", color: "#071426" }}>
                                 <i className="ri-checkbox-circle-line text-xs" />
                                 {isAr ? "حل" : "Resolve"}
                               </button>
@@ -853,7 +853,7 @@ const CommandCenterPage = () => {
                             style={{ background: "rgba(5,20,40,0.8)", borderColor: "rgba(184,138,60,0.15)", color: "#D1D5DB" }} />
                           <button type="button" onClick={() => setAlertNote("")}
                             className="px-3 py-2 rounded-lg text-xs font-bold cursor-pointer whitespace-nowrap"
-                            style={{ background: "rgba(184,138,60,0.1)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}>
+                            style={{ background: "rgba(184,138,60,0.1)", color: "#C5A365", border: "1px solid rgba(184,138,60,0.2)" }}>
                             {isAr ? "حفظ" : "Save"}
                           </button>
                         </div>
@@ -889,7 +889,7 @@ const CommandCenterPage = () => {
                       <div className="flex items-center gap-3">
                         <div className="w-9 h-9 flex items-center justify-center rounded-xl"
                           style={{ background: lagOk ? "rgba(184,138,60,0.1)" : "rgba(201,74,94,0.1)", border: `1px solid ${lagOk ? "rgba(184,138,60,0.2)" : "rgba(201,74,94,0.3)"}` }}>
-                          <i className="ri-server-line text-sm" style={{ color: lagOk ? "#D6B47E" : "#C94A5E" }} />
+                          <i className="ri-server-line text-sm" style={{ color: lagOk ? "#C5A365" : "#C94A5E" }} />
                         </div>
                         <div>
                           <div className="flex items-center gap-2">
@@ -967,7 +967,7 @@ const CommandCenterPage = () => {
               </div>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {[
-                  { label: isAr ? "الأحداث الرئيسية" : "Primary Events",  value: liveEvents.toLocaleString(), color: "#D6B47E" },
+                  { label: isAr ? "الأحداث الرئيسية" : "Primary Events",  value: liveEvents.toLocaleString(), color: "#C5A365" },
                   { label: isAr ? "أحداث RES-A" : "RES-A Events",         value: rl1Events.toLocaleString(),  color: "#4ADE80" },
                   { label: isAr ? "أحداث RES-B" : "RES-B Events",         value: rl2Events.toLocaleString(),  color: "#A78BFA" },
                   { label: isAr ? "الفجوة القصوى" : "Max Gap",            value: `${Math.abs(liveEvents - rl2Events)}`, color: rl2Lag > 5 ? "#C94A5E" : "#FACC15" },
@@ -1000,7 +1000,7 @@ const CommandCenterPage = () => {
                 </div>
                 <button type="button"
                   className="flex items-center gap-2 px-4 py-2 rounded-lg border text-xs font-bold cursor-pointer whitespace-nowrap"
-                  style={{ background: "transparent", borderColor: "rgba(184,138,60,0.3)", color: "#D6B47E" }}>
+                  style={{ background: "transparent", borderColor: "rgba(184,138,60,0.3)", color: "#C5A365" }}>
                   <i className="ri-download-2-line text-xs" />
                   {isAr ? "تصدير موقّع رقمياً" : "Export (Digitally Signed)"}
                 </button>

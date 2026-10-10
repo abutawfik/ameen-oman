@@ -60,7 +60,7 @@ export default function BookingForm({ lang, onCancel }: Props) {
           <button
             onClick={() => setIsCorporate(c => !c)}
             className="relative w-10 h-5 rounded-full transition-colors cursor-pointer"
-            style={{ background: isCorporate ? '#D6B47E' : '#374151' }}
+            style={{ background: isCorporate ? '#C5A365' : '#374151' }}
           >
             <div className="absolute top-0.5 w-4 h-4 rounded-full bg-white transition-all" style={{ left: isCorporate ? '22px' : '2px' }} />
           </button>
@@ -210,7 +210,7 @@ export default function BookingForm({ lang, onCancel }: Props) {
         </div>
         <div className="flex items-center gap-3">
           <button onClick={onCancel} className="px-5 py-2.5 rounded-lg text-sm border border-gray-600 text-gray-300 hover:border-gray-400 cursor-pointer transition-all whitespace-nowrap">{isAr ? 'إلغاء' : 'Cancel'}</button>
-          <button onClick={handleSave} className="px-6 py-2.5 rounded-lg text-sm font-semibold cursor-pointer transition-all whitespace-nowrap" style={{ background: saved ? '#4ADE80' : '#D6B47E', color: '#051428' }}>
+          <button onClick={handleSave} className="px-6 py-2.5 rounded-lg text-sm font-semibold cursor-pointer transition-all whitespace-nowrap" style={{ background: saved ? '#4ADE80' : '#C5A365', color: '#071426' }}>
             {saved ? <span className="flex items-center gap-2"><i className="ri-checkbox-circle-line" />{isAr ? 'تم!' : 'Saved!'}</span> : <span><i className="ri-save-line mr-1" />{isAr ? 'حفظ + مزامنة أمين' : 'Save + Sync to Al-Ameen'}</span>}
           </button>
         </div>

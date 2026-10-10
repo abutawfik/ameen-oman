@@ -15,7 +15,7 @@ const P1  = 'var(--alm-ocean-700)';
 const P2  = 'var(--alm-ocean-600)';
 const P3  = 'var(--alm-ocean-500)';
 const P4  = 'var(--alm-ocean-400)';
-const GOLD = '#D6B47E';
+const GOLD = '#C5A365';
 const GOLD2 = '#B8893C';
 
 const ALL_ROLES: UserRole[]    = ['SUPER_ADMIN', 'ADMIN', 'ANALYST', 'OPERATOR', 'AUDITOR', 'VIEWER'];
@@ -78,7 +78,7 @@ function AddUserModal({ onClose, onAdd, isAr }: AddUserModalProps) {
     borderRadius: 5,
     color: '#e8dcc8',
     fontSize: '0.85rem',
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: 'Manrope, sans-serif',
     outline: 'none',
     width: '100%',
     boxSizing: 'border-box',

@@ -5,14 +5,14 @@ const streamColors: Record<string, string> = {
   Financial:   "#4ADE80",
   Border:      "#60A5FA",
   Mobile:      "#A78BFA",
-  Hotel:       "#D6B47E",
+  Hotel:       "#C5A365",
   Transport:   "#C98A1B",
   Social:      "#38BDF8",
   Employment:  "#F9A8D4",
   Customs:     "#FCD34D",
   Marine:      "#7DD3FC",
   HUMINT:      "#C94A5E",
-  "Internal SIEM": "#D6B47E",
+  "Internal SIEM": "#C5A365",
 };
 
 const streamIcons: Record<string, string> = {
@@ -55,14 +55,14 @@ const CaseTimeline = ({ caseData, isAr }: Props) => {
         {/* Stream filter */}
         <div className="flex items-center gap-2 mb-4 flex-wrap">
           <button onClick={() => setFilterStream("all")}
-            className="px-3 py-1.5 rounded-lg text-xs font-['Inter'] cursor-pointer transition-all whitespace-nowrap"
-            style={{ background: filterStream === "all" ? "rgba(184,138,60,0.1)" : "rgba(255,255,255,0.04)", color: filterStream === "all" ? "#D6B47E" : "#6B7280", border: `1px solid ${filterStream === "all" ? "rgba(184,138,60,0.3)" : "rgba(255,255,255,0.06)"}` }}>
+            className="px-3 py-1.5 rounded-lg text-xs font-['Manrope'] cursor-pointer transition-all whitespace-nowrap"
+            style={{ background: filterStream === "all" ? "rgba(184,138,60,0.1)" : "rgba(255,255,255,0.04)", color: filterStream === "all" ? "#C5A365" : "#6B7280", border: `1px solid ${filterStream === "all" ? "rgba(184,138,60,0.3)" : "rgba(255,255,255,0.06)"}` }}>
             All Streams
           </button>
           {streams.map((s) => (
             <button key={s} onClick={() => setFilterStream(s)}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-['Inter'] cursor-pointer transition-all whitespace-nowrap"
-              style={{ background: filterStream === s ? `${streamColors[s] || "#D6B47E"}15` : "rgba(255,255,255,0.04)", color: filterStream === s ? (streamColors[s] || "#D6B47E") : "#6B7280", border: `1px solid ${filterStream === s ? (streamColors[s] || "#D6B47E") + "40" : "rgba(255,255,255,0.06)"}` }}>
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-['Manrope'] cursor-pointer transition-all whitespace-nowrap"
+              style={{ background: filterStream === s ? `${streamColors[s] || "#C5A365"}15` : "rgba(255,255,255,0.04)", color: filterStream === s ? (streamColors[s] || "#C5A365") : "#6B7280", border: `1px solid ${filterStream === s ? (streamColors[s] || "#C5A365") + "40" : "rgba(255,255,255,0.06)"}` }}>
               <i className={`${streamIcons[s] || "ri-database-line"} text-xs`} />
               {s}
             </button>
@@ -77,7 +77,7 @@ const CaseTimeline = ({ caseData, isAr }: Props) => {
           <div className="space-y-1">
             {filtered.map((event, idx) => {
               const sig = significanceConfig[event.significance];
-              const color = streamColors[event.stream] || "#D6B47E";
+              const color = streamColors[event.stream] || "#C5A365";
               const icon = streamIcons[event.stream] || "ri-database-line";
               const isSelected = selectedEvent?.id === event.id;
 
@@ -99,16 +99,16 @@ const CaseTimeline = ({ caseData, isAr }: Props) => {
                       <div className="w-5 h-5 flex items-center justify-center rounded flex-shrink-0" style={{ background: `${color}15` }}>
                         <i className={`${icon} text-[11px]`} style={{ color }} />
                       </div>
-                      <span className="text-white text-xs font-bold font-['Inter'] truncate">{event.title}</span>
+                      <span className="text-white text-xs font-bold font-['Manrope'] truncate">{event.title}</span>
                       {!event.verified && (
                         <span className="text-[9px] px-1.5 py-0.5 rounded font-['JetBrains_Mono'] flex-shrink-0" style={{ background: "rgba(250,204,21,0.1)", color: "#FACC15" }}>UNVERIFIED</span>
                       )}
                     </div>
-                    <p className="text-gray-500 text-[11px] font-['Inter'] truncate">{event.detail}</p>
+                    <p className="text-gray-500 text-[11px] font-['Manrope'] truncate">{event.detail}</p>
                     <div className="flex items-center gap-3 mt-1">
                       <span className="text-gray-700 text-[11px] font-['JetBrains_Mono']">{event.timestamp}</span>
-                      <span className="text-gray-700 text-[11px] font-['Inter']">{event.location}</span>
-                      <span className="text-[11px] font-['Inter']" style={{ color }}>{event.stream}</span>
+                      <span className="text-gray-700 text-[11px] font-['Manrope']">{event.location}</span>
+                      <span className="text-[11px] font-['Manrope']" style={{ color }}>{event.stream}</span>
                     </div>
                   </div>
                 </button>
@@ -128,8 +128,8 @@ const CaseTimeline = ({ caseData, isAr }: Props) => {
                 <i className="ri-close-line text-sm" />
               </button>
             </div>
-            <h4 className="text-white text-sm font-bold font-['Inter']">{selectedEvent.title}</h4>
-            <p className="text-gray-400 text-xs font-['Inter'] leading-relaxed">{selectedEvent.detail}</p>
+            <h4 className="text-white text-sm font-bold font-['Manrope']">{selectedEvent.title}</h4>
+            <p className="text-gray-400 text-xs font-['Manrope'] leading-relaxed">{selectedEvent.detail}</p>
             <div className="space-y-2">
               {[
                 { label: "Timestamp", value: selectedEvent.timestamp },
@@ -141,7 +141,7 @@ const CaseTimeline = ({ caseData, isAr }: Props) => {
               ].map((row) => (
                 <div key={row.label} className="flex justify-between">
                   <span className="text-gray-700 text-[11px] font-['JetBrains_Mono']">{row.label}</span>
-                  <span className="text-gray-400 text-[11px] font-['Inter']">{row.value}</span>
+                  <span className="text-gray-400 text-[11px] font-['Manrope']">{row.value}</span>
                 </div>
               ))}
             </div>
@@ -157,10 +157,10 @@ const CaseTimeline = ({ caseData, isAr }: Props) => {
               </div>
             )}
             <div className="flex gap-2">
-              <button className="flex-1 py-1.5 rounded-lg text-[11px] font-['Inter'] cursor-pointer whitespace-nowrap" style={{ background: "rgba(184,138,60,0.08)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}>
+              <button className="flex-1 py-1.5 rounded-lg text-[11px] font-['Manrope'] cursor-pointer whitespace-nowrap" style={{ background: "rgba(184,138,60,0.08)", color: "#C5A365", border: "1px solid rgba(184,138,60,0.2)" }}>
                 Add Note
               </button>
-              <button className="flex-1 py-1.5 rounded-lg text-[11px] font-['Inter'] cursor-pointer whitespace-nowrap" style={{ background: "rgba(167,139,250,0.08)", color: "#A78BFA", border: "1px solid rgba(167,139,250,0.2)" }}>
+              <button className="flex-1 py-1.5 rounded-lg text-[11px] font-['Manrope'] cursor-pointer whitespace-nowrap" style={{ background: "rgba(167,139,250,0.08)", color: "#A78BFA", border: "1px solid rgba(167,139,250,0.2)" }}>
                 Add Evidence
               </button>
             </div>

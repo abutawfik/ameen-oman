@@ -87,8 +87,8 @@ const AlertDetail = ({ alert, isAr, onBack }: Props) => {
               <img src={alert.photo} alt="" className="w-full h-full object-cover object-top" />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-white text-sm font-black font-['Inter'] leading-tight">{alert.personName}</p>
-              <p className="text-gray-400 text-xs font-['Inter'] mt-0.5">{alert.nationalityFlag} {alert.nationality} · {alert.docNumber}</p>
+              <p className="text-white text-sm font-black font-['Manrope'] leading-tight">{alert.personName}</p>
+              <p className="text-gray-400 text-xs font-['Manrope'] mt-0.5">{alert.nationalityFlag} {alert.nationality} · {alert.docNumber}</p>
               <div className="flex items-center gap-2 mt-1.5">
                 <span className="text-xs font-black font-['JetBrains_Mono']" style={{ color: cfg.color }}>{alert.riskScore}</span>
                 <span className="text-gray-600 text-[11px] font-['JetBrains_Mono']">{isAr ? "درجة المخاطرة" : "Risk Score"}</span>
@@ -100,7 +100,7 @@ const AlertDetail = ({ alert, isAr, onBack }: Props) => {
           <div className="flex items-center gap-2 px-3 py-2 rounded-xl mb-3" style={{ background: "rgba(5,20,40,0.7)", border: "1px solid rgba(184,138,60,0.15)" }}>
             <i className="ri-map-pin-2-fill text-gold-400 text-sm flex-shrink-0" />
             <div className="flex-1 min-w-0">
-              <p className="text-white text-xs font-['Inter'] truncate">{isAr ? alert.locationAr : alert.location}</p>
+              <p className="text-white text-xs font-['Manrope'] truncate">{isAr ? alert.locationAr : alert.location}</p>
             </div>
             <span className="text-gold-400 text-xs font-bold font-['JetBrains_Mono'] flex-shrink-0">{alert.distance}</span>
             <button className="w-7 h-7 flex items-center justify-center rounded-lg cursor-pointer flex-shrink-0" style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.25)" }}>
@@ -111,7 +111,7 @@ const AlertDetail = ({ alert, isAr, onBack }: Props) => {
           {/* Pattern explanation */}
           <div className="px-3 py-2.5 rounded-xl" style={{ background: "rgba(5,20,40,0.7)", border: `1px solid ${cfg.color}22` }}>
             <p className="text-gray-500 text-[9px] uppercase tracking-wider font-['JetBrains_Mono'] mb-1">{isAr ? "شرح النمط" : "Pattern Explanation"}</p>
-            <p className="text-gray-300 text-xs font-['Inter'] leading-relaxed">{isAr ? alert.detailsAr : alert.details}</p>
+            <p className="text-gray-300 text-xs font-['Manrope'] leading-relaxed">{isAr ? alert.detailsAr : alert.details}</p>
           </div>
         </div>
       </div>
@@ -119,7 +119,7 @@ const AlertDetail = ({ alert, isAr, onBack }: Props) => {
       {/* Escalation warning */}
       {escalationWarning && (
         <div className="mx-3 mt-2 px-3 py-2.5 rounded-xl" style={{ background: "rgba(201,74,94,0.1)", border: "1px solid rgba(201,74,94,0.4)" }}>
-          <p className="text-red-400 text-xs font-['Inter'] font-semibold">{escalationWarning}</p>
+          <p className="text-red-400 text-xs font-['Manrope'] font-semibold">{escalationWarning}</p>
         </div>
       )}
 
@@ -142,14 +142,14 @@ const AlertDetail = ({ alert, isAr, onBack }: Props) => {
           />
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="flex flex-col items-center gap-1">
-              <div className="w-4 h-4 rounded-full bg-gold-400 animate-pulse" style={{ boxShadow: "0 0 12px #D6B47E" }} />
+              <div className="w-4 h-4 rounded-full bg-gold-400 animate-pulse" style={{ boxShadow: "0 0 12px #C5A365" }} />
               <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ background: `${cfg.color}22`, border: `2px solid ${cfg.color}` }}>
                 <i className="ri-user-fill text-sm" style={{ color: cfg.color }} />
               </div>
             </div>
           </div>
           <div className="absolute bottom-2 right-2">
-            <button className="flex items-center gap-1 px-2 py-1 rounded-lg text-[11px] font-['JetBrains_Mono'] cursor-pointer" style={{ background: "rgba(5,20,40,0.9)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.3)" }}>
+            <button className="flex items-center gap-1 px-2 py-1 rounded-lg text-[11px] font-['JetBrains_Mono'] cursor-pointer" style={{ background: "rgba(5,20,40,0.9)", color: "#C5A365", border: "1px solid rgba(184,138,60,0.3)" }}>
               <i className="ri-fullscreen-line text-[11px]" />
               {isAr ? "توسيع" : "Expand"}
             </button>
@@ -165,7 +165,7 @@ const AlertDetail = ({ alert, isAr, onBack }: Props) => {
             <button
               key={btn.key}
               onClick={() => handleStatusChange(btn.key)}
-              className="flex items-center justify-center gap-2 py-3 rounded-2xl text-sm font-bold font-['Inter'] cursor-pointer transition-all"
+              className="flex items-center justify-center gap-2 py-3 rounded-2xl text-sm font-bold font-['Manrope'] cursor-pointer transition-all"
               style={{
                 background: status === btn.key ? btn.bg : "rgba(10,37,64,0.8)",
                 color: btn.color,
@@ -182,7 +182,7 @@ const AlertDetail = ({ alert, isAr, onBack }: Props) => {
 
       {/* Response timeline */}
       <div className="mx-3 mt-3 mb-4 rounded-2xl p-4" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(255,255,255,0.06)" }}>
-        <p className="text-white text-xs font-bold font-['Inter'] uppercase tracking-wider mb-3">{isAr ? "الجدول الزمني للاستجابة" : "Response Timeline"}</p>
+        <p className="text-white text-xs font-bold font-['Manrope'] uppercase tracking-wider mb-3">{isAr ? "الجدول الزمني للاستجابة" : "Response Timeline"}</p>
         <div className="space-y-2">
           {statusFlow.map((s, i) => {
             const entry = timeline.find((t) => t.status === s);
@@ -202,7 +202,7 @@ const AlertDetail = ({ alert, isAr, onBack }: Props) => {
                   {isDone ? <i className="ri-check-line text-[11px]" style={{ color: colors[s] }} /> : <div className="w-1.5 h-1.5 rounded-full bg-gray-700" />}
                 </div>
                 <div className="flex-1">
-                  <p className="text-xs font-['Inter']" style={{ color: isDone ? "#D1D5DB" : "#4B5563" }}>{isAr ? labels[s].ar : labels[s].en}</p>
+                  <p className="text-xs font-['Manrope']" style={{ color: isDone ? "#D1D5DB" : "#4B5563" }}>{isAr ? labels[s].ar : labels[s].en}</p>
                 </div>
                 <span className="text-[11px] font-['JetBrains_Mono']" style={{ color: isDone ? colors[s] : "#374151" }}>
                   {entry?.time || "—"}

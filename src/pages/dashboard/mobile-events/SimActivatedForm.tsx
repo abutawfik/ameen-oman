@@ -178,10 +178,10 @@ const SimActivatedForm = ({ isAr, onCancel }: Props) => {
                 <i className="ri-sim-card-2-line text-green-400 text-lg" />
               </div>
               <div>
-                <p className="text-green-400 font-bold text-sm font-['Inter']">
+                <p className="text-green-400 font-bold text-sm font-['Manrope']">
                   {isAr ? "الشريحة نشطة" : "SIM Active"}
                 </p>
-                <p className="text-gray-500 text-xs font-['Inter']">
+                <p className="text-gray-500 text-xs font-['Manrope']">
                   {isAr ? "سيتم إرسال حدث التفعيل إلى Al-Ameen" : "Activation event will be sent to Al-Ameen"}
                 </p>
               </div>
@@ -194,7 +194,7 @@ const SimActivatedForm = ({ isAr, onCancel }: Props) => {
                 className="p-3 rounded-xl border"
                 style={{ background: "rgba(184,138,60,0.04)", borderColor: "rgba(184,138,60,0.15)" }}
               >
-                <p className="text-gray-500 text-xs mb-1 font-['Inter']">ICCID</p>
+                <p className="text-gray-500 text-xs mb-1 font-['Manrope']">ICCID</p>
                 <p className="text-gold-400 font-bold text-sm font-['JetBrains_Mono'] tracking-wider break-all">
                   {iccid}
                 </p>

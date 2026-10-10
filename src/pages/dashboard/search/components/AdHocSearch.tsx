@@ -1,3 +1,4 @@
+import { searchRecords, queryRecords } from '@/workflows/search';
 import { useState } from 'react';
 import type { SearchDomain, QueryCondition, SavedQuery } from '@/mocks/searchData';
 import { MOCK_SEARCH_RESULTS } from '@/mocks/searchData';
@@ -18,44 +19,29 @@ export default function AdHocSearch({ isAr }: Props) {
   const [loading, setLoading]       = useState(false);
   const [showSaved, setShowSaved]   = useState(false);
 
-  const simulate = (cb: () => void) => {
-    setLoading(true);
-    setTimeout(() => { cb(); setLoading(false); setSearched(true); }, 600);
-  };
+  const runLocalQuery = (cb: () => void) => { cb(); setLoading(false); setSearched(true); };
 
-  const handleGeneralSearch = (query: string) => {
-    simulate(() => {
-      const q = query.toLowerCase();
-      setResults(MOCK_SEARCH_RESULTS.filter(r =>
-        r.name.toLowerCase().includes(q)
-        || r.nameAr.includes(q)
-        || r.nationality.toLowerCase().includes(q)
-        || r.nationalityCode.toLowerCase().includes(q)
-        || r.docNumber.toLowerCase().includes(q)
-        || (r.flight?.toLowerCase().includes(q) ?? false)
-        || (r.route?.toLowerCase().includes(q) ?? false)
-      ));
-    });
+  const handleGeneralSearch = (query: string, phonetic = false, searchDomain = domain) => {
+    runLocalQuery(() => setResults(searchRecords(MOCK_SEARCH_RESULTS, searchDomain, query, phonetic)));
   };
-
-  const handleBuilderSearch = (_conditions: QueryCondition[]) => {
-    simulate(() => setResults(MOCK_SEARCH_RESULTS));
+  const handleBuilderSearch = (conditions: QueryCondition[], searchDomain = domain) => {
+    runLocalQuery(() => setResults(queryRecords(MOCK_SEARCH_RESULTS, searchDomain, conditions)));
   };
-
   const handleSavedRun = (q: SavedQuery) => {
     setMode(q.mode);
     setDomain(q.domain);
-    if (q.mode === 'general' && q.query) handleGeneralSearch(q.query);
-    else handleBuilderSearch(q.conditions ?? []);
+    if (q.mode === 'general') handleGeneralSearch(q.query ?? '', false, q.domain);
+    else handleBuilderSearch(q.conditions ?? [], q.domain);
     setShowSaved(false);
   };
+  const changeDomain = (next: SearchDomain) => { setDomain(next); setSearched(false); setResults([]); };
 
   const modeBtn = (m: Mode) => ({
     padding: '5px 14px', borderRadius: 4, fontSize: 11, cursor: 'pointer',
     fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.05em',
     background: mode === m ? 'rgba(184,138,60,0.15)' : 'transparent',
     border: `1px solid ${mode === m ? 'rgba(184,138,60,0.4)' : 'rgba(184,138,60,0.15)'}`,
-    color: mode === m ? '#D6B47E' : '#5B7494',
+    color: mode === m ? '#C5A365' : '#5B7494',
   });
 
   return (
@@ -83,7 +69,7 @@ export default function AdHocSearch({ isAr }: Props) {
                 fontFamily: "'JetBrains Mono', monospace",
                 background: showSaved ? 'rgba(184,138,60,0.15)' : 'transparent',
                 border: `1px solid ${showSaved ? 'rgba(184,138,60,0.4)' : 'rgba(184,138,60,0.15)'}`,
-                color: showSaved ? '#D6B47E' : '#5B7494',
+                color: showSaved ? '#C5A365' : '#5B7494',
               }}
             >
               <i className="ri-bookmark-line" style={{ marginRight: 5 }} />
@@ -92,8 +78,8 @@ export default function AdHocSearch({ isAr }: Props) {
           </div>
 
           {mode === 'general'
-            ? <GeneralSearchBar domain={domain} onDomainChange={setDomain} onSearch={handleGeneralSearch} isAr={isAr} />
-            : <QueryBuilder domain={domain} onSearch={handleBuilderSearch} isAr={isAr} />
+            ? <GeneralSearchBar domain={domain} onDomainChange={changeDomain} onSearch={handleGeneralSearch} isAr={isAr} />
+            : <QueryBuilder key={domain} domain={domain} onSearch={handleBuilderSearch} isAr={isAr} />
           }
         </div>
 
@@ -104,10 +90,10 @@ export default function AdHocSearch({ isAr }: Props) {
             : (
               <div style={{ padding: 48, textAlign: 'center' }}>
                 <i className="ri-search-2-line" style={{ fontSize: 40, color: '#1A3550', display: 'block', marginBottom: 14 }} />
-                <div style={{ color: '#374B61', fontFamily: "'Inter', sans-serif", fontSize: 14 }}>
+                <div style={{ color: '#374B61', fontFamily: "'Manrope', sans-serif", fontSize: 14 }}>
                   {isAr ? 'أدخل معايير البحث أعلاه' : 'Enter search criteria above'}
                 </div>
-                <div style={{ color: '#1A3550', fontFamily: "'Inter', sans-serif", fontSize: 12, marginTop: 6 }}>
+                <div style={{ color: '#1A3550', fontFamily: "'Manrope', sans-serif", fontSize: 12, marginTop: 6 }}>
                   {isAr ? 'يدعم البحث الصوتي وبمنشئ الاستعلامات المتقدم' : 'Supports phonetic matching and advanced query builder'}
                 </div>
               </div>

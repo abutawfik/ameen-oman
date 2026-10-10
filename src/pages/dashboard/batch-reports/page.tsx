@@ -51,7 +51,7 @@ const BatchReportsPage = () => {
 
   const TABS: { id: Tab; icon: string; label: string; labelAr: string; badge?: string; badgeColor?: string }[] = [
     { id: "upload",        icon: "ri-upload-cloud-2-line", label: "Batch Upload",    labelAr: "رفع الدُفعة" },
-    { id: "upload-status", icon: "ri-list-check-2",        label: "Upload Status",   labelAr: "حالة الرفع",   badge: uploadResults.length > 0 ? String(uploadResults.length) : undefined, badgeColor: "#D6B47E" },
+    { id: "upload-status", icon: "ri-list-check-2",        label: "Upload Status",   labelAr: "حالة الرفع",   badge: uploadResults.length > 0 ? String(uploadResults.length) : undefined, badgeColor: "#C5A365" },
     { id: "reports",       icon: "ri-bar-chart-2-line",    label: "Reports",         labelAr: "التقارير" },
     { id: "compliance",    icon: "ri-shield-check-line",   label: "Compliance",      labelAr: "الامتثال" },
     { id: "users",         icon: "ri-team-line",           label: "Manage Users",    labelAr: "إدارة المستخدمين" },
@@ -59,7 +59,7 @@ const BatchReportsPage = () => {
   ];
 
   return (
-    <div className="min-h-screen font-['Inter']" style={{ background: "#051428" }} dir={isAr ? "rtl" : "ltr"}>
+    <div className="min-h-screen font-['Manrope']" style={{ background: "#071426" }} dir={isAr ? "rtl" : "ltr"}>
       {/* Grid texture */}
       <div className="fixed inset-0 pointer-events-none" style={{
         backgroundImage: `linear-gradient(rgba(184,138,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.03) 1px, transparent 1px)`,
@@ -69,7 +69,7 @@ const BatchReportsPage = () => {
       <PageHeader
         title={isAr ? "رفع ملفات الأحداث" : "Batch Event Upload"}
         icon="ri-upload-cloud-2-line"
-        iconColor="#D6B47E"
+        iconColor="#C5A365"
         crumbs={[{ label: isAr ? "لوحة التحكم" : "Dashboard", route: "/dashboard" }]}
         action={
           <div className="flex items-center gap-3">
@@ -97,7 +97,7 @@ const BatchReportsPage = () => {
             style={{
               background: activeTab === tab.id ? "rgba(184,138,60,0.12)" : "transparent",
               border: `1px solid ${activeTab === tab.id ? "rgba(184,138,60,0.25)" : "transparent"}`,
-              color: activeTab === tab.id ? "#D6B47E" : "#6B7280",
+              color: activeTab === tab.id ? "#C5A365" : "#6B7280",
             }}>
             <i className={`${tab.icon} text-xs`} />
             {isAr ? tab.labelAr : tab.label}
@@ -150,7 +150,7 @@ const BatchReportsPage = () => {
                 <p className="text-gray-500 text-sm mb-4">{isAr ? "ارفع ملفاً أولاً لرؤية النتائج هنا" : "Upload a file first to see results here"}</p>
                 <button type="button" onClick={() => setActiveTab("upload")}
                   className="flex items-center gap-2 px-5 py-2 rounded-lg text-sm font-bold cursor-pointer whitespace-nowrap"
-                  style={{ background: "#D6B47E", color: "#051428" }}>
+                  style={{ background: "#C5A365", color: "#071426" }}>
                   <i className="ri-upload-cloud-2-line text-sm" />
                   {isAr ? "رفع ملف" : "Upload File"}
                 </button>
@@ -176,8 +176,8 @@ const BatchReportsPage = () => {
                   <button key={dr.id} type="button" onClick={() => setDateRange(dr.id)}
                     className="px-3 py-1.5 rounded-lg text-xs font-bold cursor-pointer whitespace-nowrap transition-all"
                     style={{
-                      background: dateRange === dr.id ? "#D6B47E" : "transparent",
-                      color: dateRange === dr.id ? "#051428" : "#6B7280",
+                      background: dateRange === dr.id ? "#C5A365" : "transparent",
+                      color: dateRange === dr.id ? "#071426" : "#6B7280",
                     }}>
                     {isAr ? dr.labelAr : dr.label}
                   </button>

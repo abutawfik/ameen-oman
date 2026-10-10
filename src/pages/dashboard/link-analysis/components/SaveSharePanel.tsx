@@ -31,12 +31,12 @@ const SaveSharePanel = ({
     critical: "#C94A5E",
     high: "#C98A1B",
     medium: "#FACC15",
-    hotel: "#D6B47E",
+    hotel: "#C5A365",
     mobile: "#A78BFA",
   };
 
   const historyItems = [
-    { action: isAr ? "تشغيل أقصر مسار" : "Ran Shortest Path", time: "2 min ago", icon: "ri-route-line", color: "#D6B47E" },
+    { action: isAr ? "تشغيل أقصر مسار" : "Ran Shortest Path", time: "2 min ago", icon: "ri-route-line", color: "#C5A365" },
     { action: isAr ? "إضافة عقدة: حساب بنكي" : "Added Node: Bank Account", time: "8 min ago", icon: "ri-add-circle-line", color: "#4ADE80" },
     { action: isAr ? "اكتشاف المجتمعات" : "Community Detection Run", time: "15 min ago", icon: "ri-group-line", color: "#A78BFA" },
     { action: isAr ? "توسيع 2 خطوة من أحمد" : "2-hop Expand from Ahmed", time: "22 min ago", icon: "ri-git-branch-line", color: "#C98A1B" },
@@ -55,10 +55,10 @@ const SaveSharePanel = ({
           <button
             key={tab.key}
             onClick={() => setActiveTab(tab.key)}
-            className="flex-1 flex items-center justify-center gap-1 py-2.5 text-xs font-['Inter'] cursor-pointer transition-colors"
+            className="flex-1 flex items-center justify-center gap-1 py-2.5 text-xs font-['Manrope'] cursor-pointer transition-colors"
             style={{
-              color: activeTab === tab.key ? "#D6B47E" : "#6B7280",
-              borderBottom: activeTab === tab.key ? "2px solid #D6B47E" : "2px solid transparent",
+              color: activeTab === tab.key ? "#C5A365" : "#6B7280",
+              borderBottom: activeTab === tab.key ? "2px solid #C5A365" : "2px solid transparent",
             }}
           >
             <i className={`${tab.icon} text-sm`} />
@@ -76,34 +76,34 @@ const SaveSharePanel = ({
               className="p-3 rounded-lg"
               style={{ background: "rgba(184,138,60,0.06)", border: "1px solid rgba(184,138,60,0.15)" }}
             >
-              <p className="text-gold-400 text-xs font-semibold font-['Inter'] mb-2">
+              <p className="text-gold-400 text-xs font-semibold font-['Manrope'] mb-2">
                 {isAr ? "مساحة العمل الحالية" : "Current Workspace"}
               </p>
               <div className="flex gap-4">
                 <div>
                   <p className="text-white text-lg font-black font-['JetBrains_Mono']">{nodeCount}</p>
-                  <p className="text-gray-600 text-[11px] font-['Inter']">{isAr ? "عقدة" : "nodes"}</p>
+                  <p className="text-gray-600 text-[11px] font-['Manrope']">{isAr ? "عقدة" : "nodes"}</p>
                 </div>
                 <div>
                   <p className="text-white text-lg font-black font-['JetBrains_Mono']">{edgeCount}</p>
-                  <p className="text-gray-600 text-[11px] font-['Inter']">{isAr ? "رابط" : "edges"}</p>
+                  <p className="text-gray-600 text-[11px] font-['Manrope']">{isAr ? "رابط" : "edges"}</p>
                 </div>
                 <div>
                   <p className="text-white text-lg font-black font-['JetBrains_Mono']">{annotations.length}</p>
-                  <p className="text-gray-600 text-[11px] font-['Inter']">{isAr ? "ملاحظة" : "notes"}</p>
+                  <p className="text-gray-600 text-[11px] font-['Manrope']">{isAr ? "ملاحظة" : "notes"}</p>
                 </div>
               </div>
               <div className="flex gap-2 mt-3">
                 <button
                   onClick={() => setShowSaveModal(true)}
-                  className="flex-1 py-1.5 rounded text-xs font-['Inter'] font-semibold cursor-pointer"
-                  style={{ background: "#D6B47E", color: "#051428" }}
+                  className="flex-1 py-1.5 rounded text-xs font-['Manrope'] font-semibold cursor-pointer"
+                  style={{ background: "#C5A365", color: "#071426" }}
                 >
                   <i className="ri-save-line mr-1" />
                   {isAr ? "حفظ" : "Save"}
                 </button>
                 <button
-                  className="flex-1 py-1.5 rounded text-xs font-['Inter'] cursor-pointer"
+                  className="flex-1 py-1.5 rounded text-xs font-['Manrope'] cursor-pointer"
                   style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", color: "#9CA3AF" }}
                 >
                   <i className="ri-share-line mr-1" />
@@ -124,7 +124,7 @@ const SaveSharePanel = ({
                 onClick={() => onLoadWorkspace(ws.id)}
               >
                 <div className="flex items-start justify-between gap-2 mb-1.5">
-                  <p className="text-gray-200 text-xs font-semibold font-['Inter'] leading-tight">{ws.name}</p>
+                  <p className="text-gray-200 text-xs font-semibold font-['Manrope'] leading-tight">{ws.name}</p>
                   {ws.shared && (
                     <span className="text-[11px] font-['JetBrains_Mono'] flex-shrink-0" style={{ color: "#4ADE80" }}>
                       <i className="ri-share-line mr-0.5" />shared
@@ -156,14 +156,14 @@ const SaveSharePanel = ({
           <div className="p-3 space-y-2">
             <button
               onClick={onAddAnnotation}
-              className="w-full flex items-center justify-center gap-2 py-2 rounded-lg text-xs font-['Inter'] cursor-pointer transition-colors"
+              className="w-full flex items-center justify-center gap-2 py-2 rounded-lg text-xs font-['Manrope'] cursor-pointer transition-colors"
               style={{ background: "rgba(250,204,21,0.08)", border: "1px dashed rgba(250,204,21,0.3)", color: "#FACC15" }}
             >
               <i className="ri-add-line" />
               {isAr ? "إضافة ملاحظة على الرسم" : "Add Annotation to Canvas"}
             </button>
             {annotations.length === 0 && (
-              <p className="text-gray-600 text-xs text-center py-6 font-['Inter']">
+              <p className="text-gray-600 text-xs text-center py-6 font-['Manrope']">
                 {isAr ? "لا توجد ملاحظات بعد" : "No annotations yet"}
               </p>
             )}
@@ -175,7 +175,7 @@ const SaveSharePanel = ({
               >
                 <div className="flex items-start justify-between gap-2 mb-1.5">
                   <div className="w-2 h-2 rounded-full mt-1 flex-shrink-0" style={{ background: ann.color }} />
-                  <p className="text-gray-300 text-xs font-['Inter'] flex-1 leading-relaxed">{ann.text}</p>
+                  <p className="text-gray-300 text-xs font-['Manrope'] flex-1 leading-relaxed">{ann.text}</p>
                   <button
                     onClick={() => onDeleteAnnotation(ann.id)}
                     className="text-gray-700 hover:text-red-400 cursor-pointer flex-shrink-0"
@@ -184,7 +184,7 @@ const SaveSharePanel = ({
                   </button>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-gray-600 text-[11px] font-['Inter']">{ann.author}</span>
+                  <span className="text-gray-600 text-[11px] font-['Manrope']">{ann.author}</span>
                   <span className="text-gray-700 text-[11px] font-['JetBrains_Mono']">{ann.timestamp}</span>
                 </div>
               </div>
@@ -201,7 +201,7 @@ const SaveSharePanel = ({
                   <i className={`${item.icon} text-sm`} style={{ color: item.color }} />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-gray-300 text-xs font-['Inter'] truncate">{item.action}</p>
+                  <p className="text-gray-300 text-xs font-['Manrope'] truncate">{item.action}</p>
                   <p className="text-gray-600 text-[11px] font-['JetBrains_Mono']">{item.time}</p>
                 </div>
               </div>
@@ -217,13 +217,13 @@ const SaveSharePanel = ({
             className="w-80 rounded-xl p-5"
             style={{ background: "rgba(10,37,64,0.98)", border: "1px solid rgba(184,138,60,0.25)" }}
           >
-            <h3 className="text-white text-sm font-bold font-['Inter'] mb-4">
+            <h3 className="text-white text-sm font-bold font-['Manrope'] mb-4">
               {isAr ? "حفظ مساحة العمل" : "Save Workspace"}
             </h3>
             {saveSuccess ? (
               <div className="flex items-center gap-2 py-3 text-green-400">
                 <i className="ri-checkbox-circle-line text-xl" />
-                <span className="text-sm font-['Inter']">{isAr ? "تم الحفظ بنجاح!" : "Saved successfully!"}</span>
+                <span className="text-sm font-['Manrope']">{isAr ? "تم الحفظ بنجاح!" : "Saved successfully!"}</span>
               </div>
             ) : (
               <>
@@ -232,20 +232,20 @@ const SaveSharePanel = ({
                   value={saveName}
                   onChange={e => setSaveName(e.target.value)}
                   placeholder={isAr ? "اسم مساحة العمل..." : "Workspace name..."}
-                  className="w-full px-3 py-2 rounded-lg text-sm text-white placeholder-gray-600 outline-none mb-4 font-['Inter']"
+                  className="w-full px-3 py-2 rounded-lg text-sm text-white placeholder-gray-600 outline-none mb-4 font-['Manrope']"
                   style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(184,138,60,0.2)" }}
                 />
                 <div className="flex gap-2">
                   <button
                     onClick={handleSave}
-                    className="flex-1 py-2 rounded-lg text-sm font-['Inter'] font-semibold cursor-pointer"
-                    style={{ background: "#D6B47E", color: "#051428" }}
+                    className="flex-1 py-2 rounded-lg text-sm font-['Manrope'] font-semibold cursor-pointer"
+                    style={{ background: "#C5A365", color: "#071426" }}
                   >
                     {isAr ? "حفظ" : "Save"}
                   </button>
                   <button
                     onClick={() => setShowSaveModal(false)}
-                    className="flex-1 py-2 rounded-lg text-sm font-['Inter'] cursor-pointer"
+                    className="flex-1 py-2 rounded-lg text-sm font-['Manrope'] cursor-pointer"
                     style={{ background: "rgba(255,255,255,0.06)", color: "#9CA3AF" }}
                   >
                     {isAr ? "إلغاء" : "Cancel"}

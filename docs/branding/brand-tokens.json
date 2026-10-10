@@ -1,0 +1,46 @@
+{
+  "brandEdition": 2,
+  "identity": {
+    "arabic": "الأمين",
+    "english": "AL-AMEEN",
+    "hierarchy": "Arabic primary in both locales"
+  },
+  "colors": {
+    "midnight": "#071426",
+    "ink": "#030A14",
+    "surface": "#0D2138",
+    "hover": "#15314D",
+    "gold": "#C5A365",
+    "goldHover": "#D6B77E",
+    "ivory": "#F8F5F0",
+    "muted": "#AAB8C7",
+    "border": "#294059",
+    "burgundy": "#8A1F3C",
+    "success": "#62C69B",
+    "warning": "#E2B65A",
+    "danger": "#EF8791",
+    "focus": "#9EC7ED"
+  },
+  "fonts": {
+    "english": "Manrope",
+    "arabic": "Cairo",
+    "mono": "JetBrains Mono"
+  },
+  "spacing": [
+    4,
+    8,
+    12,
+    16,
+    24,
+    32,
+    48,
+    64,
+    80,
+    112
+  ],
+  "radius": {
+    "button": 6,
+    "card": 10
+  },
+  "logoFormat": "PNG with navy/ivory background; vector/transparent masters pending"
+}

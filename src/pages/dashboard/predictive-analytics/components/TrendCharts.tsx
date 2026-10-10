@@ -4,7 +4,7 @@ import { trendData, lastWeekTrendData, type TrendPoint } from '@/mocks/predictiv
 type TrendCategoryKey = Exclude<keyof TrendPoint, 'label'>;
 
 const CATEGORIES: { key: TrendCategoryKey; label: string; color: string }[] = [
-  { key: 'arrival',       label: 'Arrival',       color: '#D6B47E' },
+  { key: 'arrival',       label: 'Arrival',       color: '#C5A365' },
   { key: 'financial',     label: 'Financial',     color: '#4ADE80' },
   { key: 'identity',      label: 'Identity',      color: '#C94A5E' },
   { key: 'accommodation', label: 'Accommodation', color: '#FACC15' },
@@ -70,8 +70,8 @@ export default function TrendCharts() {
                 onClick={() => setViewMode(m)}
                 className="px-2.5 py-1 rounded-md text-xs transition-all cursor-pointer whitespace-nowrap"
                 style={{
-                  background: viewMode === m ? '#D6B47E' : 'transparent',
-                  color: viewMode === m ? '#051428' : '#9CA3AF',
+                  background: viewMode === m ? '#C5A365' : 'transparent',
+                  color: viewMode === m ? '#071426' : '#9CA3AF',
                 }}
               >
                 {m === 'stacked' ? 'Stacked' : 'Compare'}
@@ -188,7 +188,7 @@ export default function TrendCharts() {
                       className="flex-1 rounded-t-sm transition-all"
                       style={{
                         height: maxVal > 0 ? (total / maxVal) * CHART_H : 2,
-                        background: '#D6B47E',
+                        background: '#C5A365',
                         opacity: isHovered ? 1 : 0.8,
                         minHeight: 2,
                       }}
@@ -237,7 +237,7 @@ export default function TrendCharts() {
           {
             label: 'Peak Day',
             value: peakDay,
-            color: '#D6B47E',
+            color: '#C5A365',
             icon: 'ri-calendar-line',
           },
         ].map(stat => (

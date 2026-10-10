@@ -21,7 +21,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="min-h-screen" style={{ background: "#051428", fontFamily: "Inter, Cairo, sans-serif" }}>
+    <div className="min-h-screen" style={{ background: "#071426", fontFamily: "Manrope, Cairo, sans-serif" }}>
       <SkipToMain />
       <Navbar />
       <main id="main">

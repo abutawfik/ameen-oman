@@ -165,7 +165,7 @@ const PersonPurchaseProfile = ({ isAr }: Props) => {
             <div className="grid grid-cols-3 gap-3 text-center">
               {[
                 { label: isAr ? "تنبيهات" : "Flags", value: person.totalFlagged, color: rc },
-                { label: isAr ? "الإنفاق" : "Total Spend", value: person.totalSpend, color: "#D6B47E" },
+                { label: isAr ? "الإنفاق" : "Total Spend", value: person.totalSpend, color: "#C5A365" },
                 { label: isAr ? "بطاقات" : "Cards", value: person.paymentMethods, color: "#FACC15" },
               ].map((stat) => (
                 <div key={stat.label} className="px-3 py-2 rounded-xl" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>

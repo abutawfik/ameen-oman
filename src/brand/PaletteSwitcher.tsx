@@ -25,7 +25,7 @@ import {
 // Kept inline so the switcher never depends on tailwind JIT and can load on
 // the very first paint even if other styles are still streaming in.
 const BRASS_600 = "#B88A3C";
-const BRASS_400 = "#D6B47E";
+const BRASS_400 = "#C5A365";
 const OCEAN_200 = "#7A9CBF";
 const IVORY_100 = "#F8F5F0";
 
@@ -131,7 +131,7 @@ const PaletteSwitcher = () => {
     boxShadow:
       "0 10px 32px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(184, 138, 60, 0.08)",
     color: IVORY_100,
-    fontFamily: "'Inter', ui-sans-serif, system-ui, sans-serif",
+    fontFamily: "'Manrope', ui-sans-serif, system-ui, sans-serif",
     padding: open ? "0.4rem 0.5rem" : "0.4rem",
     display: "flex",
     alignItems: "center",

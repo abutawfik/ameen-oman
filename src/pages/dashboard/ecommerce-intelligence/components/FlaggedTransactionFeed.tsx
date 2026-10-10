@@ -39,7 +39,7 @@ const typeConfig: Record<TxType, { label: string; labelAr: string; color: string
   restricted: { label: "Restricted Item", labelAr: "عنصر مقيّد",      color: "#C94A5E", icon: "ri-forbid-line" },
   highvalue:  { label: "High-Value",      labelAr: "قيمة عالية",      color: "#C98A1B", icon: "ri-money-dollar-circle-line" },
   shipping:   { label: "Shipping Alert",  labelAr: "تنبيه شحن",       color: "#A78BFA", icon: "ri-ship-line" },
-  pattern:    { label: "Payment Pattern", labelAr: "نمط دفع",         color: "#D6B47E", icon: "ri-exchange-line" },
+  pattern:    { label: "Payment Pattern", labelAr: "نمط دفع",         color: "#C5A365", icon: "ri-exchange-line" },
 };
 
 const riskColor = (r: Transaction["risk"]) => {
@@ -100,7 +100,7 @@ const FlaggedTransactionFeed = ({ isAr }: Props) => {
             style={{
               background: filter === f.id ? "rgba(184,138,60,0.15)" : "rgba(255,255,255,0.04)",
               border: `1px solid ${filter === f.id ? "rgba(184,138,60,0.35)" : "rgba(255,255,255,0.08)"}`,
-              color: filter === f.id ? "#D6B47E" : "#6B7280",
+              color: filter === f.id ? "#C5A365" : "#6B7280",
             }}>
             {isAr ? f.labelAr : f.label}
           </button>

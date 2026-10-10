@@ -91,7 +91,7 @@ const RiskAssessmentPage = () => {
   ];
 
   return (
-    <div className="min-h-screen font-['Inter']" style={{ background: "#051428" }} dir={isAr ? "rtl" : "ltr"}>
+    <div className="min-h-screen font-['Manrope']" style={{ background: "#071426" }} dir={isAr ? "rtl" : "ltr"}>
       {/* Grid texture */}
       <div className="fixed inset-0 pointer-events-none" style={{
         backgroundImage: `linear-gradient(rgba(184,138,60,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.025) 1px, transparent 1px)`,
@@ -153,7 +153,7 @@ const RiskAssessmentPage = () => {
             style={{
               background: activeTab === tab.id ? "rgba(184,138,60,0.12)" : "transparent",
               border: `1px solid ${activeTab === tab.id ? "rgba(184,138,60,0.25)" : "transparent"}`,
-              color: activeTab === tab.id ? "#D6B47E" : "#6B7280",
+              color: activeTab === tab.id ? "#C5A365" : "#6B7280",
             }}>
             <i className={`${tab.icon} text-xs`} />
             {isAr ? tab.labelAr : tab.label}
@@ -185,7 +185,7 @@ const RiskAssessmentPage = () => {
               {/* Risk filter */}
               <div className="flex items-center gap-1">
                 {([
-                  { id: "all",      label: isAr ? "الكل" : "All",       color: "#D6B47E" },
+                  { id: "all",      label: isAr ? "الكل" : "All",       color: "#C5A365" },
                   { id: "critical", label: isAr ? "حرج" : "Critical",   color: "#C94A5E" },
                   { id: "high",     label: isAr ? "عالٍ" : "High",      color: "#C98A1B" },
                   { id: "medium",   label: isAr ? "متوسط" : "Medium",   color: "#FACC15" },
@@ -208,7 +208,7 @@ const RiskAssessmentPage = () => {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {[
                 { label: isAr ? "معلق" : "Pending Review",  value: pendingPersons.length,   color: "#C94A5E", icon: "ri-time-line" },
-                { label: isAr ? "مؤكد" : "Confirmed",       value: confirmedPersons.length, color: "#D6B47E", icon: "ri-checkbox-circle-line" },
+                { label: isAr ? "مؤكد" : "Confirmed",       value: confirmedPersons.length, color: "#C5A365", icon: "ri-checkbox-circle-line" },
                 { label: isAr ? "مرفوض" : "Dismissed",      value: dismissedPersons.length, color: "#4ADE80", icon: "ri-close-circle-line" },
                 { label: isAr ? "إجمالي" : "Total Assessed", value: persons.length,          color: "#A78BFA", icon: "ri-shield-line" },
               ].map((s) => (
@@ -250,7 +250,7 @@ const RiskAssessmentPage = () => {
                           className="w-12 h-12 rounded-xl object-cover object-top"
                           style={{ border: `2px solid ${scoreColor}30` }} />
                         <div className="absolute -bottom-1 -right-1 w-4 h-4 flex items-center justify-center rounded-full"
-                          style={{ background: scoreColor, border: "2px solid #051428" }}>
+                          style={{ background: scoreColor, border: "2px solid #071426" }}>
                           <i className="ri-shield-cross-line text-white" style={{ fontSize: "7px" }} />
                         </div>
                       </div>

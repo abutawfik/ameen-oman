@@ -20,23 +20,23 @@ const EduConfirmation = ({ refNumber, eventType, eventCode, color, isAr, onReset
       </div>
       <div className="px-8 py-5 rounded-2xl border mb-8 w-full max-w-md" style={{ background: "rgba(184,138,60,0.04)", borderColor: "rgba(184,138,60,0.15)" }}>
         <p className="text-gray-500 text-xs mb-2 uppercase tracking-widest">{isAr ? "رقم المرجع" : "Reference Number"}</p>
-        <p className="text-xl font-bold font-['JetBrains_Mono'] tracking-wider mb-1" style={{ color: "#D6B47E" }}>{refNumber}</p>
+        <p className="text-xl font-bold font-['JetBrains_Mono'] tracking-wider mb-1" style={{ color: "#C5A365" }}>{refNumber}</p>
         <p className="text-gray-600 text-xs">{isAr ? "احتفظ بهذا الرقم للمتابعة" : "Keep this number for tracking"}</p>
       </div>
       <div className="flex items-center gap-2 mb-8">
         {steps.map((step, i) => (
           <div key={i} className="flex items-center gap-2">
             <div className="flex flex-col items-center gap-1">
-              <div className="w-7 h-7 flex items-center justify-center rounded-full text-xs font-bold" style={{ background: i === 0 ? "rgba(184,138,60,0.2)" : "rgba(255,255,255,0.05)", border: `1px solid ${i === 0 ? "rgba(184,138,60,0.5)" : "rgba(255,255,255,0.1)"}`, color: i === 0 ? "#D6B47E" : "#6B7280" }}>{i === 0 ? <i className="ri-check-line text-xs" /> : i + 1}</div>
-              <span className="text-xs whitespace-nowrap" style={{ color: i === 0 ? "#D6B47E" : "#6B7280" }}>{step}</span>
+              <div className="w-7 h-7 flex items-center justify-center rounded-full text-xs font-bold" style={{ background: i === 0 ? "rgba(184,138,60,0.2)" : "rgba(255,255,255,0.05)", border: `1px solid ${i === 0 ? "rgba(184,138,60,0.5)" : "rgba(255,255,255,0.1)"}`, color: i === 0 ? "#C5A365" : "#6B7280" }}>{i === 0 ? <i className="ri-check-line text-xs" /> : i + 1}</div>
+              <span className="text-xs whitespace-nowrap" style={{ color: i === 0 ? "#C5A365" : "#6B7280" }}>{step}</span>
             </div>
             {i < steps.length - 1 && <div className="w-8 h-px mb-4" style={{ background: i === 0 ? "rgba(184,138,60,0.3)" : "rgba(255,255,255,0.08)" }} />}
           </div>
         ))}
       </div>
       <div className="flex gap-3">
-        <button type="button" onClick={onReset} className="flex items-center gap-2 px-5 py-2.5 rounded-lg border text-sm font-semibold cursor-pointer whitespace-nowrap" style={{ background: "transparent", borderColor: "rgba(184,138,60,0.25)", color: "#D6B47E" }} onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(184,138,60,0.06)"; }} onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "transparent"; }}><i className="ri-add-line" />{isAr ? "إضافة حدث جديد" : "Submit Another"}</button>
-        <button type="button" onClick={() => navigate("/dashboard/education-events")} className="flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-bold cursor-pointer whitespace-nowrap" style={{ background: "#D6B47E", color: "#051428" }} onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C99C48"; }} onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#D6B47E"; }}><i className="ri-dashboard-line" />{isAr ? "العودة" : "Back to Events"}</button>
+        <button type="button" onClick={onReset} className="flex items-center gap-2 px-5 py-2.5 rounded-lg border text-sm font-semibold cursor-pointer whitespace-nowrap" style={{ background: "transparent", borderColor: "rgba(184,138,60,0.25)", color: "#C5A365" }} onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(184,138,60,0.06)"; }} onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "transparent"; }}><i className="ri-add-line" />{isAr ? "إضافة حدث جديد" : "Submit Another"}</button>
+        <button type="button" onClick={() => navigate("/dashboard/education-events")} className="flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-bold cursor-pointer whitespace-nowrap" style={{ background: "#C5A365", color: "#071426" }} onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C5A365"; }} onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#C5A365"; }}><i className="ri-dashboard-line" />{isAr ? "العودة" : "Back to Events"}</button>
       </div>
     </div>
   );

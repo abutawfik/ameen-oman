@@ -130,10 +130,10 @@ const SimDeactivatedForm = ({ isAr, onCancel }: Props) => {
               >
                 <i className="ri-alert-line text-red-400 text-lg flex-shrink-0" />
                 <div>
-                  <p className="text-red-400 font-bold text-xs font-['Inter']">
+                  <p className="text-red-400 font-bold text-xs font-['Manrope']">
                     {isAr ? "تنبيه: سبب ذو أولوية عالية" : "Alert: High-Priority Reason"}
                   </p>
-                  <p className="text-gray-400 text-xs font-['Inter']">
+                  <p className="text-gray-400 text-xs font-['Manrope']">
                     {isAr ? "سيتم إرسال إشعار فوري إلى Al-Ameen" : "Immediate notification will be sent to Al-Ameen"}
                   </p>
                 </div>
@@ -155,9 +155,9 @@ const SimDeactivatedForm = ({ isAr, onCancel }: Props) => {
                 placeholder={isAr ? "أي تفاصيل إضافية..." : "Any additional details..."}
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
-                className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none transition-all duration-200 font-['Inter'] resize-none"
+                className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none transition-all duration-200 font-['Manrope'] resize-none"
                 style={{ background: "#0F1923", border: "1px solid rgba(255,255,255,0.08)" }}
-                onFocus={(e) => { e.target.style.borderColor = "#D6B47E"; e.target.style.boxShadow = "0 0 0 2px rgba(184,138,60,0.08)"; }}
+                onFocus={(e) => { e.target.style.borderColor = "#C5A365"; e.target.style.boxShadow = "0 0 0 2px rgba(184,138,60,0.08)"; }}
                 onBlur={(e) => { e.target.style.borderColor = "rgba(255,255,255,0.08)"; e.target.style.boxShadow = "none"; }}
               />
             </FormField>
@@ -211,14 +211,14 @@ const SimDeactivatedForm = ({ isAr, onCancel }: Props) => {
               </div>
               <div>
                 <p
-                  className="font-bold text-sm font-['Inter']"
+                  className="font-bold text-sm font-['Manrope']"
                   style={{ color: deactivationType === "temporary" ? "#FACC15" : "#C94A5E" }}
                 >
                   {deactivationType === "temporary"
                     ? (isAr ? "إيقاف مؤقت" : "Temporary Deactivation")
                     : (isAr ? "إيقاف دائم" : "Permanent Deactivation")}
                 </p>
-                <p className="text-gray-500 text-xs font-['Inter']">
+                <p className="text-gray-500 text-xs font-['Manrope']">
                   {deactivationType === "temporary"
                     ? (isAr ? "يمكن إعادة التفعيل لاحقاً" : "Can be reactivated later")
                     : (isAr ? "لا يمكن إعادة التفعيل" : "Cannot be reactivated")}

@@ -24,7 +24,7 @@ const EcomLiveCounters = ({ isAr }: Props) => {
       sub: isAr ? "من المعالجين والبنوك" : "From processors & banks",
       value: flaggedTx,
       icon: "ri-flag-line",
-      color: "#D6B47E",
+      color: "#C5A365",
       trend: "+11%",
       trendUp: true,
     },

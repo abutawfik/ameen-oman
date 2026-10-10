@@ -19,7 +19,7 @@ export default function SearchPage() {
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
-        background: '#051428',
+        background: '#071426',
         overflow: 'hidden',
         position: 'relative',
       }}

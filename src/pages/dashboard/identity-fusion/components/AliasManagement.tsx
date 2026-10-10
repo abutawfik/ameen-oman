@@ -4,7 +4,7 @@ import { aliasLinks, personRecords, type AliasLink } from '@/mocks/identityFusio
 interface Props { isAr: boolean; }
 
 const linkTypeConfig: Record<string, { label: string; labelAr: string; color: string; bg: string; icon: string }> = {
-  known_alias: { label: 'Known Alias',  labelAr: 'اسم مستعار معروف', color: '#D6B47E', bg: 'rgba(184,138,60,0.1)',  icon: 'ri-user-2-line' },
+  known_alias: { label: 'Known Alias',  labelAr: 'اسم مستعار معروف', color: '#C5A365', bg: 'rgba(184,138,60,0.1)',  icon: 'ri-user-2-line' },
   family:      { label: 'Family',       labelAr: 'عائلة',             color: '#4ADE80', bg: 'rgba(74,222,128,0.1)',  icon: 'ri-group-line' },
   associate:   { label: 'Associate',    labelAr: 'مرتبط',             color: '#FACC15', bg: 'rgba(250,204,21,0.1)',  icon: 'ri-links-line' },
   suspected:   { label: 'Suspected',    labelAr: 'مشتبه به',          color: '#C94A5E', bg: 'rgba(201,74,94,0.1)', icon: 'ri-alert-line' },
@@ -60,14 +60,14 @@ export default function AliasManagement({ isAr }: Props) {
                 className="w-9 h-9 rounded-full flex items-center justify-center font-bold text-xs shrink-0"
                 style={{
                   background: `rgba(184,138,60,0.12)`,
-                  color: '#D6B47E',
-                  border: `1.5px solid ${isSelected ? '#D6B47E' : 'rgba(184,138,60,0.2)'}`,
+                  color: '#C5A365',
+                  border: `1.5px solid ${isSelected ? '#C5A365' : 'rgba(184,138,60,0.2)'}`,
                 }}
               >
                 {person.initials}
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-white text-xs font-semibold font-['Inter'] truncate">
+                <p className="text-white text-xs font-semibold font-['Manrope'] truncate">
                   {isAr ? person.nameAr : person.nameEn}
                 </p>
                 <p className="text-gray-600 text-xs font-['JetBrains_Mono']">{person.id}</p>
@@ -75,7 +75,7 @@ export default function AliasManagement({ isAr }: Props) {
               {personLinkCount > 0 && (
                 <span
                   className="text-xs px-1.5 py-0.5 rounded-full font-mono shrink-0"
-                  style={{ background: 'rgba(184,138,60,0.1)', color: '#D6B47E' }}
+                  style={{ background: 'rgba(184,138,60,0.1)', color: '#C5A365' }}
                 >
                   {personLinkCount}
                 </span>
@@ -96,23 +96,23 @@ export default function AliasManagement({ isAr }: Props) {
             <div className="flex items-center gap-4">
               <div
                 className="w-14 h-14 rounded-full flex items-center justify-center font-bold text-lg shrink-0"
-                style={{ background: 'rgba(184,138,60,0.12)', color: '#D6B47E', border: '2px solid rgba(184,138,60,0.35)' }}
+                style={{ background: 'rgba(184,138,60,0.12)', color: '#C5A365', border: '2px solid rgba(184,138,60,0.35)' }}
               >
                 {selectedPerson.initials}
               </div>
               <div>
-                <p className="text-white font-bold text-lg font-['Inter']">{isAr ? selectedPerson.nameAr : selectedPerson.nameEn}</p>
+                <p className="text-white font-bold text-lg font-['Manrope']">{isAr ? selectedPerson.nameAr : selectedPerson.nameEn}</p>
                 <p className="text-gray-500 text-sm font-['JetBrains_Mono']">{selectedPerson.canonicalId}</p>
                 <div className="flex items-center gap-2 mt-1">
                   <span>{selectedPerson.nationalityFlag}</span>
-                  <span className="text-gray-400 text-xs font-['Inter']">{selectedPerson.nationality} · DOB: {selectedPerson.dob}</span>
+                  <span className="text-gray-400 text-xs font-['Manrope']">{selectedPerson.nationality} · DOB: {selectedPerson.dob}</span>
                 </div>
               </div>
             </div>
             <button
               onClick={() => setShowAddModal(true)}
-              className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap transition-all font-['Inter']"
-              style={{ background: '#D6B47E', color: '#051428' }}
+              className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap transition-all font-['Manrope']"
+              style={{ background: '#C5A365', color: '#071426' }}
             >
               <i className="ri-add-line" />
               {isAr ? 'إضافة اسم مستعار' : 'Add Alias'}
@@ -147,7 +147,7 @@ export default function AliasManagement({ isAr }: Props) {
         {/* Alias links */}
         <div>
           <div className="flex items-center justify-between mb-3">
-            <h3 className="text-white font-bold text-sm font-['Inter']">
+            <h3 className="text-white font-bold text-sm font-['Manrope']">
               {isAr ? 'الأسماء المستعارة والروابط' : 'Aliases & Links'}
               <span className="text-gray-500 font-normal ml-2">({personLinks.length})</span>
             </h3>
@@ -159,7 +159,7 @@ export default function AliasManagement({ isAr }: Props) {
               style={{ background: 'rgba(10,37,64,0.4)' }}
             >
               <i className="ri-user-unfollow-line text-gray-600 text-3xl mb-2 block" />
-              <p className="text-gray-500 text-sm font-['Inter']">
+              <p className="text-gray-500 text-sm font-['Manrope']">
                 {isAr ? 'لا توجد أسماء مستعارة أو روابط لهذا الشخص' : 'No aliases or links for this person'}
               </p>
             </div>
@@ -184,17 +184,17 @@ export default function AliasManagement({ isAr }: Props) {
                         </div>
                         <div>
                           <div className="flex items-center gap-2 mb-0.5">
-                            <span className="text-white font-semibold text-sm font-['Inter']">
+                            <span className="text-white font-semibold text-sm font-['Manrope']">
                               {isPrimary ? link.aliasName : link.primaryName}
                             </span>
                             <span
-                              className="text-xs px-2 py-0.5 rounded-full font-['Inter']"
+                              className="text-xs px-2 py-0.5 rounded-full font-['Manrope']"
                               style={{ background: tc.bg, color: tc.color }}
                             >
                               {isAr ? tc.labelAr : tc.label}
                             </span>
                           </div>
-                          <p className="text-gray-500 text-xs font-['Inter']">{link.notes}</p>
+                          <p className="text-gray-500 text-xs font-['Manrope']">{link.notes}</p>
                         </div>
                       </div>
                       <div className="text-right shrink-0">
@@ -225,7 +225,7 @@ export default function AliasManagement({ isAr }: Props) {
             style={{ background: 'rgba(10,37,64,0.98)' }}
           >
             <div className="flex items-center justify-between px-6 py-4 border-b border-gold-500/15">
-              <h3 className="text-white font-bold text-base font-['Inter']">
+              <h3 className="text-white font-bold text-base font-['Manrope']">
                 {isAr ? 'إضافة اسم مستعار أو رابط' : 'Add Alias or Link'}
               </h3>
               <button onClick={() => setShowAddModal(false)} className="text-gray-500 hover:text-gray-300 cursor-pointer">
@@ -234,7 +234,7 @@ export default function AliasManagement({ isAr }: Props) {
             </div>
             <div className="p-6 space-y-4">
               <div>
-                <label className="block text-gray-400 text-xs mb-1.5 uppercase tracking-wider font-['Inter']">
+                <label className="block text-gray-400 text-xs mb-1.5 uppercase tracking-wider font-['Manrope']">
                   {isAr ? 'الاسم المستعار' : 'Alias Name'}
                 </label>
                 <input
@@ -242,18 +242,18 @@ export default function AliasManagement({ isAr }: Props) {
                   value={newAlias.name}
                   onChange={e => setNewAlias(p => ({ ...p, name: e.target.value }))}
                   placeholder={isAr ? 'أدخل الاسم المستعار' : 'Enter alias name'}
-                  className="w-full px-3 py-2.5 rounded-xl text-sm text-white placeholder-gray-600 outline-none font-['Inter']"
+                  className="w-full px-3 py-2.5 rounded-xl text-sm text-white placeholder-gray-600 outline-none font-['Manrope']"
                   style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(184,138,60,0.2)' }}
                 />
               </div>
               <div>
-                <label className="block text-gray-400 text-xs mb-1.5 uppercase tracking-wider font-['Inter']">
+                <label className="block text-gray-400 text-xs mb-1.5 uppercase tracking-wider font-['Manrope']">
                   {isAr ? 'نوع الرابط' : 'Link Type'}
                 </label>
                 <select
                   value={newAlias.type}
                   onChange={e => setNewAlias(p => ({ ...p, type: e.target.value }))}
-                  className="w-full px-3 py-2.5 rounded-xl text-sm text-white outline-none cursor-pointer font-['Inter']"
+                  className="w-full px-3 py-2.5 rounded-xl text-sm text-white outline-none cursor-pointer font-['Manrope']"
                   style={{ background: 'rgba(10,37,64,0.9)', border: '1px solid rgba(184,138,60,0.2)' }}
                 >
                   {Object.entries(linkTypeConfig).map(([k, v]) => (
@@ -262,7 +262,7 @@ export default function AliasManagement({ isAr }: Props) {
                 </select>
               </div>
               <div>
-                <label className="block text-gray-400 text-xs mb-1.5 uppercase tracking-wider font-['Inter']">
+                <label className="block text-gray-400 text-xs mb-1.5 uppercase tracking-wider font-['Manrope']">
                   {isAr ? 'ملاحظات' : 'Notes'}
                 </label>
                 <textarea
@@ -271,7 +271,7 @@ export default function AliasManagement({ isAr }: Props) {
                   placeholder={isAr ? 'سبب الرابط...' : 'Reason for link...'}
                   rows={3}
                   maxLength={500}
-                  className="w-full px-3 py-2.5 rounded-xl text-sm text-white placeholder-gray-600 outline-none resize-none font-['Inter']"
+                  className="w-full px-3 py-2.5 rounded-xl text-sm text-white placeholder-gray-600 outline-none resize-none font-['Manrope']"
                   style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(184,138,60,0.2)' }}
                 />
               </div>
@@ -279,14 +279,14 @@ export default function AliasManagement({ isAr }: Props) {
             <div className="flex items-center justify-end gap-3 px-6 py-4 border-t border-white/5">
               <button
                 onClick={() => setShowAddModal(false)}
-                className="px-4 py-2 rounded-lg text-sm border border-gold-500/25 text-gold-400 hover:bg-gold-500/8 cursor-pointer transition-colors whitespace-nowrap font-['Inter']"
+                className="px-4 py-2 rounded-lg text-sm border border-gold-500/25 text-gold-400 hover:bg-gold-500/8 cursor-pointer transition-colors whitespace-nowrap font-['Manrope']"
               >
                 {isAr ? 'إلغاء' : 'Cancel'}
               </button>
               <button
                 onClick={handleAddAlias}
-                className="px-5 py-2 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap font-['Inter']"
-                style={{ background: '#D6B47E', color: '#051428' }}
+                className="px-5 py-2 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap font-['Manrope']"
+                style={{ background: '#C5A365', color: '#071426' }}
               >
                 {isAr ? 'إضافة' : 'Add Link'}
               </button>

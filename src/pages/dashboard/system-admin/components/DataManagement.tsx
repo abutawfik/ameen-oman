@@ -80,11 +80,11 @@ const DataManagement = () => {
           const isCurrent = i === 0;
           return (
             <div key={p.month} className="flex-1 flex flex-col items-center gap-1">
-              <span className="text-xs font-['JetBrains_Mono']" style={{ color: isCurrent ? "#D6B47E" : "#6B7280", fontSize: "10px" }}>
+              <span className="text-xs font-['JetBrains_Mono']" style={{ color: isCurrent ? "#C5A365" : "#6B7280", fontSize: "10px" }}>
                 {p.projected.toFixed(1)}
               </span>
-              <div className="w-full rounded-t-sm transition-all" style={{ height: `${h}%`, background: isCurrent ? "#D6B47E" : "rgba(184,138,60,0.25)", minHeight: "4px" }} />
-              <span className="text-gray-600 text-xs font-['Inter']" style={{ fontSize: "10px" }}>{p.month}</span>
+              <div className="w-full rounded-t-sm transition-all" style={{ height: `${h}%`, background: isCurrent ? "#C5A365" : "rgba(184,138,60,0.25)", minHeight: "4px" }} />
+              <span className="text-gray-600 text-xs font-['Manrope']" style={{ fontSize: "10px" }}>{p.month}</span>
             </div>
           );
         })}
@@ -108,7 +108,7 @@ const DataManagement = () => {
             className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold cursor-pointer whitespace-nowrap transition-all"
             style={{
               background: activeTab === tab.id ? "rgba(184,138,60,0.12)" : "rgba(255,255,255,0.03)",
-              color: activeTab === tab.id ? "#D6B47E" : "#9CA3AF",
+              color: activeTab === tab.id ? "#C5A365" : "#9CA3AF",
               border: activeTab === tab.id ? "1px solid rgba(184,138,60,0.25)" : "1px solid rgba(255,255,255,0.06)",
             }}>
             <i className={tab.icon} />{tab.label}
@@ -122,12 +122,12 @@ const DataManagement = () => {
           {/* Storage Overview */}
           <div className="rounded-xl p-5" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.12)" }}>
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-white font-semibold text-sm font-['Inter']">
+              <h3 className="text-white font-semibold text-sm font-['Manrope']">
                 <i className="ri-database-2-line mr-2 text-gold-400" />Storage Overview
               </h3>
               <div className="text-right">
                 <p className="text-gold-400 text-xl font-bold font-['JetBrains_Mono']">{totalStorage}</p>
-                <p className="text-gray-500 text-xs font-['Inter']">of 10 TB allocated</p>
+                <p className="text-gray-500 text-xs font-['Manrope']">of 10 TB allocated</p>
               </div>
             </div>
             <div className="mb-5">
@@ -136,7 +136,7 @@ const DataManagement = () => {
                 <span>Free: {100 - usedPct}%</span>
               </div>
               <div className="h-3 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
-                <div className="h-full rounded-full" style={{ width: `${usedPct}%`, background: "linear-gradient(90deg, #D6B47E, #B88A3C)" }} />
+                <div className="h-full rounded-full" style={{ width: `${usedPct}%`, background: "linear-gradient(90deg, #C5A365, #B88A3C)" }} />
               </div>
             </div>
             <div className="grid grid-cols-2 gap-x-8 gap-y-2">
@@ -146,7 +146,7 @@ const DataManagement = () => {
                 return (
                   <div key={s.id} className="flex items-center gap-2">
                     <i className={`${s.icon} text-xs flex-shrink-0`} style={{ color: s.color }} />
-                    <span className="text-gray-500 text-xs font-['Inter'] w-28 truncate">{s.name.split(" ")[0]}</span>
+                    <span className="text-gray-500 text-xs font-['Manrope'] w-28 truncate">{s.name.split(" ")[0]}</span>
                     <div className="flex-1 h-1.5 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
                       <div className="h-full rounded-full" style={{ width: `${Math.min(rec.pct, 100)}%`, background: s.color }} />
                     </div>
@@ -160,10 +160,10 @@ const DataManagement = () => {
           {/* Growth Projection + Record Counts */}
           <div className="grid grid-cols-2 gap-4">
             <div className="rounded-xl p-5" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.12)" }}>
-              <h3 className="text-white font-semibold text-sm font-['Inter'] mb-1">
+              <h3 className="text-white font-semibold text-sm font-['Manrope'] mb-1">
                 <i className="ri-line-chart-line mr-2 text-gold-400" />Growth Projection (6 months)
               </h3>
-              <p className="text-gray-500 text-xs font-['Inter'] mb-4">Estimated storage growth at current rate</p>
+              <p className="text-gray-500 text-xs font-['Manrope'] mb-4">Estimated storage growth at current rate</p>
               <GrowthChart />
               <div className="mt-3 flex items-center justify-between text-xs font-['JetBrains_Mono']">
                 <span className="text-gray-500">Current: <span className="text-gold-400">4.31 TB</span></span>
@@ -173,7 +173,7 @@ const DataManagement = () => {
             </div>
 
             <div className="rounded-xl p-5" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.12)" }}>
-              <h3 className="text-white font-semibold text-sm font-['Inter'] mb-3">
+              <h3 className="text-white font-semibold text-sm font-['Manrope'] mb-3">
                 <i className="ri-bar-chart-2-line mr-2 text-gold-400" />Top Streams by Volume
               </h3>
               <div className="space-y-2">
@@ -185,7 +185,7 @@ const DataManagement = () => {
                   { name: "Financial Services", count: "89.4M", pct: 38, color: "#4ADE80" },
                 ].map((item) => (
                   <div key={item.name} className="flex items-center gap-2">
-                    <span className="text-gray-400 text-xs font-['Inter'] w-36 truncate">{item.name}</span>
+                    <span className="text-gray-400 text-xs font-['Manrope'] w-36 truncate">{item.name}</span>
                     <div className="flex-1 h-2 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
                       <div className="h-full rounded-full" style={{ width: `${item.pct}%`, background: item.color }} />
                     </div>
@@ -199,11 +199,11 @@ const DataManagement = () => {
           {/* Record counts table */}
           <div className="rounded-xl overflow-hidden" style={{ border: "1px solid rgba(184,138,60,0.12)" }}>
             <div className="px-4 py-3" style={{ background: "rgba(184,138,60,0.05)" }}>
-              <p className="text-white text-sm font-semibold font-['Inter']">
+              <p className="text-white text-sm font-semibold font-['Manrope']">
                 <i className="ri-table-line mr-2 text-gold-400" />Record Counts by Stream
               </p>
             </div>
-            <div className="grid px-4 py-2 text-xs font-semibold uppercase tracking-wider font-['Inter'] text-gray-600"
+            <div className="grid px-4 py-2 text-xs font-semibold uppercase tracking-wider font-['Manrope'] text-gray-600"
               style={{ gridTemplateColumns: "2fr 1fr 1fr 1fr 1fr" }}>
               <span>Stream</span><span>Records</span><span>Storage</span><span>Growth</span><span>Retention</span>
             </div>
@@ -215,7 +215,7 @@ const DataManagement = () => {
                   style={{ gridTemplateColumns: "2fr 1fr 1fr 1fr 1fr", borderTop: i > 0 ? "1px solid rgba(255,255,255,0.04)" : "none" }}>
                   <div className="flex items-center gap-2">
                     <i className={`${s.icon} text-xs`} style={{ color: s.color }} />
-                    <span className="text-gray-300 text-xs font-['Inter']">{s.name}</span>
+                    <span className="text-gray-300 text-xs font-['Manrope']">{s.name}</span>
                   </div>
                   <span className="text-white text-xs font-['JetBrains_Mono']">{rec.count}</span>
                   <span className="text-gold-400 text-xs font-['JetBrains_Mono']">{rec.size}</span>
@@ -232,10 +232,10 @@ const DataManagement = () => {
       {activeTab === "retention" && (
         <div className="rounded-xl p-5" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.12)" }}>
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-white font-semibold text-sm font-['Inter']">
+            <h3 className="text-white font-semibold text-sm font-['Manrope']">
               <i className="ri-time-line mr-2 text-gold-400" />Retention Periods by Stream
             </h3>
-            <p className="text-gray-500 text-xs font-['Inter']">Default: 7 years. Legal minimum: 5 years.</p>
+            <p className="text-gray-500 text-xs font-['Manrope']">Default: 7 years. Legal minimum: 5 years.</p>
           </div>
           <div className="grid grid-cols-2 gap-x-8 gap-y-4">
             {streams.map((s) => (
@@ -243,7 +243,7 @@ const DataManagement = () => {
                 <div className="flex items-center justify-between mb-1.5">
                   <div className="flex items-center gap-2">
                     <i className={`${s.icon} text-xs`} style={{ color: s.color }} />
-                    <span className="text-gray-300 text-xs font-['Inter']">{s.name}</span>
+                    <span className="text-gray-300 text-xs font-['Manrope']">{s.name}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="text-gold-400 text-xs font-['JetBrains_Mono'] font-bold">{retentions[s.id] || 7} yrs</span>
@@ -253,7 +253,7 @@ const DataManagement = () => {
                 <input type="range" min={1} max={20} value={retentions[s.id] || 7}
                   onChange={(e) => setRetentions((prev) => ({ ...prev, [s.id]: Number(e.target.value) }))}
                   className="w-full h-1.5 rounded-full cursor-pointer appearance-none"
-                  style={{ accentColor: "#D6B47E", background: `linear-gradient(90deg, #D6B47E ${((retentions[s.id] || 7) / 20) * 100}%, rgba(255,255,255,0.1) 0%)` }} />
+                  style={{ accentColor: "#C5A365", background: `linear-gradient(90deg, #C5A365 ${((retentions[s.id] || 7) / 20) * 100}%, rgba(255,255,255,0.1) 0%)` }} />
                 <div className="flex justify-between text-xs text-gray-700 font-['JetBrains_Mono'] mt-0.5">
                   <span>1yr</span><span>10yr</span><span>20yr</span>
                 </div>
@@ -263,13 +263,13 @@ const DataManagement = () => {
           <div className="flex items-center gap-3 mt-6">
             <button onClick={handleSaveRetention}
               className="px-6 py-2.5 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap"
-              style={{ background: "#D6B47E", color: "#051428" }}>
+              style={{ background: "#C5A365", color: "#071426" }}>
               <i className="ri-save-line mr-2" />Save Retention Policies
             </button>
             {retentionSaved && (
               <div className="flex items-center gap-2 px-3 py-2 rounded-lg" style={{ background: "rgba(74,222,128,0.1)", border: "1px solid rgba(74,222,128,0.2)" }}>
                 <i className="ri-check-line text-green-400 text-xs" />
-                <span className="text-green-400 text-xs font-['Inter']">Retention policies saved</span>
+                <span className="text-green-400 text-xs font-['Manrope']">Retention policies saved</span>
               </div>
             )}
           </div>
@@ -279,12 +279,12 @@ const DataManagement = () => {
       {/* Export Tab */}
       {activeTab === "export" && (
         <div className="rounded-xl p-5" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.12)" }}>
-          <h3 className="text-white font-semibold text-sm font-['Inter'] mb-4">
+          <h3 className="text-white font-semibold text-sm font-['Manrope'] mb-4">
             <i className="ri-download-cloud-line mr-2 text-gold-400" />Bulk Data Export
           </h3>
           <div className="grid grid-cols-2 gap-4 mb-4">
             <div>
-              <label className="block text-xs text-gray-500 mb-1 font-['Inter'] uppercase tracking-wider">Stream</label>
+              <label className="block text-xs text-gray-500 mb-1 font-['Manrope'] uppercase tracking-wider">Stream</label>
               <select value={exportStream} onChange={(e) => setExportStream(e.target.value)}
                 className="w-full px-3 py-2 rounded-lg text-sm outline-none cursor-pointer"
                 style={{ background: "rgba(10,37,64,0.9)", border: "1px solid rgba(184,138,60,0.2)", color: "#D1D5DB" }}>
@@ -292,25 +292,25 @@ const DataManagement = () => {
               </select>
             </div>
             <div>
-              <label className="block text-xs text-gray-500 mb-1 font-['Inter'] uppercase tracking-wider">Format</label>
+              <label className="block text-xs text-gray-500 mb-1 font-['Manrope'] uppercase tracking-wider">Format</label>
               <div className="flex gap-2">
                 {["csv", "json", "xlsx", "parquet"].map((f) => (
                   <button key={f} onClick={() => setExportFormat(f)}
                     className="flex-1 py-2 rounded-lg text-xs font-semibold cursor-pointer uppercase whitespace-nowrap"
-                    style={{ background: exportFormat === f ? "#D6B47E" : "rgba(255,255,255,0.05)", color: exportFormat === f ? "#051428" : "#9CA3AF" }}>
+                    style={{ background: exportFormat === f ? "#C5A365" : "rgba(255,255,255,0.05)", color: exportFormat === f ? "#071426" : "#9CA3AF" }}>
                     {f}
                   </button>
                 ))}
               </div>
             </div>
             <div>
-              <label className="block text-xs text-gray-500 mb-1 font-['Inter'] uppercase tracking-wider">Date From</label>
+              <label className="block text-xs text-gray-500 mb-1 font-['Manrope'] uppercase tracking-wider">Date From</label>
               <input type="date" value={exportFrom} onChange={(e) => setExportFrom(e.target.value)}
                 className="w-full px-3 py-2 rounded-lg text-sm outline-none"
                 style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(184,138,60,0.2)", color: "#D1D5DB", colorScheme: "dark" }} />
             </div>
             <div>
-              <label className="block text-xs text-gray-500 mb-1 font-['Inter'] uppercase tracking-wider">Date To</label>
+              <label className="block text-xs text-gray-500 mb-1 font-['Manrope'] uppercase tracking-wider">Date To</label>
               <input type="date" value={exportTo} onChange={(e) => setExportTo(e.target.value)}
                 className="w-full px-3 py-2 rounded-lg text-sm outline-none"
                 style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(184,138,60,0.2)", color: "#D1D5DB", colorScheme: "dark" }} />
@@ -318,7 +318,7 @@ const DataManagement = () => {
           </div>
           {/* Preview */}
           <div className="p-3 rounded-lg mb-4" style={{ background: "rgba(184,138,60,0.04)", border: "1px solid rgba(184,138,60,0.1)" }}>
-            <p className="text-gray-500 text-xs font-['Inter'] mb-1">Export Preview</p>
+            <p className="text-gray-500 text-xs font-['Manrope'] mb-1">Export Preview</p>
             <div className="flex items-center gap-4 text-xs font-['JetBrains_Mono']">
               <span className="text-white">Stream: <span className="text-gold-400">{streams.find((s) => s.id === exportStream)?.code}</span></span>
               <span className="text-white">Format: <span className="text-gold-400">{exportFormat.toUpperCase()}</span></span>
@@ -328,13 +328,13 @@ const DataManagement = () => {
           </div>
           <button onClick={handleExport} disabled={exporting}
             className="px-6 py-2.5 rounded-lg text-sm font-semibold cursor-pointer whitespace-nowrap transition-all"
-            style={{ background: exporting ? "rgba(184,138,60,0.4)" : "#D6B47E", color: "#051428" }}>
+            style={{ background: exporting ? "rgba(184,138,60,0.4)" : "#C5A365", color: "#071426" }}>
             {exporting ? <><i className="ri-loader-4-line animate-spin mr-2" />Exporting...</> : <><i className="ri-download-line mr-2" />Export Data</>}
           </button>
           {exportDone && (
             <div className="flex items-center gap-2 mt-3 p-3 rounded-lg" style={{ background: "rgba(74,222,128,0.1)", border: "1px solid rgba(74,222,128,0.2)" }}>
               <i className="ri-check-line text-green-400" />
-              <span className="text-green-400 text-sm font-['Inter']">Export ready — download started</span>
+              <span className="text-green-400 text-sm font-['Manrope']">Export ready — download started</span>
             </div>
           )}
         </div>
@@ -346,20 +346,20 @@ const DataManagement = () => {
           <div className="p-4 rounded-xl" style={{ background: "rgba(201,74,94,0.06)", border: "1px solid rgba(201,74,94,0.2)" }}>
             <div className="flex items-center gap-2 mb-2">
               <i className="ri-alert-line text-red-400" />
-              <p className="text-red-400 text-sm font-semibold font-['Inter']">Data Purge — Irreversible Operation</p>
+              <p className="text-red-400 text-sm font-semibold font-['Manrope']">Data Purge — Irreversible Operation</p>
             </div>
-            <p className="text-gray-400 text-xs font-['Inter']">
+            <p className="text-gray-400 text-xs font-['Manrope']">
               Permanently deletes records beyond the retention period. Requires two-person authorization. All purge operations are logged in the immutable audit trail.
             </p>
           </div>
 
           <div className="rounded-xl p-5" style={{ background: "rgba(10,37,64,0.8)", border: "1px solid rgba(184,138,60,0.12)" }}>
-            <h3 className="text-white font-semibold text-sm font-['Inter'] mb-4">
+            <h3 className="text-white font-semibold text-sm font-['Manrope'] mb-4">
               <i className="ri-calendar-schedule-line mr-2 text-gold-400" />Schedule Purge
             </h3>
             <div className="grid grid-cols-2 gap-4 mb-4">
               <div>
-                <label className="block text-xs text-gray-500 mb-1 font-['Inter'] uppercase tracking-wider">Stream to Purge</label>
+                <label className="block text-xs text-gray-500 mb-1 font-['Manrope'] uppercase tracking-wider">Stream to Purge</label>
                 <select value={purgeStream} onChange={(e) => setPurgeStream(e.target.value)}
                   className="w-full px-3 py-2 rounded-lg text-sm outline-none cursor-pointer"
                   style={{ background: "rgba(10,37,64,0.9)", border: "1px solid rgba(184,138,60,0.2)", color: "#D1D5DB" }}>
@@ -367,7 +367,7 @@ const DataManagement = () => {
                 </select>
               </div>
               <div>
-                <label className="block text-xs text-gray-500 mb-1 font-['Inter'] uppercase tracking-wider">Purge Records Before Year</label>
+                <label className="block text-xs text-gray-500 mb-1 font-['Manrope'] uppercase tracking-wider">Purge Records Before Year</label>
                 <select value={purgeYear} onChange={(e) => setPurgeYear(e.target.value)}
                   className="w-full px-3 py-2 rounded-lg text-sm outline-none cursor-pointer"
                   style={{ background: "rgba(10,37,64,0.9)", border: "1px solid rgba(184,138,60,0.2)", color: "#D1D5DB" }}>
@@ -377,7 +377,7 @@ const DataManagement = () => {
             </div>
 
             <div className="p-3 rounded-lg mb-4" style={{ background: "rgba(201,74,94,0.06)", border: "1px solid rgba(201,74,94,0.15)" }}>
-              <p className="text-red-400 text-xs font-semibold font-['Inter'] mb-2">⚠ Two-Person Authorization Required</p>
+              <p className="text-red-400 text-xs font-semibold font-['Manrope'] mb-2">⚠ Two-Person Authorization Required</p>
               <div className="space-y-2">
                 {[
                   { label: "Approval 1 — Senior Analyst (analyst.fatima)", value: purgeApproval1, onChange: setPurgeApproval1 },
@@ -385,8 +385,8 @@ const DataManagement = () => {
                 ].map((a) => (
                   <label key={a.label} className="flex items-center gap-2 cursor-pointer">
                     <input type="checkbox" checked={a.value} onChange={(e) => a.onChange(e.target.checked)}
-                      className="w-4 h-4 rounded cursor-pointer" style={{ accentColor: "#D6B47E" }} />
-                    <span className="text-gray-400 text-xs font-['Inter']">{a.label}</span>
+                      className="w-4 h-4 rounded cursor-pointer" style={{ accentColor: "#C5A365" }} />
+                    <span className="text-gray-400 text-xs font-['Manrope']">{a.label}</span>
                   </label>
                 ))}
               </div>
@@ -403,7 +403,7 @@ const DataManagement = () => {
               {purgeScheduled && (
                 <div className="flex items-center gap-2 px-3 py-2 rounded-lg" style={{ background: "rgba(74,222,128,0.1)", border: "1px solid rgba(74,222,128,0.2)" }}>
                   <i className="ri-check-line text-green-400 text-xs" />
-                  <span className="text-green-400 text-xs font-['Inter']">Purge scheduled — will execute at 02:00 UTC</span>
+                  <span className="text-green-400 text-xs font-['Manrope']">Purge scheduled — will execute at 02:00 UTC</span>
                 </div>
               )}
             </div>

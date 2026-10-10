@@ -23,7 +23,7 @@ const SocialIntelligencePage = () => {
 
   const TABS: { id: Tab; icon: string; label: string; labelAr: string; badge?: string; badgeColor?: string }[] = [
     { id: "overview",  icon: "ri-dashboard-3-line",    label: "Overview",          labelAr: "نظرة عامة" },
-    { id: "lookup",    icon: "ri-search-eye-line",     label: "Phone Lookup",      labelAr: "بحث الهاتف",      badge: "Tier 1", badgeColor: "#D6B47E" },
+    { id: "lookup",    icon: "ri-search-eye-line",     label: "Phone Lookup",      labelAr: "بحث الهاتف",      badge: "Tier 1", badgeColor: "#C5A365" },
     { id: "keywords",  icon: "ri-price-tag-3-line",    label: "Keyword Monitor",   labelAr: "مراقبة الكلمات",  badge: "Tier 2", badgeColor: "#FACC15" },
     { id: "feed",      icon: "ri-pulse-line",          label: "OSINT Feed",        labelAr: "تغذية OSINT",     badge: "3", badgeColor: "#C94A5E" },
     { id: "config",    icon: "ri-settings-4-line",     label: "Limitations",       labelAr: "القيود والحدود" },
@@ -37,7 +37,7 @@ const SocialIntelligencePage = () => {
   ];
 
   return (
-    <div className="min-h-screen font-['Inter']" style={{ background: "#051428" }} dir={isAr ? "rtl" : "ltr"}>
+    <div className="min-h-screen font-['Manrope']" style={{ background: "#071426" }} dir={isAr ? "rtl" : "ltr"}>
       {/* Grid texture */}
       <div className="fixed inset-0 pointer-events-none" style={{
         backgroundImage: `linear-gradient(rgba(184,138,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.03) 1px, transparent 1px)`,
@@ -53,12 +53,12 @@ const SocialIntelligencePage = () => {
         action={
           <div className="flex items-center gap-2">
             <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-lg border" style={{ background: "rgba(184,138,60,0.04)", borderColor: "rgba(184,138,60,0.12)" }}>
-              <i className="ri-time-line text-xs" style={{ color: "#D6B47E" }} />
-              <span className="text-xs font-bold font-['JetBrains_Mono']" style={{ color: "#D6B47E" }}>{timeStr}</span>
+              <i className="ri-time-line text-xs" style={{ color: "#C5A365" }} />
+              <span className="text-xs font-bold font-['JetBrains_Mono']" style={{ color: "#C5A365" }}>{timeStr}</span>
             </div>
             <div className="hidden xl:flex items-center gap-2">
               {[
-                { label: "Tier 1: Phone Lookup", color: "#D6B47E" },
+                { label: "Tier 1: Phone Lookup", color: "#C5A365" },
                 { label: "Tier 2: Keyword OSINT", color: "#FACC15" },
               ].map((t) => (
                 <div key={t.label} className="flex items-center gap-1.5 px-2 py-1 rounded-full border" style={{ background: `${t.color}08`, borderColor: `${t.color}20` }}>
@@ -89,7 +89,7 @@ const SocialIntelligencePage = () => {
             style={{
               background: activeTab === tab.id ? "rgba(184,138,60,0.12)" : "transparent",
               border: `1px solid ${activeTab === tab.id ? "rgba(184,138,60,0.25)" : "transparent"}`,
-              color: activeTab === tab.id ? "#D6B47E" : "#6B7280",
+              color: activeTab === tab.id ? "#C5A365" : "#6B7280",
             }}>
             <i className={`${tab.icon} text-xs`} />
             {isAr ? tab.labelAr : tab.label}
@@ -156,7 +156,7 @@ const SocialIntelligencePage = () => {
                   <div>
                     <div className="flex items-center gap-2">
                       <h3 className="text-white font-bold">{isAr ? "Tier 1 — بحث الهوية الاجتماعية" : "Tier 1 — Social Identity Lookup"}</h3>
-                      <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(184,138,60,0.12)", color: "#D6B47E", fontSize: "9px" }}>PHONE → SOCIAL</span>
+                      <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(184,138,60,0.12)", color: "#C5A365", fontSize: "9px" }}>PHONE → SOCIAL</span>
                     </div>
                     <p className="text-gray-500 text-xs">{isAr ? "ربط أرقام الهاتف بالحسابات الاجتماعية" : "Link phone numbers to social accounts"}</p>
                   </div>
@@ -200,7 +200,7 @@ const SocialIntelligencePage = () => {
                     { icon: "ri-global-line", color: "#FACC15", label: isAr ? "المنصات" : "Platforms", desc: isAr ? "X/Twitter · Telegram العام · Instagram · Reddit · المنتديات" : "X/Twitter · Public Telegram · Instagram · Reddit · Forums" },
                     { icon: "ri-price-tag-3-line", color: "#FACC15", label: isAr ? "مجموعات الكلمات" : "Keyword Groups", desc: isAr ? "موقع · تهديد · حدث · كيانات · عسكري · مخصص للمحلل" : "Location · Threat · Event · Entity · Military · Custom analyst" },
                     { icon: "ri-alarm-warning-line", color: "#C94A5E", label: isAr ? "التنبيه المرتفع" : "Elevated Alert", desc: isAr ? "تطابق كلمة + تطابق موقع + قرب زمني من شخص مُبلَّغ = تنبيه مرتفع" : "Keyword match + location match + time proximity to flagged person = elevated alert" },
-                    { icon: "ri-emotion-line", color: "#D6B47E", label: isAr ? "تحليل المشاعر" : "Sentiment Analysis", desc: isAr ? "إيجابي / محايد / سلبي / تهديد — لكل منشور مُبلَّغ" : "Positive / Neutral / Negative / Threat — per flagged post" },
+                    { icon: "ri-emotion-line", color: "#C5A365", label: isAr ? "تحليل المشاعر" : "Sentiment Analysis", desc: isAr ? "إيجابي / محايد / سلبي / تهديد — لكل منشور مُبلَّغ" : "Positive / Neutral / Negative / Threat — per flagged post" },
                   ].map((item) => (
                     <div key={item.label} className="flex items-start gap-3 px-3 py-2 rounded-xl" style={{ background: "rgba(250,204,21,0.04)", border: "1px solid rgba(250,204,21,0.1)" }}>
                       <div className="w-6 h-6 flex items-center justify-center rounded-lg flex-shrink-0" style={{ background: `${item.color}12` }}>
@@ -226,7 +226,7 @@ const SocialIntelligencePage = () => {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {[
-                  { icon: "ri-map-pin-line", color: "#D6B47E", title: isAr ? "تأكيد الموقع" : "Location Confirmation", desc: isAr ? "منشور من مسقط + SIM مسجّل في نزوى = تناقض → تحقيق" : "Post from Muscat + SIM registered in Nizwa = contradiction → investigate" },
+                  { icon: "ri-map-pin-line", color: "#C5A365", title: isAr ? "تأكيد الموقع" : "Location Confirmation", desc: isAr ? "منشور من مسقط + SIM مسجّل في نزوى = تناقض → تحقيق" : "Post from Muscat + SIM registered in Nizwa = contradiction → investigate" },
                   { icon: "ri-links-line", color: "#FACC15", title: isAr ? "ربط الهوية" : "Identity Linkage", desc: isAr ? "رقم هاتف من SIM → حساب Telegram → اسم مستعار → ربط بملف الشخص" : "Phone from SIM → Telegram account → alias → linked to person profile" },
                   { icon: "ri-alarm-warning-line", color: "#C94A5E", title: isAr ? "كشف النية" : "Intent Detection", desc: isAr ? "كلمات تهديد + موقع حساس + شخص مُبلَّغ في المنطقة = تنبيه حرج" : "Threat keywords + sensitive location + flagged person in area = critical alert" },
                 ].map((item) => (
@@ -253,7 +253,7 @@ const SocialIntelligencePage = () => {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 {[
-                  { code: "AMN-OSI-20260405-0091", label: isAr ? "بحث هاتف — Reza Tehrani" : "Phone Lookup — Reza Tehrani", color: "#D6B47E" },
+                  { code: "AMN-OSI-20260405-0091", label: isAr ? "بحث هاتف — Reza Tehrani" : "Phone Lookup — Reza Tehrani", color: "#C5A365" },
                   { code: "AMN-OSI-20260405-0094", label: isAr ? "تنبيه كلمة مفتاحية — نزوى" : "Keyword Alert — Nizwa", color: "#FACC15" },
                   { code: "AMN-OSI-20260405-0097", label: isAr ? "تنبيه مرتفع — الشرطة" : "Elevated Alert — Police", color: "#C94A5E" },
                 ].map((ex) => (

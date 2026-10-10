@@ -8,7 +8,7 @@ export const scoreColor = (band: RiskBand) => SCORE_BAND_META[band].color;
 
 export const confidenceColor: Record<string, string> = {
   "High": "#4ADE80",
-  "Medium-High": "#D6B47E",
+  "Medium-High": "#C5A365",
   "Medium": "#FACC15",
   "Low": "#C94A5E",
 };

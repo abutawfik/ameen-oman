@@ -28,7 +28,7 @@ const USERS: User[] = [
 
 const ROLE_CONFIG = {
   admin:    { label: "Admin",    labelAr: "مسؤول",   color: "#C94A5E", bg: "rgba(201,74,94,0.1)",  border: "rgba(201,74,94,0.25)" },
-  operator: { label: "Operator", labelAr: "مشغّل",   color: "#D6B47E", bg: "rgba(184,138,60,0.1)",   border: "rgba(184,138,60,0.25)" },
+  operator: { label: "Operator", labelAr: "مشغّل",   color: "#C5A365", bg: "rgba(184,138,60,0.1)",   border: "rgba(184,138,60,0.25)" },
   viewer:   { label: "Viewer",   labelAr: "مشاهد",   color: "#9CA3AF", bg: "rgba(156,163,175,0.1)",  border: "rgba(156,163,175,0.25)" },
 };
 
@@ -80,7 +80,7 @@ const ManageUsers = ({ isAr }: Props) => {
       {/* Stats */}
       <div className="grid grid-cols-3 gap-4">
         {[
-          { label: isAr ? "إجمالي المستخدمين" : "Total Users", value: users.length, color: "#D6B47E" },
+          { label: isAr ? "إجمالي المستخدمين" : "Total Users", value: users.length, color: "#C5A365" },
           { label: isAr ? "نشط" : "Active", value: users.filter((u) => u.status === "active").length, color: "#4ADE80" },
           { label: isAr ? "موقوف" : "Suspended", value: users.filter((u) => u.status === "suspended").length, color: "#C94A5E" },
         ].map((s) => (
@@ -111,7 +111,7 @@ const ManageUsers = ({ isAr }: Props) => {
         </div>
         <button type="button" onClick={() => setShowAddForm(true)}
           className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold cursor-pointer whitespace-nowrap"
-          style={{ background: "#D6B47E", color: "#051428" }}>
+          style={{ background: "#C5A365", color: "#071426" }}>
           <i className="ri-user-add-line text-sm" />
           {isAr ? "إضافة مستخدم" : "Add User"}
         </button>
@@ -170,7 +170,7 @@ const ManageUsers = ({ isAr }: Props) => {
           <div className="flex items-center gap-3">
             <button type="button" onClick={handleAddUser}
               className="px-5 py-2 rounded-lg text-sm font-bold cursor-pointer whitespace-nowrap"
-              style={{ background: "#D6B47E", color: "#051428" }}>
+              style={{ background: "#C5A365", color: "#071426" }}>
               {isAr ? "إضافة" : "Add User"}
             </button>
             <button type="button" onClick={() => setShowAddForm(false)}
@@ -248,7 +248,7 @@ const ManageUsers = ({ isAr }: Props) => {
                       <div className="flex items-center gap-2">
                         <button type="button" onClick={() => setEditUser(user)}
                           className="w-7 h-7 flex items-center justify-center rounded-lg cursor-pointer transition-colors"
-                          style={{ background: "rgba(184,138,60,0.08)", color: "#D6B47E" }}
+                          style={{ background: "rgba(184,138,60,0.08)", color: "#C5A365" }}
                           title={isAr ? "تعديل" : "Edit"}>
                           <i className="ri-edit-line text-xs" />
                         </button>
@@ -302,7 +302,7 @@ const ManageUsers = ({ isAr }: Props) => {
             <div className="flex items-center gap-3 mt-5">
               <button type="button" onClick={() => setEditUser(null)}
                 className="px-5 py-2 rounded-lg text-sm font-bold cursor-pointer whitespace-nowrap"
-                style={{ background: "#D6B47E", color: "#051428" }}>
+                style={{ background: "#C5A365", color: "#071426" }}>
                 {isAr ? "حفظ" : "Save Changes"}
               </button>
               <button type="button" onClick={() => setEditUser(null)}

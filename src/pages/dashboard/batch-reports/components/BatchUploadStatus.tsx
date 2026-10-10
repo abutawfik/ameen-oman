@@ -37,7 +37,7 @@ const BatchUploadStatus = ({ isAr, results }: Props) => {
       {/* Summary pills */}
       <div className="flex flex-wrap items-center gap-3">
         {[
-          { label: isAr ? "إجمالي" : "Total", value: results.length, color: "#D6B47E" },
+          { label: isAr ? "إجمالي" : "Total", value: results.length, color: "#C5A365" },
           { label: isAr ? "مقبول" : "Accepted", value: accepted, color: "#4ADE80" },
           { label: isAr ? "مرفوض" : "Rejected", value: rejected, color: "#C94A5E" },
           { label: isAr ? "معلق" : "Pending", value: pending, color: "#FACC15" },
@@ -51,7 +51,7 @@ const BatchUploadStatus = ({ isAr, results }: Props) => {
         <div className="ml-auto flex items-center gap-2">
           <button type="button"
             className="flex items-center gap-2 px-4 py-2 rounded-lg border text-xs font-semibold cursor-pointer whitespace-nowrap"
-            style={{ background: "transparent", borderColor: "rgba(184,138,60,0.3)", color: "#D6B47E" }}>
+            style={{ background: "transparent", borderColor: "rgba(184,138,60,0.3)", color: "#C5A365" }}>
             <i className="ri-download-2-line text-xs" />
             {isAr ? "تصدير النتائج" : "Export Results"}
           </button>
@@ -92,7 +92,7 @@ const BatchUploadStatus = ({ isAr, results }: Props) => {
         </div>
         <button type="button"
           className="px-4 py-2 rounded-lg text-sm font-bold cursor-pointer whitespace-nowrap"
-          style={{ background: "#D6B47E", color: "#051428" }}>
+          style={{ background: "#C5A365", color: "#071426" }}>
           {isAr ? "بحث" : "Go"}
         </button>
       </div>
@@ -197,7 +197,7 @@ const BatchUploadStatus = ({ isAr, results }: Props) => {
             <div className="flex items-center gap-3 pt-2">
               <button type="button"
                 className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold cursor-pointer whitespace-nowrap"
-                style={{ background: "#D6B47E", color: "#051428" }}>
+                style={{ background: "#C5A365", color: "#071426" }}>
                 <i className="ri-edit-line text-sm" />
                 {isAr ? "تصحيح وإعادة الإرسال" : "Fix & Re-submit"}
               </button>

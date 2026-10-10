@@ -91,7 +91,7 @@ export default function ServiceSearch({ isAr }: Props) {
               >
                 <div style={{ display: 'flex', gap: 14, alignItems: 'center' }}>
                   {/* Airline code badge */}
-                  <div style={{ width: 36, height: 36, borderRadius: 6, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(184,138,60,0.12)', border: '1px solid rgba(184,138,60,0.2)', fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: '#D6B47E', fontWeight: 700, flexShrink: 0 }}>
+                  <div style={{ width: 36, height: 36, borderRadius: 6, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(184,138,60,0.12)', border: '1px solid rgba(184,138,60,0.2)', fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: '#C5A365', fontWeight: 700, flexShrink: 0 }}>
                     {svc.airlineCode}
                   </div>
                   <div>

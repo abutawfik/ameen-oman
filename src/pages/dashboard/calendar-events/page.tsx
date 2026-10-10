@@ -9,7 +9,7 @@ import EventListTable from "./components/EventListTable";
 type Tab = "calendar" | "eventlist";
 
 const ENTITY_OPTIONS = [
-  { value: "hotel",        labelEn: "Hotel Events",        labelAr: "أحداث الفنادق",       icon: "ri-hotel-line",         color: "#D6B47E" },
+  { value: "hotel",        labelEn: "Hotel Events",        labelAr: "أحداث الفنادق",       icon: "ri-hotel-line",         color: "#C5A365" },
   { value: "car-rental",   labelEn: "Car Rental",          labelAr: "تأجير السيارات",       icon: "ri-car-line",           color: "#4ADE80" },
   { value: "mobile",       labelEn: "Mobile Operators",    labelAr: "مشغلو الاتصالات",      icon: "ri-sim-card-line",      color: "#A78BFA" },
   { value: "municipality", labelEn: "Municipality",        labelAr: "البلديات",              icon: "ri-government-line",    color: "#FACC15" },
@@ -43,7 +43,7 @@ const CalendarEventsPage = () => {
   const selectedEntity = ENTITY_OPTIONS.find((e) => e.value === entityType) || ENTITY_OPTIONS[0];
 
   return (
-    <div className="min-h-screen font-['Inter']" style={{ background: "#051428" }} dir={isAr ? "rtl" : "ltr"}>
+    <div className="min-h-screen font-['Manrope']" style={{ background: "#071426" }} dir={isAr ? "rtl" : "ltr"}>
       {/* Grid texture */}
       <div className="fixed inset-0 pointer-events-none z-0" style={{
         backgroundImage: `linear-gradient(rgba(184,138,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.03) 1px, transparent 1px)`,
@@ -56,7 +56,7 @@ const CalendarEventsPage = () => {
           { label: isAr ? "لوحة التحكم" : "Dashboard", route: "/dashboard" },
         ]}
         icon="ri-calendar-event-line"
-        iconColor="#D6B47E"
+        iconColor="#C5A365"
         badge="Al-Ameen Portal"
         isAr={isAr}
         action={
@@ -119,7 +119,7 @@ const CalendarEventsPage = () => {
             style={{
               background: activeTab === tab.id ? "rgba(184,138,60,0.12)" : "transparent",
               border: `1px solid ${activeTab === tab.id ? "rgba(184,138,60,0.25)" : "transparent"}`,
-              color: activeTab === tab.id ? "#D6B47E" : "#6B7280",
+              color: activeTab === tab.id ? "#C5A365" : "#6B7280",
             }}>
             <i className={`${tab.icon} text-xs`} />
             {isAr ? tab.labelAr : tab.label}
@@ -154,13 +154,13 @@ const CalendarEventsPage = () => {
               <div className="flex items-center gap-2">
                 <button type="button"
                   className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold cursor-pointer whitespace-nowrap transition-opacity hover:opacity-90"
-                  style={{ background: "#D6B47E", color: "#051428" }}>
+                  style={{ background: "#C5A365", color: "#071426" }}>
                   <i className="ri-add-line text-sm" />
                   {isAr ? "إضافة حدث" : "Add Event"}
                 </button>
                 <button type="button"
                   className="flex items-center gap-2 px-4 py-2 rounded-lg border text-sm font-semibold cursor-pointer whitespace-nowrap transition-colors"
-                  style={{ background: "transparent", borderColor: "rgba(184,138,60,0.3)", color: "#D6B47E" }}>
+                  style={{ background: "transparent", borderColor: "rgba(184,138,60,0.3)", color: "#C5A365" }}>
                   <i className="ri-download-2-line text-sm" />
                   {isAr ? "تصدير" : "Export"}
                 </button>
@@ -181,7 +181,7 @@ const CalendarEventsPage = () => {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {[
-                  { icon: "ri-mouse-line",          color: "#D6B47E", title: isAr ? "انقر على يوم" : "Click a Day",       desc: isAr ? "انقر على أي يوم لعرض الأحداث والإجراءات السريعة" : "Click any day to see events and quick actions for that date" },
+                  { icon: "ri-mouse-line",          color: "#C5A365", title: isAr ? "انقر على يوم" : "Click a Day",       desc: isAr ? "انقر على أي يوم لعرض الأحداث والإجراءات السريعة" : "Click any day to see events and quick actions for that date" },
                   { icon: "ri-circle-fill",          color: "#4ADE80", title: isAr ? "نقاط ملونة" : "Colored Dots",       desc: isAr ? "كل لون يمثل نوع حدث مختلف — راجع المفتاح أعلى التقويم" : "Each color represents a different event type — see legend above" },
                   { icon: "ri-calendar-check-line",  color: "#FACC15", title: isAr ? "اليوم الحالي" : "Current Day",      desc: isAr ? "اليوم الحالي محاط بحلقة سماوية مضيئة للتمييز السريع" : "Current day has a glowing cyan ring for quick identification" },
                 ].map((item) => (
