@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
+import PageHeader from "../components/PageHeader";
 import type { DashboardOutletContext } from "../DashboardLayout";
 import EcomLiveCounters from "./components/EcomLiveCounters";
 import ItemCategoryMonitor from "./components/ItemCategoryMonitor";

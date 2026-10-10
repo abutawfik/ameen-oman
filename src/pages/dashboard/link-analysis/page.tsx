@@ -1,6 +1,7 @@
 import { useState, useCallback } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
 import type { DashboardOutletContext } from "../DashboardLayout";
+import PageHeader from "../components/PageHeader";
 import {
   initialNodes, initialEdges, mockAnnotations,
   GraphNode, GraphEdge, Annotation, NodeType,
@@ -251,64 +252,44 @@ const LinkAnalysisPage = () => {
       className="flex flex-col h-screen overflow-hidden"
       style={{ background: "#051428", fontFamily: "Inter, Cairo, sans-serif" }}
     >
-      {/* Top bar */}
-      <div
-        className="flex items-center gap-3 px-4 py-2.5 border-b flex-shrink-0"
-        style={{ background: "rgba(10,37,64,0.98)", borderColor: "rgba(184,138,60,0.12)" }}
-      >
-        <button
-          onClick={() => navigate("/dashboard")}
-          className="flex items-center gap-1.5 text-gray-500 hover:text-gold-400 transition-colors cursor-pointer text-sm"
-        >
-          <i className="ri-arrow-left-line" />
-          <span className="font-['Inter'] text-xs">{isAr ? "لوحة التحكم" : "Dashboard"}</span>
-        </button>
-        <div className="w-px h-4" style={{ background: "rgba(255,255,255,0.1)" }} />
-        <div className="flex items-center gap-2">
-          <div className="w-6 h-6 flex items-center justify-center">
-            <i className="ri-git-branch-line text-gold-400 text-base" />
-          </div>
-          <div>
-            <h1 className="text-white text-sm font-bold font-['Inter']">
-              {isAr ? "تحليل الروابط والشبكات" : "Link Analysis & Network Graph"}
-            </h1>
-            <p className="text-gray-600 text-[11px] font-['JetBrains_Mono']">
-              {isAr ? "أداة التحليل التفاعلي للعلاقات" : "Interactive Relationship Intelligence Tool"}
-            </p>
-          </div>
-        </div>
-
-        {/* Legend */}
-        <div className="hidden xl:flex items-center gap-3 ml-4">
-          {[
-            { color: "#4ADE80", label: isAr ? "منخفض" : "Low" },
-            { color: "#FACC15", label: isAr ? "متوسط" : "Medium" },
-            { color: "#C98A1B", label: isAr ? "عالٍ" : "High" },
-            { color: "#C94A5E", label: isAr ? "حرج" : "Critical" },
-          ].map(r => (
-            <div key={r.label} className="flex items-center gap-1">
-              <div className="w-2 h-2 rounded-full" style={{ background: r.color }} />
-              <span className="text-[11px] font-['JetBrains_Mono']" style={{ color: r.color }}>{r.label}</span>
+      <PageHeader
+        title={isAr ? "تحليل الروابط وشبكة العلاقات" : "Link Analysis & Network Graph"}
+        subtitle={isAr ? "أداة التحليل التفاعلي للعلاقات" : "Interactive Relationship Intelligence Tool"}
+        icon="ri-git-branch-line"
+        iconColor="#D6B47E"
+        crumbs={[{ label: isAr ? "لوحة التحكم" : "Dashboard", route: "/dashboard" }]}
+        isAr={isAr}
+        action={
+          <div className="flex items-center gap-2">
+            <div className="hidden xl:flex items-center gap-3 mr-2">
+              {[
+                { color: "#4ADE80", label: isAr ? "منخفض" : "Low" },
+                { color: "#FACC15", label: isAr ? "متوسط" : "Medium" },
+                { color: "#C98A1B", label: isAr ? "عالٍ" : "High" },
+                { color: "#C94A5E", label: isAr ? "حرج" : "Critical" },
+              ].map(r => (
+                <div key={r.label} className="flex items-center gap-1">
+                  <div className="w-2 h-2 rounded-full" style={{ background: r.color }} />
+                  <span className="text-[11px] font-['JetBrains_Mono']" style={{ color: r.color }}>{r.label}</span>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-
-        <div className="ml-auto flex items-center gap-2">
-          <div className="flex items-center gap-1.5 px-2 py-1 rounded" style={{ background: "rgba(184,138,60,0.06)", border: "1px solid rgba(184,138,60,0.15)" }}>
-            <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-            <span className="text-green-400 text-[11px] font-['JetBrains_Mono']">
-              {isAr ? "متصل بقاعدة البيانات" : "DB Connected"}
-            </span>
+            <div className="flex items-center gap-1.5 px-2 py-1 rounded" style={{ background: "rgba(184,138,60,0.06)", border: "1px solid rgba(184,138,60,0.15)" }}>
+              <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+              <span className="text-green-400 text-[11px] font-['JetBrains_Mono']">
+                {isAr ? "متصل بقاعدة البيانات" : "DB Connected"}
+              </span>
+            </div>
+            <button
+              onClick={toggleLang}
+              className="w-8 h-8 flex items-center justify-center rounded-full border text-xs font-bold cursor-pointer transition-colors font-['JetBrains_Mono']"
+              style={{ borderColor: "rgba(184,138,60,0.3)", color: "#D6B47E" }}
+            >
+              {isAr ? "EN" : "AR"}
+            </button>
           </div>
-          <button
-            onClick={toggleLang}
-            className="w-8 h-8 flex items-center justify-center rounded-full border text-xs font-bold cursor-pointer transition-colors font-['JetBrains_Mono']"
-            style={{ borderColor: "rgba(184,138,60,0.3)", color: "#D6B47E" }}
-          >
-            {isAr ? "EN" : "AR"}
-          </button>
-        </div>
-      </div>
+        }
+      />
 
       {/* Toolbar */}
       <GraphToolbar

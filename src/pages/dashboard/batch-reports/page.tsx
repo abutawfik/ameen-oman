@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useLocation, useOutletContext } from "react-router-dom";
+import { useLocation, useOutletContext } from "react-router-dom";
 import type { DashboardOutletContext } from "../DashboardLayout";
+import PageHeader from "../components/PageHeader";
 import BatchUploadZone from "./components/BatchUploadZone";
 import BatchUploadStatus from "./components/BatchUploadStatus";
 import ReportKpiCards from "./components/ReportKpiCards";
@@ -21,7 +22,6 @@ const DATE_RANGES = [
 ];
 
 const BatchReportsPage = () => {
-  const navigate = useNavigate();
   const location = useLocation();
   const { isAr } = useOutletContext<DashboardOutletContext>();
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -66,54 +66,27 @@ const BatchReportsPage = () => {
         backgroundSize: "40px 40px"
       }} />
 
-      {/* Header */}
-      <header className="sticky top-0 z-40 flex items-center justify-between px-6 py-3 border-b"
-        style={{ background: "rgba(5,20,40,0.95)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}>
-        <div className="flex items-center gap-4">
-          <button type="button" onClick={() => navigate("/dashboard")}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-lg border text-sm font-semibold cursor-pointer whitespace-nowrap transition-colors"
-            style={{ background: "transparent", borderColor: "rgba(255,255,255,0.1)", color: "#9CA3AF" }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "#D1D5DB"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.2)"; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "#9CA3AF"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.1)"; }}>
-            <i className={isAr ? "ri-arrow-right-line" : "ri-arrow-left-line"} />
-            {isAr ? "لوحة التحكم" : "Dashboard"}
-          </button>
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 flex items-center justify-center rounded-lg"
-              style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.2)" }}>
-              <i className="ri-upload-cloud-2-line text-gold-400 text-sm" />
+      <PageHeader
+        title={isAr ? "رفع ملفات الأحداث" : "Batch Event Upload"}
+        icon="ri-upload-cloud-2-line"
+        iconColor="#D6B47E"
+        crumbs={[{ label: isAr ? "لوحة التحكم" : "Dashboard", route: "/dashboard" }]}
+        action={
+          <div className="flex items-center gap-3">
+            <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-lg border"
+              style={{ background: "rgba(184,138,60,0.04)", borderColor: "rgba(184,138,60,0.12)" }}>
+              <i className="ri-time-line text-gold-400 text-xs" />
+              <span className="text-gold-400 text-xs font-bold font-['JetBrains_Mono']">{timeStr}</span>
             </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="text-white font-bold text-sm">{isAr ? "رفع الدُفعة والتقارير" : "Batch Upload & Reports"}</span>
-                <span className="px-2 py-0.5 rounded-full text-xs font-bold"
-                  style={{ background: "rgba(184,138,60,0.12)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}>
-                  Al-Ameen
-                </span>
-              </div>
-              <p className="text-gray-500 text-xs">{isAr ? "رفع الملفات · التحليلات · الامتثال · المستخدمون" : "File upload · Analytics · Compliance · Users"}</p>
+            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border"
+              style={{ background: "rgba(74,222,128,0.06)", borderColor: "rgba(74,222,128,0.2)" }}>
+              <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+              <span className="text-green-400 text-xs font-semibold font-['JetBrains_Mono']">LIVE</span>
             </div>
           </div>
-        </div>
-
-        <div className="flex items-center gap-3">
-          {/* Live clock */}
-          <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-lg border"
-            style={{ background: "rgba(184,138,60,0.04)", borderColor: "rgba(184,138,60,0.12)" }}>
-            <i className="ri-time-line text-gold-400 text-xs" />
-            <span className="text-gold-400 text-xs font-bold font-['JetBrains_Mono']">{timeStr}</span>
-          </div>
-
-          {/* Live badge */}
-          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border"
-            style={{ background: "rgba(74,222,128,0.06)", borderColor: "rgba(74,222,128,0.2)" }}>
-            <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-            <span className="text-green-400 text-xs font-semibold font-['JetBrains_Mono']">LIVE</span>
-          </div>
-
-          {/* Language toggle */}
-        </div>
-      </header>
+        }
+        isAr={isAr}
+      />
 
       {/* Tab bar */}
       <div className="sticky top-[57px] z-30 flex items-center gap-1 px-6 py-2 border-b overflow-x-auto"

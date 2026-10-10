@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
+import PageHeader from "../components/PageHeader";
 import type { DashboardOutletContext } from "../DashboardLayout";
 import NewConnectionForm from "./NewConnectionForm";
 import ServiceTransferForm from "./ServiceTransferForm";
@@ -81,7 +82,6 @@ const EVENT_CARDS: EventCard[] = [
 ];
 
 const UtilityEventsPage = () => {
-  const navigate = useNavigate();
   const { isAr } = useOutletContext<DashboardOutletContext>();
   const [activeEvent, setActiveEvent] = useState<EventType | null>(null);
   const activeCard = EVENT_CARDS.find((c) => c.id === activeEvent);
@@ -91,63 +91,44 @@ const UtilityEventsPage = () => {
       {/* Grid texture */}
       <div className="fixed inset-0 pointer-events-none" style={{ backgroundImage: `linear-gradient(rgba(184,138,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.03) 1px, transparent 1px)`, backgroundSize: "40px 40px" }} />
 
-      {/* Header */}
-      <header className="sticky top-0 z-40 flex items-center justify-between px-6 py-3 border-b" style={{ background: "rgba(5,20,40,0.95)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}>
-        <div className="flex items-center gap-4">
-          <button type="button"
-            onClick={() => activeEvent ? setActiveEvent(null) : navigate("/dashboard?type=utility")}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-lg border text-sm font-semibold cursor-pointer whitespace-nowrap transition-colors"
-            style={{ background: "transparent", borderColor: "rgba(255,255,255,0.1)", color: "#9CA3AF" }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "#D1D5DB"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.2)"; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "#9CA3AF"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.1)"; }}>
-            <i className={isAr ? "ri-arrow-right-line" : "ri-arrow-left-line"} />
-            {activeEvent ? (isAr ? "العودة" : "Back") : (isAr ? "لوحة التحكم" : "Dashboard")}
-          </button>
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.2)" }}>
-              <i className="ri-plug-line text-gold-400 text-sm" />
+      <PageHeader
+        title={isAr ? "أحداث الخدمات" : "Utility Events"}
+        crumbs={[
+          { label: isAr ? "لوحة التحكم" : "Dashboard", route: "/dashboard?type=utility" },
+          ...(activeEvent ? [{ label: isAr ? "الأحداث" : "Events", onClick: () => setActiveEvent(null) }] : []),
+        ]}
+        icon="ri-flashlight-line"
+        iconColor="#FACC15"
+        badge="Al-Ameen Portal"
+        isAr={isAr}
+        action={
+          <div className="flex items-center gap-3">
+            <div className="hidden xl:flex items-center gap-2">
+              {[
+                { label: "Nat.Electric", color: "#D6B47E" },
+                { label: "Nat.Water", color: "#4ADE80" },
+                { label: "Telco A", color: "#A78BFA" },
+                { label: "Telco B", color: "#C98A1B" },
+              ].map((p) => (
+                <div key={p.label} className="flex items-center gap-1.5 px-2 py-1 rounded-full border" style={{ background: `${p.color}08`, borderColor: `${p.color}20` }}>
+                  <div className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: p.color }} />
+                  <span className="text-xs font-['JetBrains_Mono']" style={{ color: p.color, fontSize: "9px" }}>{p.label}</span>
+                </div>
+              ))}
             </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="text-white font-bold text-sm">{isAr ? "أحداث المرافق" : "Utility Activation Events"}</span>
-                <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(184,138,60,0.12)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}>Al-Ameen Portal</span>
+            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border" style={{ background: "rgba(201,138,27,0.08)", borderColor: "rgba(201,138,27,0.2)" }}>
+              <i className="ri-alarm-warning-line text-orange-400 text-xs" />
+              <span className="text-orange-400 text-xs font-bold font-['JetBrains_Mono']">5 {isAr ? "شذوذ" : "ANOMALIES"}</span>
+            </div>
+            {activeCard && (
+              <div className="hidden sm:block px-3 py-1.5 rounded-lg border text-xs font-bold font-['JetBrains_Mono']"
+                style={{ background: activeCard.bgColor, borderColor: activeCard.borderColor, color: activeCard.color }}>
+                {activeCard.code}
               </div>
-              <p className="text-gray-500 text-xs">{isAr ? "الكهرباء الوطنية · المياه الوطنية · تيلكو أ · تيلكو ب" : "National Electric Co. · National Water Authority · Telco A · Telco B"}</p>
-            </div>
+            )}
           </div>
-        </div>
-
-        <div className="flex items-center gap-3">
-          {/* Provider status pills */}
-          <div className="hidden xl:flex items-center gap-2">
-            {[
-              { label: "Nat.Electric", color: "#D6B47E" },
-              { label: "Nat.Water", color: "#4ADE80" },
-              { label: "Telco A", color: "#A78BFA" },
-              { label: "Telco B", color: "#C98A1B" },
-            ].map((p) => (
-              <div key={p.label} className="flex items-center gap-1.5 px-2 py-1 rounded-full border" style={{ background: `${p.color}08`, borderColor: `${p.color}20` }}>
-                <div className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: p.color }} />
-                <span className="text-xs font-['JetBrains_Mono']" style={{ color: p.color, fontSize: "9px" }}>{p.label}</span>
-              </div>
-            ))}
-          </div>
-
-          {/* Active anomalies badge */}
-          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border" style={{ background: "rgba(201,138,27,0.08)", borderColor: "rgba(201,138,27,0.2)" }}>
-            <i className="ri-alarm-warning-line text-orange-400 text-xs" />
-            <span className="text-orange-400 text-xs font-bold font-['JetBrains_Mono']">5 {isAr ? "شذوذ" : "ANOMALIES"}</span>
-          </div>
-
-          {activeCard && (
-            <div className="hidden sm:block px-3 py-1.5 rounded-lg border text-xs font-bold font-['JetBrains_Mono']"
-              style={{ background: activeCard.bgColor, borderColor: activeCard.borderColor, color: activeCard.color }}>
-              {activeCard.code}
-            </div>
-          )}
-
-        </div>
-      </header>
+        }
+      />
 
       <main className="relative z-10 max-w-6xl mx-auto px-6 py-8">
         {/* Event selection */}

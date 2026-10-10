@@ -11,6 +11,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
 import type { DashboardOutletContext } from "../DashboardLayout";
+import PageHeader from "../components/PageHeader";
 import {
   INTERNAL_STREAMS, OSINT_SOURCES, RISK_RULES, SCORED_RECORDS,
   DEFAULT_SUB_SCORE_WEIGHTS, WEIGHT_PROFILES, FEATURE_VECTORS,
@@ -188,69 +189,42 @@ const OsintRiskEnginePage = () => {
         </span>
       </div>
 
-      {/* Header */}
-      <header
-        className="sticky top-0 z-40 flex items-center justify-between px-6 py-3 border-b"
-        style={{ background: "rgba(var(--alm-ocean-800-rgb), 0.97)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}
-      >
-        <div className="flex items-center gap-4">
-          <button type="button" onClick={() => navigate("/dashboard")}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-lg border text-sm font-semibold cursor-pointer whitespace-nowrap"
-            style={{ background: "transparent", borderColor: "rgba(255,255,255,0.1)", color: "#9CA3AF" }}>
-            <i className={isAr ? "ri-arrow-right-line" : "ri-arrow-left-line"} />
-            {isAr ? "لوحة التحكم" : "Dashboard"}
-          </button>
+      <PageHeader
+        title={isAr ? "محرك مخاطر OSINT" : "OSINT Risk Engine"}
+        icon="ri-radar-line"
+        iconColor="#6B4FAE"
+        badge="PoC · v0.3.1"
+        badgeColor="#6B4FAE"
+        crumbs={[{ label: isAr ? "لوحة التحكم" : "Dashboard", route: "/dashboard" }]}
+        action={
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 flex items-center justify-center rounded-xl flex-shrink-0"
-              style={{ background: "rgba(107,79,174,0.1)", border: "2px solid rgba(107,79,174,0.3)" }}>
-              <i className="ri-radar-line text-[#6B4FAE] text-base" />
-            </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="text-gold-400 font-black text-base tracking-wide">Al-Ameen</span>
-                <span className="text-white font-bold text-sm">{isAr ? "محرّك المخاطر OSINT" : "OSINT Risk Engine"}</span>
-                {!presenterMode && (
-                  <span className="px-2 py-0.5 rounded-full text-xs font-bold"
-                    style={{ background: "rgba(107,79,174,0.15)", color: "#6B4FAE", border: "1px solid rgba(107,79,174,0.3)" }}>
-                    PoC · v0.3.1
-                  </span>
-                )}
+            {presenterMode && (
+              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border"
+                style={{ background: "rgba(184,138,60,0.12)", borderColor: "rgba(184,138,60,0.45)" }}>
+                <i className="ri-mic-line text-gold-400 text-sm" />
+                <span className="text-gold-300 text-xs font-bold font-['JetBrains_Mono'] tracking-widest">
+                  {isAr ? "عرض تقديمي" : "PRESENTER"}
+                </span>
               </div>
-              {!presenterMode && (
-                <p className="text-gray-500 text-xs font-['JetBrains_Mono']">
-                  ETA + API/PNR · Rules baseline + ML overlay · Explainable
-                </p>
-              )}
+            )}
+            <div className="hidden lg:flex flex-col items-end px-3 py-1.5 rounded-lg border"
+              style={{ background: "rgba(184,138,60,0.04)", borderColor: "rgba(184,138,60,0.12)" }}>
+              <span className="text-gold-400 text-sm font-black font-['JetBrains_Mono']">{timeStr}</span>
+              <span className="text-gray-600 text-xs font-['JetBrains_Mono']">{dateStr}</span>
             </div>
-          </div>
-        </div>
-
-        <div className="flex items-center gap-3">
-          {presenterMode && (
             <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border"
-              style={{ background: "rgba(184,138,60,0.12)", borderColor: "rgba(184,138,60,0.45)" }}>
-              <i className="ri-mic-line text-gold-400 text-sm" />
-              <span className="text-gold-300 text-xs font-bold font-['JetBrains_Mono'] tracking-widest">
-                {isAr ? "عرض تقديمي" : "PRESENTER"}
+              style={{ background: "rgba(74,222,128,0.08)", borderColor: "rgba(74,222,128,0.3)" }}>
+              <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+              <span className="text-green-400 text-xs font-bold font-['JetBrains_Mono']">
+                {agg.sourcesHealthy + INTERNAL_STREAMS.filter((s) => s.status === "healthy").length}/
+                {TOTAL_OSINT_BASELINE + INTERNAL_STREAMS.length}{" "}
+                {isAr ? "مصادر حيّة" : "SOURCES LIVE"}
               </span>
             </div>
-          )}
-          <div className="hidden lg:flex flex-col items-end px-3 py-1.5 rounded-lg border"
-            style={{ background: "rgba(184,138,60,0.04)", borderColor: "rgba(184,138,60,0.12)" }}>
-            <span className="text-gold-400 text-sm font-black font-['JetBrains_Mono']">{timeStr}</span>
-            <span className="text-gray-600 text-xs font-['JetBrains_Mono']">{dateStr}</span>
           </div>
-          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border"
-            style={{ background: "rgba(74,222,128,0.08)", borderColor: "rgba(74,222,128,0.3)" }}>
-            <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-            <span className="text-green-400 text-xs font-bold font-['JetBrains_Mono']">
-              {agg.sourcesHealthy + INTERNAL_STREAMS.filter((s) => s.status === "healthy").length}/
-              {TOTAL_OSINT_BASELINE + INTERNAL_STREAMS.length}{" "}
-              {isAr ? "مصادر حيّة" : "SOURCES LIVE"}
-            </span>
-          </div>
-        </div>
-      </header>
+        }
+        isAr={isAr}
+      />
 
       {/* Tabs — ARIA tablist for SR + keyboard arrow-key navigation */}
       <div

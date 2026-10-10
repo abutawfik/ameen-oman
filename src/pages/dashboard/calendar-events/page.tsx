@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
+import PageHeader from "../components/PageHeader";
 import type { DashboardOutletContext } from "../DashboardLayout";
 import CalendarLiveCounters from "./components/CalendarLiveCounters";
 import CalendarGrid from "./components/CalendarGrid";
@@ -27,7 +28,6 @@ const TABS: { id: Tab; icon: string; label: string; labelAr: string }[] = [
 ];
 
 const CalendarEventsPage = () => {
-  const navigate = useNavigate();
   const { isAr } = useOutletContext<DashboardOutletContext>();
   const [activeTab, setActiveTab] = useState<Tab>("calendar");
   const [entityType, setEntityType] = useState("hotel");
@@ -50,92 +50,65 @@ const CalendarEventsPage = () => {
         backgroundSize: "40px 40px",
       }} />
 
-      {/* Header */}
-      <header className="sticky top-0 z-40 flex items-center justify-between px-6 py-3 border-b"
-        style={{ background: "rgba(5,20,40,0.97)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(16px)" }}>
-        <div className="flex items-center gap-4">
-          <button type="button" onClick={() => navigate("/dashboard")}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-lg border text-sm font-semibold cursor-pointer whitespace-nowrap transition-colors"
-            style={{ background: "transparent", borderColor: "rgba(255,255,255,0.1)", color: "#9CA3AF" }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "#D1D5DB"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.2)"; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "#9CA3AF"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.1)"; }}>
-            <i className={isAr ? "ri-arrow-right-line" : "ri-arrow-left-line"} />
-            {isAr ? "لوحة التحكم" : "Dashboard"}
-          </button>
-
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 flex items-center justify-center rounded-lg"
-              style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.25)" }}>
-              <i className="ri-calendar-line text-gold-400 text-sm" />
+      <PageHeader
+        title={isAr ? "أحداث التقويم" : "Calendar Events"}
+        crumbs={[
+          { label: isAr ? "لوحة التحكم" : "Dashboard", route: "/dashboard" },
+        ]}
+        icon="ri-calendar-event-line"
+        iconColor="#D6B47E"
+        badge="Al-Ameen Portal"
+        isAr={isAr}
+        action={
+          <div className="flex items-center gap-3">
+            <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-lg border"
+              style={{ background: "rgba(184,138,60,0.04)", borderColor: "rgba(184,138,60,0.12)" }}>
+              <i className="ri-time-line text-gold-400 text-xs" />
+              <span className="text-gold-400 text-xs font-bold font-['JetBrains_Mono']">{timeStr}</span>
             </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="text-white font-bold text-sm">{isAr ? "التقويم وقائمة الأحداث" : "Calendar & Event List"}</span>
-                <span className="px-2 py-0.5 rounded-full text-xs font-bold"
-                  style={{ background: "rgba(184,138,60,0.12)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}>
-                  Al-Ameen
-                </span>
-              </div>
-              <p className="text-gray-500 text-xs">{isAr ? "عرض وتصفية جميع الأحداث عبر الوحدات" : "View and filter all events across modules"}</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="flex items-center gap-3">
-          {/* Live clock */}
-          <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-lg border"
-            style={{ background: "rgba(184,138,60,0.04)", borderColor: "rgba(184,138,60,0.12)" }}>
-            <i className="ri-time-line text-gold-400 text-xs" />
-            <span className="text-gold-400 text-xs font-bold font-['JetBrains_Mono']">{timeStr}</span>
-          </div>
-
-          {/* Entity selector */}
-          <div className="relative">
-            <button type="button"
-              onClick={() => setShowEntityDropdown((v) => !v)}
-              className="flex items-center gap-2 px-3 py-1.5 rounded-lg border text-xs font-semibold cursor-pointer whitespace-nowrap transition-colors"
-              style={{ background: `${selectedEntity.color}10`, borderColor: `${selectedEntity.color}30`, color: selectedEntity.color }}>
-              <i className={`${selectedEntity.icon} text-xs`} />
-              {isAr ? selectedEntity.labelAr : selectedEntity.labelEn}
-              <i className="ri-arrow-down-s-line text-xs" />
-            </button>
-            {showEntityDropdown && (
-              <div className="absolute right-0 top-full mt-1 w-60 rounded-xl border overflow-hidden z-50"
-                style={{ background: "rgba(5,20,40,0.99)", borderColor: "rgba(184,138,60,0.2)", backdropFilter: "blur(20px)" }}>
-                <div className="px-3 py-2 border-b" style={{ borderColor: "rgba(184,138,60,0.08)" }}>
-                  <span className="text-gray-600 text-xs font-['JetBrains_Mono'] uppercase tracking-wider">
-                    {isAr ? "اختر الوحدة" : "Select Module"}
-                  </span>
+            <div className="relative">
+              <button type="button"
+                onClick={() => setShowEntityDropdown((v) => !v)}
+                className="flex items-center gap-2 px-3 py-1.5 rounded-lg border text-xs font-semibold cursor-pointer whitespace-nowrap transition-colors"
+                style={{ background: `${selectedEntity.color}10`, borderColor: `${selectedEntity.color}30`, color: selectedEntity.color }}>
+                <i className={`${selectedEntity.icon} text-xs`} />
+                {isAr ? selectedEntity.labelAr : selectedEntity.labelEn}
+                <i className="ri-arrow-down-s-line text-xs" />
+              </button>
+              {showEntityDropdown && (
+                <div className="absolute right-0 top-full mt-1 w-60 rounded-xl border overflow-hidden z-50"
+                  style={{ background: "rgba(5,20,40,0.99)", borderColor: "rgba(184,138,60,0.2)", backdropFilter: "blur(20px)" }}>
+                  <div className="px-3 py-2 border-b" style={{ borderColor: "rgba(184,138,60,0.08)" }}>
+                    <span className="text-gray-600 text-xs font-['JetBrains_Mono'] uppercase tracking-wider">
+                      {isAr ? "اختر الوحدة" : "Select Module"}
+                    </span>
+                  </div>
+                  {ENTITY_OPTIONS.map((opt) => (
+                    <button key={opt.value} type="button"
+                      onClick={() => { setEntityType(opt.value); setShowEntityDropdown(false); }}
+                      className="w-full flex items-center gap-3 px-4 py-2.5 text-xs font-semibold cursor-pointer transition-colors text-left"
+                      style={{
+                        background: entityType === opt.value ? `${opt.color}12` : "transparent",
+                        color: entityType === opt.value ? opt.color : "#9CA3AF",
+                      }}
+                      onMouseEnter={(e) => { if (entityType !== opt.value) (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.04)"; }}
+                      onMouseLeave={(e) => { if (entityType !== opt.value) (e.currentTarget as HTMLButtonElement).style.background = "transparent"; }}>
+                      <i className={`${opt.icon} text-sm`} style={{ color: opt.color }} />
+                      {isAr ? opt.labelAr : opt.labelEn}
+                      {entityType === opt.value && <i className="ri-check-line ml-auto text-xs" style={{ color: opt.color }} />}
+                    </button>
+                  ))}
                 </div>
-                {ENTITY_OPTIONS.map((opt) => (
-                  <button key={opt.value} type="button"
-                    onClick={() => { setEntityType(opt.value); setShowEntityDropdown(false); }}
-                    className="w-full flex items-center gap-3 px-4 py-2.5 text-xs font-semibold cursor-pointer transition-colors text-left"
-                    style={{
-                      background: entityType === opt.value ? `${opt.color}12` : "transparent",
-                      color: entityType === opt.value ? opt.color : "#9CA3AF",
-                    }}
-                    onMouseEnter={(e) => { if (entityType !== opt.value) (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.04)"; }}
-                    onMouseLeave={(e) => { if (entityType !== opt.value) (e.currentTarget as HTMLButtonElement).style.background = "transparent"; }}>
-                    <i className={`${opt.icon} text-sm`} style={{ color: opt.color }} />
-                    {isAr ? opt.labelAr : opt.labelEn}
-                    {entityType === opt.value && <i className="ri-check-line ml-auto text-xs" style={{ color: opt.color }} />}
-                  </button>
-                ))}
-              </div>
-            )}
+              )}
+            </div>
+            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border"
+              style={{ background: "rgba(74,222,128,0.06)", borderColor: "rgba(74,222,128,0.2)" }}>
+              <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+              <span className="text-green-400 text-xs font-semibold font-['JetBrains_Mono']">LIVE</span>
+            </div>
           </div>
-
-          {/* Live badge */}
-          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border"
-            style={{ background: "rgba(74,222,128,0.06)", borderColor: "rgba(74,222,128,0.2)" }}>
-            <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-            <span className="text-green-400 text-xs font-semibold font-['JetBrains_Mono']">LIVE</span>
-          </div>
-
-          {/* Language toggle */}
-        </div>
-      </header>
+        }
+      />
 
       {/* Tab bar */}
       <div className="sticky top-[57px] z-30 flex items-center gap-1 px-6 py-2 border-b overflow-x-auto"

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import type { DashboardOutletContext } from '../DashboardLayout';
+import PageHeader from '../components/PageHeader';
 import type { RiskRule, MatchDecisionRule, RuleType, ActionType, RuleStatus } from '@/mocks/riskRulesData';
 import { RISK_RULES, DECISION_RULES, RULE_TYPE_CONFIG, ACTION_TYPE_CONFIG } from '@/mocks/riskRulesData';
 
@@ -209,23 +210,18 @@ export default function RiskRulesPage() {
       <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0, backgroundImage: 'linear-gradient(rgba(184,138,60,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.025) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
 
       <div style={{ position: 'relative', zIndex: 1, height: '100%', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-        {/* Header */}
-        <div style={{ padding: '16px 24px 10px', flexShrink: 0, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 2 }}>
-              <i className="ri-settings-3-line" style={{ color: '#B8893C', fontSize: 16 }} />
-              <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: '#B8893C', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
-                {isAr ? 'إدارة قواعد المخاطر' : 'Risk Rules Management'}
-              </span>
-            </div>
-            <p style={{ margin: 0, fontSize: 11, color: '#374B61', fontFamily: "'Inter', sans-serif" }}>
-              {isAr ? 'قواعد تسجيل المخاطر وإجراءات التطابق' : 'Define scoring weights and automated actions for risk match decisions'}
-            </p>
-          </div>
-          <button style={{ padding: '8px 14px', borderRadius: 4, background: 'rgba(184,138,60,0.12)', border: '1px solid rgba(184,138,60,0.3)', color: '#D6B47E', fontFamily: "'JetBrains Mono', monospace", fontSize: 11, cursor: 'pointer', textTransform: 'uppercase', letterSpacing: '0.06em', display: 'flex', alignItems: 'center', gap: 6 }}>
-            <i className="ri-add-line" />{isAr ? 'قاعدة جديدة' : 'New Rule'}
-          </button>
-        </div>
+        <PageHeader
+          title={isAr ? 'إدارة قواعد المخاطر' : 'Risk Rules Management'}
+          subtitle={isAr ? 'قواعد تسجيل المخاطر وإجراءات التطابق' : 'Define scoring weights and automated actions for risk match decisions'}
+          icon="ri-settings-3-line"
+          iconColor="#D6B47E"
+          isAr={isAr}
+          action={
+            <button style={{ padding: '8px 14px', borderRadius: 4, background: 'rgba(184,138,60,0.12)', border: '1px solid rgba(184,138,60,0.3)', color: '#D6B47E', fontFamily: "'JetBrains Mono', monospace", fontSize: 11, cursor: 'pointer', textTransform: 'uppercase', letterSpacing: '0.06em', display: 'flex', alignItems: 'center', gap: 6 }}>
+              <i className="ri-add-line" />{isAr ? 'قاعدة جديدة' : 'New Rule'}
+            </button>
+          }
+        />
 
         {/* Tab bar */}
         <div style={{ flexShrink: 0, borderBottom: '1px solid rgba(184,138,60,0.1)', background: 'rgba(5,20,40,0.5)', display: 'flex', alignItems: 'flex-end', paddingLeft: 24 }}>

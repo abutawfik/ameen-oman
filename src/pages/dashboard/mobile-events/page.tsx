@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
+import PageHeader from "../components/PageHeader";
 import type { DashboardOutletContext } from "../DashboardLayout";
 import SimPurchaseForm from "./SimPurchaseForm";
 import SimActivatedForm from "./SimActivatedForm";
@@ -103,7 +104,6 @@ const EVENT_CARDS: EventCard[] = [
 ];
 
 const MobileEventsPage = () => {
-  const navigate = useNavigate();
   const { isAr } = useOutletContext<DashboardOutletContext>();
   const [activeEvent, setActiveEvent] = useState<EventType | null>(null);
 
@@ -129,81 +129,43 @@ const MobileEventsPage = () => {
         }}
       />
 
-      {/* Header */}
-      <header
-        className="sticky top-0 z-40 flex items-center justify-between px-6 py-3 border-b"
-        style={{ background: "rgba(5,20,40,0.95)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}
-      >
-        <div className="flex items-center gap-4">
-          <button
-            type="button"
-            onClick={() => activeEvent ? setActiveEvent(null) : navigate("/dashboard?type=mobile")}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-lg border text-sm font-semibold cursor-pointer whitespace-nowrap transition-colors"
-            style={{ background: "transparent", borderColor: "rgba(255,255,255,0.1)", color: "#9CA3AF" }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "#D1D5DB"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.2)"; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "#9CA3AF"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.1)"; }}
-          >
-            <i className={isAr ? "ri-arrow-right-line" : "ri-arrow-left-line"} />
-            {activeEvent ? (isAr ? "العودة للأحداث" : "Back to Events") : (isAr ? "لوحة التحكم" : "Dashboard")}
-          </button>
-
-          <div className="flex items-center gap-2">
+      <PageHeader
+        title={isAr ? "أحداث الهاتف والاتصالات" : "Mobile & Telecom Events"}
+        crumbs={[
+          { label: isAr ? "لوحة التحكم" : "Dashboard", route: "/dashboard?type=mobile" },
+          ...(activeEvent ? [{ label: isAr ? "الأحداث" : "Events", onClick: () => setActiveEvent(null) }] : []),
+        ]}
+        icon="ri-smartphone-line"
+        iconColor="#A78BFA"
+        badge="Al-Ameen Portal"
+        isAr={isAr}
+        action={
+          <div className="flex items-center gap-3">
             <div
-              className="w-8 h-8 flex items-center justify-center rounded-lg"
-              style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.2)" }}
+              className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full border"
+              style={{ background: "rgba(250,204,21,0.06)", borderColor: "rgba(250,204,21,0.2)" }}
             >
-              <i className="ri-sim-card-2-line text-gold-400 text-sm" />
+              <i className="ri-git-merge-line text-yellow-400 text-xs" />
+              <span className="text-yellow-400 text-xs font-semibold font-['JetBrains_Mono']">
+                {isAr ? "إزالة التكرار نشطة" : "Dedup Active"}
+              </span>
             </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="text-white font-bold text-sm">
-                  {isAr ? "أحداث المشغّل" : "Mobile Operator Events"}
-                </span>
-                <span
-                  className="px-2 py-0.5 rounded-full text-xs font-bold"
-                  style={{ background: "rgba(184,138,60,0.12)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}
-                >
-                  Al-Ameen Portal
-                </span>
+            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border"
+              style={{ background: "rgba(74,222,128,0.06)", borderColor: "rgba(74,222,128,0.2)" }}>
+              <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+              <span className="text-green-400 text-xs font-semibold font-['JetBrains_Mono']">LIVE</span>
+            </div>
+            {activeCard && (
+              <div
+                className="hidden sm:block px-3 py-1.5 rounded-lg border text-xs font-bold font-['JetBrains_Mono']"
+                style={{ background: activeCard.bgColor, borderColor: activeCard.borderColor, color: activeCard.color }}
+              >
+                {activeCard.code}
               </div>
-              <p className="text-gray-500 text-xs">
-                {isAr ? "شركة الاتصالات العُمانية — مسقط" : "Oman Telecommunications Co. — Muscat"}
-              </p>
-            </div>
+            )}
           </div>
-        </div>
-
-        <div className="flex items-center gap-3">
-          {/* CRM dedup note */}
-          <div
-            className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full border"
-            style={{ background: "rgba(250,204,21,0.06)", borderColor: "rgba(250,204,21,0.2)" }}
-          >
-            <i className="ri-git-merge-line text-yellow-400 text-xs" />
-            <span className="text-yellow-400 text-xs font-semibold font-['JetBrains_Mono']">
-              {isAr ? "إزالة التكرار نشطة" : "Dedup Active"}
-            </span>
-          </div>
-
-          {/* Live status */}
-          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border"
-            style={{ background: "rgba(74,222,128,0.06)", borderColor: "rgba(74,222,128,0.2)" }}>
-            <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-            <span className="text-green-400 text-xs font-semibold font-['JetBrains_Mono']">LIVE</span>
-          </div>
-
-          {/* Active event code */}
-          {activeCard && (
-            <div
-              className="hidden sm:block px-3 py-1.5 rounded-lg border text-xs font-bold font-['JetBrains_Mono']"
-              style={{ background: activeCard.bgColor, borderColor: activeCard.borderColor, color: activeCard.color }}
-            >
-              {activeCard.code}
-            </div>
-          )}
-
-        </div>
-      </header>
+        }
+      />
 
       <main className="relative z-10 max-w-6xl mx-auto px-6 py-8">
         {/* Event Selection */}

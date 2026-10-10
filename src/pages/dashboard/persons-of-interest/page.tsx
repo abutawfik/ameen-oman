@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import type { DashboardOutletContext } from '../DashboardLayout';
+import PageHeader from '../components/PageHeader';
 import type { POICategory, POIStatus, POIThreat, PersonOfInterest } from '@/mocks/poiData';
 import { POI_LIST, CATEGORY_CONFIG, THREAT_COLORS } from '@/mocks/poiData';
 
@@ -243,30 +244,27 @@ export default function PersonsOfInterestPage() {
       <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0, backgroundImage: 'linear-gradient(rgba(184,138,60,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.025) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
 
       <div style={{ position: 'relative', zIndex: 1, height: '100%', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-        {/* Page header */}
-        <div style={{ padding: '18px 24px 14px', flexShrink: 0 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 4 }}>
-            <i className="ri-user-forbid-line" style={{ color: '#B8893C', fontSize: 16 }} />
-            <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: '#B8893C', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
-              {isAr ? 'الأشخاص المثيرون للاهتمام' : 'Persons of Interest'}
-            </span>
-          </div>
+        <PageHeader
+          title={isAr ? 'الأشخاص المشبوهون' : 'Persons of Interest'}
+          icon="ri-user-forbid-line"
+          iconColor="#C94A5E"
+          isAr={isAr}
+        />
 
-          {/* Summary bar */}
-          <div style={{ display: 'flex', gap: 20, marginTop: 10 }}>
-            {[
-              { icon: 'ri-user-forbid-line', val: POI_LIST.length, labelEn: 'total',    labelAr: 'إجمالي',   color: '#5B7494' },
-              { icon: 'ri-radio-button-line', val: active,          labelEn: 'active',   labelAr: 'نشط',      color: '#4A8E5A' },
-              { icon: 'ri-alarm-warning-fill', val: critical,       labelEn: 'critical', labelAr: 'حرج',      color: '#C94A5E' },
-              { icon: 'ri-bell-line',          val: alerts,         labelEn: 'alerts',   labelAr: 'تنبيهات', color: '#D4922A' },
-            ].map(s => (
-              <div key={s.labelEn} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                <i className={s.icon} style={{ color: s.color, fontSize: 14 }} />
-                <span style={{ fontSize: 18, fontFamily: "'JetBrains Mono', monospace", color: s.color, fontWeight: 600, lineHeight: 1 }}>{s.val}</span>
-                <span style={{ fontSize: 11, color: '#374B61', fontFamily: "'JetBrains Mono', monospace', textTransform: 'uppercase" }}>{isAr ? s.labelAr : s.labelEn}</span>
-              </div>
-            ))}
-          </div>
+        {/* Summary bar */}
+        <div style={{ padding: '10px 24px', display: 'flex', gap: 20, flexShrink: 0 }}>
+          {[
+            { icon: 'ri-user-forbid-line', val: POI_LIST.length, labelEn: 'total',    labelAr: 'إجمالي',   color: '#5B7494' },
+            { icon: 'ri-radio-button-line', val: active,          labelEn: 'active',   labelAr: 'نشط',      color: '#4A8E5A' },
+            { icon: 'ri-alarm-warning-fill', val: critical,       labelEn: 'critical', labelAr: 'حرج',      color: '#C94A5E' },
+            { icon: 'ri-bell-line',          val: alerts,         labelEn: 'alerts',   labelAr: 'تنبيهات', color: '#D4922A' },
+          ].map(s => (
+            <div key={s.labelEn} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+              <i className={s.icon} style={{ color: s.color, fontSize: 14 }} />
+              <span style={{ fontSize: 18, fontFamily: "'JetBrains Mono', monospace", color: s.color, fontWeight: 600, lineHeight: 1 }}>{s.val}</span>
+              <span style={{ fontSize: 11, color: '#374B61', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase' }}>{isAr ? s.labelAr : s.labelEn}</span>
+            </div>
+          ))}
         </div>
 
         {/* Filters */}

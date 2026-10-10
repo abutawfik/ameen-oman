@@ -7,6 +7,7 @@ import TargetDetail from './components/TargetDetail';
 import AlertBehavior from './components/AlertBehavior';
 import WatchlistAnalytics from './components/WatchlistAnalytics';
 import ImportExport from './components/ImportExport';
+import PageHeader from "../components/PageHeader";
 
 type Tab = 'dashboard' | 'manage' | 'target' | 'alerts' | 'analytics' | 'import';
 
@@ -58,44 +59,27 @@ const WatchlistPage = () => {
         }} />
 
       <div className="flex-1 flex flex-col overflow-hidden relative z-10">
-        {/* Page header */}
-        <div className="flex-shrink-0 px-6 pt-5 pb-4 border-b"
-          style={{ borderColor: 'rgba(184,138,60,0.08)' }}>
-          <div className="flex items-center justify-between mb-4" data-narrate-id="watchlist-header-kpis">
-            <div>
-              <div className="flex items-center gap-3 mb-1">
-                <div className="w-8 h-8 flex items-center justify-center rounded-xl"
-                  style={{ background: 'rgba(201,74,94,0.15)' }}>
-                  <i className="ri-eye-line text-red-400 text-base" />
-                </div>
-                <h1 className="text-white font-black font-['Inter'] text-xl tracking-tight">
-                  {isAr ? 'إدارة قوائم المراقبة والأهداف' : 'Watchlist & Target Management'}
-                </h1>
-              </div>
-              <p className="text-gray-400 text-sm font-['Inter'] ml-11">
-                {isAr
-                  ? 'مراقبة استباقية للأشخاص المعروفين عبر 14 تدفقاً للبيانات'
-                  : 'Proactive monitoring of known persons of interest across 14 data streams'}
-              </p>
+        <PageHeader
+          title={isAr ? 'إدارة قوائم المراقبة والأهداف' : 'Watchlist & Target Management'}
+          subtitle="Proactive monitoring of known persons of interest across 14 data streams"
+          icon="ri-eye-line"
+          iconColor="#C94A5E"
+          action={liveAlerts > 0 ? (
+            <div className="flex items-center gap-3 px-4 py-2.5 rounded-xl animate-pulse"
+              style={{ background: 'rgba(201,74,94,0.1)', border: '1px solid rgba(201,74,94,0.3)' }}>
+              <div className="w-2 h-2 rounded-full bg-red-400" />
+              <span className="text-red-400 font-bold font-['JetBrains_Mono'] text-sm">
+                {liveAlerts} {isAr ? 'تنبيهات جديدة' : 'NEW ALERTS'}
+              </span>
+              <button onClick={() => { setActiveTab('alerts'); setLiveAlerts(0); }}
+                className="text-xs font-['Inter'] cursor-pointer underline text-red-300">
+                {isAr ? 'عرض' : 'View'}
+              </button>
             </div>
-
-            {/* Live alert badge */}
-            {liveAlerts > 0 && (
-              <div className="flex items-center gap-3 px-4 py-2.5 rounded-xl animate-pulse"
-                style={{ background: 'rgba(201,74,94,0.1)', border: '1px solid rgba(201,74,94,0.3)' }}>
-                <div className="w-2 h-2 rounded-full bg-red-400" />
-                <span className="text-red-400 font-bold font-['JetBrains_Mono'] text-sm">
-                  {liveAlerts} {isAr ? 'تنبيهات جديدة' : 'NEW ALERTS'}
-                </span>
-                <button onClick={() => { setActiveTab('alerts'); setLiveAlerts(0); }}
-                  className="text-xs font-['Inter'] cursor-pointer underline text-red-300">
-                  {isAr ? 'عرض' : 'View'}
-                </button>
-              </div>
-            )}
-          </div>
-
-          {/* Tabs */}
+          ) : undefined}
+          isAr={isAr}
+        />
+        <div className="flex-shrink-0 px-5 pb-3 border-b" style={{ borderColor: "rgba(184,138,60,0.08)" }}>
           <div className="flex gap-1">
             {tabs.map(tab => (
               <button key={tab.key}

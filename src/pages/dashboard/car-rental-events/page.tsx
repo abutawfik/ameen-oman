@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
+import PageHeader from "../components/PageHeader";
 import type { DashboardOutletContext } from "../DashboardLayout";
 import VehicleBookForm from "./VehicleBookForm";
 import VehiclePickUpForm from "./VehiclePickUpForm";
@@ -63,7 +64,6 @@ const EVENT_CARDS: EventCard[] = [
 ];
 
 const CarRentalEventsPage = () => {
-  const navigate = useNavigate();
   const { isAr } = useOutletContext<DashboardOutletContext>();
   const [activeEvent, setActiveEvent] = useState<EventType | null>(null);
   const [formKey, setFormKey] = useState(0);
@@ -94,86 +94,41 @@ const CarRentalEventsPage = () => {
         }}
       />
 
-      {/* Header */}
-      <header
-        className="sticky top-0 z-40 flex items-center justify-between px-6 py-3 border-b"
-        style={{
-          background: "rgba(5,20,40,0.97)",
-          borderColor: "rgba(184,138,60,0.1)",
-          backdropFilter: "blur(16px)",
-        }}
-      >
-        <div className="flex items-center gap-4">
-          <button
-            type="button"
-            onClick={() => activeEvent ? setActiveEvent(null) : navigate("/dashboard?type=car-rental")}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-lg border text-sm font-semibold cursor-pointer whitespace-nowrap transition-colors"
-            style={{ background: "transparent", borderColor: "rgba(255,255,255,0.08)", color: "#6B7280" }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.color = "#D1D5DB";
-              (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.18)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.color = "#6B7280";
-              (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.08)";
-            }}
-          >
-            <i className={`${isAr ? "ri-arrow-right-line" : "ri-arrow-left-line"} text-xs`} />
-            {activeEvent ? (isAr ? "العودة للأحداث" : "Back to Events") : (isAr ? "لوحة التحكم" : "Dashboard")}
-          </button>
-
-          <div className="w-px h-5" style={{ background: "rgba(255,255,255,0.08)" }} />
-
-          <div className="flex items-center gap-2.5">
+      <PageHeader
+        title={isAr ? "أحداث تأجير السيارات" : "Car Rental Events"}
+        crumbs={[
+          { label: isAr ? "لوحة التحكم" : "Dashboard", route: "/dashboard?type=car-rental" },
+          ...(activeEvent ? [{ label: isAr ? "الأحداث" : "Events", onClick: () => setActiveEvent(null) }] : []),
+        ]}
+        icon="ri-car-line"
+        iconColor="#4ADE80"
+        badge="Al-Ameen Portal"
+        isAr={isAr}
+        action={
+          <div className="flex items-center gap-3">
             <div
-              className="w-8 h-8 flex items-center justify-center rounded-lg"
-              style={{ background: "rgba(184,138,60,0.1)", border: "1px solid rgba(184,138,60,0.2)" }}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border"
+              style={{ background: "rgba(74,222,128,0.05)", borderColor: "rgba(74,222,128,0.18)" }}
             >
-              <i className="ri-car-line text-gold-400 text-sm" />
+              <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+              <span className="text-green-400 text-xs font-semibold font-['JetBrains_Mono']">LIVE</span>
             </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="text-white font-bold text-sm">
-                  {isAr ? "أحداث تأجير السيارات" : "Car Rental Events"}
-                </span>
-                <span
-                  className="px-2 py-0.5 rounded-full text-xs font-bold font-['JetBrains_Mono']"
-                  style={{ background: "rgba(184,138,60,0.1)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}
-                >
-                  Al-Ameen PORTAL
-                </span>
+            {activeCard && (
+              <div
+                className="px-3 py-1.5 rounded-lg border text-xs font-bold font-['JetBrains_Mono']"
+                style={{
+                  background: `${activeCard.color}10`,
+                  borderColor: `${activeCard.color}30`,
+                  color: activeCard.color,
+                }}
+              >
+                {activeCard.code}
               </div>
-              <p className="text-gray-600 text-xs font-['JetBrains_Mono']">
-                {isAr ? "تدفّق الأحداث · مراقبة المشغّل" : "Event stream \u00B7 Operator monitoring"}
-              </p>
-            </div>
+            )}
           </div>
-        </div>
-
-        <div className="flex items-center gap-3">
-          <div
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border"
-            style={{ background: "rgba(74,222,128,0.05)", borderColor: "rgba(74,222,128,0.18)" }}
-          >
-            <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-            <span className="text-green-400 text-xs font-semibold font-['JetBrains_Mono']">LIVE</span>
-          </div>
-
-          {activeCard && (
-            <div
-              className="px-3 py-1.5 rounded-lg border text-xs font-bold font-['JetBrains_Mono']"
-              style={{
-                background: `${activeCard.color}10`,
-                borderColor: `${activeCard.color}30`,
-                color: activeCard.color,
-              }}
-            >
-              {activeCard.code}
-            </div>
-          )}
-
-        </div>
-      </header>
+        }
+      />
+      
 
       <main className="relative z-10 max-w-[1200px] mx-auto px-6 py-8">
 

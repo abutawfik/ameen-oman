@@ -10,6 +10,7 @@
 import { useState, useRef } from "react";
 import { useOutletContext } from "react-router-dom";
 import type { DashboardOutletContext } from "../DashboardLayout";
+import PageHeader from "../components/PageHeader";
 import {
   useSubjectFeed, runDemoScenario, clearSubjectEvents,
   DEMO_SUBJECT,
@@ -409,25 +410,17 @@ const SubjectTimelinePage = () => {
       : "OSINT";
 
   return (
-    <div className="min-h-screen" style={{ background: "#051428" }}>
-      <div className="max-w-[1320px] mx-auto px-4 md:px-8 py-8">
-
-        {/* ── Header ──────────────────────────────────────────────────────── */}
-        <div className="flex items-start justify-between gap-4 mb-8 flex-wrap">
-          <div>
-            <div className="flex items-center gap-2 mb-1">
-              <i className="ri-user-follow-line text-xl" style={{ color: "#D6B47E" }} />
-              <h1 className="text-white font-bold text-2xl font-['Inter']">
-                {isAr ? "الجدول الزمني للنشاط — جلسة تحليل" : "Subject Activity Timeline"}
-              </h1>
-            </div>
-            <p className="text-gray-500 text-sm">
-              {isAr
-                ? "عرض موحَّد لجميع الأحداث المرتبطة بشخص عبر جميع مصادر البيانات · سرعة التوالي · البصمات السلوكية"
-                : "Unified cross-source view · hotel · car · mobile · financial · ROP internal · velocity scoring · fingerprints"}
-            </p>
-          </div>
-          <div className="flex gap-3 flex-wrap">
+    <div className="flex flex-col min-h-screen" style={{ background: "#051428" }}>
+      <PageHeader
+        title={isAr ? "جدول أنشطة الموضوع" : "Subject Activity Timeline"}
+        subtitle={isAr
+          ? "عرض موحَّد لجميع الأحداث المرتبطة بشخص عبر جميع مصادر البيانات"
+          : "Unified cross-source view · velocity scoring · behavioral fingerprints"}
+        icon="ri-user-follow-line"
+        iconColor="#D6B47E"
+        isAr={isAr}
+        action={
+          <div className="flex gap-2">
             <button
               onClick={() => { clearSubjectEvents(DEMO_SUBJECT.subjectId); setRasadQueried(false); }}
               disabled={running || events.length === 0}
@@ -452,7 +445,9 @@ const SubjectTimelinePage = () => {
                 : <><i className="ri-play-circle-line" /> {isAr ? "تشغيل السيناريو التجريبي" : "Run demo scenario"}</>}
             </button>
           </div>
-        </div>
+        }
+      />
+      <div className="max-w-[1320px] mx-auto px-4 md:px-8 py-8 flex-1">
 
         <div className="grid grid-cols-12 gap-6">
 

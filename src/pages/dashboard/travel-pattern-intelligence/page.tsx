@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import type { DashboardOutletContext } from '../DashboardLayout';
+import PageHeader from '../components/PageHeader';
 import {
   coTravelerPairs, routeSignatures, transitOverlapEvents, traffickingCases, documentAnomalies, tpiStats,
   type CoTravelerPair, type RouteSignature, type TransitOverlapEvent, type TraffickingCase, type DocumentAnomaly, type RiskLevel,
@@ -1028,48 +1029,33 @@ export default function TravelPatternIntelligencePage() {
       {/* Grid texture */}
       <div className="fixed inset-0 pointer-events-none" style={{ backgroundImage: `linear-gradient(rgba(184,138,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.03) 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
 
-      {/* Header */}
-      <header className="sticky top-0 z-40 flex items-center justify-between px-6 py-3 border-b" style={{ background: 'rgba(5,20,40,0.95)', borderColor: 'rgba(184,138,60,0.12)', backdropFilter: 'blur(12px)' }}>
-        <div className="flex items-center gap-4">
-          <button type="button" onClick={() => navigate('/dashboard')}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-lg border text-sm font-semibold cursor-pointer transition-colors"
-            style={{ background: 'transparent', borderColor: 'rgba(255,255,255,0.1)', color: '#9CA3AF' }}
-            onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.color = '#D1D5DB'; }}
-            onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.color = '#9CA3AF'; }}>
-            <i className={isAr ? 'ri-arrow-right-line' : 'ri-arrow-left-line'} />
-            {isAr ? 'لوحة التحكم' : 'Dashboard'}
-          </button>
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: 'rgba(201,74,94,0.12)', border: '1px solid rgba(201,74,94,0.25)' }}>
-              <i className="ri-node-tree text-sm" style={{ color: '#C94A5E' }} />
-            </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="text-white font-bold text-sm">{isAr ? 'ذكاء أنماط السفر' : 'Travel Pattern Intelligence'}</span>
-                <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: 'rgba(201,74,94,0.12)', color: '#C94A5E', border: '1px solid rgba(201,74,94,0.2)' }}>Al-Ameen TPI</span>
+      <PageHeader
+        title={isAr ? 'استخبارات أنماط السفر' : 'Travel Pattern Intelligence'}
+        icon="ri-node-tree"
+        iconColor="#C94A5E"
+        badge="Al-Ameen TPI"
+        badgeColor="#C94A5E"
+        crumbs={[{ label: isAr ? 'لوحة التحكم' : 'Dashboard', route: '/dashboard' }]}
+        action={
+          <div className="flex items-center gap-3">
+            {tpiStats.criticalAlerts > 0 && (
+              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border" style={{ background: 'rgba(201,74,94,0.08)', borderColor: 'rgba(201,74,94,0.25)' }}>
+                <i className="ri-alarm-warning-line text-red-400 text-xs" />
+                <span className="text-red-400 text-xs font-bold">{tpiStats.criticalAlerts} CRITICAL</span>
               </div>
-              <p className="text-gray-500 text-xs">{isAr ? 'كشف الأنماط السلوكية · شبكات المسافرين · مؤشرات الاتجار' : 'Behavioral pattern detection · Co-traveler networks · Trafficking indicators'}</p>
+            )}
+            <div className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full border" style={{ background: 'rgba(167,139,250,0.06)', borderColor: 'rgba(167,139,250,0.2)' }}>
+              <i className="ri-shield-star-line text-purple-400 text-xs" />
+              <span className="text-purple-400 text-xs font-semibold font-['JetBrains_Mono']">Police Internal</span>
+            </div>
+            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border" style={{ background: 'rgba(74,222,128,0.06)', borderColor: 'rgba(74,222,128,0.2)' }}>
+              <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+              <span className="text-green-400 text-xs font-semibold font-['JetBrains_Mono']">LIVE</span>
             </div>
           </div>
-        </div>
-        <div className="flex items-center gap-3">
-          {/* Critical alert count */}
-          {tpiStats.criticalAlerts > 0 && (
-            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border" style={{ background: 'rgba(201,74,94,0.08)', borderColor: 'rgba(201,74,94,0.25)' }}>
-              <i className="ri-alarm-warning-line text-red-400 text-xs" />
-              <span className="text-red-400 text-xs font-bold">{tpiStats.criticalAlerts} CRITICAL</span>
-            </div>
-          )}
-          <div className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full border" style={{ background: 'rgba(167,139,250,0.06)', borderColor: 'rgba(167,139,250,0.2)' }}>
-            <i className="ri-shield-star-line text-purple-400 text-xs" />
-            <span className="text-purple-400 text-xs font-semibold font-['JetBrains_Mono']">Police Internal</span>
-          </div>
-          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border" style={{ background: 'rgba(74,222,128,0.06)', borderColor: 'rgba(74,222,128,0.2)' }}>
-            <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-            <span className="text-green-400 text-xs font-semibold font-['JetBrains_Mono']">LIVE</span>
-          </div>
-        </div>
-      </header>
+        }
+        isAr={isAr}
+      />
 
       {/* Tab bar */}
       <div className="sticky top-[57px] z-30 flex items-center gap-1 px-6 py-2 border-b overflow-x-auto" style={{ background: 'rgba(5,20,40,0.9)', borderColor: 'rgba(184,138,60,0.08)', backdropFilter: 'blur(12px)' }}>

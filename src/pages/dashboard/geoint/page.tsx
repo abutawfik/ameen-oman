@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
+import type { DashboardOutletContext } from "../DashboardLayout";
+import PageHeader from "../components/PageHeader";
 import MovementTrailMap from "./components/MovementTrailMap";
 import HotspotClustering from "./components/HotspotClustering";
 import CrossStreamLocationCorrelation from "./components/CrossStreamLocationCorrelation";
@@ -26,6 +28,7 @@ const kpiCards = [
 
 const GeointPage = () => {
   const navigate = useNavigate();
+  const { isAr } = useOutletContext<DashboardOutletContext>();
   const [activeTab, setActiveTab] = useState<Tab>("movement");
   const [selectedSubjectId, setSelectedSubjectId] = useState<string | null>(null);
   const [liveTime, setLiveTime] = useState(new Date());
@@ -42,27 +45,18 @@ const GeointPage = () => {
     <div className="flex flex-col h-full" style={{ background: "#060E1A", fontFamily: "Inter, sans-serif" }}>
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Page header */}
-        <div className="flex-shrink-0 px-6 pt-4 pb-3" style={{ borderBottom: "1px solid rgba(184,138,60,0.08)" }}>
-          <div className="flex items-center justify-between mb-4">
+        <PageHeader
+          title={isAr ? "الاستخبارات الجغرافية" : "Geospatial Intelligence"}
+          icon="ri-earth-line"
+          iconColor="#D6B47E"
+          action={
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 flex items-center justify-center rounded-xl"
-                style={{ background: "rgba(184,138,60,0.12)", border: "1px solid rgba(184,138,60,0.25)" }}>
-                <i className="ri-earth-line text-gold-400 text-lg" />
-              </div>
-              <div>
-                <h1 className="text-white font-['Inter'] font-bold text-lg">Geospatial Intelligence</h1>
-                <p className="text-gray-500 text-xs font-['JetBrains_Mono']">GEOINT — Map-based subject tracking & location correlation</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3">
-              {/* Live clock */}
               <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg" style={{ background: "rgba(184,138,60,0.06)", border: "1px solid rgba(184,138,60,0.15)" }}>
                 <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
                 <span className="text-gold-400 text-xs font-['JetBrains_Mono']">
                   {liveTime.toLocaleTimeString("en-GB")} — LIVE
                 </span>
               </div>
-              {/* Alert badge */}
               {newAlerts > 0 && (
                 <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg cursor-pointer"
                   style={{ background: "rgba(201,74,94,0.12)", border: "1px solid rgba(201,74,94,0.3)" }}
@@ -79,8 +73,10 @@ const GeointPage = () => {
                 {showSubjectPanel ? "Hide" : "Show"} Subjects
               </button>
             </div>
-          </div>
-
+          }
+          isAr={isAr}
+        />
+        <div className="flex-shrink-0 px-6 pt-4 pb-3" style={{ borderBottom: "1px solid rgba(184,138,60,0.08)" }}>
           {/* KPI row */}
           <div className="grid grid-cols-6 gap-3 mb-4">
             {kpiCards.map((kpi) => (

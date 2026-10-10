@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
+import PageHeader from "../components/PageHeader";
 import type { DashboardOutletContext } from "../DashboardLayout";
 import CheckInForm from "./CheckInForm";
 import CheckOutForm from "./CheckOutForm";
@@ -58,7 +59,6 @@ const DeiyafaFeedRow = ({ ev, isAr }: { ev: AmeenEvent; isAr: boolean }) => {
 };
 
 const HotelEventsPage = () => {
-  const navigate = useNavigate();
   const { isAr } = useOutletContext<DashboardOutletContext>();
   const [activeForm, setActiveForm] = useState<FormType>("checkin");
   const [formKey, setFormKey] = useState(0);
@@ -79,32 +79,24 @@ const HotelEventsPage = () => {
       {/* Grid bg */}
       <div className="fixed inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: `linear-gradient(rgba(184,138,60,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.1) 1px, transparent 1px)`, backgroundSize: "60px 60px" }} />
 
-      {/* Top bar */}
-      <header className="sticky top-0 z-30 border-b" style={{ background: "rgba(5,20,40,0.97)", borderColor: "rgba(184,138,60,0.15)", backdropFilter: "blur(12px)" }}>
-        <div className="max-w-[1200px] mx-auto px-4 md:px-8 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <button onClick={() => navigate("/dashboard?type=hotel")}
-              className="flex items-center gap-2 text-gray-500 hover:text-gold-400 transition-colors cursor-pointer text-sm font-['Inter']">
-              <i className={isAr ? "ri-arrow-right-line" : "ri-arrow-left-line"} />
-              {isAr ? "لوحة التحكم" : "Dashboard"}
-            </button>
-            <div className="w-px h-5 bg-white/10" />
-            <img src="https://public.readdy.ai/ai/img_res/407b94a6-cd23-46f2-9c3a-b1f5c8ba9a2c.png" alt="Al-Ameen" className="w-7 h-7 object-contain" />
-            <div>
-              <span className="text-gold-400 font-bold text-sm font-['Inter'] tracking-widest">Al-Ameen</span>
-              <span className="text-gray-600 text-xs font-['Inter'] ml-2">— {isAr ? "نماذج أحداث الفنادق" : "Hotel Event Forms"}</span>
-            </div>
+      <PageHeader
+        title={isAr ? "أحداث الفنادق" : "Hotel Events"}
+        subtitle={isAr ? "نماذج أحداث الفنادق" : "Hotel Event Forms · Arrivals, Departures & Bookings"}
+        crumbs={[
+          { label: isAr ? "لوحة التحكم" : "Dashboard", route: "/dashboard?type=hotel" },
+        ]}
+        icon="ri-hotel-line"
+        iconColor="#D6B47E"
+        badge="Al-Ameen Portal"
+        isAr={isAr}
+        action={
+          <div className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-lg border" style={{ background: "rgba(184,138,60,0.05)", borderColor: "rgba(184,138,60,0.15)" }}>
+            <i className="ri-hotel-line text-gold-400 text-xs" />
+            <span className="text-gray-400 text-xs font-['Inter']">Grand Capital Hotel</span>
+            <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
           </div>
-          <div className="flex items-center gap-3">
-            {/* Entity badge */}
-            <div className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-lg border" style={{ background: "rgba(184,138,60,0.05)", borderColor: "rgba(184,138,60,0.15)" }}>
-              <i className="ri-hotel-line text-gold-400 text-xs" />
-              <span className="text-gray-400 text-xs font-['Inter']">Grand Capital Hotel</span>
-              <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-            </div>
-          </div>
-        </div>
-      </header>
+        }
+      />
 
       <div className="relative z-10 max-w-[1200px] mx-auto px-4 md:px-8 py-8">
         {/* Page title */}

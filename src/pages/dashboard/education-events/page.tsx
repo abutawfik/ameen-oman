@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
+import PageHeader from "../components/PageHeader";
 import type { DashboardOutletContext } from "../DashboardLayout";
 import StudentEnrollmentForm from "./StudentEnrollmentForm";
 import CourseRegistrationForm from "./CourseRegistrationForm";
@@ -14,7 +15,6 @@ const EVENT_CARDS = [
 ];
 
 const EducationEventsPage = () => {
-  const navigate = useNavigate();
   const { isAr } = useOutletContext<DashboardOutletContext>();
   const [activeEvent, setActiveEvent] = useState<EventType>(null);
   const [formKey, setFormKey] = useState(0);
@@ -29,35 +29,28 @@ const EducationEventsPage = () => {
     <div className="min-h-screen font-['Inter']" style={{ background: "#051428" }}>
       <div className="fixed inset-0 pointer-events-none" style={{ backgroundImage: `linear-gradient(rgba(184,138,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.03) 1px, transparent 1px)`, backgroundSize: "40px 40px" }} />
 
-      <header className="sticky top-0 z-40 flex items-center justify-between px-6 py-3 border-b" style={{ background: "rgba(5,20,40,0.95)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}>
-        <div className="flex items-center gap-4">
-          <button type="button" onClick={() => navigate("/dashboard")} className="flex items-center gap-2 px-3 py-1.5 rounded-lg border text-sm font-semibold cursor-pointer whitespace-nowrap" style={{ background: "transparent", borderColor: "rgba(255,255,255,0.1)", color: "#9CA3AF" }} onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "#D1D5DB"; }} onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "#9CA3AF"; }}>
-            <i className={isAr ? "ri-arrow-right-line" : "ri-arrow-left-line"} />{isAr ? "لوحة التحكم" : "Dashboard"}
-          </button>
+      <PageHeader
+        title={isAr ? "أحداث التعليم" : "Education Events"}
+        crumbs={[
+          { label: isAr ? "لوحة التحكم" : "Dashboard", route: "/dashboard" },
+        ]}
+        icon="ri-book-open-line"
+        iconColor="#38BDF8"
+        badge="Al-Ameen Portal"
+        isAr={isAr}
+        action={
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(167,139,250,0.1)", border: "1px solid rgba(167,139,250,0.2)" }}>
-              <i className="ri-graduation-cap-line text-purple-400 text-sm" />
+            <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-lg border" style={{ background: "rgba(184,138,60,0.04)", borderColor: "rgba(184,138,60,0.12)" }}>
+              <i className="ri-time-line text-gold-400 text-xs" />
+              <span className="text-gold-400 text-xs font-bold font-['JetBrains_Mono']">{timeStr}</span>
             </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="text-white font-bold text-sm">{isAr ? "أحداث التعليم" : "Education Events"}</span>
-                <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "rgba(184,138,60,0.12)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.2)" }}>Al-Ameen</span>
-              </div>
-              <p className="text-gray-500 text-xs">{isAr ? "تسجيل الطلاب · المقررات · تمديد التأشيرة" : "Student enrollment · Courses · Visa extension"}</p>
+            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border" style={{ background: "rgba(74,222,128,0.06)", borderColor: "rgba(74,222,128,0.2)" }}>
+              <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+              <span className="text-green-400 text-xs font-semibold font-['JetBrains_Mono']">LIVE</span>
             </div>
           </div>
-        </div>
-        <div className="flex items-center gap-3">
-          <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-lg border" style={{ background: "rgba(184,138,60,0.04)", borderColor: "rgba(184,138,60,0.12)" }}>
-            <i className="ri-time-line text-gold-400 text-xs" />
-            <span className="text-gold-400 text-xs font-bold font-['JetBrains_Mono']">{timeStr}</span>
-          </div>
-          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border" style={{ background: "rgba(74,222,128,0.06)", borderColor: "rgba(74,222,128,0.2)" }}>
-            <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-            <span className="text-green-400 text-xs font-semibold font-['JetBrains_Mono']">LIVE</span>
-          </div>
-        </div>
-      </header>
+        }
+      />
 
       <main className="relative z-10 max-w-7xl mx-auto px-6 py-8 space-y-6">
         <div className="flex items-start justify-between">

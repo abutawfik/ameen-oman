@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import type { DashboardOutletContext } from "../DashboardLayout";
+import PageHeader from "../components/PageHeader";
 import IocFeed from "./components/IocFeed";
 import DarkWebMonitor from "./components/DarkWebMonitor";
 import ThreatActors from "./components/ThreatActors";
@@ -36,30 +37,27 @@ const ThreatIntelPage = () => {
       </div>
 
       <div className="flex-1 flex flex-col overflow-hidden relative z-10">
-        {/* Page header */}
-        <div className="flex items-center justify-between px-6 py-3 border-b flex-shrink-0" style={{ borderColor: "rgba(201,74,94,0.15)", background: "rgba(10,37,64,0.6)" }}>
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(201,74,94,0.1)", border: "1px solid rgba(201,74,94,0.3)" }}>
-              <i className="ri-bug-line text-red-400 text-sm" />
-            </div>
-            <div>
-              <h1 className="text-white text-sm font-bold font-['Inter']">Threat Intelligence Feed</h1>
-              <p className="text-gray-500 text-xs font-['JetBrains_Mono']">Real-time IOC tracking, dark web monitoring &amp; threat actor profiling</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-3">
-            {criticalCount > 0 && (
-              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg animate-pulse" style={{ background: "rgba(201,74,94,0.1)", border: "1px solid rgba(201,74,94,0.3)" }}>
-                <i className="ri-alarm-warning-line text-red-400 text-xs" />
-                <span className="text-red-400 text-xs font-bold font-['JetBrains_Mono']">{criticalCount} CRITICAL ACTIVE</span>
+        <PageHeader
+          title={isAr ? "تغذية الاستخبارات التهديدية" : "Threat Intelligence Feed"}
+          subtitle="Real-time IOC tracking, dark web monitoring & threat actor profiling"
+          icon="ri-bug-line"
+          iconColor="#C94A5E"
+          isAr={isAr}
+          action={
+            <div className="flex items-center gap-3">
+              {criticalCount > 0 && (
+                <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg animate-pulse" style={{ background: "rgba(201,74,94,0.1)", border: "1px solid rgba(201,74,94,0.3)" }}>
+                  <i className="ri-alarm-warning-line text-red-400 text-xs" />
+                  <span className="text-red-400 text-xs font-bold font-['JetBrains_Mono']">{criticalCount} CRITICAL ACTIVE</span>
+                </div>
+              )}
+              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg" style={{ background: "rgba(74,222,128,0.06)", border: "1px solid rgba(74,222,128,0.15)" }}>
+                <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                <span className="text-green-400 text-xs font-['JetBrains_Mono']">{onlineSources}/{feedSources.length} Feeds Online</span>
               </div>
-            )}
-            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg" style={{ background: "rgba(74,222,128,0.06)", border: "1px solid rgba(74,222,128,0.15)" }}>
-              <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-              <span className="text-green-400 text-xs font-['JetBrains_Mono']">{onlineSources}/{feedSources.length} Feeds Online</span>
             </div>
-          </div>
-        </div>
+          }
+        />
 
         {/* KPI bar */}
         <div className="grid grid-cols-5 gap-0 border-b flex-shrink-0" style={{ borderColor: "rgba(201,74,94,0.08)" }}>

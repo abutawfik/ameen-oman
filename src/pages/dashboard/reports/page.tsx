@@ -17,6 +17,7 @@ import {
   type ScheduledReport,
   type ScheduleStatus,
 } from "@/mocks/osintData";
+import PageHeader from "../components/PageHeader";
 
 type Mode = "templates" | "scheduled";
 
@@ -124,70 +125,55 @@ const ReportsPage = () => {
   };
 
   return (
-    <div className="p-5 min-h-full" style={{ background: "var(--alm-ocean-800, #0A2540)" }}>
-      {/* Header */}
-      <header className="rounded-2xl border p-5 mb-5 flex items-start justify-between gap-4 flex-wrap"
-        style={{
-          background: "linear-gradient(135deg, rgba(184,138,60,0.1), rgba(10,37,64,0.8))",
-          borderColor: "rgba(184,138,60,0.25)",
-        }}>
-        <div>
-          <div className="flex items-center gap-2 mb-1">
-            <i className="ri-file-chart-line text-2xl" style={{ color: "#D6B47E" }} />
-            <h1 className="text-white text-2xl font-bold" style={{ fontFamily: fonts.display }}>
-              {isAr ? "التقارير" : "Reports"}
-            </h1>
-            <span className="px-2 py-0.5 rounded-full text-[11px] font-bold tracking-widest"
-              style={{ background: "rgba(107,79,174,0.15)", color: "#6B4FAE", fontFamily: fonts.mono }}>
-              {isAr ? "ويف 3" : "WAVE 3"}
-            </span>
+    <div className="min-h-full" style={{ background: "var(--alm-ocean-800, #0A2540)" }}>
+      <PageHeader
+        title={isAr ? "التقارير" : "Reports"}
+        icon="ri-file-chart-line"
+        iconColor="#D6B47E"
+        badge={isAr ? "ويف 3" : "WAVE 3"}
+        badgeColor="#8B5CF6"
+        action={
+          <div
+            role="tablist"
+            aria-label={isAr ? "وضع التقارير" : "Reports mode"}
+            className="flex gap-1 p-1 rounded-lg"
+            style={{ background: "rgba(10,37,64,0.85)", border: "1px solid rgba(184,138,60,0.15)" }}
+          >
+            {(["templates", "scheduled"] as Mode[]).map((m) => {
+              const active = mode === m;
+              const count = m === "templates" ? (REPORT_TEMPLATES.length + customTemplates.length) : scheduledRows.filter((r) => r.enabled).length;
+              return (
+                <button
+                  key={m}
+                  role="tab"
+                  aria-selected={active}
+                  tabIndex={active ? 0 : -1}
+                  type="button"
+                  onClick={() => setMode(m)}
+                  data-narrate-id={m === "scheduled" ? "reports-scheduled-link" : undefined}
+                  className="px-4 py-1.5 rounded-md text-sm font-semibold cursor-pointer transition-all flex items-center gap-2"
+                  style={{
+                    background: active ? "rgba(184,138,60,0.15)" : "transparent",
+                    color: active ? "#D6B47E" : "#9CA3AF",
+                    border: `1px solid ${active ? "#D6B47E" : "transparent"}`,
+                    fontFamily: fonts.sans,
+                  }}>
+                  <i aria-hidden="true" className={m === "templates" ? "ri-layout-grid-line" : "ri-calendar-schedule-line"} />
+                  {m === "templates"
+                    ? (isAr ? "القوالب" : "Templates")
+                    : (isAr ? "مجدول" : "Scheduled")}
+                  <span className="px-1.5 py-0.5 rounded text-[11px] font-['JetBrains_Mono']"
+                    style={{ background: active ? "rgba(184,138,60,0.2)" : "rgba(255,255,255,0.05)", color: active ? "#D6B47E" : "#6B7280" }}>
+                    {count}
+                  </span>
+                </button>
+              );
+            })}
           </div>
-          <p className="text-gray-400 text-sm" style={{ fontFamily: fonts.sans }}>
-            {isAr
-              ? "ستة قوالب جاهزة + أربع جدولات نشطة. لكل قالب لقطة معاينة مباشرة."
-              : "Six pre-built templates + four active schedules. Each template has a live preview."}
-          </p>
-        </div>
-
-        {/* Mode pill toggle */}
-        <div
-          role="tablist"
-          aria-label={isAr ? "وضع التقارير" : "Reports mode"}
-          className="flex gap-1 p-1 rounded-lg"
-          style={{ background: "rgba(10,37,64,0.85)", border: "1px solid rgba(184,138,60,0.15)" }}
-        >
-          {(["templates", "scheduled"] as Mode[]).map((m) => {
-            const active = mode === m;
-            const count = m === "templates" ? (REPORT_TEMPLATES.length + customTemplates.length) : scheduledRows.filter((r) => r.enabled).length;
-            return (
-              <button
-                key={m}
-                role="tab"
-                aria-selected={active}
-                tabIndex={active ? 0 : -1}
-                type="button"
-                onClick={() => setMode(m)}
-                data-narrate-id={m === "scheduled" ? "reports-scheduled-link" : undefined}
-                className="px-4 py-1.5 rounded-md text-sm font-semibold cursor-pointer transition-all flex items-center gap-2"
-                style={{
-                  background: active ? "rgba(184,138,60,0.15)" : "transparent",
-                  color: active ? "#D6B47E" : "#9CA3AF",
-                  border: `1px solid ${active ? "#D6B47E" : "transparent"}`,
-                  fontFamily: fonts.sans,
-                }}>
-                <i aria-hidden="true" className={m === "templates" ? "ri-layout-grid-line" : "ri-calendar-schedule-line"} />
-                {m === "templates"
-                  ? (isAr ? "القوالب" : "Templates")
-                  : (isAr ? "مجدول" : "Scheduled")}
-                <span className="px-1.5 py-0.5 rounded text-[11px] font-['JetBrains_Mono']"
-                  style={{ background: active ? "rgba(184,138,60,0.2)" : "rgba(255,255,255,0.05)", color: active ? "#D6B47E" : "#6B7280" }}>
-                  {count}
-                </span>
-              </button>
-            );
-          })}
-        </div>
-      </header>
+        }
+        isAr={isAr}
+      />
+      <div className="p-5">
 
       {/* Toast */}
       {toast && (
@@ -253,6 +239,7 @@ const ReportsPage = () => {
           }}
         />
       )}
+      </div>
     </div>
   );
 };

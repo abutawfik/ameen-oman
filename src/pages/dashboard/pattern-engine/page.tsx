@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
+import PageHeader from "../components/PageHeader";
 import type { DashboardOutletContext } from "../DashboardLayout";
 import {
   PRE_BUILT_RULES, CATEGORY_META, RISK_CONFIG,
@@ -146,7 +147,6 @@ const RuleCard = ({
 };
 
 const PatternEnginePage = () => {
-  const navigate = useNavigate();
   const { isAr } = useOutletContext<DashboardOutletContext>();
   const [activeTab, setActiveTab] = useState<Tab>("rules");
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -252,46 +252,29 @@ const PatternEnginePage = () => {
         <span className="text-red-300 text-xs font-['JetBrains_Mono'] opacity-70">AL-AMEEN-PE-2026</span>
       </div>
 
-      {/* Header */}
-      <header className="sticky top-0 z-40 flex items-center justify-between px-6 py-3 border-b"
-        style={{ background: "rgba(5,20,40,0.97)", borderColor: "rgba(184,138,60,0.12)", backdropFilter: "blur(12px)" }}>
-        <div className="flex items-center gap-4">
-          <button type="button" onClick={() => navigate("/dashboard")}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-lg border text-sm font-semibold cursor-pointer whitespace-nowrap"
-            style={{ background: "transparent", borderColor: "rgba(255,255,255,0.1)", color: "#9CA3AF" }}>
-            <i className={isAr ? "ri-arrow-right-line" : "ri-arrow-left-line"} />{isAr ? "لوحة التحكم" : "Dashboard"}
-          </button>
+      <PageHeader
+        title={isAr ? "محرك الكشف عن الأنماط" : "Pattern Detection Engine"}
+        icon="ri-git-branch-line"
+        iconColor="#D6B47E"
+        badge={isAr ? "سري" : "SECRET"}
+        badgeColor="#7F1D1D"
+        crumbs={[{ label: isAr ? "لوحة التحكم" : "Dashboard", route: "/dashboard" }]}
+        action={
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 flex items-center justify-center rounded-xl flex-shrink-0"
-              style={{ background: "rgba(184,138,60,0.1)", border: "2px solid rgba(184,138,60,0.3)" }}>
-              <i className="ri-git-branch-line text-gold-400 text-base" />
+            <div className="hidden lg:flex flex-col items-end px-3 py-1.5 rounded-lg border"
+              style={{ background: "rgba(184,138,60,0.04)", borderColor: "rgba(184,138,60,0.12)" }}>
+              <span className="text-gold-400 text-sm font-black font-['JetBrains_Mono']">{timeStr}</span>
+              <span className="text-gray-600 text-xs font-['JetBrains_Mono']">LIVE</span>
             </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="text-gold-400 font-black text-base tracking-wide">Al-Ameen</span>
-                <span className="text-white font-bold text-sm">{isAr ? "محرك اكتشاف الأنماط" : "Pattern Detection Engine"}</span>
-                <span className="px-2 py-0.5 rounded-full text-xs font-bold"
-                  style={{ background: "rgba(201,74,94,0.15)", color: "#C94A5E", border: "1px solid rgba(201,74,94,0.3)" }}>
-                  {isAr ? "سري" : "SECRET"}
-                </span>
-              </div>
-              <p className="text-gray-500 text-xs font-['JetBrains_Mono']">Predictive Analytics · Cross-Stream Correlation · Police Internal</p>
+            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border"
+              style={{ background: "rgba(74,222,128,0.06)", borderColor: "rgba(74,222,128,0.2)" }}>
+              <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+              <span className="text-green-400 text-xs font-semibold font-['JetBrains_Mono']">{enabledCount} {isAr ? "قاعدة نشطة" : "RULES ACTIVE"}</span>
             </div>
           </div>
-        </div>
-        <div className="flex items-center gap-3">
-          <div className="hidden lg:flex flex-col items-end px-3 py-1.5 rounded-lg border"
-            style={{ background: "rgba(184,138,60,0.04)", borderColor: "rgba(184,138,60,0.12)" }}>
-            <span className="text-gold-400 text-sm font-black font-['JetBrains_Mono']">{timeStr}</span>
-            <span className="text-gray-600 text-xs font-['JetBrains_Mono']">LIVE</span>
-          </div>
-          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border"
-            style={{ background: "rgba(74,222,128,0.06)", borderColor: "rgba(74,222,128,0.2)" }}>
-            <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-            <span className="text-green-400 text-xs font-semibold font-['JetBrains_Mono']">{enabledCount} {isAr ? "قاعدة نشطة" : "RULES ACTIVE"}</span>
-          </div>
-        </div>
-      </header>
+        }
+        isAr={isAr}
+      />
 
       {/* Tab bar */}
       <div className="sticky top-[89px] z-30 flex items-center gap-1 px-6 py-2 border-b overflow-x-auto"

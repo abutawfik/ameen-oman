@@ -18,6 +18,7 @@ import {
   CLEARANCE_CHANGE_LOG,
 } from "@/brand/clearance";
 import useFocusTrap from "@/components/FocusTrap";
+import PageHeader from "../components/PageHeader";
 
 // ── Meta maps (event type + role) ──────────────────────────────────────────
 type EventType = AuditEntry["eventType"];
@@ -157,32 +158,16 @@ const AuditLogPage = () => {
           </span>
         </div>
 
-        {/* Page header */}
-        <div className="flex-shrink-0 px-6 pt-5 pb-4 border-b"
+        <PageHeader
+          title={isAr ? "سجل التدقيق" : "Audit Log"}
+          icon="ri-archive-line"
+          iconColor="#D6B47E"
+          badge={`${combined.length} ${isAr ? "سجلات" : "ENTRIES"}`}
+          badgeColor="#D6B47E"
+          isAr={isAr}
+        />
+        <div className="flex-shrink-0 px-6 pt-4 pb-4 border-b"
           style={{ borderColor: "rgba(184,138,60,0.08)" }}>
-          <div className="flex items-center justify-between mb-4">
-            <div>
-              <div className="flex items-center gap-3 mb-1">
-                <div className="w-9 h-9 flex items-center justify-center rounded-xl"
-                  style={{ background: "rgba(184,138,60,0.15)" }}>
-                  <i className="ri-archive-line text-base" style={{ color: "#D6B47E" }} />
-                </div>
-                <h1 className="text-white font-black font-['Inter'] text-xl tracking-tight">
-                  {isAr ? "سجل التدقيق" : "Audit Log"}
-                </h1>
-                <span className="px-2 py-0.5 rounded-md text-[11px] font-bold font-['JetBrains_Mono'] tracking-widest"
-                  style={{ background: "rgba(184,138,60,0.12)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.3)" }}>
-                  {combined.length} {isAr ? "سجلات" : "ENTRIES"}
-                </span>
-              </div>
-              <p className="text-gray-400 text-sm font-['Inter'] ml-12">
-                {isAr
-                  ? "سجل غير قابل للتلاعب لكل حساب درجة، وتفعيل قاعدة، ودخول إلى بيانات مصنّفة"
-                  : "Tamper-evident record of every score, rule fire, and classified-data access"}
-              </p>
-            </div>
-          </div>
-
           {/* Filter bar */}
           <div data-narrate-id="audit-filters" className="flex flex-wrap items-center gap-2">
             {/* Actor */}

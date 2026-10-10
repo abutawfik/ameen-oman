@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 interface Crumb {
   label: string;
   route?: string;
+  onClick?: () => void;
 }
 
 interface Props {
@@ -64,10 +65,10 @@ const PageHeader = ({
       <div className="flex-1 min-w-0 flex items-center gap-1.5">
         {crumbs?.map((crumb, i) => (
           <span key={i} className="flex items-center gap-1.5 flex-shrink-0">
-            {crumb.route ? (
+            {crumb.route || crumb.onClick ? (
               <button
                 type="button"
-                onClick={() => navigate(crumb.route!)}
+                onClick={() => crumb.onClick ? crumb.onClick() : navigate(crumb.route!)}
                 className="text-[11px] font-['JetBrains_Mono'] text-gray-500 hover:text-gray-300 transition-colors cursor-pointer whitespace-nowrap"
               >
                 {crumb.label}

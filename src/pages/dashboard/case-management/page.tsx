@@ -6,6 +6,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useOutletContext, useSearchParams } from "react-router-dom";
 import type { DashboardOutletContext } from "../DashboardLayout";
+import PageHeader from "../components/PageHeader";
 import { useBrandFonts } from "@/brand/typography";
 import useFocusTrap from "@/components/FocusTrap";
 import {
@@ -175,18 +176,14 @@ const CaseManagementPage = () => {
   })();
 
   return (
-    <div className="p-5 min-h-full" style={{ background: "var(--alm-ocean-800, #0A2540)" }}>
-      {/* Header */}
-      <div className="flex items-center justify-between mb-4">
-        <div>
-          <h1 className="text-white text-2xl font-bold" style={{ fontFamily: fonts.display }}>
-            {isAr ? "إدارة القضايا" : "Case Management"}
-          </h1>
-          <p className="text-gray-500 text-xs mt-0.5" style={{ fontFamily: fonts.mono }}>
-            {isAr ? "دورة حياة كاملة · تصرّف ملزم · تغذية تدريب" : "Full lifecycle · Dispositions · Feeds labelled training"}
-          </p>
-        </div>
-        {toast && (
+    <div className="flex flex-col min-h-full" style={{ background: "var(--alm-ocean-800, #0A2540)" }}>
+      <PageHeader
+        title={isAr ? "إدارة القضايا" : "Case Management"}
+        subtitle={isAr ? "دورة حياة كاملة · تصرّف ملزم · تغذية تدريب" : "Full lifecycle · Dispositions · Feeds labelled training"}
+        icon="ri-folder-shield-2-line"
+        iconColor="#D6B47E"
+        isAr={isAr}
+        action={toast ? (
           <div
             role="status"
             aria-live="polite"
@@ -196,8 +193,9 @@ const CaseManagementPage = () => {
             <i className="ri-check-line" style={{ color: "#4A8E3A" }} aria-hidden="true" />
             <span className="text-white text-xs">{toast}</span>
           </div>
-        )}
-      </div>
+        ) : undefined}
+      />
+      <div className="p-5 flex-1">
 
       <div className="grid grid-cols-12 gap-4">
         {/* Left: Case list */}
@@ -501,6 +499,7 @@ const CaseManagementPage = () => {
           </div>
         </div>
       </div>
+      </div>{/* /p-5 flex-1 */}
 
       {/* Disposition modal */}
       {showDispositionModal && (
