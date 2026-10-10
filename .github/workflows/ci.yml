@@ -41,3 +41,4 @@ jobs:
           git add version.json
           git commit -m "chore(ci): bump BUILD [skip ci]" || echo "Nothing to commit"
           git push
+
