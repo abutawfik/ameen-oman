@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { correlationAlerts, type CorrelationAlert } from "@/mocks/nationalSecurityData";
 
 interface Props {
@@ -18,6 +19,7 @@ const STATUS_CONFIG = {
 };
 
 const CrossStreamCorrelation = ({ isAr }: Props) => {
+  const navigate = useNavigate();
   const [selected, setSelected] = useState<CorrelationAlert | null>(null);
   const [filter, setFilter] = useState<"all" | "new" | "reviewing" | "actioned">("all");
 
@@ -155,19 +157,19 @@ const CrossStreamCorrelation = ({ isAr }: Props) => {
                   <p className="text-gray-300 text-sm leading-relaxed mb-4">{alert.detail}</p>
 
                   <div className="flex items-center gap-2 flex-wrap">
-                    <button type="button"
+                    <button type="button" onClick={() => navigate("/dashboard/case-management")}
                       className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold cursor-pointer whitespace-nowrap"
                       style={{ background: "#D6B47E", color: "#051428" }}>
                       <i className="ri-search-eye-line text-xs" />
                       {isAr ? "فتح تحقيق" : "Open Investigation"}
                     </button>
-                    <button type="button"
+                    <button type="button" onClick={() => navigate("/dashboard/person-360")}
                       className="flex items-center gap-2 px-4 py-2 rounded-lg border text-xs font-bold cursor-pointer whitespace-nowrap"
                       style={{ background: "transparent", borderColor: "rgba(167,139,250,0.3)", color: "#A78BFA" }}>
                       <i className="ri-user-search-line text-xs" />
                       {isAr ? "ملف الشخص 360°" : "Person 360°"}
                     </button>
-                    <button type="button"
+                    <button type="button" onClick={() => navigate("/dashboard/link-analysis")}
                       className="flex items-center gap-2 px-4 py-2 rounded-lg border text-xs font-bold cursor-pointer whitespace-nowrap"
                       style={{ background: "transparent", borderColor: "rgba(184,138,60,0.2)", color: "#D6B47E" }}>
                       <i className="ri-git-branch-line text-xs" />

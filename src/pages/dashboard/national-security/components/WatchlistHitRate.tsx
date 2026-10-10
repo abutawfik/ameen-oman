@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { watchlistHits } from "@/mocks/nationalSecurityData";
 
 interface Props {
@@ -6,6 +7,7 @@ interface Props {
 }
 
 const WatchlistHitRate = ({ isAr }: Props) => {
+  const navigate = useNavigate();
   const [activeFilter, setActiveFilter] = useState<"all" | "confirmed" | "pending" | "false_positive">("all");
 
   const filtered = activeFilter === "all" ? watchlistHits : watchlistHits.filter((h) => h.status === activeFilter);
@@ -99,7 +101,7 @@ const WatchlistHitRate = ({ isAr }: Props) => {
           const statusColor = hit.status === "confirmed" ? "#C94A5E" : hit.status === "pending" ? "#FACC15" : "#4ADE80";
           const statusLabel = hit.status === "confirmed" ? (isAr ? "مؤكد" : "Confirmed") : hit.status === "pending" ? (isAr ? "معلق" : "Pending") : (isAr ? "إيجابي كاذب" : "False Positive");
           return (
-            <div key={hit.id} className="px-5 py-3 hover:bg-white/[0.02] transition-colors cursor-pointer">
+            <div key={hit.id} className="px-5 py-3 hover:bg-white/[0.03] transition-colors cursor-pointer" onClick={() => navigate("/dashboard/target-match")}>
               <div className="flex items-start gap-3">
                 <div className="w-6 h-6 flex items-center justify-center rounded-md flex-shrink-0 mt-0.5"
                   style={{ background: `${hit.listColor}12`, border: `1px solid ${hit.listColor}25` }}>

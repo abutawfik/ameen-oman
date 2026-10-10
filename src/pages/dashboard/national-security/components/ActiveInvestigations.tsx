@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { activeInvestigations, type Investigation } from "@/mocks/nationalSecurityData";
 
 interface Props {
@@ -19,6 +20,7 @@ const PRIORITY_CONFIG = {
 };
 
 const ActiveInvestigations = ({ isAr }: Props) => {
+  const navigate = useNavigate();
   const [selected, setSelected] = useState<Investigation | null>(null);
   const [filter, setFilter] = useState<"all" | "active" | "escalated" | "monitoring">("all");
 
@@ -162,19 +164,19 @@ const ActiveInvestigations = ({ isAr }: Props) => {
                     ))}
                   </div>
                   <div className="flex items-center gap-2">
-                    <button type="button"
+                    <button type="button" onClick={() => navigate("/dashboard/case-management")}
                       className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold cursor-pointer whitespace-nowrap"
                       style={{ background: "#D6B47E", color: "#051428" }}>
                       <i className="ri-eye-line text-xs" />
                       {isAr ? "فتح القضية" : "Open Case"}
                     </button>
-                    <button type="button"
+                    <button type="button" onClick={() => navigate("/dashboard/link-analysis")}
                       className="flex items-center gap-2 px-4 py-2 rounded-lg border text-xs font-bold cursor-pointer whitespace-nowrap"
                       style={{ background: "transparent", borderColor: "rgba(167,139,250,0.3)", color: "#A78BFA" }}>
                       <i className="ri-git-branch-line text-xs" />
                       {isAr ? "تحليل الروابط" : "Link Analysis"}
                     </button>
-                    <button type="button"
+                    <button type="button" onClick={() => navigate("/dashboard/case-management")}
                       className="flex items-center gap-2 px-4 py-2 rounded-lg border text-xs font-bold cursor-pointer whitespace-nowrap"
                       style={{ background: "transparent", borderColor: "rgba(201,138,27,0.3)", color: "#C98A1B" }}>
                       <i className="ri-arrow-up-line text-xs" />
