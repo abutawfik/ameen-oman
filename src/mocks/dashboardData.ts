@@ -242,6 +242,7 @@ export const branches: BranchOption[] = [
 export const navItems = [
   // ── MAIN ──────────────────────────────────────────────────────────────────
   { key: "home",               icon: "ri-home-5-line",           labelEn: "Home",                 labelAr: "الرئيسية",           route: "/dashboard",                           group: "main"          },
+  { key: "command-center",     icon: "ri-dashboard-2-line",      labelEn: "Command Center",       labelAr: "مركز القيادة",       route: "/dashboard/command-center",            group: "main"          },
   // ── OPERATIONS ────────────────────────────────────────────────────────────
   { key: "national-security",  icon: "ri-shield-star-line",      labelEn: "National Security",    labelAr: "الأمن الوطني",       route: "/dashboard/national-security",         group: "operations"    },
   { key: "border-dashboard",   icon: "ri-passport-line",         labelEn: "Border Dashboard",     labelAr: "لوحة الحدود",        route: "/dashboard/border-dashboard",          group: "operations"    },

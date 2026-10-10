@@ -13,15 +13,16 @@ interface Props {
   onToggleCollapse: () => void;
 }
 
-// Supervisor role pinned shortcuts — most-reached destinations for the on-duty supervisor.
-// Shown above the grouped nav so the most critical actions never need scrolling.
-const SUPERVISOR_PINS = [
-  { key: "command-center", icon: "ri-dashboard-2-line",    labelEn: "Command Center",   labelAr: "مركز القيادة",      route: "/dashboard/command-center"   },
-  { key: "target-match",   icon: "ri-crosshair-2-line",    labelEn: "Target Match",     labelAr: "مطابقة الأهداف",    route: "/dashboard/target-match"     },
-  { key: "case-management",icon: "ri-folder-shield-2-line",labelEn: "Case Management",  labelAr: "إدارة القضايا",     route: "/dashboard/case-management"  },
-  { key: "watchlist",      icon: "ri-eye-line",             labelEn: "Watchlist",        labelAr: "قوائم المراقبة",    route: "/dashboard/watchlist"        },
-  { key: "search",         icon: "ri-search-2-line",        labelEn: "Search",           labelAr: "البحث",             route: "/dashboard/search"           },
-];
+const DEFAULT_PIN_KEYS = ["command-center", "target-match", "case-management", "watchlist", "search"];
+
+function loadPins(): string[] {
+  try {
+    const raw = localStorage.getItem("alm_pins");
+    return raw ? JSON.parse(raw) : DEFAULT_PIN_KEYS;
+  } catch {
+    return DEFAULT_PIN_KEYS;
+  }
+}
 
 const groupLabels: Record<string, { en: string; ar: string }> = {
   main:          { en: "MAIN",          ar: "الرئيسية"   },
@@ -38,33 +39,42 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
   const location = useLocation();
   const meta = entityMeta[entityType];
 
-  // Sections collapsed by default — admin starts closed
   const [collapsedSections, setCollapsedSections] = useState<Record<string, boolean>>({ admin: true });
+  const [pinnedKeys, setPinnedKeys] = useState<string[]>(loadPins);
 
   const toggleSection = (group: string) => {
     setCollapsedSections((prev) => ({ ...prev, [group]: !prev[group] }));
   };
 
+  const togglePin = (key: string) => {
+    setPinnedKeys((prev) => {
+      const next = prev.includes(key) ? prev.filter((k) => k !== key) : [...prev, key];
+      try { localStorage.setItem("alm_pins", JSON.stringify(next)); } catch {}
+      return next;
+    });
+  };
+
   const handleNavClick = (item: typeof navItems[0]) => {
     onNavChange(item.key);
-    if (item.route) {
-      navigate(item.route);
-    }
+    if (item.route) navigate(item.route);
   };
 
   const isItemActive = (item: typeof navItems[0]) => {
-    if (item.route) {
-      return location.pathname === item.route;
-    }
+    if (item.route) return location.pathname === item.route;
     return activeNav === item.key && location.pathname === "/dashboard";
   };
 
-  // Group items — skip groups that have no items
+  // Derive pinned items from navItems (skips keys not found in navItems)
+  const pinnedItems = pinnedKeys
+    .map((k) => navItems.find((n) => n.key === k))
+    .filter(Boolean) as typeof navItems;
+
+  // Build grouped nav — exclude items that are currently pinned
   const groups = ["main", "operations", "intelligence", "investigation", "search", "analytics", "admin"] as const;
   const grouped = groups
     .map((g) => ({
       group: g,
-      items: navItems.filter((n) => n.group === g),
+      items: navItems.filter((n) => n.group === g && !pinnedKeys.includes(n.key)),
     }))
     .filter(({ items }) => items.length > 0);
 
@@ -74,18 +84,14 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
       aria-label={isAr ? "التنقّل الرئيسي" : "Primary navigation"}
       style={{
         width: collapsed ? "64px" : "240px",
-        // ocean-700 card surface — runtime palette toggle re-tints this.
         background: "var(--alm-ocean-700)",
         borderColor: "rgba(184,138,60,0.1)",
         minHeight: "100%",
       }}
     >
-      {/* Brand lockup — expanded = horizontal + tagline, collapsed = mark only */}
+      {/* Brand lockup */}
       {!collapsed && (
-        <div
-          className="px-4 py-4 border-b flex flex-col gap-2"
-          style={{ borderColor: "rgba(184,138,60,0.08)" }}
-        >
+        <div className="px-4 py-4 border-b flex flex-col gap-2" style={{ borderColor: "rgba(184,138,60,0.08)" }}>
           <BrandLogo variant="horizontal" tone="light" size="sm" showTagline isAr={isAr} />
           {isAr && (
             <div
@@ -145,51 +151,77 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
         </div>
       )}
 
-      {/* Pinned shortcuts — role-specific quick access above the full nav */}
+      {/* Pinned shortcuts */}
       <nav aria-label={isAr ? "الاختصارات المثبّتة" : "Pinned shortcuts"} className="py-2 border-b" style={{ borderColor: "rgba(184,138,60,0.08)" }}>
         {!collapsed && (
           <div className="px-4 pt-2 pb-1 flex items-center gap-1.5">
-            <i className="ri-pushpin-line text-[10px]" style={{ color: "rgba(184,138,60,0.6)" }} />
+            <i className="ri-pushpin-2-line text-[10px]" style={{ color: "rgba(184,138,60,0.6)" }} />
             <span className="text-[10px] font-bold tracking-widest font-mono uppercase" style={{ color: "rgba(184,138,60,0.6)" }}>
               {isAr ? "مثبّت" : "PINNED"}
             </span>
           </div>
         )}
         {collapsed && <div className="mx-3 mb-1 border-t" style={{ borderColor: "rgba(184,138,60,0.08)" }} />}
-        {SUPERVISOR_PINS.map((pin) => {
-          const isActive = location.pathname === pin.route;
+
+        {pinnedItems.length === 0 && !collapsed && (
+          <p className="px-4 py-2 text-xs text-midnight-400 italic">
+            {isAr ? "لا توجد اختصارات مثبّتة" : "No pinned shortcuts"}
+          </p>
+        )}
+
+        {pinnedItems.map((pin) => {
+          const isActive = isItemActive(pin);
           const label = isAr ? pin.labelAr : pin.labelEn;
           return (
-            <button
-              key={pin.key}
-              onClick={() => navigate(pin.route)}
-              className="w-full flex items-center gap-3 px-4 py-2 transition-all duration-150 cursor-pointer relative group"
-              style={{
-                background: isActive ? "rgba(184,138,60,0.1)" : "transparent",
-                color: isActive ? "#D6B47E" : "#7A9CBF",
-              }}
-              title={collapsed ? label : undefined}
-              aria-label={collapsed ? label : undefined}
-              aria-current={isActive ? "page" : undefined}
-            >
+            <div key={pin.key} className="relative group/pin flex items-center w-full">
+              {/* Active bar */}
               {isActive && (
-                <div aria-hidden="true" className={`absolute top-0 bottom-0 w-0.5 bg-gold-400 ${isAr ? "right-0 rounded-l-full" : "left-0 rounded-r-full"}`} />
-              )}
-              <div className="w-5 h-5 flex items-center justify-center flex-shrink-0">
-                <i className={`${pin.icon} text-base`} aria-hidden="true" />
-              </div>
-              {!collapsed && (
-                <span className="text-xs font-['Inter'] font-medium whitespace-nowrap">{label}</span>
-              )}
-              {collapsed && (
                 <div
-                  className={`absolute px-2 py-1 rounded-md text-xs text-ivory-100 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 font-['Inter'] ${isAr ? "right-full mr-2" : "left-full ml-2"}`}
-                  style={{ background: "rgba(20,29,46,0.95)", border: "1px solid rgba(184,138,60,0.25)" }}
-                >
-                  {label}
-                </div>
+                  aria-hidden="true"
+                  className={`absolute top-0 bottom-0 w-0.5 bg-gold-400 z-10 ${isAr ? "right-0 rounded-l-full" : "left-0 rounded-r-full"}`}
+                />
               )}
-            </button>
+              {/* Nav button */}
+              <button
+                onClick={() => handleNavClick(pin)}
+                className="flex-1 flex items-center gap-3 px-4 py-2 transition-all duration-150 cursor-pointer"
+                style={{ color: isActive ? "#D6B47E" : "#7A9CBF", background: isActive ? "rgba(184,138,60,0.1)" : "transparent" }}
+                title={collapsed ? label : undefined}
+                aria-label={collapsed ? label : undefined}
+                aria-current={isActive ? "page" : undefined}
+              >
+                <div className="w-5 h-5 flex items-center justify-center flex-shrink-0">
+                  <i className={`${pin.icon} text-base`} aria-hidden="true" />
+                </div>
+                {!collapsed && (
+                  <span className="text-xs font-['Inter'] font-medium whitespace-nowrap">{label}</span>
+                )}
+                {/* Tooltip when collapsed */}
+                {collapsed && (
+                  <div
+                    className={`absolute px-2 py-1 rounded-md text-xs text-ivory-100 whitespace-nowrap opacity-0 group-hover/pin:opacity-100 transition-opacity pointer-events-none z-50 font-['Inter'] ${isAr ? "right-full mr-2" : "left-full ml-2"}`}
+                    style={{ background: "rgba(20,29,46,0.95)", border: "1px solid rgba(184,138,60,0.25)" }}
+                  >
+                    {label}
+                  </div>
+                )}
+              </button>
+              {/* Unpin button — expanded mode only */}
+              {!collapsed && (
+                <button
+                  type="button"
+                  onClick={() => togglePin(pin.key)}
+                  className="pr-3 opacity-0 group-hover/pin:opacity-100 transition-opacity flex-shrink-0"
+                  title={isAr ? "إلغاء التثبيت" : "Unpin"}
+                  aria-label={isAr ? `إلغاء تثبيت ${label}` : `Unpin ${label}`}
+                  style={{ color: "#4A6080" }}
+                  onMouseEnter={(e) => { e.currentTarget.style.color = "#f87171"; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.color = "#4A6080"; }}
+                >
+                  <i className="ri-close-line text-sm" aria-hidden="true" />
+                </button>
+              )}
+            </div>
           );
         })}
       </nav>
@@ -233,56 +265,73 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
                 <div className="mx-3 my-2 border-t" style={{ borderColor: "rgba(184,138,60,0.08)" }} />
               )}
 
-              {/* Items — hidden when section is collapsed (except in icon-only mode) */}
+              {/* Items */}
               {(!isSectionCollapsed || collapsed) && items.map((item) => {
                 const isActive = isItemActive(item);
                 const label = isAr ? item.labelAr : item.labelEn;
                 return (
-                  <button
-                    key={item.key}
-                    onClick={() => handleNavClick(item)}
-                    className="w-full flex items-center gap-3 px-4 py-2.5 transition-all duration-150 cursor-pointer relative group"
-                    style={{
-                      background: isActive ? "rgba(184,138,60,0.1)" : "transparent",
-                      color: isActive ? "#D6B47E" : "#7A9CBF",
-                    }}
-                    title={collapsed ? label : undefined}
-                    aria-label={collapsed ? label : undefined}
-                    aria-current={isActive ? "page" : undefined}
-                  >
-                    {/* Active bar — gold, anchors to the edge of the sidebar closest to content */}
+                  <div key={item.key} className="relative group/nav flex items-center w-full">
+                    {/* Active bar */}
                     {isActive && (
                       <div
                         aria-hidden="true"
-                        className={`absolute top-0 bottom-0 w-0.5 bg-gold-400 ${
+                        className={`absolute top-0 bottom-0 w-0.5 bg-gold-400 z-10 ${
                           isAr ? "right-0 rounded-l-full" : "left-0 rounded-r-full"
                         }`}
                       />
                     )}
-                    <div className="w-5 h-5 flex items-center justify-center flex-shrink-0">
-                      <i className={`${item.icon} text-base`} aria-hidden="true" />
-                    </div>
-                    {!collapsed && (
-                      <span className="text-sm font-['Inter'] font-medium whitespace-nowrap">
-                        {isAr ? item.labelAr : item.labelEn}
-                      </span>
-                    )}
-                    {/* Route indicator dot */}
-                    {!collapsed && item.route && !isActive && (
-                      <div className="ml-auto w-1 h-1 rounded-full bg-gold-400/30 flex-shrink-0" />
-                    )}
-                    {/* Hover tooltip when collapsed */}
-                    {collapsed && (
-                      <div
-                        className={`absolute px-2 py-1 rounded-md text-xs text-ivory-100 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 font-['Inter'] ${
-                          isAr ? "right-full mr-2" : "left-full ml-2"
-                        }`}
-                        style={{ background: "rgba(20,29,46,0.95)", border: "1px solid rgba(184,138,60,0.25)" }}
-                      >
-                        {isAr ? item.labelAr : item.labelEn}
+                    {/* Nav button */}
+                    <button
+                      onClick={() => handleNavClick(item)}
+                      className="flex-1 flex items-center gap-3 px-4 py-2.5 transition-all duration-150 cursor-pointer"
+                      style={{
+                        background: isActive ? "rgba(184,138,60,0.1)" : "transparent",
+                        color: isActive ? "#D6B47E" : "#7A9CBF",
+                      }}
+                      title={collapsed ? label : undefined}
+                      aria-label={collapsed ? label : undefined}
+                      aria-current={isActive ? "page" : undefined}
+                    >
+                      <div className="w-5 h-5 flex items-center justify-center flex-shrink-0">
+                        <i className={`${item.icon} text-base`} aria-hidden="true" />
                       </div>
+                      {!collapsed && (
+                        <span className="text-sm font-['Inter'] font-medium whitespace-nowrap">
+                          {isAr ? item.labelAr : item.labelEn}
+                        </span>
+                      )}
+                      {/* Route indicator dot — hides when hovering so pin button is visible */}
+                      {!collapsed && item.route && !isActive && (
+                        <div className="ml-auto w-1 h-1 rounded-full bg-gold-400/30 flex-shrink-0 group-hover/nav:opacity-0 transition-opacity" />
+                      )}
+                      {/* Hover tooltip when collapsed */}
+                      {collapsed && (
+                        <div
+                          className={`absolute px-2 py-1 rounded-md text-xs text-ivory-100 whitespace-nowrap opacity-0 group-hover/nav:opacity-100 transition-opacity pointer-events-none z-50 font-['Inter'] ${
+                            isAr ? "right-full mr-2" : "left-full ml-2"
+                          }`}
+                          style={{ background: "rgba(20,29,46,0.95)", border: "1px solid rgba(184,138,60,0.25)" }}
+                        >
+                          {isAr ? item.labelAr : item.labelEn}
+                        </div>
+                      )}
+                    </button>
+                    {/* Pin button — expanded mode only */}
+                    {!collapsed && (
+                      <button
+                        type="button"
+                        onClick={() => togglePin(item.key)}
+                        className="pr-3 opacity-0 group-hover/nav:opacity-100 transition-opacity flex-shrink-0"
+                        title={isAr ? "تثبيت في الشريط الجانبي" : "Pin to sidebar"}
+                        aria-label={isAr ? `تثبيت ${label}` : `Pin ${label}`}
+                        style={{ color: "#4A6080" }}
+                        onMouseEnter={(e) => { e.currentTarget.style.color = "#D6B47E"; }}
+                        onMouseLeave={(e) => { e.currentTarget.style.color = "#4A6080"; }}
+                      >
+                        <i className="ri-pushpin-line text-xs" aria-hidden="true" />
+                      </button>
                     )}
-                  </button>
+                  </div>
                 );
               })}
             </div>
@@ -323,17 +372,14 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
           {!collapsed && <span className="text-xs font-['Inter']">{isAr ? "طي" : "Collapse"}</span>}
         </button>
 
-        {/* Version badge — only in expanded mode. Compile-time build + commit. */}
         {!collapsed && (
           <div className="mt-3 flex justify-center">
             <VersionBadge tone="light" size="sm" />
           </div>
         )}
 
-        {/* Divider between collapse toggle and sign-out */}
         <div className="my-3 border-t" style={{ borderColor: "rgba(184,138,60,0.08)" }} />
 
-        {/* Sign out — muted ghost; red tint appears only on hover */}
         {!collapsed ? (
           <button
             onClick={() => navigate("/login")}
