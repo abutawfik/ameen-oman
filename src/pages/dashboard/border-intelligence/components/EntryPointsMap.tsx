@@ -75,37 +75,119 @@ const EntryPointsMap = ({ isAr }: Props) => {
       </div>
 
       <div className="flex flex-col lg:flex-row">
-        {/* Map area */}
-        <div className="relative flex-1 min-h-[340px]" style={{ background: "rgba(5,20,40,0.6)" }}>
-          {/* Oman silhouette (stylized grid background) */}
-          <div className="absolute inset-0" style={{ backgroundImage: `linear-gradient(rgba(184,138,60,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.04) 1px, transparent 1px)`, backgroundSize: "30px 30px" }} />
-          {/* Oman shape hint */}
-          <div className="absolute inset-4 rounded-2xl opacity-10" style={{ background: "linear-gradient(135deg, rgba(184,138,60,0.3) 0%, transparent 60%)", border: "1px solid rgba(184,138,60,0.2)" }} />
-          <div className="absolute top-4 left-4 text-gray-600 text-xs font-['JetBrains_Mono'] opacity-60">OMAN</div>
+        {/* Map area — satellite-style: dark terrain tones + distinct pin markers per crossing type */}
+        <div className="relative flex-1 min-h-[340px]"
+          style={{
+            background: "linear-gradient(160deg, #071828 0%, #0a2035 40%, #061520 100%)",
+          }}
+        >
+          {/* Terrain texture layer */}
+          <div className="absolute inset-0 opacity-30" style={{
+            backgroundImage: `
+              radial-gradient(ellipse 60% 80% at 55% 45%, rgba(184,138,60,0.06) 0%, transparent 70%),
+              linear-gradient(rgba(30,60,90,0.15) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(30,60,90,0.15) 1px, transparent 1px)
+            `,
+            backgroundSize: "100% 100%, 40px 40px, 40px 40px",
+          }} />
+          {/* Coastline SVG hint — schematic Oman outline */}
+          <svg className="absolute inset-0 w-full h-full opacity-[0.07]" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+            <polyline
+              points="58,8 62,14 66,22 68,30 72,38 71,42 68,50 72,56 80,50 82,42 80,35 75,28 70,22 65,14 60,8"
+              fill="none" stroke="#D6B47E" strokeWidth="0.8"
+            />
+            <polyline
+              points="62,14 60,22 58,30 55,38 52,46 48,54 44,64 40,76 36,82 34,86"
+              fill="none" stroke="#D6B47E" strokeWidth="0.8"
+            />
+          </svg>
+          <div className="absolute top-3 left-3 text-gray-600 text-[10px] font-['JetBrains_Mono'] tracking-widest opacity-50">OM — BORDER NETWORK</div>
 
-          {/* Border points */}
+          {/* Flight path lines between airports (faint dashed arcs) */}
+          <svg className="absolute inset-0 w-full h-full pointer-events-none" aria-hidden="true">
+            {BORDER_POINTS.filter((p) => p.type === "air").flatMap((a, ai, arr) =>
+              arr.slice(ai + 1).map((b) => (
+                <line
+                  key={`${a.id}-${b.id}`}
+                  x1={`${a.x}%`} y1={`${a.y}%`}
+                  x2={`${b.x}%`} y2={`${b.y}%`}
+                  stroke="#D6B47E" strokeWidth="0.5" strokeDasharray="3 5" opacity="0.2"
+                />
+              ))
+            )}
+          </svg>
+
+          {/* Border points — type-specific marker shapes */}
           {BORDER_POINTS.map((point) => {
             const color = typeColor(point.type);
             const isSelected = selected?.id === point.id;
+            const isBusy = point.status === "busy";
             return (
               <button
                 key={point.id}
                 type="button"
                 onClick={() => setSelected(isSelected ? null : point)}
                 className="absolute cursor-pointer group"
-                style={{ left: `${point.x}%`, top: `${point.y}%`, transform: "translate(-50%, -50%)" }}
+                style={{ left: `${point.x}%`, top: `${point.y}%`, transform: "translate(-50%, -100%)" }}
+                title={point.name}
               >
-                {/* Pulse ring */}
-                <div className="absolute inset-0 rounded-full animate-ping opacity-30" style={{ background: color, transform: "scale(2)" }} />
-                {/* Dot */}
-                <div className="relative w-4 h-4 rounded-full border-2 flex items-center justify-center transition-all duration-200"
-                  style={{ background: isSelected ? color : `${color}30`, borderColor: color, boxShadow: isSelected ? `0 0 12px ${color}80` : "none", transform: isSelected ? "scale(1.4)" : "scale(1)" }}>
-                  <div className="w-1.5 h-1.5 rounded-full" style={{ background: color }} />
+                {/* Busy pulse halo */}
+                {isBusy && (
+                  <div
+                    className="absolute rounded-full animate-ping"
+                    style={{
+                      width: 28, height: 28,
+                      top: "50%", left: "50%",
+                      transform: "translate(-50%, -50%)",
+                      background: `${color}20`,
+                      border: `1px solid ${color}40`,
+                    }}
+                  />
+                )}
+                {/* Pin head — shape varies by type */}
+                <div
+                  className="relative flex items-center justify-center transition-all duration-200"
+                  style={{
+                    width: isSelected ? 32 : 26,
+                    height: isSelected ? 32 : 26,
+                    borderRadius: point.type === "land" ? "4px" : point.type === "sea" ? "0% 50% 50% 50%" : "50%",
+                    background: isSelected ? color : `${color}22`,
+                    border: `2px solid ${color}`,
+                    boxShadow: isSelected ? `0 0 16px ${color}60, 0 4px 12px rgba(0,0,0,0.4)` : `0 2px 6px rgba(0,0,0,0.4)`,
+                    transform: point.type === "sea" && !isSelected ? "rotate(45deg)" : "rotate(0deg)",
+                  }}
+                >
+                  <i
+                    className={`${typeIcon(point.type)} text-[11px]`}
+                    style={{
+                      color: isSelected ? "#fff" : color,
+                      transform: point.type === "sea" ? "rotate(-45deg)" : "none",
+                    }}
+                  />
                 </div>
-                {/* Count badge */}
-                <div className="absolute -top-5 left-1/2 -translate-x-1/2 px-1.5 py-0.5 rounded-full text-xs font-bold font-['JetBrains_Mono'] whitespace-nowrap"
-                  style={{ background: `${color}20`, color, border: `1px solid ${color}40`, fontSize: "9px" }}>
-                  {(point.arrivals + point.departures).toLocaleString()}
+                {/* Pin stem */}
+                <div className="mx-auto" style={{ width: 2, height: 6, background: color, opacity: 0.6 }} />
+                {/* Name label (on select or hover) */}
+                <div
+                  className="absolute bottom-full mb-1 left-1/2 -translate-x-1/2 px-1.5 py-0.5 rounded whitespace-nowrap text-white pointer-events-none transition-opacity"
+                  style={{
+                    background: "rgba(5,15,30,0.92)",
+                    border: `1px solid ${color}40`,
+                    fontSize: "9px",
+                    fontFamily: "'JetBrains Mono', monospace",
+                    opacity: isSelected ? 1 : 0,
+                  }}
+                >
+                  {point.name}
+                </div>
+                {/* Traffic count */}
+                <div
+                  className="absolute -top-1 -right-1 px-1 rounded-full font-bold font-['JetBrains_Mono'] whitespace-nowrap leading-none py-0.5"
+                  style={{ background: `${color}18`, color, border: `1px solid ${color}35`, fontSize: "8px" }}
+                >
+                  {(point.arrivals + point.departures) > 999
+                    ? `${Math.round((point.arrivals + point.departures) / 1000)}k`
+                    : (point.arrivals + point.departures)}
                 </div>
               </button>
             );

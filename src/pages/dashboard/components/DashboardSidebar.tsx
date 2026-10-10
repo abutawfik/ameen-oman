@@ -13,6 +13,16 @@ interface Props {
   onToggleCollapse: () => void;
 }
 
+// Supervisor role pinned shortcuts — most-reached destinations for the on-duty supervisor.
+// Shown above the grouped nav so the most critical actions never need scrolling.
+const SUPERVISOR_PINS = [
+  { key: "command-center", icon: "ri-dashboard-2-line",    labelEn: "Command Center",   labelAr: "مركز القيادة",      route: "/dashboard/command-center"   },
+  { key: "target-match",   icon: "ri-crosshair-2-line",    labelEn: "Target Match",     labelAr: "مطابقة الأهداف",    route: "/dashboard/target-match"     },
+  { key: "case-management",icon: "ri-folder-shield-2-line",labelEn: "Case Management",  labelAr: "إدارة القضايا",     route: "/dashboard/case-management"  },
+  { key: "watchlist",      icon: "ri-eye-line",             labelEn: "Watchlist",        labelAr: "قوائم المراقبة",    route: "/dashboard/watchlist"        },
+  { key: "search",         icon: "ri-search-2-line",        labelEn: "Search",           labelAr: "البحث",             route: "/dashboard/search"           },
+];
+
 const groupLabels: Record<string, { en: string; ar: string }> = {
   main:          { en: "MAIN",          ar: "الرئيسية"   },
   operations:    { en: "OPERATIONS",    ar: "العمليات"   },
@@ -134,6 +144,55 @@ const DashboardSidebar = ({ activeNav, onNavChange, entityType, isAr, collapsed,
           <BrandLogo variant="mark" tone="light" size="sm" isAr={isAr} />
         </div>
       )}
+
+      {/* Pinned shortcuts — role-specific quick access above the full nav */}
+      <nav aria-label={isAr ? "الاختصارات المثبّتة" : "Pinned shortcuts"} className="py-2 border-b" style={{ borderColor: "rgba(184,138,60,0.08)" }}>
+        {!collapsed && (
+          <div className="px-4 pt-2 pb-1 flex items-center gap-1.5">
+            <i className="ri-pushpin-line text-[10px]" style={{ color: "rgba(184,138,60,0.6)" }} />
+            <span className="text-[10px] font-bold tracking-widest font-mono uppercase" style={{ color: "rgba(184,138,60,0.6)" }}>
+              {isAr ? "مثبّت" : "PINNED"}
+            </span>
+          </div>
+        )}
+        {collapsed && <div className="mx-3 mb-1 border-t" style={{ borderColor: "rgba(184,138,60,0.08)" }} />}
+        {SUPERVISOR_PINS.map((pin) => {
+          const isActive = location.pathname === pin.route;
+          const label = isAr ? pin.labelAr : pin.labelEn;
+          return (
+            <button
+              key={pin.key}
+              onClick={() => navigate(pin.route)}
+              className="w-full flex items-center gap-3 px-4 py-2 transition-all duration-150 cursor-pointer relative group"
+              style={{
+                background: isActive ? "rgba(184,138,60,0.1)" : "transparent",
+                color: isActive ? "#D6B47E" : "#7A9CBF",
+              }}
+              title={collapsed ? label : undefined}
+              aria-label={collapsed ? label : undefined}
+              aria-current={isActive ? "page" : undefined}
+            >
+              {isActive && (
+                <div aria-hidden="true" className={`absolute top-0 bottom-0 w-0.5 bg-gold-400 ${isAr ? "right-0 rounded-l-full" : "left-0 rounded-r-full"}`} />
+              )}
+              <div className="w-5 h-5 flex items-center justify-center flex-shrink-0">
+                <i className={`${pin.icon} text-base`} aria-hidden="true" />
+              </div>
+              {!collapsed && (
+                <span className="text-xs font-['Inter'] font-medium whitespace-nowrap">{label}</span>
+              )}
+              {collapsed && (
+                <div
+                  className={`absolute px-2 py-1 rounded-md text-xs text-ivory-100 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 font-['Inter'] ${isAr ? "right-full mr-2" : "left-full ml-2"}`}
+                  style={{ background: "rgba(20,29,46,0.95)", border: "1px solid rgba(184,138,60,0.25)" }}
+                >
+                  {label}
+                </div>
+              )}
+            </button>
+          );
+        })}
+      </nav>
 
       {/* Nav items grouped */}
       <nav className="flex-1 py-2 overflow-y-auto" style={{ scrollbarWidth: "none" }}>

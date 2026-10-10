@@ -428,50 +428,112 @@ const CommandCenterPage = () => {
                   </div>
                 </div>
               </div>
-              <div className="relative" style={{ height: "380px", background: "rgba(5,20,40,0.6)" }}>
-                {/* Map background grid */}
-                <div className="absolute inset-0" style={{
-                  backgroundImage: `linear-gradient(rgba(184,138,60,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(184,138,60,0.04) 1px, transparent 1px)`,
-                  backgroundSize: "20px 20px"
+              <div className="relative" style={{ height: "380px", background: "linear-gradient(160deg, #05121f 0%, #07192a 50%, #040e18 100%)" }}>
+                {/* Heatmap glow blobs — one per governorate, size + color driven by density */}
+                <svg className="absolute inset-0 w-full h-full pointer-events-none" aria-hidden="true">
+                  <defs>
+                    {GOVERNORATES.map((gov, i) => {
+                      const d = gov.density / 100;
+                      const r = 6 + d * 22;
+                      const stopColor = gov.flagged > 0
+                        ? `rgba(201,74,94,${0.35 + d * 0.4})`
+                        : d > 0.7
+                          ? `rgba(212,120,0,${0.3 + d * 0.4})`
+                          : d > 0.4
+                            ? `rgba(184,138,60,${0.25 + d * 0.35})`
+                            : `rgba(74,158,200,${0.15 + d * 0.3})`;
+                      return (
+                        <radialGradient key={i} id={`hg${i}`} cx="50%" cy="50%" r="50%">
+                          <stop offset="0%" stopColor={stopColor} />
+                          <stop offset="60%" stopColor={stopColor.replace(/[\d.]+\)$/, (d * 0.4).toFixed(2) + ")")} />
+                          <stop offset="100%" stopColor="transparent" />
+                        </radialGradient>
+                      );
+                    })}
+                  </defs>
+                  {GOVERNORATES.map((gov, i) => {
+                    const d = gov.density / 100;
+                    const r = (6 + d * 22) * 3.5;
+                    return (
+                      <ellipse
+                        key={i}
+                        cx={`${gov.x}%`} cy={`${gov.y}%`}
+                        rx={r} ry={r * 0.72}
+                        fill={`url(#hg${i})`}
+                      />
+                    );
+                  })}
+                </svg>
+
+                {/* Topographic contour lines (schematic) */}
+                <div className="absolute inset-0 opacity-[0.06]" style={{
+                  backgroundImage: `
+                    linear-gradient(rgba(184,138,60,0.4) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(184,138,60,0.4) 1px, transparent 1px)
+                  `,
+                  backgroundSize: "48px 48px",
                 }} />
-                {/* Oman outline hint */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-5">
-                  <i className="ri-map-2-line text-gold-400" style={{ fontSize: "200px" }} />
-                </div>
-                {/* Governorate dots */}
+
+                {/* Governorate interaction targets */}
                 {GOVERNORATES.map((gov, i) => {
-                  const opacity = gov.density / 100;
-                  const size = 8 + (gov.density / 100) * 20;
+                  const d = gov.density / 100;
+                  const dotSize = 6 + d * 10;
                   return (
                     <div key={i}
                       onMouseEnter={() => setHoveredGov(gov)}
                       onMouseLeave={() => setHoveredGov(null)}
-                      className="absolute cursor-pointer transition-all"
-                      style={{ left: `${gov.x}%`, top: `${gov.y}%`, transform: "translate(-50%,-50%)" }}>
-                      <div className="rounded-full"
-                        style={{ width: size, height: size, background: `rgba(184,138,60,${opacity})`, border: `1px solid rgba(184,138,60,${opacity + 0.2})` }} />
+                      className="absolute cursor-pointer"
+                      style={{ left: `${gov.x}%`, top: `${gov.y}%`, transform: "translate(-50%,-50%)" }}
+                    >
+                      <div
+                        className="rounded-full"
+                        style={{
+                          width: dotSize,
+                          height: dotSize,
+                          background: gov.flagged > 0 ? "#C94A5E" : d > 0.7 ? "#D4780F" : "#B88A3C",
+                          opacity: 0.9,
+                          boxShadow: gov.flagged > 0
+                            ? "0 0 8px rgba(201,74,94,0.6)"
+                            : d > 0.7
+                              ? "0 0 6px rgba(212,120,0,0.5)"
+                              : "0 0 4px rgba(184,138,60,0.35)",
+                        }}
+                      />
                       {gov.flagged > 0 && (
-                        <div className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-red-400 animate-pulse border border-red-600" />
+                        <div className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-red-400 animate-pulse border border-red-700" style={{ fontSize: "0" }} />
                       )}
                     </div>
                   );
                 })}
-                {/* Border crossing points */}
+
+                {/* Border crossing squares */}
                 {BORDER_POINTS.map((bp, i) => (
                   <div key={i} className="absolute" style={{ left: `${bp.x}%`, top: `${bp.y}%`, transform: "translate(-50%,-50%)" }}>
-                    <div className="w-4 h-4 rounded-sm flex items-center justify-center"
-                      style={{ background: "rgba(96,165,250,0.2)", border: "1px solid rgba(96,165,250,0.5)" }}>
-                      <i className="ri-passport-line text-blue-400" style={{ fontSize: "8px" }} />
-                    </div>
-                    <div className="absolute top-5 left-1/2 -translate-x-1/2 whitespace-nowrap text-center" style={{ fontSize: "8px" }}>
-                      <div className="text-blue-400 font-['JetBrains_Mono']">{bp.arrivals.toLocaleString()}</div>
+                    <div className="w-3 h-3 flex items-center justify-center"
+                      style={{
+                        background: "rgba(96,165,250,0.15)",
+                        border: "1px solid rgba(96,165,250,0.45)",
+                        borderRadius: "2px",
+                        boxShadow: "0 0 6px rgba(96,165,250,0.2)",
+                      }}>
+                      <i className="ri-passport-line" style={{ fontSize: "7px", color: "#93c5fd" }} />
                     </div>
                   </div>
                 ))}
+
+                {/* Gradient scale legend */}
+                <div className="absolute bottom-3 right-3 flex items-center gap-1.5 px-2 py-1 rounded-lg"
+                  style={{ background: "rgba(5,15,30,0.75)", border: "1px solid rgba(184,138,60,0.12)" }}>
+                  <div className="w-20 h-2 rounded-full" style={{
+                    background: "linear-gradient(to right, rgba(74,158,200,0.4), rgba(184,138,60,0.7), rgba(212,120,0,0.85), rgba(201,74,94,1))"
+                  }} />
+                  <span className="text-[9px] font-['JetBrains_Mono'] text-gray-500">{isAr ? "منخفض → مرتفع" : "Low → High"}</span>
+                </div>
+
                 {/* Hover tooltip */}
                 {hoveredGov && (
                   <div className="absolute z-20 px-3 py-2 rounded-xl border pointer-events-none"
-                    style={{ left: `${hoveredGov.x + 3}%`, top: `${hoveredGov.y - 8}%`, background: "rgba(5,20,40,0.95)", borderColor: "rgba(184,138,60,0.3)", minWidth: "140px" }}>
+                    style={{ left: `${Math.min(hoveredGov.x + 3, 68)}%`, top: `${Math.max(hoveredGov.y - 10, 2)}%`, background: "rgba(4,14,24,0.96)", borderColor: "rgba(184,138,60,0.3)", minWidth: "140px" }}>
                     <p className="text-white text-xs font-bold">{isAr ? hoveredGov.nameAr : hoveredGov.name}</p>
                     <p className="text-gold-400 text-xs font-['JetBrains_Mono']">{isAr ? "الكثافة:" : "Density:"} {hoveredGov.density}%</p>
                     {hoveredGov.flagged > 0 && (
@@ -479,9 +541,8 @@ const CommandCenterPage = () => {
                     )}
                   </div>
                 )}
-                {/* Map label */}
-                <div className="absolute bottom-3 left-3 text-gray-700 text-xs font-['JetBrains_Mono']">
-                  {isAr ? "عُمان — تمثيل تخطيطي" : "Oman — Schematic Representation"}
+                <div className="absolute bottom-3 left-3 text-gray-700 text-[9px] font-['JetBrains_Mono'] tracking-widest">
+                  {isAr ? "عُمان — خريطة الحرارة" : "Oman — Heatmap"}
                 </div>
               </div>
             </div>

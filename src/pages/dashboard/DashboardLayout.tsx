@@ -5,6 +5,7 @@ import { type EntityType, navItems } from "@/mocks/dashboardData";
 import SkipToMain from "@/components/SkipToMain";
 import DashboardTitleBar from "./components/DashboardTitleBar";
 import DashboardSidebar from "./components/DashboardSidebar";
+import CriticalAlertModal from "./components/CriticalAlertModal";
 
 // Context threaded to every child route via <Outlet context={...} />.
 // Child pages consume via `const { isAr } = useOutletContext<DashboardOutletContext>();`
@@ -63,6 +64,7 @@ const DashboardLayout = () => {
           <Outlet context={{ isAr, lang, toggleLang, entityType } satisfies DashboardOutletContext} />
         </main>
       </div>
+      <CriticalAlertModal isAr={isAr} />
     </div>
   );
 };

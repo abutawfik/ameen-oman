@@ -1119,15 +1119,16 @@ const Person360Page = () => {
   const [tpiBannerDismissed, setTpiBannerDismissed] = useState(false);
   const subjects = SCORED_RECORDS.slice(0, 3);
   const [subjectId, setSubjectId] = useState<string>(subjects[0].id);
-  const [tab, setTab] = useState<TabKey>("identity");
+  // Risk is the primary reason an analyst opens a person record — show it first.
+  const [tab, setTab] = useState<TabKey>("risk");
   const subject = subjects.find((s) => s.id === subjectId) ?? subjects[0];
 
   const tabs: { key: TabKey; labelEn: string; labelAr: string; icon: string }[] = [
+    { key: "risk",          labelEn: "Risk",          labelAr: "المخاطر",       icon: "ri-shield-cross-line" },
     { key: "identity",      labelEn: "Identity",      labelAr: "الهوية",        icon: "ri-id-card-line" },
     { key: "movements",     labelEn: "Movements",     labelAr: "الحركات",       icon: "ri-route-line" },
     { key: "relationships", labelEn: "Relationships", labelAr: "العلاقات",      icon: "ri-share-line" },
     { key: "activity",      labelEn: "Activity",      labelAr: "النشاط",        icon: "ri-pulse-line" },
-    { key: "risk",          labelEn: "Risk",          labelAr: "المخاطر",       icon: "ri-shield-cross-line" },
     { key: "cases",         labelEn: "Cases",         labelAr: "القضايا",       icon: "ri-folder-shield-2-line" },
   ];
 
@@ -1150,6 +1151,54 @@ const Person360Page = () => {
         </div>
       )}
       <SubjectHeader subject={subject} isAr={isAr} all={subjects} onSelect={setSubjectId} />
+
+      {/* Persistent risk strip — always visible regardless of active tab */}
+      {(() => {
+        const bandMeta = SCORE_BAND_META[subject.band];
+        const riskFactors = [
+          { label: isAr ? "الحركة الحدودية" : "Border activity",   score: Math.min(99, subject.unifiedScore + 4), icon: "ri-flight-takeoff-line" },
+          { label: isAr ? "الروابط المشبوهة" : "Network links",    score: Math.max(10, subject.unifiedScore - 8), icon: "ri-share-line" },
+          { label: isAr ? "تطابق قوائم المراقبة" : "Watchlist hit", score: Math.min(99, subject.unifiedScore + 12), icon: "ri-eye-line" },
+        ];
+        return (
+          <div
+            className="rounded-xl border mb-3 px-4 py-3 flex items-center gap-4 flex-wrap"
+            style={{
+              background: `linear-gradient(90deg, ${bandMeta.color}0a 0%, rgba(10,37,64,0.5) 100%)`,
+              borderColor: `${bandMeta.color}30`,
+            }}
+          >
+            <div className="flex items-center gap-2 flex-shrink-0">
+              <i className="ri-shield-cross-line text-sm" style={{ color: bandMeta.color }} />
+              <span className="text-[11px] font-bold tracking-widest font-['JetBrains_Mono'] uppercase" style={{ color: bandMeta.color }}>
+                {isAr ? "ملخص المخاطر" : "RISK SUMMARY"}
+              </span>
+            </div>
+            <div className="flex items-center gap-3 flex-wrap flex-1">
+              {riskFactors.map((f) => (
+                <div key={f.label} className="flex items-center gap-1.5">
+                  <i className={`${f.icon} text-[11px]`} style={{ color: "#6B7280" }} />
+                  <span className="text-[11px] text-gray-400 font-['JetBrains_Mono']">{f.label}</span>
+                  <span
+                    className="text-[11px] font-black font-['JetBrains_Mono']"
+                    style={{ color: f.score >= 70 ? "#C94A5E" : f.score >= 40 ? "#C98A1B" : "#4ADE80" }}
+                  >
+                    {f.score}
+                  </span>
+                </div>
+              ))}
+            </div>
+            <button
+              type="button"
+              onClick={() => setTab("risk")}
+              className="flex-shrink-0 flex items-center gap-1 text-[11px] font-bold font-['JetBrains_Mono'] transition-opacity hover:opacity-70 cursor-pointer"
+              style={{ color: bandMeta.color }}
+            >
+              {isAr ? "الملف الكامل للمخاطر ←" : "Full risk profile →"}
+            </button>
+          </div>
+        );
+      })()}
 
       {/* Tab bar */}
       <div
