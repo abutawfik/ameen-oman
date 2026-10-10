@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   PERSONAL_QUEUE,
@@ -34,6 +34,9 @@ const typeIcon: Record<PersonalQueueItem["type"], string> = {
 const DataAnalystHome = ({ isAr }: Props) => {
   const navigate = useNavigate();
   const [now, setNow] = useState(() => Date.now());
+  const [undoToast, setUndoToast] = useState<{ id: string; label: string } | null>(null);
+  const breachItemRef = useRef<HTMLDivElement>(null);
+  const undoTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const t = window.setInterval(() => setNow(Date.now()), 1000);
@@ -57,15 +60,16 @@ const DataAnalystHome = ({ isAr }: Props) => {
   );
 
   // Mock "my recent actions" — scoped to the component per brief.
+  // Colors: green = closed/resolved, amber = escalated, gray = false positive, gold = note/review, blue = investigated
   const recentActions = [
-    { icon: "ri-check-double-line", label: isAr ? "أُغلقت القضية مع تأكيد التهديد"  : "Closed case with confirmed threat", meta: "rec-000129 · Abdul R. Hashemi", ago: isAr ? "قبل 4د" : "4m ago", color: "#4ADE80" },
-    { icon: "ri-user-shared-line",  label: isAr ? "تم تصعيد القضية إلى المشرف"       : "Escalated to supervisor",            meta: "demo-highrisk-sponsor · Petrov", ago: isAr ? "قبل 12د" : "12m ago", color: "#6B4FAE" },
-    { icon: "ri-check-line",        label: isAr ? "تم الإشعار بالتنبيه"                : "Acked alert",                         meta: "rec-000131 · Hasan Al-Bakri",     ago: isAr ? "قبل 18د" : "18m ago", color: "#D6B47E" },
-    { icon: "ri-close-circle-line", label: isAr ? "تمّ إغلاق التنبيه كـ 'إيجابي كاذب'"  : "Closed alert as false positive",       meta: "rec-000128 · Elena Marković",     ago: isAr ? "قبل 34د" : "34m ago", color: "#FACC15" },
-    { icon: "ri-edit-line",         label: isAr ? "أُضيفت ملاحظة على السجل"           : "Added case note",                    meta: "demo-anomaly · Leila Benaissa",   ago: isAr ? "قبل 48د" : "48m ago", color: "#D6B47E" },
-    { icon: "ri-check-line",        label: isAr ? "تم الإشعار بالتنبيه"                : "Acked alert",                         meta: "rec-000137 · Noor Al-Hakim",      ago: isAr ? "قبل 58د" : "58m ago", color: "#D6B47E" },
+    { icon: "ri-check-double-line", label: isAr ? "أُغلقت القضية مع تأكيد التهديد"  : "Closed case with confirmed threat", meta: "rec-000129 · Abdul R. Hashemi", ago: isAr ? "قبل 4د" : "4m ago",       color: "#4ADE80" },
+    { icon: "ri-user-shared-line",  label: isAr ? "تم تصعيد القضية إلى المشرف"       : "Escalated to supervisor",            meta: "demo-highrisk-sponsor · Petrov", ago: isAr ? "قبل 12د" : "12m ago",     color: "#D4922A" },
+    { icon: "ri-check-line",        label: isAr ? "تم الإشعار بالتنبيه"                : "Acked alert",                         meta: "rec-000131 · Hasan Al-Bakri",     ago: isAr ? "قبل 18د" : "18m ago",     color: "#38BDF8" },
+    { icon: "ri-close-circle-line", label: isAr ? "تمّ إغلاق التنبيه كـ 'إيجابي كاذب'"  : "Closed alert as false positive",       meta: "rec-000128 · Elena Marković",     ago: isAr ? "قبل 34د" : "34m ago",     color: "#6B7280" },
+    { icon: "ri-edit-line",         label: isAr ? "أُضيفت ملاحظة على السجل"           : "Added case note",                    meta: "demo-anomaly · Leila Benaissa",   ago: isAr ? "قبل 48د" : "48m ago",     color: "#D6B47E" },
+    { icon: "ri-check-line",        label: isAr ? "تم الإشعار بالتنبيه"                : "Acked alert",                         meta: "rec-000137 · Noor Al-Hakim",      ago: isAr ? "قبل 58د" : "58m ago",     color: "#38BDF8" },
     { icon: "ri-check-double-line", label: isAr ? "أُغلقت القضية — مسار روتيني"        : "Closed case — routine routing",       meta: "rec-000132 · Priya Raman",        ago: isAr ? "قبل 1س 12د" : "1h 12m ago", color: "#4ADE80" },
-    { icon: "ri-search-eye-line",   label: isAr ? "فُتح الشرح ومراجعته"                : "Opened explain + reviewed",           meta: "demo-borderline · Yasir Karim",   ago: isAr ? "قبل 1س 24د" : "1h 24m ago", color: "#6B4FAE" },
+    { icon: "ri-search-eye-line",   label: isAr ? "فُتح الشرح ومراجعته"                : "Opened explain + reviewed",           meta: "demo-borderline · Yasir Karim",   ago: isAr ? "قبل 1س 24د" : "1h 24m ago", color: "#38BDF8" },
   ];
 
   // Hot signals — compact chips of deltas over 24h. Mock deltas; steady is fine for demo.
@@ -81,8 +85,47 @@ const DataAnalystHome = ({ isAr }: Props) => {
   const breachedCount = sortedQueue.filter((i) => new Date(i.slaDeadline).getTime() < now).length;
   const criticalCount = sortedQueue.filter((i) => i.severity === "CRITICAL").length;
 
+  function handleEscalate(id: string, title: string) {
+    if (undoTimerRef.current) clearTimeout(undoTimerRef.current);
+    setUndoToast({ id, label: title });
+    undoTimerRef.current = setTimeout(() => setUndoToast(null), 3000);
+  }
+
+  function jumpToBreach() {
+    breachItemRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    breachItemRef.current?.animate(
+      [{ outline: "2px solid rgba(201,74,94,0.8)" }, { outline: "2px solid rgba(201,74,94,0)" }],
+      { duration: 1200, easing: "ease-out" },
+    );
+  }
+
   return (
     <div className="relative z-10 p-4 md:p-6 max-w-[1600px] mx-auto space-y-5">
+
+      {/* Undo toast for ESCALATE */}
+      {undoToast && (
+        <div
+          className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-3 px-4 py-3 rounded-xl shadow-2xl"
+          style={{
+            background: "rgba(15,30,55,0.96)",
+            border: "1px solid rgba(212,146,42,0.45)",
+            backdropFilter: "blur(12px)",
+          }}
+        >
+          <i className="ri-arrow-up-circle-line text-amber-400 text-base" />
+          <span className="text-white text-xs font-semibold font-['Inter']">
+            Escalated: <span className="text-amber-300">{undoToast.label.slice(0, 40)}</span>
+          </span>
+          <button
+            type="button"
+            onClick={() => { if (undoTimerRef.current) clearTimeout(undoTimerRef.current); setUndoToast(null); }}
+            className="ml-2 px-2.5 py-1 rounded-md text-[11px] font-bold font-['JetBrains_Mono'] cursor-pointer"
+            style={{ background: "rgba(212,146,42,0.15)", color: "#D4922A", border: "1px solid rgba(212,146,42,0.4)" }}
+          >
+            UNDO
+          </button>
+        </div>
+      )}
       {/* 1. SLA countdown bar */}
       <div
         role="status"
@@ -127,7 +170,22 @@ const DataAnalystHome = ({ isAr }: Props) => {
             </div>
           </div>
         </div>
-        <div className="md:ml-auto flex items-center gap-3">
+        <div className="md:ml-auto flex items-center gap-4">
+          {nextBreach && (
+            <button
+              type="button"
+              onClick={jumpToBreach}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-bold font-['JetBrains_Mono'] tracking-wider transition-all cursor-pointer"
+              style={{
+                background: isCrit ? "rgba(201,74,94,0.15)" : "rgba(184,138,60,0.12)",
+                color: isCrit ? "#f87171" : "#D6B47E",
+                border: isCrit ? "1px solid rgba(201,74,94,0.35)" : "1px solid rgba(184,138,60,0.3)",
+              }}
+            >
+              <i className="ri-arrow-down-line text-xs" />
+              {isAr ? "الذهاب إلى المهلة" : "go to breach"}
+            </button>
+          )}
           <div className="text-right">
             <div className="text-[11px] font-bold tracking-widest font-['JetBrains_Mono'] text-gray-500">
               {isAr ? "أقرب مهلة تنتهي في" : "NEXT BREACH IN"}
@@ -144,10 +202,14 @@ const DataAnalystHome = ({ isAr }: Props) => {
 
       {/* 2. Two-panel row: My Queue + Live Operator Queue */}
       <div className="grid grid-cols-1 xl:grid-cols-12 gap-4">
-        {/* My Queue (5/12) */}
+        {/* My Queue (5/12) — primary work zone, visually dominant */}
         <div
           className="xl:col-span-5 rounded-xl border"
-          style={{ background: "rgba(10,37,64,0.65)", borderColor: "rgba(184,138,60,0.12)" }}
+          style={{
+            background: "rgba(10,37,64,0.82)",
+            borderColor: "rgba(184,138,60,0.25)",
+            boxShadow: "0 0 0 1px rgba(184,138,60,0.08), inset 3px 0 0 rgba(184,138,60,0.35)",
+          }}
         >
           <div className="flex items-center justify-between px-4 py-3 border-b" style={{ borderColor: "rgba(184,138,60,0.08)" }}>
             <div>
@@ -166,13 +228,21 @@ const DataAnalystHome = ({ isAr }: Props) => {
             </span>
           </div>
           <div className="divide-y" style={{ borderColor: "rgba(184,138,60,0.05)" }}>
-            {sortedQueue.map((item) => {
+            {sortedQueue.map((item, idx) => {
               const sev = severityMeta[item.severity];
+              const isBreachItem = idx === 0;
               return (
                 <div
                   key={item.id}
+                  ref={isBreachItem ? breachItemRef : undefined}
                   className="px-4 py-3 hover:bg-white/[0.02] transition-colors"
-                  style={{ borderColor: "rgba(184,138,60,0.05)" }}
+                  style={{
+                    borderColor: "rgba(184,138,60,0.05)",
+                    ...(isBreachItem && {
+                      borderLeft: "3px solid #C94A5E",
+                      background: "rgba(201,74,94,0.04)",
+                    }),
+                  }}
                 >
                   <div className="flex items-start gap-3">
                     <span
@@ -195,27 +265,31 @@ const DataAnalystHome = ({ isAr }: Props) => {
                     <SlaCountdown deadline={item.slaDeadline} isAr={isAr} compact />
                   </div>
                   <div className="flex items-center gap-1.5 mt-2.5 pl-[72px]">
+                    {/* ACK — quiet primary: solid background, calm green */}
                     <button
                       type="button"
-                      className="px-2.5 py-1 rounded-md text-[11px] font-bold cursor-pointer font-['JetBrains_Mono'] tracking-wider"
-                      style={{ background: "rgba(74,222,128,0.1)", color: "#4ADE80", border: "1px solid rgba(74,222,128,0.3)" }}
+                      className="px-3 py-1 rounded-md text-[11px] font-bold cursor-pointer font-['JetBrains_Mono'] tracking-wider"
+                      style={{ background: "rgba(74,142,90,0.25)", color: "#86efac", border: "1px solid rgba(74,142,90,0.4)" }}
                     >
                       {isAr ? "إشعار" : "ACK"}
                     </button>
+                    {/* ESCALATE — warning secondary: amber border, amber text */}
                     <button
                       type="button"
-                      className="px-2.5 py-1 rounded-md text-[11px] font-bold cursor-pointer font-['JetBrains_Mono'] tracking-wider"
-                      style={{ background: "rgba(107,79,174,0.1)", color: "#6B4FAE", border: "1px solid rgba(107,79,174,0.3)" }}
+                      onClick={() => handleEscalate(item.id, isAr ? item.titleAr : item.title)}
+                      className="px-3 py-1 rounded-md text-[11px] font-bold cursor-pointer font-['JetBrains_Mono'] tracking-wider transition-colors"
+                      style={{ background: "rgba(212,146,42,0.08)", color: "#D4922A", border: "1px solid rgba(212,146,42,0.45)" }}
                     >
                       {isAr ? "تصعيد" : "ESCALATE"}
                     </button>
+                    {/* OPEN — text link, tertiary */}
                     <button
                       type="button"
                       onClick={() => navigate("/dashboard/osint-risk-engine")}
-                      className="px-2.5 py-1 rounded-md text-[11px] font-bold cursor-pointer font-['JetBrains_Mono'] tracking-wider ml-auto"
-                      style={{ background: "rgba(184,138,60,0.1)", color: "#D6B47E", border: "1px solid rgba(184,138,60,0.3)" }}
+                      className="ml-auto text-[11px] font-semibold font-['JetBrains_Mono'] cursor-pointer transition-colors hover:text-gold-300"
+                      style={{ color: "#D6B47E", background: "none", border: "none" }}
                     >
-                      {isAr ? "فتح" : "OPEN"} →
+                      {isAr ? "فتح" : "Open"} →
                     </button>
                   </div>
                 </div>
@@ -251,7 +325,7 @@ const DataAnalystHome = ({ isAr }: Props) => {
               className="grid grid-cols-12 gap-2 px-4 py-2 border-b text-[9px] font-bold tracking-widest uppercase font-['JetBrains_Mono']"
               style={{ borderColor: "rgba(184,138,60,0.05)", color: "#6B7280" }}
             >
-              <div className="col-span-1">{isAr ? "درجة" : "Score"}</div>
+              <div className="col-span-1">{isAr ? "درجة /١٠٠" : "Score /100"}</div>
               <div className="col-span-4">{isAr ? "المسافر" : "Traveler"}</div>
               <div className="col-span-2">{isAr ? "الجنسية" : "Nat."}</div>
               <div className="col-span-3">{isAr ? "رحلة" : "Flight"}</div>
