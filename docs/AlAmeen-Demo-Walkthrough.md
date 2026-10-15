@@ -1,5 +1,5 @@
 # Al-Ameen — Demo Walkthrough Script
-Version 1.7 · ROP Operator Audience · 30-minute Technical
+Version 1.9 · ROP Operator Audience · 30-minute Technical
 
 ---
 
@@ -20,7 +20,7 @@ Version 1.7 · ROP Operator Audience · 30-minute Technical
 | Target | URL |
 |--------|-----|
 | **Primary (live)** | `https://alameen.tech` |
-| Local fallback | `http://localhost:3002` after `npm run dev` in `~/Claude Workspace/Code/ameen-oman` |
+| Local fallback | `http://localhost:3004` after `npm run dev` in `~/Claude Workspace/Code/ameen-oman` |
 
 ### Login credentials (demo)
 
@@ -38,6 +38,10 @@ Log in as **Supervisor** — this role sees the full operator workflow without a
 | `N` | Start narration walkthrough on the current page |
 | `E` | Toggle Presenter mode (larger fonts) |
 | `Esc` | Exit any overlay or modal |
+
+### Sidebar setup
+
+The sidebar supports drag-to-pin. Hover over any nav item to reveal a 📌 button; click it to pin that item to the PINNED section at the top. Pinned items persist across sessions. Default pins already set: **Command Center, Target Match, Case Management, Watchlist & Targets, Search**. If the demo machine is fresh, these will already be pinned. To unpin, hover over a pinned item and click ×.
 
 ### Demo scenario preload
 
@@ -241,7 +245,7 @@ See Section 3 for tight answers. Most-likely questions from ROP operators:
 
 | Q | A |
 |---|---|
-| "Can I use this on a tablet or mobile?" | "Yes — responsive layout works on tablet. Full Arabic RTL support — press the language toggle in the top-right corner." |
+| "Can I use this on a tablet or mobile?" | "Yes — responsive layout tested down to 375px (phone width). On mobile the sidebar collapses to an icon rail automatically. Full Arabic RTL support — press the language toggle in the top-right corner." |
 | "What if I forget my password?" | "Forgot Password on the login page — sends a recovery link to your registered email. First-time login goes through Set Password which forces a strong password." |
 | "Who can see my actions?" | "Your Supervisor and Admin roles can view your audit log. You can also review your own activity in your User Profile." |
 
@@ -266,3 +270,4 @@ After questions:
 | 2026-08-17 | 1.0 | Initial — OSINT Risk Engine focus, executive audience |
 | 2026-10-05 | 1.6 | Full rewrite for ROP operator audience. 25-min technical format. Covers all Phase 1–5 modules: Border Dashboard, Services Dashboard, Search, Watchlist (NL Sanctions + Interpol Red Notices), Target Match, OSINT explainability, Case Management. URL updated to alameen.tech. |
 | 2026-10-09 | 1.7 | Added Beat 8 — Travel Pattern Intelligence (5 min). Extended to 30-min format (9 beats). Covers 5 TPI engines: Co-Traveler Networks (Alaa+Ahmad 27×), Route Signatures (KRT→MCT→BKK cluster), Transit Overlap, Trafficking Indicators (UNODC 2025, TC-001), Document Anomaly (passport swap DA-001). Updated closing frame. Added Q5 to questions buffer. |
+| 2026-10-15 | 1.9 | Added sidebar pin/unpin setup note (localStorage persistence, default pins). Fixed local dev port 3002 → 3004. Updated tablet/mobile Q&A to confirm responsive testing at 375px and icon-rail behaviour. Version badge on live site now shows `v1.9.0.1` (BUILD auto-increments via GitHub Actions CI). |
