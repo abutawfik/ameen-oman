@@ -474,9 +474,9 @@ type DocType = 'P' | 'V' | 'ID' | 'RP' | 'OTHER';
 | Portal sandbox | `https://alameen.tech` (current Vercel deployment, mock data) |
 | Backend sandbox | TBD — ROP IT to provision |
 | Auth sandbox | Stub JWT (no ForgeRock required for workshop) |
-| Test APIS feed | Sample file available: `docs/samples/apis-sample-WY456.json` (to be created) |
-| Test PNR feed | Sample file available: `docs/samples/pnr-sample-WY456.json` (to be created) |
-| Test watchlist CSV | Sample file available: `docs/samples/watchlist-sample-interpol.csv` (to be created) |
+| Test APIS feed | [`docs/samples/apis-sample-WY456.json`](samples/apis-sample-WY456.json) — 10 pax, WY456 AMM→MCT, includes TH-001 match candidate (seat 22A), NO_SHOW (seq 9), GO_SHOW (seq 10) |
+| Test PNR feed | [`docs/samples/pnr-sample-WY456.json`](samples/pnr-sample-WY456.json) — 2 records: suspicious AMM→MCT→BKK one-way cash booking + normal return business booking |
+| Test watchlist CSV | [`docs/samples/watchlist-sample-interpol.csv`](samples/watchlist-sample-interpol.csv) — 10 Interpol Red/Diffusion entries; row 1 is the TH-001 target Ahmad Khalil (JO4492011) |
 
 ---
 

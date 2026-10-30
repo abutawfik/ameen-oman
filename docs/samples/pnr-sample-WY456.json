@@ -1,0 +1,154 @@
+{
+  "_comment": "Sample PNR batch for WY456 AMM→MCT. Two passengers shown in full. PAX-001 (Ahmed Khaleel) shows the suspicious AMM→MCT→BKK routing used in the TPI co-traveler demo. PAX-002 shows a normal traveller record.",
+  "messageType": "PNR",
+  "messageId":   "PNR-WY456-20261101-001",
+  "generatedAt": "2026-11-01T11:30:00Z",
+  "source":      "AMADEUS_GDS",
+  "flightNo":    "WY456",
+
+  "passengers": [
+    {
+      "_note": "SUSPICIOUS — AMM→MCT→BKK routing, one-way, booked T-26h, phone matches known facilitator",
+      "seq":          3,
+      "pnrLocator":   "HXKP91",
+      "bookingRef":   "OM-2026-881234",
+      "ticketedDate": "2026-10-31T10:22:00Z",
+      "ticketNumber": "910-4432019002",
+      "fareClass":    "Y",
+      "fareType":     "ONE_WAY",
+
+      "name":    "KHALEEL/AHMED MR",
+      "contact": {
+        "phone":         "+963944112233",
+        "email":         null,
+        "addressCity":   "Damascus",
+        "addressCountry":"SYR"
+      },
+
+      "journey": [
+        {
+          "legSeq":   1,
+          "from":     "AMM",
+          "fromCity": "Amman",
+          "to":       "MCT",
+          "toCity":   "Muscat",
+          "flightNo": "WY456",
+          "airline":  "Oman Air",
+          "dep":      "2026-11-01T12:15:00Z",
+          "arr":      "2026-11-01T14:35:00Z",
+          "isCurrent": true,
+          "cabinClass":"ECONOMY",
+          "seatNo":   "22A",
+          "status":   "CHECKED_IN"
+        },
+        {
+          "legSeq":   2,
+          "from":     "MCT",
+          "fromCity": "Muscat",
+          "to":       "BKK",
+          "toCity":   "Bangkok",
+          "flightNo": "WY210",
+          "airline":  "Oman Air",
+          "dep":      "2026-11-01T17:00:00Z",
+          "arr":      "2026-11-02T04:30:00Z",
+          "isCurrent": false,
+          "cabinClass":"ECONOMY",
+          "seatNo":   null,
+          "status":   "CONFIRMED"
+        }
+      ],
+
+      "ssrs": [],
+      "frequentFlyer": null,
+
+      "bookingMeta": {
+        "leadTimeDays":   1,
+        "pointOfSale":    "AMM",
+        "agencyIata":     null,
+        "paymentMethod":  "CASH",
+        "currency":       "USD",
+        "totalFare":      342.00,
+        "transactionRef": "CASH-COUNTER-AMM-20261031"
+      },
+
+      "_riskFlags": [
+        "ONE_WAY_TICKET",
+        "LEAD_TIME_UNDER_48H",
+        "CASH_PAYMENT",
+        "MCT_TRANSIT_UNDER_3H",
+        "PHONE_LINKED_TO_KNOWN_FACILITATOR"
+      ]
+    },
+
+    {
+      "_note": "NORMAL — return ticket, booked 3 weeks ahead, corporate card, no flags",
+      "seq":          1,
+      "pnrLocator":   "MLTZ44",
+      "bookingRef":   "OM-2026-770011",
+      "ticketedDate": "2026-10-10T08:14:00Z",
+      "ticketNumber": "910-3390018871",
+      "fareClass":    "C",
+      "fareType":     "RETURN",
+
+      "name":    "AL-RASHIDI/KHALID NASSER MR",
+      "contact": {
+        "phone":         "+96892112233",
+        "email":         "k.alrashidi@ministry.gov.om",
+        "addressCity":   "Muscat",
+        "addressCountry":"OMN"
+      },
+
+      "journey": [
+        {
+          "legSeq":   1,
+          "from":     "MCT",
+          "fromCity": "Muscat",
+          "to":       "AMM",
+          "toCity":   "Amman",
+          "flightNo": "WY455",
+          "airline":  "Oman Air",
+          "dep":      "2026-10-28T08:00:00Z",
+          "arr":      "2026-10-28T10:15:00Z",
+          "isCurrent": false,
+          "cabinClass":"BUSINESS",
+          "seatNo":   "1A",
+          "status":   "USED"
+        },
+        {
+          "legSeq":   2,
+          "from":     "AMM",
+          "fromCity": "Amman",
+          "to":       "MCT",
+          "toCity":   "Muscat",
+          "flightNo": "WY456",
+          "airline":  "Oman Air",
+          "dep":      "2026-11-01T12:15:00Z",
+          "arr":      "2026-11-01T14:35:00Z",
+          "isCurrent": true,
+          "cabinClass":"BUSINESS",
+          "seatNo":   "1A",
+          "status":   "BOARDED"
+        }
+      ],
+
+      "ssrs": ["VGML"],
+      "frequentFlyer": {
+        "program": "Sindbad",
+        "number":  "SND-0042-8819",
+        "tier":    "GOLD"
+      },
+
+      "bookingMeta": {
+        "leadTimeDays":   22,
+        "pointOfSale":    "MCT",
+        "agencyIata":     "96811234",
+        "paymentMethod":  "CORPORATE_CARD",
+        "currency":       "OMR",
+        "totalFare":      620.00,
+        "transactionRef": "CORP-VISA-****4411"
+      },
+
+      "_riskFlags": []
+    }
+  ]
+}
