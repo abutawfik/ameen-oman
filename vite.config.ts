@@ -140,6 +140,14 @@ export default defineConfig({
   },
   server: {
     port: 3000,
+    // strictPort so a taken 3000 is an ERROR, not a silent move to 3001.
+    // Without it vite walks up the ports and lands on whatever is free —
+    // which is how this project was found answering on 3001, the port the
+    // Oman eVisa portal configures, while eVisa's own server was down. A dev
+    // server on an unexpected port is worse than one that refuses to start:
+    // it looks healthy, it answers, and it answers as the wrong app. Free the
+    // port, or pass --port to pick another one deliberately.
+    strictPort: true,
     host: "0.0.0.0",
   },
 });
