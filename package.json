@@ -17,7 +17,9 @@
     "bump:major": "node scripts/bump-version.mjs major",
     "bump:minor": "node scripts/bump-version.mjs minor",
     "bump:patch": "node scripts/bump-version.mjs patch",
-    "test": "node --test tests/*.test.mjs"
+    "test": "node --test tests/*.test.mjs",
+    "server:dev": "cd server && node --watch index.mjs",
+    "server:start": "cd server && node index.mjs"
   },
   "dependencies": {
     "i18next": "^25.3.2",
