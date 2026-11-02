@@ -10,6 +10,10 @@
 //   node scripts/bump-version.mjs pre alpha   → set preRelease="alpha" (does not bump numbers)
 //   node scripts/bump-version.mjs pre none    → clear preRelease (production release)
 //
+// Every segment except `build` also mirrors MAJOR.MINOR.PATCH(-pre) into
+// package.json — see syncPackageJson at the bottom for why three segments and
+// not four, and why `build` is the exception.
+//
 // The file is kept pretty-printed (2-space JSON) so diffs stay human-readable.
 // The script fails loudly on invalid input — never silently succeeds.
 // -----------------------------------------------------------------------------
@@ -20,6 +24,7 @@ import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const versionPath = resolve(__dirname, "..", "version.json");
+const packagePath = resolve(__dirname, "..", "package.json");
 
 const [, , segmentRaw, preReleaseArg] = process.argv;
 const segment = (segmentRaw ?? "").toLowerCase();
@@ -80,10 +85,30 @@ switch (segment) {
 
 writeFileSync(versionPath, JSON.stringify(data, null, 2) + "\n", "utf8");
 
+// A build bump leaves package.json alone: the build counter is not in it, so
+// there is nothing to write, and CI stages version.json by itself
+// (.github/workflows/ci.yml) — a dirty package.json in the bot's checkout
+// would be noise at best and a stray commit at worst.
+if (segment !== "build") {
+  syncPackageJson(data);
+}
+
 const after = formatVersion(data);
 console.log(`version.json · ${segment.toUpperCase()} bump`);
 console.log(`  before: ${before}`);
 console.log(`  after:  ${after}`);
+
+// npm's "version" field must be valid semver, and a 4th segment is not:
+// semver.valid("1.9.0.5") returns null while "1.9.0" and "1.9.0-rc" pass. So
+// BUILD is deliberately absent here. version.json stays the four-segment
+// source of truth that the app displays; package.json carries the three
+// segments npm reads. They are not meant to match.
+function syncPackageJson(v) {
+  const core = `${v.major ?? 0}.${v.minor ?? 0}.${v.patch ?? 0}`;
+  const pkg = JSON.parse(readFileSync(packagePath, "utf8"));
+  pkg.version = v.preRelease ? `${core}-${v.preRelease}` : core;
+  writeFileSync(packagePath, JSON.stringify(pkg, null, 2) + "\n", "utf8");
+}
 
 function formatVersion(v) {
   const base = `${v.major ?? 0}.${v.minor ?? 0}.${v.patch ?? 0}.${v.build ?? 0}`;
