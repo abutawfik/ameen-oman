@@ -13,6 +13,8 @@
 // Every segment except `build` also mirrors MAJOR.MINOR.PATCH(-pre) into
 // package.json — see syncPackageJson at the bottom for why three segments and
 // not four, and why `build` is the exception.
+// package-lock.json's root "version" follows package.json in the same step, so
+// npm does not quietly rewrite it on some later install.
 //
 // The file is kept pretty-printed (2-space JSON) so diffs stay human-readable.
 // The script fails loudly on invalid input — never silently succeeds.
@@ -25,6 +27,7 @@ import { fileURLToPath } from "node:url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const versionPath = resolve(__dirname, "..", "version.json");
 const packagePath = resolve(__dirname, "..", "package.json");
+const lockPath = resolve(__dirname, "..", "package-lock.json");
 
 const [, , segmentRaw, preReleaseArg] = process.argv;
 const segment = (segmentRaw ?? "").toLowerCase();
@@ -108,6 +111,35 @@ function syncPackageJson(v) {
   const pkg = JSON.parse(readFileSync(packagePath, "utf8"));
   pkg.version = v.preRelease ? `${core}-${v.preRelease}` : core;
   writeFileSync(packagePath, JSON.stringify(pkg, null, 2) + "\n", "utf8");
+  syncLockfile(pkg.version);
+}
+
+// npm rewrites the lockfile's root name/version only when npm itself runs, so
+// a bump that updates version.json and package.json leaves package-lock.json
+// behind until someone happens to install — then it turns up as an unexplained
+// dirty file. This lock root sat at react/0.0.0 until 2026-11-02 for exactly
+// that reason.
+//
+// Identity only — the root "version" and packages[""].version — taken from
+// package.json so the two cannot disagree. Dependency resolution stays npm's
+// business and is never touched here. A missing lockfile is not an error.
+//
+// Rewriting the whole file is safe: npm's formatting is exactly
+// JSON.stringify(data, null, 2) + "\n", verified byte-for-byte against this
+// repo's lockfile, so the diff is the two lines that changed.
+function syncLockfile(pkgVersion) {
+  let raw;
+  try {
+    raw = readFileSync(lockPath, "utf8");
+  } catch {
+    return;
+  }
+  const lock = JSON.parse(raw);
+  const rootPkg = lock.packages?.[""];
+  if (lock.version === pkgVersion && rootPkg?.version === pkgVersion) return;
+  lock.version = pkgVersion;
+  if (rootPkg) rootPkg.version = pkgVersion;
+  writeFileSync(lockPath, JSON.stringify(lock, null, 2) + "\n", "utf8");
 }
 
 function formatVersion(v) {
