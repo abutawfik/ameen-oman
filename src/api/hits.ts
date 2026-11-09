@@ -1,5 +1,6 @@
 import { apiFetch } from './client';
-import { HITS, type TravelHit, type HitStatus } from '@/mocks/targetMatchData';
+
+type HitStatus = 'PENDING' | 'CONFIRMED' | 'FALSE_POSITIVE' | 'ESCALATED' | 'DEFERRED';
 
 const ACTION_MAP: Record<HitStatus, string> = {
   CONFIRMED:      'CONFIRM',
@@ -9,13 +10,11 @@ const ACTION_MAP: Record<HitStatus, string> = {
   PENDING:        'DEFER',
 };
 
-export async function fetchHits(): Promise<TravelHit[]> {
-  try {
-    const { data } = await apiFetch<{ data: TravelHit[]; total: number }>('/api/v1/hits?pageSize=50');
-    return data;
-  } catch {
-    return HITS;
-  }
+// Returns the stub hits array, or throws so the caller can keep its initial state.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function fetchHits(): Promise<any[]> {
+  const { data } = await apiFetch<{ data: any[]; total: number }>('/api/v1/hits?pageSize=50');
+  return data;
 }
 
 export async function postHitAction(id: string, newStatus: HitStatus): Promise<void> {
