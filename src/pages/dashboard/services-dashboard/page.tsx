@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useOutletContext, useNavigate } from 'react-router-dom';
 import type { DashboardOutletContext } from '../DashboardLayout';
+import { fetchServices } from '@/api/services';
 
 const C = {
   bg: 'var(--alm-ocean-800)',
@@ -31,6 +32,7 @@ interface Service {
   pax: number;
   hits: number;
   risk: RiskLevel;
+  manifest?: Passenger[];
 }
 
 interface Passenger {
@@ -107,12 +109,17 @@ const ServicesDashboardPage = () => {
   const { isAr } = useOutletContext<DashboardOutletContext>();
   const navigate = useNavigate();
 
+  const [services, setServices] = useState<Service[]>(SERVICES);
   const [search, setSearch] = useState('');
   const [riskFilter, setRiskFilter] = useState<'ALL' | RiskLevel>('ALL');
   const [statusFilter, setStatusFilter] = useState<'ALL' | ServiceStatus>('ALL');
   const [selectedService, setSelectedService] = useState<Service | null>(null);
 
-  const filtered = SERVICES.filter(s => {
+  useEffect(() => {
+    fetchServices().then(data => { if (data) setServices(data as Service[]); });
+  }, []);
+
+  const filtered = services.filter(s => {
     const q = search.toLowerCase();
     const matchSearch = !q || s.flight.toLowerCase().includes(q) || s.airline.toLowerCase().includes(q) || s.from.toLowerCase().includes(q) || s.to.toLowerCase().includes(q);
     const matchRisk = riskFilter === 'ALL' || s.risk === riskFilter;
@@ -120,9 +127,9 @@ const ServicesDashboardPage = () => {
     return matchSearch && matchRisk && matchStatus;
   });
 
-  const totalPax    = SERVICES.reduce((a, s) => a + s.pax, 0);
+  const totalPax    = services.reduce((a, s) => a + s.pax, 0);
   const highRiskPax = 23;
-  const openHits    = SERVICES.reduce((a, s) => a + s.hits, 0);
+  const openHits    = services.reduce((a, s) => a + s.hits, 0);
 
   return (
     <div style={{ background: C.bg, minHeight: '100vh', padding: '1.5rem' }} dir={isAr ? 'rtl' : 'ltr'}>
@@ -320,7 +327,7 @@ const ServicesDashboardPage = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {MANIFEST_SAMPLE.map((p, i) => (
+                      {(selectedService.manifest ?? MANIFEST_SAMPLE).map((p, i) => (
                         <tr key={i} style={{ borderBottom: '1px solid rgba(255,255,255,0.03)' }}>
                           <td style={{ padding: '7px 8px', color: '#D1D5DB', fontFamily: "'Manrope', sans-serif" }}>{p.name}</td>
                           <td style={{ padding: '7px 8px', color: '#9CA3AF', fontFamily: "'JetBrains Mono', monospace", fontSize: 11 }}>{p.nationality}</td>

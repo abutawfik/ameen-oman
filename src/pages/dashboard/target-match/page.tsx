@@ -1,8 +1,9 @@
 import { HITS, type TravelHit, type HitStatus, type RiskLevel } from '@/mocks/targetMatchData';
 import { selectTargetHit } from '@/workflows/target';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useOutletContext, useSearchParams } from 'react-router-dom';
 import type { DashboardOutletContext } from '../DashboardLayout';
+import { fetchHits, postHitAction } from '@/api/hits';
 
 const C = {
   bg:       'var(--alm-ocean-800)',
@@ -63,6 +64,8 @@ export default function TargetMatchPage() {
   const requestedHit = params.get('hit');
   const [hits, setHits]           = useState<TravelHit[]>(HITS);
   const [selectedId, setSelectedId] = useState<string | null>(requestedHit);
+
+  useEffect(() => { fetchHits().then(setHits); }, []);
   const selected = selectTargetHit(hits, requestedHit ?? selectedId);
   const setSelected = (hit: TravelHit | null) => { setSelectedId(hit?.id ?? null); setParams(hit ? { hit: hit.id } : {}, { replace: true }); }; 
   const [filter, setFilter]       = useState<FilterTab>('ALL');
@@ -78,6 +81,7 @@ export default function TargetMatchPage() {
 
   function applyAction(id: string, newStatus: HitStatus, bannerType: 'confirmed' | 'dismissed') {
     setHits(prev => prev.map(h => h.id === id ? { ...h, status: newStatus } : h));
+    postHitAction(id, newStatus).catch(() => {});
     // Auto-advance: select the next pending hit so the queue keeps moving
     const nextPending = hits.find(h => h.status === 'PENDING' && h.id !== id);
     if (nextPending) {
